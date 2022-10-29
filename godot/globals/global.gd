@@ -11,13 +11,13 @@ const isometric_offset = Vector2(0,32)
 var enable_camera := true 
 
 const SUIT_COLORS = {
-	'diamond': Color('#0080ff'),
-	'crown': Color('#ff3333'),
-	'block': Color('#ffde5f'),
-	'heart': Color('#ffffff'),
-	'snake': Color('#00fff3'),
-	'arrow': Color('#53ff53'),
-	'circle': Color('#d849f5')
+	"blue": Color('#0080ff'),
+	"red": Color('#ff3333'),
+	"yellow": Color('#ffde5f'),
+	"white": Color('#ffffff'),
+	"cyan": Color('#00fff3'),
+	'green': Color('#53ff53'),
+	"magenta": Color('#d849f5')
 }
 
 var enable_analytics : bool = false setget _set_analytics
@@ -535,14 +535,14 @@ func shake_node_backwards(node, tween):
 	tween.interpolate_method(node, "set_position", node.rect_position, node.rect_position - Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)
 	tween.interpolate_method(node, "set_position", node.rect_position - Vector2(5, 0), actual_d_pos, 0.05, Tween.TRANS_BACK, Tween.EASE_OUT, 0.05)
 	tween.start()
-	yield(tween,"tween_completed")
+	
 
 func shake_node(node, tween):
 	var actual_d_pos = node.rect_position
 	tween.interpolate_method(node, "set_position", node.rect_position, node.rect_position + Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)
 	tween.interpolate_method(node, "set_position", node.rect_position + Vector2(5, 0), actual_d_pos, 0.05, Tween.TRANS_BACK, Tween.EASE_OUT, 0.05)
 	tween.start()
-	yield(tween,"tween_completed")
+	
 	
 func get_base_entity(node : Node):
 	if node is Entity:
@@ -621,8 +621,10 @@ func new_game(players: Array, data := {}) -> TheGame:
 	if not data.empty():
 		the_game.set_from_dictionary(data)
 		deck.set_from_dictionary(data.get("deck"))
+	else:
+		deck.setup()
 	the_game.set_deck(deck)
-	yield(get_tree().create_timer(1),"timeout" )
+	
 	Events.emit_signal("game_started")
 	return the_game
 
@@ -643,7 +645,7 @@ func new_session(existing_data := {}) -> TheSession:
 	if existing_data.empty():
 		the_game.reset_players()
 	
-	var deck = the_game.get_deck()
+	var deck: Deck = the_game.get_deck()
 	
 	var hand_ids : Array = existing_data.get("hand", [])
 	var hand := []
@@ -671,6 +673,7 @@ func safe_destroy_game() -> void:
 	
 func safe_destroy_match() -> void:
 	if is_match_running():
+		global.session.add_match(the_match)
 		Events.emit_signal("match_ended")
 		the_match.free()
 	the_match = null
@@ -735,22 +738,21 @@ var starting_deck: String = "classic"
 
 
 # Date utils
-func datetime_to_str(datetime: Dictionary, use_local := false, seconds := false) -> String:
+func datetime_to_str(datetime: Dictionary, use_local := false) -> String:
 	# {"day":23,"dst":false,"hour":18,"minute":41,
 	# "month":9,"second":55,"weekday":4,"year":2021}
 	# FIXME replace with ISO dates
 	var tz = Time.get_time_zone_from_system()
 	var tz_hours = floor(tz.bias / 60)
 	var tz_min = floor(tz.bias%60)
-	if not seconds:
-		datetime.erase("second")
-	var datetime_with_local := datetime.duplicate()
-	datetime_with_local["hour"] = datetime_with_local.hour + tz_hours
-	datetime_with_local["minute"] = datetime_with_local.minute + tz_hours
-	var local_tz = Time.get_offset_string_from_offset_minutes(tz.bias)
+	var datetime_with_local := datetime
+	var local_tz = ""
+	datetime.erase("second")
+	var datetime_string = Time.get_datetime_string_from_datetime_dict(datetime, true)
 	if use_local:
-		var datetime_str_local = Time.get_datetime_string_from_datetime_dict(datetime_with_local, true)
-		datetime_str_local += local_tz
-		return datetime_str_local
-	return Time.get_datetime_string_from_datetime_dict(datetime, true)
+		datetime["hour"] = datetime["hour"] + tz_hours
+		datetime["minute"] = datetime["hour"] + tz_hours
+		datetime_string = Time.get_datetime_string_from_datetime_dict(datetime, true)
+		local_tz = Time.get_offset_string_from_offset_minutes(tz.bias)
+	return datetime_string
 	

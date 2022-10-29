@@ -11,8 +11,6 @@ foreground_offset = -7
 background_offset = 0
 foreground_position = Vector2( -3, 3 )
 fortified_background_scale = Vector2( 1, 1 )
-neighbour_check_rotation_degrees = null
-neighbour_check_scale = null
 
 [node name="CollisionPolygon2D" parent="." index="0"]
 polygon = PoolVector2Array( -37.5, 37.5, -25, -25, 25, 25 )
@@ -35,4 +33,4 @@ rotation = 0.0
 texture = ExtResource( 3 )
 
 [node name="CollisionPolygon2D" parent="Neighbourhood" index="0"]
-polygon = PoolVector2Array( -68.1818, 0, 22.7273, -22.7273, 0, 68.1818 )
+polygon = PoolVector2Array( -73.8636, 73.8636, -73.8636, -73.8636, -11.3636, -73.8636, 73.8636, 11.3636, 73.8636, 73.8636 )

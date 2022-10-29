@@ -1,0 +1,3817 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/environments/TriTile.tscn" type="PackedScene" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends TriTile
+
+
+func _ready():
+	yield(get_tree(), \"idle_frame\")
+	yield(get_tree(), \"idle_frame\")
+	for n in neighbours:
+		n.modulate = Color(0,1,1)
+"
+
+[node name="Tiles" type="Node2D"]
+
+[node name="TriTile" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, -1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile2" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, -1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile3" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, -1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile4" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, -1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile39" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, -900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile40" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, -900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile41" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile42" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile13" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile14" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile17" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile18" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile15" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile16" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile19" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile20" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile35" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, -900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile36" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, -900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile37" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, -700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile38" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, -700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile21" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile22" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile7" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile8" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile9" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile10" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile5" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, -1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile6" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, -1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile43" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -1900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile44" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -1900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile45" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -1700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile46" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -1700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile47" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -1700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile48" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -1700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile23" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, -700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile24" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, -700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile25" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, -900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile26" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, -900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile31" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, -500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile32" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, -500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile33" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, -500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile34" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, -500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile121" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile122" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile123" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile124" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile125" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile126" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile27" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, -500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile28" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, -500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile29" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, -700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile30" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, -700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile127" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile128" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile129" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile130" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile131" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile132" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile133" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile134" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile135" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile136" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile137" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile138" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile139" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile140" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile141" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile142" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile143" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile144" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile145" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile146" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile147" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile148" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile149" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile150" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile151" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile152" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile153" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile154" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile288" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile289" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile155" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile156" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile157" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile158" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile284" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile285" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile286" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile287" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile159" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile160" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile161" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile162" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile91" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, -300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile92" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, -300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile93" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, -300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile94" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, -300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile95" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, -100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile96" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, -100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile97" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, -100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile98" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, -100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile99" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, -100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile100" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, -100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile101" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, -300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile102" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, -300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile103" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile104" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile105" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile106" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, -100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile107" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile108" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile109" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile110" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, -300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile111" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, 100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile112" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, 100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile113" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, 100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile114" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, 100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile115" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, 100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile116" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, 100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile117" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile118" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile272" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile273" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile274" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile275" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile276" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile277" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile278" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile279" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile280" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile281" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile282" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile283" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile290" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile291" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile292" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile293" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile294" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile295" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile296" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile297" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile298" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile299" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile300" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile301" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile302" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile303" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile304" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile305" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile306" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile307" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile308" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile309" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile310" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile311" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile312" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile313" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile314" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile315" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile316" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile317" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile318" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile319" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile320" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile321" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile322" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile323" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile324" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile325" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile326" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile327" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile328" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile329" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile330" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile331" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile332" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile333" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile334" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile335" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile336" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile337" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile338" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile339" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile340" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile341" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile342" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile343" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile344" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile345" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile346" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile347" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile348" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile349" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile350" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile351" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile352" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile353" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile354" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile355" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile356" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile357" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile358" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile359" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile360" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile361" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile362" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile363" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile364" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile365" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile366" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile367" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile368" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile369" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile370" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile371" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile372" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile373" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile374" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile375" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile376" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile377" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile378" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile379" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile380" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile381" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile382" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile383" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile384" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile385" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile386" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile387" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile388" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile389" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile390" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile391" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile392" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile393" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile394" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile395" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile396" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile397" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile398" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile399" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile400" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile401" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile402" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile403" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile404" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile405" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile406" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, -700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile407" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, -700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile408" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, 100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile409" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, 100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile410" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, -900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile411" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, -900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile412" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, -500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile413" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, -500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile414" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, -300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile415" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, -300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile416" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, -100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile417" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, -100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile418" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile419" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile420" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile421" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile422" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile423" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile424" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile425" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile426" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, 100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile427" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, 100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile434" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, -900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile435" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, -900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile436" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, -500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile437" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, -500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile438" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, -700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile439" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, -700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile440" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, -300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile441" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, -300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile442" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, -100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile443" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, -100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile444" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, 100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile445" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, 100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile428" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile429" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile430" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile431" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile432" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile433" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile446" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile447" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile448" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile449" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile450" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile451" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile452" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile453" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile454" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile455" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile456" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile457" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile458" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile459" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile460" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile461" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile462" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile463" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile464" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile465" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile466" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile467" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile468" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile469" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile470" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile471" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile472" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile473" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile474" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile475" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile476" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile477" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile478" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile479" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile480" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile481" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile482" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile483" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile484" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile485" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile486" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile487" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile488" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile489" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile490" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile491" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile492" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile493" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile494" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile495" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile496" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile497" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile498" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile499" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile500" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile501" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile502" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile503" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile504" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile505" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile506" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile507" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile508" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile509" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile550" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, 500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile551" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, 500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile552" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, 700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile553" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, 700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile554" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, 900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile555" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, 900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile556" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, 300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile557" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, 300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile558" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, 300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile559" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, 300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile560" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile561" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile562" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile563" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile564" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile565" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile566" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile567" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile568" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile569" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile570" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile571" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile572" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile573" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile574" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile575" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile576" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, 500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile577" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, 500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile578" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, 700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile579" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, 700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile580" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, 900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile581" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, 900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile582" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile583" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile584" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile585" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile586" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile587" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile588" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile589" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile590" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile591" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile592" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile593" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile594" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile595" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile596" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile597" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile598" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile599" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile600" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile601" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile602" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile603" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile604" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile605" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile606" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile607" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile608" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile609" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile610" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile611" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile612" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile613" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile510" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile511" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile512" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile513" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile514" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile515" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile516" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile517" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile518" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile519" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile520" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, 900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile521" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, 900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile522" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, 300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile523" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, 300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile524" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, 500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile525" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, 500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile526" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, 700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile527" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, 700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile528" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, 300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile529" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, 300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile530" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, 500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile531" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, 500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile532" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, 700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile533" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, 700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile534" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, 900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile535" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, 900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile536" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, 300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile537" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, 300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile538" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, 500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile539" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, 500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile540" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, 700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile541" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, 700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile614" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, 300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile615" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, 300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile616" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, 500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile617" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, 500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile618" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, 700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile619" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, 700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile620" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, 900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile621" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2100, 900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile542" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, 900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile543" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2100, 900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile544" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile545" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile546" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile547" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile548" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile549" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile622" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile623" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile624" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile625" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile626" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile627" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile628" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile629" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile630" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile631" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile632" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile633" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile634" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile635" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile636" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile637" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile638" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile639" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile640" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, 1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile641" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, 1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile642" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, 1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile643" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1900, 1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile644" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile645" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile646" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile647" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile648" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile649" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile650" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile651" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile652" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile653" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile654" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, 1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile655" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, 1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile656" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile657" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile658" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, 1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile659" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, 1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile660" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile661" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile662" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile663" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile664" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile665" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile666" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile667" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile668" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile669" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile670" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile671" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile672" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile673" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile674" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile675" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile676" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile677" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile678" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, 1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile679" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1700, 1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile680" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile681" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile682" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile683" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile684" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile685" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile686" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile687" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile688" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile689" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile690" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile691" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile692" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile693" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile694" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, 1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile695" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, 1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile696" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile697" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile698" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile699" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile700" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile701" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile702" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile703" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile704" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile705" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile706" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile707" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile708" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile709" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile710" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile711" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile712" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile713" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile714" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile715" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile716" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile717" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile718" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile719" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile720" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile721" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile722" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile723" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile724" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile725" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile726" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile727" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile728" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile729" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile730" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 1700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile731" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 1700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile732" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 1700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile733" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 1700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile734" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 1700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile735" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 1700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile736" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 1700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile737" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 1700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile738" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 1700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile739" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 1700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile740" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 1700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile741" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 1700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile742" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 1700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile743" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 1700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile744" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 1700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile745" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 1700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile746" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 1700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile747" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1300, 1700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile748" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 1700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile749" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 1700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile750" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 1700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile751" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 1700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile752" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 1700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile753" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 1700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile754" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 1700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile755" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, 1700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile756" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 1700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile757" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 1700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile758" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 1900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile759" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 1900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile760" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 1900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile761" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 1900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile762" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 1900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile763" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, 1900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile764" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 1900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile765" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 1900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile766" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 1900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile767" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 1900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile768" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 1900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile769" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 1900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile770" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 1900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile771" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 1900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile772" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 1900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile773" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 1900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile774" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 1900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile775" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 1900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile776" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 1900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile777" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 1900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile778" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 1900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile779" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, 1900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile780" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 1900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile781" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 1900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile782" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 2100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile783" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, 2100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile784" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 2100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile785" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, 2100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile786" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 2100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile787" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 2100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile788" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 2100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile789" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, 2100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile790" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 2100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile791" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, 2100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile792" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 2100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile793" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, 2100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile794" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 2100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile795" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, 2100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile796" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 2100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile797" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 2100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile798" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 2100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile799" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 2100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile800" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 2100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile801" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, 2100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile119" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile120" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1500, 100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile67" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile68" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile69" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+script = SubResource( 1 )
+
+[node name="TriTile71" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile72" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile73" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile74" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile163" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile164" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile165" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile166" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile271" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile49" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -2100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile50" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -2100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile51" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -2100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile52" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -2100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile53" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -1900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile54" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -1900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile55" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -1900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile56" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -1900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile57" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -2100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile58" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -2100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile59" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -1700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile60" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -1700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile61" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -1700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile62" parent="." instance=ExtResource( 1 )]
+position = Vector2( -900, -1700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile63" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -1700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile64" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -1700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile65" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -1900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile66" parent="." instance=ExtResource( 1 )]
+position = Vector2( -700, -1900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile75" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -2100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile76" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -2100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile77" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -1900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile78" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -1900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile79" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -2100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile80" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -2100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile81" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -1900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile82" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -1900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile83" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -2100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile84" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -2100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile85" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -1900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile86" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -1900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile87" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -2100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile88" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -2100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile89" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -1900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile90" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -1900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile11" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile12" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1100, -1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile167" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile168" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile169" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile170" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile171" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile172" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile173" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile174" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile175" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile176" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile177" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile178" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile179" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile180" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile181" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile182" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile183" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile184" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile185" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile186" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile187" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile188" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile189" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile190" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile191" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile192" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile193" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile194" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile195" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile196" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile197" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile198" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile199" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile200" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile201" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile202" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile203" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile204" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile205" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile206" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile207" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile208" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile209" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile210" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile211" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile212" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile213" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile214" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile215" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile216" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile217" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile218" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile219" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile220" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile221" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -1500 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile222" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -1500 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile223" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile224" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile225" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -1500 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile226" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -1500 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile227" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -1300 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile228" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -1300 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile229" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -1300 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile230" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -1300 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile239" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -1700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile240" parent="." instance=ExtResource( 1 )]
+position = Vector2( -300, -1700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile241" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -1700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile242" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, -1700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile243" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -1700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile244" parent="." instance=ExtResource( 1 )]
+position = Vector2( 100, -1700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile245" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -1700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile246" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -1700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile247" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -1700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile248" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -1700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile249" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -1700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile250" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -1700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile251" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -1700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile252" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -1700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile253" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -1700 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile254" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -1700 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile255" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -1700 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile256" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -1700 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile257" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -1900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile258" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -1900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile259" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -1900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile260" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -1900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile261" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -1900 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile262" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1100, -1900 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile263" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -1900 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile264" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -1900 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile265" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -2100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile266" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, -2100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile267" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -2100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile268" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, -2100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile269" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -2100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile270" parent="." instance=ExtResource( 1 )]
+position = Vector2( 700, -2100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile231" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, -1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile232" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1900, -1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile233" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -1100 )
+scale = Vector2( 2, 2 )
+
+[node name="TriTile234" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, -1100 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+
+[node name="TriTile235" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile236" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )
+
+[node name="TriTile237" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -1100 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+
+[node name="TriTile238" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1300, -1100 )
+rotation = 4.71239
+scale = Vector2( 2, 2 )

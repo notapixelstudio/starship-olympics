@@ -12,6 +12,8 @@ onready var minimoon = $Wrapper/Scaled/Colored/Minimoon
 onready var minisun_outline = $Wrapper/Scaled/Minisun
 onready var minimoon_outline = $Wrapper/Scaled/Minimoon
 
+const SCALE_CORRECTION := 0.5
+
 func _ready():
 	if target.info_player:
 		player_id.text = tr(target.info_player.get_username())
@@ -49,7 +51,8 @@ func _process(delta):
 	update_scale()
 	
 func update_scale():
-	$Wrapper/Scaled.scale = Vector2(5,5) if not target.camera or not target.camera.enabled else target.camera.zoom
+	var corrected_scale = Vector2(4,4) if not target.camera or not target.camera.enabled else target.camera.zoom
+	$Wrapper/Scaled.scale = Vector2(4,4)*(1-SCALE_CORRECTION) + corrected_scale*SCALE_CORRECTION
 	
 func update_rotation():
 	rotation = -target.rotation

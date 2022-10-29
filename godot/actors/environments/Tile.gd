@@ -81,6 +81,9 @@ func _ready():
 		if area != self and area.has_method('get_klass') and area.get_klass() == 'Tile': # trick to avoid circular references
 			neighbours.append(area)
 			
+	if len(neighbours) > 8:
+		print(len(neighbours))
+	
 	if not Engine.is_editor_hint(): # watch out for deleting this node when this is executed as a tool script!
 		$Neighbourhood.queue_free() # delete areas to save physics computations
 	
@@ -158,12 +161,12 @@ func set_on(player):
 	if on or get_player() == null or player != get_player():
 		return
 	on = true
-	modulate = Color(1.6,1.6,1.6)
+	modulate = Color(1.7,1.7,1.7)
 	propagate()
 	
 func set_off():
 	on = false
-	modulate = Color(1,1,1)
+	modulate = Color(0.9,0.9,0.9)
 	
 func propagate():
 	if not on or get_player() == null:

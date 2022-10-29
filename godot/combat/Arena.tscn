@@ -1,10 +1,9 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/managers/CombatManager.gd" type="Script" id=3]
 [ext_resource path="res://addons/ECM/icons/Manager.png" type="Texture" id=4]
-[ext_resource path="res://combat/managers/StunManager.gd" type="Script" id=5]
 [ext_resource path="res://combat/managers/PursueManager.gd" type="Script" id=6]
 [ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=7]
 [ext_resource path="res://combat/managers/CollectManager.gd" type="Script" id=8]
@@ -184,12 +183,6 @@ __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="StunManager" type="Node" parent="Managers"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_icon": ExtResource( 4 )
-}
-
 [node name="PursueManager" type="Node" parent="Managers"]
 script = ExtResource( 6 )
 __meta__ = {
@@ -284,6 +277,7 @@ __meta__ = {
 layer = -1
 
 [node name="BackgroundImage" type="Sprite" parent="BackgroundLayer"]
+unique_name_in_owner = true
 material = SubResource( 7 )
 texture = ExtResource( 39 )
 centered = false

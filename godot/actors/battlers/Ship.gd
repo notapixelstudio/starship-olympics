@@ -126,6 +126,7 @@ signal bump
 signal collect
 
 var invincible : bool
+var start_invincible := true
 
 var entity : Entity
 var camera
@@ -167,6 +168,9 @@ func set_bomb_type(value):
 	else:
 		next_symbol()
 	
+func set_start_invincible(v: bool) -> void:
+	start_invincible = v
+	
 func set_ammo(value):
 	$'%Ammo'.set_max_ammo(value)
 	$'%Ammo'.replenish()
@@ -198,7 +202,7 @@ func _enter_tree():
 	
 	emit_signal('spawned', self)
 	dash_init_appearance()
-	if controls_enabled:
+	if controls_enabled and start_invincible:
 		make_invincible()
 		
 	$AutoTrail.starting_color = Color(species.color.r, species.color.g, species.color.b, 0.35)
@@ -921,7 +925,8 @@ func is_aiming_away_gel():
 signal done
 func intro():
 	enable_controls()
-	make_invincible()
+	if start_invincible:
+		make_invincible()
 	yield(get_tree(), "idle_frame")
 	emit_signal('done')
 

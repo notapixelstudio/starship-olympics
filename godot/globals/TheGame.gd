@@ -8,12 +8,15 @@ var players : Array
 var timestamp_dict: Dictionary
 var deck : Deck
 var all_cards : CardPool
-
+var timestamp_local : String
+var timestamp : String
 func _init():
 	uuid = UUID.v4()
 	timestamp_dict = Time.get_datetime_dict_from_system(true)
 	#global.write_into_file("user://games/{id_game}.json".format({"id_game":uuid}), self.to_dict())
 	all_cards = CardPool.new() 
+	timestamp_local = Time.get_datetime_string_from_system(true, true)
+	timestamp = Time.get_datetime_string_from_system(false, true)
 
 	
 func get_uuid() -> String:
@@ -48,7 +51,8 @@ func get_number_of_human_players() -> int:
 			count += 1
 	return count
 	
-func get_last_winners() -> Array: # of InfoPlayers TBD handle more than one best player
+func get_last_winners() -> Array: # of InfoPlayers 
+	# TODO: TBD handle more than one best player
 	var best_player = null
 	var best_score = 0
 	for player in players:
@@ -79,8 +83,8 @@ func to_dict() -> Dictionary:
 		
 	return {
 		'game_uuid': self.get_uuid(),
-		'timestamp': global.datetime_to_str(self.timestamp_dict),
-		'timestamp_local': global.datetime_to_str(self.timestamp_dict, true),
+		'timestamp': timestamp,
+		'timestamp_local': timestamp_local,
 		'players': players_dicts,
 		'players_count': get_number_of_players(),
 		'human_players_count': get_number_of_human_players(),

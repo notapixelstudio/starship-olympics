@@ -1,14 +1,16 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/SmolMine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=3]
+[ext_resource path="res://utils/DisableWallsWithManyPlayers.gd" type="Script" id=4]
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=5]
 [ext_resource path="res://actors/environments/ElementSpawnerGroup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=10]
 [ext_resource path="res://actors/environments/WaveGroupSpawner.gd" type="Script" id=11]
 
 [node name="C" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="Diamond" parent="." instance=ExtResource( 5 )]
 

@@ -20,7 +20,6 @@ script = ExtResource( 1 )
 sure_scene = ExtResource( 4 )
 
 [node name="Animator" type="AnimationPlayer" parent="."]
-autoplay = "idle"
 anims/idle = SubResource( 1 )
 anims/transition = SubResource( 2 )
 
@@ -35,6 +34,8 @@ __meta__ = {
 }
 
 [node name="Buttons" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
 margin_left = 942.0
 margin_top = 480.0
 margin_right = 1238.0
@@ -42,7 +43,6 @@ margin_bottom = 659.0
 mouse_filter = 2
 theme = ExtResource( 2 )
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -83,6 +83,7 @@ size_flags_vertical = 3
 text = "SHOW ARENA"
 
 [node name="LeaderBoard" parent="." instance=ExtResource( 3 )]
+unique_name_in_owner = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -96,3 +97,4 @@ margin_bottom = 251.0
 [connection signal="pressed" from="Buttons/Map" to="." method="_on_Map_pressed"]
 [connection signal="pressed" from="Buttons/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Buttons/ShowArena" to="." method="_show_arena"]
+[connection signal="animation_over" from="LeaderBoard" to="." method="_on_LeaderBoard_animation_over"]

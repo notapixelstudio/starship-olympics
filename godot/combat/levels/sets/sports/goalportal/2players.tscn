@@ -247,7 +247,6 @@ precision = 100
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 6 )]
 hollow = true
-offset = 200
 hide_grid = true
 solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
@@ -255,7 +254,7 @@ grid_color = Color( 0, 1, 0.741176, 0.435294 )
 [node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 3 )
 width = 5000
-height = 3100
+height = 3300
 radius = 600
 precision = 100.0
 
@@ -269,19 +268,19 @@ texture = ExtResource( 4 )
 [node name="Line2D" type="Line2D" parent="Battlefield/Background" index="7"]
 modulate = Color( 1, 1, 1, 0.0470588 )
 position = Vector2( 0, 32 )
-points = PoolVector2Array( 0, -1550, 0, -550 )
+points = PoolVector2Array( 0, -1650, 0, -550 )
 width = 130.0
 default_color = Color( 1, 1, 1, 1 )
 
 [node name="Line2D2" type="Line2D" parent="Battlefield/Background" index="8"]
 modulate = Color( 1, 1, 1, 0.0470588 )
 position = Vector2( 880, 912 )
-points = PoolVector2Array( -880, -330, -880, 670 )
+points = PoolVector2Array( -880, -330, -880, 770 )
 width = 130.0
 default_color = Color( 1, 1, 1, 1 )
 
 [node name="Launcher" parent="Battlefield/Middleground" index="0" instance=ExtResource( 14 )]
-position = Vector2( 0, -950 )
+position = Vector2( -550, -1150 )
 symbol_scale = 1.5
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Launcher" index="11"]
@@ -290,7 +289,7 @@ radius = 200
 precision = 40.0
 
 [node name="Launcher2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 14 )]
-position = Vector2( 0, 1000 )
+position = Vector2( 550, 1150 )
 symbol_scale = 1.5
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Launcher2" index="11"]
@@ -318,21 +317,20 @@ position = Vector2( 0, -1 )
 type = "soccer"
 
 [node name="CameraEye" parent="Battlefield/Foreground" index="1" instance=ExtResource( 13 )]
-position = Vector2( 0, 1350 )
+position = Vector2( 0, 1150 )
 
 [node name="CameraEye2" parent="Battlefield/Foreground" index="2" instance=ExtResource( 13 )]
-position = Vector2( 0, -1300 )
+position = Vector2( 0, -1150 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -1300, 0 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 5 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
 position = Vector2( 1310, 0 )
 rotation = 3.14159
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 9 )
 
 [node name="Camera" parent="." index="7"]
