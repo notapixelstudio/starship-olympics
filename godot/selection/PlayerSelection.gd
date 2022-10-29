@@ -175,6 +175,9 @@ func disable_choice():
 	disabled = true
 	speciesSelection.modulate = Color(0.3,0.3,0.3,1)
 	speciesSelection.disable()
+	$"%Controls".visible = false
+	$"%SpeciesName".visible = false
+	$"%JoinMsg".visible = true
 	
 func enable_choice(silent=false):
 	joined = true
@@ -183,6 +186,9 @@ func enable_choice(silent=false):
 	selected = false
 	wrapper.z_index = 0
 	speciesSelection.enable(silent)
+	$"%Controls".visible = true
+	$"%SpeciesName".visible = true
+	$"%JoinMsg".visible = false
 	if global.demo_playtest:
 		speciesSelection.disable_arrows()
 	emit_signal("joined")

@@ -52,16 +52,16 @@ margin_bottom = 46.0
 size_flags_vertical = 3
 text = "CONTINUE"
 
-[node name="Map" type="Button" parent="Buttons"]
+[node name="Cards" type="Button" parent="Buttons"]
+visible = false
 margin_top = 50.0
 margin_right = 296.0
 margin_bottom = 96.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "QUIT TO MAP"
+text = "QUIT TO CARDS"
 
 [node name="Quit" type="Button" parent="Buttons"]
-visible = false
 margin_top = 122.0
 margin_right = 222.0
 margin_bottom = 179.0
@@ -94,7 +94,7 @@ margin_right = 238.0
 margin_bottom = 251.0
 
 [connection signal="pressed" from="Buttons/Continue" to="." method="_on_Continue_pressed"]
-[connection signal="pressed" from="Buttons/Map" to="." method="_on_Map_pressed"]
+[connection signal="pressed" from="Buttons/Cards" to="." method="_on_Cards_pressed"]
 [connection signal="pressed" from="Buttons/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Buttons/ShowArena" to="." method="_show_arena"]
 [connection signal="animation_over" from="LeaderBoard" to="." method="_on_LeaderBoard_animation_over"]

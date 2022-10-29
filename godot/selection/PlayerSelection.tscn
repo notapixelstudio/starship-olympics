@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://selection/PlayerSelection.gd" type="Script" id=1]
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=2]
@@ -143,6 +143,38 @@ size = 24
 outline_size = 4
 font_data = ExtResource( 9 )
 
+[sub_resource type="Animation" id=9]
+resource_name = "Blink"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 2 ),
+"transitions": PoolRealArray( -2, -2, -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="PlayerSelection" type="Control"]
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -247,6 +279,8 @@ texture_mode = 91
 begin_cap_mode = 1
 
 [node name="Controls" parent="Wrapper/SpeciesSelection" instance=ExtResource( 7 )]
+unique_name_in_owner = true
+visible = false
 
 [node name="LeftArrow" parent="Wrapper/SpeciesSelection" instance=ExtResource( 17 )]
 margin_left = 9.0
@@ -282,6 +316,8 @@ margin_bottom = 454.0
 rect_scale = Vector2( 1.2, 1.2 )
 
 [node name="SpeciesName" type="VBoxContainer" parent="Wrapper/SpeciesSelection"]
+unique_name_in_owner = true
+visible = false
 margin_left = -2.0
 margin_top = 558.0
 margin_right = 168.0
@@ -352,6 +388,7 @@ autoplay = "wiggle"
 anims/wiggle = ExtResource( 15 )
 
 [node name="TeamMode" type="Control" parent="Wrapper/SpeciesSelection"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -372,6 +409,25 @@ TRIXENS"
 align = 1
 valign = 1
 uppercase = true
+
+[node name="JoinMsg" type="Label" parent="Wrapper"]
+unique_name_in_owner = true
+anchor_right = 1.0
+margin_top = 541.0
+margin_right = 166.0
+margin_bottom = 606.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "PRESS
+TO JOIN!"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/JoinMsg"]
+autoplay = "Blink"
+anims/Blink = SubResource( 9 )
+anims/RESET = SubResource( 10 )
 
 [node name="SFX" type="Node" parent="."]
 

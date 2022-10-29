@@ -168,6 +168,9 @@ func _input(event):
 					var controls = action.replace("_fire", "")
 					(selection_player as PlayerSelection).set_controls(controls)
 					(selection_player as PlayerSelection).enable_choice()
+					# if in demo playtest, also select the pre-assigned character
+					if global.demo_playtest:
+						(selection_player as PlayerSelection).select_character()
 					# we need to remove because assigned
 					list_fire_action.erase(action)
 					return
