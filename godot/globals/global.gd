@@ -167,7 +167,7 @@ var array_level
 
 var audio_on : bool setget _audio_on
 
-var demo : bool = false
+var demo : bool = true
 # playtest mode, fixed selection player
 var demo_playtest : bool = true
 
