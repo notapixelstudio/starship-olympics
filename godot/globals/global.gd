@@ -274,9 +274,11 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		OS.window_fullscreen = not OS.window_fullscreen
 	
-	if demo and event.is_action_pressed("force_reset"):
+	if demo_playtest and event.is_action_pressed("force_reset"):
 		get_tree().change_scene("res://local_multiplayer/LocalMultiplayer.tscn")
 		get_tree().paused = false
+	if demo_playtest and event.is_action_pressed("delete_persistence"):
+		persistance.delete_latest_game()
 
 func _ready():
 	# we want to handle quit by ourselves
