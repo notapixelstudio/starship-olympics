@@ -212,12 +212,13 @@ __meta__ = {
 }
 
 [node name="Control" type="Control" parent="TopHUD"]
-margin_right = 471.0
+margin_right = 633.0
 margin_bottom = 31.0
 rect_clip_content = true
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="TopHUD"]
+visible = false
 margin_left = 484.0
 margin_top = 1.0
 margin_right = 795.0
@@ -229,7 +230,7 @@ valign = 1
 uppercase = true
 
 [node name="Control2" type="Control" parent="TopHUD"]
-margin_left = 808.0
+margin_left = 646.0
 margin_right = 1280.0
 margin_bottom = 31.0
 rect_clip_content = true
