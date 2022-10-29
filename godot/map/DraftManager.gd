@@ -204,15 +204,17 @@ func animate_selection(picked_card: DraftCard):
 	# This will animate the selection of the chosen card
 	var index_selection = 0
 	var index = 0
-	var chosen_card = null
+	var chosen_card: DraftCardGraphicNode
 	var back_pos = Vector2(0,0)
 	var back_size = Vector2(1,1)
+	var back_rot = 0.0
 
 	for card in hand_node.get_all_cards():
 		if card.card_content == picked_card:
 			index_selection = index
 			back_pos = card.global_position
 			back_size = card.scale
+			back_rot = card.rotation
 			card.z_index = 1000
 			chosen_card = card
 			break
@@ -232,6 +234,7 @@ func animate_selection(picked_card: DraftCard):
 	# everything back to position
 	chosen_card.global_position = back_pos
 	chosen_card.scale = back_size
+	chosen_card.rotation = back_rot
 	chosen_card.z_index = 0
 	
 func random_selection(list: Array, sel_index, loops=3, max_duration=5):

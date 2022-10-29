@@ -22,10 +22,11 @@ func _init():
 	snapshot_leaderboard()
 
 func setup_from_dictionary(data: Dictionary):
-	recovered_from_session = true
 	var existing_matches = data.get("matches", [])
 	for existing_match in existing_matches:
 		add_match_dict(existing_match)
+	if not data.empty():
+		recovered_from_session = true
 		
 func get_uuid() -> String:
 	return uuid
