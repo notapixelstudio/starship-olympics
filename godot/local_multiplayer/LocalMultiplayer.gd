@@ -39,18 +39,19 @@ func _ready():
 	
 	var unfinished_game: Dictionary = global.read_file("user://games/latest.json")
 	if not unfinished_game.empty():
-		var confirm = load("res://special_scenes/combat_UI/gameover/AreYouSure.tscn").instance()
-		get_tree().paused = true
-		$"%AddOnScreen".visible = true
-		$"%AddOnScreen".add_child(confirm)
-		confirm.setup("continue")
-		yield(confirm, "choice_selected")
-		if confirm.choice:
-			print("setup with new data {data}".format({"data": unfinished_game}))
-			self.setup_continue_game(unfinished_game)
-		confirm.queue_free()
-		get_tree().paused = false
-		$"%AddOnScreen".visible = false
+		setup_continue_game(unfinished_game)
+#		var confirm = load("res://special_scenes/combat_UI/gameover/AreYouSure.tscn").instance()
+#		get_tree().paused = true
+#		$"%AddOnScreen".visible = true
+#		$"%AddOnScreen".add_child(confirm)
+#		confirm.setup("continue")
+#		yield(confirm, "choice_selected")
+#		if confirm.choice:
+#			print("setup with new data {data}".format({"data": unfinished_game}))
+#			self.setup_continue_game(unfinished_game)
+#		confirm.queue_free()
+#		get_tree().paused = false
+#		$"%AddOnScreen".visible = false
 		
 	# will save the game before starting a new game 
 	# So all the options will be saved
@@ -193,7 +194,7 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	
 	start_match(picked_card, minigame)
 	print("Save the game")
-	global.write_into_file("user://games/latest.json", global.the_game.to_dict(), File.WRITE_READ)
+	persistance.save_game_as_latest()
 
 
 func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
@@ -235,7 +236,7 @@ func _on_continue_after_game_over(session_over = false):
 			add_child(map)
 			
 func _on_continue_after_session_ended():
-	global.write_into_file("user://games/latest.json", {}, File.WRITE_READ)
+	persistance.delete_latest_game()
 	navigate_to_map()
 	
 func _on_Pause_restart():

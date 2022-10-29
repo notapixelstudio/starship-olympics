@@ -14,6 +14,8 @@ export var sure_scene: PackedScene
 func _ready():
 	set_process_unhandled_input(false)
 	$"%LeaderBoard".setup()
+	# a match has ended, save the game
+	#persistance.save_game_as_latest()
 
 func _on_Continue_pressed():
 	get_tree().paused = false
@@ -74,6 +76,3 @@ func _on_LeaderBoard_animation_over():
 		if button.visible:
 			button.grab_focus()
 			break
-	
-	#global.write_into_file("user://games/latest.json", global.the_game.to_dict(), File.WRITE_READ)
-

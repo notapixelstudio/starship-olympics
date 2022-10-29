@@ -71,3 +71,9 @@ func load_game() -> bool:
 			# We find the right node to load node_data into and call its load method
 			get_node(node_path).load_state(node_data)
 	return true
+
+func delete_latest_game() -> void:
+	global.write_into_file("user://games/latest.json", {}, File.WRITE_READ)
+	
+func save_game_as_latest() -> void:
+	global.write_into_file("user://games/latest.json", global.the_game.to_dict(), File.WRITE_READ)
