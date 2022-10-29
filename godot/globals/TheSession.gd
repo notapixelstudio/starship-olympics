@@ -124,7 +124,7 @@ func update_scores(match_played: TheMatch) -> void:
 		winner.add_victory(match_played.winners_did_perfect())
 		print("%s added victory" % [winner.id])
 	# store leaderboard status after changing it
-	# snapshot_leaderboard()
+	snapshot_leaderboard()
 	print("Saving SNAPSHOT. {lead}".format({"lead": leaderboards}))
 	add_match(match_played)
 	
@@ -140,16 +140,18 @@ func snapshot_leaderboard() -> void:
 	for player in global.the_game.get_players():
 		new_leaderboard.append(player.to_dict())
 	new_leaderboard.sort_custom(self, '_sort_by_session_score')
-	leaderboards.append(new_leaderboard)
-
+	leaderboards.insert(0, new_leaderboard)
+	if len(leaderboards) > 1:
+		leaderboards = leaderboards.slice(0, 1)
+	
 func _sort_by_session_score(a, b) -> bool:
-	return a["session_score"] > b["session_score"]
+	return len(a["session_score"]) >= len(b["session_score"])
 
 func get_current_leaderboard() -> Array:
-	return leaderboards.back()
+	return leaderboards.front()
 	
 func get_previous_leaderboard() -> Array:
-	return leaderboards.front()
+	return leaderboards.back()
 
 func is_over() -> bool:
 	for player in global.the_game.get_players():
