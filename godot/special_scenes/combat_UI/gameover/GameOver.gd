@@ -14,6 +14,7 @@ export var sure_scene: PackedScene
 func _ready():
 	set_process_unhandled_input(false)
 	$"%LeaderBoard".setup()
+	global.session.put_back_playing_card()
 	# a match has ended, save the game
 	persistance.save_game_as_latest()
 

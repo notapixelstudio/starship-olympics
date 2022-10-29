@@ -661,7 +661,7 @@ func new_session(existing_data := {}) -> TheSession:
 	for card_id in hand_ids:
 		hand.append(deck.get_card(card_id))
 	
-	if hand.empty():
+	if hand.empty() and existing_data.empty():
 		hand = deck.draw(3)
 	# else: start with no hand, the draft manager will take care of that
 	session.set_hand(hand)
