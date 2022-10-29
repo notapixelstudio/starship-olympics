@@ -29,8 +29,7 @@ bool hasContraryNeighbour(vec2 uv, vec2 texture_pixel_size, sampler2D texture) {
 			float y = abs(j) > offset ? offset * sign(j) : j;
 			vec2 xy = uv + texture_pixel_size * vec2(x, y);
 			
-			if ((xy != clamp(xy, vec2(0.0), vec2(1.0)) || texture(texture, xy).a == 0.0) == inside) {
-				return true;
+			if ((xy != clamp(xy, vec2(0.0), vec2(1.0)) || texture(texture, xy).a == 0.0) == inside) {				return true;
 			}
 		}
 	}

@@ -52,7 +52,7 @@ func set_player(v):
 			else:
 				var ids = ''
 				for p in players:
-					ids += '[color=#' + p.get_color().to_html() + ']' + p.get_id().to_upper() + '[/color]  '
+					ids += '[color=#' + p.get_color().to_html() + ']' + p.get_username().to_upper() + '[/color]  '
 				ids = ids.strip_edges()
 				monogram.bbcode_text = "[center]" + ids + "[/center]"
 				monogram.visible = true
@@ -62,7 +62,7 @@ func set_player(v):
 			if player == null:
 				blur()
 			else:
-				monogram.bbcode_text = "[center]" + player.get_id().to_upper() + "[/center]"
+				monogram.bbcode_text = "[center]" + player.get_username().to_upper() + "[/center]"
 				monogram.modulate = player.species.color
 				monogram.visible = true
 				

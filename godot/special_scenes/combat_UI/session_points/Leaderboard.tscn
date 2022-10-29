@@ -54,6 +54,7 @@ script = ExtResource( 1 )
 pilot_stats_scene = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 autoplay = "idle"
 anims/entrance = SubResource( 1 )
 anims/idle = SubResource( 2 )

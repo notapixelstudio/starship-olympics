@@ -2,6 +2,8 @@ extends Control
 
 onready var timer = $Timer
 
+export var once := true
+
 signal over
 
 func _input(event):
@@ -15,3 +17,6 @@ func _on_Timer_timeout():
 
 func quit():
 	emit_signal("over")
+
+func should_appear_once() -> bool:
+	return once

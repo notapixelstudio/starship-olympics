@@ -47,7 +47,6 @@ radius = 1700
 precision = 100
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
 material = SubResource( 1 )
 texture = ExtResource( 15 )
 texture_scale = Vector2( 0.25, 0.25 )
@@ -122,13 +121,12 @@ goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( 1400, 10 )
 rotation = 3.14159
-controls = "joy1"
 species = ExtResource( 5 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
 position = Vector2( -1400, 0 )
 rotation = 0.0
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 10 )
 
 [node name="Camera" parent="." index="7"]

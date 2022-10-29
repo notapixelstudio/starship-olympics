@@ -26,7 +26,7 @@ var end_on_perfect := true
 var minigame : Minigame
 var draft_card: DraftCard
 var game_mode : GameMode
-var timestamp_str : String
+
 
 const DEADZONE = 0.1
 signal game_over
@@ -36,14 +36,20 @@ signal tick
 
 var uuid: String
 
+var timestamp_local : String
+var timestamp : String
 func _init():
 	global.the_match = self
 	uuid = UUID.v4()
-	timestamp_str = global.datetime_to_str(OS.get_datetime(true))
+	timestamp_local = Time.get_datetime_string_from_system(true, true)
+	timestamp = Time.get_datetime_string_from_system(false, true)
 	
 func get_uuid() -> String:
 	return uuid
 
+func get_id() -> String:
+	return get_uuid()
+	
 func start():
 	set_process(true)
 
@@ -109,7 +115,7 @@ func compute_game_status(end_now = false):
 	player_scores.sort_custom(self, "sort_by_score")
 	
 	leaders = []
-	var leader = player_scores[0]
+	var leader = player_scores.front()
 	for player in player_scores:
 		if player.get_score() >= leader.get_score():
 			leaders.append(player)
@@ -149,7 +155,7 @@ func no_players_left():
 func do_game_over():
 	game_over = true
 	emit_signal("game_over")
-	global.session.add_match(self.to_dict())
+	
 	
 	
 func get_score(id_player : String):
@@ -212,10 +218,11 @@ func to_dict()->Dictionary:
 		winners_info.append((winner as InfoPlayer).to_dict())
 	var dict = {
 		"uuid": get_uuid(),
-		"timestamp": timestamp_str,
+		"timestamp": timestamp,
+		"timestamp_local": timestamp_local,
 		"winners": winners,
 		"winners_info": winners_info,
-		"winners_did_perfect": self.winners_did_perfect()
+		"winners_did_perfect": winners_did_perfect()
 	}
 	if minigame:
 		dict["minigame_id"] = minigame.get_id()
@@ -228,11 +235,7 @@ func get_number_of_players():
 	return len(players)
 	
 func get_leader_players() -> Array:
-	"""
-	Returns:
-		Array[InfoPlayer] 
-	"""
-	return self.leaders
+	return leaders
 
 func get_game_mode() -> GameMode:
 	return game_mode
@@ -251,7 +254,7 @@ func add_score_to_team(team : String, amount : float):
 	compute_game_status()
 
 func winners_did_perfect() -> bool:
-	for p in self.get_leader_players():
+	for p in get_leader_players():
 		if p.get_score() >= target_score or cumulative_points >= target_score:
 			return true
 	return false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://special_scenes/combat_UI/session_points/PilotStats.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Headshot.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://special_scenes/combat_UI/session_points/Star.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/patterns/stripes_duotone_lighter.png" type="Texture" id=6]
 [ext_resource path="res://assets/map/winner.png" type="Texture" id=7]
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -135,6 +136,11 @@ tracks/4/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="DynamicFont" id=3]
+resource_local_to_scene = true
+size = 48
+font_data = ExtResource( 8 )
+
 [node name="PilotStats" type="Node2D"]
 scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 1 )
@@ -156,11 +162,13 @@ rect_min_size = Vector2( 0, 100 )
 
 [node name="Headshot" parent="Container" instance=ExtResource( 2 )]
 unique_name_in_owner = true
+margin_right = 220.0
+rect_min_size = Vector2( 220, 150 )
 
 [node name="StatsContainer" type="GridContainer" parent="Container"]
 unique_name_in_owner = true
-margin_left = 154.0
-margin_right = 404.0
+margin_left = 224.0
+margin_right = 474.0
 margin_bottom = 150.0
 custom_constants/vseparation = 26
 custom_constants/hseparation = 10
@@ -194,8 +202,8 @@ key = "bombs"
 
 [node name="StarsContainer" type="HBoxContainer" parent="Container"]
 unique_name_in_owner = true
-margin_left = 408.0
-margin_right = 408.0
+margin_left = 478.0
+margin_right = 478.0
 margin_bottom = 150.0
 script = ExtResource( 4 )
 star_scene = ExtResource( 5 )
@@ -219,3 +227,22 @@ self_modulate = Color( 1, 1, 1, 0 )
 points = PoolVector2Array( 43.75, -12.5, 125, -12.5, 156.25, 162.5, -12.5, 162.5, -12.5, -12.5, 43.75, -12.5 )
 width = 6.0
 default_color = Color( 1.3, 1.3, 1.3, 1 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 132.5, 18.75 )
+
+[node name="PlayerID" type="Label" parent="Node2D"]
+unique_name_in_owner = true
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 25.0
+margin_right = 118.0
+margin_bottom = 62.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.705882 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 6
+custom_fonts/font = SubResource( 3 )
+text = "P1"
+valign = 1
+uppercase = true

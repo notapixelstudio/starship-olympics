@@ -22,7 +22,7 @@ game_mode = ExtResource( 15 )
 
 [node name="SpawnerManager" parent="Managers" index="0" instance=ExtResource( 20 )]
 
-[node name="CollectModeManager" parent="Managers" index="14"]
+[node name="CollectModeManager" parent="Managers" index="13"]
 enabled = true
 
 [node name="CollectAction" parent="Managers/CollectModeManager" index="0"]
@@ -126,14 +126,12 @@ position = Vector2( -1200, -450 )
 position = Vector2( -600, 600 )
 rotation = -0.785398
 species = ExtResource( 6 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 600, -600 )
 rotation = 2.35619
 controls = "kb2"
 species = ExtResource( 7 )
-cpu = true
 
 [node name="Countdown" parent="CanvasLayer" index="2"]
 __meta__ = {

@@ -108,7 +108,7 @@ func set_player(v : InfoPlayer):
 	field.modulate = player.species.color
 	$Rings.modulate = player.species.color
 	$LabelWrapper/Label.modulate = player.species.color
-	$LabelWrapper/Label.text = player.get_id().to_upper()
+	$LabelWrapper/Label.text = player.get_username().to_upper()
 	
 func get_player():
 	return player

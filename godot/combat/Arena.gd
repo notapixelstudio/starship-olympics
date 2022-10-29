@@ -42,7 +42,6 @@ onready var collect_mode = $Managers/CollectModeManager
 onready var survival_mode = $Managers/SurvivalModeManager
 
 onready var combat_manager = $Managers/CombatManager
-onready var stun_manager = $Managers/StunManager
 onready var collect_manager = $Managers/CollectManager
 onready var environments_manager = $Managers/EnvironmentsManager
 onready var conquest_manager = $Managers/ConquestManager
@@ -295,14 +294,15 @@ func _ready():
 				conquerable.connect('lost', conquest_mode, "_on_sth_lost")
 				
 	# FIXME this should eventually replace the system above
-	var score_definers = traits.get_all_with('ScoreDefiner')
-	if len(score_definers) > 0:
-		score_to_win_override = 0
-		for score_definer in score_definers:
-			score_to_win_override += score_definer.get_score()
-			
-	if not game_mode.shared_targets:
-		score_to_win_override /= global.the_game.get_number_of_players()
+	if score_to_win_override == 0: # do this only if score is not already overridden
+		var score_definers = traits.get_all_with('ScoreDefiner')
+		if len(score_definers) > 0:
+			score_to_win_override = 0
+			for score_definer in score_definers:
+				score_to_win_override += score_definer.get_score()
+				
+		if not game_mode.shared_targets:
+			score_to_win_override /= global.the_game.get_number_of_players()
 		
 	if game_mode.fill_starting_score:
 		game_mode.starting_score = score_to_win_override
@@ -328,6 +328,14 @@ func _ready():
 	
 	if show_hud:
 		hud.set_draft_card(global.the_match.get_draft_card())
+		
+	if global.is_match_running():
+		var draft_card = global.the_match.get_draft_card()
+		
+		# set the appropriate background, according to card suits
+		if draft_card != null:
+			var suit = draft_card.get_suit_top() # TBD different suits
+			$'%BackgroundImage'.texture = load("res://combat/levels/background/"+suit+".png")
 	
 	yield(camera, "transition_over")
 	
@@ -387,8 +395,8 @@ func _ready():
 			laser.queue_free()
 			
 	if global.is_match_running():
-		# manage the coming of winter
 		var draft_card = global.the_match.get_draft_card()
+		# manage the coming of winter
 		if draft_card != null and draft_card.is_winter():
 			var ice = IceScene.instance()
 			ice.override_gshape($Battlefield/Background/OutsideWall.get_gshape())
@@ -644,7 +652,7 @@ func ship_just_died(ship, killer, for_good):
 	
 	
 func on_gameover():
-	
+	set_process_unhandled_input(false)
 	for child in $Managers.get_children():
 		if child is ModeManager:
 			child.enabled = false
@@ -658,8 +666,6 @@ func on_gameover():
 	game_over.connect("show_arena", self, "_on_Show_Arena")
 	game_over.connect("hide_arena", self, "_on_hide_Arena")
 	canvas.add_child(game_over)
-	
-	game_over.initialize()
 
 func _on_continue_after_game_over(_session_over):
 	if standalone:
@@ -711,6 +717,9 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.spawner = player
 	ship.deadly_trail = game_mode.deadly_trails
 	ship.game_mode = self.game_mode
+	
+	ship.set_start_invincible(game_mode.start_invincible)
+	
 	yield(player, "entered_battlefield")
 	
 	$Battlefield.add_child(ship)
@@ -750,7 +759,6 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	ship.connect("detection", pursue_manager, "_on_ship_detected")
-	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("dead", kill_mode, "_on_sth_killed")
 	ship.connect("dead", last_man_mode, "_on_sth_killed")
 	#ship.connect("dead", combat_manager, "_on_sth_killed")
