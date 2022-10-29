@@ -181,14 +181,15 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	remove_child(map)
 	$"%UnlockSceneClassic".reset()
 	# show tutorial if this minigame has one, and the minigame has not been already played
-	if minigame.has_tutorial() and minigame.is_first_time_started():
+	if minigame.has_tutorial():
 		var tutorial = minigame.get_tutorial_scene().instance()
-		add_child(tutorial)
-		yield(tutorial, 'over')
-		
-		$TransitionScreen.transition()
-		yield($TransitionScreen, "transitioned")
-		tutorial.queue_free()
+		if minigame.is_first_time_started() or not tutorial.should_appear_once():
+			add_child(tutorial)
+			yield(tutorial, 'over')
+			
+			$TransitionScreen.transition()
+			yield($TransitionScreen, "transitioned")
+			tutorial.queue_free()
 	
 	start_match(picked_card, minigame)
 	print("Save the game")
