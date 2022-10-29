@@ -170,6 +170,15 @@ func _input(event):
 					(selection_player as PlayerSelection).enable_choice()
 					# if in demo playtest, also select the pre-assigned character
 					if global.demo_playtest:
+						var mapping = {
+							'joy1': 'trixens_1',
+							'joy2': 'umidorians_1',
+							'joy3': 'robolords_1',
+							'joy4': 'mantiacs_1',
+							'kb1': 'pentagonions_1',
+							'kb2': 'auriels_1'
+						}
+						(selection_player as PlayerSelection).change_species(global.get_species(mapping[controls]))
 						(selection_player as PlayerSelection).select_character()
 					# we need to remove because assigned
 					list_fire_action.erase(action)
