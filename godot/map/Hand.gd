@@ -3,7 +3,7 @@ extends Node2D
 class_name HandNode
 
 const SEPARATION = 600
-var separation_angle_num_cards = [1.6, 1.4, 1.4, 1.4, 1.6]
+var separation_angle_num_cards = [1.6, 1.4, 1.2, 1.4, 1.8]
 
 export var size:= Vector2()
 
@@ -57,13 +57,12 @@ func get_card_index(card: DraftCardGraphicNode):
 		i+=1
 	return 0
 
-var values = [[0], [-1,1], [-1,0,1],[-2,-1,1,2],[-2,-1,0,1,2]]
 # we can take inspiration from: https://github.com/db0/godot-card-game-framework/blob/f58bbc3e9ac5010f6e213189f0796042bd3ec24c/src/core/CardTemplate.gd#L2678
 func calculate_angle(index_card: int) -> float:
 	var num_cards = self.get_card_count()
 	var card_separation = separation_angle_num_cards[num_cards-1]
 	var half = (num_cards - 1) / 2.0
-	var card_angle_max: float = 15
+	var card_angle_max: float = 20
 	var card_angle_min: float = 6.5
 	# Angle between cards
 	var card_angle = max(min(60 / num_cards, card_angle_max), card_angle_min)

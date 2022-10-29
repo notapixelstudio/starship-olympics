@@ -34,13 +34,13 @@ func _ready():
 	
 	var hand = global.session.get_hand()
 	if len(hand) > 0:
-		if global.session.recovered_from_session:
-			self.continue_draft(false)
-			return
 		self.populate_hand(hand.duplicate())
 		self.pick_next_card()
 	else:
-		self.continue_draft(true)
+		if global.session.recovered_from_session:
+			self.continue_draft(false)
+		else:
+			self.continue_draft(true)
 	
 func _on_continue_after_game_over(session_ended):
 	if not is_inside_tree():
@@ -58,9 +58,10 @@ func continue_draft(session_ended):
 	if not session_ended:
 		# cleanup if session continues
 		var last_match_info = global.session.get_last_match()
-		var last_played_card: DraftCardGraphicNode = hand_node.get_card(last_match_info["card_id"])
-		if last_played_card:
-			hand_node.remove_card(last_played_card)
+		if last_match_info:
+			var last_played_card: DraftCardGraphicNode = hand_node.get_card(last_match_info["card_id"])
+			if last_played_card:
+				hand_node.remove_card(last_played_card)
 		
 	ships_have_to_choose = false
 	var hand = global.session.get_hand()
@@ -197,8 +198,9 @@ func populate_hand(hand: Array):
 	#hand.sort_custom(self, "sort_hand")
 	
 	for card in hand:
+		(card as DraftCard).on_card_drawn()
 		yield(get_tree().create_timer(0.1), "timeout")
-		self.add_card(card, not ships_have_to_choose) # if ships have not to choose, cards are already selected
+		add_card(card, not ships_have_to_choose) # if ships have not to choose, cards are already selected
 		
 func animate_selection(picked_card: DraftCard):
 	# This will animate the selection of the chosen card
@@ -230,12 +232,7 @@ func animate_selection(picked_card: DraftCard):
 	yield(chosen_card, "zoomed_in")
 	# TODO: danger of lock
 	emit_signal("card_chosen")
-	yield(get_tree().create_timer(2), "timeout")
-	# everything back to position
-	chosen_card.global_position = back_pos
-	chosen_card.scale = back_size
-	chosen_card.rotation = back_rot
-	chosen_card.z_index = 0
+	
 	
 func random_selection(list: Array, sel_index, loops=3, max_duration=5):
 	list.shuffle()

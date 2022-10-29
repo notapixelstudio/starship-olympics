@@ -133,6 +133,7 @@ var last_minigame: Minigame
 
 func _on_minigame_selected(picked_card:DraftCard):
 	# start match
+	print(picked_card is MysteryCard)
 	var minigame = picked_card.get_minigame()
 	minigame.increase_times_started()
 	start_new_match(picked_card, minigame)
@@ -193,7 +194,8 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	
 	start_match(picked_card, minigame)
 	print("Save the game")
-	persistance.save_game_as_latest()
+	if not global.demo:
+		persistance.save_game_as_latest()
 
 
 func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):

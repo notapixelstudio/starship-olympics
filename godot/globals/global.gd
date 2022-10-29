@@ -660,7 +660,10 @@ func new_session(existing_data := {}) -> TheSession:
 	var hand := []
 	for card_id in hand_ids:
 		hand.append(deck.get_card(card_id))
-	
+	if existing_data.get("playing_card"):
+		var playing_card_id = existing_data.get("playing_card")
+		hand.append(deck.get_card(playing_card_id))
+		
 	if hand.empty() and existing_data.empty():
 		hand = deck.draw(3)
 	# else: start with no hand, the draft manager will take care of that

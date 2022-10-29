@@ -16,7 +16,8 @@ func _ready():
 	$"%LeaderBoard".setup()
 	global.session.put_back_playing_card()
 	# a match has ended, save the game
-	persistance.save_game_as_latest()
+	if not global.demo:
+		persistance.save_game_as_latest()
 
 func _on_Continue_pressed():
 	get_tree().paused = false
