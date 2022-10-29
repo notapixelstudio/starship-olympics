@@ -19,12 +19,17 @@ func _init():
 	timestamp_local = Time.get_datetime_string_from_system(true, true)
 	timestamp = Time.get_datetime_string_from_system(false, true)
 	snapshot_leaderboard()
-	
+
+func setup_from_dictionary(data: Dictionary):
+	var existing_matches = data.get("matches", [])
+	for existing_match in existing_matches:
+		add_match_dict(existing_match)
+		
 func get_uuid() -> String:
 	return uuid
 
 # The matches played, with scores and stats
-var matches : Dictionary # of TheMatchSummary (a dictionary)
+var matches := [] # of TheMatchSummary (a dictionary)
 var ordered_matches := []
 
 var minigame_pools : Dictionary
@@ -74,7 +79,7 @@ func choose_next_card() -> DraftCard:
 	playing_card = null
 	var next_card: DraftCard = hand.pop_front()
 	playing_card = next_card
-	global.the_game.deck.put_card_into_played_pile(next_card)
+	# global.the_game.deck.put_card_into_played_pile(next_card)
 	return next_card
 
 func discard_hand():
@@ -82,13 +87,21 @@ func discard_hand():
 	hand = []
 
 func add_match_dict(last_match: Dictionary):
-	ordered_matches.append(last_match)
-
+	playing_card = null # we are not playing anymore
+	var match_id = last_match["id"]
+	if not match_id in ordered_matches:
+		matches.append(last_match)
+		ordered_matches.append(match_id)
+	
+func add_match(the_match: TheMatch):
+	var match_dict : Dictionary = the_match.to_dict()
+	add_match_dict(match_dict)
+	
 func set_hand(cards : Array) -> void:
 	hand = cards
 
 func get_last_match() -> Dictionary:
-	return ordered_matches.back()
+	return matches.back()
 	
 func get_hand() -> Array:
 	return hand
@@ -104,19 +117,12 @@ func to_dict() -> Dictionary:
 		'timestamp': self.timestamp,
 		'timestamp_local': timestamp_local,
 		"uuid": get_uuid(),
-		"matches": ordered_matches,
-		"hand": serialized_cards
+		"matches": matches,
+		"hand": serialized_cards,
+		"playing_card": playing_card.get_id() if playing_card != null else null
 	}
 	return session_dict
 
-func set_from_dictionary(data: Dictionary):
-	pass
-	
-func add_match(the_match: TheMatch):
-	var match_dict : Dictionary = the_match.to_dict()
-	matches[the_match.get_id()] = match_dict
-	add_match_dict(match_dict)
-	
 func update_scores(match_played: TheMatch) -> void:
 	var winners = match_played.winners
 	for winner in winners:
@@ -129,7 +135,7 @@ func update_scores(match_played: TheMatch) -> void:
 	add_match(match_played)
 	
 func get_last_winners() -> Array:
-	var match_dict = ordered_matches.back()
+	var match_dict = matches.back()
 	return match_dict.get("winners", [])
 
 func snapshot_leaderboard() -> void:

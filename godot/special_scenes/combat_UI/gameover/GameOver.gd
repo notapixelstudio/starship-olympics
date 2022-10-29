@@ -15,7 +15,7 @@ func _ready():
 	set_process_unhandled_input(false)
 	$"%LeaderBoard".setup()
 	# a match has ended, save the game
-	#persistance.save_game_as_latest()
+	persistance.save_game_as_latest()
 
 func _on_Continue_pressed():
 	get_tree().paused = false

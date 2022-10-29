@@ -217,7 +217,7 @@ func to_dict()->Dictionary:
 	for winner in self.winners:
 		winners_info.append((winner as InfoPlayer).to_dict())
 	var dict = {
-		"uuid": get_uuid(),
+		"id": get_id(),
 		"timestamp": timestamp,
 		"timestamp_local": timestamp_local,
 		"winners": winners,
