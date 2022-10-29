@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://special_scenes/utils/DemoLabel.gd" type="Script" id=2]
 [ext_resource path="res://assets/animations/Blink.tres" type="Animation" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 32
+size = 48
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
@@ -25,4 +25,5 @@ uppercase = true
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Blink"
 anims/Blink = ExtResource( 3 )

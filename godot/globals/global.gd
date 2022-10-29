@@ -167,7 +167,7 @@ var array_level
 
 var audio_on : bool setget _audio_on
 
-var demo : bool = true
+var demo : bool = false
 # playtest mode, fixed selection player
 var demo_playtest : bool = true
 
@@ -270,6 +270,11 @@ func set_campaign_mode(value):
 var from_scene = "res://special_scenes/title_screen/MainScreen.tscn"
 
 func _input(event):
+	if demo and (event is InputEventJoypadButton or event is InputEventKey):
+		demo = false
+		Events.emit_signal('nav_to_character_selection')
+		get_tree().paused = false
+		
 	if event.is_action_pressed("fullscreen"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		OS.window_fullscreen = not OS.window_fullscreen

@@ -182,7 +182,7 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	remove_child(map)
 	$"%UnlockSceneClassic".reset()
 	# show tutorial if this minigame has one, and the minigame has not been already played
-	if minigame.has_tutorial():
+	if minigame.has_tutorial() and not global.demo:
 		var tutorial = minigame.get_tutorial_scene().instance()
 		if minigame.is_first_time_started() or not tutorial.should_appear_once():
 			add_child(tutorial)
