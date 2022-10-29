@@ -35,6 +35,7 @@ func set_player(champion: InfoChampion):
 	$"%Background".modulate = global.get_species(champion.player.species).get_color()
 	$"%PlayerName".modulate = global.get_species(champion.player.species).get_color()
 	$"%InsertName".modulate = global.get_species(champion.player.species).get_color()
+	$"%InsertName".placeholder_text = $"%PlayerName".text
 	
 func insert_name():
 	$"%InsertName".connect("name_inserted", self, "_on_InsertName_name_inserted")
