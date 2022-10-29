@@ -2,12 +2,12 @@
 
 [ext_resource path="res://combat/minigames/Minigame.gd" type="Script" id=1]
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=2]
-[ext_resource path="res://special_scenes/tutorials/FireTutorial.tscn" type="PackedScene" id=6]
+[ext_resource path="res://special_scenes/tutorials/AimTutorial.tscn" type="PackedScene" id=3]
 
 [resource]
 script = ExtResource( 1 )
 game_mode = ExtResource( 2 )
 arenas_dir = "res://combat/levels/sets/core/deathmatch"
-tutorial_scene = ExtResource( 6 )
+tutorial_scene = ExtResource( 3 )
 suit_top = "green"
 suit_bottom = "green"
