@@ -14,6 +14,7 @@ enum CONTROLS {KB1, KB2, JOY1, JOY2, JOY3, JOY4,RM1, RM2,RM3,RM4, NO, CPU}
 signal selected
 signal deselected
 signal leave
+signal joined
 signal ready_to_fight
 signal prev
 signal next
@@ -57,14 +58,14 @@ func set_controls(new_controls:String):
 	
 	speciesSelection.controls = controls
 	speciesSelection.post_ready("P"+str(uid))
-	
+
+var list_fire_action = {}
 func _ready():
 	info.set_id(name.to_lower())
 	
-	disabled = true
-	controls = global.CONTROLSMAP[key_controls]
 	
-	set_controls(controls)
+	disabled = true
+
 	change_species(species)
 
 func change_species(new_species):
@@ -83,17 +84,17 @@ func _process(delta):
 		return
 	if action_time >= 0.0:
 		action_time -= delta
-	if Input.is_action_just_pressed(controls+"_right") and Input.get_action_strength(controls+"_right") > DEADZONE and not global.demo:
+	if Input.is_action_just_pressed(controls+"_right") and Input.get_action_strength(controls+"_right") > DEADZONE and not global.demo_playtest:
 		_on_Next_pressed()
 		action_time = FIRST_DELAY
-	if Input.is_action_just_pressed(controls+"_left") and Input.get_action_strength(controls+"_left") > DEADZONE and not global.demo:
+	if Input.is_action_just_pressed(controls+"_left") and Input.get_action_strength(controls+"_left") > DEADZONE and not global.demo_playtest:
 		_on_Previous_pressed()
 		action_time = FIRST_DELAY
 		
-	if Input.is_action_pressed(controls+"_right") and Input.get_action_strength(controls+"_right") > DEADZONE and not global.demo and action_time <= 0.0:
+	if Input.is_action_pressed(controls+"_right") and Input.get_action_strength(controls+"_right") > DEADZONE and not global.demo_playtest and action_time <= 0.0:
 		_on_Next_pressed()
 		action_time = FOLLOW_DELAY
-	elif Input.is_action_pressed(controls+"_left") and Input.get_action_strength(controls+"_left") > DEADZONE and not global.demo and action_time <= 0.0:
+	elif Input.is_action_pressed(controls+"_left") and Input.get_action_strength(controls+"_left") > DEADZONE and not global.demo_playtest and action_time <= 0.0:
 		_on_Previous_pressed()
 		action_time = FOLLOW_DELAY
 		
@@ -182,6 +183,7 @@ func enable_choice(silent=false):
 	selected = false
 	wrapper.z_index = 0
 	speciesSelection.enable(silent)
-	if global.demo:
+	if global.demo_playtest:
 		speciesSelection.disable_arrows()
+	emit_signal("joined")
 	

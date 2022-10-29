@@ -1,4 +1,4 @@
-extends Control
+ extends Control
 
 const MAX_PLAYERS = 4
 const MIN_PLAYERS = 1
@@ -18,26 +18,28 @@ signal start_demo
 var selected_index = []
 var players_controls : Array
 var num_players : int = 0
-
+var list_fire_action := {}
 func _ready():
 	# Soundtrack.play("Lobby", true)
 	fight_node.visible = false
-	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 	post_ready()
+	for action in InputMap.get_actions():
+		if "_fire" in action: 
+			list_fire_action[action] = (InputMap.get_action_list(action))
+	
 
-	global.remotesServer.connect("new_remote_connected", self, "_onNewRemote")
-	global.remotesServer.connect("remote_disconnected", self, "_onRemoteDisconnected")
+	# global.remotesServer.connect("new_remote_connected", self, "_onNewRemote")
+	# global.remotesServer.connect("remote_disconnected", self, "_onRemoteDisconnected")
 	
 func _onNewRemote(id):
 	print("new Remote")
 	var remoteControl = "rm"+str(id)
-	add_controls(remoteControl)
+	# add_controls(remoteControl)
  
 func _onRemoteDisconnected(id):
 	var joy = "rm"+str(id)
-	change_controls(joy, "no")
-	pass
-	
+	# change_controls(joy, "no")
+
 func post_ready():
 	ordered_species = global.get_ordered_species()
 	
@@ -50,6 +52,7 @@ func post_ready():
 		child.connect("prev", self, "get_adjacent", [-1, child])
 		child.connect("next", self, "get_adjacent", [+1, child])
 		child.connect("selected", self, "selected")
+		child.connect("joined", self, "joined")
 		child.connect("deselected", self, "deselected")
 		child.connect("ready_to_fight", self, "ready_to_fight")
 		i +=1
@@ -57,60 +60,8 @@ func post_ready():
 		child.uid = i
 	var joypads = Input.get_connected_joypads()
 	var actual_players = min(NUM_KEYBOARDS, MAX_PLAYERS - len(joypads))
-	var controls = assign_controls(actual_players)
-	for control in controls:
-		assert(add_controls(control))
-		
-func add_controls(new_controls : String) -> bool:
-	"""
-	Add a controller (keyboard or joypad) and move other to the right
-	return false if reach limit of MAX_PLAYERS.
-	If no, shift backwards
-	"""
-	# TODO: check this
-	var shift:bool = false
-	var last: String = ""
-	var first = container.get_child(0)
-	if first.controls != global.CONTROLSMAP[global.Controls.NO]:
-		shift = true
-		last = first.controls
-	first.set_controls(new_controls)
-	var i = 0
-	for child in container.get_children():
-		if child.controls == new_controls:
-			i+=1
-			continue
-
-		if shift:
-			var tmp = child.controls
-			child.set_controls(last)
-			last = tmp
-		i+=1
-	return true
-
-func change_controls(key:String, new_key:String) -> bool:
-	var shift_backwards : bool = false
-	var last : String = ""
-	#iterate backwards
-	var count = container.get_child_count()
-	var index_to_change : int =0
-	for child in container.get_children():
-		if child.controls == key:
-			# print_debug("Found it ", index_to_change, " and control is ", child.controls)
-			break
-		index_to_change += 1
-	last = new_key
-	if container.get_child(count-1).controls.findn( "joy") >=0:
-		last="kb1"
-	for i in range (index_to_change, count):
-		var child = container.get_child(count-i-1)
-		var to_change = last
-		last = child.controls
-		assert(child is PlayerSelection)
-		child.set_controls(to_change)
-
-	return false
-
+	return 
+	
 func assign_controls(num_keyboards : int) -> Array:
 	"""
 	Depending on how many keyboard want to play
@@ -157,12 +108,6 @@ func get_adjacent(operator:int, player_selection : Node):
 		current_index = global.mod(current_index + operator,len(ordered_species))
 	player_selection.change_species(ordered_species[current_index])
 
-func _on_joy_connection_changed(device_id, connected):
-	var joy = "joy"+str(device_id+1)
-	if connected:
-		add_controls(joy)
-	else:
-		change_controls(joy, "no")
 
 func ready_to_fight():
 	var players = get_players()
@@ -210,7 +155,23 @@ func deselected(species: Species):
 		fight_node.idle()
 		fight_node.visible = false
 
-
+func joined():
+	ready_to_fight.deactivate()
+	
+func _input(event):
+	if not event.is_pressed():
+		return
+	for selection_player in container.get_children():
+		if (selection_player as PlayerSelection).disabled:
+			for action in list_fire_action:
+				if InputMap.event_is_action(event, action):
+					var controls = action.replace("_fire", "")
+					(selection_player as PlayerSelection).set_controls(controls)
+					(selection_player as PlayerSelection).enable_choice()
+					# we need to remove because assigned
+					list_fire_action.erase(action)
+					return
+					
 func _unhandled_input(event):
 	if event.is_action_pressed("pause") and not global.demo:
 		Events.emit_signal("nav_to_menu")
