@@ -10,6 +10,7 @@ var playing_card : DraftCard
 var leaderboards : Array = []
 var timestamp_local : String
 var timestamp : String
+var recovered_from_session := false
 func _init():
 	uuid = UUID.v4()
 	if global.the_game:
@@ -21,6 +22,7 @@ func _init():
 	snapshot_leaderboard()
 
 func setup_from_dictionary(data: Dictionary):
+	recovered_from_session = true
 	var existing_matches = data.get("matches", [])
 	for existing_match in existing_matches:
 		add_match_dict(existing_match)

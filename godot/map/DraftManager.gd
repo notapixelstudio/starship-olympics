@@ -32,11 +32,11 @@ func _ready():
 	pass_node = get_node(pass_path)
 	message_node = get_node(message_node_path)
 	
-	#pass_node.connect("tapped", self, '_on_pass_tapped')
-	
-	
 	var hand = global.session.get_hand()
 	if len(hand) > 0:
+		if global.session.recovered_from_session:
+			self.continue_draft(false)
+			return
 		self.populate_hand(hand.duplicate())
 		self.pick_next_card()
 	else:
@@ -50,7 +50,6 @@ func _on_continue_after_game_over(session_ended):
 	continue_draft(session_ended)
 	
 func continue_draft(session_ended):
-	global.session.put_back_playing_card()
 	if session_ended:
 		draw_anew()
 		
@@ -60,7 +59,8 @@ func continue_draft(session_ended):
 		# cleanup if session continues
 		var last_match_info = global.session.get_last_match()
 		var last_played_card: DraftCardGraphicNode = hand_node.get_card(last_match_info["card_id"])
-		hand_node.remove_card(last_played_card)
+		if last_played_card:
+			hand_node.remove_card(last_played_card)
 		
 	ships_have_to_choose = false
 	var hand = global.session.get_hand()

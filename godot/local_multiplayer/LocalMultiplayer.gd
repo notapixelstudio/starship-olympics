@@ -70,8 +70,7 @@ func setup_continue_game(game_data: Dictionary):
 	yield(get_tree(), "idle_frame")	
 	
 	create_map(game_data.get("session", {}))
-	print("Last game played was {game}. Will be removed from last_played".format({"game":global.the_game.deck.played_pile.pop_back()}))
-	
+	print("Last game played was {game}. Will be removed from last_played".format({"game":global.the_game.deck.played_pile.back()}))
 	navigate_to_map()
 	
 func _exit_tree():

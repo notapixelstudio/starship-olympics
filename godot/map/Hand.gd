@@ -3,7 +3,7 @@ extends Node2D
 class_name HandNode
 
 const SEPARATION = 600
-var separation_angle_num_cards = [1.6, 1.4, 1.4, 1.6, 1.8]
+var separation_angle_num_cards = [1.6, 1.4, 1.4, 1.4, 1.6]
 
 export var size:= Vector2()
 
