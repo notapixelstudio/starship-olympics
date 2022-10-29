@@ -138,7 +138,7 @@ func selected(player: PlayerSelection):
 	$Timer.stop()
 	$Label.text = ""
 
-# this is in order to avoid to leave the screen if there is just one player
+# this is in order to avoid to leave screen if there is just one player
 # TODO: it should be with signals
 var deselected = false
 
