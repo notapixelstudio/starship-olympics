@@ -31,12 +31,7 @@ func _ready():
 		var champ_scene = champion_scene.instance()
 		champ_scene.set_player(champ_info)
 		$"%SessionWon".add_child(champ_scene)
-		
-	yield(get_tree(), "idle_frame")
-	$"%ScrollContainer".scroll_vertical = pow(10, 4)
-	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
-	tween.chain().tween_property($"%ScrollContainer", 'scroll_vertical', 0, 1+ $"%SessionWon".get_child_count()%3)
-	yield(tween, "finished")
+	
 	if self.get_parent() == get_tree().get_root():
 		var info_player := InfoPlayer.new()
 		var champ = InfoChampion.new()
@@ -46,6 +41,13 @@ func _ready():
 		champ.session_info = fake_session.to_dict()
 		self.set_champion(champ)
 	add_champion_to_scene()
+	
+	yield(get_tree(), "idle_frame")
+	$"%ScrollContainer".scroll_vertical = pow(10, 4)
+	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+	tween.chain().tween_property($"%ScrollContainer", 'scroll_vertical', 0, 1+ $"%SessionWon".get_child_count()%3)
+	yield(tween, "finished")
+	
 	
 func naming_champions():
 	print("Everything is set")

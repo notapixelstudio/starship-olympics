@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://special_scenes/combat_UI/session_points/Headshot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Stat.tscn" type="PackedScene" id=2]
@@ -10,24 +10,16 @@
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=8]
 [ext_resource path="res://special_scenes/combat_UI/gameover/LogoMinigame.tscn" type="PackedScene" id=9]
 
-[sub_resource type="DynamicFont" id=7]
-size = 26
-font_data = ExtResource( 8 )
-
 [sub_resource type="DynamicFont" id=5]
-size = 50
+size = 78
 font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 30
+size = 78
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 50
-font_data = ExtResource( 8 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 35
+[sub_resource type="DynamicFont" id=7]
+size = 26
 font_data = ExtResource( 8 )
 
 [node name="WinnerBanner" type="Control"]
@@ -37,14 +29,8 @@ rect_min_size = Vector2( 360, 180 )
 script = ExtResource( 5 )
 minigame_logo = ExtResource( 9 )
 
-[node name="DateSession" type="Label" parent="."]
-unique_name_in_owner = true
-margin_right = 40.0
-margin_bottom = 14.0
-custom_fonts/font = SubResource( 7 )
-text = "2022-10-23 15:00"
-
 [node name="Background" type="Polygon2D" parent="."]
+unique_name_in_owner = true
 position = Vector2( 8, 32 )
 color = Color( 0.219608, 0.219608, 0.219608, 0.901961 )
 texture = ExtResource( 3 )
@@ -103,6 +89,7 @@ key = "bombs"
 
 [node name="StarsContainer" type="GridContainer" parent="Container"]
 unique_name_in_owner = true
+visible = false
 margin_left = 154.0
 margin_right = 234.0
 margin_bottom = 150.0
@@ -111,42 +98,38 @@ columns = 3
 [node name="LogoMinigame" parent="Container/StarsContainer" instance=ExtResource( 9 )]
 unique_name_in_owner = true
 
-[node name="PlayerName" type="Label" parent="Container"]
+[node name="NameWrapper" type="Node2D" parent="Container"]
+position = Vector2( 160, 20 )
+
+[node name="PlayerName" type="Label" parent="Container/NameWrapper"]
 unique_name_in_owner = true
-margin_left = 238.0
-margin_top = 45.0
-margin_right = 337.0
-margin_bottom = 104.0
+margin_right = 202.0
+margin_bottom = 98.0
 theme = ExtResource( 7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 4
 custom_fonts/font = SubResource( 5 )
 text = "SAX"
-valign = 1
+uppercase = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Container"]
-unique_name_in_owner = true
-margin_left = 341.0
-margin_right = 1037.0
-margin_bottom = 150.0
+[node name="InputWrapper" type="Node2D" parent="Container"]
+position = Vector2( 160, 20 )
 
-[node name="InsertName" type="LineEdit" parent="Container/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/InputWrapper"]
 unique_name_in_owner = true
-margin_right = 180.0
-margin_bottom = 150.0
+margin_right = 468.0
+margin_bottom = 100.0
+
+[node name="InsertName" type="LineEdit" parent="Container/InputWrapper/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 468.0
+margin_bottom = 100.0
 theme = ExtResource( 7 )
 custom_fonts/font = SubResource( 4 )
-align = 1
 max_length = 3
 placeholder_text = "P1 "
 script = ExtResource( 6 )
-
-[node name="Label2" type="Label" parent="Container/HBoxContainer"]
-margin_left = 184.0
-margin_top = 45.0
-margin_right = 696.0
-margin_bottom = 104.0
-custom_fonts/font = SubResource( 3 )
-text = "Insert Your name"
-uppercase = true
 
 [node name="Champion" type="Sprite" parent="."]
 visible = false
@@ -163,15 +146,17 @@ points = PoolVector2Array( 43.75, -12.5, 125, -12.5, 156.25, 162.5, -12.5, 162.5
 width = 6.0
 default_color = Color( 1.3, 1.3, 1.3, 1 )
 
-[node name="Label2" type="Label" parent="."]
-margin_left = 1023.0
-margin_top = 48.0
-margin_right = 1295.0
-margin_bottom = 180.0
-theme = ExtResource( 7 )
-custom_fonts/font = SubResource( 6 )
-text = "This Graphics needs an overhaul"
-valign = 1
-autowrap = true
+[node name="DateWrapper" type="Node2D" parent="."]
+position = Vector2( 170, 150 )
 
-[connection signal="name_inserted" from="Container/HBoxContainer/InsertName" to="." method="_on_InsertName_name_inserted"]
+[node name="DateSession" type="Label" parent="DateWrapper"]
+unique_name_in_owner = true
+margin_right = 40.0
+margin_bottom = 14.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 4
+custom_fonts/font = SubResource( 7 )
+text = "2022-10-23 15:00"
+
+[connection signal="name_inserted" from="Container/InputWrapper/HBoxContainer/InsertName" to="." method="_on_InsertName_name_inserted"]

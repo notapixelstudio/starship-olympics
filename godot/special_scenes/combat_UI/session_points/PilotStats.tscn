@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://special_scenes/combat_UI/session_points/PilotStats.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Headshot.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://special_scenes/combat_UI/session_points/StarsContainer.gd" type="Script" id=4]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Star.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/patterns/stripes_duotone_lighter.png" type="Texture" id=6]
-[ext_resource path="res://assets/map/winner.png" type="Texture" id=7]
 [ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="Animation" id=1]
@@ -48,24 +47,12 @@ tracks/2/keys = {
 "values": [ Color( 0.219608, 0.219608, 0.219608, 0.901961 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Champion:visible")
+tracks/3/path = NodePath("WinnerOutline:self_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("WinnerOutline:self_modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -112,24 +99,12 @@ tracks/2/keys = {
 "values": [ Color( 0.219608, 0.219608, 0.219608, 0.901961 ), Color( 0.541176, 0.541176, 0.541176, 0.901961 ), Color( 0.34902, 0.34902, 0.34902, 0.901961 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Champion:visible")
+tracks/3/path = NodePath("WinnerOutline:self_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 1.2, 1.6, 2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ false, true, false, true, false, true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("WinnerOutline:self_modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -167,6 +142,7 @@ rect_min_size = Vector2( 220, 150 )
 
 [node name="StatsContainer" type="GridContainer" parent="Container"]
 unique_name_in_owner = true
+visible = false
 margin_left = 224.0
 margin_right = 474.0
 margin_bottom = 150.0
@@ -202,8 +178,8 @@ key = "bombs"
 
 [node name="StarsContainer" type="HBoxContainer" parent="Container"]
 unique_name_in_owner = true
-margin_left = 478.0
-margin_right = 478.0
+margin_left = 224.0
+margin_right = 224.0
 margin_bottom = 150.0
 script = ExtResource( 4 )
 star_scene = ExtResource( 5 )
@@ -213,14 +189,6 @@ star_scene = ExtResource( 5 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
 anims/Victory = SubResource( 2 )
-
-[node name="Champion" type="Sprite" parent="."]
-visible = false
-position = Vector2( 68.75, 110 )
-scale = Vector2( 1.4, 1.4 )
-z_index = 200
-z_as_relative = false
-texture = ExtResource( 7 )
 
 [node name="WinnerOutline" type="Line2D" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )

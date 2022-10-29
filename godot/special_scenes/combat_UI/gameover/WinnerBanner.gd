@@ -32,8 +32,11 @@ func set_player(champion: InfoChampion):
 		var card: DraftCard = all_cards.get_card(card_id)
 		logo.texture = card.get_logo()
 		$"%StarsContainer".add_child(logo)
-	$"%DateSession".text = cleanup_datetime_str(this_champion.session_info.get("timestamp_local", this_champion.session_info.timestamp))
-
+	$"%DateSession".text = cleanup_datetime_str(this_champion.session_info.get("timestamp_local", this_champion.session_info.timestamp_local))
+	$"%Background".modulate = global.get_species(champion.player.species).get_color()
+	$"%PlayerName".modulate = global.get_species(champion.player.species).get_color()
+	$"%InsertName".modulate = global.get_species(champion.player.species).get_color()
+	
 func insert_name():
 	$"%InsertName".connect("name_inserted", self, "_on_InsertName_name_inserted")
 	$"%PlayerName".visible = false

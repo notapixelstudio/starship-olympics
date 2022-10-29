@@ -2,7 +2,7 @@ extends Control
 
 onready var animator = $Animator
 onready var buttons = $Buttons
-onready var back_to_menu_button = $Buttons/Map
+onready var back_to_menu_button = $Buttons/Cards
 onready var continue_button = $Buttons/Continue
 
 signal pressed_continue
