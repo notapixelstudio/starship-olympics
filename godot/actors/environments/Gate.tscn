@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://actors/environments/Gate.gd" type="Script" id=1]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sprites/signs/arrow.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/environments/ring_part.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/environments/ring_full.png" type="Texture" id=5]
+[ext_resource path="res://assets/audio/FX/392693__screamstudio__sci-fi-sfx.wav" type="AudioStream" id=6]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
@@ -78,3 +80,11 @@ texture = ExtResource( 5 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Blink = SubResource( 2 )
 anims/RESET = SubResource( 3 )
+
+[node name="RandomAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 8 )
+streams = [ ExtResource( 6 ) ]
+volume_min = 0
+volume_max = 0
+randomize_pitch = true
+pitch_max = 1.4
