@@ -10,7 +10,7 @@ export var tutorial_scene : PackedScene
 
 var times_started := 0
 
-export (String, '', "blue", "white", "cyan", 'crown', "yellow", 'green', "magenta") var suit_top = ''
+export (String, '', "blue", "white", "cyan", "red", "yellow", 'green', "magenta") var suit_top = ''
 export (String, '', "blue", "white", "cyan", "red", "yellow", 'green', "magenta") var suit_bottom = ''
 
 func get_id() -> String:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/draft/DraftCardGraphicNode.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/icon/star_full06.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/ice_snowflake.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/cards/half_card.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
@@ -47,6 +48,13 @@ order_id = 0
 
 [node name="Background" parent="Ground/Front" index="0"]
 modulate = Color( 0.360784, 0.345098, 0.337255, 1 )
+
+[node name="HalfBackground" type="Sprite" parent="Ground/Front/Background" index="0"]
+unique_name_in_owner = true
+visible = false
+position = Vector2( 1, 1 )
+scale = Vector2( 1.01, 1.01 )
+texture = ExtResource( 11 )
 
 [node name="Border" parent="Ground/Front" index="3"]
 visible = true

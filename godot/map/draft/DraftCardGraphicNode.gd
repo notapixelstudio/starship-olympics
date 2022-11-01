@@ -70,11 +70,15 @@ func set_content_card(card: DraftCard):
 		if suit_top:
 			$"%SuitTopLeft".texture = load("res://assets/sprites/signs/suits/"+suit_top+".png")
 			$'%SuitTopLeft'.self_modulate = global.SUIT_COLORS[suit_top]
-			$'%Background'.self_modulate = global.SUIT_COLORS[suit_top] # TBD double color
-			$'%MinigameLabel'.self_modulate = global.SUIT_COLORS[suit_top].lightened(0.2) # TBD double color
+			$'%Background'.self_modulate = global.SUIT_COLORS[suit_top]
 		if suit_bottom:
 			$"%SuitBottomRight".texture = load("res://assets/sprites/signs/suits/"+suit_bottom+".png")
 			$'%SuitBottomRight'.self_modulate = global.SUIT_COLORS[suit_bottom]
+			$'%MinigameLabel'.self_modulate = global.SUIT_COLORS[suit_bottom].lightened(0.2) # TBD double color
+			
+		if suit_top != suit_bottom:
+			$'%HalfBackground'.self_modulate = global.SUIT_COLORS[suit_bottom]
+			$'%HalfBackground'.visible = true
 			
 	
 # @override
