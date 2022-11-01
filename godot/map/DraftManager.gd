@@ -123,7 +123,6 @@ func selections_maybe_all_done():
 		
 		var discarded = []
 		var hand = global.session.get_hand()
-		var card_should_be_discarded := []
 		# everyone chose. let's discard cards that have not been chosen
 		for draft_card in hand_node.get_all_cards():
 			if draft_card in self.players_choices.values():
@@ -133,8 +132,7 @@ func selections_maybe_all_done():
 				var index = hand.find(draft_card.card_content)
 				hand.pop_at(index)
 				
-		
-		hand_node.sync_with_hand()		
+		hand_node.sync_with_hand()
 		print("In the hand there are now {num_cards} cards".format({"num_cards": len(hand)}))
 		
 		var deck = global.the_game.get_deck()

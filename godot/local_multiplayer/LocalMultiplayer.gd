@@ -193,9 +193,6 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 			tutorial.queue_free()
 	
 	start_match(picked_card, minigame)
-	print("Save the game")
-	if not global.demo:
-		persistance.save_game_as_latest()
 
 
 func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
