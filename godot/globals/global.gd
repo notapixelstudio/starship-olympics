@@ -625,6 +625,9 @@ func reset_counts():
 	sessions_played = 0 # Total number of sessions. Persistence
 	session_number_of_game = 0
 	match_number_of_game = 0
+	for card in the_game.all_cards:
+		var minigame = (card as DraftCard).get_minigame()
+		minigame.reset_count()
 	
 var game_number := 0
 var session_number := 0
