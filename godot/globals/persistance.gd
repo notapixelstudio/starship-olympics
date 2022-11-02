@@ -79,4 +79,5 @@ func delete_latest_game() -> void:
 	global.write_into_file("user://games/latest.json", {}, File.WRITE_READ)
 	
 func save_game_as_latest() -> void:
-	global.write_into_file("user://games/latest.json", global.the_game.to_dict(), File.WRITE_READ)
+	if global.the_game:
+		global.write_into_file("user://games/latest.json", global.the_game.to_dict(), File.WRITE_READ)
