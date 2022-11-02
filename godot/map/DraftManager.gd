@@ -15,7 +15,7 @@ var message_node : Typewriter
 var ships_have_to_choose := false
 var hand_refills := 0
 
-const HAND_SIZE = 5
+const HAND_SIZE = 4
 
 var players_choices := {} # {InfoPlayer : card}
 
