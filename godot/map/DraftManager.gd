@@ -123,6 +123,7 @@ func selections_maybe_all_done():
 		
 		var discarded = []
 		var hand = global.session.get_hand()
+		Events.emit_signal("draft_ended", players_choices, hand.duplicate())
 		# everyone chose. let's discard cards that have not been chosen
 		for draft_card in hand_node.get_all_cards():
 			if draft_card in self.players_choices.values():
