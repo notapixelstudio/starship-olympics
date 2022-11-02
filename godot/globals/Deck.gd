@@ -2,6 +2,8 @@ extends Node
 
 class_name Deck
 
+var skip_first_draft := false
+
 var cards : Array = [] # of DraftCard
 var played_pile : Array = [] # of DraftCard
 var next : Array = [] # of DrafCard
@@ -24,6 +26,7 @@ func setup():
 	#var starting_deck = load(DECK_PATH+'/winter.tres')
 	append_cards(starting_deck.deal_cards())
 	next.append_array(starting_deck.get_nexts())
+	skip_first_draft = starting_deck.get_skip_first_draft()
 
 func set_from_dictionary(data: Dictionary):
 	next = []
@@ -154,3 +157,6 @@ func cards_to_dict(array_of_cards: Array) -> Array:
 		serialized_cards.append((card as DraftCard).get_id())
 	return serialized_cards
 
+func get_skip_first_draft() -> bool:
+	return skip_first_draft
+	

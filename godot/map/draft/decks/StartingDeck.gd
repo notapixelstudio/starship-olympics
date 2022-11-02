@@ -7,6 +7,7 @@ export var name : String
 export var cards : Array = [Object(), Object(), Object(), Object()] # DraftCard
 export var nexts : Array = [] # DraftCard
 export var shuffle_before_dealing := true
+export var skip_first_draft := false
 
 func get_id() -> String:
 	return self.resource_path.get_basename().get_file()
@@ -24,4 +25,7 @@ func deal_cards() -> Array:
 	
 func get_nexts() -> Array:
 	return nexts
+	
+func get_skip_first_draft() -> bool:
+	return skip_first_draft
 	
