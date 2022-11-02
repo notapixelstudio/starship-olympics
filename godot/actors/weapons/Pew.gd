@@ -9,7 +9,7 @@ var ownership_transfer := true
 var previous_velocity := Vector2.LEFT
 
 func _ready():
-	$RandomAudioStreamPlayer.play()
+	SoundEffects.play($RandomAudioStreamPlayer)
 
 func _physics_process(delta):
 	previous_velocity = linear_velocity
