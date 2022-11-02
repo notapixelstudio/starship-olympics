@@ -349,6 +349,9 @@ anims/RESET = SubResource( 19 )
 [node name="PlayerLabel" parent="Battlefield/Middleground/LeftGoalPortalGate/NoRotate" index="0"]
 text = ""
 
+[node name="RandomAudioStreamPlayer" parent="Battlefield/Middleground/LeftGoalPortalGate" index="10"]
+pitch_min = 1
+
 [node name="RightGoalPortalGate" parent="Battlefield/Middleground" index="1" instance=ExtResource( 15 )]
 unique_name_in_owner = true
 position = Vector2( 2150, 0 )
@@ -374,6 +377,9 @@ scale = Vector2( 1, 1.81818 )
 
 [node name="PlayerLabel" parent="Battlefield/Middleground/RightGoalPortalGate/NoRotate" index="0"]
 text = ""
+
+[node name="RandomAudioStreamPlayer" parent="Battlefield/Middleground/RightGoalPortalGate" index="10"]
+pitch_min = 1
 
 [node name="Launcher3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 3 )]
 position = Vector2( -550, -1150 )
