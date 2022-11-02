@@ -26,7 +26,6 @@ func _ready():
 	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
 	Events.connect("card_tapped", self, "player_just_chose_a_card")
 	
-	
 	this_arena = get_node(this_arena_path)
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
 	pass_node = get_node(pass_path)
@@ -41,6 +40,7 @@ func _ready():
 			self.continue_draft(false)
 		else:
 			self.continue_draft(true)
+	hand_node.sync_with_hand()
 	
 func _on_continue_after_game_over(session_ended):
 	if not is_inside_tree():
@@ -55,14 +55,6 @@ func continue_draft(session_ended):
 		
 	yield(get_tree().create_timer(0.4), "timeout") # this is also needed to wait for entering the tree
 	
-	if not session_ended:
-		# cleanup if session continues
-		var last_match_info = global.session.get_last_match()
-		if last_match_info:
-			var last_played_card: DraftCardGraphicNode = hand_node.get_card(last_match_info["card_id"])
-			if last_played_card:
-				hand_node.remove_card(last_played_card)
-		
 	ships_have_to_choose = false
 	var hand = global.session.get_hand()
 	if len(hand) == 0:
@@ -105,6 +97,10 @@ func draw_anew():
 		c.queue_free()
 		
 func player_just_chose_a_card(author, card):
+	if not author.is_inside_tree():
+		# it means that the ship already chose
+		return
+		
 	card.set_player(author.get_player())
 	
 	self.players_choices[author] = card
@@ -136,8 +132,7 @@ func selections_maybe_all_done():
 				var index = hand.find(draft_card.card_content)
 				hand.pop_at(index)
 				
-				draft_card.queue_free()
-				yield(get_tree().create_timer(0.5), "timeout")
+		hand_node.sync_with_hand()
 		print("In the hand there are now {num_cards} cards".format({"num_cards": len(hand)}))
 		
 		var deck = global.the_game.get_deck()
@@ -164,7 +159,9 @@ func selections_maybe_all_done():
 func pick_next_card():
 	# TBD animation
 	var hand = global.session.get_hand()
+	hand_node.update_card_positions()
 	yield(get_tree().create_timer(len(hand)*0.33+0.33), "timeout")
+	
 	
 	var picked_card : DraftCard = global.session.choose_next_card()
 	
@@ -202,6 +199,7 @@ func populate_hand(hand: Array):
 		yield(get_tree().create_timer(0.1), "timeout")
 		add_card(card, not ships_have_to_choose) # if ships have not to choose, cards are already selected
 	hand_node.update_card_positions()
+	
 func animate_selection(picked_card: DraftCard):
 	# This will animate the selection of the chosen card
 	var index_selection = 0
@@ -261,3 +259,8 @@ func _on_pass_tapped(author):
 		self.players_choices[author] = null
 		author.get_parent().remove_child(author)
 		self.selections_maybe_all_done()
+
+
+func _enter_tree():
+	if hand_node:
+		hand_node.sync_with_hand()

@@ -40,7 +40,9 @@ func increase_times_started():
 func is_first_time_started():
 	return times_started == 1
 	
-	
+func reset_count():
+	times_started = 0
+
 func get_arena_filepath(num_players: int) -> String:
 	var dir := Directory.new()
 	var file_path = arenas_dir.plus_file(str(num_players) + "players.tscn")

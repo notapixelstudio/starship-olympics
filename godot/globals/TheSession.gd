@@ -11,7 +11,9 @@ var leaderboards : Array = []
 var timestamp_local : String
 var timestamp : String
 var recovered_from_session := false
+
 func _init():
+	Events.connect("match_ended", self, "match_ended")
 	uuid = UUID.v4()
 	if global.the_game:
 		game_id=global.the_game.get_uuid()
@@ -21,6 +23,14 @@ func _init():
 	timestamp = Time.get_datetime_string_from_system(true, true)
 	snapshot_leaderboard()
 
+
+func match_ended(match_dict: Dictionary):
+	add_match_dict(match_dict)
+	put_back_playing_card()
+	if not global.demo:
+		persistance.save_game_as_latest()
+	
+	
 func setup_from_dictionary(data: Dictionary):
 	var existing_matches = data.get("matches", [])
 	for existing_match in existing_matches:
@@ -95,11 +105,6 @@ func add_match_dict(last_match: Dictionary):
 		matches.append(last_match)
 		ordered_matches.append(match_id)
 	
-func add_match(the_match: TheMatch):
-	
-	var match_dict : Dictionary = the_match.to_dict()
-	add_match_dict(match_dict)
-	
 func set_hand(cards : Array) -> void:
 	hand = cards
 
@@ -133,7 +138,6 @@ func update_scores(match_played: TheMatch) -> void:
 	# store leaderboard status after changing it
 	snapshot_leaderboard()
 	print("Saving SNAPSHOT. {lead}".format({"lead": leaderboards}))
-	add_match(match_played)
 
 func put_back_playing_card():
 	if playing_card != null:

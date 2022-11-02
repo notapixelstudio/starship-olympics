@@ -14,11 +14,9 @@ export var sure_scene: PackedScene
 func _ready():
 	set_process_unhandled_input(false)
 	$"%LeaderBoard".setup()
-	global.session.put_back_playing_card()
 	# a match has ended, save the game
-	if not global.demo:
-		persistance.save_game_as_latest()
-
+	global.safe_destroy_match()
+	
 func _on_Continue_pressed():
 	get_tree().paused = false
 	Events.emit_signal("continue_after_game_over", global.session.is_over())

@@ -625,6 +625,9 @@ func reset_counts():
 	sessions_played = 0 # Total number of sessions. Persistence
 	session_number_of_game = 0
 	match_number_of_game = 0
+	for card in the_game.all_cards:
+		var minigame = (card as DraftCard).get_minigame()
+		minigame.reset_count()
 	
 var game_number := 0
 var session_number := 0
@@ -653,6 +656,9 @@ func new_match() -> TheMatch:
 	the_match = TheMatch.new()
 	match_number_of_game += 1
 	Events.emit_signal("match_started")
+	print("Save the game")
+	if not global.demo:
+		persistance.save_game_as_latest()
 	return the_match
 	
 func new_session(existing_data := {}) -> TheSession:
@@ -696,7 +702,7 @@ func safe_destroy_game() -> void:
 	
 func safe_destroy_match() -> void:
 	if is_match_running():
-		Events.emit_signal("match_ended")
+		Events.emit_signal("match_ended", the_match.to_dict())
 		the_match.free()
 	the_match = null
 	
