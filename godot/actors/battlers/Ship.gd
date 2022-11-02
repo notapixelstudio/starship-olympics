@@ -37,6 +37,7 @@ var deadly_trail = false
 var deadly_trail_powerup = false
 
 var golf = false
+var phasing_in_prevented := false
 
 var charge = 0
 var actual_charge = 0
@@ -1002,8 +1003,13 @@ func is_holder() -> bool:
 	return get_collision_layer_bit(21)
 	
 func phase_in() -> void:
+	if phasing_in_prevented:
+		return
+		
 	set_collision_layer_bit(22, true)
 	
 func phase_out() -> void:
 	set_collision_layer_bit(22, false)
 	
+func set_phasing_in_prevented(v: bool) -> void:
+	phasing_in_prevented = v

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=5]
 [ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=6]
-[ext_resource path="res://combat/styles/thegrid.tres" type="Resource" id=7]
+[ext_resource path="res://combat/styles/garden.tres" type="Resource" id=7]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=9]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=10]
@@ -19,6 +19,7 @@
 [ext_resource path="res://actors/environments/NoHolderZone.tscn" type="PackedScene" id=17]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=18]
 [ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=19]
+[ext_resource path="res://actors/environments/DashWall.tscn" type="PackedScene" id=20]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -37,7 +38,7 @@ position = Vector2( 3.05176e-05, 0 )
 hollow = true
 offset = 200
 hide_grid = true
-solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
+solid_line_color = Color( 0.780392, 0.623529, 0.537255, 1 )
 grid_color = Color( 1, 1, 1, 0.329412 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
@@ -45,15 +46,14 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_icon": ExtResource( 6 )
 }
-radius = 2000
+radius = 2600
 sides = 6
 alternating_angle = 0
 rotation_degrees = 0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
-fg_color = Color( 0, 0.173333, 0.26, 1 )
-bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
+fg_color = Color( 0.1216, 0.2, 0.102, 1 )
+bg_color = Color( 0.135007, 0.22, 0.0858, 1 )
 
 [node name="NoHolderZone" parent="Battlefield/Middleground" index="0" instance=ExtResource( 17 )]
 position = Vector2( 0, 1100 )
@@ -119,6 +119,12 @@ position = Vector2( 800, 450 )
 script = ExtResource( 18 )
 radius = 400
 precision = 100
+
+[node name="DashWall" parent="Battlefield/Middleground" index="7" instance=ExtResource( 20 )]
+position = Vector2( 0, 1800 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/DashWall" index="2"]
+polygon = PoolVector2Array( -1000, -150, -950, -200, 950, -200, 1000, -150, 1000, 150, 950, 200, -950, 200, -1000, 150 )
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 type = "crown"
