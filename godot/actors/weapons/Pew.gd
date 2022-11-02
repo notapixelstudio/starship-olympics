@@ -45,8 +45,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func destroy() -> void:
 	dissolve()
-	if $RandomAudioStreamPlayer.playing:
-		yield($RandomAudioStreamPlayer, "finished")
 	queue_free()
 
 func get_owner_ship() -> Ship:
