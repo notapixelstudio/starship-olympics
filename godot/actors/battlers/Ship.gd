@@ -414,6 +414,7 @@ func _physics_process(delta):
 	if phasing_cooldown <= 0 and entity.get('Phasing').enabled:
 		#yield(get_tree().create_timer(0.2), 'timeout') # wait a bit to be lenient with phase-through checks
 		entity.get('Phasing').disable()
+		phase_in()
 	
 	if dash_cooldown <= 0 and entity.get('Dashing').enabled:
 		#dash_restore_appearance()
@@ -642,6 +643,7 @@ func dash_thin_appearance():
 func _on_Dashing_enabled():
 	# dashing always enables phasing
 	entity.get('Phasing').enable()
+	phase_out()
 	
 	dash_thin_appearance()
 	emit_signal('dash_started', self)
@@ -998,4 +1000,10 @@ func set_holder(v: bool) -> void:
 
 func is_holder() -> bool:
 	return get_collision_layer_bit(21)
+	
+func phase_in() -> void:
+	set_collision_layer_bit(22, true)
+	
+func phase_out() -> void:
+	set_collision_layer_bit(22, false)
 	
