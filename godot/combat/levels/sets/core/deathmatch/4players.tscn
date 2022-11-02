@@ -33,7 +33,7 @@ style = ExtResource( 5 )
 score_to_win_override = 12
 match_duration_override = 80.0
 
-[node name="KillModeManager" parent="Managers" index="9"]
+[node name="KillModeManager" parent="Managers" index="8"]
 enabled = true
 
 [node name="BackgroundImage" parent="BackgroundLayer" index="0"]
@@ -45,46 +45,48 @@ z_as_relative = false
 
 [node name="Polygon2D" type="Polygon2D" parent="Battlefield/Background/Decoration" index="0"]
 modulate = Color( 0.729412, 0.729412, 0.729412, 1 )
+position = Vector2( -400, 0 )
 color = Color( 0.627451, 0.564706, 0.47451, 1 )
 polygon = PoolVector2Array( -2000, 1100, -2000, 950, -1550, 1400, -1550, 1550 )
 
 [node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/Decoration" index="1"]
 modulate = Color( 0.729412, 0.729412, 0.729412, 1 )
 color = Color( 0.435294, 0.396078, 0.313726, 1 )
-polygon = PoolVector2Array( -1550, 1400, -1550, 1550, 1550, 1550, 1550, 1400 )
+polygon = PoolVector2Array( -1950, 1400, -1950, 1550, 1950, 1550, 1950, 1400 )
 
 [node name="Polygon2D6" type="Polygon2D" parent="Battlefield/Background/Decoration" index="2"]
 modulate = Color( 0.729412, 0.729412, 0.729412, 1 )
+position = Vector2( 400, 0 )
 color = Color( 0.262745, 0.239216, 0.196078, 1 )
 polygon = PoolVector2Array( 1550, 1400, 1550, 1550, 2000, 1100, 2000, 950 )
 
 [node name="Sprite2" type="Sprite" parent="Battlefield/Background/Decoration" index="3"]
 modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
-position = Vector2( 2000, 1489 )
+position = Vector2( 2400, 1489 )
 scale = Vector2( 1, -1 )
 texture = ExtResource( 23 )
 
 [node name="Sprite4" type="Sprite" parent="Battlefield/Background/Decoration" index="4"]
 modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
-position = Vector2( 600, 1489 )
+position = Vector2( 1000, 1489 )
 scale = Vector2( 1, -1 )
 texture = ExtResource( 12 )
 
 [node name="Sprite5" type="Sprite" parent="Battlefield/Background/Decoration" index="5"]
 modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
-position = Vector2( -2000, -11 )
+position = Vector2( -2400, 89 )
 scale = Vector2( 1, -1 )
 texture = ExtResource( 25 )
 
 [node name="Sprite6" type="Sprite" parent="Battlefield/Background/Decoration" index="6"]
 modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
-position = Vector2( 2000, 189 )
+position = Vector2( 2400, 89 )
 scale = Vector2( 1, -1 )
 texture = ExtResource( 12 )
 
 [node name="Sprite3" type="Sprite" parent="Battlefield/Background/Decoration" index="7"]
 modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
-position = Vector2( -2000, -1311 )
+position = Vector2( -2400, -1311 )
 scale = Vector2( 1, -1 )
 texture = ExtResource( 23 )
 
@@ -93,27 +95,27 @@ z_index = 18
 z_as_relative = false
 
 [node name="Sprite" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="0"]
-position = Vector2( -600, -1426 )
+position = Vector2( -1000, -1426 )
 texture = ExtResource( 12 )
 
 [node name="Sprite2" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="1"]
-position = Vector2( -2000, -1462 )
+position = Vector2( -2400, -1462 )
 texture = ExtResource( 23 )
 
 [node name="Sprite3" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="2"]
-position = Vector2( -2000, -126 )
+position = Vector2( -2400, -26 )
 texture = ExtResource( 25 )
 
 [node name="Sprite4" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="3"]
-position = Vector2( 2000, 74 )
+position = Vector2( 2400, -26 )
 texture = ExtResource( 12 )
 
 [node name="Sprite5" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="4"]
-position = Vector2( 2000, 1340 )
+position = Vector2( 2400, 1340 )
 texture = ExtResource( 16 )
 
 [node name="Sprite6" type="Sprite" parent="Battlefield/Background/DecorationOverlay" index="5"]
-position = Vector2( 600, 1374 )
+position = Vector2( 1000, 1374 )
 texture = ExtResource( 25 )
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 8 )]
@@ -129,7 +131,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-width = 4000
+width = 4800
 height = 2800
 bevel = 450
 bevel_nw = 450
@@ -148,7 +150,7 @@ scale = Vector2( 5, 5 )
 texture = ExtResource( 24 )
 
 [node name="Wall11" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
-position = Vector2( -2000, -1400 )
+position = Vector2( -2400, -1400 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -160,7 +162,7 @@ alternating_angle = 0
 rotation_degrees = 0
 
 [node name="Wall7" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
-position = Vector2( -600, -1400 )
+position = Vector2( -1000, -1400 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -172,7 +174,7 @@ alternating_angle = 0
 rotation_degrees = 0
 
 [node name="Wall8" parent="Battlefield/Middleground" index="2" instance=ExtResource( 8 )]
-position = Vector2( 600, 1400 )
+position = Vector2( 1000, 1400 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -184,7 +186,7 @@ alternating_angle = 0
 rotation_degrees = 0
 
 [node name="Wall5" parent="Battlefield/Middleground" index="3" instance=ExtResource( 8 )]
-position = Vector2( -2000, -100 )
+position = Vector2( -2400, 0 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -196,7 +198,7 @@ alternating_angle = 0
 rotation_degrees = 0
 
 [node name="Wall9" parent="Battlefield/Middleground" index="4" instance=ExtResource( 8 )]
-position = Vector2( 2000, 1400 )
+position = Vector2( 2400, 1400 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -208,7 +210,7 @@ alternating_angle = 0
 rotation_degrees = 0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 8 )]
-position = Vector2( 2000, 100 )
+position = Vector2( 2400, 0 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -220,7 +222,7 @@ alternating_angle = 0
 rotation_degrees = 0
 
 [node name="Wall15" parent="Battlefield/Middleground" index="6" instance=ExtResource( 8 )]
-position = Vector2( -1200, -800 )
+position = Vector2( -1800, -600 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -232,7 +234,7 @@ alternating_angle = 0
 rotation_degrees = 0
 
 [node name="Wall18" parent="Battlefield/Middleground" index="7" instance=ExtResource( 8 )]
-position = Vector2( 1200, 800 )
+position = Vector2( 1800, 600 )
 line_width = 28
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 6 )
@@ -247,28 +249,28 @@ rotation_degrees = 0
 variant_scenes = [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 18 ), ExtResource( 17 ) ]
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
-position = Vector2( -1500, 1000 )
+position = Vector2( -1950, 950 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 14 )
 cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-position = Vector2( 1500, -1000 )
+position = Vector2( 1950, -950 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 13 )
 cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
-position = Vector2( 1500, 1000 )
+position = Vector2( 1950, 950 )
 rotation = -1.5708
 controls = "joy2"
 species = ExtResource( 11 )
 cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
-position = Vector2( -1500, -1000 )
+position = Vector2( -1950, -950 )
 rotation = 1.5708
 controls = "joy2"
 species = ExtResource( 7 )
