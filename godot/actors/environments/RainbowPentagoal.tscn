@@ -71,7 +71,8 @@ self_modulate = Color( 1, 1, 1, 0.196078 )
 text = "
 "
 
-[node name="Sprite" type="Sprite" parent="LabelWrapper" index="1"]
+[node name="Star" type="Sprite" parent="LabelWrapper" index="1"]
+unique_name_in_owner = true
 self_modulate = Color( 1, 1, 1, 0.392157 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
@@ -80,5 +81,7 @@ texture = ExtResource( 3 )
 autoplay = "Idle"
 anims/Idle = SubResource( 4 )
 anims/RESET = SubResource( 5 )
+
+[connection signal="goal_done" from="." to="." method="_on_goal_done"]
 
 [editable path="Field"]
