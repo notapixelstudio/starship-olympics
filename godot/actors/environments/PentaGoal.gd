@@ -27,7 +27,10 @@ func set_core_radius(value):
 	core_radius = value
 	
 func update_label_size():
-	$LabelWrapper.scale = Vector2(1,1)*gshape.radius/100/$LabelWrapper/Label.get_total_character_count()*2
+	var scale = gshape.radius/100
+	if $LabelWrapper/Label.get_total_character_count() > 0:
+		scale = scale/$LabelWrapper/Label.get_total_character_count()*2
+	$LabelWrapper.scale = Vector2(1,1)*scale
 
 func _ready():
 	# connect feedback signal 
@@ -47,6 +50,7 @@ func _ready():
 		
 	gshape.radius = core_radius + ring_width*current_ring
 	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
+	update_label_size()
 	
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
@@ -61,13 +65,12 @@ func _on_Field_entered(field, body):
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("Feedback")
 		var ball_player = body.get_player()
-		if ball_player == null or ball_player != get_player():
+		if ball_player != null and ball_player == get_player() or get_player() == null:
+			do_goal(ball_player, body.global_position)
+		else:
 			# rebound
 			SoundEffects.play($AudioStreamPlayer2D)
-		else:
-			do_goal(ball_player, body.global_position)
 		
-	
 func get_score():
 	return 1
 	
