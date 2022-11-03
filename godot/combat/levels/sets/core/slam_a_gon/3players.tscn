@@ -20,7 +20,7 @@
 size_multiplier = 2.5
 game_mode = ExtResource( 12 )
 style = ExtResource( 15 )
-match_duration_override = 80.0
+match_duration_override = 70.0
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 14 )
@@ -38,11 +38,10 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-radius = 2000
+radius = 1800
 precision = 100
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
 texture = ExtResource( 16 )
 texture_scale = Vector2( 2, 2 )
 fg_color = Color( 0.3, 0.2012, 0.144, 1 )
@@ -58,7 +57,7 @@ texture = ExtResource( 4 )
 [node name="Node2D" type="Node2D" parent="Battlefield/Background/O" index="0"]
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background/O/Node2D" index="0"]
-points = PoolVector2Array( -509.117, -509.117, -120, -120 )
+points = PoolVector2Array( -475.741, -475.742, -120, -120 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -68,7 +67,7 @@ end_cap_mode = 2
 rotation = 2.0944
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background/O/Node2D2" index="0"]
-points = PoolVector2Array( -509.117, -509.117, -120, -120 )
+points = PoolVector2Array( -475.741, -475.742, -120, -120 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -78,7 +77,7 @@ end_cap_mode = 2
 rotation = 4.18879
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background/O/Node2D3" index="0"]
-points = PoolVector2Array( -509.117, -509.117, -120, -120 )
+points = PoolVector2Array( -475.741, -475.742, -120, -120 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -91,20 +90,20 @@ rotation = -1.5708
 [node name="PentaGoal" parent="Battlefield/Middleground/GoalsP1" index="0" instance=ExtResource( 18 )]
 position = Vector2( -800, 0 )
 rings = 4
-ring_width = 70.0
+ring_width = 80.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
 [node name="PentaGoal3" parent="Battlefield/Middleground/GoalsP1" index="1" instance=ExtResource( 18 )]
 position = Vector2( -1050, -700 )
 rings = 3
-ring_width = 70.0
+ring_width = 55.0
 core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
 [node name="PentaGoal4" parent="Battlefield/Middleground/GoalsP1" index="2" instance=ExtResource( 18 )]
 position = Vector2( -1050, 700 )
 rings = 3
-ring_width = 70.0
+ring_width = 55.0
 core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
@@ -115,20 +114,20 @@ rotation = 0.523599
 [node name="PentaGoal" parent="Battlefield/Middleground/GoalsP2" index="0" instance=ExtResource( 18 )]
 position = Vector2( -800, 0 )
 rings = 4
-ring_width = 70.0
+ring_width = 80.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal3" parent="Battlefield/Middleground/GoalsP2" index="1" instance=ExtResource( 18 )]
 position = Vector2( -1050, -700 )
 rings = 3
-ring_width = 70.0
+ring_width = 55.0
 core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal4" parent="Battlefield/Middleground/GoalsP2" index="2" instance=ExtResource( 18 )]
 position = Vector2( -1050, 700 )
 rings = 3
-ring_width = 70.0
+ring_width = 55.0
 core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
 
@@ -139,20 +138,20 @@ rotation = 2.61799
 [node name="PentaGoal" parent="Battlefield/Middleground/GoalsP3" index="0" instance=ExtResource( 18 )]
 position = Vector2( -800, 0 )
 rings = 4
-ring_width = 70.0
+ring_width = 80.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p3")
 
 [node name="PentaGoal3" parent="Battlefield/Middleground/GoalsP3" index="1" instance=ExtResource( 18 )]
 position = Vector2( -1050, -700 )
 rings = 3
-ring_width = 70.0
+ring_width = 55.0
 core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p3")
 
 [node name="PentaGoal4" parent="Battlefield/Middleground/GoalsP3" index="2" instance=ExtResource( 18 )]
 position = Vector2( -1050, 700 )
 rings = 3
-ring_width = 70.0
+ring_width = 55.0
 core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p3")
 
@@ -163,18 +162,21 @@ position = Vector2( 0, 1400 )
 rotation = -1.5708
 controls = "joy2"
 species = ExtResource( 7 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( -1212.44, -700 )
 rotation = 0.523599
 controls = "joy1"
 species = ExtResource( 11 )
+cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
 position = Vector2( 1212.44, -700 )
 rotation = 2.61799
 controls = "joy3"
 species = ExtResource( 9 )
+cpu = true
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 9.3132e+06, 9.3132e+06 )

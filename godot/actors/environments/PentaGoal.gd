@@ -32,7 +32,6 @@ func update_label_size():
 func _ready():
 	# connect feedback signal 
 	field.connect("entered", self, "_on_Field_entered")
-	Events.connect("holdable_dropped", self, "_on_holdable_dropped")
 	
 	for i in range(rings):
 		var shape = GRegularPolygon.new()
@@ -61,19 +60,13 @@ func _on_Field_entered(field, body):
 		$FeedbackLine.visible = true
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("Feedback")
-		$AudioStreamPlayer2D.play()
-		yield($AudioStreamPlayer2D, "finished")
-		$AudioStreamPlayer2D.pitch_scale = 1
+		var ball_player = body.get_player()
+		if ball_player == null or ball_player != get_player():
+			# rebound
+			SoundEffects.play($AudioStreamPlayer2D)
+		else:
+			do_goal(ball_player, body.global_position)
 		
-func _on_holdable_dropped(holdable, ship, cause):
-	if cause != $Field/Area2D: # WARNING this is convoluted
-		return
-		
-	var is_basket_ball = holdable is Ball and holdable.has_type('basket')
-	var same_player = ship.get_player() == get_player()
-	
-	if is_basket_ball and same_player:
-		do_goal(ship.get_player(), ship.position)
 	
 func get_score():
 	return 1
@@ -87,7 +80,11 @@ func do_goal(player, pos):
 	
 	# decrease size
 	current_ring -= 1
+	
+	# play increasingly high sounds
 	$AudioStreamPlayer2D.pitch_scale = 1 + rings-current_ring
+	SoundEffects.play($AudioStreamPlayer2D)
+	$AudioStreamPlayer2D.pitch_scale = 1
 	
 	if current_ring >= 0:
 		gshape.call_deferred('set_radius', core_radius + ring_width*current_ring) # without defer, collisions become messed up: one goal triggers other goals

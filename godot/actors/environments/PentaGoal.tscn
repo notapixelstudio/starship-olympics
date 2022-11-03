@@ -93,6 +93,9 @@ polygon = PoolVector2Array( 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7
 [node name="Line2D" parent="Field" index="2"]
 points = PoolVector2Array( 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14, 30.9017, 95.1057 )
 
+[node name="Area2D" parent="Field" index="3"]
+collision_mask = 10759
+
 [node name="Dropper" parent="Field/Area2D" index="0" instance=ExtResource( 8 )]
 
 [node name="CollisionShape2D" parent="Field/Area2D" index="2"]
