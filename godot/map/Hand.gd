@@ -10,6 +10,11 @@ export var size:= Vector2()
 var horizontal_radius := 2200.0
 var vertical_radius := 300.0
 
+func sync_with_hand():
+	for card in get_children():
+		if not card.card_content in global.session.get_hand():
+			card.queue_free()
+	
 
 func get_size() -> Vector2:
 	return size

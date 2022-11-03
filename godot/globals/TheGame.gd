@@ -5,15 +5,24 @@ class_name TheGame
 var uuid : String
 var players : Array
 
-var timestamp_dict: Dictionary
 var deck : Deck
 var all_cards : CardPool
 var timestamp_local : String
 var timestamp : String
+
+class CardsSelection:
+	var cards_to_choose := [] # Array of DraftCard ids
+	var player_choice := {} # playerID : DraftCard Id
+	
+	func to_dict():
+		return {
+			"cards": cards_to_choose,
+			"choices": player_choice
+		}
+		
 func _init():
 	uuid = UUID.v4()
-	timestamp_dict = Time.get_datetime_dict_from_system(true)
-	#global.write_into_file("user://games/{id_game}.json".format({"id_game":uuid}), self.to_dict())
+	
 	all_cards = CardPool.new() 
 	timestamp_local = Time.get_datetime_string_from_system(false, true)
 	timestamp = Time.get_datetime_string_from_system(true, true)
