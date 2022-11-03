@@ -404,7 +404,7 @@ func _onRemoteCommand(id,strength,button):
 func create_dir(path: String):
 	var dir = Directory.new()
 	dir.make_dir_recursive(path)
-	
+
 func write_into_file(filepath: String, data: Dictionary, mode := File.READ_WRITE):
 	#open the log file and go to the end
 	var file = File.new()
