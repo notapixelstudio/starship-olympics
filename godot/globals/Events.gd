@@ -34,7 +34,7 @@ signal execution_started
 signal game_started
 signal session_started
 signal match_started
-signal match_ended
+signal match_ended(match_dict)
 signal session_ended
 signal game_ended
 signal execution_ended

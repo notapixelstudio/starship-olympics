@@ -205,3 +205,9 @@ func show_mark(v):
 	$Ground/Front/Wrapper/Monogram.visible = true
 	$Ground/Front/Wrapper/Monogram.bbcode_text = "[center]" + str(v).to_upper() + "[/center]"
 	
+func is_face_down() -> bool:
+	return face_down
+	
+func is_face_up() -> bool:
+	return not face_down
+	

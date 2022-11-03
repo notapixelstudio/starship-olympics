@@ -104,7 +104,7 @@ func _on_card_taken(card, player, ship):
 	card.queue_free()
 
 # reveal cards at the end of the match
-func _on_match_ended():
+func _on_match_ended(match_dict: Dictionary):
 	for card in get_all_cards():
 		card.set_auto_flip_back(false)
 		card.set_pause_mode(PAUSE_MODE_PROCESS)

@@ -117,7 +117,7 @@ func _on_match_started() -> void:
 		'event_name': 'match_started'
 	}, true)
 
-func _on_match_ended() -> void:
+func _on_match_ended(match_dict: Dictionary) -> void:
 	log_event({
 		'event_name': 'match_ended',
 		'duration_ms': OS.get_ticks_msec() - match_started_ms
