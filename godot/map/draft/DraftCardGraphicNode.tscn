@@ -46,6 +46,9 @@ multiple_owners = true
 float_when_selected = false
 order_id = 0
 
+[node name="Front" parent="Ground" index="1"]
+scale = Vector2( 0.22223, 1 )
+
 [node name="Background" parent="Ground/Front" index="0"]
 modulate = Color( 0.360784, 0.345098, 0.337255, 1 )
 
@@ -58,21 +61,34 @@ texture = ExtResource( 11 )
 
 [node name="Border" parent="Ground/Front" index="3"]
 visible = true
-scale = Vector2( 2.1, 2.1 )
+scale = Vector2( 2.15, 2.1 )
 
 [node name="Mystery" type="Sprite" parent="Ground/Front" index="5"]
 visible = false
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
-[node name="MinigameIconShadow" type="Sprite" parent="Ground/Front" index="8"]
+[node name="Suits" type="Node2D" parent="Ground/Front" index="8"]
+
+[node name="SuitTopLeft" type="Sprite" parent="Ground/Front/Suits" index="0"]
+unique_name_in_owner = true
+position = Vector2( -94, -143 )
+scale = Vector2( 0.35, 0.35 )
+
+[node name="SuitBottomRight" type="Sprite" parent="Ground/Front/Suits" index="1"]
+unique_name_in_owner = true
+position = Vector2( 94, 144 )
+scale = Vector2( 0.35, 0.35 )
+flip_v = true
+
+[node name="MinigameIconShadow" type="Sprite" parent="Ground/Front" index="9"]
 modulate = Color( 0, 0, 0, 0.392157 )
 position = Vector2( 0, -24 )
 
-[node name="MinigameIcon" type="Sprite" parent="Ground/Front" index="9"]
+[node name="MinigameIcon" type="Sprite" parent="Ground/Front" index="10"]
 position = Vector2( 0, -33 )
 
-[node name="MinigameLabelWrapper" type="Node2D" parent="Ground/Front" index="10"]
+[node name="MinigameLabelWrapper" type="Node2D" parent="Ground/Front" index="11"]
 position = Vector2( 0, 9 )
 scale = Vector2( 0.5, 0.5 )
 
@@ -114,7 +130,7 @@ __meta__ = {
 }
 
 [node name="Snowflake" type="Sprite" parent="Ground/Front/MinigameLabelWrapper/WinterLabel" index="0"]
-position = Vector2( 900, 359 )
+position = Vector2( 900, 375 )
 texture = ExtResource( 10 )
 
 [node name="SnowflakeShadow" type="Sprite" parent="Ground/Front/MinigameLabelWrapper/WinterLabel/Snowflake" index="0"]
@@ -143,7 +159,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="NewLabelWrapper" type="Node2D" parent="Ground/Front" index="11"]
+[node name="NewLabelWrapper" type="Node2D" parent="Ground/Front" index="12"]
 position = Vector2( 0, 14 )
 scale = Vector2( 0.5, 0.5 )
 
@@ -171,19 +187,6 @@ texture = ExtResource( 4 )
 [node name="Sprite2" type="Sprite" parent="Ground/Front/NewLabelWrapper/NewLabel" index="1"]
 position = Vector2( 1024, 157 )
 texture = ExtResource( 4 )
-
-[node name="Suits" type="Node2D" parent="Ground/Front" index="12"]
-
-[node name="SuitTopLeft" type="Sprite" parent="Ground/Front/Suits" index="0"]
-unique_name_in_owner = true
-position = Vector2( -94, -143 )
-scale = Vector2( 0.35, 0.35 )
-
-[node name="SuitBottomRight" type="Sprite" parent="Ground/Front/Suits" index="1"]
-unique_name_in_owner = true
-position = Vector2( 94, 144 )
-scale = Vector2( 0.35, 0.35 )
-flip_v = true
 
 [node name="PerfectionistStar" type="Sprite" parent="Ground/Front" index="13"]
 unique_name_in_owner = true

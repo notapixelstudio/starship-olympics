@@ -60,8 +60,8 @@ func set_content_card(card: DraftCard):
 	var perfectionist := not card is MysteryCard and card.is_perfectionist()
 	get_node('%PerfectionistStar').visible = perfectionist
 	get_node('%PerfectionistLabel').visible = perfectionist
-	if card.is_perfectionist():
-		$Ground/Front/Border.self_modulate = Color('#ff5577') # takes priority over winter
+#	if card.is_perfectionist():
+#		$Ground/Front/Border.self_modulate = Color('#ff5577') # takes priority over winter
 		
 	# suits
 	if not card is MysteryCard:
