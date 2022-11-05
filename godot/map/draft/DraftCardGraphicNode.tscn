@@ -139,10 +139,10 @@ show_behind_parent = true
 position = Vector2( 0, 6 )
 texture = ExtResource( 10 )
 
-[node name="PerfectionistLabel" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="2"]
+[node name="BottomLabel" type="Label" parent="Ground/Front/MinigameLabelWrapper" index="2"]
 unique_name_in_owner = true
+visible = false
 modulate = Color( 1, 0.25098, 0.831373, 1 )
-self_modulate = Color( 0.92, 0.92, 0.92, 1 )
 margin_left = -900.0
 margin_top = 97.0
 margin_right = 900.0
@@ -190,6 +190,7 @@ texture = ExtResource( 4 )
 
 [node name="PerfectionistStar" type="Sprite" parent="Ground/Front" index="13"]
 unique_name_in_owner = true
+visible = false
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 self_modulate = Color( 1, 0, 0.498039, 1 )
 position = Vector2( 75, -150 )

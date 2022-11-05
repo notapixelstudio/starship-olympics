@@ -16,8 +16,10 @@ func set_chosen(v):
 	$Ground/Select.visible = chosen
 	
 func set_minigame_label(name):
-	$Ground/Front/MinigameLabelWrapper/MinigameLabel.text = name
-	
+	$"%MinigameLabel".text = name
+	if card_content is MysteryCard:
+		$"%BottomLabel".text = 'minigame'
+
 func set_minigame_icon(texture):
 	$Ground/Front/MinigameIcon.texture = texture
 	$Ground/Front/MinigameIconShadow.texture = texture
@@ -25,11 +27,9 @@ func set_minigame_icon(texture):
 func set_content_card(card: DraftCard):
 	# default
 	card_content = card
-	var minigame: Minigame = card.get_minigame()
-	if minigame:
-		self.set_minigame_label(minigame.get_name())
-		self.set_minigame_icon(minigame.get_icon())
-		
+	set_minigame_label(card.get_name())
+	set_minigame_icon(card.get_icon())
+	
 	#$Ground/Front/Background.modulate = Color('#e0e0e0')
 	var tint = card.get_tint()
 	if tint:
@@ -42,12 +42,13 @@ func set_content_card(card: DraftCard):
 	
 	# mystery
 	$Ground/Front/Mystery.visible = card is MysteryCard
-	$Ground/Front/MinigameLabelWrapper.visible = not card is MysteryCard
+	#$Ground/Front/MinigameLabelWrapper.visible = not card is MysteryCard
 	$Ground/Front/MinigameIcon.visible = not card is MysteryCard
 	$Ground/Front/MinigameIconShadow.visible = not card is MysteryCard
 	if card is MysteryCard:
 		$Ground/Front/Mystery.texture = card.get_cover()
 		$Ground/Front/Background.modulate = Color('#7c6989')
+		$"%BottomLabel".visible = true
 	
 	# winter
 	$Ground/Front/MinigameLabelWrapper/WinterLabel.visible = card.is_winter()
@@ -57,10 +58,9 @@ func set_content_card(card: DraftCard):
 		$Ground/Front/Border.z_index = -1
 	
 	# perfectionist
-	var perfectionist := not card is MysteryCard and card.is_perfectionist()
-	get_node('%PerfectionistStar').visible = perfectionist
-	get_node('%PerfectionistLabel').visible = perfectionist
-#	if card.is_perfectionist():
+	if card.is_perfectionist():
+		get_node('%PerfectionistStar').visible = true
+		get_node('%BottomLabel').visible = true
 #		$Ground/Front/Border.self_modulate = Color('#ff5577') # takes priority over winter
 		
 	# suits
@@ -79,7 +79,9 @@ func set_content_card(card: DraftCard):
 		if suit_top != suit_bottom:
 			$'%HalfBackground'.self_modulate = global.SUIT_COLORS[suit_bottom]
 			$'%HalfBackground'.visible = true
-			
+	else:
+		$'%MinigameLabel'.self_modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
+		$'%BottomLabel'.modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
 	
 # @override
 func select():

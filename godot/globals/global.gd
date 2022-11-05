@@ -17,7 +17,8 @@ const SUIT_COLORS = {
 	"white": Color('#ffffff'),
 	"cyan": Color('#00fff3'),
 	'green': Color('#53ff53'),
-	"magenta": Color('#d849f5')
+	"magenta": Color('#d849f5'),
+	'mystery': Color('#7c6989')
 }
 
 var enable_analytics : bool = false setget _set_analytics
