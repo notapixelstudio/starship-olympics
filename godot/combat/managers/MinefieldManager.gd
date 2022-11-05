@@ -1,7 +1,7 @@
 extends Node
 
 const DX = 500
-const DY = 600
+const DY = 500
 
 const DIAMOND = 'environments/diamond'
 const BIG_DIAMOND = 'environments/diamond_big'

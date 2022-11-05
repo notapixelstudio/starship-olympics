@@ -1,17 +1,19 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://combat/modes/DiamondMinefield.tres" type="Resource" id=1]
-[ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=2]
+[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=2]
+[ext_resource path="res://actors/environments/MinefieldCard.tscn" type="PackedScene" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
 [ext_resource path="res://combat/managers/MinefieldManager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
-[ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=10]
-[ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=13]
+[ext_resource path="res://combat/levels/background/blue.png" type="Texture" id=10]
+[ext_resource path="res://utils/CameraStartingRect.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/boards/diamond_minefield_4players.png" type="Texture" id=12]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=13]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=16]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=17]
 
 [node name="Arena" instance=ExtResource( 9 )]
 size_multiplier = 2.5
@@ -23,333 +25,413 @@ score_to_win_override = 100
 [node name="ConquestModeManager" parent="Managers" index="11"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="BackgroundImage" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 10 )
-centered = false
 
 [node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
+visible = false
 hollow = true
 offset = 200
 hide_grid = true
 solid_line_color = Color( 0.635294, 1.14118, 0.72549, 1 )
 grid_color = Color( 1, 1, 1, 0.329412 )
 
-[node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
+[node name="GRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 2 )
-width = 6000
-height = 4200
-radius = 200
-precision = 50.0
+width = 9200
+height = 4500
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+visible = false
 modulate = Color( 1, 1, 1, 0.9 )
 fg_color = Color( 0.12, 0.488, 0.6, 1 )
 bg_color = Color( 0.112, 0.4256, 0.56, 1 )
 
+[node name="CameraStartingRect" parent="Battlefield/Background" index="4" instance=ExtResource( 11 )]
+polygon = PoolVector2Array( -3900, -2000, 3900, -2000, 3900, 2000, -3900, 2000, -3900, -2000 )
+
+[node name="GRect" type="Node" parent="Battlefield/Background/CameraStartingRect" index="0"]
+script = ExtResource( 2 )
+width = 7800
+height = 4000
+
+[node name="Bottom" type="Sprite" parent="Battlefield/Background" index="5"]
+modulate = Color( 0.329412, 0.27451, 0.207843, 1 )
+position = Vector2( 0, 64 )
+scale = Vector2( 5, 5 )
+z_index = -10
+z_as_relative = false
+texture = ExtResource( 12 )
+
+[node name="Board" type="Sprite" parent="Battlefield/Background" index="6"]
+modulate = Color( 0.207843, 0.168627, 0.25098, 1 )
+position = Vector2( 0, 32 )
+scale = Vector2( 5, 5 )
+z_index = -10
+z_as_relative = false
+texture = ExtResource( 12 )
+
 [node name="YSort" type="YSort" parent="Battlefield/Middleground" index="0"]
-position = Vector2( -200, -210 )
-scale = Vector2( 0.85, 0.85 )
 
-[node name="Card" parent="Battlefield/Middleground/YSort" index="0" instance=ExtResource( 13 )]
-position = Vector2( -250, -350 )
+[node name="MinefieldCard" parent="Battlefield/Middleground/YSort" index="0" instance=ExtResource( 3 )]
+position = Vector2( -250, -250 )
 
-[node name="Card2" parent="Battlefield/Middleground/YSort" index="1" instance=ExtResource( 13 )]
-position = Vector2( -750, -350 )
+[node name="MinefieldCard2" parent="Battlefield/Middleground/YSort" index="1" instance=ExtResource( 3 )]
+position = Vector2( 250, -250 )
 
-[node name="Card5" parent="Battlefield/Middleground/YSort" index="2" instance=ExtResource( 13 )]
-position = Vector2( -1250, -350 )
+[node name="MinefieldCard7" parent="Battlefield/Middleground/YSort" index="2" instance=ExtResource( 3 )]
+position = Vector2( -250, -750 )
 
-[node name="Card3" parent="Battlefield/Middleground/YSort" index="3" instance=ExtResource( 13 )]
-position = Vector2( 750, -350 )
+[node name="MinefieldCard8" parent="Battlefield/Middleground/YSort" index="3" instance=ExtResource( 3 )]
+position = Vector2( 250, -750 )
 
-[node name="Card4" parent="Battlefield/Middleground/YSort" index="4" instance=ExtResource( 13 )]
-position = Vector2( 250, -350 )
+[node name="MinefieldCard9" parent="Battlefield/Middleground/YSort" index="4" instance=ExtResource( 3 )]
+position = Vector2( -250, -1250 )
 
-[node name="Card6" parent="Battlefield/Middleground/YSort" index="5" instance=ExtResource( 13 )]
-position = Vector2( -250, -950 )
+[node name="MinefieldCard10" parent="Battlefield/Middleground/YSort" index="5" instance=ExtResource( 3 )]
+position = Vector2( 250, -1250 )
 
-[node name="Card7" parent="Battlefield/Middleground/YSort" index="6" instance=ExtResource( 13 )]
-position = Vector2( -750, -950 )
-
-[node name="Card8" parent="Battlefield/Middleground/YSort" index="7" instance=ExtResource( 13 )]
-position = Vector2( -1250, -950 )
-
-[node name="Card9" parent="Battlefield/Middleground/YSort" index="8" instance=ExtResource( 13 )]
-position = Vector2( 750, -950 )
-
-[node name="Card10" parent="Battlefield/Middleground/YSort" index="9" instance=ExtResource( 13 )]
-position = Vector2( 250, -950 )
-
-[node name="Card11" parent="Battlefield/Middleground/YSort" index="10" instance=ExtResource( 13 )]
-position = Vector2( -1750, 250 )
-
-[node name="Card12" parent="Battlefield/Middleground/YSort" index="11" instance=ExtResource( 13 )]
-position = Vector2( -1750, -350 )
-
-[node name="Card13" parent="Battlefield/Middleground/YSort" index="12" instance=ExtResource( 13 )]
-position = Vector2( -1750, -950 )
-
-[node name="Card14" parent="Battlefield/Middleground/YSort" index="13" instance=ExtResource( 13 )]
-position = Vector2( 1250, 850 )
-
-[node name="Card26" parent="Battlefield/Middleground/YSort" index="14" instance=ExtResource( 13 )]
-position = Vector2( 1250, 250 )
-
-[node name="Card27" parent="Battlefield/Middleground/YSort" index="15" instance=ExtResource( 13 )]
-position = Vector2( 1250, -350 )
-
-[node name="Card28" parent="Battlefield/Middleground/YSort" index="16" instance=ExtResource( 13 )]
-position = Vector2( 1250, -950 )
-
-[node name="Card29" parent="Battlefield/Middleground/YSort" index="17" instance=ExtResource( 13 )]
-position = Vector2( 1750, 850 )
-
-[node name="Card30" parent="Battlefield/Middleground/YSort" index="18" instance=ExtResource( 13 )]
-position = Vector2( 1750, 250 )
-
-[node name="Card31" parent="Battlefield/Middleground/YSort" index="19" instance=ExtResource( 13 )]
-position = Vector2( 1750, -350 )
-
-[node name="Card32" parent="Battlefield/Middleground/YSort" index="20" instance=ExtResource( 13 )]
-position = Vector2( 1750, -950 )
-
-[node name="Card37" parent="Battlefield/Middleground/YSort" index="21" instance=ExtResource( 13 )]
-position = Vector2( 2250, 850 )
-
-[node name="Card38" parent="Battlefield/Middleground/YSort" index="22" instance=ExtResource( 13 )]
-position = Vector2( 2250, 250 )
-
-[node name="Card39" parent="Battlefield/Middleground/YSort" index="23" instance=ExtResource( 13 )]
-position = Vector2( 2250, -350 )
-
-[node name="Card40" parent="Battlefield/Middleground/YSort" index="24" instance=ExtResource( 13 )]
-position = Vector2( 2250, -950 )
-
-[node name="Card15" parent="Battlefield/Middleground/YSort" index="25" instance=ExtResource( 13 )]
-position = Vector2( -1750, 850 )
-
-[node name="Card33" parent="Battlefield/Middleground/YSort" index="26" instance=ExtResource( 13 )]
-position = Vector2( -2250, 250 )
-
-[node name="Card34" parent="Battlefield/Middleground/YSort" index="27" instance=ExtResource( 13 )]
-position = Vector2( -2250, -350 )
-
-[node name="Card35" parent="Battlefield/Middleground/YSort" index="28" instance=ExtResource( 13 )]
-position = Vector2( -2250, -950 )
-
-[node name="Card41" parent="Battlefield/Middleground/YSort" index="29" instance=ExtResource( 13 )]
-position = Vector2( -250, -1550 )
-
-[node name="Card42" parent="Battlefield/Middleground/YSort" index="30" instance=ExtResource( 13 )]
-position = Vector2( -750, -1550 )
-
-[node name="Card43" parent="Battlefield/Middleground/YSort" index="31" instance=ExtResource( 13 )]
-position = Vector2( -1250, -1550 )
-
-[node name="Card44" parent="Battlefield/Middleground/YSort" index="32" instance=ExtResource( 13 )]
-position = Vector2( 750, -1550 )
-
-[node name="Card45" parent="Battlefield/Middleground/YSort" index="33" instance=ExtResource( 13 )]
-position = Vector2( 250, -1550 )
-
-[node name="Card46" parent="Battlefield/Middleground/YSort" index="34" instance=ExtResource( 13 )]
-position = Vector2( -1750, -1550 )
-
-[node name="Card47" parent="Battlefield/Middleground/YSort" index="35" instance=ExtResource( 13 )]
-position = Vector2( 1250, -1550 )
-
-[node name="Card48" parent="Battlefield/Middleground/YSort" index="36" instance=ExtResource( 13 )]
-position = Vector2( 1750, -1550 )
-
-[node name="Card49" parent="Battlefield/Middleground/YSort" index="37" instance=ExtResource( 13 )]
-position = Vector2( 2250, -1550 )
-
-[node name="Card50" parent="Battlefield/Middleground/YSort" index="38" instance=ExtResource( 13 )]
-position = Vector2( -2250, -1550 )
-
-[node name="Card36" parent="Battlefield/Middleground/YSort" index="39" instance=ExtResource( 13 )]
-position = Vector2( -2250, 850 )
-
-[node name="Card16" parent="Battlefield/Middleground/YSort" index="40" instance=ExtResource( 13 )]
-position = Vector2( -250, 250 )
-
-[node name="Card17" parent="Battlefield/Middleground/YSort" index="41" instance=ExtResource( 13 )]
-position = Vector2( -750, 250 )
-
-[node name="Card18" parent="Battlefield/Middleground/YSort" index="42" instance=ExtResource( 13 )]
-position = Vector2( -1250, 250 )
-
-[node name="Card19" parent="Battlefield/Middleground/YSort" index="43" instance=ExtResource( 13 )]
-position = Vector2( 750, 250 )
-
-[node name="Card20" parent="Battlefield/Middleground/YSort" index="44" instance=ExtResource( 13 )]
+[node name="MinefieldCard3" parent="Battlefield/Middleground/YSort" index="6" instance=ExtResource( 3 )]
 position = Vector2( 250, 250 )
 
-[node name="Card21" parent="Battlefield/Middleground/YSort" index="45" instance=ExtResource( 13 )]
-position = Vector2( -250, 850 )
+[node name="MinefieldCard4" parent="Battlefield/Middleground/YSort" index="7" instance=ExtResource( 3 )]
+position = Vector2( -250, 250 )
 
-[node name="Card22" parent="Battlefield/Middleground/YSort" index="46" instance=ExtResource( 13 )]
-position = Vector2( -750, 850 )
+[node name="MinefieldCard5" parent="Battlefield/Middleground/YSort" index="8" instance=ExtResource( 3 )]
+position = Vector2( -250, 750 )
 
-[node name="Card23" parent="Battlefield/Middleground/YSort" index="47" instance=ExtResource( 13 )]
-position = Vector2( -1250, 850 )
+[node name="MinefieldCard6" parent="Battlefield/Middleground/YSort" index="9" instance=ExtResource( 3 )]
+position = Vector2( 250, 750 )
 
-[node name="Card24" parent="Battlefield/Middleground/YSort" index="48" instance=ExtResource( 13 )]
-position = Vector2( 750, 850 )
+[node name="MinefieldCard11" parent="Battlefield/Middleground/YSort" index="10" instance=ExtResource( 3 )]
+position = Vector2( -250, 1250 )
 
-[node name="Card25" parent="Battlefield/Middleground/YSort" index="49" instance=ExtResource( 13 )]
-position = Vector2( 250, 850 )
+[node name="MinefieldCard13" parent="Battlefield/Middleground/YSort" index="11" instance=ExtResource( 3 )]
+position = Vector2( -750, -250 )
 
-[node name="Card61" parent="Battlefield/Middleground/YSort" index="50" instance=ExtResource( 13 )]
-position = Vector2( -1750, 1450 )
+[node name="MinefieldCard14" parent="Battlefield/Middleground/YSort" index="12" instance=ExtResource( 3 )]
+position = Vector2( -750, -750 )
 
-[node name="Card63" parent="Battlefield/Middleground/YSort" index="51" instance=ExtResource( 13 )]
-position = Vector2( 1250, 1450 )
+[node name="MinefieldCard15" parent="Battlefield/Middleground/YSort" index="13" instance=ExtResource( 3 )]
+position = Vector2( -750, -1250 )
 
-[node name="Card65" parent="Battlefield/Middleground/YSort" index="52" instance=ExtResource( 13 )]
-position = Vector2( 1750, 1450 )
+[node name="MinefieldCard16" parent="Battlefield/Middleground/YSort" index="14" instance=ExtResource( 3 )]
+position = Vector2( -750, 250 )
 
-[node name="Card67" parent="Battlefield/Middleground/YSort" index="53" instance=ExtResource( 13 )]
-position = Vector2( 2250, 1450 )
+[node name="MinefieldCard17" parent="Battlefield/Middleground/YSort" index="15" instance=ExtResource( 3 )]
+position = Vector2( -750, 750 )
 
-[node name="Card69" parent="Battlefield/Middleground/YSort" index="54" instance=ExtResource( 13 )]
-position = Vector2( -2250, 1450 )
+[node name="MinefieldCard18" parent="Battlefield/Middleground/YSort" index="16" instance=ExtResource( 3 )]
+position = Vector2( -750, 1250 )
 
-[node name="Card71" parent="Battlefield/Middleground/YSort" index="55" instance=ExtResource( 13 )]
-position = Vector2( -250, 1450 )
+[node name="MinefieldCard19" parent="Battlefield/Middleground/YSort" index="17" instance=ExtResource( 3 )]
+position = Vector2( -1250, -250 )
 
-[node name="Card72" parent="Battlefield/Middleground/YSort" index="56" instance=ExtResource( 13 )]
-position = Vector2( -750, 1450 )
+[node name="MinefieldCard20" parent="Battlefield/Middleground/YSort" index="18" instance=ExtResource( 3 )]
+position = Vector2( -1250, -750 )
 
-[node name="Card73" parent="Battlefield/Middleground/YSort" index="57" instance=ExtResource( 13 )]
-position = Vector2( -1250, 1450 )
+[node name="MinefieldCard21" parent="Battlefield/Middleground/YSort" index="19" instance=ExtResource( 3 )]
+position = Vector2( -1250, -1250 )
 
-[node name="Card74" parent="Battlefield/Middleground/YSort" index="58" instance=ExtResource( 13 )]
-position = Vector2( 750, 1450 )
+[node name="MinefieldCard22" parent="Battlefield/Middleground/YSort" index="20" instance=ExtResource( 3 )]
+position = Vector2( -1250, 250 )
 
-[node name="Card75" parent="Battlefield/Middleground/YSort" index="59" instance=ExtResource( 13 )]
-position = Vector2( 250, 1450 )
+[node name="MinefieldCard23" parent="Battlefield/Middleground/YSort" index="21" instance=ExtResource( 3 )]
+position = Vector2( -1250, 750 )
 
-[node name="Card81" parent="Battlefield/Middleground/YSort" index="60" instance=ExtResource( 13 )]
-position = Vector2( -2750, -350 )
+[node name="MinefieldCard24" parent="Battlefield/Middleground/YSort" index="22" instance=ExtResource( 3 )]
+position = Vector2( -1250, 1250 )
 
-[node name="Card82" parent="Battlefield/Middleground/YSort" index="61" instance=ExtResource( 13 )]
-position = Vector2( -2750, -950 )
+[node name="MinefieldCard25" parent="Battlefield/Middleground/YSort" index="23" instance=ExtResource( 3 )]
+position = Vector2( -1750, -250 )
 
-[node name="Card90" parent="Battlefield/Middleground/YSort" index="62" instance=ExtResource( 13 )]
-position = Vector2( -2750, -1550 )
+[node name="MinefieldCard26" parent="Battlefield/Middleground/YSort" index="24" instance=ExtResource( 3 )]
+position = Vector2( -1750, -750 )
 
-[node name="Card97" parent="Battlefield/Middleground/YSort" index="63" instance=ExtResource( 13 )]
-position = Vector2( -2750, 250 )
+[node name="MinefieldCard27" parent="Battlefield/Middleground/YSort" index="25" instance=ExtResource( 3 )]
+position = Vector2( -1750, -1250 )
 
-[node name="Card98" parent="Battlefield/Middleground/YSort" index="64" instance=ExtResource( 13 )]
-position = Vector2( -2750, 850 )
+[node name="MinefieldCard28" parent="Battlefield/Middleground/YSort" index="26" instance=ExtResource( 3 )]
+position = Vector2( -1750, 250 )
 
-[node name="Card103" parent="Battlefield/Middleground/YSort" index="65" instance=ExtResource( 13 )]
-position = Vector2( -2750, 1450 )
+[node name="MinefieldCard29" parent="Battlefield/Middleground/YSort" index="27" instance=ExtResource( 3 )]
+position = Vector2( -1750, 750 )
 
-[node name="Card111" parent="Battlefield/Middleground/YSort" index="66" instance=ExtResource( 13 )]
-position = Vector2( 2750, 250 )
+[node name="MinefieldCard30" parent="Battlefield/Middleground/YSort" index="28" instance=ExtResource( 3 )]
+position = Vector2( -1750, 1250 )
 
-[node name="Card112" parent="Battlefield/Middleground/YSort" index="67" instance=ExtResource( 13 )]
-position = Vector2( 2750, -350 )
+[node name="MinefieldCard31" parent="Battlefield/Middleground/YSort" index="29" instance=ExtResource( 3 )]
+position = Vector2( -3250, -250 )
 
-[node name="Card113" parent="Battlefield/Middleground/YSort" index="68" instance=ExtResource( 13 )]
-position = Vector2( 2750, -950 )
+[node name="MinefieldCard32" parent="Battlefield/Middleground/YSort" index="30" instance=ExtResource( 3 )]
+position = Vector2( -3250, -750 )
 
-[node name="Card116" parent="Battlefield/Middleground/YSort" index="69" instance=ExtResource( 13 )]
-position = Vector2( 2750, -1550 )
+[node name="MinefieldCard33" parent="Battlefield/Middleground/YSort" index="31" instance=ExtResource( 3 )]
+position = Vector2( -3250, -1250 )
 
-[node name="Card120" parent="Battlefield/Middleground/YSort" index="70" instance=ExtResource( 13 )]
-position = Vector2( 2750, 850 )
+[node name="MinefieldCard34" parent="Battlefield/Middleground/YSort" index="32" instance=ExtResource( 3 )]
+position = Vector2( -3250, 250 )
 
-[node name="Card125" parent="Battlefield/Middleground/YSort" index="71" instance=ExtResource( 13 )]
-position = Vector2( 2750, 1450 )
+[node name="MinefieldCard35" parent="Battlefield/Middleground/YSort" index="33" instance=ExtResource( 3 )]
+position = Vector2( -3250, 750 )
 
-[node name="Card62" parent="Battlefield/Middleground/YSort" index="72" instance=ExtResource( 13 )]
-position = Vector2( -1750, 2050 )
+[node name="MinefieldCard36" parent="Battlefield/Middleground/YSort" index="34" instance=ExtResource( 3 )]
+position = Vector2( -3250, 1250 )
 
-[node name="Card64" parent="Battlefield/Middleground/YSort" index="73" instance=ExtResource( 13 )]
-position = Vector2( 1250, 2050 )
+[node name="MinefieldCard37" parent="Battlefield/Middleground/YSort" index="35" instance=ExtResource( 3 )]
+position = Vector2( 1250, -250 )
 
-[node name="Card66" parent="Battlefield/Middleground/YSort" index="74" instance=ExtResource( 13 )]
-position = Vector2( 1750, 2050 )
+[node name="MinefieldCard38" parent="Battlefield/Middleground/YSort" index="36" instance=ExtResource( 3 )]
+position = Vector2( 1250, -750 )
 
-[node name="Card68" parent="Battlefield/Middleground/YSort" index="75" instance=ExtResource( 13 )]
-position = Vector2( 2250, 2050 )
+[node name="MinefieldCard39" parent="Battlefield/Middleground/YSort" index="37" instance=ExtResource( 3 )]
+position = Vector2( 1250, -1250 )
 
-[node name="Card70" parent="Battlefield/Middleground/YSort" index="76" instance=ExtResource( 13 )]
-position = Vector2( -2250, 2050 )
+[node name="MinefieldCard40" parent="Battlefield/Middleground/YSort" index="38" instance=ExtResource( 3 )]
+position = Vector2( 1250, 250 )
 
-[node name="Card76" parent="Battlefield/Middleground/YSort" index="77" instance=ExtResource( 13 )]
-position = Vector2( -250, 2050 )
+[node name="MinefieldCard41" parent="Battlefield/Middleground/YSort" index="39" instance=ExtResource( 3 )]
+position = Vector2( 1250, 750 )
 
-[node name="Card77" parent="Battlefield/Middleground/YSort" index="78" instance=ExtResource( 13 )]
-position = Vector2( -750, 2050 )
+[node name="MinefieldCard42" parent="Battlefield/Middleground/YSort" index="40" instance=ExtResource( 3 )]
+position = Vector2( 1250, 1250 )
 
-[node name="Card78" parent="Battlefield/Middleground/YSort" index="79" instance=ExtResource( 13 )]
-position = Vector2( -1250, 2050 )
+[node name="MinefieldCard43" parent="Battlefield/Middleground/YSort" index="41" instance=ExtResource( 3 )]
+position = Vector2( 750, -250 )
 
-[node name="Card79" parent="Battlefield/Middleground/YSort" index="80" instance=ExtResource( 13 )]
-position = Vector2( 750, 2050 )
+[node name="MinefieldCard44" parent="Battlefield/Middleground/YSort" index="42" instance=ExtResource( 3 )]
+position = Vector2( 750, -750 )
 
-[node name="Card80" parent="Battlefield/Middleground/YSort" index="81" instance=ExtResource( 13 )]
-position = Vector2( 250, 2050 )
+[node name="MinefieldCard45" parent="Battlefield/Middleground/YSort" index="43" instance=ExtResource( 3 )]
+position = Vector2( 750, -1250 )
 
-[node name="Card104" parent="Battlefield/Middleground/YSort" index="82" instance=ExtResource( 13 )]
-position = Vector2( -2750, 2050 )
+[node name="MinefieldCard46" parent="Battlefield/Middleground/YSort" index="44" instance=ExtResource( 3 )]
+position = Vector2( 750, 250 )
 
-[node name="Card126" parent="Battlefield/Middleground/YSort" index="83" instance=ExtResource( 13 )]
-position = Vector2( 2750, 2050 )
+[node name="MinefieldCard47" parent="Battlefield/Middleground/YSort" index="45" instance=ExtResource( 3 )]
+position = Vector2( 750, 750 )
 
-[node name="Card101" parent="Battlefield/Middleground/YSort" index="84" instance=ExtResource( 13 )]
-position = Vector2( 3250, 850 )
+[node name="MinefieldCard48" parent="Battlefield/Middleground/YSort" index="46" instance=ExtResource( 3 )]
+position = Vector2( 750, 1250 )
 
-[node name="Card102" parent="Battlefield/Middleground/YSort" index="85" instance=ExtResource( 13 )]
+[node name="MinefieldCard49" parent="Battlefield/Middleground/YSort" index="47" instance=ExtResource( 3 )]
+position = Vector2( 3250, -250 )
+
+[node name="MinefieldCard50" parent="Battlefield/Middleground/YSort" index="48" instance=ExtResource( 3 )]
+position = Vector2( 3250, -750 )
+
+[node name="MinefieldCard51" parent="Battlefield/Middleground/YSort" index="49" instance=ExtResource( 3 )]
+position = Vector2( 3250, -1250 )
+
+[node name="MinefieldCard52" parent="Battlefield/Middleground/YSort" index="50" instance=ExtResource( 3 )]
 position = Vector2( 3250, 250 )
 
-[node name="Card107" parent="Battlefield/Middleground/YSort" index="86" instance=ExtResource( 13 )]
-position = Vector2( 3250, -350 )
+[node name="MinefieldCard53" parent="Battlefield/Middleground/YSort" index="51" instance=ExtResource( 3 )]
+position = Vector2( 3250, 750 )
 
-[node name="Card108" parent="Battlefield/Middleground/YSort" index="87" instance=ExtResource( 13 )]
-position = Vector2( 3250, -950 )
+[node name="MinefieldCard54" parent="Battlefield/Middleground/YSort" index="52" instance=ExtResource( 3 )]
+position = Vector2( 3250, 1250 )
 
-[node name="Card109" parent="Battlefield/Middleground/YSort" index="88" instance=ExtResource( 13 )]
-position = Vector2( 3250, -1550 )
+[node name="MinefieldCard55" parent="Battlefield/Middleground/YSort" index="53" instance=ExtResource( 3 )]
+position = Vector2( 1750, -250 )
 
-[node name="Card110" parent="Battlefield/Middleground/YSort" index="89" instance=ExtResource( 13 )]
-position = Vector2( 3250, 1450 )
+[node name="MinefieldCard56" parent="Battlefield/Middleground/YSort" index="54" instance=ExtResource( 3 )]
+position = Vector2( 1750, -750 )
 
-[node name="Card124" parent="Battlefield/Middleground/YSort" index="90" instance=ExtResource( 13 )]
-position = Vector2( 3250, 2050 )
+[node name="MinefieldCard57" parent="Battlefield/Middleground/YSort" index="55" instance=ExtResource( 3 )]
+position = Vector2( 1750, -1250 )
+
+[node name="MinefieldCard61" parent="Battlefield/Middleground/YSort" index="56" instance=ExtResource( 3 )]
+position = Vector2( -250, -1750 )
+
+[node name="MinefieldCard62" parent="Battlefield/Middleground/YSort" index="57" instance=ExtResource( 3 )]
+position = Vector2( 250, -1750 )
+
+[node name="MinefieldCard63" parent="Battlefield/Middleground/YSort" index="58" instance=ExtResource( 3 )]
+position = Vector2( -750, -1750 )
+
+[node name="MinefieldCard64" parent="Battlefield/Middleground/YSort" index="59" instance=ExtResource( 3 )]
+position = Vector2( -1250, -1750 )
+
+[node name="MinefieldCard65" parent="Battlefield/Middleground/YSort" index="60" instance=ExtResource( 3 )]
+position = Vector2( -1750, -1750 )
+
+[node name="MinefieldCard66" parent="Battlefield/Middleground/YSort" index="61" instance=ExtResource( 3 )]
+position = Vector2( -3250, -1750 )
+
+[node name="MinefieldCard67" parent="Battlefield/Middleground/YSort" index="62" instance=ExtResource( 3 )]
+position = Vector2( 1250, -1750 )
+
+[node name="MinefieldCard68" parent="Battlefield/Middleground/YSort" index="63" instance=ExtResource( 3 )]
+position = Vector2( 750, -1750 )
+
+[node name="MinefieldCard69" parent="Battlefield/Middleground/YSort" index="64" instance=ExtResource( 3 )]
+position = Vector2( 3250, -1750 )
+
+[node name="MinefieldCard70" parent="Battlefield/Middleground/YSort" index="65" instance=ExtResource( 3 )]
+position = Vector2( 1750, -1750 )
+
+[node name="MinefieldCard71" parent="Battlefield/Middleground/YSort" index="66" instance=ExtResource( 3 )]
+position = Vector2( -250, 1750 )
+
+[node name="MinefieldCard72" parent="Battlefield/Middleground/YSort" index="67" instance=ExtResource( 3 )]
+position = Vector2( 250, 1750 )
+
+[node name="MinefieldCard73" parent="Battlefield/Middleground/YSort" index="68" instance=ExtResource( 3 )]
+position = Vector2( -750, 1750 )
+
+[node name="MinefieldCard74" parent="Battlefield/Middleground/YSort" index="69" instance=ExtResource( 3 )]
+position = Vector2( -1250, 1750 )
+
+[node name="MinefieldCard75" parent="Battlefield/Middleground/YSort" index="70" instance=ExtResource( 3 )]
+position = Vector2( -1750, 1750 )
+
+[node name="MinefieldCard76" parent="Battlefield/Middleground/YSort" index="71" instance=ExtResource( 3 )]
+position = Vector2( -3250, 1750 )
+
+[node name="MinefieldCard97" parent="Battlefield/Middleground/YSort" index="72" instance=ExtResource( 3 )]
+position = Vector2( -2750, -250 )
+
+[node name="MinefieldCard98" parent="Battlefield/Middleground/YSort" index="73" instance=ExtResource( 3 )]
+position = Vector2( -2750, -750 )
+
+[node name="MinefieldCard99" parent="Battlefield/Middleground/YSort" index="74" instance=ExtResource( 3 )]
+position = Vector2( -2750, -1250 )
+
+[node name="MinefieldCard100" parent="Battlefield/Middleground/YSort" index="75" instance=ExtResource( 3 )]
+position = Vector2( -2750, 250 )
+
+[node name="MinefieldCard101" parent="Battlefield/Middleground/YSort" index="76" instance=ExtResource( 3 )]
+position = Vector2( -2750, 750 )
+
+[node name="MinefieldCard102" parent="Battlefield/Middleground/YSort" index="77" instance=ExtResource( 3 )]
+position = Vector2( -2750, 1250 )
+
+[node name="MinefieldCard103" parent="Battlefield/Middleground/YSort" index="78" instance=ExtResource( 3 )]
+position = Vector2( -2750, -1750 )
+
+[node name="MinefieldCard104" parent="Battlefield/Middleground/YSort" index="79" instance=ExtResource( 3 )]
+position = Vector2( -2750, 1750 )
+
+[node name="MinefieldCard81" parent="Battlefield/Middleground/YSort" index="80" instance=ExtResource( 3 )]
+position = Vector2( -2250, -250 )
+
+[node name="MinefieldCard82" parent="Battlefield/Middleground/YSort" index="81" instance=ExtResource( 3 )]
+position = Vector2( -2250, -750 )
+
+[node name="MinefieldCard83" parent="Battlefield/Middleground/YSort" index="82" instance=ExtResource( 3 )]
+position = Vector2( -2250, -1250 )
+
+[node name="MinefieldCard84" parent="Battlefield/Middleground/YSort" index="83" instance=ExtResource( 3 )]
+position = Vector2( -2250, 250 )
+
+[node name="MinefieldCard85" parent="Battlefield/Middleground/YSort" index="84" instance=ExtResource( 3 )]
+position = Vector2( -2250, 750 )
+
+[node name="MinefieldCard86" parent="Battlefield/Middleground/YSort" index="85" instance=ExtResource( 3 )]
+position = Vector2( -2250, 1250 )
+
+[node name="MinefieldCard87" parent="Battlefield/Middleground/YSort" index="86" instance=ExtResource( 3 )]
+position = Vector2( -2250, -1750 )
+
+[node name="MinefieldCard88" parent="Battlefield/Middleground/YSort" index="87" instance=ExtResource( 3 )]
+position = Vector2( -2250, 1750 )
+
+[node name="MinefieldCard77" parent="Battlefield/Middleground/YSort" index="88" instance=ExtResource( 3 )]
+position = Vector2( 1250, 1750 )
+
+[node name="MinefieldCard78" parent="Battlefield/Middleground/YSort" index="89" instance=ExtResource( 3 )]
+position = Vector2( 750, 1750 )
+
+[node name="MinefieldCard79" parent="Battlefield/Middleground/YSort" index="90" instance=ExtResource( 3 )]
+position = Vector2( 3250, 1750 )
+
+[node name="MinefieldCard105" parent="Battlefield/Middleground/YSort" index="91" instance=ExtResource( 3 )]
+position = Vector2( 2750, -250 )
+
+[node name="MinefieldCard106" parent="Battlefield/Middleground/YSort" index="92" instance=ExtResource( 3 )]
+position = Vector2( 2750, -750 )
+
+[node name="MinefieldCard107" parent="Battlefield/Middleground/YSort" index="93" instance=ExtResource( 3 )]
+position = Vector2( 2750, -1250 )
+
+[node name="MinefieldCard108" parent="Battlefield/Middleground/YSort" index="94" instance=ExtResource( 3 )]
+position = Vector2( 2750, 250 )
+
+[node name="MinefieldCard109" parent="Battlefield/Middleground/YSort" index="95" instance=ExtResource( 3 )]
+position = Vector2( 2750, 750 )
+
+[node name="MinefieldCard110" parent="Battlefield/Middleground/YSort" index="96" instance=ExtResource( 3 )]
+position = Vector2( 2750, 1250 )
+
+[node name="MinefieldCard111" parent="Battlefield/Middleground/YSort" index="97" instance=ExtResource( 3 )]
+position = Vector2( 2750, -1750 )
+
+[node name="MinefieldCard112" parent="Battlefield/Middleground/YSort" index="98" instance=ExtResource( 3 )]
+position = Vector2( 2750, 1750 )
+
+[node name="MinefieldCard89" parent="Battlefield/Middleground/YSort" index="99" instance=ExtResource( 3 )]
+position = Vector2( 2250, -250 )
+
+[node name="MinefieldCard90" parent="Battlefield/Middleground/YSort" index="100" instance=ExtResource( 3 )]
+position = Vector2( 2250, -750 )
+
+[node name="MinefieldCard91" parent="Battlefield/Middleground/YSort" index="101" instance=ExtResource( 3 )]
+position = Vector2( 2250, -1250 )
+
+[node name="MinefieldCard92" parent="Battlefield/Middleground/YSort" index="102" instance=ExtResource( 3 )]
+position = Vector2( 2250, 250 )
+
+[node name="MinefieldCard93" parent="Battlefield/Middleground/YSort" index="103" instance=ExtResource( 3 )]
+position = Vector2( 2250, 750 )
+
+[node name="MinefieldCard94" parent="Battlefield/Middleground/YSort" index="104" instance=ExtResource( 3 )]
+position = Vector2( 2250, 1250 )
+
+[node name="MinefieldCard95" parent="Battlefield/Middleground/YSort" index="105" instance=ExtResource( 3 )]
+position = Vector2( 2250, -1750 )
+
+[node name="MinefieldCard96" parent="Battlefield/Middleground/YSort" index="106" instance=ExtResource( 3 )]
+position = Vector2( 2250, 1750 )
+
+[node name="MinefieldCard80" parent="Battlefield/Middleground/YSort" index="107" instance=ExtResource( 3 )]
+position = Vector2( 1750, 1750 )
+
+[node name="MinefieldCard58" parent="Battlefield/Middleground/YSort" index="108" instance=ExtResource( 3 )]
+position = Vector2( 1750, 250 )
+
+[node name="MinefieldCard59" parent="Battlefield/Middleground/YSort" index="109" instance=ExtResource( 3 )]
+position = Vector2( 1750, 750 )
+
+[node name="MinefieldCard60" parent="Battlefield/Middleground/YSort" index="110" instance=ExtResource( 3 )]
+position = Vector2( 1750, 1250 )
+
+[node name="MinefieldCard12" parent="Battlefield/Middleground/YSort" index="111" instance=ExtResource( 3 )]
+position = Vector2( 250, 1250 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
-position = Vector2( -2850, -1000 )
+position = Vector2( -3850, -1250 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 4 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
-position = Vector2( 2850, -1000 )
+position = Vector2( 3850, -1250 )
 rotation = 3.14159
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 8 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 7 )]
-position = Vector2( 2850, 1000 )
+position = Vector2( 3850, 1250 )
 rotation = 3.14159
-controls = "joy3"
+controls = "kb2"
 species = ExtResource( 16 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 7 )]
-position = Vector2( -2850, 1000 )
+position = Vector2( -3850, 1250 )
 rotation = 0.0
-controls = "joy4"
-species = ExtResource( 17 )
+species = ExtResource( 13 )
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
 disabled_override = true
-
-[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
