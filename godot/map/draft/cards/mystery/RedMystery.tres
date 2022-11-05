@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://map/draft/cards/mystery/MysteryCard.gd" type="Script" id=1]
+[ext_resource path="res://map/draft/cards/GuardTheBridge.tres" type="Resource" id=2]
+[ext_resource path="res://map/draft/cards/TakeTheCrown.tres" type="Resource" id=3]
+[ext_resource path="res://map/draft/cards/Negacrown.tres" type="Resource" id=4]
+[ext_resource path="res://assets/sprites/cards/card_mystery_red.png" type="Texture" id=5]
+[ext_resource path="res://map/draft/cards/QueenOfTheHive.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+unlocks = [  ]
+unlock_strength = 1
+winter = false
+perfectionist = false
+tint = Color( 0, 0, 0, 1 )
+name = "Traditional Game"
+description = "A random traditional minigame"
+mystery_cover = ExtResource( 5 )
+subcards = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 6 ) ]

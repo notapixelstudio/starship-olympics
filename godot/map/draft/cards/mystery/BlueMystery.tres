@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://map/draft/cards/mystery/MysteryCard.gd" type="Script" id=1]
+[ext_resource path="res://map/draft/cards/Diamondsnatch.tres" type="Resource" id=2]
+[ext_resource path="res://assets/sprites/cards/card_mystery_blue.png" type="Texture" id=3]
+[ext_resource path="res://map/draft/cards/DiamondMinefield.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+unlocks = [  ]
+unlock_strength = 1
+winter = false
+perfectionist = false
+tint = Color( 0, 0, 0, 1 )
+name = "Luck Game"
+description = "A random luck minigame"
+mystery_cover = ExtResource( 3 )
+subcards = [ ExtResource( 2 ), ExtResource( 4 ) ]
