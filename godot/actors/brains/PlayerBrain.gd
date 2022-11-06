@@ -42,3 +42,9 @@ func tick():
 		
 	# if we want tank mode control (relative control)
 	# rotation_request = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
+
+func _unhandled_input(event):
+	if event.is_action_pressed(controls+'_fire'):
+		emit_signal('charge')
+	elif event.is_action_released(controls+'_fire'):
+		emit_signal('release')

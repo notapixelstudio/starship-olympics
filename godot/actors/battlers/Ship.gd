@@ -395,7 +395,20 @@ func _physics_process(delta):
 		if outside_countup > OUTSIDE_COUNTUP:
 			fall()
 		
-	do_brain_tick()
+	# let the brain read the player's input or compute its move
+	if controls_enabled:
+		do_brain_tick()
+	
+	# charge
+	if charging:
+		charge = charge+delta
+	else:
+		charge = 0
+		
+	# overcharge
+	#if charge > MAX_OVERCHARGE:
+	#	fire()
+	
 	update_charge_bar()
 	
 	stun_countdown -= delta
@@ -1018,8 +1031,12 @@ func get_brain() -> Brain:
 func set_brain(new_brain: Brain) -> void:
 	var old_brain = get_brain()
 	if old_brain != null:
+		old_brain.disconnect('charge', self, '_on_charge_requested')
+		old_brain.disconnect('release', self, '_on_release_requested')
 		old_brain.free()
 	new_brain.set_name('Brain')
+	new_brain.connect('charge', self, '_on_charge_requested')
+	new_brain.connect('release', self, '_on_release_requested')
 	add_child(new_brain)
 
 func get_rotation_request() -> float:
@@ -1041,4 +1058,10 @@ func do_brain_tick() -> void:
 	if brain == null:
 		return
 	brain.tick()
+	
+func _on_charge_requested() -> void:
+	charge()
+	
+func _on_release_requested() -> void:
+	fire()
 	
