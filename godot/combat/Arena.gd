@@ -20,6 +20,9 @@ export var planet_name : String
 export var underwater : bool = false
 export var IceScene : PackedScene
 
+export var player_brain_scene : PackedScene
+export var cpu_brain_scene : PackedScene
+
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
 
@@ -700,7 +703,11 @@ signal ship_spawned
 func spawn_ship(player:PlayerSpawner, force_intro=false):
 	var ship : Ship
 	ship = ship_scene.instance()
-	
+	if player.is_cpu():
+		ship.set_brain(cpu_brain_scene.instance())
+	else:
+		ship.set_brain(player_brain_scene.instance())
+		
 	ship.camera = camera
 	ship.controls = player.controls
 	ship.species = player.species
