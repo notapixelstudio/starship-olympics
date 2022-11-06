@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -40,6 +40,7 @@
 [ext_resource path="res://actors/environments/Ice.tscn" type="PackedScene" id=38]
 [ext_resource path="res://combat/levels/background/red.png" type="Texture" id=39]
 [ext_resource path="res://assets/shaders/chromatic_aberration_texture.shader" type="Shader" id=40]
+[ext_resource path="res://actors/brains/CPUBrain.tscn" type="PackedScene" id=41]
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 40 )
@@ -167,6 +168,7 @@ __meta__ = {
 gameover_scene = ExtResource( 2 )
 IceScene = ExtResource( 38 )
 player_brain_scene = ExtResource( 5 )
+cpu_brain_scene = ExtResource( 41 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 29 )

@@ -703,14 +703,16 @@ signal ship_spawned
 func spawn_ship(player:PlayerSpawner, force_intro=false):
 	var ship : Ship
 	ship = ship_scene.instance()
+	
+	var brain : Brain
 	if player.is_cpu():
-		ship.set_brain(cpu_brain_scene.instance())
+		brain = cpu_brain_scene.instance()
 	else:
-		var brain = player_brain_scene.instance()
-		brain.set_controllee(ship)
+		brain = player_brain_scene.instance()
 		brain.set_controls(player.controls)
-		ship.set_brain(brain)
-		
+	brain.set_controllee(ship)
+	ship.set_brain(brain)
+	
 	ship.camera = camera
 	ship.controls = player.controls
 	ship.species = player.species

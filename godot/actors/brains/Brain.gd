@@ -17,3 +17,5 @@ func get_target_velocity() -> Vector2:
 func get_rotation_request() -> float:
 	return rotation_request
 	
+func tick() -> void:
+	pass
