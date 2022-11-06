@@ -24,9 +24,7 @@ var cpu = false
 var velocity := Vector2(0,0)
 var previous_velocity := Vector2(0,0)
 var last_contact_normal = null
-var target_velocity := Vector2(0,0)
 var steer_force = 0
-var rotation_request = 0
 var drift := Vector2(0,0)
 var drifting := false
 
@@ -262,7 +260,7 @@ func _integrate_forces(state):
 	if not responsive:
 		return
 	set_applied_force(Vector2())
-	steer_force = max_steer_force * rotation_request
+	steer_force = max_steer_force * $"%Brain".get_rotation_request()
 	
 	var thrusting = not is_in_gel() and not golf and entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
 	
@@ -277,13 +275,13 @@ func _integrate_forces(state):
 	else:
 		#rotation = state.linear_velocity.angle()
 		#apply_impulse(Vector2(),target_velocity*thrust)
-		add_central_force(target_velocity*thrust*int(thrusting))
+		add_central_force($"%Brain".get_target_velocity()*thrust*int(thrusting))
 		
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
 		
 	# setting a maximum torque should prevent ship oscillation
-	set_applied_torque(min(PI/2, rotation_request) * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
+	set_applied_torque(min(PI/2, $"%Brain".get_rotation_request()) * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
 	#rotation = atan2(target_velocity.y, target_velocity.x)
 	
 	# force the physics engine
@@ -313,7 +311,7 @@ func _integrate_forces(state):
 			state.linear_velocity *= ON_ICE_CHARGE_BRAKE
 			
 		# compute drift velocity (only when piloting)
-		if target_velocity.length() > 1.0:
+		if $"%Brain".get_target_velocity().length() > 1.0:
 			drift = state.linear_velocity.project(Vector2.DOWN.rotated(global_rotation))
 		else:
 			drift = Vector2(0,0)
@@ -850,7 +848,7 @@ func tap():
 		var amount = 1
 		var aim_correction = 0.65
 		for i in range(amount):
-			var aim_angle = (aim_correction*target_velocity.normalized() + (1-aim_correction)*Vector2.RIGHT.rotated(global_rotation)).angle() if target_velocity.length() > 0.6 else global_rotation
+			var aim_angle = (aim_correction*$"%Brain".get_target_velocity().normalized() + (1-aim_correction)*Vector2.RIGHT.rotated(global_rotation)).angle() if $"%Brain".get_target_velocity().length() > 0.6 else global_rotation
 			var angle = aim_angle + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
 			var bullet = forward_bullet_scene.instance()
 			get_parent().add_child(bullet)

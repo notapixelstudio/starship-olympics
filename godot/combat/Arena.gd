@@ -682,7 +682,6 @@ func _on_hide_arena():
 	$BackgroundLayer.get_child(0).modulate=Color(0.33,0.33,0.33,1)
 	
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
-const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 const trail_scene = preload("res://actors/battlers/TrailNode.tscn")
 
 onready var focus_in_camera = $Battlefield/Overlay/ElementInCamera
@@ -700,10 +699,7 @@ func create_trail(ship):
 signal ship_spawned
 func spawn_ship(player:PlayerSpawner, force_intro=false):
 	var ship : Ship
-	if player.is_cpu():
-		ship = cpu_ship_scene.instance()
-	else:
-		ship = ship_scene.instance()
+	ship = ship_scene.instance()
 	
 	ship.camera = camera
 	ship.controls = player.controls

@@ -79,6 +79,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/enemies/BombTurret.gd"
 }, {
+"base": "Node",
+"class": "Brain",
+"language": "GDScript",
+"path": "res://actors/brains/Brain.gd"
+}, {
 "base": "StaticBody2D",
 "class": "Brick",
 "language": "GDScript",
@@ -714,6 +719,7 @@ _global_script_class_icons={
 "BombDropper": "",
 "BombSpawner": "",
 "BombTurret": "",
+"Brain": "",
 "Brick": "",
 "Bubble": "",
 "Bull": "",
