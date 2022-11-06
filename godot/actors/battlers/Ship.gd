@@ -336,9 +336,6 @@ func _integrate_forces(state):
 		last_contact_normal = state.get_contact_local_normal(0)
 	
 	state.set_transform(xform)
-
-func control(_delta):
-	update_charge_bar()
 	
 var overcharging := false
 signal overcharging_started
@@ -398,7 +395,8 @@ func _physics_process(delta):
 		if outside_countup > OUTSIDE_COUNTUP:
 			fall()
 		
-	control(delta)
+	do_brain_tick()
+	update_charge_bar()
 	
 	stun_countdown -= delta
 	if stun_countdown <= 0:
@@ -848,7 +846,7 @@ func tap():
 		var amount = 1
 		var aim_correction = 0.65
 		for i in range(amount):
-			var aim_angle = (aim_correction*get_target_velocity().normalized() + (1-aim_correction)*Vector2.RIGHT.rotated(global_rotation)).angle() if $"%Brain".get_target_velocity().length() > 0.6 else global_rotation
+			var aim_angle = (aim_correction*get_target_velocity().normalized() + (1-aim_correction)*Vector2.RIGHT.rotated(global_rotation)).angle() if get_target_velocity().length() > 0.6 else global_rotation
 			var angle = aim_angle + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
 			var bullet = forward_bullet_scene.instance()
 			get_parent().add_child(bullet)
@@ -1013,16 +1011,34 @@ func set_phasing_in_prevented(v: bool) -> void:
 	phasing_in_prevented = v
 
 func get_brain() -> Brain:
+	if not has_node('Brain'):
+		return null
 	return ($Brain as Brain)
 
 func set_brain(new_brain: Brain) -> void:
 	var old_brain = get_brain()
-	old_brain.free()
+	if old_brain != null:
+		old_brain.free()
 	new_brain.set_name('Brain')
 	add_child(new_brain)
 
 func get_rotation_request() -> float:
-	return get_brain().get_rotation_request()
+	var brain = get_brain()
+	if brain == null:
+		return 0.0
+		
+	return brain.get_rotation_request()
 	
 func get_target_velocity() -> Vector2:
-	return get_brain().get_target_velocity()
+	var brain = get_brain()
+	if brain == null:
+		return Vector2(0,0)
+		
+	return brain.get_target_velocity()
+
+func do_brain_tick() -> void:
+	var brain = get_brain()
+	if brain == null:
+		return
+	brain.tick()
+	

@@ -1,11 +1,15 @@
 extends Node
 class_name Brain
 
-var target_velocity := Vector2(0,0)
-var rotation_request := 0.0
+var controllee setget set_controllee # not necessarily a Ship, therefore no type is enforced
+var target_velocity : Vector2
+var rotation_request : float
 
 signal charge
 signal release
+
+func set_controllee(v) -> void:
+	controllee = v
 
 func get_target_velocity() -> Vector2:
 	return target_velocity
