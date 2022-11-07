@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=2]
@@ -20,6 +20,11 @@
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=18]
 [ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=19]
 [ext_resource path="res://actors/environments/DashWall.tscn" type="PackedScene" id=20]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 2500, -150, 1200, 2100, 300, 1350, 300, 550, -1400, 2100, -500, 1350, 1200, -2400, -500, 550, -900, 50, -900, -350, -1400, -2400, -1100, -550, -2700, -150, -1700, 50, -1500, 250, -1500, -550, -1700, -350, -1100, 250 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 2, 1, 4, 5 ), PoolIntArray( 6, 0, 3, 7, 8, 9 ), PoolIntArray( 10, 6, 9, 11 ), PoolIntArray( 5, 4, 12, 13, 14 ), PoolIntArray( 10, 11, 15 ), PoolIntArray( 12, 10, 15, 16 ), PoolIntArray( 12, 16, 13 ), PoolIntArray( 7, 5, 14, 17 ), PoolIntArray( 7, 17, 8 ) ]
+outlines = [ PoolVector2Array( -1400, 2100, -2700, -150, -1400, -2400, 1200, -2400, 2500, -150, 1200, 2100 ), PoolVector2Array( -1700, 50, -1700, -350, -1500, -550, -1100, -550, -900, -350, -900, 50, -1100, 250, -1500, 250 ), PoolVector2Array( -500, 550, 300, 550, 300, 1350, -500, 1350 ) ]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -107,13 +112,13 @@ auto_flip_back = true
 take_ownership = true
 
 [node name="JellyWall" parent="Battlefield/Middleground" index="5" instance=ExtResource( 16 )]
-position = Vector2( -1000, -800 )
+position = Vector2( -1000, -1900 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/JellyWall" index="2"]
 polygon = PoolVector2Array( -200, -150, -150, -200, 150, -200, 200, -150, 200, 150, 150, 200, -150, 200, -200, 150 )
 
 [node name="Field" parent="Battlefield/Middleground" index="6" instance=ExtResource( 19 )]
-position = Vector2( 800, 450 )
+position = Vector2( 950, -1600 )
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Field" index="7"]
 script = ExtResource( 18 )
@@ -125,6 +130,10 @@ position = Vector2( 0, 1800 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/DashWall" index="2"]
 polygon = PoolVector2Array( -1000, -150, -950, -200, 950, -200, 1000, -150, 1000, 150, 950, 200, -950, 200, -1000, 150 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Battlefield/Middleground" index="8"]
+position = Vector2( 100, 150 )
+navpoly = SubResource( 1 )
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 type = "crown"

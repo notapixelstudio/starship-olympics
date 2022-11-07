@@ -12,9 +12,8 @@ func local_handling() -> Vector2:
 	return target
 
 func tick():
-	assert(controllee is Node2D) # needed for global_rotation
 	#var target_vel = Vector2()
-	var front = Vector2(cos(controllee.global_rotation), sin(controllee.global_rotation))
+	var front = Vector2(cos(global_rotation), sin(global_rotation))
 	#target_vel = local_handling()
 	
 	#if target_vel == Vector2.ZERO:

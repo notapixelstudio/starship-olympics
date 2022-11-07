@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name Brain
 
 var controllee setget set_controllee # not necessarily a Ship, therefore no type is enforced
