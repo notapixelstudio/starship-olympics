@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=2]
@@ -20,11 +20,17 @@
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=18]
 [ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=19]
 [ext_resource path="res://actors/environments/DashWall.tscn" type="PackedScene" id=20]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=21]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 2500, -150, 1200, 2100, 300, 1350, 300, 550, -1400, 2100, -500, 1350, 1200, -2400, -500, 550, -900, 50, -900, -350, -1400, -2400, -1100, -550, -2700, -150, -1700, 50, -1500, 250, -1500, -550, -1700, -350, -1100, 250 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 2, 1, 4, 5 ), PoolIntArray( 6, 0, 3, 7, 8, 9 ), PoolIntArray( 10, 6, 9, 11 ), PoolIntArray( 5, 4, 12, 13, 14 ), PoolIntArray( 10, 11, 15 ), PoolIntArray( 12, 10, 15, 16 ), PoolIntArray( 12, 16, 13 ), PoolIntArray( 7, 5, 14, 17 ), PoolIntArray( 7, 17, 8 ) ]
-outlines = [ PoolVector2Array( -1400, 2100, -2700, -150, -1400, -2400, 1200, -2400, 2500, -150, 1200, 2100 ), PoolVector2Array( -1700, 50, -1700, -350, -1500, -550, -1100, -550, -900, -350, -900, 50, -1100, 250, -1500, 250 ), PoolVector2Array( -500, 550, 300, 550, 300, 1350, -500, 1350 ) ]
+vertices = PoolVector2Array( -900, 50, 1200, -2400, 2500, -150, 1200, 2100, -1400, 2100, -1100, 250, -900, -350, -1400, -2400, -1100, -550, -1500, -550, -2700, -150, -1700, -350, -1700, 50, -1500, 250 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 0, 4 ), PoolIntArray( 1, 0, 6 ), PoolIntArray( 7, 1, 6, 8 ), PoolIntArray( 7, 8, 9 ), PoolIntArray( 10, 7, 9, 11 ), PoolIntArray( 10, 11, 12 ), PoolIntArray( 4, 10, 12, 13 ), PoolIntArray( 5, 4, 13 ) ]
+outlines = [ PoolVector2Array( -1400, 2100, -2700, -150, -1400, -2400, 1200, -2400, 2500, -150, 1200, 2100 ), PoolVector2Array( -1700, 50, -1700, -350, -1500, -550, -1100, -550, -900, -350, -900, 50, -1100, 250, -1500, 250 ) ]
+
+[sub_resource type="NavigationPolygon" id=2]
+vertices = PoolVector2Array( 2500, -150, 1200, 2100, 300, 1350, 300, 550, 1200, -2400, 450, -1250, -100, -1800, -1400, 2100, -500, 1350, -500, 550, -900, 50, -900, -350, -100, -700, -1400, -2400, -2700, -150, -650, -1250, -1500, -550, -1500, 250, -1700, 50, -1100, 250, -1100, -550, -1700, -350 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 5, 6 ), PoolIntArray( 2, 1, 7, 8 ), PoolIntArray( 0, 3, 9, 10, 11, 12 ), PoolIntArray( 13, 4, 6 ), PoolIntArray( 14, 13, 6, 15, 16 ), PoolIntArray( 17, 8, 7, 14, 18 ), PoolIntArray( 19, 10, 9, 8 ), PoolIntArray( 12, 5, 0 ), PoolIntArray( 15, 12, 11, 20 ), PoolIntArray( 17, 19, 8 ), PoolIntArray( 21, 18, 14 ), PoolIntArray( 15, 20, 16 ), PoolIntArray( 21, 14, 16 ) ]
+outlines = [ PoolVector2Array( -1400, 2100, -2700, -150, -1400, -2400, 1200, -2400, 2500, -150, 1200, 2100 ), PoolVector2Array( -1700, 50, -1700, -350, -1500, -550, -1100, -550, -900, -350, -900, 50, -1100, 250, -1500, 250 ), PoolVector2Array( -500, 550, 300, 550, 300, 1350, -500, 1350 ), PoolVector2Array( -650, -1250, -100, -1800, 450, -1250, -100, -700 ) ]
 
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
@@ -135,6 +141,11 @@ polygon = PoolVector2Array( -1000, -150, -950, -200, 950, -200, 1000, -150, 1000
 position = Vector2( 100, 150 )
 navpoly = SubResource( 1 )
 
+[node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="Battlefield/Middleground" index="9"]
+position = Vector2( 100, 150 )
+navpoly = SubResource( 2 )
+navigation_layers = 2
+
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 type = "crown"
 
@@ -148,6 +159,13 @@ position = Vector2( 818, 1043 )
 rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 13 )
+cpu = true
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 8 )]
+position = Vector2( 818, -207 )
+rotation = 3.14159
+controls = "kb2"
+species = ExtResource( 21 )
 cpu = true
 
 [node name="Camera" parent="." index="7"]

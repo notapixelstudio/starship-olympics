@@ -6,7 +6,10 @@
 
 [node name="CPUBrain" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+debug = false
 target_location_jitter = 50.0
+random_dash = true
+random_fire = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="0"]
 path_desired_distance = 50.0
@@ -14,13 +17,17 @@ target_desired_distance = 50.0
 path_max_distance = 100.0
 
 [node name="ThinkTimer" type="Timer" parent="." index="1"]
-wait_time = 3.0
+wait_time = 0.3
 autostart = true
 
 [node name="ReleaseTimer" type="Timer" parent="." index="2"]
 one_shot = true
 
-[node name="DebugSprite" type="Sprite" parent="." index="3"]
+[node name="DashCooldownTimer" type="Timer" parent="." index="3"]
+wait_time = 0.2
+one_shot = true
+
+[node name="DebugSprite" type="Sprite" parent="." index="4"]
 visible = false
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )
