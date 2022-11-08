@@ -12,6 +12,9 @@ func local_handling() -> Vector2:
 	return target
 
 func tick():
+	if controllee.has_method('are_controls_enabled') and not controllee.are_controls_enabled():
+		return
+		
 	#var target_vel = Vector2()
 	var front = Vector2(cos(global_rotation), sin(global_rotation))
 	#target_vel = local_handling()

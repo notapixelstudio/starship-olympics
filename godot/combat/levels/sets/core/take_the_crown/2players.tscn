@@ -66,6 +66,7 @@ bevel_sw = 50
 bevel_se = 50
 
 [node name="NavigationZone" parent="Battlefield/Background/OutsideWallGhost" index="9" instance=ExtResource( 9 )]
+layers = [ "default", "holder" ]
 
 [node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
 hollow = true

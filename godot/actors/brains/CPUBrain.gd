@@ -23,6 +23,9 @@ func tick():
 	# obey the navigation rule of calling get_next_location every frame
 	var nav_location = $NavigationAgent2D.get_next_location()
 	
+	if controllee.has_method('are_controls_enabled') and not controllee.are_controls_enabled():
+		return
+	
 	# reset
 	target_velocity = Vector2.ZERO
 	rotation_request = 0.0

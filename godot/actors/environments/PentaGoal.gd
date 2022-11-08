@@ -94,6 +94,7 @@ func do_goal(player, pos):
 		self.call_deferred('update_label_size')
 	else:
 		$LabelWrapper/Label.queue_free()
+		$Goal.queue_free() # lose Goal status (this is used to let CPUs go of this goal)
 		
 	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
 	

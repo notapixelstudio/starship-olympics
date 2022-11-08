@@ -11,7 +11,7 @@ func _ready():
 func think():
 	var targets
 	
-	set_stance('quiet')
+	set_stance('quiet') # we can't shoot in this minigame
 	log_strategy('')
 	
 	targets = get_tree().get_nodes_in_group('Diamond')
@@ -22,5 +22,6 @@ func think():
 	
 	if randf() < go_to_center_p:
 		go_to(Vector2(0,0))
+		log_strategy('go to center')
 	else:
 		forget_current_target_location()

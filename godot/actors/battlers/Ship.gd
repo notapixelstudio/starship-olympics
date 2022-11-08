@@ -378,6 +378,9 @@ func update_charge_bar():
 
 signal detection
 func _physics_process(delta):
+	# let the brain read the player's input or compute its move
+	do_brain_tick()
+	
 	if not alive:
 		return
 		
@@ -395,10 +398,6 @@ func _physics_process(delta):
 		if outside_countup > OUTSIDE_COUNTUP:
 			fall()
 		
-	# let the brain read the player's input or compute its move
-	if controls_enabled:
-		do_brain_tick()
-	
 	# charge
 	if charging:
 		charge = charge+delta
@@ -947,6 +946,9 @@ func disable_controls():
 	
 func enable_controls():
 	controls_enabled = true
+	
+func are_controls_enabled():
+	return controls_enabled
 	
 func is_auto_thrust() -> bool:
 	return auto_thrust

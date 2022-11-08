@@ -1,6 +1,9 @@
 extends CPUBrain
 
+var random_preference : int
+
 func _ready():
+	random_preference = randi()
 	think()
 	
 	Events.connect("holdable_loaded", self, '_on_holdable_loaded')
@@ -8,35 +11,31 @@ func _ready():
 	Events.connect("holdable_dropped", self, '_on_holdable_dropped')
 
 func think():
+	assert(controllee.has_method('get_player'))
 	var targets
 	
 	set_stance('quiet')
 	log_strategy('')
 	
 	if controllee.get_cargo().check_class(Ball):
-		targets = get_tree().get_nodes_in_group('Ship')
-		assert(len(targets) > 1 and len(targets) <= 4)
-		var escape_vector := Vector2.ZERO
+		targets = traits.get_all_with('Goal')
+		var my_targets := []
 		for target in targets:
-			if target != controllee:
-				escape_vector -= target.get_target_destination() - global_position
-				
-		go_to(global_position + escape_vector)
-		log_strategy('escape')
+			if target.get_player() == controllee.get_player():
+				my_targets.append(target)
+		go_to(my_targets[random_preference%len(my_targets)].global_position)
+		log_strategy('attempt slam')
 		return
 	
 	targets = get_tree().get_nodes_in_group('Ball')
-	assert(len(targets) >= 0 and len(targets) <= 1)
 	if len(targets) > 0:
 		go_to(targets[0].global_position)
 		log_strategy('chase ball')
 		return
 	
 	targets = get_tree().get_nodes_in_group('Ship')
-	assert(len(targets) > 1 and len(targets) <= 4)
 	for target in targets:
 		if target != controllee and target.get_cargo().check_class(Ball):
-			set_stance('aggressive')
 			go_to(target.get_target_destination())
 			log_strategy('chase ship')
 			return
