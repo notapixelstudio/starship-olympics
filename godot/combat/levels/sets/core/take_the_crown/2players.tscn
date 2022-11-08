@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/B.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=14]
+[ext_resource path="res://actors/brains/TakeTheCrownBrain.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
 
@@ -37,6 +38,8 @@ tracks/0/keys = {
 [node name="Arena" instance=ExtResource( 8 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 13 )
+cpu_brain_scene = ExtResource( 15 )
+create_default_navzone = false
 
 [node name="CrownManager" parent="Managers" index="0" instance=ExtResource( 16 )]
 
@@ -63,7 +66,6 @@ bevel_sw = 50
 bevel_se = 50
 
 [node name="NavigationZone" parent="Battlefield/Background/OutsideWallGhost" index="9" instance=ExtResource( 9 )]
-layers = [ "default", "holder" ]
 
 [node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
 hollow = true

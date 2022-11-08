@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/SmolMine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=5]
 [ext_resource path="res://actors/environments/ElementSpawnerGroup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=10]
@@ -22,6 +23,9 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
+[node name="NavigationZone" parent="Wall3" instance=ExtResource( 4 )]
+offset_type = "outset"
+
 [node name="Wall4" parent="." instance=ExtResource( 10 )]
 position = Vector2( 900, -300 )
 solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
@@ -31,6 +35,9 @@ script = ExtResource( 1 )
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
+
+[node name="NavigationZone" parent="Wall4" instance=ExtResource( 4 )]
+offset_type = "outset"
 
 [node name="Wave0" type="Node2D" parent="." groups=["spawn_waves"]]
 script = ExtResource( 11 )

@@ -22,6 +22,7 @@ export var IceScene : PackedScene
 
 export var player_brain_scene : PackedScene
 export var cpu_brain_scene : PackedScene
+export var NavigationZone_scene : PackedScene
 
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
@@ -31,6 +32,8 @@ export var show_intro : bool = true
 export var random_starting_position : bool = true
 export var place_ships_at_start : bool = true
 export var dark_winter : bool = false
+
+export var create_default_navzone := true
 
 var debug = false
 # analytics
@@ -342,6 +345,8 @@ func _ready():
 			
 	# update navigation zones if there is at least a cpu
 	if global.the_game.get_number_of_cpu_players() > 0:
+		if create_default_navzone and has_node('Battlefield/Background/OutsideWall'):
+			$Battlefield/Background/OutsideWall.add_child(NavigationZone_scene.instance())
 		update_navigation_zones()
 	
 	yield(camera, "transition_over")

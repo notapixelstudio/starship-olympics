@@ -18,10 +18,10 @@ font_data = ExtResource( 4 )
 
 [node name="CPUBrain" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-debug = true
+debug = false
 target_location_jitter = 50.0
-random_dash = true
-random_fire = true
+random_dash_p = 0.04
+random_fire_p = 0.02
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="0"]
 path_desired_distance = 50.0
@@ -40,6 +40,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="DebugSprite" type="Sprite" parent="." index="4"]
+visible = false
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )
 

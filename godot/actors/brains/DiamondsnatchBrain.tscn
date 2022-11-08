@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/brains/CPUBrain.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/brains/DiamondsnatchBrain.gd" type="Script" id=2]
+
+[node name="DiamondsnatchBrain" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+random_dash_p = 0.02
+go_to_center_p = 0.2

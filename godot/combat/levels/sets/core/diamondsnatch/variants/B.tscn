@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/SmolMine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=5]
 [ext_resource path="res://actors/environments/ElementSpawnerGroup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=10]
@@ -15,6 +16,18 @@ position = Vector2( -600, 0 )
 
 [node name="Diamond2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 600, 0 )
+
+[node name="NavHole" type="Polygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( -300, 150, -200, 50, 200, 50, 300, 150, 0, 450 )
+
+[node name="NavigationZone" parent="NavHole" instance=ExtResource( 4 )]
+
+[node name="NavHole2" type="Polygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( -200, -50, -300, -150, 0, -450, 300, -150, 200, -50 )
+
+[node name="NavigationZone" parent="NavHole2" instance=ExtResource( 4 )]
 
 [node name="Wall3" parent="." instance=ExtResource( 10 )]
 position = Vector2( 0, -3.05176e-05 )

@@ -1,9 +1,10 @@
 extends Brain
+class_name CPUBrain
 
 export var debug := false
 export var target_location_jitter := 50.0
-export var random_dash := true
-export var random_fire := true
+export var random_dash_p := 0.04
+export var random_fire_p := 0.02
 
 var target_location = null # (Vector2) will try to reach this location, if not null
 var stance := 'aggressive'
@@ -15,6 +16,8 @@ func go_to(global_point: Vector2) -> void:
 func forget_current_target_location() -> void:
 	target_location = null
 	# TBD turn off navigation... but how?
+	if debug:
+		$DebugSprite.visible = false
 	
 func tick():
 	# obey the navigation rule of calling get_next_location every frame
@@ -49,54 +52,17 @@ func tick():
 		return
 		
 	# random dash - low priority
-	if random_dash and randf() < 0.04:
+	if randf() < random_dash_p:
 		start_charging_to_dash(600+1200*randf())
 		return
 		
 	# random fire - lowest priority
-	if random_fire and stance == 'aggressive' and randf() < 0.02:
+	if stance == 'aggressive' and randf() < random_fire_p:
 		request_fire()
-
-func _ready():
-	think()
 	
-	Events.connect("holdable_loaded", self, '_on_holdable_loaded')
-	Events.connect("holdable_swapped", self, '_on_holdable_swapped')
-	Events.connect("holdable_dropped", self, '_on_holdable_dropped')
-	
-
 func think():
-	var targets
+	pass
 	
-	set_stance('quiet')
-	log_strategy('')
-	
-	if controllee.get_cargo().check_class(Ball):
-		targets = get_tree().get_nodes_in_group('player_ship')
-		var escape_vector := Vector2.ZERO
-		for target in targets:
-			if target != controllee:
-				escape_vector -= target.get_target_destination() - global_position
-				
-		go_to(global_position + escape_vector)
-		log_strategy('escape')
-		return
-	
-	targets = get_tree().get_nodes_in_group('Ball')
-	if len(targets) > 0:
-		go_to(targets[0].global_position)
-		log_strategy('chase ball')
-		return
-	
-	targets = get_tree().get_nodes_in_group('player_ship')
-	for target in targets:
-		if target != controllee and target.get_cargo().check_class(Ball):
-			set_stance('aggressive')
-			go_to(target.get_target_destination())
-			log_strategy('chase ship')
-			return
-			
-
 func _on_ThinkTimer_timeout():
 	think()
 
@@ -137,29 +103,7 @@ func set_navigation_layer(layer_name: String):
 		'holder':
 			bitmask = 2
 	$NavigationAgent2D.set_navigation_layers(bitmask)
-
-func _on_holdable_loaded(holdable, ship):
-	if ship != controllee:
-		return
-	set_navigation_layer('holder')
 	
-func _on_holdable_swapped(holdable1, holdable2, ship1, ship2):
-	if ship1 == controllee:
-		if holdable1 == null:
-			set_navigation_layer('default')
-		else:
-			set_navigation_layer('holder')
-	elif ship2 == controllee:
-		if holdable2 == null:
-			set_navigation_layer('default')
-		else:
-			set_navigation_layer('holder')
-
-func _on_holdable_dropped(holdable, ship, cause):
-	if ship != controllee:
-		return
-	set_navigation_layer('default')
-
 func set_stance(v: String) -> void:
 	stance = v
 	if debug:

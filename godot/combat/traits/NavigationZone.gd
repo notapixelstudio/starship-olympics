@@ -1,7 +1,7 @@
 extends Trait
 
 export (String, 'none', 'inset', 'outset') var offset_type = 'none'
-export var layers := [] # of Strings
+export var layers := ['default', 'holder'] # of Strings
 
 func validate():
 	.validate()
@@ -9,7 +9,6 @@ func validate():
 	
 func get_polygon():
 	return host.get_polygon()
-	Geometry
 	
 func get_offset_type() -> float:
 	return offset_type

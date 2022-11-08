@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/brains/CPUBrain.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/brains/TakeTheCrownBrain.gd" type="Script" id=2]
+
+[node name="TakeTheCrownBrain" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+random_dash = null
+random_fire = null
