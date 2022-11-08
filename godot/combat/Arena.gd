@@ -149,6 +149,8 @@ func _enter_tree():
 	# into consideration
 	global.arena = self
 	
+	Events.connect('navigation_zone_changed', self, '_on_navigation_zone_changed')
+	
 	if global.is_match_running():
 		standalone = false
 		
@@ -162,6 +164,9 @@ func _enter_tree():
 		
 		Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
 		Events.connect("ask_to_spawn", self, "dramatic_spawn") # e.g. SpawnerManager
+	
+func _exit_tree():
+	Events.disconnect('navigation_zone_changed', self, '_on_navigation_zone_changed')
 	
 func _ready():
 	set_process(false)
@@ -998,10 +1003,21 @@ func get_all_valid_ships() -> Array:
 func _on_PowerUp_collected():
 	pass # Replace with function body.
 
+# NAVIGATION
+var queued_navzones_update := false
+func _on_navigation_zone_changed(zone):
+	if queued_navzones_update:
+		return
+	queued_navzones_update = true
+	print('a navigation zone has changed... about to update navigation')
+	# very pessimistic
+	yield(get_tree(), "idle_frame")
+	call_deferred('update_navigation_zones')
+	
 func update_navigation_zones():
 	# delete all navigation nodes already present, if any
 	for child in $"%Navigation".get_children():
-		child.queue_free()
+		child.free()
 		
 	# prepare zone for each layer
 	var navigation_polygons = {
@@ -1037,3 +1053,6 @@ func update_navigation_zones():
 				bitmask = 2
 		navpoly_instance.set_navigation_layers(bitmask)
 		$"%Navigation".add_child(navpoly_instance)
+	
+	queued_navzones_update = false
+	

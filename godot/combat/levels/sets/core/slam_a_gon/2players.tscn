@@ -123,8 +123,8 @@ goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( 1400, 10 )
 rotation = 3.14159
-controls = "joy1"
 species = ExtResource( 5 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
 position = Vector2( -1400, 0 )

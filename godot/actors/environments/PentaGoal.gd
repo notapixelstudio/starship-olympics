@@ -17,6 +17,8 @@ onready var current_ring : int = rings-1
 onready var field = $Field
 onready var gshape = $Field/GRegularPolygon
 
+var nav_enabled := false
+
 func set_rings(value):
 	rings = value
 
@@ -33,6 +35,8 @@ func update_label_size():
 	$LabelWrapper.scale = Vector2(1,1)*scale
 
 func _ready():
+	Events.connect('holdable_obtained', self, '_on_holdable_obtained')
+	
 	# connect feedback signal 
 	field.connect("entered", self, "_on_Field_entered")
 	
@@ -104,6 +108,8 @@ func do_goal(player, pos):
 		yield(get_tree().create_timer(0.1), "timeout")
 		field.queue_free()
 		
+	Events.emit_signal("navigation_zone_changed", self)
+	
 func set_player(v : InfoPlayer):
 	player = v
 	field.modulate = player.species.color
@@ -113,3 +119,15 @@ func set_player(v : InfoPlayer):
 	
 func get_player():
 	return player
+
+func get_polygon():
+	if not nav_enabled or not has_node('Field'):
+		return PoolVector2Array([])
+	return $Field.get_polygon()
+
+func _on_holdable_obtained(holdable, ship):
+	var new_nav_enabled = get_player() != ship.get_player()
+	if new_nav_enabled == nav_enabled:
+		return
+	nav_enabled = new_nav_enabled
+	Events.emit_signal("navigation_zone_changed", self)

@@ -1,11 +1,10 @@
 extends CPUBrain
 
 func _ready():
-	think()
+	._ready()
 	
-	Events.connect("holdable_loaded", self, '_on_holdable_loaded')
-	Events.connect("holdable_swapped", self, '_on_holdable_swapped')
-	Events.connect("holdable_dropped", self, '_on_holdable_dropped')
+	Events.connect("holdable_obtained", self, '_on_holdable_obtained')
+	Events.connect("holdable_lost", self, '_on_holdable_lost')
 
 func think():
 	var targets
@@ -41,24 +40,12 @@ func think():
 			log_strategy('chase ship')
 			return
 
-func _on_holdable_loaded(holdable, ship):
+func _on_holdable_obtained(holdable, ship):
 	if ship != controllee:
 		return
 	set_navigation_layer('holder')
-	
-func _on_holdable_swapped(holdable1, holdable2, ship1, ship2):
-	if ship1 == controllee:
-		if holdable1 == null:
-			set_navigation_layer('default')
-		else:
-			set_navigation_layer('holder')
-	elif ship2 == controllee:
-		if holdable2 == null:
-			set_navigation_layer('default')
-		else:
-			set_navigation_layer('holder')
 
-func _on_holdable_dropped(holdable, ship, cause):
+func _on_holdable_lost(holdable, ship):
 	if ship != controllee:
 		return
 	set_navigation_layer('default')

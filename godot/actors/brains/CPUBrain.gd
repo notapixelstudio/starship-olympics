@@ -5,6 +5,9 @@ export var debug := false
 export var target_location_jitter := 50.0
 export var random_dash_p := 0.04
 export var random_fire_p := 0.02
+export var think_time := 0.04
+export var think_time_jitter := 0.01
+export var start_time_jitter := 1.0
 
 var target_location = null # (Vector2) will try to reach this location, if not null
 var stance := 'aggressive'
@@ -56,7 +59,7 @@ func tick():
 		
 	# random dash - low priority
 	if randf() < random_dash_p:
-		start_charging_to_dash(600+1200*randf())
+		start_charging_to_dash(300+1200*randf())
 		return
 		
 	# random fire - lowest priority
@@ -66,7 +69,16 @@ func tick():
 func think():
 	pass
 	
+func compute_think_time():
+	$ThinkTimer.wait_time = think_time + think_time_jitter*2*(0.5-randf())
+	
+func _ready():
+	compute_think_time()
+	$ThinkTimer.wait_time += start_time_jitter*randf()
+	$ThinkTimer.start()
+	
 func _on_ThinkTimer_timeout():
+	compute_think_time()
 	think()
 
 func update_debug() -> void:
@@ -86,7 +98,7 @@ func start_charging_to_dash(distance) -> void:
 		return
 		
 	emit_signal("charge")
-	$ReleaseTimer.wait_time = min(distance/1000, 1.0)
+	$ReleaseTimer.wait_time = (min(distance/1000, 0.8))
 	$ReleaseTimer.start()
 	
 func request_fire():

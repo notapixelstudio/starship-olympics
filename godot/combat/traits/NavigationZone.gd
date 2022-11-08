@@ -1,7 +1,7 @@
 extends Trait
 
 export (String, 'none', 'inset', 'outset') var offset_type = 'none'
-export var layers := ['default'] # of Strings
+export var layers := ['default', 'holder'] # of Strings
 
 func validate():
 	.validate()

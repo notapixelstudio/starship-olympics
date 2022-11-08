@@ -1,12 +1,12 @@
 extends CPUBrain
 
-export var go_to_center_p := 0.2
+export var go_to_center_p := 0.1
 
 var random_preference : int
 
 func _ready():
+	._ready()
 	random_preference = randi()
-	think()
 	
 func think():
 	var targets

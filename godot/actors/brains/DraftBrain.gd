@@ -3,6 +3,7 @@ extends CPUBrain
 var random_preference : int
 
 func _ready():
+	._ready()
 	random_preference = randi()
 	
 	# set a random time to decide the card

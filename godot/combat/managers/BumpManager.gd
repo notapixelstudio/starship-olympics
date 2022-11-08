@@ -1,7 +1,7 @@
 extends Node
 
 const BASE_SPEED = 0
-const SPEED_MULTIPLIER = 2.0
+const SPEED_MULTIPLIER = 1.25
 
 func _enter_tree():
 	# listen to newly created bumpers

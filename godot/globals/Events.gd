@@ -16,6 +16,8 @@ signal holdable_loaded(holdable, ship)
 signal holdable_dropped(holdable, ship, cause)
 signal holdable_replaced(old, new, ship)
 signal holdable_swapped(holdable1, holdable2, ship1, ship2)
+signal holdable_obtained(holdable, ship)
+signal holdable_lost(holdable, ship)
 
 signal planet_reached(planet, sth)
 
@@ -24,6 +26,9 @@ signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no d
 
 signal sth_collected(collector, collectee)
 signal sth_conquered(conqueror, conquered)
+
+signal navigation_zone_changed(zone)
+
 # Arena
 signal ask_to_spawn
 signal spawned

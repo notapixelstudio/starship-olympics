@@ -152,7 +152,7 @@ func get_gshape():
 	return null
 	
 func get_polygon():
-	return get_gshape().to_PoolVector2Array_offset(global_position)
+	return global_transform.xform(get_gshape().to_PoolVector2Array())
 	
 func _get_configuration_warning():
 	if not get_gshape():
