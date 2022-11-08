@@ -8,6 +8,7 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/2A.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
 [ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/B.tscn" type="PackedScene" id=12]
@@ -32,11 +33,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 935, 50 ]
 }
-
-[sub_resource type="NavigationPolygon" id=2]
-vertices = PoolVector2Array( 1750, -950, 1750, 950, -1750, 950, -1750, -950 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( -1750, -950, -1750, 950, 1750, 950, 1750, -950 ) ]
 
 [node name="Arena" instance=ExtResource( 8 )]
 size_multiplier = 2.5
@@ -65,6 +61,9 @@ bevel_nw = 50
 bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
+
+[node name="NavigationZone" parent="Battlefield/Background/OutsideWallGhost" index="9" instance=ExtResource( 9 )]
+layers = [ "default", "holder" ]
 
 [node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
 hollow = true
@@ -142,13 +141,6 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Battlefield/Middleground" index="3"]
-navpoly = SubResource( 2 )
-
-[node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="Battlefield/Middleground" index="4"]
-navpoly = SubResource( 2 )
-navigation_layers = 2
-
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 17 )]
 type = "crown"
 
@@ -156,6 +148,7 @@ type = "crown"
 position = Vector2( -400, -400 )
 rotation = 0.785398
 species = ExtResource( 4 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 400, 400 )

@@ -339,6 +339,10 @@ func _ready():
 		if draft_card != null:
 			var suit = draft_card.get_suit_top() # TBD different suits
 			$'%BackgroundImage'.texture = load("res://combat/levels/background/"+suit+".png")
+			
+	# update navigation zones if there is at least a cpu
+	if global.the_game.get_number_of_cpu_players() > 0:
+		update_navigation_zones()
 	
 	yield(camera, "transition_over")
 	
@@ -988,3 +992,43 @@ func get_all_valid_ships() -> Array:
 
 func _on_PowerUp_collected():
 	pass # Replace with function body.
+
+func update_navigation_zones():
+	# delete all navigation nodes already present, if any
+	for child in $"%Navigation".get_children():
+		child.queue_free()
+		
+	# prepare zone for each layer
+	var navigation_polygons = {
+		'default': NavigationPolygon.new(),
+		'holder': NavigationPolygon.new()
+	}
+	for zone_t in traits.get_all('NavigationZone'):
+		var polygon = zone_t.get_polygon()
+		var layers = zone_t.get_layers()
+		var offset
+		match zone_t.get_offset_type():
+			'none':
+				offset = 0
+			'inset':
+				offset = -100
+			'outset':
+				offset = 100
+		var result = Geometry.offset_polygon_2d(polygon, offset)
+		for resulting_polygon in result:
+			for layer in layers:
+				navigation_polygons[layer].add_outline(resulting_polygon)
+	
+	for layer in navigation_polygons.keys():
+		var navpoly = navigation_polygons[layer]
+		navpoly.make_polygons_from_outlines()
+		var navpoly_instance = NavigationPolygonInstance.new()
+		navpoly_instance.set_navigation_polygon(navpoly)
+		var bitmask
+		match(layer):
+			'default':
+				bitmask = 1
+			'holder':
+				bitmask = 2
+		navpoly_instance.set_navigation_layers(bitmask)
+		$"%Navigation".add_child(navpoly_instance)

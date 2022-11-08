@@ -151,6 +151,9 @@ func get_gshape():
 			return child
 	return null
 	
+func get_polygon():
+	return get_gshape().to_PoolVector2Array_offset(global_position)
+	
 func _get_configuration_warning():
 	if not get_gshape():
 		return 'Please provide a GShape as child node to define the geometry.\n'

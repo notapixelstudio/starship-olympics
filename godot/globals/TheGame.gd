@@ -60,6 +60,13 @@ func get_number_of_human_players() -> int:
 			count += 1
 	return count
 	
+func get_number_of_cpu_players() -> int:
+	var count := 0
+	for player in players:
+		if player.cpu:
+			count += 1
+	return count
+	
 func get_last_winners() -> Array: # of InfoPlayers 
 	# TODO: TBD handle more than one best player
 	var best_player = null

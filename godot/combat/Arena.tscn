@@ -289,6 +289,9 @@ centered = false
 [node name="Battlefield" type="Node2D" parent="."]
 script = ExtResource( 22 )
 
+[node name="Navigation" type="Node2D" parent="Battlefield"]
+unique_name_in_owner = true
+
 [node name="Background" type="Node2D" parent="Battlefield"]
 
 [node name="MegaSpace" type="Area2D" parent="Battlefield/Background"]
