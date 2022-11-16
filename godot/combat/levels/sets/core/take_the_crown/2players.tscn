@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -8,11 +8,13 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/2A.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
 [ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/B.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=14]
+[ext_resource path="res://actors/brains/TakeTheCrownBrain.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
 
@@ -36,6 +38,8 @@ tracks/0/keys = {
 [node name="Arena" instance=ExtResource( 8 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 13 )
+cpu_brain_scene = ExtResource( 15 )
+create_default_navzone = false
 
 [node name="CrownManager" parent="Managers" index="0" instance=ExtResource( 16 )]
 
@@ -60,6 +64,9 @@ bevel_nw = 50
 bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
+
+[node name="NavigationZone" parent="Battlefield/Background/OutsideWallGhost" index="9" instance=ExtResource( 9 )]
+layers = [ "default", "holder" ]
 
 [node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
 hollow = true
@@ -144,12 +151,14 @@ type = "crown"
 position = Vector2( -400, -400 )
 rotation = 0.785398
 species = ExtResource( 4 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 400, 400 )
 rotation = -2.35619
 controls = "kb2"
 species = ExtResource( 7 )
+cpu = true
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 1.14795e+28, 1.14795e+28 )

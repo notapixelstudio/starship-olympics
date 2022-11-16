@@ -24,9 +24,7 @@ var cpu = false
 var velocity := Vector2(0,0)
 var previous_velocity := Vector2(0,0)
 var last_contact_normal = null
-var target_velocity := Vector2(0,0)
 var steer_force = 0
-var rotation_request = 0
 var drift := Vector2(0,0)
 var drifting := false
 
@@ -37,6 +35,7 @@ var deadly_trail = false
 var deadly_trail_powerup = false
 
 var golf = false
+var phasing_in_prevented := false
 
 var charge = 0
 var actual_charge = 0
@@ -261,7 +260,7 @@ func _integrate_forces(state):
 	if not responsive:
 		return
 	set_applied_force(Vector2())
-	steer_force = max_steer_force * rotation_request
+	steer_force = max_steer_force * get_rotation_request()
 	
 	var thrusting = not is_in_gel() and not golf and entity.has('Thrusters') and not charging_enough and not stunned # and not entity.has('Dashing') # thrusters switch off when charging enough (and during dashes)
 	
@@ -276,13 +275,13 @@ func _integrate_forces(state):
 	else:
 		#rotation = state.linear_velocity.angle()
 		#apply_impulse(Vector2(),target_velocity*thrust)
-		add_central_force(target_velocity*thrust*int(thrusting))
+		add_central_force(get_target_velocity()*thrust*int(thrusting))
 		
 	if entity.has('Flowing'):
 		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
 		
 	# setting a maximum torque should prevent ship oscillation
-	set_applied_torque(min(PI/2, rotation_request) * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
+	set_applied_torque(min(PI/2, get_rotation_request()) * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
 	#rotation = atan2(target_velocity.y, target_velocity.x)
 	
 	# force the physics engine
@@ -312,7 +311,7 @@ func _integrate_forces(state):
 			state.linear_velocity *= ON_ICE_CHARGE_BRAKE
 			
 		# compute drift velocity (only when piloting)
-		if target_velocity.length() > 1.0:
+		if get_target_velocity().length() > 1.0:
 			drift = state.linear_velocity.project(Vector2.DOWN.rotated(global_rotation))
 		else:
 			drift = Vector2(0,0)
@@ -337,9 +336,6 @@ func _integrate_forces(state):
 		last_contact_normal = state.get_contact_local_normal(0)
 	
 	state.set_transform(xform)
-
-func control(_delta):
-	update_charge_bar()
 	
 var overcharging := false
 signal overcharging_started
@@ -382,6 +378,9 @@ func update_charge_bar():
 
 signal detection
 func _physics_process(delta):
+	# let the brain read the player's input or compute its move
+	do_brain_tick()
+	
 	if not alive:
 		return
 		
@@ -399,7 +398,17 @@ func _physics_process(delta):
 		if outside_countup > OUTSIDE_COUNTUP:
 			fall()
 		
-	control(delta)
+	# charge
+	if charging:
+		charge = charge+delta
+	else:
+		charge = 0
+		
+	# overcharge
+	#if charge > MAX_OVERCHARGE:
+	#	fire()
+	
+	update_charge_bar()
 	
 	stun_countdown -= delta
 	if stun_countdown <= 0:
@@ -414,6 +423,7 @@ func _physics_process(delta):
 	if phasing_cooldown <= 0 and entity.get('Phasing').enabled:
 		#yield(get_tree().create_timer(0.2), 'timeout') # wait a bit to be lenient with phase-through checks
 		entity.get('Phasing').disable()
+		phase_in()
 	
 	if dash_cooldown <= 0 and entity.get('Dashing').enabled:
 		#dash_restore_appearance()
@@ -642,6 +652,7 @@ func dash_thin_appearance():
 func _on_Dashing_enabled():
 	# dashing always enables phasing
 	entity.get('Phasing').enable()
+	phase_out()
 	
 	dash_thin_appearance()
 	emit_signal('dash_started', self)
@@ -847,7 +858,7 @@ func tap():
 		var amount = 1
 		var aim_correction = 0.65
 		for i in range(amount):
-			var aim_angle = (aim_correction*target_velocity.normalized() + (1-aim_correction)*Vector2.RIGHT.rotated(global_rotation)).angle() if target_velocity.length() > 0.6 else global_rotation
+			var aim_angle = (aim_correction*get_target_velocity().normalized() + (1-aim_correction)*Vector2.RIGHT.rotated(global_rotation)).angle() if get_target_velocity().length() > 0.6 else global_rotation
 			var angle = aim_angle + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
 			var bullet = forward_bullet_scene.instance()
 			get_parent().add_child(bullet)
@@ -936,6 +947,9 @@ func disable_controls():
 func enable_controls():
 	controls_enabled = true
 	
+func are_controls_enabled():
+	return controls_enabled
+	
 func is_auto_thrust() -> bool:
 	return auto_thrust
 	
@@ -998,4 +1012,58 @@ func set_holder(v: bool) -> void:
 
 func is_holder() -> bool:
 	return get_collision_layer_bit(21)
+	
+func phase_in() -> void:
+	if phasing_in_prevented:
+		return
+		
+	set_collision_layer_bit(22, true)
+	
+func phase_out() -> void:
+	set_collision_layer_bit(22, false)
+	
+func set_phasing_in_prevented(v: bool) -> void:
+	phasing_in_prevented = v
+
+func get_brain() -> Brain:
+	if not has_node('Brain'):
+		return null
+	return ($Brain as Brain)
+
+func set_brain(new_brain: Brain) -> void:
+	var old_brain = get_brain()
+	if old_brain != null:
+		old_brain.disconnect('charge', self, '_on_charge_requested')
+		old_brain.disconnect('release', self, '_on_release_requested')
+		old_brain.free()
+	new_brain.set_name('Brain')
+	new_brain.connect('charge', self, '_on_charge_requested')
+	new_brain.connect('release', self, '_on_release_requested')
+	add_child(new_brain)
+
+func get_rotation_request() -> float:
+	var brain = get_brain()
+	if brain == null:
+		return 0.0
+		
+	return brain.get_rotation_request()
+	
+func get_target_velocity() -> Vector2:
+	var brain = get_brain()
+	if brain == null:
+		return Vector2(0,0)
+		
+	return brain.get_target_velocity()
+
+func do_brain_tick() -> void:
+	var brain = get_brain()
+	if brain == null:
+		return
+	brain.tick()
+	
+func _on_charge_requested() -> void:
+	charge()
+	
+func _on_release_requested() -> void:
+	fire()
 	

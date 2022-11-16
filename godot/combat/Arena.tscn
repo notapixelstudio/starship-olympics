@@ -1,9 +1,10 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/managers/CombatManager.gd" type="Script" id=3]
 [ext_resource path="res://addons/ECM/icons/Manager.png" type="Texture" id=4]
+[ext_resource path="res://actors/brains/PlayerBrain.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/managers/PursueManager.gd" type="Script" id=6]
 [ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=7]
 [ext_resource path="res://combat/managers/CollectManager.gd" type="Script" id=8]
@@ -39,6 +40,8 @@
 [ext_resource path="res://actors/environments/Ice.tscn" type="PackedScene" id=38]
 [ext_resource path="res://combat/levels/background/red.png" type="Texture" id=39]
 [ext_resource path="res://assets/shaders/chromatic_aberration_texture.shader" type="Shader" id=40]
+[ext_resource path="res://actors/brains/CPUBrain.tscn" type="PackedScene" id=41]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=42]
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 40 )
@@ -165,15 +168,18 @@ __meta__ = {
 }
 gameover_scene = ExtResource( 2 )
 IceScene = ExtResource( 38 )
+player_brain_scene = ExtResource( 5 )
+cpu_brain_scene = ExtResource( 41 )
+NavigationZone_scene = ExtResource( 42 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 29 )
 
 [node name="Managers" type="Node" parent="."]
 
-[node name="TappablesManager" parent="Managers" instance=ExtResource( 37 )]
-
 [node name="BumpManager" parent="Managers" instance=ExtResource( 15 )]
+
+[node name="TappablesManager" parent="Managers" instance=ExtResource( 37 )]
 
 [node name="HoldablesManager" parent="Managers" instance=ExtResource( 34 )]
 
@@ -284,6 +290,9 @@ centered = false
 
 [node name="Battlefield" type="Node2D" parent="."]
 script = ExtResource( 22 )
+
+[node name="Navigation" type="Node2D" parent="Battlefield"]
+unique_name_in_owner = true
 
 [node name="Background" type="Node2D" parent="Battlefield"]
 

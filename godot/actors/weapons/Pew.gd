@@ -9,13 +9,13 @@ var ownership_transfer := true
 var previous_velocity := Vector2.LEFT
 
 func _ready():
-	$RandomAudioStreamPlayer.play()
+	SoundEffects.play($RandomAudioStreamPlayer)
 
 func _physics_process(delta):
 	previous_velocity = linear_velocity
 
 func _process(delta):
-	$Halo.rotation = linear_velocity.angle()
+	$Wrapper.rotation = linear_velocity.angle()
 
 func _on_ForwardBullet_body_entered(body):
 	if not (body is Mirror):
@@ -30,7 +30,7 @@ func _on_ForwardBullet_body_entered(body):
 
 func set_ship(v : Ship):
 	ship = v
-	$Halo.modulate = ship.get_color()
+	$"%Sprite".modulate = ship.get_color()
 	$AutoTrail.starting_color = ship.get_color()
 	
 func dissolve() -> void:
@@ -45,8 +45,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func destroy() -> void:
 	dissolve()
-	if $RandomAudioStreamPlayer.playing:
-		yield($RandomAudioStreamPlayer, "finished")
 	queue_free()
 
 func get_owner_ship() -> Ship:

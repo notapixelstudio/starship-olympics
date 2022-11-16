@@ -13,6 +13,8 @@ func _ready():
 	Events.connect('sth_is_overlapping_with_ship', self, '_on_sth_is_overlapping_with_ship')
 	Events.connect('holdable_loaded', self, '_on_holdable_loaded')
 	Events.connect('holdable_dropped', self, '_on_holdable_dropped')
+	Events.connect('holdable_replaced', self, '_on_holdable_replaced')
+	Events.connect('holdable_swapped', self, '_on_holdable_swapped')
 	Events.connect("ship_damaged", self, "_on_ship_damaged")
 	Events.connect("ship_died", self, "_on_ship_died")
 	
@@ -67,7 +69,26 @@ func _on_ship_died(ship: Ship, author, for_good: bool) -> void:
 func _on_holdable_loaded(holdable, ship):
 	traits.get_trait(holdable, 'Holdable').remove()
 	ship.set_holder(true)
+	Events.emit_signal('holdable_obtained', holdable, ship)
 	
 func _on_holdable_dropped(holdable, ship, cause):
 	traits.get_trait(holdable, 'Holdable').restore()
 	ship.set_holder(false)
+	Events.emit_signal('holdable_lost', holdable, ship)
+	
+func _on_holdable_replaced(old, new, ship):
+	if old != null:
+		Events.emit_signal('holdable_lost', old, ship)
+	if new != null:
+		Events.emit_signal('holdable_obtained', new, ship)
+		
+func _on_holdable_swapped(holdable1, holdable2, ship1, ship2):
+	if holdable2 != null:
+		Events.emit_signal('holdable_lost', holdable2, ship1)
+	if holdable1 != null:
+		Events.emit_signal('holdable_obtained', holdable1, ship1)
+	if holdable1 != null:
+		Events.emit_signal('holdable_lost', holdable1, ship2)
+	if holdable2 != null:
+		Events.emit_signal('holdable_obtained', holdable2, ship2)
+		

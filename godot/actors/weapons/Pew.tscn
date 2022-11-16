@@ -26,7 +26,10 @@ angular_damp = 0.0
 script = ExtResource( 3 )
 PfftScene = ExtResource( 2 )
 
-[node name="Halo" type="Sprite" parent="."]
+[node name="Wrapper" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Wrapper"]
+unique_name_in_owner = true
 self_modulate = Color( 1.4, 1.4, 1.4, 1 )
 position = Vector2( -15, 0 )
 scale = Vector2( 0.8, 0.8 )

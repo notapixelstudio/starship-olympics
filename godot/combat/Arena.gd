@@ -20,6 +20,10 @@ export var planet_name : String
 export var underwater : bool = false
 export var IceScene : PackedScene
 
+export var player_brain_scene : PackedScene
+export var cpu_brain_scene : PackedScene
+export var NavigationZone_scene : PackedScene
+
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
 
@@ -28,6 +32,8 @@ export var show_intro : bool = true
 export var random_starting_position : bool = true
 export var place_ships_at_start : bool = true
 export var dark_winter : bool = false
+
+export var create_default_navzone := true
 
 var debug = false
 # analytics
@@ -143,6 +149,8 @@ func _enter_tree():
 	# into consideration
 	global.arena = self
 	
+	Events.connect('navigation_zone_changed', self, '_on_navigation_zone_changed')
+	
 	if global.is_match_running():
 		standalone = false
 		
@@ -156,6 +164,9 @@ func _enter_tree():
 		
 		Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
 		Events.connect("ask_to_spawn", self, "dramatic_spawn") # e.g. SpawnerManager
+	
+func _exit_tree():
+	Events.disconnect('navigation_zone_changed', self, '_on_navigation_zone_changed')
 	
 func _ready():
 	set_process(false)
@@ -336,6 +347,12 @@ func _ready():
 		if draft_card != null:
 			var suit = draft_card.get_suit_top() # TBD different suits
 			$'%BackgroundImage'.texture = load("res://combat/levels/background/"+suit+".png")
+			
+	# update navigation zones if there is at least a cpu
+	if global.the_game.get_number_of_cpu_players() > 0:
+		if create_default_navzone and has_node('Battlefield/Background/OutsideWall'):
+			$Battlefield/Background/OutsideWall.add_child(NavigationZone_scene.instance())
+		update_navigation_zones()
 	
 	yield(camera, "transition_over")
 	
@@ -682,7 +699,6 @@ func _on_hide_arena():
 	$BackgroundLayer.get_child(0).modulate=Color(0.33,0.33,0.33,1)
 	
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
-const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 const trail_scene = preload("res://actors/battlers/TrailNode.tscn")
 
 onready var focus_in_camera = $Battlefield/Overlay/ElementInCamera
@@ -700,10 +716,16 @@ func create_trail(ship):
 signal ship_spawned
 func spawn_ship(player:PlayerSpawner, force_intro=false):
 	var ship : Ship
+	ship = ship_scene.instance()
+	
+	var brain : Brain
 	if player.is_cpu():
-		ship = cpu_ship_scene.instance()
+		brain = cpu_brain_scene.instance()
 	else:
-		ship = ship_scene.instance()
+		brain = player_brain_scene.instance()
+		brain.set_controls(player.controls)
+	brain.set_controllee(ship)
+	ship.set_brain(brain)
 	
 	ship.camera = camera
 	ship.controls = player.controls
@@ -980,3 +1002,57 @@ func get_all_valid_ships() -> Array:
 
 func _on_PowerUp_collected():
 	pass # Replace with function body.
+
+# NAVIGATION
+var queued_navzones_update := false
+func _on_navigation_zone_changed(zone):
+	if queued_navzones_update:
+		return
+	queued_navzones_update = true
+	print('a navigation zone has changed... about to update navigation')
+	# very pessimistic
+	yield(get_tree(), "idle_frame")
+	call_deferred('update_navigation_zones')
+	
+func update_navigation_zones():
+	# delete all navigation nodes already present, if any
+	for child in $"%Navigation".get_children():
+		child.free()
+		
+	# prepare zone for each layer
+	var navigation_polygons = {
+		'default': NavigationPolygon.new(),
+		'holder': NavigationPolygon.new()
+	}
+	for zone_t in traits.get_all('NavigationZone'):
+		var polygon = zone_t.get_polygon()
+		var layers = zone_t.get_layers()
+		var offset
+		match zone_t.get_offset_type():
+			'none':
+				offset = 0
+			'inset':
+				offset = -100
+			'outset':
+				offset = 100
+		var result = Geometry.offset_polygon_2d(polygon, offset)
+		for resulting_polygon in result:
+			for layer in layers:
+				navigation_polygons[layer].add_outline(resulting_polygon)
+	
+	for layer in navigation_polygons.keys():
+		var navpoly = navigation_polygons[layer]
+		navpoly.make_polygons_from_outlines()
+		var navpoly_instance = NavigationPolygonInstance.new()
+		navpoly_instance.set_navigation_polygon(navpoly)
+		var bitmask
+		match(layer):
+			'default':
+				bitmask = 1
+			'holder':
+				bitmask = 2
+		navpoly_instance.set_navigation_layers(bitmask)
+		$"%Navigation".add_child(navpoly_instance)
+	
+	queued_navzones_update = false
+	

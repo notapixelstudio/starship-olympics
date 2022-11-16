@@ -26,7 +26,7 @@ func refresh():
 	$LineRight.position.x = 998 + label_width/2 + 35
 	
 	if draft_card:
-		var suit = draft_card.get_suit_top()
+		var suit = draft_card.get_suit_bottom()
 		if suit: # TBD double suit
 			$Label.modulate = global.SUIT_COLORS[suit]
 			$LineLeft.modulate = global.SUIT_COLORS[suit]

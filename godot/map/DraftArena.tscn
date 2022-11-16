@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map_with_sets/MapGameMode.tres" type="Resource" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://map/DraftManager.gd" type="Script" id=12]
 [ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=13]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=14]
+[ext_resource path="res://actors/brains/DraftBrain.tscn" type="PackedScene" id=15]
 [ext_resource path="res://ui/Typewriter.tscn" type="PackedScene" id=16]
 [ext_resource path="res://combat/styles/lightpurple.tres" type="Resource" id=20]
 
@@ -55,6 +56,7 @@ font_data = ExtResource( 14 )
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
 style = ExtResource( 20 )
+cpu_brain_scene = ExtResource( 15 )
 show_hud = false
 show_intro = false
 random_starting_position = false

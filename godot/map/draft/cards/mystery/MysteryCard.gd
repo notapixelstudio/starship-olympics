@@ -5,6 +5,7 @@ export var name : String
 export var description : String
 export var mystery_cover : Texture
 export var subcards : Array = [] # Array of DraftCard
+export (String, 'mystery', "blue", "white", "cyan", "red", "yellow", 'green', "magenta") var color = 'mystery'
 
 var _subcards_copy : Array = []
 var current_subcard : DraftCard = null
@@ -29,12 +30,6 @@ func on_card_drawn() -> void:
 	
 func get_minigame() -> Minigame:
 	return current_subcard.get_minigame() if current_subcard else null
-	
-func is_winter() -> bool:
-	return current_subcard.is_winter() if current_subcard else winter
-	
-func is_perfectionist() -> bool:
-	return current_subcard.is_perfectionist() if current_subcard else perfectionist
 	
 func get_cover() -> Texture:
 	return mystery_cover
@@ -62,3 +57,6 @@ func get_description() -> String:
 	
 func get_icon() -> Texture:
 	return get_cover()
+
+func get_color() -> Array:
+	return color

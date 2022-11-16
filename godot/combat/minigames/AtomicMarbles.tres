@@ -8,13 +8,13 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-id = "marble_conquest"
+id = "atomic_marbles"
 is_mutator = false
-name = "Marble Conquest"
+name = "Atomic Marbles"
 icon = ExtResource( 5 )
 logo = ExtResource( 4 )
 arena_style = ExtResource( 1 )
-description = "color the marbles"
+description = "shoot the atom to light the marbles"
 tagline_pro = "Don't forget your opponents would do the same"
 tagline_cons = "You could get killed in the meantime..."
 max_timeout = 25
@@ -43,6 +43,7 @@ bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
 auto_thrust = false
+start_invincible = true
 floodable = true
 flood = false
 laserable = false
@@ -53,4 +54,4 @@ script = ExtResource( 3 )
 game_mode = SubResource( 1 )
 arenas_dir = "res://combat/levels/sets/conquest/marble_conquest/"
 suit_top = "magenta"
-suit_bottom = "magenta"
+suit_bottom = "red"

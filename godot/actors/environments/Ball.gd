@@ -18,7 +18,7 @@ func get_type():
 	return type
 	
 func _ready():
-	if type == 'soccer':
+	if type == 'soccer' or type == 'tennis':
 		impulse = 5
 	set_physics_process(false)
 	refresh()
@@ -71,3 +71,7 @@ func set_player(v: InfoPlayer):
 	
 func get_player() -> InfoPlayer:
 	return player
+
+func damage(hazard, damager : Ship) -> void:
+	$AnimationPlayer.play("hit")
+	

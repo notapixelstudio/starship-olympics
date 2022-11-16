@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=9 format=2]
 
-[ext_resource path="res://map/draft/cards/MysteryCard.gd" type="Script" id=1]
+[ext_resource path="res://map/draft/cards/mystery/MysteryCard.gd" type="Script" id=1]
 [ext_resource path="res://map/draft/cards/Ponganoid.tres" type="Resource" id=2]
 [ext_resource path="res://map/draft/cards/HomesickInvaders.tres" type="Resource" id=3]
 [ext_resource path="res://map/draft/cards/RingRacing.tres" type="Resource" id=4]
@@ -16,7 +16,8 @@ unlock_strength = 1
 winter = false
 perfectionist = false
 tint = Color( 0.729412, 0.956863, 0.556863, 1 )
-name = "Peaceful Game"
+name = "Peaceful"
 description = "A random peaceful minigame"
 mystery_cover = ExtResource( 6 )
 subcards = [ ExtResource( 7 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ) ]
+color = "mystery"

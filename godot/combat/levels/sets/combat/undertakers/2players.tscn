@@ -74,6 +74,14 @@ bevel_ne = 90
 bevel_sw = 90
 bevel_se = 90
 
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Middleground/Wall18" index="10"]
+position = Vector2( 0, -100 )
+color = Color( 0.219608, 0.0862745, 0.0862745, 0.501961 )
+polygon = PoolVector2Array( -10, -90, 0, -100, 10, -90, 10, -10, 45, -10, 55, 0, 45, 10, 10, 10, 10, 90, 0, 100, -10, 90, -10, 10, -45, 10, -55, 0, -45, -10, -10, -10 )
+__meta__ = {
+"_editor_description_": ""
+}
+
 [node name="Wall20" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
 position = Vector2( 0, -750 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
@@ -118,6 +126,14 @@ bevel_nw = 90
 bevel_ne = 90
 bevel_sw = 90
 bevel_se = 90
+
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Middleground/Wall19" index="10"]
+position = Vector2( 0, -100 )
+color = Color( 0.219608, 0.0862745, 0.0862745, 0.501961 )
+polygon = PoolVector2Array( -10, -90, 0, -100, 10, -90, 10, -10, 45, -10, 55, 0, 45, 10, 10, 10, 10, 90, 0, 100, -10, 90, -10, 10, -45, 10, -55, 0, -45, -10, -10, -10 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="CameraEye" parent="Battlefield/Middleground" index="4" instance=ExtResource( 9 )]
 position = Vector2( -1800, 0 )

@@ -17,7 +17,8 @@ const SUIT_COLORS = {
 	"white": Color('#ffffff'),
 	"cyan": Color('#00fff3'),
 	'green': Color('#53ff53'),
-	"magenta": Color('#d849f5')
+	"magenta": Color('#d849f5'),
+	'mystery': Color('#7c6989')
 }
 
 var enable_analytics : bool = false setget _set_analytics
@@ -681,7 +682,7 @@ func new_session(existing_data := {}) -> TheSession:
 		var playing_card_id = existing_data.get("playing_card")
 		hand.append(deck.get_card(playing_card_id))
 		
-	if hand.empty() and existing_data.empty():
+	if hand.empty() and existing_data.empty() and deck.get_skip_first_draft():
 		hand = deck.draw(3)
 	# else: start with no hand, the draft manager will take care of that
 	session.set_hand(hand)
@@ -762,7 +763,7 @@ func get_ordered_species() -> Array:
 func compare_by_species_id(a: Species, b: Species):
 	return a.species_id < b.species_id
 	
-var starting_deck: String = "classic"
+var starting_deck: String = "intro"
 
 
 # Date utils

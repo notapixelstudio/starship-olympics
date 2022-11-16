@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/patterns/wall/wobbly.png" type="Texture" id=1]
+[ext_resource path="res://actors/environments/DashWall.gd" type="Script" id=2]
+[ext_resource path="res://assets/patterns/plus.png" type="Texture" id=3]
+
+[node name="DashWall" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 4194304
+script = ExtResource( 2 )
+
+[node name="Graphics" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0.941176 )
+
+[node name="Top" type="Polygon2D" parent="Graphics"]
+unique_name_in_owner = true
+z_index = 500
+z_as_relative = false
+color = Color( 0, 0, 0, 0.666667 )
+texture_scale = Vector2( 0.5, 0.5 )
+
+[node name="Overlay" type="Polygon2D" parent="Graphics"]
+unique_name_in_owner = true
+z_index = 500
+z_as_relative = false
+color = Color( 0.59, 0.52, 1.45, 1 )
+texture = ExtResource( 3 )
+
+[node name="Outline" type="Line2D" parent="Graphics"]
+unique_name_in_owner = true
+width = 40.0
+default_color = Color( 0.592157, 0.521569, 1.44706, 1 )
+texture = ExtResource( 1 )
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Bottom" type="Line2D" parent="Graphics"]
+unique_name_in_owner = true
+position = Vector2( 0, 32 )
+z_index = -1
+width = 40.0
+default_color = Color( 0.2664, 0.234, 0.45, 1 )
+texture = ExtResource( 1 )
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="OverlapArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OverlapArea"]
+
+[connection signal="body_entered" from="OverlapArea" to="." method="_on_OverlapArea_body_entered"]
+[connection signal="body_exited" from="OverlapArea" to="." method="_on_OverlapArea_body_exited"]
