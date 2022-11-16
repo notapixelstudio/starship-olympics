@@ -46,28 +46,7 @@ func set_player(v):
 			players.append(player)
 	
 	if take_ownership:
-		if multiple_owners:
-			if len(players) == 0:
-				blur()
-			else:
-				var ids = ''
-				for p in players:
-					ids += '[color=#' + p.get_color().to_html() + ']' + p.get_username().to_upper() + '[/color]  '
-				ids = ids.strip_edges()
-				monogram.bbcode_text = "[center]" + ids + "[/center]"
-				monogram.visible = true
-				
-				self.select()
-		else:
-			if player == null:
-				blur()
-			else:
-				monogram.bbcode_text = "[center]" + player.get_username().to_upper() + "[/center]"
-				monogram.modulate = player.species.color
-				monogram.visible = true
-				
-				self.select()
-				border.modulate = player.species.color # override color
+		refresh_ownership_graphics()
 	
 	# this should be emitted here, after the value is updated correctly
 	if player != previous_player and player != null:
@@ -75,7 +54,41 @@ func set_player(v):
 	
 func get_player():
 	return player
+	
+func remove_player(v):
+	if multiple_owners:
+		players.erase(v)
+	elif player == v:
+		player = null
+		
+	refresh_ownership_graphics()
 
+func refresh_ownership_graphics():
+	if multiple_owners:
+		if len(players) == 0:
+			blur()
+			deselect()
+		else:
+			var ids = ''
+			for p in players:
+				ids += '[color=#' + p.get_color().to_html() + ']' + p.get_username().to_upper() + '[/color]  '
+			ids = ids.strip_edges()
+			monogram.bbcode_text = "[center]" + ids + "[/center]"
+			monogram.visible = true
+			
+			select()
+	else:
+		if player == null:
+			blur()
+			deselect()
+		else:
+			monogram.bbcode_text = "[center]" + player.get_username().to_upper() + "[/center]"
+			monogram.modulate = player.species.color
+			monogram.visible = true
+			
+			select()
+			border.modulate = player.species.color # override color
+			
 func set_content(v):
 	content = v
 	refresh_texture()
@@ -99,7 +112,7 @@ func set_character_player(v):
 		
 		$Ground/Front/Character.texture = character_player.species.character_ok
 		$Ground/Front/TopLeft/Monogram.text = character_player.get_id().to_upper()
-		
+	
 func get_character_player():
 	return character_player
 	
@@ -152,6 +165,8 @@ func select():
 	
 func deselect():
 	selected = false
+	$'%Background'.modulate = Color('#5c5856')
+	border.visible = false
 	$AnimationPlayer.play("Float")
 	
 func blur():

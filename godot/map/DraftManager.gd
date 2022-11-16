@@ -23,8 +23,12 @@ signal selection_finished
 signal card_chosen
 
 func _ready():
+	set_process_unhandled_input(false)
+	global.map_player_controls()
+	
 	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
 	Events.connect("card_tapped", self, "player_just_chose_a_card")
+	
 	
 	this_arena = get_node(this_arena_path)
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
@@ -104,7 +108,8 @@ func player_just_chose_a_card(author, card):
 	card.set_player(author.get_player())
 	
 	self.players_choices[author] = card
-	author.get_parent().remove_child(author)
+
+	author.get_parent().call_deferred('remove_child', author)
 	
 	card.card_content.reset_strikes()
 	if card.card_content.has_unlocks():
@@ -261,7 +266,33 @@ func _on_pass_tapped(author):
 		author.get_parent().remove_child(author)
 		self.selections_maybe_all_done()
 
-
+func reinsert_ship(ship):
+	global.arena.insert_ship(ship)
+	var card = self.players_choices[ship]
+	self.players_choices.erase(ship)
+	card.remove_player(ship.get_player())
+	
 func _enter_tree():
+	Events.connect("all_ships_spawned", self, "all_ships_spawned")
+	
 	if hand_node:
 		hand_node.sync_with_hand()
+
+func all_ships_spawned():
+	set_process_unhandled_input(true)
+
+func _unhandled_input(event):
+	if event.is_pressed():
+		return
+	for action in global.list_fire_action:
+		if InputMap.event_is_action(event, action):
+			var controls = action.replace("_fire", "")
+			for player in global.the_game.players:
+				if (player as InfoPlayer).controls == controls:
+					var ship = global.arena.get_ship_from_player(player)
+					if not ship.is_inside_tree() and ship in self.players_choices:
+						reinsert_ship(ship)
+					break
+	
+func _exit_tree():
+	Events.disconnect("all_ships_spawned", self, "all_ships_spawned")

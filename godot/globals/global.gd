@@ -618,7 +618,7 @@ func _set_glow(value):
 var the_game: TheGame = null
 var the_match: TheMatch = null
 var session: TheSession = null
-var arena
+var arena: Arena
 
 func reset_counts():
 	game_number = 0
@@ -784,4 +784,11 @@ func datetime_to_str(datetime: Dictionary, use_local := false) -> String:
 		datetime_string = Time.get_datetime_string_from_datetime_dict(datetime, true)
 		local_tz = Time.get_offset_string_from_offset_minutes(tz.bias)
 	return datetime_string
+	
+var list_fire_action := {}
+func map_player_controls():
+	list_fire_action = {}
+	for action in InputMap.get_actions():
+		if "_fire" in action: 
+			list_fire_action[action] = (InputMap.get_action_list(action))
 	

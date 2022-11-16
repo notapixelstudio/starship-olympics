@@ -494,6 +494,7 @@ func spawn_all_ships(do_intro = false):
 			ship.intro()
 			
 	emit_signal("all_ships_spawned", player_spawners)
+	Events.emit_signal("all_ships_spawned")
 
 func update_grid():
 	# TODO: maybe you can put directly inside grid
@@ -714,6 +715,9 @@ func create_trail(ship):
 	return trail
 
 signal ship_spawned
+func insert_ship(ship: Ship):
+	$Battlefield.add_child(ship)
+
 func spawn_ship(player:PlayerSpawner, force_intro=false):
 	var ship : Ship
 	ship = ship_scene.instance()
@@ -744,7 +748,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	
 	yield(player, "entered_battlefield")
 	
-	$Battlefield.add_child(ship)
+	insert_ship(ship)
 	
 	create_trail(ship)
 	yield(get_tree(), "idle_frame") # FIXME this is needed for set_bomb_type
