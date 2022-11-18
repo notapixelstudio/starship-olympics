@@ -67,6 +67,9 @@ func unpause():
 func stop():
 	set_process(false)
 
+func add_time(time_to_add: float):
+	time_left += time_to_add
+
 func initialize(_players: Dictionary, _game_mode: GameMode, max_score: float = 0, max_timeout: float = 0):
 	game_mode = _game_mode
 	player_scores = []
