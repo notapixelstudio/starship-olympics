@@ -123,6 +123,9 @@ func player_just_chose_a_card(author, card):
 	
 func selections_maybe_all_done():
 	if len(players_choices.keys()) == len(global.the_game.players):
+		# The game is about to start. This avoids 
+		set_process_unhandled_input(false)
+		
 		pass_node.visible = false
 		message_node.visible_characters = 0
 		

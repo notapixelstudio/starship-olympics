@@ -105,9 +105,12 @@ func tap(author):
 		print("{minigame} tapped by {author_name}".format({"minigame": card_content.get_id(), "author_name":author.info_player.get_id()}))
 
 func gracefully_go_to(point: Vector2, angle: float = 0.0, duration: float = 0.7, easing = Tween.EASE_IN_OUT) -> void:
-	var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(easing)
-	tween.tween_property(self, 'position', point, duration)
-	tween.parallel().tween_property(self, 'rotation', angle, duration)
+	var tween := create_tween()
+	if tween:
+		tween.set_trans(Tween.TRANS_QUAD).set_ease(easing)
+		tween.tween_property(self, 'position', point, duration)
+		tween.parallel().tween_property(self, 'rotation', angle, duration)
+		
 
 onready var normal_scale = scale
 onready var normal_position = global_position
