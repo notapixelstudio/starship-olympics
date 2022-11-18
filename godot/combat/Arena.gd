@@ -511,6 +511,12 @@ func _process(delta):
 	update_grid()
 	#slomo()
 	
+	if global.is_match_running() and int(global.the_match.time_left) == 50:
+		# TODO: temporary
+		Events.emit_signal("pause")
+		yield(get_tree().create_timer(10), "timeout")
+		Events.emit_signal("unpause")
+		
 	if global.is_match_running() and int(global.the_match.time_left) == COUNTDOWN_LIMIT -1 and not $CanvasLayer/Countdown/AudioStreamPlayer.playing:
 		# no countdown speaker right now. ISSUE #485
 		# $CanvasLayer/Countdown/AudioStreamPlayer.play()

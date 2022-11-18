@@ -33,6 +33,8 @@ signal navigation_zone_changed(zone)
 # Arena
 signal ask_to_spawn
 signal spawned
+signal pause
+signal unpause
 
 signal minigame_selected(picked_card)
 
