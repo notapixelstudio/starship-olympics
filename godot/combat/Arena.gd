@@ -651,6 +651,9 @@ func ship_just_died(ship, killer, for_good):
 	#	respawn_timeout = 0.75
 	if game_mode.id == 'skull_collector':
 		respawn_timeout = 2.25
+		
+	if game_mode.id == 'diamond_warfare':
+		respawn_timeout = 3.5
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
