@@ -1,9 +1,23 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon/minicards/sets/crown.png" type="Texture" id=2]
-[ext_resource path="res://combat/styles/flagfield.tres" type="Resource" id=3]
+[ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=3]
 [ext_resource path="res://assets/icon/crown_logo.png" type="Texture" id=4]
+[ext_resource path="res://combat/styles/ArenaStyle.gd" type="Script" id=5]
+
+[sub_resource type="Resource" id=1]
+resource_name = "keep"
+script = ExtResource( 5 )
+battlefield_texture = ExtResource( 3 )
+battlefield_texture_offset = Vector2( 0, 0 )
+battlefield_texture_scale = Vector2( 0.25, 0.25 )
+battlefield_texture_rotation_degrees = 0.0
+battlefield_fg_color = Color( 0.16632, 0.27, 0.1404, 1 )
+battlefield_bg_color = Color( 0.17495, 0.3, 0.117, 1 )
+battlefield_opacity = 1.0
+wall_color = Color( 1.1, 0.8, 0.54, 1 )
+bgm = "keep"
 
 [resource]
 script = ExtResource( 1 )
@@ -12,12 +26,12 @@ is_mutator = false
 name = "Capture the Flags"
 icon = ExtResource( 2 )
 logo = ExtResource( 4 )
-arena_style = ExtResource( 3 )
+arena_style = SubResource( 1 )
 description = "take the flags to your base"
 tagline_pro = "If killing is not enough, steal it by bumping in the queen"
 tagline_cons = "getting killed will make you lose the crown, if you have it"
 max_timeout = 80
-max_score = 40
+max_score = 80
 starting_score = 0
 cumulative = false
 shared_targets = true
