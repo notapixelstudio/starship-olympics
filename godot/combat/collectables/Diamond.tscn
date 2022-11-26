@@ -45,7 +45,7 @@ tracks/1/keys = {
 
 [node name="Diamond" type="RigidBody2D" groups=["Diamond", "Foreground", "in_camera"]]
 collision_layer = 2048
-collision_mask = 3088
+collision_mask = 3092
 linear_damp = 1.0
 script = ExtResource( 1 )
 
@@ -93,8 +93,8 @@ shape = SubResource( 1 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0.059529 )
-scale = Vector2( 0.958232, 0.958232 )
+modulate = Color( 0.305882, 1, 0.968627, 0 )
+scale = Vector2( 0.993322, 0.993322 )
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
