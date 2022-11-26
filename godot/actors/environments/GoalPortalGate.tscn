@@ -55,4 +55,7 @@ collision_mask = 4
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DefenseZone" index="0"]
 polygon = PoolVector2Array( -350, -500, -300, -550, -200, -600, 0, -650, 100, -650, 300, -600, 450, -500, 550, -400, 650, -250, 700, -50, 700, 50, 650, 250, 550, 400, 450, 500, 300, 600, 100, 650, 0, 650, -200, 600, -300, 550, -350, 500 )
 
+[node name="RandomAudioStreamPlayer" parent="." index="10"]
+pitch_min = 1
+
 [connection signal="body_entered" from="DefenseZone" to="." method="_on_DefenseZone_body_entered"]
