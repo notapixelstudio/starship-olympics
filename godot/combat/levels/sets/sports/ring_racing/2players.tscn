@@ -1,242 +1,17 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=1]
-[ext_resource path="res://actors/environments/PortalGate.tscn" type="PackedScene" id=2]
-[ext_resource path="res://actors/environments/Gate.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/levels/sets/sports/ring_racing/variants/A.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/levels/sets/sports/ring_racing/variants/B.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=5]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/sprites/signs/arrow.png" type="Texture" id=7]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=9]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 [ext_resource path="res://combat/managers/RingRaceManager.tscn" type="PackedScene" id=11]
 [ext_resource path="res://combat/modes/RingRacing.tres" type="Resource" id=12]
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=13]
-
-[sub_resource type="Animation" id=5]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:width")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 700.0 ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "Rotate"
-length = 8.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:width")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ 700.0, 250.0 ]
-}
-
-[sub_resource type="Animation" id=9]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -1300, 900 ) ]
-}
-
-[sub_resource type="Animation" id=10]
-resource_name = "Rotate"
-length = 8.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 2, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ Vector2( -1300, 1250 ), Vector2( -1300, 550 ) ]
-}
-
-[sub_resource type="Animation" id=12]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 2200, -6.10352e-05 ) ]
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "Rotate"
-length = 12.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 3, 9 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ Vector2( 2200, -600 ), Vector2( 2200, 600 ) ]
-}
-
-[sub_resource type="Animation" id=3]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 90.0 ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "Rotate"
-length = 8.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 2, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ 160.0, 20.0 ]
-}
-
-[sub_resource type="Animation" id=15]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ -900.0 ]
-}
-
-[sub_resource type="Animation" id=16]
-resource_name = "Rotate"
-length = 8.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 2, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ -1150.0, -650.0 ]
-}
-
-[sub_resource type="Animation" id=17]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ -900.0 ]
-}
-
-[sub_resource type="Animation" id=18]
-resource_name = "Rotate"
-length = 8.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 2, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ -1150.0, -650.0 ]
-}
-
-[sub_resource type="Animation" id=14]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1150, -900 ) ]
-}
-
-[sub_resource type="Animation" id=13]
-resource_name = "Rotate"
-length = 8.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 2, 6 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ Vector2( 1150, -650 ), Vector2( 1150, -1150 ) ]
-}
 
 [node name="Arena" instance=ExtResource( 5 )]
 size_multiplier = 2.5
@@ -260,159 +35,25 @@ grid_color = Color( 0, 1, 0.741176, 0.435294 )
 script = ExtResource( 1 )
 width = 5600
 height = 3100
-radius = 1200
+radius = 900
 precision = 100.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.7 )
 fg_color = Color( 0.04, 0.04, 0.04, 1 )
 
-[node name="Gate" parent="Battlefield/Middleground" index="0" instance=ExtResource( 3 )]
-position = Vector2( 500, 500 )
-rotation = 3.92699
-width = 700.0
-show_arrow = false
-
-[node name="Gate12" parent="Battlefield/Middleground" index="1" instance=ExtResource( 3 )]
-position = Vector2( 1450, 900 )
-rotation = 3.14159
-width = 500.0
-show_arrow = false
-
-[node name="Gate13" parent="Battlefield/Middleground" index="2" instance=ExtResource( 3 )]
-position = Vector2( 1150, 900 )
-rotation = 3.14159
-width = 500.0
-show_arrow = false
-
-[node name="Gate6" parent="Battlefield/Middleground" index="3" instance=ExtResource( 3 )]
-position = Vector2( -1800, 800 )
-rotation = 0.785398
-width = 500.0
-show_arrow = false
-
-[node name="Gate10" parent="Battlefield/Middleground" index="4" instance=ExtResource( 3 )]
-position = Vector2( -1100, -900 )
-rotation = 3.14159
-width = 700.0
-show_arrow = false
-
-[node name="Gate11" parent="Battlefield/Middleground" index="5" instance=ExtResource( 3 )]
-position = Vector2( -1950, -650 )
-rotation = 2.35619
-width = 700.0
-show_arrow = false
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate11" index="5" groups=["animation_in_battle"]]
-anims/RESET = SubResource( 5 )
-anims/Rotate = SubResource( 6 )
-
-[node name="Gate5" parent="Battlefield/Middleground" index="6" instance=ExtResource( 3 )]
-position = Vector2( -1300, 900 )
-rotation = 6.28319
-width = 500.0
-show_arrow = false
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate5" index="5" groups=["animation_in_battle"]]
-anims/RESET = SubResource( 9 )
-anims/Rotate = SubResource( 10 )
-
-[node name="Gate8" parent="Battlefield/Middleground" index="7" instance=ExtResource( 3 )]
-position = Vector2( -1000, 900 )
-rotation = 6.28319
-width = 500.0
-show_arrow = false
-
-[node name="Gate14" parent="Battlefield/Middleground" index="8" instance=ExtResource( 3 )]
-position = Vector2( -700, 900 )
-rotation = 6.28319
-width = 500.0
-show_arrow = false
-
-[node name="Gate2" parent="Battlefield/Middleground" index="9" instance=ExtResource( 3 )]
-position = Vector2( 2200, -6.10352e-05 )
-rotation = 1.5708
-width = 700.0
-show_arrow = false
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate2" index="6" groups=["animation_in_battle"]]
-anims/RESET = SubResource( 12 )
-anims/Rotate = SubResource( 11 )
-
-[node name="Gate7" parent="Battlefield/Middleground" index="10" instance=ExtResource( 3 )]
-position = Vector2( -2200, 0 )
-rotation = 1.5708
-width = 700.0
-show_arrow = false
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate7" index="5" groups=["animation_in_battle"]]
-anims/RESET = SubResource( 3 )
-anims/Rotate = SubResource( 4 )
-
-[node name="Gate4" parent="Battlefield/Middleground" index="11" instance=ExtResource( 3 )]
-position = Vector2( 1450, -900 )
-width = 700.0
-show_arrow = false
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate4" index="5" groups=["animation_in_battle"]]
-anims/RESET = SubResource( 15 )
-anims/Rotate = SubResource( 16 )
-
-[node name="Gate15" parent="Battlefield/Middleground" index="12" instance=ExtResource( 3 )]
-position = Vector2( 850, -900 )
-width = 700.0
-show_arrow = false
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate15" index="5" groups=["animation_in_battle"]]
-anims/RESET = SubResource( 17 )
-anims/Rotate = SubResource( 18 )
-
-[node name="Gate9" parent="Battlefield/Middleground" index="13" instance=ExtResource( 3 )]
-position = Vector2( 1150, -900 )
-width = 700.0
-show_arrow = false
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate9" index="6" groups=["animation_in_battle"]]
-anims/RESET = SubResource( 14 )
-anims/Rotate = SubResource( 13 )
-
-[node name="PortalGate" parent="Battlefield/Middleground" index="14" instance=ExtResource( 2 )]
-position = Vector2( 0, -900 )
-linked_to_path = NodePath("../PortalGate2")
-
-[node name="PortalGate2" parent="Battlefield/Middleground" index="15" instance=ExtResource( 2 )]
-position = Vector2( 0, 900 )
-tint = Color( 0, 0.368627, 1, 1 )
-inverted = true
-
-[node name="Line2D" type="Line2D" parent="Battlefield/Middleground" index="16"]
-points = PoolVector2Array( -300, 900, -1700, 900, -2200, 400, -2200, -400, -1700, -900, -1650, -900 )
-width = 130.0
-default_color = Color( 0.133333, 0.666667, 1, 0.313726 )
-
-[node name="Line2D2" type="Line2D" parent="Battlefield/Middleground" index="17"]
-points = PoolVector2Array( -1150, -900, -900, -900, 900, 900, 1700, 900, 2200, 400, 2200, -400, 1700, -900, 200, -900 )
-width = 130.0
-default_color = Color( 0.133333, 0.666667, 1, 0.313726 )
-
-[node name="Arrow" type="Sprite" parent="Battlefield/Middleground" index="18"]
-modulate = Color( 0.133333, 0.666667, 1, 0.313726 )
-position = Vector2( -1400, -900 )
-rotation = 3.14159
-scale = Vector2( 1.3, 1.3 )
-texture = ExtResource( 7 )
-flip_h = true
-
-[node name="Variants" parent="Battlefield/Middleground" index="19" instance=ExtResource( 13 )]
+[node name="Variants" parent="Battlefield/Middleground" index="0" instance=ExtResource( 13 )]
+variant_scenes = [ ExtResource( 2 ), ExtResource( 3 ) ]
+debug_variant_index = 0
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 4 )]
-position = Vector2( -1600, -1050 )
+position = Vector2( -2400, -1050 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 9 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 4 )]
-position = Vector2( -1600, -750 )
+position = Vector2( -2400, -750 )
 rotation = 0.0
 controls = "kb2"
 species = ExtResource( 10 )
