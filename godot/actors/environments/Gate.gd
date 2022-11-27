@@ -13,6 +13,8 @@ var bottom_end := Vector2(0, width/2)
 var overlapping_trackeds := {}
 var previous_global_transforms : Array
 
+var enabled := true
+
 signal crossed
 
 func set_width(v: float) -> void:
@@ -69,14 +71,24 @@ func _physics_process(delta):
 			overlapping_trackeds.erase(tracked)
 		
 func _crossed_by(sth, trigger=true):
-	emit_signal("crossed", sth, self, trigger)
+	if enabled:
+		emit_signal("crossed", sth, self, trigger)
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("Blink")
-	$RandomAudioStreamPlayer.play()
+	if trigger and enabled:
+		$RandomAudioStreamPlayer.play()
 	
 func act_as_if_crossed_by(sth):
 	_crossed_by(sth, false) # don't trigger
+
+func enable() -> void:
+	enabled = true
+	modulate = Color.white
 	
+func disable() -> void:
+	enabled = false
+	modulate = Color(1,1,1,0.3)
+
 #func _draw():
 #	if relative_position:
 #		draw_circle(relative_position, 6, Color(0, 1, 0))
