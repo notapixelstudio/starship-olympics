@@ -6,8 +6,6 @@ export var goal_owner : NodePath
 var player = null
 signal goal_done
 
-var enabled := true
-
 func _ready():
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
@@ -46,10 +44,3 @@ func _on_DefenseZone_body_entered(body):
 	if body is Pew:
 		body.disable_ownership_transfer()
 		
-func enable() -> void:
-	enabled = true
-	modulate = Color.white
-	
-func disable() -> void:
-	enabled = false
-	modulate = Color(1,1,1,0.3)

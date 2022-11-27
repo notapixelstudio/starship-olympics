@@ -325,17 +325,20 @@ position = Vector2( -2150, 0 )
 width = 1000.0
 show_arrow = false
 linked_to_path = NodePath("../RightGoalPortalGate")
+tint = Color( 0.290196, 0, 1, 1 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/LeftGoalPortalGate" index="2"]
 shape = SubResource( 12 )
 
 [node name="BottomRingPart" parent="Battlefield/Middleground/LeftGoalPortalGate" index="3"]
+self_modulate = Color( 0.290196, 0, 1, 1 )
 scale = Vector2( 1, 1.81818 )
 
 [node name="Arrow" parent="Battlefield/Middleground/LeftGoalPortalGate" index="4"]
 visible = false
 
 [node name="RingPart" parent="Battlefield/Middleground/LeftGoalPortalGate" index="5"]
+self_modulate = Color( 0.503137, 0.3, 1, 1 )
 scale = Vector2( 1, 1.81818 )
 
 [node name="Shadow" parent="Battlefield/Middleground/LeftGoalPortalGate" index="6"]
@@ -348,8 +351,22 @@ anims/RESET = SubResource( 19 )
 [node name="PlayerLabel" parent="Battlefield/Middleground/LeftGoalPortalGate/NoRotate" index="0"]
 text = ""
 
-[node name="RandomAudioStreamPlayer" parent="Battlefield/Middleground/LeftGoalPortalGate" index="10"]
-pitch_min = 1
+[node name="Inside" parent="Battlefield/Middleground/LeftGoalPortalGate/PortalEffect" index="0"]
+modulate = Color( 0.290196, 0, 1, 1 )
+scale = Vector2( 1, 8.18182 )
+
+[node name="SpikeParticles2D" parent="Battlefield/Middleground/LeftGoalPortalGate/PortalEffect" index="1"]
+modulate = Color( 0.290196, 0, 1, 1 )
+amount = 14
+
+[node name="ColoredParticles2D" parent="Battlefield/Middleground/LeftGoalPortalGate/PortalEffect" index="2"]
+modulate = Color( 0.290196, 0, 1, 1 )
+position = Vector2( -102, -4.19629e-06 )
+amount = 14
+
+[node name="Particles2D" parent="Battlefield/Middleground/LeftGoalPortalGate/PortalEffect" index="3"]
+position = Vector2( -102, -4.19629e-06 )
+amount = 14
 
 [node name="RightGoalPortalGate" parent="Battlefield/Middleground" index="1" instance=ExtResource( 15 )]
 unique_name_in_owner = true
@@ -358,17 +375,20 @@ rotation = 3.14159
 width = 1000.0
 show_arrow = false
 linked_to_path = NodePath("../LeftGoalPortalGate")
+tint = Color( 0.290196, 0, 1, 1 )
 
 [node name="CollisionShape2D" parent="Battlefield/Middleground/RightGoalPortalGate" index="2"]
 shape = SubResource( 12 )
 
 [node name="BottomRingPart" parent="Battlefield/Middleground/RightGoalPortalGate" index="3"]
+self_modulate = Color( 0.290196, 0, 1, 1 )
 scale = Vector2( 1, 1.81818 )
 
 [node name="Arrow" parent="Battlefield/Middleground/RightGoalPortalGate" index="4"]
 visible = false
 
 [node name="RingPart" parent="Battlefield/Middleground/RightGoalPortalGate" index="5"]
+self_modulate = Color( 0.503137, 0.3, 1, 1 )
 scale = Vector2( 1, 1.81818 )
 
 [node name="Shadow" parent="Battlefield/Middleground/RightGoalPortalGate" index="6"]
@@ -377,8 +397,22 @@ scale = Vector2( 1, 1.81818 )
 [node name="PlayerLabel" parent="Battlefield/Middleground/RightGoalPortalGate/NoRotate" index="0"]
 text = ""
 
-[node name="RandomAudioStreamPlayer" parent="Battlefield/Middleground/RightGoalPortalGate" index="10"]
-pitch_min = 1
+[node name="Inside" parent="Battlefield/Middleground/RightGoalPortalGate/PortalEffect" index="0"]
+modulate = Color( 0.290196, 0, 1, 1 )
+scale = Vector2( 1, 8.18182 )
+
+[node name="SpikeParticles2D" parent="Battlefield/Middleground/RightGoalPortalGate/PortalEffect" index="1"]
+modulate = Color( 0.290196, 0, 1, 1 )
+amount = 14
+
+[node name="ColoredParticles2D" parent="Battlefield/Middleground/RightGoalPortalGate/PortalEffect" index="2"]
+modulate = Color( 0.290196, 0, 1, 1 )
+position = Vector2( -102, -4.19629e-06 )
+amount = 14
+
+[node name="Particles2D" parent="Battlefield/Middleground/RightGoalPortalGate/PortalEffect" index="3"]
+position = Vector2( -102, -4.19629e-06 )
+amount = 14
 
 [node name="Launcher3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 3 )]
 position = Vector2( -550, -1150 )
