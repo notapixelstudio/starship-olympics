@@ -15,4 +15,7 @@ linked_to_path = NodePath("")
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
 
+[node name="Arrow" parent="." index="2"]
+modulate = Color( 0.133333, 0.666667, 1, 0.313726 )
+
 [connection signal="crossed" from="." to="." method="_on_PortalGate_crossed"]

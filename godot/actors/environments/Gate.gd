@@ -61,6 +61,10 @@ func _physics_process(delta):
 			var relative_angle_of_incidence : float = (relative_position - relative_past_position).angle()
 			
 			if will_cross and abs(relative_angle_of_incidence) > PI/2 + (PI-aperture)/2:
+				print(relative_past_position)
+				print(crossing_point)
+				print(relative_position)
+				print()
 				_crossed_by(body)
 				
 	# delete trackeds that are still not good
@@ -68,17 +72,20 @@ func _physics_process(delta):
 		if not overlapping_trackeds[tracked]['good']:
 			overlapping_trackeds.erase(tracked)
 		
-func _crossed_by(sth):
-	emit_signal("crossed", sth, self)
+func _crossed_by(sth, trigger=true):
+	emit_signal("crossed", sth, self, trigger)
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("Blink")
 	$RandomAudioStreamPlayer.play()
 	
+func act_as_if_crossed_by(sth):
+	_crossed_by(sth, false) # don't trigger
+	
 #func _draw():
-	#if relative_position:
-	#	draw_circle(relative_position, 6, Color(0, 1, 0))
-	#if relative_past_position:
-	#	draw_circle(relative_past_position, 2, Color(1, 1, 1))
-	#if relative_past_position != null and relative_position != null:
-	#	draw_line(relative_past_position, relative_position, Color(1, 0, 0), 4)
-	#draw_line(top_end, bottom_end, Color(1, 0, 1), 2)
+#	if relative_position:
+#		draw_circle(relative_position, 6, Color(0, 1, 0))
+#	if relative_past_position:
+#		draw_circle(relative_past_position, 2, Color(1, 1, 1))
+#	if relative_past_position != null and relative_position != null:
+#		draw_line(relative_past_position, relative_position, Color(1, 0, 0), 4)
+#	draw_line(top_end, bottom_end, Color(1, 0, 1), 2)
