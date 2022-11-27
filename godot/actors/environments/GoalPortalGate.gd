@@ -27,7 +27,7 @@ func get_player():
 	return player
 
 # override
-func _on_PortalGate_crossed(sth, _self):
+func _on_PortalGate_crossed(sth, _self, silent):
 	if not enabled:
 		return
 		
@@ -39,7 +39,7 @@ func _on_PortalGate_crossed(sth, _self):
 			emit_signal("goal_done", ball_player, self, sth.global_position, 1)
 		sth.set_player(null) # ownership is reset whenever a goal is done
 		
-	._on_PortalGate_crossed(sth, _self)
+	._on_PortalGate_crossed(sth, _self, silent)
 
 func _on_DefenseZone_body_entered(body):
 	# disable pew ownership transfer if is the defender
