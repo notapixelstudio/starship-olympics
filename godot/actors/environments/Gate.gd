@@ -61,10 +61,6 @@ func _physics_process(delta):
 			var relative_angle_of_incidence : float = (relative_position - relative_past_position).angle()
 			
 			if will_cross and abs(relative_angle_of_incidence) > PI/2 + (PI-aperture)/2:
-				print(relative_past_position)
-				print(crossing_point)
-				print(relative_position)
-				print()
 				_crossed_by(body)
 				
 	# delete trackeds that are still not good
