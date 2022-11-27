@@ -39,6 +39,9 @@ func place_and_push(dropper, velocity, direction:='forward') -> void:
 func activate():
 	set_physics_process(impulse > 0)
 	
+func _integrate_forces(state):
+	traits.get_trait(self, 'Tracked').tick()
+	
 func _physics_process(_delta):
 	apply_central_impulse(impulse*Vector2(1,0).rotated(linear_velocity.angle()))
 	

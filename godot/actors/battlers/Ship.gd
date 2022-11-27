@@ -331,6 +331,8 @@ func _integrate_forces(state):
 	previous_velocity = velocity
 	velocity = state.linear_velocity
 	
+	traits.get_trait(self, 'Tracked').tick()
+	
 	# store last contact normal as a readable var
 	if state.get_contact_count() > 0:
 		last_contact_normal = state.get_contact_local_normal(0)
