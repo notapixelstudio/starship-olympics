@@ -384,6 +384,7 @@ scale = Vector2( 1, 1.81818 )
 visible = false
 
 [node name="RingPart" parent="Battlefield/Middleground/LeftGoalPortalGate" index="5"]
+self_modulate = Color( 1, 0.58, 0.3, 1 )
 scale = Vector2( 1, 1.81818 )
 
 [node name="Shadow" parent="Battlefield/Middleground/LeftGoalPortalGate" index="6"]
@@ -403,11 +404,9 @@ scale = Vector2( 1, 8.18182 )
 amount = 14
 
 [node name="ColoredParticles2D" parent="Battlefield/Middleground/LeftGoalPortalGate/PortalEffect" index="2"]
-position = Vector2( -102, -4.19629e-06 )
 amount = 14
 
 [node name="Particles2D" parent="Battlefield/Middleground/LeftGoalPortalGate/PortalEffect" index="3"]
-position = Vector2( -102, -4.19629e-06 )
 amount = 14
 
 [node name="RightGoalPortalGate" parent="Battlefield/Middleground" index="3" instance=ExtResource( 15 )]
@@ -428,6 +427,7 @@ scale = Vector2( 1, 1.81818 )
 visible = false
 
 [node name="RingPart" parent="Battlefield/Middleground/RightGoalPortalGate" index="5"]
+self_modulate = Color( 1, 0.58, 0.3, 1 )
 scale = Vector2( 1, 1.81818 )
 
 [node name="Shadow" parent="Battlefield/Middleground/RightGoalPortalGate" index="6"]
@@ -447,11 +447,9 @@ scale = Vector2( 1, 8.18182 )
 amount = 14
 
 [node name="ColoredParticles2D" parent="Battlefield/Middleground/RightGoalPortalGate/PortalEffect" index="2"]
-position = Vector2( -102, -4.19629e-06 )
 amount = 14
 
 [node name="Particles2D" parent="Battlefield/Middleground/RightGoalPortalGate/PortalEffect" index="3"]
-position = Vector2( -102, -4.19629e-06 )
 amount = 14
 
 [node name="Wall" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
