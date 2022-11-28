@@ -8,7 +8,7 @@ var cards : Array = [] # of DraftCard
 var played_pile : Array = [] # of DraftCard
 var next : Array = [] # of DrafCard
 var remembered_card_ids : Dictionary = {} # String -> bool
-var shuffle_before_dealing:= true
+var shuffle_before_dealing := true
 const DECK_PATH = "res://map/draft/decks/"
 const CARD_POOL_PATH = "res://map/draft/pool"
 
