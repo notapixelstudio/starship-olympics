@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.gd" type="Script" id=1]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=2]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Leaderboard.tscn" type="PackedScene" id=3]
 [ext_resource path="res://special_scenes/combat_UI/gameover/AreYouSure.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/audio/soundtracks/273300__frankum__electronic-base-and-pop-guitar.ogg" type="AudioStream" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -17,6 +18,7 @@ anchor_bottom = 1.0
 mouse_filter = 1
 mouse_default_cursor_shape = 10
 script = ExtResource( 1 )
+bgm = ExtResource( 5 )
 sure_scene = ExtResource( 4 )
 
 [node name="Animator" type="AnimationPlayer" parent="."]

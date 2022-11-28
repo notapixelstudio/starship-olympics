@@ -20,7 +20,6 @@ var players_controls : Array
 var num_players : int = 0
 var list_fire_action := {}
 func _ready():
-	# Soundtrack.play("Lobby", true)
 	fight_node.visible = false
 	post_ready()
 	for action in InputMap.get_actions():

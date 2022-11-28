@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://WorldEnvironment.tres" type="Environment" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://ui/menu_scenes/title_screen/TitleScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/menu_scenes/title_screen/MainScreen.gd" type="Script" id=8]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/audio/soundtracks/PM_ATG_120_3_3+PM_NIGHTPULSE_120BPM_06.ogg" type="AudioStream" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
@@ -81,6 +82,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
 script = ExtResource( 8 )
+bgm = ExtResource( 10 )
 
 [node name="Overlays" type="CanvasLayer" parent="."]
 layer = 100

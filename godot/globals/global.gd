@@ -212,8 +212,6 @@ func _set_sfx_volume(new_value):
 # DEBUG
 var debug : bool = false
 
-# Soundtrack
-onready var bgm = Soundtrack
 # Controls
 enum Controls {KB1, KB2, JOY1, JOY2, JOY3, JOY4,RM1,RM2,RM3,RM4, NO, CPU}
 

@@ -176,7 +176,7 @@ func _ready():
 		$CanvasLayer/HUD.queue_free()
 	else:
 		camera.enabled = global.enable_camera
-		Soundtrack.fade_out()
+		AudioManager.fade_out()
 		
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = global.demo
@@ -425,9 +425,7 @@ func _ready():
 		yield(mode_description, "ready_to_fight")
 	
 	if style and style.bgm:
-		Soundtrack.play(style.bgm, true)
-	else:
-		Soundtrack.stop()
+		AudioManager.play_bgm(style.get_bgm())
 	
 	if place_ships_at_start:
 		spawn_all_ships()
