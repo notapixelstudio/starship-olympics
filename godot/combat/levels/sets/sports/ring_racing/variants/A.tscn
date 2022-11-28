@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://actors/environments/Gate.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/environments/PortalGate.tscn" type="PackedScene" id=2]
-[ext_resource path="res://actors/environments/Gate.gd" type="Script" id=3]
-[ext_resource path="res://actors/environments/PortalGate.gd" type="Script" id=4]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=5]
 
 [sub_resource type="Animation" id=17]
 length = 0.001
@@ -319,74 +320,50 @@ tracks/1/keys = {
 
 [node name="A" type="Node2D"]
 
-[node name="PortalGate" type="Area2D" parent="." groups=["gates", "in_camera"] instance=ExtResource( 2 )]
+[node name="PortalGate" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1950, 900 )
 rotation = 3.14159
-collision_layer = 0
-collision_mask = 8705
-script = ExtResource( 4 )
 width = 700.0
 linked_to_path = NodePath("../PortalGate2")
 
-[node name="PortalGate2" type="Area2D" parent="." groups=["gates", "in_camera"] instance=ExtResource( 2 )]
+[node name="PortalGate2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -1900, -900 )
 rotation = 3.14159
-collision_layer = 0
-collision_mask = 8705
-script = ExtResource( 4 )
 width = 700.0
 tint = Color( 0, 0.368627, 1, 1 )
 inverted = true
 
-[node name="Gate11" type="Area2D" parent="." groups=["gates"] instance=ExtResource( 1 )]
+[node name="Gate11" parent="." instance=ExtResource( 1 )]
 position = Vector2( 300, -900 )
 rotation = 3.14159
-collision_layer = 0
-collision_mask = 513
-script = ExtResource( 3 )
 show_arrow = false
 
-[node name="Gate12" type="Area2D" parent="." groups=["gates"] instance=ExtResource( 1 )]
+[node name="Gate12" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1000, -900 )
 rotation = 3.14159
-collision_layer = 0
-collision_mask = 513
-script = ExtResource( 3 )
 width = 400.0
 show_arrow = false
 
-[node name="Gate16" type="Area2D" parent="." groups=["gates"] instance=ExtResource( 1 )]
+[node name="Gate16" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1700, -900 )
 rotation = 3.14159
-collision_layer = 0
-collision_mask = 513
-script = ExtResource( 3 )
 width = 250.0
 show_arrow = false
 
-[node name="Gate13" type="Area2D" parent="." groups=["gates"] instance=ExtResource( 1 )]
+[node name="Gate13" parent="." instance=ExtResource( 1 )]
 position = Vector2( 2200, -450 )
 rotation = 4.71239
-collision_layer = 0
-collision_mask = 513
-script = ExtResource( 3 )
 width = 700.0
 show_arrow = false
 
-[node name="Gate17" type="Area2D" parent="." groups=["gates"] instance=ExtResource( 1 )]
+[node name="Gate17" parent="." instance=ExtResource( 1 )]
 position = Vector2( -2050, 150 )
 rotation = -0.785398
-collision_layer = 0
-collision_mask = 513
-script = ExtResource( 3 )
 width = 350.0
 show_arrow = false
 
-[node name="Gate15" type="Area2D" parent="." groups=["gates"] instance=ExtResource( 1 )]
+[node name="Gate15" parent="." instance=ExtResource( 1 )]
 position = Vector2( 450, 0 )
-collision_layer = 0
-collision_mask = 513
-script = ExtResource( 3 )
 width = 500.0
 show_arrow = false
 
@@ -394,11 +371,8 @@ show_arrow = false
 anims/RESET = SubResource( 17 )
 anims/Rotate = SubResource( 18 )
 
-[node name="Gate5" type="Area2D" parent="." groups=["gates"] instance=ExtResource( 1 )]
+[node name="Gate5" parent="." instance=ExtResource( 1 )]
 position = Vector2( 150, 0 )
-collision_layer = 0
-collision_mask = 513
-script = ExtResource( 3 )
 width = 500.0
 show_arrow = false
 
@@ -406,11 +380,8 @@ show_arrow = false
 anims/RESET = SubResource( 1 )
 anims/Rotate = SubResource( 2 )
 
-[node name="Gate6" type="Area2D" parent="." groups=["gates"] instance=ExtResource( 1 )]
+[node name="Gate6" parent="." instance=ExtResource( 1 )]
 position = Vector2( -450, 0 )
-collision_layer = 0
-collision_mask = 513
-script = ExtResource( 3 )
 width = 500.0
 show_arrow = false
 
@@ -418,11 +389,8 @@ show_arrow = false
 anims/RESET = SubResource( 3 )
 anims/Rotate = SubResource( 4 )
 
-[node name="Gate7" type="Area2D" parent="." groups=["gates"] instance=ExtResource( 1 )]
+[node name="Gate7" parent="." instance=ExtResource( 1 )]
 position = Vector2( -150, 0 )
-collision_layer = 0
-collision_mask = 513
-script = ExtResource( 3 )
 width = 500.0
 show_arrow = false
 
@@ -430,12 +398,9 @@ show_arrow = false
 anims/RESET = SubResource( 5 )
 anims/Rotate = SubResource( 6 )
 
-[node name="Gate8" type="Area2D" parent="." groups=["gates"] instance=ExtResource( 1 )]
+[node name="Gate8" parent="." instance=ExtResource( 1 )]
 position = Vector2( -1600, 900 )
 rotation = 3.14159
-collision_layer = 0
-collision_mask = 513
-script = ExtResource( 3 )
 width = 700.0
 show_arrow = false
 
@@ -443,12 +408,9 @@ show_arrow = false
 anims/RESET = SubResource( 7 )
 anims/Rotate = SubResource( 8 )
 
-[node name="Gate19" type="Area2D" parent="." groups=["gates"] instance=ExtResource( 1 )]
+[node name="Gate19" parent="." instance=ExtResource( 1 )]
 position = Vector2( -100, 900 )
 rotation = 3.14159
-collision_layer = 0
-collision_mask = 513
-script = ExtResource( 3 )
 width = 700.0
 show_arrow = false
 
@@ -456,12 +418,9 @@ show_arrow = false
 anims/RESET = SubResource( 11 )
 anims/Rotate = SubResource( 12 )
 
-[node name="Gate9" type="Area2D" parent="." groups=["gates"] instance=ExtResource( 1 )]
+[node name="Gate9" parent="." instance=ExtResource( 1 )]
 position = Vector2( -850, 900 )
 rotation = 3.14159
-collision_layer = 0
-collision_mask = 513
-script = ExtResource( 3 )
 width = 700.0
 show_arrow = false
 
@@ -469,12 +428,9 @@ show_arrow = false
 anims/RESET = SubResource( 9 )
 anims/Rotate = SubResource( 10 )
 
-[node name="Gate18" type="Area2D" parent="." groups=["gates"] instance=ExtResource( 1 )]
+[node name="Gate18" parent="." instance=ExtResource( 1 )]
 position = Vector2( -500, -900 )
 rotation = 3.14159
-collision_layer = 0
-collision_mask = 513
-script = ExtResource( 3 )
 width = 700.0
 show_arrow = false
 
@@ -483,12 +439,9 @@ playback_speed = 0.15
 anims/RESET = SubResource( 15 )
 anims/Rotate = SubResource( 16 )
 
-[node name="Gate20" type="Area2D" parent="." groups=["gates"] instance=ExtResource( 1 )]
+[node name="Gate20" parent="." instance=ExtResource( 1 )]
 position = Vector2( 900, 900 )
 rotation = 3.14159
-collision_layer = 0
-collision_mask = 513
-script = ExtResource( 3 )
 width = 700.0
 show_arrow = false
 
@@ -501,5 +454,13 @@ points = PoolVector2Array( 1750, 900, -1900, 900, -2200, 600, -2200, 300, -1900,
 width = 130.0
 default_color = Color( 0.133333, 0.666667, 1, 0.313726 )
 
-[connection signal="crossed" from="PortalGate" to="PortalGate" method="_on_PortalGate_crossed"]
-[connection signal="crossed" from="PortalGate2" to="PortalGate2" method="_on_PortalGate_crossed"]
+[node name="p1" parent="." instance=ExtResource( 3 )]
+position = Vector2( -2400, -1050 )
+rotation = 0.0
+species = ExtResource( 5 )
+
+[node name="p2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -2400, -750 )
+rotation = 0.0
+controls = "kb2"
+species = ExtResource( 4 )

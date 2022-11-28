@@ -54,7 +54,6 @@ onready var conquest_manager = $Managers/ConquestManager
 onready var pursue_manager = $Managers/PursueManager
 onready var snake_trail_manager = $Managers/TrailManager
 
-onready var SpawnPlayers = $SpawnPositions/Players
 onready var camera = $Camera
 onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
@@ -192,9 +191,6 @@ func _ready():
 	get_tree().get_root().connect("size_changed", self, "compute_arena_size")
 	run_time = OS.get_ticks_msec()
 	
-	# get number of players
-	# n_players = get_num_players()
-	
 	# Analytics
 	analytics.start_elapsed_time()
 
@@ -245,7 +241,7 @@ func _ready():
 	if global.is_game_running():
 		array_players = global.the_game.get_players()
 	
-	var spawners = $SpawnPositions/Players.get_children()
+	var spawners = get_tree().get_nodes_in_group('player_spawner')
 	# Randomize player position at start: https://github.com/notapixelstudio/superstarfighter/issues/399
 	# works with a session, not if you run from scene
 	if random_starting_position:
@@ -474,7 +470,7 @@ const COUNTDOWN_LIMIT = 5.0
 
 func spawn_all_ships(do_intro = false):
 	var j = 0
-	var player_spawners = $SpawnPositions/Players.get_children()
+	var player_spawners = get_tree().get_nodes_in_group('player_spawner')
 	
 	for s in player_spawners:
 		var spawner = s as PlayerSpawner
@@ -540,13 +536,6 @@ func _unhandled_input(event):
 func reset(level):
 	someone_died = false
 	get_tree().change_scene_to(load("res://screens/game_screen/levels/"+level))
-
-func get_num_players()->int:
-	"""
-	Depending on the arena we are in.
-	Works after ready
-	"""
-	return SpawnPlayers.get_child_count()
 
 func _on_background_item_rect_changed():
 	print_debug("Windows changed")
