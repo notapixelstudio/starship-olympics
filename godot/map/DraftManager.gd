@@ -136,7 +136,7 @@ func selections_maybe_all_done():
 		hand_node.sync_with_hand()
 		print("In the hand there are now {num_cards} cards".format({"num_cards": len(hand)}))
 		
-		var deck = global.the_game.get_deck()
+		var deck: Deck = global.the_game.get_deck()
 		
 		# all discarded cards get a strike
 		var to_be_put_back = []
@@ -150,7 +150,8 @@ func selections_maybe_all_done():
 		
 		# shuffle the remaining cards right back into the deck
 		deck.append_cards(to_be_put_back)
-		deck.shuffle()
+		if deck.shuffle_before_dealing:
+			deck.shuffle()
 		
 		self.pick_next_card()
 		# empty players_choices for the next round

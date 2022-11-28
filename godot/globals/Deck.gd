@@ -8,7 +8,7 @@ var cards : Array = [] # of DraftCard
 var played_pile : Array = [] # of DraftCard
 var next : Array = [] # of DrafCard
 var remembered_card_ids : Dictionary = {} # String -> bool
-
+var shuffle_before_dealing:= true
 const DECK_PATH = "res://map/draft/decks/"
 const CARD_POOL_PATH = "res://map/draft/pool"
 
@@ -23,6 +23,7 @@ func setup():
 	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
 	print("starting deck will be "+ global.starting_deck)
 	var starting_deck: StartingDeck = global.get_actual_resource(decks, global.starting_deck)
+	shuffle_before_dealing = starting_deck.shuffle_before_dealing
 	#var starting_deck = load(DECK_PATH+'/winter.tres')
 	append_cards(starting_deck.deal_cards())
 	next.append_array(starting_deck.get_nexts())
