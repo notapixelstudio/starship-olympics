@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://actors/environments/FlagPole.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -8,11 +8,12 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/modes/CaptureTheFlag.tres" type="Resource" id=9]
+[ext_resource path="res://combat/modes/CaptureTheFlags.tres" type="Resource" id=9]
 [ext_resource path="res://actors/environments/ShieldWall.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=12]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=13]
+[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=14]
 [ext_resource path="res://actors/brains/TakeTheCrownBrain.tscn" type="PackedScene" id=15]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
 
@@ -66,6 +67,27 @@ bg_color = Color( 0.28, 0.14, 0.14, 1 )
 
 [node name="FloodWater" parent="Battlefield/Background" index="6"]
 opaque_tint = Color( 0, 0, 0, 1 )
+
+[node name="Wall" parent="Battlefield/Background" index="7" instance=ExtResource( 5 )]
+position = Vector2( -3600, 0 )
+
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/Wall" index="8"]
+script = ExtResource( 14 )
+__meta__ = {
+"_editor_description_": ""
+}
+polygon = PoolVector2Array( 0, -600, 0, 600, -600, 0 )
+
+[node name="Wall2" parent="Battlefield/Background" index="8" instance=ExtResource( 5 )]
+position = Vector2( 3600, 0 )
+rotation = 3.14159
+
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/Wall2" index="8"]
+script = ExtResource( 14 )
+__meta__ = {
+"_editor_description_": ""
+}
+polygon = PoolVector2Array( 0, -600, 0, 600, -600, 0 )
 
 [node name="ShieldWall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
 position = Vector2( -600, 600 )

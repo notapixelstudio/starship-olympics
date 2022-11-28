@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=1]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=2]
@@ -13,9 +13,10 @@
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=11]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=12]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=13]
-[ext_resource path="res://combat/modes/CaptureTheFlag.tres" type="Resource" id=14]
+[ext_resource path="res://combat/modes/CaptureTheFlags.tres" type="Resource" id=14]
 [ext_resource path="res://actors/environments/FlagPole.tscn" type="PackedScene" id=15]
 [ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=16]
+[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=17]
 
 [node name="Arena" instance=ExtResource( 9 )]
 size_multiplier = 2.5
@@ -71,6 +72,27 @@ bg_color = Color( 0.28, 0.14, 0.14, 1 )
 
 [node name="FloodWater" parent="Battlefield/Background" index="7"]
 opaque_tint = Color( 0, 0, 0, 1 )
+
+[node name="Wall" parent="Battlefield/Background" index="8" instance=ExtResource( 7 )]
+position = Vector2( -4800, 0 )
+
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/Wall" index="8"]
+script = ExtResource( 17 )
+__meta__ = {
+"_editor_description_": ""
+}
+polygon = PoolVector2Array( 0, -600, 0, 600, -600, 0 )
+
+[node name="Wall2" parent="Battlefield/Background" index="9" instance=ExtResource( 7 )]
+position = Vector2( 4800, 0 )
+rotation = 3.14159
+
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/Wall2" index="8"]
+script = ExtResource( 17 )
+__meta__ = {
+"_editor_description_": ""
+}
+polygon = PoolVector2Array( 0, -600, 0, 600, -600, 0 )
 
 [node name="ShieldWall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
 position = Vector2( -1800, 600 )
@@ -179,13 +201,11 @@ species = ExtResource( 1 )
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 3 )]
 position = Vector2( 1200, 950 )
 rotation = -1.5708
-scale = Vector2( 1, 1 )
 species = ExtResource( 13 )
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 3 )]
 position = Vector2( 3350, -950 )
 rotation = 2.35619
-scale = Vector2( 1, 1 )
 species = ExtResource( 16 )
 
 [node name="Camera" parent="." index="7"]

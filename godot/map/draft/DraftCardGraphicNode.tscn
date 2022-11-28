@@ -13,7 +13,7 @@
 [ext_resource path="res://assets/sprites/cards/half_card.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=1]
-size = 96
+size = 84
 outline_size = 7
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
@@ -45,9 +45,6 @@ take_ownership = true
 multiple_owners = true
 float_when_selected = false
 order_id = 0
-
-[node name="Front" parent="Ground" index="1"]
-scale = Vector2( 0.22223, 1 )
 
 [node name="Background" parent="Ground/Front" index="0"]
 modulate = Color( 0.360784, 0.345098, 0.337255, 1 )
@@ -83,10 +80,10 @@ flip_v = true
 
 [node name="MinigameIconShadow" type="Sprite" parent="Ground/Front" index="9"]
 modulate = Color( 0, 0, 0, 0.392157 )
-position = Vector2( 0, -24 )
+position = Vector2( 0, -23 )
 
 [node name="MinigameIcon" type="Sprite" parent="Ground/Front" index="10"]
-position = Vector2( 0, -33 )
+position = Vector2( 0, -32 )
 
 [node name="MinigameLabelWrapper" type="Node2D" parent="Ground/Front" index="11"]
 position = Vector2( 0, 9 )
