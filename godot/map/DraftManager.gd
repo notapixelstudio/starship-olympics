@@ -14,6 +14,7 @@ var pass_node : Node
 var message_node : Typewriter
 var ships_have_to_choose := false
 var hand_refills := 0
+var playlist_mode := false
 
 const HAND_SIZE = 4
 
@@ -31,15 +32,17 @@ func _ready():
 	pass_node = get_node(pass_path)
 	message_node = get_node(message_node_path)
 	
+	playlist_mode = not global.the_game.get_deck().shuffle_before_dealing
+	
 	var hand = global.session.get_hand()
 	if len(hand) > 0:
-		self.populate_hand(hand.duplicate())
-		self.pick_next_card()
+		populate_hand(hand.duplicate())
+		pick_next_card()
 	else:
 		if global.session.recovered_from_session:
-			self.continue_draft(false)
+			continue_draft(false)
 		else:
-			self.continue_draft(true)
+			continue_draft(true)
 	hand_node.sync_with_hand()
 	
 func _on_continue_after_game_over(session_ended):
@@ -172,7 +175,7 @@ func pick_next_card():
 	yield(self, "card_chosen")
 	Events.emit_signal("minigame_selected", picked_card)
 
-func add_card(card: DraftCard, selected=false):
+func add_card(card: DraftCard, selected=false, faceup=true):
 	# will put the card in first empty position
 	var draft_card:DraftCardGraphicNode = draft_card_scene.instance()
 	draft_card.set_content_card(card)
@@ -184,14 +187,16 @@ func add_card(card: DraftCard, selected=false):
 	yield(get_tree().create_timer(0.5), "timeout")
 	if selected:
 		draft_card.select()
-	draft_card.reveal()
+	if faceup:
+		draft_card.reveal()
 	
 func sort_hand(a, b):
 	return b.new
 	
 func populate_hand(hand: Array):
-	# shake things up
-	hand.shuffle()
+	if not playlist_mode:
+		# shake things up
+		hand.shuffle()
 	
 	# keep the new cards at the rightmost place
 	#hand.sort_custom(self, "sort_hand")
@@ -199,7 +204,7 @@ func populate_hand(hand: Array):
 	for card in hand:
 		(card as DraftCard).on_card_drawn()
 		yield(get_tree().create_timer(0.1), "timeout")
-		add_card(card, not ships_have_to_choose) # if ships have not to choose, cards are already selected
+		add_card(card, not playlist_mode and not ships_have_to_choose, not playlist_mode) # if ships have not to choose, cards are already selected
 	hand_node.update_card_positions()
 	
 func animate_selection(picked_card: DraftCard):
@@ -222,12 +227,19 @@ func animate_selection(picked_card: DraftCard):
 			break
 		index+=1
 	
-	random_selection(hand_node.get_all_cards(), index_selection)
-	yield(self, "selection_finished")
-	chosen_card.chosen = true
-	var wait_time = 0.5
-	yield(get_tree().create_timer(wait_time), "timeout")
-	chosen_card.chosen = false
+	if playlist_mode:
+		if chosen_card.face_down:
+			chosen_card.reveal()
+			yield(chosen_card, "revealed")
+			chosen_card.select()
+			yield(get_tree().create_timer(0.9), "timeout")
+	else:
+		random_selection(hand_node.get_all_cards(), index_selection)
+		yield(self, "selection_finished")
+		chosen_card.chosen = true
+		yield(get_tree().create_timer(0.7), "timeout")
+		chosen_card.chosen = false
+		
 	chosen_card.gracefully_zoom_in()
 	yield(chosen_card, "zoomed_in")
 	# TODO: danger of lock

@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=2]
 [ext_resource path="res://combat/managers/RespawnFromHomeManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/levels/sets/combat/skull_collector/variants/B.tscn" type="PackedScene" id=4]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=5]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
@@ -29,7 +30,7 @@ skull_scene = ExtResource( 13 )
 
 [node name="RespawnFromHomeManager" parent="Managers" index="1" instance=ExtResource( 3 )]
 
-[node name="KillModeManager" parent="Managers" index="11"]
+[node name="KillModeManager" parent="Managers" index="10"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -145,6 +146,7 @@ alternating_angle = 0
 rotation_degrees = 0
 
 [node name="SkullVariants" parent="Battlefield/Middleground" index="6" instance=ExtResource( 12 )]
+variant_scenes = [ ExtResource( 4 ) ]
 
 [node name="SkullHole" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
 position = Vector2( -1600, 450 )
