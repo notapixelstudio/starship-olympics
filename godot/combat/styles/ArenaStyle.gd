@@ -13,5 +13,5 @@ export var wall_color : Color = Color8(208, 245, 295, 255)
 export var wall_texture : Texture
 export var bgm : AudioStream
 
-func get_bgm():
-	return
+func get_bgm() -> AudioStream:
+	return bgm

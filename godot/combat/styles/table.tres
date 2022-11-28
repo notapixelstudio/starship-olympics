@@ -1,7 +1,8 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://combat/styles/ArenaStyle.gd" type="Script" id=1]
 [ext_resource path="res://assets/patterns/rhombus.png" type="Texture" id=2]
+[ext_resource path="res://assets/audio/soundtracks/Bhangra_bass-PunchDeck.ogg" type="AudioStream" id=3]
 
 [resource]
 script = ExtResource( 1 )
@@ -13,4 +14,4 @@ battlefield_fg_color = Color( 0.42, 0.189, 0.189, 1 )
 battlefield_bg_color = Color( 0.4, 0.124, 0.1286, 1 )
 battlefield_opacity = 0.9
 wall_color = Color( 1.12, 0.51, 1.12, 1 )
-bgm = "collect"
+bgm = ExtResource( 3 )

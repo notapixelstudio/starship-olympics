@@ -1,7 +1,8 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://combat/styles/ArenaStyle.gd" type="Script" id=1]
 [ext_resource path="res://assets/patterns/hearts.png" type="Texture" id=2]
+[ext_resource path="res://assets/audio/soundtracks/music_zapsplat_well_oiled_machine_114.ogg" type="AudioStream" id=3]
 
 [resource]
 script = ExtResource( 1 )
@@ -13,4 +14,4 @@ battlefield_fg_color = Color( 0.478431, 0.313726, 0.423529, 1 )
 battlefield_bg_color = Color( 0.45, 0.2835, 0.3945, 1 )
 battlefield_opacity = 0.9
 wall_color = Color( 1.1, 0.8, 0.8, 1 )
-bgm = "match"
+bgm = ExtResource( 3 )

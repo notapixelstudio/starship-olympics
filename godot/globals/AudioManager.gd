@@ -40,10 +40,7 @@ func fade_out(duration=3.0):
 	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 
 	tween.connect("finished", self, "comeback")
-	tween.interpolate_property($"%bgm", "volume_db",
-		0, -80, duration,
-		Tween.TRANS_SINE, Tween.EASE_IN)
-	tween.start()
+	tween.tween_property($"%bgm", "volume_db", -80, duration)
 
 func comeback():
 	$"%bgm".volume_db=0
