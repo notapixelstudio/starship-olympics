@@ -60,6 +60,8 @@ const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
 const ARKABALL_OFFSET = 200
 const ARKABALL_MULTIPLIER = 1.5
+const MAGNETIC_OFFSET = 200
+const MAGNETIC_MULTIPLIER = 1.5
 const ON_ICE_MAX_THRUST = 2200
 const ON_ICE_MAX_DASH = 2500
 const ON_ICE_CHARGE_BRAKE = 0.99
@@ -191,6 +193,7 @@ func reset_health():
 func _enter_tree():
 	alive = true
 	outside_countup = 0
+	empty_loaded_shot()
 	
 	reset_health()
 	
@@ -445,6 +448,12 @@ func charge():
 	charging = true
 	emit_signal("charging_started")
 	
+	# check if we catch anything with a magnetic field
+	for area in $NearArea.get_overlapping_areas():
+		if traits.has_trait(area, 'Magnetic'):
+			load_shot(area.get_body())
+			break # just one
+	
 	if get_bombs_enabled() and not $'%Ammo'.is_empty():
 		$'%BombPreview/BombType'.self_modulate = Color(1,1,1,1)
 	
@@ -493,6 +502,13 @@ func fire(override_charge = -1, dash_only = false):
 					
 			if bomb_type == GameMode.BOMB_TYPE.bubble:
 				next_symbol()
+	elif loaded_shot != null:
+		var impulse = charge_impulse*MAGNETIC_MULTIPLIER
+		loaded_shot.position = position + Vector2(-MAGNETIC_OFFSET,0).rotated(rotation)
+		loaded_shot.linear_velocity = Vector2.ZERO
+		loaded_shot.apply_central_impulse(Vector2(-impulse,0).rotated(rotation))
+		get_parent().add_child(loaded_shot)
+		empty_loaded_shot()
 	
 	# repeal
 	#$GravitonField.repeal(charge_impulse)
@@ -1074,3 +1090,14 @@ func _on_charge_requested() -> void:
 func _on_release_requested() -> void:
 	fire()
 	
+var loaded_shot = null
+func load_shot(body: RigidBody2D) -> void:
+	loaded_shot = body
+	body.get_parent().remove_child(body)
+	$LoadedShot.texture = body.get_texture()
+	$LoadedShot.modulate = body.get_color()
+	
+	
+func empty_loaded_shot() -> void:
+	loaded_shot = null
+	$LoadedShot.texture = null
