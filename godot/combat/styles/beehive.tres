@@ -1,16 +1,16 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://combat/styles/ArenaStyle.gd" type="Script" id=1]
-[ext_resource path="res://assets/patterns/arrows.png" type="Texture" id=2]
+[ext_resource path="res://assets/patterns/hexes.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
 battlefield_texture = ExtResource( 2 )
-battlefield_texture_offset = Vector2( 0, 0 )
-battlefield_texture_scale = Vector2( 0.2, 0.2 )
+battlefield_texture_offset = Vector2( 0, 80 )
+battlefield_texture_scale = Vector2( 0.67, 0.67 )
 battlefield_texture_rotation_degrees = 0.0
-battlefield_fg_color = Color( 0.35, 0.215833, 0, 1 )
-battlefield_bg_color = Color( 0.38, 0.240667, 0, 1 )
+battlefield_fg_color = Color( 0.4, 0.258824, 0, 1 )
+battlefield_bg_color = Color( 0.28, 0.182, 0, 1 )
 battlefield_opacity = 1.0
 wall_color = Color( 1.15, 0.85, 0.58, 1 )
 bgm = "conquer"
