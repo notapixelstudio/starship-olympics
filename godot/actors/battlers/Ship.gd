@@ -536,6 +536,11 @@ func damage(hazard, damager : Ship):
 	if invincible or not alive:
 		return
 		
+	# check if we lose cargo instead
+	if get_cargo().has_holdable():
+		get_cargo().drop_holdable(hazard)
+		return
+		
 	self.set_health(health - 1)
 	
 	if health < -1:

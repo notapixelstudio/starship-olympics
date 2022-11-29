@@ -629,7 +629,7 @@ func ship_just_died(ship, killer, for_good):
 		return
 	
 	var respawn_timeout = 1.5
-	if game_mode.id == 'crown' or game_mode.id == 'queen_of_the_hive':
+	if game_mode.id == 'rocket_crown' or game_mode.id == 'rocket_queen_of_the_hive':
 		#respawn_timeout = 0.75
 		var cargo = ship.get_cargo()
 		if cargo.has_holdable() and cargo.get_holdable().has_type('crown'):

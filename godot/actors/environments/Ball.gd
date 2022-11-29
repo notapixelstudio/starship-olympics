@@ -30,7 +30,8 @@ func refresh():
 	
 func place_and_push(dropper, velocity, direction:='forward') -> void:
 	var dir = 1.0 if direction == 'forward' else -1.0
-	global_position = dropper.global_position + dir*Vector2(GRAB_DISTANCE,0).rotated(dropper.global_rotation)
+	var grab_distance = 0 if show_on_top() else GRAB_DISTANCE
+	global_position = dropper.global_position + dir*Vector2(grab_distance,0).rotated(dropper.global_rotation)
 	
 	linear_velocity = velocity if direction == 'forward' else -velocity
 	
