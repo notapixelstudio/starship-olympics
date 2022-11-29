@@ -14,13 +14,13 @@ func _on_ship_collided(other : CollisionObject2D, ship : Ship):
 		if entity.has('Owned'):
 			var owner = entity.get('Owned').get_owned_by()
 			if owner != ship:
-				ship.damage(other, owner)
+				ship.die(owner)
 			else:
 				var possibly_bomb = entity.get_host()
 				if possibly_bomb is Bomb and (possibly_bomb.type == GameMode.BOMB_TYPE.bullet or possibly_bomb.type == GameMode.BOMB_TYPE.ball):
 					pass
 				elif not(other is BombCore): # bomb cores do not self kill
-					ship.damage(other, owner)
+					ship.die(owner)
 		else:
 			ship.die(null)
 			
