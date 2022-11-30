@@ -14,15 +14,15 @@ func think():
 	
 	if controllee.get_cargo().check_class(Ball):
 		targets = get_tree().get_nodes_in_group('Ship')
-		assert(len(targets) > 1 and len(targets) <= 4)
-		var escape_vector := Vector2.ZERO
-		for target in targets:
-			if target != controllee:
-				escape_vector -= target.get_target_destination() - global_position
-				
-		go_to(global_position + escape_vector)
-		log_strategy('escape')
-		return
+		if len(targets) > 0:
+			var escape_vector := Vector2.ZERO
+			for target in targets:
+				if target != controllee:
+					escape_vector -= target.get_target_destination() - global_position
+					
+			go_to(global_position + escape_vector)
+			log_strategy('escape')
+			return
 	
 	targets = get_tree().get_nodes_in_group('Ball')
 	assert(len(targets) >= 0 and len(targets) <= 1)
@@ -32,13 +32,13 @@ func think():
 		return
 	
 	targets = get_tree().get_nodes_in_group('Ship')
-	assert(len(targets) > 1 and len(targets) <= 4)
-	for target in targets:
-		if target != controllee and target.get_cargo().check_class(Ball):
-			set_stance('aggressive')
-			go_to(target.get_target_destination())
-			log_strategy('chase ship')
-			return
+	if len(targets) > 0:
+		for target in targets:
+			if target != controllee and target.get_cargo().check_class(Ball):
+				set_stance('aggressive')
+				go_to(target.get_target_destination())
+				log_strategy('chase ship')
+				return
 
 func _on_holdable_obtained(holdable, ship):
 	if ship != controllee:
