@@ -901,15 +901,15 @@ func submerge():
 	under = true
 	z_as_relative = false
 	z_index = -50
-	set_collision_layer_bit(0, false)
-	set_collision_layer_bit(18, true)
+	call_deferred('set_collision_layer_bit', 0, false)
+	call_deferred('set_collision_layer_bit', 18, true)
 	
 func emerge():
 	under = false
 	z_as_relative = true
 	z_index = 0
-	set_collision_layer_bit(0, true)
-	set_collision_layer_bit(18, false)
+	call_deferred('set_collision_layer_bit', 0, true)
+	call_deferred('set_collision_layer_bit', 18, false)
 	
 signal frozen
 func freeze():
@@ -1031,7 +1031,7 @@ func end_drift():
 #	$CollisionShape2D.shape.radius = 48*size*sqrt(size)
 	
 func set_holder(v: bool) -> void:
-	set_collision_layer_bit(21, v)
+	call_deferred('set_collision_layer_bit', 21, v)
 
 func is_holder() -> bool:
 	return get_collision_layer_bit(21)
@@ -1040,10 +1040,10 @@ func phase_in() -> void:
 	if phasing_in_prevented:
 		return
 		
-	set_collision_layer_bit(22, true)
+	call_deferred('set_collision_layer_bit', 22, true)
 	
 func phase_out() -> void:
-	set_collision_layer_bit(22, false)
+	call_deferred('set_collision_layer_bit', 22, false)
 	
 func set_phasing_in_prevented(v: bool) -> void:
 	phasing_in_prevented = v
