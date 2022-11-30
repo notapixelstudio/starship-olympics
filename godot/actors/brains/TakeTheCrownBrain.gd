@@ -25,7 +25,6 @@ func think():
 			return
 	
 	targets = get_tree().get_nodes_in_group('Ball')
-	assert(len(targets) >= 0 and len(targets) <= 1)
 	if len(targets) > 0:
 		go_to(targets[0].global_position)
 		log_strategy('chase ball')
