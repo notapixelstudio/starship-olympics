@@ -184,6 +184,11 @@ func _ready():
 	# Setup goal, Gear and mode managers
 	setup_level(game_mode)
 	
+	# load specialized CPU brain, if any
+	var cpu_brain_from_game_mode = game_mode.get_cpu_brain_scene()
+	if cpu_brain_from_game_mode:
+		cpu_brain_scene = cpu_brain_from_game_mode
+	
 	camera.zoom *= size_multiplier
 	
 	# Engine.time_scale = 0.2
