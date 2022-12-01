@@ -53,13 +53,13 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[node name="Tile" type="Area2D"]
+[node name="Tile" type="Area2D" groups=["Tile"]]
 modulate = Color( 0.9, 0.9, 0.9, 1 )
 collision_layer = 128
 script = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 6.12303e-15, 100, -100, 1.22461e-14, -1.83691e-14, -100, 100, -2.44921e-14 )
+polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -100, 100, -2.44929e-14 )
 
 [node name="GRegularPolygon" type="Node" parent="."]
 script = ExtResource( 7 )
@@ -76,7 +76,7 @@ rotation_degrees = 0
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( -6.99382e-07, 16 )
 scale = Vector2( 1.05, 1.05 )
-polygon = PoolVector2Array( 6.12303e-15, 100, -100, 1.22461e-14, -1.83691e-14, -100, 100, -2.44921e-14 )
+polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -100, 100, -2.44929e-14 )
 
 [node name="Graphics" type="Node2D" parent="."]
 position = Vector2( -1.39876e-06, 32 )
@@ -86,7 +86,7 @@ self_modulate = Color( 0.129412, 0.129412, 0.129412, 1 )
 scale = Vector2( 0.85, 0.85 )
 z_index = -15
 z_as_relative = false
-polygon = PoolVector2Array( 6.12303e-15, 100, -100, 1.22461e-14, -1.83691e-14, -100, 100, -2.44921e-14 )
+polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -100, 100, -2.44929e-14 )
 
 [node name="Partial" type="Sprite" parent="Graphics"]
 visible = false
@@ -96,6 +96,7 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 5 )
 
 [node name="Wrapper" type="Node2D" parent="Graphics"]
+position = Vector2( 10, 0 )
 
 [node name="Label" type="Label" parent="Graphics/Wrapper"]
 self_modulate = Color( 1, 1, 1, 0.705882 )
@@ -114,7 +115,7 @@ collision_layer = 0
 collision_mask = 128
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Neighbourhood"]
-polygon = PoolVector2Array( 6.12303e-15, 100, -100, 1.22461e-14, -1.83691e-14, -100, 100, -2.44921e-14 )
+polygon = PoolVector2Array( 6.12323e-15, 100, -100, 1.22465e-14, -1.83697e-14, -100, 100, -2.44929e-14 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/flip = SubResource( 2 )
