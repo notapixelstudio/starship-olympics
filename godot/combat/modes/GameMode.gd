@@ -3,14 +3,12 @@ extends Resource
 class_name GameMode
 
 export var id : String
-export var is_mutator: bool = false
 export var name : String
 export var icon : StreamTexture
-export var logo: StreamTexture
 export var arena_style : Resource = null
 export var description : String
-export var tagline_pro : String
-export var tagline_cons : String
+export var cpu_brain : PackedScene
+
 export var max_timeout : int = 120
 export var max_score: int = 100
 export var starting_score : int = 0
@@ -58,4 +56,7 @@ func get_id():
 	
 func get_icon():
 	return icon
+	
+func get_cpu_brain_scene() -> PackedScene:
+	return cpu_brain
 	

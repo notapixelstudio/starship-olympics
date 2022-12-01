@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://combat/levels/sets/core/diamondsnatch/DiamondsnatchVariants.tscn" type="PackedScene" id=1]
 [ext_resource path="res://combat/levels/background/blue.png" type="Texture" id=2]
@@ -13,14 +13,12 @@
 [ext_resource path="res://combat/levels/background/palace_wall.png" type="Texture" id=11]
 [ext_resource path="res://assets/patterns/rhombus.png" type="Texture" id=12]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=13]
-[ext_resource path="res://actors/brains/DiamondsnatchBrain.tscn" type="PackedScene" id=14]
 [ext_resource path="res://combat/modes/Diamondsnatch.tres" type="Resource" id=15]
 [ext_resource path="res://combat/managers/SpawnerManager.tscn" type="PackedScene" id=20]
 
 [node name="Arena" instance=ExtResource( 10 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 15 )
-cpu_brain_scene = ExtResource( 14 )
 
 [node name="SpawnerManager" parent="Managers" index="0" instance=ExtResource( 20 )]
 
