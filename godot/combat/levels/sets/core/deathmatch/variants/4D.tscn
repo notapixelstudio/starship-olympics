@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=4]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
@@ -21,6 +22,9 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
+[node name="NavigationZone" parent="Wall7" instance=ExtResource( 1 )]
+offset_type = "outset"
+
 [node name="Wall8" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1000, -550 )
 rotation = -0.785398
@@ -35,3 +39,6 @@ bevel_nw = 50
 bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
+
+[node name="NavigationZone" parent="Wall8" instance=ExtResource( 1 )]
+offset_type = "outset"
