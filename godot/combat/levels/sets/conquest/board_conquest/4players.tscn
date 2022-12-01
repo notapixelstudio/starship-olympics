@@ -16,7 +16,7 @@
 size_multiplier = 2.5
 game_mode = ExtResource( 3 )
 
-[node name="ConquestModeManager" parent="Managers" index="11"]
+[node name="ConquestModeManager" parent="Managers" index="10"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -1332,12 +1332,14 @@ position = Vector2( -1900, 1200 )
 rotation = -0.785402
 controls = "joy1"
 species = ExtResource( 5 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 1900, 1200 )
 rotation = -2.35619
 controls = "joy2"
 species = ExtResource( 11 )
+cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
 position = Vector2( -1900, -1200 )

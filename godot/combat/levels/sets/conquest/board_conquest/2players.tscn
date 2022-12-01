@@ -1389,12 +1389,14 @@ rotation = 0.785398
 position = Vector2( -1900, 1200 )
 rotation = -0.785402
 species = ExtResource( 3 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 1900, -1200 )
 rotation = 2.3562
 controls = "kb2"
 species = ExtResource( 4 )
+cpu = true
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )

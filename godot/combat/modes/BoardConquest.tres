@@ -1,21 +1,18 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=2]
+[ext_resource path="res://actors/brains/BoardConquestBrain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/icon/minicards/sets/board_conquest.png" type="Texture" id=3]
 [ext_resource path="res://combat/styles/flags.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 1 )
 id = "board_conquest"
-is_mutator = false
 name = "Board Conquest"
 icon = ExtResource( 3 )
-logo = ExtResource( 2 )
 arena_style = ExtResource( 4 )
 description = "color the board"
-tagline_pro = "Don't forget your opponents would do the same"
-tagline_cons = "You could get killed in the meantime..."
+cpu_brain = ExtResource( 2 )
 max_timeout = 40
 max_score = 500
 starting_score = 0
