@@ -1,6 +1,7 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://assets/icon/minicards/sets/death.png" type="Texture" id=1]
+[ext_resource path="res://actors/brains/DeathmatchBrain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
 [ext_resource path="res://combat/styles/bones.tres" type="Resource" id=5]
 
@@ -11,6 +12,7 @@ name = "Deathmatch"
 icon = ExtResource( 1 )
 arena_style = ExtResource( 5 )
 description = "kill the other players"
+cpu_brain = ExtResource( 2 )
 max_timeout = 60
 max_score = 8
 starting_score = 0
