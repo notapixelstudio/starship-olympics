@@ -548,8 +548,8 @@ func set_health(amount : int) -> void:
 	health = amount
 	$PlayerInfo.update_health(amount)
 	
-func damage(hazard, damager : Ship):
-	if invincible or not alive or damager.get_team() == get_team(): # self or teammates hits have no effect
+func damage(hazard, damager : Ship, damager_team : String = ''):
+	if invincible or not alive or damager_team == get_team(): # self or teammates hits have no effect
 		return
 		
 	# always rebound on hit
