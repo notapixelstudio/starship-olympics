@@ -19,7 +19,7 @@ style = ExtResource( 6 )
 
 [node name="BumperShipsManager" parent="Managers" index="0" instance=ExtResource( 11 )]
 
-[node name="ConquestModeManager" parent="Managers" index="10"]
+[node name="ConquestModeManager" parent="Managers" index="11"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -37,6 +37,7 @@ grid_color = Color( 1, 1, 1, 0.329412 )
 script = ExtResource( 10 )
 rx = 1400
 ry = 1000
+precision = 100
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -63,10 +64,8 @@ species = ExtResource( 9 )
 team = "drones"
 cpu = true
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
 smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
-
-[editable path="CanvasLayer/Pause"]
