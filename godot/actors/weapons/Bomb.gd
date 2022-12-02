@@ -21,6 +21,7 @@ onready var explosion = Explosion.instance()
 var species : Species
 
 func _ready():
+	AudioManager.play($AudioStreamPlayer2D)
 	if type == GameMode.BOMB_TYPE.classic:
 		$Sprite/AnimationPlayer.play('rotate')
 	elif type == GameMode.BOMB_TYPE.bubble:
@@ -183,7 +184,7 @@ func _on_Bomb_body_entered(body):
 	if type == GameMode.BOMB_TYPE.ball or body is Paddle:
 		$RicochetAudio.pitch_scale = 0.5 + hit_count*0.1
 		hit_count = min(hit_count+1, 1000)
-		$RicochetAudio.play()
+		AudioManager.play($RicochetAudio)
 		$LifeTime.start() # enable ricochet combos
 		apply_central_impulse(linear_velocity.normalized()*800)
 		

@@ -73,7 +73,7 @@ func _on_Field_entered(field, body):
 			do_goal(ball_player, body.global_position)
 		else:
 			# rebound
-			SoundEffects.play($AudioStreamPlayer2D)
+			AudioManager.play($AudioStreamPlayer2D)
 		
 func get_score():
 	return 1
@@ -90,7 +90,7 @@ func do_goal(player, pos):
 	
 	# play increasingly high sounds
 	$AudioStreamPlayer2D.pitch_scale = 1 + rings-current_ring
-	SoundEffects.play($AudioStreamPlayer2D)
+	AudioManager.play($AudioStreamPlayer2D)
 	$AudioStreamPlayer2D.pitch_scale = 1
 	
 	if current_ring >= 0:

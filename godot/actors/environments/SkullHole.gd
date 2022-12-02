@@ -42,7 +42,7 @@ func _on_SkullHole_body_entered(body):
 		$Full.visible = true
 		full = true
 		
-		$RandomAudioStreamPlayer.play()
+		AudioManager.play($RandomAudioStreamPlayer)
 		
 		$Tween.stop_all()
 		$Tween.interpolate_property($Full, "modulate", $Full.modulate, body.get_player().species.color, 1.5,
