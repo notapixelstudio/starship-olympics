@@ -157,7 +157,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="NavigationZone" parent="Battlefield/Middleground/Wall10" index="10" instance=ExtResource( 15 )]
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall10" index="9" instance=ExtResource( 15 )]
 offset_type = "outset"
 
 [node name="Wall15" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
@@ -171,7 +171,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="NavigationZone" parent="Battlefield/Middleground/Wall15" index="10" instance=ExtResource( 15 )]
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall15" index="9" instance=ExtResource( 15 )]
 offset_type = "outset"
 
 [node name="Wall11" parent="Battlefield/Middleground" index="2" instance=ExtResource( 8 )]
@@ -246,7 +246,6 @@ variant_scenes = [ ExtResource( 18 ), ExtResource( 20 ), ExtResource( 19 ), ExtR
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1200, 800 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 12 )
 cpu = true
 

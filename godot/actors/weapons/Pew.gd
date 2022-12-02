@@ -17,6 +17,12 @@ func _physics_process(delta):
 func _process(delta):
 	$Wrapper.rotation = linear_velocity.angle()
 
+func on_ship_near_area_hit(hit_ship: Ship) -> void:
+	# no friendly fire
+	if hit_ship.get_team() != ship.get_team():
+		hit_ship.damage(self, ship)
+		destroy()
+	
 func _on_ForwardBullet_body_entered(body):
 	if not (body is Mirror):
 		destroy()

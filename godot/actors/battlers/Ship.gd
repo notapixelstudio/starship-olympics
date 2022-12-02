@@ -549,14 +549,23 @@ func set_health(amount : int) -> void:
 	$PlayerInfo.update_health(amount)
 	
 func damage(hazard, damager : Ship):
-	if invincible or not alive:
+	if invincible or not alive or damager.get_team() == get_team(): # self or teammates hits have no effect
 		return
+		
+	# always rebound on hit
+	if(hazard.get('linear_velocity') == null):
+		rebound((global_position-hazard.global_position).normalized(), 2500.0)
+	else:
+		rebound(Vector2(1,0).rotated(hazard.linear_velocity.angle()), 2500.0)
+	
+	if has_method('vibration_feedback'):
+		call('vibration_feedback', false)
 		
 	# check if we lose cargo instead
 	if get_cargo().has_holdable():
 		get_cargo().drop_holdable(hazard)
 		return
-		
+	
 	self.set_health(health - 1)
 	
 	if health < -1:
@@ -565,14 +574,6 @@ func damage(hazard, damager : Ship):
 	if health == 0:
 		die(damager)
 	else:
-		if(hazard.get('linear_velocity') == null):
-			rebound((global_position-hazard.global_position).normalized(), 2500.0)
-		else:
-			rebound(Vector2(1,0).rotated(hazard.linear_velocity.angle()), 2500.0)
-		
-		if has_method('vibration_feedback'):
-			call('vibration_feedback', false)
-			
 		$'%AnimationPlayer'.play('hit')
 		
 		Events.emit_signal("ship_damaged", self, hazard, damager)
@@ -610,6 +611,8 @@ func _on_NearArea_area_entered(area):
 	Events.emit_signal('sth_collided_with_ship', area, self)
 	
 func _on_NearArea_body_entered(body):
+	if body.has_method('on_ship_near_area_hit'):
+		body.on_ship_near_area_hit(self)
 	emit_signal("near_area_entered", body, self)
 	Events.emit_signal('sth_collided_with_ship', body, self)
 	
