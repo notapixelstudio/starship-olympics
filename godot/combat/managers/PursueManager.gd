@@ -30,9 +30,9 @@ func _on_ship_detected(sth : CollisionObject2D, ship : Ship):
 			entity.get('Pursuer').set_target(ship)
 			entity.get('Pursuer').set_detection_insensitive_timeout()
 			if sth is Bull:
-				$BullTargetLocked.play()
+				AudioManager.play($AudioBullTargetLocked)
 			else:
-				$TargetLocked.play()
+				AudioManager.play($AudioTargetLocked)
 				
 func _physics_process(delta):
 	for targeter_e in ECM.entities_with('Pursuer'):

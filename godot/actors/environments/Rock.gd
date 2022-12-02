@@ -283,7 +283,7 @@ func conquered_by(ship):
 		$AnimationPlayer.play("Conquered")
 
 func play_boom():
-	$RandomAudioStreamPlayer.play()
+	AudioManager.play($RandomAudioStreamPlayer)
 	
 func get_strategy(ship, distance, game_mode):
 	if game_mode.name == 'Asteroid Coloring':

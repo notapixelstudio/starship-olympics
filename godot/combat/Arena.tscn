@@ -195,12 +195,12 @@ __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="TargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
+[node name="AudioTargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
 stream = ExtResource( 7 )
 volume_db = -10.0
 bus = "SFX"
 
-[node name="BullTargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
+[node name="AudioBullTargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
 stream = ExtResource( 7 )
 pitch_scale = 0.5
 bus = "SFX"
@@ -217,10 +217,10 @@ __meta__ = {
 "_editor_icon": ExtResource( 4 )
 }
 
-[node name="SlomoEffect" type="AudioStreamPlayer" parent="Managers/EnvironmentsManager"]
+[node name="AudioSlomoEffect" type="AudioStreamPlayer" parent="Managers/EnvironmentsManager"]
 stream = ExtResource( 10 )
 
-[node name="UnSlomoEffect" type="AudioStreamPlayer" parent="Managers/EnvironmentsManager"]
+[node name="AudioUnSlomoEffect" type="AudioStreamPlayer" parent="Managers/EnvironmentsManager"]
 stream = ExtResource( 11 )
 
 [node name="CrownModeManager" type="Node" parent="Managers"]
