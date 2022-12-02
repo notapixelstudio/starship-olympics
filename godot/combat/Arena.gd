@@ -585,8 +585,8 @@ func ship_just_died(ship, killer, for_good):
 	if not for_good:
 		$Battlefield.call_deferred("add_child", ship.dead_ship_instance)
 		
-		ship.dead_ship_instance.apply_central_impulse(-ship.linear_velocity*0.35)
-		ship.dead_ship_instance.apply_torque_impulse(ship.linear_velocity.length()*2*randf())
+		ship.dead_ship_instance.apply_central_impulse(ship.linear_velocity*0.3)
+		ship.dead_ship_instance.apply_torque_impulse((1000+ship.linear_velocity.length())*2)
 	
 	var focus
 	
@@ -996,6 +996,13 @@ func player_has_valid_ship(player : InfoPlayer) -> bool:
 	
 func get_all_valid_ships() -> Array:
 	return player_ships.values()
+	
+func get_all_ships_in_team(team) -> Array:
+	var result = []
+	for ship in player_ships.values():
+		if ship.get_team() == team:
+			result.append(ship)
+	return result
 
 func _on_PowerUp_collected():
 	pass # Replace with function body.

@@ -138,7 +138,7 @@ match_duration_override = 120.0
 
 [node name="CrownManager" parent="Managers" index="0" instance=ExtResource( 15 )]
 
-[node name="CrownModeManager" parent="Managers" index="9"]
+[node name="CrownModeManager" parent="Managers" index="8"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -253,6 +253,8 @@ solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 script = ExtResource( 1 )
 radius = 250
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
 position = Vector2( 0, 1300 )
@@ -262,14 +264,15 @@ solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 script = ExtResource( 1 )
 radius = 250
 sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="NoCrownZone" parent="Battlefield/Middleground" index="2" instance=ExtResource( 13 )]
 z_index = -1
 z_as_relative = false
-
-[node name="IsoPolygon" parent="Battlefield/Middleground/NoCrownZone" index="0"]
-shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"script":ExtResource( 3 ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"width":800,"height":2600,"bevel":400,"bevel_nw":400,"bevel_ne":400,"bevel_sw":400,"bevel_se":400)
-
+visible_decorations = true
+symbol_scale = 2.0
+decoration_scale = 1.0
 
 [node name="Polygon2D" parent="Battlefield/Middleground/NoCrownZone" index="1"]
 polygon = PoolVector2Array( -400, -900, 0, -1300, 0, -1300, 400, -900, 400, 900, 0, 1300, 0, 1300, -400, 900 )
@@ -342,7 +345,6 @@ team = "A"
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( -1100, 500 )
 rotation = 0.0
-controls = "joy2"
 species = ExtResource( 16 )
 team = "A"
 
@@ -356,7 +358,6 @@ team = "B"
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
 position = Vector2( 1100, 500 )
 rotation = 3.14159
-controls = "joy4"
 species = ExtResource( 17 )
 team = "B"
 
