@@ -49,12 +49,12 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": ""
 }
-polygon = PoolVector2Array( -1800, -500, -1800, -1150, -1700, -1250, -800, -1250, -400, -1650, 400, -1650, 800, -1250, 1700, -1250, 1800, -1150, 1800, 1150, 1700, 1250, 800, 1250, 400, 1650, -400, 1650, -800, 1250, -1700, 1250, -1800, 1150 )
+polygon = PoolVector2Array( -1800, -400, -1800, -1150, -1700, -1250, -800, -1250, -400, -1650, 400, -1650, 800, -1250, 1700, -1250, 1800, -1150, 1800, -400, 1400, 0, 1800, 400, 1800, 1150, 1700, 1250, 800, 1250, 400, 1650, -400, 1650, -800, 1250, -1700, 1250, -1800, 1150, -1800, 400, -1400, 0 )
 
 [node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWall" index="9"]
 visible = false
 color = Color( 1, 1, 1, 0.533333 )
-polygon = PoolVector2Array( -1800, -500, -1800, -1150, -1700, -1250, -800, -1250, -400, -1650, 400, -1650, 800, -1250, 1700, -1250, 1800, -1150, 1800, 1150, 1700, 1250, 800, 1250, 400, 1650, -400, 1650, -800, 1250, -1700, 1250, -1800, 1150 )
+polygon = PoolVector2Array( -1800, -400, -1800, -1150, -1700, -1250, -800, -1250, -400, -1650, 400, -1650, 800, -1250, 1700, -1250, 1800, -1150, 1800, -400, 1400, 0, 1800, 400, 1800, 1150, 1700, 1250, 800, 1250, 400, 1650, -400, 1650, -800, 1250, -1700, 1250, -1800, 1150, -1800, 400, -1400, 0 )
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -210,12 +210,14 @@ texture = ExtResource( 20 )
 position = Vector2( -1200, 650 )
 rotation = -0.785398
 species = ExtResource( 5 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 1200, -650 )
 rotation = 2.35619
 controls = "kb2"
 species = ExtResource( 15 )
+cpu = true
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )

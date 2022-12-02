@@ -58,3 +58,8 @@ func is_full():
 func is_empty():
 	return not full
 	
+func is_shared():
+	return get_player() == null
+	
+func is_of_player(p):
+	return get_player() == p
