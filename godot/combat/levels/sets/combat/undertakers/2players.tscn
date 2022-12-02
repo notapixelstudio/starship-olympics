@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=10]
 [ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=11]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://actors/environments/Skull.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/managers/SkullManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=15]
@@ -74,13 +75,16 @@ bevel_ne = 90
 bevel_sw = 90
 bevel_se = 90
 
-[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Middleground/Wall18" index="10"]
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Middleground/Wall18" index="9"]
 position = Vector2( 0, -100 )
 color = Color( 0.219608, 0.0862745, 0.0862745, 0.501961 )
 polygon = PoolVector2Array( -10, -90, 0, -100, 10, -90, 10, -10, 45, -10, 55, 0, 45, 10, 10, 10, 10, 90, 0, 100, -10, 90, -10, 10, -45, 10, -55, 0, -45, -10, -10, -10 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall18" index="10" instance=ExtResource( 12 )]
+offset_type = "outset"
 
 [node name="Wall20" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
 position = Vector2( 0, -750 )
@@ -97,6 +101,9 @@ bevel_ne = 100
 bevel_sw = 100
 bevel_se = 100
 
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall20" index="9" instance=ExtResource( 12 )]
+offset_type = "outset"
+
 [node name="Wall21" parent="Battlefield/Middleground" index="2" instance=ExtResource( 8 )]
 position = Vector2( 0, 750 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
@@ -111,6 +118,9 @@ bevel_nw = 100
 bevel_ne = 100
 bevel_sw = 100
 bevel_se = 100
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall21" index="9" instance=ExtResource( 12 )]
+offset_type = "outset"
 
 [node name="Wall19" parent="Battlefield/Middleground" index="3" instance=ExtResource( 8 )]
 position = Vector2( 1300, 0 )
@@ -127,13 +137,16 @@ bevel_ne = 90
 bevel_sw = 90
 bevel_se = 90
 
-[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Middleground/Wall19" index="10"]
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Middleground/Wall19" index="9"]
 position = Vector2( 0, -100 )
 color = Color( 0.219608, 0.0862745, 0.0862745, 0.501961 )
 polygon = PoolVector2Array( -10, -90, 0, -100, 10, -90, 10, -10, 45, -10, 55, 0, 45, 10, 10, 10, 10, 90, 0, 100, -10, 90, -10, 10, -45, 10, -55, 0, -45, -10, -10, -10 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall19" index="10" instance=ExtResource( 12 )]
+offset_type = "outset"
 
 [node name="CameraEye" parent="Battlefield/Middleground" index="4" instance=ExtResource( 9 )]
 position = Vector2( -1800, 0 )
@@ -249,6 +262,7 @@ graphics_scale = 0.8
 position = Vector2( -1800, 0 )
 rotation = 0.0
 species = ExtResource( 5 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 1800, 0 )

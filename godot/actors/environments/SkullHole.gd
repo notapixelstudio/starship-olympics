@@ -52,3 +52,9 @@ func _on_SkullHole_body_entered(body):
 func get_score():
 	return 1
 	
+func is_full():
+	return full
+	
+func is_empty():
+	return not full
+	
