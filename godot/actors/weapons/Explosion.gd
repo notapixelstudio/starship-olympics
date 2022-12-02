@@ -15,8 +15,8 @@ func _ready():
 	$Spikes.rotation = randf()*2*PI
 
 	var index_explosion = randi() % len(explosions)
-	get_node("sound").stream = explosions[index_explosion]
-	get_node("sound").play()
+	$AudioStreamPlayer2D.stream = explosions[index_explosion]
+	AudioManager.play($AudioStreamPlayer2D)
 
 func _on_animation_ended(name):
 	emit_signal("end_explosion")
