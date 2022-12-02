@@ -72,7 +72,8 @@ func _crossed_by(sth):
 	emit_signal("crossed", sth, self)
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("Blink")
-	$RandomAudioStreamPlayer.play()
+	AudioManager.play($RandomAudioStreamPlayer)
+	# $RandomAudioStreamPlayer.play()
 	
 #func _draw():
 	#if relative_position:

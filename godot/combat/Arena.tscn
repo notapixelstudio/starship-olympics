@@ -230,7 +230,8 @@ __meta__ = {
 }
 enabled = false
 
-[node name="GrabAction" type="AudioStreamPlayer2D" parent="Managers/CrownModeManager"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="Managers/CrownModeManager"]
+unique_name_in_owner = true
 stream = ExtResource( 13 )
 pitch_scale = 4.0
 
@@ -268,7 +269,8 @@ __meta__ = {
 }
 enabled = false
 
-[node name="CollectAction" type="AudioStreamPlayer2D" parent="Managers/CollectModeManager"]
+[node name="AudioCollectAction" type="AudioStreamPlayer2D" parent="Managers/CollectModeManager"]
+unique_name_in_owner = true
 stream = ExtResource( 20 )
 
 [node name="TrailManager" type="Node" parent="Managers"]
