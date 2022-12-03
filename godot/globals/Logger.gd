@@ -1,6 +1,7 @@
 extends Node
 
-const LOG_PATH ="user://log.ndjson"
+const LOG_PATH ="user://log"
+const EXTENSION = ".jsonl"
 var file : File
 
 func log_event(event: Dictionary, immediate: bool) -> void:
@@ -20,17 +21,20 @@ func _init():
 	
 	# open the log file and go to the end
 	file = File.new()
-	var error = file.open(LOG_PATH, File.READ_WRITE)
+	var filename = LOG_PATH+EXTENSION
+	var error = file.open(filename, File.READ_WRITE)
 	var filesize_in_kb = file.get_len()/float(1024)
 	print("Log file is {size} KB".format({"size":filesize_in_kb}))
-	if filesize_in_kb > 200:
+	if filesize_in_kb > 2:
 		file.close()
 		var d = Directory.new()
-		print("Will remove the file because too big")
-		error = d.remove(LOG_PATH)
+		print("Will roll the file because too big")
+		var timestamp_local = Time.get_datetime_string_from_system(false, true)
+		var rollover_filename = LOG_PATH+"_"+timestamp_local.replace(":",".").replace(" ", "_")+EXTENSION
+		error = d.rename(filename, rollover_filename)
 		error = ERR_FILE_NOT_FOUND
 	if error == ERR_FILE_NOT_FOUND :
-		error = file.open(LOG_PATH, File.WRITE_READ)
+		error = file.open(filename, File.WRITE_READ)
 	if error == OK:
 		file.seek_end()
 	else:
