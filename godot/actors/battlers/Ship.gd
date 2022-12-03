@@ -432,7 +432,7 @@ func _physics_process(delta):
 	if charging and not charging_enough and charge > MIN_CHARGE:
 		charging_enough = true
 		#$GravitonField.enabled = true
-		charging_sfx.play()
+		AudioManager.play(charging_sfx)
 		dash_fat_appearance()
 		
 	if charging and not charging_too_much_for_tap and charge > MAX_TAP_CHARGE:
