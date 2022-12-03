@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://actors/environments/FlagPole.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -9,11 +9,10 @@
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/modes/CaptureTheFlags.tres" type="Resource" id=9]
-[ext_resource path="res://actors/environments/ShieldWall.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=12]
-[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=13]
 [ext_resource path="res://actors/brains/TakeTheCrownBrain.tscn" type="PackedScene" id=15]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
 
 [node name="Arena" instance=ExtResource( 8 )]
@@ -25,11 +24,11 @@ cpu_brain_scene = ExtResource( 15 )
 enabled = true
 
 [node name="FlagPole" parent="Battlefield/Background" index="1" instance=ExtResource( 1 )]
-position = Vector2( -1200, 1200 )
+position = Vector2( -800, 800 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="FlagPole2" parent="Battlefield/Background" index="2" instance=ExtResource( 1 )]
-position = Vector2( 1200, -1200 )
+position = Vector2( 800, -800 )
 circuit_rotation_degrees = 180
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
@@ -44,13 +43,13 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-width = 3600
-height = 3600
-bevel = 600
-bevel_nw = 600
-bevel_ne = 600
-bevel_sw = 600
-bevel_se = 600
+width = 4400
+height = 2800
+bevel = 1399
+bevel_nw = 1399
+bevel_ne = 1399
+bevel_sw = 1399
+bevel_se = 1399
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -61,72 +60,65 @@ bg_color = Color( 0.28, 0.14, 0.14, 1 )
 [node name="FloodWater" parent="Battlefield/Background" index="5"]
 opaque_tint = Color( 0, 0, 0, 1 )
 
-[node name="Wall" parent="Battlefield/Background" index="6" instance=ExtResource( 5 )]
-position = Vector2( -2400, 0 )
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
+position = Vector2( -300, 300 )
+rotation = 0.785398
 
-[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/Wall" index="8"]
-script = ExtResource( 13 )
-__meta__ = {
-"_editor_description_": ""
-}
-polygon = PoolVector2Array( 0, -600, 0, 600, -600, 0 )
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall" index="8" instance=ExtResource( 16 )]
+offset_type = "outset"
 
-[node name="Wall2" parent="Battlefield/Background" index="7" instance=ExtResource( 5 )]
-position = Vector2( 2400, 0 )
-rotation = 3.14159
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall" index="9"]
+script = ExtResource( 2 )
+width = 800
+height = 200
+bevel = 99
+bevel_nw = 99
+bevel_ne = 99
+bevel_sw = 99
+bevel_se = 99
 
-[node name="GConvexPolygon" type="Node" parent="Battlefield/Background/Wall2" index="8"]
-script = ExtResource( 13 )
-__meta__ = {
-"_editor_description_": ""
-}
-polygon = PoolVector2Array( 0, -600, 0, 600, -600, 0 )
+[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
+position = Vector2( 300, -300 )
+rotation = 0.785398
 
-[node name="ShieldWall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
-position = Vector2( 600, 600 )
-__meta__ = {
-"_edit_group_": true
-}
-type = "skin"
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall2" index="8" instance=ExtResource( 16 )]
+offset_type = "outset"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/ShieldWall" index="5"]
-polygon = PoolVector2Array( 0, -600, 600, 0, 0, 600, -600, 0 )
-
-[node name="ShieldWall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 10 )]
-position = Vector2( -600, -600 )
-__meta__ = {
-"_edit_group_": true
-}
-type = "skin"
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/ShieldWall2" index="5"]
-polygon = PoolVector2Array( 0, -600, 600, 0, 0, 600, -600, 0 )
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall2" index="9"]
+script = ExtResource( 2 )
+width = 800
+height = 200
+bevel = 99
+bevel_nw = 99
+bevel_ne = 99
+bevel_sw = 99
+bevel_se = 99
 
 [node name="Flag" parent="Battlefield/Foreground" index="0" instance=ExtResource( 17 )]
 type = "flag"
 
 [node name="Flag2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 17 )]
-position = Vector2( 1200, 1200 )
+position = Vector2( 800, 800 )
 type = "flag"
 
 [node name="Flag3" parent="Battlefield/Foreground" index="2" instance=ExtResource( 17 )]
-position = Vector2( -1200, -1200 )
+position = Vector2( -800, -800 )
 type = "flag"
 
 [node name="CameraEye" parent="Battlefield/Foreground" index="3" instance=ExtResource( 12 )]
-position = Vector2( -1500, 1500 )
+position = Vector2( -1100, 1100 )
 
 [node name="CameraEye2" parent="Battlefield/Foreground" index="4" instance=ExtResource( 12 )]
-position = Vector2( 1500, -1500 )
+position = Vector2( 1100, -1100 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( -950, 950 )
+position = Vector2( -800, 800 )
 rotation = -0.785398
 species = ExtResource( 4 )
 cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( 950, -950 )
+position = Vector2( 800, -800 )
 rotation = -3.92699
 controls = "kb2"
 species = ExtResource( 7 )
