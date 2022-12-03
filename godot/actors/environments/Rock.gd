@@ -114,12 +114,12 @@ func try_break():
 		prisoner.get_node('CollisionShape2D').disabled = true
 		#if prisoner is Bomb:
 		#	# temporary disable collisions with fields because of freeze rays
-		#	prisoner.set_collision_mask_bit(7, false)
+		#	prisoner.call_deferred('set_collision_mask_bit', 7, false)
 		yield(get_tree().create_timer(0.1), "timeout")
 		prisoner.get_node('CollisionShape2D').disabled = false
 		#if prisoner is Bomb:
 		#	yield(get_tree().create_timer(0.15), "timeout")
-		#	prisoner.set_collision_mask_bit(7, true)
+		#	prisoner.call_deferred('set_collision_mask_bit', 7, true)
 	
 	self.breakable = false
 	

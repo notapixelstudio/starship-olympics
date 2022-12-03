@@ -22,9 +22,10 @@ func think():
 		for target in targets:
 			if target.get_player() == controllee.get_player():
 				my_targets.append(target)
-		go_to(my_targets[random_preference%len(my_targets)].global_position)
-		log_strategy('attempt slam')
-		return
+		if len(targets) > 0:
+			go_to(my_targets[random_preference%len(my_targets)].global_position)
+			log_strategy('attempt slam')
+			return
 	
 	targets = get_tree().get_nodes_in_group('Ball')
 	if len(targets) > 0:

@@ -1,0 +1,60 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
+[ext_resource path="res://assets/icon/minicards/sets/capture_the_flags.png" type="Texture" id=2]
+[ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=3]
+[ext_resource path="res://actors/brains/CaptureTheFlagsBrain.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/styles/ArenaStyle.gd" type="Script" id=5]
+
+[sub_resource type="Resource" id=1]
+resource_name = "keep"
+script = ExtResource( 5 )
+battlefield_texture = ExtResource( 3 )
+battlefield_texture_offset = Vector2( 0, 0 )
+battlefield_texture_scale = Vector2( 0.25, 0.25 )
+battlefield_texture_rotation_degrees = 0.0
+battlefield_fg_color = Color( 0.16632, 0.27, 0.1404, 1 )
+battlefield_bg_color = Color( 0.17495, 0.3, 0.117, 1 )
+battlefield_opacity = 1.0
+wall_color = Color( 1.1, 0.8, 0.54, 1 )
+bgm = "keep"
+
+[resource]
+script = ExtResource( 1 )
+id = "capture_the_flag"
+name = "Capture the Flags"
+icon = ExtResource( 2 )
+arena_style = SubResource( 1 )
+description = "take the flags to your base"
+cpu_brain = ExtResource( 4 )
+max_timeout = 80
+max_score = 80
+starting_score = 0
+cumulative = false
+shared_targets = true
+starting_lives = -1
+starting_health = 1
+respawn_from_home = false
+end_on_perfect = true
+fill_starting_score = false
+death = false
+last_man = false
+crown = true
+hive = false
+collect = false
+goal = false
+survival = false
+race = false
+pursuing_bombs = true
+shoot_bombs = false
+deadly_trails = false
+deadly_trails_duration = 2.0
+bomb_type = 7
+starting_ammo = 3
+reload_time = 0.4
+auto_thrust = false
+start_invincible = true
+floodable = true
+flood = false
+laserable = true
+additional_lasers = false

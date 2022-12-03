@@ -6,8 +6,6 @@ export var goal_owner : NodePath
 var player = null
 signal goal_done
 
-var enabled := true
-
 func _ready():
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
@@ -27,7 +25,7 @@ func get_player():
 	return player
 
 # override
-func _on_PortalGate_crossed(sth, _self):
+func _on_PortalGate_crossed(sth, _self, silent):
 	if not enabled:
 		return
 		
@@ -39,17 +37,10 @@ func _on_PortalGate_crossed(sth, _self):
 			emit_signal("goal_done", ball_player, self, sth.global_position, 1)
 		sth.set_player(null) # ownership is reset whenever a goal is done
 		
-	._on_PortalGate_crossed(sth, _self)
+	._on_PortalGate_crossed(sth, _self, silent)
 
 func _on_DefenseZone_body_entered(body):
 	# disable pew ownership transfer if is the defender
 	if body is Pew:
 		body.disable_ownership_transfer()
 		
-func enable() -> void:
-	enabled = true
-	modulate = Color.white
-	
-func disable() -> void:
-	enabled = false
-	modulate = Color(1,1,1,0.3)

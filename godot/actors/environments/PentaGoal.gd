@@ -74,6 +74,7 @@ func _on_Field_entered(field, body):
 		else:
 			# rebound
 			AudioManager.play($AudioStreamPlayer2D)
+		body.set_player(null) # ownership is reset whenever a goal is touched
 		
 func get_score():
 	return 1

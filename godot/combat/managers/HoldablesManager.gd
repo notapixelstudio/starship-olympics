@@ -15,7 +15,7 @@ func _ready():
 	Events.connect('holdable_dropped', self, '_on_holdable_dropped')
 	Events.connect('holdable_replaced', self, '_on_holdable_replaced')
 	Events.connect('holdable_swapped', self, '_on_holdable_swapped')
-	Events.connect("ship_damaged", self, "_on_ship_damaged")
+#	Events.connect("ship_damaged", self, "_on_ship_damaged")
 	Events.connect("ship_died", self, "_on_ship_died")
 	
 func _on_sth_collided_with_ship(sth, ship: Ship) -> void:
@@ -58,9 +58,9 @@ func _on_sths_bumped(sth1, sth2) -> void:
 		
 		Events.emit_signal("holdable_swapped", cargo1.get_holdable(), cargo2.get_holdable(), sth1, sth2)
 		
-func _on_ship_damaged(ship: Ship, hazard, author) -> void:
-	if ship.get_cargo().has_holdable():
-		ship.get_cargo().drop_holdable(hazard)
+#func _on_ship_damaged(ship: Ship, hazard, author) -> void:
+#	if ship.get_cargo().has_holdable():
+#		ship.get_cargo().drop_holdable(hazard)
 		
 func _on_ship_died(ship: Ship, author, for_good: bool) -> void:
 	if ship.get_cargo().has_holdable():

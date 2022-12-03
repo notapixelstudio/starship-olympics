@@ -336,6 +336,7 @@ scale = Vector2( 1, 1.81818 )
 visible = false
 
 [node name="RingPart" parent="Battlefield/Middleground/LeftGoalPortalGate" index="5"]
+self_modulate = Color( 1, 0.58, 0.3, 1 )
 scale = Vector2( 1, 1.81818 )
 
 [node name="Shadow" parent="Battlefield/Middleground/LeftGoalPortalGate" index="6"]
@@ -348,8 +349,17 @@ anims/RESET = SubResource( 19 )
 [node name="PlayerLabel" parent="Battlefield/Middleground/LeftGoalPortalGate/NoRotate" index="0"]
 text = ""
 
-[node name="RandomAudioStreamPlayer" parent="Battlefield/Middleground/LeftGoalPortalGate" index="10"]
-pitch_min = 1
+[node name="Inside" parent="Battlefield/Middleground/LeftGoalPortalGate/PortalEffect" index="0"]
+scale = Vector2( 1, 8.18182 )
+
+[node name="SpikeParticles2D" parent="Battlefield/Middleground/LeftGoalPortalGate/PortalEffect" index="1"]
+amount = 14
+
+[node name="ColoredParticles2D" parent="Battlefield/Middleground/LeftGoalPortalGate/PortalEffect" index="2"]
+amount = 14
+
+[node name="Particles2D" parent="Battlefield/Middleground/LeftGoalPortalGate/PortalEffect" index="3"]
+amount = 14
 
 [node name="RightGoalPortalGate" parent="Battlefield/Middleground" index="1" instance=ExtResource( 15 )]
 unique_name_in_owner = true
@@ -369,6 +379,7 @@ scale = Vector2( 1, 1.81818 )
 visible = false
 
 [node name="RingPart" parent="Battlefield/Middleground/RightGoalPortalGate" index="5"]
+self_modulate = Color( 1, 0.58, 0.3, 1 )
 scale = Vector2( 1, 1.81818 )
 
 [node name="Shadow" parent="Battlefield/Middleground/RightGoalPortalGate" index="6"]
@@ -377,8 +388,17 @@ scale = Vector2( 1, 1.81818 )
 [node name="PlayerLabel" parent="Battlefield/Middleground/RightGoalPortalGate/NoRotate" index="0"]
 text = ""
 
-[node name="RandomAudioStreamPlayer" parent="Battlefield/Middleground/RightGoalPortalGate" index="10"]
-pitch_min = 1
+[node name="Inside" parent="Battlefield/Middleground/RightGoalPortalGate/PortalEffect" index="0"]
+scale = Vector2( 1, 8.18182 )
+
+[node name="SpikeParticles2D" parent="Battlefield/Middleground/RightGoalPortalGate/PortalEffect" index="1"]
+amount = 14
+
+[node name="ColoredParticles2D" parent="Battlefield/Middleground/RightGoalPortalGate/PortalEffect" index="2"]
+amount = 14
+
+[node name="Particles2D" parent="Battlefield/Middleground/RightGoalPortalGate/PortalEffect" index="3"]
+amount = 14
 
 [node name="Launcher3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 3 )]
 position = Vector2( -550, -1150 )

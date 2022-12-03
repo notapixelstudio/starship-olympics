@@ -124,6 +124,13 @@ func empty():
 		held.free()
 		held = null
 		hide_holdable()
+		
+func give_holdable():
+	assert(held != null)
+	var swap = held
+	held = null
+	hide_holdable()
+	return swap
 	
 func check_type(t):
 	if not self.has_holdable():
