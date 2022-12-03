@@ -91,7 +91,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 4, 4, 4, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="FlagPole" type="Area2D"]
+[node name="FlagPole" type="Area2D" groups=["FlagPole"]]
 position = Vector2( -800, -800 )
 collision_layer = 0
 collision_mask = 513
