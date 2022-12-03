@@ -50,13 +50,13 @@ func redraw_flags():
 		
 	if len(flags) > 0:
 		recompute_animation_speed()
-		
+
 func recompute_animation_speed():
-	$AnimationPlayer.playback_speed = len(flags)
+	$AnimationPlayer.playback_speed = sqrt(len(flags))
 
 func _process(delta):
 	if player:
-		global.the_match.add_score_to_team(player.team, delta*len(flags))
+		global.the_match.add_score_to_team(player.team, delta * sqrt(len(flags)))
 
 func _on_FlagPole_body_entered(body):
 	if body is Ship:
@@ -66,7 +66,7 @@ func _on_FlagPole_body_entered(body):
 		if body.get_player() != get_player() and not body.has_cargo() and len(flags) > 0:
 			var flag = pop_flag()
 			body.get_cargo().load_holdable(flag)
-	elif body is Ball and body.has_type('flag') and body.get_player() == get_player() and len(flags) < MAX_FLAGS:
+	elif body is Ball and body.has_type('flag') and len(flags) < MAX_FLAGS:
 		body.get_parent().remove_child(body)
 		place_flag(body)
 

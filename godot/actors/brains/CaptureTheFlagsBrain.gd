@@ -37,7 +37,7 @@ func think():
 	if len(targets) > 0:
 		# choose a preferred target
 		var target = targets[random_preference%len(targets)]
-		if global_position.distance_to(target.global_position) > 900:
+		if global_position.distance_to(target.global_position) > 500:
 			set_stance('aggressive')
 			go_to(target.get_target_destination())
 			log_strategy('chase ship')
@@ -46,7 +46,7 @@ func think():
 			var escape_vector = global_position - target.get_target_destination()
 			go_to((global_position + escape_vector)*1.2) # we are too near, should go away, but also away from the center
 			log_strategy('flee ship')
-			start_charging_to_dash(500+randf()*800)
+			start_charging_to_dash(200+randf()*800)
 		return
 	
 	# flags
