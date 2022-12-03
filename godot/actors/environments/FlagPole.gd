@@ -1,6 +1,7 @@
 extends Area2D
 class_name FlagPole
 
+const MAX_FLAGS := 3
 var flags := []
 
 export var circuit_rotation_degrees := 0 setget set_circuit_rotation_degrees
@@ -59,12 +60,21 @@ func _process(delta):
 
 func _on_FlagPole_body_entered(body):
 	if body is Ship:
-		if body.get_player() == get_player() and body.get_cargo().check_type('flag') and len(flags) < 3:
+		if body.get_player() == get_player() and body.get_cargo().check_type('flag') and len(flags) < MAX_FLAGS:
 			place_flag(body.get_cargo().give_holdable())
 			
 		if body.get_player() != get_player() and not body.has_cargo() and len(flags) > 0:
 			var flag = pop_flag()
 			body.get_cargo().load_holdable(flag)
-	elif body is Ball and body.has_type('flag') and body.get_player() == get_player() and len(flags) < 3:
+	elif body is Ball and body.has_type('flag') and body.get_player() == get_player() and len(flags) < MAX_FLAGS:
 		body.get_parent().remove_child(body)
 		place_flag(body)
+
+func is_full():
+	return len(flags) == MAX_FLAGS
+	
+func is_empty():
+	return len(flags) == 0
+	
+func is_of_player(p):
+	return get_player() == p

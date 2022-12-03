@@ -19,7 +19,6 @@
 [node name="Arena" instance=ExtResource( 8 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 9 )
-create_default_navzone = false
 
 [node name="CrownModeManager" parent="Managers" index="7"]
 enabled = true
@@ -157,17 +156,20 @@ position = Vector2( 2700, -1500 )
 position = Vector2( -2150, 950 )
 rotation = -0.785398
 species = ExtResource( 4 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 0, -1050 )
 rotation = 1.5708
 controls = "kb2"
 species = ExtResource( 7 )
+cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
 position = Vector2( 2100, 950 )
 rotation = -2.35619
 species = ExtResource( 13 )
+cpu = true
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 1.14795e+28, 1.14795e+28 )
