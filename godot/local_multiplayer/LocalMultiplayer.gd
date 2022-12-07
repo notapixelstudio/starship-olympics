@@ -113,7 +113,7 @@ func start_fight(selected_players: Array, fight_mode: String):
 	remove_child(parallax)
 	
 	# add startdeck choosing
-	if len(TheUnlocker.get_unlocked_list("starting_decks")) > 1:
+	if len(TheUnlocker.get_unlocked_list("starting_decks")) > 0:
 		var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instance()
 		add_child(choose_deck_scene)
 		yield(Events, "selection_starting_deck_over")

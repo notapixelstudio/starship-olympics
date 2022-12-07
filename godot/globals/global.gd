@@ -647,7 +647,6 @@ func new_game(players: Array, data := {}) -> TheGame:
 	else:
 		deck.setup()
 	the_game.set_deck(deck)
-	
 	Events.emit_signal("game_started")
 	return the_game
 
