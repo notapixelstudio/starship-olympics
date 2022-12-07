@@ -2,13 +2,13 @@ extends Node
 
 class_name Deck
 
-var skip_first_draft := false
 
 var cards : Array = [] # of DraftCard
 var played_pile : Array = [] # of DraftCard
 var next : Array = [] # of DrafCard
 var remembered_card_ids : Dictionary = {} # String -> bool
-var shuffle_before_dealing := true
+var playlist := false
+
 const DECK_PATH = "res://map/draft/decks/"
 const CARD_POOL_PATH = "res://map/draft/pool"
 
@@ -20,18 +20,19 @@ func setup():
 	# TODO: might be together with set_from_dictionary
 	# starting decks have to provide levels for each player count
 	var decks = global.get_resources(DECK_PATH)
-	var unlocked_decks = TheUnlocker.get_unlocked_list("starting_decks")
-	print("starting deck will be "+ global.starting_deck)
-	var starting_deck: StartingDeck = global.get_actual_resource(decks, global.starting_deck)
-	shuffle_before_dealing = starting_deck.shuffle_before_dealing
+	
+	print("starting deck will be "+ global.starting_deck_id)
+	var starting_deck: StartingDeck = global.get_actual_resource(decks, global.starting_deck_id)
+	playlist = starting_deck.is_playlist()
+	
 	#var starting_deck = load(DECK_PATH+'/winter.tres')
 	append_cards(starting_deck.deal_cards())
 	next.append_array(starting_deck.get_nexts())
-	skip_first_draft = starting_deck.get_skip_first_draft()
 
 func set_from_dictionary(data: Dictionary):
 	next = []
 	played_pile = []
+	playlist = data.get("playlist", playlist)
 	var next_ids = data.get("next", [])
 	remembered_card_ids = data.get("remembered_card_ids", self.remembered_card_ids)
 	var played_ids = data.get("played_pile", [])
@@ -59,9 +60,13 @@ func draw(how_many : int) -> Array:
 		print('deck is about to be emptied (' + str(len(cards)) + ' left, ' + str(how_many) + ' requested).')
 		print('reshuffling ' + str(len(played_pile)) + ' cards from the played pile.')
 		print(played_pile)
+		
 		append_cards(played_pile)
 		played_pile = []
-		shuffle()
+		
+		if not is_playlist():
+			shuffle()
+		
 		print('deck now contains ' + str(len(cards)) + ' cards')
 		print(cards)
 		
@@ -146,6 +151,7 @@ func to_dict() -> Dictionary:
 	var played_info = self.cards_to_dict(played_pile)
 	var cards_info = self.cards_to_dict(cards)
 	return {
+		playlist=is_playlist(),
 		remembered_card_ids=remembered_card_ids,
 		next=next_info,
 		played_pile=played_info,
@@ -158,6 +164,6 @@ func cards_to_dict(array_of_cards: Array) -> Array:
 		serialized_cards.append((card as DraftCard).get_id())
 	return serialized_cards
 
-func get_skip_first_draft() -> bool:
-	return skip_first_draft
+func is_playlist() -> bool:
+	return playlist
 	

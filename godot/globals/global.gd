@@ -499,7 +499,6 @@ func get_state():
 		flood=flood,
 		time_scale=time_scale,
 		laser=laser,
-		starting_deck=starting_deck,
 		sessions_played=sessions_played
 	}
 	
@@ -676,15 +675,12 @@ func new_session(existing_data := {}) -> TheSession:
 	
 	var hand_ids : Array = existing_data.get("hand", [])
 	var hand := []
-	for card_id in hand_ids:
-		hand.append(deck.get_card(card_id))
 	if existing_data.get("playing_card"):
 		var playing_card_id = existing_data.get("playing_card")
 		hand.append(deck.get_card(playing_card_id))
-		
-	if hand.empty() and existing_data.empty() and deck.get_skip_first_draft():
-		hand = deck.draw(4)
-	# else: start with no hand, the draft manager will take care of that
+	for card_id in hand_ids:
+		hand.append(deck.get_card(card_id))
+	
 	session.set_hand(hand)
 	session.setup_from_dictionary(existing_data)
 	Events.emit_signal('session_started')
@@ -763,7 +759,7 @@ func get_ordered_species() -> Array:
 func compare_by_species_id(a: Species, b: Species):
 	return a.species_id < b.species_id
 	
-var starting_deck: String = "intro"
+var starting_deck_id: String = "skulls"
 
 
 # Date utils
