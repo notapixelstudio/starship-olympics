@@ -242,6 +242,7 @@ func _on_Pause_restart():
 	start_match(last_card, last_minigame)
 	
 func _on_nav_to_menu():
+	persistance.save_game_as_latest()
 	global.safe_destroy_game()
 	get_tree().change_scene(menu_scene)
 	
@@ -276,7 +277,6 @@ func navigate_to_celebration():
 	var champion: InfoChampion = InfoChampion.new()
 	var this_session: TheSession = global.get("session")
 	this_session.get_last_winners()[0].to_dict()
-	this_session.to_dict()
 	champion.player = this_session.get_last_winners()[0].to_dict()
 	champion.session_info = this_session.to_dict()
 	celebration.set_champion(champion)
