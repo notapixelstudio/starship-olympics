@@ -100,5 +100,5 @@ func get_unlock_strength() -> int:
 
 func get_logo() -> StreamTexture:
 	if get_minigame():
-		return get_minigame().get_logo()
+		return get_minigame().get_icon()
 	return null

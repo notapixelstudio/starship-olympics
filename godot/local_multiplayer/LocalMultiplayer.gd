@@ -73,8 +73,6 @@ func setup_continue_game(game_data: Dictionary):
 	print("Last game played was {game}. Will be removed from last_played".format({"game":global.the_game.deck.played_pile.back()}))
 	navigate_to_map()
 	
-func _exit_tree():
-	global.local_multiplayer = null
 
 func start_fight(selected_players: Array, fight_mode: String):
 	"""
@@ -113,11 +111,13 @@ func start_fight(selected_players: Array, fight_mode: String):
 	remove_child(parallax)
 	
 	# add startdeck choosing
-	if len(TheUnlocker.get_unlocked_list("starting_decks")) > 0:
+	var playlists = global.get_playlist_starting_deck()
+	if len(playlists) > 0:
 		var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instance()
 		add_child(choose_deck_scene)
 		yield(Events, "selection_starting_deck_over")
 		choose_deck_scene.queue_free()
+		TheUnlocker.unlock_element("starting_decks", global.starting_deck_id)
 	
 	global.new_game(players.values())
 	safe_destroy_combat()
@@ -138,12 +138,19 @@ func _on_minigame_selected(picked_card:DraftCard):
 	minigame.increase_times_started()
 	start_new_match(picked_card, minigame)
 	
-	
 func continue_after_session_over() -> void:
 	"""
 	After a session has ended, Celebrate winner.
 	"""
 	global.sessions_played +=1 # WE are sure that sessions is over
+	var deck: Deck = global.the_game.get_deck()
+	if deck.is_playlist():
+		var playlists = global.get_playlist_starting_deck(TheUnlocker.HIDDEN)
+		playlists.shuffle()
+		if len(playlists) > 0:
+			var to_be_unlocked_deck = playlists.back()
+			print("Unlocking a new playlist" + to_be_unlocked_deck)
+			TheUnlocker.unlock_element("starting_decks",to_be_unlocked_deck)
 	
 	"""
 	Unlocking disabled Issue #1022
@@ -235,7 +242,7 @@ func _on_continue_after_game_over(session_over = false):
 			
 func _on_continue_after_session_ended():
 	persistance.delete_latest_game()
-	navigate_to_map()
+	start_fight(players.values(), "session_ended")
 	
 func _on_Pause_restart():
 	safe_destroy_combat()
@@ -323,3 +330,7 @@ func add_cpu(how_many: int):
 		info_player.species = cpu_species
 		players[id_player] = info_player
 
+
+func _exit_tree():
+	global.local_multiplayer = null
+	

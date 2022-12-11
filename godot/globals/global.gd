@@ -730,6 +730,7 @@ func is_before_first_match_of_the_game() -> bool:
 ##### FILE SYSTEM UTILS #######
 ###############################
 const SPECIES_PATH = "res://selection/characters"
+const DECK_PATH = "res://map/draft/decks/"
 
 func get_resources(base_path: String) -> Dictionary:
 	var ret := {}
@@ -779,4 +780,13 @@ func datetime_to_str(datetime: Dictionary, use_local := false) -> String:
 		datetime_string = Time.get_datetime_string_from_datetime_dict(datetime, true)
 		local_tz = Time.get_offset_string_from_offset_minutes(tz.bias)
 	return datetime_string
-	
+
+func get_playlist_starting_deck(status = TheUnlocker.UNLOCKED):
+	var decks: Dictionary = global.get_resources(global.DECK_PATH)
+	var playlists = []
+	for starting_deck in decks.values():
+		assert(starting_deck is StartingDeck)
+		if starting_deck.is_playlist():
+			if TheUnlocker.get_status("starting_decks", starting_deck.get_id()) == status:
+				playlists.append(starting_deck)
+	return playlists
