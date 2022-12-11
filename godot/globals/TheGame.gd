@@ -32,6 +32,8 @@ func get_uuid() -> String:
 	return uuid
 
 func set_players(_players : Array) -> void:
+	for _player in _players:
+		assert(_player is InfoPlayer)
 	players = _players
 	
 func get_players() -> Array: # of InfoPlayer
