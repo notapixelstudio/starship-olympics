@@ -149,8 +149,8 @@ func continue_after_session_over() -> void:
 		playlists.shuffle()
 		if len(playlists) > 0:
 			var to_be_unlocked_deck = playlists.back()
-			print("Unlocking a new playlist" + to_be_unlocked_deck)
-			TheUnlocker.unlock_element("starting_decks",to_be_unlocked_deck)
+			print("Unlocking a new playlist" + to_be_unlocked_deck.get_id())
+			TheUnlocker.unlock_element("starting_decks",to_be_unlocked_deck.get_id())
 	
 	"""
 	Unlocking disabled Issue #1022
