@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=6]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=9]
+
+[node name="2B" type="Node2D"]
+
+[node name="Wall13" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0, 400 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GRegularPolygon" type="Node" parent="Wall13"]
+script = ExtResource( 1 )
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall16" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0, -400 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GRegularPolygon" type="Node" parent="Wall16"]
+script = ExtResource( 1 )
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall18" parent="." instance=ExtResource( 7 )]
+position = Vector2( -1000, 400 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GBeveledRect" type="Node" parent="Wall18"]
+script = ExtResource( 2 )
+height = 500
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="Wall19" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1000, -400 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 6 )
+
+[node name="GBeveledRect" type="Node" parent="Wall19"]
+script = ExtResource( 2 )
+height = 500
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="DramaticSpawner5" parent="." instance=ExtResource( 9 )]
+match_progress_trigger = 0.7
+jitter = 4.0
+chance = 0.8
+
+[node name="PowerUp" parent="DramaticSpawner5" instance=ExtResource( 5 )]
+type = "shields"
+tease = true

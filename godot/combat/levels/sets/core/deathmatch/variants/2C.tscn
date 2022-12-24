@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
+[ext_resource path="res://actors/environments/ShieldWall.gd" type="Script" id=2]
+[ext_resource path="res://actors/environments/ShieldWall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=5]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=8]
+
+[node name="2C" type="Node2D"]
+
+[node name="Wall7" parent="." instance=ExtResource( 6 )]
+position = Vector2( -1000, 600 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 5 )
+
+[node name="GRegularPolygon2" type="Node" parent="Wall7"]
+script = ExtResource( 1 )
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall8" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1000, -600 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 5 )
+
+[node name="GRegularPolygon2" type="Node" parent="Wall8"]
+script = ExtResource( 1 )
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="DramaticSpawner5" parent="." instance=ExtResource( 8 )]
+position = Vector2( -1000, 0 )
+match_progress_trigger = 0.6
+chance = 0.6
+
+[node name="PowerUp" parent="DramaticSpawner5" instance=ExtResource( 4 )]
+type = "shields"
+tease = true
+
+[node name="DramaticSpawner6" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1000, 0 )
+match_progress_trigger = 0.6
+chance = 0.6
+
+[node name="PowerUp" parent="DramaticSpawner6" instance=ExtResource( 4 )]
+type = "shields"
+tease = true
+
+[node name="ShieldWall" type="Area2D" parent="." instance=ExtResource( 3 )]
+collision_layer = 128
+collision_mask = 4
+script = ExtResource( 2 )
+type = "skin"
+symbol_scale = 1.5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall"]
+polygon = PoolVector2Array( 0, -400, 400, 0, 0, 400, -400, 0 )
+
+[connection signal="body_entered" from="ShieldWall" to="ShieldWall" method="_on_ShieldWall_body_entered"]

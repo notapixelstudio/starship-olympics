@@ -10,7 +10,7 @@
 shader = ExtResource( 5 )
 shader_param/time_left = null
 shader_param/max_time = 0
-shader_param/active = true
+shader_param/active = false
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
@@ -21,11 +21,9 @@ shader_param/time = 3841.1
 shader_param/triangular = false
 shader_param/fg_color = Color( 0.12, 0.488, 0.6, 1 )
 shader_param/bg_color = Color( 0.112, 0.4256, 0.56, 1 )
+shader_param/saturation = 1.0
 
-[node name="Grid" type="Polygon2D" groups=[
-"grid",
-]]
-self_modulate = Color( 1, 1, 1, 0.901961 )
+[node name="Grid" type="Polygon2D" groups=["grid"]]
 material = SubResource( 1 )
 position = Vector2( 0, 32 )
 z_index = -20

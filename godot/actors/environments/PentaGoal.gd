@@ -17,6 +17,8 @@ onready var current_ring : int = rings-1
 onready var field = $Field
 onready var gshape = $Field/GRegularPolygon
 
+var nav_enabled := false
+
 func set_rings(value):
 	rings = value
 
@@ -27,12 +29,16 @@ func set_core_radius(value):
 	core_radius = value
 	
 func update_label_size():
-	$LabelWrapper.scale = Vector2(1,1)*gshape.radius/100/$LabelWrapper/Label.get_total_character_count()*2
+	var scale = gshape.radius/100
+	if $LabelWrapper/Label.get_total_character_count() > 0:
+		scale = scale/$LabelWrapper/Label.get_total_character_count()*2
+	$LabelWrapper.scale = Vector2(1,1)*scale
 
 func _ready():
+	Events.connect('holdable_obtained', self, '_on_holdable_obtained')
+	
 	# connect feedback signal 
 	field.connect("entered", self, "_on_Field_entered")
-	Events.connect("holdable_dropped", self, "_on_holdable_dropped")
 	
 	for i in range(rings):
 		var shape = GRegularPolygon.new()
@@ -48,6 +54,7 @@ func _ready():
 		
 	gshape.radius = core_radius + ring_width*current_ring
 	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
+	update_label_size()
 	
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
@@ -61,36 +68,37 @@ func _on_Field_entered(field, body):
 		$FeedbackLine.visible = true
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("Feedback")
-		$AudioStreamPlayer2D.play()
-		yield($AudioStreamPlayer2D, "finished")
-		$AudioStreamPlayer2D.pitch_scale = 1
+		var ball_player = body.get_player()
+		if ball_player != null and ball_player == get_player() or get_player() == null:
+			do_goal(ball_player, body.global_position)
+		else:
+			# rebound
+			SoundEffects.play($AudioStreamPlayer2D)
 		
-func _on_holdable_dropped(holdable, ship, cause):
-	if cause != $Field/Area2D: # WARNING this is convoluted
-		return
-		
-	var is_basket_ball = holdable is Ball and holdable.has_type('basket')
-	var same_player = ship.get_player() == get_player()
-	
-	if is_basket_ball and same_player:
-		do_goal(ship.get_player(), ship.position)
-	
 func get_score():
 	return 1
 	
 func do_goal(player, pos):
+	if current_ring < 0:
+		return
+		
 	# depleted rings should be moved onto the battlefield surface
 	$Rings.get_child(current_ring).position += global.isometric_offset.rotated(-global_rotation)
 	
 	# decrease size
 	current_ring -= 1
+	
+	# play increasingly high sounds
 	$AudioStreamPlayer2D.pitch_scale = 1 + rings-current_ring
+	SoundEffects.play($AudioStreamPlayer2D)
+	$AudioStreamPlayer2D.pitch_scale = 1
 	
 	if current_ring >= 0:
 		gshape.call_deferred('set_radius', core_radius + ring_width*current_ring) # without defer, collisions become messed up: one goal triggers other goals
 		self.call_deferred('update_label_size')
 	else:
 		$LabelWrapper/Label.queue_free()
+		$Goal.queue_free() # lose Goal status (this is used to let CPUs go of this goal)
 		
 	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()
 	
@@ -100,12 +108,26 @@ func do_goal(player, pos):
 		yield(get_tree().create_timer(0.1), "timeout")
 		field.queue_free()
 		
+	Events.emit_signal("navigation_zone_changed", self)
+	
 func set_player(v : InfoPlayer):
 	player = v
 	field.modulate = player.species.color
 	$Rings.modulate = player.species.color
 	$LabelWrapper/Label.modulate = player.species.color
-	$LabelWrapper/Label.text = player.id
+	$LabelWrapper/Label.text = player.get_username().to_upper()
 	
 func get_player():
 	return player
+
+func get_polygon():
+	if not nav_enabled or not has_node('Field'):
+		return PoolVector2Array([])
+	return $Field.get_polygon()
+
+func _on_holdable_obtained(holdable, ship):
+	var new_nav_enabled = get_player() != ship.get_player()
+	if new_nav_enabled == nav_enabled:
+		return
+	nav_enabled = new_nav_enabled
+	Events.emit_signal("navigation_zone_changed", self)

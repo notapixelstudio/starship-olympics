@@ -1,7 +1,7 @@
 extends Node
 
 const BASE_SPEED = 0
-const SPEED_MULTIPLIER = 2.0
+const SPEED_MULTIPLIER = 1.25
 
 func _enter_tree():
 	# listen to newly created bumpers
@@ -31,8 +31,14 @@ func _on_bumper_collided(bumper_b, bumper_a):
 	yield(get_tree(), "idle_frame")
 	
 	if is_instance_valid(bumper_a):
-		bumper_a.linear_velocity = bumper_a.linear_velocity.normalized() * (BASE_SPEED + SPEED_MULTIPLIER*bumper_a.linear_velocity.length()) / bumper_a.mass
+		var speed_multiplier = SPEED_MULTIPLIER
+		if bumper_a is Ship and bumper_a.is_on_ice():
+			speed_multiplier = 1.2
+		bumper_a.linear_velocity = bumper_a.linear_velocity.normalized() * (BASE_SPEED + speed_multiplier*bumper_a.linear_velocity.length()) / bumper_a.mass
 	
 	if is_instance_valid(bumper_b):
-		bumper_b.linear_velocity = bumper_b.linear_velocity.normalized() * (BASE_SPEED + SPEED_MULTIPLIER*bumper_b.linear_velocity.length()) / bumper_b.mass
+		var speed_multiplier = SPEED_MULTIPLIER
+		if bumper_b is Ship and bumper_b.is_on_ice():
+			speed_multiplier = 1.2
+		bumper_b.linear_velocity = bumper_b.linear_velocity.normalized() * (BASE_SPEED + speed_multiplier*bumper_b.linear_velocity.length()) / bumper_b.mass
 	

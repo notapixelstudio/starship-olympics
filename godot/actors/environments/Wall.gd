@@ -5,7 +5,7 @@ class_name Wall
 
 export (bool) var hollow setget set_hollow
 
-export (int) var offset setget set_offset
+export (int) var offset = 800 setget set_offset
 export (int) var elongation setget set_elongation
 
 enum TYPE { solid, hostile, ghost, decoration, glass }
@@ -141,7 +141,7 @@ func get_rect_extents():
 
 func remove_old_shapes():
 	for child in get_children():
-		if child is CollisionShape2D:
+		if child is CollisionShape2D or child is CollisionPolygon2D:
 			remove_child(child)
 			child.queue_free()
 	
@@ -150,6 +150,9 @@ func get_gshape():
 		if child is GShape:
 			return child
 	return null
+	
+func get_polygon():
+	return global_transform.xform(get_gshape().to_PoolVector2Array())
 	
 func _get_configuration_warning():
 	if not get_gshape():
@@ -176,17 +179,22 @@ func refresh():
 				var shape = ConvexPolygonShape2D.new()
 				var a = points[i]
 				var b = points[(i+1) % len(points)]
+				# elongation is used to avoid jumping outside the battlefield walls
 				var elo = (b-a).normalized()*elongation
-				shape.set_points(PoolVector2Array([a-elo,a+a.normalized()*offset-elo,b+b.normalized()*offset+elo,b+elo]))
+				var elo_polygon := PoolVector2Array([a-elo,a+a.normalized()*offset-elo,b+b.normalized()*offset+elo,b+elo])
+				var clipped_elo_polygons : Array = Geometry.clip_polygons_2d(elo_polygon, points) # this is to avoid elongation spikes inside the arena
+				if len(clipped_elo_polygons) > 0:
+					shape.set_points(clipped_elo_polygons[0])
+				else:
+					shape.set_points(elo_polygon)
 				cshape.set_shape(shape)
 				add_child(cshape)
 				
 		else:
-			var cshape = CollisionShape2D.new()
-			var shape = ConvexPolygonShape2D.new()
-			shape.set_points(points)
-			cshape.set_shape(shape)
-			add_child(cshape)
+			var cpolygon = CollisionPolygon2D.new()
+			cpolygon.visible = false
+			cpolygon.polygon = points
+			add_child(cpolygon)
 			
 	$InnerPolygon2D.visible = not hollow and not(type == TYPE.ghost) and not(type == TYPE.glass) and under == 'both'
 	
@@ -198,7 +206,7 @@ func refresh():
 		$InnerPolygon2D.set_polygon(points)
 	$Grid.set_polygon(points)
 	
-	$Polygon2D.visible = not hollow and not type == TYPE.ghost and not type == TYPE.decoration
+	$Polygon2D.visible = not hollow and not type == TYPE.ghost# and not type == TYPE.decoration
 	$Grid.visible = hollow and not type == TYPE.ghost and not type == TYPE.decoration and not hide_grid
 	$line.visible = not hide_line
 	$lineBelow.visible = not hide_line_below
@@ -247,8 +255,10 @@ func refresh():
 		$lineBelow.self_modulate = Color(1,1,1,1)
 		$lineBelow.modulate = Color(0.2,0.4,1,0.2)
 	elif type == TYPE.decoration:
-		$line.modulate = Color(0.8,0.8,1.09,1)
-		$lineBelow.modulate = Color(0.8,0.8,1.09,1)
+		$Polygon2D.modulate = solid_line_color
+		$InnerPolygon2D.modulate = solid_line_color
+		$line.modulate = solid_line_color
+		$lineBelow.modulate = solid_line_color
 	elif type == TYPE.glass:
 		color = Color(0.4,0.7,1.2,1)
 		$Polygon2D.modulate = color

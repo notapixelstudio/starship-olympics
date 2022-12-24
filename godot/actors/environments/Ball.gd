@@ -5,7 +5,7 @@ class_name Ball
 
 const GRAB_DISTANCE = 84
 
-export (String, 'crown', 'bee_crown', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown', 'skull') var type setget set_type, get_type
+export (String, 'crown', 'bee_crown', 'helm', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown', 'skull') var type setget set_type, get_type
 
 var impulse := 0.0
 var player : InfoPlayer
@@ -18,7 +18,7 @@ func get_type():
 	return type
 	
 func _ready():
-	if type == 'soccer':
+	if type == 'soccer' or type == 'tennis':
 		impulse = 5
 	set_physics_process(false)
 	refresh()
@@ -30,13 +30,10 @@ func refresh():
 	
 func place_and_push(dropper, velocity, direction:='forward') -> void:
 	var dir = 1.0 if direction == 'forward' else -1.0
-	global_position = dropper.global_position
 	global_position = dropper.global_position + dir*Vector2(GRAB_DISTANCE,0).rotated(dropper.global_rotation)
 	
-	linear_velocity = velocity if direction == 'forward' else -300.0*velocity.normalized()
-	if type == 'soccer':
-		linear_velocity *= 1.5
-		
+	linear_velocity = velocity if direction == 'forward' else -velocity
+	
 	activate()
 
 func activate():
@@ -52,10 +49,10 @@ func get_texture():
 	return $Sprite.texture
 	
 func show_on_top():
-	return type in ['crown', 'negacrown', 'bee_crown']
+	return type in ['crown', 'negacrown', 'bee_crown', 'helm']
 	
 func is_rotatable():
-	return not type in ['crown', 'negacrown', 'bee_crown', 'star', 'skull']
+	return not type in ['crown', 'negacrown', 'bee_crown', 'helm', 'star', 'skull']
 
 func is_glowing():
 	return true
@@ -67,10 +64,14 @@ func has_type(t):
 	return self.get_type() == t
 	
 func is_equivalent_to(holdable2):
-	return self.has_type(holdable2.get_type())
+	return holdable2 != null and is_instance_valid(holdable2) and self.has_type(holdable2.get_type())
 	
 func set_player(v: InfoPlayer):
 	player = v
 	
 func get_player() -> InfoPlayer:
 	return player
+
+func damage(hazard, damager : Ship) -> void:
+	$AnimationPlayer.play("hit")
+	

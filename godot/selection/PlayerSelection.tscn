@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://selection/PlayerSelection.gd" type="Script" id=1]
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=2]
@@ -7,8 +7,8 @@
 [ext_resource path="res://assets/audio/UI_effects/PM_BlurryDreams_33.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=6]
 [ext_resource path="res://selection/ControlsSelectionScreen.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/sprites/interface/circle_shadow.png" type="Texture" id=8]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=9]
 [ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/species/trixens.png" type="Texture" id=11]
 [ext_resource path="res://selection/characters/auriels_1.tres" type="Resource" id=12]
@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/animations/wiggle_updown.tres" type="Animation" id=15]
 [ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=16]
 [ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=17]
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "appear"
@@ -126,30 +127,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ -90.0, 270.0 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 87.174, 473 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0.8, 0.8 ) ]
-}
 
 [sub_resource type="DynamicFont" id=6]
 size = 10
@@ -159,12 +136,44 @@ font_data = ExtResource( 9 )
 size = 28
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 9 )
+font_data = ExtResource( 18 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 24
 outline_size = 4
 font_data = ExtResource( 9 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "Blink"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 2 ),
+"transitions": PoolRealArray( -2, -2, -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="PlayerSelection" type="Control"]
 anchor_top = 0.5
@@ -174,9 +183,6 @@ margin_right = 200.0
 margin_bottom = 213.0
 rect_min_size = Vector2( 200, 430 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Wrapper" type="Node2D" parent="."]
 z_as_relative = false
@@ -273,22 +279,18 @@ texture_mode = 91
 begin_cap_mode = 1
 
 [node name="Controls" parent="Wrapper/SpeciesSelection" instance=ExtResource( 7 )]
+unique_name_in_owner = true
+visible = false
 
 [node name="LeftArrow" parent="Wrapper/SpeciesSelection" instance=ExtResource( 17 )]
 margin_left = 9.0
-margin_top = 475.0
+margin_top = 454.0
 margin_right = 9.0
-margin_bottom = 475.0
+margin_bottom = 454.0
 rect_scale = Vector2( -1.2, 1.2 )
 
-[node name="Shadow" type="Sprite" parent="Wrapper/SpeciesSelection"]
-visible = false
-position = Vector2( 87.174, 472 )
-scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 8 )
-
 [node name="Ship" type="Sprite" parent="Wrapper/SpeciesSelection"]
-position = Vector2( 87.174, 473 )
+position = Vector2( 87.174, 452 )
 rotation = -1.5708
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 10 )
@@ -297,14 +299,25 @@ texture = ExtResource( 10 )
 autoplay = "standby"
 anims/standby = SubResource( 5 )
 
+[node name="ShipShadow" parent="Wrapper/SpeciesSelection/Ship" instance=ExtResource( 8 )]
+unique_name_in_owner = true
+self_modulate = Color( 0, 0, 0, 0.627451 )
+show_behind_parent = true
+z_index = 0
+z_as_relative = true
+sprite = NodePath("..")
+dy = 22
+
 [node name="RightArrow" parent="Wrapper/SpeciesSelection" instance=ExtResource( 17 )]
 margin_left = 159.0
-margin_top = 475.0
+margin_top = 454.0
 margin_right = 159.0
-margin_bottom = 475.0
+margin_bottom = 454.0
 rect_scale = Vector2( 1.2, 1.2 )
 
 [node name="SpeciesName" type="VBoxContainer" parent="Wrapper/SpeciesSelection"]
+unique_name_in_owner = true
+visible = false
 margin_left = -2.0
 margin_top = 558.0
 margin_right = 168.0
@@ -312,7 +325,7 @@ margin_bottom = 627.0
 
 [node name="Label" type="Label" parent="Wrapper/SpeciesSelection/SpeciesName"]
 margin_right = 170.0
-margin_bottom = 19.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 16 )
 text = "pentagonions"
 align = 1
@@ -320,15 +333,15 @@ valign = 1
 uppercase = true
 
 [node name="ColorRect" type="ColorRect" parent="Wrapper/SpeciesSelection/SpeciesName"]
-margin_top = 23.0
+margin_top = 26.0
 margin_right = 170.0
-margin_bottom = 25.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 0, 2 )
 
 [node name="Tagline1" type="Label" parent="Wrapper/SpeciesSelection/SpeciesName"]
-margin_top = 29.0
+margin_top = 32.0
 margin_right = 170.0
-margin_bottom = 40.0
+margin_bottom = 44.0
 custom_fonts/font = SubResource( 6 )
 text = "tagline"
 align = 1
@@ -336,9 +349,9 @@ valign = 1
 uppercase = true
 
 [node name="Tagline2" type="Label" parent="Wrapper/SpeciesSelection/SpeciesName"]
-margin_top = 44.0
+margin_top = 48.0
 margin_right = 170.0
-margin_bottom = 55.0
+margin_bottom = 60.0
 custom_fonts/font = SubResource( 6 )
 text = "tagline"
 align = 1
@@ -375,6 +388,7 @@ autoplay = "wiggle"
 anims/wiggle = ExtResource( 15 )
 
 [node name="TeamMode" type="Control" parent="Wrapper/SpeciesSelection"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -395,9 +409,25 @@ TRIXENS"
 align = 1
 valign = 1
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="JoinMsg" type="Label" parent="Wrapper"]
+unique_name_in_owner = true
+anchor_right = 1.0
+margin_top = 541.0
+margin_right = 166.0
+margin_bottom = 606.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "PRESS
+TO JOIN!"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/JoinMsg"]
+autoplay = "Blink"
+anims/Blink = SubResource( 9 )
+anims/RESET = SubResource( 10 )
 
 [node name="SFX" type="Node" parent="."]
 

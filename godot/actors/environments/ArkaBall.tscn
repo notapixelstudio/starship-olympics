@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/sprites/weapons/ball_bomb.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/atom.png" type="Texture" id=1]
 [ext_resource path="res://actors/environments/ArkaBall.gd" type="Script" id=2]
-[ext_resource path="res://actors/battlers/Trail.gd" type="Script" id=3]
+[ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/audio/FX/270315__littlerobotsoundfactory__menu-navigate-03.wav" type="AudioStream" id=7]
 
@@ -13,35 +12,55 @@ friction = 0.0
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 150.0
+radius = 100.0
 
-[node name="ArkaBall" type="RigidBody2D" groups=[
-"in_camera",
-]]
+[sub_resource type="Animation" id=3]
+resource_name = "Idle"
+length = 6.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[node name="ArkaBall" type="RigidBody2D" groups=["in_camera"]]
 collision_layer = 4
 collision_mask = 16
 mass = 4.0
 physics_material_override = SubResource( 1 )
-contacts_reported = 1
+contacts_reported = 10
 contact_monitor = true
 can_sleep = false
 linear_velocity = Vector2( -1, 1 )
 linear_damp = 3.0
 script = ExtResource( 2 )
 
-[node name="Owned" parent="." instance=ExtResource( 5 )]
-
 [node name="Waiter" parent="." instance=ExtResource( 6 )]
 
 [node name="Strategic" parent="." instance=ExtResource( 4 )]
-
-[node name="Trail2D" type="Line2D" parent="."]
-modulate = Color( 1, 1, 1, 0.313726 )
-width = 30.0
-default_color = Color( 1, 1, 1, 1 )
-texture_mode = 2699552
-script = ExtResource( 3 )
-trail_length = 160
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
@@ -55,4 +74,18 @@ stream = ExtResource( 7 )
 volume_db = -5.0
 bus = "SFX"
 
+[node name="AutoTrail" parent="." instance=ExtResource( 3 )]
+starting_color = Color( 1, 1, 1, 0.235294 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+anims/Idle = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_ArkaBall_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

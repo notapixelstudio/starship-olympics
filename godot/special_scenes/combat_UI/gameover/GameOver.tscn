@@ -17,13 +17,9 @@ anchor_bottom = 1.0
 mouse_filter = 1
 mouse_default_cursor_shape = 10
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 sure_scene = ExtResource( 4 )
 
 [node name="Animator" type="AnimationPlayer" parent="."]
-autoplay = "idle"
 anims/idle = SubResource( 1 )
 anims/transition = SubResource( 2 )
 
@@ -38,6 +34,8 @@ __meta__ = {
 }
 
 [node name="Buttons" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
 margin_left = 942.0
 margin_top = 480.0
 margin_right = 1238.0
@@ -45,26 +43,25 @@ margin_bottom = 659.0
 mouse_filter = 2
 theme = ExtResource( 2 )
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Continue" type="Button" parent="Buttons"]
 margin_right = 296.0
-margin_bottom = 51.0
+margin_bottom = 46.0
 size_flags_vertical = 3
 text = "CONTINUE"
 
-[node name="Map" type="Button" parent="Buttons"]
-margin_top = 55.0
+[node name="Cards" type="Button" parent="Buttons"]
+visible = false
+margin_top = 50.0
 margin_right = 296.0
-margin_bottom = 106.0
+margin_bottom = 96.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "QUIT TO MAP"
+text = "QUIT TO CARDS"
 
 [node name="Quit" type="Button" parent="Buttons"]
-visible = false
 margin_top = 122.0
 margin_right = 222.0
 margin_bottom = 179.0
@@ -73,29 +70,31 @@ size_flags_vertical = 3
 text = "QUIT"
 
 [node name="Control" type="Control" parent="Buttons"]
-margin_top = 110.0
+margin_top = 100.0
 margin_right = 296.0
-margin_bottom = 124.0
+margin_bottom = 129.0
 size_flags_vertical = 3
 
 [node name="ShowArena" type="Button" parent="Buttons"]
-margin_top = 128.0
+margin_top = 133.0
 margin_right = 296.0
 margin_bottom = 179.0
 size_flags_vertical = 3
 text = "SHOW ARENA"
 
 [node name="LeaderBoard" parent="." instance=ExtResource( 3 )]
+unique_name_in_owner = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -493.668
-margin_top = -184.124
-margin_right = 238.332
-margin_bottom = 250.876
+margin_left = -615.0
+margin_top = -210.0
+margin_right = 238.0
+margin_bottom = 251.0
 
 [connection signal="pressed" from="Buttons/Continue" to="." method="_on_Continue_pressed"]
-[connection signal="pressed" from="Buttons/Map" to="." method="_on_Map_pressed"]
+[connection signal="pressed" from="Buttons/Cards" to="." method="_on_Cards_pressed"]
 [connection signal="pressed" from="Buttons/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Buttons/ShowArena" to="." method="_show_arena"]
+[connection signal="animation_over" from="LeaderBoard" to="." method="_on_LeaderBoard_animation_over"]

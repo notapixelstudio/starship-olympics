@@ -1,14 +1,23 @@
 tool
 extends Area2D
+class_name Tile
 
 func get_klass():
 	return 'Tile'
 
-export var size = 1 setget set_size
+export var size := 1.0 setget set_size
 export var sides = 4 setget set_sides
 export var points = 1
 export var fortifiable = true
 export var need_royal = false
+export var foreground_offset := 16
+export var background_offset := 32
+export var background_scale := 0.85
+export var foreground_position := Vector2(0,0)
+export var fortified_background_scale := Vector2(1.05,1.05)
+export var active_area_scale := 1.0
+export var neighbour_check_rotation_degrees := 0.0
+export var neighbour_check_scale := 1.1
 
 var conquering_ship : Ship
 var owner_ship : Ship setget set_owner_ship
@@ -16,11 +25,12 @@ var owner_ship : Ship setget set_owner_ship
 var neighbours
 var fortified = false
 var max_neighbour_value = 0
+var on = false
 
 signal conquered
 signal lost
 
-func set_size(v):
+func set_size(v: float):
 	size = v
 	$GRegularPolygon.radius = size*100
 	$Graphics/Wrapper.scale = Vector2(size,size)
@@ -43,7 +53,7 @@ func set_owner_ship(v):
 	emit_signal('conquered', owner_ship, self, get_score(), false)
 	
 	$Graphics/Partial.modulate = owner_ship.species.color
-	$Graphics/Wrapper/Label.self_modulate = owner_ship.species.color
+	#$Graphics/Wrapper/Label.self_modulate = owner_ship.species.color
 	
 func refresh_polygon():
 	var polygon = $GRegularPolygon.to_PoolVector2Array()
@@ -55,8 +65,12 @@ func refresh_polygon():
 func _ready():
 	refresh_polygon()
 	
-	$Foreground.position = Vector2(0,16).rotated(-global_rotation)
-	$Graphics.position = Vector2(0,32).rotated(-global_rotation)
+	$CollisionPolygon2D.scale = active_area_scale*Vector2(1,1)
+	$Neighbourhood.rotation_degrees = neighbour_check_rotation_degrees
+	$Neighbourhood.scale = neighbour_check_scale*Vector2(1,1)
+	$Graphics/Background.scale = background_scale*Vector2(1,1)
+	$Foreground.position = foreground_position + Vector2(0,foreground_offset).rotated(-global_rotation)
+	$Graphics.position = Vector2(0,background_offset).rotated(-global_rotation)
 	$Graphics/Wrapper.rotation = -global_rotation
 	$Graphics/Wrapper/Label.text = '' if points == 1 else str(points)
 	yield(get_tree(), "idle_frame") # wait for all tiles to be ready
@@ -67,11 +81,14 @@ func _ready():
 		if area != self and area.has_method('get_klass') and area.get_klass() == 'Tile': # trick to avoid circular references
 			neighbours.append(area)
 			
+	if len(neighbours) > 8:
+		print(len(neighbours))
+	
 	if not Engine.is_editor_hint(): # watch out for deleting this node when this is executed as a tool script!
 		$Neighbourhood.queue_free() # delete areas to save physics computations
 	
 	for n in neighbours:
-		max_neighbour_value = max(max_neighbour_value, n.get_score())
+		max_neighbour_value = max(max_neighbour_value, n.get_score() if n.has_method('get_score') else 0)
 	
 func _process(delta):
 	var bodies = get_overlapping_bodies()
@@ -83,15 +100,16 @@ func _process(delta):
 		
 func conquest():
 	set_owner_ship(conquering_ship)
+	Events.emit_signal('sth_conquered', conquering_ship, self)
 	if fortifiable:
 		attempt_fortification()
 		for n in neighbours:
-			if n.owner_ship == owner_ship or n.conquering_ship == owner_ship:
+			if n.get_player() == get_player() or n.get_conquering_player() == get_player():
 				n.attempt_fortification()
 	
 func attempt_fortification():
 	for n in neighbours:
-		if not(n.owner_ship == owner_ship or n.conquering_ship == owner_ship):
+		if not(n.get_player() == get_player() or n.get_conquering_player() == get_player()):
 			return
 	fortify()
 	
@@ -104,11 +122,11 @@ func fortify():
 	fortified = true
 	set_process(false) # disable reconquering
 	$Foreground.modulate = owner_ship.species.color
-	$Foreground.self_modulate = Color(0.5,0.5,0.5)
+	$Foreground.self_modulate = Color(0.7,0.7,0.7)
 	$Graphics/Background.modulate = owner_ship.species.color
 	$Graphics/Background.self_modulate = Color(0.3,0.3,0.3)
-	$Graphics/Background.scale = Vector2(1,1)
-	$Graphics/Wrapper/Label.modulate = Color(0.3,0.3,0.3)
+	$Graphics/Background.scale = fortified_background_scale
+	$Graphics/Wrapper/Label.modulate = Color(0,0,0)
 
 func get_strategy(ship, distance, game_mode):
 	if fortified:
@@ -139,3 +157,30 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func get_score():
 	return points
 	
+func set_on(player):
+	if on or get_player() == null or player != get_player():
+		return
+	on = true
+	modulate = Color(1.7,1.7,1.7)
+	propagate()
+	
+func set_off():
+	on = false
+	modulate = Color(0.9,0.9,0.9)
+	
+func propagate():
+	if not on or get_player() == null:
+		return
+		
+	for neighbour in neighbours:
+		neighbour.set_on(owner_ship.get_player())
+		
+func get_player():
+	if owner_ship == null:
+		return null
+	return owner_ship.get_player()
+
+func get_conquering_player():
+	if conquering_ship == null:
+		return null
+	return conquering_ship.get_player()

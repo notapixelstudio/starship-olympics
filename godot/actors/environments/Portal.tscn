@@ -9,10 +9,10 @@
 [sub_resource type="CanvasItemMaterial" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 450, 30 )
+extents = Vector2( 300, 30 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 450, 30 )
+extents = Vector2( 300, 30 )
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.338889, 1 )
@@ -30,11 +30,12 @@ curve = SubResource( 6 )
 
 [sub_resource type="ParticlesMaterial" id=8]
 emission_shape = 2
-emission_box_extents = Vector3( 50, 300, 1 )
+emission_box_extents = Vector3( 25, 300, 1 )
 flag_disable_z = true
 gravity = Vector3( 40, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+scale = 3.0
 scale_random = 1.0
 scale_curve = SubResource( 7 )
 color_ramp = SubResource( 5 )
@@ -54,12 +55,10 @@ scale_random = 1.0
 scale_curve = SubResource( 7 )
 color_ramp = SubResource( 5 )
 
-[node name="Portal" type="Node2D" groups=[
-"in_camera",
-]]
+[node name="Portal" type="Node2D" groups=["in_camera"]]
 material = SubResource( 1 )
 script = ExtResource( 2 )
-offset = 250.0
+color = Color( 0.243137, 0, 1, 1 )
 
 [node name="Goal" parent="." instance=ExtResource( 4 )]
 
@@ -87,11 +86,11 @@ shape = SubResource( 3 )
 one_way_collision = true
 
 [node name="Line2D" type="Line2D" parent="."]
-modulate = Color( 1, 0, 1, 1 )
+modulate = Color( 0, 0, 0, 1 )
 self_modulate = Color( 1.5, 1.5, 1.5, 1 )
-position = Vector2( -34, 0 )
+position = Vector2( -28, 0 )
 rotation = 1.5708
-points = PoolVector2Array( -300, 0, 300, 0 )
+points = PoolVector2Array( -300, -14.7197, -270, -12.4245, -240, -19.2538, -210, -19.5795, -180, -5.12021, -150, -14.6916, -120, -7.0769, -90, -6.30447, -60, -18.4434, -30, -8.37624, 0, -2.5431, 30, -12.3033, 60, -2.41047, 90, -11.4796, 120, -5.16736, 150, -5.11037, 180, -11.1317, 210, -17.9777, 240, -19.806, 270, -5.06065 )
 width = 300.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 1 )
@@ -108,25 +107,22 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="SpikeParticles2D" type="Particles2D" parent="."]
-modulate = Color( 1, 0, 1, 1 )
+modulate = Color( 0.243137, 0, 1, 1 )
 self_modulate = Color( 1.5, 1.5, 1.5, 1 )
 position = Vector2( -50, 0 )
-amount = 16
 process_material = SubResource( 8 )
 texture = ExtResource( 3 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-modulate = Color( 1, 0, 1, 1 )
+modulate = Color( 0.243137, 0, 1, 1 )
 self_modulate = Color( 2, 2, 2, 1 )
 position = Vector2( -150, 0 )
-amount = 16
 lifetime = 2.0
 process_material = SubResource( 9 )
 
 [node name="Particles2D2" type="Particles2D" parent="."]
 self_modulate = Color( 1.5, 1.5, 1.5, 1 )
 position = Vector2( -150, 0 )
-amount = 16
 lifetime = 2.0
 process_material = SubResource( 9 )
 
@@ -137,4 +133,9 @@ points = PoolVector2Array( -300, 0, 300, 0 )
 width = 40.0
 default_color = Color( 0.8, 0.8, 1.09, 1 )
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -16,7 +16,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-offset = 400
 elongation = 100
 
 [node name="Strategic" parent="." instance=ExtResource( 8 )]
@@ -25,12 +24,6 @@ elongation = 100
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
-}
-
-[node name="Stunning" type="Node" parent="Entity"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
 }
 
 [node name="Deadly" type="Node" parent="Entity"]

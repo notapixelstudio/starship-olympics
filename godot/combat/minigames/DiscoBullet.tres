@@ -1,15 +1,11 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://combat/minigames/Minigame.gd" type="Script" id=1]
-[ext_resource path="res://combat/levels/singles/disco_bullet/2players.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combat/modes/DiscoBullet.tres" type="Resource" id=3]
-[ext_resource path="res://combat/levels/singles/disco_bullet/4players.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/levels/singles/disco_bullet/3players.tscn" type="PackedScene" id=5]
 
 [resource]
 script = ExtResource( 1 )
 game_mode = ExtResource( 3 )
-level_1players = ExtResource( 2 )
-level_2players = ExtResource( 2 )
-level_3players = ExtResource( 5 )
-level_4players = ExtResource( 4 )
+arenas_dir = "res://combat/levels/singles/disco_bullet/"
+suit_top = "cyan"
+suit_bottom = "cyan"

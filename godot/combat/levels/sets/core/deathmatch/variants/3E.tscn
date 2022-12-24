@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/environments/ShieldWall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=6]
+
+[node name="3E" type="Node2D"]
+
+[node name="DramaticSpawner" parent="." instance=ExtResource( 6 )]
+match_progress_trigger = 0.25
+jitter = 2.0
+
+[node name="PowerUp" parent="DramaticSpawner" instance=ExtResource( 1 )]
+type = "shields"
+tease = true
+
+[node name="DramaticSpawner2" parent="." instance=ExtResource( 6 )]
+position = Vector2( -1000, 600 )
+match_progress_trigger = 0.6
+chance = 0.4
+
+[node name="PowerUp" parent="DramaticSpawner2" instance=ExtResource( 1 )]
+type = "shields"
+tease = true
+
+[node name="DramaticSpawner3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1000, -600 )
+match_progress_trigger = 0.6
+chance = 0.4
+
+[node name="PowerUp" parent="DramaticSpawner3" instance=ExtResource( 1 )]
+type = "shields"
+tease = true
+
+[node name="ShieldWall2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 200, 600 )
+type = "skin"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall2"]
+polygon = PoolVector2Array( 200, -200, 400, 0, 200, 200, -200, 200, -400, 0, -200, -200 )
+
+[node name="ShieldWall" parent="." instance=ExtResource( 2 )]
+position = Vector2( -200, -600 )
+type = "skin"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall"]
+polygon = PoolVector2Array( 200, -200, 400, 0, 200, 200, -200, 200, -400, 0, -200, -200 )

@@ -10,12 +10,24 @@ onready var Leading = $Content/LeaderPanel/Headshot
 onready var LeadingLabel = $Content/LeaderPanel/Label
 onready var TimeLeft = $Content/ModePanel/TimeLeft
 
-func set_planet(planet: String, mode: GameMode):
-	$Content/ModePanel/PlanetName.text = (mode as GameMode).name
-	$Content/ModePanel/Icon.texture = (mode as GameMode).icon
+const std_bar_height := 28
+const team_bar_height := 20
+
+func set_draft_card(draft_card : DraftCard):
+	if draft_card == null:
+		return
+		
+	get_node('%MinigameName').text = draft_card.get_minigame().get_name()
+	$Content/ModePanel/Icon.texture = draft_card.get_minigame().get_icon()
 	$Content/ModePanel/Icon.visible = true
-	$Content/ModePanel/Shadow.texture = (mode as GameMode).icon
+	$Content/ModePanel/Shadow.texture = draft_card.get_minigame().get_icon()
 	$Content/ModePanel/Shadow.visible = true
+	get_node('%WinterLabel').visible = draft_card.is_winter()
+	get_node('%PerfectionistStar').visible = draft_card.is_perfectionist()
+	get_node('%PerfectionistLabel').visible = draft_card.is_perfectionist()
+	var suit = draft_card.get_suit_bottom()
+	if suit: # TBD double suit
+		get_node('%MinigameName').modulate = global.SUIT_COLORS[suit]
 
 func _ready():
 	set_process(false)
@@ -29,6 +41,8 @@ func post_ready():
 		TimeLeft.text = str(the_match.time_left)
 	else:
 		TimeLeft.text = ''
+	$Content/ModePanel/TimeLeftShadow.text = TimeLeft.text
+	
 	var i = 0
 
 	for player in the_match.players.values():
@@ -41,9 +55,9 @@ func post_ready():
 	var y = sort_bars(true)
 	
 	# adjust background
-	height = 10 + y
-	$BarsBackground.rect_size.y = height
-	$BarsBottom.rect_position.y = height
+	height = y
+	$BarsBackground.rect_size.x = height + 36
+	$BarsBottom.rect_position.x = height
 	set_process(true)
 
 func _on_match_tick(t):
@@ -51,6 +65,7 @@ func _on_match_tick(t):
 	
 func update_time_left(t):
 	TimeLeft.text = str(int(ceil(t)))
+	$Content/ModePanel/TimeLeftShadow.text = TimeLeft.text
 
 func _on_matchscore_updated(author, broadcasted):
 	# update scores
@@ -60,7 +75,7 @@ func _on_matchscore_updated(author, broadcasted):
 		var player : InfoPlayer = global.the_match.get_player(bar.player.id)
 		bar.set_value(player.get_score(), player if broadcasted else author)
 		
-	sort_bars(false)
+	# sort_bars(false)
 	
 	update_leaders()
 	
@@ -75,7 +90,7 @@ func sort_bars(instantaneous):
 	var i = 0
 	for bar in bars:
 		var pos = Vector2(0, y)
-		y += 32 if i == len(bars)-1 or bar.player.team != bars[i+1].player.team else 20
+		y += std_bar_height if i == len(bars)-1 or bar.player.team != bars[i+1].player.team else team_bar_height
 		if instantaneous:
 			bar.position = pos
 		else:

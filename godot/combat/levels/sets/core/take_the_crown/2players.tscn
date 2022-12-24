@@ -8,14 +8,15 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/levels/background/bright.png" type="Texture" id=9]
-[ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=10]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=9]
+[ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/2A.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
-[ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=12]
+[ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/B.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
+[ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=14]
+[ext_resource path="res://actors/brains/TakeTheCrownBrain.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -31,49 +32,19 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 4 ),
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
-"values": [ 885, 50 ]
-}
-
-[sub_resource type="Animation" id=2]
-length = 10.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("NoCrownZone:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("NoCrownZone2:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
+"values": [ 935, 50 ]
 }
 
 [node name="Arena" instance=ExtResource( 8 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 13 )
+cpu_brain_scene = ExtResource( 15 )
+create_default_navzone = false
 
 [node name="CrownManager" parent="Managers" index="0" instance=ExtResource( 16 )]
 
-[node name="CrownModeManager" parent="Managers" index="9"]
+[node name="CrownModeManager" parent="Managers" index="8"]
 enabled = true
-
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 9 )
-centered = false
 
 [node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
 hollow = true
@@ -86,13 +57,16 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-width = 3400
-height = 1800
+width = 3500
+height = 1900
 bevel = 50
 bevel_nw = 50
 bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
+
+[node name="NavigationZone" parent="Battlefield/Background/OutsideWallGhost" index="9" instance=ExtResource( 9 )]
+layers = [ "default", "holder" ]
 
 [node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
 hollow = true
@@ -105,13 +79,13 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-width = 3400
-height = 1800
-bevel = 900
-bevel_nw = 900
-bevel_ne = 900
-bevel_sw = 900
-bevel_se = 900
+width = 3500
+height = 1900
+bevel = 950
+bevel_nw = 950
+bevel_ne = 950
+bevel_sw = 950
+bevel_se = 950
 
 [node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
 hollow = true
@@ -124,13 +98,13 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-width = 3400
-height = 1800
-bevel = 885
-bevel_nw = 885
-bevel_ne = 885
-bevel_sw = 885
-bevel_se = 885
+width = 3500
+height = 1900
+bevel = 935
+bevel_nw = 935
+bevel_ne = 935
+bevel_sw = 935
+bevel_se = 935
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=["animation_in_battle"]]
 playback_speed = 0.5
@@ -145,46 +119,30 @@ bg_color = Color( 0.28, 0.14, 0.14, 1 )
 [node name="FloodWater" parent="Battlefield/Background" index="5"]
 opaque_tint = Color( 0, 0, 0, 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="0" groups=["animation_in_battle"]]
-playback_speed = 0.2
-anims/Rotate = SubResource( 2 )
+[node name="Variants" parent="Battlefield/Middleground" index="0" instance=ExtResource( 14 )]
+variant_scenes = [ ExtResource( 10 ), ExtResource( 12 ) ]
 
 [node name="Wall" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
-position = Vector2( 0, -900 )
+position = Vector2( 0, -950 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="8"]
 script = ExtResource( 1 )
 radius = 150
 sides = 4.0
-
-[node name="Laser" parent="Battlefield/Middleground/Wall" index="6" groups=["additional_lasers"] instance=ExtResource( 10 )]
-show_behind_parent = true
-position = Vector2( 0, 151 )
-rotation = 1.5708
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Wall2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
-position = Vector2( 0, 900 )
+position = Vector2( 0, 950 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="8"]
 script = ExtResource( 1 )
 radius = 150
 sides = 4.0
-
-[node name="NoCrownZone" parent="Battlefield/Middleground" index="3" instance=ExtResource( 12 )]
-position = Vector2( -800, 0 )
-
-[node name="NoCrownZone2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 12 )]
-position = Vector2( 800, 0 )
-
-[node name="PowerUp" parent="Battlefield/Middleground" index="5" instance=ExtResource( 18 )]
-position = Vector2( -400, -400 )
-type = "rocket_gun"
-
-[node name="PowerUp2" parent="Battlefield/Middleground" index="6" instance=ExtResource( 18 )]
-position = Vector2( 400, 400 )
-type = "rocket_gun"
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 17 )]
 type = "crown"
@@ -193,15 +151,15 @@ type = "crown"
 position = Vector2( -400, -400 )
 rotation = 0.785398
 species = ExtResource( 4 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 400, 400 )
 rotation = -2.35619
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 7 )
+cpu = true
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 1.14795e+28, 1.14795e+28 )
 smoothing_speed = 0.3
-
-[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

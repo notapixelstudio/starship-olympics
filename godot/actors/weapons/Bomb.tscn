@@ -1,7 +1,7 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://actors/weapons/Bomb.gd" type="Script" id=1]
-[ext_resource path="res://actors/battlers/Trail.gd" type="Script" id=2]
+[ext_resource path="res://actors/weapons/Pfft.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=3]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=4]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=5]
@@ -15,7 +15,11 @@
 [ext_resource path="res://actors/weapons/BombCore.gd" type="Script" id=13]
 [ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=15]
+[ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/audio/gameplay/ball/zapsplat_science_fiction_thud_impact_hit_generic_002_29337.ogg" type="AudioStream" id=17]
+[ext_resource path="res://actors/environments/Bubble.tscn" type="PackedScene" id=18]
+[ext_resource path="res://actors/weapons/Explosion.tscn" type="PackedScene" id=19]
+[ext_resource path="res://actors/weapons/Ripple.tscn" type="PackedScene" id=20]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -75,14 +79,15 @@ contacts_reported = 1
 contact_monitor = true
 linear_damp = 2.0
 script = ExtResource( 1 )
+Explosion = ExtResource( 19 )
+Ripple = ExtResource( 20 )
+BubbleScene = ExtResource( 18 )
+PfftScene = ExtResource( 2 )
 
-[node name="Trail2D" type="Line2D" parent="."]
-position = Vector2( -100, 0 )
-width = 30.0
-default_color = Color( 1, 1, 1, 0.784314 )
-texture_mode = 2699552
-script = ExtResource( 2 )
-trail_length = 80
+[node name="AutoTrail" parent="." instance=ExtResource( 16 )]
+starting_color = Color( 1, 1, 1, 0.392157 )
+length = 80
+width = 30
 
 [node name="Entity" type="Node" parent="."]
 script = ExtResource( 3 )
@@ -197,7 +202,7 @@ bus = "SFX_effect"
 area_mask = 8
 
 [node name="LifeTime" type="Timer" parent="."]
-wait_time = 1.3
+wait_time = 0.6
 autostart = true
 
 [node name="RicochetAudio" type="AudioStreamPlayer" parent="."]

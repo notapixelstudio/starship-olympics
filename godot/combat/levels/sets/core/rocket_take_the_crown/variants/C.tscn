@@ -1,0 +1,187 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
+[ext_resource path="res://actors/environments/NoCrownZone.gd" type="Script" id=2]
+[ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=3]
+
+[node name="C" type="Node2D"]
+
+[node name="NoCrownZone" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( -1050, 0 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
+opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="NoCrownZone"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="NoCrownZone2" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( -700, -350 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
+opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="NoCrownZone2"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="NoCrownZone4" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( -700, 350 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
+opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="NoCrownZone4"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="NoCrownZone5" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( -350, 0 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
+opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="NoCrownZone5"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="NoCrownZone6" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, -350 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
+opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="NoCrownZone6"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="NoCrownZone7" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 350 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
+opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="NoCrownZone7"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="NoCrownZone8" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 350, 0 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
+opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="NoCrownZone8"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="NoCrownZone9" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 700, -350 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
+opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="NoCrownZone9"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="NoCrownZone10" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1050, 0 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
+opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="NoCrownZone10"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="NoCrownZone11" type="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 700, 350 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+type = 4
+opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
+visible_decorations = false
+symbol_scale = 0.8
+
+[node name="GRegularPolygon" type="Node" parent="NoCrownZone11"]
+script = ExtResource( 1 )
+radius = 125
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0

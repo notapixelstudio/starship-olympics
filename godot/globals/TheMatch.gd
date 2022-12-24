@@ -15,6 +15,7 @@ var players = {} # Dictionary of InfoPlayers
 
 var draw : bool = true
 var game_over : bool = false
+var perfect_end : bool = false
 var cumulative_points = 0
 
 var leaders = []
@@ -23,6 +24,11 @@ var no_players = false
 var end_on_perfect := true
 
 var replay: TheReplay
+var minigame : Minigame
+var draft_card: DraftCard
+var game_mode : GameMode
+
+
 const DEADZONE = 0.1
 signal game_over
 signal setup
@@ -31,13 +37,20 @@ signal tick
 
 var uuid: String
 
+var timestamp_local : String
+var timestamp : String
 func _init():
 	global.the_match = self
 	uuid = UUID.v4()
+	timestamp_local = Time.get_datetime_string_from_system(false, true)
+	timestamp = Time.get_datetime_string_from_system(true, true)
 	
 func get_uuid() -> String:
 	return uuid
 
+func get_id() -> String:
+	return get_uuid()
+	
 func start():
 	set_process(true)
 	replay = TheReplay.new()
@@ -100,20 +113,21 @@ func update(delta: float):
 		
 	lasting_time += delta
 	
-func compute_game_status():
+func compute_game_status(end_now = false):
 	if game_over:
-		print("Don't need to calculate winners again. Winners are: ")
+		# print("Don't need to calculate winners again. Winners are: ")
+		return
 	player_scores.sort_custom(self, "sort_by_score")
 	
 	leaders = []
-	var leader = player_scores[0]
+	var leader = player_scores.front()
 	for player in player_scores:
 		if player.get_score() >= leader.get_score():
 			leaders.append(player)
 	
-	var perfect_end : bool = end_on_perfect and (leader.get_score() >= target_score or cumulative_points >= target_score)
+	perfect_end = end_on_perfect and (leader.get_score() >= target_score or cumulative_points >= target_score)
 	
-	if perfect_end or time_left <= 0 or no_players:
+	if end_now or perfect_end or time_left <= 0 or no_players:
 		winners = []
 		var draw = true
 		var last_value = leader.get_score()
@@ -126,6 +140,11 @@ func compute_game_status():
 				winners.append(info_player)
 			else:
 				draw = false
+				
+		# no winners if perfectionist mode is active and the end was not perfect
+		if draft_card and draft_card.is_perfectionist() and not perfect_end:
+			winners = []
+		
 		if draw:
 			winners = []
 		
@@ -143,6 +162,8 @@ func do_game_over():
 	global.to_file(replay.to_dict(), "replay_"+get_uuid())
 	emit_signal("game_over")
 	
+	
+	
 func get_score(id_player : String):
 	var player : InfoPlayer = get_player(id_player)
 	return player.get_score()
@@ -152,7 +173,7 @@ func set_score(id_player : String, amount : float, broadcasted = false):
 		return
 		
 	var player = get_player(id_player)
-	player.score = amount
+	player.set_score(amount)
 	
 	if cumulative_points >= 0:
 		cumulative_points = amount
@@ -161,6 +182,10 @@ func set_score(id_player : String, amount : float, broadcasted = false):
 	emit_signal('updated', player, broadcasted) # author
 	
 func add_score(id_player : String, amount : float, broadcasted = false):
+	self._silent_add_score(id_player, amount, broadcasted)
+	compute_game_status()
+	
+func _silent_add_score(id_player : String, amount : float, broadcasted = false):
 	if game_over:
 		return
 		
@@ -170,9 +195,8 @@ func add_score(id_player : String, amount : float, broadcasted = false):
 	if cumulative_points >= 0:
 		cumulative_points += amount
 		
-	compute_game_status()
 	emit_signal('updated', player, broadcasted) # author
-
+	
 func broadcast_score(id_player : String, amount : float):
 	if game_over:
 		return
@@ -195,21 +219,67 @@ func to_dict()->Dictionary:
 	"""
 	Summary stats of a played match.
 	"""
-	return {
-		"uuid": get_uuid(),
-		"winners": winners
+	var winners_info = []
+	for winner in self.winners:
+		winners_info.append((winner as InfoPlayer).to_dict())
+	var dict = {
+		"id": get_id(),
+		"timestamp": timestamp,
+		"timestamp_local": timestamp_local,
+		"winners": winners,
+		"winners_info": winners_info,
+		"winners_did_perfect": winners_did_perfect()
 	}
+	if minigame:
+		dict["minigame_id"] = minigame.get_id()
+	if draft_card:
+		dict["card_id"] = draft_card.get_id()
+		
+	return dict
 
 func get_number_of_players():
 	return len(players)
 	
 func get_leader_players() -> Array:
-	"""
-	Returns:
-		Array[InfoPlayer] 
-	"""
-	return self.leaders
+	return leaders
 
 func get_game_mode() -> GameMode:
 	return game_mode
+	
+func get_players_in_team(team : String) -> Array: # of InfoPlayer
+	var result := []
+	for player in player_scores:
+		if player.team == team:
+			result.append(player)
+	return result
+	
+func add_score_to_team(team : String, amount : float):
+	for player in get_players_in_team(team):
+		_silent_add_score(player.id, amount)
+		
+	compute_game_status()
+
+func winners_did_perfect() -> bool:
+	for p in get_leader_players():
+		if p.get_score() >= target_score or cumulative_points >= target_score:
+			return true
+	return false
+
+func set_minigame(m: Minigame):
+	minigame = m
+	
+func get_minigame() -> Minigame:
+	return minigame
+	
+func set_draft_card(c: DraftCard):
+	draft_card = c
+	
+func get_draft_card() -> DraftCard:
+	return draft_card
+
+func trigger_game_over_now():
+	compute_game_status(true) # end now
+
+func store():
+	global.write_into_file("user://matches/{id}.json".format({"id":self.uuid}), self.to_dict())
 	

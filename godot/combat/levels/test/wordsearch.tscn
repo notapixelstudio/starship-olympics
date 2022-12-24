@@ -1,0 +1,142 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=2]
+[ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=3]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=5]
+[ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture" id=6]
+[ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=7]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://combat/levels/test/WordBoard.tscn" type="PackedScene" id=9]
+[ext_resource path="res://combat/styles/blackboard.tres" type="Resource" id=10]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=11]
+[ext_resource path="res://assets/modes/hill-conquest.png" type="Texture" id=12]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=13]
+[ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=14]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+id = "word_search"
+is_mutator = false
+name = "Word Search"
+icon = ExtResource( 12 )
+logo = ExtResource( 7 )
+arena_style = ExtResource( 10 )
+description = "dash through the listed words"
+tagline_pro = "Don't forget your opponents would do the same"
+tagline_cons = "You could get killed in the meantime..."
+max_timeout = 300
+max_score = 100
+starting_score = 0
+cumulative = false
+shared_targets = true
+starting_lives = -1
+starting_health = 1
+respawn_from_home = false
+end_on_perfect = true
+fill_starting_score = false
+death = false
+last_man = false
+crown = false
+hive = false
+collect = false
+goal = false
+survival = false
+race = false
+pursuing_bombs = true
+shoot_bombs = false
+deadly_trails = false
+deadly_trails_duration = 2.0
+bomb_type = 0
+starting_ammo = -1
+reload_time = 3.0
+auto_thrust = false
+floodable = true
+flood = false
+laserable = false
+additional_lasers = false
+
+[node name="Arena" instance=ExtResource( 1 )]
+size_multiplier = 2.5
+game_mode = SubResource( 1 )
+
+[node name="ConquestModeManager" parent="Managers" index="11"]
+enabled = true
+
+[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
+position = Vector2( 3.05176e-05, 0 )
+hollow = true
+offset = 200
+hide_grid = true
+solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
+grid_color = Color( 1, 1, 1, 0.329412 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
+script = ExtResource( 5 )
+__meta__ = {
+"_editor_icon": ExtResource( 6 )
+}
+clip = Rect2( -10000, -1400, 20000, 2800 )
+radius = 2000
+sides = 12.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="BlackboardA" parent="Battlefield/Background" index="2" instance=ExtResource( 4 )]
+position = Vector2( -2700, 0 )
+offset = 200
+hide_grid = true
+solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
+grid_color = Color( 1, 1, 1, 0.329412 )
+
+[node name="GRoundedRect" type="Node" parent="Battlefield/Background/BlackboardA" index="8"]
+script = ExtResource( 14 )
+width = 1000
+height = 2400
+radius = 100
+precision = 50.0
+
+[node name="BlackboardB" parent="Battlefield/Background" index="3" instance=ExtResource( 4 )]
+position = Vector2( 2700, 0 )
+offset = 200
+hide_grid = true
+solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
+grid_color = Color( 1, 1, 1, 0.329412 )
+
+[node name="GRoundedRect" type="Node" parent="Battlefield/Background/BlackboardB" index="8"]
+script = ExtResource( 14 )
+width = 1000
+height = 2400
+radius = 100
+precision = 50.0
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+fg_color = Color( 0, 0.173333, 0.26, 1 )
+bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
+
+[node name="WordBoard" parent="Battlefield/Middleground" index="0" instance=ExtResource( 9 )]
+position = Vector2( 0, 32 )
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
+position = Vector2( -700, 1200 )
+rotation = -1.5708
+species = ExtResource( 11 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
+position = Vector2( 700, 1200 )
+rotation = -1.5708
+controls = "kb2"
+species = ExtResource( 13 )
+
+[node name="Camera" parent="." index="7"]
+zoom = Vector2( 2.91038e+12, 2.91038e+12 )
+smoothing_speed = 0.3
+disabled_override = true
+
+[connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

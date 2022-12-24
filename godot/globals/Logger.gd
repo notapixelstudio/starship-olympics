@@ -3,32 +3,40 @@ extends Node
 const LOG_PATH ="user://log.ndjson"
 var file : File
 
-func datetime_to_str(datetime: Dictionary, fmt = "") -> String:
-	# {"day":23,"dst":false,"hour":18,"minute":41,
-	# "month":9,"second":55,"weekday":4,"year":2021}
-	# FIXME replace with ISO dates
-	var tz = OS.get_time_zone_info()
-	var tz_hours = floor(tz.bias / 60)
-	
-	return "%s-%02d-%02dT%02d:%02d:%02d+%02d:00" % [datetime["year"], datetime["month"], datetime["day"], datetime["hour"], datetime["minute"], datetime["second"], tz_hours]
-	
 func log_event(event: Dictionary, immediate: bool) -> void:
 	#event.running_time = OS.get_ticks_usec()
 	#event.datetime = datetime_to_str(OS.get_datetime(true))
 	#event.local_datetime = datetime_to_str(OS.get_datetime())
 	#event.execution_uuid = global.execution_uuid
+	event.timestamp_local = Time.get_datetime_string_from_system(false, true)
+	event.timestamp = Time.get_datetime_string_from_system(true, true)
+
+	event.running_time = OS.get_ticks_usec()
 	file.store_line(to_json(event))
 	if immediate:
 		file.flush() # WARNING writing to disk too often could hurt performance
 
 func _init():
+	
 	# open the log file and go to the end
 	file = File.new()
-	file.open(LOG_PATH, File.WRITE)
-	file.seek_end()
+	var error = file.open(LOG_PATH, File.READ_WRITE)
+	var filesize_in_kb = file.get_len()/float(1024)
+	print("Log file is {size} KB".format({"size":filesize_in_kb}))
+	if filesize_in_kb > 200:
+		file.close()
+		var d = Directory.new()
+		print("Will remove the file because too big")
+		error = d.remove(LOG_PATH)
+		error = ERR_FILE_NOT_FOUND
+	if error == ERR_FILE_NOT_FOUND :
+		error = file.open(LOG_PATH, File.WRITE_READ)
+	if error == OK:
+		file.seek_end()
+	else:
+		print("We could not open a log file")
 	
-	#Events.connect('minigame_selected', self, '_on_minigame_selected')
-	
+	# events connected and logged
 	Events.connect('execution_started', self, '_on_execution_started')
 	Events.connect('game_started', self, '_on_game_started')
 	Events.connect('session_started', self, '_on_session_started')
@@ -37,11 +45,23 @@ func _init():
 	Events.connect('session_ended', self, '_on_session_ended')
 	Events.connect('game_ended', self, '_on_game_ended')
 	Events.connect('execution_ended', self, '_on_execution_ended')
+	Events.connect('draft_ended', self, '_on_draft_ended')
+
+func _on_draft_ended(choices:Dictionary, hand:Array) -> void:
+	var card_ids := []
+	for card in hand:
+		card_ids.append((card as DraftCard).get_id())
+	log_event({
+		'event_name': 'draft_ended',
+		'draft_choices': choices,
+		'hand': card_ids
+	}, true)
 	
-func _on_minigame_selected(minigame: Minigame) -> void:
+func _on_minigame_selected(picked_card: DraftCard) -> void:
 	log_event({
 		'event_name': 'minigame_selected',
-		'minigame': minigame.get_id()
+		'card': picked_card.get_id(),
+		'minigame': picked_card.get_minigame().get_id()
 	}, true)
 
 var execution_started_ms : int
@@ -61,7 +81,7 @@ func _on_execution_ended() -> void:
 var game_started_ms : int
 func _on_game_started() -> void:
 	game_started_ms = OS.get_ticks_msec()
-	var event = global.the_game.to_log_dict()
+	var event = global.the_game.to_dict()
 	event.event_name = 'game_started'
 	log_event(event, true)
 	
@@ -69,6 +89,7 @@ func _on_game_ended() -> void:
 	log_event({
 		'event_name': 'game_ended',
 		'game_uuid': global.the_game.get_uuid(),
+		'game_number': global.game_number,
 		'duration_ms': OS.get_ticks_msec() - game_started_ms
 	}, true)
 	
@@ -96,7 +117,7 @@ func _on_match_started() -> void:
 		'event_name': 'match_started'
 	}, true)
 
-func _on_match_ended() -> void:
+func _on_match_ended(match_dict: Dictionary) -> void:
 	log_event({
 		'event_name': 'match_ended',
 		'duration_ms': OS.get_ticks_msec() - match_started_ms

@@ -12,13 +12,17 @@ var height
 var someone_died = 0
 
 export (PackedScene) var gameover_scene
-export (bool) var demo = false
 export (float) var size_multiplier = 2.0
 export var game_mode : Resource # Gamemode - might be useful
 export var style : Resource setget set_style
 export var planet_name : String
 
 export var underwater : bool = false
+export var IceScene : PackedScene
+
+export var player_brain_scene : PackedScene
+export var cpu_brain_scene : PackedScene
+export var NavigationZone_scene : PackedScene
 
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
@@ -26,6 +30,10 @@ export var match_duration_override : float = 0
 export var show_hud : bool = true
 export var show_intro : bool = true
 export var random_starting_position : bool = true
+export var place_ships_at_start : bool = true
+export var dark_winter : bool = false
+
+export var create_default_navzone := true
 
 var debug = false
 # analytics
@@ -40,7 +48,6 @@ onready var collect_mode = $Managers/CollectModeManager
 onready var survival_mode = $Managers/SurvivalModeManager
 
 onready var combat_manager = $Managers/CombatManager
-onready var stun_manager = $Managers/StunManager
 onready var collect_manager = $Managers/CollectManager
 onready var environments_manager = $Managers/EnvironmentsManager
 onready var conquest_manager = $Managers/ConquestManager
@@ -69,12 +76,16 @@ signal battle_start
 signal skip
 signal all_ships_spawned
 
+signal salvo
+
 var array_players = [] # Dictionary of InfoPlayers
 
-func compute_arena_size():
+func compute_arena_size() -> Rect2:
 	"""
 	compute the battlefield size
 	"""
+	if $Battlefield/Background.has_node("CameraStartingRect"):
+		return $Battlefield/Background/CameraStartingRect.get_rect_extents()
 	return $Battlefield/Background/OutsideWall.get_rect_extents()
 
 func set_time_scale(value):
@@ -100,8 +111,7 @@ func set_style(v : ArenaStyle):
 		grid.poly.texture_scale = style.battlefield_texture_scale
 		grid.poly.texture_rotation_degrees = style.battlefield_texture_rotation_degrees
 		
-func get_time_scale():
-	return time_scale
+func get_time_scale():	return time_scale
 	
 func update_time_scale():
 	Engine.time_scale = self.time_scale
@@ -136,7 +146,10 @@ func _enter_tree():
 	# this happens before descendants _ready() calls
 	# but after export vars are set for this node
 	# it is needed to actually take the "standalone" export var
-	# into consideration 
+	# into consideration
+	global.arena = self
+	
+	Events.connect('navigation_zone_changed', self, '_on_navigation_zone_changed')
 	
 	if global.is_match_running():
 		standalone = false
@@ -150,6 +163,10 @@ func _enter_tree():
 		connect("update_stats", global.the_match, "update_stats")
 		
 		Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
+		Events.connect("ask_to_spawn", self, "dramatic_spawn") # e.g. SpawnerManager
+	
+func _exit_tree():
+	Events.disconnect('navigation_zone_changed', self, '_on_navigation_zone_changed')
 	
 func _ready():
 	set_process(false)
@@ -162,7 +179,7 @@ func _ready():
 		Soundtrack.fade_out()
 		
 	# Pick controller label
-	$CanvasLayer/DemoLabel.visible = demo
+	$CanvasLayer/DemoLabel.visible = global.demo
 	
 	
 	# Setup goal, Gear and mode managers
@@ -251,7 +268,7 @@ func _ready():
 			if i >= len(array_players):
 				break
 				
-			info_player = array_players[i] 
+			info_player = array_players[i]
 			s.controls = info_player.controls
 			s.species = info_player.species
 			s.cpu = info_player.cpu
@@ -288,14 +305,18 @@ func _ready():
 				conquerable.connect('lost', conquest_mode, "_on_sth_lost")
 				
 	# FIXME this should eventually replace the system above
-	var score_definers = traits.get_all_with('ScoreDefiner')
-	if len(score_definers) > 0:
-		score_to_win_override = 0
-		for score_definer in score_definers:
-			score_to_win_override += score_definer.get_score()
-			
-	if not game_mode.shared_targets:
-		score_to_win_override /= global.the_game.get_number_of_players()
+	if score_to_win_override == 0: # do this only if score is not already overridden
+		var score_definers = traits.get_all_with('ScoreDefiner')
+		if len(score_definers) > 0:
+			score_to_win_override = 0
+			for score_definer in score_definers:
+				score_to_win_override += score_definer.get_score()
+				
+		if not game_mode.shared_targets:
+			score_to_win_override /= global.the_game.get_number_of_players()
+		
+	if game_mode.fill_starting_score:
+		game_mode.starting_score = score_to_win_override
 	
 	if global.is_match_running():
 		global.the_match.initialize(players, game_mode, score_to_win_override, match_duration_override)
@@ -304,10 +325,36 @@ func _ready():
 		# initialize HUD
 		hud.post_ready()
 	
+	# load style from gamemode, if specified
+	if game_mode.arena_style:
+		set_style(game_mode.arena_style)
+		
 	# adapt camera to hud height
 	if show_hud:
 		camera.marginY = hud.get_height()
-	camera.initialize(compute_arena_size())
+		
+	camera.initialize(compute_arena_size().grow(100*30))
+	camera.to(compute_arena_size())
+	update_grid()
+	
+	if show_hud:
+		hud.set_draft_card(global.the_match.get_draft_card())
+		
+	if global.is_match_running():
+		var draft_card = global.the_match.get_draft_card()
+		
+		# set the appropriate background, according to card suits
+		if draft_card != null:
+			var suit = draft_card.get_suit_top() # TBD different suits
+			$'%BackgroundImage'.texture = load("res://combat/levels/background/"+suit+".png")
+			
+	# update navigation zones if there is at least a cpu
+	if global.the_game.get_number_of_cpu_players() > 0:
+		if create_default_navzone and has_node('Battlefield/Background/OutsideWall'):
+			$Battlefield/Background/OutsideWall.add_child(NavigationZone_scene.instance())
+		update_navigation_zones()
+	
+	yield(camera, "transition_over")
 	
 	# $Battlefield.visible = false
 	if score_to_win_override > 0:
@@ -316,16 +363,13 @@ func _ready():
 		game_mode.max_timeout = match_duration_override
 		
 	if show_intro:
-		mode_description.gamemode = game_mode
+		mode_description.set_gamemode(game_mode)
 		mode_description.appears()
-		if demo:
-			# demo will wait 1 second and create a CPU match
-			mode_description.demomode(demo)
-			mode_description.set_process_input(false)
-			yield(get_tree().create_timer(3), "timeout")
-			mode_description.disappears()
+
+		if global.is_match_running():
+			mode_description.set_draft_card(global.the_match.get_draft_card())
+
 	
-	update_grid()
 	grid.set_max_timeout(game_mode.max_timeout)
 	grid.clock = game_mode.survival
 	if grid.clock:
@@ -334,8 +378,6 @@ func _ready():
 	# FIXME
 	for well in get_tree().get_nodes_in_group('gravity_wells_on'):
 		well.enabled = true
-
-	var ships = []
 	
 	# environment spawner: coins, etc.
 	if get_tree().get_nodes_in_group("spawner_group"):
@@ -368,39 +410,30 @@ func _ready():
 	else:
 		for laser in get_tree().get_nodes_in_group('additional_lasers'):
 			laser.queue_free()
-		
-	# load style from gamemode, if specified
-	if game_mode.arena_style:
-		set_style(game_mode.arena_style)
-		
+			
+	if global.is_match_running():
+		var draft_card = global.the_match.get_draft_card()
+		# manage the coming of winter
+		if draft_card != null and draft_card.is_winter():
+			var ice = IceScene.instance()
+			ice.override_gshape($Battlefield/Background/OutsideWall.get_gshape())
+			$Battlefield/Background.add_child(ice)
+			if dark_winter:
+				ice.modulate = Color(0.55,0.55,0.55)
+				
 	if show_intro:
 		yield(mode_description, "ready_to_fight")
-	if show_hud:
-		hud.set_planet("", game_mode)
 	
 	if style and style.bgm:
 		Soundtrack.play(style.bgm, true)
 	else:
 		Soundtrack.stop()
 	
-	var j = 0
-	var player_spawners = $SpawnPositions/Players.get_children()
-
-	for s in player_spawners:
-		var spawner = s as PlayerSpawner
-		spawner.appears()
-		# waiting for the ship to be entered
-		yield(get_tree().create_timer(0.5), "timeout")
-		ships.append(spawn_ship(spawner))
-		j += 1
-		# wait for the last ship
-		if j >= len(player_spawners):
-			yield(spawner, "entered_battlefield")
+	if place_ships_at_start:
+		spawn_all_ships()
+		yield(self, 'all_ships_spawned')
 	
 	camera.activate_camera()
-	
-	yield(get_tree(), "idle_frame") # FIXME workaround to wait for all ships
-	emit_signal("all_ships_spawned", player_spawners)
 	
 	# group by order for trait intro
 	var intro_nodes = {}
@@ -439,6 +472,29 @@ func focus_in_camera(node: Node2D, wait_time: float):
 
 const COUNTDOWN_LIMIT = 5.0
 
+func spawn_all_ships(do_intro = false):
+	var j = 0
+	var player_spawners = $SpawnPositions/Players.get_children()
+	
+	for s in player_spawners:
+		var spawner = s as PlayerSpawner
+		spawner.appears()
+		# waiting for the ship to be entered
+		yield(get_tree().create_timer(0.5), "timeout")
+		spawn_ship(spawner)
+		j += 1
+		# wait for the last ship
+		if j >= len(player_spawners):
+			yield(spawner, "entered_battlefield")
+			
+	yield(get_tree(), "idle_frame")
+	
+	if do_intro:
+		for ship in self.get_all_valid_ships():
+			ship.intro()
+			
+	emit_signal("all_ships_spawned", player_spawners)
+
 func update_grid():
 	# TODO: maybe you can put directly inside grid
 	grid.set_points($Battlefield/Background/OutsideWall.get_gshape().to_PoolVector2Array())
@@ -463,11 +519,7 @@ func _process(delta):
 	else:
 		$CanvasLayer/Countdown.text = ""
 
-func _input(event):
-	if demo:
-		if event is InputEventKey or event is InputEventJoypadButton:
-			Events.emit_signal("nav_to_character_selection")
-			
+
 func _unhandled_input(event):
 	if event.is_action_pressed("pause") and not global.demo and (not global.is_match_running() or not global.the_match.game_over):
 		pause.start()
@@ -481,6 +533,9 @@ func _unhandled_input(event):
 	# reset by command only through debug
 	if event.is_action_pressed('continue') and debug:
 		reset(global.level)
+		
+	if event.is_action_pressed("debug_action") and global.the_match:
+		global.the_match.trigger_game_over_now()
 	
 func reset(level):
 	someone_died = false
@@ -589,11 +644,13 @@ func ship_just_died(ship, killer, for_good):
 		#respawn_timeout = 0.75
 		var cargo = ship.get_cargo()
 		if cargo.has_holdable() and cargo.get_holdable().has_type('crown'):
-			respawn_timeout = 2.25
+			respawn_timeout = 1.25 + 0.5*global.the_game.get_number_of_players()
 	#elif conquest_mode.enabled:
 	#	respawn_timeout = 0.75
 	#elif game_mode.name == "GoalPortal":
 	#	respawn_timeout = 0.75
+	if game_mode.id == 'skull_collector':
+		respawn_timeout = 2.25
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
@@ -612,9 +669,7 @@ func ship_just_died(ship, killer, for_good):
 	
 	
 func on_gameover():
-	if demo:
-		Events.emit_signal("nav_to_character_selection")
-		return
+	set_process_unhandled_input(false)
 	for child in $Managers.get_children():
 		if child is ModeManager:
 			child.enabled = false
@@ -628,8 +683,6 @@ func on_gameover():
 	game_over.connect("show_arena", self, "_on_Show_Arena")
 	game_over.connect("hide_arena", self, "_on_hide_Arena")
 	canvas.add_child(game_over)
-	
-	game_over.initialize()
 
 func _on_continue_after_game_over(_session_over):
 	if standalone:
@@ -646,14 +699,9 @@ func _on_hide_arena():
 	$BackgroundLayer.get_child(0).modulate=Color(0.33,0.33,0.33,1)
 	
 const ship_scene = preload("res://actors/battlers/Ship.tscn")
-const cpu_ship_scene = preload("res://actors/battlers/CPUShip.tscn")
 const trail_scene = preload("res://actors/battlers/TrailNode.tscn")
 
 onready var focus_in_camera = $Battlefield/Overlay/ElementInCamera
-
-func spawn_ships():
-	for player in SpawnPlayers.get_children():
-		spawn_ship(player)
 
 func create_trail(ship):
 	# create and link trail
@@ -668,10 +716,16 @@ func create_trail(ship):
 signal ship_spawned
 func spawn_ship(player:PlayerSpawner, force_intro=false):
 	var ship : Ship
+	ship = ship_scene.instance()
+	
+	var brain : Brain
 	if player.is_cpu():
-		ship = cpu_ship_scene.instance()
+		brain = cpu_brain_scene.instance()
 	else:
-		ship = ship_scene.instance()
+		brain = player_brain_scene.instance()
+		brain.set_controls(player.controls)
+	brain.set_controllee(ship)
+	ship.set_brain(brain)
 	
 	ship.camera = camera
 	ship.controls = player.controls
@@ -685,6 +739,9 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.spawner = player
 	ship.deadly_trail = game_mode.deadly_trails
 	ship.game_mode = self.game_mode
+	
+	ship.set_start_invincible(game_mode.start_invincible)
+	
 	yield(player, "entered_battlefield")
 	
 	$Battlefield.add_child(ship)
@@ -711,6 +768,8 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.set_ammo(game_mode.starting_ammo)
 	ship.set_reload_time(game_mode.reload_time)
 	ship.set_lives(game_mode.starting_lives)
+	ship.set_max_health(game_mode.starting_health)
+	ship.set_auto_thrust(game_mode.auto_thrust)
 	
 	# connect signals
 	ship.connect("dead", self, "ship_just_died")
@@ -722,7 +781,6 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	ship.connect("near_area_entered", environments_manager, "_on_sth_entered")
 	ship.connect("near_area_exited", environments_manager, "_on_sth_exited")
 	ship.connect("detection", pursue_manager, "_on_ship_detected")
-	ship.connect("body_entered", stun_manager, "ship_collided", [ship])
 	ship.connect("dead", kill_mode, "_on_sth_killed")
 	ship.connect("dead", last_man_mode, "_on_sth_killed")
 	#ship.connect("dead", combat_manager, "_on_sth_killed")
@@ -764,7 +822,6 @@ func spawn_bomb(type, symbol, pos, impulse, ship, size=1):
 		bomb.connect("near_area_entered", environments_manager, "_on_sth_entered")
 		bomb.connect("near_area_exited", environments_manager, "_on_sth_exited")
 		bomb.connect("detonate", self, "bomb_detonated", [bomb])
-		bomb.connect("expired", ship, "_on_bomb_expired")
 	
 	$Battlefield.add_child(bomb)
 	
@@ -790,10 +847,8 @@ func _on_sth_collected(collector, collectee):
 	if collectee is Crown and (collectee.type == Crown.types.SOCCERBALL or collectee.type == Crown.types.TENNISBALL):
 		collectee.owner_ship = collector
 		
-	if collectee.get_parent().is_in_group("spawner_group"):
-		collectee.get_parent().call_deferred('remove', collectee)
-	else:
-		$Battlefield.call_deferred('remove_child', collectee) # collisions do not work as expected without defer
+	collectee.get_parent().call_deferred('remove_child', collectee)
+	# collisions do not work as expected without defer
 		
 func _on_sth_dropped(dropper, droppee):
 	$Battlefield.add_child(droppee)
@@ -832,12 +887,12 @@ func _on_sth_stolen(thief, mugged):
 
 signal wave_ready
 
-func on_next_wave(diamonds, wait_time=1):
+func dramatic_spawn(to_be_spawned: ElementSpawnerGroup , wait_time=1):
 	if wait_time:
-		focus_in_camera.move(diamonds.position, wait_time)
+		focus_in_camera.move(to_be_spawned.position, wait_time)
 		yield(focus_in_camera, "completed")
-	diamonds.spawn()
-	emit_signal('wave_ready')
+	to_be_spawned.spawn()
+	Events.emit_signal("spawned", to_be_spawned)
 	
 
 func _on_Pause_restart():
@@ -874,7 +929,7 @@ func _on_ship_fallen(ship, spawner):
 func respawn_from_home(ship, spawner):
 	var respawn_timeout = 1.0
 	if game_mode.id == 'skull_collector':
-		respawn_timeout = 2.5
+		respawn_timeout = 0.5
 	
 	ship.trail.destroy()
 	if ship.alive:
@@ -885,7 +940,7 @@ func respawn_from_home(ship, spawner):
 	
 func connect_killable(killable):
 	killable.connect('killed', kill_mode, '_on_sth_killed')
-	killable.connect('killed', combat_manager, '_on_sth_killed')
+	#killable.connect('killed', combat_manager, '_on_sth_killed')
 	
 func _on_ship_thrusters_on(ship):
 	create_trail(ship)
@@ -910,9 +965,9 @@ func _on_sth_just_froze(sth):
 	rock.connect('request_spawn', self, '_on_Rock_request_spawn')
 	rock.call_deferred('start')
 
-func _on_goal_done(player, goal, pos):
-	global.the_match.add_score(player.id, goal.get_score())
-	show_msg(player.species, goal.get_score(), pos)
+func _on_goal_done(player, goal, pos, points=1):
+	global.the_match.add_score_to_team(player.team, points)
+	show_msg(player.species, points, pos)
 	
 var Ripple = load('res://actors/weapons/Ripple.tscn')
 func show_ripple(pos, size=1):
@@ -947,3 +1002,57 @@ func get_all_valid_ships() -> Array:
 
 func _on_PowerUp_collected():
 	pass # Replace with function body.
+
+# NAVIGATION
+var queued_navzones_update := false
+func _on_navigation_zone_changed(zone):
+	if queued_navzones_update:
+		return
+	queued_navzones_update = true
+	print('a navigation zone has changed... about to update navigation')
+	# very pessimistic
+	yield(get_tree(), "idle_frame")
+	call_deferred('update_navigation_zones')
+	
+func update_navigation_zones():
+	# delete all navigation nodes already present, if any
+	for child in $"%Navigation".get_children():
+		child.free()
+		
+	# prepare zone for each layer
+	var navigation_polygons = {
+		'default': NavigationPolygon.new(),
+		'holder': NavigationPolygon.new()
+	}
+	for zone_t in traits.get_all('NavigationZone'):
+		var polygon = zone_t.get_polygon()
+		var layers = zone_t.get_layers()
+		var offset
+		match zone_t.get_offset_type():
+			'none':
+				offset = 0
+			'inset':
+				offset = -100
+			'outset':
+				offset = 100
+		var result = Geometry.offset_polygon_2d(polygon, offset)
+		for resulting_polygon in result:
+			for layer in layers:
+				navigation_polygons[layer].add_outline(resulting_polygon)
+	
+	for layer in navigation_polygons.keys():
+		var navpoly = navigation_polygons[layer]
+		navpoly.make_polygons_from_outlines()
+		var navpoly_instance = NavigationPolygonInstance.new()
+		navpoly_instance.set_navigation_polygon(navpoly)
+		var bitmask
+		match(layer):
+			'default':
+				bitmask = 1
+			'holder':
+				bitmask = 2
+		navpoly_instance.set_navigation_layers(bitmask)
+		$"%Navigation".add_child(navpoly_instance)
+	
+	queued_navzones_update = false
+	

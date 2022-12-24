@@ -1,0 +1,83 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=3]
+
+[node name="C" type="Node2D"]
+
+[node name="Wall" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 350 )
+
+[node name="GBeveledRect" type="Node" parent="Wall"]
+script = ExtResource( 1 )
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="Wall2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -350 )
+
+[node name="GBeveledRect" type="Node" parent="Wall2"]
+script = ExtResource( 1 )
+height = 150
+bevel = 1
+bevel_nw = 1
+bevel_ne = 1
+bevel_sw = 1
+bevel_se = 1
+
+[node name="NoShipZone7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 500, -800 )
+symbol_scale = 1.0
+
+[node name="GBeveledRect" type="Node" parent="NoShipZone7"]
+script = ExtResource( 1 )
+height = 200
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
+
+[node name="NoShipZone8" parent="." instance=ExtResource( 3 )]
+position = Vector2( -500, -800 )
+symbol_scale = 1.0
+
+[node name="GBeveledRect" type="Node" parent="NoShipZone8"]
+script = ExtResource( 1 )
+height = 200
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
+
+[node name="NoShipZone9" parent="." instance=ExtResource( 3 )]
+position = Vector2( -500, 800 )
+symbol_scale = 1.0
+
+[node name="GBeveledRect" type="Node" parent="NoShipZone9"]
+script = ExtResource( 1 )
+height = 200
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42
+
+[node name="NoShipZone10" parent="." instance=ExtResource( 3 )]
+position = Vector2( 500, 800 )
+symbol_scale = 1.0
+
+[node name="GBeveledRect" type="Node" parent="NoShipZone10"]
+script = ExtResource( 1 )
+height = 200
+bevel = 42
+bevel_nw = 42
+bevel_ne = 42
+bevel_sw = 42
+bevel_se = 42

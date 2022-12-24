@@ -1,0 +1,49 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
+[ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture" id=2]
+[ext_resource path="res://assets/icon/minicards/sets/undertakers.png" type="Texture" id=3]
+[ext_resource path="res://combat/styles/graveyard.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+id = "undertakers"
+is_mutator = false
+name = "Undertakers"
+icon = ExtResource( 3 )
+logo = ExtResource( 2 )
+arena_style = ExtResource( 4 )
+description = "kill, then bury the skulls"
+tagline_pro = "A kill for the honour, a kill for the species"
+tagline_cons = "A self kill, apart from being embarassing, make you lose point"
+max_timeout = 75
+max_score = 8
+starting_score = 0
+cumulative = false
+shared_targets = true
+starting_lives = -1
+starting_health = 1
+respawn_from_home = true
+end_on_perfect = true
+fill_starting_score = false
+death = false
+last_man = false
+crown = false
+hive = false
+collect = false
+goal = false
+survival = false
+race = false
+pursuing_bombs = true
+shoot_bombs = true
+deadly_trails = false
+deadly_trails_duration = 2.0
+bomb_type = 0
+starting_ammo = -1
+reload_time = 3.0
+auto_thrust = false
+start_invincible = true
+floodable = false
+flood = false
+laserable = true
+additional_lasers = false

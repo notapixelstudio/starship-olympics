@@ -1,0 +1,57 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://combat/styles/flags.tres" type="Resource" id=1]
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=2]
+[ext_resource path="res://combat/minigames/Minigame.gd" type="Script" id=3]
+[ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=4]
+[ext_resource path="res://assets/icon/minicards/sets/marble_conquest.png" type="Texture" id=5]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+id = "atomic_marbles"
+is_mutator = false
+name = "Atomic Marbles"
+icon = ExtResource( 5 )
+logo = ExtResource( 4 )
+arena_style = ExtResource( 1 )
+description = "shoot the atom to light the marbles"
+tagline_pro = "Don't forget your opponents would do the same"
+tagline_cons = "You could get killed in the meantime..."
+max_timeout = 25
+max_score = 500
+starting_score = 0
+cumulative = false
+shared_targets = true
+starting_lives = -1
+starting_health = 1
+respawn_from_home = false
+end_on_perfect = true
+fill_starting_score = false
+death = false
+last_man = false
+crown = false
+hive = true
+collect = false
+goal = false
+survival = false
+race = false
+pursuing_bombs = true
+shoot_bombs = false
+deadly_trails = false
+deadly_trails_duration = 2.0
+bomb_type = 0
+starting_ammo = -1
+reload_time = 3.0
+auto_thrust = false
+start_invincible = true
+floodable = true
+flood = false
+laserable = false
+additional_lasers = false
+
+[resource]
+script = ExtResource( 3 )
+game_mode = SubResource( 1 )
+arenas_dir = "res://combat/levels/sets/conquest/marble_conquest/"
+suit_top = "magenta"
+suit_bottom = "red"

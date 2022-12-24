@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ui/minigame_list/DeckListItem.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=2]
+[ext_resource path="res://map/draft/DraftCardGraphicNode.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/shuffle.png" type="Texture" id=5]
+[ext_resource path="res://assets/arrow.png" type="Texture" id=6]
+[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=9]
+
+[node name="DeckListItem" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 170 )
+size_flags_horizontal = 3
+color = Color( 0, 0, 0, 0 )
+script = ExtResource( 1 )
+CardScene = ExtResource( 4 )
+card_texture = ExtResource( 2 )
+arrow_texture = ExtResource( 6 )
+shuffle_texture = ExtResource( 5 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 180.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 170 )
+size_flags_vertical = 3
+custom_constants/separation = 10
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 170.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 170, 0 )
+size_flags_horizontal = 0
+theme = ExtResource( 9 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 180.0
+margin_right = 180.0
+margin_bottom = 170.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_Button_pressed"]

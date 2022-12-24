@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://ui/minigame_list/CollectionItem.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/minigame_list/MinigameMinilogo.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 28
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 22
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 3 )
+
+[node name="CollectionItem" type="ColorRect"]
+margin_left = -3.0
+margin_right = 942.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 0, 130 )
+size_flags_horizontal = 3
+color = Color( 0, 0, 0, 0 )
+script = ExtResource( 1 )
+MinigameMinilogoScene = ExtResource( 5 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LogoContainer" type="Control" parent="HBoxContainer"]
+margin_right = 170.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 170, 120 )
+
+[node name="Logo" type="Sprite" parent="HBoxContainer/LogoContainer"]
+position = Vector2( 80, 60 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="Shadow" parent="HBoxContainer/LogoContainer/Logo" instance=ExtResource( 4 )]
+self_modulate = Color( 0, 0, 0, 0.501961 )
+position = Vector2( -200, -150 )
+sprite = NodePath("..")
+
+[node name="Texts" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 174.0
+margin_right = 814.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 640, 0 )
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Texts"]
+margin_top = 324.0
+margin_right = 640.0
+margin_bottom = 367.0
+
+[node name="Title" type="Label" parent="HBoxContainer/Texts/HBoxContainer"]
+modulate = Color( 1, 0.870588, 0.372549, 1 )
+margin_bottom = 43.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
+custom_constants/shadow_offset_y = 6
+custom_fonts/font = SubResource( 1 )
+
+[node name="PlayerCount" type="RichTextLabel" parent="HBoxContainer/Texts/HBoxContainer"]
+modulate = Color( 0.784314, 1, 0.74902, 1 )
+margin_left = 4.0
+margin_right = 104.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+bbcode_text = "[center]1234[/center]"
+text = "1234"
+
+[node name="Wrapper" type="Node2D" parent="HBoxContainer/Texts/HBoxContainer"]
+position = Vector2( 8, -23 )
+
+[node name="Winter" type="Label" parent="HBoxContainer/Texts/HBoxContainer/Wrapper"]
+modulate = Color( 0.615686, 0.921569, 1, 1 )
+margin_left = -8.0
+margin_top = 1.0
+margin_right = 66.0
+margin_bottom = 44.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
+custom_constants/shadow_offset_y = 4
+custom_fonts/font = SubResource( 6 )
+text = "Winter"
+
+[node name="Description" type="Label" parent="HBoxContainer/Texts"]
+margin_top = 371.0
+margin_right = 640.0
+margin_bottom = 396.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.501961 )
+custom_constants/shadow_offset_y = 4
+custom_fonts/font = SubResource( 2 )

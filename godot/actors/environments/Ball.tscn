@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/animations/RoyalGlow.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/balls/basket.png" type="Texture" id=2]
@@ -8,12 +8,44 @@
 [ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=7]
 [ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=8]
+[ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=9]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 100.0
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 80.0
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Color( 3, 3, 3, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Ball" type="RigidBody2D" groups=["Ball", "in_camera"]]
 collision_layer = 512
@@ -33,6 +65,8 @@ type = "basket"
 
 [node name="Owned" parent="." instance=ExtResource( 6 )]
 
+[node name="Tracked" parent="." instance=ExtResource( 9 )]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
@@ -46,3 +80,7 @@ texture = ExtResource( 2 )
 
 [node name="Shadow" parent="." instance=ExtResource( 4 )]
 sprite = NodePath("../Sprite")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/hit = SubResource( 4 )

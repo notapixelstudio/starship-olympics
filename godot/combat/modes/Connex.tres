@@ -1,0 +1,47 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://assets/icon/minicards/sets/connex.png" type="Texture" id=1]
+[ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=2]
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
+
+[resource]
+script = ExtResource( 3 )
+id = "connex"
+is_mutator = false
+name = "Connexx"
+icon = ExtResource( 1 )
+logo = ExtResource( 2 )
+description = "keep your sides connected"
+tagline_pro = "Don't forget your opponents would do the same"
+tagline_cons = "You could get killed in the meantime..."
+max_timeout = 40
+max_score = 20
+starting_score = 0
+cumulative = false
+shared_targets = true
+starting_lives = -1
+starting_health = 1
+respawn_from_home = false
+end_on_perfect = true
+fill_starting_score = false
+death = false
+last_man = false
+crown = false
+hive = false
+collect = false
+goal = false
+survival = false
+race = false
+pursuing_bombs = true
+shoot_bombs = false
+deadly_trails = false
+deadly_trails_duration = 2.0
+bomb_type = 0
+starting_ammo = -1
+reload_time = 3.0
+auto_thrust = false
+start_invincible = true
+floodable = true
+flood = false
+laserable = false
+additional_lasers = false

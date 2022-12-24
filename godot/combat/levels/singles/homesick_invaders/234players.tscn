@@ -1,0 +1,108 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
+[ext_resource path="res://combat/levels/singles/homesick_invaders/variants/PlanetsA.tscn" type="PackedScene" id=2]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=3]
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=7]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=8]
+[ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=10]
+[ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=11]
+[ext_resource path="res://combat/modes/Foundlings.tres" type="Resource" id=12]
+[ext_resource path="res://combat/levels/singles/homesick_invaders/variants/PlanetsE.tscn" type="PackedScene" id=13]
+[ext_resource path="res://combat/levels/singles/homesick_invaders/FoundlingsManager.tscn" type="PackedScene" id=14]
+[ext_resource path="res://combat/levels/singles/homesick_invaders/variants/ParadeA.tscn" type="PackedScene" id=15]
+[ext_resource path="res://combat/levels/singles/homesick_invaders/variants/PlanetsB.tscn" type="PackedScene" id=16]
+[ext_resource path="res://combat/levels/singles/homesick_invaders/variants/PlanetsC.tscn" type="PackedScene" id=17]
+[ext_resource path="res://combat/levels/singles/homesick_invaders/variants/PlanetsD.tscn" type="PackedScene" id=18]
+[ext_resource path="res://combat/levels/singles/homesick_invaders/variants/GlassB.tscn" type="PackedScene" id=19]
+[ext_resource path="res://combat/levels/singles/homesick_invaders/variants/GlassA.tscn" type="PackedScene" id=20]
+[ext_resource path="res://combat/levels/singles/homesick_invaders/variants/ParadeC.tscn" type="PackedScene" id=21]
+[ext_resource path="res://combat/levels/singles/homesick_invaders/variants/ParadeB.tscn" type="PackedScene" id=22]
+
+[node name="Arena" instance=ExtResource( 4 )]
+size_multiplier = 2.5
+game_mode = ExtResource( 12 )
+dark_winter = true
+
+[node name="FoundlingsManager" parent="Managers" index="0" instance=ExtResource( 14 )]
+
+[node name="ConquestModeManager" parent="Managers" index="11"]
+enabled = true
+
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
+collision_layer = 2147483648
+hollow = true
+type = 4
+hide_grid = true
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
+grid_color = Color( 1, 1, 1, 0.329412 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
+script = ExtResource( 1 )
+width = 6800
+height = 3900
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="GridWrapper" parent="Battlefield/Background" index="2"]
+modulate = Color( 1, 1, 1, 0.392157 )
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+fg_color = Color( 0.42, 0.189, 0.189, 1 )
+bg_color = Color( 0.4, 0.124, 0.1286, 1 )
+
+[node name="FloodWater" parent="Battlefield/Background" index="3"]
+visible = false
+
+[node name="PlanetVariants" parent="Battlefield/Background" index="4" instance=ExtResource( 11 )]
+variant_scenes = [ ExtResource( 2 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 13 ) ]
+
+[node name="Polygon2D" type="Polygon2D" parent="Battlefield/Middleground" index="0"]
+modulate = Color( 1, 1, 1, 0.0784314 )
+polygon = PoolVector2Array( -1200, -2200, 1200, -2200, 1200, 2300, -1200, 2300 )
+
+[node name="ParadeVariants" parent="Battlefield/Middleground" index="1" instance=ExtResource( 11 )]
+variant_scenes = [ ExtResource( 15 ), ExtResource( 22 ), ExtResource( 21 ) ]
+
+[node name="GlassVariants" parent="Battlefield/Middleground" index="2" instance=ExtResource( 11 )]
+variant_scenes = [ ExtResource( 20 ), ExtResource( 19 ) ]
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
+position = Vector2( -600, -450 )
+rotation = 1.5708
+species = ExtResource( 8 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
+position = Vector2( -200, -450 )
+rotation = 1.5708
+controls = "kb2"
+species = ExtResource( 7 )
+
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 5 )]
+position = Vector2( 200, -450 )
+rotation = 1.5708
+controls = "kb2"
+species = ExtResource( 10 )
+
+[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 5 )]
+position = Vector2( 600, -450 )
+rotation = 1.5708
+controls = "kb2"
+species = ExtResource( 3 )
+
+[node name="Camera" parent="." index="7"]
+current = false
+zoom = Vector2( 2.91038e+12, 2.91038e+12 )
+smoothing_speed = 0.3
+disabled_override = true
+
+[node name="Camera2D" type="Camera2D" parent="." index="10"]
+current = true
+zoom = Vector2( 5.2, 5.2 )

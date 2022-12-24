@@ -49,8 +49,19 @@ func _ready():
 var initial_arena_size : Rect2 
 var arena_center : Vector2
 
+signal transition_over
+var in_transition: bool = false
+
+func to(new_rect: Rect2):
+	in_transition = true
+	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, 'camera_rect', new_rect, 4)
+	yield(tween, "finished")
+	emit_signal("transition_over")
+	# set_process(false)
+	
+	
 func initialize(rect_extent:Rect2):
-	elements_in_camera = get_tree().get_nodes_in_group("players")
 	camera_rect = rect_extent
 	initial_arena_size = rect_extent
 	arena_center = calculate_center(initial_arena_size)
@@ -59,7 +70,7 @@ func initialize(rect_extent:Rect2):
 	zoom = calculate_zoom(camera_rect, viewport_rect.size)
 	offset.x -= marginX/2*zoom.x
 	offset.y -= marginY/2*zoom.y # offset moves the camera center, which has to be corrected by half the margin
-	set_process(false)
+	#set_process(false)
 
 const MAX_DIST_OFFSET = 10
 
@@ -71,7 +82,14 @@ func _process(_delta: float) -> void:
 	time+=_delta
 	elements_in_camera = get_tree().get_nodes_in_group(IN_CAMERA)
 	rect_extents = Vector2(zoom.x*margin_max.x, zoom.y*margin_max.y)/2
-	if not show_all:
+	if show_all:
+		camera_rect.position = lerp(camera_rect.position, full_arena.position, _delta*SPEED/Engine.time_scale)
+		camera_rect.size = lerp(camera_rect.size, full_arena.size, _delta*SPEED/Engine.time_scale)
+		#if camera_rect.get_area() < now.get_area():
+		#	camera_rect = camera_rect.grow(13)
+	elif in_transition:
+		pass
+	else:
 		if len(elements_in_camera):
 			camera_rect = Rect2(Vector2(0,0), Vector2(0,0)) # always keep the center of the battlefield inside the view
 		for element in elements_in_camera:
@@ -81,11 +99,6 @@ func _process(_delta: float) -> void:
 				camera_rect = camera_rect.expand(element.global_position)
 		# clip camera to arena size
 		camera_rect = camera_rect.clip(initial_arena_size)
-	else:
-		camera_rect.position = lerp(camera_rect.position, full_arena.position, _delta*SPEED/Engine.time_scale)
-		camera_rect.size = lerp(camera_rect.size, full_arena.size, _delta*SPEED/Engine.time_scale)
-		#if camera_rect.get_area() < now.get_area():
-		#	camera_rect = camera_rect.grow(13)
 			
 			
 	var offset_to_be = calculate_center(camera_rect)
@@ -119,11 +132,6 @@ func _process(_delta: float) -> void:
 		#offset.x = max(offset.x, max_offset.x)
 		zoom.x = min(zoom.x, zoomMax)
 		zoom.y = min(zoom.y, zoomMax)
-
-	if not disabled_override:
-		current = true
-	else: 
-		current = false
 	
 	wait_in_frame-=1
 	
@@ -149,6 +157,7 @@ func _draw() -> void:
 	draw_circle(screen_to_world(Vector2(640,300)), 100, Color(1, 0, 0, 0.4))
 
 func activate_camera():
+	in_transition = false
 	set_process(not disabled_override and enabled)
 	
 func world_to_screen(p : Vector2) -> Vector2:

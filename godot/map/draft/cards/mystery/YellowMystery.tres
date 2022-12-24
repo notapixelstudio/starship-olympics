@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://map/draft/cards/mystery/MysteryCard.gd" type="Script" id=1]
+[ext_resource path="res://map/draft/cards/ArkOfMemory.tres" type="Resource" id=2]
+[ext_resource path="res://map/draft/cards/Connex.tres" type="Resource" id=3]
+[ext_resource path="res://map/draft/cards/DiamondMinefield.tres" type="Resource" id=4]
+[ext_resource path="res://assets/sprites/cards/card_mystery_yellow.png" type="Texture" id=5]
+[ext_resource path="res://map/draft/cards/BoardConquest.tres" type="Resource" id=6]
+[ext_resource path="res://map/draft/cards/QueenOfTheHive.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 1 )
+unlocks = [  ]
+unlock_strength = 1
+winter = false
+perfectionist = false
+tint = Color( 0, 0, 0, 1 )
+name = "Board"
+description = "A random board minigame"
+mystery_cover = ExtResource( 5 )
+subcards = [ ExtResource( 6 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 7 ) ]
+color = "yellow"

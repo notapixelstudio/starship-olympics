@@ -1,6 +1,6 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
+[ext_resource path="res://actors/brains/SlamAGonBrain.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/icons/GCircle.svg" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/signs/O.png" type="Texture" id=4]
@@ -9,22 +9,20 @@
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/characters/auriels_1.tres" type="Resource" id=9]
-[ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=10]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=11]
 [ext_resource path="res://combat/modes/SlamAGon.tres" type="Resource" id=12]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/levels/background/pentagonions.png" type="Texture" id=14]
 [ext_resource path="res://combat/styles/parquet.tres" type="Resource" id=15]
 [ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=16]
-[ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=17]
 [ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=18]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=19]
 
 [node name="Arena" instance=ExtResource( 8 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 12 )
 style = ExtResource( 15 )
-match_duration_override = 80.0
+cpu_brain_scene = ExtResource( 1 )
+match_duration_override = 70.0
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 14 )
@@ -42,10 +40,10 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-radius = 1900
+radius = 1800
+precision = 100
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
 texture = ExtResource( 16 )
 texture_scale = Vector2( 2, 2 )
 fg_color = Color( 0.3, 0.2012, 0.144, 1 )
@@ -61,7 +59,7 @@ texture = ExtResource( 4 )
 [node name="Node2D" type="Node2D" parent="Battlefield/Background/O" index="0"]
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background/O/Node2D" index="0"]
-points = PoolVector2Array( -509.117, -509.117, -120, -120 )
+points = PoolVector2Array( -475.741, -475.742, -120, -120 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -71,7 +69,7 @@ end_cap_mode = 2
 rotation = 2.0944
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background/O/Node2D2" index="0"]
-points = PoolVector2Array( -509.117, -509.117, -120, -120 )
+points = PoolVector2Array( -475.741, -475.742, -120, -120 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
@@ -81,159 +79,83 @@ end_cap_mode = 2
 rotation = 4.18879
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background/O/Node2D3" index="0"]
-points = PoolVector2Array( -509.117, -509.117, -120, -120 )
+points = PoolVector2Array( -475.741, -475.742, -120, -120 )
 width = 32.0
 default_color = Color( 1, 1, 1, 1 )
 begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="GoalsP1" type="Node2D" parent="Battlefield/Middleground" index="0"]
+position = Vector2( 0, 100 )
 rotation = -1.5708
 
 [node name="PentaGoal" parent="Battlefield/Middleground/GoalsP1" index="0" instance=ExtResource( 18 )]
 position = Vector2( -800, 0 )
 rings = 4
-ring_width = 70.0
+ring_width = 80.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
 [node name="PentaGoal3" parent="Battlefield/Middleground/GoalsP1" index="1" instance=ExtResource( 18 )]
 position = Vector2( -1050, -700 )
 rings = 3
-ring_width = 70.0
+ring_width = 55.0
 core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
 [node name="PentaGoal4" parent="Battlefield/Middleground/GoalsP1" index="2" instance=ExtResource( 18 )]
 position = Vector2( -1050, 700 )
 rings = 3
-ring_width = 70.0
+ring_width = 55.0
 core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
 
-[node name="SpeciesDecal" parent="Battlefield/Middleground/GoalsP1" index="3" instance=ExtResource( 17 )]
-modulate = Color( 0, 0.466667, 1, 1 )
-position = Vector2( -900, 0 )
-size = 9.0
-goal_owner = NodePath("../../../../SpawnPositions/Players/p1")
-
 [node name="GoalsP2" type="Node2D" parent="Battlefield/Middleground" index="1"]
-rotation = 0.523604
+position = Vector2( -100, 0 )
+rotation = 0.523599
 
 [node name="PentaGoal" parent="Battlefield/Middleground/GoalsP2" index="0" instance=ExtResource( 18 )]
 position = Vector2( -800, 0 )
 rings = 4
-ring_width = 70.0
+ring_width = 80.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal3" parent="Battlefield/Middleground/GoalsP2" index="1" instance=ExtResource( 18 )]
 position = Vector2( -1050, -700 )
 rings = 3
-ring_width = 70.0
+ring_width = 55.0
 core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
 
 [node name="PentaGoal4" parent="Battlefield/Middleground/GoalsP2" index="2" instance=ExtResource( 18 )]
 position = Vector2( -1050, 700 )
 rings = 3
-ring_width = 70.0
+ring_width = 55.0
 core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
 
-[node name="SpeciesDecal" parent="Battlefield/Middleground/GoalsP2" index="3" instance=ExtResource( 17 )]
-modulate = Color( 0.848, 0.288, 0.96, 1 )
-position = Vector2( -875, 0 )
-size = 9.0
-goal_owner = NodePath("../../../../SpawnPositions/Players/p2")
-
 [node name="GoalsP3" type="Node2D" parent="Battlefield/Middleground" index="2"]
+position = Vector2( 100, 0 )
 rotation = 2.61799
 
 [node name="PentaGoal" parent="Battlefield/Middleground/GoalsP3" index="0" instance=ExtResource( 18 )]
 position = Vector2( -800, 0 )
 rings = 4
-ring_width = 70.0
+ring_width = 80.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p3")
 
 [node name="PentaGoal3" parent="Battlefield/Middleground/GoalsP3" index="1" instance=ExtResource( 18 )]
 position = Vector2( -1050, -700 )
 rings = 3
-ring_width = 70.0
+ring_width = 55.0
 core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p3")
 
 [node name="PentaGoal4" parent="Battlefield/Middleground/GoalsP3" index="2" instance=ExtResource( 18 )]
 position = Vector2( -1050, 700 )
 rings = 3
-ring_width = 70.0
+ring_width = 55.0
 core_radius = 50.0
 goal_owner = NodePath("../../../../SpawnPositions/Players/p3")
-
-[node name="SpeciesDecal" parent="Battlefield/Middleground/GoalsP3" index="3" instance=ExtResource( 17 )]
-position = Vector2( -875, 0 )
-size = 9.0
-goal_owner = NodePath("../../../../SpawnPositions/Players/p3")
-
-[node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="3"]
-
-[node name="Wall" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 5 )]
-position = Vector2( 1650, -900 )
-line_width = 28
-solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D/Wall" index="4"]
-script = ExtResource( 1 )
-radius = 50
-sides = 4.0
-
-[node name="Laser" parent="Battlefield/Middleground/Node2D/Wall" index="8" groups=["additional_lasers"] instance=ExtResource( 10 )]
-position = Vector2( -50, 1 )
-rotation = 3.14159
-
-[node name="Node2D2" type="Node2D" parent="Battlefield/Middleground" index="4"]
-rotation = 2.0944
-
-[node name="Wall" parent="Battlefield/Middleground/Node2D2" index="0" instance=ExtResource( 5 )]
-position = Vector2( 1711.6, -806.699 )
-line_width = 28
-solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D2/Wall" index="4"]
-script = ExtResource( 1 )
-radius = 50
-sides = 4.0
-
-[node name="Laser" parent="Battlefield/Middleground/Node2D2/Wall" index="8" groups=["additional_lasers"] instance=ExtResource( 10 )]
-position = Vector2( -49.9999, 1 )
-rotation = 3.14159
-
-[node name="Node2D3" type="Node2D" parent="Battlefield/Middleground" index="5"]
-rotation = 4.18879
-
-[node name="Wall" parent="Battlefield/Middleground/Node2D3" index="0" instance=ExtResource( 5 )]
-position = Vector2( 1668.3, -818.301 )
-line_width = 28
-solid_line_color = Color( 1.12, 0.76, 0.8, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Node2D3/Wall" index="4"]
-script = ExtResource( 1 )
-radius = 50
-sides = 4.0
-
-[node name="Laser" parent="Battlefield/Middleground/Node2D3/Wall" index="8" groups=["additional_lasers"] instance=ExtResource( 10 )]
-position = Vector2( -50, 1 )
-rotation = 3.14159
-
-[node name="PowerUp" parent="Battlefield/Middleground" index="6" instance=ExtResource( 19 )]
-position = Vector2( 0, 1400 )
-type = "rocket_gun"
-
-[node name="PowerUp2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 19 )]
-position = Vector2( -1212.44, -700 )
-type = "rocket_gun"
-
-[node name="PowerUp3" parent="Battlefield/Middleground" index="8" instance=ExtResource( 19 )]
-position = Vector2( 1212.44, -700 )
-type = "rocket_gun"
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 13 )]
 

@@ -13,6 +13,9 @@ func _ready():
 	Events.connect('sth_is_overlapping_with_ship', self, '_on_sth_is_overlapping_with_ship')
 	Events.connect('holdable_loaded', self, '_on_holdable_loaded')
 	Events.connect('holdable_dropped', self, '_on_holdable_dropped')
+	Events.connect('holdable_replaced', self, '_on_holdable_replaced')
+	Events.connect('holdable_swapped', self, '_on_holdable_swapped')
+	Events.connect("ship_damaged", self, "_on_ship_damaged")
 	Events.connect("ship_died", self, "_on_ship_died")
 	
 func _on_sth_collided_with_ship(sth, ship: Ship) -> void:
@@ -30,12 +33,22 @@ func handle_collision(sth, ship: Ship) -> void:
 			
 func _on_sths_bumped(sth1, sth2) -> void:
 	if sth1 is Ship and sth2 is Ship:
+		if not sth1.has_cargo() and not sth2.has_cargo():
+			# no actual swap has to occur, bail
+			return
+			
 		var cargo1 = sth1.get_cargo()
 		var cargo2 = sth2.get_cargo()
 		
+		# swap cargo
 		var swap = cargo1.get_holdable()
 		cargo1.set_holdable(cargo2.get_holdable())
 		cargo2.set_holdable(swap)
+		
+		# swap holder statuses
+		var swap_holder = sth1.is_holder()
+		sth1.set_holder(sth2.is_holder())
+		sth2.set_holder(swap_holder)
 		
 		# refresh appearance of cargoes
 		cargo1.hide_holdable()
@@ -45,12 +58,37 @@ func _on_sths_bumped(sth1, sth2) -> void:
 		
 		Events.emit_signal("holdable_swapped", cargo1.get_holdable(), cargo2.get_holdable(), sth1, sth2)
 		
+func _on_ship_damaged(ship: Ship, hazard, author) -> void:
+	if ship.get_cargo().has_holdable():
+		ship.get_cargo().drop_holdable(hazard)
+		
 func _on_ship_died(ship: Ship, author, for_good: bool) -> void:
 	if ship.get_cargo().has_holdable():
 		ship.get_cargo().drop_holdable(ship)
 		
 func _on_holdable_loaded(holdable, ship):
 	traits.get_trait(holdable, 'Holdable').remove()
+	ship.set_holder(true)
+	Events.emit_signal('holdable_obtained', holdable, ship)
 	
 func _on_holdable_dropped(holdable, ship, cause):
 	traits.get_trait(holdable, 'Holdable').restore()
+	ship.set_holder(false)
+	Events.emit_signal('holdable_lost', holdable, ship)
+	
+func _on_holdable_replaced(old, new, ship):
+	if old != null:
+		Events.emit_signal('holdable_lost', old, ship)
+	if new != null:
+		Events.emit_signal('holdable_obtained', new, ship)
+		
+func _on_holdable_swapped(holdable1, holdable2, ship1, ship2):
+	if holdable2 != null:
+		Events.emit_signal('holdable_lost', holdable2, ship1)
+	if holdable1 != null:
+		Events.emit_signal('holdable_obtained', holdable1, ship1)
+	if holdable1 != null:
+		Events.emit_signal('holdable_lost', holdable1, ship2)
+	if holdable2 != null:
+		Events.emit_signal('holdable_obtained', holdable2, ship2)
+		

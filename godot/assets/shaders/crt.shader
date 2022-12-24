@@ -18,7 +18,7 @@ uniform float aberration_speed : hint_range(0.01, 10.0, 0.01) = float(1.0);
 vec2 CRTCurveUV(vec2 uv) {
 	if(show_curvature) {
 		uv = uv * 2.0 - 1.0;
-		vec2 offset = abs(uv.yx) / vec2(10.0, 6.5);
+		vec2 offset = abs(uv.yx) / vec2(9.0, 6.0);
 		uv = uv + uv * offset * offset;
 		uv = uv * 0.5 + 0.5;
 	}

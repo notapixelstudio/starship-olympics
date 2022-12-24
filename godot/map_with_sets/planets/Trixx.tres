@@ -1,0 +1,33 @@
+[gd_resource type="Resource" load_steps=13 format=2]
+
+[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=1]
+[ext_resource path="res://combat/levels/old/1player/conquest_1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/levels/old/1player/rain_1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/levels/old/2players/conquest_5.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/levels/old/1player/rain_2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/levels/old/3players/conquest_1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/levels/old/1player/rain_3.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/levels/old/4players/conquest_4.tscn" type="PackedScene" id=8]
+[ext_resource path="res://combat/levels/old/1player/rain_4.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/map/trixxx.png" type="Texture" id=10]
+[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=11]
+[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=12]
+
+
+
+
+
+
+[resource]
+script = ExtResource( 11 )
+name = "Trixx"
+tagline1 = "Cute adorable planet"
+tagline2 = "just adorably mercyless"
+species = ExtResource( 12 )
+levels_1players = [ ExtResource( 2 ), ExtResource( 3 ) ]
+levels_2players = [ ExtResource( 4 ), ExtResource( 5 ) ]
+levels_3players = [ ExtResource( 6 ), ExtResource( 7 ) ]
+levels_4players = [ ExtResource( 8 ), ExtResource( 9 ) ]
+planet_sprite = ExtResource( 10 )
+game_mode = ExtResource( 1 )
+

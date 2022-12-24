@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://map/draft/cards/DraftCard.gd" type="Script" id=1]
+[ext_resource path="res://combat/minigames/RingRacing.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+minigame = ExtResource( 2 )
+unlocks = [ "ClassicMystery" ]
+unlock_strength = 1
+winter = false
+perfectionist = false
+tint = Color( 0, 0, 0, 1 )

@@ -10,6 +10,17 @@ const isometric_offset = Vector2(0,32)
 
 var enable_camera := true 
 
+const SUIT_COLORS = {
+	"blue": Color('#0080ff'),
+	"red": Color('#ff3333'),
+	"yellow": Color('#ffde5f'),
+	"white": Color('#ffffff'),
+	"cyan": Color('#00fff3'),
+	'green': Color('#53ff53'),
+	"magenta": Color('#d849f5'),
+	'mystery': Color('#7c6989')
+}
+
 var enable_analytics : bool = false setget _set_analytics
 signal send_statistics
 
@@ -18,6 +29,16 @@ func _set_analytics(new_value):
 	GameAnalytics.build_version = version
 	GameAnalytics.enabled = enable_analytics
 	connect("send_statistics", GameAnalytics, "add_event")
+
+#######################################
+############# Controls ################
+#######################################
+
+var array_joypad_preset = ["default", "minimal"]
+onready var joypad_preset
+
+var array_keyboard_preset = ["custom", "everything", "minimal"]
+onready var keyboard_preset
 
 var array_keyboard_device = ["kb1", "kb2"]
 onready var keyboard_device 
@@ -55,7 +76,7 @@ var available_languages = {
 onready var language: String setget _set_language, _get_language
 var array_language: Array = ["english", "italiano", "español", "euskara", "français", "deutsch"]
 var full_screen = true setget _set_full_screen
-
+	
 func _set_full_screen(value: bool):
 	full_screen = value
 	OS.window_fullscreen = full_screen
@@ -64,7 +85,31 @@ func _set_full_screen(value: bool):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+	
+onready var graphics_quality: String = "HD" setget _set_graphics_quality
+var array_graphics_quality: Array = ["minimum", "low", "medium", "maximum", "HD"]
 
+func _set_graphics_quality(value: String):
+	# 16:9 aspect ratio resolutions: 1024×576, 1152×648, 1280×720, 1366×768, 1600×900, 1920×1080, 2560×1440 and 3840×2160.
+	graphics_quality = value
+	match graphics_quality:
+		"low":
+			set_stretch(Vector2(1024,576), 0.8)
+		"medium":
+			set_stretch(Vector2(1152,648), 0.9)
+		"maximum":
+			set_stretch(Vector2(1280,720), 1)
+		"HD":
+			set_stretch(Vector2(1280,720), 1, SceneTree.STRETCH_MODE_2D)
+func set_stretch(resolution:Vector2, stretch:float, stretch_mode := SceneTree.STRETCH_MODE_VIEWPORT):
+	get_tree().set_screen_stretch(stretch_mode,  SceneTree.STRETCH_ASPECT_KEEP, resolution, stretch)
+	
+func get_graphics_scale() -> Vector2:
+	var viewport_size := get_tree().get_root().get_size()
+	var world_size := Vector2(ProjectSettings.get_setting("display/window/size/width"), ProjectSettings.get_setting("display/window/size/height"))
+	return viewport_size/world_size
+	
 var unlock_mode = "custom" setget _set_unlock_mode
 var array_unlock_mode = ["custom", "demo", "core", "unlocked"]
 
@@ -88,12 +133,12 @@ func _set_unlock_mode(value: String):
 
 func _set_language(value:String):
 	language = value
-	TranslationServer.set_locale(available_languages[language])
+	TranslationServer.set_locale(available_languages.get(language, "en"))
 
 func _get_language():
 	return language
 
-var version = "0.7.0-internal" setget set_version
+var version = "0.8.0-internal" setget set_version
 var first_time = true
 
 func set_version(value):
@@ -102,7 +147,7 @@ func set_version(value):
 
 # OPTIONS need a min and a MAX
 const min_win = 1
-var win = 5
+var win = 3
 const max_win = 10
 
 var campaign_win = win
@@ -124,6 +169,8 @@ var array_level
 var audio_on : bool setget _audio_on
 
 var demo : bool = false
+# playtest mode, fixed selection player
+var demo_playtest : bool = false
 
 func _audio_on(new_value):
 	audio_on = new_value
@@ -224,13 +271,24 @@ func set_campaign_mode(value):
 var from_scene = "res://special_scenes/title_screen/MainScreen.tscn"
 
 func _input(event):
+	if demo and (event is InputEventJoypadButton or event is InputEventKey):
+		demo = false
+		reset_counts()
+		Events.emit_signal('nav_to_character_selection')
+		get_tree().paused = false
+		
+		
 	if event.is_action_pressed("fullscreen"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		OS.window_fullscreen = not OS.window_fullscreen
 	
-	if demo and event.is_action_pressed("force_reset"):
+	if demo_playtest and event.is_action_pressed("force_reset"):
 		get_tree().change_scene("res://local_multiplayer/LocalMultiplayer.tscn")
 		get_tree().paused = false
+		reset_counts()
+		
+	if demo_playtest and event.is_action_pressed("delete_persistence"):
+		persistance.delete_latest_game()
 
 func _ready():
 	# we want to handle quit by ourselves
@@ -344,7 +402,26 @@ func _onRemoteCommand(id,strength,button):
 	handleEventFire(button,controlsString + "_fire")
 	handleEventAccept(button,"ui_accept")
 	 
-		
+func create_dir(path: String):
+	var dir = Directory.new()
+	dir.make_dir_recursive(path)
+
+func write_into_file(filepath: String, data: Dictionary, mode := File.READ_WRITE):
+	#open the log file and go to the end
+	var file = File.new()
+	var error = file.open(filepath, mode)
+	if error == ERR_FILE_NOT_FOUND:
+		create_dir(filepath.get_base_dir())
+		error = file.open(filepath, File.WRITE_READ)
+	if error == OK:
+		file.seek_end()
+		file.store_line(to_json(data))
+		file.flush() # WARNING writing to disk too often could hurt performance
+		file.close()
+		print(filepath)
+	else: 
+		print("FILE WITH ERROR {error_code}".format({"error_code": error }))
+	
 func read_file(path: String) -> Dictionary:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
 	var file = File.new()
@@ -356,6 +433,29 @@ func read_file(path: String) -> Dictionary:
 	# parse file data - convert the JSON back to a dictionary
 	var data = {}
 	data = parse_json(file.get_as_text())
+	file.close()
+	if data == null:
+		data = {}
+	return data
+
+func read_file_by_line(path: String) -> Array:
+	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
+	var file = File.new()
+	if not file.file_exists(path):
+		print("The save file does not exist.")
+		return []
+	file.open(path, File.READ)
+	print("We are going to load from this JSON: ", file.get_path_absolute())
+	# parse file data - convert the JSON back to a dictionary
+	var data = []
+	var num_lines = 1
+	while not file.eof_reached(): # iterate through all lines until the end of file is reached
+		var content = file.get_line()
+		if content == "":
+			continue
+		data.append(parse_json(content))
+		num_lines += 1
+	print("Read {lines}".format({"lines":num_lines}))
 	file.close()
 	return data
 
@@ -389,227 +489,6 @@ func _notification(what):
 			yield(GameAnalytics, "message_sent")
 		Events.emit_signal('execution_ended')
 		get_tree().quit() # default behavior
-	
-# INPUT MAPPING
-const INPUT_ACTIONS = ["kb1", "kb2", "joy1", "joy2", "joy3", "joy4","rm1","rm2","rm3","rm4"]
-var input_mapping : Dictionary setget _set_input_mapping, _get_input_mapping
-
-var joy_input_map = {
-	"analog_0_1"  : "Left_Stick_Right",
-	"analog_0_-1" : "Left_Stick_Left",
-	"analog_1_1"  : "Left_Stick_Down",
-	"analog_1_-1" : "Left_Stick_Up",
-	"analog_2_1"  : "Right_Stick_Right",
-	"analog_2_-1" : "Right_Stick_Left",
-	"analog_3_1"  : "Right_Stick_Down",
-	"analog_3_-1" : "Right_Stick_Up",
-	"0": "Cross",
-	"1": "Circle",
-	"2": "Square",
-	"3": "Triangle",
-	"4": "L1",
-	"5": "R1",
-	"6": "L2",
-	"7": "R2",
-	"8": "Left_Stick_Click",
-	"9": "Right_Stick_Click",
-	"10": "Select",
-	"11": "Start",
-	"12": "Dpad_Up",
-	"13": "Dpad_Down",
-	"14": "Dpad_Left",
-	"15": "Dpad_Right"
-}
-
-var keyboard_input_map = {
-	"Up": "Arrow_Up",
-	"Down": "Arrow_Down",
-	"Left": "Arrow_Left",
-	"Right": "Arrow_Right",
-	"BackSpace": "Backspace_Alt",
-	"*": "Asterisk",
-	
-}
-
-
-func event_to_text(event: InputEvent):
-	"""
-	event: @type InputEvent
-	return the event in a human readable form. For reference `joy_input_map`
-	"""
-	if event is InputEventKey:
-		var key = event.as_text()
-		if key in keyboard_input_map:
-			key = keyboard_input_map[key]
-		return {"key": key, "device_id": event.device, "device": "kb"}
-	elif event is InputEventJoypadButton:
-		return {"key": joy_input_map[str(event.button_index)], "device_id": event.device, "device": "joy"}
-	elif event is InputEventJoypadMotion:
-		if event.axis_value > 0:
-			event.axis_value = 1
-		else:
-			event.axis_value = -1
-		var command = joy_input_map["analog_"+str((event as InputEventJoypadMotion).axis) + "_" + str((event as InputEventJoypadMotion).axis_value)]
-		return {"key": command, "device_id": event.device, "device": "joy"}
-
-func event_from_text(device: String, command: String, device_id = 0) -> InputEvent:
-	"""
-	device: e.g. kb1, kb2, joy1, joy2
-	command: e.g. 0, 1, 2 , analog_1_-1, M, N 
-	"""
-	var e : InputEvent
-	if "kb" in device:
-		var inverted_input_map = global.invert_map(keyboard_input_map)
-		var command_text = command
-		if command_text in inverted_input_map:
-			command_text = inverted_input_map[command_text]
-		command_text = OS.find_scancode_from_string(command_text)
-		e = InputEventKey.new()
-		e.scancode = command_text
-	elif "joy" in device:
-		var inverted_input_map = global.invert_map(joy_input_map)
-		var command_text = inverted_input_map[command]
-		if "analog" in command_text:
-			e = InputEventJoypadMotion.new()
-			e.axis = int(command_text.split("_")[1])
-			e.axis_value = int(command_text.split("_")[2])
-		else:
-			e = InputEventJoypadButton.new()
-			e.button_index = int(command_text)
-		e.device = device_id
-	return e
-
-func _set_input_mapping(value_):
-	"""
-	will add the entire input dictionary to the game
-	"""
-	input_mapping=value_
-	for device in INPUT_ACTIONS:
-		for action in input_mapping:
-			if device in action:
-				var commands = input_mapping[action]
-				var events = []
-				for command in commands:
-					var event = event_from_text(device, command["key"], command["device_id"])
-					events.append(event)
-				remap_multiple_actions_to(action, events)
-	
-func _get_input_mapping():
-	var ret = {}
-	for device in INPUT_ACTIONS:
-		for action in InputMap.get_actions():
-			if device in action:
-				ret[action] = []
-				for event in InputMap.get_action_list(action):
-					ret[action].append(event_to_text(event))
-	return ret
-
-var default_input_joy := {
-	"fire": ["Cross", "Square", "Circle", "Triangle", "L1", "R1", "L2", "R2"], 
-	"right": ["Dpad_Right", "Left_Stick_Right"],
-	"left": ["Dpad_Left", "Left_Stick_Left"], 
-	"down": ["Dpad_Down", "Left_Stick_Down"],
-	"up":["Dpad_Up", "Left_Stick_Up"]
-}
-
-var default_input :=  {
-	"kb1": {
-		"fire":["M"], "down":["Down"], "left":["Left"], "right":["Right"], "up":["Up"]
-	},
-	"kb2": { 
-		"down":["S"], "fire":["1"], "left":["A"], "right":["D"], "up":["W"]
-	},
-	"joy1": default_input_joy,
-	"joy2": default_input_joy,
-	"joy3": default_input_joy,
-	"joy4": default_input_joy
-}
-
-var input_mapping_joy := {
-	"joy1": default_input_joy,
-	"joy2": default_input_joy,
-	"joy3": default_input_joy,
-	"joy4": default_input_joy
-}
-
-var array_joylayout = ["default", "setup1", "setup2", "setup3", "custom"]
-onready var joylayout: String = array_joylayout[0] setget _set_joylayout, _get_joylayout
-
-func _set_joylayout(value):
-	joylayout = value
-
-func _get_joylayout():
-	return joylayout
-	
-func set_default_mapping(device:String) -> Dictionary:
-	var ret_mapping = {}
-	var this_mapping = default_input[device]
-	var device_id: int = int(device.right(len(device)-1))-1
-	for action in this_mapping:
-		
-		var complete_action = device + "_" + action
-		var events = []
-		for command in this_mapping[action]:
-			var event = event_from_text(device, command, device_id)
-			events.append(event)
-		remap_multiple_actions_to(complete_action, events)
-		ret_mapping[complete_action] = this_mapping[action]
-	persistance.save_game()
-	return ret_mapping
-	
-func check_input_event(action_: String, event:InputEvent):
-	return event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion
-
-func clear_mapping(action:String, event: InputEvent):
-	InputMap.action_erase_event(action, event)
-	var alert_scene = load("res://interface/OverlayMessage.tscn").instance()
-	alert_scene.message = "ACTION BINDING FOR [color=red]{action}[/color] OVERRIDDEN".format({"action": action.to_upper()})
-	add_child(alert_scene)
-	alert_scene.raise()
-	
-func clear_all_mapping(action: String):
-	InputMap.action_erase_events(action)
-	
-func remap_multiple_actions_to(action: String, new_events: Array, ui_flag=true) -> String:
-	"""
-	new_events: Array[InputEvent]
-	Will delete the events from the actions in order to put the new ones
-	"""
-	var current_key = ""
-	
-	if ui_flag:
-		var acts = action.split("_")
-		var id = acts[len(acts)-1]
-		if id == "fire":
-			id = "accept"
-		var ui_action = "ui_"+id
-		#TODO: remove only the existing control for that player
-		for event in InputMap.get_action_list(action):
-			InputMap.action_erase_event(ui_action, event)
-		for new_event in new_events:
-			InputMap.action_add_event("ui_"+id, new_event)
-	InputMap.action_erase_events(action)
-	for new_event in new_events:
-		InputMap.action_add_event(action, new_event)
-	return action
-
-func remap_action_to(action: String, new_event: InputEvent) -> String:
-	"""
-	Given an action, and an InputEvent will set an event.
-	You might pass the previous event if it's a substitution
-	return event to text
-	"""
-	var current_key = ""
-	var acts = action.split("_")
-	var id = acts[len(acts)-1]
-	if id == "fire":
-		id = "accept"
-	var ui_action = "ui_"+id
-	
-	InputMap.action_add_event(ui_action, new_event)
-	InputMap.action_add_event(action, new_event)
-	return global.event_to_text(new_event)
-	
 
 # utils
 func get_state():
@@ -624,15 +503,16 @@ func get_state():
 		music_volume=music_volume,
 		master_volume=master_volume,
 		sfx_volume=sfx_volume,
-		demo=demo,
 		full_screen=full_screen,
+		graphics_quality=graphics_quality,
 		rumbling=rumbling,
-		input_mapping=self.input_mapping,
 		glow_enable=glow_enable,
 		enable_camera=enable_camera,
 		flood=flood,
 		time_scale=time_scale,
-		laser=laser
+		laser=laser,
+		starting_deck=starting_deck,
+		sessions_played=sessions_played
 	}
 	
 
@@ -681,14 +561,14 @@ func shake_node_backwards(node, tween):
 	tween.interpolate_method(node, "set_position", node.rect_position, node.rect_position - Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)
 	tween.interpolate_method(node, "set_position", node.rect_position - Vector2(5, 0), actual_d_pos, 0.05, Tween.TRANS_BACK, Tween.EASE_OUT, 0.05)
 	tween.start()
-	yield(tween,"tween_completed")
+	
 
 func shake_node(node, tween):
 	var actual_d_pos = node.rect_position
 	tween.interpolate_method(node, "set_position", node.rect_position, node.rect_position + Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)
 	tween.interpolate_method(node, "set_position", node.rect_position + Vector2(5, 0), actual_d_pos, 0.05, Tween.TRANS_BACK, Tween.EASE_OUT, 0.05)
 	tween.start()
-	yield(tween,"tween_completed")
+	
 	
 func get_base_entity(node : Node):
 	if node is Entity:
@@ -732,7 +612,11 @@ func invert_map(map:Dictionary):
 	"""
 	var ret = {}
 	for k in map:
-		ret[map[k]] = k
+		if typeof(map[k]) == TYPE_ARRAY:
+			for element in map[k]:
+				ret[element] = k
+		else:
+			ret[map[k]] = k
 	return ret
 
 
@@ -748,26 +632,73 @@ var the_match: TheMatch = null
 var session: TheSession = null
 var arena
 
-func new_game(players) -> TheGame:
+func reset_counts():
+	game_number = 0
+	session_number = 0
+	sessions_played = 0 # Total number of sessions. Persistence
+	session_number_of_game = 0
+	match_number_of_game = 0
+	for card in the_game.all_cards:
+		var minigame = (card as DraftCard).get_minigame()
+		minigame.reset_count()
+	
+var game_number := 0
+var session_number := 0
+var sessions_played := 0 # Total number of sessions. Persistence
+var session_number_of_game := 0
+var match_number_of_game := 0
+
+func new_game(players: Array, data := {}) -> TheGame:
 	safe_destroy_game()
 	the_game = TheGame.new()
+	game_number += 1
 	the_game.set_players(players)
+	var deck := Deck.new()
+	if not data.empty():
+		the_game.set_from_dictionary(data)
+		deck.set_from_dictionary(data.get("deck"))
+	else:
+		deck.setup()
+	the_game.set_deck(deck)
+	
 	Events.emit_signal("game_started")
 	return the_game
 
 func new_match() -> TheMatch:
 	safe_destroy_match()
 	the_match = TheMatch.new()
+	match_number_of_game += 1
 	Events.emit_signal("match_started")
+	print("Save the game")
+	if not global.demo:
+		persistance.save_game_as_latest()
 	return the_match
 	
-func new_session() -> TheSession:
+func new_session(existing_data := {}) -> TheSession:
 	safe_destroy_session()
 	session = TheSession.new()
+	session_number_of_game += 1
 	
-	# whenever a new session is created, InfoPlayer stats should be cleared
-	the_game.reset_players()
+	# whenever a new session is created, InfoPlayer stats should be cleared. 
+	# Unless we are loading a existing session
+	if existing_data.empty():
+		the_game.reset_players()
 	
+	var deck: Deck = the_game.get_deck()
+	
+	var hand_ids : Array = existing_data.get("hand", [])
+	var hand := []
+	for card_id in hand_ids:
+		hand.append(deck.get_card(card_id))
+	if existing_data.get("playing_card"):
+		var playing_card_id = existing_data.get("playing_card")
+		hand.append(deck.get_card(playing_card_id))
+		
+	if hand.empty() and existing_data.empty() and deck.get_skip_first_draft():
+		hand = deck.draw(3)
+	# else: start with no hand, the draft manager will take care of that
+	session.set_hand(hand)
+	session.setup_from_dictionary(existing_data)
 	Events.emit_signal('session_started')
 	return session
 	
@@ -779,11 +710,12 @@ func safe_destroy_game() -> void:
 		Events.emit_signal("game_ended")
 		the_game.free()
 	the_game = null
+	session_number_of_game = 0
+	match_number_of_game = 0
 	
 func safe_destroy_match() -> void:
 	if is_match_running():
-		global.session.add_match(the_match.to_dict())
-		Events.emit_signal("match_ended")
+		Events.emit_signal("match_ended", the_match.to_dict())
 		the_match.free()
 	the_match = null
 	
@@ -791,6 +723,9 @@ func safe_destroy_session() -> void:
 	if is_session_running():
 		# also delete the match
 		safe_destroy_match()
+		
+		# put back cards into the deck
+		session.discard_hand()
 		
 		Events.emit_signal("session_ended")
 		session.free()
@@ -805,17 +740,20 @@ func is_match_running() -> bool:
 func is_session_running() -> bool:
 	return session != null and is_instance_valid(session)
 	
+func is_before_first_match_of_the_game() -> bool:
+	return match_number_of_game == 0
+	
 ###############################
 ##### FILE SYSTEM UTILS #######
 ###############################
 const SPECIES_PATH = "res://selection/characters"
 
 func get_resources(base_path: String) -> Dictionary:
-	var ret = {}
+	var ret := {}
 	var resources = global.dir_contents(base_path, "", ".tres")
 	for filename in resources:
 		var this_res = load(base_path.plus_file(filename))
-		var res_id = this_res.id
+		var res_id = this_res.get_id()
 		ret[res_id] = this_res
 	return ret
 
@@ -823,6 +761,9 @@ onready var species_resources: Dictionary = get_resources(SPECIES_PATH)
 func get_species(species_id: String):
 	return species_resources[species_id]
 
+func get_actual_resource(resource_list: Dictionary, resource_id: String):
+	return resource_list[resource_id]
+	
 func get_ordered_species() -> Array:
 	var ordered_species = []
 	var unlocked_species = TheUnlocker.get_unlocked_list("species")
@@ -833,4 +774,26 @@ func get_ordered_species() -> Array:
 
 func compare_by_species_id(a: Species, b: Species):
 	return a.species_id < b.species_id
+	
+var starting_deck: String = "intro"
+
+
+# Date utils
+func datetime_to_str(datetime: Dictionary, use_local := false) -> String:
+	# {"day":23,"dst":false,"hour":18,"minute":41,
+	# "month":9,"second":55,"weekday":4,"year":2021}
+	# FIXME replace with ISO dates
+	var tz = Time.get_time_zone_from_system()
+	var tz_hours = floor(tz.bias / 60)
+	var tz_min = floor(tz.bias%60)
+	var datetime_with_local := datetime
+	var local_tz = ""
+	datetime.erase("second")
+	var datetime_string = Time.get_datetime_string_from_datetime_dict(datetime, true)
+	if use_local:
+		datetime["hour"] = datetime["hour"] + tz_hours
+		datetime["minute"] = datetime["hour"] + tz_hours
+		datetime_string = Time.get_datetime_string_from_datetime_dict(datetime, true)
+		local_tz = Time.get_offset_string_from_offset_minutes(tz.bias)
+	return datetime_string
 	

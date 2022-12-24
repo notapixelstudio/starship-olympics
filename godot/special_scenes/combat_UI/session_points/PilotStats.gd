@@ -8,20 +8,19 @@ var info: InfoPlayer
 var new_position setget change_position
 var max_points = 0
 
-onready var stars = $Container/StarsContainer
-onready var container = $Container
-onready var stats_container = $Container/Stats/StatsContainer
-
 var just_won: bool = false
 
 func set_info(value: InfoPlayer):
 	info = value
 	var player_stats: PlayerStats = info.stats
-	if container:
-		container.get_node("Headshot").set_species(info.species)
-		for stats in stats_container.get_children():
-			stats.stats_value = str(player_stats.get(stats.key))
-		stars.initialize(info.session_score, max_points, just_won)
+	$"%Headshot".set_species(info.species)
+	for stats in $"%StatsContainer".get_children():
+		stats.set_stats_value(str(player_stats.get(stats.key)))
+	$"%StarsContainer".initialize(info.session_score, max_points, just_won)
+	$Background.modulate = info.get_color()
+	$WinnerOutline.modulate = info.get_color()
+	$"%PlayerID".text = info.get_username()
+	$"%PlayerID".modulate = info.get_color()
 
 func change_position(new_value):
 	new_position = new_value
@@ -32,3 +31,7 @@ func change_position(new_value):
 
 func get_player_info():
 	return info
+
+func celebrate():
+	$AnimationPlayer.play("Victory")
+	z_index = 1

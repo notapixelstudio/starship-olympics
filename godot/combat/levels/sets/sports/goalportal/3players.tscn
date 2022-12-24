@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=28 format=2]
 
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
-[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=2]
-[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=3]
+[ext_resource path="res://assets/sprites/signs/O.png" type="Texture" id=1]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=2]
+[ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=5]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
@@ -10,256 +10,452 @@
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=9]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=10]
-[ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=12]
+[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=11]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/GoalPortal.tres" type="Resource" id=13]
-[ext_resource path="res://actors/environments/Portal.tscn" type="PackedScene" id=14]
+[ext_resource path="res://combat/levels/sets/sports/goalportal/MovingGoalManager.tscn" type="PackedScene" id=14]
+[ext_resource path="res://actors/environments/GoalPortalGate.tscn" type="PackedScene" id=15]
+[ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=16]
+[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=17]
+
+[sub_resource type="ConvexPolygonShape2D" id=20]
+points = PoolVector2Array( -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757 )
+
+[sub_resource type="ConvexPolygonShape2D" id=21]
+points = PoolVector2Array( -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 0 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+scale = 6.0
+
+[sub_resource type="Animation" id=15]
+resource_local_to_scene = true
+length = 2.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("FeedbackLine:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 20.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FeedbackLine:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FeedbackLine:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NoShipSign:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Polygon2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0.690625, 1.3, 1 ), Color( 0.29, 0.55, 1.3, 1 ) ]
+}
+
+[sub_resource type="ConvexPolygonShape2D" id=22]
+points = PoolVector2Array( -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757 )
+
+[sub_resource type="ConvexPolygonShape2D" id=23]
+points = PoolVector2Array( -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757 )
+
+[sub_resource type="Animation" id=7]
+resource_local_to_scene = true
+length = 2.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("FeedbackLine:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 20.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FeedbackLine:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FeedbackLine:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NoShipSign:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.298039, 0.721569, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Polygon2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0.690625, 1.3, 1 ), Color( 0.29, 0.55, 1.3, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=12]
+resource_local_to_scene = true
+extents = Vector2( 250, 500 )
+
+[sub_resource type="Animation" id=18]
+resource_name = "Blink"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("RingPart:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Color( 1.6, 1.6, 1.6, 1 ), Color( 1.2, 1.2, 1.2, 1 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("RingPart:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1.2, 1.2, 1.2, 1 ) ]
+}
 
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 13 )
 
+[node name="MovingGoalManager" parent="Managers" index="0" instance=ExtResource( 14 )]
+
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 9 )
 centered = false
 
-[node name="Grid" parent="Battlefield/Background" index="0"]
-modulate = Color( 0, 0.905882, 1, 0.219608 )
+[node name="LeftZone" parent="Battlefield/Background" index="1" instance=ExtResource( 3 )]
+unique_name_in_owner = true
+position = Vector2( -2100, 0 )
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
+[node name="Polygon2D" parent="Battlefield/Background/LeftZone" index="1"]
+polygon = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222 )
+
+[node name="Line2D" parent="Battlefield/Background/LeftZone" index="2"]
+points = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
+
+[node name="CollisionShape2D" parent="Battlefield/Background/LeftZone/Area2D" index="2"]
+shape = SubResource( 20 )
+
+[node name="CollisionShape2D" parent="Battlefield/Background/LeftZone/CrownCollider" index="0"]
+shape = SubResource( 21 )
+
+[node name="Particles2D" parent="Battlefield/Background/LeftZone" index="5"]
+process_material = SubResource( 3 )
+
+[node name="FeedbackLine" parent="Battlefield/Background/LeftZone" index="7"]
+points = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
+
+[node name="AnimationPlayer" parent="Battlefield/Background/LeftZone" index="8"]
+anims/Feedback = SubResource( 15 )
+
+[node name="NoShipSign" parent="Battlefield/Background/LeftZone" index="9"]
+position = Vector2( 288, -16 )
+scale = Vector2( 2, 2 )
+
+[node name="GCircle" type="Node" parent="Battlefield/Background/LeftZone" index="11"]
+script = ExtResource( 5 )
+radius = 650
+precision = 100
+
+[node name="RightZone" parent="Battlefield/Background" index="2" instance=ExtResource( 3 )]
+unique_name_in_owner = true
+position = Vector2( 2100, 0 )
+rotation = 3.14159
+
+[node name="Polygon2D" parent="Battlefield/Background/RightZone" index="1"]
+texture_rotation_degrees = -180.0
+polygon = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222 )
+
+[node name="Line2D" parent="Battlefield/Background/RightZone" index="2"]
+points = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
+
+[node name="CollisionShape2D" parent="Battlefield/Background/RightZone/Area2D" index="2"]
+shape = SubResource( 22 )
+
+[node name="CollisionShape2D" parent="Battlefield/Background/RightZone/CrownCollider" index="0"]
+shape = SubResource( 23 )
+
+[node name="Particles2D" parent="Battlefield/Background/RightZone" index="5"]
+process_material = SubResource( 3 )
+
+[node name="FeedbackLine" parent="Battlefield/Background/RightZone" index="7"]
+points = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
+
+[node name="AnimationPlayer" parent="Battlefield/Background/RightZone" index="8"]
+anims/Feedback = SubResource( 7 )
+
+[node name="NoShipSign" parent="Battlefield/Background/RightZone" index="9"]
+position = Vector2( 288, -16 )
+rotation = -3.14159
+scale = Vector2( 2, 2 )
+
+[node name="GCircle" type="Node" parent="Battlefield/Background/RightZone" index="11"]
+script = ExtResource( 5 )
+radius = 650
+precision = 100
+
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 6 )]
 hollow = true
-offset = 200
-elongation = 100
 hide_grid = true
+solid_line_color = Color( 0.815686, 0.960784, 1.15686, 1 )
 grid_color = Color( 0, 1, 0.741176, 0.435294 )
 
-[node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 3000
-sides = 6.0
-alternating_angle = 10.0
-rotation_degrees = 5.0
-
-[node name="Zone1" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
-position = Vector2( -1700.04, 950.182 )
-rotation = -0.523599
-collision_layer = 0
-type = 4
-
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Zone1" index="5"]
-script = ExtResource( 5 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( 0, -10000, 20000, 20000 )
-radius = 600
+[node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
+script = ExtResource( 16 )
+width = 5000
+height = 3500
+radius = 800
 precision = 100.0
 
-[node name="Zone2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
-position = Vector2( 0.00730312, -2000 )
-rotation = 1.5708
-collision_layer = 0
-type = 4
+[node name="O" type="Sprite" parent="Battlefield/Background" index="6"]
+modulate = Color( 1, 1, 1, 0.0470588 )
+position = Vector2( 0, 32 )
+rotation = 0.785398
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
 
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Zone2" index="5"]
+[node name="Line2D" type="Line2D" parent="Battlefield/Background" index="7"]
+modulate = Color( 1, 1, 1, 0.0470588 )
+position = Vector2( 0, 32 )
+points = PoolVector2Array( 0, -1750, 0, -550 )
+width = 130.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Line2D2" type="Line2D" parent="Battlefield/Background" index="8"]
+modulate = Color( 1, 1, 1, 0.0470588 )
+position = Vector2( 880, 912 )
+points = PoolVector2Array( -880, -330, -880, 870 )
+width = 130.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="LeftGoalPortalGate" parent="Battlefield/Middleground" index="0" instance=ExtResource( 15 )]
+unique_name_in_owner = true
+position = Vector2( -2150, 0 )
+width = 1000.0
+show_arrow = false
+linked_to_path = NodePath("../RightGoalPortalGate")
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/LeftGoalPortalGate" index="2"]
+shape = SubResource( 12 )
+
+[node name="BottomRingPart" parent="Battlefield/Middleground/LeftGoalPortalGate" index="3"]
+scale = Vector2( 1, 1.81818 )
+
+[node name="Arrow" parent="Battlefield/Middleground/LeftGoalPortalGate" index="4"]
+visible = false
+
+[node name="RingPart" parent="Battlefield/Middleground/LeftGoalPortalGate" index="5"]
+scale = Vector2( 1, 1.81818 )
+
+[node name="Shadow" parent="Battlefield/Middleground/LeftGoalPortalGate" index="6"]
+scale = Vector2( 1, 1.81818 )
+
+[node name="AnimationPlayer" parent="Battlefield/Middleground/LeftGoalPortalGate" index="7"]
+anims/Blink = SubResource( 18 )
+anims/RESET = SubResource( 19 )
+
+[node name="PlayerLabel" parent="Battlefield/Middleground/LeftGoalPortalGate/NoRotate" index="0"]
+text = ""
+
+[node name="RandomAudioStreamPlayer" parent="Battlefield/Middleground/LeftGoalPortalGate" index="10"]
+pitch_min = 1
+
+[node name="RightGoalPortalGate" parent="Battlefield/Middleground" index="1" instance=ExtResource( 15 )]
+unique_name_in_owner = true
+position = Vector2( 2150, 0 )
+rotation = 3.14159
+width = 1000.0
+show_arrow = false
+linked_to_path = NodePath("../LeftGoalPortalGate")
+
+[node name="CollisionShape2D" parent="Battlefield/Middleground/RightGoalPortalGate" index="2"]
+shape = SubResource( 12 )
+
+[node name="BottomRingPart" parent="Battlefield/Middleground/RightGoalPortalGate" index="3"]
+scale = Vector2( 1, 1.81818 )
+
+[node name="Arrow" parent="Battlefield/Middleground/RightGoalPortalGate" index="4"]
+visible = false
+
+[node name="RingPart" parent="Battlefield/Middleground/RightGoalPortalGate" index="5"]
+scale = Vector2( 1, 1.81818 )
+
+[node name="Shadow" parent="Battlefield/Middleground/RightGoalPortalGate" index="6"]
+scale = Vector2( 1, 1.81818 )
+
+[node name="PlayerLabel" parent="Battlefield/Middleground/RightGoalPortalGate/NoRotate" index="0"]
+text = ""
+
+[node name="RandomAudioStreamPlayer" parent="Battlefield/Middleground/RightGoalPortalGate" index="10"]
+pitch_min = 1
+
+[node name="Launcher3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 3 )]
+position = Vector2( -550, -1150 )
+symbol_scale = 1.5
+
+[node name="GCircle" type="Node" parent="Battlefield/Middleground/Launcher3" index="11"]
 script = ExtResource( 5 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( 0, -10000, 20000, 20000 )
-radius = 600
-precision = 100.0
-
-[node name="Zone3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
-position = Vector2( 1700, 949.615 )
-rotation = -2.618
-scale = Vector2( 1, 1 )
-collision_layer = 0
-type = 4
-
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Zone3" index="5"]
-script = ExtResource( 5 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( 0, -10000, 20000, 20000 )
-radius = 600
-precision = 100.0
-
-[node name="Portal1" parent="Battlefield/Middleground" index="3" instance=ExtResource( 14 )]
-position = Vector2( -1700.04, 950.182 )
-rotation = 2.61799
-linked_to_path = NodePath("../Portal2")
-width = 550.0
-offset = 200.0
-color = Color( 0.32549, 1, 0.32549, 1 )
-goal_owner = NodePath("../../../SpawnPositions/Players/p1")
-
-[node name="Portal2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 14 )]
-position = Vector2( 0.00705898, -2000 )
-rotation = -1.5708
-linked_to_path = NodePath("../Portal3")
-width = 550.0
-offset = 200.0
-color = Color( 0.32549, 1, 0.32549, 1 )
-goal_owner = NodePath("../../../SpawnPositions/Players/p2")
-
-[node name="Portal3" parent="Battlefield/Middleground" index="5" instance=ExtResource( 14 )]
-position = Vector2( 1700, 949.615 )
-rotation = 0.523595
-scale = Vector2( 1, 1 )
-linked_to_path = NodePath("../Portal1")
-width = 550.0
-offset = 200.0
-color = Color( 0.32549, 1, 0.32549, 1 )
-goal_owner = NodePath("../../../SpawnPositions/Players/p3")
-
-[node name="Field" type="Node2D" parent="Battlefield/Middleground" index="6"]
-rotation = -0.523599
-
-[node name="Launcher3" parent="Battlefield/Middleground/Field" index="0" instance=ExtResource( 6 )]
-position = Vector2( -450, 779.423 )
-collision_layer = 0
-type = 4
-
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Field/Launcher3" index="5"]
-script = ExtResource( 5 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 precision = 40.0
 
-[node name="Launcher4" parent="Battlefield/Middleground/Field" index="1" instance=ExtResource( 6 )]
-position = Vector2( -442.82, -833.013 )
-collision_layer = 0
-type = 4
+[node name="Launcher4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 3 )]
+position = Vector2( 550, 1150 )
+symbol_scale = 1.5
 
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Field/Launcher4" index="5"]
+[node name="GCircle" type="Node" parent="Battlefield/Middleground/Launcher4" index="11"]
 script = ExtResource( 5 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
 radius = 200
 precision = 40.0
 
-[node name="Wall15" parent="Battlefield/Middleground/Field" index="2" instance=ExtResource( 6 )]
-position = Vector2( -1947.37, -627.139 )
-rotation = 0.785398
+[node name="Wall" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
+position = Vector2( -2500, 0 )
+z_index = 200
 
-[node name="GRect" type="Node" parent="Battlefield/Middleground/Field/Wall15" index="5"]
-script = ExtResource( 3 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 200
-height = 200
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Wall" index="8"]
+script = ExtResource( 17 )
+__meta__ = {
+"_editor_description_": ""
+}
+polygon = PoolVector2Array( 0, -550, -300, -400, -300, 400, 0, 550 )
 
-[node name="Wall16" parent="Battlefield/Middleground/Field" index="3" instance=ExtResource( 6 )]
-position = Vector2( -1947.37, 572.861 )
-rotation = 0.785398
+[node name="Wall2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 6 )]
+position = Vector2( 2500, 0 )
+rotation = 3.14159
+z_index = 200
 
-[node name="GRect" type="Node" parent="Battlefield/Middleground/Field/Wall16" index="5"]
-script = ExtResource( 3 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 200
-height = 200
-
-[node name="Field2" type="Node2D" parent="Battlefield/Middleground" index="7"]
-position = Vector2( 0, -50 )
-rotation = 1.5708
-
-[node name="Launcher4" parent="Battlefield/Middleground/Field2" index="0" instance=ExtResource( 6 )]
-position = Vector2( -450, -800 )
-collision_layer = 0
-type = 4
-
-[node name="GCircle" type="Node" parent="Battlefield/Middleground/Field2/Launcher4" index="5"]
-script = ExtResource( 5 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-radius = 200
-precision = 40.0
-
-[node name="Wall15" parent="Battlefield/Middleground/Field2" index="1" instance=ExtResource( 6 )]
-position = Vector2( -1950, -600 )
-rotation = 0.785398
-
-[node name="GRect" type="Node" parent="Battlefield/Middleground/Field2/Wall15" index="5"]
-script = ExtResource( 3 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 200
-height = 200
-
-[node name="Wall16" parent="Battlefield/Middleground/Field2" index="2" instance=ExtResource( 6 )]
-position = Vector2( -1950, 600 )
-rotation = 0.785398
-
-[node name="GRect" type="Node" parent="Battlefield/Middleground/Field2/Wall16" index="5"]
-script = ExtResource( 3 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 200
-height = 200
-
-[node name="Field3" type="Node2D" parent="Battlefield/Middleground" index="8"]
-position = Vector2( 9, -18 )
-rotation = -2.618
-scale = Vector2( 1, 1 )
-
-[node name="Wall15" parent="Battlefield/Middleground/Field3" index="0" instance=ExtResource( 6 )]
-position = Vector2( -1948.26, -592.48 )
-rotation = 0.785398
-
-[node name="GRect" type="Node" parent="Battlefield/Middleground/Field3/Wall15" index="5"]
-script = ExtResource( 3 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 200
-height = 200
-
-[node name="Wall16" parent="Battlefield/Middleground/Field3" index="1" instance=ExtResource( 6 )]
-position = Vector2( -1948.26, 607.52 )
-rotation = 0.785398
-
-[node name="GRect" type="Node" parent="Battlefield/Middleground/Field3/Wall16" index="5"]
-script = ExtResource( 3 )
-center_offset = Vector2( 0, 0 )
-jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
-width = 200
-height = 200
+[node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Wall2" index="8"]
+script = ExtResource( 17 )
+__meta__ = {
+"_editor_description_": ""
+}
+polygon = PoolVector2Array( 0, -550, -300, -400, -300, 400, 0, 550 )
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
-rotation = 2.35619
-type = 2
-impulse = 5.0
+unique_name_in_owner = true
+type = "soccer"
+
+[node name="CameraEye" parent="Battlefield/Foreground" index="1" instance=ExtResource( 11 )]
+position = Vector2( 0, 1150 )
+
+[node name="CameraEye2" parent="Battlefield/Foreground" index="2" instance=ExtResource( 11 )]
+position = Vector2( 0, -1150 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( -606.218, 350 )
-rotation = -0.523599
+position = Vector2( -1039.23, -600 )
+rotation = 0.523599
+controls = "joy1"
 species = ExtResource( 7 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( -3.10351e-05, -710 )
-rotation = 1.57079
-controls = "joy1"
+position = Vector2( -1200, 0 )
+rotation = 0.0
+controls = "joy2"
 species = ExtResource( 10 )
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 8 )]
-position = Vector2( 606.218, 350 )
-rotation = -2.61799
-controls = "joy2"
+position = Vector2( -1039.23, 600 )
+rotation = -0.523599
+controls = "joy3"
 species = ExtResource( 2 )
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera" parent="." index="7"]
+zoom = Vector2( 16000, 16000 )
 smoothing_speed = 0.3
+
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
-[editable path="CanvasLayer/Pause"]
+[editable path="Battlefield/Background/LeftZone"]
+[editable path="Battlefield/Background/RightZone"]
+[editable path="Battlefield/Middleground/LeftGoalPortalGate"]
+[editable path="Battlefield/Middleground/RightGoalPortalGate"]

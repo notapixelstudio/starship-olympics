@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
+[ext_resource path="res://map/draft/cards/SlamAGon.tres" type="Resource" id=2]
+[ext_resource path="res://map/draft/cards/Ponganoid.tres" type="Resource" id=3]
+[ext_resource path="res://map/draft/cards/GoalPortal.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+id = "sports"
+name = "Sports"
+cards = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
+nexts = [  ]
+shuffle_before_dealing = true

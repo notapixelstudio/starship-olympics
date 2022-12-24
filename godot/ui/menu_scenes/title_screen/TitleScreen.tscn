@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/menu_scenes/title_screen/TitleScreen.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://logo.png" type="Texture" id=4]
 [ext_resource path="res://ui/option_scenes/OptionScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/lock_generic.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -32,7 +34,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.6, 1 ),
 "transitions": PoolRealArray( 1, 0.615572, 1 ),
 "update": 0,
-"values": [ Vector2( 640, 295 ), Vector2( 640, 295 ), Vector2( 640, 210 ) ]
+"values": [ Vector2( 640, 295 ), Vector2( 640, 295 ), Vector2( 640, 206 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -51,15 +53,15 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 3 )
+
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 options_scene = ExtResource( 5 )
 local_multi_scene = ExtResource( 6 )
 
@@ -70,6 +72,7 @@ anims/fade_out = SubResource( 2 )
 anims/option_selected = SubResource( 3 )
 
 [node name="logo_ssf_olympic" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 640, 295 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -79,30 +82,74 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -145.0
-margin_top = 34.0
-margin_right = 145.0
-margin_bottom = 326.0
+margin_left = -150.0
+margin_top = -10.0
+margin_right = 150.0
+margin_bottom = 355.0
 alignment = 1
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
-[node name="Fight" type="Button" parent="Buttons"]
-margin_top = 37.0
-margin_right = 290.0
-margin_bottom = 107.0
-rect_min_size = Vector2( 210, 70 )
+[node name="Continue" type="Button" parent="Buttons"]
+unique_name_in_owner = true
+margin_top = 66.0
+margin_right = 300.0
+margin_bottom = 121.0
+rect_min_size = Vector2( 210, 55 )
+disabled = true
 action_mode = 0
-text = "FIGHT"
+text = "CONTINUE"
 flat = true
 
+[node name="Fight" type="Button" parent="Buttons"]
+margin_top = 125.0
+margin_right = 300.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 210, 55 )
+action_mode = 0
+text = "NEW GAME"
+flat = true
+
+[node name="TeamVersus" type="Button" parent="Buttons"]
+visible = false
+margin_top = 125.0
+margin_right = 1280.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 210, 55 )
+disabled = true
+action_mode = 0
+text = "TEAM FIGHT"
+flat = true
+
+[node name="Lock" type="Sprite" parent="Buttons/TeamVersus"]
+visible = false
+position = Vector2( 290, 40 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 7 )
+
+[node name="Campaign" type="Button" parent="Buttons"]
+visible = false
+margin_top = 155.0
+margin_right = 1280.0
+margin_bottom = 210.0
+rect_min_size = Vector2( 210, 55 )
+disabled = true
+action_mode = 0
+text = "CAMPAIGN"
+flat = true
+
+[node name="Lock" type="Sprite" parent="Buttons/Campaign"]
+visible = false
+position = Vector2( 290, 40 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 7 )
+
 [node name="Options" type="Button" parent="Buttons"]
-margin_top = 111.0
-margin_right = 290.0
-margin_bottom = 181.0
-rect_min_size = Vector2( 210, 70 )
+margin_top = 184.0
+margin_right = 300.0
+margin_bottom = 239.0
+rect_min_size = Vector2( 210, 55 )
 action_mode = 0
 text = "OPTIONS"
 flat = true
@@ -112,32 +159,155 @@ visible = false
 margin_top = 148.0
 margin_right = 290.0
 margin_bottom = 218.0
-rect_min_size = Vector2( 210, 70 )
+rect_min_size = Vector2( 210, 55 )
 disabled = true
 action_mode = 0
-text = "Help"
+text = "HELP"
 flat = true
 
 [node name="Credits" type="Button" parent="Buttons"]
 visible = false
 margin_top = 148.0
 margin_right = 290.0
-margin_bottom = 218.0
-rect_min_size = Vector2( 0, 70 )
+margin_bottom = 198.0
+rect_min_size = Vector2( 0, 55 )
 disabled = true
 action_mode = 0
-text = "Credits"
+text = "CREDITS"
 flat = true
 
 [node name="QuitButton" type="Button" parent="Buttons"]
-margin_top = 185.0
-margin_right = 290.0
-margin_bottom = 255.0
-rect_min_size = Vector2( 0, 70 )
+margin_top = 243.0
+margin_right = 300.0
+margin_bottom = 298.0
+rect_min_size = Vector2( 0, 55 )
 action_mode = 0
 text = "QUIT"
 flat = true
 
+[node name="Tooltips" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 181.0
+margin_top = -10.0
+margin_right = 631.0
+margin_bottom = 340.0
+rect_min_size = Vector2( 450, 0 )
+alignment = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Continue" type="RichTextLabel" parent="Tooltips"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 59.0
+margin_right = 450.0
+margin_bottom = 114.0
+rect_min_size = Vector2( 450, 55 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+bbcode_text = "2 TO 4 PLAYERS FREE FOR ALL"
+text = "2 TO 4 PLAYERS FREE FOR ALL"
+scroll_active = false
+
+[node name="Fight" type="RichTextLabel" parent="Tooltips"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 118.0
+margin_right = 450.0
+margin_bottom = 173.0
+rect_min_size = Vector2( 450, 55 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+bbcode_text = "2 TO 4 PLAYERS FREE FOR ALL"
+text = "2 TO 4 PLAYERS FREE FOR ALL"
+scroll_active = false
+
+[node name="TeamVersus" type="RichTextLabel" parent="Tooltips"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 149.0
+margin_right = 450.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 450, 55 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+bbcode_text = "TEAM VS TEAM
+[color=#ffde5f][wave]CURRENTLY UNDER DEVELOPMENT![/wave][/color]"
+text = "TEAM VS TEAM
+CURRENTLY UNDER DEVELOPMENT!"
+scroll_active = false
+
+[node name="Campaign" type="RichTextLabel" parent="Tooltips"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 179.0
+margin_right = 450.0
+margin_bottom = 234.0
+rect_min_size = Vector2( 450, 55 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+bbcode_text = "1 TO 4 PLAYERS SINGLE/COOPERATIVE
+[color=#ffde5f][wave]CURRENTLY UNDER DEVELOPMENT![/wave][/color]"
+text = "1 TO 4 PLAYERS SINGLE/COOPERATIVE
+CURRENTLY UNDER DEVELOPMENT!"
+scroll_active = false
+
+[node name="Options" type="RichTextLabel" parent="Tooltips"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 177.0
+margin_right = 450.0
+margin_bottom = 232.0
+rect_min_size = Vector2( 450, 55 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+scroll_active = false
+
+[node name="Help" type="RichTextLabel" parent="Tooltips"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 148.0
+margin_right = 450.0
+margin_bottom = 208.0
+rect_min_size = Vector2( 450, 55 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+scroll_active = false
+
+[node name="Credits" type="RichTextLabel" parent="Tooltips"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 222.0
+margin_right = 450.0
+margin_bottom = 282.0
+rect_min_size = Vector2( 450, 55 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+scroll_active = false
+
+[node name="QuitButton" type="RichTextLabel" parent="Tooltips"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 236.0
+margin_right = 450.0
+margin_bottom = 291.0
+rect_min_size = Vector2( 450, 55 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+scroll_active = false
+
+[connection signal="pressed" from="Buttons/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="Buttons/Fight" to="." method="_on_Fight_pressed"]
+[connection signal="pressed" from="Buttons/TeamVersus" to="." method="_on_Fight_pressed"]
+[connection signal="pressed" from="Buttons/Campaign" to="." method="_on_Fight_pressed"]
 [connection signal="pressed" from="Buttons/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]

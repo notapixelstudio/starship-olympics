@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://actors/environments/PentaGoal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/environments/RainbowPentagoal.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/signs/dragonball.png" type="Texture" id=3]
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14, 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14, 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 0 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+scale = 6.0
+
+[sub_resource type="Animation" id=4]
+resource_name = "Idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.454902, 0.992157, 1, 1 ), Color( 0.87451, 0.705882, 1, 1 ), Color( 1, 0.870588, 0.596078, 1 ), Color( 0.603922, 1, 0.576471, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.454902, 0.992157, 1, 1 ) ]
+}
+
+[node name="RainbowPentagoal" instance=ExtResource( 1 )]
+modulate = Color( 0.454902, 0.992157, 1, 1 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="Field/Area2D" index="2"]
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D" parent="Field/CrownCollider" index="0"]
+shape = SubResource( 7 )
+
+[node name="Particles2D" parent="Field" index="5"]
+process_material = SubResource( 3 )
+
+[node name="Label" parent="LabelWrapper" index="0"]
+self_modulate = Color( 1, 1, 1, 0.196078 )
+text = "
+"
+
+[node name="Star" type="Sprite" parent="LabelWrapper" index="1"]
+unique_name_in_owner = true
+self_modulate = Color( 1, 1, 1, 0.392157 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="8"]
+autoplay = "Idle"
+anims/Idle = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[connection signal="goal_done" from="." to="." method="_on_goal_done"]
+
+[editable path="Field"]

@@ -7,8 +7,9 @@
 [node name="Homeworld" groups=["homeworld", "in_camera"] instance=ExtResource( 2 )]
 script = ExtResource( 3 )
 
-[node name="Ground" parent="." index="1"]
+[node name="Sprite" parent="." index="3"]
 modulate = Color( 0.92549, 0.458824, 0.0196078, 1 )
 
-[node name="Alien" type="Sprite" parent="." index="3"]
+[node name="Alien" type="Sprite" parent="." index="4"]
+scale = Vector2( 1.4, 1.4 )
 texture = ExtResource( 1 )

@@ -13,8 +13,6 @@
 [ext_resource path="res://interface/themes/ui_elements/grey_arrowDownWhite.png" type="Texture" id=11]
 [ext_resource path="res://assets/animations/wiggle_updown.tres" type="Animation" id=12]
 
-
-
 [sub_resource type="Animation" id=3]
 length = 4.0
 loop = true
@@ -137,7 +135,7 @@ margin_bottom = 627.0
 
 [node name="Label" type="Label" parent="SpeciesName"]
 margin_right = 170.0
-margin_bottom = 23.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "pentagonions"
 align = 1
@@ -145,15 +143,15 @@ valign = 1
 uppercase = true
 
 [node name="ColorRect" type="ColorRect" parent="SpeciesName"]
-margin_top = 27.0
+margin_top = 26.0
 margin_right = 170.0
-margin_bottom = 29.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 0, 2 )
 
 [node name="Tagline1" type="Label" parent="SpeciesName"]
-margin_top = 33.0
+margin_top = 32.0
 margin_right = 170.0
-margin_bottom = 46.0
+margin_bottom = 43.0
 custom_fonts/font = SubResource( 4 )
 text = "tagline"
 align = 1
@@ -161,9 +159,9 @@ valign = 1
 uppercase = true
 
 [node name="Tagline2" type="Label" parent="SpeciesName"]
-margin_top = 50.0
+margin_top = 47.0
 margin_right = 170.0
-margin_bottom = 63.0
+margin_bottom = 58.0
 custom_fonts/font = SubResource( 4 )
 text = "tagline"
 align = 1
@@ -213,8 +211,8 @@ margin_bottom = 231.0
 anchor_right = 1.0
 margin_top = -28.0
 margin_bottom = 37.0
-custom_fonts/font = SubResource( 6 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 6 )
 text = "TEAM
 TRIXENS"
 align = 1

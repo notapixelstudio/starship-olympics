@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://map_with_sets/ModeMini.gd" type="Script" id=1]
+[ext_resource path="res://combat/modes/DiamondMinefield.tres" type="Resource" id=2]
+[ext_resource path="res://assets/modes/deathmatch.png" type="Texture" id=3]
+[ext_resource path="res://map_with_sets/MapPlanetFont.tres" type="DynamicFont" id=4]
+
+[node name="Mode" type="HBoxContainer"]
+margin_top = 35.0
+margin_right = 319.0
+margin_bottom = 66.0
+script = ExtResource( 1 )
+mode = ExtResource( 2 )
+
+[node name="Icon" type="TextureRect" parent="."]
+margin_right = 30.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 30, 0 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="."]
+margin_left = 34.0
+margin_right = 202.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 4 )
+text = "Deathmatch"
+

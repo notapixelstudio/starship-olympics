@@ -1,8 +1,8 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=56 format=2]
 
-[ext_resource path="res://actors/battlers/PlayerShip.gd" type="Script" id=1]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
-[ext_resource path="res://actors/battlers/Graphics.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/battlers/Ship.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/atom.png" type="Texture" id=2]
+[ext_resource path="res://assets/animations/Invincible.tres" type="Animation" id=3]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=4]
 [ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=5]
 [ext_resource path="res://addons/ECM/icons/Entity2D.png" type="Texture" id=6]
@@ -32,16 +32,100 @@
 [ext_resource path="res://actors/weapons/shields/Shields.tscn" type="PackedScene" id=30]
 [ext_resource path="res://actors/weapons/Drill.tscn" type="PackedScene" id=31]
 [ext_resource path="res://utils/WeaponSlot.tscn" type="PackedScene" id=32]
-[ext_resource path="res://actors/weapons/arsenal/WaveGun.tscn" type="PackedScene" id=33]
-[ext_resource path="res://actors/weapons/arsenal/RocketGun.tscn" type="PackedScene" id=34]
-[ext_resource path="res://actors/weapons/arsenal/NoWeapon.tscn" type="PackedScene" id=35]
+[ext_resource path="res://actors/weapons/Pew.tscn" type="PackedScene" id=33]
+[ext_resource path="res://assets/sprites/interface/arrow_tip.png" type="Texture" id=34]
+[ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=36]
+[ext_resource path="res://actors/battlers/Ammo.tscn" type="PackedScene" id=37]
+[ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=38]
+[ext_resource path="res://assets/animations/Appearing.tres" type="Animation" id=39]
+[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=40]
+[ext_resource path="res://assets/sprites/species/trixens/ship2.png" type="Texture" id=41]
+[ext_resource path="res://interface/ShootingLine.tscn" type="PackedScene" id=42]
+[ext_resource path="res://assets/shaders/trail.png" type="Texture" id=43]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 bounce = 0.5
 
 [sub_resource type="CircleShape2D" id=2]
+resource_local_to_scene = true
 radius = 48.0
+
+[sub_resource type="GDScript" id=11]
+script/source = "extends Position2D
+tool
+
+export var ship_texture : Texture setget change_texture
+const TWEEN_DURATION = 0.3
+
+var position_start = Vector2()
+
+signal stop_invincible
+signal completed
+
+onready var tween = $Tween
+onready var anim = $AnimationPlayer
+
+func change_texture(new_value):
+	ship_texture = new_value
+	if not is_inside_tree():
+		yield(self, \"ready\")
+	$Sprite.texture = ship_texture
+		
+func play_disappear():
+	anim.play(\"disappear\")
+	yield(anim, \"animation_finished\")
+
+func play_idle():
+	anim.play(\"idle\")
+	yield(anim, \"animation_finished\")
+
+func invincible(offset = 0):
+	anim.play(\"invincible\")
+	anim.seek(offset)
+	yield(anim, \"animation_finished\")
+	emit_signal(\"stop_invincible\")
+"
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Color( 3, 3, 3, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="ShaderMaterial" id=10]
+resource_local_to_scene = true
+shader = ExtResource( 38 )
+shader_param/color = Color( 1, 1, 1, 0 )
+shader_param/width = 12.0
+shader_param/pattern = 1
+shader_param/inside = false
+shader_param/add_margins = true
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 48.0
@@ -76,7 +160,8 @@ damping_random = 1.0
 scale_random = 0.25
 color_ramp = SubResource( 8 )
 
-[node name="Ship" type="RigidBody2D" groups=["Foreground", "in_camera", "player_ship", "players", "replayable"]]
+[node name="Ship" type="RigidBody2D" groups=["Foreground", "Ship", "in_camera", "player_ship", "players"]]
+collision_layer = 4194305
 collision_mask = 1169
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
@@ -84,8 +169,8 @@ contacts_reported = 10
 contact_monitor = true
 angular_damp = 80.0
 script = ExtResource( 1 )
-debug_enabled = true
-species = ExtResource( 2 )
+forward_bullet_scene = ExtResource( 33 )
+atom_texture = ExtResource( 2 )
 
 [node name="Intro" parent="." instance=ExtResource( 22 )]
 order = 1
@@ -94,15 +179,26 @@ order = 1
 
 [node name="Collector" parent="." instance=ExtResource( 24 )]
 
+[node name="Tracked" parent="." instance=ExtResource( 36 )]
+
+[node name="Ammo" parent="." instance=ExtResource( 37 )]
+unique_name_in_owner = true
+
+[node name="IceAutoTrail" parent="." instance=ExtResource( 29 )]
+z_index = -16
+z_as_relative = false
+starting_color = Color( 0, 0.835294, 1, 0.392157 )
+ending_color = Color( 0, 0.811765, 1, 0.156863 )
+length = 120
+width = 10
+persistence = 2
+auto_create_on_enter = false
+disappear_speed = 1.0
+
 [node name="Cargo" parent="." instance=ExtResource( 28 )]
 
 [node name="WeaponSlot" parent="." instance=ExtResource( 32 )]
 visible = false
-arsenal = {
-"none": ExtResource( 35 ),
-"rocket_gun": ExtResource( 34 ),
-"wave_gun": ExtResource( 33 )
-}
 
 [node name="Magnet" parent="." instance=ExtResource( 27 )]
 
@@ -125,8 +221,92 @@ shape = SubResource( 2 )
 
 [node name="PlayerInfo" parent="." instance=ExtResource( 16 )]
 
-[node name="Graphics" parent="." instance=ExtResource( 3 )]
+[node name="Graphics" type="Position2D" parent="."]
 scale = Vector2( 1.25, 1.25 )
+script = SubResource( 11 )
+ship_texture = ExtResource( 41 )
+
+[node name="ChargeBar" type="Node2D" parent="Graphics"]
+position = Vector2( -92, 0 )
+scale = Vector2( 2, 2 )
+z_index = 100
+z_as_relative = false
+
+[node name="Crosshair" type="Line2D" parent="Graphics/ChargeBar"]
+position = Vector2( -68, 0 )
+points = PoolVector2Array( 0, 0, -32, 0 )
+width = 4.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="ChargeBackground" type="Line2D" parent="Graphics/ChargeBar"]
+position = Vector2( -22, 0 )
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 20.0
+default_color = Color( 0, 0, 0, 1 )
+texture_mode = 221806672
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="ChargeAxis" type="Line2D" parent="Graphics/ChargeBar"]
+visible = false
+position = Vector2( -22, 0 )
+points = PoolVector2Array( 0, 0, -78.4, 0 )
+width = 2.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 221806672
+
+[node name="Charge" type="Line2D" parent="Graphics/ChargeBar"]
+visible = false
+self_modulate = Color( 1, 1, 0, 1 )
+position = Vector2( -22, 0 )
+points = PoolVector2Array( 0, 0, 0, 0 )
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 221806672
+
+[node name="ArrowTip" type="Sprite" parent="Graphics/ChargeBar/Charge"]
+unique_name_in_owner = true
+self_modulate = Color( 1, 1, 0, 1 )
+show_behind_parent = true
+position = Vector2( 22, 0 )
+rotation = -1.5708
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 34 )
+offset = Vector2( 0, -64 )
+
+[node name="BombPreview" type="Node2D" parent="Graphics/ChargeBar"]
+unique_name_in_owner = true
+
+[node name="BombType" type="Sprite" parent="Graphics/ChargeBar/BombPreview"]
+self_modulate = Color( 1, 1, 1, 0.501961 )
+scale = Vector2( 0.7, 0.7 )
+
+[node name="Symbol" type="Sprite" parent="Graphics/ChargeBar/BombPreview"]
+self_modulate = Color( 1, 1, 1, 0.843137 )
+scale = Vector2( 0.35, 0.35 )
+
+[node name="ShootingLine" parent="Graphics/ChargeBar/BombPreview" instance=ExtResource( 42 )]
+unique_name_in_owner = true
+visible = false
+modulate = Color( 1, 0.494118, 0, 1 )
+position = Vector2( -130.4, 0 )
+enabled = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
+unique_name_in_owner = true
+anims/RESET = SubResource( 12 )
+anims/appearing = ExtResource( 39 )
+anims/hit = SubResource( 13 )
+anims/invincible = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="Graphics"]
+
+[node name="Sprite" type="Sprite" parent="Graphics"]
+material = SubResource( 10 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 41 )
+
+[node name="Shadow" parent="Graphics" instance=ExtResource( 40 )]
+sprite = NodePath("../Sprite")
 
 [node name="NearArea" type="Area2D" parent="."]
 collision_layer = 2
@@ -272,6 +452,22 @@ texture = ExtResource( 19 )
 
 [node name="AutoTrail" parent="." instance=ExtResource( 29 )]
 width = 140
+
+[node name="FlameAutoTrail" parent="." instance=ExtResource( 29 )]
+position = Vector2( -54, 0 )
+starting_color = Color( 1, 1, 1, 1 )
+length = 10
+width = 140
+texture = ExtResource( 43 )
+texture_mode = 2
+
+[node name="InnerFlameAutoTrail" parent="." instance=ExtResource( 29 )]
+position = Vector2( -66, 0 )
+starting_color = Color( 1, 1, 1, 0.588235 )
+length = 10
+width = 40
+texture = ExtResource( 43 )
+texture_mode = 2
 
 [connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
 [connection signal="near_area_entered" from="." to="." method="_on_Ship_near_area_entered"]

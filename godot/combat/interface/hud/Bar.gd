@@ -2,12 +2,14 @@ extends Node2D
 
 class_name Bar
 
-const max_bar_width = 910
+const max_bar_width = 950
 const bar_height = 20
 const ministar_width = 20
 const margin_left = 50
 const margin_top = 10
 const streak_arrow_width = 8
+const black_border = 1
+const fake_3d = 3
 var max_score
 
 const Star = preload('res://special_scenes/combat_UI/session_points/Star.tscn')
@@ -38,6 +40,12 @@ func post_ready(p: InfoPlayer):
 	$Background.rect_size = Vector2(max_bar_width - ministar_margin, bar_height)
 	$Background.color = species.color
 	
+	$BlackBackground.rect_position = Vector2(margin_left-black_border, margin_top-black_border)
+	$BlackBackground.rect_size = Vector2(max_bar_width - ministar_margin + 2*black_border, bar_height + 2*black_border)
+	
+	$Background25D.rect_position = Vector2(margin_left-black_border, margin_top+bar_height-fake_3d)
+	$Background25D.rect_size = Vector2(max_bar_width - ministar_margin + 2*black_border, fake_3d)
+	
 	# megabar
 	$MegaBar.color = species.color
 	
@@ -45,10 +53,25 @@ func post_ready(p: InfoPlayer):
 	$Ship.position.x = margin_left
 	$Ship/ScoreLabel.modulate = species.color
 	
+	# max score
+	$MaxScoreLabel.text = str(max_score)
+	$MaxScoreLabel.modulate = species.color
+	$MaxScoreLabel.rect_position = Vector2(margin_left + max_bar_width - ministar_margin + black_border - 48, margin_top-black_border+2)
+	
+	# magenta max score if perfectionist mode enabled
+	var current_draft_card := global.the_match.get_draft_card()
+	if current_draft_card != null and current_draft_card.is_perfectionist():
+		$MaxScoreLabel.modulate = Color('#ff40d4')
+		$MaxScoreLabel.self_modulate = Color(1,1,1,1)
+	
 	# ticks
 	for i in range(1, int(max_score)):
+		# skip some ticks according to max score's order of magnitude
+		if max_score > 100 and i%10 != 0:
+			continue
+		
 		var tick = Line2D.new()
-		var opacity = 0.8 if max_score <= 10 or i%10 == 0 else (0.2 if max_score < 100 else 0)
+		var opacity = 0.8 if max_score <= 10 or (i%10 == 0 and max_score < 100) or i%100 == 0 else 0.2
 		tick.default_color = Color(0,0,0,opacity)
 		tick.width = 3
 		var x = round((max_bar_width - ministar_margin) / max_score * i)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://actors/environments/Rock.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -40,6 +40,7 @@
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=38]
 [ext_resource path="res://combat/traits/Conquerable.tscn" type="PackedScene" id=39]
 [ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=40]
+[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=41]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 60.0
@@ -51,6 +52,11 @@ animations = [ {
 "name": "empty",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 31 ) ],
+"loop": true,
+"name": "full",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 7 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
 "loop": false,
 "name": "outline",
@@ -60,11 +66,6 @@ animations = [ {
 "loop": true,
 "name": "shine",
 "speed": 60.0
-}, {
-"frames": [ ExtResource( 31 ) ],
-"loop": true,
-"name": "full",
-"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=3]
@@ -156,7 +157,7 @@ font_data = ExtResource( 34 )
 
 [sub_resource type="DynamicFont" id=9]
 size = 52
-font_data = ExtResource( 34 )
+font_data = ExtResource( 41 )
 
 [node name="Rock" type="RigidBody2D" groups=["rock"]]
 collision_layer = 1024
@@ -188,21 +189,16 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="Deadly" type="Node" parent="Entity"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-
 [node name="Star" type="AnimatedSprite" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
 animation = "shine"
-frame = 54
+frame = 76
 playing = true
 
 [node name="Diamond" type="Sprite" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.454902 )
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 33 )
@@ -311,9 +307,6 @@ margin_bottom = 100.0
 custom_fonts/font = SubResource( 9 )
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 bus = "SFX"
@@ -323,6 +316,8 @@ bus = "SFX"
 script = ExtResource( 36 )
 streams = [ ExtResource( 37 ) ]
 random_strategy = 2
+volume_min = 0
+volume_max = 0
 randomize_pitch = true
 pitch_min = 0.5
 pitch_max = 2.0

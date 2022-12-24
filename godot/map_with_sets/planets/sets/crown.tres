@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://combat/minigames/QueenOfTheHive.tres" type="Resource" id=1]
+[ext_resource path="res://combat/minigames/RocketTakeTheCrown.tres" type="Resource" id=2]
+[ext_resource path="res://combat/minigames/Negacrown.tres" type="Resource" id=3]
+[ext_resource path="res://combat/minigames/AtomicMarbles.tres" type="Resource" id=4]
+[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=5]
+[ext_resource path="res://assets/map/cards/crown.png" type="Texture" id=6]
+
+
+[resource]
+script = ExtResource( 5 )
+id = "crown"
+name = "Queen Motherboard"
+tagline1 = "his planetary circuitry"
+tagline2 = ""
+description = ""
+minigames = [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 3 ) ]
+planet_sprite = ExtResource( 6 )
+mutators = [  ]

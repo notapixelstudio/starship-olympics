@@ -7,9 +7,6 @@ margin_right = 247.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 0, 50 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ElementCheckbox" type="CheckBox" parent="."]
 margin_right = 247.0
@@ -20,4 +17,6 @@ rect_min_size = Vector2( 0, 31 )
 
 [connection signal="focus_entered" from="." to="." method="_on_MarginContainer_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_MarginContainer_focus_exited"]
+[connection signal="focus_entered" from="ElementCheckbox" to="." method="_on_ElementCheckbox_focus_entered"]
+[connection signal="focus_exited" from="ElementCheckbox" to="." method="_on_ElementCheckbox_focus_exited"]
 [connection signal="toggled" from="ElementCheckbox" to="." method="_on_ElementCheckbox_toggled"]

@@ -12,7 +12,7 @@
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 100.0
+radius = 90.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "Blink"
@@ -43,7 +43,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 0.956863, 0.305882, 0 ), Color( 1, 0.956863, 0.305882, 0 ), Color( 1, 0.92549, 0.305882, 0.388235 ), Color( 1, 0.956863, 0.305882, 0 ) ]
 }
 
-[node name="BigDiamond" type="RigidBody2D" groups=["Foreground", "coin", "in_camera"]]
+[node name="BigDiamond" type="RigidBody2D" groups=["Diamond", "Foreground", "in_camera"]]
 collision_layer = 2048
 collision_mask = 3090
 linear_damp = 1.0
@@ -67,11 +67,11 @@ __meta__ = {
 sprite = NodePath("../Sprite")
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
 position = Vector2( 0, 7 )
 texture = ExtResource( 7 )
 
 [node name="SpriteEffect" type="Sprite" parent="."]
+visible = false
 self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 0, 7 )
 scale = Vector2( 5, 5 )

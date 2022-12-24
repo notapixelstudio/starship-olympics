@@ -3,9 +3,10 @@ extends RigidBody2D
 
 class_name Bomb
 
-var Explosion = load('res://actors/weapons/Explosion.tscn')
-var Ripple = load('res://actors/weapons/Ripple.tscn')
-var BubbleScene = load('res://actors/environments/Bubble.tscn')
+export var Explosion : PackedScene
+export var Ripple : PackedScene
+export var BubbleScene : PackedScene
+export var PfftScene : PackedScene
 
 var ball_texture = preload('res://assets/sprites/weapons/ball_bomb.png')
 var bullet_texture = preload('res://assets/sprites/weapons/bullet.png')
@@ -15,9 +16,9 @@ var type
 var symbol = null
 
 var entity : Entity
-onready var life_time = $LifeTime
-onready var trail = $Trail2D
 onready var explosion = Explosion.instance()
+
+var species : Species
 
 func _ready():
 	if type == GameMode.BOMB_TYPE.classic:
@@ -40,6 +41,8 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	if impulse:
 		apply_impulse(Vector2(0,0), impulse)
 	if ship:
+		species = ship.species
+		
 		entity.get('Owned').set_owned_by(ship)
 		ECM.E($Core).get('Owned').set_owned_by(ship)
 		if type == GameMode.BOMB_TYPE.ice:
@@ -95,6 +98,10 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		$NearArea/CollisionShape2D.shape.radius = size*22
 		$Sprite.scale = Vector2(size*0.6, size*0.6)
 		
+		# rockets need to be charged at least a little to pursue
+		if impulse and impulse.length() < 2500:
+			entity.get('Pursuer').disable()
+		
 	$Core/CollisionShape2D.shape.radius = size*8
 	
 func _process(delta):
@@ -115,7 +122,6 @@ func _integrate_forces(state):
 	
 	# teleport
 	if entity.could_have('Teleportable') and entity.get('Teleportable').is_teleporting():
-		trail.erase_trail()
 		xform.origin = entity.get('Teleportable').get_destination()
 		entity.get('Teleportable').teleport_done()
 		
@@ -150,26 +156,23 @@ signal near_area_exited
 func _on_NearArea_area_exited(area):
 	emit_signal("near_area_exited", area, self)
 	
-signal expired
 func _on_LifeTime_timeout():
 	if not entity.has('StandAlone') and type != GameMode.BOMB_TYPE.bubble:
-		get_parent().call_deferred("remove_child", self)
-		emit_signal('expired', self.position)
-		if entity.has('Owned'):
-			var owner = entity.get('Owned').get_owned_by()
-			if is_instance_valid(owner):
-				owner._on_bomb_freed()
-		yield(get_tree().create_timer(1), "timeout")
-		call_deferred("queue_free")
+		destroy()
 
+func dissolve() -> void:
+	var pfft = PfftScene.instance()
+	pfft.set_color(species.get_color())
+	get_parent().add_child(pfft)
+	pfft.global_position = global_position
 
 func process_life_time():
 	# pause lifetime if we are pursuing a target
 	if entity.has('Pursuer') and entity.get('Pursuer').get_target() != null:
-		life_time.paused = true
+		$LifeTime.paused = true
 		return
 	
-	life_time.paused = false
+	$LifeTime.paused = false
 	
 var hit_count = 0
 # FIXME ? is this heavy? each bomb needs contact monitoring
@@ -181,7 +184,7 @@ func _on_Bomb_body_entered(body):
 		$RicochetAudio.pitch_scale = 0.5 + hit_count*0.1
 		hit_count = min(hit_count+1, 1000)
 		$RicochetAudio.play()
-		life_time.start() # enable ricochet combos
+		$LifeTime.start() # enable ricochet combos
 		apply_central_impulse(linear_velocity.normalized()*800)
 		
 		# ripple effect
@@ -229,3 +232,8 @@ func get_owner_ship():
 #signal frozen
 #func freeze():
 #	emit_signal("frozen", self)
+
+func destroy():
+	dissolve()
+	queue_free()
+	

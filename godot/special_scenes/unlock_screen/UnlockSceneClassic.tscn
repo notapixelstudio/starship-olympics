@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://special_scenes/unlock_screen/UnlockSceneClassic.gd" type="Script" id=1]
+[ext_resource path="res://special_scenes/unlock_screen/NewDraft.tscn" type="PackedScene" id=2]
+
+[node name="UnlockSceneClassic" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.439216 )
+
+[node name="Sprite" parent="." instance=ExtResource( 2 )]
+visible = false
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 1169.39, 92.369 )
+
+[node name="Content" type="Node" parent="."]
+unique_name_in_owner = true

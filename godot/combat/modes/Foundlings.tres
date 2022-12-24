@@ -3,11 +3,11 @@
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
 [ext_resource path="res://assets/icon/hive_logo.png" type="Texture" id=2]
 [ext_resource path="res://assets/icon/minicards/sets/foundlings.png" type="Texture" id=3]
-[ext_resource path="res://combat/styles/love.tres" type="Resource" id=4]
+[ext_resource path="res://combat/styles/underspace.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 1 )
-id = "space_foundlings"
+id = "homesick_invaders"
 is_mutator = false
 name = "Homesick Invaders"
 icon = ExtResource( 3 )
@@ -22,8 +22,10 @@ starting_score = 0
 cumulative = false
 shared_targets = true
 starting_lives = -1
+starting_health = 1
 respawn_from_home = false
 end_on_perfect = true
+fill_starting_score = false
 death = false
 last_man = false
 crown = false
@@ -39,6 +41,8 @@ deadly_trails_duration = 2.0
 bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
+auto_thrust = false
+start_invincible = true
 floodable = false
 flood = false
 laserable = false

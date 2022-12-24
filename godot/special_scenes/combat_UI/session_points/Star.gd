@@ -17,7 +17,7 @@ func floating_star(wait_time):
 func score():
 	won_anim.play("won")
 	z_index = 100
-	label.text = 'PERFECT\nSCORE!' if perfect else 'BEST\nSCORE!'
+	label.text = 'PERFECT!' if perfect else ''
 
 func set_won(value):
 	won = value
@@ -30,6 +30,9 @@ func set_perfect(value):
 		sprite.modulate = Color(1.3,0,1.3,1)
 	else:
 		sprite.modulate = Color(1.1,1.1,1.1,1)
+		
+	$Wrapper/P.visible = perfect
+	
 	if is_inside_tree():
 		refresh()
 	
@@ -37,5 +40,5 @@ func _ready():
 	refresh()
 	
 func refresh():
-	sprite.play('full' if won else 'empty')
-	
+	$"%Sprite".play('full' if won else 'empty')
+	$"%Sprite".visible = won

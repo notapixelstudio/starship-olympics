@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://actors/environments/ShieldWall.tscn" type="PackedScene" id=1]
+
+[node name="B" type="Node2D"]
+
+[node name="ShieldWall" parent="." instance=ExtResource( 1 )]
+type = "skin"
+starting_health = 6
+respawn_time = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall"]
+polygon = PoolVector2Array( -500, 0, 0, -500, 500, 0, 0, 500 )

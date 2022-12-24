@@ -1,0 +1,95 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://actors/environments/ShieldWall.tscn" type="PackedScene" id=2]
+
+[node name="C" type="Node2D"]
+
+[node name="ShieldWall" parent="." instance=ExtResource( 2 )]
+position = Vector2( -1050, 0 )
+type = "skin"
+starting_health = 1
+symbol_scale = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall"]
+polygon = PoolVector2Array( 0, -150, 150, 0, 0, 150, -150, 0 )
+
+[node name="ShieldWall2" parent="." instance=ExtResource( 2 )]
+position = Vector2( -700, 350 )
+type = "skin"
+starting_health = 1
+symbol_scale = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall2"]
+polygon = PoolVector2Array( 0, -150, 150, 0, 0, 150, -150, 0 )
+
+[node name="ShieldWall3" parent="." instance=ExtResource( 2 )]
+position = Vector2( -700, -350 )
+type = "skin"
+starting_health = 1
+symbol_scale = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall3"]
+polygon = PoolVector2Array( 0, -150, 150, 0, 0, 150, -150, 0 )
+
+[node name="ShieldWall4" parent="." instance=ExtResource( 2 )]
+position = Vector2( -350, 0 )
+type = "skin"
+starting_health = 1
+symbol_scale = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall4"]
+polygon = PoolVector2Array( 0, -150, 150, 0, 0, 150, -150, 0 )
+
+[node name="ShieldWall5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -350 )
+type = "skin"
+starting_health = 1
+symbol_scale = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall5"]
+polygon = PoolVector2Array( 0, -150, 150, 0, 0, 150, -150, 0 )
+
+[node name="ShieldWall6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 350 )
+type = "skin"
+starting_health = 1
+symbol_scale = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall6"]
+polygon = PoolVector2Array( 0, -150, 150, 0, 0, 150, -150, 0 )
+
+[node name="ShieldWall7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 350, 0 )
+type = "skin"
+starting_health = 1
+symbol_scale = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall7"]
+polygon = PoolVector2Array( 0, -150, 150, 0, 0, 150, -150, 0 )
+
+[node name="ShieldWall8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1050, 0 )
+type = "skin"
+starting_health = 1
+symbol_scale = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall8"]
+polygon = PoolVector2Array( 0, -150, 150, 0, 0, 150, -150, 0 )
+
+[node name="ShieldWall9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 700, 350 )
+type = "skin"
+starting_health = 1
+symbol_scale = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall9"]
+polygon = PoolVector2Array( 0, -150, 150, 0, 0, 150, -150, 0 )
+
+[node name="ShieldWall10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 700, -350 )
+type = "skin"
+starting_health = 1
+symbol_scale = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall10"]
+polygon = PoolVector2Array( 0, -150, 150, 0, 0, 150, -150, 0 )

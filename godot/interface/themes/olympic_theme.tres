@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=40 format=2]
+[gd_resource type="Theme" load_steps=44 format=2]
 
 [ext_resource path="res://interface/themes/olympic/scroll.tres" type="StyleBox" id=1]
 [ext_resource path="res://interface/themes/olympic/panel.tres" type="StyleBox" id=2]
@@ -20,11 +20,13 @@
 [ext_resource path="res://interface/themes/olympic/tab_fg.tres" type="StyleBox" id=18]
 [ext_resource path="res://interface/themes/olympic/scroll_focus.tres" type="StyleBox" id=19]
 [ext_resource path="res://interface/themes/olympic/hover.tres" type="StyleBox" id=20]
-[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=21]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=21]
 [ext_resource path="res://interface/themes/olympic/hover_pressed.tres" type="StyleBox" id=22]
+[ext_resource path="res://interface/themes/olympic/focus_line_eidt.tres" type="StyleBox" id=23]
+[ext_resource path="res://interface/themes/olympic/normal_line_edit.tres" type="StyleBox" id=24]
 
 [sub_resource type="DynamicFont" id=17]
-size = 28
+size = 26
 use_mipmaps = true
 extra_spacing_top = 4
 extra_spacing_bottom = 4
@@ -66,11 +68,19 @@ corner_detail = 1
 
 [sub_resource type="StyleBoxEmpty" id=14]
 
+[sub_resource type="DynamicFont" id=19]
+size = 20
+font_data = ExtResource( 21 )
+
 [sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="DynamicFont" id=18]
+font_data = ExtResource( 21 )
 
 [resource]
 BoxContainer/constants/separation = 4
 Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+Button/colors/font_color_disabled = Color( 0.490196, 0.490196, 0.490196, 0.470588 )
 Button/colors/font_color_focus = Color( 0, 0, 0, 1 )
 Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
 Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
@@ -798,18 +808,20 @@ ItemList/styles/cursor_unfocused = null
 ItemList/styles/selected = null
 ItemList/styles/selected_focus = null
 Label/colors/font_color = Color( 1, 1, 1, 1 )
-Label/colors/font_color_shadow = Color( 0.710938, 0.710938, 0.710938, 1 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 0.470588 )
 Label/constants/line_spacing = 3
 Label/constants/shadow_as_outline = 0
-Label/constants/shadow_offset_x = 1
-Label/constants/shadow_offset_y = 1
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 2
+Label/fonts/font = SubResource( 19 )
 Label/styles/normal = SubResource( 15 )
 LineEdit/colors/cursor_color = Color( 1, 1, 1, 1 )
 LineEdit/colors/font_color = Color( 1, 1, 1, 1 )
 LineEdit/colors/read_only = Color( 1, 1, 1, 1 )
 LineEdit/colors/selection_color = Color( 1, 1, 1, 1 )
-LineEdit/styles/focus = ExtResource( 5 )
-LineEdit/styles/normal = ExtResource( 3 )
+LineEdit/fonts/font = SubResource( 18 )
+LineEdit/styles/focus = ExtResource( 23 )
+LineEdit/styles/normal = ExtResource( 24 )
 LineEdit/styles/read_only = null
 LinkButton/colors/font_color = Color( 1, 1, 1, 1 )
 LinkButton/styles/focus = ExtResource( 5 )

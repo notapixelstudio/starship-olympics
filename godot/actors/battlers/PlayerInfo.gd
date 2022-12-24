@@ -4,15 +4,36 @@ export var target_path: NodePath = @".."
 
 onready var target = get_node(target_path) as Node2D if has_node(target_path) else null
 onready var player_id = $Wrapper/Scaled/Colored/PlayerID
+onready var player_team_outline = $Wrapper/Scaled/PlayerIDTeamOutline
 onready var target_entity = ECM.E(target)
 onready var point_score = $Wrapper/Scaled/Colored/PointsScored
-onready var ammo = $Wrapper/Scaled/Colored/AmmoIndicator
+onready var minisun = $Wrapper/Scaled/Colored/Minisun
+onready var minimoon = $Wrapper/Scaled/Colored/Minimoon
+onready var minisun_outline = $Wrapper/Scaled/Minisun
+onready var minimoon_outline = $Wrapper/Scaled/Minimoon
+
+const SCALE_CORRECTION := 0.2
 
 func _ready():
 	if target.info_player:
-		player_id.text = tr(target.info_player.id)
+		player_id.text = tr(target.info_player.get_username())
 		if target.info_player.cpu:
 			player_id.text = tr("CPU")
+			
+		if target.info_player.has_proper_team():
+			player_team_outline.visible = true
+			player_team_outline.text = tr(target.info_player.id)
+			
+			minisun_outline.visible = target.info_player.team == 'A'
+			minimoon_outline.visible = target.info_player.team == 'B'
+			minisun.visible = target.info_player.team == 'A'
+			minimoon.visible = target.info_player.team == 'B'
+			
+			var team_color = target.info_player.get_team_color()
+			player_team_outline.modulate = team_color
+			minisun_outline.material.set_shader_param('color', team_color)
+			minimoon_outline.material.set_shader_param('color', team_color)
+			
 	$Wrapper/Scaled/Colored.modulate = target.species.color
 	
 	update_scale()
@@ -30,7 +51,8 @@ func _process(delta):
 	update_scale()
 	
 func update_scale():
-	$Wrapper/Scaled.scale = Vector2(5,5) if not target.camera or not target.camera.enabled else target.camera.zoom
+	var corrected_scale = Vector2(2.5,2.5) if not target.camera or not target.camera.enabled else target.camera.zoom
+	$Wrapper/Scaled.scale = Vector2(2.5,2.5)*(1-SCALE_CORRECTION) + corrected_scale*SCALE_CORRECTION
 	
 func update_rotation():
 	rotation = -target.rotation
@@ -80,3 +102,11 @@ func _on_Royal_disabled():
 	# point_score.hide()
 	return
 	
+func reset_health(amount):
+	$Wrapper/Scaled/Colored/HealthBar.set_total(amount)
+	
+	# do not show the health bar if the ship has just one hp
+	$Wrapper/Scaled/Colored/HealthBar.visible = amount > 1
+
+func update_health(amount):
+	$Wrapper/Scaled/Colored/HealthBar.set_amount(amount)

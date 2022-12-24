@@ -8,6 +8,6 @@ func _process(delta):
 			
 			if holdable != null and holdable is Ball:
 				if holdable.type == 'crown':
-					global.the_match.add_score(player.id, delta)
+					global.the_match.add_score_to_team(player.team, delta)
 				elif holdable.type == 'negacrown':
-					global.the_match.add_score(player.id, -delta)
+					global.the_match.add_score_to_team(player.team, -delta)
