@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=2]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=4]
 [ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=6]
 
 [node name="4A" type="Node2D"]
 
@@ -24,6 +25,9 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
+[node name="NavigationZone" parent="Wall12" instance=ExtResource( 6 )]
+offset_type = "outset"
+
 [node name="Wall14" parent="." instance=ExtResource( 3 )]
 position = Vector2( 200, 200 )
 rotation = -0.785398
@@ -39,6 +43,9 @@ bevel_nw = 50
 bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
+
+[node name="NavigationZone" parent="Wall14" instance=ExtResource( 6 )]
+offset_type = "outset"
 
 [node name="Wall15" parent="." instance=ExtResource( 3 )]
 position = Vector2( -200, -200 )
@@ -56,6 +63,9 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
+[node name="NavigationZone" parent="Wall15" instance=ExtResource( 6 )]
+offset_type = "outset"
+
 [node name="Wall16" parent="." instance=ExtResource( 3 )]
 position = Vector2( -600, -600 )
 rotation = -0.785398
@@ -71,6 +81,9 @@ bevel_nw = 50
 bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
+
+[node name="NavigationZone" parent="Wall16" instance=ExtResource( 6 )]
+offset_type = "outset"
 
 [node name="DramaticSpawner" parent="." instance=ExtResource( 5 )]
 match_progress_trigger = 0.25

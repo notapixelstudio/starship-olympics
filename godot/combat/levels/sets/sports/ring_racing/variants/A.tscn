@@ -1,0 +1,466 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://actors/environments/Gate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/environments/PortalGate.tscn" type="PackedScene" id=2]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=5]
+
+[sub_resource type="Animation" id=17]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 450, 0 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "Rotate"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 450.0, 1850.0 ]
+}
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 150, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Rotate"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 150.0, -150.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -450.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Rotate"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 150.0, -150.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -150, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Rotate"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ -150.0, 150.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 180.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Rotate"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 250.0, 110.0 ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 180.0 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "Rotate"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 250.0, 110.0 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 180.0 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Rotate"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 110.0, 250.0 ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 180.0 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "Rotate"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2, 6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 110.0, 250.0 ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 700.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 900, 900 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Rotate"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 700.0, 250.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 900.0, 1800.0 ]
+}
+
+[node name="A" type="Node2D"]
+
+[node name="PortalGate" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1950, 900 )
+rotation = 3.14159
+width = 700.0
+linked_to_path = NodePath("../PortalGate2")
+
+[node name="PortalGate2" parent="." instance=ExtResource( 2 )]
+position = Vector2( -1900, -900 )
+rotation = 3.14159
+width = 700.0
+tint = Color( 0, 0.368627, 1, 1 )
+inverted = true
+
+[node name="Gate11" parent="." instance=ExtResource( 1 )]
+position = Vector2( 300, -900 )
+rotation = 3.14159
+show_arrow = false
+
+[node name="Gate12" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1000, -900 )
+rotation = 3.14159
+width = 400.0
+show_arrow = false
+
+[node name="Gate16" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1700, -900 )
+rotation = 3.14159
+width = 250.0
+show_arrow = false
+
+[node name="Gate13" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2200, -450 )
+rotation = 4.71239
+width = 700.0
+show_arrow = false
+
+[node name="Gate17" parent="." instance=ExtResource( 1 )]
+position = Vector2( -2050, 150 )
+rotation = -0.785398
+width = 350.0
+show_arrow = false
+
+[node name="Gate15" parent="." instance=ExtResource( 1 )]
+position = Vector2( 450, 0 )
+width = 500.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate15" groups=["animation_in_battle"]]
+anims/RESET = SubResource( 17 )
+anims/Rotate = SubResource( 18 )
+
+[node name="Gate5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 150, 0 )
+width = 500.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate5" groups=["animation_in_battle"]]
+anims/RESET = SubResource( 1 )
+anims/Rotate = SubResource( 2 )
+
+[node name="Gate6" parent="." instance=ExtResource( 1 )]
+position = Vector2( -450, 0 )
+width = 500.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate6" groups=["animation_in_battle"]]
+anims/RESET = SubResource( 3 )
+anims/Rotate = SubResource( 4 )
+
+[node name="Gate7" parent="." instance=ExtResource( 1 )]
+position = Vector2( -150, 0 )
+width = 500.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate7" groups=["animation_in_battle"]]
+anims/RESET = SubResource( 5 )
+anims/Rotate = SubResource( 6 )
+
+[node name="Gate8" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1600, 900 )
+rotation = 3.14159
+width = 700.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate8" groups=["animation_in_battle"]]
+anims/RESET = SubResource( 7 )
+anims/Rotate = SubResource( 8 )
+
+[node name="Gate19" parent="." instance=ExtResource( 1 )]
+position = Vector2( -100, 900 )
+rotation = 3.14159
+width = 700.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate19" groups=["animation_in_battle"]]
+anims/RESET = SubResource( 11 )
+anims/Rotate = SubResource( 12 )
+
+[node name="Gate9" parent="." instance=ExtResource( 1 )]
+position = Vector2( -850, 900 )
+rotation = 3.14159
+width = 700.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate9" groups=["animation_in_battle"]]
+anims/RESET = SubResource( 9 )
+anims/Rotate = SubResource( 10 )
+
+[node name="Gate18" parent="." instance=ExtResource( 1 )]
+position = Vector2( -500, -900 )
+rotation = 3.14159
+width = 700.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate18" groups=["animation_in_battle"]]
+playback_speed = 0.15
+anims/RESET = SubResource( 15 )
+anims/Rotate = SubResource( 16 )
+
+[node name="Gate20" parent="." instance=ExtResource( 1 )]
+position = Vector2( 900, 900 )
+rotation = 3.14159
+width = 700.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate20" groups=["animation_in_battle"]]
+anims/RESET = SubResource( 13 )
+anims/Rotate = SubResource( 14 )
+
+[node name="Line2D2" type="Line2D" parent="."]
+points = PoolVector2Array( 1750, 900, -1900, 900, -2200, 600, -2200, 300, -1900, 0, 1900, 0, 2200, -300, 2200, -600, 1900, -900, -1600, -900 )
+width = 130.0
+default_color = Color( 0.133333, 0.666667, 1, 0.313726 )
+
+[node name="p1" parent="." instance=ExtResource( 3 )]
+position = Vector2( -2400, -1050 )
+rotation = 0.0
+species = ExtResource( 5 )
+
+[node name="p2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -2400, -750 )
+rotation = 0.0
+controls = "kb2"
+species = ExtResource( 4 )

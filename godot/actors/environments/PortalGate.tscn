@@ -1,18 +1,139 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://actors/environments/Gate.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/environments/PortalGate.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/circle.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/environments/portal_spike.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
 extents = Vector2( 250, 500 )
 
+[sub_resource type="Animation" id=12]
+resource_name = "Idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.392157 ), Color( 1, 1, 1, 0.627451 ), Color( 1, 1, 1, 0.392157 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.392157 ) ]
+}
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0, 0.338889, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 8 )
+
+[sub_resource type="Curve" id=9]
+max_value = 1.5
+_data = [ Vector2( 0, 0.703988 ), 0.0, -0.0509122, 0, 0, Vector2( 0.373239, 1.5 ), 0.0, 0.0, 0, 0, Vector2( 0.669014, 0.0322087 ), -7.66229, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+emission_shape = 2
+emission_box_extents = Vector3( 25, 250, 1 )
+flag_disable_z = true
+gravity = Vector3( 40, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 1.0
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+emission_shape = 2
+emission_box_extents = Vector3( 100, 250, 1 )
+flag_disable_z = true
+gravity = Vector3( 100, 0, 0 )
+angular_velocity = 100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 45.0
+angle_random = 1.0
+scale = 15.0
+scale_random = 1.0
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
+
 [node name="PortalGate" groups=["in_camera"] instance=ExtResource( 1 )]
 collision_mask = 8705
 script = ExtResource( 2 )
 linked_to_path = NodePath("")
+tint = Color( 1, 0.4, 0, 1 )
+inverted = false
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
+
+[node name="BottomRingPart" parent="." index="1"]
+unique_name_in_owner = true
+self_modulate = Color( 1, 0.4, 0, 1 )
+
+[node name="RingPart" parent="." index="3"]
+self_modulate = Color( 1, 0.58, 0.3, 1 )
+
+[node name="PortalEffect" type="Node2D" parent="." index="7"]
+rotation = 3.14159
+
+[node name="Inside" type="Sprite" parent="PortalEffect" index="0"]
+unique_name_in_owner = true
+modulate = Color( 1, 0.4, 0, 1 )
+self_modulate = Color( 1, 1, 1, 0.392157 )
+scale = Vector2( 1, 4.5 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PortalEffect/Inside" index="0"]
+autoplay = "Idle"
+anims/Idle = SubResource( 12 )
+anims/RESET = SubResource( 13 )
+
+[node name="SpikeParticles2D" type="Particles2D" parent="PortalEffect" index="1"]
+unique_name_in_owner = true
+modulate = Color( 1, 0.4, 0, 1 )
+self_modulate = Color( 1.5, 1.5, 1.5, 1 )
+position = Vector2( -50, 0 )
+process_material = SubResource( 10 )
+texture = ExtResource( 4 )
+
+[node name="ColoredParticles2D" type="Particles2D" parent="PortalEffect" index="2"]
+unique_name_in_owner = true
+modulate = Color( 1, 0.4, 0, 1 )
+self_modulate = Color( 2, 2, 2, 1 )
+position = Vector2( -102, -4.19629e-06 )
+lifetime = 2.0
+process_material = SubResource( 11 )
+
+[node name="Particles2D" type="Particles2D" parent="PortalEffect" index="3"]
+unique_name_in_owner = true
+self_modulate = Color( 1.5, 1.5, 1.5, 1 )
+position = Vector2( -102, -4.19629e-06 )
+lifetime = 2.0
+process_material = SubResource( 11 )
 
 [connection signal="crossed" from="." to="." method="_on_PortalGate_crossed"]

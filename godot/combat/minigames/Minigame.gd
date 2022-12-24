@@ -17,7 +17,7 @@ func get_id() -> String:
 	return str(get_rid().get_id())
 	
 func get_logo():
-	return game_mode.logo
+	return game_mode.get_icon()
 	
 func get_icon():
 	return game_mode.get_icon()

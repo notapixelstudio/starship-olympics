@@ -1,63 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/patterns/waves_duotone.png" type="Texture" id=1]
+[ext_resource path="res://assets/patterns/waves_duotone_lighter.png" type="Texture" id=1]
 [ext_resource path="res://assets/patterns/wall/leaves.png" type="Texture" id=2]
 [ext_resource path="res://actors/environments/Tree.gd" type="Script" id=3]
-
-[sub_resource type="Animation" id=1]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Graphics/Leaves:width")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 38.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Graphics:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "Shake"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/path = NodePath("Graphics/Leaves:width")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 38.0, 34.0, 38.0, 36.0, 38.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Graphics:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.6 ),
-"transitions": PoolRealArray( 0.5, -2, -2, -2 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 2, 0 ), Vector2( -2, 0 ), Vector2( 0, 0 ) ]
-}
 
 [node name="Tree" type="Area2D"]
 collision_layer = 128
@@ -65,13 +10,13 @@ collision_mask = 4
 script = ExtResource( 3 )
 
 [node name="Graphics" type="Node2D" parent="."]
-modulate = Color( 1, 1, 1, 0.941176 )
+modulate = Color( 1, 1, 1, 0.95 )
 
 [node name="Canopy" type="Polygon2D" parent="Graphics"]
 unique_name_in_owner = true
 z_index = 500
 z_as_relative = false
-color = Color( 0.0987583, 0.35, 0.0945, 1 )
+color = Color( 0.0980392, 0.34902, 0.0941176, 1 )
 texture = ExtResource( 1 )
 texture_scale = Vector2( 0.25, 0.25 )
 
@@ -79,7 +24,7 @@ texture_scale = Vector2( 0.25, 0.25 )
 unique_name_in_owner = true
 z_index = 500
 z_as_relative = false
-color = Color( 0.042, 0.14, 0.042, 0.784314 )
+color = Color( 0.0431373, 0.141176, 0.0431373, 0.784314 )
 
 [node name="Shadow" type="Polygon2D" parent="Graphics"]
 unique_name_in_owner = true
@@ -88,10 +33,10 @@ color = Color( 0, 0, 0, 0.235294 )
 
 [node name="Leaves" type="Line2D" parent="Graphics"]
 unique_name_in_owner = true
-z_index = 510
+z_index = 500
 z_as_relative = false
 width = 38.0
-default_color = Color( 0.06, 0.2, 0.0693333, 1 )
+default_color = Color( 0.0588235, 0.2, 0.0705882, 1 )
 texture = ExtResource( 2 )
 texture_mode = 1
 
@@ -99,17 +44,6 @@ texture_mode = 1
 unique_name_in_owner = true
 scale = Vector2( 0.7, 0.7 )
 collision_layer = 128
-collision_mask = 7
-priority = 20.0
-space_override = 3
-linear_damp = 13.0
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HidingSpot"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 1.5
-anims/RESET = SubResource( 1 )
-anims/Shake = SubResource( 2 )
-
-[connection signal="body_entered" from="." to="." method="_on_Tree_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_Tree_body_exited"]

@@ -83,7 +83,7 @@ func set_grid_rotation(value):
 	
 func set_under(value):
 	under = value
-	set_collision_layer_bit(4, false)
+	call_deferred('set_collision_layer_bit', 4, false)
 	add_to_group('nostyle')
 	
 	if under == 'below':
@@ -92,8 +92,8 @@ func set_under(value):
 		$line.z_index = -50
 		$lineBelow.z_index = -60
 		$InnerPolygon2D.visible = false
-		set_collision_mask_bit(0, false)
-		set_collision_mask_bit(18, true)
+		call_deferred('set_collision_mask_bit', 0, false)
+		call_deferred('set_collision_mask_bit', 18, true)
 		modulate = Color(0.5,0.5,1)
 		$Polygon2D.color = Color(0.7,0.7,0.7)
 	elif under == 'above':
@@ -102,8 +102,8 @@ func set_under(value):
 		$line.z_index = 0
 		$lineBelow.z_index = -10
 		$InnerPolygon2D.visible = false
-		set_collision_mask_bit(0, true)
-		set_collision_mask_bit(18, false)
+		call_deferred('set_collision_mask_bit', 0, true)
+		call_deferred('set_collision_mask_bit', 18, false)
 		modulate = Color(1,0.5,0.5)
 		$Polygon2D.color = Color(0.7,0.7,0.7)
 	elif under == 'both':
@@ -112,9 +112,9 @@ func set_under(value):
 		$line.z_index = 0
 		$lineBelow.z_index = -10
 		$InnerPolygon2D.visible = true
-		set_collision_layer_bit(4, true)
-		set_collision_mask_bit(0, true)
-		set_collision_mask_bit(18, true)
+		call_deferred('set_collision_layer_bit', 4, true)
+		call_deferred('set_collision_mask_bit', 0, true)
+		call_deferred('set_collision_mask_bit', 18, true)
 		remove_from_group('nostyle')
 		modulate = Color(1,1,1)
 		$Polygon2D.color = Color('#4f3f3c')
@@ -214,7 +214,7 @@ func refresh():
 	$Grid.set_texture_rotation(rotation + deg2rad(grid_rotation))
 	
 	# glass pass-through
-	set_collision_layer_bit(4, type != TYPE.glass and under == 'both')
+	call_deferred('set_collision_layer_bit', 4, type != TYPE.glass and under == 'both')
 	$Polygon2D.self_modulate = Color(1,1,1,0.8) if type == TYPE.glass or under == 'above' else Color(1,1,1,1)
 	$Polygon2D.texture = texture_glass if type == TYPE.glass else null
 	$Polygon2D.set_texture_rotation(rotation)

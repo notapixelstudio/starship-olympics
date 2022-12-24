@@ -54,7 +54,6 @@ onready var conquest_manager = $Managers/ConquestManager
 onready var pursue_manager = $Managers/PursueManager
 onready var snake_trail_manager = $Managers/TrailManager
 
-onready var SpawnPlayers = $SpawnPositions/Players
 onready var camera = $Camera
 onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
@@ -185,15 +184,17 @@ func _ready():
 	# Setup goal, Gear and mode managers
 	setup_level(game_mode)
 	
+	# load specialized CPU brain, if any
+	var cpu_brain_from_game_mode = game_mode.get_cpu_brain_scene()
+	if cpu_brain_from_game_mode:
+		cpu_brain_scene = cpu_brain_from_game_mode
+	
 	camera.zoom *= size_multiplier
 	
 	# Engine.time_scale = 0.2
 	# in order to get the size
 	get_tree().get_root().connect("size_changed", self, "compute_arena_size")
 	run_time = OS.get_ticks_msec()
-	
-	# get number of players
-	# n_players = get_num_players()
 	
 	# Analytics
 	analytics.start_elapsed_time()
@@ -245,7 +246,7 @@ func _ready():
 	if global.is_game_running():
 		array_players = global.the_game.get_players()
 	
-	var spawners = $SpawnPositions/Players.get_children()
+	var spawners = get_tree().get_nodes_in_group('player_spawner')
 	# Randomize player position at start: https://github.com/notapixelstudio/superstarfighter/issues/399
 	# works with a session, not if you run from scene
 	if random_starting_position:
@@ -474,7 +475,7 @@ const COUNTDOWN_LIMIT = 5.0
 
 func spawn_all_ships(do_intro = false):
 	var j = 0
-	var player_spawners = $SpawnPositions/Players.get_children()
+	var player_spawners = get_tree().get_nodes_in_group('player_spawner')
 	
 	for s in player_spawners:
 		var spawner = s as PlayerSpawner
@@ -541,13 +542,6 @@ func reset(level):
 	someone_died = false
 	get_tree().change_scene_to(load("res://screens/game_screen/levels/"+level))
 
-func get_num_players()->int:
-	"""
-	Depending on the arena we are in.
-	Works after ready
-	"""
-	return SpawnPlayers.get_child_count()
-
 func _on_background_item_rect_changed():
 	print_debug("Windows changed")
 
@@ -591,8 +585,8 @@ func ship_just_died(ship, killer, for_good):
 	if not for_good:
 		$Battlefield.call_deferred("add_child", ship.dead_ship_instance)
 		
-		ship.dead_ship_instance.apply_central_impulse(-ship.linear_velocity*0.35)
-		ship.dead_ship_instance.apply_torque_impulse(ship.linear_velocity.length()*2*randf())
+		ship.dead_ship_instance.apply_central_impulse(ship.linear_velocity*0.3)
+		ship.dead_ship_instance.apply_torque_impulse((1000+ship.linear_velocity.length())*2)
 	
 	var focus
 	
@@ -640,7 +634,7 @@ func ship_just_died(ship, killer, for_good):
 		return
 	
 	var respawn_timeout = 1.5
-	if game_mode.id == 'crown' or game_mode.id == 'queen_of_the_hive':
+	if game_mode.id == 'rocket_crown' or game_mode.id == 'rocket_queen_of_the_hive':
 		#respawn_timeout = 0.75
 		var cargo = ship.get_cargo()
 		if cargo.has_holdable() and cargo.get_holdable().has_type('crown'):
@@ -651,6 +645,9 @@ func ship_just_died(ship, killer, for_good):
 	#	respawn_timeout = 0.75
 	if game_mode.id == 'skull_collector':
 		respawn_timeout = 2.25
+		
+	if game_mode.id == 'diamond_warfare':
+		respawn_timeout = 3.5
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
@@ -999,6 +996,13 @@ func player_has_valid_ship(player : InfoPlayer) -> bool:
 	
 func get_all_valid_ships() -> Array:
 	return player_ships.values()
+	
+func get_all_ships_in_team(team) -> Array:
+	var result = []
+	for ship in player_ships.values():
+		if ship.get_team() == team:
+			result.append(ship)
+	return result
 
 func _on_PowerUp_collected():
 	pass # Replace with function body.
