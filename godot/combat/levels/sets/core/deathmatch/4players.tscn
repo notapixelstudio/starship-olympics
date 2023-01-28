@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://combat/levels/background/green/pylon2.png" type="Texture" id=23]
 [ext_resource path="res://assets/sprites/environments/bones_deco.png" type="Texture" id=24]
 [ext_resource path="res://combat/levels/background/green/pylon_mini.png" type="Texture" id=25]
+[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=26]
 
 [node name="Arena" instance=ExtResource( 10 )]
 size_multiplier = 2.5
@@ -247,6 +248,15 @@ rotation_degrees = 0
 
 [node name="Variants" parent="Battlefield/Middleground" index="8" instance=ExtResource( 21 )]
 variant_scenes = [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 18 ), ExtResource( 17 ) ]
+
+[node name="CameraEye" parent="Battlefield/Foreground" index="0" instance=ExtResource( 26 )]
+position = Vector2( -2300, 1300 )
+
+[node name="CameraEye2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 26 )]
+position = Vector2( 2300, -1300 )
+
+[node name="CameraEye3" parent="Battlefield/Foreground" index="2" instance=ExtResource( 26 )]
+position = Vector2( 2300, -1300 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1950, 950 )

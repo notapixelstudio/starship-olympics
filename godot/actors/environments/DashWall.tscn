@@ -51,6 +51,7 @@ end_cap_mode = 2
 [node name="OverlapArea" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 0
+collision_mask = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OverlapArea"]
 
