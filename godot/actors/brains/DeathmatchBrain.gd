@@ -1,6 +1,7 @@
 extends CPUBrain
 
 export var forward_weapon := false
+export var back_attack_distance := 1200
 
 var random_preference : int
 
@@ -35,7 +36,7 @@ func think():
 				go_to(global_position + escape_vector)
 				log_strategy('keep distance')
 		else: # backwards weapon
-			if global_position.distance_to(target.global_position) > 1200:
+			if global_position.distance_to(target.global_position) > back_attack_distance:
 				set_stance('quiet')
 				go_to(target.get_target_destination())
 				log_strategy('chase ship')
