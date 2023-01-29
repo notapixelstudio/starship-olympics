@@ -3,6 +3,7 @@ extends CPUBrain
 export var forward_weapon := false
 export var back_attack_distance := 1200
 export var forward_attack_distance := 800
+export var back_attack_probability := 1.0
 
 var random_preference : int
 
@@ -46,7 +47,8 @@ func think():
 				var escape_vector = global_position - target.get_target_destination()
 				go_to(global_position + escape_vector)
 				log_strategy('back attack')
-				start_charging_to_dash(500+randf()*500)
+				if randf() <= back_attack_probability:
+					start_charging_to_dash(500+randf()*500)
 	else:
 		set_stance('quiet')
 		go_home()
