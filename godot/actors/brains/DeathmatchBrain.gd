@@ -2,6 +2,7 @@ extends CPUBrain
 
 export var forward_weapon := false
 export var back_attack_distance := 1200
+export var forward_attack_distance := 800
 
 var random_preference : int
 
@@ -26,7 +27,7 @@ func think():
 		# choose a preferred target ship
 		var target = valid_targets[random_preference%len(valid_targets)]
 		if forward_weapon:
-			if global_position.distance_to(target.global_position) > 800:
+			if global_position.distance_to(target.global_position) > forward_attack_distance:
 				set_stance('aggressive')
 				go_to(target.get_target_destination())
 				log_strategy('attack ship')
@@ -47,4 +48,5 @@ func think():
 				log_strategy('back attack')
 				start_charging_to_dash(500+randf()*500)
 	else:
-		forget_current_target_location()
+		set_stance('quiet')
+		go_home()
