@@ -1,66 +1,23 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
 [ext_resource path="res://actors/environments/ShieldWall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=5]
-[ext_resource path="res://assets/icon/minicards/sets/death.png" type="Texture" id=6]
+[ext_resource path="res://combat/modes/OldSchool.tres" type="Resource" id=6]
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=7]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=10]
-[ext_resource path="res://actors/brains/OldSchoolBrain.tscn" type="PackedScene" id=11]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=12]
 [ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=13]
 [ext_resource path="res://combat/levels/background/green.png" type="Texture" id=14]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=15]
 [ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=16]
-[ext_resource path="res://combat/styles/oldschool.tres" type="Resource" id=17]
-
-[sub_resource type="Resource" id=1]
-script = ExtResource( 15 )
-id = "oldschool"
-name = "Old School"
-icon = ExtResource( 6 )
-arena_style = ExtResource( 17 )
-description = "kill the other players"
-cpu_brain = ExtResource( 11 )
-max_timeout = 60
-max_score = 4
-starting_score = 0
-cumulative = false
-shared_targets = true
-starting_lives = -1
-starting_health = 5
-respawn_from_home = false
-end_on_perfect = true
-fill_starting_score = false
-death = true
-last_man = false
-crown = false
-hive = false
-collect = false
-goal = false
-survival = false
-race = false
-pursuing_bombs = true
-shoot_bombs = false
-deadly_trails = false
-deadly_trails_duration = 2.0
-bomb_type = 7
-starting_ammo = 3
-reload_time = 0.4
-auto_thrust = false
-start_invincible = true
-floodable = true
-flood = false
-laserable = true
-additional_lasers = false
 
 [node name="Arena" instance=ExtResource( 10 )]
 size_multiplier = 2.5
-game_mode = SubResource( 1 )
+game_mode = ExtResource( 6 )
 
 [node name="KillModeManager" parent="Managers" index="8"]
 enabled = true
