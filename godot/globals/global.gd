@@ -497,7 +497,6 @@ func get_state():
 		flood=flood,
 		time_scale=time_scale,
 		laser=laser,
-		starting_deck=starting_deck,
 		sessions_played=sessions_played
 	}
 	
@@ -646,7 +645,6 @@ func new_game(players: Array, data := {}) -> TheGame:
 	else:
 		deck.setup()
 	the_game.set_deck(deck)
-	
 	Events.emit_signal("game_started")
 	return the_game
 
@@ -674,15 +672,12 @@ func new_session(existing_data := {}) -> TheSession:
 	
 	var hand_ids : Array = existing_data.get("hand", [])
 	var hand := []
-	for card_id in hand_ids:
-		hand.append(deck.get_card(card_id))
 	if existing_data.get("playing_card"):
 		var playing_card_id = existing_data.get("playing_card")
 		hand.append(deck.get_card(playing_card_id))
-		
-	if hand.empty() and existing_data.empty() and deck.get_skip_first_draft():
-		hand = deck.draw(4)
-	# else: start with no hand, the draft manager will take care of that
+	for card_id in hand_ids:
+		hand.append(deck.get_card(card_id))
+	
 	session.set_hand(hand)
 	session.setup_from_dictionary(existing_data)
 	Events.emit_signal('session_started')
@@ -733,6 +728,7 @@ func is_before_first_match_of_the_game() -> bool:
 ##### FILE SYSTEM UTILS #######
 ###############################
 const SPECIES_PATH = "res://selection/characters"
+const DECK_PATH = "res://map/draft/decks/"
 
 func get_resources(base_path: String) -> Dictionary:
 	var ret := {}
@@ -762,6 +758,7 @@ func compare_by_species_id(a: Species, b: Species):
 	return a.species_id < b.species_id
 	
 var starting_deck: String = "skulls"
+var starting_deck_id: String = "skulls"
 
 
 # Date utils
@@ -790,3 +787,13 @@ func map_player_controls():
 		if "_fire" in action: 
 			list_fire_action[action] = (InputMap.get_action_list(action))
 	
+
+func get_playlist_starting_deck(status = TheUnlocker.UNLOCKED):
+	var decks: Dictionary = global.get_resources(global.DECK_PATH)
+	var playlists = []
+	for starting_deck in decks.values():
+		assert(starting_deck is StartingDeck)
+		if starting_deck.is_playlist():
+			if TheUnlocker.get_status("starting_decks", starting_deck.get_id()) == status:
+				playlists.append(starting_deck)
+	return playlists

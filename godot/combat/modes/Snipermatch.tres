@@ -1,18 +1,18 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
-[ext_resource path="res://assets/icon/minicards/sets/death.png" type="Texture" id=1]
-[ext_resource path="res://actors/brains/DeathmatchBrain.tscn" type="PackedScene" id=2]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
-[ext_resource path="res://combat/styles/bones.tres" type="Resource" id=5]
+[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
+[ext_resource path="res://assets/icon/minicards/sets/death.png" type="Texture" id=2]
+[ext_resource path="res://actors/brains/SnipermatchBrain.tscn" type="PackedScene" id=3]
+[ext_resource path="res://combat/styles/sniperrifle.tres" type="Resource" id=4]
 
 [resource]
-script = ExtResource( 3 )
-id = "death"
-name = "Deathmatch"
-icon = ExtResource( 1 )
-arena_style = ExtResource( 5 )
+script = ExtResource( 1 )
+id = "snipermatch"
+name = "Snipermatch"
+icon = ExtResource( 2 )
+arena_style = ExtResource( 4 )
 description = "kill the other players"
-cpu_brain = ExtResource( 2 )
+cpu_brain = ExtResource( 3 )
 max_timeout = 60
 max_score = 8
 starting_score = 0

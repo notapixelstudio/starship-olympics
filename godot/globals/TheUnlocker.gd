@@ -17,9 +17,6 @@ var unlocked_elements = {
 	"starting_decks":{
 		"skulls": UNLOCKED
 	},
-	"card_pools":{
-		"the_card_pool": UNLOCKED
-	},
 	"minigames": {
 		"crown": UNLOCKED,
 		"deathmatch": UNLOCKED,

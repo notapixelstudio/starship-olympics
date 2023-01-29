@@ -12,7 +12,6 @@ var hand_node : HandNode
 var hand_position : Node
 var pass_node : Node
 var message_node : Typewriter
-var ships_have_to_choose := false
 var hand_refills := 0
 var playlist_mode := false
 
@@ -35,8 +34,9 @@ func _ready():
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
 	pass_node = get_node(pass_path)
 	message_node = get_node(message_node_path)
+	var deck: Deck = global.the_game.get_deck()
 	
-	playlist_mode = not global.the_game.get_deck().shuffle_before_dealing
+	playlist_mode = deck.is_playlist()
 	
 	var hand = global.session.get_hand()
 	if len(hand) > 0:
@@ -61,14 +61,12 @@ func continue_draft(session_ended):
 		draw_anew()
 		
 	yield(get_tree().create_timer(0.4), "timeout") # this is also needed to wait for entering the tree
-	
-	ships_have_to_choose = false
+	var ships_have_to_choose = false
 	var hand = global.session.get_hand()
 	if len(hand) == 0:
 		ships_have_to_choose = true
 		
-		# TODO: almost a duplicate of global.gd, might need some love
-		var deck = global.the_game.get_deck()
+		var deck: Deck = global.the_game.get_deck()
 
 		var how_many_new_cards := 1
 		
@@ -76,23 +74,26 @@ func continue_draft(session_ended):
 		# add a new card and draw it right now
 		deck.add_new_cards(how_many_new_cards)
 		hand.append_array(deck.draw(how_many_new_cards))
-		hand.shuffle()
+		
+		if not playlist_mode:
+			hand.shuffle()
+		
 		global.session.set_hand(hand)
 		hand_refills += 1
 		
 		yield(get_tree().create_timer(1.0), "timeout")
-		self.populate_hand(hand.duplicate())
+		
+		populate_hand(hand.duplicate())
 		
 	
 	yield(get_tree().create_timer(0.5), "timeout")
 	
-	if ships_have_to_choose:
+	if not playlist_mode and ships_have_to_choose :
 		message_node.type("Choose which minigames to play")
 		yield(message_node, "done")
 		yield(get_tree().create_timer(0.5), "timeout")
 		
 		this_arena.spawn_all_ships(true)
-		#pass_node.visible = true
 	else:
 		yield(get_tree().create_timer(0.5), "timeout")
 		self.pick_next_card()
@@ -161,7 +162,8 @@ func selections_maybe_all_done():
 		
 		# shuffle the remaining cards right back into the deck
 		deck.append_cards(to_be_put_back)
-		if deck.shuffle_before_dealing:
+		
+		if not playlist_mode:
 			deck.shuffle()
 		
 		self.pick_next_card()
@@ -174,7 +176,6 @@ func pick_next_card():
 	var hand = global.session.get_hand()
 	hand_node.update_card_positions()
 	yield(get_tree().create_timer(len(hand)*0.33+0.33), "timeout")
-	
 	
 	var picked_card : DraftCard = global.session.choose_next_card()
 	
@@ -208,11 +209,10 @@ func populate_hand(hand: Array):
 	
 	# keep the new cards at the rightmost place
 	#hand.sort_custom(self, "sort_hand")
-	
 	for card in hand:
 		(card as DraftCard).on_card_drawn()
 		yield(get_tree().create_timer(0.1), "timeout")
-		add_card(card, not playlist_mode and not ships_have_to_choose, not playlist_mode) # if ships have not to choose, cards are already selected
+		add_card(card, false, not playlist_mode) # if ships have not to choose, cards are already selected
 	hand_node.update_card_positions()
 	
 func animate_selection(picked_card: DraftCard):

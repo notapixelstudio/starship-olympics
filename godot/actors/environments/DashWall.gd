@@ -12,6 +12,10 @@ func _on_OverlapArea_body_entered(body):
 	if body.has_method('set_phasing_in_prevented'):
 		body.set_phasing_in_prevented(true)
 		
+	# trigger rockets
+	if body.has_method('detonate'):
+		body.detonate()
+		
 
 func _on_OverlapArea_body_exited(body):
 	if body.has_method('set_phasing_in_prevented') and body.has_method('phase_in'):

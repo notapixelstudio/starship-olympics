@@ -194,6 +194,7 @@ func _enter_tree():
 	alive = true
 	outside_countup = 0
 	empty_loaded_shot()
+	unhide()
 	
 	reset_health()
 	
@@ -341,6 +342,11 @@ func _integrate_forces(state):
 		last_contact_normal = state.get_contact_local_normal(0)
 	
 	state.set_transform(xform)
+	
+	if velocity.length() > 0.01:
+		unhide()
+	elif is_hiding():
+		modulate.a = modulate.a*0.99
 	
 var overcharging := false
 signal overcharging_started
@@ -878,7 +884,7 @@ func tap():
 	#switch_emersion_state()
 	trigger_all_my_stuff()
 	
-	if bomb_type == GameMode.BOMB_TYPE.fw_pew and not $'%Ammo'.is_empty() and not is_hiding():
+	if bomb_type == GameMode.BOMB_TYPE.fw_pew and not $'%Ammo'.is_empty():# and not is_hiding():
 		$'%Ammo'.shot()
 		var aperture = PI/4
 		var amount = 1
@@ -1104,3 +1110,6 @@ func load_shot(body: RigidBody2D) -> void:
 func empty_loaded_shot() -> void:
 	loaded_shot = null
 	$LoadedShot.texture = null
+	
+func unhide():
+	modulate = Color(1,1,1,1)

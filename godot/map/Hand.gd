@@ -31,10 +31,7 @@ func update_card_positions():
 		var card : DraftCardGraphicNode = cards[i]
 		var target_pos = self.calculate_pos(i)
 		var target_rot = self.calculate_rot(i)
-		print("number of cards {cards} with angle {angle}".format({"cards": self.get_card_count(), "angle": rad2deg(self.calculate_angle(i))}))
 		card.reposition(target_pos, target_rot)
-		# card.position.x = (i-len(cards)/2.0+0.5)*(card.get_size().x+SEPARATION)
-		#card.gracefully_go_to( Vector2( (i-len(cards)/2.0+0.5)*(card.get_size().x+SEPARATION), 0) )
 		
 func add_card(card:DraftCardGraphicNode):
 	add_child(card)
