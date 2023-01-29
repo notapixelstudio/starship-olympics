@@ -76,7 +76,7 @@ func attempt_binding(bubble_shooter):
 		bond.node_a = get_path()
 		bond.node_b = bubble.get_path()
 		add_child(bond)
-		$RandomBindSFX.play()
+		AudioManager.play($AudioRandomBindSFX)
 		
 		if species and species == bubble.species or symbol and symbol != 'none' and symbol == bubble.symbol:
 			# update all bubbles in current group to join encountered group
@@ -118,7 +118,7 @@ func pop(now, i=0, bubble_shooter=null):
 	else:
 		yield(get_tree().create_timer(0.5), "timeout")
 	emit_signal('killed', self, bubble_shooter)
-	$RandomPopSFX.play()
+	AudioManager.play($AudioRandomPopSFX)
 	yield($RandomPopSFX, "finished")
 	yield($AnimationPlayer, "animation_finished")
 	queue_free()

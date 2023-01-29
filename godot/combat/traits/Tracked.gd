@@ -1,3 +1,6 @@
+# USAGE
+# hosts should call tick() inside their _integrate_forces()
+
 extends Trait
 
 var previous_global_positions : Array
@@ -14,7 +17,7 @@ func _enter_tree():
 func reset():
 	previous_global_positions = [get_host().global_position]
 	
-func _physics_process(delta):
+func tick():
 	# remember our previous global positions
 	previous_global_positions.push_back(get_host().global_position)
 	if len(previous_global_positions) > 2:

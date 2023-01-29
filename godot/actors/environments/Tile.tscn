@@ -53,7 +53,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[node name="Tile" type="Area2D"]
+[node name="Tile" type="Area2D" groups=["Tile"]]
 modulate = Color( 0.9, 0.9, 0.9, 1 )
 collision_layer = 128
 script = ExtResource( 2 )
@@ -96,6 +96,7 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 5 )
 
 [node name="Wrapper" type="Node2D" parent="Graphics"]
+position = Vector2( 10, 0 )
 
 [node name="Label" type="Label" parent="Graphics/Wrapper"]
 self_modulate = Color( 1, 1, 1, 0.705882 )

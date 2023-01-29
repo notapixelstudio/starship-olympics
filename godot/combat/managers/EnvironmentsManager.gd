@@ -78,11 +78,9 @@ func _physics_process(delta):
 
 func activate_slomo(arena):
 	arena.connect("unslomo", self, "deactivate_slomo", [arena], CONNECT_ONESHOT)
-	$SlomoEffect.play()
-	yield($SlomoEffect, "finished")
+	AudioManager.play($AudioSlomoEffect)
 	arena.connect("slomo", self, "activate_slomo", [arena], CONNECT_ONESHOT)
 	
 func deactivate_slomo(arena):
-	$UnSlomoEffect.play()
-	yield($SlomoEffect, "finished")
+	AudioManager.play($UnSlomoEffect)
 	

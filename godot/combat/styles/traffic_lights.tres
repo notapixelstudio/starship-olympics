@@ -1,8 +1,9 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://combat/styles/ArenaStyle.gd" type="Script" id=1]
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=2]
 [ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=3]
+[ext_resource path="res://assets/audio/soundtracks/paradoxal_activity-mattek.ogg" type="AudioStream" id=4]
 
 [resource]
 script = ExtResource( 1 )
@@ -15,4 +16,4 @@ battlefield_bg_color = Color( 0.25098, 0, 0.176471, 1 )
 battlefield_opacity = 0.9
 wall_color = Color( 1.1, 1, 1, 1 )
 wall_texture = ExtResource( 2 )
-bgm = "kill"
+bgm = ExtResource( 4 )

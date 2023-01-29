@@ -27,7 +27,8 @@ func _on_bumper_collided(bumper_b, bumper_a):
 	bumper_b.emit_signal('bump')
 	Events.emit_signal("sths_bumped", bumper_a, bumper_b)
 	global.arena.show_ripple((bumper_a.global_position+bumper_b.global_position)/2, 2)
-	$RandomAudioStreamPlayer.play()
+	AudioManager.play($"%RandomAudioStreamPlayer")
+	
 	yield(get_tree(), "idle_frame")
 	
 	if is_instance_valid(bumper_a):

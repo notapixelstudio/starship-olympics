@@ -13,6 +13,8 @@ var bottom_end := Vector2(0, width/2)
 var overlapping_trackeds := {}
 var previous_global_transforms : Array
 
+var enabled := true
+
 signal crossed
 
 func set_width(v: float) -> void:
@@ -68,17 +70,31 @@ func _physics_process(delta):
 		if not overlapping_trackeds[tracked]['good']:
 			overlapping_trackeds.erase(tracked)
 		
-func _crossed_by(sth):
-	emit_signal("crossed", sth, self)
+func _crossed_by(sth, trigger=true):
+	if enabled:
+		emit_signal("crossed", sth, self, trigger)
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("Blink")
-	$RandomAudioStreamPlayer.play()
+	if trigger and enabled:
+		AudioManager.play($RandomAudioStreamPlayer)
+	# $RandomAudioStreamPlayer.play()
 	
+func act_as_if_crossed_by(sth):
+	_crossed_by(sth, false) # don't trigger
+
+func enable() -> void:
+	enabled = true
+	modulate = Color.white
+	
+func disable() -> void:
+	enabled = false
+	modulate = Color(1,1,1,0.3)
+
 #func _draw():
-	#if relative_position:
-	#	draw_circle(relative_position, 6, Color(0, 1, 0))
-	#if relative_past_position:
-	#	draw_circle(relative_past_position, 2, Color(1, 1, 1))
-	#if relative_past_position != null and relative_position != null:
-	#	draw_line(relative_past_position, relative_position, Color(1, 0, 0), 4)
-	#draw_line(top_end, bottom_end, Color(1, 0, 1), 2)
+#	if relative_position:
+#		draw_circle(relative_position, 6, Color(0, 1, 0))
+#	if relative_past_position:
+#		draw_circle(relative_past_position, 2, Color(1, 1, 1))
+#	if relative_past_position != null and relative_position != null:
+#		draw_line(relative_past_position, relative_position, Color(1, 0, 0), 4)
+#	draw_line(top_end, bottom_end, Color(1, 0, 1), 2)

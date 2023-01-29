@@ -18,7 +18,7 @@ func _on_ball_body_entered(body):
 	if body is Brick:
 		body.break(ball)
 		$AudioStreamPlayer.pitch_scale = 0.55 + hit_count*0.05
-		$AudioStreamPlayer.play()
+		AudioManager.play($AudioStreamPlayer)
 		hit_count = min(hit_count+1, 1000)
 		$Timer.stop()
 		$Timer.start(1.5)

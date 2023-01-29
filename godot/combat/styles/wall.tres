@@ -1,7 +1,8 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://combat/styles/ArenaStyle.gd" type="Script" id=1]
 [ext_resource path="res://assets/patterns/bricks.png" type="Texture" id=2]
+[ext_resource path="res://assets/audio/soundtracks/music_zapsplat_game_music_arcade_electro_repeating_retro_arp_electro_drums_serious_012.ogg" type="AudioStream" id=3]
 
 [resource]
 script = ExtResource( 1 )
@@ -13,4 +14,4 @@ battlefield_fg_color = Color( 0.102, 0.2992, 0.51, 1 )
 battlefield_bg_color = Color( 0.092, 0.288267, 0.46, 1 )
 battlefield_opacity = 0.9
 wall_color = Color( 1.2, 0.470588, 0.196078, 1 )
-bgm = "destroy"
+bgm = ExtResource( 3 )

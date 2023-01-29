@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://selection/characters/auriels_1.tres" type="Resource" id=12]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=13]
 [ext_resource path="res://combat/levels/background/green.png" type="Texture" id=14]
+[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/variants/3C.tscn" type="PackedScene" id=16]
 [ext_resource path="res://combat/levels/sets/core/deathmatch/variants/3E.tscn" type="PackedScene" id=17]
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=18]
@@ -247,6 +248,12 @@ rotation_degrees = 0
 
 [node name="Variants" parent="Battlefield/Middleground" index="8" instance=ExtResource( 18 )]
 variant_scenes = [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 16 ), ExtResource( 21 ), ExtResource( 17 ) ]
+
+[node name="CameraEye" parent="Battlefield/Foreground" index="0" instance=ExtResource( 15 )]
+position = Vector2( -1900, 1300 )
+
+[node name="CameraEye2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 15 )]
+position = Vector2( 1900, -1300 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1600, 1000 )

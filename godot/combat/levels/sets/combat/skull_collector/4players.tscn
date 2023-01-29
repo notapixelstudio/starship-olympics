@@ -31,7 +31,7 @@ skull_scene = ExtResource( 15 )
 
 [node name="RespawnFromHomeManager" parent="Managers" index="1" instance=ExtResource( 7 )]
 
-[node name="KillModeManager" parent="Managers" index="11"]
+[node name="KillModeManager" parent="Managers" index="10"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -50,11 +50,11 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": ""
 }
-polygon = PoolVector2Array( -2300, -500, -2300, -1200, -2200, -1300, -800, -1300, -400, -1700, 400, -1700, 800, -1300, 2200, -1300, 2300, -1200, 2300, 1200, 2200, 1300, 800, 1300, 400, 1700, -400, 1700, -800, 1300, -2200, 1300, -2300, 1200 )
+polygon = PoolVector2Array( -2300, -450, -2300, -1200, -2200, -1300, -800, -1300, -400, -1700, 400, -1700, 800, -1300, 2200, -1300, 2300, -1200, 2300, -450, 1850, 0, 2300, 450, 2300, 1200, 2200, 1300, 800, 1300, 400, 1700, -400, 1700, -800, 1300, -2200, 1300, -2300, 1200, -2300, 450, -1850, 0 )
 
 [node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWall" index="9"]
 visible = false
-polygon = PoolVector2Array( -2300, -500, -2300, -1200, -2200, -1300, -800, -1300, -400, -1700, 400, -1700, 800, -1300, 2200, -1300, 2300, -1200, 2300, 1200, 2200, 1300, 800, 1300, 400, 1700, -400, 1700, -800, 1300, -2200, 1300, -2300, 1200 )
+polygon = PoolVector2Array( -2300, -450, -2300, -1200, -2200, -1300, -800, -1300, -400, -1700, 400, -1700, 800, -1300, 2200, -1300, 2300, -1200, 2300, -450, 1850, 0, 2300, 450, 2300, 1200, 2200, 1300, 800, 1300, 400, 1700, -400, 1700, -800, 1300, -2200, 1300, -2300, 1200, -2300, 450, -1850, 0 )
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -291,18 +291,21 @@ texture = ExtResource( 10 )
 position = Vector2( -1700, 700 )
 rotation = -0.785398
 species = ExtResource( 1 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 18 )]
 position = Vector2( 1700, -700 )
 rotation = 2.35619
 controls = "kb2"
 species = ExtResource( 2 )
+cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 18 )]
 position = Vector2( -1700, -700 )
 rotation = 0.785398
 controls = "kb2"
 species = ExtResource( 4 )
+cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 18 )]
 position = Vector2( 1700, 700 )

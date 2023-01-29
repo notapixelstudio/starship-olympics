@@ -25,7 +25,7 @@ func get_strategy(ship, distance, game_mode):
 	return {'seek': points}
 	
 func set_tangible(tangible : bool):
-	set_collision_mask_bit(1, tangible) # ship near area
+	call_deferred('set_collision_mask_bit', 1, tangible) # ship near area
 	
 func set_appear(v : bool) -> void:
 	appear = v

@@ -44,6 +44,11 @@ func _init():
 	timestamp_local = Time.get_datetime_string_from_system(false, true)
 	timestamp = Time.get_datetime_string_from_system(true, true)
 	
+	Events.connect("pause", self, "pause")
+	Events.connect("unpause", self, "unpause")
+		
+	
+var is_paused = false
 func get_uuid() -> String:
 	return uuid
 
@@ -53,8 +58,17 @@ func get_id() -> String:
 func start():
 	set_process(true)
 
+func pause():
+	is_paused = true
+
+func unpause():
+	is_paused=false
+	
 func stop():
 	set_process(false)
+
+func add_time(time_to_add: float):
+	time_left += time_to_add
 
 func initialize(_players: Dictionary, _game_mode: GameMode, max_score: float = 0, max_timeout: float = 0):
 	game_mode = _game_mode
@@ -92,6 +106,8 @@ func sort_by_score(a: InfoPlayer, b: InfoPlayer):
 	return a.get_score() > b.get_score()
 	
 func update(delta: float):
+	if is_paused:
+		return
 	# Would be called by Arena
 	if game_over or time_left == -1:
 		return

@@ -7,9 +7,10 @@ var ship : Ship
 var ownership_transfer := true
 
 var previous_velocity := Vector2.LEFT
+var team : String
 
 func _ready():
-	SoundEffects.play($RandomAudioStreamPlayer)
+	AudioManager.play($RandomAudioStreamPlayer)
 
 func _physics_process(delta):
 	previous_velocity = linear_velocity
@@ -17,6 +18,12 @@ func _physics_process(delta):
 func _process(delta):
 	$Wrapper.rotation = linear_velocity.angle()
 
+func on_ship_near_area_hit(hit_ship: Ship) -> void:
+	# no friendly fire
+	if hit_ship.get_team() != team:
+		hit_ship.damage(self, ship, team)
+		destroy()
+	
 func _on_ForwardBullet_body_entered(body):
 	if not (body is Mirror):
 		destroy()
@@ -32,6 +39,7 @@ func set_ship(v : Ship):
 	ship = v
 	$"%Sprite".modulate = ship.get_color()
 	$AutoTrail.starting_color = ship.get_color()
+	team = ship.get_team() # remember team to avoid friendly fire (or checking up a dead ship)
 	
 func dissolve() -> void:
 	var pfft = PfftScene.instance()

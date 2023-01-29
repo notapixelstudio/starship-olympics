@@ -45,4 +45,5 @@ func recolor():
 	modulate = species.color
 	$Monogram/Label.text = owner_ship.get_player().get_id().to_upper()
 	$AnimationPlayer.play("Conquered")
+	AudioManager.play($AudioStreamPlayer2D)
 	

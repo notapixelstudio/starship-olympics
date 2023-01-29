@@ -104,11 +104,12 @@ tracks/5/keys = {
 script = ExtResource( 2 )
 type = 4
 opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
+visible_decorations = true
+symbol_scale = 2.0
+decoration_scale = 1.0
 
 [node name="IsoPolygon" parent="." index="0"]
 modulate = Color( 1.35, 0.51, 0.46, 1 )
-shape = Object(Node,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"script":Resource( "res://addons/geometry/GRegularPolygon.gd" ),"center_offset":Vector2( 0, 0 ),"jitter":0.0,"clip":Rect2( -10000, -10000, 20000, 20000 ),"radius":400,"sides":4.0,"alternating_angle":0.0,"rotation_degrees":0.0)
-
 opaque_tint = Color( 0.501961, 0, 0.235294, 0.235294 )
 
 [node name="Polygon2D" parent="." index="1"]

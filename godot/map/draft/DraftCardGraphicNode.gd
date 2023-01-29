@@ -63,10 +63,13 @@ func set_content_card(card: DraftCard):
 		get_node('%BottomLabel').visible = true
 #		$Ground/Front/Border.self_modulate = Color('#ff5577') # takes priority over winter
 		
+	redraw_suits()
+	
+func redraw_suits():
 	# suits
-	if not card is MysteryCard:
-		var suit_top = card.get_suit_top()
-		var suit_bottom = card.get_suit_bottom()
+	if not card_content is MysteryCard:
+		var suit_top = card_content.get_suit_top()
+		var suit_bottom = card_content.get_suit_bottom()
 		if suit_top:
 			$"%SuitTopLeft".texture = load("res://assets/sprites/signs/suits/"+suit_top+".png")
 			$'%SuitTopLeft'.self_modulate = global.SUIT_COLORS[suit_top]
@@ -80,14 +83,19 @@ func set_content_card(card: DraftCard):
 			$'%HalfBackground'.self_modulate = global.SUIT_COLORS[suit_bottom]
 			$'%HalfBackground'.visible = true
 	else:
-		$'%MinigameLabel'.self_modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
-		$'%BottomLabel'.modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
+		$'%MinigameLabel'.self_modulate = global.SUIT_COLORS[card_content.get_color()].lightened(0.2)
+		$'%BottomLabel'.modulate = global.SUIT_COLORS[card_content.get_color()].lightened(0.2)
 	
 # @override
 func select():
 	.select()
 	$"%SuitTopLeft".self_modulate = Color(0,0,0,0.75)
 	$"%SuitBottomRight".self_modulate = Color(0,0,0,0.75)
+	
+# @override
+func deselect():
+	.deselect()
+	redraw_suits()
 	
 # @override
 func tap(author):
@@ -97,9 +105,12 @@ func tap(author):
 		print("{minigame} tapped by {author_name}".format({"minigame": card_content.get_id(), "author_name":author.info_player.get_id()}))
 
 func gracefully_go_to(point: Vector2, angle: float = 0.0, duration: float = 0.7, easing = Tween.EASE_IN_OUT) -> void:
-	var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(easing)
-	tween.tween_property(self, 'position', point, duration)
-	tween.parallel().tween_property(self, 'rotation', angle, duration)
+	var tween := create_tween()
+	if tween:
+		tween.set_trans(Tween.TRANS_QUAD).set_ease(easing)
+		tween.tween_property(self, 'position', point, duration)
+		tween.parallel().tween_property(self, 'rotation', angle, duration)
+		
 
 onready var normal_scale = scale
 onready var normal_position = global_position

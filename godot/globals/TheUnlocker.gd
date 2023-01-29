@@ -13,25 +13,15 @@ func _ready():
 
 
 var unlocked_elements = {
-	"map_locations": {
-		"1star": "unlocked",
-		"3stars": "unlocked",
-		"5stars": "unlocked"
-	},
+	
 	"starting_decks":{
-		"intro": UNLOCKED
-	},
-	"card_pools":{
-		"the_card_pool": UNLOCKED
+		"skulls": UNLOCKED
 	},
 	"minigames": {
 		"crown": UNLOCKED,
 		"deathmatch": UNLOCKED,
 		"slam": UNLOCKED,
 		"diamond": UNLOCKED
-	},
-	"sets": {
-		"core": UNLOCKED
 	},
 	"species": {
 		"mantiacs_1": UNLOCKED,

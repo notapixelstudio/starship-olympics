@@ -18,14 +18,14 @@ extents = Vector2( 300, 30 )
 offsets = PoolRealArray( 0, 0.338889, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=5]
+[sub_resource type="GradientTexture" id=10]
 gradient = SubResource( 4 )
 
 [sub_resource type="Curve" id=6]
 max_value = 1.5
 _data = [ Vector2( 0, 0.703988 ), 0.0, -0.0509122, 0, 0, Vector2( 0.373239, 1.5 ), 0.0, 0.0, 0, 0, Vector2( 0.669014, 0.0322087 ), -7.66229, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=7]
+[sub_resource type="CurveTexture" id=11]
 curve = SubResource( 6 )
 
 [sub_resource type="ParticlesMaterial" id=8]
@@ -37,8 +37,8 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 3.0
 scale_random = 1.0
-scale_curve = SubResource( 7 )
-color_ramp = SubResource( 5 )
+scale_curve = SubResource( 11 )
+color_ramp = SubResource( 10 )
 
 [sub_resource type="ParticlesMaterial" id=9]
 emission_shape = 2
@@ -52,8 +52,8 @@ angle = 45.0
 angle_random = 1.0
 scale = 15.0
 scale_random = 1.0
-scale_curve = SubResource( 7 )
-color_ramp = SubResource( 5 )
+scale_curve = SubResource( 11 )
+color_ramp = SubResource( 10 )
 
 [node name="Portal" type="Node2D" groups=["in_camera"]]
 material = SubResource( 1 )

@@ -21,6 +21,7 @@ onready var explosion = Explosion.instance()
 var species : Species
 
 func _ready():
+	AudioManager.play($AudioStreamPlayer2D)
 	if type == GameMode.BOMB_TYPE.classic:
 		$Sprite/AnimationPlayer.play('rotate')
 	elif type == GameMode.BOMB_TYPE.bubble:
@@ -56,7 +57,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	if type == GameMode.BOMB_TYPE.ball:
 		entity.get('Pursuer').disable()
 		entity.get('Deadly').enable()
-		#set_collision_mask_bit(2, true) # bombs colliding with bombs
+		#call_deferred('set_collision_mask_bit', 2, true) # bombs colliding with bombs
 		$Sprite.scale = Vector2(1,1)
 		$CollisionShape2D.shape.radius = size*80
 		$NearArea/CollisionShape2D.shape.radius = size*80
@@ -66,7 +67,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	elif type == GameMode.BOMB_TYPE.bullet:
 		entity.get('Pursuer').disable()
 		entity.get('Deadly').enable()
-		#set_collision_mask_bit(2, true) # bombs colliding with bombs
+		#call_deferred('set_collision_mask_bit', 2, true) # bombs colliding with bombs
 		$CollisionShape2D.shape.radius = size*80
 		$NearArea/CollisionShape2D.shape.radius = size*80
 		$Sprite.texture = bullet_texture
@@ -183,7 +184,7 @@ func _on_Bomb_body_entered(body):
 	if type == GameMode.BOMB_TYPE.ball or body is Paddle:
 		$RicochetAudio.pitch_scale = 0.5 + hit_count*0.1
 		hit_count = min(hit_count+1, 1000)
-		$RicochetAudio.play()
+		AudioManager.play($RicochetAudio)
 		$LifeTime.start() # enable ricochet combos
 		apply_central_impulse(linear_velocity.normalized()*800)
 		

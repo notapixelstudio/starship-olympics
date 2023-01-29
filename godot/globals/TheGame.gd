@@ -32,6 +32,8 @@ func get_uuid() -> String:
 	return uuid
 
 func set_players(_players : Array) -> void:
+	for _player in _players:
+		assert(_player is InfoPlayer)
 	players = _players
 	
 func get_players() -> Array: # of InfoPlayer
@@ -118,5 +120,3 @@ func set_deck(v : Deck) -> void:
 	# scripted first-time execeution
 	# do not shuffle the deck if this is the first game of this execution
 	deck = v
-	if global.game_number > 1 or global.demo:
-		deck.shuffle()

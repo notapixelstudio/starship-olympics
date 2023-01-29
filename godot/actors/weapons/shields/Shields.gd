@@ -124,7 +124,8 @@ func up(type) -> bool:
 						break
 			
 	if done:
-		$AudioStreamPlayer2D.play()
+		AudioManager.play($AudioStreamPlayer2D)
+		
 		
 	return done
 

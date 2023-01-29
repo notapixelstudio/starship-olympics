@@ -5,7 +5,7 @@ class_name Ball
 
 const GRAB_DISTANCE = 84
 
-export (String, 'crown', 'bee_crown', 'helm', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown', 'skull') var type setget set_type, get_type
+export (String, 'crown', 'bee_crown', 'helm', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown', 'skull', 'flag') var type setget set_type, get_type
 
 var impulse := 0.0
 var player : InfoPlayer
@@ -30,7 +30,8 @@ func refresh():
 	
 func place_and_push(dropper, velocity, direction:='forward') -> void:
 	var dir = 1.0 if direction == 'forward' else -1.0
-	global_position = dropper.global_position + dir*Vector2(GRAB_DISTANCE,0).rotated(dropper.global_rotation)
+	var grab_distance = 0 if show_on_top() else GRAB_DISTANCE
+	global_position = dropper.global_position + dir*Vector2(grab_distance,0).rotated(dropper.global_rotation)
 	
 	linear_velocity = velocity if direction == 'forward' else -velocity
 	
@@ -38,6 +39,9 @@ func place_and_push(dropper, velocity, direction:='forward') -> void:
 
 func activate():
 	set_physics_process(impulse > 0)
+	
+func _integrate_forces(state):
+	traits.get_trait(self, 'Tracked').tick()
 	
 func _physics_process(_delta):
 	apply_central_impulse(impulse*Vector2(1,0).rotated(linear_velocity.angle()))
@@ -49,10 +53,10 @@ func get_texture():
 	return $Sprite.texture
 	
 func show_on_top():
-	return type in ['crown', 'negacrown', 'bee_crown', 'helm']
+	return type in ['crown', 'negacrown', 'bee_crown', 'helm', 'flag']
 	
 func is_rotatable():
-	return not type in ['crown', 'negacrown', 'bee_crown', 'helm', 'star', 'skull']
+	return not type in ['crown', 'negacrown', 'bee_crown', 'helm', 'star', 'skull', 'flag']
 
 func is_glowing():
 	return true

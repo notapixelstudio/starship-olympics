@@ -18,7 +18,7 @@ func _physics_process(delta):
 	
 
 func _on_ArkaBall_body_entered(body):
-	$AudioStreamPlayer.play()
+	AudioManager.play($AudioStreamPlayer)
 	
 	apply_central_impulse(linear_velocity.normalized()*2000)
 	

@@ -29,7 +29,7 @@ func _on_Field_entered(field, body):
 		$FeedbackLine.visible = true
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("Feedback")
-		$AudioStreamPlayer2D.play()
+		AudioManager.play($AudioStreamPlayer2D)
 		
 func _on_gshape_changed():
 	$FeedbackLine.points = gshape.to_closed_PoolVector2Array()

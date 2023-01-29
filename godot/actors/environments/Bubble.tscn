@@ -187,14 +187,22 @@ randomness = 1.0
 process_material = SubResource( 8 )
 texture = ExtResource( 4 )
 
-[node name="RandomPopSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioRandomPopSFX" type="AudioStreamPlayer2D" parent="."]
 bus = "SFX"
 script = ExtResource( 5 )
 streams = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 11 ) ]
 random_strategy = 1
+volume_min = 0
+volume_max = 0
+pitch_min = 1
+pitch_max = 1
 
-[node name="RandomBindSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioRandomBindSFX" type="AudioStreamPlayer2D" parent="."]
 bus = "SFX"
 script = ExtResource( 5 )
 streams = [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 12 ) ]
 random_strategy = 1
+volume_min = 0
+volume_max = 0
+pitch_min = 1
+pitch_max = 1

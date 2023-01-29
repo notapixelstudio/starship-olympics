@@ -60,6 +60,8 @@ const FIRE_COOLDOWN = 0.03
 const OUTSIDE_COUNTUP = 3.0
 const ARKABALL_OFFSET = 200
 const ARKABALL_MULTIPLIER = 1.5
+const MAGNETIC_OFFSET = 200
+const MAGNETIC_MULTIPLIER = 1.5
 const ON_ICE_MAX_THRUST = 2200
 const ON_ICE_MAX_DASH = 2500
 const ON_ICE_CHARGE_BRAKE = 0.99
@@ -191,6 +193,8 @@ func reset_health():
 func _enter_tree():
 	alive = true
 	outside_countup = 0
+	empty_loaded_shot()
+	unhide()
 	
 	reset_health()
 	
@@ -331,11 +335,18 @@ func _integrate_forces(state):
 	previous_velocity = velocity
 	velocity = state.linear_velocity
 	
+	traits.get_trait(self, 'Tracked').tick()
+	
 	# store last contact normal as a readable var
 	if state.get_contact_count() > 0:
 		last_contact_normal = state.get_contact_local_normal(0)
 	
 	state.set_transform(xform)
+	
+	if velocity.length() > 0.01:
+		unhide()
+	elif is_hiding():
+		modulate.a = modulate.a*0.99
 	
 var overcharging := false
 signal overcharging_started
@@ -432,7 +443,7 @@ func _physics_process(delta):
 	if charging and not charging_enough and charge > MIN_CHARGE:
 		charging_enough = true
 		#$GravitonField.enabled = true
-		charging_sfx.play()
+		AudioManager.play(charging_sfx)
 		dash_fat_appearance()
 		
 	if charging and not charging_too_much_for_tap and charge > MAX_TAP_CHARGE:
@@ -442,6 +453,12 @@ signal charging_started
 func charge():
 	charging = true
 	emit_signal("charging_started")
+	
+	# check if we catch anything with a magnetic field
+	for area in $NearArea.get_overlapping_areas():
+		if traits.has_trait(area, 'Magnetic'):
+			load_shot(area.get_body())
+			break # just one
 	
 	if get_bombs_enabled() and not $'%Ammo'.is_empty():
 		$'%BombPreview/BombType'.self_modulate = Color(1,1,1,1)
@@ -491,6 +508,13 @@ func fire(override_charge = -1, dash_only = false):
 					
 			if bomb_type == GameMode.BOMB_TYPE.bubble:
 				next_symbol()
+	elif loaded_shot != null:
+		var impulse = charge_impulse*MAGNETIC_MULTIPLIER
+		loaded_shot.position = position + Vector2(-MAGNETIC_OFFSET,0).rotated(rotation)
+		loaded_shot.linear_velocity = Vector2.ZERO
+		loaded_shot.apply_central_impulse(Vector2(-impulse,0).rotated(rotation))
+		get_parent().add_child(loaded_shot)
+		empty_loaded_shot()
 	
 	# repeal
 	#$GravitonField.repeal(charge_impulse)
@@ -530,10 +554,24 @@ func set_health(amount : int) -> void:
 	health = amount
 	$PlayerInfo.update_health(amount)
 	
-func damage(hazard, damager : Ship):
-	if invincible or not alive:
+func damage(hazard, damager : Ship, damager_team : String = ''):
+	if invincible or not alive or damager_team == get_team(): # self or teammates hits have no effect
 		return
 		
+	# always rebound on hit
+	if(hazard.get('linear_velocity') == null):
+		rebound((global_position-hazard.global_position).normalized(), 2500.0)
+	else:
+		rebound(Vector2(1,0).rotated(hazard.linear_velocity.angle()), 2500.0)
+	
+	if has_method('vibration_feedback'):
+		call('vibration_feedback', false)
+		
+	# check if we lose cargo instead
+	if get_cargo().has_holdable():
+		get_cargo().drop_holdable(hazard)
+		return
+	
 	self.set_health(health - 1)
 	
 	if health < -1:
@@ -542,14 +580,6 @@ func damage(hazard, damager : Ship):
 	if health == 0:
 		die(damager)
 	else:
-		if(hazard.get('linear_velocity') == null):
-			rebound((global_position-hazard.global_position).normalized(), 2500.0)
-		else:
-			rebound(Vector2(1,0).rotated(hazard.linear_velocity.angle()), 2500.0)
-		
-		if has_method('vibration_feedback'):
-			call('vibration_feedback', false)
-			
 		$'%AnimationPlayer'.play('hit')
 		
 		Events.emit_signal("ship_damaged", self, hazard, damager)
@@ -587,6 +617,8 @@ func _on_NearArea_area_entered(area):
 	Events.emit_signal('sth_collided_with_ship', area, self)
 	
 func _on_NearArea_body_entered(body):
+	if body.has_method('on_ship_near_area_hit'):
+		body.on_ship_near_area_hit(self)
 	emit_signal("near_area_entered", body, self)
 	Events.emit_signal('sth_collided_with_ship', body, self)
 	
@@ -852,7 +884,7 @@ func tap():
 	#switch_emersion_state()
 	trigger_all_my_stuff()
 	
-	if bomb_type == GameMode.BOMB_TYPE.fw_pew and not $'%Ammo'.is_empty() and not is_hiding():
+	if bomb_type == GameMode.BOMB_TYPE.fw_pew and not $'%Ammo'.is_empty():# and not is_hiding():
 		$'%Ammo'.shot()
 		var aperture = PI/4
 		var amount = 1
@@ -878,15 +910,15 @@ func submerge():
 	under = true
 	z_as_relative = false
 	z_index = -50
-	set_collision_layer_bit(0, false)
-	set_collision_layer_bit(18, true)
+	call_deferred('set_collision_layer_bit', 0, false)
+	call_deferred('set_collision_layer_bit', 18, true)
 	
 func emerge():
 	under = false
 	z_as_relative = true
 	z_index = 0
-	set_collision_layer_bit(0, true)
-	set_collision_layer_bit(18, false)
+	call_deferred('set_collision_layer_bit', 0, true)
+	call_deferred('set_collision_layer_bit', 18, false)
 	
 signal frozen
 func freeze():
@@ -1008,7 +1040,7 @@ func end_drift():
 #	$CollisionShape2D.shape.radius = 48*size*sqrt(size)
 	
 func set_holder(v: bool) -> void:
-	set_collision_layer_bit(21, v)
+	call_deferred('set_collision_layer_bit', 21, v)
 
 func is_holder() -> bool:
 	return get_collision_layer_bit(21)
@@ -1017,10 +1049,10 @@ func phase_in() -> void:
 	if phasing_in_prevented:
 		return
 		
-	set_collision_layer_bit(22, true)
+	call_deferred('set_collision_layer_bit', 22, true)
 	
 func phase_out() -> void:
-	set_collision_layer_bit(22, false)
+	call_deferred('set_collision_layer_bit', 22, false)
 	
 func set_phasing_in_prevented(v: bool) -> void:
 	phasing_in_prevented = v
@@ -1067,3 +1099,17 @@ func _on_charge_requested() -> void:
 func _on_release_requested() -> void:
 	fire()
 	
+var loaded_shot = null
+func load_shot(body: RigidBody2D) -> void:
+	loaded_shot = body
+	body.get_parent().remove_child(body)
+	$LoadedShot.texture = body.get_texture()
+	$LoadedShot.modulate = body.get_color()
+	
+	
+func empty_loaded_shot() -> void:
+	loaded_shot = null
+	$LoadedShot.texture = null
+	
+func unhide():
+	modulate = Color(1,1,1,1)

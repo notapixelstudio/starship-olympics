@@ -9,6 +9,7 @@ signal pressed_continue
 signal show_arena
 signal hide_arena
 
+export var bgm : AudioStream
 export var sure_scene: PackedScene
 
 func _ready():
@@ -86,10 +87,13 @@ func _on_LeaderBoard_animation_over():
 	
 	#TODO: what do we do in case of DRAW of session? Will ignore it for now
 	if global.session.is_over():
-		Soundtrack.play('SessionOver', true)
+		AudioManager.play_bgm(get_bgm())
 		back_to_menu_button.visible=false
 	
 	for button in $"%Buttons".get_children():
 		if button.visible:
 			button.grab_focus()
 			break
+
+func get_bgm() -> AudioStream:
+	return (self.bgm as AudioStream)

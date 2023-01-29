@@ -23,7 +23,7 @@ func _ready():
 	var found := false
 	for child in $VBoxContainer.get_children():
 		var deck: StartingDeck = (child as DeckListItem).deck
-		if global.starting_deck == deck.get_id():
+		if global.starting_deck_id == deck.get_id():
 			(child as DeckListItem).grab_focus()
 			found = true
 			break
@@ -31,9 +31,9 @@ func _ready():
 		# select the first one, and overwrite the global id
 		var first = $VBoxContainer.get_child(0)
 		var deck: StartingDeck = (first as DeckListItem).deck
-		global.starting_deck = deck.get_id() # TBD maybe this should also be persisted somehow?
+		global.starting_deck_id = deck.get_id() # TBD maybe this should also be persisted somehow?
 		(first as DeckListItem).grab_focus()
 		
 func deck_chosen(starting_deck: StartingDeck):
-	global.starting_deck = starting_deck.get_id()
+	global.starting_deck_id = starting_deck.get_id()
 	Events.emit_signal("selection_starting_deck_over")

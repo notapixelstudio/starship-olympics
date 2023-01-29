@@ -42,7 +42,7 @@ func _on_SkullHole_body_entered(body):
 		$Full.visible = true
 		full = true
 		
-		$RandomAudioStreamPlayer.play()
+		AudioManager.play($RandomAudioStreamPlayer)
 		
 		$Tween.stop_all()
 		$Tween.interpolate_property($Full, "modulate", $Full.modulate, body.get_player().species.color, 1.5,
@@ -52,3 +52,14 @@ func _on_SkullHole_body_entered(body):
 func get_score():
 	return 1
 	
+func is_full():
+	return full
+	
+func is_empty():
+	return not full
+	
+func is_shared():
+	return get_player() == null
+	
+func is_of_player(p):
+	return get_player() == p

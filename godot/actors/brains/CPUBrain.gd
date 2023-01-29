@@ -5,8 +5,8 @@ export var debug := false
 export var target_location_jitter := 50.0
 export var random_dash_p := 0.04
 export var random_fire_p := 0.02
-export var think_time := 0.04
-export var think_time_jitter := 0.01
+export var think_time := 0.2
+export var think_time_jitter := 0.04
 export var start_time_jitter := 1.0
 
 var target_location = null # (Vector2) will try to reach this location, if not null
