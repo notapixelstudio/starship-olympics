@@ -7,14 +7,19 @@ export var random_dash_p := 0.04
 export var random_fire_p := 0.02
 export var think_time := 0.2
 export var think_time_jitter := 0.04
-export var start_time_jitter := 1.0
+export var start_time_jitter := 0.5
 
 var target_location = null # (Vector2) will try to reach this location, if not null
 var stance := 'aggressive'
+var home_global_position : Vector2
 
 func go_to(global_point: Vector2) -> void:
 	target_location = global_point + target_location_jitter*Vector2(1,0).rotated(randf()*TAU)
 	$NavigationAgent2D.set_target_location(target_location)
+	
+func go_home() -> void:
+	go_to(home_global_position)
+	log_strategy('go home')
 	
 func forget_current_target_location() -> void:
 	target_location = null
@@ -73,6 +78,7 @@ func compute_think_time():
 	$ThinkTimer.wait_time = think_time + think_time_jitter*2*(0.5-randf())
 	
 func _ready():
+	home_global_position = global_position
 	compute_think_time()
 	$ThinkTimer.wait_time += start_time_jitter*randf()
 	$ThinkTimer.start()
