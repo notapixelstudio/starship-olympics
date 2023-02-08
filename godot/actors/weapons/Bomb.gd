@@ -20,6 +20,8 @@ onready var explosion = Explosion.instance()
 
 var species : Species
 
+var team : String
+
 func _ready():
 	if type == GameMode.BOMB_TYPE.classic:
 		$Sprite/AnimationPlayer.play('rotate')
@@ -42,6 +44,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		apply_impulse(Vector2(0,0), impulse)
 	if ship:
 		species = ship.species
+		team = ship.get_team()
 		
 		entity.get('Owned').set_owned_by(ship)
 		ECM.E($Core).get('Owned').set_owned_by(ship)
@@ -212,7 +215,10 @@ func create_bubble():
 	bubble_already_spawned = true
 
 func _on_NearArea_body_entered(body):
-	if body is Bubble:
+	# friendly fire - bombs don't trigger on myself or my teammates
+	if body is Ship and body.get_team() != get_team():
+		detonate()
+	elif body is Bubble:
 		if type == GameMode.BOMB_TYPE.bubble:
 			create_bubble()
 			queue_free()
@@ -228,6 +234,9 @@ func _on_NearArea_body_entered(body):
 		
 func get_owner_ship():
 	return entity.get('Owned').get_owned_by()
+	
+func get_team():
+	return team
 
 #signal frozen
 #func freeze():
