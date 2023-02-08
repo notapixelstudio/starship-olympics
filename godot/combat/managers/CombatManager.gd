@@ -30,8 +30,9 @@ func bomb_near_area_entered(other : CollisionObject2D, bomb : Bomb):
 	if not entity:
 		return
 		
-	if entity.has('Trigger') and bomb.entity.get('Owned').get_owned_by() != entity.get_host():
+	if entity.has('Trigger'): # Ships do not use this code anymore
 		bomb.detonate()
+		
 		
 #func _on_sth_killed(sth, killer : Ship, ship_for_good=false):
 #	if sth is Ship:
