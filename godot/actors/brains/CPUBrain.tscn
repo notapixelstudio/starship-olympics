@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/brains/Brain.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/brains/CPUBrain.gd" type="Script" id=2]
@@ -15,6 +15,9 @@ func _process(delta):
 [sub_resource type="DynamicFont" id=1]
 size = 48
 font_data = ExtResource( 4 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 500.0
 
 [node name="CPUBrain" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -76,6 +79,14 @@ custom_fonts/font = SubResource( 1 )
 align = 1
 valign = 1
 uppercase = true
+
+[node name="DangerArea2D" type="Area2D" parent="." index="6"]
+position = Vector2( 500, 0 )
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DangerArea2D" index="0"]
+shape = SubResource( 3 )
 
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_path_changed"]
 [connection signal="timeout" from="ThinkTimer" to="." method="_on_ThinkTimer_timeout"]

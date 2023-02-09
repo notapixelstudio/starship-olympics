@@ -135,3 +135,21 @@ func log_strategy(txt: String) -> void:
 		return
 	$"%StrategyLabel".text = txt
 	
+func get_danger_points_ahead() -> Array:
+	var dangers := []
+	
+	for body in $DangerArea2D.get_overlapping_bodies():
+		if (body is Bomb or body is Pew) and body.get_team() != controllee.get_team():
+			dangers.append(body.global_position)
+			
+	for area in $DangerArea2D.get_overlapping_areas():
+		if area is Explosion:
+			dangers.append(area.global_position)
+			
+	return dangers
+
+func compute_average_position(positions) -> Vector2:
+	var result := Vector2(0,0)
+	for p in positions:
+		result += p
+	return result / float(len(positions))

@@ -70,3 +70,5 @@ func disable_ownership_transfer() -> void:
 func has_ownership_transfer() -> bool:
 	return ownership_transfer
 	
+func get_team() -> String:
+	return team
