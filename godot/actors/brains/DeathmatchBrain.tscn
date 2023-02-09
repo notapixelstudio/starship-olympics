@@ -5,8 +5,11 @@
 
 [node name="DeathmatchBrain" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-target_location_jitter = 0.0
+debug = true
+target_location_jitter = 10.0
+random_dash_p = 0.0
+start_time_jitter = 0.0
 forward_weapon = false
 back_attack_distance = 1200
 forward_attack_distance = 800
-back_attack_probability = 1.0
+back_attack_probability = 0.8

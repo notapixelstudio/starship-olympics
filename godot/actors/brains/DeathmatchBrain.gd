@@ -38,7 +38,7 @@ func think():
 				go_to(global_position + escape_vector)
 				log_strategy('keep distance')
 		else: # backwards weapon
-			if global_position.distance_to(target.global_position) > back_attack_distance:
+			if $NavigationAgent2D.distance_to_target() > back_attack_distance:
 				set_stance('quiet')
 				go_to(target.get_target_destination())
 				log_strategy('chase ship')
@@ -48,7 +48,7 @@ func think():
 				go_to(global_position + escape_vector)
 				log_strategy('back attack')
 				if randf() <= back_attack_probability:
-					start_charging_to_dash(500+randf()*500)
+					start_charging_to_dash(escape_vector.length()*0.2+randf()*350) # try to charge more if target is far
 	else:
 		set_stance('quiet')
 		go_home()
