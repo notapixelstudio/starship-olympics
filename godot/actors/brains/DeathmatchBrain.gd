@@ -17,6 +17,14 @@ func think():
 	set_stance('quiet')
 	log_strategy('')
 	
+	# avoiding dangers takes priority over the rest
+	var danger_points = get_danger_points_ahead()
+	if len(danger_points) > 0:
+		var escape_vector = global_position - compute_average_position(danger_points)
+		go_to(global_position + escape_vector)
+		log_strategy('avoid danger')
+		return
+	
 	targets = get_tree().get_nodes_in_group('Ship')
 	var valid_targets = []
 	
