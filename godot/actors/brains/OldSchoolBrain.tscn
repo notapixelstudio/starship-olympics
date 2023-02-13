@@ -3,5 +3,7 @@
 [ext_resource path="res://actors/brains/DeathmatchBrain.tscn" type="PackedScene" id=1]
 
 [node name="OldSchoolBrain" instance=ExtResource( 1 )]
+target_location_jitter = 50.0
+random_dash_p = 0.01
 random_fire_p = 0.04
 forward_weapon = true
