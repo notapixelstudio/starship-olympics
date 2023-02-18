@@ -5,6 +5,5 @@
 
 [node name="BoardConquestBrain" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-random_dash_p = 0.003
-think_time = 0.2
-think_time_jitter = 0.04
+target_location_jitter = 100.0
+random_dash_p = 0.005
