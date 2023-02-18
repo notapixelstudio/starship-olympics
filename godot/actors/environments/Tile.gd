@@ -202,3 +202,10 @@ func get_conquering_player():
 	if conquering_ship == null:
 		return null
 	return conquering_ship.get_player()
+
+func is_conquered() -> bool:
+	return get_player() != null
+	
+func is_conquerable_by(player) -> bool:
+	return get_player() == null or player != get_player()
+	

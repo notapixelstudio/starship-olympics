@@ -13,14 +13,14 @@ func think():
 		var strategic_value = target.get_strategic_value(controllee)
 		if not strategic_value:
 			continue
-		var d = global_position.distance_squared_to(target.global_position) / strategic_value
+		var d = global_position.distance_squared_to(target.global_position) / pow(strategic_value, 3)
 		if not nearest or d < distance:
 			nearest = target
 			distance = d
 			
 	if nearest:
 		go_to(nearest.global_position + controllee.linear_velocity*0.1) # try to keep moving, aim over the target
-		log_strategy('pass on tile')
+		log_strategy('reach tile')
 		return
 	
 	forget_current_target_location()
