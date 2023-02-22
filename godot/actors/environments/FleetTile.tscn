@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/environments/FleetTile.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/fleet.png" type="Texture" id=3]
+
+[node name="FleetTile" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+points = 9
+
+[node name="CollisionPolygon2D" parent="." index="0"]
+polygon = PoolVector2Array( 1.83697e-14, 300, -300, 3.67394e-14, -5.51091e-14, -300, 300, -7.34788e-14 )
+
+[node name="GRegularPolygon" parent="." index="1"]
+radius = 300.0
+
+[node name="Foreground" parent="." index="4"]
+position = Vector2( -6.99382e-07, 16 )
+polygon = PoolVector2Array( 1.83697e-14, 300, -300, 3.67394e-14, -5.51091e-14, -300, 300, -7.34788e-14 )
+
+[node name="Graphics" parent="." index="5"]
+position = Vector2( -1.39876e-06, 32 )
+
+[node name="Background" parent="Graphics" index="0"]
+self_modulate = Color( 0.129412, 0.129412, 0.129412, 1 )
+polygon = PoolVector2Array( 1.83697e-14, 300, -300, 3.67394e-14, -5.51091e-14, -300, 300, -7.34788e-14 )
+
+[node name="Partial" parent="Graphics" index="1"]
+scale = Vector2( 2.1, 2.1 )
+
+[node name="Wrapper" parent="Graphics" index="2"]
+scale = Vector2( 3, 3 )
+
+[node name="Label" parent="Graphics/Wrapper" index="0"]
+visible = false
+
+[node name="Sprite" type="Sprite" parent="Graphics/Wrapper" index="1"]
+modulate = Color( 0.254902, 0.254902, 0.254902, 1 )
+position = Vector2( -3.66667, -3.66666 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="Graphics/Wrapper" index="2"]
+position = Vector2( -3.66667, -6 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" parent="Neighbourhood" index="0"]
+polygon = PoolVector2Array( 1.83697e-14, 300, -300, 3.67394e-14, -5.51091e-14, -300, 300, -7.34788e-14 )
