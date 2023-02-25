@@ -144,6 +144,8 @@ func continue_after_session_over() -> void:
 	"""
 	global.sessions_played +=1 # WE are sure that sessions is over
 	var deck: Deck = global.the_game.get_deck()
+	
+	"""
 	if deck.is_playlist():
 		var playlists = global.get_playlist_starting_deck(TheUnlocker.HIDDEN)
 		playlists.shuffle()
@@ -151,8 +153,7 @@ func continue_after_session_over() -> void:
 			var to_be_unlocked_deck = playlists.back()
 			print("Unlocking a new playlist" + to_be_unlocked_deck.get_id())
 			TheUnlocker.unlock_element("starting_decks",to_be_unlocked_deck.get_id())
-	
-	"""
+			
 	Unlocking disabled Issue #1022
 	
 	if global.sessions_played == 1:
