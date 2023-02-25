@@ -12,7 +12,7 @@ func _ready():
 	add_to_group(PERSIST_GROUP)
 
 
-var unlocked_elements = {
+const DEFAULT_UNLOCKED = {
 	"starting_decks":{
 		"intro": UNLOCKED,
 	},
@@ -38,6 +38,11 @@ var unlocked_elements = {
 	}
 }
 
+var unlocked_elements := {}
+
+func reset_unlocks():
+	unlocked_elements = DEFAULT_UNLOCKED
+	
 func get_unlocked_list(group_id: String, status: String = UNLOCKED) -> Array:
 	var group_object = self.unlocked_elements.get(group_id)
 	var list_unlocked = []
@@ -75,6 +80,8 @@ func get_state():
 	"""
 	get_state will return everything we need to be persistent in the game
 	"""
+	if unlocked_elements.empty():
+		unlocked_elements = DEFAULT_UNLOCKED
 	return {
 		unlocked_elements = self.unlocked_elements
 	}
