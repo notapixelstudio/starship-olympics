@@ -17,6 +17,7 @@ export var hide_grid : bool = false setget set_hide_grid
 
 export var line_width = 48 setget set_line_width
 
+export var overridable_line_color = true
 export var solid_line_color = Color8(208, 245, 295, 255) setget set_solid_line_color
 export var line_texture : Texture setget set_line_texture
 

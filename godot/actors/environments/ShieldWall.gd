@@ -53,7 +53,7 @@ func down():
 	health -= 1
 	
 	# collisions will be disabled near the end of the animation
-	$AnimationPlayer.advance(10) # should be anough to end the current animation and make the sector flash again
+	$AnimationPlayer.advance(10) # should be enough to end the current animation and make the sector flash again
 	if health > 0 or type == 'plate':
 		$AnimationPlayer.play("IndestructibleHit")
 	else:

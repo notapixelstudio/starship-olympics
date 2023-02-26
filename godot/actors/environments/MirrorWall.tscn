@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/environments/MirrorWall.gd" type="Script" id=2]
+[ext_resource path="res://assets/patterns/wall/double.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Color( 1.7, 1.7, 1.7, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.27451 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Polygon2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("IsoPolygon:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="MirrorWall" instance=ExtResource( 1 )]
+modulate = Color( 1.7, 1.7, 1.7, 1 )
+script = ExtResource( 2 )
+elongation = 0
+overridable_line_color = false
+solid_line_color = Color( 0.713726, 1, 0.611765, 1 )
+line_texture = ExtResource( 3 )
+
+[node name="Polygon2D" parent="." index="2"]
+color = Color( 0.309804, 0.247059, 0.235294, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+anims/Hit = SubResource( 1 )
+anims/RESET = SubResource( 2 )

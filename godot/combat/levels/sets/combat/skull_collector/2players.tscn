@@ -1,9 +1,9 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=2]
 [ext_resource path="res://combat/managers/RespawnFromHomeManager.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/levels/sets/combat/skull_collector/variants/B.tscn" type="PackedScene" id=4]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=4]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=5]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
@@ -11,13 +11,14 @@
 [ext_resource path="res://combat/modes/SkullCollectors.tres" type="Resource" id=9]
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=10]
 [ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=11]
-[ext_resource path="res://combat/levels/sets/combat/skull_collector/SkullVariants.tscn" type="PackedScene" id=12]
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=12]
 [ext_resource path="res://actors/environments/Skull.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/managers/SkullManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=15]
 [ext_resource path="res://actors/environments/SkullHole.tscn" type="PackedScene" id=16]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=18]
+[ext_resource path="res://actors/environments/MirrorWall.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/sprites/environments/skull_deco.png" type="Texture" id=20]
 [ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=21]
 
@@ -73,19 +74,27 @@ position = Vector2( 1200, -650 )
 scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
-[node name="Wall5" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1800, 0 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 10 )
 
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall5" index="4"]
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall" index="8"]
 script = ExtResource( 1 )
 radius = 400
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall6" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
+[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
+position = Vector2( 1800, 0 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall2" index="8"]
+script = ExtResource( 1 )
+radius = 400
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall6" parent="Battlefield/Middleground" index="2" instance=ExtResource( 8 )]
 position = Vector2( -2100, -600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 10 )
@@ -97,7 +106,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall9" parent="Battlefield/Middleground" index="2" instance=ExtResource( 8 )]
+[node name="Wall9" parent="Battlefield/Middleground" index="3" instance=ExtResource( 8 )]
 position = Vector2( -2100, 600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 10 )
@@ -109,7 +118,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall8" parent="Battlefield/Middleground" index="3" instance=ExtResource( 8 )]
+[node name="Wall8" parent="Battlefield/Middleground" index="4" instance=ExtResource( 8 )]
 position = Vector2( 2100, -600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 10 )
@@ -121,7 +130,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall7" parent="Battlefield/Middleground" index="4" instance=ExtResource( 8 )]
+[node name="Wall7" parent="Battlefield/Middleground" index="5" instance=ExtResource( 8 )]
 position = Vector2( 2100, 600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 10 )
@@ -133,20 +142,20 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 8 )]
-position = Vector2( 1800, 0 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 10 )
+[node name="MirrorWall" parent="Battlefield/Middleground" index="6" instance=ExtResource( 19 )]
+modulate = Color( 1, 1, 1, 1 )
 
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
-script = ExtResource( 1 )
-radius = 400
-sides = 4.0
-alternating_angle = 0
-rotation_degrees = 0
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/MirrorWall" index="8"]
+script = ExtResource( 12 )
+height = 1000
+bevel = 40
+bevel_nw = 40
+bevel_ne = 40
+bevel_sw = 40
+bevel_se = 40
 
-[node name="SkullVariants" parent="Battlefield/Middleground" index="6" instance=ExtResource( 12 )]
-variant_scenes = [ ExtResource( 4 ) ]
+[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall" index="9" instance=ExtResource( 4 )]
+offset_type = "outset"
 
 [node name="SkullHole" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
 position = Vector2( -1600, 450 )
@@ -209,8 +218,8 @@ texture = ExtResource( 20 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( -1200, 650 )
 rotation = -0.785398
+controls = "joy1"
 species = ExtResource( 5 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 1200, -650 )
