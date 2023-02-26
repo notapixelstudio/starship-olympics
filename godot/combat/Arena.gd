@@ -98,8 +98,10 @@ func set_style(v : ArenaStyle):
 		yield(self, 'ready')
 	
 	for wall in get_tree().get_nodes_in_group('wall'):
-		wall.solid_line_color = style.wall_color
-		wall.line_texture = style.wall_texture
+		if wall.overridable_line_color:
+			wall.solid_line_color = style.wall_color
+		if not wall.line_texture:
+			wall.line_texture = style.wall_texture
 	for grid in get_tree().get_nodes_in_group('grid'):
 		grid.fg_color = style.battlefield_fg_color
 		grid.fg_color = style.battlefield_fg_color
@@ -643,8 +645,6 @@ func ship_just_died(ship, killer, for_good):
 	#	respawn_timeout = 0.75
 	#elif game_mode.name == "GoalPortal":
 	#	respawn_timeout = 0.75
-	if game_mode.id == 'skull_collector':
-		respawn_timeout = 2.25
 		
 	if game_mode.id == 'diamond_warfare':
 		respawn_timeout = 3.5

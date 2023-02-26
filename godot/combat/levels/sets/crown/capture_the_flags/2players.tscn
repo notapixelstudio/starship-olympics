@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://actors/environments/FlagPole.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=7]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/modes/CaptureTheFlags.tres" type="Resource" id=9]
+[ext_resource path="res://actors/environments/MirrorWall.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=12]
 [ext_resource path="res://actors/brains/TakeTheCrownBrain.tscn" type="PackedScene" id=15]
@@ -60,49 +61,51 @@ bg_color = Color( 0.28, 0.14, 0.14, 1 )
 [node name="FloodWater" parent="Battlefield/Background" index="5"]
 opaque_tint = Color( 0, 0, 0, 1 )
 
-[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
-position = Vector2( -300, 300 )
+[node name="MirrorWall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
+modulate = Color( 1, 1, 1, 1 )
+position = Vector2( -400, -450 )
 rotation = 0.785398
 
-[node name="NavigationZone" parent="Battlefield/Middleground/Wall" index="8" instance=ExtResource( 16 )]
+[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall" index="9" instance=ExtResource( 16 )]
 offset_type = "outset"
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall" index="9"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/MirrorWall" index="10"]
 script = ExtResource( 2 )
 width = 800
 height = 200
-bevel = 99
-bevel_nw = 99
-bevel_ne = 99
-bevel_sw = 99
-bevel_se = 99
+bevel = 40
+bevel_nw = 40
+bevel_ne = 40
+bevel_sw = 40
+bevel_se = 40
 
-[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
-position = Vector2( 300, -300 )
+[node name="MirrorWall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 10 )]
+modulate = Color( 1, 1, 1, 1 )
+position = Vector2( 450, 400 )
 rotation = 0.785398
 
-[node name="NavigationZone" parent="Battlefield/Middleground/Wall2" index="8" instance=ExtResource( 16 )]
+[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall2" index="9" instance=ExtResource( 16 )]
 offset_type = "outset"
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall2" index="9"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/MirrorWall2" index="10"]
 script = ExtResource( 2 )
 width = 800
 height = 200
-bevel = 99
-bevel_nw = 99
-bevel_ne = 99
-bevel_sw = 99
-bevel_se = 99
+bevel = 40
+bevel_nw = 40
+bevel_ne = 40
+bevel_sw = 40
+bevel_se = 40
 
 [node name="Flag" parent="Battlefield/Foreground" index="0" instance=ExtResource( 17 )]
 type = "flag"
 
 [node name="Flag2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 17 )]
-position = Vector2( 800, 800 )
+position = Vector2( 900, 850 )
 type = "flag"
 
 [node name="Flag3" parent="Battlefield/Foreground" index="2" instance=ExtResource( 17 )]
-position = Vector2( -800, -800 )
+position = Vector2( -850, -900 )
 type = "flag"
 
 [node name="CameraEye" parent="Battlefield/Foreground" index="3" instance=ExtResource( 12 )]
@@ -114,8 +117,8 @@ position = Vector2( 1100, -1100 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
 position = Vector2( -800, 800 )
 rotation = -0.785398
+controls = "joy1"
 species = ExtResource( 4 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 800, -800 )
