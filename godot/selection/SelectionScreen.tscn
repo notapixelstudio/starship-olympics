@@ -65,6 +65,9 @@ func _input(event):
 			emit_signal(\"letsfight\")
 	if event.is_action_pressed(\"ui_left\") or event.is_action_pressed(\"ui_right\") or event.is_action_pressed(\"ui_cancel\"):
 		deactivate()
+	if event.is_action_pressed(\"debug_action\"):
+		deactivate(true)
+		emit_signal(\"letsfight\")
 
 func start(players: Array, n_matches: int):
 	human_players = players
