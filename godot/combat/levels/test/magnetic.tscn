@@ -55,12 +55,13 @@ position = Vector2( 272, 600 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 1 )]
 position = Vector2( -1200, 0 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 8 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 1 )]
 position = Vector2( 818, 43 )
 rotation = 3.14159
-controls = "kb2"
+controls = "joy2"
 species = ExtResource( 7 )
 
 [node name="Camera" parent="." index="7"]

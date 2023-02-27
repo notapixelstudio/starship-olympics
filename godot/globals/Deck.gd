@@ -25,6 +25,10 @@ func setup():
 	var starting_deck: StartingDeck = global.get_actual_resource(decks, global.starting_deck_id)
 	playlist = starting_deck.is_playlist()
 	TheUnlocker.unlock_element("starting_decks", starting_deck.get_id())
+	for unlock in starting_deck.get_unlocks():
+		if TheUnlocker.get_status("starting_decks", unlock) == TheUnlocker.UNLOCKED:
+			continue
+		TheUnlocker.unlock_element("starting_decks", unlock, TheUnlocker.HIDDEN)
 	#var starting_deck = load(DECK_PATH+'/winter.tres')
 	append_cards(starting_deck.deal_cards())
 	next.append_array(starting_deck.get_nexts())
