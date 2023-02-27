@@ -759,7 +759,7 @@ func get_ordered_species() -> Array:
 func compare_by_species_id(a: Species, b: Species):
 	return a.species_id < b.species_id
 	
-var starting_deck_id: String = "skulls"
+var starting_deck_id: String = "two"
 
 
 # Date utils
