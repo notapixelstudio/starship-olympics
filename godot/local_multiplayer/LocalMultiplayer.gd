@@ -104,6 +104,8 @@ func start_fight(selected_players: Array, fight_mode: String):
 		
 	# if single player, add a CPU
 	var num_CPUs = 0 if len(players) > 1 else 1
+	if len(players) == 0:
+		num_CPUs = 2
 	add_cpu(num_CPUs)
 	
 	# map initialization

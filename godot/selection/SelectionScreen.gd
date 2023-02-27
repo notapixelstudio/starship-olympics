@@ -187,6 +187,8 @@ func _input(event):
 func _unhandled_input(event):
 	if event.is_action_pressed("pause") and not global.demo:
 		Events.emit_signal("nav_to_menu")
+	if event.is_action_pressed("debug_action"):
+		ready_to_fight.start([], global.win)
 		
 var fight_mode = "vs Mode"
 

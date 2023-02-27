@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/minigame_list/DeckListScreen.gd" type="Script" id=1]
 [ext_resource path="res://ui/minigame_list/DeckListItem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=3]
 
 [node name="DeckListScreen" type="ScrollContainer"]
 anchor_left = 0.5
@@ -23,3 +24,12 @@ margin_bottom = 620.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
+
+[node name="FightButton" type="Button" parent="VBoxContainer"]
+margin_right = 1180.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+theme = ExtResource( 3 )
+text = "FIGHT"
+
+[connection signal="pressed" from="VBoxContainer/FightButton" to="." method="_on_FightButton_pressed"]
