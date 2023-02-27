@@ -44,7 +44,7 @@ match_duration_override = 100.0
 
 [node name="CrownManager" parent="Managers" index="0" instance=ExtResource( 16 )]
 
-[node name="CrownModeManager" parent="Managers" index="9"]
+[node name="CrownModeManager" parent="Managers" index="8"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
@@ -144,6 +144,28 @@ rotation_degrees = 0
 
 [node name="Variants" parent="Battlefield/Middleground" index="2" instance=ExtResource( 1 )]
 variant_scenes = [ ExtResource( 10 ), ExtResource( 12 ), ExtResource( 18 ), ExtResource( 20 ) ]
+
+[node name="Wall3" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
+position = Vector2( -1900, -1200 )
+solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall3" index="8"]
+script = ExtResource( 17 )
+radius = 80
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall4" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
+position = Vector2( 1900, 1200 )
+solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall4" index="8"]
+script = ExtResource( 17 )
+radius = 80
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
 type = "crown"

@@ -128,7 +128,29 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
+[node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
+position = Vector2( -1750, -950 )
+solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall3" index="8"]
+script = ExtResource( 1 )
+radius = 80
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
+position = Vector2( 1750, 950 )
+solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall4" index="8"]
+script = ExtResource( 1 )
+radius = 80
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
 position = Vector2( 0, 950 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
