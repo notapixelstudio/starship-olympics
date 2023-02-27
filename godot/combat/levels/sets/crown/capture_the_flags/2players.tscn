@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://actors/environments/FlagPole.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://actors/environments/MirrorWall.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=12]
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=13]
 [ext_resource path="res://actors/brains/TakeTheCrownBrain.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
@@ -94,6 +95,28 @@ bevel_nw = 40
 bevel_ne = 40
 bevel_sw = 40
 bevel_se = 40
+
+[node name="Wall" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
+position = Vector2( -2050, 0 )
+solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="8"]
+script = ExtResource( 13 )
+radius = 300
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
+position = Vector2( 2050, 0 )
+solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="8"]
+script = ExtResource( 13 )
+radius = 300
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Flag" parent="Battlefield/Foreground" index="0" instance=ExtResource( 17 )]
 type = "flag"
