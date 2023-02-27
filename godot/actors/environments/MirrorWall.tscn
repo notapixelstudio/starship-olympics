@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/environments/MirrorWall.gd" type="Script" id=2]
 [ext_resource path="res://assets/patterns/wall/double.png" type="Texture" id=3]
+[ext_resource path="res://assets/patterns/rhombus.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Hit"
@@ -60,15 +61,15 @@ tracks/2/keys = {
 }
 
 [node name="MirrorWall" instance=ExtResource( 1 )]
-modulate = Color( 1.7, 1.7, 1.7, 1 )
 script = ExtResource( 2 )
 elongation = 0
 overridable_line_color = false
-solid_line_color = Color( 0.713726, 1, 0.611765, 1 )
+solid_line_color = Color( 1, 0.498039, 0.0980392, 1 )
 line_texture = ExtResource( 3 )
 
-[node name="Polygon2D" parent="." index="2"]
-color = Color( 0.309804, 0.247059, 0.235294, 1 )
+[node name="InnerPolygon2D" parent="." index="3"]
+texture = ExtResource( 4 )
+texture_scale = Vector2( 1, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
 anims/Hit = SubResource( 1 )
