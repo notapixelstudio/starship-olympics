@@ -48,7 +48,7 @@ func spawned(element_spawned: ElementSpawnerGroup):
 	
 	
 func _handle_waves():
-	var no_spawners_left : bool = len(spawners_per_wave[current_wave]) == 0
+m	var no_spawners_left : bool = len(spawners_per_wave[current_wave]) == 0
 	var max_repeats_reached : bool = waves[current_wave].max_repeats != -1 and waves[current_wave].times_spawned >= waves[current_wave].max_repeats
 	if no_spawners_left or max_repeats_reached:
 		current_wave += 1
