@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=1]
 [ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=2]
@@ -9,9 +9,10 @@
 [ext_resource path="res://combat/modes/SkullCollectors.tres" type="Resource" id=7]
 [ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
 [ext_resource path="res://assets/sprites/environments/skull_deco.png" type="Texture" id=9]
-[ext_resource path="res://combat/levels/sets/combat/skull_collector/SkullVariants.tscn" type="PackedScene" id=10]
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=10]
 [ext_resource path="res://combat/managers/SkullManager.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/environments/SkullHole.tscn" type="PackedScene" id=12]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=13]
 [ext_resource path="res://actors/environments/Skull.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=16]
@@ -19,6 +20,7 @@
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=18]
 [ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=19]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=20]
+[ext_resource path="res://actors/environments/MirrorWall.tscn" type="PackedScene" id=21]
 [ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=23]
 
 [node name="Arena" instance=ExtResource( 16 )]
@@ -63,17 +65,17 @@ fg_color = Color( 0, 0.48, 0.24, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
 [node name="SpeciesDecal" parent="Battlefield/Background" index="4" instance=ExtResource( 23 )]
-position = Vector2( -1500, 700 )
+position = Vector2( -1400, 700 )
 scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="SpeciesDecal2" parent="Battlefield/Background" index="5" instance=ExtResource( 23 )]
-position = Vector2( 1500, -700 )
+position = Vector2( 1400, -700 )
 scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="SpeciesDecal3" parent="Battlefield/Background" index="6" instance=ExtResource( 23 )]
-position = Vector2( -1500, -700 )
+position = Vector2( -1400, -700 )
 scale = Vector2( 0.75, 0.75 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p3")
 
@@ -149,7 +151,19 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="SkullVariants" parent="Battlefield/Middleground" index="6" instance=ExtResource( 10 )]
+[node name="MirrorWall" parent="Battlefield/Middleground" index="6" instance=ExtResource( 21 )]
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/MirrorWall" index="8"]
+script = ExtResource( 10 )
+height = 1000
+bevel = 40
+bevel_nw = 40
+bevel_ne = 40
+bevel_sw = 40
+bevel_se = 40
+
+[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall" index="9" instance=ExtResource( 13 )]
+offset_type = "outset"
 
 [node name="SkullHole" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 position = Vector2( -1900, 500 )
@@ -230,13 +244,15 @@ goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 position = Vector2( 1850.5, -1037 )
 
 [node name="SkullDecoration" type="Sprite" parent="Battlefield/Foreground" index="20"]
-modulate = Color( 1, 1, 1, 0.0784314 )
+modulate = Color( 1, 1, 1, 0.470588 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -2100, 0 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 9 )
 
 [node name="SkullDecoration2" type="Sprite" parent="Battlefield/Foreground" index="21"]
-modulate = Color( 1, 1, 1, 0.0784314 )
+modulate = Color( 1, 1, 1, 0.470588 )
+self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 2100, 0 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 9 )
