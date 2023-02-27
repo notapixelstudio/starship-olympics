@@ -1049,9 +1049,13 @@ func phase_in() -> void:
 	if phasing_in_prevented:
 		return
 		
+	set_auto_thrust(false)
+	enable_controls()
 	call_deferred('set_collision_layer_bit', 22, true)
 	
 func phase_out() -> void:
+	set_auto_thrust(true)
+	disable_controls()
 	call_deferred('set_collision_layer_bit', 22, false)
 	
 func set_phasing_in_prevented(v: bool) -> void:
