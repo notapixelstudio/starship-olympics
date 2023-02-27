@@ -20,7 +20,7 @@ func new_match():
 	self.stats = PlayerStats.new()
 	
 func get_username() -> String:
-	return username if username != "" else self.get_id()
+	return username if username != "" else 'cpu' if cpu else self.get_id()
 
 func get_id() -> String:
 	return id
