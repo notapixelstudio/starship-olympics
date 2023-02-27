@@ -1,21 +1,16 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://combat/styles/palace.tres" type="Resource" id=1]
-[ext_resource path="res://assets/icon/minicards/sets/crown.png" type="Texture" id=2]
-[ext_resource path="res://assets/icon/crown_logo.png" type="Texture" id=3]
+[ext_resource path="res://assets/icon/minicards/sets/rocket_take_the_crown.png" type="Texture" id=2]
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=4]
 
 [resource]
 script = ExtResource( 4 )
 id = "rocket_crown"
-is_mutator = false
-name = "Take the Crown"
+name = "Rocket the Crown"
 icon = ExtResource( 2 )
-logo = ExtResource( 3 )
 arena_style = ExtResource( 1 )
 description = "take and keep the crown"
-tagline_pro = "If killing is not enough, steal it by bumping in the queen"
-tagline_cons = "getting killed will make you lose the crown, if you have it"
 max_timeout = 80
 max_score = 40
 starting_score = 0
@@ -42,6 +37,7 @@ bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
 auto_thrust = false
+start_invincible = true
 floodable = true
 flood = false
 laserable = true
