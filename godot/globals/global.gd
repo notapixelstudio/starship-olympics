@@ -499,7 +499,8 @@ func get_state():
 		flood=flood,
 		time_scale=time_scale,
 		laser=laser,
-		sessions_played=sessions_played
+		sessions_played=sessions_played,
+		shown_cards_from_deck=shown_cards_from_deck
 	}
 	
 
@@ -725,6 +726,23 @@ func is_session_running() -> bool:
 	
 func is_before_first_match_of_the_game() -> bool:
 	return match_number_of_game == 0
+
+# remember which cards have already been shown to the player and in which starting deck
+var shown_cards_from_deck := {}
+
+func has_card_been_shown_from_deck(card_id : String, starting_deck_id : String) -> bool:
+	return shown_cards_from_deck.has(starting_deck_id) and shown_cards_from_deck[starting_deck_id].has(card_id)
+	
+func has_any_card_been_shown_from_deck(starting_deck_id : String) -> bool:
+	return shown_cards_from_deck.has(starting_deck_id)
+	
+func add_card_to_shown_cards(card_id : String, starting_deck_id : String) -> void:
+	if not shown_cards_from_deck.has(starting_deck_id):
+		shown_cards_from_deck[starting_deck_id] = {}
+	shown_cards_from_deck[starting_deck_id][card_id] = true
+	
+func reset_shown_cards_from_deck() -> void:
+	shown_cards_from_deck = {}
 	
 ###############################
 ##### FILE SYSTEM UTILS #######
