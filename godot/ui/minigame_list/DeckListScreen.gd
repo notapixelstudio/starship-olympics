@@ -44,7 +44,6 @@ func deck_chosen(starting_deck: StartingDeck):
 func _on_FightButton_pressed():
 	var decks = global.get_resources(DECK_PATH)
 	var potential_deck_ids = TheUnlocker.get_unlocked_list("starting_decks")
-	potential_deck_ids.append_array(TheUnlocker.get_unlocked_list("starting_decks", TheUnlocker.HIDDEN))
 	var potential_playlists := []
 	for deck_id in potential_deck_ids:
 		if decks[deck_id].is_playlist():

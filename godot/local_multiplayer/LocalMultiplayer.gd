@@ -114,7 +114,7 @@ func start_fight(selected_players: Array, fight_mode: String):
 	
 	# add startdeck choosing
 	var playlists = global.get_playlist_starting_deck()
-	if len(playlists) > 0:
+	if len(playlists) > 1:
 		var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instance()
 		add_child(choose_deck_scene)
 		yield(Events, "selection_starting_deck_over")
