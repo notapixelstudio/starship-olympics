@@ -1,13 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ui/minigame_list/DeckListScreen.gd" type="Script" id=1]
 [ext_resource path="res://ui/minigame_list/DeckListItem.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/minigame_list/RandomDeckListItem.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/levels/background/menus.png" type="Texture" id=4]
+[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=5]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=6]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 1280, 720 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 42
+font_data = ExtResource( 6 )
 
 [node name="DeckListScreen" type="ScrollContainer"]
 anchor_right = 1.0
@@ -45,12 +51,26 @@ margin_right = 872.0
 margin_bottom = 10.0
 rect_min_size = Vector2( 0, 10 )
 
-[node name="RandomDeckListItem" parent="HBoxContainer/DecksContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Label" type="Label" parent="HBoxContainer/DecksContainer"]
 margin_top = 60.0
 margin_right = 872.0
-margin_bottom = 230.0
+margin_bottom = 111.0
+theme = ExtResource( 5 )
+custom_colors/font_color_shadow = Color( 0.2, 0.317647, 0.482353, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 2 )
+text = "WORLD CUPS"
+align = 1
+
+[node name="RandomDeckListItem" parent="HBoxContainer/DecksContainer" instance=ExtResource( 3 )]
+unique_name_in_owner = true
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 161.0
+margin_right = 872.0
+margin_bottom = 331.0
+color = Color( 0, 0, 0, 0 )
 
 [node name="Spacer2" type="Control" parent="HBoxContainer"]
 margin_left = 1080.0

@@ -16,8 +16,6 @@ func _ready():
 			continue
 		var item = DeckListItemScene.instance()
 		item.set_deck(deck)
-#		if i % 2:
-		item.color = Color(0,0,0,0.1)
 		$"%DecksContainer".add_child(item)
 		i += 1
 	yield(get_tree().create_timer(0.1), "timeout")
@@ -38,7 +36,7 @@ func _ready():
 #		var deck: StartingDeck = (first as DeckListItem).deck
 #		global.starting_deck_id = deck.get_id() # TBD maybe this should also be persisted somehow?
 #		(first as DeckListItem).grab_focus()
-	$"%DecksContainer".get_child(1).grab_focus()
+	$"%RandomDeckListItem".grab_focus()
 	
 func sort_by_order(a, b):
 	return a.order < b.order
