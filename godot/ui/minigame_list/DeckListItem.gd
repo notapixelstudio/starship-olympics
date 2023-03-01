@@ -17,7 +17,8 @@ func set_starting(v: StartingDeck):
 
 const CARD_SIZE := Vector2(150, 160)
 
-func set_deck(deck: StartingDeck) -> void:
+func set_deck(v: StartingDeck) -> void:
+	deck = v
 	var unlocked = TheUnlocker.get_status("starting_decks", deck.get_id()) == TheUnlocker.UNLOCKED
 	$"%Button".text = deck.get_name().to_upper()
 	
