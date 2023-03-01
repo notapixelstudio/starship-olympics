@@ -20,9 +20,7 @@ const CARD_SIZE := Vector2(160, 160)
 func set_deck(v: StartingDeck, unlocked: bool) -> void:
 	deck = v
 	$"%Button".text = deck.get_name().to_upper() if global.has_any_card_been_shown_from_deck(deck.get_id()) else '???'
-	if not unlocked:
-		$"%Title".modulate = Color(0.5,0.5,0.5)
-		
+	
 	var container
 	
 	for card in deck.cards:
@@ -32,15 +30,15 @@ func set_deck(v: StartingDeck, unlocked: bool) -> void:
 		
 		var card_node = CardScene.instance()
 		card_node.scale = Vector2(0.42,0.42)
-		card_node.position = CARD_SIZE/2 + Vector2(0, 12)
+		card_node.position = CARD_SIZE/2 + Vector2(0, 18)
 		card_node.set_content_card(card)
 		container.add_child(card_node)
 		if global.has_card_been_shown_from_deck(card.get_id(), deck.get_id()):
-			card_node.set_shadow_offset(0)
+			card_node.set_shadow_offset(-32)
 			card_node.instant_reveal = true
 			card_node.reveal()
 		else:
-			card_node.position.y -= 16
+			card_node.position.y -= 26
 		
 	container = Container.new()
 	container.rect_min_size = CARD_SIZE
