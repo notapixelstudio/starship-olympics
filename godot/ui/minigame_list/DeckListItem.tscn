@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/minigame_list/DeckListItem.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=2]
+[ext_resource path="res://assets/lock_generic.png" type="Texture" id=3]
 [ext_resource path="res://map/draft/DraftCardGraphicNode.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/shuffle.png" type="Texture" id=5]
 [ext_resource path="res://assets/arrow.png" type="Texture" id=6]
@@ -28,18 +29,25 @@ custom_constants/separation = 10
 
 [node name="Button" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
-margin_right = 170.0
+margin_right = 220.0
 margin_bottom = 170.0
-rect_min_size = Vector2( 170, 0 )
+rect_min_size = Vector2( 220, 0 )
 size_flags_horizontal = 0
 theme = ExtResource( 9 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 180.0
-margin_right = 180.0
+margin_left = 230.0
+margin_right = 230.0
 margin_bottom = 170.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Lock" type="Sprite" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2( 14.2705, 2.37842 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 3 )
 
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_Button_pressed"]

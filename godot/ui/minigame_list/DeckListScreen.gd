@@ -1,7 +1,6 @@
 extends ScrollContainer
 
 export var DeckListItemScene : PackedScene
-export var show_locked : bool = false
 const DECK_PATH = "res://map/draft/decks/"
 
 func _ready():
@@ -9,13 +8,17 @@ func _ready():
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_deck_keys = TheUnlocker.get_unlocked_list("starting_decks")
 	var i = 0
-	for key in unlocked_deck_keys:
-		var deck = decks[key]  # global.get_actual_resource(decks, unlocked_decks[i])
+	var deck_values = decks.values()
+	deck_values.sort_custom(self, 'sort_by_order')
+	for deck in deck_values:
+		# skip non playlists
+		if not deck.is_playlist():
+			continue
 		var item = DeckListItemScene.instance()
-		item.set_deck(deck, true)
-		if i % 2:
-			item.color = Color(0,0,0,0.2)
-		$VBoxContainer.add_child(item)
+		item.set_deck(deck)
+#		if i % 2:
+		item.color = Color(0,0,0,0.1)
+		$"%DecksContainer".add_child(item)
 		i += 1
 	yield(get_tree().create_timer(0.1), "timeout")
 
@@ -35,23 +38,11 @@ func _ready():
 #		var deck: StartingDeck = (first as DeckListItem).deck
 #		global.starting_deck_id = deck.get_id() # TBD maybe this should also be persisted somehow?
 #		(first as DeckListItem).grab_focus()
-	$VBoxContainer.get_child(0).grab_focus()
+	$"%DecksContainer".get_child(1).grab_focus()
+	
+func sort_by_order(a, b):
+	return a.order < b.order
 	
 func deck_chosen(starting_deck: StartingDeck):
 	global.starting_deck_id = starting_deck.get_id()
 	Events.emit_signal("selection_starting_deck_over")
-
-func _on_FightButton_pressed():
-	var decks = global.get_resources(DECK_PATH)
-	var potential_deck_ids = TheUnlocker.get_unlocked_list("starting_decks")
-	var potential_playlists := []
-	for deck_id in potential_deck_ids:
-		if decks[deck_id].is_playlist():
-			potential_playlists.append(decks[deck_id])
-			
-	if len(potential_playlists) <= 0:
-		return
-		
-	var deck = potential_playlists[randi() % len(potential_playlists)]
-	print("playlist {name} has been randomly chosen".format({"name": deck.get_id()}))
-	Events.emit_signal("starting_deck_selected", deck)

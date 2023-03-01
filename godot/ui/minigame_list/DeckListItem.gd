@@ -13,16 +13,21 @@ func set_starting(v: StartingDeck):
 	if not is_inside_tree():
 		yield(self, "ready")
 	starting_deck = v
-	set_deck(starting_deck, true)
+	set_deck(starting_deck)
 
-const CARD_SIZE := Vector2(160, 160)
+const CARD_SIZE := Vector2(150, 160)
 
-func set_deck(v: StartingDeck, unlocked: bool) -> void:
-	deck = v
-	$"%Button".text = deck.get_name().to_upper() if global.has_any_card_been_shown_from_deck(deck.get_id()) else '???'
+func set_deck(deck: StartingDeck) -> void:
+	var unlocked = TheUnlocker.get_status("starting_decks", deck.get_id()) == TheUnlocker.UNLOCKED
+	$"%Button".text = deck.get_name().to_upper()
+	
+	if not unlocked:
+		$"%Button".disabled = true
+		$HBoxContainer.modulate = Color(0.6,0.6,0.6)
+		$"%Lock".visible = true
+		$"%Button".text = '???'
 	
 	var container
-	
 	for card in deck.cards:
 		container = Container.new()
 		container.rect_min_size = CARD_SIZE
@@ -39,6 +44,7 @@ func set_deck(v: StartingDeck, unlocked: bool) -> void:
 			card_node.reveal()
 		else:
 			card_node.position.y -= 26
+			card_node.modulate = Color(0.6,0.6,0.6) if unlocked else Color(0,0,0,0.2)
 		
 	container = Container.new()
 	container.rect_min_size = CARD_SIZE
