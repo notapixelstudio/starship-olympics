@@ -4,6 +4,7 @@ class_name StartingDeck
 # This is NOT A DECK
 
 export var id : String
+export var order : int = 0
 export var name : String
 export var cards : Array = [Object(), Object(), Object(), Object()] # DraftCard
 export var nexts : Array = [] # DraftCard
