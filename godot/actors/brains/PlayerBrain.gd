@@ -42,13 +42,15 @@ func tick():
 		target_velocity = 1.3*target_velocity.normalized()*min(1.0, target_velocity.length())
 		rotation_request = front.angle_to(target_velocity)
 		
+	if controllee.has_method('get_thrust_multiplier'):
+		target_velocity *= controllee.get_thrust_multiplier()
+	
 	# if we want tank mode control (relative control)
 	# rotation_request = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
-
-func _unhandled_input(event):
-	if controllee.has_method("are_controls_enabled") and controllee.are_controls_enabled() and event.is_action_pressed(controls+'_fire'):
-		emit_signal('charge')
 	
-	# release is possible even if controls are not enabled
-	if event.is_action_released(controls+'_fire'):
+func _unhandled_input(event):
+	# charge and release even if controls are disabled
+	if event.is_action_pressed(controls+'_fire'):
+		emit_signal('charge')
+	elif event.is_action_released(controls+'_fire'):
 		emit_signal('release')
