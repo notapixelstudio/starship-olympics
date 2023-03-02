@@ -30,6 +30,7 @@ var drifting := false
 
 var THRUST = 6500
 var auto_thrust := false
+var thrust_multiplier := 1.0
 
 var deadly_trail = false
 var deadly_trail_powerup = false
@@ -1049,11 +1050,13 @@ func phase_in() -> void:
 	if phasing_in_prevented:
 		return
 		
+	thrust_multiplier = 1.0
 	set_auto_thrust(false)
 	enable_controls()
 	call_deferred('set_collision_layer_bit', 22, true)
 	
 func phase_out() -> void:
+	thrust_multiplier = 2.5
 	set_auto_thrust(true)
 	disable_controls()
 	call_deferred('set_collision_layer_bit', 22, false)
@@ -1061,6 +1064,9 @@ func phase_out() -> void:
 func set_phasing_in_prevented(v: bool) -> void:
 	phasing_in_prevented = v
 
+func get_thrust_multiplier() -> float:
+	return thrust_multiplier
+	
 func get_brain() -> Brain:
 	if not has_node('Brain'):
 		return null
