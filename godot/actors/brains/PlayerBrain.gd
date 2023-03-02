@@ -7,8 +7,11 @@ func set_controls(v: String) -> void:
 
 func local_handling() -> Vector2:
 	var target = Vector2()
-	target.x = Input.get_action_strength(controls+"_right") - Input.get_action_strength(controls+"_left")
-	target.y = Input.get_action_strength(controls+"_down") - Input.get_action_strength(controls+"_up")
+	
+	if controllee.has_method("are_controls_enabled") and controllee.are_controls_enabled():
+		target.x = Input.get_action_strength(controls+"_right") - Input.get_action_strength(controls+"_left")
+		target.y = Input.get_action_strength(controls+"_down") - Input.get_action_strength(controls+"_up")
+		
 	return target
 
 func tick():
@@ -43,7 +46,9 @@ func tick():
 	# rotation_request = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
 
 func _unhandled_input(event):
-	if event.is_action_pressed(controls+'_fire'):
+	if controllee.has_method("are_controls_enabled") and controllee.are_controls_enabled() and event.is_action_pressed(controls+'_fire'):
 		emit_signal('charge')
-	elif event.is_action_released(controls+'_fire'):
+	
+	# release is possible even if controls are not enabled
+	if event.is_action_released(controls+'_fire'):
 		emit_signal('release')
