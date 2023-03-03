@@ -3,6 +3,7 @@ extends Node
 const WAVES_GROUP = "spawn_waves"
 const COLLECTABLE = "coin"
 const WAVE_DELAY = 0.0
+const BASE_TIME = 2.5
 var to_next_wave = 2
 var current_wave = 0
 
@@ -60,6 +61,7 @@ func _handle_waves():
 	var spawner: ElementSpawnerGroup = self.get_spawner(spawners_per_wave[current_wave])
 	Events.emit_signal("ask_to_spawn", spawner, WAVE_DELAY + waves[current_wave].extra_delay)
 	waves[current_wave].times_spawned += 1
+	wave_timer.wait_time = BASE_TIME + WAVE_DELAY + waves[current_wave].extra_delay
 	self.reset_wave_timer()
 	
 func reset_wave_timer():
