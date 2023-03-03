@@ -8,6 +8,7 @@ export var add_champion := false
 var champion_info = InfoChampion
 
 func _ready():
+	$VBoxContainer/Label3.visible=false
 	$"%WinnerBanner".queue_free()
 	set_process_input(false)
 	var data = global.read_file_by_line(InfoChampion.PATH_FILE_CHAMPIONS)
@@ -55,6 +56,7 @@ func _ready():
 func naming_champions():
 	print("Everything is set")
 	set_process_input(true)
+	$VBoxContainer/Label3.visible=true
 	
 func _input(event):
 	if event.is_action_pressed("confirm"):

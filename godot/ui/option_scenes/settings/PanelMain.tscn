@@ -85,14 +85,12 @@ text = "REMAP CONTROLS"
 option_menu = ExtResource( 6 )
 title = "Remap controls"
 
-[node name="UnlockMode" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
+[node name="Rumbling" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
 margin_top = 378.0
 margin_right = 778.0
 margin_bottom = 428.0
-element_path = "unlock_mode"
-label_description = "Unlock mode"
-elem_type = 2
+element_path = "rumbling"
+label_description = "joypad rumbling"
 
 [node name="Resolution" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
