@@ -15,3 +15,6 @@ func to_dict():
 
 func store():
 	global.write_into_file(PATH_FILE_CHAMPIONS, self.to_dict())
+
+func is_cpu():
+	return player.get("cpu", false)
