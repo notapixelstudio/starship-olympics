@@ -12,7 +12,7 @@
 [ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=10]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=11]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=12]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=13]
+[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=13]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=14]
 [ext_resource path="res://actors/environments/WaveGroupSpawner.gd" type="Script" id=15]
 [ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=16]
@@ -215,7 +215,7 @@ position = Vector2( -1200, 0 )
 script = ExtResource( 15 )
 wave_number = 2
 max_repeats = 0
-extra_delay = 2.0
+extra_delay = 1.0
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave2" index="0" instance=ExtResource( 18 )]
 position = Vector2( 1200, 0 )
@@ -226,7 +226,7 @@ element_scene = ExtResource( 16 )
 script = ExtResource( 15 )
 wave_number = 3
 max_repeats = 3
-extra_delay = 2.0
+extra_delay = 1.0
 
 [node name="ElementSpawnerGroup17" parent="Battlefield/Middleground/Wave3" index="0" instance=ExtResource( 18 )]
 position = Vector2( -900, 0 )
@@ -423,14 +423,13 @@ position = Vector2( -1700, -600 )
 position = Vector2( -600, 600 )
 rotation = -0.785398
 controls = "joy1"
-species = ExtResource( 9 )
+species = ExtResource( 13 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 4 )]
 position = Vector2( 600, -600 )
 rotation = 2.35619
-controls = "kb2"
-species = ExtResource( 13 )
-cpu = true
+controls = "joy2"
+species = ExtResource( 9 )
 
 [node name="Countdown" parent="CanvasLayer" index="2"]
 __meta__ = {
