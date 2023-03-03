@@ -2,7 +2,7 @@ extends Node
 
 const WAVES_GROUP = "spawn_waves"
 const COLLECTABLE = "coin"
-const WAVE_DELAY = 0
+const WAVE_DELAY = 0.1
 var to_next_wave = 2
 var current_wave = 0
 
@@ -48,7 +48,7 @@ func spawned(element_spawned: ElementSpawnerGroup):
 	
 	
 func _handle_waves():
-m	var no_spawners_left : bool = len(spawners_per_wave[current_wave]) == 0
+	var no_spawners_left : bool = len(spawners_per_wave[current_wave]) == 0
 	var max_repeats_reached : bool = waves[current_wave].max_repeats != -1 and waves[current_wave].times_spawned >= waves[current_wave].max_repeats
 	if no_spawners_left or max_repeats_reached:
 		current_wave += 1
@@ -58,7 +58,7 @@ m	var no_spawners_left : bool = len(spawners_per_wave[current_wave]) == 0
 		setup(get_tree().get_nodes_in_group(WAVES_GROUP), current_wave)
 		
 	var spawner: ElementSpawnerGroup = self.get_spawner(spawners_per_wave[current_wave])
-	Events.emit_signal("ask_to_spawn", spawner, WAVE_DELAY)
+	Events.emit_signal("ask_to_spawn", spawner, WAVE_DELAY + waves[current_wave].extra_delay)
 	waves[current_wave].times_spawned += 1
 	self.reset_wave_timer()
 	
