@@ -94,7 +94,7 @@ shader_param/scale_x = 0.67
 
 [node name="WaterWall" type="StaticBody2D"]
 collision_layer = 0
-collision_mask = 4194304
+collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="Graphics" type="Node2D" parent="."]
@@ -155,6 +155,20 @@ collision_layer = 0
 collision_mask = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OverlapArea"]
+visible = false
+
+[node name="RepulsionArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4194304
+priority = 128.0
+space_override = 3
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = -6500.0
+linear_damp = 5.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RepulsionArea"]
 visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
