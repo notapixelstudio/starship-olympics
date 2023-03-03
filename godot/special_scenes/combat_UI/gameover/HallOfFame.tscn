@@ -52,7 +52,20 @@ custom_colors/font_color_shadow = Color( 0.2, 0.317647, 0.482353, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 3
 custom_fonts/font = SubResource( 4 )
-text = "Lucca Comics and Games 2022"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+margin_top = 110.0
+margin_right = 1280.0
+margin_bottom = 136.0
+theme = ExtResource( 9 )
+custom_colors/font_color_shadow = Color( 0.2, 0.317647, 0.482353, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 4 )
+text = "PRESS THE BUTTON TO CONTINUE"
 align = 1
 valign = 1
 uppercase = true
