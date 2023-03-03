@@ -60,13 +60,13 @@ func get_available_player_counts(possible_players: Array) -> Array:
 	return ret
 	
 func get_name() -> String:
-	return self.minigame.get_name()
+	return minigame.get_name()
 	
 func get_description() -> String:
-	return self.minigame.get_description()
+	return minigame.get_description()
 	
 func get_icon() -> Texture:
-	return self.minigame.get_icon()
+	return minigame.get_icon()
 
 func set_new(v: bool) -> void:
 	new = v
@@ -78,10 +78,10 @@ func get_tint() -> Color:
 	return tint
 	
 func get_suit_top() -> Array:
-	return self.minigame.get_suit_top()
+	return minigame.get_suit_top()
 
 func get_suit_bottom() -> Array:
-	return self.minigame.get_suit_bottom()
+	return minigame.get_suit_bottom()
 
 func has_unlocks() -> bool:
 	return len(unlocks) > 0

@@ -14,7 +14,7 @@ func _ready():
 
 const DEFAULT_UNLOCKED = {
 	"starting_decks": {
-		"two": UNLOCKED,
+		"first": UNLOCKED,
 	},
 	"minigames": {
 		"crown": UNLOCKED,
