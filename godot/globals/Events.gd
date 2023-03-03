@@ -21,6 +21,9 @@ signal holdable_lost(holdable, ship)
 
 signal planet_reached(planet, sth)
 
+signal ship_dive_in(ship)
+signal ship_dive_out(ship)
+
 signal sth_collided_with_ship(sth, ship) # on enter, no distinction between body or area, includes NearArea
 signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no distinction between body or area, NearArea only
 

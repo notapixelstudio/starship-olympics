@@ -31,6 +31,7 @@ var drifting := false
 var THRUST = 6500
 var auto_thrust := false
 var thrust_multiplier := 1.0
+var phase := 'in'
 
 var deadly_trail = false
 var deadly_trail_powerup = false
@@ -67,6 +68,7 @@ const ON_ICE_MAX_THRUST = 2200
 const ON_ICE_MAX_DASH = 2500
 const ON_ICE_CHARGE_BRAKE = 0.99
 const MIN_DRIFT := 400.0
+const MIN_DIVING_TIME := 0.05
 
 const ROTATION_TORQUE = 49000*9 # 9 because we enlarged the radius of the ship's collision shape by 3
 
@@ -83,6 +85,9 @@ var alive = true
 var stunned = false
 var stun_countdown = 0
 var outside_countup = 0
+var diving := false
+var really_diving := false
+var diving_time := 0.0
 
 var max_health := 1
 var health := max_health
@@ -194,6 +199,10 @@ func reset_health():
 func _enter_tree():
 	alive = true
 	outside_countup = 0
+	diving = false
+	really_diving = false
+	diving_time = 0.0
+	phase = 'in'
 	empty_loaded_shot()
 	unhide()
 	
@@ -421,6 +430,13 @@ func _physics_process(delta):
 	#	fire()
 	
 	update_charge_bar()
+	
+	# diving
+	if diving:
+		diving_time += delta
+		if not really_diving and diving_time >= MIN_DIVING_TIME:
+			really_diving = true
+			Events.emit_signal("ship_dive_in", self)
 	
 	stun_countdown -= delta
 	if stun_countdown <= 0:
@@ -1051,22 +1067,40 @@ func phase_in() -> void:
 	if phasing_in_prevented:
 		return
 		
+	phase = 'in'
 	thrust_multiplier = 1.0
 	set_auto_thrust(false)
 	#enable_controls()
 	call_deferred('set_collision_layer_bit', 22, true)
 	
 func phase_out() -> void:
+	phase = 'out'
 	thrust_multiplier = 2.0
 	set_auto_thrust(true)
 	#disable_controls()
 	call_deferred('set_collision_layer_bit', 22, false)
+	
+func dive_in():
+	diving_time = 0.0
+	diving = true
+	set_phasing_in_prevented(true)
+	
+func dive_out():
+	diving_time = 0.0
+	diving = false
+	really_diving = false
+	set_phasing_in_prevented(false)
+	phase_in()
+	Events.emit_signal("ship_dive_out", self)
 	
 func set_phasing_in_prevented(v: bool) -> void:
 	phasing_in_prevented = v
 
 func get_thrust_multiplier() -> float:
 	return thrust_multiplier
+	
+func is_really_diving() -> bool:
+	return phase == 'out' and really_diving
 	
 func get_brain() -> Brain:
 	if not has_node('Brain'):
