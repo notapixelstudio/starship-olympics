@@ -35,19 +35,17 @@ func get_gshape():
 	return null
 	
 func _on_OverlapArea_body_entered(body):
-	if body.has_method('set_phasing_in_prevented'):
-		body.set_phasing_in_prevented(true)
+	if body.has_method('dive_in'):
+		body.dive_in()
 		
 	# trigger rockets
 	if body.has_method('detonate'):
 		body.detonate()
 		
-
 func _on_OverlapArea_body_exited(body):
-	if body.has_method('set_phasing_in_prevented') and body.has_method('phase_in'):
-		body.set_phasing_in_prevented(false)
-		body.phase_in()
-
+	if body.has_method('dive_out'):
+		body.dive_out()
+		
 #func _physics_process(delta):
 #	for body in $"%RepulsionArea".get_overlapping_bodies():
 #		if not body is Ship:
