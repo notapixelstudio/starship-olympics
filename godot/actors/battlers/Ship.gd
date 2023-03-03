@@ -471,6 +471,7 @@ func fire(override_charge = -1, dash_only = false):
 	"""
 	actual_charge = override_charge if override_charge > 0 else charge
 	var charge_impulse = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(actual_charge - MIN_CHARGE, 0, MAX_CHARGE)
+	
 	var will_dash = charging_enough and is_aiming_away_gel()
 	
 	if will_dash:

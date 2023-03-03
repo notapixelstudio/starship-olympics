@@ -24,6 +24,7 @@ func refresh():
 	$"%Outline".points = line
 	$"%Bottom".points = $"%Outline".points
 	$"%OverlapArea/CollisionPolygon2D".polygon = polygon
+	$"%RepulsionArea/CollisionPolygon2D".polygon = polygon
 	$CollisionPolygon2D.polygon = polygon
 	$"%Top".texture_offset = gshape.get_extents()
 
@@ -47,3 +48,8 @@ func _on_OverlapArea_body_exited(body):
 		body.set_phasing_in_prevented(false)
 		body.phase_in()
 
+#func _physics_process(delta):
+#	for body in $"%RepulsionArea".get_overlapping_bodies():
+#		if not body is Ship:
+#			continue
+#		body.apply_central_impulse(100*(body.global_position - global_position))
