@@ -4,7 +4,7 @@
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=2]
 [ext_resource path="res://actors/environments/WaterWall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/modes/TreasureDive.tres" type="Resource" id=5]
+[ext_resource path="res://combat/modes/DiamondDive.tres" type="Resource" id=5]
 [ext_resource path="res://combat/levels/background/blue.png" type="Texture" id=6]
 [ext_resource path="res://combat/managers/SpawnerManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/patterns/rhombus.png" type="Texture" id=8]
@@ -61,7 +61,7 @@ position = Vector2( -900, 0 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/WaterWall" index="2"]
 script = ExtResource( 2 )
-width = 800
+width = 900
 height = 800
 radius = 350
 precision = 30.0
@@ -71,7 +71,7 @@ position = Vector2( 900, 0 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/WaterWall2" index="2"]
 script = ExtResource( 2 )
-width = 800
+width = 900
 height = 800
 radius = 350
 precision = 30.0
@@ -423,6 +423,7 @@ position = Vector2( -1700, -600 )
 position = Vector2( -600, 600 )
 rotation = -0.785398
 species = ExtResource( 13 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 4 )]
 position = Vector2( 600, -600 )

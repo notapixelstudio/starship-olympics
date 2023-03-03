@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://combat/minigames/Minigame.gd" type="Script" id=1]
+[ext_resource path="res://combat/modes/DiamondDive.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+game_mode = ExtResource( 2 )
+arenas_dir = "res://combat/levels/singles/diamond_dive/"
+suit_top = "blue"
+suit_bottom = "blue"
