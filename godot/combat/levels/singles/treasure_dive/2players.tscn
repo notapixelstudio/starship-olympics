@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/geometry/icons/GRoundedRect.svg" type="Texture" id=1]
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=2]
@@ -17,110 +17,6 @@
 [ext_resource path="res://actors/environments/WaveGroupSpawner.gd" type="Script" id=15]
 [ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/ElementSpawnerGroup.tscn" type="PackedScene" id=18]
-
-[sub_resource type="Animation" id=1]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("WaterWall/GRoundedRect:height")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 600 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("WaterWall/GRoundedRect:width")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1000 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("WaterWall2/GRoundedRect:width")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1000 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("WaterWall2/GRoundedRect:height")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 600 ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "Rotate"
-length = 40.0
-step = 1.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("WaterWall/GRoundedRect:height")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 16, 32 ),
-"transitions": PoolRealArray( -2, -2, -2 ),
-"update": 0,
-"values": [ 600, 1000, 600 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("WaterWall/GRoundedRect:width")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 16, 32 ),
-"transitions": PoolRealArray( -2, -2, -2 ),
-"update": 0,
-"values": [ 1000, 600, 1000 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("WaterWall2/GRoundedRect:width")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 8, 24, 40 ),
-"transitions": PoolRealArray( -2, -2, -2, -2 ),
-"update": 0,
-"values": [ 1000, 1000, 600, 1000 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("WaterWall2/GRoundedRect:height")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 8, 24, 40 ),
-"transitions": PoolRealArray( -2, -2, -2, -2 ),
-"update": 0,
-"values": [ 600, 600, 1000, 600 ]
-}
 
 [node name="Arena" instance=ExtResource( 14 )]
 size_multiplier = 2.5
@@ -151,8 +47,8 @@ __meta__ = {
 }
 width = 4000
 height = 1800
-radius = 500
-precision = 100.0
+radius = 200
+precision = 50.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 texture = ExtResource( 8 )
@@ -165,9 +61,9 @@ position = Vector2( -900, 0 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/WaterWall" index="2"]
 script = ExtResource( 2 )
-width = 1000
-height = 600
-radius = 150
+width = 800
+height = 800
+radius = 350
 precision = 30.0
 
 [node name="WaterWall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 3 )]
@@ -175,17 +71,12 @@ position = Vector2( 900, 0 )
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/WaterWall2" index="2"]
 script = ExtResource( 2 )
-width = 1000
-height = 600
-radius = 150
+width = 800
+height = 800
+radius = 350
 precision = 30.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="2"]
-playback_process_mode = 0
-anims/RESET = SubResource( 1 )
-anims/Rotate = SubResource( 2 )
-
-[node name="Wave0" type="Node2D" parent="Battlefield/Middleground" index="3" groups=["spawn_waves"]]
+[node name="Wave0" type="Node2D" parent="Battlefield/Middleground" index="2" groups=["spawn_waves"]]
 script = ExtResource( 15 )
 max_repeats = 3
 
@@ -267,7 +158,7 @@ element_scene = ExtResource( 10 )
 pattern = "single"
 element_scene = ExtResource( 10 )
 
-[node name="Wave1" type="Node2D" parent="Battlefield/Middleground" index="4" groups=["spawn_waves"]]
+[node name="Wave1" type="Node2D" parent="Battlefield/Middleground" index="3" groups=["spawn_waves"]]
 position = Vector2( -1200, 0 )
 script = ExtResource( 15 )
 wave_number = 1
@@ -319,7 +210,7 @@ position = Vector2( 1200, 0 )
 pattern = "single"
 element_scene = ExtResource( 10 )
 
-[node name="Wave2" type="Node2D" parent="Battlefield/Middleground" index="5" groups=["spawn_waves"]]
+[node name="Wave2" type="Node2D" parent="Battlefield/Middleground" index="4" groups=["spawn_waves"]]
 position = Vector2( -1200, 0 )
 script = ExtResource( 15 )
 wave_number = 2
@@ -331,7 +222,7 @@ position = Vector2( 1200, 0 )
 pattern = "apart"
 element_scene = ExtResource( 16 )
 
-[node name="Wave3" type="Node2D" parent="Battlefield/Middleground" index="6" groups=["spawn_waves"]]
+[node name="Wave3" type="Node2D" parent="Battlefield/Middleground" index="5" groups=["spawn_waves"]]
 script = ExtResource( 15 )
 wave_number = 3
 max_repeats = 3
@@ -371,7 +262,7 @@ element_scene = ExtResource( 10 )
 [node name="ElementSpawnerGroup24" parent="Battlefield/Middleground/Wave3" index="7" instance=ExtResource( 18 )]
 element_scene = ExtResource( 10 )
 
-[node name="Wave4" type="Node2D" parent="Battlefield/Middleground" index="7" groups=["spawn_waves"]]
+[node name="Wave4" type="Node2D" parent="Battlefield/Middleground" index="6" groups=["spawn_waves"]]
 script = ExtResource( 15 )
 wave_number = 4
 
