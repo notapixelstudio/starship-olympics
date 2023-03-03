@@ -1052,13 +1052,13 @@ func phase_in() -> void:
 		
 	thrust_multiplier = 1.0
 	set_auto_thrust(false)
-	enable_controls()
+	#enable_controls()
 	call_deferred('set_collision_layer_bit', 22, true)
 	
 func phase_out() -> void:
-	thrust_multiplier = 2.3
+	thrust_multiplier = 1.9
 	set_auto_thrust(true)
-	disable_controls()
+	#disable_controls()
 	call_deferred('set_collision_layer_bit', 22, false)
 	
 func set_phasing_in_prevented(v: bool) -> void:
