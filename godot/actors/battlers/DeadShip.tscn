@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://actors/battlers/DeadShip.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://actors/battlers/Trail.gd" type="Script" id=7]
 [ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=9]
+[ext_resource path="res://combat/traits/Bumper.tscn" type="PackedScene" id=10]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
@@ -64,6 +65,8 @@ contact_monitor = true
 linear_damp = 1.0
 script = ExtResource( 1 )
 
+[node name="Bumper" parent="." instance=ExtResource( 10 )]
+
 [node name="Tracked" parent="." instance=ExtResource( 8 )]
 
 [node name="Entity" type="Node" parent="."]
@@ -79,7 +82,7 @@ __meta__ = {
 }
 
 [node name="UnderSprite" type="Sprite" parent="."]
-modulate = Color( 1.5, 1.5, 1.5, 1 )
+modulate = Color( 1.4, 1.4, 1.4, 1 )
 material = SubResource( 3 )
 scale = Vector2( 1.25, 1.25 )
 

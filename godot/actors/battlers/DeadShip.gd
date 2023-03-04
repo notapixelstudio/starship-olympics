@@ -7,6 +7,8 @@ var info_player
 var species
 var camera
 
+signal bump
+
 var entity : Entity
 
 func _ready():
