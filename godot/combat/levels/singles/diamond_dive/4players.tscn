@@ -23,7 +23,7 @@
 [node name="Arena" instance=ExtResource( 14 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 5 )
-match_duration_override = 70.0
+match_duration_override = 60.0
 
 [node name="SpawnerManager" parent="Managers" index="0" instance=ExtResource( 7 )]
 
@@ -50,7 +50,7 @@ __meta__ = {
 }
 width = 4200
 height = 2000
-radius = 200
+radius = 300
 precision = 50.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
@@ -224,6 +224,13 @@ extra_delay = 1.0
 position = Vector2( 1200, 0 )
 pattern = "apart"
 element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Wave2" index="1" instance=ExtResource( 18 )]
+position = Vector2( 1200, 0 )
+pattern = "apart"
+element_scene = ExtResource( 10 )
+guest_star_scene = ExtResource( 16 )
+guest_star_positioning = "random"
 
 [node name="Wave3" type="Node2D" parent="Battlefield/Middleground" index="5" groups=["spawn_waves"]]
 script = ExtResource( 15 )
@@ -408,23 +415,33 @@ guest_star_scene = ExtResource( 16 )
 [node name="ElementSpawnerGroup46" parent="Battlefield/Middleground/Wave4" index="26" instance=ExtResource( 18 )]
 position = Vector2( 900, 600 )
 element_scene = ExtResource( 10 )
+guest_star_scene = ExtResource( 16 )
+guest_star_positioning = "random"
 
 [node name="ElementSpawnerGroup47" parent="Battlefield/Middleground/Wave4" index="27" instance=ExtResource( 18 )]
 position = Vector2( 900, -600 )
 element_scene = ExtResource( 10 )
+guest_star_scene = ExtResource( 16 )
+guest_star_positioning = "random"
 
 [node name="ElementSpawnerGroup48" parent="Battlefield/Middleground/Wave4" index="28" instance=ExtResource( 18 )]
 position = Vector2( -900, -600 )
 element_scene = ExtResource( 10 )
+guest_star_scene = ExtResource( 16 )
+guest_star_positioning = "random"
 
 [node name="ElementSpawnerGroup49" parent="Battlefield/Middleground/Wave4" index="29" instance=ExtResource( 18 )]
 position = Vector2( -900, 600 )
 element_scene = ExtResource( 10 )
+guest_star_scene = ExtResource( 16 )
+guest_star_positioning = "random"
 
 [node name="ElementSpawnerGroup51" parent="Battlefield/Middleground/Wave4" index="30" instance=ExtResource( 18 )]
 position = Vector2( -300, 300 )
 pattern = "slash"
 element_scene = ExtResource( 10 )
+guest_star_scene = ExtResource( 16 )
+guest_star_positioning = "random"
 
 [node name="ElementSpawnerGroup55" parent="Battlefield/Middleground/Wave4" index="31" instance=ExtResource( 18 )]
 position = Vector2( -1500, -300 )
@@ -458,16 +475,30 @@ guest_star_positioning = "random"
 position = Vector2( 300, -300 )
 pattern = "slash"
 element_scene = ExtResource( 10 )
+guest_star_scene = ExtResource( 16 )
+guest_star_positioning = "random"
 
 [node name="ElementSpawnerGroup53" parent="Battlefield/Middleground/Wave4" index="36" instance=ExtResource( 18 )]
 position = Vector2( -300, -300 )
 pattern = "backslash"
 element_scene = ExtResource( 10 )
+guest_star_scene = ExtResource( 16 )
+guest_star_positioning = "random"
 
 [node name="ElementSpawnerGroup54" parent="Battlefield/Middleground/Wave4" index="37" instance=ExtResource( 18 )]
 position = Vector2( 300, 300 )
 pattern = "backslash"
 element_scene = ExtResource( 10 )
+guest_star_scene = ExtResource( 16 )
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave4" index="38" instance=ExtResource( 18 )]
+pattern = "apart"
+element_scene = ExtResource( 16 )
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Wave4" index="39" instance=ExtResource( 18 )]
+pattern = "apart"
+element_scene = ExtResource( 16 )
 
 [node name="CameraEye" parent="Battlefield/Foreground" index="0" instance=ExtResource( 12 )]
 position = Vector2( 1700, 600 )
