@@ -300,9 +300,9 @@ func _ready():
 	if conquest_mode.enabled:
 		var conquerables = traits.get_all_with('Conquerable')
 		if len(conquerables) > 0:
-			score_to_win_override = 0
+#			score_to_win_override = 0
 			for conquerable in conquerables:
-				score_to_win_override += conquerable.get_score()
+#				score_to_win_override += conquerable.get_score()
 				# connect to manager
 				conquerable.connect('conquered', conquest_mode, "_on_sth_conquered")
 				conquerable.connect('lost', conquest_mode, "_on_sth_lost")
