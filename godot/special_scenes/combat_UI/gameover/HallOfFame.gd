@@ -59,7 +59,7 @@ func naming_champions():
 	$VBoxContainer/Label3.visible=true
 	
 func _input(event):
-	if event.is_action_pressed("confirm"):
+	if event.is_action_pressed("ui_accept"):
 		Events.emit_signal("continue_after_session_ended")
 		set_process_input(false)
 		queue_free()
