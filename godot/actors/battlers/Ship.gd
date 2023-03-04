@@ -1158,3 +1158,8 @@ func empty_loaded_shot() -> void:
 	
 func unhide():
 	modulate = Color(1,1,1,1)
+
+func on_collect(collectee):
+	if collectee is Diamond:
+		$RisingDiamondCollectSFX.play_and_rise()
+		

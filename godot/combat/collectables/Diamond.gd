@@ -35,3 +35,4 @@ func get_texture() -> Texture:
 
 func get_sprite_position() -> Vector2:
 	return $Sprite.position
+	
