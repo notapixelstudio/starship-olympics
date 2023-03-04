@@ -138,7 +138,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.8.0-internal" setget set_version
+var version = "0.10.0-internal" setget set_version
 var first_time = true
 
 func set_version(value):
