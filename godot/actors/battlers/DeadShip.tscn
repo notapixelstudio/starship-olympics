@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://actors/battlers/DeadShip.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -8,12 +8,52 @@
 [ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=6]
 [ext_resource path="res://actors/battlers/Trail.gd" type="Script" id=7]
 [ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=9]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
 
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 9 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/width = 20.0
+shader_param/pattern = 0
+shader_param/inside = false
+shader_param/add_margins = true
+
 [sub_resource type="CircleShape2D" id=2]
 radius = 40.0
+
+[sub_resource type="Animation" id=4]
+resource_name = "Blink"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("UnderSprite:material:shader_param/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 20.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("UnderSprite:material:shader_param/width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 20.0 ]
+}
 
 [node name="DeadShip" type="RigidBody2D" groups=["Foreground", "in_camera"]]
 collision_layer = 8192
@@ -38,7 +78,13 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
+[node name="UnderSprite" type="Sprite" parent="."]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+material = SubResource( 3 )
+scale = Vector2( 1.25, 1.25 )
+
 [node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
 scale = Vector2( 1.25, 1.25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -53,3 +99,9 @@ default_color = Color( 1, 1, 1, 1 )
 texture_mode = 2699552
 script = ExtResource( 7 )
 trail_length = 80
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Blink"
+playback_speed = 2.0
+anims/Blink = SubResource( 4 )
+anims/RESET = SubResource( 5 )

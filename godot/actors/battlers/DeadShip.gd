@@ -17,8 +17,8 @@ func set_ship(new_value):
 	camera = ship.camera
 	info_player = ship.info_player
 	species = ship.species
-	$Sprite.modulate = species.color
-	# $Sprite.modulate = $Sprite.modulate.darkened(0.2)
+	$UnderSprite.self_modulate = species.color
+	$UnderSprite.texture = species.ship
 	$Sprite.texture = species.ship
 	
 func _enter_tree():
