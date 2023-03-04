@@ -38,7 +38,7 @@ const DEFAULT_UNLOCKED = {
 	}
 }
 
-var unlocked_elements := {}
+var unlocked_elements := DEFAULT_UNLOCKED
 
 func reset_unlocks():
 	unlocked_elements = DEFAULT_UNLOCKED

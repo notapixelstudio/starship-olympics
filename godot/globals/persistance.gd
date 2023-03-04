@@ -60,9 +60,8 @@ func load_game() -> bool:
 		var data = get_saved_data(filepath)
 		
 		if not data:
-			print("Not found any data for", group_name, " in ", filepath)
-			continue
-
+			print("Not found any data for ", group_name, " in ", filepath)
+			
 		# The dict keys on the first level are paths to the nodes
 		for node_path in data.keys():
 			# We get the node's path from the for loop, so we can use it to retrieve
