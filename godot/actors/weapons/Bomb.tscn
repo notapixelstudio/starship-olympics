@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://actors/weapons/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://actors/weapons/Pfft.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://actors/environments/Bubble.tscn" type="PackedScene" id=18]
 [ext_resource path="res://actors/weapons/Explosion.tscn" type="PackedScene" id=19]
 [ext_resource path="res://actors/weapons/Ripple.tscn" type="PackedScene" id=20]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=21]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -194,13 +195,6 @@ stream = ExtResource( 14 )
 volume_db = -40.0
 bus = "SFX_effect"
 
-[node name="sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 15 )
-volume_db = -10.0
-autoplay = true
-bus = "SFX_effect"
-area_mask = 8
-
 [node name="LifeTime" type="Timer" parent="."]
 wait_time = 0.6
 autostart = true
@@ -208,6 +202,16 @@ autostart = true
 [node name="RicochetAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
 bus = "SFX"
+
+[node name="FireSFX" type="AudioStreamPlayer2D" parent="."]
+volume_db = 4.0
+script = ExtResource( 21 )
+streams = [ ExtResource( 15 ) ]
+volume_min = 0
+volume_max = 0
+randomize_pitch = true
+pitch_min = 0.8
+pitch_max = 1.2
 
 [connection signal="body_entered" from="." to="." method="_on_Bomb_body_entered"]
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]

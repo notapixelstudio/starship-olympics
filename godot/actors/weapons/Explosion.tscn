@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://actors/weapons/Explosion.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://assets/sprites/weapons/explosion_spikes.png" type="Texture" id=10]
 [ext_resource path="res://actors/battlers/GravitonField.tscn" type="PackedScene" id=11]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/audio/FX/zapsplat_explosion_big_fireball_002_89752.mp3" type="AudioStream" id=13]
+[ext_resource path="res://assets/audio/FX/zapsplat_science_fiction_explosion_boom_bomb_001_62699.mp3" type="AudioStream" id=14]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=15]
+[ext_resource path="res://assets/audio/FX/zapsplat_explosion_detonate_blast_designed_001_89753.mp3" type="AudioStream" id=16]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -159,10 +163,6 @@ anims/Wow = SubResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
 
-[node name="sound" type="AudioStreamPlayer2D" parent="."]
-volume_db = -6.0
-bus = "SFX_effect"
-
 [node name="GravitonField" parent="." instance=ExtResource( 11 )]
 visible = false
 multiplier = 0.6
@@ -182,6 +182,14 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RepealField"]
 shape = SubResource( 4 )
+
+[node name="RandomAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -3.1
+script = ExtResource( 15 )
+streams = [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 16 ) ]
+randomize_pitch = true
+pitch_min = 0.9
+pitch_max = 1.4
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_ended"]
 [connection signal="body_entered" from="RepealField" to="." method="_on_RepealField_body_entered"]

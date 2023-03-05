@@ -332,6 +332,9 @@ height = 20000
 
 [node name="ElementInCamera" parent="Battlefield/Overlay" instance=ExtResource( 26 )]
 
+[node name="Listener2D" type="Listener2D" parent="Battlefield"]
+current = true
+
 [node name="SpawnPositions" type="Node" parent="."]
 
 [node name="Players" type="Node2D" parent="SpawnPositions"]

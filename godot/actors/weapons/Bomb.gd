@@ -23,6 +23,8 @@ var species : Species
 var team : String
 
 func _ready():
+	$FireSFX.play()
+	
 	if type == GameMode.BOMB_TYPE.classic:
 		$Sprite/AnimationPlayer.play('rotate')
 	elif type == GameMode.BOMB_TYPE.bubble:
