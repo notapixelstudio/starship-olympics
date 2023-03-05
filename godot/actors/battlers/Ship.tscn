@@ -44,7 +44,7 @@
 [ext_resource path="res://interface/ShootingLine.tscn" type="PackedScene" id=42]
 [ext_resource path="res://assets/shaders/trail.png" type="Texture" id=43]
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=44]
-[ext_resource path="res://assets/audio/FX/PM_FSSF2_WEAPONS_H2_SHOT.wav" type="AudioStream" id=45]
+[ext_resource path="res://assets/audio/gameplay/bricks/sfx_wpn_laser7.wav" type="AudioStream" id=45]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -341,13 +341,14 @@ volume_db = 7.0
 bus = "SFX_effect"
 
 [node name="DamageSFX" type="AudioStreamPlayer2D" parent="."]
+bus = "SFX"
 script = ExtResource( 44 )
 streams = [ ExtResource( 45 ) ]
 volume_min = 0
 volume_max = 0
 randomize_pitch = true
-pitch_min = 0.4
-pitch_max = 0.6
+pitch_min = 0.2
+pitch_max = 0.4
 
 [node name="Entity2D" type="Node2D" parent="."]
 script = ExtResource( 4 )

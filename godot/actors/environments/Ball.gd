@@ -78,4 +78,4 @@ func get_player() -> InfoPlayer:
 
 func damage(hazard, damager : Ship) -> void:
 	$AnimationPlayer.play("hit")
-	
+	SoundEffects.play($DamageSFX)

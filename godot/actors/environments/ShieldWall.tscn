@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://actors/environments/ShieldWall.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/signs/shield.png" type="Texture" id=2]
 [ext_resource path="res://actors/environments/IsoPolygon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
 length = 0.3
@@ -244,5 +245,14 @@ self_modulate = Color( 1, 1, 1, 0.27451 )
 z_index = 8
 z_as_relative = false
 texture = ExtResource( 2 )
+
+[node name="DamageSFX" type="AudioStreamPlayer2D" parent="."]
+bus = "SFX_effect"
+script = ExtResource( 4 )
+volume_min = 0
+volume_max = 0
+randomize_pitch = true
+pitch_min = 0.9
+pitch_max = 1.1
 
 [connection signal="body_entered" from="." to="." method="_on_ShieldWall_body_entered"]

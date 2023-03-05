@@ -205,6 +205,7 @@ func _enter_tree():
 	phase = 'in'
 	empty_loaded_shot()
 	unhide()
+	$Graphics/Sprite.modulate = Color.white
 	
 	reset_health()
 	
