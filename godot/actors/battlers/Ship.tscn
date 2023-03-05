@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://actors/battlers/Ship.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/atom.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/sprites/weapons/trail_spark.png" type="Texture" id=19]
 [ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture" id=20]
+[ext_resource path="res://utils/RisingAudioStreamPlayer2D.tscn" type="PackedScene" id=21]
 [ext_resource path="res://combat/traits/Intro.tscn" type="PackedScene" id=22]
 [ext_resource path="res://combat/traits/Bumper.tscn" type="PackedScene" id=23]
 [ext_resource path="res://combat/traits/Collector.tscn" type="PackedScene" id=24]
@@ -33,6 +34,7 @@
 [ext_resource path="res://utils/WeaponSlot.tscn" type="PackedScene" id=32]
 [ext_resource path="res://actors/weapons/Pew.tscn" type="PackedScene" id=33]
 [ext_resource path="res://assets/sprites/interface/arrow_tip.png" type="Texture" id=34]
+[ext_resource path="res://assets/audio/FX/sfx_coin_double7.wav" type="AudioStream" id=35]
 [ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=36]
 [ext_resource path="res://actors/battlers/Ammo.tscn" type="PackedScene" id=37]
 [ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=38]
@@ -329,6 +331,11 @@ __meta__ = {
 shape = SubResource( 4 )
 
 [node name="charging" type="AudioStreamPlayer2D" parent="."]
+bus = "SFX_effect"
+
+[node name="RisingDiamondCollectSFX" parent="." instance=ExtResource( 21 )]
+stream = ExtResource( 35 )
+volume_db = 7.0
 bus = "SFX_effect"
 
 [node name="Entity2D" type="Node2D" parent="."]

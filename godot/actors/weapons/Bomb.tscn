@@ -14,13 +14,13 @@
 [ext_resource path="res://assets/sprites/weapons/rocket.png" type="Texture" id=12]
 [ext_resource path="res://actors/weapons/BombCore.gd" type="Script" id=13]
 [ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/audio/gameplay/FF_punch.wav" type="AudioStream" id=15]
 [ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/audio/gameplay/ball/zapsplat_science_fiction_thud_impact_hit_generic_002_29337.ogg" type="AudioStream" id=17]
 [ext_resource path="res://actors/environments/Bubble.tscn" type="PackedScene" id=18]
 [ext_resource path="res://actors/weapons/Explosion.tscn" type="PackedScene" id=19]
 [ext_resource path="res://actors/weapons/Ripple.tscn" type="PackedScene" id=20]
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=21]
+[ext_resource path="res://assets/audio/FX/sfx_wpn_cannon4.wav" type="AudioStream" id=22]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -204,14 +204,14 @@ stream = ExtResource( 17 )
 bus = "SFX"
 
 [node name="FireSFX" type="AudioStreamPlayer2D" parent="."]
-volume_db = 4.0
+volume_db = -8.0
 script = ExtResource( 21 )
-streams = [ ExtResource( 15 ) ]
+streams = [ ExtResource( 22 ) ]
 volume_min = 0
 volume_max = 0
 randomize_pitch = true
-pitch_min = 0.8
-pitch_max = 1.2
+pitch_min = 0.4
+pitch_max = 0.7
 
 [connection signal="body_entered" from="." to="." method="_on_Bomb_body_entered"]
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
