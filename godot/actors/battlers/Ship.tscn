@@ -34,7 +34,7 @@
 [ext_resource path="res://utils/WeaponSlot.tscn" type="PackedScene" id=32]
 [ext_resource path="res://actors/weapons/Pew.tscn" type="PackedScene" id=33]
 [ext_resource path="res://assets/sprites/interface/arrow_tip.png" type="Texture" id=34]
-[ext_resource path="res://assets/audio/FX/pickup--generic-pickup-sfx-for-collection-of-item--2-sound-effect-16598511.ogg" type="AudioStream" id=35]
+[ext_resource path="res://assets/audio/FX/sfx_coin_double7.wav" type="AudioStream" id=35]
 [ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=36]
 [ext_resource path="res://actors/battlers/Ammo.tscn" type="PackedScene" id=37]
 [ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=38]
@@ -335,7 +335,8 @@ bus = "SFX_effect"
 
 [node name="RisingDiamondCollectSFX" parent="." instance=ExtResource( 21 )]
 stream = ExtResource( 35 )
-pitch_scale = 0.9
+volume_db = 7.0
+bus = "SFX_effect"
 
 [node name="Entity2D" type="Node2D" parent="."]
 script = ExtResource( 4 )

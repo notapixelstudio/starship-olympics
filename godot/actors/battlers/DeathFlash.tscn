@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://actors/battlers/DeathFlash.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/debris.png" type="Texture" id=2]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=3]
+[ext_resource path="res://assets/audio/FX/sfx_exp_odd3.wav" type="AudioStream" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -40,3 +42,13 @@ speed_scale = 2.0
 explosiveness = 1.0
 process_material = SubResource( 4 )
 texture = ExtResource( 2 )
+
+[node name="RandomAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 4.0
+script = ExtResource( 3 )
+streams = [ ExtResource( 4 ) ]
+volume_min = 0
+volume_max = 0
+randomize_pitch = true
+pitch_min = 0.7
+pitch_max = 1
