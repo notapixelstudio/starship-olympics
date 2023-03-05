@@ -150,12 +150,14 @@ type = "crown"
 position = Vector2( -400, -400 )
 rotation = 0.785398
 species = ExtResource( 4 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
 position = Vector2( 400, 400 )
 rotation = -2.35619
 controls = "kb2"
 species = ExtResource( 7 )
+cpu = true
 
 [node name="Camera" parent="." index="7"]
 zoom = Vector2( 1.14795e+28, 1.14795e+28 )

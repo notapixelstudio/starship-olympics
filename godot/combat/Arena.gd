@@ -580,6 +580,7 @@ func ship_just_died(ship, killer, for_good):
 	$Battlefield.call_deferred("remove_child", ship)
 	
 	var deathflash = deathflash_scene.instance()
+	deathflash.big = for_good # big explosion if the ship is totally destroyed
 	deathflash.species = ship.species
 	deathflash.position = ship.position
 	$Battlefield.call_deferred("add_child", deathflash)

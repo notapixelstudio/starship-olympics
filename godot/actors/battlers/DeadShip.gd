@@ -23,6 +23,7 @@ func set_ship(new_value):
 	$UnderSprite.texture = species.ship
 	$Sprite.texture = species.ship
 	
+	
 func _enter_tree():
 	#linear_velocity = ship.linear_velocity
 	position = ship.position
@@ -30,6 +31,7 @@ func _enter_tree():
 	if not $Trail2D.is_inside_tree():
 		yield($Trail2D, "tree_entered")
 	$Trail2D.erase_trail()
+	SoundEffects.play($RandomAudioStreamPlayer2D)
 	
 func _integrate_forces(state):
 	# force the physics engine
@@ -48,4 +50,7 @@ func get_camera_rect() -> Rect2:
 
 func damage(hazard, damager) -> void:
 	$HitAnimationPlayer.play("hit")
+	
+func beep():
+	SoundEffects.play($Beep)
 	
