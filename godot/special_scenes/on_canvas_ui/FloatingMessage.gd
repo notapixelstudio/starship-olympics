@@ -4,6 +4,10 @@ export var msg : String = '+1' setget set_msg
 export var still : bool = false
 
 func _ready():
+	# no messages after game is over
+	if global.the_match.is_game_over():
+		free()
+		
 	if not still:
 		appear()
 
