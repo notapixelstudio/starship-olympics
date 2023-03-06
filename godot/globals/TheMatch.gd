@@ -156,7 +156,8 @@ func do_game_over():
 	game_over = true
 	emit_signal("game_over")
 	
-	
+func is_game_over():
+	return game_over
 	
 func get_score(id_player : String):
 	var player : InfoPlayer = get_player(id_player)
