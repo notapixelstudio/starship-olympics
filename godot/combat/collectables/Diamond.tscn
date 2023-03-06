@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://combat/collectables/Diamond.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -42,6 +42,35 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 0.305882, 1, 0.968627, 0 ), Color( 0.305882, 1, 0.968627, 0 ), Color( 0.305882, 1, 0.968627, 0.388235 ), Color( 0.305882, 1, 0.968627, 0 ) ]
 }
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -4.98327, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+resource_local_to_scene = true
+lifetime_randomness = 0.1
+emission_shape = 1
+emission_sphere_radius = 100.0
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 0.2
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -50.0
+linear_accel_random = 0.5
+angle = 45.0
+scale = 40.0
+scale_random = 1.0
+scale_curve = SubResource( 6 )
+color = Color( 1.2, 1.2, 1.2, 1 )
+hue_variation = 0.05
+hue_variation_random = 1.0
 
 [node name="Diamond" type="RigidBody2D" groups=["Diamond", "Foreground", "in_camera"]]
 collision_layer = 2048
@@ -93,8 +122,8 @@ shape = SubResource( 1 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0.331244 )
-scale = Vector2( 0.879632, 0.879632 )
+modulate = Color( 0.305882, 1, 0.968627, 0.0110379 )
+scale = Vector2( 0.982014, 0.982014 )
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
@@ -103,3 +132,11 @@ anims/Blink = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/AppearFuhfuhfuh = ExtResource( 9 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+z_index = 1
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 5 )

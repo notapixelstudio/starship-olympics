@@ -36,3 +36,8 @@ func get_texture() -> Texture:
 func get_sprite_position() -> Vector2:
 	return $Sprite.position
 	
+func on_collected_by(collector):
+	var particles = $Particles2D
+	remove_child(particles)
+	get_parent().add_child(particles)
+	particles.emitting = true
