@@ -69,11 +69,11 @@ __meta__ = {
 sprite = NodePath("../Sprite")
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0, 7 )
 texture = ExtResource( 7 )
 
 [node name="SpriteEffect" type="Sprite" parent="."]
-visible = false
 self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 0, 7 )
 scale = Vector2( 5, 5 )
