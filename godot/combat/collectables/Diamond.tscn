@@ -58,7 +58,7 @@ flag_disable_z = true
 direction = Vector3( 0, -1, 0 )
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 600.0
+initial_velocity = 500.0
 initial_velocity_random = 0.2
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
@@ -122,8 +122,8 @@ shape = SubResource( 1 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0.0110379 )
-scale = Vector2( 0.982014, 0.982014 )
+modulate = Color( 0.305882, 1, 0.968627, 0.0950995 )
+scale = Vector2( 0.947208, 0.947208 )
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
