@@ -27,11 +27,14 @@ var author: InfoPlayer
 var streaking = false
 var current_streak_bar
 var streak_start
+var streaks_enabled := true
 
 func post_ready(p: InfoPlayer):
 	player = p
 	var species = player.species
 	max_score = global.the_match.target_score
+	
+	$Streaks.visible = streaks_enabled
 	
 	sprite.texture = species.ship
 	
@@ -48,6 +51,8 @@ func post_ready(p: InfoPlayer):
 	
 	# megabar
 	$MegaBar.color = species.color
+	if not streaks_enabled:
+		$MegaBar.modulate = Color.white
 	
 	# ship and score
 	$Ship.position.x = margin_left
