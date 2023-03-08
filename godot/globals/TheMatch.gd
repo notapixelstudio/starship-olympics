@@ -278,3 +278,5 @@ func trigger_game_over_now():
 func store():
 	global.write_into_file("user://matches/{id}.json".format({"id":self.uuid}), self.to_dict())
 	
+func get_time_left() -> float:
+	return time_left
