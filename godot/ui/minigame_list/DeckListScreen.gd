@@ -6,10 +6,6 @@ const DECK_PATH = "res://map/draft/decks/"
 func _ready():
 	Events.connect("starting_deck_selected", self, "deck_chosen")
 	
-	if global.demo:
-		choose_random_playlist()
-		return
-	
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_deck_keys = TheUnlocker.get_unlocked_list("starting_decks")
 	var i = 0
@@ -24,7 +20,7 @@ func _ready():
 		$"%DecksContainer".add_child(item)
 		i += 1
 	yield(get_tree().create_timer(0.1), "timeout")
-
+	
 	# select previously used deck
 #	var found := false
 #	for child in $VBoxContainer.get_children():
@@ -42,6 +38,10 @@ func _ready():
 #		global.starting_deck_id = deck.get_id() # TBD maybe this should also be persisted somehow?
 #		(first as DeckListItem).grab_focus()
 	$"%RandomDeckListItem".grab_focus()
+	
+	if global.demo:
+		choose_random_playlist()
+		return
 	
 func sort_by_order(a, b):
 	return a.order < b.order
