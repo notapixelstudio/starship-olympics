@@ -5,6 +5,11 @@ const DECK_PATH = "res://map/draft/decks/"
 
 func _ready():
 	Events.connect("starting_deck_selected", self, "deck_chosen")
+	
+	if global.demo:
+		choose_random_playlist()
+		return
+	
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_deck_keys = TheUnlocker.get_unlocked_list("starting_decks")
 	var i = 0
@@ -44,3 +49,22 @@ func sort_by_order(a, b):
 func deck_chosen(starting_deck: StartingDeck):
 	global.starting_deck_id = starting_deck.get_id()
 	Events.emit_signal("selection_starting_deck_over")
+
+func choose_random_playlist():
+	print("A random playlist has been chosen!")
+	var decks = global.get_resources(DECK_PATH)
+	var potential_deck_ids = TheUnlocker.get_unlocked_list("starting_decks")
+	var potential_playlists := []
+	for deck_id in potential_deck_ids:
+		if decks[deck_id].is_playlist():
+			potential_playlists.append(decks[deck_id])
+			
+	if len(potential_playlists) <= 0:
+		return
+		
+	var deck = potential_playlists[randi() % len(potential_playlists)]
+	print("playlist {name} has been randomly chosen".format({"name": deck.get_id()}))
+	Events.emit_signal("starting_deck_selected", deck)
+	
+func _on_RandomDeckListItem_pressed():
+	choose_random_playlist()

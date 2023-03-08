@@ -394,7 +394,7 @@ margin_right = 1257.0
 margin_bottom = 670.0
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 30.0
 autostart = true
 
 [connection signal="deactivated" from="CanvasLayer/ReadyToFight" to="." method="_on_ReadyToFight_deactivated"]
