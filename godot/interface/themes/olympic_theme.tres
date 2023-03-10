@@ -24,13 +24,8 @@
 [ext_resource path="res://interface/themes/olympic/hover_pressed.tres" type="StyleBox" id=22]
 [ext_resource path="res://interface/themes/olympic/focus_line_eidt.tres" type="StyleBox" id=23]
 [ext_resource path="res://interface/themes/olympic/normal_line_edit.tres" type="StyleBox" id=24]
-
-[sub_resource type="DynamicFont" id=17]
-size = 26
-use_mipmaps = true
-extra_spacing_top = 4
-extra_spacing_bottom = 4
-font_data = ExtResource( 21 )
+[ext_resource path="res://assets/fonts/DefaultFont20.tres" type="DynamicFont" id=25]
+[ext_resource path="res://assets/fonts/DefaultFont26.tres" type="DynamicFont" id=26]
 
 [sub_resource type="StyleBoxFlat" id=16]
 bg_color = Color( 0.309804, 0.270588, 0.239216, 1 )
@@ -68,10 +63,6 @@ corner_detail = 1
 
 [sub_resource type="StyleBoxEmpty" id=14]
 
-[sub_resource type="DynamicFont" id=19]
-size = 20
-font_data = ExtResource( 21 )
-
 [sub_resource type="StyleBoxEmpty" id=15]
 
 [sub_resource type="DynamicFont" id=18]
@@ -85,7 +76,7 @@ Button/colors/font_color_focus = Color( 0, 0, 0, 1 )
 Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
 Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
 Button/constants/hseparation = 2
-Button/fonts/font = SubResource( 17 )
+Button/fonts/font = ExtResource( 26 )
 Button/styles/disabled = ExtResource( 8 )
 Button/styles/focus = ExtResource( 5 )
 Button/styles/hover = ExtResource( 20 )
@@ -813,7 +804,7 @@ Label/constants/line_spacing = 3
 Label/constants/shadow_as_outline = 0
 Label/constants/shadow_offset_x = 0
 Label/constants/shadow_offset_y = 2
-Label/fonts/font = SubResource( 19 )
+Label/fonts/font = ExtResource( 25 )
 Label/styles/normal = SubResource( 15 )
 LineEdit/colors/cursor_color = Color( 1, 1, 1, 1 )
 LineEdit/colors/font_color = Color( 1, 1, 1, 1 )
