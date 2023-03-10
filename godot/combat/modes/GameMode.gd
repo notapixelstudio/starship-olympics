@@ -19,6 +19,7 @@ export var starting_health : int = 1
 export var respawn_from_home := false
 export var end_on_perfect := true
 export var fill_starting_score := false
+export var streaks_enabled := true
 
 # goal manager
 export var death : bool = false

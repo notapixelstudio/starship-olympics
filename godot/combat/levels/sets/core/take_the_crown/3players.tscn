@@ -18,7 +18,6 @@
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=17]
 [ext_resource path="res://combat/levels/sets/core/take_the_crown/variants/B.tscn" type="PackedScene" id=18]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
 length = 8.0
@@ -39,11 +38,11 @@ tracks/0/keys = {
 [node name="Arena" instance=ExtResource( 9 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 13 )
-match_duration_override = 100.0
+match_duration_override = 85.0
 
 [node name="CrownManager" parent="Managers" index="0" instance=ExtResource( 16 )]
 
-[node name="CrownModeManager" parent="Managers" index="9"]
+[node name="CrownModeManager" parent="Managers" index="8"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/animations/RoyalGlow.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/balls/basket.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=7]
 [ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=9]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=10]
+[ext_resource path="res://assets/audio/FX/sfx_sounds_impact10.wav" type="AudioStream" id=11]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 100.0
@@ -84,3 +86,12 @@ sprite = NodePath("../Sprite")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 3 )
 anims/hit = SubResource( 4 )
+
+[node name="DamageSFX" type="AudioStreamPlayer2D" parent="."]
+bus = "SFX"
+script = ExtResource( 10 )
+streams = [ ExtResource( 11 ) ]
+volume_min = 0
+volume_max = 0
+randomize_pitch = true
+pitch_max = 1.2

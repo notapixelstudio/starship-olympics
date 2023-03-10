@@ -580,6 +580,7 @@ func ship_just_died(ship, killer, for_good):
 	$Battlefield.call_deferred("remove_child", ship)
 	
 	var deathflash = deathflash_scene.instance()
+	deathflash.big = for_good # big explosion if the ship is totally destroyed
 	deathflash.species = ship.species
 	deathflash.position = ship.position
 	$Battlefield.call_deferred("add_child", deathflash)
@@ -843,6 +844,12 @@ func show_msg(species: Species, msg, pos):
 func _on_sth_collected(collector, collectee):
 	if collectee is Crown and (collectee.type == Crown.types.SOCCERBALL or collectee.type == Crown.types.TENNISBALL):
 		collectee.owner_ship = collector
+		
+	if collectee.has_method('on_collected_by'):
+		collectee.on_collected_by(collector)
+		
+	if collector.has_method('on_collect'):
+		collector.on_collect(collectee)
 		
 	collectee.get_parent().call_deferred('remove_child', collectee)
 	# collisions do not work as expected without defer

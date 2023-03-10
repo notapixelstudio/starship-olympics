@@ -205,6 +205,7 @@ func _enter_tree():
 	phase = 'in'
 	empty_loaded_shot()
 	unhide()
+	$Graphics/Sprite.modulate = Color.white
 	
 	reset_health()
 	
@@ -587,6 +588,7 @@ func damage(hazard, damager : Ship, damager_team : String = ''):
 		
 	# check if we lose cargo instead
 	if get_cargo().has_holdable():
+		show_hit()
 		get_cargo().drop_holdable(hazard)
 		return
 	
@@ -598,14 +600,17 @@ func damage(hazard, damager : Ship, damager_team : String = ''):
 	if health == 0:
 		die(damager)
 	else:
-		$'%AnimationPlayer'.play('hit')
-		
+		show_hit()
 		Events.emit_signal("ship_damaged", self, hazard, damager)
 		
 		# slight, invisible invincibility
 		invincible = true
 		yield(get_tree().create_timer(0.1), "timeout")
 		invincible = false
+	
+func show_hit():
+	$'%AnimationPlayer'.play('hit')
+	SoundEffects.play($DamageSFX)
 	
 func die(killer : Ship, for_good = false):
 	if alive and not invincible:
@@ -1158,3 +1163,8 @@ func empty_loaded_shot() -> void:
 	
 func unhide():
 	modulate = Color(1,1,1,1)
+
+func on_collect(collectee):
+	if collectee is Diamond:
+		$RisingDiamondCollectSFX.play_and_rise()
+		

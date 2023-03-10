@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://WorldEnvironment.tres" type="Environment" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://ui/menu_scenes/title_screen/TitleScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/menu_scenes/title_screen/MainScreen.gd" type="Script" id=8]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/fonts/DefaultFont12.tres" type="DynamicFont" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
@@ -86,6 +87,7 @@ script = ExtResource( 8 )
 layer = 100
 
 [node name="TransitionColor" parent="Overlays" instance=ExtResource( 6 )]
+mouse_filter = 2
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 3 )]
 
@@ -108,7 +110,7 @@ anchor_bottom = 1.0
 margin_top = -25.0
 margin_right = -35.0
 margin_bottom = -4.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 10 )
 text = "Demo build - 0.6.1"
 uppercase = true
 

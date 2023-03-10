@@ -3,7 +3,7 @@ extends Resource
 class_name CardPool
 
 export var id : String
-export var cards : Array = [] setget set_cards # DraftCard
+export var cards : Array = [] setget set_cards, get_cards # DraftCard
 var index : Dictionary = {}
 const CARD_POOL_PATH = "res://map/draft/cards"
 
@@ -36,4 +36,5 @@ func retrieve_card(id) -> DraftCard:
 func get_card(id) -> DraftCard:
 	return index[id]
 
-
+func get_cards() -> Array:
+	return cards

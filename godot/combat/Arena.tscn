@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -19,7 +19,6 @@
 [ext_resource path="res://combat/managers/modes/SurvivalModeManager.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/managers/ConquestManager.gd" type="Script" id=18]
 [ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=19]
-[ext_resource path="res://assets/audio/FX/pickup--generic-pickup-sfx-for-collection-of-item--2-sound-effect-16598511.ogg" type="AudioStream" id=20]
 [ext_resource path="res://combat/managers/modes/SnakeTrailManager.gd" type="Script" id=21]
 [ext_resource path="res://combat/Battlefield.gd" type="Script" id=22]
 [ext_resource path="res://combat/Grid.tscn" type="PackedScene" id=23]
@@ -268,9 +267,6 @@ __meta__ = {
 }
 enabled = false
 
-[node name="CollectAction" type="AudioStreamPlayer2D" parent="Managers/CollectModeManager"]
-stream = ExtResource( 20 )
-
 [node name="TrailManager" type="Node" parent="Managers"]
 script = ExtResource( 21 )
 __meta__ = {
@@ -335,6 +331,9 @@ height = 20000
 [node name="Overlay" type="Node2D" parent="Battlefield"]
 
 [node name="ElementInCamera" parent="Battlefield/Overlay" instance=ExtResource( 26 )]
+
+[node name="Listener2D" type="Listener2D" parent="Battlefield"]
+current = true
 
 [node name="SpawnPositions" type="Node" parent="."]
 

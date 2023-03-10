@@ -152,19 +152,53 @@ func get_strategy(ship, distance, game_mode):
 			
 	return {}
 	
-func get_strategic_value(ship):
+func get_strategic_value(ship, premidgame, midgame, ending, stealer):
+	var empty : bool = owner_ship == null and conquering_ship == null
+	var enemy : bool = owner_ship != ship
+	
 	if fortified:
 		return null
 		
 	if global.the_match.get_game_mode().get_id() == 'board_conquest':
-		if owner_ship == null and conquering_ship == null or owner_ship != ship:
-			return max(points, max_neighbour_value*1.1)*1.1 # neighbours are accounted for to enable surrounding big tiles
-	
+		if ending:
+			# no time left for fortification, let's target the most points possible
+			if empty:
+				return points*0.5
+			if enemy:
+				return points*0.75 # prefer reconquering
+			else:
+				return null
+		elif midgame:
+			if empty and not stealer:
+				return points # totally prefer empty
+			elif enemy and stealer:
+				return 1 # do not prefer high values, there's time for that
+			else:
+				return 0.1
+		elif premidgame:
+			# do not focus on the 50 tile
+			var multiplier := 1.0
+			if points > 30 or max_neighbour_value > 30:
+				multiplier = 0.01
+			if empty:
+				return multiplier*max(points, (max_neighbour_value-1)*1.1)*0.5
+			if enemy:
+				return multiplier*max(points, (max_neighbour_value-1)*1.1)*0.6
+				
+		# start
+		# neighbours are accounted for to enable surrounding big tiles
+		if empty:
+			return max(points, (max_neighbour_value-1)*1.1)*0.5
+		if enemy:
+			return max(points, (max_neighbour_value-1)*1.1)*0.6
+			
 	elif global.the_match.get_game_mode().get_id() == 'queen_of_the_hive':
 		if not(ship.get_cargo().check_type('bee_crown')):
 			return null
-		if owner_ship == null and conquering_ship == null or owner_ship != ship:
-			return points*1.1
+		if empty:
+			return points*0.5
+		if enemy:
+			return points*0.6
 	
 	return null
 	
