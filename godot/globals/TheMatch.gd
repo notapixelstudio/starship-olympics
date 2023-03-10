@@ -156,7 +156,8 @@ func do_game_over():
 	game_over = true
 	emit_signal("game_over")
 	
-	
+func is_game_over():
+	return game_over
 	
 func get_score(id_player : String):
 	var player : InfoPlayer = get_player(id_player)
@@ -277,3 +278,5 @@ func trigger_game_over_now():
 func store():
 	global.write_into_file("user://matches/{id}.json".format({"id":self.uuid}), self.to_dict())
 	
+func get_time_left() -> float:
+	return time_left

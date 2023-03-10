@@ -39,7 +39,7 @@ tracks/0/keys = {
 [node name="Arena" instance=ExtResource( 9 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 14 )
-match_duration_override = 120.0
+match_duration_override = 100.0
 
 [node name="CrownManager" parent="Managers" index="0" instance=ExtResource( 17 )]
 
@@ -150,8 +150,8 @@ type = "crown"
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
 position = Vector2( -550, -550 )
 rotation = 0.785398
+controls = "joy1"
 species = ExtResource( 5 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
 position = Vector2( 550, 550 )

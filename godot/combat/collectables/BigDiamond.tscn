@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://combat/collectables/BigDiamond.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://assets/sprites/environments/crown_halo.png" type="Texture" id=8]
 [ext_resource path="res://assets/animations/AppearFuhfuhfuh.tres" type="Animation" id=9]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/audio/FX/sfx_coin_cluster3.wav" type="AudioStream" id=11]
+[ext_resource path="res://actors/environments/BigDiamondCollectParticles.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 90.0
@@ -67,11 +69,11 @@ __meta__ = {
 sprite = NodePath("../Sprite")
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0, 7 )
 texture = ExtResource( 7 )
 
 [node name="SpriteEffect" type="Sprite" parent="."]
-visible = false
 self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 0, 7 )
 scale = Vector2( 5, 5 )
@@ -105,3 +107,10 @@ anims/Blink = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/AppearFuhfuhfuh = ExtResource( 9 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
+volume_db = -1.0
+bus = "SFX_effect"
+
+[node name="Particles" parent="." instance=ExtResource( 12 )]

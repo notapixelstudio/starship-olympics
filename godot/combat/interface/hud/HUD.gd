@@ -48,6 +48,7 @@ func post_ready():
 	for player in the_match.players.values():
 		var bar = Bar.instance()
 		Bars.add_child(bar)
+		bar.streaks_enabled = the_match.get_game_mode().streaks_enabled
 		bar.post_ready(player)
 		bar.player = player
 		i+=1

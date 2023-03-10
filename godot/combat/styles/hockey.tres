@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://assets/patterns/stripes.png" type="Texture" id=1]
+[ext_resource path="res://combat/styles/ArenaStyle.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+battlefield_texture = ExtResource( 1 )
+battlefield_texture_offset = Vector2( 0, 0 )
+battlefield_texture_scale = Vector2( 0.5, 0.5 )
+battlefield_texture_rotation_degrees = 0.0
+battlefield_fg_color = Color( 0.0609, 0.247998, 0.29, 1 )
+battlefield_bg_color = Color( 0.06, 0.212, 0.25, 1 )
+battlefield_opacity = 1.0
+wall_color = Color( 0.88, 0.35, 1.15, 1 )
+bgm = "carry"

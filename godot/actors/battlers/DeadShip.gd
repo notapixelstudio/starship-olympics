@@ -7,6 +7,8 @@ var info_player
 var species
 var camera
 
+signal bump
+
 var entity : Entity
 
 func _ready():
@@ -17,9 +19,10 @@ func set_ship(new_value):
 	camera = ship.camera
 	info_player = ship.info_player
 	species = ship.species
-	$Sprite.modulate = species.color
-	# $Sprite.modulate = $Sprite.modulate.darkened(0.2)
+	$UnderSprite.self_modulate = species.color
+	$UnderSprite.texture = species.ship
 	$Sprite.texture = species.ship
+	
 	
 func _enter_tree():
 	#linear_velocity = ship.linear_velocity
@@ -28,6 +31,7 @@ func _enter_tree():
 	if not $Trail2D.is_inside_tree():
 		yield($Trail2D, "tree_entered")
 	$Trail2D.erase_trail()
+	SoundEffects.play($RandomAudioStreamPlayer2D)
 	
 func _integrate_forces(state):
 	# force the physics engine
@@ -43,3 +47,10 @@ func _integrate_forces(state):
 const CAMERA_RECT_SIZE := 800.0
 func get_camera_rect() -> Rect2:
 	return Rect2(global_position - Vector2(CAMERA_RECT_SIZE,CAMERA_RECT_SIZE)/2, Vector2(CAMERA_RECT_SIZE,CAMERA_RECT_SIZE))
+
+func damage(hazard, damager) -> void:
+	$HitAnimationPlayer.play("hit")
+	
+func beep():
+	SoundEffects.play($Beep)
+	

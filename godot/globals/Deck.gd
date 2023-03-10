@@ -27,8 +27,9 @@ func setup():
 	playlist = starting_deck.is_playlist()
 	starting_deck_id = starting_deck.get_id()
 	TheUnlocker.unlock_element("starting_decks", starting_deck.get_id())
-	for unlock in starting_deck.get_unlocks():
-		TheUnlocker.unlock_element("starting_decks", unlock, TheUnlocker.UNLOCKED)
+	if not global.demo: # do not unlock new content if we are in demo mode
+		for unlock in starting_deck.get_unlocks():
+			TheUnlocker.unlock_element("starting_decks", unlock, TheUnlocker.UNLOCKED)
 	#var starting_deck = load(DECK_PATH+'/winter.tres')
 	append_cards(starting_deck.deal_cards())
 	next.append_array(starting_deck.get_nexts())

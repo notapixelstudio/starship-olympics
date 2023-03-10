@@ -259,7 +259,8 @@ func _on_nav_to_menu():
 func _on_nav_to_character_selection():
 	global.safe_destroy_game()
 	safe_destroy_combat()
-	map.queue_free()
+	if map and is_instance_valid(map):
+		map.queue_free()
 	if not parallax.is_inside_tree():
 		add_child(parallax)
 		add_child(selection_screen)

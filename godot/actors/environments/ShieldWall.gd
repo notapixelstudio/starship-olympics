@@ -57,6 +57,8 @@ func down():
 		
 	health -= 1
 	
+	SoundEffects.play($DamageSFX)
+	
 	# collisions will be disabled near the end of the animation
 	$AnimationPlayer.advance(10) # should be enough to end the current animation and make the sector flash again
 	if health > 0 or type == 'plate':

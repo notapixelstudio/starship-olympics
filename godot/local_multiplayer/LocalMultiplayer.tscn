@@ -48,6 +48,7 @@ environment = ExtResource( 6 )
 script = ExtResource( 7 )
 
 [node name="SelectionScreen" parent="." instance=ExtResource( 3 )]
+mouse_filter = 2
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 layer = -2
@@ -64,6 +65,7 @@ layer = 119
 modulate = Color( 0.705882, 0.705882, 0.705882, 0.137255 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 texture = SubResource( 3 )
 
 [node name="ScreenPostProcessing2" type="CanvasLayer" parent="."]
@@ -73,6 +75,7 @@ layer = 120
 material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
 [node name="TransitionScreen" parent="." instance=ExtResource( 8 )]
 color = Color( 1, 1, 1, 1 )
@@ -89,6 +92,7 @@ margin_left = -657.0
 margin_top = -1270.0
 margin_right = 2362.0
 margin_bottom = 2919.0
+mouse_filter = 2
 texture = ExtResource( 11 )
 stretch_mode = 6
 

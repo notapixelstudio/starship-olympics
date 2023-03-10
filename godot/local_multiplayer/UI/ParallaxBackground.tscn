@@ -16,11 +16,9 @@ script = ExtResource( 1 )
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 texture = ExtResource( 2 )
 stretch_mode = 7
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Stars" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.1, 1 )
@@ -38,6 +36,7 @@ region_rect = Rect2( 120.559, 12.7077, 1194.36, 986.642 )
 material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
