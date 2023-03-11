@@ -2,10 +2,10 @@ tool
 
 extends Node2D
 
-class_name Portal
+class_name MyPortal
 
 export var linked_to_path : NodePath
-var linked_to : Portal
+var linked_to : MyPortal
 
 export var offset : float = 30 setget set_offset
 
