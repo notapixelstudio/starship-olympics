@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -27,7 +27,6 @@
 [ext_resource path="res://actors/environments/ElementInCamera.tscn" type="PackedScene" id=26]
 [ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=27]
 [ext_resource path="res://map_with_sets/DescriptionMode.tscn" type="PackedScene" id=28]
-[ext_resource path="res://default_env.tres" type="Environment" id=29]
 [ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=30]
 [ext_resource path="res://special_scenes/utils/DemoLabel.tscn" type="PackedScene" id=31]
 [ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=32]
@@ -164,9 +163,6 @@ IceScene = ExtResource( 38 )
 player_brain_scene = ExtResource( 5 )
 cpu_brain_scene = ExtResource( 41 )
 NavigationZone_scene = ExtResource( 42 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 29 )
 
 [node name="Managers" type="Node" parent="."]
 
