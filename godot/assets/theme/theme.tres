@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=2]
+[gd_resource type="Theme" load_steps=8 format=2]
 
 [ext_resource path="res://assets/theme/uroob.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/theme/londrina_font.tres" type="DynamicFont" id=2]
@@ -61,12 +61,6 @@ shadow_color = Color( 0.191406, 0.191406, 0.191406, 0.6 )
 
 [sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0, 0, 0, 1 )
-border_width_top = 8
-border_blend = true
-corner_radius_top_left = 12
-
 [resource]
 default_font = ExtResource( 2 )
 Button/colors/font_color = Color( 0.925781, 0.925781, 0.925781, 1 )
@@ -74,7 +68,7 @@ Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 1, 1, 1, 1 )
 Button/colors/font_color_pressed = Color( 1, 0.867188, 0, 1 )
 Button/constants/hseparation = 3
-Button/fonts/font = null
+Button/fonts/font = ExtResource( 2 )
 Button/styles/disabled = SubResource( 1 )
 Button/styles/focus = SubResource( 2 )
 Button/styles/hover = SubResource( 3 )
@@ -94,5 +88,3 @@ Label/styles/normal = SubResource( 5 )
 Panel/styles/panel = SubResource( 1 )
 Panel/styles/panelf = null
 Panel/styles/panelnc = null
-PopupMenu/icons/ = null
-PopupMenu/styles/ = SubResource( 6 )
