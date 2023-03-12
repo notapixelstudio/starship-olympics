@@ -63,6 +63,10 @@ onready var grid = $Battlefield/Background/GridWrapper/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
 
 export var standalone : bool = true
+
+export var initial_zoom_in := true
+export var drop_ship := true
+
 onready var battlefield = $Battlefield
 
 signal screensize_changed(screensize)
@@ -74,8 +78,6 @@ signal unslomo
 signal battle_start
 signal skip
 signal all_ships_spawned
-
-signal salvo
 
 var array_players = [] # Dictionary of InfoPlayers
 
@@ -336,9 +338,15 @@ func _ready():
 	if show_hud:
 		camera.marginY = hud.get_height()
 		
-	camera.initialize(compute_arena_size().grow(100*30))
-	camera.to(compute_arena_size())
+	if initial_zoom_in:
+		camera.initialize(compute_arena_size().grow(100*30))
+		camera.to(compute_arena_size())
+		yield(camera, "transition_over")
+	else:
+		camera.initialize(compute_arena_size())
 	update_grid()
+	
+	
 	
 	if show_hud:
 		hud.set_draft_card(global.the_match.get_draft_card())
@@ -357,7 +365,7 @@ func _ready():
 			$Battlefield/Background/OutsideWall.add_child(NavigationZone_scene.instance())
 		update_navigation_zones()
 	
-	yield(camera, "transition_over")
+	
 	
 	# $Battlefield.visible = false
 	if score_to_win_override > 0:
@@ -481,13 +489,14 @@ func spawn_all_ships(do_intro = false):
 	
 	for s in player_spawners:
 		var spawner = s as PlayerSpawner
-		spawner.appears()
+		spawner.appears(drop_ship)
 		# waiting for the ship to be entered
-		yield(get_tree().create_timer(0.5), "timeout")
+		if drop_ship:
+			yield(get_tree().create_timer(0.5), "timeout")
 		spawn_ship(spawner)
 		j += 1
 		# wait for the last ship
-		if j >= len(player_spawners):
+		if j >= len(player_spawners) and drop_ship:
 			yield(spawner, "entered_battlefield")
 			
 	yield(get_tree(), "idle_frame")
@@ -740,7 +749,8 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	
 	ship.set_start_invincible(game_mode.start_invincible)
 	
-	yield(player, "entered_battlefield")
+	if drop_ship:
+		yield(player, "entered_battlefield")
 	
 	$Battlefield.add_child(ship)
 	
@@ -939,7 +949,7 @@ func respawn_from_home(ship, spawner):
 	if ship.alive:
 		ship.die(null, true) # die for good
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
-	spawner.appears()
+	spawner.appears(drop_ship)
 	spawn_ship(spawner, true) # force intro
 	
 func connect_killable(killable):
