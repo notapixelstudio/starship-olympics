@@ -6,6 +6,8 @@ export var width := 550.0 setget set_width
 export var aperture := PI*0.9
 #export var crossing_while_still_tolerance := 0.3
 export var show_arrow := true setget set_show_arrow
+export var auto_feedback := true
+export var disabled_color := Color(1,1,1,0.3)
 
 var top_end := Vector2(0, -width/2)
 var bottom_end := Vector2(0, width/2)
@@ -73,6 +75,10 @@ func _physics_process(delta):
 func _crossed_by(sth, trigger=true):
 	if enabled:
 		emit_signal("crossed", sth, self, trigger)
+	if auto_feedback:
+		show_feedback(trigger)
+	
+func show_feedback(trigger=true):
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("Blink")
 	if trigger and enabled:
@@ -87,7 +93,7 @@ func enable() -> void:
 	
 func disable() -> void:
 	enabled = false
-	modulate = Color(1,1,1,0.3)
+	modulate = disabled_color
 
 #func _draw():
 #	if relative_position:

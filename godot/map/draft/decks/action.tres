@@ -1,16 +1,17 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
 [ext_resource path="res://map/draft/cards/SlamAGon.tres" type="Resource" id=2]
 [ext_resource path="res://map/draft/cards/TakeTheCrown.tres" type="Resource" id=3]
 [ext_resource path="res://map/draft/cards/CaptureTheFlags.tres" type="Resource" id=4]
+[ext_resource path="res://map/draft/cards/Hoopball.tres" type="Resource" id=5]
 
 [resource]
 script = ExtResource( 1 )
 id = "action"
 order = 2
 name = "Action"
-cards = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ]
+cards = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ]
 nexts = [  ]
 playlist = true
 unlocks = [ "skulls" ]
