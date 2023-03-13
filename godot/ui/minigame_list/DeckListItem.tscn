@@ -43,3 +43,5 @@ visible = false
 position = Vector2( 14.2705, 2.37842 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
+
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_Button_pressed"]
