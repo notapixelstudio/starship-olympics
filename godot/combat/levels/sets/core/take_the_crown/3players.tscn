@@ -174,6 +174,7 @@ anims/Rotate = SubResource( 2 )
 [node name="ShieldWall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 1 )]
 position = Vector2( -800, 0 )
 type = "skin"
+respawn_time = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/ShieldWall" index="6"]
 polygon = PoolVector2Array( 0, -450, 450, 0, 0, 450, -450, 0 )
@@ -181,6 +182,7 @@ polygon = PoolVector2Array( 0, -450, 450, 0, 0, 450, -450, 0 )
 [node name="ShieldWall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 1 )]
 position = Vector2( 800, 0 )
 type = "skin"
+respawn_time = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/ShieldWall2" index="6"]
 polygon = PoolVector2Array( 0, -450, 450, 0, 0, 450, -450, 0 )
@@ -209,7 +211,7 @@ controls = "joy3"
 species = ExtResource( 4 )
 cpu = true
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera" parent="." index="6"]
 zoom = Vector2( 2441.41, 2441.41 )
 smoothing_speed = 0.3
 
