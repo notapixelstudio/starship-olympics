@@ -152,7 +152,7 @@ func get_strategy(ship, distance, game_mode):
 			
 	return {}
 	
-func get_strategic_value(ship, premidgame, midgame, ending, stealer):
+func get_strategic_value(ship, premidgame=false, midgame=true, ending=false, stealer=false): # default: midgame
 	var empty : bool = owner_ship == null and conquering_ship == null
 	var enemy : bool = owner_ship != ship
 	
