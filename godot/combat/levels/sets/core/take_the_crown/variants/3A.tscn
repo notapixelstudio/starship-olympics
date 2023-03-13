@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://actors/environments/ShieldWall.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/ShieldWall.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Animation" id=2]
@@ -38,25 +37,16 @@ playback_process_mode = 0
 playback_speed = 0.2
 anims/Rotate = SubResource( 2 )
 
-[node name="ShieldWall" type="Area2D" parent="." instance=ExtResource( 2 )]
+[node name="ShieldWall" parent="." instance=ExtResource( 2 )]
 position = Vector2( -800, 0 )
-collision_layer = 128
-collision_mask = 4
-script = ExtResource( 1 )
 type = "skin"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall"]
 polygon = PoolVector2Array( 0, -450, 450, 0, 0, 450, -450, 0 )
 
-[node name="ShieldWall2" type="Area2D" parent="." instance=ExtResource( 2 )]
+[node name="ShieldWall2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 800, 0 )
-collision_layer = 128
-collision_mask = 4
-script = ExtResource( 1 )
 type = "skin"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall2"]
 polygon = PoolVector2Array( 0, -450, 450, 0, 0, 450, -450, 0 )
-
-[connection signal="body_entered" from="ShieldWall" to="ShieldWall" method="_on_ShieldWall_body_entered"]
-[connection signal="body_entered" from="ShieldWall2" to="ShieldWall2" method="_on_ShieldWall_body_entered"]
