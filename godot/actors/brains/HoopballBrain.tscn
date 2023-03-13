@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/brains/CPUBrain.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/brains/HoopballBrain.gd" type="Script" id=2]
+
+[node name="HoopballBrain" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+random_dash_p = 0.01
+think_time = 0.4
+think_time_jitter = 0.1
+start_time_jitter = 0.0

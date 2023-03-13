@@ -94,6 +94,9 @@ func enable() -> void:
 func disable() -> void:
 	enabled = false
 	modulate = disabled_color
+	
+func is_enabled() -> bool:
+	return enabled
 
 #func _draw():
 #	if relative_position:
