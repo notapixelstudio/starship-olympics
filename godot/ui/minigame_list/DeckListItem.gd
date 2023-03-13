@@ -25,13 +25,15 @@ const CARD_SIZE := Vector2(150, 160)
 func set_deck(v: StartingDeck) -> void:
 	deck = v
 	var unlocked = TheUnlocker.get_status("starting_decks", deck.get_id()) == TheUnlocker.UNLOCKED
-	$"%Button".set_text(deck.get_name().to_upper())
+	$"%Button".set_label(deck.get_name().to_upper())
 	
 	if not unlocked:
 		$"%Button".disabled = true
 		$HBoxContainer.modulate = Color(0.6,0.6,0.6)
 		$"%Lock".visible = true
-		$"%Button".set_text('???')
+		$"%Button".set_label('???')
+	else:
+		$"%Button".set_image(deck.image)
 		
 	var container
 	for card in deck.cards:
