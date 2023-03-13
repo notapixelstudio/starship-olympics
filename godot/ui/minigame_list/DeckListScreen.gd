@@ -17,6 +17,7 @@ func _ready():
 			continue
 		var item = DeckListItemScene.instance()
 		item.set_deck(deck)
+		item.set_index(i)
 		$"%DecksContainer".add_child(item)
 		i += 1
 	yield(get_tree().create_timer(0.1), "timeout")
