@@ -47,15 +47,25 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 50
 
-[node name="Spacer" type="Control" parent="HBoxContainer/DecksContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/DecksContainer"]
 margin_right = 872.0
-margin_bottom = 10.0
-rect_min_size = Vector2( 0, 10 )
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 80 )
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="HBoxContainer/DecksContainer"]
-margin_top = 60.0
-margin_right = 872.0
-margin_bottom = 111.0
+[node name="BackButton" type="Button" parent="HBoxContainer/DecksContainer/HBoxContainer"]
+margin_right = 200.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 200, 0 )
+theme = ExtResource( 5 )
+text = "BACK"
+
+[node name="Label" type="Label" parent="HBoxContainer/DecksContainer/HBoxContainer"]
+margin_left = 204.0
+margin_top = 14.0
+margin_right = 668.0
+margin_bottom = 65.0
+size_flags_horizontal = 3
 theme = ExtResource( 5 )
 custom_colors/font_color_shadow = Color( 0.2, 0.317647, 0.482353, 1 )
 custom_constants/shadow_offset_x = 0
@@ -64,13 +74,19 @@ custom_fonts/font = SubResource( 2 )
 text = "WORLD CUPS"
 align = 1
 
+[node name="Spacer" type="Control" parent="HBoxContainer/DecksContainer/HBoxContainer"]
+margin_left = 672.0
+margin_right = 872.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 200, 0 )
+
 [node name="RandomDeckListItem" parent="HBoxContainer/DecksContainer" instance=ExtResource( 3 )]
 unique_name_in_owner = true
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 161.0
+margin_top = 130.0
 margin_right = 872.0
-margin_bottom = 331.0
+margin_bottom = 300.0
 color = Color( 0, 0, 0, 0 )
 
 [node name="Spacer2" type="Control" parent="HBoxContainer"]
@@ -79,4 +95,5 @@ margin_right = 1280.0
 margin_bottom = 720.0
 rect_min_size = Vector2( 200, 0 )
 
+[connection signal="pressed" from="HBoxContainer/DecksContainer/HBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/DecksContainer/RandomDeckListItem" to="." method="_on_RandomDeckListItem_pressed"]

@@ -68,3 +68,8 @@ func choose_random_playlist():
 	
 func _on_RandomDeckListItem_pressed():
 	choose_random_playlist()
+
+func _on_BackButton_pressed():
+	queue_free()
+	Events.emit_signal("nav_to_character_selection")
+	
