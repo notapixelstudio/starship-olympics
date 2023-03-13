@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://selection/PlayerSelection.gd" type="Script" id=1]
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=2]
@@ -8,16 +8,17 @@
 [ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=6]
 [ext_resource path="res://selection/ControlsSelectionScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/fonts/DefaultFont28.tres" type="DynamicFont" id=9]
 [ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/species/trixens.png" type="Texture" id=11]
 [ext_resource path="res://selection/characters/auriels_1.tres" type="Resource" id=12]
 [ext_resource path="res://assets/sprites/species/character_selection_rect.png" type="Texture" id=13]
 [ext_resource path="res://interface/themes/ui_elements/grey_arrowDownWhite.png" type="Texture" id=14]
 [ext_resource path="res://assets/animations/wiggle_updown.tres" type="Animation" id=15]
-[ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=16]
+[ext_resource path="res://assets/fonts/DefaultFont10.tres" type="DynamicFont" id=16]
 [ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=17]
-[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://assets/fonts/DefaultFont18.tres" type="DynamicFont" id=18]
+[ext_resource path="res://assets/fonts/DefaultFont24.tres" type="DynamicFont" id=19]
 
 [sub_resource type="Animation" id=1]
 resource_name = "appear"
@@ -127,21 +128,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ -90.0, 270.0 ]
 }
-
-[sub_resource type="DynamicFont" id=6]
-size = 10
-font_data = ExtResource( 9 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 28
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 18 )
-
-[sub_resource type="DynamicFont" id=8]
-size = 24
-outline_size = 4
-font_data = ExtResource( 9 )
 
 [sub_resource type="Animation" id=9]
 resource_name = "Blink"
@@ -326,7 +312,7 @@ margin_bottom = 627.0
 [node name="Label" type="Label" parent="Wrapper/SpeciesSelection/SpeciesName"]
 margin_right = 170.0
 margin_bottom = 22.0
-custom_fonts/font = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 text = "pentagonions"
 align = 1
 valign = 1
@@ -342,7 +328,7 @@ rect_min_size = Vector2( 0, 2 )
 margin_top = 32.0
 margin_right = 170.0
 margin_bottom = 44.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 16 )
 text = "tagline"
 align = 1
 valign = 1
@@ -352,7 +338,7 @@ uppercase = true
 margin_top = 48.0
 margin_right = 170.0
 margin_bottom = 60.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 16 )
 text = "tagline"
 align = 1
 valign = 1
@@ -378,7 +364,7 @@ margin_left = -20.0
 margin_top = -30.0
 margin_right = 20.0
 margin_bottom = 3.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 9 )
 text = "P1"
 align = 1
 valign = 1
@@ -403,7 +389,7 @@ anchor_right = 1.0
 margin_top = -28.0
 margin_bottom = 37.0
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 19 )
 text = "TEAM
 TRIXENS"
 align = 1
@@ -417,7 +403,7 @@ margin_top = 541.0
 margin_right = 166.0
 margin_bottom = 606.0
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 19 )
 text = "PRESS
 TO JOIN!"
 align = 1
