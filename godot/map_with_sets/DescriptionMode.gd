@@ -19,24 +19,24 @@ func _ready():
 func refresh():
 	if not is_inside_tree():
 		yield(self, 'ready')
-	$Label.text = tr(gamemode.name)
-	$LabelShadow.text = tr(gamemode.name)
-	var label_width = $Label.get("custom_fonts/font").get_string_size(tr(gamemode.name)).x
-	$LineLeft.position.x = -62 - label_width/2 - 35
-	$LineRight.position.x = 998 + label_width/2 + 35
+	$"%Label".text = tr(gamemode.name)
+	$"%LabelShadow".text = tr(gamemode.name)
+	var label_width = $"%Label".get("custom_fonts/font").get_string_size(tr(gamemode.name)).x
+	$"%LineLeft".position.x = -62 - label_width/2 - 35
+	$"%LineRight".position.x = 998 + label_width/2 + 35
 	
 	if draft_card:
 		var suit = draft_card.get_suit_bottom()
 		if suit: # TBD double suit
-			$Label.modulate = global.SUIT_COLORS[suit]
-			$LineLeft.modulate = global.SUIT_COLORS[suit]
-			$LineRight.modulate = global.SUIT_COLORS[suit]
+			$"%Label".modulate = global.SUIT_COLORS[suit]
+			$"%LineLeft".modulate = global.SUIT_COLORS[suit]
+			$"%LineRight".modulate = global.SUIT_COLORS[suit]
 		
-		$Winter.visible = draft_card.is_winter()
-		$WinterShadow.visible = draft_card.is_winter()
+		$"%Winter".visible = draft_card.is_winter()
+		$"%WinterShadow".visible = draft_card.is_winter()
 		
-		$Perfectionist.visible = draft_card.is_perfectionist()
-		$PerfectionistShadow.visible = draft_card.is_perfectionist()
+		$"%Perfectionist".visible = draft_card.is_perfectionist()
+		$"%PerfectionistShadow".visible = draft_card.is_perfectionist()
 	
 func set_gamemode(value: GameMode):
 	gamemode = value
@@ -68,6 +68,11 @@ func appears():
 	$Description.type(tr(gamemode.description))
 	yield($Description, "done")
 	animator.play("describeme")
+	
+	var tween := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property($"%Description2D", 'position', Vector2(630, 100), 3)
+	tween.parallel().tween_property($"%Description2D", 'scale', Vector2(0.5, 0.5), 3)
+	yield(tween, "finished")
 	
 	if len(array_players) == 0:
 		# no human players, wait a bit then go

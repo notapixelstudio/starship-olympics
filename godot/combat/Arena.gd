@@ -66,6 +66,7 @@ export var standalone : bool = true
 
 export var initial_zoom_in := true
 export var drop_ship := true
+export var tutorial := false
 
 onready var battlefield = $Battlefield
 
