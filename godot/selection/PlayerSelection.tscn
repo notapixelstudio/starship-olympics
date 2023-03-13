@@ -15,9 +15,10 @@
 [ext_resource path="res://assets/sprites/species/character_selection_rect.png" type="Texture" id=13]
 [ext_resource path="res://interface/themes/ui_elements/grey_arrowDownWhite.png" type="Texture" id=14]
 [ext_resource path="res://assets/animations/wiggle_updown.tres" type="Animation" id=15]
-[ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=16]
+[ext_resource path="res://assets/fonts/DefaultFont20.tres" type="DynamicFont" id=16]
 [ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://assets/fonts/DefaultFont10.tres" type="DynamicFont" id=19]
 
 [sub_resource type="Animation" id=1]
 resource_name = "appear"
@@ -127,10 +128,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ -90.0, 270.0 ]
 }
-
-[sub_resource type="DynamicFont" id=6]
-size = 10
-font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 28
@@ -342,7 +339,7 @@ rect_min_size = Vector2( 0, 2 )
 margin_top = 32.0
 margin_right = 170.0
 margin_bottom = 44.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 19 )
 text = "tagline"
 align = 1
 valign = 1
@@ -352,7 +349,7 @@ uppercase = true
 margin_top = 48.0
 margin_right = 170.0
 margin_bottom = 60.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 19 )
 text = "tagline"
 align = 1
 valign = 1
