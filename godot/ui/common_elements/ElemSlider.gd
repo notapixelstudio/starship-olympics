@@ -22,9 +22,11 @@ func _on_HSlider_value_changed(new_value: int):
 	
 func _on_HSlider_focus_entered():
 	add_stylebox_override("panel", load("res://interface/themes/olympic/focus.tres"))
+	description_node.set("custom_colors/font_color",Color(0,0,0))
 	
 func _on_HSlider_focus_exited():
 	add_stylebox_override("panel", load("res://interface/themes/olympic/normal.tres"))
+	description_node.set("custom_colors/font_color", null)
 
 
 func _on_Music_focus_entered():
