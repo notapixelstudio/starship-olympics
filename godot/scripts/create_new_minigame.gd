@@ -15,30 +15,41 @@ func _run():
 	# load the template minigame
 	var template = load(MINIGAMES_BASE_DIR+TEMPLATE+".tres")
 	
-#	# create a new game mode
-#	create_game_mode_resource()
-#
-#	# create a new minigame using the game mode
-#	create_minigame_resource(template)
-#
-#	# create new cards for the minigame
-#	create_card_resource()
-#	if also_winter:
-#		create_card_resource(true)
+	# create a new game mode
+	create_game_mode_resource(template)
+
+	# create a new minigame using the game mode
+	create_minigame_resource(template)
+
+	# create new cards for the minigame
+	create_card_resource()
+	if also_winter:
+		create_card_resource(true)
 		
-	# create the levels directory and copy a 2 players Arena in it from the template
-	var base_level_path = LEVELS_BASE_DIR+snakecase(NAME)+"/2players.tscn"
-	create_base_level(template, base_level_path)
-	var base_level = load(base_level_path)
-	print(base_level)
+	# create the levels directory and a 2 players Arena
+	create_base_level(template)
 	
-func create_base_level(template, base_level_path):
+func create_base_level(template):
+	# create the directory for new levels
 	var dir = Directory.new()
 	dir.make_dir(LEVELS_BASE_DIR+snakecase(NAME))
-	dir.copy(template.arenas_dir+"/2players.tscn", base_level_path)
 	
-func create_game_mode_resource():
-	var game_mode = GameMode.new()
+	# instance the template Arena
+	var template_instance = load(template.arenas_dir+"/2players.tscn").instance()
+	
+	# modify it by pointing to the new game mode
+	template_instance.game_mode = load(GAME_MODES_BASE_DIR+camelcase(NAME)+".tres")
+	
+	# save it as a new file
+	var packed_scene = PackedScene.new()
+	packed_scene.pack(template_instance)
+	var new_level_path = LEVELS_BASE_DIR+snakecase(NAME)+"/2players.tscn"
+	packed_scene.take_over_path(new_level_path)
+	ResourceSaver.save(new_level_path, packed_scene, ResourceSaver.FLAG_CHANGE_PATH)
+	
+func create_game_mode_resource(template):
+	# open the game mode from the template, then save it as a new Resource
+	var game_mode = template.game_mode
 	game_mode.id = camelcase(NAME)
 	game_mode.name = NAME
 	var game_mode_path = GAME_MODES_BASE_DIR+camelcase(NAME)+".tres"
