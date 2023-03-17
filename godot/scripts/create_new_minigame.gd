@@ -8,6 +8,7 @@ const TEMPLATE := "TakeTheCrown"
 
 const LEVELS_BASE_DIR := "res://combat/levels/singles/"
 const GAME_MODES_BASE_DIR := "res://combat/modes/"
+const STYLES_BASE_DIR := "res://combat/styles/"
 const MINIGAMES_BASE_DIR := "res://combat/minigames/"
 const CARDS_BASE_DIR := "res://map/draft/cards/"
 
@@ -48,10 +49,19 @@ func create_base_level(template):
 	ResourceSaver.save(new_level_path, packed_scene, ResourceSaver.FLAG_CHANGE_PATH)
 	
 func create_game_mode_resource(template):
-	# open the game mode from the template, then save it as a new Resource
-	var game_mode = template.game_mode
+	# duplicate the game mode from the template
+	var game_mode = template.game_mode.duplicate()
 	game_mode.id = camelcase(NAME)
 	game_mode.name = NAME
+	
+	# also, duplicate a new style from the template's game mode (and save it)
+	var style = game_mode.arena_style.duplicate()
+	game_mode.arena_style = style
+	var style_path = STYLES_BASE_DIR+snakecase(NAME)+".tres"
+	style.take_over_path(style_path)
+	ResourceSaver.save(style_path, style, ResourceSaver.FLAG_CHANGE_PATH)
+	
+	# save the game mode as a new Resource
 	var game_mode_path = GAME_MODES_BASE_DIR+camelcase(NAME)+".tres"
 	game_mode.take_over_path(game_mode_path)
 	ResourceSaver.save(game_mode_path, game_mode, ResourceSaver.FLAG_CHANGE_PATH)
