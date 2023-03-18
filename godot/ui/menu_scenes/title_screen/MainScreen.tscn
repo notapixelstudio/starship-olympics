@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://WorldEnvironment.tres" type="Environment" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=9]
 [ext_resource path="res://assets/fonts/DefaultFont12.tres" type="DynamicFont" id=10]
 [ext_resource path="res://local_multiplayer/WorldEnvironment.gd" type="Script" id=11]
+[ext_resource path="res://assets/sprites/background/static.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
@@ -184,3 +185,12 @@ script = ExtResource( 11 )
 [node name="TitleScreen" parent="ScreenCanvas" instance=ExtResource( 7 )]
 margin_left = 2.0
 margin_right = 2.0
+
+[node name="ScreenPostProcessing" type="CanvasLayer" parent="."]
+layer = 119
+
+[node name="TextureRect" type="TextureRect" parent="ScreenPostProcessing"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 12 )

@@ -17,6 +17,7 @@ func _ready():
 			continue
 		var item = DeckListItemScene.instance()
 		item.set_deck(deck)
+		item.set_index(i)
 		$"%DecksContainer".add_child(item)
 		i += 1
 	yield(get_tree().create_timer(0.1), "timeout")
@@ -68,3 +69,8 @@ func choose_random_playlist():
 	
 func _on_RandomDeckListItem_pressed():
 	choose_random_playlist()
+
+func _on_BackButton_pressed():
+	queue_free()
+	Events.emit_signal("nav_to_character_selection")
+	

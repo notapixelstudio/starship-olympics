@@ -8,6 +8,11 @@ export var arrow_texture : Texture
 export var shuffle_texture : Texture
 export var starting_deck: Resource setget set_starting
 var deck: StartingDeck
+var index : int setget set_index
+
+func set_index(v: int) -> void:
+	index = v
+	$"%Button".set_indentation(index % 2 == 0)
 
 func set_starting(v: StartingDeck):
 	if not is_inside_tree():
@@ -20,14 +25,16 @@ const CARD_SIZE := Vector2(150, 160)
 func set_deck(v: StartingDeck) -> void:
 	deck = v
 	var unlocked = TheUnlocker.get_status("starting_decks", deck.get_id()) == TheUnlocker.UNLOCKED
-	$"%Button".text = deck.get_name().to_upper()
+	$"%Button".set_label(deck.get_name().to_upper())
 	
 	if not unlocked:
 		$"%Button".disabled = true
 		$HBoxContainer.modulate = Color(0.6,0.6,0.6)
 		$"%Lock".visible = true
-		$"%Button".text = '???'
-	
+		$"%Button".set_label('???')
+	else:
+		$"%Button".set_image(deck.image)
+		
 	var container
 	for card in deck.cards:
 		container = Container.new()

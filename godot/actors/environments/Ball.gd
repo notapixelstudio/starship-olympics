@@ -5,7 +5,7 @@ class_name Ball
 
 const GRAB_DISTANCE = 84
 
-export (String, 'crown', 'bee_crown', 'helm', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown', 'skull', 'flag', 'sea_crown') var type setget set_type, get_type
+export (String, 'crown', 'bee_crown', 'helm', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown', 'skull', 'flag', 'sea_crown', 'croquet') var type setget set_type, get_type
 
 var impulse := 0.0
 var player : InfoPlayer
