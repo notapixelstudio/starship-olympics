@@ -1,347 +1,51 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://combat/modes/ClaimTheBanner.tres" type="Resource" id=1]
 [ext_resource path="res://actors/environments/PlayerTerritory.tscn" type="PackedScene" id=2]
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=3]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=4]
-[ext_resource path="res://combat/Arena.gd" type="Script" id=5]
-[ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=7]
-[ext_resource path="res://combat/managers/BumpManager.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/Grid.tscn" type="PackedScene" id=9]
-[ext_resource path="res://actors/environments/ElementInCamera.tscn" type="PackedScene" id=10]
-[ext_resource path="res://actors/brains/PlayerBrain.tscn" type="PackedScene" id=11]
-[ext_resource path="res://combat/managers/modes/SurvivalModeManager.tscn" type="PackedScene" id=12]
-[ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=13]
-[ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=14]
-[ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=15]
-[ext_resource path="res://combat/Battlefield.gd" type="Script" id=18]
-[ext_resource path="res://map_with_sets/DescriptionMode.tscn" type="PackedScene" id=19]
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=5]
+[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/environments/MirrorWall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=20]
-[ext_resource path="res://combat/managers/TappablesManager.tscn" type="PackedScene" id=21]
-[ext_resource path="res://actors/environments/Ice.tscn" type="PackedScene" id=22]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=23]
-[ext_resource path="res://combat/managers/HoldablesManager.tscn" type="PackedScene" id=24]
-[ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=25]
 [ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=26]
-[ext_resource path="res://special_scenes/utils/DemoLabel.tscn" type="PackedScene" id=27]
-[ext_resource path="res://combat/managers/EnvironmentsManager.gd" type="Script" id=28]
-[ext_resource path="res://combat/managers/ConquestManager.gd" type="Script" id=32]
-[ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=33]
-[ext_resource path="res://combat/managers/CollectManager.gd" type="Script" id=34]
-[ext_resource path="res://combat/managers/CombatManager.gd" type="Script" id=35]
-[ext_resource path="res://combat/managers/PursueManager.gd" type="Script" id=40]
-[ext_resource path="res://combat/managers/modes/SnakeTrailManager.gd" type="Script" id=43]
-[ext_resource path="res://combat/managers/modes/KillModeManager.gd" type="Script" id=45]
-[ext_resource path="res://combat/managers/modes/ConquestModeManager.gd" type="Script" id=46]
-[ext_resource path="res://combat/managers/modes/CrownModeManager.gd" type="Script" id=48]
-[ext_resource path="res://assets/audio/FX/slow_motion_effect.ogg" type="AudioStream" id=49]
-[ext_resource path="res://assets/audio/FX/unslow_motion_effect.ogg" type="AudioStream" id=50]
-[ext_resource path="res://assets/audio/FX/Fast Swish.wav" type="AudioStream" id=51]
-[ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=52]
-[ext_resource path="res://utils/Camera.gd" type="Script" id=55]
-[ext_resource path="res://combat/managers/modes/LastManModeManager.gd" type="Script" id=58]
-[ext_resource path="res://combat/levels/background/red.png" type="Texture" id=59]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=60]
 [ext_resource path="res://actors/brains/TakeTheCrownBrain.tscn" type="PackedScene" id=61]
-[ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=62]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=63]
-[ext_resource path="res://addons/ECM/icons/Manager.png" type="Texture" id=65]
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=67]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=68]
-[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=69]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=70]
-[ext_resource path="res://assets/shaders/Clock.shader" type="Shader" id=71]
-[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=72]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=73]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10000, 10000 )
-
-[sub_resource type="ShaderMaterial" id=8]
-shader = ExtResource( 71 )
-shader_param/time_left = null
-shader_param/max_time = 0
-shader_param/active = false
-
-[sub_resource type="Animation" id=2]
-length = 1000.0
-step = 1.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 80 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 20000 ), Vector2( 0, 9100 ) ]
-}
-
-[sub_resource type="Animation" id=13]
-length = 10.0
-loop = true
-
-[sub_resource type="PhysicsMaterial" id=10]
-bounce = 100.0
-
-[sub_resource type="DynamicFont" id=6]
-size = 512
-font_data = ExtResource( 72 )
-
-[sub_resource type="DynamicFont" id=11]
-size = 48
-outline_size = 6
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 70 )
-
-[sub_resource type="Animation" id=4]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:time_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 0.5 ),
-"update": 0,
-"values": [ 1.0, 0.01 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Battlefield/Background:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 0.5 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Battlefield/Middleground:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 0.5 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("BackgroundLayer/mantiacs_background:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
-}
-
-[sub_resource type="Animation" id=5]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:time_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 0.5 ),
-"update": 0,
-"values": [ 1.0, 0.1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Battlefield/Background:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 0.5 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Battlefield/Middleground:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 0.5 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.32549, 0.32549, 0.32549, 1 ) ]
-}
-
-[node name="Arena" type="Node"]
-script = ExtResource( 5 )
-__meta__ = {
-"_editor_description_": ""
-}
-gameover_scene = ExtResource( 13 )
+[node name="Arena" instance=ExtResource( 5 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 1 )
-IceScene = ExtResource( 22 )
-player_brain_scene = ExtResource( 11 )
 cpu_brain_scene = ExtResource( 61 )
-NavigationZone_scene = ExtResource( 26 )
 create_default_navzone = false
 
-[node name="Managers" type="Node" parent="."]
+[node name="CrownModeManager" parent="Managers" index="7"]
+enabled = true
 
-[node name="CrownManager" parent="Managers" instance=ExtResource( 62 )]
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.9 )
+texture = ExtResource( 60 )
+fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
+bg_color = Color( 0.28, 0.14, 0.14, 1 )
 
-[node name="BumpManager" parent="Managers" instance=ExtResource( 8 )]
+[node name="FloodWater" parent="Battlefield/Background" index="2"]
+opaque_tint = Color( 0, 0, 0, 1 )
 
-[node name="TappablesManager" parent="Managers" instance=ExtResource( 21 )]
-
-[node name="HoldablesManager" parent="Managers" instance=ExtResource( 24 )]
-
-[node name="CombatManager" type="Node" parent="Managers"]
-script = ExtResource( 35 )
-__meta__ = {
-"_editor_icon": ExtResource( 65 )
-}
-
-[node name="PursueManager" type="Node" parent="Managers"]
-script = ExtResource( 40 )
-__meta__ = {
-"_editor_icon": ExtResource( 65 )
-}
-
-[node name="TargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
-stream = ExtResource( 7 )
-volume_db = -10.0
-bus = "SFX"
-
-[node name="BullTargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
-stream = ExtResource( 7 )
-pitch_scale = 0.5
-bus = "SFX"
-
-[node name="CollectManager" type="Node" parent="Managers"]
-script = ExtResource( 34 )
-__meta__ = {
-"_editor_icon": ExtResource( 65 )
-}
-
-[node name="EnvironmentsManager" type="Node" parent="Managers"]
-script = ExtResource( 28 )
-__meta__ = {
-"_editor_icon": ExtResource( 65 )
-}
-
-[node name="SlomoEffect" type="AudioStreamPlayer" parent="Managers/EnvironmentsManager"]
-stream = ExtResource( 49 )
-
-[node name="UnSlomoEffect" type="AudioStreamPlayer" parent="Managers/EnvironmentsManager"]
-stream = ExtResource( 50 )
-
-[node name="CrownModeManager" type="Node" parent="Managers"]
-script = ExtResource( 48 )
-__meta__ = {
-"_editor_icon": ExtResource( 65 )
-}
-
-[node name="GrabAction" type="AudioStreamPlayer2D" parent="Managers/CrownModeManager"]
-stream = ExtResource( 51 )
-pitch_scale = 4.0
-
-[node name="KillModeManager" type="Node" parent="Managers"]
-script = ExtResource( 45 )
-__meta__ = {
-"_editor_icon": ExtResource( 65 )
-}
-enabled = false
-
-[node name="LastManModeManager" type="Node" parent="Managers"]
-script = ExtResource( 58 )
-__meta__ = {
-"_editor_icon": ExtResource( 65 )
-}
-enabled = false
-
-[node name="ConquestModeManager" type="Node" parent="Managers"]
-script = ExtResource( 46 )
-__meta__ = {
-"_editor_icon": ExtResource( 65 )
-}
-enabled = false
-
-[node name="ConquestManager" type="Node" parent="Managers"]
-script = ExtResource( 32 )
-__meta__ = {
-"_editor_icon": ExtResource( 65 )
-}
-
-[node name="CollectModeManager" type="Node" parent="Managers"]
-script = ExtResource( 33 )
-__meta__ = {
-"_editor_icon": ExtResource( 65 )
-}
-enabled = false
-
-[node name="TrailManager" type="Node" parent="Managers"]
-script = ExtResource( 43 )
-__meta__ = {
-"_editor_icon": ExtResource( 65 )
-}
-
-[node name="SurvivalModeManager" parent="Managers" instance=ExtResource( 12 )]
-
-[node name="BackgroundLayer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="BackgroundImage" type="Sprite" parent="BackgroundLayer"]
-unique_name_in_owner = true
-texture = ExtResource( 59 )
-centered = false
-
-[node name="Battlefield" type="Node2D" parent="."]
-script = ExtResource( 18 )
-
-[node name="Navigation" type="Node2D" parent="Battlefield"]
-unique_name_in_owner = true
-
-[node name="Background" type="Node2D" parent="Battlefield"]
-
-[node name="MegaSpace" type="Area2D" parent="Battlefield/Background"]
-collision_layer = 0
-collision_mask = 8193
-space_override = 3
-gravity = 0.0
-linear_damp = 9.0
-angular_damp = 25.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Background/MegaSpace"]
-visible = false
-shape = SubResource( 1 )
-
-[node name="OutsideWall" parent="Battlefield/Background" instance=ExtResource( 20 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 20 )]
 hollow = true
 hide_grid = true
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
 script = ExtResource( 68 )
 __meta__ = {
 "_editor_icon": ExtResource( 73 )
 }
-width = 3700
+width = 4300
 height = 2200
 bevel = 900
 bevel_nw = 900
@@ -349,165 +53,75 @@ bevel_ne = 900
 bevel_sw = 900
 bevel_se = 900
 
-[node name="GridWrapper" type="Node2D" parent="Battlefield/Background"]
-
-[node name="Grid" parent="Battlefield/Background/GridWrapper" instance=ExtResource( 9 )]
-modulate = Color( 1, 1, 1, 0.9 )
-material = SubResource( 8 )
-texture = ExtResource( 60 )
-fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
-bg_color = Color( 0.28, 0.14, 0.14, 1 )
-
-[node name="FloodWater" parent="Battlefield/Background" instance=ExtResource( 14 )]
-position = Vector2( 0, 20000 )
-z_index = 50
-z_as_relative = false
-opaque_tint = Color( 0, 0, 0, 1 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" groups=["animation_in_battle"]]
-playback_process_mode = 0
-anims/Rotate = SubResource( 2 )
-
-[node name="GRect" type="Node" parent="Battlefield/Background/FloodWater"]
-script = ExtResource( 69 )
-width = 20000
-height = 20000
-
-[node name="TrailLayer" type="Node2D" parent="Battlefield"]
-
-[node name="Middleground" type="Node2D" parent="Battlefield"]
-
-[node name="Wall" parent="Battlefield/Middleground" instance=ExtResource( 20 )]
-position = Vector2( -900, 0 )
-solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall"]
-script = ExtResource( 67 )
-radius = 150
-sides = 4.0
-alternating_angle = 0
-rotation_degrees = 0
-
-[node name="NavigationZone" parent="Battlefield/Middleground/Wall" instance=ExtResource( 26 )]
-offset_type = "outset"
-
-[node name="Wall2" parent="Battlefield/Middleground" instance=ExtResource( 20 )]
-position = Vector2( 900, 0 )
-solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
-
-[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2"]
-script = ExtResource( 67 )
-radius = 150
-sides = 4.0
-alternating_angle = 0
-rotation_degrees = 0
-
-[node name="NavigationZone" parent="Battlefield/Middleground/Wall2" instance=ExtResource( 26 )]
-offset_type = "outset"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" groups=["animation_in_battle"]]
-playback_process_mode = 0
-playback_speed = 0.2
-anims/Rotate = SubResource( 13 )
-
-[node name="PlayerTerritory1" parent="Battlefield/Middleground" instance=ExtResource( 2 )]
-position = Vector2( -1100, 400 )
+[node name="PlayerTerritory1" parent="Battlefield/Background" index="4" instance=ExtResource( 2 )]
+position = Vector2( -1400, 0 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/PlayerTerritory1"]
-polygon = PoolVector2Array( -750, -200, -750, -600, 50, -1400, 1950, 700, 150, 700 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Background/PlayerTerritory1" index="3"]
+polygon = PoolVector2Array( -750, 200, -750, -200, 150, -1100, 2350, 1100, 150, 1100 )
 
-[node name="PlayerTerritory2" parent="Battlefield/Middleground" instance=ExtResource( 2 )]
-position = Vector2( 1100, -500 )
+[node name="PlayerTerritory2" parent="Battlefield/Background" index="5" instance=ExtResource( 2 )]
+position = Vector2( 1400, 0 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/PlayerTerritory2"]
-polygon = PoolVector2Array( 750, 300, -150, -600, -1950, -600, -50, 1500, 750, 700 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Background/PlayerTerritory2" index="3"]
+polygon = PoolVector2Array( 750, -200, -150, -1100, -2350, -1100, -150, 1100, 750, 200 )
 
-[node name="Foreground" type="Node2D" parent="Battlefield"]
+[node name="CameraEye" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
+position = Vector2( -1900, 800 )
 
-[node name="Crown" parent="Battlefield/Foreground" instance=ExtResource( 63 )]
-physics_material_override = SubResource( 10 )
-type = "crown"
+[node name="CameraEye2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
+position = Vector2( 1900, -800 )
 
-[node name="Overlay" type="Node2D" parent="Battlefield"]
+[node name="MirrorWall" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
+position = Vector2( -600, 0 )
 
-[node name="ElementInCamera" parent="Battlefield/Overlay" instance=ExtResource( 10 )]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/MirrorWall" index="9"]
+script = ExtResource( 68 )
+height = 800
+bevel = 40
+bevel_nw = 40
+bevel_ne = 40
+bevel_sw = 40
+bevel_se = 40
 
-[node name="Listener2D" type="Listener2D" parent="Battlefield"]
-current = true
+[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall" index="10" instance=ExtResource( 26 )]
+offset_type = "outset"
 
-[node name="SpawnPositions" type="Node" parent="."]
+[node name="MirrorWall2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 7 )]
+position = Vector2( 600, 0 )
 
-[node name="Players" type="Node2D" parent="SpawnPositions"]
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/MirrorWall2" index="9"]
+script = ExtResource( 68 )
+height = 800
+bevel = 40
+bevel_nw = 40
+bevel_ne = 40
+bevel_sw = 40
+bevel_se = 40
 
-[node name="p1" parent="SpawnPositions/Players" instance=ExtResource( 23 )]
-position = Vector2( -400, 400 )
-rotation = -2.35619
+[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall2" index="10" instance=ExtResource( 26 )]
+offset_type = "outset"
+
+[node name="Banner" parent="Battlefield/Foreground" index="0" instance=ExtResource( 63 )]
+type = "banner"
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 23 )]
+position = Vector2( -1400, 0 )
+rotation = 0.0
 species = ExtResource( 4 )
-cpu = true
 
-[node name="p2" parent="SpawnPositions/Players" instance=ExtResource( 23 )]
-position = Vector2( 400, -400 )
-rotation = 0.785398
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 23 )]
+position = Vector2( 1400, 0 )
+rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 3 )
-cpu = true
 
-[node name="Environments" type="Node2D" parent="SpawnPositions"]
-
-[node name="Enemies" type="Node2D" parent="SpawnPositions"]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 50
-
-[node name="HUD" parent="CanvasLayer" instance=ExtResource( 15 )]
-pause_mode = 2
-
-[node name="DescriptionMode" parent="CanvasLayer" instance=ExtResource( 19 )]
-visible = false
-
-[node name="Countdown" type="Label" parent="CanvasLayer"]
-modulate = Color( 1, 1, 1, 0.156863 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 50.0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 6 )
-align = 1
-valign = 1
-uppercase = true
+[node name="Countdown" parent="CanvasLayer" index="2"]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Countdown"]
-stream = ExtResource( 52 )
-
-[node name="DemoLabel" parent="CanvasLayer" instance=ExtResource( 27 )]
-visible = false
-custom_fonts/font = SubResource( 11 )
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-layer = 100
-
-[node name="Pause" parent="CanvasLayer2" instance=ExtResource( 25 )]
-visible = false
-
-[node name="Camera" type="Camera2D" parent="."]
-pause_mode = 2
-current = true
+[node name="Camera" parent="." index="6"]
 zoom = Vector2( 1.14795e+28, 1.14795e+28 )
 smoothing_speed = 0.3
-script = ExtResource( 55 )
-zoomMin = 3.0
-debug_mode = false
-
-[node name="CenterCamera" type="Position2D" parent="."]
-script = SubResource( 4 )
-
-[node name="GameOverAnim" type="AnimationPlayer" parent="."]
-"anims/Game Over" = SubResource( 5 )
-
-[connection signal="restart" from="CanvasLayer2/Pause" to="." method="_on_Pause_restart"]
-[connection signal="skip" from="CanvasLayer2/Pause" to="." method="_on_Pause_skip"]
