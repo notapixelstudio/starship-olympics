@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://combat/modes/ClaimTheBanner.tres" type="Resource" id=1]
 [ext_resource path="res://actors/environments/PlayerTerritory.tscn" type="PackedScene" id=2]
@@ -6,10 +6,9 @@
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=4]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=5]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=6]
-[ext_resource path="res://actors/environments/MirrorWall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=7]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=20]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=23]
-[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=26]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=60]
 [ext_resource path="res://actors/brains/TakeTheCrownBrain.tscn" type="PackedScene" id=61]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=63]
@@ -45,8 +44,8 @@ script = ExtResource( 68 )
 __meta__ = {
 "_editor_icon": ExtResource( 73 )
 }
-width = 4300
-height = 2200
+width = 3400
+height = 2400
 bevel = 900
 bevel_nw = 900
 bevel_ne = 900
@@ -54,54 +53,44 @@ bevel_sw = 900
 bevel_se = 900
 
 [node name="PlayerTerritory1" parent="Battlefield/Background" index="4" instance=ExtResource( 2 )]
-position = Vector2( -1400, 0 )
+position = Vector2( -1100, 0 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Background/PlayerTerritory1" index="3"]
-polygon = PoolVector2Array( -750, 200, -750, -200, 150, -1100, 2350, 1100, 150, 1100 )
+polygon = PoolVector2Array( -600, 300, -600, -300, 300, -1200, 500, -1200, 500, 1200, 300, 1200 )
 
 [node name="PlayerTerritory2" parent="Battlefield/Background" index="5" instance=ExtResource( 2 )]
-position = Vector2( 1400, 0 )
+position = Vector2( 1150, 0 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Background/PlayerTerritory2" index="3"]
-polygon = PoolVector2Array( 750, -200, -150, -1100, -2350, -1100, -150, 1100, 750, 200 )
+polygon = PoolVector2Array( 550, -300, -350, -1200, -550, -1200, -550, 1200, -350, 1200, 550, 300 )
 
 [node name="CameraEye" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
-position = Vector2( -1900, 800 )
+position = Vector2( -1400, 900 )
 
 [node name="CameraEye2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
-position = Vector2( 1900, -800 )
+position = Vector2( 1400, -900 )
 
-[node name="MirrorWall" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
-position = Vector2( -600, 0 )
+[node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 20 )]
+position = Vector2( 0, 600 )
 
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/MirrorWall" index="9"]
-script = ExtResource( 68 )
-height = 800
-bevel = 40
-bevel_nw = 40
-bevel_ne = 40
-bevel_sw = 40
-bevel_se = 40
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall3" index="8"]
+script = ExtResource( 7 )
+radius = 120
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
-[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall" index="10" instance=ExtResource( 26 )]
-offset_type = "outset"
+[node name="Wall4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 20 )]
+position = Vector2( 0, -600 )
 
-[node name="MirrorWall2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 7 )]
-position = Vector2( 600, 0 )
-
-[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/MirrorWall2" index="9"]
-script = ExtResource( 68 )
-height = 800
-bevel = 40
-bevel_nw = 40
-bevel_ne = 40
-bevel_sw = 40
-bevel_se = 40
-
-[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall2" index="10" instance=ExtResource( 26 )]
-offset_type = "outset"
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall4" index="8"]
+script = ExtResource( 7 )
+radius = 120
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
 
 [node name="Banner" parent="Battlefield/Foreground" index="0" instance=ExtResource( 63 )]
 type = "banner"
@@ -109,13 +98,19 @@ type = "banner"
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 23 )]
 position = Vector2( -1400, 0 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 4 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 23 )]
 position = Vector2( 1400, 0 )
 rotation = 3.14159
-controls = "kb2"
+controls = "joy2"
 species = ExtResource( 3 )
+
+[node name="HUD" parent="CanvasLayer" index="0"]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Countdown" parent="CanvasLayer" index="2"]
 __meta__ = {
