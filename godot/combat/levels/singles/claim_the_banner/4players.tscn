@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -16,12 +16,12 @@
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=15]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=16]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=17]
 
 [node name="Arena" instance=ExtResource( 7 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 13 )
 cpu_brain_scene = ExtResource( 12 )
-create_default_navzone = false
 
 [node name="CrownModeManager" parent="Managers" index="7"]
 enabled = true
@@ -98,6 +98,9 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall3" index="9" instance=ExtResource( 17 )]
+offset_type = "outset"
+
 [node name="Wall5" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
 position = Vector2( -1200, 0 )
 
@@ -107,6 +110,9 @@ radius = 120
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall5" index="9" instance=ExtResource( 17 )]
+offset_type = "outset"
 
 [node name="Wall6" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
 position = Vector2( 1200, 0 )
@@ -118,6 +124,9 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall6" index="9" instance=ExtResource( 17 )]
+offset_type = "outset"
+
 [node name="Wall4" parent="Battlefield/Middleground" index="5" instance=ExtResource( 6 )]
 position = Vector2( 0, -600 )
 
@@ -127,6 +136,9 @@ radius = 120
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall4" index="9" instance=ExtResource( 17 )]
+offset_type = "outset"
 
 [node name="Banner" parent="Battlefield/Foreground" index="0" instance=ExtResource( 14 )]
 type = "banner"

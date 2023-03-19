@@ -63,7 +63,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0.313726 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="PlayerTerritory" type="Area2D"]
+[node name="PlayerTerritory" type="Area2D" groups=["territory"]]
 collision_layer = 0
 collision_mask = 513
 script = ExtResource( 2 )

@@ -22,9 +22,10 @@ func set_player(v : InfoPlayer):
 func get_player():
 	return player
 
+var scoring := false
 var old_scoring := false
 func _process(delta):
-	var scoring := false
+	scoring = false
 	if player:
 		for body in get_overlapping_bodies():
 			if body is Ball:
@@ -43,3 +44,7 @@ func _process(delta):
 		$AnimationPlayer.play_backwards("Scoring")
 		
 	old_scoring = scoring
+
+func has_banner() -> bool:
+	return scoring
+	
