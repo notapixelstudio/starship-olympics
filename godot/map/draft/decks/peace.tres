@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
+[ext_resource path="res://map/draft/cards/Connex.tres" type="Resource" id=2]
+[ext_resource path="res://map/draft/cards/ArkOfMemory.tres" type="Resource" id=3]
+[ext_resource path="res://map/draft/cards/BoardConquest.tres" type="Resource" id=4]
+[ext_resource path="res://map/draft/cards/HomesickInvaders.tres" type="Resource" id=5]
+[ext_resource path="res://assets/map/cards/planets/ercadion_system.png" type="Texture" id=6]
+
+[resource]
+script = ExtResource( 1 )
+id = "peace"
+order = 2
+name = "Ercadion System"
+image = ExtResource( 6 )
+cards = [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ]
+nexts = [  ]
+playlist = true
+unlocks = [ "empire" ]
