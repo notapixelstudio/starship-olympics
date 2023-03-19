@@ -44,7 +44,7 @@ script = ExtResource( 68 )
 __meta__ = {
 "_editor_icon": ExtResource( 73 )
 }
-width = 3400
+width = 3200
 height = 2400
 bevel = 900
 bevel_nw = 900
@@ -57,14 +57,14 @@ position = Vector2( -1100, 0 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Background/PlayerTerritory1" index="3"]
-polygon = PoolVector2Array( -600, 300, -600, -300, 300, -1200, 500, -1200, 500, 1200, 300, 1200 )
+polygon = PoolVector2Array( -500, 300, -500, -300, 400, -1200, 500, -1200, 500, 1200, 400, 1200 )
 
 [node name="PlayerTerritory2" parent="Battlefield/Background" index="5" instance=ExtResource( 2 )]
-position = Vector2( 1150, 0 )
+position = Vector2( 1100, 0 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Background/PlayerTerritory2" index="3"]
-polygon = PoolVector2Array( 550, -300, -350, -1200, -550, -1200, -550, 1200, -350, 1200, 550, 300 )
+polygon = PoolVector2Array( 500, -300, -400, -1200, -500, -1200, -500, 1200, -400, 1200, 500, 300 )
 
 [node name="CameraEye" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
 position = Vector2( -1400, 900 )
@@ -98,13 +98,12 @@ type = "banner"
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 23 )]
 position = Vector2( -1400, 0 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 4 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 23 )]
 position = Vector2( 1400, 0 )
 rotation = 3.14159
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 3 )
 
 [node name="HUD" parent="CanvasLayer" index="0"]
