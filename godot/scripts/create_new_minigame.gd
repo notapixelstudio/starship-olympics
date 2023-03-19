@@ -36,7 +36,7 @@ func create_base_level(template):
 	dir.make_dir(LEVELS_BASE_DIR+snakecase(NAME))
 	
 	# instance the template Arena
-	var template_instance = load(template.arenas_dir+"/2players.tscn").instance()
+	var template_instance = load(template.arenas_dir+"/2players.tscn").instance(PackedScene.GEN_EDIT_STATE_MAIN_INHERITED)
 	
 	# modify it by pointing to the new game mode
 	template_instance.game_mode = load(GAME_MODES_BASE_DIR+camelcase(NAME)+".tres")

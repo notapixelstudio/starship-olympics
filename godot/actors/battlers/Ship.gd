@@ -574,7 +574,17 @@ func set_health(amount : int) -> void:
 	$PlayerInfo.update_health(amount)
 	
 func damage(hazard, damager : Ship, damager_team : String = ''):
-	if invincible or not alive or damager_team == get_team(): # self or teammates hits have no effect
+	if not alive or damager_team == get_team(): # self or teammates hits have no effect
+		return
+		
+	# check if we lose cargo instead
+	if get_cargo().has_holdable():
+		if not invincible:
+			show_hit()
+		get_cargo().drop_holdable(hazard)
+		return
+		
+	if invincible:
 		return
 		
 	# always rebound on hit
@@ -586,12 +596,6 @@ func damage(hazard, damager : Ship, damager_team : String = ''):
 	if has_method('vibration_feedback'):
 		call('vibration_feedback', false)
 		
-	# check if we lose cargo instead
-	if get_cargo().has_holdable():
-		show_hit()
-		get_cargo().drop_holdable(hazard)
-		return
-	
 	self.set_health(health - 1)
 	
 	if health < -1:
