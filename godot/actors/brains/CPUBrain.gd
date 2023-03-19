@@ -72,7 +72,9 @@ func tick():
 		request_fire()
 	
 func think():
-	pass
+	if controllee.has_method('are_controls_enabled') and not controllee.are_controls_enabled():
+		return
+	
 	
 func compute_think_time():
 	$ThinkTimer.wait_time = think_time + think_time_jitter*2*(0.5-randf())

@@ -1,8 +1,29 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://actors/battlers/Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/battlers/CPUShip.gd" type="Script" id=2]
+[ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+resource_local_to_scene = true
+radius = 48.0
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/color = Color( 1, 1, 1, 0 )
+shader_param/width = 12.0
+shader_param/pattern = 1
+shader_param/inside = false
+shader_param/add_margins = true
 
 [node name="CPU" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="15"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="Graphics" index="3"]
+material = SubResource( 2 )
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]

@@ -79,3 +79,7 @@ signal draft_ended(choices, hand)
 
 # settings
 signal glow_setting_changed
+
+# ready to fight
+signal tutorial_ack
+signal tutorial_can_start

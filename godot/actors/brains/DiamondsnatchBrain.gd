@@ -10,6 +10,8 @@ func _ready():
 	
 func think():
 	var targets
+	if controllee.has_method('are_controls_enabled') and not controllee.are_controls_enabled():
+		return
 	
 	set_stance('quiet') # we can't shoot in this minigame
 	log_strategy('')

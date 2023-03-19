@@ -244,7 +244,6 @@ mix_target = 1
 bus = "SFX"
 
 [node name="Continue" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -270,6 +269,7 @@ one_shot = true
 autostart = true
 
 [node name="Description" parent="." instance=ExtResource( 6 )]
+visible = false
 margin_top = 76.0
 margin_bottom = 219.0
 custom_colors/font_color_shadow = Color( 0.2, 0.317647, 0.482353, 1 )

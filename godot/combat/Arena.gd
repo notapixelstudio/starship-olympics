@@ -32,7 +32,6 @@ export var show_intro : bool = true
 export var random_starting_position : bool = true
 export var place_ships_at_start : bool = true
 export var dark_winter : bool = false
-
 export var create_default_navzone := true
 
 var debug = false
@@ -174,7 +173,8 @@ func _exit_tree():
 	
 func _ready():
 	set_process(false)
-	
+	if tutorial:
+		$Battlefield.visible=false
 	# remove HUD if not needed (e.g., map)
 	if not show_hud:
 		$CanvasLayer/HUD.queue_free()
@@ -207,7 +207,7 @@ func _ready():
 	
 	connect("slomo", environments_manager, "activate_slomo", [self], CONNECT_ONESHOT)
 	
-	
+	Events.connect("tutorial_can_start", self, "on_tutorial_can_start")
 	collect_manager.connect('collected', crown_mode, "_on_sth_collected")
 	collect_manager.connect('collected', self, "_on_sth_collected")
 	collect_manager.connect('dropped', crown_mode, "_on_sth_dropped")
@@ -348,7 +348,6 @@ func _ready():
 	update_grid()
 	
 	
-	
 	if show_hud:
 		hud.set_draft_card(global.the_match.get_draft_card())
 		
@@ -366,8 +365,6 @@ func _ready():
 			$Battlefield/Background/OutsideWall.add_child(NavigationZone_scene.instance())
 		update_navigation_zones()
 	
-	
-	
 	# $Battlefield.visible = false
 	if score_to_win_override > 0:
 		game_mode.max_score = score_to_win_override
@@ -380,8 +377,7 @@ func _ready():
 
 		if global.is_match_running():
 			mode_description.set_draft_card(global.the_match.get_draft_card())
-
-	
+			
 	grid.set_max_timeout(game_mode.max_timeout)
 	grid.clock = game_mode.survival
 	if grid.clock:
@@ -433,9 +429,6 @@ func _ready():
 			if dark_winter:
 				ice.modulate = Color(0.55,0.55,0.55)
 				
-	if show_intro:
-		yield(mode_description, "ready_to_fight")
-	
 	if style and style.bgm:
 		Soundtrack.play(style.bgm, true)
 	else:
@@ -476,11 +469,19 @@ func _ready():
 		
 	emit_signal('battle_start')
 	
+	if tutorial:
+		return
 	for node in traits.get_all_with("Waiter"):
 		node.start()
 		
 func focus_in_camera(node: Node2D, wait_time: float):
 	focus_in_camera.move(node.position, wait_time)
+
+func on_tutorial_can_start():
+	$Battlefield.visible = true
+	for node in traits.get_all_with("Waiter"):
+		node.start()
+	
 
 const COUNTDOWN_LIMIT = 5.0
 

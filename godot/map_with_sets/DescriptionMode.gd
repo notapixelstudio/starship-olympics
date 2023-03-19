@@ -7,9 +7,6 @@ onready var animator = $AnimationPlayer
 var array_players = [] # Array of InfoPlayers
 var draft_card = null
 
-##  signal to emit when we are ready to fight
-signal ready_to_fight
-
 func _ready():
 	set_process_input(false)
 	refresh()
@@ -22,8 +19,8 @@ func refresh():
 	$"%Label".text = tr(gamemode.name)
 	$"%LabelShadow".text = tr(gamemode.name)
 	var label_width = $"%Label".get("custom_fonts/font").get_string_size(tr(gamemode.name)).x
-	$"%LineLeft".position.x = -62 - label_width/2 - 35
-	$"%LineRight".position.x = 998 + label_width/2 + 35
+	$"%LineLeft".position.x = -40 - label_width/2 - 35
+	$"%LineRight".position.x = 1100 + label_width/2 + 35
 	
 	if draft_card:
 		var suit = draft_card.get_suit_bottom()
@@ -73,17 +70,13 @@ func appears():
 	tween.tween_property($"%Description2D", 'position', Vector2(630, 100), 3)
 	tween.parallel().tween_property($"%Description2D", 'scale', Vector2(0.5, 0.5), 3)
 	yield(tween, "finished")
+	Events.emit_signal("tutorial_can_start")
 	
-	if len(array_players) == 0:
-		# no human players, wait a bit then go
-		yield(get_tree().create_timer(1.0), "timeout")
-		disappear()
 	
 func disappear():
 	animator.play("getout")
 	$Continue.queue_free()
 	yield(animator, "animation_finished")
-	emit_signal("ready_to_fight")
 	queue_free()
 
 func demomode(demo = false):
@@ -99,4 +92,4 @@ func a_player_is_ready(player_info: InfoPlayer):
 	for p_info in array_players:
 		if not p_info in players_ready:
 			return false
-	disappear()
+	Events.emit_signal("tutorial_ack")
