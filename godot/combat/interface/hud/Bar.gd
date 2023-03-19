@@ -72,7 +72,7 @@ func post_ready(p: InfoPlayer):
 	# ticks
 	for i in range(1, int(max_score)):
 		# skip some ticks according to max score's order of magnitude
-		if max_score > 100 and i%10 != 0:
+		if max_score > 99 and i%10 != 0:
 			continue
 		
 		var tick = Line2D.new()

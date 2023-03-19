@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -27,7 +27,6 @@
 [ext_resource path="res://actors/environments/ElementInCamera.tscn" type="PackedScene" id=26]
 [ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=27]
 [ext_resource path="res://map_with_sets/DescriptionMode.tscn" type="PackedScene" id=28]
-[ext_resource path="res://default_env.tres" type="Environment" id=29]
 [ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=30]
 [ext_resource path="res://special_scenes/utils/DemoLabel.tscn" type="PackedScene" id=31]
 [ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=32]
@@ -38,14 +37,8 @@
 [ext_resource path="res://combat/managers/TappablesManager.tscn" type="PackedScene" id=37]
 [ext_resource path="res://actors/environments/Ice.tscn" type="PackedScene" id=38]
 [ext_resource path="res://combat/levels/background/red.png" type="Texture" id=39]
-[ext_resource path="res://assets/shaders/chromatic_aberration_texture.shader" type="Shader" id=40]
 [ext_resource path="res://actors/brains/CPUBrain.tscn" type="PackedScene" id=41]
 [ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=42]
-
-[sub_resource type="ShaderMaterial" id=7]
-shader = ExtResource( 40 )
-shader_param/apply = true
-shader_param/amount = 0.1
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10000, 10000 )
@@ -171,9 +164,6 @@ player_brain_scene = ExtResource( 5 )
 cpu_brain_scene = ExtResource( 41 )
 NavigationZone_scene = ExtResource( 42 )
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 29 )
-
 [node name="Managers" type="Node" parent="."]
 
 [node name="BumpManager" parent="Managers" instance=ExtResource( 15 )]
@@ -280,7 +270,6 @@ layer = -1
 
 [node name="BackgroundImage" type="Sprite" parent="BackgroundLayer"]
 unique_name_in_owner = true
-material = SubResource( 7 )
 texture = ExtResource( 39 )
 centered = false
 

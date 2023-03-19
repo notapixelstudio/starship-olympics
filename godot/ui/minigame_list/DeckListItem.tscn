@@ -6,14 +6,14 @@
 [ext_resource path="res://map/draft/DraftCardGraphicNode.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/shuffle.png" type="Texture" id=5]
 [ext_resource path="res://assets/arrow.png" type="Texture" id=6]
-[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=9]
+[ext_resource path="res://ui/minigame_list/WorldButton.tscn" type="PackedScene" id=7]
 
 [node name="DeckListItem" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 0, 170 )
 size_flags_horizontal = 3
-color = Color( 0, 0, 0, 0.1 )
+color = Color( 0, 0, 0, 0.235294 )
 script = ExtResource( 1 )
 CardScene = ExtResource( 4 )
 card_texture = ExtResource( 2 )
@@ -27,18 +27,12 @@ rect_min_size = Vector2( 0, 170 )
 size_flags_vertical = 3
 custom_constants/separation = 10
 
-[node name="Button" type="Button" parent="HBoxContainer"]
-unique_name_in_owner = true
-margin_right = 220.0
-margin_bottom = 170.0
-rect_min_size = Vector2( 220, 0 )
-size_flags_horizontal = 0
-theme = ExtResource( 9 )
+[node name="Button" parent="HBoxContainer" instance=ExtResource( 7 )]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 230.0
-margin_right = 230.0
+margin_left = 360.0
+margin_right = 360.0
 margin_bottom = 170.0
 size_flags_horizontal = 3
 size_flags_vertical = 3

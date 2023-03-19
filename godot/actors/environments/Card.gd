@@ -145,7 +145,7 @@ func reveal():
 func select():
 	selected = true
 	border.modulate = Color(1.2,1.2,1.2)
-	$'%Background'.modulate = Color(1.07,1.07,1.07)
+	$'%Background'.modulate = Color(1.15,1.15,1.15)
 	border.visible = true
 	if not float_when_selected:
 		$AnimationPlayer.play("Stand")
