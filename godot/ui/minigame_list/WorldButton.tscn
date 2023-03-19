@@ -1,10 +1,41 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://ui/minigame_list/WorldButton.gd" type="Script" id=3]
 [ext_resource path="res://assets/map/cards/planets/planet.png" type="Texture" id=4]
-[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Float"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ 64.0, 53.0, 64.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 64.0 ]
+}
 
 [sub_resource type="DynamicFont" id=2]
 size = 28
@@ -25,18 +56,23 @@ size_flags_horizontal = 0
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
 
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.235294 )
+position = Vector2( 175, 74 )
+scale = Vector2( 0.32, 0.32 )
+texture = ExtResource( 4 )
+
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.6, 0.6, 0.6, 1 )
 position = Vector2( 175, 64 )
 scale = Vector2( 0.32, 0.32 )
 texture = ExtResource( 4 )
 
-[node name="Shadow" parent="Sprite" instance=ExtResource( 5 )]
-show_behind_parent = true
-z_index = 0
-sprite = NodePath("..")
-dy = 20
-auto_rotate = false
+[node name="FloatAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+playback_speed = 2.0
+anims/Float = SubResource( 3 )
+anims/RESET = SubResource( 4 )
 
 [node name="UnderLabel" type="Label" parent="."]
 visible = false
