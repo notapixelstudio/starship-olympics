@@ -138,7 +138,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.10.1-alpha" setget set_version
+var version = "0.11.0-alpha" setget set_version
 var first_time = true
 
 func set_version(value):
@@ -612,6 +612,7 @@ var glow_enable = true setget _set_glow
 
 func _set_glow(value):
 	glow_enable = value
+	Events.emit_signal("glow_setting_changed")
 	
 
 # GAMEPLAY

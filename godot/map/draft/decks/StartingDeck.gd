@@ -6,6 +6,7 @@ class_name StartingDeck
 export var id : String
 export var order : int = 0
 export var name : String
+export var image : StreamTexture
 export var cards : Array = [Object(), Object(), Object(), Object()] # DraftCard
 export var nexts : Array = [] # DraftCard
 export var playlist := false
