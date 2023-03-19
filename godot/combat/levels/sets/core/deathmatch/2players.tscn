@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -15,12 +15,6 @@
 [ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=13]
 [ext_resource path="res://combat/levels/background/green.png" type="Texture" id=14]
 [ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=15]
-[ext_resource path="res://combat/levels/sets/core/deathmatch/variants/2E.tscn" type="PackedScene" id=16]
-[ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=17]
-[ext_resource path="res://combat/levels/sets/core/deathmatch/variants/2D.tscn" type="PackedScene" id=18]
-[ext_resource path="res://combat/levels/sets/core/deathmatch/variants/2C.tscn" type="PackedScene" id=19]
-[ext_resource path="res://combat/levels/sets/core/deathmatch/variants/2A.tscn" type="PackedScene" id=20]
-[ext_resource path="res://combat/levels/sets/core/deathmatch/variants/2B.tscn" type="PackedScene" id=21]
 [ext_resource path="res://combat/levels/background/green/pylon.png" type="Texture" id=22]
 [ext_resource path="res://combat/levels/background/green/pylon_mini2.png" type="Texture" id=23]
 [ext_resource path="res://combat/levels/background/green/pylon2.png" type="Texture" id=24]
@@ -245,8 +239,41 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Variants" parent="Battlefield/Middleground" index="8" instance=ExtResource( 17 )]
-variant_scenes = [ ExtResource( 18 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 16 ) ]
+[node name="Wall12" parent="Battlefield/Middleground" index="8" instance=ExtResource( 8 )]
+position = Vector2( -800, 400 )
+rotation = -0.785398
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall12" index="8"]
+script = ExtResource( 2 )
+height = 700
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall12" index="9" instance=ExtResource( 15 )]
+offset_type = "outset"
+
+[node name="Wall13" parent="Battlefield/Middleground" index="9" instance=ExtResource( 8 )]
+position = Vector2( 800, -400 )
+rotation = -0.785398
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 7 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall13" index="8"]
+script = ExtResource( 2 )
+height = 700
+bevel = 50
+bevel_nw = 50
+bevel_ne = 50
+bevel_sw = 50
+bevel_se = 50
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall13" index="9" instance=ExtResource( 15 )]
+offset_type = "outset"
 
 [node name="CameraEye" parent="Battlefield/Foreground" index="0" instance=ExtResource( 26 )]
 position = Vector2( -1500, 1100 )
@@ -257,7 +284,6 @@ position = Vector2( 1500, -1100 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1200, 800 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 12 )
 cpu = true
 

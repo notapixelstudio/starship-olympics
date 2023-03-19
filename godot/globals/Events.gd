@@ -76,3 +76,6 @@ signal card_tapped(author, card)
 signal starting_deck_selected(starting_deck)
 signal selection_starting_deck_over
 signal draft_ended(choices, hand)
+
+# settings
+signal glow_setting_changed

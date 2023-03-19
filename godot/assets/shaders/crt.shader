@@ -16,12 +16,12 @@ uniform bool move_aberration = false;
 uniform float aberration_speed : hint_range(0.01, 10.0, 0.01) = float(1.0);
 
 vec2 CRTCurveUV(vec2 uv) {
-	if(show_curvature) {
+	//if(show_curvature) {
 		uv = uv * 2.0 - 1.0;
 		vec2 offset = abs(uv.yx) / vec2(9.0, 6.0);
 		uv = uv + uv * offset * offset;
 		uv = uv * 0.5 + 0.5;
-	}
+	//}
 	return uv;
 }
 
@@ -54,7 +54,7 @@ void fragment() {
 	vec2 screen_crtUV = CRTCurveUV(SCREEN_UV);
 	vec3 color = texture(SCREEN_TEXTURE, screen_crtUV).rgb;
 	
-	if (aberration_amount > 0.0) {
+	/*if (aberration_amount > 0.0) {
 		float adjusted_amount = aberration_amount / screen_size.x;
 		
 		if (move_aberration == true) {
@@ -64,15 +64,15 @@ void fragment() {
 		color.r = texture(SCREEN_TEXTURE, vec2(screen_crtUV.x + adjusted_amount, screen_crtUV.y)).r;
 		color.g = texture(SCREEN_TEXTURE, screen_crtUV).g;
 		color.b = texture(SCREEN_TEXTURE, vec2(screen_crtUV.x - adjusted_amount, screen_crtUV.y)).b;
-	}
+	}*/
 	
 	vec2 crtUV = CRTCurveUV(UV);
 	if (crtUV.x < 0.0 || crtUV.x > 1.0 || crtUV.y < 0.0 || crtUV.y > 1.0) {
 		color = vec3(0.0, 0.0, 0.0);
 	}
 	
-	DrawVignette(color, crtUV);
-	DrawScanline(color, crtUV, TIME * scanlines_speed);
+	//DrawVignette(color, crtUV);
+	//DrawScanline(color, crtUV, TIME * scanlines_speed);
 	
 	COLOR = vec4(color, 1.0);
 }

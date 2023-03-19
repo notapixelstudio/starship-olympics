@@ -17,7 +17,6 @@
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 10 )
-match_duration_override = 55.0
 
 [node name="ConquestModeManager" parent="Managers" index="10"]
 enabled = true
@@ -1004,12 +1003,12 @@ position = Vector2( -1665, 0 )
 rotation = -2.68221e-07
 scale = Vector2( 0.9, 0.9 )
 species = ExtResource( 7 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 5 )]
 position = Vector2( 832.5, -1441.93 )
 rotation = 2.09439
 scale = Vector2( 0.9, 0.9 )
-controls = "joy2"
 species = ExtResource( 3 )
 cpu = true
 
@@ -1017,7 +1016,6 @@ cpu = true
 position = Vector2( 832.5, 1441.93 )
 rotation = -2.0944
 scale = Vector2( 0.9, 0.9 )
-controls = "joy2"
 species = ExtResource( 13 )
 cpu = true
 

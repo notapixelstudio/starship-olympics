@@ -612,6 +612,7 @@ var glow_enable = true setget _set_glow
 
 func _set_glow(value):
 	glow_enable = value
+	Events.emit_signal("glow_setting_changed")
 	
 
 # GAMEPLAY
