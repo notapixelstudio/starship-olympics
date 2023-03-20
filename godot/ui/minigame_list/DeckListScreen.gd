@@ -12,9 +12,9 @@ func _ready():
 	var deck_values = decks.values()
 	deck_values.sort_custom(self, 'sort_by_order')
 	for deck in deck_values:
-		# skip non playlists
-		if not deck.is_playlist():
-			continue
+#		# skip non playlists
+#		if not deck.is_playlist():
+#			continue
 		var item = DeckListItemScene.instance()
 		item.set_deck(deck)
 		item.set_index(i)
