@@ -88,6 +88,7 @@ func select():
 	.select()
 	$"%SuitTopLeft".self_modulate = Color(0,0,0,0.75)
 	$"%SuitBottomRight".self_modulate = Color(0,0,0,0.75)
+	$'%Background'.modulate = Color(1.15,1.15,1.15)
 	
 # @override
 func tap(author):
