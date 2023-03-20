@@ -8,12 +8,12 @@
 [ext_resource path="res://map/draft/cards/RedMystery.tres" type="Resource" id=6]
 [ext_resource path="res://map/draft/cards/GreenMystery.tres" type="Resource" id=7]
 
-
 [resource]
 script = ExtResource( 1 )
 id = "mystery"
+order = 100
 name = "Mystery"
 cards = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ]
 nexts = [  ]
-shuffle_before_dealing = true
-skip_first_draft = false
+playlist = false
+unlocks = [  ]
