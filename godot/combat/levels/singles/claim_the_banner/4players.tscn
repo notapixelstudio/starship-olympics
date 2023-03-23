@@ -47,47 +47,47 @@ script = ExtResource( 2 )
 __meta__ = {
 "_editor_icon": ExtResource( 3 )
 }
-width = 4400
+width = 5600
 height = 2800
-bevel = 500
-bevel_nw = 500
-bevel_ne = 500
-bevel_sw = 500
-bevel_se = 500
+bevel = 400
+bevel_nw = 400
+bevel_ne = 400
+bevel_sw = 400
+bevel_se = 400
 
 [node name="PlayerTerritory1" parent="Battlefield/Background" index="4" instance=ExtResource( 4 )]
 position = Vector2( -1200, -850 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Background/PlayerTerritory1" index="3"]
-polygon = PoolVector2Array( -1000, -50, -500, -550, 800, -550, 800, 250, 600, 450, -1000, 450 )
+polygon = PoolVector2Array( -1600, -150, -1200, -550, 800, -550, 800, 50, 400, 450, -1600, 450 )
 
 [node name="PlayerTerritory2" parent="Battlefield/Background" index="5" instance=ExtResource( 4 )]
 position = Vector2( 1300, 950 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Background/PlayerTerritory2" index="3"]
-polygon = PoolVector2Array( -900, -350, -700, -550, 900, -550, 900, -50, 400, 450, -900, 450 )
+polygon = PoolVector2Array( -900, -150, -500, -550, 1500, -550, 1500, 50, 1100, 450, -900, 450 )
 
 [node name="PlayerTerritory3" parent="Battlefield/Background" index="6" instance=ExtResource( 4 )]
 position = Vector2( -1200, 950 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Background/PlayerTerritory3" index="3"]
-polygon = PoolVector2Array( -1000, -50, -1000, -550, 600, -550, 800, -350, 800, 450, -500, 450 )
+polygon = PoolVector2Array( -1600, 50, -1600, -550, 400, -550, 800, -150, 800, 450, -1200, 450 )
 
 [node name="PlayerTerritory4" parent="Battlefield/Background" index="7" instance=ExtResource( 4 )]
 position = Vector2( 1300, -850 )
 goal_owner = NodePath("../../../SpawnPositions/Players/p4")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Background/PlayerTerritory4" index="3"]
-polygon = PoolVector2Array( -900, -550, 400, -550, 900, -50, 900, 450, -700, 450, -900, 250 )
+polygon = PoolVector2Array( -900, -550, 1100, -550, 1500, -150, 1500, 450, -500, 450, -900, 50 )
 
 [node name="CameraEye" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
-position = Vector2( -2100, 1300 )
+position = Vector2( -2700, 1300 )
 
 [node name="CameraEye2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
-position = Vector2( 2100, -1300 )
+position = Vector2( 2700, -1300 )
 
 [node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
 position = Vector2( 0, 600 )
@@ -103,11 +103,11 @@ rotation_degrees = 0
 offset_type = "outset"
 
 [node name="Wall5" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
-position = Vector2( -1200, 0 )
+position = Vector2( -1000, 0 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall5" index="8"]
 script = ExtResource( 1 )
-radius = 120
+radius = 150
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
@@ -115,12 +115,64 @@ rotation_degrees = 0
 [node name="NavigationZone" parent="Battlefield/Middleground/Wall5" index="9" instance=ExtResource( 17 )]
 offset_type = "outset"
 
-[node name="Wall6" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
-position = Vector2( 1200, 0 )
+[node name="Wall7" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
+position = Vector2( -2000, -600 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall7" index="8"]
+script = ExtResource( 1 )
+radius = 200
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall7" index="9" instance=ExtResource( 17 )]
+offset_type = "outset"
+
+[node name="Wall8" parent="Battlefield/Middleground" index="5" instance=ExtResource( 6 )]
+position = Vector2( -2000, 600 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall8" index="8"]
+script = ExtResource( 1 )
+radius = 200
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall8" index="9" instance=ExtResource( 17 )]
+offset_type = "outset"
+
+[node name="Wall9" parent="Battlefield/Middleground" index="6" instance=ExtResource( 6 )]
+position = Vector2( 2100, -600 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall9" index="8"]
+script = ExtResource( 1 )
+radius = 200
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall9" index="9" instance=ExtResource( 17 )]
+offset_type = "outset"
+
+[node name="Wall10" parent="Battlefield/Middleground" index="7" instance=ExtResource( 6 )]
+position = Vector2( 2100, 600 )
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall10" index="8"]
+script = ExtResource( 1 )
+radius = 200
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall10" index="9" instance=ExtResource( 17 )]
+offset_type = "outset"
+
+[node name="Wall6" parent="Battlefield/Middleground" index="8" instance=ExtResource( 6 )]
+position = Vector2( 1000, 0 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall6" index="8"]
 script = ExtResource( 1 )
-radius = 120
+radius = 150
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
@@ -128,7 +180,7 @@ rotation_degrees = 0
 [node name="NavigationZone" parent="Battlefield/Middleground/Wall6" index="9" instance=ExtResource( 17 )]
 offset_type = "outset"
 
-[node name="Wall4" parent="Battlefield/Middleground" index="5" instance=ExtResource( 6 )]
+[node name="Wall4" parent="Battlefield/Middleground" index="9" instance=ExtResource( 6 )]
 position = Vector2( 0, -600 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall4" index="8"]
@@ -145,26 +197,30 @@ offset_type = "outset"
 type = "banner"
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 10 )]
-position = Vector2( -1200, -850 )
-rotation = 0.0
+position = Vector2( -850, -850 )
+rotation = 0.785398
+controls = "joy1"
 species = ExtResource( 8 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
-position = Vector2( 1300, 950 )
-rotation = 3.14159
+position = Vector2( 850, 950 )
+rotation = 3.92699
 controls = "kb2"
 species = ExtResource( 11 )
+cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 10 )]
-position = Vector2( -1200, 950 )
-rotation = 0.0
+position = Vector2( -850, 950 )
+rotation = -0.785398
 species = ExtResource( 9 )
+cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 10 )]
-position = Vector2( 1300, -850 )
-rotation = 3.14159
+position = Vector2( 850, -850 )
+rotation = 2.35619
 controls = "kb2"
 species = ExtResource( 16 )
+cpu = true
 
 [node name="HUD" parent="CanvasLayer" index="0"]
 __meta__ = {
