@@ -637,18 +637,18 @@ func ship_just_died(ship, killer, for_good):
 		return
 	
 	var respawn_timeout = 1.5
-	if game_mode.id == 'rocket_crown' or game_mode.id == 'rocket_queen_of_the_hive':
-		#respawn_timeout = 0.75
-		var cargo = ship.get_cargo()
-		if cargo.has_holdable() and cargo.get_holdable().has_type('crown'):
-			respawn_timeout = 1.25 + 0.5*global.the_game.get_number_of_players()
-	#elif conquest_mode.enabled:
-	#	respawn_timeout = 0.75
-	#elif game_mode.name == "GoalPortal":
-	#	respawn_timeout = 0.75
-		
-	if game_mode.id == 'diamond_warfare':
-		respawn_timeout = 3.5
+#	if game_mode.id == 'rocket_crown' or game_mode.id == 'rocket_queen_of_the_hive':
+#		#respawn_timeout = 0.75
+#		var cargo = ship.get_cargo()
+#		if cargo.has_holdable():
+#			respawn_timeout = 1.25 + 0.5*global.the_game.get_number_of_players()
+#	#elif conquest_mode.enabled:
+#	#	respawn_timeout = 0.75
+#	#elif game_mode.name == "GoalPortal":
+#	#	respawn_timeout = 0.75
+#
+#	if game_mode.id == 'diamond_warfare':
+#		respawn_timeout = 3.5
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
