@@ -574,6 +574,10 @@ func set_health(amount : int) -> void:
 	$PlayerInfo.update_health(amount)
 	
 func damage(hazard, damager : Ship, damager_team : String = ''):
+	if not $DamagePreventionTimer.is_stopped(): # no damage if too quick
+		return
+	$DamagePreventionTimer.start()
+		
 	if not alive or damager_team == get_team(): # self or teammates hits have no effect
 		return
 		

@@ -466,6 +466,10 @@ width = 40
 texture = ExtResource( 43 )
 texture_mode = 2
 
+[node name="DamagePreventionTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
 [connection signal="near_area_entered" from="." to="." method="_on_Ship_near_area_entered"]
 [connection signal="hit" from="Shields" to="." method="_on_Shields_hit"]
