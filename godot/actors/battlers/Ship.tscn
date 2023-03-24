@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://actors/battlers/Ship.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/atom.png" type="Texture" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=8]
 [ext_resource path="res://combat/components/Flowing.gd" type="Script" id=9]
 [ext_resource path="res://combat/components/Cargo.gd" type="Script" id=10]
-[ext_resource path="res://combat/components/CoinBag.gd" type="Script" id=11]
 [ext_resource path="res://combat/components/Conqueror.gd" type="Script" id=12]
 [ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=13]
 [ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=14]
@@ -375,12 +374,6 @@ __meta__ = {
 "_editor_icon": ExtResource( 8 )
 }
 enabled = false
-
-[node name="CoinBag" type="Node" parent="Entity2D"]
-script = ExtResource( 11 )
-__meta__ = {
-"_editor_icon": ExtResource( 8 )
-}
 
 [node name="Conqueror" type="Node" parent="Entity2D"]
 script = ExtResource( 12 )
