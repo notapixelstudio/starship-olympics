@@ -24,6 +24,8 @@ export var player_brain_scene : PackedScene
 export var cpu_brain_scene : PackedScene
 export var NavigationZone_scene : PackedScene
 
+export var diamond_scene : PackedScene
+
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
 
@@ -213,8 +215,6 @@ func _ready():
 	collect_manager.connect("stolen", self, "_on_sth_stolen")
 	environments_manager.connect('repel_cargo', collect_manager, "_on_cargo_repelled")
 	collect_manager.connect('collected', collect_mode, "_on_sth_collected")
-	collect_manager.connect('coins_dropped', collect_mode, "_on_coins_dropped")
-	collect_manager.connect('coins_dropped', self, "_on_coins_dropped")
 	conquest_manager.connect('conquered', conquest_mode, "_on_sth_conquered")
 	conquest_manager.connect('lost', conquest_mode, "_on_sth_lost")
 	
@@ -882,12 +882,6 @@ func _on_sth_stolen(thief, mugged):
 	if what is Crown and what.type == Crown.types.SOCCERBALL:
 		what.owner_ship = thief
 		
-#func _on_coins_dropped(dropper, amount):
-#	for i in range(amount):
-#		var coin = coin_scene.instance()
-#		$Battlefield.add_child(coin)
-#		coin.position = dropper.position
-#		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
 
 signal wave_ready
 

@@ -69,6 +69,7 @@ default_color = Color( 1, 1, 1, 1 )
 texture_mode = 1
 sharp_limit = 0.0
 round_precision = 20
+antialiased = true
 
 [node name="lineBelow" type="Line2D" parent="."]
 self_modulate = Color( 0.596078, 0.596078, 0.596078, 1 )
@@ -82,6 +83,7 @@ texture = ExtResource( 7 )
 texture_mode = 1
 sharp_limit = 0.0
 round_precision = 10
+antialiased = true
 
 [node name="PlatformArea" type="Area2D" parent="." groups=["platform"]]
 collision_layer = 128
