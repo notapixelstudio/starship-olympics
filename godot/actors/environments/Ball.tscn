@@ -83,7 +83,7 @@ texture = ExtResource( 2 )
 [node name="Shadow" parent="." instance=ExtResource( 4 )]
 sprite = NodePath("../Sprite")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 3 )
 anims/hit = SubResource( 4 )
 

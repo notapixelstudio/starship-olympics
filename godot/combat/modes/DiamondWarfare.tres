@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://actors/brains/DiamondsnatchBrain.tscn" type="PackedScene" id=2]
+[ext_resource path="res://actors/brains/DiamondWarfareBrain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/icon/minicards/sets/diamondsnatch.png" type="Texture" id=3]
 [ext_resource path="res://combat/styles/purgreen.tres" type="Resource" id=4]
 
@@ -11,7 +11,7 @@ id = "diamond_warfare"
 name = "Diamond Warfare"
 icon = ExtResource( 3 )
 arena_style = ExtResource( 4 )
-description = "take the diamonds"
+description = "take the diamonds or kill to steal them"
 cpu_brain = ExtResource( 2 )
 max_timeout = 60
 max_score = 40
