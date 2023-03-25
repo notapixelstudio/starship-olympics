@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://combat/collectables/Diamond.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://actors/environments/DiamondCollectParticles.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=12]
 [ext_resource path="res://assets/audio/FX/sfx_sounds_impact10.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sprites/environments/diamond_outline.png" type="Texture" id=14]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 70.0
@@ -49,7 +50,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/path = NodePath("OutlineSprite:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -58,23 +59,46 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "hit"
-length = 0.4
+resource_name = "drop"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/path = NodePath("OutlineSprite:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 0.5, 0.5 ),
 "update": 0,
-"values": [ Color( 3, 3, 3, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 10, 10, 10, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 5, 5, 5, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [node name="Diamond" type="RigidBody2D" groups=["Diamond", "Foreground", "in_camera"]]
@@ -104,6 +128,12 @@ sprite = NodePath("../Sprite")
 position = Vector2( 0, 3 )
 texture = ExtResource( 7 )
 
+[node name="OutlineSprite" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, 3 )
+scale = Vector2( 1.05, 1.05 )
+texture = ExtResource( 14 )
+
 [node name="SpriteEffect" type="Sprite" parent="."]
 visible = false
 position = Vector2( 0, 3 )
@@ -127,8 +157,8 @@ shape = SubResource( 1 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0.35726 )
-scale = Vector2( 0.897677, 0.897677 )
+modulate = Color( 0.305882, 1, 0.968627, 0.346452 )
+scale = Vector2( 0.883289, 0.883289 )
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
@@ -140,9 +170,9 @@ anims/AppearFuhfuhfuh = ExtResource( 9 )
 
 [node name="Particles" parent="." instance=ExtResource( 11 )]
 
-[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="DropAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 3 )
-anims/hit = SubResource( 4 )
+anims/drop = SubResource( 4 )
 
 [node name="DamageSFX" type="AudioStreamPlayer2D" parent="."]
 bus = "SFX"

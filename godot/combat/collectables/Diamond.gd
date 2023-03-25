@@ -43,6 +43,5 @@ func on_collected_by(collector):
 	particles.global_position = global_position
 	particles.go()
 	
-func damage(hazard, damager) -> void:
-	$DamageAnimationPlayer.play("hit")
-	SoundEffects.play($DamageSFX)
+func drop() -> void:
+	$DropAnimationPlayer.play("drop")
