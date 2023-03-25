@@ -19,5 +19,5 @@ func _on_ship_died(ship, killer, for_good):
 		ship.get_parent().add_child(diamond)
 		diamond.global_position = ship.global_position
 		diamond.linear_velocity = ship.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
-		# flash diamonds
-		diamond.damage(null, killer)
+		# visual feedback
+		diamond.drop()
