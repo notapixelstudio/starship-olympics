@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/draft/DraftCardGraphicNode.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/icon/star_full06.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/ice_snowflake.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/cards/half_card.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/cards/back_prime.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 84
@@ -216,6 +217,13 @@ show_behind_parent = true
 position = Vector2( 0, 5 )
 scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 9 )
+
+[node name="Background" parent="Ground/Back" index="0"]
+modulate = Color( 1, 0.82, 0.82, 1 )
+texture = ExtResource( 12 )
+
+[node name="Internal" parent="Ground/Back" index="1"]
+visible = false
 
 [node name="Select" type="Sprite" parent="Ground" index="3"]
 visible = false
