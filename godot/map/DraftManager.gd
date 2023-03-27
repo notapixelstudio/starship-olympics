@@ -174,7 +174,8 @@ func pick_next_card():
 	print("Card chosen is {picked}".format({"picked":picked_card.get_id()})) # TBD could be null
 	animate_selection(picked_card)
 	if not global.demo: # do not unlock stuff in demo mode
-		global.add_card_to_shown_cards(picked_card.get_id(), global.the_game.get_deck().get_starting_deck_id())
+		#global.add_card_to_shown_cards(picked_card.get_id(), global.the_game.get_deck().get_starting_deck_id())
+		TheUnlocker.unlock_element("cards", picked_card.get_id())
 	persistance.save_game()
 	yield(self, "card_chosen")
 	Events.emit_signal("minigame_selected", picked_card)
@@ -207,7 +208,7 @@ func populate_hand(hand: Array):
 	for card in hand:
 		(card as DraftCard).on_card_drawn()
 		yield(get_tree().create_timer(0.1), "timeout")
-		add_card(card, false, not playlist_mode) # if ships have not to choose, cards are already selected
+		add_card(card, false, not playlist_mode or TheUnlocker.get_status("cards", card.get_id()) == TheUnlocker.UNLOCKED) # if ships have not to choose, cards are already selected
 	hand_node.update_card_positions()
 	
 func animate_selection(picked_card: DraftCard):
@@ -234,8 +235,8 @@ func animate_selection(picked_card: DraftCard):
 		if chosen_card.face_down:
 			chosen_card.reveal()
 			yield(chosen_card, "revealed")
-			chosen_card.select()
-			yield(get_tree().create_timer(0.9), "timeout")
+		chosen_card.select()
+		yield(get_tree().create_timer(0.9), "timeout")
 	else:
 		random_selection(hand_node.get_all_cards(), index_selection)
 		yield(self, "selection_finished")

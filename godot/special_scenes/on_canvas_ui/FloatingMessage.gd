@@ -6,7 +6,7 @@ export var still : bool = false
 func _ready():
 	# no messages after game is over
 	if not global.is_match_running():
-		free()
+		queue_free()
 		return
 		
 	if not still:

@@ -4,8 +4,9 @@ extends Node
 const HIDDEN = "hidden"
 const LOCKED = "locked"
 const UNLOCKED = "unlocked"
+const NEW = "new"
 
-export (String, "hidden", "locked", "unlocked") var status 
+export (String, "hidden", "locked", "unlocked", "new") var status 
 
 const PERSIST_GROUP = "persist_unlocking"
 func _ready():
@@ -16,11 +17,7 @@ const DEFAULT_UNLOCKED = {
 	"starting_decks": {
 		"first": UNLOCKED
 	},
-	"minigames": {
-		"crown": UNLOCKED,
-		"deathmatch": UNLOCKED,
-		"slam": UNLOCKED,
-		"diamond": UNLOCKED
+	"cards": {
 	},
 	"species": {
 		"mantiacs_1": UNLOCKED,
