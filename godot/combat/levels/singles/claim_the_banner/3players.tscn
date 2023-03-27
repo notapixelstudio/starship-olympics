@@ -95,7 +95,7 @@ rotation_degrees = 0
 offset_type = "outset"
 
 [node name="Wall5" parent="Battlefield/Middleground" index="3" instance=ExtResource( 12 )]
-position = Vector2( -1000, 0 )
+position = Vector2( -800, 0 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall5" index="8"]
 script = ExtResource( 1 )
@@ -108,7 +108,7 @@ rotation_degrees = 0
 offset_type = "outset"
 
 [node name="Wall7" parent="Battlefield/Middleground" index="4" instance=ExtResource( 12 )]
-position = Vector2( -2000, -600 )
+position = Vector2( -1800, -600 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall7" index="8"]
 script = ExtResource( 1 )
@@ -121,7 +121,7 @@ rotation_degrees = 0
 offset_type = "outset"
 
 [node name="Wall8" parent="Battlefield/Middleground" index="5" instance=ExtResource( 12 )]
-position = Vector2( -2000, 600 )
+position = Vector2( -1800, 600 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall8" index="8"]
 script = ExtResource( 1 )
@@ -134,7 +134,7 @@ rotation_degrees = 0
 offset_type = "outset"
 
 [node name="Wall9" parent="Battlefield/Middleground" index="6" instance=ExtResource( 12 )]
-position = Vector2( 2100, -600 )
+position = Vector2( 1900, -600 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall9" index="8"]
 script = ExtResource( 1 )
@@ -147,7 +147,7 @@ rotation_degrees = 0
 offset_type = "outset"
 
 [node name="Wall10" parent="Battlefield/Middleground" index="7" instance=ExtResource( 12 )]
-position = Vector2( 2100, 600 )
+position = Vector2( 1900, 600 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall10" index="8"]
 script = ExtResource( 1 )
@@ -160,7 +160,7 @@ rotation_degrees = 0
 offset_type = "outset"
 
 [node name="Wall6" parent="Battlefield/Middleground" index="8" instance=ExtResource( 12 )]
-position = Vector2( 1000, 0 )
+position = Vector2( 800, 0 )
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall6" index="8"]
 script = ExtResource( 1 )
@@ -197,9 +197,8 @@ species = ExtResource( 5 )
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 850, 950 )
 rotation = 3.92699
-controls = "kb2"
+controls = "joy2"
 species = ExtResource( 7 )
-cpu = true
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
 position = Vector2( -850, 950 )

@@ -2,6 +2,7 @@ extends Node
 
 export var this_arena_path : NodePath
 export var hand_node_path : NodePath
+export var world_node_path : NodePath
 export var message_node_path : NodePath
 export var pass_path : NodePath
 export var hand_position_node_path : NodePath
@@ -10,6 +11,7 @@ export var draft_card_scene : PackedScene
 var this_arena
 var hand_node : HandNode
 var hand_position : Node
+var world_node : Node
 var pass_node : Node
 var message_node : Typewriter
 var hand_refills := 0
@@ -28,11 +30,18 @@ func _ready():
 	
 	this_arena = get_node(this_arena_path)
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
+	world_node = get_node(world_node_path)
 	pass_node = get_node(pass_path)
 	message_node = get_node(message_node_path)
 	var deck: Deck = global.the_game.get_deck()
 	
 	playlist_mode = deck.is_playlist()
+	if not playlist_mode:
+		world_node.queue_free()
+	else:
+		hand_node.position.y = 0
+		world_node.set_deck(deck.get_starting_deck())
+		yield(get_tree().create_timer(1.0), "timeout")
 	
 	var hand = global.session.get_hand()
 	if len(hand) > 0:
