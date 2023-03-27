@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://combat/managers/DiamondHalvesManager.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/interface/diamond_half_right.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/interface/diamond_half_left.png" type="Texture" id=3]
+
+[node name="DiamondHalvesManager" type="Node"]
+script = ExtResource( 1 )
+left_icon = ExtResource( 3 )
+right_icon = ExtResource( 2 )
