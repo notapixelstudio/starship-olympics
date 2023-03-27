@@ -103,15 +103,14 @@ type = "banner"
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 23 )]
 position = Vector2( -1100, 0 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 4 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 23 )]
 position = Vector2( 1100, 0 )
 rotation = 3.14159
-controls = "kb2"
+controls = "joy2"
 species = ExtResource( 3 )
-cpu = true
 
 [node name="HUD" parent="CanvasLayer" index="0"]
 __meta__ = {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map_with_sets/MapGameMode.tres" type="Resource" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=14]
 [ext_resource path="res://actors/brains/DraftBrain.tscn" type="PackedScene" id=15]
 [ext_resource path="res://ui/Typewriter.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/map/cards/planets/planet.png" type="Texture" id=17]
+[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=18]
 [ext_resource path="res://combat/styles/lightpurple.tres" type="Resource" id=20]
 
 [sub_resource type="GDScript" id=1]
@@ -52,6 +54,76 @@ outline_size = 12
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 14 )
 
+[sub_resource type="GDScript" id=7]
+script/source = "extends Node2D
+
+func set_deck(v: StartingDeck) -> void:
+	$Sprite.texture = v.get_image()
+	$SpriteShadow.texture = v.get_image()
+	$Label.text = v.get_name()
+"
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+outline_size = 8
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 14 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Enter"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 0.120742, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 1800 ), Vector2( 0, 400 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1800 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
 [node name="Arena" instance=ExtResource( 1 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 2 )
@@ -67,6 +139,7 @@ standalone = false
 script = ExtResource( 12 )
 this_arena_path = NodePath("../..")
 hand_node_path = NodePath("../../Battlefield/Middleground/Hand")
+world_node_path = NodePath("../../Battlefield/Middleground/World")
 message_node_path = NodePath("../../Battlefield/Middleground/Message")
 pass_path = NodePath("../../Battlefield/Middleground/PASS")
 draft_card_scene = ExtResource( 9 )
@@ -154,6 +227,43 @@ custom_constants/shadow_offset_y = 8
 custom_fonts/font = SubResource( 3 )
 percent_visible = 0.0
 
+[node name="World" type="Node2D" parent="Battlefield/Middleground" index="3"]
+unique_name_in_owner = true
+position = Vector2( 0, 1800 )
+scale = Vector2( 1.8, 1.8 )
+script = SubResource( 7 )
+
+[node name="SpriteShadow" type="Sprite" parent="Battlefield/Middleground/World" index="0"]
+modulate = Color( 0, 0, 0, 0.196078 )
+position = Vector2( 0, 27.7778 )
+texture = ExtResource( 17 )
+
+[node name="Sprite" type="Sprite" parent="Battlefield/Middleground/World" index="1"]
+texture = ExtResource( 17 )
+
+[node name="Label" type="Label" parent="Battlefield/Middleground/World" index="2"]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -467.0
+margin_top = 105.0
+margin_right = 467.0
+margin_bottom = 181.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 18 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = SubResource( 4 )
+text = "PLANET"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/World" index="3"]
+autoplay = "Enter"
+anims/Enter = SubResource( 5 )
+anims/RESET = SubResource( 6 )
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
 position = Vector2( -600, 804 )
 rotation = -1.5708
@@ -184,11 +294,7 @@ species = ExtResource( 6 )
 [node name="Pause" parent="CanvasLayer2" index="0"]
 in_match = false
 
-[node name="Camera2D" type="Camera2D" parent="." index="7"]
-current = true
-zoom = Vector2( 3, 3 )
-
-[node name="Camera" parent="." index="8"]
+[node name="Camera" parent="." index="6"]
 current = false
 zoom = Vector2( inf, inf )
 smoothing_speed = 0.3
@@ -196,6 +302,10 @@ zoomMin = 4.0
 marginY = -225.0
 subtractHeight = 450
 disabled_override = true
+
+[node name="Camera2D" type="Camera2D" parent="." index="7"]
+current = true
+zoom = Vector2( 3, 3 )
 
 [connection signal="body_entered" from="Battlefield/Middleground/PASS" to="Battlefield/Middleground/PASS" method="_on_PASS_body_entered"]
 [connection signal="body_exited" from="Battlefield/Middleground/PASS" to="Battlefield/Middleground/PASS" method="_on_PASS_body_exited"]

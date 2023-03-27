@@ -110,3 +110,6 @@ func reset_health(amount):
 
 func update_health(amount):
 	$Wrapper/Scaled/Colored/HealthBar.set_amount(amount)
+
+func get_bag():
+	return $Wrapper/Scaled/Bag

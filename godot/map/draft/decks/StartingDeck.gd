@@ -35,3 +35,5 @@ func is_playlist() -> bool:
 func get_unlocks() -> Array:
 	return unlocks
 	
+func get_image() -> Texture:
+	return image
