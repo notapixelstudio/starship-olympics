@@ -1176,3 +1176,6 @@ func on_collect(collectee):
 	if collectee is Diamond:
 		$RisingDiamondCollectSFX.play_and_rise()
 		
+func get_bag():
+	return $PlayerInfo.get_bag()
+	
