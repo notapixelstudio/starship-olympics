@@ -80,8 +80,10 @@ func set_content_card(card: DraftCard):
 			$'%HalfBackground'.self_modulate = global.SUIT_COLORS[suit_bottom]
 			$'%HalfBackground'.visible = true
 	else:
-		$'%MinigameLabel'.self_modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
-		$'%BottomLabel'.modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
+		$'%MinigameLabel'.visible = false
+		$'%BottomLabel'.visible = false
+#		$'%MinigameLabel'.self_modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
+#		$'%BottomLabel'.modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
 	
 # @override
 func select():
