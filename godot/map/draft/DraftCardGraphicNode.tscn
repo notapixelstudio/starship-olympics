@@ -43,10 +43,13 @@ font_data = ExtResource( 5 )
 [node name="DraftCard" instance=ExtResource( 1 )]
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
+auto_flip_back = null
 take_ownership = true
 multiple_owners = true
 float_when_selected = false
-order_id = 0
+instant_reveal = null
+shadow_offset = null
+order_id = null
 
 [node name="Thickness" type="Sprite" parent="Ground/Front" index="0"]
 modulate = Color( 0, 0, 0, 1 )

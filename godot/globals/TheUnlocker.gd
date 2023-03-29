@@ -15,7 +15,8 @@ func _ready():
 
 const DEFAULT_UNLOCKED = {
 	"starting_decks": {
-		"first": UNLOCKED
+		"first": UNLOCKED,
+		"chaos": UNLOCKED
 	},
 	"cards": {
 	},
