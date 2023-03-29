@@ -10,7 +10,6 @@ export (String, 'mystery', "blue", "white", "cyan", "red", "yellow", 'green', "m
 var _subcards_copy : Array = []
 var current_subcard : DraftCard = null
 
-
 func randomize_minigame() -> void:
 	randomize()
 	if len(_subcards_copy) <= 0:

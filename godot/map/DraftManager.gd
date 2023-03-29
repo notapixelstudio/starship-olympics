@@ -182,6 +182,7 @@ func pick_next_card():
 	
 	print("Card chosen is {picked}".format({"picked":picked_card.get_id()})) # TBD could be null
 	animate_selection(picked_card)
+	picked_card.on_card_picked()
 	if not global.demo: # do not unlock stuff in demo mode
 		#global.add_card_to_shown_cards(picked_card.get_id(), global.the_game.get_deck().get_starting_deck_id())
 		TheUnlocker.unlock_element("cards", picked_card.get_id())

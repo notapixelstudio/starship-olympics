@@ -15,6 +15,9 @@ export var tint : Color
 var new := false
 var strikes := 0
 
+func is_available_for_random_extraction():
+	return true
+
 func _init():
 	_refill_unlocks()
 	
@@ -47,6 +50,9 @@ func is_perfectionist() -> bool:
 	return perfectionist
 
 func on_card_drawn() -> void:
+	pass
+	
+func on_card_picked() -> void:
 	pass
 	
 func has_level_for_player_count(player_count: int) -> bool:

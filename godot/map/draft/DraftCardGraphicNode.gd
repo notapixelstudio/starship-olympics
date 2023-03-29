@@ -64,7 +64,14 @@ func set_content_card(card: DraftCard):
 #		$Ground/Front/Border.self_modulate = Color('#ff5577') # takes priority over winter
 		
 	# suits
-	if not card is MysteryCard:
+	if card is MysteryCard:
+		$'%MinigameLabel'.visible = false
+		$'%BottomLabel'.visible = false
+#		$'%MinigameLabel'.self_modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
+#		$'%BottomLabel'.modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
+	elif card is RandomCard:
+		pass
+	else:
 		var suit_top = card.get_suit_top()
 		var suit_bottom = card.get_suit_bottom()
 		if suit_top:
@@ -79,12 +86,7 @@ func set_content_card(card: DraftCard):
 		if suit_top != suit_bottom:
 			$'%HalfBackground'.self_modulate = global.SUIT_COLORS[suit_bottom]
 			$'%HalfBackground'.visible = true
-	else:
-		$'%MinigameLabel'.visible = false
-		$'%BottomLabel'.visible = false
-#		$'%MinigameLabel'.self_modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
-#		$'%BottomLabel'.modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
-	
+			
 # @override
 func select():
 	.select()
