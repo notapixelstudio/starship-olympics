@@ -19,7 +19,10 @@ func get_name() -> String:
 	return name
 	
 func deal_cards() -> Array:
-	var all_cards = cards.duplicate()
+	var all_cards = []
+	for card in cards:
+		# each card should be unique, even if it's the same card
+		all_cards.append(card.duplicate())
 	
 	if not is_playlist():
 		all_cards.shuffle()
