@@ -48,6 +48,9 @@ func get_name() -> String:
 	return current_subcard.get_name() if current_subcard else ''
 	
 func get_icon() -> Texture:
+	return get_cover()
+	
+func get_cover() -> Texture:
 	return cover
 
 func get_suit_top() -> Array:

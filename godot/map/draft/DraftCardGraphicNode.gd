@@ -41,11 +41,11 @@ func set_content_card(card: DraftCard):
 	get_node('%NewLabel').visible = card_content.is_new()
 	
 	# mystery
-	$Ground/Front/Mystery.visible = card is MysteryCard
+	$Ground/Front/Mystery.visible = card is MysteryCard or card is RandomCard
 	#$Ground/Front/MinigameLabelWrapper.visible = not card is MysteryCard
-	$Ground/Front/MinigameIcon.visible = not card is MysteryCard
-	$Ground/Front/MinigameIconShadow.visible = not card is MysteryCard
-	if card is MysteryCard:
+	$Ground/Front/MinigameIcon.visible = not card is MysteryCard and not card is RandomCard
+	$Ground/Front/MinigameIconShadow.visible = not card is MysteryCard and not card is RandomCard
+	if card is MysteryCard or card is RandomCard:
 		$Ground/Front/Mystery.texture = card.get_cover()
 		$Ground/Front/Background.modulate = Color('#7c6989')
 		$"%BottomLabel".visible = true
@@ -64,13 +64,11 @@ func set_content_card(card: DraftCard):
 #		$Ground/Front/Border.self_modulate = Color('#ff5577') # takes priority over winter
 		
 	# suits
-	if card is MysteryCard:
+	if card is MysteryCard or card is RandomCard:
 		$'%MinigameLabel'.visible = false
 		$'%BottomLabel'.visible = false
 #		$'%MinigameLabel'.self_modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
 #		$'%BottomLabel'.modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
-	elif card is RandomCard:
-		pass
 	else:
 		var suit_top = card.get_suit_top()
 		var suit_bottom = card.get_suit_bottom()
