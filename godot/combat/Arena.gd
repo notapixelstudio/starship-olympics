@@ -560,7 +560,7 @@ func ship_just_died(ship, killer, for_good):
 	"""
 	var home : bool = game_mode.respawn_from_home
 	
-	if home:
+	if home and ship.info_player.lives != 0:
 		respawn_from_home(ship, ship.spawner)
 	
 	for_good = for_good or home
