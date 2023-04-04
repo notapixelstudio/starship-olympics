@@ -33,13 +33,13 @@ func collect_left(bag):
 	bag.set_item_type('left') 
 	bag.set_image(left_icon)
 	bag.increase()
-	bag.modulate = Color('#00fa83')
+	bag.modulate = Color('#00ea83')
 	
 func collect_right(bag):
 	bag.item_type = 'right' 
 	bag.set_image(right_icon)
 	bag.increase()
-	bag.modulate = Color('#9745cd')
+	bag.modulate = Color('#c765ff')
 	
 func score(collector):
 	collector.get_bag().decrease()
