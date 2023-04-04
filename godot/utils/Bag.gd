@@ -18,6 +18,8 @@ func set_item_type(v: String) -> void:
 
 func increase() -> void:
 	set_amount(amount+1)
+	$AnimationPlayer.stop()
+	$AnimationPlayer.play("blink")
 	
 func decrease() -> void:
 	set_amount(max(0, amount-1))
