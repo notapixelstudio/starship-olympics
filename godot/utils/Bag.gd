@@ -1,8 +1,8 @@
 extends Node2D
 
 export var image : Texture setget set_image
-export var amount := 0 setget set_amount
-export var item_type : String setget set_item_type
+export var amount := 0 setget set_amount, get_amount
+export var item_type : String setget set_item_type, get_item_type
 
 func set_image(v: Texture) -> void:
 	image = v
@@ -13,8 +13,14 @@ func set_amount(v: int) -> void:
 	$Value.text = str(amount)
 	visible = amount != 0
 	
+func get_amount() -> int:
+	return amount
+	
 func set_item_type(v: String) -> void:
 	item_type = v
+	
+func get_item_type() -> String:
+	return item_type
 
 func increase() -> void:
 	set_amount(amount+1)
