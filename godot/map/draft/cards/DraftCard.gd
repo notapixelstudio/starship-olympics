@@ -12,6 +12,8 @@ export var perfectionist : bool = false
 
 export var tint : Color
 
+var id = null
+
 var new := false
 var strikes := 0
 
@@ -27,7 +29,10 @@ func _refill_unlocks() -> void:
 	_unlocks_copy.shuffle()
 
 func get_id() -> String:
-	return self.resource_path.get_basename().get_file()
+	if id != null:
+		return id
+	else:
+		return self.resource_path.get_basename().get_file()
 
 func get_minigame() -> Minigame:
 	return (minigame as Minigame)
@@ -108,3 +113,8 @@ func get_logo() -> StreamTexture:
 	if get_minigame():
 		return get_minigame().get_icon()
 	return null
+
+func duplicate(subresources: bool = false) -> Resource:
+	var dup = .duplicate(subresources)
+	dup.id = get_id() # this is needed, since duplicates do not have a resource path
+	return dup
