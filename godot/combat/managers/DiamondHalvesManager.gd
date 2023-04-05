@@ -5,6 +5,7 @@ export var right_icon : Texture
 
 func _ready():
 	Events.connect("sth_collected", self, '_on_sth_collected')
+	Events.connect("sths_bumped", self, '_on_sths_bumped')
 	
 func _on_sth_collected(collector, collectee):
 	if not collectee is HalfDiamond:
@@ -29,6 +30,12 @@ func _on_sth_collected(collector, collectee):
 			else:
 				score(collector)
 
+func _on_sths_bumped(ship1, ship2):
+	if not ship1 is Ship or not ship2 is Ship:
+		return
+		
+	# TBD swap bag + merge diamonds if opposite halves + both score
+	
 func collect_left(bag):
 	bag.set_item_type('left') 
 	bag.set_image(left_icon)
