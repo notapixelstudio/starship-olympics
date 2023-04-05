@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://combat/collectables/HalfDiamond.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/geometry/icons/GRoundedRect.svg" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/patterns/rhombus.png" type="Texture" id=7]
 [ext_resource path="res://combat/collectables/HalfDiamondR.tscn" type="PackedScene" id=8]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=9]
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=10]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=12]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=13]
@@ -17,6 +18,7 @@
 [ext_resource path="res://combat/levels/background/blue.png" type="Texture" id=16]
 [ext_resource path="res://actors/environments/WaveGroupSpawner.gd" type="Script" id=17]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=18]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=19]
 
 [node name="Arena" instance=ExtResource( 13 )]
 size_multiplier = 2.5
@@ -43,9 +45,9 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
-width = 3500
-height = 1800
-radius = 900
+width = 5200
+height = 1600
+radius = 750
 precision = 100.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
@@ -56,35 +58,132 @@ bg_color = Color( 0.168627, 0.109804, 0.34902, 1 )
 
 [node name="Wave0" type="Node2D" parent="Battlefield/Middleground" index="0" groups=["spawn_waves"]]
 script = ExtResource( 17 )
+max_repeats = 1
 
-[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave0" index="0" instance=ExtResource( 15 )]
-pattern = "farapart"
+[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Wave0" index="0" instance=ExtResource( 15 )]
+pattern = "farslash"
 element_scene = ExtResource( 1 )
 guest_star_scene = ExtResource( 8 )
+guest_star_positioning = "half"
 
-[node name="HalfDiamond" parent="Battlefield/Middleground" index="1" instance=ExtResource( 1 )]
-position = Vector2( -300, 0 )
+[node name="ElementSpawnerGroup3" parent="Battlefield/Middleground/Wave0" index="1" instance=ExtResource( 15 )]
+pattern = "farbackslash"
+element_scene = ExtResource( 1 )
+guest_star_scene = ExtResource( 8 )
+guest_star_positioning = "half"
 
-[node name="HalfDiamond2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 1 )]
-position = Vector2( 300, 0 )
+[node name="Wave1" type="Node2D" parent="Battlefield/Middleground" index="1" groups=["spawn_waves"]]
+script = ExtResource( 17 )
+wave_number = 1
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Middleground/Wave1" index="0" instance=ExtResource( 15 )]
+pattern = "triplefarapart"
+element_scene = ExtResource( 1 )
+guest_star_scene = ExtResource( 8 )
+guest_star_positioning = "half"
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Middleground/Wave1" index="1" instance=ExtResource( 15 )]
+pattern = "veryfarapart"
+element_scene = ExtResource( 1 )
+guest_star_scene = ExtResource( 8 )
+guest_star_positioning = "half"
+
+[node name="HalfDiamond" parent="Battlefield/Middleground" index="2" instance=ExtResource( 1 )]
+position = Vector2( -450, 0 )
+
+[node name="HalfDiamond2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 1 )]
+position = Vector2( 450, 0 )
 left = false
 
+[node name="Wall" parent="Battlefield/Middleground" index="4" instance=ExtResource( 9 )]
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall" index="8"]
+script = ExtResource( 10 )
+height = 600
+bevel = 75
+bevel_nw = 75
+bevel_ne = 75
+bevel_sw = 75
+bevel_se = 75
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall" index="9" instance=ExtResource( 19 )]
+offset_type = "outset"
+
+[node name="Wall2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 9 )]
+position = Vector2( -900, 0 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall2" index="8"]
+script = ExtResource( 10 )
+height = 300
+bevel = 75
+bevel_nw = 75
+bevel_ne = 75
+bevel_sw = 75
+bevel_se = 75
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall2" index="9" instance=ExtResource( 19 )]
+offset_type = "outset"
+
+[node name="Wall4" parent="Battlefield/Middleground" index="6" instance=ExtResource( 9 )]
+position = Vector2( -1800, 0 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall4" index="8"]
+script = ExtResource( 10 )
+height = 200
+bevel = 75
+bevel_nw = 75
+bevel_ne = 75
+bevel_sw = 75
+bevel_se = 75
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall4" index="9" instance=ExtResource( 19 )]
+offset_type = "outset"
+
+[node name="Wall5" parent="Battlefield/Middleground" index="7" instance=ExtResource( 9 )]
+position = Vector2( 1800, 0 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall5" index="8"]
+script = ExtResource( 10 )
+height = 200
+bevel = 75
+bevel_nw = 75
+bevel_ne = 75
+bevel_sw = 75
+bevel_se = 75
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall5" index="9" instance=ExtResource( 19 )]
+offset_type = "outset"
+
+[node name="Wall3" parent="Battlefield/Middleground" index="8" instance=ExtResource( 9 )]
+position = Vector2( 900, 0 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall3" index="8"]
+script = ExtResource( 10 )
+height = 300
+bevel = 75
+bevel_nw = 75
+bevel_ne = 75
+bevel_sw = 75
+bevel_se = 75
+
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall3" index="9" instance=ExtResource( 19 )]
+offset_type = "outset"
+
 [node name="CameraEye" parent="Battlefield/Foreground" index="0" instance=ExtResource( 18 )]
-position = Vector2( 1200, 450 )
+position = Vector2( 2400, 750 )
 
 [node name="CameraEye2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 18 )]
-position = Vector2( -1200, -450 )
+position = Vector2( -2400, -750 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 11 )]
-position = Vector2( -800, 0 )
-rotation = 0.0
-controls = "joy1"
+position = Vector2( -1050, 600 )
+rotation = -0.785398
 species = ExtResource( 14 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 11 )]
-position = Vector2( 800, 0 )
-rotation = 3.14159
-controls = "joy2"
+position = Vector2( 1050, -600 )
+rotation = 2.35619
+controls = "kb2"
 species = ExtResource( 12 )
 
 [node name="Countdown" parent="CanvasLayer" index="2"]
