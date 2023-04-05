@@ -4,7 +4,7 @@ extends Position2D
 class_name ElementSpawnerGroup
 
 
-export (String, 'slash', 'backslash', 'line', "vline", "single", "plus", "rhombus", "gigarhombus", "zig", "zag", "apart", "farapart", "doublefarapart", "triplefarapart", "farslash", "farbackslash", "custom") var pattern = "line" setget _set_pattern
+export (String, 'slash', 'backslash', 'line', "vline", "single", "plus", "rhombus", "gigarhombus", "zig", "zag", "apart", "farapart", "doublefarapart", "triplefarapart", "veryfarapart", "farslash", "farbackslash", "custom") var pattern = "line" setget _set_pattern
 
 export var spawner_scene: PackedScene
 export var element_scene: PackedScene setget _set_element_scene
@@ -25,8 +25,9 @@ var map_pattern_distance = {
 	"farapart": [Vector2(-1350, 0), Vector2(1350, 0)],
 	"doublefarapart": [Vector2(-1350, -150), Vector2(-1350, 150), Vector2(1350, -150), Vector2(1350, 150)],
 	"triplefarapart": [Vector2(-1350, -150), Vector2(-1350, 0), Vector2(-1350, 150), Vector2(1350, -150), Vector2(1350, 0), Vector2(1350, 150)],
-	"farslash": [Vector2(-900, -600), Vector2(900, 600)],
-	"farbackslash": [Vector2(-900, 600), Vector2(900, -600)],
+	"veryfarapart": [Vector2(-2150, 0), Vector2(2150, 0)],
+	"farslash": [Vector2(-900, -450), Vector2(900, 450)],
+	"farbackslash": [Vector2(-900, 450), Vector2(900, -450)],
 	"single": [Vector2(0,0)]
 	}
 	
