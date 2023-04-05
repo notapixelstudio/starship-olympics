@@ -80,8 +80,8 @@ func continue_draft(session_ended):
 		deck.add_new_cards(how_many_new_cards)
 		hand.append_array(deck.draw(how_many_new_cards))
 		
-		if not playlist_mode:
-			hand.shuffle()
+		if not playlist_mode or hand_refills >= 1:
+			hand.shuffle() # logic order of cards in hand
 		
 		global.session.set_hand(hand)
 		hand_refills += 1
@@ -209,8 +209,8 @@ func sort_hand(a, b):
 	return b.new
 	
 func populate_hand(hand: Array):
-	if not playlist_mode:
-		# shake things up
+	if not playlist_mode or hand_refills > 1:
+		# shake things up - graphical order of cards in hand
 		hand.shuffle()
 	
 	# keep the new cards at the rightmost place
@@ -241,13 +241,13 @@ func animate_selection(picked_card: DraftCard):
 			break
 		index+=1
 	
-	if playlist_mode:
+	if playlist_mode and hand_refills <= 1:
 		if chosen_card.face_down:
 			chosen_card.reveal()
 			yield(chosen_card, "revealed")
 		chosen_card.select()
 		yield(get_tree().create_timer(0.9), "timeout")
-	else:
+	else: # show yellow arrow
 		random_selection(hand_node.get_all_cards(), index_selection)
 		yield(self, "selection_finished")
 		chosen_card.chosen = true
