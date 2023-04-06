@@ -61,23 +61,23 @@ func on_card_picked() -> void:
 	pass
 	
 func has_level_for_player_count(player_count: int) -> bool:
-	return (self.minigame as Minigame).get_arena_filepath(player_count) != ""
+	return (get_minigame() as Minigame).get_arena_filepath(player_count) != ""
 
 func get_available_player_counts(possible_players: Array) -> Array:
 	var ret = []
 	for num_players in possible_players:
-		if (self.minigame as Minigame).get_arena_filepath(num_players) != "":
+		if (get_minigame() as Minigame).get_arena_filepath(num_players) != "":
 			ret.append(num_players)
 	return ret
 	
 func get_name() -> String:
-	return minigame.get_name()
+	return get_minigame().get_name()
 	
 func get_description() -> String:
-	return minigame.get_description()
+	return get_minigame().get_description()
 	
 func get_icon() -> Texture:
-	return minigame.get_icon()
+	return get_minigame().get_icon()
 
 func set_new(v: bool) -> void:
 	new = v
@@ -89,10 +89,10 @@ func get_tint() -> Color:
 	return tint
 	
 func get_suit_top() -> Array:
-	return minigame.get_suit_top()
+	return get_minigame().get_suit_top()
 
 func get_suit_bottom() -> Array:
-	return minigame.get_suit_bottom()
+	return get_minigame().get_suit_bottom()
 
 func has_unlocks() -> bool:
 	return len(unlocks) > 0

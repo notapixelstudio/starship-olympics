@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/draft/DraftCardGraphicNode.gd" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/icon/minicards/star.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://assets/sprites/cards/card_mystery.png" type="Texture" id=7]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/icon/star_full06.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/ice_snowflake.png" type="Texture" id=10]
@@ -43,13 +42,10 @@ font_data = ExtResource( 5 )
 [node name="DraftCard" instance=ExtResource( 1 )]
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
-auto_flip_back = null
 take_ownership = true
 multiple_owners = true
 float_when_selected = false
-instant_reveal = null
-shadow_offset = null
-order_id = null
+order_id = 0
 
 [node name="Thickness" type="Sprite" parent="Ground/Front" index="0"]
 modulate = Color( 0, 0, 0, 1 )
@@ -71,12 +67,7 @@ texture = ExtResource( 11 )
 visible = true
 scale = Vector2( 2.15, 2.1 )
 
-[node name="Mystery" type="Sprite" parent="Ground/Front" index="6"]
-visible = false
-scale = Vector2( 2, 2 )
-texture = ExtResource( 7 )
-
-[node name="Suits" type="Node2D" parent="Ground/Front" index="9"]
+[node name="Suits" type="Node2D" parent="Ground/Front" index="8"]
 
 [node name="SuitTopLeft" type="Sprite" parent="Ground/Front/Suits" index="0"]
 unique_name_in_owner = true
@@ -89,14 +80,14 @@ position = Vector2( 94, 144 )
 scale = Vector2( 0.35, 0.35 )
 flip_v = true
 
-[node name="MinigameIconShadow" type="Sprite" parent="Ground/Front" index="10"]
+[node name="MinigameIconShadow" type="Sprite" parent="Ground/Front" index="9"]
 modulate = Color( 0, 0, 0, 0.392157 )
 position = Vector2( 0, -23 )
 
-[node name="MinigameIcon" type="Sprite" parent="Ground/Front" index="11"]
+[node name="MinigameIcon" type="Sprite" parent="Ground/Front" index="10"]
 position = Vector2( 0, -32 )
 
-[node name="MinigameLabelWrapper" type="Node2D" parent="Ground/Front" index="12"]
+[node name="MinigameLabelWrapper" type="Node2D" parent="Ground/Front" index="11"]
 position = Vector2( 0, 9 )
 scale = Vector2( 0.5, 0.5 )
 
@@ -167,7 +158,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="NewLabelWrapper" type="Node2D" parent="Ground/Front" index="13"]
+[node name="NewLabelWrapper" type="Node2D" parent="Ground/Front" index="12"]
 position = Vector2( 0, 14 )
 scale = Vector2( 0.5, 0.5 )
 
@@ -196,7 +187,7 @@ texture = ExtResource( 4 )
 position = Vector2( 1024, 157 )
 texture = ExtResource( 4 )
 
-[node name="PerfectionistStar" type="Sprite" parent="Ground/Front" index="14"]
+[node name="PerfectionistStar" type="Sprite" parent="Ground/Front" index="13"]
 unique_name_in_owner = true
 visible = false
 modulate = Color( 1.2, 1.2, 1.2, 1 )
