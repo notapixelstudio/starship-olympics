@@ -25,7 +25,7 @@ var map_pattern_distance = {
 	"farapart": [Vector2(-1350, 0), Vector2(1350, 0)],
 	"doublefarapart": [Vector2(-1350, -150), Vector2(-1350, 150), Vector2(1350, -150), Vector2(1350, 150)],
 	"triplefarapart": [Vector2(-1350, -150), Vector2(-1350, 0), Vector2(-1350, 150), Vector2(1350, -150), Vector2(1350, 0), Vector2(1350, 150)],
-	"veryfarapart": [Vector2(-2150, 0), Vector2(2150, 0)],
+	"veryfarapart": [Vector2(-2250, 0), Vector2(2250, 0)],
 	"farslash": [Vector2(-900, -450), Vector2(900, 450)],
 	"farbackslash": [Vector2(-900, 450), Vector2(900, -450)],
 	"single": [Vector2(0,0)]
