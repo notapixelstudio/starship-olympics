@@ -1,7 +1,7 @@
 extends Resource
 
 class_name StartingDeck
-# This is NOT A DECK
+# This is NOT A DECK, This is basically a playlist
 
 export var id : String
 export var order : int = 0

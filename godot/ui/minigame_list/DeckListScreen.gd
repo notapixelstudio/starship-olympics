@@ -2,9 +2,16 @@ extends ScrollContainer
 
 export var DeckListItemScene : PackedScene
 const DECK_PATH = "res://map/draft/decks/"
+const PATH_FILE_CHAMPIONS = "user://hall_of_fame.json"
 
 func _ready():
 	Events.connect("starting_deck_selected", self, "deck_chosen")
+	var playlist_info = {}
+	var data = global.read_file_by_line(InfoChampion.PATH_FILE_CHAMPIONS)
+	for winner_info in data:
+		var starting_deck_id = winner_info["session_info"].get("starting_deck")
+		if starting_deck_id:
+			playlist_info[starting_deck_id] = winner_info["player"]["id"]
 	
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_deck_keys = TheUnlocker.get_unlocked_list("starting_decks")
@@ -19,6 +26,8 @@ func _ready():
 			continue
 		var item = DeckListItemScene.instance()
 		item.set_deck(deck)
+		if playlist_info.get(deck.get_id()):
+			item.add_flag(playlist_info.get(deck.get_id()))
 		item.set_index(i)
 		$"%DecksContainer".add_child(item)
 		i += 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://ui/minigame_list/DeckListItem.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://ui/minigame_list/WorldButton.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/icon/minicards/star.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/environments/flag.png" type="Texture" id=10]
+[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=11]
 
 [sub_resource type="DynamicFont" id=2]
 size = 72
@@ -110,5 +112,17 @@ texture = ExtResource( 9 )
 [node name="Sprite2" type="Sprite" parent="New/NewLabel"]
 position = Vector2( 1024, 157 )
 texture = ExtResource( 9 )
+
+[node name="Flags" type="Sprite" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2( 33, 30 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="Flags"]
+margin_right = 40.0
+margin_bottom = 14.0
+theme = ExtResource( 11 )
 
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_Button_pressed"]
