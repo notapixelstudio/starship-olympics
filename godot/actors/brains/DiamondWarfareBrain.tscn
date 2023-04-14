@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/brains/CPUBrain.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/brains/DiamondWarfareBrain.gd" type="Script" id=2]
+
+[node name="DiamondWarfareBrain" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+go_to_center_p = 0.1

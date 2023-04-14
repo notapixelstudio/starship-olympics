@@ -13,9 +13,6 @@ func ship_sth_entered(other : CollisionObject2D, ship : Ship):
 		
 		if not entity.has('Keepable') or entity.has('Keepable') and is_loadable:
 			entity.get('Collectable').disable() # this makes sure we don't enter here twice
-			
-			if other is Diamond and ECM.E(ship).has('CoinBag'):
-				ECM.E(ship).get('CoinBag').add_coin()
 				
 			if other is PowerUp:
 				ship.apply_powerup(other)
@@ -46,10 +43,6 @@ func _on_ship_killed(ship : Ship, killer : Ship, for_good):
 		if cargo is Crown and cargo.type == Crown.types.SOCCERBALL:
 			cargo.owner_ship = null
 		drop_cargo(ship)
-		
-	if ECM.E(ship).has('CoinBag'):
-		var coins_dropped = ECM.E(ship).get('CoinBag').drop_some_coins()
-		#emit_signal('coins_dropped', ship, coins_dropped)
 		
 func _on_cargo_repelled(repeller):
 	drop_cargo(repeller)

@@ -2,6 +2,7 @@ extends Node
 
 export var this_arena_path : NodePath
 export var hand_node_path : NodePath
+export var world_node_path : NodePath
 export var message_node_path : NodePath
 export var pass_path : NodePath
 export var hand_position_node_path : NodePath
@@ -10,6 +11,7 @@ export var draft_card_scene : PackedScene
 var this_arena
 var hand_node : HandNode
 var hand_position : Node
+var world_node : Node
 var pass_node : Node
 var message_node : Typewriter
 var hand_refills := 0
@@ -28,11 +30,18 @@ func _ready():
 	
 	this_arena = get_node(this_arena_path)
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
+	world_node = get_node(world_node_path)
 	pass_node = get_node(pass_path)
 	message_node = get_node(message_node_path)
 	var deck: Deck = global.the_game.get_deck()
 	
 	playlist_mode = deck.is_playlist()
+	if not playlist_mode:
+		world_node.queue_free()
+	else:
+		hand_node.position.y = 0
+		world_node.set_deck(deck.get_starting_deck())
+		yield(get_tree().create_timer(1.0), "timeout")
 	
 	var hand = global.session.get_hand()
 	if len(hand) > 0:
@@ -71,8 +80,8 @@ func continue_draft(session_ended):
 		deck.add_new_cards(how_many_new_cards)
 		hand.append_array(deck.draw(how_many_new_cards))
 		
-		if not playlist_mode:
-			hand.shuffle()
+		if not playlist_mode or hand_refills >= 1:
+			hand.shuffle() # logic order of cards in hand
 		
 		global.session.set_hand(hand)
 		hand_refills += 1
@@ -173,8 +182,10 @@ func pick_next_card():
 	
 	print("Card chosen is {picked}".format({"picked":picked_card.get_id()})) # TBD could be null
 	animate_selection(picked_card)
+	picked_card.on_card_picked()
 	if not global.demo: # do not unlock stuff in demo mode
-		global.add_card_to_shown_cards(picked_card.get_id(), global.the_game.get_deck().get_starting_deck_id())
+		#global.add_card_to_shown_cards(picked_card.get_id(), global.the_game.get_deck().get_starting_deck_id())
+		TheUnlocker.unlock_element("cards", picked_card.get_id())
 	persistance.save_game()
 	yield(self, "card_chosen")
 	Events.emit_signal("minigame_selected", picked_card)
@@ -198,8 +209,8 @@ func sort_hand(a, b):
 	return b.new
 	
 func populate_hand(hand: Array):
-	if not playlist_mode:
-		# shake things up
+	if not playlist_mode or hand_refills > 1:
+		# shake things up - graphical order of cards in hand
 		hand.shuffle()
 	
 	# keep the new cards at the rightmost place
@@ -207,7 +218,7 @@ func populate_hand(hand: Array):
 	for card in hand:
 		(card as DraftCard).on_card_drawn()
 		yield(get_tree().create_timer(0.1), "timeout")
-		add_card(card, false, not playlist_mode) # if ships have not to choose, cards are already selected
+		add_card(card, false, not playlist_mode or TheUnlocker.get_status("cards", card.get_id()) == TheUnlocker.UNLOCKED) # if ships have not to choose, cards are already selected
 	hand_node.update_card_positions()
 	
 func animate_selection(picked_card: DraftCard):
@@ -230,13 +241,13 @@ func animate_selection(picked_card: DraftCard):
 			break
 		index+=1
 	
-	if playlist_mode:
+	if playlist_mode and hand_refills <= 1:
 		if chosen_card.face_down:
 			chosen_card.reveal()
 			yield(chosen_card, "revealed")
-			chosen_card.select()
-			yield(get_tree().create_timer(0.9), "timeout")
-	else:
+		chosen_card.select()
+		yield(get_tree().create_timer(0.9), "timeout")
+	else: # show yellow arrow
 		random_selection(hand_node.get_all_cards(), index_selection)
 		yield(self, "selection_finished")
 		chosen_card.chosen = true

@@ -2,50 +2,53 @@ extends ScrollContainer
 
 export var DeckListItemScene : PackedScene
 const DECK_PATH = "res://map/draft/decks/"
+const PATH_FILE_CHAMPIONS = "user://hall_of_fame.json"
 
 func _ready():
 	Events.connect("starting_deck_selected", self, "deck_chosen")
+	var playlist_info = {}
+	var data = global.read_file_by_line(InfoChampion.PATH_FILE_CHAMPIONS)
+	for winner_info in data:
+		var starting_deck_id = winner_info["session_info"].get("starting_deck")
+		if starting_deck_id:
+			playlist_info[starting_deck_id] = winner_info["player"]["username"]
 	
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_deck_keys = TheUnlocker.get_unlocked_list("starting_decks")
+	var new_deck_keys = TheUnlocker.get_unlocked_list("starting_decks", TheUnlocker.NEW)
+	unlocked_deck_keys.append_array(new_deck_keys)
 	var i = 0
 	var deck_values = decks.values()
 	deck_values.sort_custom(self, 'sort_by_order')
 	for deck in deck_values:
 		# skip non playlists
-		if not deck.is_playlist():
+		if not deck.is_playlist() or not deck.get_id() in unlocked_deck_keys:
 			continue
 		var item = DeckListItemScene.instance()
 		item.set_deck(deck)
+		if playlist_info.get(deck.get_id()):
+			item.add_flag(playlist_info.get(deck.get_id()))
 		item.set_index(i)
 		$"%DecksContainer".add_child(item)
 		i += 1
 	yield(get_tree().create_timer(0.1), "timeout")
 	
-	# select previously used deck
-#	var found := false
-#	for child in $VBoxContainer.get_children():
-#		if not child is DeckListItem:
-#			continue
-#		var deck: StartingDeck = (child as DeckListItem).deck
-#		if global.starting_deck_id == deck.get_id():
-#			(child as DeckListItem).grab_focus()
-#			found = true
-#			break
-#	if not found:
-#		# select the first one, and overwrite the global id
-#		var first = $VBoxContainer.get_child(0)
-#		var deck: StartingDeck = (first as DeckListItem).deck
-#		global.starting_deck_id = deck.get_id() # TBD maybe this should also be persisted somehow?
-#		(first as DeckListItem).grab_focus()
-	$"%RandomDeckListItem".grab_focus()
+	# select latest deck
+	var found := false
+	for child in $"%DecksContainer".get_children():
+		if not child is DeckListItem:
+			continue
+		child.grab_focus()
+		break
+	
+#	$"%RandomDeckListItem".grab_focus()
 	
 	if global.demo:
 		choose_random_playlist()
 		return
 	
 func sort_by_order(a, b):
-	return a.order < b.order
+	return a.order > b.order
 	
 func deck_chosen(starting_deck: StartingDeck):
 	global.starting_deck_id = starting_deck.get_id()

@@ -138,7 +138,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.10.1-alpha" setget set_version
+var version = "0.11.0-alpha" setget set_version
 var first_time = true
 
 func set_version(value):
@@ -802,12 +802,13 @@ func datetime_to_str(datetime: Dictionary, use_local := false) -> String:
 		local_tz = Time.get_offset_string_from_offset_minutes(tz.bias)
 	return datetime_string
 
-func get_playlist_starting_deck(status = TheUnlocker.UNLOCKED):
+func get_playlist_starting_deck(list_of_status: Array):
+	#  = TheUnlocker.UNLOCKED
 	var decks: Dictionary = global.get_resources(global.DECK_PATH)
 	var playlists = []
 	for starting_deck in decks.values():
 		assert(starting_deck is StartingDeck)
 		if starting_deck.is_playlist():
-			if TheUnlocker.get_status("starting_decks", starting_deck.get_id()) == status:
+			if TheUnlocker.get_status("starting_decks", starting_deck.get_id()) in list_of_status:
 				playlists.append(starting_deck)
 	return playlists

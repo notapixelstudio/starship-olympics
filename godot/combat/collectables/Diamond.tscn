@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://combat/collectables/Diamond.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://assets/animations/AppearFuhfuhfuh.tres" type="Animation" id=9]
 [ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=10]
 [ext_resource path="res://actors/environments/DiamondCollectParticles.tscn" type="PackedScene" id=11]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=12]
+[ext_resource path="res://assets/audio/FX/sfx_sounds_impact10.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sprites/environments/diamond_outline.png" type="Texture" id=14]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 70.0
@@ -44,6 +47,61 @@ tracks/1/keys = {
 "values": [ Color( 0.305882, 1, 0.968627, 0 ), Color( 0.305882, 1, 0.968627, 0 ), Color( 0.305882, 1, 0.968627, 0.388235 ), Color( 0.305882, 1, 0.968627, 0 ) ]
 }
 
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("OutlineSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "drop"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("OutlineSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.7, 1.7, 1.7, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Diamond" type="RigidBody2D" groups=["Diamond", "Foreground", "in_camera"]]
 collision_layer = 2048
 collision_mask = 3092
@@ -68,14 +126,19 @@ __meta__ = {
 sprite = NodePath("../Sprite")
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
 position = Vector2( 0, 3 )
 texture = ExtResource( 7 )
 
-[node name="SpriteEffect" type="Sprite" parent="."]
+[node name="OutlineSprite" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 0, 3 )
-scale = Vector2( 5, 5 )
+scale = Vector2( 1.05, 1.05 )
+texture = ExtResource( 14 )
+
+[node name="SpriteEffect" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, 3 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 7 )
 
 [node name="SpriteEffect2" type="Sprite" parent="."]
@@ -92,12 +155,11 @@ texture = ExtResource( 7 )
 shape = SubResource( 1 )
 
 [node name="Glow" type="Node2D" parent="."]
-visible = false
 scale = Vector2( 0.8, 0.8 )
 
 [node name="Sprite" type="Sprite" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0.245195 )
-scale = Vector2( 0.858946, 0.858946 )
+modulate = Color( 0.305882, 1, 0.968627, 0.288831 )
+scale = Vector2( 0.869436, 0.869436 )
 texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
@@ -108,3 +170,17 @@ anims/Blink = SubResource( 2 )
 anims/AppearFuhfuhfuh = ExtResource( 9 )
 
 [node name="Particles" parent="." instance=ExtResource( 11 )]
+
+[node name="DropAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/drop = SubResource( 4 )
+
+[node name="DamageSFX" type="AudioStreamPlayer2D" parent="."]
+bus = "SFX"
+script = ExtResource( 12 )
+streams = [ ExtResource( 13 ) ]
+volume_min = 0
+volume_max = 0
+randomize_pitch = true
+pitch_min = 1
+pitch_max = 1.2

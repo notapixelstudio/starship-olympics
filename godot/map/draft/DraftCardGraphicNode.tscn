@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://actors/environments/Card.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/draft/DraftCardGraphicNode.gd" type="Script" id=2]
@@ -6,11 +6,12 @@
 [ext_resource path="res://assets/icon/minicards/star.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://assets/sprites/cards/card_mystery.png" type="Texture" id=7]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/icon/star_full06.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/ice_snowflake.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/cards/half_card.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/cards/back_prime.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 84
@@ -46,7 +47,13 @@ multiple_owners = true
 float_when_selected = false
 order_id = 0
 
-[node name="Background" parent="Ground/Front" index="0"]
+[node name="Thickness" type="Sprite" parent="Ground/Front" index="0"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0, 5 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 13 )
+
+[node name="Background" parent="Ground/Front" index="1"]
 modulate = Color( 0.360784, 0.345098, 0.337255, 1 )
 
 [node name="HalfBackground" type="Sprite" parent="Ground/Front/Background" index="0"]
@@ -56,14 +63,9 @@ position = Vector2( 1, 1 )
 scale = Vector2( 1.01, 1.01 )
 texture = ExtResource( 11 )
 
-[node name="Border" parent="Ground/Front" index="3"]
+[node name="Border" parent="Ground/Front" index="4"]
 visible = true
 scale = Vector2( 2.15, 2.1 )
-
-[node name="Mystery" type="Sprite" parent="Ground/Front" index="5"]
-visible = false
-scale = Vector2( 2, 2 )
-texture = ExtResource( 7 )
 
 [node name="Suits" type="Node2D" parent="Ground/Front" index="8"]
 
@@ -216,6 +218,19 @@ show_behind_parent = true
 position = Vector2( 0, 5 )
 scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 9 )
+
+[node name="Thickness" type="Sprite" parent="Ground/Back" index="0"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0, 5 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 13 )
+
+[node name="Background" parent="Ground/Back" index="1"]
+visible = false
+
+[node name="Internal" parent="Ground/Back" index="2"]
+modulate = Color( 1, 0.819608, 0.819608, 1 )
+texture = ExtResource( 12 )
 
 [node name="Select" type="Sprite" parent="Ground" index="3"]
 visible = false

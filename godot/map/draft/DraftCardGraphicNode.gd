@@ -41,13 +41,12 @@ func set_content_card(card: DraftCard):
 	get_node('%NewLabel').visible = card_content.is_new()
 	
 	# mystery
-	$Ground/Front/Mystery.visible = card is MysteryCard
 	#$Ground/Front/MinigameLabelWrapper.visible = not card is MysteryCard
-	$Ground/Front/MinigameIcon.visible = not card is MysteryCard
-	$Ground/Front/MinigameIconShadow.visible = not card is MysteryCard
-	if card is MysteryCard:
-		$Ground/Front/Mystery.texture = card.get_cover()
-		$Ground/Front/Background.modulate = Color('#7c6989')
+	$Ground/Front/MinigameIcon.visible = not card is MysteryCard and not card is RandomCard
+	$Ground/Front/MinigameIconShadow.visible = not card is MysteryCard and not card is RandomCard
+	if card is MysteryCard or card is RandomCard:
+		$Ground/Front/Background.texture = card.get_cover()
+		$Ground/Front/Background.modulate = Color.white
 		$"%BottomLabel".visible = true
 	
 	# winter
@@ -64,7 +63,12 @@ func set_content_card(card: DraftCard):
 #		$Ground/Front/Border.self_modulate = Color('#ff5577') # takes priority over winter
 		
 	# suits
-	if not card is MysteryCard:
+	if card is MysteryCard or card is RandomCard:
+		$'%MinigameLabel'.visible = false
+		$'%BottomLabel'.visible = false
+#		$'%MinigameLabel'.self_modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
+#		$'%BottomLabel'.modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
+	else:
 		var suit_top = card.get_suit_top()
 		var suit_bottom = card.get_suit_bottom()
 		if suit_top:
@@ -79,15 +83,13 @@ func set_content_card(card: DraftCard):
 		if suit_top != suit_bottom:
 			$'%HalfBackground'.self_modulate = global.SUIT_COLORS[suit_bottom]
 			$'%HalfBackground'.visible = true
-	else:
-		$'%MinigameLabel'.self_modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
-		$'%BottomLabel'.modulate = global.SUIT_COLORS[card.get_color()].lightened(0.2)
-	
+			
 # @override
 func select():
 	.select()
 	$"%SuitTopLeft".self_modulate = Color(0,0,0,0.75)
 	$"%SuitBottomRight".self_modulate = Color(0,0,0,0.75)
+	$'%Background'.modulate = Color(1.15,1.15,1.15)
 	
 # @override
 func tap(author):

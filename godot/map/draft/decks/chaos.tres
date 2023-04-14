@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
+[ext_resource path="res://assets/map/cards/planets/chaos.png" type="Texture" id=2]
+[ext_resource path="res://map/draft/cards/Random.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+id = "neptune"
+order = 6
+name = "Chaos World"
+image = ExtResource( 2 )
+cards = [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ) ]
+nexts = [  ]
+playlist = true
+unlocks = [ "future" ]
