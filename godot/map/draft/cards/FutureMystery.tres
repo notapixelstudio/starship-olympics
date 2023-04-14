@@ -1,7 +1,8 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://map/draft/cards/MysteryCard.gd" type="Script" id=1]
-[ext_resource path="res://map/draft/cards/ClaimTheBanner.tres" type="Resource" id=3]
+[ext_resource path="res://map/draft/cards/GuardTheBridge.tres" type="Resource" id=2]
+[ext_resource path="res://map/draft/cards/WinterDiamondsnatch.tres" type="Resource" id=3]
 [ext_resource path="res://map/draft/cards/Undertakers.tres" type="Resource" id=4]
 [ext_resource path="res://assets/sprites/cards/card_future.png" type="Texture" id=5]
 [ext_resource path="res://map/draft/cards/BoardConquest.tres" type="Resource" id=6]
@@ -17,5 +18,5 @@ tint = Color( 0, 0, 0, 1 )
 name = "Future"
 description = "A random minigame from the future"
 mystery_cover = ExtResource( 5 )
-subcards = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ) ]
+subcards = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ) ]
 color = "mystery"
