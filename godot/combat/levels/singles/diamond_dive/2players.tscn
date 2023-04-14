@@ -421,14 +421,14 @@ position = Vector2( -1750, -700 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 4 )]
 position = Vector2( -600, 600 )
 rotation = -0.785398
-controls = "joy1"
 species = ExtResource( 13 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 4 )]
 position = Vector2( 600, -600 )
 rotation = 2.35619
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 9 )
+cpu = true
 
 [node name="Countdown" parent="CanvasLayer" index="2"]
 __meta__ = {
