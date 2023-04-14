@@ -125,7 +125,8 @@ func to_dict() -> Dictionary:
 		"uuid": get_uuid(),
 		"matches": matches,
 		"hand": serialized_cards,
-		"playing_card": playing_card.get_id() if playing_card != null else null
+		"playing_card": playing_card.get_id() if playing_card != null else null,
+		"starting_deck": global.the_game.deck.get_starting_deck_id()
 	}
 	return session_dict
 

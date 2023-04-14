@@ -92,3 +92,8 @@ func _on_Button_pressed():
 	print("{name} has been chosen".format({"name": deck.get_id()}))
 	Events.emit_signal("starting_deck_selected", self.deck)
 	
+func add_flag(who: String):
+	if who:
+		$"%Flags".visible = true
+		$Flags/Label.text = who
+		
