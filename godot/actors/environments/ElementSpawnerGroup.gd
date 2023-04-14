@@ -60,10 +60,16 @@ func set_spawners():
 				index_guest_star = len(map_pattern_distance[pattern])%2+1
 			elif guest_star_positioning == "random":
 				index_guest_star = randi()%len(map_pattern_distance[pattern])
+				
+		# in half mode, invert the displacement half the time
+		var positions = map_pattern_distance[pattern]
+		if guest_star_positioning == "half" and randf() >= 0.5:
+			positions.invert()
+			
 		var i = 0
-		for pos in map_pattern_distance[pattern]:
+		for pos in positions:
 			var spawner: ElementSpawner = spawner_scene.instance()
-			if i == index_guest_star or (guest_star_positioning == "half" and i >= len(map_pattern_distance[pattern])/2):
+			if i == index_guest_star or (guest_star_positioning == "half" and i >= len(positions)/2):
 				spawner.element_scene = guest_star_scene
 			else:
 				spawner.element_scene = self.element_scene
