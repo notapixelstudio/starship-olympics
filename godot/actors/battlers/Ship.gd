@@ -1149,7 +1149,16 @@ func get_target_velocity() -> Vector2:
 	if brain == null:
 		return Vector2(0,0)
 		
-	return brain.get_target_velocity()
+	var target_velocity = brain.get_target_velocity()
+	if is_auto_thrust():
+		if target_velocity.length() <= 0.1:
+			target_velocity = Vector2(cos(global_rotation), sin(global_rotation)) # front vector
+		else:
+			# always at maximum, no fine control
+			target_velocity = target_velocity.normalized()
+			
+	target_velocity *= get_thrust_multiplier()
+	return target_velocity
 
 func do_brain_tick() -> void:
 	var brain = get_brain()

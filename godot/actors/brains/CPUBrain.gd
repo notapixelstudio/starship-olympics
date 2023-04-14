@@ -47,15 +47,16 @@ func tick():
 	
 	# use the position given by the navigation system, rather than the target location as it is
 	var relative_position = nav_location - global_position
-	# we are already arrived, just stay where we are
-	if $NavigationAgent2D.is_navigation_finished():
-		return
-		
+	
 	var front = Vector2(cos(global_rotation), sin(global_rotation))
 	
 	target_velocity = relative_position.normalized()
 	rotation_request = front.angle_to(target_velocity)
 	
+	# we are already arrived, attempt to stay where we are
+	if $NavigationAgent2D.is_navigation_finished():
+		return
+		
 	# if we are far, attempt a dash
 	var distance = relative_position.length()
 	if distance > 900 and randf() < 0.3:
