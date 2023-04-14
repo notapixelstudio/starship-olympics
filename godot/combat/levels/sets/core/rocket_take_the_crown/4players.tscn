@@ -1,6 +1,6 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://combat/levels/sets/core/rocket_take_the_crown/variants/B.tscn" type="PackedScene" id=1]
+[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
@@ -10,16 +10,13 @@
 [ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=8]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=10]
-[ext_resource path="res://combat/levels/sets/core/rocket_take_the_crown/variants/C.tscn" type="PackedScene" id=11]
+[ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=12]
-[ext_resource path="res://combat/levels/sets/core/rocket_take_the_crown/variants/D.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/modes/RocketTakeTheCrown.tres" type="Resource" id=14]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=16]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=17]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=18]
-[ext_resource path="res://combat/levels/sets/core/rocket_take_the_crown/variants/4A.tscn" type="PackedScene" id=19]
-[ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=21]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"
@@ -36,6 +33,34 @@ tracks/0/keys = {
 "transitions": PoolRealArray( -2, -2 ),
 "update": 0,
 "values": [ 1285, 50 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 10.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("NoCrownZone:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NoCrownZone2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
 }
 
 [node name="Arena" instance=ExtResource( 9 )]
@@ -143,10 +168,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Variants" parent="Battlefield/Middleground" index="2" instance=ExtResource( 21 )]
-variant_scenes = [ ExtResource( 19 ), ExtResource( 1 ), ExtResource( 11 ), ExtResource( 13 ) ]
-
-[node name="Wall3" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
+[node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
 position = Vector2( -1900, -1300 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
@@ -157,7 +179,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall4" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
+[node name="Wall4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
 position = Vector2( 1900, 1300 )
 solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
 
@@ -167,6 +189,42 @@ radius = 80
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
+
+[node name="NoCrownZone" parent="Battlefield/Middleground" index="4" instance=ExtResource( 11 )]
+position = Vector2( -850, 0 )
+visible_decorations = true
+symbol_scale = 2.0
+decoration_scale = 1.2
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/NoCrownZone" index="12"]
+script = ExtResource( 18 )
+radius = 500
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="NoCrownZone2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 11 )]
+position = Vector2( 850, 0 )
+visible_decorations = true
+symbol_scale = 2.0
+decoration_scale = 1.2
+
+[node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/NoCrownZone2" index="12"]
+script = ExtResource( 18 )
+radius = 500
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="6" groups=["animation_in_battle"]]
+playback_speed = 0.2
+anims/Rotate = SubResource( 2 )
+
+[node name="CameraEye" parent="Battlefield/Middleground" index="7" instance=ExtResource( 1 )]
+position = Vector2( -1700, -1100 )
+
+[node name="CameraEye2" parent="Battlefield/Middleground" index="8" instance=ExtResource( 1 )]
+position = Vector2( 1700, 1100 )
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 15 )]
 type = "crown"
@@ -191,7 +249,7 @@ position = Vector2( -550, 550 )
 rotation = -0.785402
 species = ExtResource( 10 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera" parent="." index="6"]
 zoom = Vector2( 6103.52, 6103.52 )
 smoothing_speed = 0.3
 
