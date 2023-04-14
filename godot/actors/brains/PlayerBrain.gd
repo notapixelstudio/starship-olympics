@@ -2,8 +2,13 @@ extends Brain
 
 var controls: String setget set_controls
 
+var action_buffer : Dictionary = {}
+
 func set_controls(v: String) -> void:
 	controls = v
+	
+func _ready():
+	controllee.connect('dive_out', self, '_on_controllee_dive_out')
 
 func local_handling() -> Vector2:
 	var target = Vector2()
@@ -48,9 +53,23 @@ func tick():
 	# if we want tank mode control (relative control)
 	# rotation_request = int(Input.is_action_pressed(controls+'_right')) - int(Input.is_action_pressed(controls+'_left'))
 	
+func buffer_action(action_name: String) -> void:
+	action_buffer[action_name] = Time.get_ticks_msec()
+	
+func is_action_buffered(action_name: String, since_msec: int) -> bool:
+	return action_buffer.has(action_name) and Time.get_ticks_msec() - action_buffer[action_name] <= since_msec
+ 
 func _unhandled_input(event):
 	# charge and release even if controls are disabled
 	if event.is_action_pressed(controls+'_fire'):
+		buffer_action('charge')
 		emit_signal('charge')
 	elif event.is_action_released(controls+'_fire'):
+		buffer_action('release')
 		emit_signal('release')
+
+# replay charge input if diving out and it was buffered
+func _on_controllee_dive_out():
+	if is_action_buffered('charge', 300):
+		emit_signal('charge')
+		
