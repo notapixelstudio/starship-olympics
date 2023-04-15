@@ -118,6 +118,9 @@ func to_dict() -> Dictionary:
 	var serialized_cards := []
 	for card in self.get_hand():
 		serialized_cards.append((card as DraftCard).get_id())
+	var deck = global.the_game.deck
+	if deck:
+		deck.get_starting_deck_id()
 	var session_dict =  {
 		"game_id": game_id,
 		'timestamp': self.timestamp,
