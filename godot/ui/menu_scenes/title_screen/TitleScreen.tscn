@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/menu_scenes/title_screen/TitleScreen.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/lock_generic.png" type="Texture" id=7]
 [ext_resource path="res://ui/menu_scenes/credits_screen/Credits.tscn" type="PackedScene" id=8]
+[ext_resource path="res://special_scenes/combat_UI/gameover/HallOfFame.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -66,6 +67,7 @@ script = ExtResource( 2 )
 options_scene = ExtResource( 5 )
 local_multi_scene = ExtResource( 6 )
 credits_scene = ExtResource( 8 )
+hall_of_fame_scene = ExtResource( 9 )
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 4 )
@@ -95,9 +97,9 @@ __meta__ = {
 
 [node name="Continue" type="Button" parent="Buttons"]
 unique_name_in_owner = true
-margin_top = 37.0
+margin_top = 7.0
 margin_right = 300.0
-margin_bottom = 92.0
+margin_bottom = 62.0
 rect_min_size = Vector2( 210, 55 )
 disabled = true
 action_mode = 0
@@ -105,9 +107,9 @@ text = "CONTINUE"
 flat = true
 
 [node name="Fight" type="Button" parent="Buttons"]
-margin_top = 96.0
+margin_top = 66.0
 margin_right = 300.0
-margin_bottom = 151.0
+margin_bottom = 121.0
 rect_min_size = Vector2( 210, 55 )
 action_mode = 0
 text = "NEW GAME"
@@ -148,38 +150,36 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 7 )
 
 [node name="Options" type="Button" parent="Buttons"]
-margin_top = 155.0
+margin_top = 125.0
 margin_right = 300.0
-margin_bottom = 210.0
+margin_bottom = 180.0
 rect_min_size = Vector2( 210, 55 )
 action_mode = 0
 text = "OPTIONS"
 flat = true
 
-[node name="Help" type="Button" parent="Buttons"]
-visible = false
-margin_top = 148.0
-margin_right = 290.0
-margin_bottom = 218.0
+[node name="HallOfFame" type="Button" parent="Buttons"]
+margin_top = 184.0
+margin_right = 300.0
+margin_bottom = 239.0
 rect_min_size = Vector2( 210, 55 )
-disabled = true
 action_mode = 0
-text = "HELP"
+text = "HALL OF FAME"
 flat = true
 
 [node name="Credits" type="Button" parent="Buttons"]
-margin_top = 214.0
+margin_top = 243.0
 margin_right = 300.0
-margin_bottom = 269.0
+margin_bottom = 298.0
 rect_min_size = Vector2( 0, 55 )
 action_mode = 0
 text = "CREDITS"
 flat = true
 
 [node name="QuitButton" type="Button" parent="Buttons"]
-margin_top = 273.0
+margin_top = 302.0
 margin_right = 300.0
-margin_bottom = 328.0
+margin_bottom = 357.0
 rect_min_size = Vector2( 0, 55 )
 action_mode = 0
 text = "QUIT"
@@ -310,5 +310,6 @@ scroll_active = false
 [connection signal="pressed" from="Buttons/TeamVersus" to="." method="_on_Fight_pressed"]
 [connection signal="pressed" from="Buttons/Campaign" to="." method="_on_Fight_pressed"]
 [connection signal="pressed" from="Buttons/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="Buttons/HallOfFame" to="." method="_on_HallOfFame_pressed"]
 [connection signal="pressed" from="Buttons/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
