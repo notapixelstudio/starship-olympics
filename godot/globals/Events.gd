@@ -12,6 +12,8 @@ signal tappable_exited(tappable, ship)
 signal tap(tapper)
 signal sth_tapped(tapper, tappee)
 
+signal card_revealed(card)
+
 signal holdable_loaded(holdable, ship)
 signal holdable_dropped(holdable, ship, cause)
 signal holdable_replaced(old, new, ship)

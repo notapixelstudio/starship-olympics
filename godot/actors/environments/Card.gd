@@ -135,6 +135,7 @@ func reveal():
 	yield($AnimationPlayer, "animation_finished")
 	flipping = false
 	emit_signal("revealed")
+	Events.emit_signal("card_revealed", self)
 	if not selected or float_when_selected:
 		$AnimationPlayer.play("Float")
 	
