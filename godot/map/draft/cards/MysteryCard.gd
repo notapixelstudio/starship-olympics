@@ -62,3 +62,9 @@ func get_icon() -> Texture:
 
 func get_color() -> Array:
 	return color
+
+func is_winter() -> bool:
+	return current_subcard.is_winter() if current_subcard else false
+	
+func is_perfectionist() -> bool:
+	return current_subcard.is_perfectionist() if current_subcard else false

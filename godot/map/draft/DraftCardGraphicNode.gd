@@ -48,19 +48,19 @@ func set_content_card(card: DraftCard):
 		$Ground/Front/Background.texture = card.get_cover()
 		$Ground/Front/Background.modulate = Color.white
 		$"%BottomLabel".visible = true
-	
-	# winter
-	$Ground/Front/MinigameLabelWrapper/WinterLabel.visible = card.is_winter()
-	if card.is_winter():
-		$Ground/Front/Border.self_modulate = Color('#9be9ff')
-		$Ground/Front/Border.self_modulate.b = 1.2 # glow
-		$Ground/Front/Border.z_index = -1
-	
-	# perfectionist
-	if card.is_perfectionist():
-		get_node('%PerfectionistStar').visible = true
-		get_node('%BottomLabel').visible = true
-#		$Ground/Front/Border.self_modulate = Color('#ff5577') # takes priority over winter
+	else:
+		# winter
+		if card.is_winter():
+			$Ground/Front/MinigameLabelWrapper/WinterLabel.visible = true
+			$Ground/Front/Border.self_modulate = Color('#9be9ff')
+			$Ground/Front/Border.self_modulate.b = 1.2 # glow
+			$Ground/Front/Border.z_index = -1
+		
+		# perfectionist
+		if card.is_perfectionist():
+			get_node('%PerfectionistStar').visible = true
+			get_node('%BottomLabel').visible = true
+	#		$Ground/Front/Border.self_modulate = Color('#ff5577') # takes priority over winter
 		
 	# suits
 	if card is MysteryCard or card is RandomCard:
