@@ -627,6 +627,9 @@ func reset_counts():
 	sessions_played = 0 # Total number of sessions. Persistence
 	session_number_of_game = 0
 	match_number_of_game = 0
+	reset_minigame_counts()
+	
+func reset_minigame_counts():
 	if is_game_running():
 		for card in the_game.all_cards.get_cards():
 			var minigame = (card as DraftCard).get_minigame()
@@ -717,6 +720,7 @@ func safe_destroy_session() -> void:
 		Events.emit_signal("session_ended")
 		session.free()
 	session = null
+	reset_minigame_counts()
 	
 func is_game_running() -> bool:
 	return the_game != null and is_instance_valid(the_game)
