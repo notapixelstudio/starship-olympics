@@ -47,9 +47,6 @@ type = "heart"
 
 [node name="Diver" parent="." index="1" instance=ExtResource( 7 )]
 
-[node name="Glow" parent="." index="7"]
-visible = false
-
 [node name="Graphics" type="Node2D" parent="." index="8"]
 scale = Vector2( 1.1, 0.9 )
 
@@ -65,10 +62,13 @@ anims/Wobble = SubResource( 1 )
 scale = Vector2( 1.2, 1.2 )
 sprite = NodePath("../Alien")
 
-[node name="Sprite" parent="." index="9"]
+[node name="Glow" parent="." index="9"]
+visible = false
+
+[node name="Sprite" parent="." index="10"]
 visible = false
 scale = Vector2( 0.964, 1.036 )
 texture = ExtResource( 2 )
 
-[node name="Shadow" parent="." index="10"]
+[node name="Shadow" parent="." index="11"]
 visible = false
