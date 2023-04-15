@@ -152,8 +152,12 @@ position = Vector2( 2300, 1000 )
 position = Vector2( -2300, -1000 )
 
 [node name="Diamond" parent="Battlefield/Foreground" index="2" instance=ExtResource( 4 )]
+position = Vector2( -400, 0 )
 
-[node name="Wave0" type="Node2D" parent="Battlefield/Foreground" index="3" groups=["spawn_waves"]]
+[node name="Diamond2" parent="Battlefield/Foreground" index="3" instance=ExtResource( 4 )]
+position = Vector2( 400, 0 )
+
+[node name="Wave0" type="Node2D" parent="Battlefield/Foreground" index="4" groups=["spawn_waves"]]
 script = ExtResource( 17 )
 max_repeats = 1
 extra_delay = 1.0
@@ -197,7 +201,7 @@ position = Vector2( 2100, 900 )
 pattern = "single"
 element_scene = ExtResource( 4 )
 
-[node name="Wave1" type="Node2D" parent="Battlefield/Foreground" index="4" groups=["spawn_waves"]]
+[node name="Wave1" type="Node2D" parent="Battlefield/Foreground" index="5" groups=["spawn_waves"]]
 script = ExtResource( 17 )
 wave_number = 1
 max_repeats = 1
@@ -242,7 +246,7 @@ position = Vector2( 150, -600 )
 pattern = "single"
 element_scene = ExtResource( 4 )
 
-[node name="Wave2" type="Node2D" parent="Battlefield/Foreground" index="5" groups=["spawn_waves"]]
+[node name="Wave2" type="Node2D" parent="Battlefield/Foreground" index="6" groups=["spawn_waves"]]
 script = ExtResource( 17 )
 wave_number = 2
 max_repeats = 1
@@ -274,7 +278,7 @@ element_scene = ExtResource( 4 )
 pattern = "single"
 element_scene = ExtResource( 4 )
 
-[node name="Wave3" type="Node2D" parent="Battlefield/Foreground" index="6" groups=["spawn_waves"]]
+[node name="Wave3" type="Node2D" parent="Battlefield/Foreground" index="7" groups=["spawn_waves"]]
 script = ExtResource( 17 )
 wave_number = 3
 max_repeats = 0
@@ -292,7 +296,7 @@ element_scene = ExtResource( 4 )
 pattern = "rhombus"
 element_scene = ExtResource( 4 )
 
-[node name="Wave4" type="Node2D" parent="Battlefield/Foreground" index="7" groups=["spawn_waves"]]
+[node name="Wave4" type="Node2D" parent="Battlefield/Foreground" index="8" groups=["spawn_waves"]]
 script = ExtResource( 17 )
 wave_number = 4
 max_repeats = 0
@@ -312,7 +316,7 @@ element_scene = ExtResource( 13 )
 pattern = "single"
 element_scene = ExtResource( 13 )
 
-[node name="Wave5" type="Node2D" parent="Battlefield/Foreground" index="8" groups=["spawn_waves"]]
+[node name="Wave5" type="Node2D" parent="Battlefield/Foreground" index="9" groups=["spawn_waves"]]
 script = ExtResource( 17 )
 wave_number = 5
 max_repeats = 0
@@ -390,7 +394,7 @@ position = Vector2( 450, -450 )
 pattern = "single"
 element_scene = ExtResource( 4 )
 
-[node name="Wave6" type="Node2D" parent="Battlefield/Foreground" index="9" groups=["spawn_waves"]]
+[node name="Wave6" type="Node2D" parent="Battlefield/Foreground" index="10" groups=["spawn_waves"]]
 script = ExtResource( 17 )
 wave_number = 6
 extra_delay = 2.0
@@ -586,6 +590,7 @@ element_scene = ExtResource( 4 )
 position = Vector2( -1200, -800 )
 rotation = 0.785398
 species = ExtResource( 11 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 10 )]
 position = Vector2( 1200, 800 )
