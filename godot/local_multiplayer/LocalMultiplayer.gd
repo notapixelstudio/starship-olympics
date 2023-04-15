@@ -202,7 +202,8 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	# show tutorial if this minigame has one, and the minigame has not been already played
 	if minigame.has_tutorial() and not global.demo:
 		var tutorial = minigame.get_tutorial_scene().instance()
-		if minigame.is_first_time_started() or not tutorial.should_appear_once():
+		# check if we are playing the introductory playlist
+		if global.starting_deck_id == 'first' and minigame.is_first_time_started():
 			add_child(tutorial)
 			yield(tutorial, 'over')
 			
