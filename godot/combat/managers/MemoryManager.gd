@@ -116,8 +116,8 @@ func _on_card_taken(card, player, ship):
 		global.the_match.add_score(player.id, 2*multiplier)
 		global.arena.show_msg(player.species, 1*multiplier, previous_card.position)
 		global.arena.show_msg(player.species, 1*multiplier, card.position)
-		previous_card.queue_free()
-		card.queue_free()
+		previous_card.destroy()
+		card.destroy()
 	else:
 		# flip cards back
 		previous_card.hide()

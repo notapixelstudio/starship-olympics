@@ -113,7 +113,7 @@ func draw_anew():
 	global.new_session()
 	global.session.discard_hand() # we don't want a normal hand, we need to add a new game first
 	for c in hand_node.get_all_cards():
-		c.queue_free()
+		c.destroy()
 		
 func player_just_chose_a_card(author, card):
 	if not author.is_inside_tree():

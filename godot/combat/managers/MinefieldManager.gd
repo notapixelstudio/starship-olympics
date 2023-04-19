@@ -102,7 +102,7 @@ func _on_card_taken(card, player, ship):
 			
 	global.the_match.add_score(player.id, score)
 	global.arena.show_msg(player.species, score, card.position)
-	card.queue_free()
+	card.destroy()
 
 # reveal cards at the end of the match
 func _on_match_ended(match_dict: Dictionary):
