@@ -49,6 +49,8 @@ signal session_ended
 signal game_ended
 signal execution_ended
 
+signal battle_start
+
 signal continue_after_game_over(session_ended)
 signal continue_after_session_ended
 
