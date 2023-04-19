@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/brains/DiamondMinefieldBrain.gd" type="Script" id=1]
+[ext_resource path="res://actors/brains/CPUBrain.tscn" type="PackedScene" id=2]
+
+[node name="DiamondMinefieldBrain" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+random_dash_p = 0.0
+random_fire_p = 0.02
+
+[connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_target_reached"]
