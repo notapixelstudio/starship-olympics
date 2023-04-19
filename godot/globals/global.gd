@@ -627,6 +627,7 @@ func reset_counts():
 	sessions_played = 0 # Total number of sessions. Persistence
 	session_number_of_game = 0
 	match_number_of_game = 0
+	match_number_of_session = 0
 	reset_minigame_counts()
 	
 func reset_minigame_counts():
@@ -641,6 +642,7 @@ var session_number := 0
 var sessions_played := 0 # Total number of sessions. Persistence
 var session_number_of_game := 0
 var match_number_of_game := 0
+var match_number_of_session := 0
 
 func new_game(players: Array, data := {}) -> TheGame:
 	safe_destroy_game()
@@ -661,6 +663,7 @@ func new_match() -> TheMatch:
 	safe_destroy_match()
 	the_match = TheMatch.new()
 	match_number_of_game += 1
+	match_number_of_session += 1
 	Events.emit_signal("match_started")
 	print("Save the game")
 	if not global.demo:
@@ -720,6 +723,7 @@ func safe_destroy_session() -> void:
 		Events.emit_signal("session_ended")
 		session.free()
 	session = null
+	match_number_of_session = 0
 	
 func is_game_running() -> bool:
 	return the_game != null and is_instance_valid(the_game)
@@ -732,6 +736,9 @@ func is_session_running() -> bool:
 	
 func is_before_first_match_of_the_game() -> bool:
 	return match_number_of_game == 0
+	
+func is_before_first_match_of_the_session() -> bool:
+	return match_number_of_session == 0
 
 # remember which cards have already been shown to the player and in which starting deck
 var shown_cards_from_deck := {}
