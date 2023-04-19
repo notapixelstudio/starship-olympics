@@ -1,6 +1,7 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
+[ext_resource path="res://actors/brains/HomesickInvadersBrain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/icon/minicards/sets/foundlings.png" type="Texture" id=3]
 [ext_resource path="res://combat/styles/underspace.tres" type="Resource" id=4]
 
@@ -11,6 +12,7 @@ name = "Homesick Invaders"
 icon = ExtResource( 3 )
 arena_style = ExtResource( 4 )
 description = "take the aliens back to their homeworld"
+cpu_brain = ExtResource( 2 )
 max_timeout = 90
 max_score = 20
 starting_score = 0

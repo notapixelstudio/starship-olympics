@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/sprites/weapons/mini_mine.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/animals/mini.png" type="Texture" id=2]
+[ext_resource path="res://actors/environments/Parade.gd" type="Script" id=3]
+[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://actors/environments/Alien.tscn" type="PackedScene" id=5]
+[ext_resource path="res://actors/environments/SmolMine.tscn" type="PackedScene" id=6]
+
+[sub_resource type="TileSet" id=1]
+0/name = "mini_mine.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 192, 192 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "mini.png 1"
+1/texture = ExtResource( 2 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 192, 192 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+
+[node name="Parade" type="TileMap"]
+position = Vector2( 100, 0 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 200, 200 )
+centered_textures = true
+format = 1
+tile_data = PoolIntArray( 458750, 1, 0, 393216, 1, 0, 589822, 1, 0, 524288, 1, 0, 983038, 1, 0, 917504, 1, 0, 1114108, 1, 0, 1114110, 1, 0, 1048576, 1, 0, 1048578, 1, 0, 1245180, 1, 0, 1245182, 1, 0, 1179648, 1, 0, 1179650, 1, 0, 1376252, 1, 0, 1376254, 1, 0, 1310720, 1, 0, 1310722, 1, 0, 1507324, 1, 0, 1441794, 1, 0, 1835006, 1, 0, 1769472, 1, 0, 1900543, 0, 0, 1966078, 1, 0, 1900544, 1, 0, 2359294, 1, 0, 2293760, 1, 0, 2490364, 1, 0, 2490366, 0, 0, 2424832, 0, 0, 2424834, 1, 0, 2621438, 1, 0, 2555904, 1, 0, 2883583, 0, 0, 2949118, 1, 0, 2883584, 1, 0, 3080188, 0, 0, 3080190, 1, 0, 3014656, 1, 0, 3014658, 0, 0, 3211260, 1, 0, 3211262, 1, 0, 3145728, 1, 0, 3145730, 1, 0, 3342332, 1, 0, 3342334, 1, 0, 3276800, 1, 0, 3276802, 1, 0, 3473404, 1, 0, 3473406, 1, 0, 3407872, 1, 0, 3407874, 1, 0, 3604476, 1, 0, 3604479, 0, 0, 3538946, 1, 0, 3932159, 0, 0, 3997694, 1, 0, 3932160, 1, 0, 4063229, 0, 0, 4063231, 0, 0, 3997697, 0, 0, 4128766, 1, 0, 4063232, 1, 0, 4194303, 0, 0, 4521980, 0, 0, 4521982, 1, 0, 4456448, 1, 0, 4456450, 0, 0, 4653052, 1, 0, 4653054, 0, 0, 4587520, 0, 0, 4587522, 1, 0, 4784126, 1, 0, 4718592, 1, 0, 4915199, 0, 0, 5046269, 1, 0, 5046271, 0, 0, 4980737, 1, 0, 5177343, 0, 0, 5439487, 0, 0, 5505022, 1, 0, 5439488, 1, 0, 5570557, 0, 0, 5570559, 0, 0, 5505025, 0, 0, 5636094, 1, 0, 5570560, 1, 0, 5701631, 0, 0, 5963775, 1, 0, 6225919, 1, 0 )
+script = ExtResource( 3 )
+alien_scene = ExtResource( 5 )
+mine_scene = ExtResource( 6 )
+
+[node name="Waiter" parent="." instance=ExtResource( 4 )]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

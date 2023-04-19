@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
 [ext_resource path="res://combat/levels/singles/homesick_invaders/variants/PlanetsA.tscn" type="PackedScene" id=2]
@@ -8,25 +8,22 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=7]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=8]
-[ext_resource path="res://actors/brains/HomesickInvadersBrain.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=10]
 [ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=11]
 [ext_resource path="res://combat/modes/Foundlings.tres" type="Resource" id=12]
 [ext_resource path="res://combat/levels/singles/homesick_invaders/variants/PlanetsE.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/levels/singles/homesick_invaders/FoundlingsManager.tscn" type="PackedScene" id=14]
-[ext_resource path="res://combat/levels/singles/homesick_invaders/variants/ParadeA.tscn" type="PackedScene" id=15]
+[ext_resource path="res://actors/environments/Parade.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/levels/singles/homesick_invaders/variants/PlanetsB.tscn" type="PackedScene" id=16]
 [ext_resource path="res://combat/levels/singles/homesick_invaders/variants/PlanetsC.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/levels/singles/homesick_invaders/variants/PlanetsD.tscn" type="PackedScene" id=18]
 [ext_resource path="res://combat/levels/singles/homesick_invaders/variants/GlassB.tscn" type="PackedScene" id=19]
 [ext_resource path="res://combat/levels/singles/homesick_invaders/variants/GlassA.tscn" type="PackedScene" id=20]
-[ext_resource path="res://combat/levels/singles/homesick_invaders/variants/ParadeC.tscn" type="PackedScene" id=21]
-[ext_resource path="res://combat/levels/singles/homesick_invaders/variants/ParadeB.tscn" type="PackedScene" id=22]
+[ext_resource path="res://actors/environments/Alien.tscn" type="PackedScene" id=21]
 
 [node name="Arena" instance=ExtResource( 4 )]
 size_multiplier = 2.5
 game_mode = ExtResource( 12 )
-cpu_brain_scene = ExtResource( 9 )
 dark_winter = true
 
 [node name="FoundlingsManager" parent="Managers" index="0" instance=ExtResource( 14 )]
@@ -70,11 +67,22 @@ variant_scenes = [ ExtResource( 2 ), ExtResource( 16 ), ExtResource( 17 ), ExtRe
 modulate = Color( 1, 1, 1, 0.0784314 )
 polygon = PoolVector2Array( -1200, -2200, 1200, -2200, 1200, 2300, -1200, 2300 )
 
-[node name="ParadeVariants" parent="Battlefield/Middleground" index="1" instance=ExtResource( 11 )]
-variant_scenes = [ ExtResource( 15 ), ExtResource( 22 ), ExtResource( 21 ) ]
-
-[node name="GlassVariants" parent="Battlefield/Middleground" index="2" instance=ExtResource( 11 )]
+[node name="GlassVariants" parent="Battlefield/Middleground" index="1" instance=ExtResource( 11 )]
 variant_scenes = [ ExtResource( 20 ), ExtResource( 19 ) ]
+
+[node name="Parade" parent="Battlefield/Middleground" index="2" instance=ExtResource( 15 )]
+
+[node name="Alien" parent="Battlefield/Middleground" index="3" instance=ExtResource( 21 )]
+position = Vector2( -200, 1300 )
+
+[node name="Alien2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 21 )]
+position = Vector2( 200, 1300 )
+
+[node name="Alien3" parent="Battlefield/Middleground" index="5" instance=ExtResource( 21 )]
+position = Vector2( 200, 1700 )
+
+[node name="Alien4" parent="Battlefield/Middleground" index="6" instance=ExtResource( 21 )]
+position = Vector2( -200, 1700 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 5 )]
 position = Vector2( -600, -450 )
