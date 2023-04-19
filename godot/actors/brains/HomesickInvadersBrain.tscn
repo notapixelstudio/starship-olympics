@@ -5,5 +5,8 @@
 
 [node name="DiamondsnatchBrain" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-random_fire_p = 0.02
+random_dash_p = 0.001
+think_time_jitter = 0.05
+start_time_jitter = 4.0
+extents = Rect2( -3200, 200, 6400, 1400 )
 go_to_center_p = 0.1
