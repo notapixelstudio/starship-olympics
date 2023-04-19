@@ -92,7 +92,7 @@ func _on_card_taken(card, player, ship):
 	else:
 		if card.get_character_player() == null:
 			score = -1
-			card.queue_free()
+			card.destroy()
 		else: # enemy character
 			score = 10
 			affected_player = card.get_character_player()

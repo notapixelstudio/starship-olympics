@@ -72,6 +72,7 @@ func set_player(v):
 	# this should be emitted here, after the value is updated correctly
 	if player != previous_player and player != null:
 		emit_signal('taken', self, v, ship)
+		Events.emit_signal('card_taken', self, v, ship)
 	
 func get_player():
 	return player
@@ -211,3 +212,7 @@ func is_face_down() -> bool:
 func is_face_up() -> bool:
 	return not face_down
 	
+func destroy() -> void:
+	Events.emit_signal("card_destroyed", self)
+	yield(get_tree(), "idle_frame")
+	queue_free()

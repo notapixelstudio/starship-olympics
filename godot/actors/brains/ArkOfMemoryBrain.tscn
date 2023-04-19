@@ -5,5 +5,7 @@
 
 [node name="ArkOfMemoryBrain" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+random_dash_p = 0.005
+random_fire_p = 0.0
 
 [connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_target_reached"]

@@ -13,6 +13,8 @@ signal tap(tapper)
 signal sth_tapped(tapper, tappee)
 
 signal card_revealed(card)
+signal card_taken(card, player, ship)
+signal card_destroyed(card)
 
 signal holdable_loaded(holdable, ship)
 signal holdable_dropped(holdable, ship, cause)
