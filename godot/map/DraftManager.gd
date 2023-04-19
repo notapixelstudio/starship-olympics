@@ -93,13 +93,19 @@ func continue_draft(session_ended):
 	
 	yield(get_tree().create_timer(0.5), "timeout")
 	
-	if not playlist_mode and ships_have_to_choose :
+	if not playlist_mode and ships_have_to_choose:
 		message_node.type("Choose which minigames to play")
 		yield(message_node, "done")
 		yield(get_tree().create_timer(0.5), "timeout")
 		
 		this_arena.spawn_all_ships(true)
 	else:
+		if global.starting_deck_id == 'future' and global.is_before_first_match_of_the_session():
+			message_node.type("Thanks for playing our demo!")
+			yield(message_node, "done")
+			yield(get_tree().create_timer(1.0), "timeout")
+			message_node.type("This world has both random games and previews!")
+			yield(message_node, "done")
 		yield(get_tree().create_timer(0.5), "timeout")
 		self.pick_next_card()
 
