@@ -1,4 +1,5 @@
 extends Node
+class_name MinefieldManager
 
 const DX = 500
 const DY = 500

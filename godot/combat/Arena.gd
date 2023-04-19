@@ -466,6 +466,7 @@ func _ready():
 		anim.play("Rotate")
 		
 	emit_signal('battle_start')
+	Events.emit_signal('battle_start')
 	
 	for node in traits.get_all_with("Waiter"):
 		node.start()

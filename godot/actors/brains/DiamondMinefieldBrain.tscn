@@ -5,7 +5,7 @@
 
 [node name="DiamondMinefieldBrain" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
-random_dash_p = 0.0
-random_fire_p = 0.02
+random_dash_p = 0.005
+random_fire_p = 0.0
 
 [connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_target_reached"]
