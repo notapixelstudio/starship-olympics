@@ -154,3 +154,13 @@ func compute_average_position(positions) -> Vector2:
 	for p in positions:
 		result += p
 	return result / float(len(positions))
+
+func compute_nearest(nodes: Array) -> Node2D:
+	var nearest = nodes[0]
+	var d = nearest.global_position.distance_squared_to(global_position)
+	for node in nodes:
+		var new_d = (node as Node2D).global_position.distance_squared_to(global_position)
+		if new_d < d:
+			nearest = node
+			d = new_d
+	return nearest
