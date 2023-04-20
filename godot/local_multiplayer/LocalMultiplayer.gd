@@ -300,6 +300,7 @@ func navigate_to_celebration():
 		Events.emit_signal("continue_after_session_ended")
 	else:
 		celebration = celebration_scene.instance()
+		celebration.add_champion = true
 		add_child(celebration)
 		
 		celebration.set_champion(champion)
