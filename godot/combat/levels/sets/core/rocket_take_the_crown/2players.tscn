@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=12]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=13]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
 
@@ -201,6 +202,10 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
+[node name="NavigationZone" parent="Battlefield/Middleground/NoCrownZone" index="13" instance=ExtResource( 13 )]
+offset_type = "outset"
+layers = [ "holder" ]
+
 [node name="NoCrownZone2" parent="Battlefield/Middleground" index="6" instance=ExtResource( 10 )]
 position = Vector2( 800, 0 )
 visible_decorations = true
@@ -213,6 +218,10 @@ radius = 400
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
+
+[node name="NavigationZone" parent="Battlefield/Middleground/NoCrownZone2" index="13" instance=ExtResource( 13 )]
+offset_type = "outset"
+layers = [ "holder" ]
 
 [node name="CameraEye" parent="Battlefield/Middleground" index="7" instance=ExtResource( 12 )]
 position = Vector2( -1600, -800 )
