@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://combat/modes/RocketTakeTheCrown.tres" type="Resource" id=13]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=14]
 [ext_resource path="res://combat/levels/background/robolords.png" type="Texture" id=15]
@@ -202,6 +203,10 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
+[node name="NavigationZone" parent="Battlefield/Middleground/NoCrownZone" index="13" instance=ExtResource( 12 )]
+offset_type = "outset"
+layers = [ "holder" ]
+
 [node name="NoCrownZone2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 1 )]
 position = Vector2( 800, 0 )
 visible_decorations = true
@@ -214,6 +219,10 @@ radius = 450
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
+
+[node name="NavigationZone" parent="Battlefield/Middleground/NoCrownZone2" index="13" instance=ExtResource( 12 )]
+offset_type = "outset"
+layers = [ "holder" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="6" groups=["animation_in_battle"]]
 playback_speed = 0.2
@@ -232,6 +241,7 @@ type = "crown"
 position = Vector2( -450, -450 )
 rotation = 0.785398
 species = ExtResource( 5 )
+cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 7 )]
 position = Vector2( 450, 450 )
