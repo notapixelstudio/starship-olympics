@@ -29,6 +29,9 @@ func _on_NavigationAgent2D_target_reached():
 	request_fire()
 
 func _on_battle_start():
+	if not is_inside_tree(): # attempts to avoid a crash that happened in DraftArena after a match of Diamond Minefield was already finished
+		return
+		
 	for card in get_tree().get_nodes_in_group('Card'):
 		if card.get_content() == MinefieldManager.MINE and randf() < 0.85:
 			mines_memory[card] = true
