@@ -32,3 +32,10 @@ func _on_WorldButton_focus_exited():
 	$UnderLabel.visible = false
 	$Sprite.modulate = Color(0.6,0.6,0.6)
 	$"%FloatAnimationPlayer".play("RESET")
+
+func add_flag(who: Dictionary):
+	if who:
+		$"%Flag".visible = true
+		$"%Flag/Label".text = who['username']
+		$"%Flag/Flag".modulate = global.get_species(who['species']).color
+		
