@@ -11,7 +11,10 @@ func _ready():
 	for winner_info in data:
 		var starting_deck_id = winner_info["session_info"].get("starting_deck")
 		if starting_deck_id:
-			playlist_info[starting_deck_id] = winner_info["player"]["username"]
+			playlist_info[starting_deck_id] = {
+				'username': winner_info["player"]["username"],
+				'species': winner_info["player"]["species"]
+			}
 	
 	var decks = global.get_resources(DECK_PATH)
 	var unlocked_deck_keys = TheUnlocker.get_unlocked_list("starting_decks")

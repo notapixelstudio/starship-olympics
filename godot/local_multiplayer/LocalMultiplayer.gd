@@ -118,7 +118,8 @@ func start_fight(selected_players: Array, fight_mode: String):
 		var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instance()
 		add_child(choose_deck_scene)
 		yield(Events, "selection_starting_deck_over")
-		choose_deck_scene.queue_free()
+		if is_instance_valid(choose_deck_scene):
+			choose_deck_scene.queue_free()
 		#TheUnlocker.unlock_element("starting_decks", global.starting_deck_id)
 	
 	global.new_game(players.values())

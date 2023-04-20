@@ -1,9 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://ui/minigame_list/WorldButton.gd" type="Script" id=3]
 [ext_resource path="res://assets/map/cards/planets/planet.png" type="Texture" id=4]
+[ext_resource path="res://assets/map/ui/flag.png" type="Texture" id=5]
+[ext_resource path="res://assets/map/ui/flag_pole.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=5]
+size = 52
+font_data = ExtResource( 2 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Float"
@@ -67,6 +73,33 @@ modulate = Color( 0.6, 0.6, 0.6, 1 )
 position = Vector2( 175, 64 )
 scale = Vector2( 0.32, 0.32 )
 texture = ExtResource( 4 )
+
+[node name="Flag" type="Node2D" parent="Sprite"]
+unique_name_in_owner = true
+visible = false
+position = Vector2( 64.25, -266.875 )
+
+[node name="Pole" type="Sprite" parent="Sprite/Flag"]
+position = Vector2( -62.5, 46.875 )
+texture = ExtResource( 6 )
+
+[node name="Flag" type="Sprite" parent="Sprite/Flag"]
+position = Vector2( 33, 26.875 )
+texture = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="Sprite/Flag"]
+margin_left = -36.0
+margin_top = -2.0
+margin_right = 82.0
+margin_bottom = 96.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = SubResource( 5 )
+text = "PPP"
+align = 1
+uppercase = true
 
 [node name="FloatAnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
