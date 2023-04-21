@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.12.0](https://github.com/notapixelstudio/superstarfighter/compare/v0.10.1...v0.12.0) (2023-04-21)
+
 ### [0.10.1](https://github.com/notapixelstudio/superstarfighter/compare/v0.10.1-alpha...v0.10.1) (2023-04-21)
 
 
