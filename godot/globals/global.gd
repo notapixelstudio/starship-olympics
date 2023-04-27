@@ -138,7 +138,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.12.0-alpha" setget set_version
+var version = "0.12.1-alpha" setget set_version
 var first_time = true
 
 func set_version(value):
@@ -573,8 +573,8 @@ func check_version(saved_version: String, version_: String) -> bool:
 	var saved_patch = saved_version.split(".")[2]
 	var minor = version_.split(".")[1]
 	var patch = version_.split(".")[2]
-	
-	return int(saved_patch) < int(patch)
+	print("{saved_patch} < {patch} = {result_patch} or {saved_minor} < {minor} = {result_minor}".format({"saved_patch": int(saved_patch), "patch": int(patch), "saved_minor": saved_minor, "minor": minor, "result_patch":int(saved_patch) < int(patch) , "result_minor": int(saved_minor) < int(minor)}))
+	return int(saved_patch) < int(patch) or int(saved_minor) < int(minor)
 
 func send_stats(category: String, stats: Dictionary):
 	emit_signal("send_statistics", category, stats)
