@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://selection/PlayerSelection.gd" type="Script" id=1]
 [ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=18]
 [ext_resource path="res://assets/fonts/DefaultFont10.tres" type="DynamicFont" id=19]
+[ext_resource path="res://assets/fonts/DefaultFont18.tres" type="DynamicFont" id=20]
 
 [sub_resource type="Animation" id=1]
 resource_name = "appear"
@@ -414,7 +415,7 @@ margin_top = 541.0
 margin_right = 166.0
 margin_bottom = 606.0
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = ExtResource( 20 )
 text = "PRESS
 TO JOIN!"
 align = 1
