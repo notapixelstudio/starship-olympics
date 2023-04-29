@@ -2,6 +2,65 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.12.1](https://github.com/notapixelstudio/superstarfighter/compare/v0.12.0...v0.12.1) (2023-04-29)
+
+
+### Features
+
+* **cards:** random card appearance ([dc5723d](https://github.com/notapixelstudio/superstarfighter/commit/dc5723d4c548446ce3909be633ab2033341f3733))
+* **cards:** RandomCard ([6958321](https://github.com/notapixelstudio/superstarfighter/commit/6958321648d203f832c4f670090c9b50cdbbad86))
+* **cpu:** diamond minefield basic brain ([d6fbb61](https://github.com/notapixelstudio/superstarfighter/commit/d6fbb6146ac5b30143a47403e7c64847034e0380))
+* **cpu:** diamond minefield brain ([bded595](https://github.com/notapixelstudio/superstarfighter/commit/bded595c1fd18dd6ac4e977dbac06859c339a29e))
+* **cpu:** diamond warfare brain ([44d0fcf](https://github.com/notapixelstudio/superstarfighter/commit/44d0fcf10f2a5bde2c95290d4e95b568f40c847b))
+* **cpu:** homesick invaders cpu ([90a5e47](https://github.com/notapixelstudio/superstarfighter/commit/90a5e47995d47f4fcc52091abe8954d3efb80394))
+* **cpu:** Rocket the Crown Brain. ([4f0d5ab](https://github.com/notapixelstudio/superstarfighter/commit/4f0d5abce45bd6f3fc2b54ffd4ac5566656a2bb1))
+* **credits:** basic credits scene (not working) ([2716752](https://github.com/notapixelstudio/superstarfighter/commit/2716752d4bbed0ec8e44b0f0fcb59bac58cdf5d8))
+* **demo:** final world message ([12dc11f](https://github.com/notapixelstudio/superstarfighter/commit/12dc11fad89d756053811b5001c821c16b8467c5))
+* **demo:** guard the bridge removed from future (temporarily) ([83d0000](https://github.com/notapixelstudio/superstarfighter/commit/83d00007aec7d220aa7a5d5a3ebd13953f06ce75))
+* **gameplay:** damage prevention time ([cc32dbd](https://github.com/notapixelstudio/superstarfighter/commit/cc32dbd5c69799875fee8f165e3e50594f16c2df))
+* **hall_of_fame:** hall of fame added to menu screen ([0b4af3e](https://github.com/notapixelstudio/superstarfighter/commit/0b4af3ea132221c30a5d02340bc670e6bb84073c))
+* **levels:** Water in Water Deathmatch (committed from a boat going from Padoa to Venice). ([ee10c62](https://github.com/notapixelstudio/superstarfighter/commit/ee10c62f00160f16d5ce7d53a99008dcacb4461a))
+* **minigames:** 2 players diamond warfare ([e3427d2](https://github.com/notapixelstudio/superstarfighter/commit/e3427d2e25a632810f7af5b5775f1b33c347ee42))
+* **minigames:** 3 and 4 players arena for Diamond Warfare ([697737d](https://github.com/notapixelstudio/superstarfighter/commit/697737d2aa82b8fc1b0083689dd895a041c5c3b6))
+* **minigames:** diamond halves base ([e013430](https://github.com/notapixelstudio/superstarfighter/commit/e013430be7cf845b0de666e838d12e84a051a1fe))
+* **minigames:** diamond halves is in ([7051b29](https://github.com/notapixelstudio/superstarfighter/commit/7051b29a933c17584b7ddb7dc54b4fea7cbcb9a9))
+* **minigames:** Diamond Warfare in first playlist ([64b231d](https://github.com/notapixelstudio/superstarfighter/commit/64b231d36ead8080fba0ce5420752fb56011e27e))
+* **minigames:** improvements on Diamond Halves ([c0afb37](https://github.com/notapixelstudio/superstarfighter/commit/c0afb37b29a4c493872c089d14e0f0c5591b53e5))
+* **minigames:** super barebone diamond halves ([2cd99c8](https://github.com/notapixelstudio/superstarfighter/commit/2cd99c8025b9e5dacf3655cbd10c131047892f0e))
+* **playlists:** alternative action world ([577737a](https://github.com/notapixelstudio/superstarfighter/commit/577737ad776aaf2edd5de855a2090cb03162bda6))
+* **playlists:** Basic playlists in (content and art need more work). ([a523a04](https://github.com/notapixelstudio/superstarfighter/commit/a523a0434d6e5d0bbae0cfd8b581ed10dedfea74))
+* **playlists:** Future World and cards improvements. ([9839f41](https://github.com/notapixelstudio/superstarfighter/commit/9839f419e98da68f87160eef890d12523940462c))
+* **ui:** flag for compleated planes ([a6ade67](https://github.com/notapixelstudio/superstarfighter/commit/a6ade67188d1f4d5c1db666c9fb809d348888a04))
+* **ui:** More planet arts. ([e3b1379](https://github.com/notapixelstudio/superstarfighter/commit/e3b1379859324469dad76d21cfad077b26d06f3d))
+* **ui:** new world system up ([e41f2e7](https://github.com/notapixelstudio/superstarfighter/commit/e41f2e71b6a839f91de4e0c7c4d1230696d4015f))
+* **ui:** prime universe card back ([3d64f20](https://github.com/notapixelstudio/superstarfighter/commit/3d64f20740e566e039eba157158c73a71b1f277c))
+* **vfx:** visual feedback when dropping diamonds ([8601762](https://github.com/notapixelstudio/superstarfighter/commit/86017628f1ce759d301c14e99e45a9da52ff5715))
+* **worlds:** Art and name for "oldcrown". ([ac258dc](https://github.com/notapixelstudio/superstarfighter/commit/ac258dca86ed6e1a8742ae2d38782e4cf4942954))
+* **worlds:** flag are now displayed on completed worlds ([645c949](https://github.com/notapixelstudio/superstarfighter/commit/645c9496199ae5368283116ce7bb84522d165e2a))
+
+
+### Bug Fixes
+
+* **arena:** Support for single life when respawning from home (needed in Diamond Minefield). ([ba2d81b](https://github.com/notapixelstudio/superstarfighter/commit/ba2d81b5cc657118d9659be7aa3af77bbfccd3e7))
+* **bump:** now correctly reset on bumping any version ([dfcbbe8](https://github.com/notapixelstudio/superstarfighter/commit/dfcbbe8211bed420dcea21da5511cb1f353dc45a))
+* **cards:** duplicate card ids are now respected ([309ea8e](https://github.com/notapixelstudio/superstarfighter/commit/309ea8e0116a4af588728167ed5413cb95c91f7e))
+* **cards:** mystery cards now correctly trigger winter ([b1b4603](https://github.com/notapixelstudio/superstarfighter/commit/b1b46033aa3cd4e3df8aa1ee3e4ea914c022ab61))
+* **celebration:** the champion can write their name again ([c393e40](https://github.com/notapixelstudio/superstarfighter/commit/c393e403a231a53ac3f7d1aea44e98818720cac3))
+* **cpu:** Cpu underwater fixes. ([120722f](https://github.com/notapixelstudio/superstarfighter/commit/120722f453065ebd1157940868635625f21b1150))
+* **credits:** added localization to credits ([28841a3](https://github.com/notapixelstudio/superstarfighter/commit/28841a3a646953dacf3df23aeb669d422f766400))
+* **credits:** pippo, pluto and paperino have been credited ([cca80ab](https://github.com/notapixelstudio/superstarfighter/commit/cca80ab1bebe30aa8ed643e74110e1c913d6ba60))
+* **credits:** super-ultra barebones credits screen (functional) ([a49526e](https://github.com/notapixelstudio/superstarfighter/commit/a49526e18477e3ae8738a49e46b51c0e2606f71a))
+* **gameplay:** Excessive glow of cards removed. ([945959c](https://github.com/notapixelstudio/superstarfighter/commit/945959c38aa453df75c6fe1ebc3e890c8f792f5f))
+* **homesick_invaders:** added cpubrain for homesick ([af18bfc](https://github.com/notapixelstudio/superstarfighter/commit/af18bfc4e6976e5ba951087576f90966ff73a26a))
+* **input:** input buffering and logic on Ship ([4512c99](https://github.com/notapixelstudio/superstarfighter/commit/4512c9935eb00cf2895def27b3ced47dec1d5385))
+* **levels:** respawn from home in Homesick Invaders ([5c90621](https://github.com/notapixelstudio/superstarfighter/commit/5c906215e101f19433198249f162194dacf6c661))
+* **levels:** wrong position of half diamond ([15b4928](https://github.com/notapixelstudio/superstarfighter/commit/15b492836449e71216763e1a0ce28d20117ce460))
+* **locale:** no need to translate minigame names ([9e4819a](https://github.com/notapixelstudio/superstarfighter/commit/9e4819a92e6b7b769fdb5b27ba00ef58730f9c60))
+* **playlists:** diamond dive in neptune ([36a5330](https://github.com/notapixelstudio/superstarfighter/commit/36a53306890b8e2df5001a3f7d686bdebcd14455))
+* **ui:** flag compleated for playlist show winner username (instead of id) ([0aeae0e](https://github.com/notapixelstudio/superstarfighter/commit/0aeae0eefde5af5c6847ca64395411e4d931f8fa))
+* **ui:** new neptune colors ([b428e74](https://github.com/notapixelstudio/superstarfighter/commit/b428e741829464c016f3d387d31326e7c5393bef))
+* **ui:** Uppercase world label. ([5dafdbd](https://github.com/notapixelstudio/superstarfighter/commit/5dafdbd2cc0790f7003972a0f279d2312bca3486))
+
 ## [0.12.0](https://github.com/notapixelstudio/superstarfighter/compare/v0.10.1...v0.12.0) (2023-04-21)
 
 ### Features
