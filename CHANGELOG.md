@@ -4,9 +4,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [0.12.0](https://github.com/notapixelstudio/superstarfighter/compare/v0.10.1...v0.12.0) (2023-04-21)
 
-### [0.10.1](https://github.com/notapixelstudio/superstarfighter/compare/v0.10.1-alpha...v0.10.1) (2023-04-21)
-
-
 ### Features
 
 * **cards:** random card appearance ([8a8d589](https://github.com/notapixelstudio/superstarfighter/commit/8a8d5898e3c8490b775cdba93ace99210756fe90))
