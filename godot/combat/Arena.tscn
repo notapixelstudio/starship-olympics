@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://combat/managers/modes/SurvivalModeManager.tscn" type="PackedScene" id=17]
 [ext_resource path="res://combat/managers/ConquestManager.gd" type="Script" id=18]
 [ext_resource path="res://combat/managers/modes/CollectModeManager.gd" type="Script" id=19]
+[ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=20]
 [ext_resource path="res://combat/managers/modes/SnakeTrailManager.gd" type="Script" id=21]
 [ext_resource path="res://combat/Battlefield.gd" type="Script" id=22]
 [ext_resource path="res://combat/Grid.tscn" type="PackedScene" id=23]
@@ -163,6 +164,7 @@ IceScene = ExtResource( 38 )
 player_brain_scene = ExtResource( 5 )
 cpu_brain_scene = ExtResource( 41 )
 NavigationZone_scene = ExtResource( 42 )
+diamond_scene = ExtResource( 20 )
 
 [node name="Managers" type="Node" parent="."]
 

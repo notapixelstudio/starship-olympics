@@ -129,6 +129,8 @@ signal dash_ended
 signal drift_started
 signal drift_ended
 
+signal dive_out
+
 signal bump
 signal collect
 
@@ -574,6 +576,10 @@ func set_health(amount : int) -> void:
 	$PlayerInfo.update_health(amount)
 	
 func damage(hazard, damager : Ship, damager_team : String = ''):
+	if not $DamagePreventionTimer.is_stopped(): # no damage if too quick
+		return
+	$DamagePreventionTimer.start()
+		
 	if not alive or damager_team == get_team(): # self or teammates hits have no effect
 		return
 		
@@ -1100,6 +1106,7 @@ func dive_out():
 	really_diving = false
 	set_phasing_in_prevented(false)
 	phase_in()
+	emit_signal('dive_out')
 	Events.emit_signal("ship_dive_out", self)
 	
 func set_phasing_in_prevented(v: bool) -> void:
@@ -1107,6 +1114,9 @@ func set_phasing_in_prevented(v: bool) -> void:
 
 func get_thrust_multiplier() -> float:
 	return thrust_multiplier
+	
+func is_diving():
+	return diving
 	
 func is_really_diving() -> bool:
 	return phase == 'out' and really_diving
@@ -1139,7 +1149,16 @@ func get_target_velocity() -> Vector2:
 	if brain == null:
 		return Vector2(0,0)
 		
-	return brain.get_target_velocity()
+	var target_velocity = brain.get_target_velocity()
+	if is_auto_thrust():
+		if target_velocity.length() <= 0.1:
+			target_velocity = Vector2(cos(global_rotation), sin(global_rotation)) # front vector
+		else:
+			# always at maximum, no fine control
+			target_velocity = target_velocity.normalized()
+			
+	target_velocity *= get_thrust_multiplier()
+	return target_velocity
 
 func do_brain_tick() -> void:
 	var brain = get_brain()
@@ -1148,7 +1167,8 @@ func do_brain_tick() -> void:
 	brain.tick()
 	
 func _on_charge_requested() -> void:
-	charge()
+	if not is_diving(): # starting to charge inside water is forbidden
+		charge()
 	
 func _on_release_requested() -> void:
 	fire()
@@ -1172,3 +1192,6 @@ func on_collect(collectee):
 	if collectee is Diamond:
 		$RisingDiamondCollectSFX.play_and_rise()
 		
+func get_bag():
+	return $PlayerInfo.get_bag()
+	

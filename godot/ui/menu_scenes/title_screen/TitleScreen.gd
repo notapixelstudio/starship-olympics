@@ -7,6 +7,8 @@ onready var buttons = $Buttons
 
 export var options_scene: PackedScene
 export var local_multi_scene: PackedScene
+export var credits_scene: PackedScene
+export var hall_of_fame_scene: PackedScene
 
 func _ready():
 	for button in $Buttons.get_children():
@@ -70,3 +72,10 @@ func _on_button_focus_exited(button):
 
 func _on_Continue_pressed():
 	get_tree().change_scene_to(local_multi_scene)
+
+func _on_Credits_pressed():
+	get_tree().change_scene_to(credits_scene)
+
+
+func _on_HallOfFame_pressed():
+	get_tree().change_scene_to(hall_of_fame_scene)

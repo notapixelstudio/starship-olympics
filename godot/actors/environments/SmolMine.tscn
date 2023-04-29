@@ -9,11 +9,11 @@ radius = 80.0
 scale = Vector2( 0.75, 0.75 )
 explosion_kilotons = 300
 
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite" parent="." index="2"]
 scale = Vector2( 0.75, 0.75 )
 
-[node name="Shadow" parent="." index="2"]
+[node name="Shadow" parent="." index="3"]
 scale = Vector2( 0.6, 0.6 )
 
-[node name="CollisionShape2D" parent="." index="3"]
+[node name="CollisionShape2D" parent="." index="4"]
 shape = SubResource( 1 )

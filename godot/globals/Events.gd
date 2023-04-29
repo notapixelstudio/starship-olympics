@@ -12,6 +12,10 @@ signal tappable_exited(tappable, ship)
 signal tap(tapper)
 signal sth_tapped(tapper, tappee)
 
+signal card_revealed(card)
+signal card_taken(card, player, ship)
+signal card_destroyed(card)
+
 signal holdable_loaded(holdable, ship)
 signal holdable_dropped(holdable, ship, cause)
 signal holdable_replaced(old, new, ship)
@@ -46,6 +50,8 @@ signal match_ended(match_dict)
 signal session_ended
 signal game_ended
 signal execution_ended
+
+signal battle_start
 
 signal continue_after_game_over(session_ended)
 signal continue_after_session_ended

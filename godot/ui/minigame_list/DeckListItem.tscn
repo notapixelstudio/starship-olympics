@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://ui/minigame_list/DeckListItem.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=2]
@@ -7,6 +7,18 @@
 [ext_resource path="res://assets/shuffle.png" type="Texture" id=5]
 [ext_resource path="res://assets/arrow.png" type="Texture" id=6]
 [ext_resource path="res://ui/minigame_list/WorldButton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/icon/minicards/star.png" type="Texture" id=9]
+
+[sub_resource type="DynamicFont" id=2]
+size = 72
+outline_size = 6
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 72
+font_data = ExtResource( 8 )
 
 [node name="DeckListItem" type="ColorRect"]
 anchor_right = 1.0
@@ -43,5 +55,60 @@ visible = false
 position = Vector2( 14.2705, 2.37842 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
+
+[node name="New" type="Node2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2( 40, 210 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="NewLabelShadow" type="Label" parent="New"]
+unique_name_in_owner = true
+modulate = Color( 0, 0, 0, 1 )
+margin_left = -898.0
+margin_top = -578.0
+margin_right = 902.0
+margin_bottom = -264.0
+custom_fonts/font = SubResource( 2 )
+text = "NEW!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite" type="Sprite" parent="New/NewLabelShadow"]
+position = Vector2( 775, 156 )
+scale = Vector2( 1.3, 1.3 )
+texture = ExtResource( 9 )
+
+[node name="Sprite2" type="Sprite" parent="New/NewLabelShadow"]
+position = Vector2( 1023, 156 )
+scale = Vector2( 1.3, 1.3 )
+texture = ExtResource( 9 )
+
+[node name="NewLabel" type="Label" parent="New"]
+unique_name_in_owner = true
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+self_modulate = Color( 1, 0.870588, 0.372549, 1 )
+margin_left = -900.0
+margin_top = -580.0
+margin_right = 900.0
+margin_bottom = -266.0
+custom_fonts/font = SubResource( 1 )
+text = "NEW!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Sprite" type="Sprite" parent="New/NewLabel"]
+position = Vector2( 776, 157 )
+texture = ExtResource( 9 )
+
+[node name="Sprite2" type="Sprite" parent="New/NewLabel"]
+position = Vector2( 1024, 157 )
+texture = ExtResource( 9 )
 
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_Button_pressed"]

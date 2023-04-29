@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/minigame_list/DeckListScreen.gd" type="Script" id=1]
 [ext_resource path="res://ui/minigame_list/DeckListItem.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ui/minigame_list/RandomDeckListItem.tscn" type="PackedScene" id=3]
 [ext_resource path="res://combat/levels/background/menus.png" type="Texture" id=4]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=5]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=6]
@@ -80,15 +79,6 @@ margin_right = 1072.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 200, 0 )
 
-[node name="RandomDeckListItem" parent="HBoxContainer/DecksContainer" instance=ExtResource( 3 )]
-unique_name_in_owner = true
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 130.0
-margin_right = 1072.0
-margin_bottom = 300.0
-color = Color( 0, 0, 0, 0 )
-
 [node name="Spacer2" type="Control" parent="HBoxContainer"]
 margin_left = 1180.0
 margin_right = 1280.0
@@ -96,4 +86,3 @@ margin_bottom = 720.0
 rect_min_size = Vector2( 100, 0 )
 
 [connection signal="pressed" from="HBoxContainer/DecksContainer/HBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/DecksContainer/RandomDeckListItem" to="." method="_on_RandomDeckListItem_pressed"]

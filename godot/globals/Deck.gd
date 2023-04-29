@@ -9,6 +9,7 @@ var next : Array = [] # of DrafCard
 var remembered_card_ids : Dictionary = {} # String -> bool
 var playlist := false
 var starting_deck_id : String
+var starting_deck : StartingDeck
 
 const DECK_PATH = "res://map/draft/decks/"
 const CARD_POOL_PATH = "res://map/draft/pool"
@@ -23,13 +24,9 @@ func setup():
 	var decks = global.get_resources(DECK_PATH)
 	
 	print("starting deck will be "+ global.starting_deck_id)
-	var starting_deck: StartingDeck = global.get_actual_resource(decks, global.starting_deck_id)
+	starting_deck = global.get_actual_resource(decks, global.starting_deck_id)
 	playlist = starting_deck.is_playlist()
 	starting_deck_id = starting_deck.get_id()
-	TheUnlocker.unlock_element("starting_decks", starting_deck.get_id())
-	if not global.demo: # do not unlock new content if we are in demo mode
-		for unlock in starting_deck.get_unlocks():
-			TheUnlocker.unlock_element("starting_decks", unlock, TheUnlocker.UNLOCKED)
 	#var starting_deck = load(DECK_PATH+'/winter.tres')
 	append_cards(starting_deck.deal_cards())
 	next.append_array(starting_deck.get_nexts())
@@ -39,6 +36,7 @@ func set_from_dictionary(data: Dictionary):
 	played_pile = []
 	playlist = data.get("playlist", playlist)
 	starting_deck_id = data.get("starting_deck_id")
+	starting_deck = global.get_actual_resource(global.get_resources(DECK_PATH), global.starting_deck_id)
 	var next_ids = data.get("next", [])
 	remembered_card_ids = data.get("remembered_card_ids", self.remembered_card_ids)
 	var played_ids = data.get("played_pile", [])
@@ -176,4 +174,7 @@ func is_playlist() -> bool:
 	
 func get_starting_deck_id() -> String:
 	return starting_deck_id
+	
+func get_starting_deck() -> StartingDeck:
+	return starting_deck
 	

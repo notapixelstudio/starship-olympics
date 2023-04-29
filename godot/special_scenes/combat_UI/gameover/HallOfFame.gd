@@ -2,6 +2,8 @@ extends Control
 
 class_name HallOfFame
 
+const menu_scene = "res://ui/menu_scenes/title_screen/MainScreen.tscn"
+
 export var champion_scene : PackedScene
 export var add_champion := false
 
@@ -33,7 +35,9 @@ func _ready():
 		champ_scene.set_player(champ_info)
 		$"%SessionWon".add_child(champ_scene)
 	
-	if self.get_parent() == get_tree().get_root():
+	"""
+	# fakely add a new champion, for debug
+	if self.get_parent() == get_tree().get_root() and add_champion:
 		var info_player := InfoPlayer.new()
 		var champ = InfoChampion.new()
 		info_player.set_species(global.get_species(TheUnlocker.unlocked_elements["species"].keys()[randi()%4]))
@@ -41,20 +45,25 @@ func _ready():
 		var fake_session = TheSession.new()
 		champ.session_info = fake_session.to_dict()
 		self.set_champion(champ)
+	"""
 	
 	yield(get_tree(), "idle_frame")
 	
-	add_champion_to_scene()
+	if add_champion:
+		add_champion_to_scene()
+	
 	
 	$"%ScrollContainer".scroll_vertical = pow(10, 4)
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
-	tween.chain().tween_property($"%ScrollContainer", 'scroll_vertical', 0, 1+ $"%SessionWon".get_child_count()%3)
+	tween.chain().tween_property($"%ScrollContainer", 'scroll_vertical', 0, 1 + $"%SessionWon".get_child_count()%3)
 	yield(tween, "finished")
-	
+	if not add_champion:
+		$VBoxContainer/Label3.visible=true
+		$ScrollContainer.get_child(0).grab_focus()
+		set_process_input(true)
 	
 	
 func naming_champions():
-	print("Everything is set")
 	set_process_input(true)
 	$VBoxContainer/Label3.visible=true
 	
@@ -62,8 +71,14 @@ func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		Events.emit_signal("continue_after_session_ended")
 		set_process_input(false)
+		if self.get_parent() == get_tree().get_root():
+			get_tree().change_scene(menu_scene)
 		queue_free()
-
+	if event.is_action_pressed("ui_down"):
+		$"%ScrollContainer".scroll_vertical += 30 
+	if event.is_action_pressed("ui_up"):
+		$"%ScrollContainer".scroll_vertical -= 30 
+		
 func set_champion(champion: InfoChampion):
 	champion_info = champion
 	

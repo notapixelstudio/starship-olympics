@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/signs/minimoon.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://actors/battlers/Indicator.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/sprites/signs/minisun.png" type="Texture" id=6]
 [ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=7]
+[ext_resource path="res://utils/Bag.tscn" type="PackedScene" id=8]
 [ext_resource path="res://actors/battlers/HealthBar.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=10]
 
@@ -111,3 +112,5 @@ still = true
 
 [node name="Indicator" parent="Wrapper/Scaled/Colored" instance=ExtResource( 5 )]
 visible = false
+
+[node name="Bag" parent="Wrapper/Scaled" instance=ExtResource( 8 )]

@@ -192,16 +192,15 @@ offset_type = "outset"
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1250, 850 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 12 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 1250, -850 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 13 )
-cpu = true
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera" parent="." index="6"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
 smoothing_speed = 0.3
