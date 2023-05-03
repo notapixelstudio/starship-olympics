@@ -13,6 +13,7 @@ func _ready():
 	$VBoxContainer/Label3.visible=false
 	$"%WinnerBanner".queue_free()
 	set_process_input(false)
+	print("daje")
 	var data = global.read_file_by_line(InfoChampion.PATH_FILE_CHAMPIONS)
 	if data.empty():
 		for i in range(30):

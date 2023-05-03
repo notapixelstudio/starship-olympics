@@ -78,4 +78,6 @@ func _on_Credits_pressed():
 
 
 func _on_HallOfFame_pressed():
-	get_tree().change_scene_to(hall_of_fame_scene)
+	print("loading")
+	Events.emit_signal("nav_to_scene", hall_of_fame_scene)
+	# get_tree().change_scene_to(hall_of_fame_scene)
