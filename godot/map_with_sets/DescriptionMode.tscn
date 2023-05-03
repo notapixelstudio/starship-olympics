@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=1]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/audio/UI_effects/thud.ogg" type="AudioStream" id=7]
 [ext_resource path="res://map_with_sets/DescriptionMode.gd" type="Script" id=8]
 [ext_resource path="res://ui/common_elements/PlayersReady/PlayersReady.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=10]
+[ext_resource path="res://assets/fonts/DefaultFont38.tres" type="DynamicFont" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 125
@@ -85,13 +85,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ true ]
 }
-
-[sub_resource type="DynamicFont" id=12]
-size = 38
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_char = 1
-font_data = ExtResource( 10 )
 
 [node name="DescriptionMode" type="Control"]
 pause_mode = 2
@@ -252,7 +245,7 @@ margin_bottom = 219.0
 custom_colors/font_color_shadow = Color( 0.2, 0.317647, 0.482353, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 2
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = ExtResource( 10 )
 
 [node name="LineLeft" type="Polygon2D" parent="."]
 self_modulate = Color( 1.12, 1.12, 1.12, 1 )
