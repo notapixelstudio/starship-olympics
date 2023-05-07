@@ -295,6 +295,12 @@ func _ready():
 	get_tree().set_auto_accept_quit(false)
 	
 	print("Starting game...")
+	var global_game_id = read_file("user://uuid").strip_edges()
+	if global_game_id:
+		write_into_file("user://uuid", global_game_id, File.WRITE_READ)
+	else: 
+		global_game_id=UUID.v4()
+	Analytics.send_event({"id":global_game_id}, "game_instance")
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	add_to_group("persist")
 	
@@ -406,7 +412,8 @@ func create_dir(path: String):
 	var dir = Directory.new()
 	dir.make_dir_recursive(path)
 
-func write_into_file(filepath: String, data: Dictionary, mode := File.READ_WRITE):
+
+func write_into_file(filepath: String, data: String, mode := File.READ_WRITE):
 	#open the log file and go to the end
 	var file = File.new()
 	var error = file.open(filepath, mode)
@@ -415,27 +422,27 @@ func write_into_file(filepath: String, data: Dictionary, mode := File.READ_WRITE
 		error = file.open(filepath, File.WRITE_READ)
 	if error == OK:
 		file.seek_end()
-		file.store_line(to_json(data))
+		file.store_line(data)
 		file.flush() # WARNING writing to disk too often could hurt performance
+		print(file.get_path_absolute())
 		file.close()
-		print(filepath)
 	else: 
 		print("FILE WITH ERROR {error_code}".format({"error_code": error }))
 	
-func read_file(path: String) -> Dictionary:
+func read_file(path: String) -> String:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
 	var file = File.new()
 	if not file.file_exists(path):
 		print("The save file does not exist.")
-		return {}
+		return ""
 	file.open(path, File.READ)
 	print("We are going to load from this JSON: ", file.get_path_absolute())
 	# parse file data - convert the JSON back to a dictionary
 	var data = {}
-	data = parse_json(file.get_as_text())
+	data = file.get_as_text()
 	file.close()
 	if data == null:
-		data = {}
+		data = ""
 	return data
 
 func read_file_by_line(path: String) -> Array:

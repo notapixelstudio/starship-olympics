@@ -3,31 +3,37 @@ extends Node
 var start_time = 0
 var this_elapsed_time = 0
 # Create an HTTP request node and connect its completion signal.
+const API_HOSTNAME= "http://notapixel.ddns.net:9876" # "http://localhost:8000"
+const TOKEN = "Godotexport_v1.0.0"
 
+const ENDPOINT="messages"
 
-func _ready():
+func send_event(event_body: Dictionary, event_name: String):
+	event_body.timestamp = Time.get_datetime_string_from_system(true, true)
+	event_body.event_name = event_name
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.connect("request_completed", self, "_http_request_completed")
-	# Perform a GET request. The URL below returns JSON as of writing.
-	#var error = http_request.request("https://httpbin.org/get")
-	#if error != OK:
-	#	push_error("An error occurred in the HTTP request.")
-	# Perform a POST request. The URL below returns JSON as of writing.
-	# Note: Don't make simultaneous requests using a single HTTPRequest node.
-	# The snippet below is provided for reference only.
 	var headers = [
-		"Authorization: Basic " + Marshalls.utf8_to_base64("elastic:W+jN3=-7F7fMKaRHWCnZ"),
+		"Authorization: Basic " + Marshalls.utf8_to_base64(TOKEN),
 		"Content-Type: application/json"
 	]
-	var body = to_json({"name": "Godette"})
-	var error = http_request.request("https://localhost:9200/_cat/indices", headers, true, HTTPClient.METHOD_GET, body)
+	var error = http_request.request(API_HOSTNAME+"/"+ENDPOINT, headers, true, HTTPClient.METHOD_POST, to_json(event_body))
 	if error != OK:
 		push_error("An error occurred in the HTTP request. {error}".format({"error": error}) )
 
+func add_timestamp():
+	return  Time.get_datetime_string_from_system(true, true)
+	
+func _ready():
+	return 
 
 # Called when the HTTP request is completed.
 func _http_request_completed(result, response_code, headers, body):
+	print(result)
+	print(response_code)
+	print(headers)
+	print(body)
 	var response = parse_json(body.get_string_from_utf8())
 
 	# Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).

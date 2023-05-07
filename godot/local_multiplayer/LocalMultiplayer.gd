@@ -37,7 +37,7 @@ func _ready():
 	Events.connect('nav_to_map', self, '_on_nav_to_map')
 	Events.connect('nav_to_character_selection', self, '_on_nav_to_character_selection')
 	
-	var unfinished_game: Dictionary = global.read_file("user://games/latest.json")
+	var unfinished_game: Dictionary = parse_json(global.read_file("user://games/latest.json"))
 	if not unfinished_game.empty():
 		setup_continue_game(unfinished_game)
 #		var confirm = load("res://special_scenes/combat_UI/gameover/AreYouSure.tscn").instance()

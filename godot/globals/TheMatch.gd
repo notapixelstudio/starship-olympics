@@ -276,7 +276,7 @@ func trigger_game_over_now():
 	compute_game_status(true) # end now
 
 func store():
-	global.write_into_file("user://matches/{id}.json".format({"id":self.uuid}), self.to_dict())
+	global.write_into_file("user://matches/{id}.json".format({"id":self.uuid}), to_json(self.to_dict()))
 	
 func get_time_left() -> float:
 	return time_left
