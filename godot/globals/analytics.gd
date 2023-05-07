@@ -4,13 +4,12 @@ var start_time = 0
 var this_elapsed_time = 0
 # Create an HTTP request node and connect its completion signal.
 # will change this in case 
-onready var api_hostname = ProjectSettings.get_setting("Analytics/Hostname.debug") if OS.is_debug_build() else ProjectSettings.get_setting("Analytics/Hostname")
+onready var api_hostname = ProjectSettings.get_setting("Analytics/hostname.debug") if OS.is_debug_build() else ProjectSettings.get_setting("Analytics/hostname")
 onready var token = "Godotexport_v1.0.0"
 
 const ENDPOINT="messages"
 
 func _ready():
-	api_hostname = ProjectSettings.get_setting("Analytics/Hostname.debug") if OS.is_debug_build() else ProjectSettings.get_setting("Analytics/Hostname")
 	return 
 	
 func send_event(event_body: Dictionary, event_name: String):
@@ -34,14 +33,18 @@ func add_timestamp():
 
 # Called when the HTTP request is completed.
 func _http_request_completed(result, response_code, headers, body):
-	print(result)
+	print("Request completed! Result code: %s" % [result])	
 	print(response_code)
 	print(headers)
 	print(body)
-	var response = parse_json(body.get_string_from_utf8())
-
-	# Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
-	print(response)
+	var error = "NA"
+	if result == ERR_UNAVAILABLE:
+		error = "Request endpoint not available"
+	if body:
+		print(parse_json(body.get_string_from_utf8()))
+	else:
+		push_error("An error occurred in the HTTP request to {api_endpoint}. {error}".format({"error": error, "api_endpoint": api_hostname}) )
+	
 
 func _process(_delta):
 	this_elapsed_time = format_time(OS.get_ticks_msec() - start_time)

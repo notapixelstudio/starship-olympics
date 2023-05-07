@@ -330,7 +330,7 @@ func _ready():
 		print("Successfully load the game")
 	else:
 		print("Something went wrong while loading the game data")
-
+	
 func getRemotesServer():
 	return remotesServer
 
