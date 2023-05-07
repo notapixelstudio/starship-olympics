@@ -3,11 +3,16 @@ extends Node
 var start_time = 0
 var this_elapsed_time = 0
 # Create an HTTP request node and connect its completion signal.
-const API_HOSTNAME= "http://notapixel.ddns.net:9876" # "http://localhost:8000"
-const TOKEN = "Godotexport_v1.0.0"
+# will change this in case 
+onready var api_hostname = ProjectSettings.get_setting("Analytics/Hostname.debug") if OS.is_debug_build() else ProjectSettings.get_setting("Analytics/Hostname")
+onready var token = "Godotexport_v1.0.0"
 
 const ENDPOINT="messages"
 
+func _ready():
+	api_hostname = ProjectSettings.get_setting("Analytics/Hostname.debug") if OS.is_debug_build() else ProjectSettings.get_setting("Analytics/Hostname")
+	return 
+	
 func send_event(event_body: Dictionary, event_name: String):
 	event_body.timestamp = Time.get_datetime_string_from_system(true, true)
 	event_body.event_name = event_name
@@ -15,18 +20,17 @@ func send_event(event_body: Dictionary, event_name: String):
 	add_child(http_request)
 	http_request.connect("request_completed", self, "_http_request_completed")
 	var headers = [
-		"Authorization: Basic " + Marshalls.utf8_to_base64(TOKEN),
+		"Authorization: Basic " + Marshalls.utf8_to_base64(token),
 		"Content-Type: application/json"
 	]
-	var error = http_request.request(API_HOSTNAME+"/"+ENDPOINT, headers, true, HTTPClient.METHOD_POST, to_json(event_body))
+	var error = http_request.request(api_hostname + "/" + ENDPOINT, headers, true, HTTPClient.METHOD_POST, to_json(event_body))
 	if error != OK:
 		push_error("An error occurred in the HTTP request. {error}".format({"error": error}) )
 
 func add_timestamp():
 	return  Time.get_datetime_string_from_system(true, true)
 	
-func _ready():
-	return 
+
 
 # Called when the HTTP request is completed.
 func _http_request_completed(result, response_code, headers, body):
