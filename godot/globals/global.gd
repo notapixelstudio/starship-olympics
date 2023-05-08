@@ -290,17 +290,20 @@ func _input(event):
 	if demo_playtest and event.is_action_pressed("delete_persistence"):
 		persistance.delete_latest_game()
 
+var installation_id 
 func _ready():
 	# we want to handle quit by ourselves
 	get_tree().set_auto_accept_quit(false)
 	
 	print("Starting game...")
-	var global_game_id = read_file("user://uuid").strip_edges()
-	if global_game_id:
-		write_into_file("user://uuid", global_game_id, File.WRITE_READ)
-	else: 
-		global_game_id=UUID.v4()
-	Analytics.send_event({"id":global_game_id}, "game_instance")
+	installation_id = read_file("user://uuid").strip_edges()
+	if not installation_id:
+		installation_id=UUID.v4()
+		write_into_file("user://uuid", installation_id, File.WRITE_READ)
+		Analytics.send_event({"installation_id":installation_id, "id": installation_id}, "installation")
+	
+	execution_uuid = UUID.v4()
+	Analytics.send_event({"installation_id":installation_id, "id": execution_uuid}, "execution")
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	add_to_group("persist")
 	
