@@ -17,6 +17,7 @@ func send_event(event_body: Dictionary, event_name: String):
 	event_body.timestamp = add_timestamp()
 	event_body.event_name = event_name
 	event_body.version = global.version
+	event_body.debug_mode = OS.is_debug_build()
 	
 	# Create a new HTTP request node and connect its completion signal
 	var http_request = HTTPRequest.new()
@@ -41,7 +42,6 @@ func _http_request_completed(result, response_code, headers, body, http_request)
 	print("Request completed! Result code: %s" % [result])    
 	print(response_code)
 	print(headers)
-	print(body)
 	
 	# Handle errors and parse response body
 	var error = "NA"
