@@ -9,6 +9,9 @@ const ENDPOINT = "messages"
 
 func _ready():
 	"""Called when the node is added to the scene."""
+	# events connected and logged
+	Events.connect("analytics_event", self, '_on_analytics_event')
+
 	return
 
 func send_event(event_body: Dictionary, event_name: String):
@@ -18,6 +21,7 @@ func send_event(event_body: Dictionary, event_name: String):
 	event_body.event_name = event_name
 	event_body.version = global.version
 	event_body.debug_mode = OS.is_debug_build()
+	event_body.installation_id = global.installation_id
 	
 	# Create a new HTTP request node and connect its completion signal
 	var http_request = HTTPRequest.new()
@@ -71,3 +75,7 @@ func format_time(elapsed) -> String:
 func end_run(start, end) -> String:
 	"""Returns the elapsed time between the start and end times as a string."""
 	return format_time(end - start)
+
+func _on_analytics_event(event_body: Dictionary, event_name: String):
+	send_event(event_body, event_name)
+

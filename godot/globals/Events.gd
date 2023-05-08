@@ -86,3 +86,6 @@ signal draft_ended(choices, hand)
 
 # settings
 signal glow_setting_changed
+
+# analytics
+signal analytics_event(event_dictionary, event_name)

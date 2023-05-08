@@ -300,10 +300,11 @@ func _ready():
 	if not installation_id:
 		installation_id=UUID.v4()
 		write_into_file("user://uuid", installation_id, File.WRITE_READ)
-		Analytics.send_event({"installation_id":installation_id, "id": installation_id}, "installation")
+		Events.emit_signal("analytics_event", {"id": installation_id}, "installation")
+		
 	
-	execution_uuid = UUID.v4()
-	Analytics.send_event({"installation_id":installation_id, "id": execution_uuid}, "execution")
+	start_execution()
+	
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	add_to_group("persist")
 	
@@ -473,6 +474,7 @@ var execution_uuid : String
 func start_execution():
 	execution_uuid = UUID.v4()
 	Events.emit_signal('execution_started')
+	Events.emit_signal("analytics_event", {"id": execution_uuid}, "execution_started")
 	
 func end_execution():
 	# trigger quit
@@ -654,8 +656,11 @@ var session_number_of_game := 0
 var match_number_of_game := 0
 var match_number_of_session := 0
 
+var game_started_ms : int
+
 func new_game(players: Array, data := {}) -> TheGame:
 	safe_destroy_game()
+	game_started_ms = OS.get_ticks_msec()
 	the_game = TheGame.new()
 	game_number += 1
 	the_game.set_players(players)
@@ -667,6 +672,7 @@ func new_game(players: Array, data := {}) -> TheGame:
 		deck.setup()
 	the_game.set_deck(deck)
 	Events.emit_signal("game_started")
+	Events.emit_signal("analytics_event", {"id": the_game.get_uuid()}, "game_started")
 	return the_game
 
 func new_match() -> TheMatch:
@@ -704,13 +710,14 @@ func new_session(existing_data := {}) -> TheSession:
 	session.setup_from_dictionary(existing_data)
 	Events.emit_signal('session_started')
 	return session
-	
+
 func safe_destroy_game() -> void:
 	if is_game_running():
 		# also delete the session
 		safe_destroy_session()
 		
 		Events.emit_signal("game_ended")
+		Events.emit_signal("analytics_event", {"id":the_game.get_uuid(),"duration_ms":OS.get_ticks_msec() - game_started_ms}, "game_ended")
 		the_game.free()
 	the_game = null
 	session_number_of_game = 0

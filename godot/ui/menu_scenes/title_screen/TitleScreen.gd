@@ -23,7 +23,7 @@ func appear():
 	enable_buttons()
 	
 	# check if continue should be enabled
-	var unfinished_game: Dictionary = parse_json(global.read_file("user://games/latest.json"))
+	var unfinished_game = parse_json(global.read_file("user://games/latest.json"))
 	$"%Continue".disabled = unfinished_game.empty()
 	
 	for button in buttons.get_children():
