@@ -18,10 +18,15 @@ func send_event(event_body: Dictionary, event_name: String):
 	"""Sends an HTTP request with the given event body and name."""
 	# Add timestamp, event name, and version to the event body
 	event_body.timestamp = add_timestamp()
+	event_body.timezone = Time.get_time_zone_from_system()
 	event_body.event_name = event_name
 	event_body.version = global.version
 	event_body.debug_mode = OS.is_debug_build()
-	event_body.installation_id = global.installation_id
+	event_body.installation_id = global.installation_id 
+	event_body.execution_id = global.execution_uuid if global.execution_uuid else null
+	event_body.game_id = global.the_game.get_uuid() if global.the_game else null
+	event_body.session_id = global.session.get_uuid() if global.session else null
+	event_body.match_id = global.the_match.get_uuid() if global.the_match else null
 	
 	# Create a new HTTP request node and connect its completion signal
 	var http_request = HTTPRequest.new()
@@ -39,7 +44,7 @@ func send_event(event_body: Dictionary, event_name: String):
 
 func add_timestamp() -> String:
 	"""Returns the current date and time as a formatted string."""
-	return Time.get_datetime_string_from_system(true, true)
+	return Time.get_datetime_string_from_system(true, false)+"Z"
 
 func _http_request_completed(result, response_code, headers, body, http_request):
 	"""Called when the HTTP request is completed."""

@@ -209,7 +209,9 @@ func update_stats(info_player: InfoPlayer, amount: int, stat: String):
 	
 func get_player(id_player: String) -> InfoPlayer:
 	return players[id_player]
-
+func get_minigame_id() -> String:
+	return minigame.get_id()
+	
 func to_dict()->Dictionary:
 	"""
 	Summary stats of a played match.

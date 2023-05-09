@@ -38,7 +38,7 @@ func _ready():
 	Events.connect('nav_to_character_selection', self, '_on_nav_to_character_selection')
 	
 	var p = parse_json(global.read_file("user://games/latest.json"))
-	if typeof(p) == TYPE_ARRAY or typeof(p.res):
+	if typeof(p) == TYPE_ARRAY or typeof(p):
 		print(p.result[0]) # Prints "hello"
 	else:
 		push_error("Unexpected results.")
@@ -218,6 +218,7 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 			tutorial.queue_free()
 	
 	start_match(picked_card, minigame)
+	
 
 
 func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
@@ -237,6 +238,7 @@ func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
 			child.queue_free()
 			yield(child, 'tree_exited')
 	add_child(combat)
+	Events.emit_signal("analytics_event", {"id": global.the_match.get_uuid(), "minigame_id":minigame.get_id()}, "match_started")
 	
 func safe_destroy_combat():
 	if combat:

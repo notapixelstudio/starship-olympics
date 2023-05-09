@@ -23,8 +23,9 @@ func appear():
 	enable_buttons()
 	
 	# check if continue should be enabled
-	var unfinished_game = parse_json(global.read_file("user://games/latest.json"))
-	$"%Continue".disabled = unfinished_game.empty()
+	var data = global.read_file("user://games/latest.json")
+	var parsed_data = parse_json(data)
+	$"%Continue".disabled = parsed_data == null or parsed_data.empty()
 	
 	for button in buttons.get_children():
 		if button.visible and not button.disabled:
@@ -79,5 +80,4 @@ func _on_Credits_pressed():
 
 func _on_HallOfFame_pressed():
 	print("loading")
-	Events.emit_signal("nav_to_scene", hall_of_fame_scene)
-	# get_tree().change_scene_to(hall_of_fame_scene)
+	get_tree().change_scene_to(hall_of_fame_scene)
