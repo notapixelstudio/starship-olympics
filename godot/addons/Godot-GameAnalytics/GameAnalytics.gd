@@ -37,7 +37,7 @@ func _set_analytics(value: bool):
 	base_url = ProjectSettings.get_setting("Analytics/base_url")
 	game_key = ProjectSettings.get_setting("Analytics/game_key")
 	secret_key = ProjectSettings.get_setting("Analytics/secret_key")
-
+	
 	print_debug("Analytics enabled? " + str(enabled))
 	if enabled:
 		request_init()

@@ -201,7 +201,7 @@ func _ready():
 	run_time = OS.get_ticks_msec()
 	
 	# Analytics
-	analytics.start_elapsed_time()
+	Analytics.start_elapsed_time()
 
 	
 	connect("slomo", environments_manager, "activate_slomo", [self], CONNECT_ONESHOT)

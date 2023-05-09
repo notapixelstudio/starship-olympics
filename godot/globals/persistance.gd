@@ -74,9 +74,9 @@ func load_game() -> bool:
 func delete_latest_game() -> void:
 	if global.the_game:
 		var dict = global.the_game.to_dict()
-		global.write_into_file("user://games/{game_id}.json".format({"game_id": dict.get("game_uuid", Time.get_datetime_dict_from_system(false))}), dict, File.WRITE_READ)
-	global.write_into_file("user://games/latest.json", {}, File.WRITE_READ)
+		global.write_into_file("user://games/{game_id}.json".format({"game_id": dict.get("game_uuid", Time.get_datetime_dict_from_system(false))}), to_json(dict), File.WRITE_READ)
+	global.write_into_file("user://games/latest.json", "", File.WRITE_READ)
 	
 func save_game_as_latest() -> void:
 	if global.the_game:
-		global.write_into_file("user://games/latest.json", global.the_game.to_dict(), File.WRITE_READ)
+		global.write_into_file("user://games/latest.json", to_json(global.the_game.to_dict()), File.WRITE_READ)

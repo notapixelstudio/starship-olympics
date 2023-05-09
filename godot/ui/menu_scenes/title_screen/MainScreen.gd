@@ -2,6 +2,7 @@ extends Control
 
 func _ready():
 	Soundtrack.play("Lobby", true)
+	Events.connect("nav_to_scene", self, "_navigate_to_scene")
 	# TranslationServer.set_locale("es")
 	# Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	$Label.text = tr("DEMO BUILD - v"+ str(global.version))
@@ -15,3 +16,7 @@ func _process(delta):
 		TheUnlocker.reset_unlocks()
 		$"%Info".text = "Sessions played: {sessions_played}. \n Decks unlocked: {unlocked} - Decks hidden: {hidden} \n Cards unlocked: {cards} \n Press SHIFT+R to reset".format({"sessions_played": global.sessions_played, "unlocked": TheUnlocker.get_unlocked_list("starting_decks"), "cards": TheUnlocker.get_unlocked_list("cards"), "hidden": TheUnlocker.get_unlocked_list("starting_decks", TheUnlocker.HIDDEN)})
 		persistance.save_game()
+
+func _navigate_to_scene(scene: PackedScene):
+	var instance = scene.instance()
+	add_child(instance)

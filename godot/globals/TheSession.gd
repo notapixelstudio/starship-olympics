@@ -181,5 +181,5 @@ func is_over() -> bool:
 	return false
 	
 func store():
-	global.write_into_file("user://sessions/{id}.json".format({"id":self.uuid}), self.to_dict())
+	global.write_into_file("user://sessions/{id}.json".format({"id":self.uuid}), to_json(self.to_dict()))
 	
