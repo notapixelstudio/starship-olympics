@@ -50,7 +50,6 @@ func _http_request_completed(result, response_code, headers, body, http_request)
 	"""Called when the HTTP request is completed."""
 	print("Request completed! Result code: %s" % [result])    
 	print(response_code)
-	print(headers)
 	
 	# Handle errors and parse response body
 	var error = "NA"
