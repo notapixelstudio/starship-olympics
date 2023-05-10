@@ -83,7 +83,7 @@ texture = ExtResource( 2 )
 [node name="Shadow" parent="." instance=ExtResource( 4 )]
 sprite = NodePath("../Sprite")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="DamageAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 3 )
 anims/hit = SubResource( 4 )
 
@@ -94,4 +94,5 @@ streams = [ ExtResource( 11 ) ]
 volume_min = 0
 volume_max = 0
 randomize_pitch = true
+pitch_min = 1
 pitch_max = 1.2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.gd" type="Script" id=1]
 [ext_resource path="res://map/DraftArena.tscn" type="PackedScene" id=2]
@@ -11,16 +11,7 @@
 [ext_resource path="res://special_scenes/unlock_screen/UnlockSceneClassic.tscn" type="PackedScene" id=9]
 [ext_resource path="res://special_scenes/combat_UI/gameover/HallOfFame.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/map/galaxy.png" type="Texture" id=11]
-
-[sub_resource type="OpenSimplexNoise" id=2]
-octaves = 4
-period = 1.0
-lacunarity = 4.0
-
-[sub_resource type="NoiseTexture" id=3]
-width = 1280
-height = 720
-noise = SubResource( 2 )
+[ext_resource path="res://assets/sprites/background/static.png" type="Texture" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
@@ -62,11 +53,10 @@ anchor_mode = 0
 layer = 119
 
 [node name="TextureRect" type="TextureRect" parent="ScreenPostProcessing"]
-modulate = Color( 0.705882, 0.705882, 0.705882, 0.137255 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-texture = SubResource( 3 )
+texture = ExtResource( 12 )
 
 [node name="ScreenPostProcessing2" type="CanvasLayer" parent="."]
 layer = 120

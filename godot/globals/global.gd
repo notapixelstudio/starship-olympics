@@ -138,7 +138,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.10.0-internal" setget set_version
+var version = "0.12.1-alpha" setget set_version
 var first_time = true
 
 func set_version(value):
@@ -290,11 +290,21 @@ func _input(event):
 	if demo_playtest and event.is_action_pressed("delete_persistence"):
 		persistance.delete_latest_game()
 
+var installation_id 
 func _ready():
 	# we want to handle quit by ourselves
 	get_tree().set_auto_accept_quit(false)
 	
 	print("Starting game...")
+	installation_id = read_file("user://uuid").strip_edges()
+	if not installation_id:
+		installation_id=UUID.v4()
+		write_into_file("user://uuid", installation_id, File.WRITE_READ)
+		Events.emit_signal("analytics_event", {"id": installation_id}, "installation")
+		
+	
+	start_execution()
+	
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	add_to_group("persist")
 	
@@ -324,7 +334,7 @@ func _ready():
 		print("Successfully load the game")
 	else:
 		print("Something went wrong while loading the game data")
-
+	
 func getRemotesServer():
 	return remotesServer
 
@@ -406,7 +416,8 @@ func create_dir(path: String):
 	var dir = Directory.new()
 	dir.make_dir_recursive(path)
 
-func write_into_file(filepath: String, data: Dictionary, mode := File.READ_WRITE):
+
+func write_into_file(filepath: String, data: String, mode := File.READ_WRITE):
 	#open the log file and go to the end
 	var file = File.new()
 	var error = file.open(filepath, mode)
@@ -415,34 +426,32 @@ func write_into_file(filepath: String, data: Dictionary, mode := File.READ_WRITE
 		error = file.open(filepath, File.WRITE_READ)
 	if error == OK:
 		file.seek_end()
-		file.store_line(to_json(data))
+		file.store_line(data)
 		file.flush() # WARNING writing to disk too often could hurt performance
+		print(file.get_path_absolute())
 		file.close()
-		print(filepath)
 	else: 
 		print("FILE WITH ERROR {error_code}".format({"error_code": error }))
 	
-func read_file(path: String) -> Dictionary:
+func read_file(path: String) -> String:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
 	var file = File.new()
 	if not file.file_exists(path):
 		print("The save file does not exist.")
-		return {}
+		return ""
 	file.open(path, File.READ)
 	print("We are going to load from this JSON: ", file.get_path_absolute())
 	# parse file data - convert the JSON back to a dictionary
-	var data = {}
-	data = parse_json(file.get_as_text())
+	var data = ""
+	data = file.get_as_text()
 	file.close()
-	if data == null:
-		data = {}
 	return data
 
 func read_file_by_line(path: String) -> Array:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
 	var file = File.new()
 	if not file.file_exists(path):
-		print("The save file does not exist.")
+		print("The file does not exist.")
 		return []
 	file.open(path, File.READ)
 	print("We are going to load from this JSON: ", file.get_path_absolute())
@@ -463,6 +472,7 @@ var execution_uuid : String
 func start_execution():
 	execution_uuid = UUID.v4()
 	Events.emit_signal('execution_started')
+	Events.emit_signal("analytics_event", {"id": execution_uuid}, "execution_started")
 	
 func end_execution():
 	# trigger quit
@@ -472,10 +482,10 @@ func _notification(what):
 	# actual quitting
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		print("Thanks for playing")
-		GameAnalytics.end_session()
-		if enable_analytics:
-			yield(GameAnalytics, "message_sent")
+		Events.emit_signal("analytics_event", {"id": execution_uuid}, "execution_ended")
 		Events.emit_signal('execution_ended')
+		yield(get_tree().create_timer(1), "timeout")
+		print("Closing everything")
 		get_tree().quit() # default behavior
 
 # utils
@@ -573,8 +583,8 @@ func check_version(saved_version: String, version_: String) -> bool:
 	var saved_patch = saved_version.split(".")[2]
 	var minor = version_.split(".")[1]
 	var patch = version_.split(".")[2]
-	
-	return int(saved_patch) < int(patch)
+	print("{saved_patch} < {patch} = {result_patch} or {saved_minor} < {minor} = {result_minor}".format({"saved_patch": int(saved_patch), "patch": int(patch), "saved_minor": saved_minor, "minor": minor, "result_patch":int(saved_patch) < int(patch) , "result_minor": int(saved_minor) < int(minor)}))
+	return int(saved_patch) < int(patch) or int(saved_minor) < int(minor)
 
 func send_stats(category: String, stats: Dictionary):
 	emit_signal("send_statistics", category, stats)
@@ -612,6 +622,7 @@ var glow_enable = true setget _set_glow
 
 func _set_glow(value):
 	glow_enable = value
+	Events.emit_signal("glow_setting_changed")
 	
 
 # GAMEPLAY
@@ -626,6 +637,10 @@ func reset_counts():
 	sessions_played = 0 # Total number of sessions. Persistence
 	session_number_of_game = 0
 	match_number_of_game = 0
+	match_number_of_session = 0
+	reset_minigame_counts()
+	
+func reset_minigame_counts():
 	if is_game_running():
 		for card in the_game.all_cards.get_cards():
 			var minigame = (card as DraftCard).get_minigame()
@@ -637,9 +652,13 @@ var session_number := 0
 var sessions_played := 0 # Total number of sessions. Persistence
 var session_number_of_game := 0
 var match_number_of_game := 0
+var match_number_of_session := 0
+
+var game_started_ms : int
 
 func new_game(players: Array, data := {}) -> TheGame:
 	safe_destroy_game()
+	game_started_ms = OS.get_ticks_msec()
 	the_game = TheGame.new()
 	game_number += 1
 	the_game.set_players(players)
@@ -651,20 +670,30 @@ func new_game(players: Array, data := {}) -> TheGame:
 		deck.setup()
 	the_game.set_deck(deck)
 	Events.emit_signal("game_started")
+	Events.emit_signal("analytics_event", {"id": the_game.get_uuid(), "human_players": len(players)}, "game_started")
+	for player in players:
+		var selection_event_data = (player as InfoPlayer).to_dict()
+		selection_event_data.game_id=global.the_game.get_uuid()
+		Events.emit_signal("analytics_event", selection_event_data, "player_selected")
 	return the_game
 
+var match_started_ms: int
 func new_match() -> TheMatch:
 	safe_destroy_match()
+	match_started_ms = OS.get_ticks_msec()
 	the_match = TheMatch.new()
 	match_number_of_game += 1
+	match_number_of_session += 1
 	Events.emit_signal("match_started")
 	print("Save the game")
 	if not global.demo:
 		persistance.save_game_as_latest()
 	return the_match
 	
+var session_started_ms : int
 func new_session(existing_data := {}) -> TheSession:
 	safe_destroy_session()
+	session_started_ms = OS.get_ticks_msec()
 	session = TheSession.new()
 	session_number_of_game += 1
 	
@@ -686,14 +715,17 @@ func new_session(existing_data := {}) -> TheSession:
 	session.set_hand(hand)
 	session.setup_from_dictionary(existing_data)
 	Events.emit_signal('session_started')
-	return session
+	Events.emit_signal("analytics_event", {"id":session.get_uuid()}, "session_started")
 	
+	return session
+
 func safe_destroy_game() -> void:
 	if is_game_running():
 		# also delete the session
 		safe_destroy_session()
 		
 		Events.emit_signal("game_ended")
+		Events.emit_signal("analytics_event", {"id":the_game.get_uuid(),"duration_ms":OS.get_ticks_msec() - game_started_ms}, "game_ended")
 		the_game.free()
 	the_game = null
 	session_number_of_game = 0
@@ -702,6 +734,7 @@ func safe_destroy_game() -> void:
 func safe_destroy_match() -> void:
 	if is_match_running():
 		Events.emit_signal("match_ended", the_match.to_dict())
+		Events.emit_signal("analytics_event", {"id":the_match.get_uuid(),"duration_ms":OS.get_ticks_msec() - game_started_ms, "minigame_id": the_match.get_minigame_id()}, "match_ended")
 		the_match.free()
 	the_match = null
 	
@@ -712,10 +745,11 @@ func safe_destroy_session() -> void:
 		
 		# put back cards into the deck
 		session.discard_hand()
-		
+		Events.emit_signal("analytics_event", {"id":session.get_uuid(),"duration_ms":OS.get_ticks_msec() - session_started_ms}, "session_ended")
 		Events.emit_signal("session_ended")
 		session.free()
 	session = null
+	match_number_of_session = 0
 	
 func is_game_running() -> bool:
 	return the_game != null and is_instance_valid(the_game)
@@ -728,6 +762,9 @@ func is_session_running() -> bool:
 	
 func is_before_first_match_of_the_game() -> bool:
 	return match_number_of_game == 0
+	
+func is_before_first_match_of_the_session() -> bool:
+	return match_number_of_session == 0
 
 # remember which cards have already been shown to the player and in which starting deck
 var shown_cards_from_deck := {}
@@ -801,12 +838,13 @@ func datetime_to_str(datetime: Dictionary, use_local := false) -> String:
 		local_tz = Time.get_offset_string_from_offset_minutes(tz.bias)
 	return datetime_string
 
-func get_playlist_starting_deck(status = TheUnlocker.UNLOCKED):
+func get_playlist_starting_deck(list_of_status: Array):
+	#  = TheUnlocker.UNLOCKED
 	var decks: Dictionary = global.get_resources(global.DECK_PATH)
 	var playlists = []
 	for starting_deck in decks.values():
 		assert(starting_deck is StartingDeck)
 		if starting_deck.is_playlist():
-			if TheUnlocker.get_status("starting_decks", starting_deck.get_id()) == status:
+			if TheUnlocker.get_status("starting_decks", starting_deck.get_id()) in list_of_status:
 				playlists.append(starting_deck)
 	return playlists

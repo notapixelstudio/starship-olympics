@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
+[ext_resource path="res://map/draft/cards/Undertakers.tres" type="Resource" id=2]
+[ext_resource path="res://map/draft/cards/SlamAGon.tres" type="Resource" id=3]
+[ext_resource path="res://map/draft/cards/Snipermatch.tres" type="Resource" id=4]
+[ext_resource path="res://map/draft/cards/Spikeball.tres" type="Resource" id=5]
+[ext_resource path="res://assets/map/cards/planets/dodgeball.png" type="Texture" id=6]
+
+[resource]
+script = ExtResource( 1 )
+id = "dodgeball"
+order = 3
+name = "Death Dome"
+image = ExtResource( 6 )
+cards = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ) ]
+nexts = [  ]
+playlist = true
+unlocks = [  ]

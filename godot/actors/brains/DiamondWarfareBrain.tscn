@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/brains/CPUBrain.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/brains/DiamondWarfareBrain.gd" type="Script" id=2]
+
+[node name="DiamondWarfareBrain" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+random_fire_p = 0.005
+think_time = 0.6
+back_attack_distance = 1200
+back_attack_probability = 1.0

@@ -1,0 +1,209 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=1]
+[ext_resource path="res://combat/modes/Hoopball.tres" type="Resource" id=2]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=4]
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=5]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/environments/Gate.tscn" type="PackedScene" id=7]
+[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=9]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
+[ext_resource path="res://combat/managers/HoopballManager.tscn" type="PackedScene" id=11]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 180.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Rotate"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 180.0, 540.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 180.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Rotate"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 180.0, 540.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 180.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Rotate"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 180.0, 540.0 ]
+}
+
+[node name="Arena" instance=ExtResource( 5 )]
+size_multiplier = 2.5
+game_mode = ExtResource( 2 )
+dark_winter = true
+
+[node name="HoopballManager" parent="Managers" index="0" instance=ExtResource( 11 )]
+
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
+hollow = true
+offset = 200
+hide_grid = true
+solid_line_color = Color( 0.858824, 0.929412, 1, 1 )
+grid_color = Color( 0, 1, 0.741176, 0.435294 )
+
+[node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
+script = ExtResource( 1 )
+width = 2000
+height = 1600
+radius = 700
+precision = 100.0
+
+[node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
+modulate = Color( 1, 1, 1, 0.7 )
+fg_color = Color( 0.04, 0.04, 0.04, 1 )
+
+[node name="Gate" parent="Battlefield/Middleground" index="0" instance=ExtResource( 7 )]
+position = Vector2( 450, 0 )
+rotation = 3.14159
+width = 700.0
+auto_feedback = false
+disabled_color = Color( 1, 1, 1, 0 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate" index="7" groups=["animation_in_battle"]]
+playback_speed = 0.15
+anims/RESET = SubResource( 1 )
+anims/Rotate = SubResource( 2 )
+
+[node name="Gate2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 7 )]
+position = Vector2( -450, 0 )
+rotation = 3.14159
+width = 700.0
+auto_feedback = false
+disabled_color = Color( 1, 1, 1, 0 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate2" index="7" groups=["animation_in_battle"]]
+playback_speed = 0.15
+anims/RESET = SubResource( 3 )
+anims/Rotate = SubResource( 4 )
+
+[node name="Gate8" parent="Battlefield/Middleground" index="2" instance=ExtResource( 7 )]
+rotation = 3.14159
+auto_feedback = false
+disabled_color = Color( 1, 1, 1, 0 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Middleground/Gate8" index="7" groups=["animation_in_battle"]]
+playback_speed = 0.15
+anims/RESET = SubResource( 7 )
+anims/Rotate = SubResource( 8 )
+
+[node name="Gate3" parent="Battlefield/Middleground" index="3" instance=ExtResource( 7 )]
+position = Vector2( 100, -500 )
+rotation = 3.14159
+auto_feedback = false
+disabled_color = Color( 1, 1, 1, 0 )
+
+[node name="Gate5" parent="Battlefield/Middleground" index="4" instance=ExtResource( 7 )]
+position = Vector2( 100, 500 )
+rotation = 3.14159
+auto_feedback = false
+disabled_color = Color( 1, 1, 1, 0 )
+
+[node name="Gate4" parent="Battlefield/Middleground" index="5" instance=ExtResource( 7 )]
+position = Vector2( -100, 500 )
+auto_feedback = false
+disabled_color = Color( 1, 1, 1, 0 )
+
+[node name="Gate6" parent="Battlefield/Middleground" index="6" instance=ExtResource( 7 )]
+position = Vector2( -100, -500 )
+auto_feedback = false
+disabled_color = Color( 1, 1, 1, 0 )
+
+[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 9 )]
+type = "croquet"
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 3 )]
+position = Vector2( -700, -300 )
+rotation = 0.0
+species = ExtResource( 4 )
+cpu = true
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 3 )]
+position = Vector2( -700, 300 )
+rotation = 0.0
+controls = "joy1"
+species = ExtResource( 10 )
+
+[node name="Camera" parent="." index="7"]
+zoom = Vector2( 1.01958e+38, 1.01958e+38 )
+smoothing_speed = 0.3
+disabled_override = true

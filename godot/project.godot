@@ -309,6 +309,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://map_with_sets/Graph.gd"
 }, {
+"base": "Diamond",
+"class": "HalfDiamond",
+"language": "GDScript",
+"path": "res://combat/collectables/HalfDiamond.gd"
+}, {
 "base": "Control",
 "class": "HallOfFame",
 "language": "GDScript",
@@ -414,6 +419,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/environments/Mine.gd"
 }, {
+"base": "Node",
+"class": "MinefieldManager",
+"language": "GDScript",
+"path": "res://combat/managers/MinefieldManager.gd"
+}, {
 "base": "Resource",
 "class": "Minigame",
 "language": "GDScript",
@@ -473,6 +483,11 @@ _global_script_classes=[ {
 "class": "PanelRemapping",
 "language": "GDScript",
 "path": "res://ui/option_scenes/settings/PanelRemapping.gd"
+}, {
+"base": "TileMap",
+"class": "Parade",
+"language": "GDScript",
+"path": "res://actors/environments/Parade.gd"
 }, {
 "base": "Sprite",
 "class": "PathStar",
@@ -548,6 +563,11 @@ _global_script_classes=[ {
 "class": "RadioOption",
 "language": "GDScript",
 "path": "res://map_with_sets/MapRadio.gd"
+}, {
+"base": "DraftCard",
+"class": "RandomCard",
+"language": "GDScript",
+"path": "res://map/draft/cards/RandomCard.gd"
 }, {
 "base": "Control",
 "class": "RemapAction",
@@ -780,6 +800,7 @@ _global_script_class_icons={
 "GlowColor": "",
 "GoalPortalGate": "",
 "Graph": "",
+"HalfDiamond": "",
 "HallOfFame": "",
 "HandNode": "",
 "Homeworld": "",
@@ -801,6 +822,7 @@ _global_script_class_icons={
 "MapRadio": "",
 "Marble": "",
 "Mine": "",
+"MinefieldManager": "",
 "Minigame": "",
 "MinigameMinilogo": "",
 "Mirror": "",
@@ -813,6 +835,7 @@ _global_script_class_icons={
 "Owned": "",
 "Paddle": "",
 "PanelRemapping": "",
+"Parade": "",
 "PathStar": "",
 "Pentagoal": "",
 "Pew": "",
@@ -828,6 +851,7 @@ _global_script_class_icons={
 "PowerCore": "",
 "PowerUp": "",
 "RadioOption": "",
+"RandomCard": "",
 "RemapAction": "",
 "RemappingScene": "",
 "RemoteBomb": "",
@@ -871,6 +895,10 @@ game_key.release="5b72f66efaa74f8e1d395cee32ae8fb0"
 base_url="http://api.gameanalytics.com"
 secret_key.debug="166ed30f12e9cbb2b03eccff8d9cb7294bb44172"
 secret_key.release="75ec3f402122495fff616460f45ffef6e0c04ce9"
+hostname="http://notapixel.ddns.net:9876"
+token.debug=""
+token="Godotexport_v1.0.0"
+hostname.local="http://localhost:8000"
 
 [application]
 
@@ -885,16 +913,16 @@ config/windows_native_icon="res://logo_grid_icon.ico"
 
 persistance="*res://globals/persistance.gd"
 Soundtrack="*res://globals/Soundtrack.tscn"
+Analytics="*res://globals/analytics.gd"
 global="*res://globals/global.gd"
 Controls="*res://globals/Controls.gd"
 TheUnlocker="*res://globals/TheUnlocker.gd"
-analytics="*res://globals/analytics.gd"
-GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
 ECM="*res://addons/ECM/ECM.gd"
 traits="*res://addons/traits/traits.gd"
 Events="*res://globals/Events.gd"
 Logger="*res://globals/Logger.gd"
 SoundEffects="*res://globals/SoundEffects.gd"
+GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
 
 [debug]
 
@@ -915,6 +943,10 @@ window/size/fullscreen.debug=false
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/ECM/plugin.cfg", "res://addons/Godot-GameAnalytics/plugin.cfg", "res://addons/geometry/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/traits/plugin.cfg" )
+
+[global]
+
+token="Godotexport_v1.0.0"
 
 [importer_defaults]
 

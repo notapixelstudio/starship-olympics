@@ -1,14 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://local_multiplayer/UI/ParallaxBackground.gd" type="Script" id=1]
 [ext_resource path="res://combat/levels/background/menus.png" type="Texture" id=2]
 [ext_resource path="res://combat/levels/background/stars2.png" type="Texture" id=3]
-[ext_resource path="res://assets/shaders/chromatic_aberration.shader" type="Shader" id=8]
-
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 8 )
-shader_param/apply = true
-shader_param/amount = 0.1
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 script = ExtResource( 1 )
@@ -31,12 +25,3 @@ texture = ExtResource( 3 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 120.559, 12.7077, 1194.36, 986.642 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource( 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}

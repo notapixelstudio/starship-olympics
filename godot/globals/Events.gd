@@ -12,6 +12,10 @@ signal tappable_exited(tappable, ship)
 signal tap(tapper)
 signal sth_tapped(tapper, tappee)
 
+signal card_revealed(card)
+signal card_taken(card, player, ship)
+signal card_destroyed(card)
+
 signal holdable_loaded(holdable, ship)
 signal holdable_dropped(holdable, ship, cause)
 signal holdable_replaced(old, new, ship)
@@ -47,12 +51,15 @@ signal session_ended
 signal game_ended
 signal execution_ended
 
+signal battle_start
+
 signal continue_after_game_over(session_ended)
 signal continue_after_session_ended
 
 signal nav_to_menu
 signal nav_to_map
 signal nav_to_character_selection
+signal nav_to_scene(scene)
 
 signal sth_unhid(what, by_what) # e.g., Set by MapPlanet
 signal sth_unlocked(what, by_what) # e.g., Set by MapPlanet
@@ -76,3 +83,9 @@ signal card_tapped(author, card)
 signal starting_deck_selected(starting_deck)
 signal selection_starting_deck_over
 signal draft_ended(choices, hand)
+
+# settings
+signal glow_setting_changed
+
+# analytics
+signal analytics_event(event_dictionary, event_name)

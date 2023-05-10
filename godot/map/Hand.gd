@@ -15,7 +15,6 @@ func sync_with_hand():
 		if not card.card_content in global.session.get_hand():
 			card.queue_free()
 	
-
 func get_size() -> Vector2:
 	return size
 	

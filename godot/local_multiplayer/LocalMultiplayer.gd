@@ -37,7 +37,12 @@ func _ready():
 	Events.connect('nav_to_map', self, '_on_nav_to_map')
 	Events.connect('nav_to_character_selection', self, '_on_nav_to_character_selection')
 	
-	var unfinished_game: Dictionary = global.read_file("user://games/latest.json")
+	var p = parse_json(global.read_file("user://games/latest.json"))
+	if typeof(p) == TYPE_ARRAY or typeof(p):
+		print(p.result[0]) # Prints "hello"
+	else:
+		push_error("Unexpected results.")
+	var unfinished_game = {}
 	if not unfinished_game.empty():
 		setup_continue_game(unfinished_game)
 #		var confirm = load("res://special_scenes/combat_UI/gameover/AreYouSure.tscn").instance()
@@ -113,13 +118,14 @@ func start_fight(selected_players: Array, fight_mode: String):
 	remove_child(parallax)
 	
 	# add startdeck choosing
-	var playlists = global.get_playlist_starting_deck()
+	var playlists = global.get_playlist_starting_deck([ TheUnlocker.NEW, TheUnlocker.UNLOCKED])
 	if len(playlists) > 1:
 		var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instance()
 		add_child(choose_deck_scene)
 		yield(Events, "selection_starting_deck_over")
-		choose_deck_scene.queue_free()
-		TheUnlocker.unlock_element("starting_decks", global.starting_deck_id)
+		if is_instance_valid(choose_deck_scene):
+			choose_deck_scene.queue_free()
+		#TheUnlocker.unlock_element("starting_decks", global.starting_deck_id)
 	
 	global.new_game(players.values())
 	safe_destroy_combat()
@@ -179,6 +185,14 @@ func continue_after_session_over() -> void:
 			global.new_game(players.values())
 		confirm.queue_free()
 	"""
+	# a session has been completed with this deck, so mark it as not new anymore and unlock new ones from it
+	if not global.demo: # do not unlock new content if we are in demo mode
+		TheUnlocker.unlock_element("starting_decks", global.starting_deck_id)
+		var decks = global.get_resources(Deck.DECK_PATH)
+		var starting_deck: StartingDeck = global.get_actual_resource(decks, global.starting_deck_id)
+		for unlock in starting_deck.get_unlocks():
+			TheUnlocker.unlock_element("starting_decks", unlock, TheUnlocker.NEW)
+
 	navigate_to_celebration()
 	# navigate_to_map()
 	
@@ -194,7 +208,8 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	# show tutorial if this minigame has one, and the minigame has not been already played
 	if minigame.has_tutorial() and not global.demo:
 		var tutorial = minigame.get_tutorial_scene().instance()
-		if minigame.is_first_time_started() or not tutorial.should_appear_once():
+		# check if we are playing the introductory playlist
+		if global.starting_deck_id == 'first' and minigame.is_first_time_started():
 			add_child(tutorial)
 			yield(tutorial, 'over')
 			
@@ -203,6 +218,7 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 			tutorial.queue_free()
 	
 	start_match(picked_card, minigame)
+	
 
 
 func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
@@ -222,6 +238,7 @@ func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
 			child.queue_free()
 			yield(child, 'tree_exited')
 	add_child(combat)
+	Events.emit_signal("analytics_event", {"id": global.the_match.get_uuid(), "minigame_id":minigame.get_id()}, "match_started")
 	
 func safe_destroy_combat():
 	if combat:
@@ -291,6 +308,7 @@ func navigate_to_celebration():
 		Events.emit_signal("continue_after_session_ended")
 	else:
 		celebration = celebration_scene.instance()
+		celebration.add_champion = true
 		add_child(celebration)
 		
 		celebration.set_champion(champion)

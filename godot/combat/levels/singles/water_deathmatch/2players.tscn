@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://actors/environments/DashWall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=2]
+[ext_resource path="res://actors/environments/WaterWall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=7]
 [ext_resource path="res://assets/sprites/environments/bones_deco.png" type="Texture" id=10]
 [ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=11]
@@ -56,10 +57,14 @@ position = Vector2( 0, 32 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 10 )
 
-[node name="DashWall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 1 )]
+[node name="WaterWall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 3 )]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/DashWall" index="2"]
-polygon = PoolVector2Array( -100, -1050, 0, -1150, 100, -1050, 100, 1050, 0, 1150, -100, 1050 )
+[node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/WaterWall" index="4"]
+script = ExtResource( 1 )
+width = 300
+height = 2000
+radius = 140
+precision = 10
 
 [node name="CameraEye" parent="Battlefield/Foreground" index="0" instance=ExtResource( 26 )]
 position = Vector2( -1300, 900 )
@@ -70,15 +75,14 @@ position = Vector2( 1300, -900 )
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 15 )]
 position = Vector2( -1000, 600 )
 rotation = 0.0
-controls = "joy1"
 species = ExtResource( 7 )
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 15 )]
 position = Vector2( 1000, -600 )
 rotation = 3.14159
-controls = "joy2"
+controls = "kb2"
 species = ExtResource( 11 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera" parent="." index="6"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
 smoothing_speed = 0.3

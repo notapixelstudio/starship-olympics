@@ -11,7 +11,6 @@ onready var line3 = $Line3
 export var main_screen : PackedScene
 
 func _ready():
-	global.start_execution()
 	
 	line1.bbcode_text = tr("[center]MILLENNIA OF INTERGALACTIC WARS[/center]")
 	line2.bbcode_text = tr("[center]FINALLY CAME TO AN END[/center]")
