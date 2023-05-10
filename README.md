@@ -1,5 +1,5 @@
 
-# Starship Olympics
+# Superstarfighter
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![GitHub release](https://img.shields.io/github/release/notapixelstudio/superstarfighter.svg)](https://gitHub.com/notapixelstudio/superstarfighter/tags/)
@@ -8,77 +8,47 @@
 
 <a href="https://notapixel.itch.io/superstarfighter"><img src="img/logo1.jpg"/></a>
 
+
 Welcome to Starship Olympics, a fast-paced multiplayer game where you can compete with other players to become the ultimate starship champion.
+
+Features:
+- 🎮 1 to 4 players fast-paced arcade combat party game
+- 🕹️ Intuitive and expressive single-button controls: everyone can pick up a controller and play!
+- 🎲 20+ games in one (eventually! lots in development 😄)
+- 🤖 Solo, versus, co-op modes
+- 💖 Made with love, and Free and Open Source Software
+- 🆓 Also free and open source itself 🙂
+
+You will play as one pilot from a diverse roster of aliens, and fight to become the champion of the intergalactic Games, a sport competition symbol of unity and peace for all the species of the universe.
 
 <a href="https://notapixel.itch.io/superstarfighter"><img src="img/gameplay.jpg"/></a>
 
 In this game, you will pilot your own starship and face off against other players in a variety of challenges and competitions. Whether you prefer to race through a dangerous asteroid field or engage in a thrilling dogfight, Starship Olympics has something for everyone.
 
-Features:
-- Multiplayer action with up to 4 players
-- Exciting challenges and competitions
-- Customizable starships with different weapons and abilities
-- Stunning graphics and immersive sound effects
-- Free and open source
+## Screenshots
 
-## Installation and Usage
+[![Gameplay Screenshot](img/gameplay.jpg)](https://notapixel.itch.io/superstarfighter)
 
-To get started with Starship Olympics, simply clone the repository and run the game in the Godot Engine. You can also download pre-built binaries for Windows and Linux from the [releases](https://github.com/notapixelstudio/starship-olympics/releases) page.
+[![Gameplay Screenshot](img/gameplay2.jpg)](https://notapixel.itch.io/superstarfighter)
 
-## Contributing
+## 📣 Follow the Development
 
-We welcome contributions from the community to help improve and expand Starship Olympics. Whether you want to submit bug reports, feature requests, or code changes, we appreciate your help.
+This game is being developed on **`Godot v3.5.2`**.
 
-Please read our [contributing guidelines](CONTRIBUTING.md) for more information on how to contribute.
+Join our Discord or follow us on Twitter ([@notapixelstudio](https://twitter.com/notapixelstudio)) or [Instagram](https://instagram.com/notapixelstudio) for updates and news.
 
-## Resources used and acknowledgements
+[![Join our Discord Server](https://img.itch.zone/aW1nLzIyNTU1MDkucG5n/original/z9chy2.png)](https://discord.gg/tchr6qpj59)
+[![Follow us on Twitter](https://img.itch.zone/aW1nLzIyNTU1MDgucG5n/original/I6PXjA.png)](https://twitter.com/notapixelstudio)
+[![Follow us on Instagram](https://img.itch.zone/aW1nLzI2ODI2MjkucG5n/original/6qfdLm.png)](https://instagram.com/notapixelstudio)
 
-All the resources hereby cited are free and royalty-free. Made by the community or contributors.
-(Since this game is in Development the following list might change often)
+Download the game from [itch.io](https://notapixel.itch.io/superstarfighter), or help us shape it by joining our [Discord](https://discord.gg/tchr6qpj59).
 
-### Game Assets and Third party
+## Resources Used and Acknowledgements
+All the resources cited below are free and royalty-free, made by the community or contributors. Since this game is in development, the following list might change often.
 
-All the game assets (art, audio, texture, .svg files) under the folder assets, if not explicitly stated otherwise are under [CC BY NC SA](https://creativecommons.org/licenses/by-nc-sa/2.0/), made by notapixelstudio, the community or contributors. Some of them are from third-party, credited below or explicitly stated under the respective folder
+### Game Assets and Third Party
 
-#### Soundtrack
-
-- [Giovanni Nava - Haunting Aliens](https://www.giovanni-nava.com/) 
-- [Mattek - Paradoxal Activity](https://soundcloud.com/themattek/mattek-paradoxal-activity)
-- Sounds and music from [freesound](https://freesound.org/people/salvob41/downloaded_sounds)
-
-#### Sounds
-
-- [Aidave from freesound](https://freesound.org/people/aidave/downloaded_sounds)
-- [List of free sounds](https://v-play.net/game-resources/16-sites-featuring-free-game-sounds)
-- [Uso_sketch](https://freesound.org/people/uso_sketch/sounds/443865)
-- [GameAudio](https://freesound.org/people/GameAudio/packs/13940/)
-- [Jalastram](https://freesound.org/people/jalastram/packs/17801)
-- [LewislancasterMusic](https://soundcloud.com/lewislancastermusic) : 0555, 0013shed
-
-You will play as one pilot from a diverse rooster of aliens, and fight to become the <i>champion of the intergalactic Games</i>, a sport competition symbol of unity and peace for all the species of the universe.
-
-
-
-<a href="https://notapixel.itch.io/superstarfighter"><img src="img/gameplay2.jpg"/></a>
-
-## Follow the development
-
-This game is being developed on **`Godot v3.5.1`** 
-
-Join our discord or follow us on Twitter ([@notapixelstudio](https://twitter.com/notapixelstudio)) or on [Instagram](https://instagram.com/notapixelstudio) 
-
-[<img src="https://img.itch.zone/aW1nLzIyNTU1MDkucG5n/original/z9chy2.png" alt="Join our Discord Server" title="Join our Discord Server">]( https://discord.gg/tchr6qpj59) [<img src="https://img.itch.zone/aW1nLzIyNTU1MDgucG5n/original/I6PXjA.png" alt="Follow us on Twitter" title="Follow us on Twitter">](https://twitter.com/notapixelstudio) [<img src="https://img.itch.zone/aW1nLzI2ODI2MjkucG5n/original/6qfdLm.png" alt="Follow us Instagram" title="Follow us on Instagram">](https://instagram.com/notapixelstudio)
-
-Download the game from [itch.io](https://notapixel.itch.io/superstarfighter), or help us shaping it by joining our [Discord](https://discord.gg/tchr6qpj59).
-
-## Resources used and acknowledgements
-
-All the resources hereby cited are free and royalty-free. Made by the community or contributors.
-(Since this game is in Development the following list might change often)
-
-### Game Assets and Third party
-
-All the game assets (art, audio, texture, .svg files) under the folder assets, if not explicitly stated otherwise are under [CC BY NC SA](https://creativecommons.org/licenses/by-nc-sa/2.0/), made by notapixelstudio, the community or contributors. Some of them are from third-party, credited below or explicitly stated under the respective folder
+All the game assets (art, audio, texture, .svg files) under the folder assets, if not explicitly stated otherwise, are under [CC BY NC SA](https://creativecommons.org/licenses/by-nc-sa/2.0/), made by notapixelstudio, the community, or contributors. Some of them are from third-party sources, credited below or explicitly stated under the respective folder.
 
 #### Soundtrack
 
@@ -124,15 +94,13 @@ Avoid using colloquialisms or cultural references that may not make sense in oth
 Maintain consistency with terminology and phrasing throughout the translation.
 Thank you for your contribution to the translation effort! If you have any questions or concerns, please do not hesitate to contact us through Github or email.
 
-
 ## License
 
-All the code used in this project is opensource and under the MIT License so you can use any part of it on your games developped in GodotEngine (that is also under the [MIT License](https://godotengine.org/license)). The software and official releases/binaries are distributed under our [End-User License Agreement (EULA)](LICENSE_software.txt).
+All the code used in this project is open source and under the MIT License, so you can use any part of it on your games developed in GodotEngine (which is also under the [MIT License](https://godotengine.org/license)). The software and official releases/binaries are distributed under our [End-User License Agreement (EULA)](LICENSE_software.txt).
 
-It can be basically summarized into two different licenses:
+The licenses can be summarized as follows:
 
-1. Source code (everything except game assets, under the folder _assets_ ) is distributed under [MIT License](LICENSE_source_code.txt). 
-2. All the game assets (art, audio, texture, .svg files) under the folder [_assets_](LICENSE_assets.txt), if not explicitly stated otherwise are under [CC BY NC SA](https://creativecommons.org/licenses/by-nc-sa/2.0/), made by notapixelstudio, the community or contributors. Some of them are from third-party, credited below or explicitly stated under the respective folder.     
+1. Source code (everything except game assets, under the folder _assets_) is distributed under the [MIT License](LICENSE_source_code.txt).
+2. All the game assets (art, audio, texture, .svg files) under the folder _assets_, if not explicitly stated otherwise, are under [CC BY NC SA](https://creativecommons.org/licenses/by-nc-sa/2.0/), made by notapixelstudio, the community, or contributors. Some of them are from third-party sources, credited below or explicitly stated under the respective folder.
 
-In case you have any questions don't hesitate to contact us at notapixelstudio@gmail.com 
-
+If you have any questions, please don't hesitate to contact us at notapixelstudio@gmail.com.
