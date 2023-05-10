@@ -4,7 +4,7 @@ extends Node
 var start_time = 0
 var this_elapsed_time = 0
 # uncomment next line if you want to test local api
-onready var api_hostname = ProjectSettings.get_setting("Analytics/hostname") # if not OS.is_debug_build() else ProjectSettings.get_setting("Analytics/hostname.debug")
+onready var api_hostname = ProjectSettings.get_setting("Analytics/hostname") # if not OS.is_debug_build() else ProjectSettings.get_setting("Analytics/hostname.local")
 onready var token = "Godotexport_v1.0.0"
 const ENDPOINT = "messages"
 
