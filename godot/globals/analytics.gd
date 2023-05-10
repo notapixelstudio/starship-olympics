@@ -8,11 +8,18 @@ onready var api_hostname = ProjectSettings.get_setting("Analytics/hostname") # i
 onready var token = "Godotexport_v1.0.0"
 const ENDPOINT = "messages"
 
+func enable():
+	Events.connect("analytics_event", self, '_on_analytics_event')
+	Events.emit_signal("analytics_event", {"id": UUID.v4()}, "analytics_enabled")
+
+func disable():
+	if Events.is_connected("analytics_event", self, '_on_analytics_event'):
+		Events.emit_signal("analytics_event", {"id": UUID.v4()}, "analytics_disabled")
+		Events.disconnect("analytics_event", self, '_on_analytics_event')
+
 func _ready():
 	"""Called when the node is added to the scene."""
 	# events connected and logged
-	Events.connect("analytics_event", self, '_on_analytics_event')
-
 	return
 
 func send_event(event_body: Dictionary, event_name: String):

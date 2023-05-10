@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/UI/futureui-panel.png" type="Texture" id=1]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://ui/common_elements/ElementOptionCheckbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/fonts/DefaultFont24.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/DefaultFont28.tres" type="DynamicFont" id=3]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=4]
 
 [sub_resource type="GDScript" id=1]
@@ -17,19 +17,31 @@ func start():
 	visible = true
 	anim.play(\"Appear\")
 	yield(anim, \"animation_finished\")
-	$Disclaimer/Analytics.focus()
+	$\"%YES\".grab_focus()
 	
-func _on_Button_pressed():
+func disappear():
 	anim.play_backwards(\"Appear\")
 	yield(anim, \"animation_finished\")
 	persistance.save_game()
 	print(\"Statistics are now : \", global.enable_analytics)
 	emit_signal(\"okay\")
 	queue_free()
-"
 
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 2 )
+
+func _on_YES_pressed():
+	global.enable_analytics = true
+	disappear()
+
+
+func _on_NO_pressed():
+	global.enable_analytics = false
+	disappear()
+
+
+func _on_MORE_pressed():
+	global.enable_analytics = true
+	disappear()
+"
 
 [sub_resource type="Animation" id=3]
 tracks/0/type = "bezier"
@@ -88,35 +100,54 @@ margin_left = -473.0
 margin_top = -87.0
 margin_right = 430.0
 margin_bottom = 6.0
-custom_fonts/font = SubResource( 2 )
-text = "Superstarfighter is a game in development by notapixelstudio. We need your feedback! head over our webpage or enable the statistics (we use GameAnalytics). You can change your preference whenever you like in the option menu."
+custom_fonts/font = ExtResource( 3 )
+text = "This game collects anonymous statistics to help us to improve it.
+You can turn this off at any time from the options menu.
+"
 align = 1
 autowrap = true
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Analytics" parent="Disclaimer" instance=ExtResource( 3 )]
-margin_left = -421.907
-margin_top = 11.494
-margin_right = -246.907
-margin_bottom = 61.494
-element_path = "enable_analytics"
-label_description = "ENABLE ANALYTICS"
-
-[node name="Button" type="Button" parent="Disclaimer"]
-margin_left = 145.0
-margin_top = 55.0
-margin_right = 275.0
-margin_bottom = 84.0
-theme = ExtResource( 4 )
-text = "CONTINUE"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Disclaimer"]
 anims/Appear = SubResource( 3 )
 
-[connection signal="pressed" from="Disclaimer/Button" to="." method="_on_Button_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Disclaimer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -226.5
+margin_top = 91.0
+margin_right = 226.5
+margin_bottom = 213.0
+
+[node name="YES" type="Button" parent="Disclaimer/VBoxContainer"]
+unique_name_in_owner = true
+margin_right = 453.0
+margin_bottom = 35.0
+theme = ExtResource( 4 )
+custom_fonts/font = ExtResource( 2 )
+text = "FINE BY ME, KEEP IT ON"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NO" type="Button" parent="Disclaimer/VBoxContainer"]
+margin_top = 39.0
+margin_right = 453.0
+margin_bottom = 74.0
+theme = ExtResource( 4 )
+custom_fonts/font = ExtResource( 2 )
+text = "NO THANKS, PLEASE TURN IT OFF"
+
+[node name="MORE" type="Button" parent="Disclaimer/VBoxContainer"]
+margin_top = 78.0
+margin_right = 453.0
+margin_bottom = 113.0
+theme = ExtResource( 4 )
+custom_fonts/font = ExtResource( 2 )
+text = "I WANT TO KNOW MORE"
+
+[connection signal="pressed" from="Disclaimer/VBoxContainer/YES" to="." method="_on_YES_pressed"]
+[connection signal="pressed" from="Disclaimer/VBoxContainer/NO" to="." method="_on_NO_pressed"]
+[connection signal="pressed" from="Disclaimer/VBoxContainer/MORE" to="." method="_on_MORE_pressed"]

@@ -26,9 +26,10 @@ signal send_statistics
 
 func _set_analytics(new_value):
 	enable_analytics = new_value
-	GameAnalytics.build_version = version
-	GameAnalytics.enabled = enable_analytics
-	connect("send_statistics", GameAnalytics, "add_event")
+	if enable_analytics:
+		Analytics.enable()
+	else:
+		Analytics.disable()
 
 #######################################
 ############# Controls ################
