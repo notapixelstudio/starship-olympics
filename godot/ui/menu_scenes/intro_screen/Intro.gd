@@ -18,10 +18,10 @@ func _ready():
 	set_process_input(false)
 	
 	# disclaimer for analytics
-	#if global.first_time:
-	disclaimer.start()
-	yield(disclaimer, "okay")
-	anim.play("Appear")
+	if global.first_time:
+		disclaimer.start()
+		yield(disclaimer, "okay")
+		anim.play("Appear")
 	
 	global.install()
 	global.start_execution()
