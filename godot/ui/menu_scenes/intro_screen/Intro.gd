@@ -22,6 +22,9 @@ func _ready():
 	disclaimer.start()
 	yield(disclaimer, "okay")
 	anim.play("Appear")
+	
+	global.install()
+	global.start_execution()
 
 func go_ahead():
 	get_tree().change_scene_to(main_screen)

@@ -25,11 +25,13 @@ var enable_analytics : bool = false setget _set_analytics
 signal send_statistics
 
 func _set_analytics(new_value):
+	if enable_analytics != new_value:
+		if new_value:
+			Analytics.enable()
+		else:
+			Analytics.disable()
 	enable_analytics = new_value
-	if enable_analytics:
-		Analytics.enable()
-	else:
-		Analytics.disable()
+	
 
 #######################################
 ############# Controls ################
@@ -76,7 +78,7 @@ var available_languages = {
 	}
 onready var language: String setget _set_language, _get_language
 var array_language: Array = ["english", "italiano", "español", "euskara", "français", "deutsch"]
-var full_screen = true setget _set_full_screen
+var full_screen = false setget _set_full_screen
 	
 func _set_full_screen(value: bool):
 	full_screen = value
@@ -139,7 +141,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.12.1-alpha" setget set_version
+var version = "0.13.1-alpha" setget set_version
 var first_time = true
 
 func set_version(value):
@@ -297,14 +299,7 @@ func _ready():
 	get_tree().set_auto_accept_quit(false)
 	
 	print("Starting game...")
-	installation_id = read_file("user://uuid").strip_edges()
-	if not installation_id:
-		installation_id=UUID.v4()
-		write_into_file("user://uuid", installation_id, File.WRITE_READ)
-		Events.emit_signal("analytics_event", {"id": installation_id}, "installation")
-		
 	
-	start_execution()
 	
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	add_to_group("persist")
@@ -330,7 +325,8 @@ func _ready():
 		first_time = true
 		persistance.save_game()
 	else:
-		first_time = false
+		pass
+		# first_time = false
 	if persistance.load_game():
 		print("Successfully load the game")
 	else:
@@ -469,8 +465,17 @@ func read_file_by_line(path: String) -> Array:
 	file.close()
 	return data
 
+func install():
+	installation_id = read_file("user://uuid").strip_edges()
+	if not installation_id:
+		installation_id=UUID.v4()
+		write_into_file("user://uuid", installation_id, File.WRITE_READ)
+		Events.emit_signal("analytics_event", {"id": installation_id}, "installation")
+		
 var execution_uuid : String
 func start_execution():
+	# this will ensure the explicit_consent
+	global.first_time=false
 	execution_uuid = UUID.v4()
 	Events.emit_signal('execution_started')
 	Events.emit_signal("analytics_event", {"id": execution_uuid}, "execution_started")
