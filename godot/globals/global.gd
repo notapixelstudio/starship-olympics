@@ -325,8 +325,7 @@ func _ready():
 		first_time = true
 		persistance.save_game()
 	else:
-		pass
-		# first_time = false
+		first_time = false
 	if persistance.load_game():
 		print("Successfully load the game")
 	else:

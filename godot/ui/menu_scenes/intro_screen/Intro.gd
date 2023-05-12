@@ -21,7 +21,8 @@ func _ready():
 	if global.first_time:
 		disclaimer.start()
 		yield(disclaimer, "okay")
-		anim.play("Appear")
+	
+	anim.play("Appear")
 	
 	global.install()
 	global.start_execution()
