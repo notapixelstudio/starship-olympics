@@ -39,7 +39,7 @@ func _ready():
 	
 	var p = parse_json(global.read_file("user://games/latest.json"))
 	if typeof(p) == TYPE_ARRAY or typeof(p):
-		print(p.result[0]) # Prints "hello"
+		print("Correctly loaded session to continue") # Prints "hello"
 	else:
 		push_error("Unexpected results.")
 	var unfinished_game = {}
@@ -238,7 +238,7 @@ func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
 			child.queue_free()
 			yield(child, 'tree_exited')
 	add_child(combat)
-	Events.emit_signal("analytics_event", {"id": global.the_match.get_uuid(), "minigame_id":minigame.get_id()}, "match_started")
+	Events.emit_signal("analytics_event", {"id": global.the_match.get_uuid(), "minigame_id":global.the_match.get_minigame_id(), "card_id":  global.the_match.get_card_id()}, "match_started")
 	
 func safe_destroy_combat():
 	if combat:

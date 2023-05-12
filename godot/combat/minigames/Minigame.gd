@@ -8,13 +8,17 @@ export var arenas_dir: String
 
 export var tutorial_scene : PackedScene
 
+var id = null
 var times_started := 0
 
 export (String, '', "blue", "white", "cyan", "red", "yellow", 'green', "magenta") var suit_top = ''
 export (String, '', "blue", "white", "cyan", "red", "yellow", 'green', "magenta") var suit_bottom = ''
 
 func get_id() -> String:
-	return str(get_rid().get_id())
+	if id != null:
+		return id
+	else:
+		return self.resource_path.get_basename().get_file()
 	
 func get_logo():
 	return game_mode.get_icon()
