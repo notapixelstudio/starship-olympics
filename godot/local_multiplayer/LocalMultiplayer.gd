@@ -293,6 +293,8 @@ func _on_nav_to_map():
 	
 func create_map(data:= {}):
 	global.new_session(data)
+	if map:
+		map.queue_free()
 	map = map_scene.instance()
 
 var celebration: HallOfFame
