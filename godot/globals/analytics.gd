@@ -4,17 +4,17 @@ extends Node
 var start_time = 0
 var this_elapsed_time = 0
 # uncomment next line if you want to test local api
-onready var api_hostname = ProjectSettings.get_setting("Analytics/hostname") # if not OS.is_debug_build() else ProjectSettings.get_setting("Analytics/hostname.local")
-onready var token = "Godotexport_v1.0.0"
+var api_hostname = ProjectSettings.get_setting("Analytics/hostname") # if not OS.is_debug_build() else ProjectSettings.get_setting("Analytics/hostname.local")
+var token = "Godotexport_v1.0.0"
 const ENDPOINT = "messages"
 
 func enable():
 	Events.connect("analytics_event", self, '_on_analytics_event')
-	Events.emit_signal("analytics_event", {"id": UUID.v4()}, "analytics_enabled")
+	Events.emit_signal("analytics_enabled")
 
 func disable():
 	if Events.is_connected("analytics_event", self, '_on_analytics_event'):
-		Events.emit_signal("analytics_event", {"id": UUID.v4()}, "analytics_disabled")
+		Events.emit_signal("analytics_disabled")
 		Events.disconnect("analytics_event", self, '_on_analytics_event')
 
 func _ready():

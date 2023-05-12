@@ -50,6 +50,8 @@ signal match_ended(match_dict)
 signal session_ended
 signal game_ended
 signal execution_ended
+signal analytics_enabled
+signal analytics_disabled
 
 signal battle_start
 

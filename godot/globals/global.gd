@@ -477,7 +477,6 @@ func start_execution():
 	global.first_time=false
 	execution_uuid = UUID.v4()
 	Events.emit_signal('execution_started')
-	Events.emit_signal("analytics_event", {"id": execution_uuid}, "execution_started")
 	
 func end_execution():
 	# trigger quit
@@ -487,7 +486,6 @@ func _notification(what):
 	# actual quitting
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		print("Thanks for playing")
-		Events.emit_signal("analytics_event", {"id": execution_uuid}, "execution_ended")
 		Events.emit_signal('execution_ended')
 		yield(get_tree().create_timer(1), "timeout")
 		print("Closing everything")
@@ -675,7 +673,6 @@ func new_game(players: Array, data := {}) -> TheGame:
 		deck.setup()
 	the_game.set_deck(deck)
 	Events.emit_signal("game_started")
-	Events.emit_signal("analytics_event", {"id": the_game.get_uuid(), "human_players": len(players)}, "game_started")
 	for player in players:
 		var selection_event_data = (player as InfoPlayer).to_dict()
 		selection_event_data.game_id=global.the_game.get_uuid()
@@ -689,7 +686,6 @@ func new_match() -> TheMatch:
 	the_match = TheMatch.new()
 	match_number_of_game += 1
 	match_number_of_session += 1
-	Events.emit_signal("match_started")
 	print("Save the game")
 	if not global.demo:
 		persistance.save_game_as_latest()
@@ -720,7 +716,6 @@ func new_session(existing_data := {}) -> TheSession:
 	session.set_hand(hand)
 	session.setup_from_dictionary(existing_data)
 	Events.emit_signal('session_started')
-	Events.emit_signal("analytics_event", {"id":session.get_uuid()}, "session_started")
 	
 	return session
 
@@ -730,7 +725,6 @@ func safe_destroy_game() -> void:
 		safe_destroy_session()
 		
 		Events.emit_signal("game_ended")
-		Events.emit_signal("analytics_event", {"id":the_game.get_uuid(),"duration_ms":OS.get_ticks_msec() - game_started_ms}, "game_ended")
 		the_game.free()
 	the_game = null
 	session_number_of_game = 0
@@ -739,7 +733,6 @@ func safe_destroy_game() -> void:
 func safe_destroy_match() -> void:
 	if is_match_running():
 		Events.emit_signal("match_ended", the_match.to_dict())
-		Events.emit_signal("analytics_event", {"id":the_match.get_uuid(),"duration_ms":OS.get_ticks_msec() - game_started_ms, "minigame_id": the_match.get_minigame_id()}, "match_ended")
 		the_match.free()
 	the_match = null
 	
@@ -750,7 +743,6 @@ func safe_destroy_session() -> void:
 		
 		# put back cards into the deck
 		session.discard_hand()
-		Events.emit_signal("analytics_event", {"id":session.get_uuid(),"duration_ms":OS.get_ticks_msec() - session_started_ms}, "session_ended")
 		Events.emit_signal("session_ended")
 		session.free()
 	session = null
