@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.14.0](https://github.com/notapixelstudio/superstarfighter/compare/v0.12.2...v0.14.0) (2023-05-12)
+
+## [0.14.0](https://github.com/notapixelstudio/superstarfighter/compare/v0.12.2...v0.14.0) (2023-05-12)
+
+### [0.12.2](https://github.com/notapixelstudio/superstarfighter/compare/v0.12.1...v0.12.2) (2023-05-12)
+
+
+### Features
+
+* **analytics:** disclaimer and opt-in and opt-out ([00a46a6](https://github.com/notapixelstudio/superstarfighter/commit/00a46a6d8d7270bfeab42a3952cb10484e463b46))
+* **analytics:** first attempt to make some analytics ([aeca896](https://github.com/notapixelstudio/superstarfighter/commit/aeca896bdaeaff49b3b934c51f6bab5029e846bc))
+
+
+### Bug Fixes
+
+* **analytics:** added debug_mode ([022b5c8](https://github.com/notapixelstudio/superstarfighter/commit/022b5c819b8267019a3e61848218341911696bc3))
+* **analytics:** added different id to the event ([5861ffd](https://github.com/notapixelstudio/superstarfighter/commit/5861ffd1a567cd2521dc1768fc910a86ac7873aa))
+* **analytics:** added first simple analytics. Potential breaking changes ([26de83a](https://github.com/notapixelstudio/superstarfighter/commit/26de83a462a836f33e6f757e7a3ce04a5ca7c300))
+* **analytics:** Added lifecycle api to handle events ([6248e98](https://github.com/notapixelstudio/superstarfighter/commit/6248e98aa744bf7c872925f40dfd7c91cef8f9ff))
+* **analytics:** correct hostname ([3261bbc](https://github.com/notapixelstudio/superstarfighter/commit/3261bbc63a87e9fe973212effa3096fa1d2cc655))
+* **analytics:** disclaimer without info ([21c4ca2](https://github.com/notapixelstudio/superstarfighter/commit/21c4ca2927a90eb400f5ecdec80e925a1164e153))
+* **analytics:** endpoint for api fixed ([a4e6eba](https://github.com/notapixelstudio/superstarfighter/commit/a4e6eba797a7bc38b54eabb4ca7fed2d32ded44f))
+* **analytics:** handling first request ([89a98fd](https://github.com/notapixelstudio/superstarfighter/commit/89a98fd3ea906aa63c7816361d6929dda3b9afc4))
+* **analytics:** kind of broken yet ([7debbb7](https://github.com/notapixelstudio/superstarfighter/commit/7debbb771fee638673db6b8f7dbb549c0ef33328))
+* **analytics:** version added and improvements ([fcb1317](https://github.com/notapixelstudio/superstarfighter/commit/fcb1317ca1c84c3b02489de1204b9522ff7dab50))
+* bug in first time ([723b0ab](https://github.com/notapixelstudio/superstarfighter/commit/723b0ab65779d0d5faf6ddfaf4eeb15e8d88df9c))
+* debug and build variables ([7809a09](https://github.com/notapixelstudio/superstarfighter/commit/7809a0934ad2782affe17b164428ea4c665750f9))
+* **disclaimer:** only first time ([b7d7a50](https://github.com/notapixelstudio/superstarfighter/commit/b7d7a504d228f6aa03fc7343cd646e5aa87f2309))
+* get correct game id and minigame id and card id ([5fb7d5f](https://github.com/notapixelstudio/superstarfighter/commit/5fb7d5f93912d4c47e34632009b93bc9ed4bba79))
+* **halloffame:** we should not add champion ([caf9196](https://github.com/notapixelstudio/superstarfighter/commit/caf9196f0fec3d75bc261e4cb0857df66a06e3f7))
+* revert change ([d9c261e](https://github.com/notapixelstudio/superstarfighter/commit/d9c261ee9072d52bce24174a3efd43b73083b81f))
+* **save:** safeget when deck/session is not a valid entity ([9193116](https://github.com/notapixelstudio/superstarfighter/commit/9193116ef587b383ba37b7f4cdff2076024ed25f))
+* send analytics only if explicitly consent to ([6633af8](https://github.com/notapixelstudio/superstarfighter/commit/6633af85fe16ac64a972afda33665ce72eaf9a31))
+* **settings:** rename hostname.debug into hostname.local since it has sideseffects ([7cc02f9](https://github.com/notapixelstudio/superstarfighter/commit/7cc02f9a0a11c9cfa5f60b41ede9027242dd7c46))
+* typo for champion_info definition ([01dc860](https://github.com/notapixelstudio/superstarfighter/commit/01dc860785bed739145ad4a5bf74356f2920277f))
+* **ui:** disclaimer background alignment ([79c554f](https://github.com/notapixelstudio/superstarfighter/commit/79c554f91b45e0edfdecd9d795a44c33c16e861d))
+
 ### [0.12.1](https://github.com/notapixelstudio/superstarfighter/compare/v0.12.0...v0.12.1) (2023-04-29)
 
 ### Bug Fixes
