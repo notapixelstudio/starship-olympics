@@ -31,7 +31,7 @@ In this game, you will pilot your own starship and face off against other player
 [![Gameplay Screenshot](img/gameplay2.jpg)](https://notapixel.itch.io/superstarfighter)
 
 
-## Follow the Development 📣
+## Follow the Development
 
 This game is being developed on **`Godot v3.5.2`**.
 
