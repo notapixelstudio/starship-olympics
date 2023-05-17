@@ -33,3 +33,6 @@ bump-major: fetch-tags install
 
 bump-patch: fetch-tags install
 	cz bump --increment PATCH
+
+bump-alpha: fetch-tags install
+	cz bump --prerelease alpha
