@@ -2,7 +2,6 @@
 .DEFAULT_GOAL = help
 FILE=VERSION
 VERSION=`cat $(FILE)`
-ENV_FILE=.env
 
 install-pip-tools:
 	pip install -U pip
