@@ -1,0 +1,17 @@
+[gd_resource type="DynamicFont" load_steps=7 format=2]
+
+[ext_resource path="res://assets/fonts/kose-font-master/TTF (Simplified Chinese)/XiaolaiSC-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/kose-font-master/TTF (Japanese)/Kosefont-JP.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/NaverNanumSquareNeo/OTF/NanumSquareNeoOTF-cBd.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/LINE_Seed_JP/Desktop/OTF/LINESeedJP_OTF_Bd.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/fonts/Red-Hat-Text/redhattext/RedHatText-Bold.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=6]
+
+[resource]
+size = 32
+font_data = ExtResource( 6 )
+fallback/0 = ExtResource( 5 )
+fallback/1 = ExtResource( 2 )
+fallback/2 = ExtResource( 1 )
+fallback/3 = ExtResource( 3 )
+fallback/4 = ExtResource( 4 )

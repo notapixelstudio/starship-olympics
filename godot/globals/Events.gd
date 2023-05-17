@@ -50,6 +50,8 @@ signal match_ended(match_dict)
 signal session_ended
 signal game_ended
 signal execution_ended
+signal analytics_enabled
+signal analytics_disabled
 
 signal battle_start
 
@@ -59,6 +61,7 @@ signal continue_after_session_ended
 signal nav_to_menu
 signal nav_to_map
 signal nav_to_character_selection
+signal nav_to_scene(scene)
 
 signal sth_unhid(what, by_what) # e.g., Set by MapPlanet
 signal sth_unlocked(what, by_what) # e.g., Set by MapPlanet
@@ -85,3 +88,6 @@ signal draft_ended(choices, hand)
 
 # settings
 signal glow_setting_changed
+
+# analytics
+signal analytics_event(event_dictionary, event_name)

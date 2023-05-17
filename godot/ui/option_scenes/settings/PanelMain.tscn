@@ -32,7 +32,7 @@ __meta__ = {
 
 [node name="UIButtonsContainer" type="VBoxContainer" parent="Content"]
 margin_right = 778.0
-margin_bottom = 524.0
+margin_bottom = 578.0
 
 [node name="Language" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -63,7 +63,6 @@ element_path = "enable_camera"
 label_description = "DYNAMIC CAMERA"
 
 [node name="Analytics" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
-visible = false
 margin_top = 216.0
 margin_right = 778.0
 margin_bottom = 266.0
@@ -71,51 +70,51 @@ element_path = "enable_analytics"
 label_description = "analytics"
 
 [node name="Audio" parent="Content/UIButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 216.0
+margin_top = 270.0
 margin_right = 778.0
-margin_bottom = 266.0
+margin_bottom = 320.0
 text = "AUDIO"
 option_menu = ExtResource( 5 )
 title = "AUDIO"
 
 [node name="Controls" parent="Content/UIButtonsContainer" instance=ExtResource( 4 )]
-margin_top = 270.0
+margin_top = 324.0
 margin_right = 778.0
-margin_bottom = 320.0
+margin_bottom = 374.0
 text = "REMAP CONTROLS"
 option_menu = ExtResource( 6 )
 title = "REMAP CONTROLS"
 
 [node name="Rumbling" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
-margin_top = 324.0
+margin_top = 378.0
 margin_right = 778.0
-margin_bottom = 374.0
+margin_bottom = 428.0
 element_path = "rumbling"
 label_description = "JOYPAD RUMBLING"
 
 [node name="Resolution" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
-margin_top = 378.0
+margin_top = 432.0
 margin_right = 778.0
-margin_bottom = 428.0
+margin_bottom = 482.0
 element_path = "graphics_quality"
 label_description = "RESOLUTION"
 elem_type = 2
 
 [node name="TimeScale" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
-margin_top = 432.0
+margin_top = 486.0
 margin_right = 778.0
-margin_bottom = 482.0
+margin_bottom = 536.0
 element_path = "time_scale"
 label_description = "GAME SPEED"
 elem_type = 2
 suffix = "X"
 
 [node name="Back" type="Button" parent="Content/UIButtonsContainer"]
-margin_top = 486.0
+margin_top = 540.0
 margin_right = 778.0
-margin_bottom = 524.0
+margin_bottom = 578.0
 text = "BACK"
 
 [connection signal="pressed" from="Content/UIButtonsContainer/Back" to="." method="_on_Back_pressed"]

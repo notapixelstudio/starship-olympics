@@ -37,7 +37,12 @@ func _ready():
 	Events.connect('nav_to_map', self, '_on_nav_to_map')
 	Events.connect('nav_to_character_selection', self, '_on_nav_to_character_selection')
 	
-	var unfinished_game: Dictionary = global.read_file("user://games/latest.json")
+	var p = parse_json(global.read_file("user://games/latest.json"))
+	if typeof(p) == TYPE_ARRAY or typeof(p):
+		print("Correctly loaded session to continue") # Prints "hello"
+	else:
+		push_error("Unexpected results.")
+	var unfinished_game = {}
 	if not unfinished_game.empty():
 		setup_continue_game(unfinished_game)
 #		var confirm = load("res://special_scenes/combat_UI/gameover/AreYouSure.tscn").instance()
@@ -213,6 +218,7 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 			tutorial.queue_free()
 	
 	start_match(picked_card, minigame)
+	
 
 
 func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
@@ -232,6 +238,7 @@ func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
 			child.queue_free()
 			yield(child, 'tree_exited')
 	add_child(combat)
+	Events.emit_signal("match_started")
 	
 func safe_destroy_combat():
 	if combat:

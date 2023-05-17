@@ -25,10 +25,13 @@ var enable_analytics : bool = false setget _set_analytics
 signal send_statistics
 
 func _set_analytics(new_value):
+	if enable_analytics != new_value:
+		if new_value:
+			Analytics.enable()
+		else:
+			Analytics.disable()
 	enable_analytics = new_value
-	GameAnalytics.build_version = version
-	GameAnalytics.enabled = enable_analytics
-	connect("send_statistics", GameAnalytics, "add_event")
+	
 
 #######################################
 ############# Controls ################
@@ -75,7 +78,7 @@ var available_languages = {
 	}
 onready var language: String setget _set_language, _get_language
 var array_language: Array = ["english", "italiano", "español", "euskara", "français", "deutsch"]
-var full_screen = true setget _set_full_screen
+var full_screen = false setget _set_full_screen
 	
 func _set_full_screen(value: bool):
 	full_screen = value
@@ -138,7 +141,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.12.1-alpha" setget set_version
+var version = "0.14.1-alpha" setget set_version
 var first_time = true
 
 func set_version(value):
@@ -290,11 +293,14 @@ func _input(event):
 	if demo_playtest and event.is_action_pressed("delete_persistence"):
 		persistance.delete_latest_game()
 
+var installation_id 
 func _ready():
 	# we want to handle quit by ourselves
 	get_tree().set_auto_accept_quit(false)
 	
 	print("Starting game...")
+	
+	
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	add_to_group("persist")
 	
@@ -324,7 +330,7 @@ func _ready():
 		print("Successfully load the game")
 	else:
 		print("Something went wrong while loading the game data")
-
+	
 func getRemotesServer():
 	return remotesServer
 
@@ -406,7 +412,8 @@ func create_dir(path: String):
 	var dir = Directory.new()
 	dir.make_dir_recursive(path)
 
-func write_into_file(filepath: String, data: Dictionary, mode := File.READ_WRITE):
+
+func write_into_file(filepath: String, data: String, mode := File.READ_WRITE):
 	#open the log file and go to the end
 	var file = File.new()
 	var error = file.open(filepath, mode)
@@ -415,34 +422,32 @@ func write_into_file(filepath: String, data: Dictionary, mode := File.READ_WRITE
 		error = file.open(filepath, File.WRITE_READ)
 	if error == OK:
 		file.seek_end()
-		file.store_line(to_json(data))
+		file.store_line(data)
 		file.flush() # WARNING writing to disk too often could hurt performance
+		print(file.get_path_absolute())
 		file.close()
-		print(filepath)
 	else: 
 		print("FILE WITH ERROR {error_code}".format({"error_code": error }))
 	
-func read_file(path: String) -> Dictionary:
+func read_file(path: String) -> String:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
 	var file = File.new()
 	if not file.file_exists(path):
 		print("The save file does not exist.")
-		return {}
+		return ""
 	file.open(path, File.READ)
 	print("We are going to load from this JSON: ", file.get_path_absolute())
 	# parse file data - convert the JSON back to a dictionary
-	var data = {}
-	data = parse_json(file.get_as_text())
+	var data = ""
+	data = file.get_as_text()
 	file.close()
-	if data == null:
-		data = {}
 	return data
 
 func read_file_by_line(path: String) -> Array:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
 	var file = File.new()
 	if not file.file_exists(path):
-		print("The save file does not exist.")
+		print("The file does not exist.")
 		return []
 	file.open(path, File.READ)
 	print("We are going to load from this JSON: ", file.get_path_absolute())
@@ -459,8 +464,17 @@ func read_file_by_line(path: String) -> Array:
 	file.close()
 	return data
 
+func install():
+	installation_id = read_file("user://uuid").strip_edges()
+	if not installation_id:
+		installation_id=UUID.v4()
+		write_into_file("user://uuid", installation_id, File.WRITE_READ)
+		Events.emit_signal("analytics_event", {"id": installation_id}, "installation")
+		
 var execution_uuid : String
 func start_execution():
+	# this will ensure the explicit_consent
+	global.first_time=false
 	execution_uuid = UUID.v4()
 	Events.emit_signal('execution_started')
 	
@@ -472,10 +486,9 @@ func _notification(what):
 	# actual quitting
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		print("Thanks for playing")
-		GameAnalytics.end_session()
-		if enable_analytics:
-			yield(GameAnalytics, "message_sent")
 		Events.emit_signal('execution_ended')
+		yield(get_tree().create_timer(1), "timeout")
+		print("Closing everything")
 		get_tree().quit() # default behavior
 
 # utils
@@ -644,8 +657,11 @@ var session_number_of_game := 0
 var match_number_of_game := 0
 var match_number_of_session := 0
 
+var game_started_ms : int
+
 func new_game(players: Array, data := {}) -> TheGame:
 	safe_destroy_game()
+	game_started_ms = OS.get_ticks_msec()
 	the_game = TheGame.new()
 	game_number += 1
 	the_game.set_players(players)
@@ -657,21 +673,28 @@ func new_game(players: Array, data := {}) -> TheGame:
 		deck.setup()
 	the_game.set_deck(deck)
 	Events.emit_signal("game_started")
+	for player in players:
+		var selection_event_data = (player as InfoPlayer).to_dict()
+		selection_event_data.game_id=global.the_game.get_uuid()
+		Events.emit_signal("analytics_event", selection_event_data, "player_selected")
 	return the_game
 
+var match_started_ms: int
 func new_match() -> TheMatch:
 	safe_destroy_match()
+	match_started_ms = OS.get_ticks_msec()
 	the_match = TheMatch.new()
 	match_number_of_game += 1
 	match_number_of_session += 1
-	Events.emit_signal("match_started")
 	print("Save the game")
 	if not global.demo:
 		persistance.save_game_as_latest()
 	return the_match
 	
+var session_started_ms : int
 func new_session(existing_data := {}) -> TheSession:
 	safe_destroy_session()
+	session_started_ms = OS.get_ticks_msec()
 	session = TheSession.new()
 	session_number_of_game += 1
 	
@@ -693,8 +716,9 @@ func new_session(existing_data := {}) -> TheSession:
 	session.set_hand(hand)
 	session.setup_from_dictionary(existing_data)
 	Events.emit_signal('session_started')
-	return session
 	
+	return session
+
 func safe_destroy_game() -> void:
 	if is_game_running():
 		# also delete the session
@@ -719,7 +743,6 @@ func safe_destroy_session() -> void:
 		
 		# put back cards into the deck
 		session.discard_hand()
-		
 		Events.emit_signal("session_ended")
 		session.free()
 	session = null

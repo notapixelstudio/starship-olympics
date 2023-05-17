@@ -209,7 +209,13 @@ func update_stats(info_player: InfoPlayer, amount: int, stat: String):
 	
 func get_player(id_player: String) -> InfoPlayer:
 	return players[id_player]
-
+	
+func get_minigame_id() -> String:
+	return minigame.get_id()
+	
+func get_card_id() -> String:
+	return draft_card.get_id()
+	
 func to_dict()->Dictionary:
 	"""
 	Summary stats of a played match.
@@ -276,7 +282,7 @@ func trigger_game_over_now():
 	compute_game_status(true) # end now
 
 func store():
-	global.write_into_file("user://matches/{id}.json".format({"id":self.uuid}), self.to_dict())
+	global.write_into_file("user://matches/{id}.json".format({"id":self.uuid}), to_json(self.to_dict()))
 	
 func get_time_left() -> float:
 	return time_left

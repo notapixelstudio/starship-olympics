@@ -895,6 +895,10 @@ game_key.release="5b72f66efaa74f8e1d395cee32ae8fb0"
 base_url="http://api.gameanalytics.com"
 secret_key.debug="166ed30f12e9cbb2b03eccff8d9cb7294bb44172"
 secret_key.release="75ec3f402122495fff616460f45ffef6e0c04ce9"
+hostname="http://notapixel.ddns.net:9876"
+token.debug=""
+token="Godotexport_v1.0.0"
+hostname.local="http://localhost:8000"
 
 [application]
 
@@ -912,13 +916,14 @@ Soundtrack="*res://globals/Soundtrack.tscn"
 global="*res://globals/global.gd"
 Controls="*res://globals/Controls.gd"
 TheUnlocker="*res://globals/TheUnlocker.gd"
-analytics="*res://globals/analytics.gd"
-GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
 ECM="*res://addons/ECM/ECM.gd"
 traits="*res://addons/traits/traits.gd"
 Events="*res://globals/Events.gd"
+Analytics="*res://globals/analytics.gd"
+LifecycleAPI="*res://globals/LifecycleAPI.gd"
 Logger="*res://globals/Logger.gd"
 SoundEffects="*res://globals/SoundEffects.gd"
+GameAnalytics="*res://addons/Godot-GameAnalytics/GameAnalytics.gd"
 
 [debug]
 
@@ -939,6 +944,10 @@ window/size/fullscreen.debug=false
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/ECM/plugin.cfg", "res://addons/Godot-GameAnalytics/plugin.cfg", "res://addons/geometry/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/traits/plugin.cfg" )
+
+[global]
+
+token="Godotexport_v1.0.0"
 
 [importer_defaults]
 
@@ -1047,6 +1056,8 @@ kb1_right={
 kb1_fire={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 kb2_right={

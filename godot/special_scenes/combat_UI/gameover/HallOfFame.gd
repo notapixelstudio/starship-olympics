@@ -7,7 +7,7 @@ const menu_scene = "res://ui/menu_scenes/title_screen/MainScreen.tscn"
 export var champion_scene : PackedScene
 export var add_champion := false
 
-var champion_info = InfoChampion
+var champion_info : InfoChampion
 
 func _ready():
 	$VBoxContainer/Label3.visible=false
@@ -15,13 +15,13 @@ func _ready():
 	set_process_input(false)
 	var data = global.read_file_by_line(InfoChampion.PATH_FILE_CHAMPIONS)
 	if data.empty():
-		for i in range(30):
+		var fake_session = TheSession.new()
+		for i in range(3):
 			var champ_scene = champion_scene.instance()
 			var info_player := InfoPlayer.new()
 			var champ = InfoChampion.new()
 			info_player.set_species(global.get_species(TheUnlocker.unlocked_elements["species"].keys()[randi()%4]))
 			champ.player = info_player.to_dict()
-			var fake_session = TheSession.new()
 			champ.session_info = fake_session.to_dict()
 			champ_scene.set_player(champ)
 			$"%SessionWon".add_child(champ_scene)
@@ -47,7 +47,7 @@ func _ready():
 		self.set_champion(champ)
 	"""
 	
-	yield(get_tree(), "idle_frame")
+	# yield(get_tree(), "idle_frame")
 	
 	if add_champion:
 		add_champion_to_scene()
@@ -84,6 +84,9 @@ func set_champion(champion: InfoChampion):
 	
 func add_champion_to_scene():
 	var champ_scene = champion_scene.instance()
+	if champion_info==null:
+		champion_info = fake_champion()
+	yield(get_tree(), "idle_frame")
 	champ_scene.set_player(champion_info)
 	$"%SessionWon".add_child(champ_scene)
 	$"%SessionWon".move_child(champ_scene, 0)
@@ -91,3 +94,13 @@ func add_champion_to_scene():
 	var this_champion = $"%SessionWon".get_child(0)
 	this_champion.insert_name()
 	this_champion.connect("champion_has_a_name", self, "naming_champions")
+
+func fake_champion() -> InfoChampion:
+	var info_player := InfoPlayer.new()
+	var champ = InfoChampion.new()
+	info_player.set_species(global.get_species(TheUnlocker.unlocked_elements["species"].keys()[randi()%4]))
+	champ.player = info_player.to_dict()
+	var fake_session = TheSession.new()
+	champ.session_info = fake_session.to_dict()
+	return champ
+	

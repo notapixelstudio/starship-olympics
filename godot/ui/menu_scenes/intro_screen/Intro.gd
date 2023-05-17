@@ -11,19 +11,21 @@ onready var line3 = $Line3
 export var main_screen : PackedScene
 
 func _ready():
-	global.start_execution()
 	
 	line1.bbcode_text = tr("[center]MILLENNIA OF INTERGALACTIC WARS[/center]")
 	line2.bbcode_text = tr("[center]FINALLY CAME TO AN END[/center]")
 	line3.bbcode_text = tr("[center]WHEN [i]THE GAMES[/i] WERE CREATED[/center]")
 	set_process_input(false)
-	"""
-	disclaimer for analytics
+	
+	# disclaimer for analytics
 	if global.first_time:
 		disclaimer.start()
 		yield(disclaimer, "okay")
-	"""
+	
 	anim.play("Appear")
+	
+	global.install()
+	global.start_execution()
 
 func go_ahead():
 	get_tree().change_scene_to(main_screen)
