@@ -18,18 +18,18 @@ echo-version:
 fetch-tags:
 	git fetch --tags
 
-changelog: setup-dev-env
+changelog: install
 	cz changelog --unreleased-version $(VERSION)
 
 # this will update the version, changelog, tag and commit
-bump: fetch-tags setup-dev-env
+bump: fetch-tags install
 	cz bump
 
-bump-minor: fetch-tags setup-dev-env
+bump-minor: fetch-tags install
 	cz bump --increment MINOR
 
-bump-major: fetch-tags setup-dev-env
+bump-major: fetch-tags install
 	cz bump --increment MAJOR
 
-bump-patch: fetch-tags setup-dev-env
+bump-patch: fetch-tags install
 	cz bump --increment PATCH
