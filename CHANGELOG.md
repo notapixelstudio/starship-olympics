@@ -1,34 +1,13 @@
-## 0.14.4a1 (2023-05-18)
+## 0.14.4a2 (2023-05-18)
 
 ### Fix
 
+- cleanup
 - makefile updated
 - tagformat updated
-
-## 0.14.4a0 (2023-05-18)
-
-### Fix
-
 - added requirements and updated makefile
-
-## 0.14.3 (2023-05-18)
-
-### Fix
-
 - fullscreen by default
-
-## 0.14.3a3 (2023-05-17)
-
-### Fix
-
 - sync among versions
-
-## 0.14.3a2 (2023-05-17)
-
-## 0.14.3a1 (2023-05-17)
-
-### Fix
-
 - commit for tag
 - changelog and cz
 
