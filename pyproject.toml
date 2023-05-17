@@ -1,0 +1,15 @@
+
+[tool.commitizen]
+version_type = "semver"
+name = "cz_conventional_commits"
+version = "0.14.2-alpha"
+version_files = [
+    "godot/globals/global.gd:var version",
+    "main.py:version",
+    "pyproject.toml:version",
+    # "openapi.json:version",
+    "VERSION"
+]
+bump_message = "bump: version $current_version → $new_version"
+update_changelog_on_bump = true
+annotated_tag = true

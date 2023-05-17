@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v0.14.1 (2023-05-17)
+
+### Fix
+
+- **controls**: Controls "kb1" now accepts SPACE and ENTER in addition to M as FIRE.
+- **analytics**: remove gameanalytics old setup.
+
 ## [0.14.0](https://github.com/notapixelstudio/superstarfighter/compare/v0.12.2...v0.14.0) (2023-05-12)
 
 ## [0.14.0](https://github.com/notapixelstudio/superstarfighter/compare/v0.12.2...v0.14.0) (2023-05-12)
