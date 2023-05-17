@@ -433,13 +433,13 @@ func read_file(path: String) -> String:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
 	var file = File.new()
 	if not file.file_exists(path):
-		print("The save file does not exist.")
+		print("The file {filepath} does not exist.".format({"filepath":path}))
 		return ""
 	file.open(path, File.READ)
 	print("We are going to load from this JSON: ", file.get_path_absolute())
 	# parse file data - convert the JSON back to a dictionary
 	var data = ""
-	data = file.get_as_text()
+	data = file.get_as_text().strip_edges().strip_escapes()
 	file.close()
 	return data
 
