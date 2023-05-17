@@ -1,3 +1,9 @@
+## 0.14.4a0 (2023-05-18)
+
+### Fix
+
+- added requirements and updated makefile
+
 ## 0.14.3 (2023-05-18)
 
 ### Fix
