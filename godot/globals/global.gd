@@ -78,7 +78,7 @@ var available_languages = {
 	}
 onready var language: String setget _set_language, _get_language
 var array_language: Array = ["english", "italiano", "español", "euskara", "français", "deutsch"]
-var full_screen = false setget _set_full_screen
+var full_screen = true setget _set_full_screen
 	
 func _set_full_screen(value: bool):
 	full_screen = value
