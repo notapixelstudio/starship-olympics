@@ -35,3 +35,4 @@ bump-patch: fetch-tags install
 
 bump-alpha: fetch-tags install
 	cz bump --prerelease alpha
+	
