@@ -34,5 +34,5 @@ bump-patch: fetch-tags install
 	cz bump --increment PATCH
 
 bump-alpha: fetch-tags install
+	cz changelog
 	cz bump --prerelease alpha
-	
