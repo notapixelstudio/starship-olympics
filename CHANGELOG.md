@@ -2,6 +2,12 @@
 
 ### Fix
 
+- improve versioning
+
+## v0.14.4a4 (2023-05-18)
+
+### Fix
+
 - improved commitizen config
 - v tagformat
 
