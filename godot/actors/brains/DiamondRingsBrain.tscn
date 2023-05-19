@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://actors/brains/HoopballBrain.tscn" type="PackedScene" id=1]
+
+[node name="DiamondRingsBrain" instance=ExtResource( 1 )]
+ball_needed = false
+go_to_center_p = 0.1

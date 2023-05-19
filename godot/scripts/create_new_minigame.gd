@@ -1,10 +1,10 @@
 tool
 extends EditorScript
 
-const NAME := "Spikeball"
+const NAME := "DiamondRings"
 const also_winter := true
 
-const TEMPLATE := "Snipermatch"
+const TEMPLATE := "Diamondsnatch"
 
 const LEVELS_BASE_DIR := "res://combat/levels/singles/"
 const GAME_MODES_BASE_DIR := "res://combat/modes/"
