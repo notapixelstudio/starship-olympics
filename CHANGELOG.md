@@ -1,332 +1,814 @@
-# Changelog
+## v0.14.4a5 (2023-05-18)
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+### Fix
 
-## [0.14.0](https://github.com/notapixelstudio/superstarfighter/compare/v0.12.2...v0.14.0) (2023-05-12)
+- improve versioning
 
-## [0.14.0](https://github.com/notapixelstudio/superstarfighter/compare/v0.12.2...v0.14.0) (2023-05-12)
+## v0.14.4a4 (2023-05-18)
 
-### [0.12.2](https://github.com/notapixelstudio/superstarfighter/compare/v0.12.1...v0.12.2) (2023-05-12)
+### Fix
 
+- improve versioning
 
-### Features
+## v0.14.4a4 (2023-05-18)
 
-* **analytics:** disclaimer and opt-in and opt-out ([00a46a6](https://github.com/notapixelstudio/superstarfighter/commit/00a46a6d8d7270bfeab42a3952cb10484e463b46))
-* **analytics:** first attempt to make some analytics ([aeca896](https://github.com/notapixelstudio/superstarfighter/commit/aeca896bdaeaff49b3b934c51f6bab5029e846bc))
+### Fix
 
+- improved commitizen config
+- v tagformat
 
-### Bug Fixes
+## 0.14.4a3 (2023-05-18)
 
-* **analytics:** added debug_mode ([022b5c8](https://github.com/notapixelstudio/superstarfighter/commit/022b5c819b8267019a3e61848218341911696bc3))
-* **analytics:** added different id to the event ([5861ffd](https://github.com/notapixelstudio/superstarfighter/commit/5861ffd1a567cd2521dc1768fc910a86ac7873aa))
-* **analytics:** added first simple analytics. Potential breaking changes ([26de83a](https://github.com/notapixelstudio/superstarfighter/commit/26de83a462a836f33e6f757e7a3ce04a5ca7c300))
-* **analytics:** Added lifecycle api to handle events ([6248e98](https://github.com/notapixelstudio/superstarfighter/commit/6248e98aa744bf7c872925f40dfd7c91cef8f9ff))
-* **analytics:** correct hostname ([3261bbc](https://github.com/notapixelstudio/superstarfighter/commit/3261bbc63a87e9fe973212effa3096fa1d2cc655))
-* **analytics:** disclaimer without info ([21c4ca2](https://github.com/notapixelstudio/superstarfighter/commit/21c4ca2927a90eb400f5ecdec80e925a1164e153))
-* **analytics:** endpoint for api fixed ([a4e6eba](https://github.com/notapixelstudio/superstarfighter/commit/a4e6eba797a7bc38b54eabb4ca7fed2d32ded44f))
-* **analytics:** handling first request ([89a98fd](https://github.com/notapixelstudio/superstarfighter/commit/89a98fd3ea906aa63c7816361d6929dda3b9afc4))
-* **analytics:** kind of broken yet ([7debbb7](https://github.com/notapixelstudio/superstarfighter/commit/7debbb771fee638673db6b8f7dbb549c0ef33328))
-* **analytics:** version added and improvements ([fcb1317](https://github.com/notapixelstudio/superstarfighter/commit/fcb1317ca1c84c3b02489de1204b9522ff7dab50))
-* bug in first time ([723b0ab](https://github.com/notapixelstudio/superstarfighter/commit/723b0ab65779d0d5faf6ddfaf4eeb15e8d88df9c))
-* debug and build variables ([7809a09](https://github.com/notapixelstudio/superstarfighter/commit/7809a0934ad2782affe17b164428ea4c665750f9))
-* **disclaimer:** only first time ([b7d7a50](https://github.com/notapixelstudio/superstarfighter/commit/b7d7a504d228f6aa03fc7343cd646e5aa87f2309))
-* get correct game id and minigame id and card id ([5fb7d5f](https://github.com/notapixelstudio/superstarfighter/commit/5fb7d5f93912d4c47e34632009b93bc9ed4bba79))
-* **halloffame:** we should not add champion ([caf9196](https://github.com/notapixelstudio/superstarfighter/commit/caf9196f0fec3d75bc261e4cb0857df66a06e3f7))
-* revert change ([d9c261e](https://github.com/notapixelstudio/superstarfighter/commit/d9c261ee9072d52bce24174a3efd43b73083b81f))
-* **save:** safeget when deck/session is not a valid entity ([9193116](https://github.com/notapixelstudio/superstarfighter/commit/9193116ef587b383ba37b7f4cdff2076024ed25f))
-* send analytics only if explicitly consent to ([6633af8](https://github.com/notapixelstudio/superstarfighter/commit/6633af85fe16ac64a972afda33665ce72eaf9a31))
-* **settings:** rename hostname.debug into hostname.local since it has sideseffects ([7cc02f9](https://github.com/notapixelstudio/superstarfighter/commit/7cc02f9a0a11c9cfa5f60b41ede9027242dd7c46))
-* typo for champion_info definition ([01dc860](https://github.com/notapixelstudio/superstarfighter/commit/01dc860785bed739145ad4a5bf74356f2920277f))
-* **ui:** disclaimer background alignment ([79c554f](https://github.com/notapixelstudio/superstarfighter/commit/79c554f91b45e0edfdecd9d795a44c33c16e861d))
+### Fix
 
-### [0.12.1](https://github.com/notapixelstudio/superstarfighter/compare/v0.12.0...v0.12.1) (2023-04-29)
+- adding cz changelog
 
-### Bug Fixes
+## 0.14.4a2 (2023-05-18)
 
-* **bump:** now correctly reset on bumping any version ([dfcbbe8](https://github.com/notapixelstudio/superstarfighter/commit/dfcbbe8211bed420dcea21da5511cb1f353dc45a))
+### Fix
 
-## [0.12.0](https://github.com/notapixelstudio/superstarfighter/compare/v0.10.1...v0.12.0) (2023-04-21)
+- cleanup
+- makefile updated
+- tagformat updated
+- added requirements and updated makefile
+- fullscreen by default
+- sync among versions
+- commit for tag
+- changelog and cz
 
-### Features
+## v0.14.1 (2023-05-17)
 
-* **cards:** random card appearance ([8a8d589](https://github.com/notapixelstudio/superstarfighter/commit/8a8d5898e3c8490b775cdba93ace99210756fe90))
-* **cards:** RandomCard ([4429851](https://github.com/notapixelstudio/superstarfighter/commit/442985110352f735cfcc140afc33781a739b9a3a))
-* **cpu:** Basic Hoopball brain. ([a775b7a](https://github.com/notapixelstudio/superstarfighter/commit/a775b7a54686174897503c6d661a898b1703d472))
-* **cpu:** Claim the Banner Brain. ([4f704cc](https://github.com/notapixelstudio/superstarfighter/commit/4f704ccd8644de01336f2838eb61264d1229e14e))
-* **cpu:** diamond minefield basic brain ([a6f7e0e](https://github.com/notapixelstudio/superstarfighter/commit/a6f7e0e16faf389732ae101156e4e67f6a4994b6))
-* **cpu:** diamond minefield brain ([d3dccaf](https://github.com/notapixelstudio/superstarfighter/commit/d3dccafc1b85ea9c67ff88855066c5639fb16f1d))
-* **cpu:** diamond warfare brain ([3e81e9a](https://github.com/notapixelstudio/superstarfighter/commit/3e81e9adae319499e676da32c24d48d112159885))
-* **cpu:** homesick invaders cpu ([555eed1](https://github.com/notapixelstudio/superstarfighter/commit/555eed12e2e2ddb09f88cbdd1e4809bf51473ec8))
-* **cpu:** Rocket the Crown Brain. ([633d0d3](https://github.com/notapixelstudio/superstarfighter/commit/633d0d31668148ce77cb3f9070b8b1a09bfd25ae))
-* **credits:** basic credits scene (not working) ([91a650b](https://github.com/notapixelstudio/superstarfighter/commit/91a650b1e44da42737207f09f555ac55c70c94c4))
-* **demo:** final world message ([c1aad1f](https://github.com/notapixelstudio/superstarfighter/commit/c1aad1ff09b7f9c0dca49ac784d1c1016c8a7121))
-* **demo:** guard the bridge removed from future (temporarily) ([30e8fbf](https://github.com/notapixelstudio/superstarfighter/commit/30e8fbf8bac7a2f6c165d8f3010cf8d14bd77f62))
-* **gameplay:** damage prevention time ([69d7e47](https://github.com/notapixelstudio/superstarfighter/commit/69d7e4720244032d5ce044087a0db9f9e7ca1690))
-* **hall_of_fame:** hall of fame added to menu screen ([c56258e](https://github.com/notapixelstudio/superstarfighter/commit/c56258e316e901f38e674e785bd0837630912c10))
-* **levels:** 3 and 4 players Claim the Banner. ([2a0b4d1](https://github.com/notapixelstudio/superstarfighter/commit/2a0b4d19a5844a47a0354522e85ba071e40f1e92))
-* **levels:** Water in Water Deathmatch (committed from a boat going from Padoa to Venice). ([64867f4](https://github.com/notapixelstudio/superstarfighter/commit/64867f4658d2d88b5a7fe6f6fc664a3f0ae7c579))
-* **minigames:** 2 players diamond warfare ([f51c220](https://github.com/notapixelstudio/superstarfighter/commit/f51c220294b0679249809e3dd1a72d93f3906b91))
-* **minigames:** 3 and 4 players arena for Diamond Warfare ([4453666](https://github.com/notapixelstudio/superstarfighter/commit/4453666e93be71c90a9f60504d63cff26ff30cac))
-* **minigames:** Claim the Banner for 2 players ([f718ba0](https://github.com/notapixelstudio/superstarfighter/commit/f718ba0d6f9bcd2a5854d1e3b2f05747210b6d2a))
-* **minigames:** Claim the Banner logo and placement in "action" playlist. ([ce901ab](https://github.com/notapixelstudio/superstarfighter/commit/ce901abf9cd737800e0671c660c66d2654a30f88))
-* **minigames:** Claim the Banner skeleton ([aaf2c10](https://github.com/notapixelstudio/superstarfighter/commit/aaf2c1084e2976d54895a21e673ef947978699b4))
-* **minigames:** diamond halves base ([39d86ad](https://github.com/notapixelstudio/superstarfighter/commit/39d86ad54e89804b33a37b52b26b6230c4d7b100))
-* **minigames:** diamond halves is in ([99e3cbd](https://github.com/notapixelstudio/superstarfighter/commit/99e3cbdd5aed47d07294087eb8fb57cc75331cf9))
-* **minigames:** Diamond Warfare in first playlist ([738e092](https://github.com/notapixelstudio/superstarfighter/commit/738e09294796f5cace12fd691f50c1a573779854))
-* **minigames:** Hoopball. ([ec0840f](https://github.com/notapixelstudio/superstarfighter/commit/ec0840f755fa82a161d45605c87802e6f870303d))
-* **minigames:** improvements on Diamond Halves ([84acf72](https://github.com/notapixelstudio/superstarfighter/commit/84acf72aa74b7d9298cd2c459e15fda08af29fce))
-* **minigames:** super barebone diamond halves ([d9dae67](https://github.com/notapixelstudio/superstarfighter/commit/d9dae670d94fa5ad59cafeaa57eefd893672c398))
-* **minigames:** Winter Claim the Banner. ([d114cc0](https://github.com/notapixelstudio/superstarfighter/commit/d114cc0b0d632e4ea415116230b09eeae3465155))
-* **playlists:** alternative action world ([bdb0c72](https://github.com/notapixelstudio/superstarfighter/commit/bdb0c72f400d54a7fb2b79f934432ac488baa3fb))
-* **playlists:** Basic playlists in (content and art need more work). ([a8292e5](https://github.com/notapixelstudio/superstarfighter/commit/a8292e507850718d031ac72956f65ad9e30bc7cf))
-* **playlists:** Future World and cards improvements. ([1f1b312](https://github.com/notapixelstudio/superstarfighter/commit/1f1b312ec536b5e761b83ecc5b3a4b2ae9b0fc1f))
-* **playlists:** Temporary second playlists. ([69c9677](https://github.com/notapixelstudio/superstarfighter/commit/69c96774123378e06bd0d65f1fadf94e64e4e3e8))
-* **scripts:** basic create new minigame script ([55cc59f](https://github.com/notapixelstudio/superstarfighter/commit/55cc59f804abd3a246dc94a5c75c2df828c94e57))
-* **scripts:** create new minigame script ([8a24aee](https://github.com/notapixelstudio/superstarfighter/commit/8a24aee5a953c0eb2fa1fccdfb5f8ef723a5f999))
-* **ui:** Back button from deck selection screen. ([4ea08fe](https://github.com/notapixelstudio/superstarfighter/commit/4ea08fe900ab78cd935d91dc349877538f22fa27))
-* **ui:** flag for compleated planes ([d4f2058](https://github.com/notapixelstudio/superstarfighter/commit/d4f2058e44ae4ecfc06b5192e6e06e858f4fd87a))
-* **ui:** Floating world in world cup selection screen. ([cf8c2f0](https://github.com/notapixelstudio/superstarfighter/commit/cf8c2f075723182d409d3854ffb3c5426dc4f4b2))
-* **ui:** More planet arts. ([653af71](https://github.com/notapixelstudio/superstarfighter/commit/653af711ba573ca8df55e66ca0b29e910586c457))
-* **ui:** more planet names and images ([3fd754b](https://github.com/notapixelstudio/superstarfighter/commit/3fd754b71060cf5be98a6d1623fef2aa3e34a1ab))
-* **ui:** new world system up ([4e7c3bc](https://github.com/notapixelstudio/superstarfighter/commit/4e7c3bcb6b93ae172c527f718df5d81e78be005b))
-* **ui:** planets ([08f1fa3](https://github.com/notapixelstudio/superstarfighter/commit/08f1fa3bc4b86c6ab1569e9072611670173d081e))
-* **ui:** prime universe card back ([c52b434](https://github.com/notapixelstudio/superstarfighter/commit/c52b434353367a78130e7ceb1ff460c48b397060))
-* **vfx:** visual feedback when dropping diamonds ([a878901](https://github.com/notapixelstudio/superstarfighter/commit/a878901f914246ca31c7b014a4ade828ca7f3c66))
-* **worlds:** Art and name for "oldcrown". ([cdb7c94](https://github.com/notapixelstudio/superstarfighter/commit/cdb7c9420513d2f2958f96b9757717e7a0d9985d))
-* **worlds:** flag are now displayed on completed worlds ([024741a](https://github.com/notapixelstudio/superstarfighter/commit/024741ad1a6f52f8af0ddea36dc699331ff72b9c))
+### Fix
 
+- **controls**: Controls "kb1" now accepts SPACE and ENTER in addition to M as FIRE.
+- **analytics**: remove gameanalytics old setup.
 
-### Bug Fixes
+## v0.14.0 (2023-05-12)
 
-* **arena:** Support for single life when respawning from home (needed in Diamond Minefield). ([1a990f2](https://github.com/notapixelstudio/superstarfighter/commit/1a990f228ca10bdd56d8590ef745f391daae8c39))
-* **cards:** duplicate card ids are now respected ([789cdbd](https://github.com/notapixelstudio/superstarfighter/commit/789cdbd06dbfdf4234d79757b0f5da22e338242a))
-* **cards:** mystery cards now correctly trigger winter ([73af3b1](https://github.com/notapixelstudio/superstarfighter/commit/73af3b1cc4c1812cfcb7e4b09fec384311136497))
-* **celebration:** the champion can write their name again ([e1d608f](https://github.com/notapixelstudio/superstarfighter/commit/e1d608fe3a889fd02d8eacbd3867fbf2ccb15beb))
-* **cpu:** Cpu underwater fixes. ([aca507a](https://github.com/notapixelstudio/superstarfighter/commit/aca507a8d9d15c5ea8be7eb7580c5b71030bbacd))
-* **credits:** added localization to credits ([23bd717](https://github.com/notapixelstudio/superstarfighter/commit/23bd71722634881fac5391e092d99f2b69a20d88))
-* **credits:** pippo, pluto and paperino have been credited ([24dafcd](https://github.com/notapixelstudio/superstarfighter/commit/24dafcd0c087a4fcfe769465d11dd18aa70a41fd))
-* **credits:** super-ultra barebones credits screen (functional) ([66066cc](https://github.com/notapixelstudio/superstarfighter/commit/66066cc99335ac09966d6a72de4d720d1ecf54fe))
-* **gameplay:** Excessive glow of cards removed. ([67795f2](https://github.com/notapixelstudio/superstarfighter/commit/67795f2b0e7dc448e85bf2ea29811dac21f569fb))
-* **homesick_invaders:** added cpubrain for homesick ([90e104f](https://github.com/notapixelstudio/superstarfighter/commit/90e104fe9cb54f9098758eacf5cce62c25e743a8))
-* **input:** input buffering and logic on Ship ([4b75172](https://github.com/notapixelstudio/superstarfighter/commit/4b75172183b6c19c7be2106ff4aeb096ec223f15))
-* **levels:** respawn from home in Homesick Invaders ([99b5d8a](https://github.com/notapixelstudio/superstarfighter/commit/99b5d8a3f975054e3f4868db0070ec8916222e92))
-* **levels:** wrong position of half diamond ([216767b](https://github.com/notapixelstudio/superstarfighter/commit/216767b74d3db30e150430d16260b38d5da4f606))
-* **locale:** no need to translate minigame names ([7e1a2f5](https://github.com/notapixelstudio/superstarfighter/commit/7e1a2f58adbef3a39ed0dcb6386ad99675572290))
-* **localization:** fallback in characterscreen taglines ([b4e6fa2](https://github.com/notapixelstudio/superstarfighter/commit/b4e6fa22920dd2e7e4e2ad7247692c2c279180dd))
-* **localization:** fixed on taglines ([63a0156](https://github.com/notapixelstudio/superstarfighter/commit/63a015677e9f94fb028c4b756ad24a93606517e6))
-* **localization:** revert to main for PlayerSelection ([025a106](https://github.com/notapixelstudio/superstarfighter/commit/025a106f4d4bf86df82b1cb90ea0b131adee0b11))
-* **performance:** Spurious WorldEnvironment node in Arena removed. ([72db9ea](https://github.com/notapixelstudio/superstarfighter/commit/72db9ea87d97166aa24e37d3a031c03a244f96dc))
-* **playlists:** diamond dive in neptune ([9f19572](https://github.com/notapixelstudio/superstarfighter/commit/9f19572a26c23eb15f717ec3da668b92f56df617))
-* **scripts:** new minigame level is now correctly created as a inherited scene ([9a6a1b5](https://github.com/notapixelstudio/superstarfighter/commit/9a6a1b5ac5722211e4c2694efecc614980285a29))
-* **ui:** flag compleated for playlist show winner username (instead of id) ([ec90084](https://github.com/notapixelstudio/superstarfighter/commit/ec90084bb0f98a28cabd22794dc28918be17eb73))
-* **ui:** new neptune colors ([10aaa9d](https://github.com/notapixelstudio/superstarfighter/commit/10aaa9d377ff0994bb3cb7dd1f3fa2f5f0e63e1f))
-* **ui:** planet buttons are now functional again ([d4e4964](https://github.com/notapixelstudio/superstarfighter/commit/d4e49647c1a4fe660e8bf3a4c808883e208c5857))
-* **ui:** Uppercase world label. ([cd122eb](https://github.com/notapixelstudio/superstarfighter/commit/cd122eb23f12d8a642fa1a7e452c80d3045ead29))
+## v0.12.2 (2023-05-12)
 
-## [0.7.0-alpha1](https://github.com/notapixelstudio/superstarfighter/compare/v0.6.4...v0.7.0-alpha1) (2022-05-29)
+### Feat
 
+- **analytics**: disclaimer and opt-in and opt-out
+- **analytics**: first attempt to make some analytics
 
-### Features
+### Fix
 
-* added flood moons in the map ([f35211c](https://github.com/notapixelstudio/superstarfighter/commit/f35211c7996137d631d5dea027fb491680561fc2))
-* added glow enabled by menu. Close [#392](https://github.com/notapixelstudio/superstarfighter/issues/392) ([#528](https://github.com/notapixelstudio/superstarfighter/issues/528)) ([cfee798](https://github.com/notapixelstudio/superstarfighter/commit/cfee798254dcec5de3555835376b6759372ee44b))
-* added laser ([8a93f9d](https://github.com/notapixelstudio/superstarfighter/commit/8a93f9d08f42faa14473073ce673f4f34b59a021))
-* added panels in map ([a505331](https://github.com/notapixelstudio/superstarfighter/commit/a50533174d81db6a1356048aa1fe35e0021222fe))
-* added the chance to show description in mappanel ([462d72f](https://github.com/notapixelstudio/superstarfighter/commit/462d72ff61b330bb867cb2403d6567625bfb49bb))
-* button demo in Options ([#771](https://github.com/notapixelstudio/superstarfighter/issues/771)) ([3d21e9f](https://github.com/notapixelstudio/superstarfighter/commit/3d21e9f8ab6c2e4ab452b11189f1b3134e43c3fc))
-* camera enable into Options ([9b1d045](https://github.com/notapixelstudio/superstarfighter/commit/9b1d0459068939653e6df5ef4a14f9f2f9297d79))
-* **combat:** new weapon - bullet - in goal Portal ([ded9edd](https://github.com/notapixelstudio/superstarfighter/commit/ded9eddd16818a66d45c50dfc8fc55549d71c022))
-* **combat:** sync shockwave with explosion ([cbeca73](https://github.com/notapixelstudio/superstarfighter/commit/cbeca73391832820a63e3a8b77b631592145dc27))
-* deep tidy up folders for the upcoming ui overhaul ([#758](https://github.com/notapixelstudio/superstarfighter/issues/758)) ([233360d](https://github.com/notapixelstudio/superstarfighter/commit/233360d1dc110509be9cada3cbda4898c32f42ba))
-* **design:** Asteroid Set ([#340](https://github.com/notapixelstudio/superstarfighter/issues/340)) ([12b28a1](https://github.com/notapixelstudio/superstarfighter/commit/12b28a1a5608136c8304b9902a4f119d6fc4c5bc))
-* **design:** Drones set ([#345](https://github.com/notapixelstudio/superstarfighter/issues/345)) ([9cef5a6](https://github.com/notapixelstudio/superstarfighter/commit/9cef5a632938ec607c452a8b26ffac0f264d83f2))
-* **design:** Pursuing bombs is now a flag settable from Gamemode. Close [#449](https://github.com/notapixelstudio/superstarfighter/issues/449) ([b954788](https://github.com/notapixelstudio/superstarfighter/commit/b954788688db14efa4e51a612e1fc86f9425193c))
-* experiment with rules ([d144ec2](https://github.com/notapixelstudio/superstarfighter/commit/d144ec2eecf6415a4934eae3b71ca76b4a8d8b1d))
-* **gameplay:** Add modifiers according to set choice ([#446](https://github.com/notapixelstudio/superstarfighter/issues/446)) ([3245616](https://github.com/notapixelstudio/superstarfighter/commit/32456163cc6f21c4025139b348bedffb311e111e))
-* **gameplay:** Brickbreak game and limited ammo support ([#361](https://github.com/notapixelstudio/superstarfighter/issues/361)) ([5ace12c](https://github.com/notapixelstudio/superstarfighter/commit/5ace12c6e96211e8b8f6d67413e55a39a8c4f4a1))
-* **games:** Ball-based games ([#363](https://github.com/notapixelstudio/superstarfighter/issues/363)) ([1db39bd](https://github.com/notapixelstudio/superstarfighter/commit/1db39bdd490b0ce25717643ed6ff03da91a7d164))
-* **games:** First blood game ([#362](https://github.com/notapixelstudio/superstarfighter/issues/362)) ([5486762](https://github.com/notapixelstudio/superstarfighter/commit/548676298872f97f956ff08601ea7e1f427d5bc6))
-* improved deathmatch with shields ([4d3c3fe](https://github.com/notapixelstudio/superstarfighter/commit/4d3c3fec21b0a8fb1d343e6a0177e59c40040a1d))
-* indestructible and regen shields ([f55dbda](https://github.com/notapixelstudio/superstarfighter/commit/f55dbdab54076c0b9c67eb5a5e795b79e069b65c))
-* intro with ships and their invincibility ([13f0dae](https://github.com/notapixelstudio/superstarfighter/commit/13f0daeaefea176523ee812e77c99244a66fc77b))
-* intro with ships and their invincibility ([#694](https://github.com/notapixelstudio/superstarfighter/issues/694)) ([d9cf3dc](https://github.com/notapixelstudio/superstarfighter/commit/d9cf3dcc1b50bb5e158ad60fb0c2ee9ba6a952dc))
-* layered shields ([434ca33](https://github.com/notapixelstudio/superstarfighter/commit/434ca33f8e2a8e838caf8f24b9c1acbb7d0959e5))
-* Minigames levels with water and other stuff ([#373](https://github.com/notapixelstudio/superstarfighter/issues/373)) ([fd0e61a](https://github.com/notapixelstudio/superstarfighter/commit/fd0e61a2dbdaaac2484d561807d73a55c87bc0b1))
-* Negacrown dashing and doubling ([fddc518](https://github.com/notapixelstudio/superstarfighter/commit/fddc51820043ab41d215e325b5b4a6921d70fe17))
-* new map ([3e2ad36](https://github.com/notapixelstudio/superstarfighter/commit/3e2ad36b30692377661b260bfc41b74b5faa8b2b))
-* Perfect score system ([#382](https://github.com/notapixelstudio/superstarfighter/issues/382)) ([c65f076](https://github.com/notapixelstudio/superstarfighter/commit/c65f07697b0470288c0f14b87c2e16be66ac10f5))
-* **performance:** Improvements to graphic performance ([#360](https://github.com/notapixelstudio/superstarfighter/issues/360)) ([0c603c4](https://github.com/notapixelstudio/superstarfighter/commit/0c603c4c8b4ce4f801ef1a6d5d1da7ae09d57c55))
-* race mode and scoring ([c0d6fb2](https://github.com/notapixelstudio/superstarfighter/commit/c0d6fb29bd654277458e7468d2cfc925cbeb9338))
-* race skeleton ([983a30c](https://github.com/notapixelstudio/superstarfighter/commit/983a30cd7817a8a18554a217e8b1dc7e6f5c15f6))
-* Randomize player position at start (within session not if you run from scene) close [#399](https://github.com/notapixelstudio/superstarfighter/issues/399) ([2be25e9](https://github.com/notapixelstudio/superstarfighter/commit/2be25e9d9e896122e693ddaf0787d1bed487acae))
-* randomly pass from wander to seek ([5dd43e9](https://github.com/notapixelstudio/superstarfighter/commit/5dd43e9144ff269539678ca8f022404abcf41531))
-* refactoring for global Match and session ([#579](https://github.com/notapixelstudio/superstarfighter/issues/579)) ([94fc7d4](https://github.com/notapixelstudio/superstarfighter/commit/94fc7d42f392b2643c3681e30fd5e586622b7e3b)), closes [#578](https://github.com/notapixelstudio/superstarfighter/issues/578)
-* remapping joypad ([#493](https://github.com/notapixelstudio/superstarfighter/issues/493)) ([c3629f2](https://github.com/notapixelstudio/superstarfighter/commit/c3629f20364e7bda66d10e1a1d5615eef0437bf6))
-* set test scene ([91997bd](https://github.com/notapixelstudio/superstarfighter/commit/91997bd31c4efd81ee85f81eb90f9e1c01ccfa5f))
-* **ship:** everything is absolute controls ([#335](https://github.com/notapixelstudio/superstarfighter/issues/335)) ([037dcc8](https://github.com/notapixelstudio/superstarfighter/commit/037dcc8e0dfb183a20ffd416e96a1f5db950071a))
-* show arena completely and smoothly ([2837992](https://github.com/notapixelstudio/superstarfighter/commit/28379928eadf46eed0d66096fb86b90f0a2c6693))
-* skeleton for map with panels ([177e077](https://github.com/notapixelstudio/superstarfighter/commit/177e077e56f7f1d6b7fcf77969db2f880d35a2d6))
-* skeleton for returning to map ([#569](https://github.com/notapixelstudio/superstarfighter/issues/569)) ([d43f2f5](https://github.com/notapixelstudio/superstarfighter/commit/d43f2f53cbaa35b942396912eda798cced8cdac4))
-* smooth transition especially at the beginning of the match. ([2c9827e](https://github.com/notapixelstudio/superstarfighter/commit/2c9827e24e37873334340c5cff8deb7bb0e4b666)), closes [#433](https://github.com/notapixelstudio/superstarfighter/issues/433)
-* survival rules uniformed with perfect score system ([#384](https://github.com/notapixelstudio/superstarfighter/issues/384)) ([3d89af2](https://github.com/notapixelstudio/superstarfighter/commit/3d89af2b694d221092e2b9d47bd3fcdb55c87af5))
-* trails are created at respawn and deleted after wrap. Close [#395](https://github.com/notapixelstudio/superstarfighter/issues/395) ([e67c375](https://github.com/notapixelstudio/superstarfighter/commit/e67c375c28ad6d39e3cdf8b3ebd57e544f79850d))
-* **ui:** Attempt to reduce visual clutter ([#344](https://github.com/notapixelstudio/superstarfighter/issues/344)) ([810c2dc](https://github.com/notapixelstudio/superstarfighter/commit/810c2dc9a91fb5156b8226729d4db17378e524fc))
-* **ui:** improved ui on mainscreen ([#338](https://github.com/notapixelstudio/superstarfighter/issues/338)) ([175be78](https://github.com/notapixelstudio/superstarfighter/commit/175be7857fe62e87f3373ad39a8d07ccc3ac7d95))
-* **ui:** in Combat bars will have Ticks and streaks ([#343](https://github.com/notapixelstudio/superstarfighter/issues/343)) ([0b53724](https://github.com/notapixelstudio/superstarfighter/commit/0b53724f4b3976e4b95f86efd362f9d8f71552bc))
-* **ui:** Input remapping for keyboard ([#356](https://github.com/notapixelstudio/superstarfighter/issues/356)) ([a8951c8](https://github.com/notapixelstudio/superstarfighter/commit/a8951c8e3c9b84a3d8f45a29d62fc0e0aacc0aee))
-* unlocker overhaul ([#804](https://github.com/notapixelstudio/superstarfighter/issues/804)) ([4b0f3c2](https://github.com/notapixelstudio/superstarfighter/commit/4b0f3c29706f4719a62b24c341bf22694f1c9c34))
-* unlocking a bit more complete. Now you can use map ([#585](https://github.com/notapixelstudio/superstarfighter/issues/585)) ([ce15ce8](https://github.com/notapixelstudio/superstarfighter/commit/ce15ce8f1bbff9ea8f7c531ee18f61ea2c83091c))
-* **vfx:** Glowing arena ([#353](https://github.com/notapixelstudio/superstarfighter/issues/353)) ([dbb9249](https://github.com/notapixelstudio/superstarfighter/commit/dbb9249e5a86f6400abf852ee5a03020c700ab19))
-* **vfx:** Visual feedback for dash ([#357](https://github.com/notapixelstudio/superstarfighter/issues/357)) ([34178df](https://github.com/notapixelstudio/superstarfighter/commit/34178df239270add0c34ac7db9ad09990f0dc0d0))
-* when dies the trail will wrap back ([9c2167b](https://github.com/notapixelstudio/superstarfighter/commit/9c2167b6f1adf5f9d19f2ab5c3107dcf2360876a))
-* when the game is a tie, give a star for each player. Related to [#401](https://github.com/notapixelstudio/superstarfighter/issues/401) ([cff562c](https://github.com/notapixelstudio/superstarfighter/commit/cff562cb6e4953014f1d5fa7f850d3e71819e2ce))
+- **analytics**: Added lifecycle api to handle events
+- get correct game id and minigame id and card id
+- **analytics**: disclaimer without info
+- bug in first time
+- **ui**: disclaimer background alignment
+- **disclaimer**: only first time
+- send analytics only if explicitly consent to
+- revert change
+- **analytics**: correct hostname
+- **settings**: rename hostname.debug into hostname.local since it has sideseffects
+- **analytics**: endpoint for api fixed
+- **halloffame**: we should not add champion
+- typo for champion_info definition
+- **analytics**: added different id to the event
+- **analytics**: kind of broken yet
+- **analytics**: added debug_mode
+- **analytics**: version added and improvements
+- **analytics**: handling first request
+- debug and build variables
+- **analytics**: added first simple analytics. Potential breaking changes
+- **save**: safeget when deck/session is not a valid entity
 
+## v0.12.1 (2023-04-29)
 
-### Bug Fixes
+### Fix
 
-* **accessibility:** slowdown in gameover fixed ([7ef93d6](https://github.com/notapixelstudio/superstarfighter/commit/7ef93d6e017ecc46c80e70663e730f09cd55d71b))
-* adding uuid to match and session ([c9babcc](https://github.com/notapixelstudio/superstarfighter/commit/c9babcccf2229a39d12d233f8140c03124edfc27))
-* advanced figures are worth double in memory ([664cd6c](https://github.com/notapixelstudio/superstarfighter/commit/664cd6cbf297a8949ae6e9241e9ec5be9a54b6d8))
-* **audio:** audiolibrary fixed, making sure that fadeout will stop  ([3ce9b5c](https://github.com/notapixelstudio/superstarfighter/commit/3ce9b5ca39d2964c6e0eddbcb6a4aaad71f127aa))
-* avoid crash and infinite waiting on multiple unlocking ([5552061](https://github.com/notapixelstudio/superstarfighter/commit/5552061343c346af95ae0693e3c85e3975f157e3))
-* better aspect ratio for Alchemical Bombing field ([f40c25e](https://github.com/notapixelstudio/superstarfighter/commit/f40c25eb90ed25fe818c95519a2403e9ef29e9fd))
-* better bump and less confusing death ([c6cddbe](https://github.com/notapixelstudio/superstarfighter/commit/c6cddbe0b0106a28a1e794862c44c57a20514c83))
-* better camera handling in survival ([4fd3946](https://github.com/notapixelstudio/superstarfighter/commit/4fd394632287a385e82dad01313076306f5f8c54))
-* better feeling for random selection ([973920f](https://github.com/notapixelstudio/superstarfighter/commit/973920ff9962b493a6abe3883476d96b3447042e))
-* better handling CPU with turn and shoot and ([c0d5d13](https://github.com/notapixelstudio/superstarfighter/commit/c0d5d13ce12c4b4a143b9c68e9a9cda8f6c5c939))
-* better naming controls. Close [#532](https://github.com/notapixelstudio/superstarfighter/issues/532) ([2f7b014](https://github.com/notapixelstudio/superstarfighter/commit/2f7b01455b993f9b1f9880ec95c5c89b82811ccc))
-* better targetting new position ([b632b59](https://github.com/notapixelstudio/superstarfighter/commit/b632b59b97af3c66eb9f7e22d84d16fc6dfdadad))
-* bit more satisfying randomness selection of minigame ([2685f2e](https://github.com/notapixelstudio/superstarfighter/commit/2685f2e49cb37d98aedb6fc21a2c28d63d724dd0))
-* bumpversion and cleanup ([6790497](https://github.com/notapixelstudio/superstarfighter/commit/6790497e0f9c6aa8370a9e168479df6ac5d8ef0a))
-* Camera on Map  ([e708b4c](https://github.com/notapixelstudio/superstarfighter/commit/e708b4c5c35817a0ec84b71d54cacb1a3583fd70))
-* **camera:** closes [#879](https://github.com/notapixelstudio/superstarfighter/issues/879) condition corrected for when disabled camera globally ([75f1e3b](https://github.com/notapixelstudio/superstarfighter/commit/75f1e3b3e2b27d2009d441ee22d8019b572ad0c8))
-* **camera:** improvements on camera ([#849](https://github.com/notapixelstudio/superstarfighter/issues/849)) ([323e2b4](https://github.com/notapixelstudio/superstarfighter/commit/323e2b4c4a81c7b721575aac6c57e6e58777f115))
-* **camera:** minzomm to 3.0 (was 2.5) ([54ddfe8](https://github.com/notapixelstudio/superstarfighter/commit/54ddfe87b356bd3e8093ebc202ae7f7b12b7250b))
-* **camera:** physics_process instead of process and update camera on odd frames ([f28fbfc](https://github.com/notapixelstudio/superstarfighter/commit/f28fbfc85ab3185d9113d197f1be957b925129dc))
-* card persisted ([2c5ced9](https://github.com/notapixelstudio/superstarfighter/commit/2c5ced9a7a8b33d77074da655b97f74451914719))
-* check better persistance for joypad ([#568](https://github.com/notapixelstudio/superstarfighter/issues/568)) ([d28e67f](https://github.com/notapixelstudio/superstarfighter/commit/d28e67fe541f23e2df749ff0516a43f32f1e2ded)), closes [#534](https://github.com/notapixelstudio/superstarfighter/issues/534)
-* clean up and make everything work again ([92df5c4](https://github.com/notapixelstudio/superstarfighter/commit/92df5c452cea2c3df3214ba453e242e7dc62d7a1))
-* cleanup ([4a24ff8](https://github.com/notapixelstudio/superstarfighter/commit/4a24ff8199dc866c6257b1e04e80884b3c592dff))
-* close [#366](https://github.com/notapixelstudio/superstarfighter/issues/366) ([a9b2a6f](https://github.com/notapixelstudio/superstarfighter/commit/a9b2a6fed7fa05c19ed24adad0e6b422d8b74629))
-* close [#457](https://github.com/notapixelstudio/superstarfighter/issues/457) Keep  negative scores ([2995a83](https://github.com/notapixelstudio/superstarfighter/commit/2995a831681488e093dabc38186838c102cc117d))
-* close [#485](https://github.com/notapixelstudio/superstarfighter/issues/485) Countdown disappears on gameover ([0e5b48a](https://github.com/notapixelstudio/superstarfighter/commit/0e5b48affea4b319e8ad4460205ec77e1c539a4e))
-* close [#543](https://github.com/notapixelstudio/superstarfighter/issues/543) ([3d4bc46](https://github.com/notapixelstudio/superstarfighter/commit/3d4bc46f0a4d0ac7331e63f44be09ffd9bc1da11))
-* close [#576](https://github.com/notapixelstudio/superstarfighter/issues/576). Avoid repetition of already unlock set ([4ebea83](https://github.com/notapixelstudio/superstarfighter/commit/4ebea83105b6e46c7a2c746e3438b0082cbfbd3c))
-* close [#726](https://github.com/notapixelstudio/superstarfighter/issues/726), close [#728](https://github.com/notapixelstudio/superstarfighter/issues/728) ([#838](https://github.com/notapixelstudio/superstarfighter/issues/838)) ([bffa9f5](https://github.com/notapixelstudio/superstarfighter/commit/bffa9f5b9281098b74630cb0d3401c204df9533a))
-* close [#855](https://github.com/notapixelstudio/superstarfighter/issues/855) camera override disabled ([2da223a](https://github.com/notapixelstudio/superstarfighter/commit/2da223abf7869fd20ad9fdd14984f6a36551818e))
-* close [#855](https://github.com/notapixelstudio/superstarfighter/issues/855) camera override disabled ([db9c0d4](https://github.com/notapixelstudio/superstarfighter/commit/db9c0d4ed9ab2ab0fa4e8b6f2a80aac662d9f17a))
-* **combat:** Camera finally follow smoothly the players ([#440](https://github.com/notapixelstudio/superstarfighter/issues/440)) ([a962db2](https://github.com/notapixelstudio/superstarfighter/commit/a962db28a559a2b48746934104b3e1e0f3d7dcf1)), closes [#406](https://github.com/notapixelstudio/superstarfighter/issues/406) [#433](https://github.com/notapixelstudio/superstarfighter/issues/433)
-* **combat:** fix camera for survival games ([#436](https://github.com/notapixelstudio/superstarfighter/issues/436)) ([2905b8d](https://github.com/notapixelstudio/superstarfighter/commit/2905b8d4a574b68fa9ab0d3fabaa65335e73589f))
-* **combat:** Give correct score in case of draw with 0 points. close [#439](https://github.com/notapixelstudio/superstarfighter/issues/439) ([4989439](https://github.com/notapixelstudio/superstarfighter/commit/4989439bf45bcb04c95288be6c0751df2d5a7633))
-* **combat:** improved and refactoring trail ([7226b95](https://github.com/notapixelstudio/superstarfighter/commit/7226b95fc720b1b11afcd872dfcdde944d9c5e87)), closes [#385](https://github.com/notapixelstudio/superstarfighter/issues/385)
-* **combat:** improved and refactoring trail ([180f11e](https://github.com/notapixelstudio/superstarfighter/commit/180f11eec175f13a88f14e22f57863ba0b84ce6f))
-* **combat:** More visible deadship. Close [#460](https://github.com/notapixelstudio/superstarfighter/issues/460) ([039803c](https://github.com/notapixelstudio/superstarfighter/commit/039803ca06f9ac8d973908e2155c95b150cd4f17))
-* **combat:** portal in order to work for race. Close [#475](https://github.com/notapixelstudio/superstarfighter/issues/475) ([a4beebd](https://github.com/notapixelstudio/superstarfighter/commit/a4beebd1fd886a9198ea7a1c5a1f55b547cd20ba))
-* **combat:** Resolves [#410](https://github.com/notapixelstudio/superstarfighter/issues/410) and fix [#409](https://github.com/notapixelstudio/superstarfighter/issues/409) ([4c65065](https://github.com/notapixelstudio/superstarfighter/commit/4c650652af720325df90f7e5dff48e5a00b2eb98))
-* committiamo così che per lo meno fanno qualcosa ([04888d5](https://github.com/notapixelstudio/superstarfighter/commit/04888d53650ba9d20f275b068553f7ad2983054b))
-* **controls:** fix ui for remapping controls and cleanup ([3191ef0](https://github.com/notapixelstudio/superstarfighter/commit/3191ef09bcc3582f8f8ccd4aaa8b68775fe4bc12))
-* **controls:** Some tweaks ([4cf2421](https://github.com/notapixelstudio/superstarfighter/commit/4cf2421102d34e65eb1f0d0826d4ba98f48a8474))
-* correctly accessing to levels ([dc52850](https://github.com/notapixelstudio/superstarfighter/commit/dc52850e479b291ed4c8efc01e27dfa9b76463a0))
-* correctly enable camera ([5f14d02](https://github.com/notapixelstudio/superstarfighter/commit/5f14d025cb865fda59fcca644683854a2187d8f3))
-* correctly override time for first blood ([340bdbf](https://github.com/notapixelstudio/superstarfighter/commit/340bdbf2165126cc001b98c2b2cef595c5347838))
-* cpu ship more debug and more strategy ([2e6b226](https://github.com/notapixelstudio/superstarfighter/commit/2e6b2265d654c433481bbb59c695281e68781ebc))
-* crash when playing a second session after a quit to map ([148be71](https://github.com/notapixelstudio/superstarfighter/commit/148be715f85b59613ffcb978c42b51ec399f436b))
-* CRT shader now is working again on HUD ([1304b5f](https://github.com/notapixelstudio/superstarfighter/commit/1304b5f44ab9b8f2be91ecf8439f2789ce653355))
-* deadship will not teleport ([d5bf6a2](https://github.com/notapixelstudio/superstarfighter/commit/d5bf6a208f74ebf60cd08aaae4b60c17dd4ac6af))
-* death is sometimes swirly + less impulse ([296a104](https://github.com/notapixelstudio/superstarfighter/commit/296a104510c71ad34bb68e0ee7d4bdfa25cd25b0))
-* debug enabled ([606dc59](https://github.com/notapixelstudio/superstarfighter/commit/606dc5990434cc06e62e094c9e5f1e62a2b0e278))
-* debug enabled and better handling stuff ([212025a](https://github.com/notapixelstudio/superstarfighter/commit/212025ad7d690ff1855f7dec8971dea4338840b0))
-* **design:** reset levels on restart session ([#365](https://github.com/notapixelstudio/superstarfighter/issues/365)) ([6f36716](https://github.com/notapixelstudio/superstarfighter/commit/6f36716a7dfb6aaa6819f5efcf4ee8f951c336e8))
-* Dynamic labels on map, new assets, all-unlocked setup for testing. ([2bf174c](https://github.com/notapixelstudio/superstarfighter/commit/2bf174c503e0d1ad34e83d914a79c95f74168e8c))
-* enable camera fixes in options ([1f3e8d2](https://github.com/notapixelstudio/superstarfighter/commit/1f3e8d20df8e19f2377caeae35def6c9ba42d1e3))
-* fix [#523](https://github.com/notapixelstudio/superstarfighter/issues/523) ([6a7f9fe](https://github.com/notapixelstudio/superstarfighter/commit/6a7f9fe1c5cf433636c0a3fa3c57d4828a15e580))
-* fix point number (1). start of the match, arena is not correctly in camera ([8f5c2d8](https://github.com/notapixelstudio/superstarfighter/commit/8f5c2d8f6129ff94a5182e0ce2b2105f6e4ca10d))
-* fixed soundtrack fadeout once and for all ([135876c](https://github.com/notapixelstudio/superstarfighter/commit/135876cf27d1edd4061b9490041389954773266d))
-* flood and laser persistent. Close [#537](https://github.com/notapixelstudio/superstarfighter/issues/537) ([52dd528](https://github.com/notapixelstudio/superstarfighter/commit/52dd528d5af33497c3121bd681ad32c9030ef201))
-* follow camera won't go over the arena field ([#557](https://github.com/notapixelstudio/superstarfighter/issues/557)) ([2190616](https://github.com/notapixelstudio/superstarfighter/commit/21906163468be6ff98e4ae8078f9a16684ad7669))
-* font overhaul with bungee ([8506204](https://github.com/notapixelstudio/superstarfighter/commit/8506204a244992dcb3b5b583a1d6fddddc94b504))
-* **gameplay:** close [#800](https://github.com/notapixelstudio/superstarfighter/issues/800) Quitting while session is in progress gives someone a star ([076bfb3](https://github.com/notapixelstudio/superstarfighter/commit/076bfb304218a830db93e299a5ae45a52b904418))
-* **gameplay:** on start ships didn't start close [#337](https://github.com/notapixelstudio/superstarfighter/issues/337) ([#341](https://github.com/notapixelstudio/superstarfighter/issues/341)) ([e3b258e](https://github.com/notapixelstudio/superstarfighter/commit/e3b258e8f7069fdfd9df9a4cd07f802472c7f76a))
-* get rid of rules and restore a single line description for minigames (some files still linger) ([71a7b30](https://github.com/notapixelstudio/superstarfighter/commit/71a7b30f5a90f44607e9eae20aeb9effdd613433))
-* get rid of rules and restore a single line description for minigames (some files still linger) - closes [#768](https://github.com/notapixelstudio/superstarfighter/issues/768) ([81a3dd4](https://github.com/notapixelstudio/superstarfighter/commit/81a3dd4df278c6165f49160da5b8f95658628bb1))
-* Handling remapping for Right Analog. FIx [#533](https://github.com/notapixelstudio/superstarfighter/issues/533) ([46388a9](https://github.com/notapixelstudio/superstarfighter/commit/46388a9d3cf16b1c2e2afec99db942eef68268fe))
-* hotfix on thematch trying to access summary() ([07f494b](https://github.com/notapixelstudio/superstarfighter/commit/07f494b73373c04364866e379f9612b18c850c9e))
-* implelemented anchor to center ... experimenting update every 5 frames ([64f9b37](https://github.com/notapixelstudio/superstarfighter/commit/64f9b373198508d5f489e12864c6eb3874a50bb1))
-* IMPORTANT! Physics fps increased to 120 + Bump tweaks. ([5715c11](https://github.com/notapixelstudio/superstarfighter/commit/5715c113025b180f999fd12481ab55e7d798cb99))
-* is_loadable in holdables ([ec82f3f](https://github.com/notapixelstudio/superstarfighter/commit/ec82f3f38e20e18b3c2d4b07e295e98b286fa9af))
-* jagged shield sector when changing from plate to shield ([32c63d3](https://github.com/notapixelstudio/superstarfighter/commit/32c63d3df801a70933ee7466baafd16aa2905102))
-* keep decision ([4f8d55d](https://github.com/notapixelstudio/superstarfighter/commit/4f8d55d3f59f324a9e056067e0a3d5d7b83a6a5b))
-* leaderboard get the info from existing fields.  ([eb3f9b4](https://github.com/notapixelstudio/superstarfighter/commit/eb3f9b4117c59a8502638069354fe65d5f8d61d4))
-* less thin glass walls in Negacrown ([16d8484](https://github.com/notapixelstudio/superstarfighter/commit/16d8484f675f497557438bd71f5ddc48150053ac))
-* **locale:** if locale is not recongised, trying to use the locale instead of the locale_name. Closes [#310](https://github.com/notapixelstudio/superstarfighter/issues/310) ([d8e3ea8](https://github.com/notapixelstudio/superstarfighter/commit/d8e3ea88626e8dae03d99c5df31557d155dcec5c))
-* locked sets ([2ccf420](https://github.com/notapixelstudio/superstarfighter/commit/2ccf420a82a4e979d65fcd75883736c4b1327655))
-* **map:** close [#388](https://github.com/notapixelstudio/superstarfighter/issues/388) and close [#389](https://github.com/notapixelstudio/superstarfighter/issues/389) ([2750563](https://github.com/notapixelstudio/superstarfighter/commit/2750563a9c424da749a0ba3b4dc798871b503f51))
-* **map:** Deduplication of minigames after selection. close [#405](https://github.com/notapixelstudio/superstarfighter/issues/405) ([74f81f1](https://github.com/notapixelstudio/superstarfighter/commit/74f81f1e786d00e304274718a44dfe535547053e))
-* merge thing ([b00e2dc](https://github.com/notapixelstudio/superstarfighter/commit/b00e2dc4877c3f25d39b69e6b48f0592014aab7a))
-* merge with minigames ([940756b](https://github.com/notapixelstudio/superstarfighter/commit/940756b7dc4042a8b04a1cf80e20d5474699ca4d))
-* more aliens, slower aliens in Homesick Invaders ([2e5cdb5](https://github.com/notapixelstudio/superstarfighter/commit/2e5cdb597163b64bfe08744c345bf1d20cb60659))
-* more generic way to get if a set is unlocked ([75404f6](https://github.com/notapixelstudio/superstarfighter/commit/75404f659f6dcf6e49aa0a1ea155e96e151b7ac0))
-* more sophisticated holdables (avoid loading holdables of the same type twice, drop backwards when replaced) ([ddf3cfe](https://github.com/notapixelstudio/superstarfighter/commit/ddf3cfe02cc66084aaca7fca31ac868557c67930))
-* more strategic CPU ([f2a0ef9](https://github.com/notapixelstudio/superstarfighter/commit/f2a0ef98ae3dac6c6bb29bf88ee30a001cc0f3ab))
-* moving things around ([d4358b8](https://github.com/notapixelstudio/superstarfighter/commit/d4358b8a5adea740a8f2d678c4bf2258c4315bb0))
-* Multiple handlng wells for grid shader ([45ea834](https://github.com/notapixelstudio/superstarfighter/commit/45ea8345596e99d3528947d454f0551e755f7701))
-* no need to chase ship in some minigame ([064c7ba](https://github.com/notapixelstudio/superstarfighter/commit/064c7ba3a4d84c60d3eca7add3a5e4792d8a7b47))
-* one shot connect from Arena for gameover ([7c3a950](https://github.com/notapixelstudio/superstarfighter/commit/7c3a9501ad8bdd426e3dea77aec9c79b8bb0cf51))
-* options better setup ([1b5d32c](https://github.com/notapixelstudio/superstarfighter/commit/1b5d32cad36a03acb5755cde61e38bd51d95e36a))
-* paddle cast shapes (more like cast a spell) ([f1b15f2](https://github.com/notapixelstudio/superstarfighter/commit/f1b15f21fd79ee17c5bead47c141b5c0828e70fa))
-* **persistence:** camera enable in persistence ([ee71189](https://github.com/notapixelstudio/superstarfighter/commit/ee71189c76d8d1e3680ca99fccecbe44db0b8a88))
-* **physics:** new values for ship torque and angular damp, attempt to address [#349](https://github.com/notapixelstudio/superstarfighter/issues/349) ([#355](https://github.com/notapixelstudio/superstarfighter/issues/355)) ([9d1540a](https://github.com/notapixelstudio/superstarfighter/commit/9d1540aa2491e0b1339b4e8cac816b75a978369d))
-* post-playtest fixes to Slam-A-Gon and Homesick Invaders ([f87a183](https://github.com/notapixelstudio/superstarfighter/commit/f87a183e3d7fccbf98220bbbfdc891aabe783608))
-* put glow enable in persistence ([e3eb206](https://github.com/notapixelstudio/superstarfighter/commit/e3eb20692cac64d8200ce1c0748a091ec1835c01))
-* queen of the hive royalty restored ([e414162](https://github.com/notapixelstudio/superstarfighter/commit/e414162de2b092d77958a80049f34e2136e123d3))
-* quicker description scene ([b3b2be4](https://github.com/notapixelstudio/superstarfighter/commit/b3b2be4638e7d9340942f5fa38f9a6c9df0ddc6c))
-* refactoring code ([7fc5735](https://github.com/notapixelstudio/superstarfighter/commit/7fc573524774bedb762aa23261be62a2145f185d))
-* refactoring trails ([6ebaf00](https://github.com/notapixelstudio/superstarfighter/commit/6ebaf000e3d90b8d37ff876a11ef0015e33be292))
-* relincensing assets under CC-BY-NC-SA ([#809](https://github.com/notapixelstudio/superstarfighter/issues/809)) ([ba45f16](https://github.com/notapixelstudio/superstarfighter/commit/ba45f16792f4e981b57ede007e6e11feb40d39bc))
-* remove debug sprite ([730c532](https://github.com/notapixelstudio/superstarfighter/commit/730c5324b5298129c3d23060f98998db68659d96))
-* remove megaspace from "fields" and fix avoid finally ([18e0c95](https://github.com/notapixelstudio/superstarfighter/commit/18e0c95934cfa15aef8bec51b63a07adcc6389e3))
-* Resource might be different instances, so better check the get_id() ([c7c23ea](https://github.com/notapixelstudio/superstarfighter/commit/c7c23ea8ed66412df8b603f77f72f2c36f2f4d0f))
-* Restart level on menu. close [#387](https://github.com/notapixelstudio/superstarfighter/issues/387) ([0cff2b5](https://github.com/notapixelstudio/superstarfighter/commit/0cff2b5c0a10929243a777f2baa649556e2ef428))
-* rocket pursuing timeout observed ([cf3cf05](https://github.com/notapixelstudio/superstarfighter/commit/cf3cf05f439d32840e2b04ed0e5571201a73ef3c))
-* rockets pursue once ([7dbc55c](https://github.com/notapixelstudio/superstarfighter/commit/7dbc55c60235144ba586985440701d2dceffbfaa))
-* royalty is taken into account by fields ([4c56ef6](https://github.com/notapixelstudio/superstarfighter/commit/4c56ef6b5c916e39a358b7c829211be6ac53ccd1))
-* **selection:** close [#429](https://github.com/notapixelstudio/superstarfighter/issues/429) ([185659c](https://github.com/notapixelstudio/superstarfighter/commit/185659c8bc14fa16ccfe1d2e66a92d4dae36a4cf))
-* Sets are shown and acted upon according to their status. ([b4c9448](https://github.com/notapixelstudio/superstarfighter/commit/b4c9448edf034eabdc35e3ab82240768c91446ad))
-* shake no more ([e08ee44](https://github.com/notapixelstudio/superstarfighter/commit/e08ee4486ffb0767cab2932d666ea0cd2fc1eb55))
-* ship appearance in bars ([7ef6bc5](https://github.com/notapixelstudio/superstarfighter/commit/7ef6bc562c334f412d799b5eb99e75b4741ec81e))
-* ships' royalty restored ([9d09b3c](https://github.com/notapixelstudio/superstarfighter/commit/9d09b3cd51e7448b27e98b3fb2d8fffd33c8f22a))
-* show arena and hide arena would now dark background as well ([61c60d3](https://github.com/notapixelstudio/superstarfighter/commit/61c60d3df8b75eebee57176ebd610d14a53b30be))
-* Size of Alchemical Bombing reduced for 3 and 4 players (the screen was difficult to read). ([855e6ea](https://github.com/notapixelstudio/superstarfighter/commit/855e6eae7f7772492df2f73166e5e37e73242007))
-* skip fix, continue standalone ([d3de701](https://github.com/notapixelstudio/superstarfighter/commit/d3de7011d1b5228a6c3e32898a779b20dc4bbed2))
-* skip sluggish tutorial. Close [#381](https://github.com/notapixelstudio/superstarfighter/issues/381) ([6464162](https://github.com/notapixelstudio/superstarfighter/commit/64641621832e906c66a3fe5fe9d944b3e90d5fda))
-* Slam-a-Gon in Godot 3.4 (it doesn't rely on callback order anymore) ([3688da5](https://github.com/notapixelstudio/superstarfighter/commit/3688da59b8b78f76c1bc9260cceab00e55501b34))
-* slower respawn if holding crown + simpler respawn timeout design (needs testing) ([70f00ae](https://github.com/notapixelstudio/superstarfighter/commit/70f00ae0e3159e5f372aa1ebc5c7421060380c82))
-* some weird changes on merge ([9075b49](https://github.com/notapixelstudio/superstarfighter/commit/9075b49f6ea2dd656f93aa8d89266b50cf82f37d))
-* soundtrack and fadeout ([9f689a9](https://github.com/notapixelstudio/superstarfighter/commit/9f689a9e528060f64dac49094342beb449f9f95b))
-* Start with one starry path locked. ([323fe40](https://github.com/notapixelstudio/superstarfighter/commit/323fe409ca11aa8b4818fbaf10d2179b6b1930e9))
-* starting animation ([8de05ae](https://github.com/notapixelstudio/superstarfighter/commit/8de05ae4ae58de6834d792e3ce06d2c6510d623d))
-* tappables overhaul - exit areas and better signal handling ([a7242b8](https://github.com/notapixelstudio/superstarfighter/commit/a7242b88cce3d9228edfb0eed10ac246cf6277db))
-* Tappables preview is now in sync with actual state. ([7bc1a99](https://github.com/notapixelstudio/superstarfighter/commit/7bc1a9959de8e30e40fddc7597c3824d47228efc))
-* TappablesManager connect / disconnect ([584b683](https://github.com/notapixelstudio/superstarfighter/commit/584b683368da1511b64d44e0a224f62e04815d20))
-* timing the wanderer ([2c166fc](https://github.com/notapixelstudio/superstarfighter/commit/2c166fccd2b8b6200d26fb9f52b897e4defa21e8))
-* trail appears correctly. Close [#572](https://github.com/notapixelstudio/superstarfighter/issues/572) ([4bf66a3](https://github.com/notapixelstudio/superstarfighter/commit/4bf66a31d02dd9689a8cd4a98b6f426a767ed72a))
-* trail snake ([#390](https://github.com/notapixelstudio/superstarfighter/issues/390)) ([22cacb7](https://github.com/notapixelstudio/superstarfighter/commit/22cacb70b8aee31612426cbd62dafe9c17c87daf))
-* Trails fix and refactoring ([#386](https://github.com/notapixelstudio/superstarfighter/issues/386)) ([0c10607](https://github.com/notapixelstudio/superstarfighter/commit/0c1060731e0a0df5d382d0131e8263f0b4caa70d))
-* tweaks ([e71cf31](https://github.com/notapixelstudio/superstarfighter/commit/e71cf313eb11434e47e8088e25b87ec61798a542))
-* tweaks on green nodes ([94518d5](https://github.com/notapixelstudio/superstarfighter/commit/94518d504b0dcc6b80713711b94f2192b280f367))
-* tweaks on small debug elements ([10aaebd](https://github.com/notapixelstudio/superstarfighter/commit/10aaebdfb2b292de9710aaa71704f625fb6121fd))
-* tweaks to scene ([f6f4212](https://github.com/notapixelstudio/superstarfighter/commit/f6f421291ebcfe847e46cb123f1181a7ca6be49b))
-* typo ([db82afe](https://github.com/notapixelstudio/superstarfighter/commit/db82afe5d2fad23b406690134e0069dd26852ba4))
-* **ui:** Close [#419](https://github.com/notapixelstudio/superstarfighter/issues/419) ([acb0672](https://github.com/notapixelstudio/superstarfighter/commit/acb0672f4915fd99ddad5e3ac3cdeee91d28a322))
-* **ui:** close [#486](https://github.com/notapixelstudio/superstarfighter/issues/486) - "Show arena" button now shows the arena better ([f393e38](https://github.com/notapixelstudio/superstarfighter/commit/f393e3826c689e750cc36967bfd7e739916a6790))
-* **ui:** fix [#445](https://github.com/notapixelstudio/superstarfighter/issues/445) ([44093c1](https://github.com/notapixelstudio/superstarfighter/commit/44093c18be237956cb76a0f9f8f2e10261e28909))
-* **ui:** Padding correctly for array element ([c792e2a](https://github.com/notapixelstudio/superstarfighter/commit/c792e2a5dfd08d8216d20d974656fdddca863322))
-* **ui:** race - show points scored close [#463](https://github.com/notapixelstudio/superstarfighter/issues/463) ([2b35539](https://github.com/notapixelstudio/superstarfighter/commit/2b3553921bb0ff2a38420a032f6e635168c89a2c))
-* **ui:** selection screen command per player ([06d2fc6](https://github.com/notapixelstudio/superstarfighter/commit/06d2fc67b2bdd7e5f5b99624769b840e235fdb4d))
-* **ui:** small timeout when set a remapping control ([6698733](https://github.com/notapixelstudio/superstarfighter/commit/669873326a95472f3c7af075acc540f6c241874d))
-* **ui:** ui remapping ([#364](https://github.com/notapixelstudio/superstarfighter/issues/364)) ([7912261](https://github.com/notapixelstudio/superstarfighter/commit/7912261962bae2098a9443f3feb3425173c28360))
-* unlocking more complete.  ([558cb94](https://github.com/notapixelstudio/superstarfighter/commit/558cb94b8a2c71628adb1e36d50df440ae105502))
-* **unlocking:** map fixes for path and pathline ([b850e0e](https://github.com/notapixelstudio/superstarfighter/commit/b850e0e35c50131f3b7a09bdef0772bae54e5914))
-* updated laser moon sprites ([eea553a](https://github.com/notapixelstudio/superstarfighter/commit/eea553af528a3889aef4ad8ede1d0e1213b0c269))
-* upgrade to godot3.2.4 ([a7b7035](https://github.com/notapixelstudio/superstarfighter/commit/a7b703525ba7eb9f792a1377e043cb0104427688))
-* when arena is ran from editor. Continue will restart the match ([76ab01d](https://github.com/notapixelstudio/superstarfighter/commit/76ab01da854d35969fc45c4a117ada6206fa2c02))
+- **bump**: now correctly reset on bumping any version
+
+## v0.12.0 (2023-04-21)
+
+## v0.10.1 (2023-04-21)
+
+### Feat
+
+- **worlds**: flag are now displayed on completed worlds
+- **worlds**: flag are now displayed on completed worlds
+- **worlds**: Art and name for "oldcrown".
+- **worlds**: Art and name for "oldcrown".
+- **cpu**: Rocket the Crown Brain.
+- **cpu**: Rocket the Crown Brain.
+- **cpu**: homesick invaders cpu
+- **cpu**: homesick invaders cpu
+- **demo**: guard the bridge removed from future (temporarily)
+- **demo**: guard the bridge removed from future (temporarily)
+- **cpu**: diamond minefield brain
+- **cpu**: diamond minefield brain
+- **cpu**: diamond minefield basic brain
+- **cpu**: diamond minefield basic brain
+- **demo**: final world message
+- **demo**: final world message
+- **hall_of_fame**: hall of fame added to menu screen
+- **hall_of_fame**: hall of fame added to menu screen
+- **cpu**: diamond warfare brain
+- **cpu**: diamond warfare brain
+- **ui**: flag for compleated planes
+- **ui**: flag for compleated planes
+- **playlists**: alternative action world
+- **playlists**: alternative action world
+- **minigames**: diamond halves is in
+- **minigames**: diamond halves is in
+- **playlists**: Future World and cards improvements.
+- **playlists**: Future World and cards improvements.
+- **credits**: basic credits scene (not working)
+- **credits**: basic credits scene (not working)
+- **minigames**: improvements on Diamond Halves
+- **minigames**: improvements on Diamond Halves
+- **levels**: Water in Water Deathmatch (committed from a boat going from Padoa to Venice).
+- **levels**: Water in Water Deathmatch (committed from a boat going from Padoa to Venice).
+- **cards**: random card appearance
+- **cards**: random card appearance
+- **cards**: RandomCard
+- **cards**: RandomCard
+- **ui**: More planet arts.
+- **ui**: More planet arts.
+- **playlists**: Basic playlists in (content and art need more work).
+- **playlists**: Basic playlists in (content and art need more work).
+- **ui**: new world system up
+- **ui**: new world system up
+- **minigames**: super barebone diamond halves
+- **minigames**: super barebone diamond halves
+- **minigames**: diamond halves base
+- **minigames**: diamond halves base
+- **ui**: prime universe card back
+- **ui**: prime universe card back
+- **minigames**: Diamond Warfare in first playlist
+- **minigames**: Diamond Warfare in first playlist
+- **minigames**: 3 and 4 players arena for Diamond Warfare
+- **minigames**: 3 and 4 players arena for Diamond Warfare
+- **vfx**: visual feedback when dropping diamonds
+- **vfx**: visual feedback when dropping diamonds
+- **minigames**: 2 players diamond warfare
+- **minigames**: 2 players diamond warfare
+- **gameplay**: damage prevention time
+- **gameplay**: damage prevention time
+
+### Fix
+
+- **locale**: no need to translate minigame names
+- **locale**: no need to translate minigame names
+- **celebration**: the champion can write their name again
+- **celebration**: the champion can write their name again
+- **homesick_invaders**: added cpubrain for homesick
+- **homesick_invaders**: added cpubrain for homesick
+- **credits**: added localization to credits
+- **credits**: added localization to credits
+- **cards**: mystery cards now correctly trigger winter
+- **cards**: mystery cards now correctly trigger winter
+- **levels**: respawn from home in Homesick Invaders
+- **levels**: respawn from home in Homesick Invaders
+- **ui**: flag compleated for playlist show winner username (instead of id)
+- **ui**: flag compleated for playlist show winner username (instead of id)
+- **cpu**: Cpu underwater fixes.
+- **cpu**: Cpu underwater fixes.
+- **input**: input buffering and logic on Ship
+- **input**: input buffering and logic on Ship
+- **levels**: wrong position of half diamond
+- **levels**: wrong position of half diamond
+- **cards**: duplicate card ids are now respected
+- **cards**: duplicate card ids are now respected
+- **credits**: super-ultra barebones credits screen (functional)
+- **credits**: super-ultra barebones credits screen (functional)
+- **credits**: pippo, pluto and paperino have been credited
+- **credits**: pippo, pluto and paperino have been credited
+- **arena**: Support for single life when respawning from home (needed in Diamond Minefield).
+- **arena**: Support for single life when respawning from home (needed in Diamond Minefield).
+- **ui**: new neptune colors
+- **ui**: new neptune colors
+- **playlists**: diamond dive in neptune
+- **playlists**: diamond dive in neptune
+- **ui**: Uppercase world label.
+- **ui**: Uppercase world label.
+
+## gameplay/uniform_respawn_time (2023-03-23)
+
+### Fix
+
+- **gameplay**: Excessive glow of cards removed.
+- **gameplay**: Excessive glow of cards removed.
+
+## v0.11-alpha (2023-03-19)
+
+### Feat
+
+- **ui**: Floating world in world cup selection screen.
+- **minigames**: Winter Claim the Banner.
+- **minigames**: Claim the Banner logo and placement in "action" playlist.
+- **cpu**: Claim the Banner Brain.
+- **levels**: 3 and 4 players Claim the Banner.
+- **minigames**: Claim the Banner for 2 players
+- **minigames**: Claim the Banner skeleton
+- **scripts**: create new minigame script
+- **scripts**: basic create new minigame script
+- **ui**: more planet names and images
+- **ui**: planets
+- **ui**: Back button from deck selection screen.
+- **cpu**: Basic Hoopball brain.
+- **minigames**: Hoopball.
+- **playlists**: Temporary second playlists.
+
+### Fix
+
+- **scripts**: new minigame level is now correctly created as a inherited scene
+- **localization**: fixed on taglines
+- **localization**: revert to main for PlayerSelection
+- **localization**: fallback in characterscreen taglines
+- **ui**: planet buttons are now functional again
+- **performance**: Spurious WorldEnvironment node in Arena removed.
+
+## v0.10.1-alpha (2023-03-10)
+
+### Feat
+
+- **demo**: Skip playlist selection if demo is on.
+- **vfx**: diamond collect visual feedback
+- **sfx**: rising pitch for diamond collect sfx
+- **gameplay**: bumpable deadship
+- hotball basic stuff
+- **playlists**: "first" playlist
+- **playlists**: "first" playlist
+- **minigames**: poseidon
+- **minigames**: poseidon
+- **minigames**: treasure dive for 2 players
+- **minigames**: treasure dive for 2 players
+- **sfx**: new sound files
+- **sfx**: new sound files
+- **environments**: water wall
+- **environments**: water wall
+- **environments**: DashWall is now functional.
+- **environments**: DashWall is now functional.
+- **playlists**: teasing of new playlists and deck selection screen completed
+- **playlists**: teasing of new playlists and deck selection screen completed
+- **playlists**: Teasing of new playlists.
+- **playlists**: Teasing of new playlists.
+- **playlists**: random playlist button
+- **playlists**: random playlist button
+- **playlist**: old crown playlist
+- **playlist**: old crown playlist
+- **playlist**: Skulls playlist is now good
+- **playlist**: Skulls playlist is now good
+- **environments**: Reflector Walls
+- **environments**: Reflector Walls
+- **minigames**: 3 and 4 players levels added to Old School ("two" playlist is complete for all player counts)
+- **minigames**: 3 and 4 players levels added to Old School ("two" playlist is complete for all player counts)
+- **minigames**: first attempt at board conquest II board
+- **minigames**: first attempt at board conquest II board
+- **cpu**: improved board conquest brain
+- **cpu**: improved board conquest brain
+- better old school arena + tweaks
+- better old school arena + tweaks
+- **cpu**: poor man's danger avoidance
+- **cpu**: poor man's danger avoidance
+- **playlist**: playlist "two" completed for two players and AI
+- **playlist**: playlist "two" completed for two players and AI
+- **minigames**: improved Old School minigame
+- **minigames**: improved Old School minigame
+- **minigames**: improved Snipermatch arena
+- **minigames**: improved Snipermatch arena
+- **minigames**: tentative additions to intro playlist
+- **minigames**: tentative additions to intro playlist
+- **minigames**: hide and seek with rabbits and stuff
+- **minigames**: hide and seek with rabbits and stuff
+- **levels**: smaller battlefield in capture the flags (2 players) + slight gameplay changes and CPU improvements
+- **levels**: smaller battlefield in capture the flags (2 players) + slight gameplay changes and CPU improvements
+- **cpu**: capture the flags basic brain
+- **cpu**: capture the flags basic brain
+- **cpu**: Lowering CPU FPS to 5 + Undertakers brain also used in Skull Collectors.
+- **cpu**: Lowering CPU FPS to 5 + Undertakers brain also used in Skull Collectors.
+- **cpu**: Undertakers brain.
+- **cpu**: Undertakers brain.
+- **cpu**: deathmatch brain
+- **cpu**: deathmatch brain
+- **cpu**: board conquest brain
+- **cpu**: board conquest brain
+- **cpu**: use game mode-specific cpu brain, if found
+- **cpu**: use game mode-specific cpu brain, if found
+- **gameplay**: magnetic "cannon" WIP
+- **gameplay**: magnetic "cannon" WIP
+- **playlists**: empire playlist done
+- **playlists**: empire playlist done
+- **playlist**: empire playlist
+- **playlist**: empire playlist
+- **playlists**: do not shuffle hand (buggy) + do not show cards
+- **playlists**: do not shuffle hand (buggy) + do not show cards
+- **playlists**: attempt to craft the first playlist
+- **playlists**: attempt to craft the first playlist
+- **levels**: support for different player spawners in variants
+- **levels**: support for different player spawners in variants
+- **levels**: portal race variant A
+- **levels**: portal race variant A
+- **minigames**: diamond warfare basic setup (2 players)
+- **minigames**: diamond warfare basic setup (2 players)
+- **minigames**: capture the flag (all player counts)
+- **minigames**: capture the flag (all player counts)
+- **minigames**: capture the flags (2 players)
+- **minigames**: capture the flags (2 players)
+- **cpu+accessibility**: smaller player IDs + brain enhancements
+- **cpu**: more specialized brains + navigation "fix"
+- **cpu**: specialized brains
+- **cpu**: WIP navigation zones computation
+- **cpu**: WIP take the crown test
+- **cpu**: experiments with navigation
+- **cpu**: test brain for cpu
+- **cpu**: player brain done
+- **cpu**: no brain in ship as default
+- **cpu**: test player brain is working + refactoring
+- **cpu**: new brain system for controls (strategy pattern)
+- **cards**: and more mystery cards again
+- **cards**: more mystery cards
+- **sfx**: global sound effect manager + pew sfx bugfix
+- **cards**: intro deck splitted from classic
+- **cards**: starting deck option to skip the first draft
+- **cards**: hybrid suit cards
+
+### Fix
+
+- **localization**: improved localization for italian
+- **localization**: imrpove localization
+- **localization**: improved special character handling
+- **UI**: BACKSPACE button binding to fullscreen removed in favor of F11.
+- **android**: preparing for android
+- **demo**: Do not unlock content if demo + lots of fixes.
+- **playlists**: Playlist "ice" removed from initially unlocked starting decks.
+- **score**: crash fixed
+- **score**: do not show score floating messages if game is over
+- **locale**: fallback fonts and default theme
+- **locale**: cleanup
+- **persistence**: in case of no unlocking file better handling a clean state
+- **ux**: continue from hall of fame with controller buttons too
+- **celebration**: skip all of fame in case of cpu
+- **celebration**: skip all of fame in case of cpu
+- **analytics**: removed analytics. Waiting for new ones
+- **analytics**: removed analytics. Waiting for new ones
+- **ui**: rumbling and hall of fame
+- **ui**: rumbling and hall of fame
+- **gameplay**: water boost reduced
+- **gameplay**: water boost reduced
+- **playlists**: solved error when storing deck inside the deck list item
+- **playlists**: solved error when storing deck inside the deck list item
+- small improvements
+- small improvements
+- **minigames**: updated look of capture the flags
+- **minigames**: updated look of capture the flags
+- **unlock**: more clean and clear
+- **unlock**: more clean and clear
+- **unlock**: startingDeck resource- playlist or not - have now unlocks param
+- **unlock**: startingDeck resource- playlist or not - have now unlocks param
+- **unlocker**: starting deck
+- **unlocker**: starting deck
+- **gameloop**: ClassicMystery crash solved
+- **gameloop**: ClassicMystery crash solved
+- **unlocking**: shift reset reset everything
+- **unlocking**: shift reset reset everything
+- **playlist**: typo in accessing deck
+- **playlist**: typo in accessing deck
+- **playlists**: if playlist let's unlock and make room for a new playlist
+- **playlists**: if playlist let's unlock and make room for a new playlist
+- **persistence**: close #1064 - cpu in continue sessions
+- **persistence**: close #1064 - cpu in continue sessions
+- **draft**: close #1063 - quit to menu skip playing card
+- **draft**: close #1063 - quit to menu skip playing card
+- **playlist**: unlock if you play any playlist
+- **playlist**: unlock if you play any playlist
+- **playlist**: Everything is fixed. Print everything
+- **playlist**: Everything is fixed. Print everything
+- **playlists**: empire skips first draft
+- **playlists**: empire skips first draft
+- **cpu**: support for more than one target
+- **cpu**: support for more than one target
+- **crashes**: call_deferred on bitmask setting methods (should prevent lots of crashes)
+- **crashes**: call_deferred on bitmask setting methods (should prevent lots of crashes)
+- **cpu**: take the crown cpu update to take death into account
+- **cpu**: take the crown cpu update to take death into account
+- **minigames**: skull collectors name
+- **minigames**: skull collectors name
+- **playlist**: if it's a playlist do not shuffle in extraction.
+- **playlist**: if it's a playlist do not shuffle in extraction.
+- **graphics**: orange portals
+- **graphics**: orange portals
+- **gameplay**: working portals in race and goal, with graphics
+- **gameplay**: working portals in race and goal, with graphics
+- **gameplay**: gate double scoring bug fixed
+- **gameplay**: gate double scoring bug fixed
+- **gameplay**: WIP portal double scoring investigation
+- **gameplay**: WIP portal double scoring investigation
+- **gameplay**: quicker diamond waves
+- **gameplay**: quicker diamond waves
+- **minigames**: id of capture the flag
+- **minigames**: id of capture the flag
+- **look**: Pew rotation is now good
+- **cards**: Z-index errors in perfectionist overlays + minor chores.
+- **sfx**: partial fix to pew not disappearing (sfx is not played sometimes though)
+- **geometry**: simplified geometry in Goalportal zones (avoid spamming errors about isopolygon)
+- **persistance**: restore playing levels from scene
+- **logger**: improved logger
+- **levels**: Switching goals in 2 players Goalportal.
+- **levels**: Reinstated walls in Diamondsnatch at higher player counts.
+- **levels**: More space in Deathmatch at higher player counts + wall positions fixes.
+- **session**: a more clean way to cycle through the session life
+- **bugs**: smashing bugs and make them more reliable
+
+## v0.9-alpha-lucca (2022-11-03)
+
+### Feat
+
+- **sfx**: gate
+- **sfx**: pew
+- **look**: hall of fame graphics and simplified pilot stats
+- **demo**: autoselect character
+- **tutorials**: move > fire > aim tutorials
+- **tutorials**: option to appear more than once
+- **look**: backgrounds are chosen according to card suit
+- **cards**: connexx logo and final name + fix(accessibility): colorblind-safer logos
+- saving from eventual crash
+- **celebration**: improving animation on the hall of fame
+- **hall-of-fame**: Ugly but beautiful first attempt to Celebrate winner and Hall of Fame
+- **demo**: demo mode enable and handled (#1018)
+- **draft**: more smooth hand management (#1019)
+- **accessibility**: ui scaling (#895)
+- **unlocking**: starting deck unlocking. Unstable
+- **draft**: selection starting deck
+- adding new cards to deck from pool whenever the hand is emptied
+- connected to main loop
+- preparation for draftarena
+
+### Fix
+
+- **demo**: demo playtest flag reset for pre-release
+- **cards**: tweaks on cards
+- **before-demo**: last one. Setting smooth animation for hand. Session persistence for mystery card
+- **look**: better font settings
+- **look**: z-index error in game over screen
+- **gameplay**: skull outline fixed
+- **session**: now can recover from session and continue draft
+- **recover-session**: session recover fixes also for hand-over
+- **emergency-buttons**: emergency buttons in demo_playtest mode
+- **hand**: parametrized card separation
+- **persistence**: local timestamp correctly setup
+- **cards**: crash on continue after gameover fixed
+- **hall-of-fame**: correct placeholder
+- **session**: back to game after hall of fame
+- **draft**: resolved almost everything
+- **cycle**: cards work as usual
+- **demo**: fixed character selection according to controller
+- **ui**: join messages in selection
+- **celebration**: reintroduce snapshot animation leaderboard
+- **persistence**: latest game and confirm after gameover
+- **selection**: refactoring new mode to join the game
+- **demo_playtest**: control locked
+- **cards**: classic mystery card with correct subcards
+- **celebration**: username used in all relevant places
+- **persistance**: momentarily disable snapshot_leaderboards in order to avoid crash
+- **draft**: now the cards are correctly extracted, with new cards ncludede
+- **look**: better background for draft arena
+- **persistence**: able to choose deck even if previous one is not found
+- **leaderboards**: a few fixes for leaderboard and persinstance sessions
+- **gameplay**: no invincibility at the beginning of diamond minefield.
+- **session**: all the crashes will disappear
+- **gameplay**: Better positioning of launcher zones in Goalportal.
+- **gameplay**: More skull holes in Undertakers.
+- **accessibility**: Improved scaling of PlayerInfoOnShip.
+- **accessibility**: "on" tiles are now more visible.
+- **deck**: improvements to deck
+- **accessibility**: less camera movements in diamondsnatch
+- **accessibility**: fixed camera in board conquest
+- **performance**: in_camera removed from tiles
+- wrong ship rotation in connex
+- **gameplay**: second choice is seeing light
+- **persistence-session**: viva la persistance
+- **session-cycle**: link session over to cycle
+- **config**: remove references to card_pool.tres
+- ready (not really) to merge
+- small changes to Time utils
+- improvements
+- **cardpool**: will get all elements in folder
+- adding also the minigame logo
+- **session-winner**: link cycle for session winners
+- **session-winner**: Link to the cycle
+- **session-winners**: almost ready. need to link
+- **hall-of-fame**: mockup
+- **persistance**: continue from last session. If you want
+- deprecated datetime
+- almost ready
+- skull collector tweaks
+- skull collector tweaks
+- **cards**: improving spreading out
+- **cards**: fan out cards
+- **hand**: satisfying spread fanout cards
+- **reimport**: reimported assets
+- **config**: updated gitignore. *.import should not be ignored
+- **draft**: need to play a bit more with angles
+- **draft-card**: it seems we are getting somewhere
+- **signals**: get rid of nav_to_hall_of_fame
+- **session-winner**: complete cycle with winning session
+- **session-winner**: adding timestamp to global
+- **session-winner**: info on the matches as well
+- **hall-of-fame**: better handling cycle of session winner
+- **session-winner**: typo on instanziate session-winner
+- **hall-of-fame**: Connect with the cycle of sessions
+- disable unlocking cycle as in #1022
+- **hand**: correctly access to card content
+- **cards**: hand like fan. Doesn't work but it's something
+- **playtest**: fixes from playtest
+- **unlocking**: more smooth animation in unlocking
+- **unlocking**: skeleton for complete unlocked deck
+- **transition**: 1 second long transition scene
+- **diamondsnatch**: improved and made arena lighter
+- **unlocking**: deck scene shown on top of arena.
+- **memoryleak**: remove orphan nodes
+- **intro-match**: match intro and larger fade intro in match
+- **camera**: easing in intro
+- **camera**: intro works for large arenas (with a tween)
+- **transition**: tweaks on transition
+- **transition**: arena zoom at the beginning reduced
+- **vfx**: fade to black or white for transitions
+- **ui**: radio options for starting deck. skeleton
+- **camera**: tweak on values
+- **camera**: let's start from far behind
+- **draftcard**: get_minigame with a getter
+- **design**: diamondsnatch cleanup!
+- **draft**: bring back to life
+- **draft**: continue refactoring
+- **draft**: renaming and refactoring completed
+- **draft**: renaming
+- **battle**: refactoring for spawners implemented
+- **battle**: since like we have a good start to re-engineer our diamondsnatch
+- **battle**: spawners refactoring for Diamondsnatch (specifically)
+- **battle**: attempt to rengineer diamondsnatch spawners
+- **controls**: you can now map anything. No string attached
+- **ui**: close #679 let's disable the sorting bars for the time being
+- **ui**: better outline for device id
+- **ui**: tweaks on ux
+- **controls**: better handling presets
+- **ui**: checkbox pressed as transparent
+- **controls**: presets and defaults working for joy and kb
+- **controls**: correctly startup from existing saved mapping
+- **controls**: strong refactor. pt1
+- **config**: fix #921 all minigames should have IDs
+- rotation of decals in skull
+- **map**: chose card animation with arrow
+- **map**: tweaks on animation and extraction
+- **map**: bug fixed on the third+ cycle
+- **map**: cycle of map completed
+- **map**: ships should spawn if hand is getting a refilled because empty
+- in draftarena we wait for player card selection
+- disappear ship when tapping it
+- added logic for load resources
+- **ui**: wait all players to be ready!
+- tweaks
+- remapping is still complicated
+- worded more explicitly
+- remapping is a bit complicated
+
+## v0.7.0-alpha1 (2022-05-29)
+
+### Feat
+
+- camera enable into Options
+
+### Fix
+
+- **remapping**: generalizing template and style for joypads
+- one step closer to remap custom mapping
+- fix on keyboard ESCAPE button
+- added presets
+- presets
+- almost ready for deploy
+- improvements
+- mapping and connecting with signal from  EventBus
+- we are almost there
+- first stage of refactoring and cleanup
+- **ui**: needs a rewrite, unfortunately.
+- **ui**: improvements on options
+- rocket pursuing timeout observed
+- **gameplay**: close #800 Quitting while session is in progress gives someone a star
+- **camera**: closes #879 condition corrected for when disabled camera globally
+- **controls**: remapping
+- tweaks to scene
+- **controls**: Some tweaks
+- **controls**: fix ui for remapping controls and cleanup
+- **unlocking**: map fixes for path and pathline
+- close #855 camera override disabled
+- **accessibility**: slowdown in gameover fixed
+- close #855 camera override disabled
+- **accessibility**: slowdown in gameover fixed
+- close #855 camera override disabled
+- **camera**: maparena should be fixed
+- **persistence**: camera enable in persistence
+- **audio**: audiolibrary fixed, making sure that fadeout will stop
+- enable camera fixes in options
+- fixed soundtrack fadeout once and for all
+- **camera**: improvements on camera (#849)
+- correctly enable camera
+- fix point number (1). start of the match, arena is not correctly in camera
+- implelemented anchor to center ... experimenting update every 5 frames
+- **camera**: physics_process instead of process and update camera on odd frames
+- **camera**: minzomm to 3.0 (was 2.5)
+- correctly override time for first blood
+- soundtrack and fadeout
+- close #726, close #728 (#838)
+- quicker description scene
+- options better setup
+- cleanup
+- clean up and make everything work again
+- tweaks on green nodes
+
+## 120fps (2021-11-18)
+
+### Feat
+
+- deep tidy up folders for the upcoming ui overhaul (#758)
+- unlocker overhaul (#804)
+- Negacrown dashing and doubling
+
+### Fix
+
+- IMPORTANT! Physics fps increased to 120 + Bump tweaks.
+- relincensing assets under CC-BY-NC-SA (#809)
+- Slam-a-Gon in Godot 3.4 (it doesn't rely on callback order anymore)
+- CRT shader now is working again on HUD
+- better aspect ratio for Alchemical Bombing field
+- royalty is taken into account by fields
+- ships' royalty restored
+- queen of the hive royalty restored
+- slower respawn if holding crown + simpler respawn timeout design (needs testing)
+- less thin glass walls in Negacrown
+- more sophisticated holdables (avoid loading holdables of the same type twice, drop backwards when replaced)
+- advanced figures are worth double in memory
+- rockets pursue once
+- death is sometimes swirly + less impulse
+- better bump and less confusing death
+- more aliens, slower aliens in Homesick Invaders
+- TappablesManager connect / disconnect
+- Start with one starry path locked.
+- Tappables preview is now in sync with actual state.
+- tappables overhaul - exit areas and better signal handling
+- Size of Alchemical Bombing reduced for 3 and 4 players (the screen was difficult to read).
+- post-playtest fixes to Slam-A-Gon and Homesick Invaders
+
+## PontremoliPlaytest (2021-10-31)
+
+### Feat
+
+- button demo in Options (#771)
+- indestructible and regen shields
+- improved deathmatch with shields
+- layered shields
+- intro with ships and their invincibility (#694)
+- intro with ships and their invincibility
+- set test scene
+- unlocking a bit more complete. Now you can use map (#585)
+- refactoring for global Match and session (#579)
+- smooth transition especially at the beginning of the match. Close #433
+- skeleton for returning to map (#569)
+- randomly pass from wander to seek
+- added the chance to show description in mappanel
+- added laser
+- added flood moons in the map
+- added glow enabled by menu. Close #392 (#528)
+- **combat**: new weapon - bullet - in goal Portal
+- show arena completely and smoothly
+- **design**: Pursuing bombs is now a flag settable from Gamemode. Close #449
+- race skeleton
+- race mode and scoring
+- experiment with rules
+- **gameplay**: Add modifiers according to set choice (#446)
+- when the game is a tie, give a star for each player. Related to #401
+- Randomize player position at start (within session not if you run from scene) close #399
+- trails are created at respawn and deleted after wrap. Close #395
+- when dies the trail will wrap back
+- survival rules uniformed with perfect score system (#384)
+- Perfect score system (#382)
+- added panels in map
+- Minigames levels with water and other stuff (#373)
+- new map
+- skeleton for map with panels
+- **combat**: sync shockwave with explosion
+- **games**: Ball-based games (#363)
+- **games**: First blood game (#362)
+- **gameplay**: Brickbreak game and limited ammo support (#361)
+- **performance**: Improvements to graphic performance (#360)
+- **vfx**: Visual feedback for dash (#357)
+- **ui**: Input remapping for keyboard (#356)
+- **vfx**: Glowing arena (#353)
+- **ui**: improved ui on mainscreen (#338)
+- **design**: Drones set (#345)
+- **ui**: Attempt to reduce visual clutter (#344)
+- **ui**: in Combat bars will have Ticks and streaks (#343)
+- **design**: Asteroid Set (#340)
+- **ship**: everything is absolute controls (#335)
+
+### Fix
+
+- typo
+- hotfix on thematch trying to access summary()
+- get rid of rules and restore a single line description for minigames (some files still linger) - closes #768
+- get rid of rules and restore a single line description for minigames (some files still linger)
+- jagged shield sector when changing from plate to shield
+- bumpversion and cleanup
+- adding uuid to match and session
+- is_loadable in holdables
+- crash when playing a second session after a quit to map
+- one shot connect from Arena for gameover
+- leaderboard get the info from existing fields.
+- tweaks
+- font overhaul with bungee
+- some weird changes on merge
+- Camera on Map
+- shake no more
+- Dynamic labels on map, new assets, all-unlocked setup for testing.
+- Sets are shown and acted upon according to their status.
+- more generic way to get if a set is unlocked
+- locked sets
+- unlocking more complete.
+- bit more satisfying randomness selection of minigame
+- better feeling for random selection
+- Resource might be different instances, so better check the get_id()
+- correctly accessing to levels
+- skip fix, continue standalone
+- when arena is ran from editor. Continue will restart the match
+- ship appearance in bars
+- close #576. Avoid repetition of already unlock set
+- remove debug sprite
+- avoid crash and infinite waiting on multiple unlocking
+- trail appears correctly. Close #572
+- close #366
+- close #543
+- upgrade to godot3.2.4
+- starting animation
+- fix #523
+- check better persistance for joypad (#568)
+- follow camera won't go over the arena field (#557)
+- remove megaspace from "fields" and fix avoid finally
+- cpu ship more debug and more strategy
+- keep decision
+- better targetting new position
+- debug enabled and better handling stuff
+- committiamo così che per lo meno fanno qualcosa
+- more strategic CPU
+- timing the wanderer
+- debug enabled
+- no need to chase ship in some minigame
+- better handling CPU with turn and shoot and
+- card persisted
+- flood and laser persistent. Close #537
+- updated laser moon sprites
+- Handling remapping for Right Analog. FIx #533
+- better naming controls. Close #532
+- put glow enable in persistence
+- show arena and hide arena would now dark background as well
+- close #485 Countdown disappears on gameover
+- **ui**: close #486 - "Show arena" button now shows the arena better
+- refactoring code
+- **combat**: More visible deadship. Close #460
+- paddle cast shapes (more like cast a spell)
+- **combat**: portal in order to work for race. Close #475
+- tweaks on small debug elements
+- better camera handling in survival
+- **ui**: race - show points scored close #463
+- close #457 Keep  negative scores
+- deadship will not teleport
+- **ui**: fix #445
+- **combat**: Camera finally follow smoothly the players (#440)
+- **combat**: Give correct score in case of draw with 0 points. close #439
+- **combat**: fix camera for survival games (#436)
+- **selection**: close #429
+- **map**: Deduplication of minigames after selection. close #405
+- **map**: close #388 and close #389
+- **ui**: Close #419
+- **combat**: Resolves #410 and fix #409
+- Restart level on menu. close #387
+- skip sluggish tutorial. Close #381
+- Trails fix and refactoring (#386)
+- **combat**: improved and refactoring trail
+- **combat**: improved and refactoring trail
+- merge thing
+- refactoring trails
+- merge with minigames
+- moving things around
+- Multiple handlng wells for grid shader
+- **ui**: small timeout when set a remapping control
+- **design**: reset levels on restart session (#365)
+- **ui**: Padding correctly for array element
+- **ui**: selection screen command per player
+- **locale**: if locale is not recongised, trying to use the locale instead of the locale_name. Closes #310
+- **physics**: new values for ship torque and angular damp, attempt to address #349 (#355)
+- **gameplay**: on start ships didn't start close #337 (#341)
+
+## v0.6.4 (2020-03-10)
+
+## v0.6.3 (2020-03-04)
+
+## v0.6.1-demoherofest (2019-11-25)
+
+## v0.6-demo1 (2019-10-31)
+
+## v0.3.1 (2019-06-01)
+
+## v0.3-alpha1 (2019-05-13)
