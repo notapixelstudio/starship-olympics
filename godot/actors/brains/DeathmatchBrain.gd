@@ -25,6 +25,19 @@ func think():
 		log_strategy('avoid danger')
 		return
 	
+	targets = get_tree().get_nodes_in_group('powerup')
+	var useful_powerups = []
+	for target in targets:
+		if target is PowerUp and target.has_type('medikit') and not controllee.has_max_health():
+			useful_powerups.append(target)
+			
+	if len(useful_powerups) > 0:
+		var target = useful_powerups[random_preference%len(useful_powerups)]
+		set_stance('quiet')
+		go_to(target.global_position)
+		log_strategy('heal')
+		return
+		
 	targets = get_tree().get_nodes_in_group('Ship')
 	var valid_targets = []
 	

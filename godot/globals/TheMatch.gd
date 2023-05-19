@@ -211,9 +211,13 @@ func get_player(id_player: String) -> InfoPlayer:
 	return players[id_player]
 	
 func get_minigame_id() -> String:
+	if not minigame:
+		return "standalone"
 	return minigame.get_id()
 	
 func get_card_id() -> String:
+	if not draft_card:
+		return "standalone"
 	return draft_card.get_id()
 	
 func to_dict()->Dictionary:

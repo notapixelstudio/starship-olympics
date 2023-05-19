@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://actors/battlers/Ship.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/atom.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=8]
 [ext_resource path="res://combat/components/Flowing.gd" type="Script" id=9]
 [ext_resource path="res://combat/components/Cargo.gd" type="Script" id=10]
+[ext_resource path="res://combat/traits/Target.tscn" type="PackedScene" id=11]
 [ext_resource path="res://combat/components/Conqueror.gd" type="Script" id=12]
 [ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=13]
 [ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=14]
@@ -180,6 +181,8 @@ order = 1
 
 [node name="Tracked" parent="." instance=ExtResource( 36 )]
 
+[node name="Target" parent="." instance=ExtResource( 11 )]
+
 [node name="Ammo" parent="." instance=ExtResource( 37 )]
 unique_name_in_owner = true
 
@@ -209,6 +212,13 @@ visible = false
 
 [node name="LeftScythe" parent="." instance=ExtResource( 26 )]
 scale = Vector2( 1, -1 )
+
+[node name="FwShotCompensationZone" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FwShotCompensationZone"]
+polygon = PoolVector2Array( 1000, -300, 1000, 300, 0, 150, 0, -150 )
 
 [node name="Shields" parent="." instance=ExtResource( 30 )]
 

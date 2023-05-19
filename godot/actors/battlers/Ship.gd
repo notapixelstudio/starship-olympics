@@ -197,6 +197,9 @@ func set_max_health(value: int):
 func reset_health():
 	$PlayerInfo.reset_health(max_health)
 	self.set_health(max_health)
+	
+func has_max_health() -> bool:
+	return health == max_health
 
 func _enter_tree():
 	alive = true
@@ -879,6 +882,13 @@ func apply_powerup(powerup):
 	elif powerup.type == 'bubble_gun':
 		set_bomb_type(GameMode.BOMB_TYPE.bubble)
 		update_weapon_indicator()
+	elif powerup.type == 'medikit':
+		success = not has_max_health()
+		if success:
+			reset_health()
+		else:
+			# drop unused powerup
+			drop_powerup(powerup.type)
 		
 	if powerup.has_category('weapon'):
 		$WeaponSlot.wield(powerup.type)
@@ -912,6 +922,12 @@ func update_weapon_indicator():
 	else:
 		$"%BombPreview/BombType".scale = Vector2(0.7,0.7) # WARNING hardcoded default
 	
+func get_aim_adjusting_target():
+	for body in $"%FwShotCompensationZone".get_overlapping_bodies():
+		if body != self and traits.has_trait(body, 'Target'):
+			return body
+	return null
+	
 func tap():
 	Events.emit_signal('tap', self)
 	#switch_emersion_state()
@@ -922,8 +938,11 @@ func tap():
 		var aperture = PI/4
 		var amount = 1
 		var aim_correction = 0.65
+		var aim_angle = (aim_correction*get_target_velocity().normalized() + (1-aim_correction)*Vector2.RIGHT.rotated(global_rotation)).angle() if get_target_velocity().length() > 0.6 else global_rotation
+		var target = get_aim_adjusting_target()
+		if target != null:
+			aim_angle = (target.global_position - global_position).angle()
 		for i in range(amount):
-			var aim_angle = (aim_correction*get_target_velocity().normalized() + (1-aim_correction)*Vector2.RIGHT.rotated(global_rotation)).angle() if get_target_velocity().length() > 0.6 else global_rotation
 			var angle = aim_angle + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
 			var bullet = forward_bullet_scene.instance()
 			get_parent().add_child(bullet)
