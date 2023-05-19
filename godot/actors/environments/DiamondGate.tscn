@@ -1,16 +1,86 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://actors/environments/Gate.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/environments/DiamondGate.gd" type="Script" id=2]
+[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sprites/environments/square_diamond.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
 extents = Vector2( 250, 500 )
 
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "RotateCCW"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "RotateCW"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
 [node name="DiamondGate" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" parent="." index="0"]
+[node name="Waiter" parent="." index="0" instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
+
+[node name="BottomRingPart" parent="." index="2"]
+self_modulate = Color( 1, 0.713726, 0.521569, 1 )
+
+[node name="RingPart" parent="." index="4"]
+self_modulate = Color( 1, 0.678431, 0.521569, 1 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="8"]
+anims/RESET = SubResource( 2 )
+anims/RotateCCW = SubResource( 4 )
+anims/RotateCW = SubResource( 3 )
+
+[node name="Diamond" type="Sprite" parent="." index="9"]
+modulate = Color( 1.1, 1.1, 1.1, 1 )
+position = Vector2( -55, 14 )
+z_index = 14
+texture = ExtResource( 4 )
 
 [connection signal="crossed" from="." to="." method="_on_DiamondGate_crossed"]
