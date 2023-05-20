@@ -25,7 +25,9 @@ func on_ship_near_area_hit(hit_ship: Ship) -> void:
 		destroy()
 	
 func _on_ForwardBullet_body_entered(body):
-	if not (body is Mirror) and not (body is MirrorWall):
+	var is_mirror = body is Mirror or body is MirrorWall
+	#var foe = not body.has_method('get_team') or body.get_team() != get_team()
+	if not is_mirror:# and foe:
 		destroy()
 		
 	if body.has_method('damage'):

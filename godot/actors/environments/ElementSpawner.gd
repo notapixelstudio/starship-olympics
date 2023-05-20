@@ -25,6 +25,8 @@ func refresh_preview():
 func spawn():
 	var element = element_scene.instance()
 	add_child(element)
+	if traits.has_trait(element, 'Waiter'):
+		element.start()
 	
 func remove_child(element):
 	.remove_child(element)

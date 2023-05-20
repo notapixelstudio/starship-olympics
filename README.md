@@ -21,7 +21,6 @@ Features:
 
 You will play as one pilot from a diverse roster of aliens, and fight to become the champion of the intergalactic Games, a sport competition symbol of unity and peace for all the species of the universe.
 
-<a href="https://notapixel.itch.io/superstarfighter"><img src="img/gameplay.jpg"/></a>
 
 In this game, you will pilot your own starship and face off against other players in a variety of challenges and competitions. Whether you prefer to race through a dangerous asteroid field or engage in a thrilling dogfight, Starship Olympics has something for everyone.
 
@@ -31,7 +30,7 @@ In this game, you will pilot your own starship and face off against other player
 
 [![Gameplay Screenshot](img/gameplay2.jpg)](https://notapixel.itch.io/superstarfighter)
 
-## 📣 Follow the Development
+## Follow the Development
 
 This game is being developed on **`Godot v3.5.2`**.
 
@@ -101,6 +100,6 @@ All the code used in this project is open source and under the MIT License, so y
 The licenses can be summarized as follows:
 
 1. Source code (everything except game assets, under the folder _assets_) is distributed under the [MIT License](LICENSE_source_code.txt).
-2. All the game assets (art, audio, texture, .svg files) under the folder _assets_, if not explicitly stated otherwise, are under [CC BY NC SA](https://creativecommons.org/licenses/by-nc-sa/2.0/), made by notapixelstudio, the community, or contributors. Some of them are from third-party sources, credited below or explicitly stated under the respective folder.
+2. All the game assets (art, audio, texture, .svg files) under the folder _assets_, if not explicitly stated otherwise, are under [CC BY NC SA](https://creativecommons.org/licenses/by-nc-sa/2.0/), made by notapixelstudio, the community, or contributors. Some of them are from third-party sources, credited above under the Credits session or explicitly stated under the respective folder.
 
 If you have any questions, please don't hesitate to contact us at notapixelstudio@gmail.com.

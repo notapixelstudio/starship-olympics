@@ -208,7 +208,7 @@ func set_presets(action_device: String, preset_value: String) -> Dictionary:
 		device_name = "joy"
 	
 	var file = presets_path["{device}_{preset_value}".format({"device":device_category, "preset_value": preset_value})]
-	var preset_dictionary = global.read_file(file)
+	var preset_dictionary = parse_json(global.read_file(file))
 	
 	var this_mapping = preset_dictionary[device_name]
 	for action_name in this_mapping:
