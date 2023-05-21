@@ -14,6 +14,7 @@ func _process(delta):
 		global.reset_shown_cards_from_deck()
 		# TheUnlocker.unlock_element("starting_decks", "winter", TheUnlocker.LOCKED)
 		TheUnlocker.reset_unlocks()
+		TheUnlocker.reset_hall_of_fame()
 		$"%Info".text = "Sessions played: {sessions_played}. \n Decks unlocked: {unlocked} - Decks hidden: {hidden} \n Cards unlocked: {cards} \n Press SHIFT+R to reset".format({"sessions_played": global.sessions_played, "unlocked": TheUnlocker.get_unlocked_list("starting_decks"), "cards": TheUnlocker.get_unlocked_list("cards"), "hidden": TheUnlocker.get_unlocked_list("starting_decks", TheUnlocker.HIDDEN)})
 		persistance.save_game()
 
