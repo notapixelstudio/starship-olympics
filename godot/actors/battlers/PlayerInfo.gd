@@ -113,3 +113,11 @@ func update_health(amount):
 
 func get_bag():
 	return $Wrapper/Scaled/Bag
+
+func start_countdown(from: int):
+	$Wrapper/Scaled/Countdown.start(from)
+
+signal countdown_expired
+
+func _on_Countdown_expired():
+	emit_signal("countdown_expired")

@@ -242,6 +242,7 @@ func _ready():
 	dead_ship_instance = dead_ship_scene.instance()
 	dead_ship_instance.ship = self
 	skin.ship_texture = species.ship
+	$Graphics/SpriteOverlay.texture = species.ship_w
 	# skin.invincible(1.0)
 	entity = ECM.E(self)
 	
@@ -1027,6 +1028,7 @@ func intro():
 
 func disable_controls():
 	controls_enabled = false
+	reset_charge()
 	
 func enable_controls():
 	controls_enabled = true
@@ -1214,3 +1216,26 @@ func on_collect(collectee):
 func get_bag():
 	return $PlayerInfo.get_bag()
 	
+# time freeze
+var last_unfrozen_state = {
+	'linear_velocity': Vector2(),
+	'angular_velocity': 0
+}
+
+func time_freeze():
+	$Graphics/SpriteOverlay.modulate = Color(0.5,0.7,1,0.6)
+	disable_controls()
+	last_unfrozen_state['linear_velocity'] = linear_velocity
+	last_unfrozen_state['angular_velocity'] = angular_velocity
+	linear_velocity = Vector2()
+	angular_velocity = 0
+	
+func time_unfreeze():
+	$Graphics/SpriteOverlay.modulate = Color(1,1,1,0)
+	enable_controls()
+	linear_velocity += last_unfrozen_state['linear_velocity']
+	angular_velocity += last_unfrozen_state['angular_velocity']
+	$PlayerInfo.start_countdown(5)
+
+func _on_PlayerInfo_countdown_expired():
+	Events.emit_signal('sth_countdown_expired', self)

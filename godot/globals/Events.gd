@@ -34,6 +34,8 @@ signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no d
 signal sth_collected(collector, collectee)
 signal sth_conquered(conqueror, conquered)
 
+signal sth_countdown_expired(sth)
+
 signal navigation_zone_changed(zone)
 
 # Arena
