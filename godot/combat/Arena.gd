@@ -656,7 +656,7 @@ func ship_just_died(ship, killer, for_good):
 	if not global.is_match_running():
 		return
 	
-	# respawn
+	# repair (respawn from dead/deactivated ship)
 	
 	ship.linear_velocity = ship.dead_ship_instance.linear_velocity
 	ship.angular_velocity = ship.dead_ship_instance.angular_velocity
@@ -665,7 +665,7 @@ func ship_just_died(ship, killer, for_good):
 	ship.rotation = ship.dead_ship_instance.rotation
 	$Battlefield.call_deferred("add_child", ship)
 	create_trail(ship)
-	
+	Events.emit_signal("ship_repaired", ship)
 	
 func on_gameover():
 	set_process_unhandled_input(false)
@@ -756,6 +756,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	
 	ship.recheck_colliding()
 	emit_signal('ship_spawned', ship)
+	Events.emit_signal("ship_spawned", ship)
 	
 	if force_intro:
 		ship.intro()

@@ -2,6 +2,8 @@ extends Node
 
 signal bumper_created(bumper)
 
+signal ship_spawned(ship)
+signal ship_repaired(ship)
 signal ship_damaged(ship, hazard, damager)
 signal ship_died(ship, killer, for_good)
 

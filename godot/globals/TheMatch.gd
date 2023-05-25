@@ -156,6 +156,9 @@ func do_game_over():
 	game_over = true
 	emit_signal("game_over")
 	
+func is_almost_game_over():
+	return time_left < 0.5
+	
 func is_game_over():
 	return game_over
 	

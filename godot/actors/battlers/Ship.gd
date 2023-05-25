@@ -1188,10 +1188,15 @@ func do_brain_tick() -> void:
 	brain.tick()
 	
 func _on_charge_requested() -> void:
+	if not controls_enabled:
+		return
+		
 	if not is_diving(): # starting to charge inside water is forbidden
 		charge()
 	
 func _on_release_requested() -> void:
+	if not controls_enabled:
+		return
 	fire()
 	
 var loaded_shot = null
@@ -1230,12 +1235,12 @@ func time_freeze():
 	linear_velocity = Vector2()
 	angular_velocity = 0
 	
-func time_unfreeze():
+func time_unfreeze(time_left := 5.0):
 	$Graphics/SpriteOverlay.modulate = Color(1,1,1,0)
 	enable_controls()
 	linear_velocity += last_unfrozen_state['linear_velocity']
 	angular_velocity += last_unfrozen_state['angular_velocity']
-	$PlayerInfo.start_countdown(5)
+	$PlayerInfo.start_countdown(floor(time_left)) # not good
 
 func _on_PlayerInfo_countdown_expired():
 	Events.emit_signal('sth_countdown_expired', self)
