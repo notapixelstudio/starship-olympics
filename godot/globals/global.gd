@@ -78,7 +78,7 @@ var available_languages = {
 	}
 onready var language: String setget _set_language, _get_language
 var array_language: Array = ["english", "italiano", "español", "euskara", "français", "deutsch"]
-var full_screen = false setget _set_full_screen
+var full_screen = true setget _set_full_screen
 	
 func _set_full_screen(value: bool):
 	full_screen = value
@@ -141,7 +141,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.14.1-alpha" setget set_version
+var version = "0.14.4a5" setget set_version
 var first_time = true
 
 func set_version(value):
