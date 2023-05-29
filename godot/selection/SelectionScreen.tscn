@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=7]
 [ext_resource path="res://special_scenes/combat_UI/session_points/Star.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/fonts/DefaultFont40.tres" type="DynamicFont" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -92,12 +93,6 @@ size = 52
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 40
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 28
@@ -360,7 +355,7 @@ margin_left = -650.0
 margin_top = 260.0
 margin_right = 630.0
 margin_bottom = 310.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = ExtResource( 10 )
 text = "PRESS A BUTTON TO CONTINUE"
 align = 1
 valign = 1

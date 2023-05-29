@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://special_scenes/combat_UI/gameover/WinnerBanner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/HallOfFame.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://combat/levels/background/menus.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/DefaultFont21.tres" type="DynamicFont" id=5]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=9]
 
 [sub_resource type="DynamicFont" id=3]
@@ -64,7 +65,7 @@ theme = ExtResource( 9 )
 custom_colors/font_color_shadow = Color( 0.2, 0.317647, 0.482353, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 3
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "PRESS A BUTTON TO CONTINUE"
 align = 1
 valign = 1
