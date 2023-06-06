@@ -1,10 +1,10 @@
 tool
 extends EditorScript
 
-const NAME := "MineSettlers"
+const NAME := "Colorboard"
 const also_winter := true
 
-const TEMPLATE := "DiamondMinefield"
+const TEMPLATE := "BoardConquest"
 
 const LEVELS_BASE_DIR := "res://combat/levels/singles/"
 const GAME_MODES_BASE_DIR := "res://combat/modes/"
