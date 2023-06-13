@@ -12,7 +12,7 @@
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/sprites/environments/bones_deco.png" type="Texture" id=11]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=12]
-[ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=13]
+[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=13]
 [ext_resource path="res://combat/levels/background/green.png" type="Texture" id=14]
 [ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/levels/background/green/pylon.png" type="Texture" id=22]
@@ -281,7 +281,6 @@ position = Vector2( 1500, -1100 )
 position = Vector2( -1200, 800 )
 rotation = 0.0
 species = ExtResource( 12 )
-cpu = true
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 1200, -800 )

@@ -180,6 +180,7 @@ angular_damp = 80.0
 script = ExtResource( 1 )
 forward_bullet_scene = ExtResource( 33 )
 atom_texture = ExtResource( 2 )
+cpu_ship_texture = ExtResource( 20 )
 
 [node name="Intro" parent="." instance=ExtResource( 22 )]
 order = 1
@@ -332,7 +333,6 @@ texture = ExtResource( 41 )
 [node name="SpriteOverlay" type="Sprite" parent="Graphics"]
 modulate = Color( 1, 1, 1, 0 )
 material = SubResource( 14 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 41 )
 
 [node name="Shadow" parent="Graphics" instance=ExtResource( 40 )]

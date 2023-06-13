@@ -89,3 +89,6 @@ func set_from_dictionary(data: Dictionary):
 	self.session_score = data.get("session_score", [])
 	self.cpu = data.get("cpu", false)
 	print(data)
+
+func is_cpu() -> bool:
+	return cpu
