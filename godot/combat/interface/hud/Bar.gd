@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Bar
 
+export var cpu_ship_texture : Texture
+
 const max_bar_width = 950
 const bar_height = 20
 const ministar_width = 20
@@ -36,7 +38,12 @@ func post_ready(p: InfoPlayer):
 	
 	$Streaks.visible = streaks_enabled
 	
-	sprite.texture = species.ship
+	if player.is_cpu():
+		sprite.texture = cpu_ship_texture
+		sprite.modulate = species.color
+	else:
+		sprite.texture = species.ship
+		sprite.modulate = Color.white
 	
 	# background
 	$Background.rect_position = Vector2(margin_left, margin_top)

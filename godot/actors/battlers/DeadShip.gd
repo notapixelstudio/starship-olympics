@@ -2,6 +2,8 @@ extends RigidBody2D
 
 class_name DeadShip
 
+export var cpu_ship_texture : Texture
+
 var ship setget set_ship
 var info_player
 var species
@@ -19,11 +21,18 @@ func set_ship(new_value):
 	camera = ship.camera
 	info_player = ship.info_player
 	species = ship.species
-	$UnderSprite.self_modulate = species.color
-	$UnderSprite.texture = species.ship
-	$Sprite.texture = species.ship
 	
-	
+	if info_player.is_cpu():
+		$Sprite.texture = cpu_ship_texture
+		$Sprite.modulate = species.color
+		$UnderSprite.self_modulate = species.color
+		$UnderSprite.texture = cpu_ship_texture
+	else:
+		$Sprite.texture = species.ship
+		$Sprite.modulate = Color.white
+		$UnderSprite.self_modulate = species.color
+		$UnderSprite.texture = species.ship
+		
 func _enter_tree():
 	#linear_velocity = ship.linear_velocity
 	position = ship.position

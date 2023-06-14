@@ -14,6 +14,7 @@ export var species : Resource
 
 export var forward_bullet_scene : PackedScene
 export var atom_texture : Texture
+export var cpu_ship_texture : Texture
 
 var controls_enabled = false
 
@@ -108,7 +109,6 @@ var game_mode : GameMode
 var teleport_to = null
 
 onready var player = name
-onready var skin = $Graphics
 onready var charging_sfx = $charging
 onready var target_dest = $TargetDest
 
@@ -200,6 +200,17 @@ func reset_health():
 	
 func has_max_health() -> bool:
 	return health == max_health
+	
+func reset_appearance():
+	if info_player.is_cpu():
+		$Graphics.ship_texture = cpu_ship_texture
+		$Graphics/Sprite.self_modulate = species.color
+	else:
+		$Graphics.ship_texture = species.ship
+		$Graphics/Sprite.self_modulate = Color.white
+	
+	# sometimes the hit anim gets stuck, so...
+	$Graphics/Sprite.modulate = Color.white
 
 func _enter_tree():
 	alive = true
@@ -210,7 +221,7 @@ func _enter_tree():
 	phase = 'in'
 	empty_loaded_shot()
 	unhide()
-	$Graphics/Sprite.modulate = Color.white
+	reset_appearance()
 	
 	reset_health()
 	
@@ -231,19 +242,20 @@ func _enter_tree():
 	
 func make_invincible():
 	invincible = true
-	if skin:
-		skin.invincible()
+	if $Graphics:
+		$Graphics.invincible()
 	yield(get_tree().create_timer(0.1), "timeout")
-	yield(skin, "stop_invincible")
+	yield($Graphics, "stop_invincible")
 	invincible = false
 	
 func _ready():
 	disable_controls()
 	dead_ship_instance = dead_ship_scene.instance()
 	dead_ship_instance.ship = self
-	skin.ship_texture = species.ship
+	reset_appearance()
+	
 	$Graphics/SpriteOverlay.texture = species.ship_w
-	# skin.invincible(1.0)
+	# $Graphics.invincible(1.0)
 	entity = ECM.E(self)
 	
 	entity.get('Conqueror').set_species(self)
@@ -632,7 +644,7 @@ func die(killer : Ship, for_good = false):
 		
 		reset_charge()
 		
-		# skin.play_death()
+		# $Graphics.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		yield(get_tree(), "idle_frame")
 		if info_player.lives >= 0:
