@@ -86,6 +86,7 @@ func _ready():
 	
 func _on_ThinkTimer_timeout():
 	compute_think_time()
+	$StateMachine.get_current_state().think()
 	think()
 
 func update_debug() -> void:
@@ -164,3 +165,9 @@ func compute_nearest(nodes: Array) -> Node2D:
 			nearest = node
 			d = new_d
 	return nearest
+
+func blink_filament():
+	$BulbFilament/AnimationPlayer.play("Blink")
+	
+func stop_blink_filament():
+	$BulbFilament/AnimationPlayer.stop()

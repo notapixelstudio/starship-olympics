@@ -10,7 +10,7 @@ func _ready():
 	
 func think():
 	var targets
-	
+
 	set_stance('quiet') # we can't shoot in this minigame
 	log_strategy('')
 	
@@ -19,7 +19,7 @@ func think():
 		go_to(targets[random_preference%len(targets)].global_position)
 		log_strategy('chase diamond')
 		return
-	
+
 	if randf() < go_to_center_p:
 		go_to(Vector2(0,0))
 		log_strategy('go to center')

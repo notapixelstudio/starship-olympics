@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://actors/battlers/Ship.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/atom.png" type="Texture" id=2]
@@ -46,6 +46,7 @@
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=44]
 [ext_resource path="res://assets/audio/gameplay/bricks/sfx_wpn_laser7.wav" type="AudioStream" id=45]
 [ext_resource path="res://combat/traits/TimeFreezable.tscn" type="PackedScene" id=46]
+[ext_resource path="res://assets/sprites/species/bulb_filament.png" type="Texture" id=47]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -130,6 +131,39 @@ shader_param/width = 12.0
 shader_param/pattern = 1
 shader_param/inside = false
 shader_param/add_margins = true
+
+[sub_resource type="Animation" id=15]
+resource_name = "Blink"
+length = 0.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="ShaderMaterial" id=14]
 shader = ExtResource( 38 )
@@ -329,6 +363,15 @@ anims/invincible = ExtResource( 3 )
 material = SubResource( 10 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 41 )
+
+[node name="CPUBulbFilament" type="Sprite" parent="Graphics"]
+visible = false
+material = SubResource( 10 )
+texture = ExtResource( 47 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics/CPUBulbFilament"]
+anims/Blink = SubResource( 15 )
+anims/RESET = SubResource( 16 )
 
 [node name="SpriteOverlay" type="Sprite" parent="Graphics"]
 modulate = Color( 1, 1, 1, 0 )

@@ -84,6 +84,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://actors/brains/Brain.gd"
 }, {
+"base": "State",
+"class": "BrainState",
+"language": "GDScript",
+"path": "res://actors/brains/BrainState.gd"
+}, {
 "base": "StaticBody2D",
 "class": "Brick",
 "language": "GDScript",
@@ -644,6 +649,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://map/draft/decks/StartingDeck.gd"
 }, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://addons/FSM/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://addons/FSM/StateMachine.gd"
+}, {
 "base": "Position2D",
 "class": "TargetDest",
 "language": "GDScript",
@@ -755,6 +770,7 @@ _global_script_class_icons={
 "BombSpawner": "",
 "BombTurret": "",
 "Brain": "",
+"BrainState": "",
 "Brick": "",
 "Bubble": "",
 "Bull": "",
@@ -867,6 +883,8 @@ _global_script_class_icons={
 "Star": "",
 "StarIcon": "",
 "StartingDeck": "",
+"State": "",
+"StateMachine": "",
 "TargetDest": "",
 "TeamStats": "",
 "TheGame": "",
@@ -943,7 +961,7 @@ window/size/fullscreen.debug=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/ECM/plugin.cfg", "res://addons/geometry/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/traits/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/ECM/plugin.cfg", "res://addons/FSM/plugin.cfg", "res://addons/geometry/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/traits/plugin.cfg" )
 
 [global]
 
