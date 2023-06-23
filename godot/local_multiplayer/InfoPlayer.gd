@@ -74,7 +74,9 @@ func get_color() -> Color:
 		return Color.sandybrown
 	return species.color
 	
-func get_character_image() -> Texture:
+func get_character_image():
+	if is_cpu():
+		return load("res://assets/sprites/species/drones/character_ok.png")
 	return species.character_ok
 	
 func has_proper_team() -> bool:
