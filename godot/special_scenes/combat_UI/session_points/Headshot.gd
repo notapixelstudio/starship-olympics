@@ -1,18 +1,9 @@
 extends Control
-tool
 
-export var species : Resource setget set_species
-
-func _ready():
-	species = null
-	
-func set_species(value: Species):
-	species = value
-	if not $Sprite:
-		return
-	if species:
-		$Sprite.texture = species.character_ok
-		$Polygon2D.modulate = species.color
+func set_player(player: InfoPlayer): # InfoPlayer
+	if player:
+		$Sprite.texture = player.get_character_image()
+		$Polygon2D.modulate = player.get_color()
 		$Line2D.visible = true
 	else:
 		$Sprite.texture = null

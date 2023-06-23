@@ -101,7 +101,7 @@ func _on_card_taken(card, player, ship):
 			score = 3
 			
 	global.the_match.add_score(player.id, score)
-	global.arena.show_msg(player.species, score, card.position)
+	global.arena.show_msg(player.get_color(), score, card.position)
 	card.destroy()
 
 # reveal cards at the end of the match

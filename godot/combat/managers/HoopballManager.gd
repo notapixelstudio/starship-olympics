@@ -17,7 +17,7 @@ func _on_gate_crossed(by_what, gate, trigger):
 			
 		if holdable != null and holdable is Ball:
 			global.the_match.add_score(by_what.get_player().get_id(), 1)
-			global.arena.show_msg(by_what.get_player().species, 1, by_what.position)
+			global.arena.show_msg(by_what.get_color(), 1, by_what.position)
 			gate.show_feedback()
 			gate.disable()
 			activate_another_random_gate(gate)

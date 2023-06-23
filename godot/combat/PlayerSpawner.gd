@@ -34,7 +34,7 @@ func appears():
 	
 	if info_player.is_cpu():
 		sprite.texture = cpu_ship_texture
-		sprite.modulate = species.color
+		sprite.modulate = info_player.get_color()
 	else:
 		sprite.texture = species.ship
 		sprite.modulate = Color.white

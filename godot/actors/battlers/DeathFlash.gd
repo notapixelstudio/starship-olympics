@@ -1,11 +1,11 @@
 extends Node2D
 
-export var species : Resource
+export var color : Color
 export var timeout : float = 2.0
 export var big : = true
 
 func _ready():
-	$Particles2D.modulate = species.color
+	$Particles2D.modulate = color
 	$Particles2D.lifetime = timeout
 	$Particles2D.emitting = true
 	if big:

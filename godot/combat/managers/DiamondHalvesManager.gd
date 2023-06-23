@@ -60,5 +60,5 @@ func collect_right(bag):
 func score(collector):
 	collector.get_bag().decrease()
 	global.the_match.add_score_to_team(collector.get_team(), 1)
-	global.arena.show_msg(collector.get_player().species, 1, collector.position)
+	global.arena.show_msg(collector.get_color(), 1, collector.position)
 	

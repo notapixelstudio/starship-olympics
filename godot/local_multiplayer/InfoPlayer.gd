@@ -70,7 +70,12 @@ func get_species_name() -> String:
 	return species.name
 
 func get_color() -> Color:
+	if is_cpu() and has_proper_team():
+		return Color.sandybrown
 	return species.color
+	
+func get_character_image() -> Texture:
+	return species.character_ok
 	
 func has_proper_team() -> bool:
 	return self.team != self.id

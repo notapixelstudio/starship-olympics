@@ -26,7 +26,7 @@
 size_multiplier = 2.5
 game_mode = ExtResource( 4 )
 style = ExtResource( 5 )
-score_to_win_override = 12
+score_to_win_override = 1
 match_duration_override = 80.0
 
 [node name="KillModeManager" parent="Managers" index="8"]
@@ -291,24 +291,26 @@ position = Vector2( -1950, 950 )
 rotation = 0.0
 controls = "joy1"
 species = ExtResource( 14 )
-cpu = true
+team = "A"
 
 [node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
 position = Vector2( 1950, -950 )
 rotation = 3.14159
 species = ExtResource( 13 )
-cpu = true
+team = "A"
 
 [node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
 position = Vector2( 1950, 950 )
 rotation = -1.5708
 species = ExtResource( 11 )
+team = "B"
 cpu = true
 
 [node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
 position = Vector2( -1950, -950 )
 rotation = 1.5708
 species = ExtResource( 7 )
+team = "B"
 cpu = true
 
 [node name="Camera" parent="." index="6"]

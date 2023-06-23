@@ -22,15 +22,14 @@ func set_ship(new_value):
 	info_player = ship.info_player
 	species = ship.species
 	
+	$UnderSprite.self_modulate = info_player.get_color()
 	if info_player.is_cpu():
 		$Sprite.texture = cpu_ship_texture
-		$Sprite.modulate = species.color
-		$UnderSprite.self_modulate = species.color
+		$Sprite.modulate = info_player.get_color()
 		$UnderSprite.texture = cpu_ship_texture
 	else:
 		$Sprite.texture = species.ship
 		$Sprite.modulate = Color.white
-		$UnderSprite.self_modulate = species.color
 		$UnderSprite.texture = species.ship
 		
 func _enter_tree():

@@ -20,21 +20,21 @@ func _ready():
 		if target.info_player.cpu:
 			player_id.text = tr("CPU")
 			
-		if target.info_player.has_proper_team():
-			player_team_outline.visible = true
-			player_team_outline.text = tr(target.info_player.id)
+#		if target.info_player.has_proper_team():
+#			player_team_outline.visible = true
+#			player_team_outline.text = tr(target.info_player.id)
+#
+#			minisun_outline.visible = target.info_player.team == 'A'
+#			minimoon_outline.visible = target.info_player.team == 'B'
+#			minisun.visible = target.info_player.team == 'A'
+#			minimoon.visible = target.info_player.team == 'B'
+#
+#			var team_color = target.info_player.get_team_color()
+#			player_team_outline.modulate = team_color
+#			minisun_outline.material.set_shader_param('color', team_color)
+#			minimoon_outline.material.set_shader_param('color', team_color)
 			
-			minisun_outline.visible = target.info_player.team == 'A'
-			minimoon_outline.visible = target.info_player.team == 'B'
-			minisun.visible = target.info_player.team == 'A'
-			minimoon.visible = target.info_player.team == 'B'
-			
-			var team_color = target.info_player.get_team_color()
-			player_team_outline.modulate = team_color
-			minisun_outline.material.set_shader_param('color', team_color)
-			minimoon_outline.material.set_shader_param('color', team_color)
-			
-	$Wrapper/Scaled/Colored.modulate = target.species.color
+	$Wrapper/Scaled/Colored.modulate = target.info_player.get_color()
 	
 	update_scale()
 	update_rotation()
