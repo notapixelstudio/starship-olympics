@@ -1,0 +1,43 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://ui/fancy_menus/FancyMenu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/fancy_menus/FancyButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/difficulty_screen/art_medium.png" type="Texture" id=3]
+[ext_resource path="res://ui/difficulty_screen/mask_medium.png" type="BitMap" id=4]
+[ext_resource path="res://local_multiplayer/WorldEnvironment.gd" type="Script" id=5]
+[ext_resource path="res://default_env.tres" type="Environment" id=6]
+[ext_resource path="res://ui/difficulty_screen/art_hive_two.png" type="Texture" id=7]
+[ext_resource path="res://ui/difficulty_screen/art_hive_three.png" type="Texture" id=9]
+[ext_resource path="res://ui/difficulty_screen/mask_hive_two.png" type="BitMap" id=10]
+[ext_resource path="res://ui/difficulty_screen/mask_hive_three.png" type="BitMap" id=12]
+[ext_resource path="res://ui/difficulty_screen/DifficultyScreen.gd" type="Script" id=13]
+
+[node name="DifficultyScreen" type="Node2D"]
+script = ExtResource( 13 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 6 )
+script = ExtResource( 5 )
+
+[node name="FancyMenu" parent="." instance=ExtResource( 1 )]
+auto_neighbours = "horizontal"
+
+[node name="Versus" parent="FancyMenu" instance=ExtResource( 2 )]
+margin_right = 1228.0
+margin_bottom = 720.0
+texture_normal = ExtResource( 3 )
+texture_click_mask = ExtResource( 4 )
+
+[node name="Coopone" parent="FancyMenu" instance=ExtResource( 2 )]
+margin_right = 1228.0
+margin_bottom = 720.0
+focus_neighbour_bottom = NodePath("../Cooptwo")
+texture_normal = ExtResource( 7 )
+texture_click_mask = ExtResource( 10 )
+
+[node name="Cooptwo" parent="FancyMenu" instance=ExtResource( 2 )]
+margin_right = 1228.0
+margin_bottom = 720.0
+focus_neighbour_top = NodePath("../Coopone")
+texture_normal = ExtResource( 9 )
+texture_click_mask = ExtResource( 12 )

@@ -1,12 +1,16 @@
 extends Node
 
 export var turn_duration_secs := 5
+export var skip_cpus := false
 
 var players
 var active_player_i := 0
 
 func start():
-	players = global.the_game.get_players()
+	players = []
+	for player in global.the_game.get_players():
+		if not skip_cpus or not player.is_cpu():
+			players.append(player)
 	
 	# we want these to fire only during play, not at the start
 	Events.connect("ship_spawned", self, '_on_ship_spawned')
@@ -16,6 +20,10 @@ func start():
 		update_ship_state(ship)
 		
 	$Timer.start(turn_duration_secs)
+	
+func _exit_tree():
+	Events.disconnect("ship_spawned", self, '_on_ship_spawned')
+	Events.disconnect("ship_repaired", self, '_on_ship_repaired')
 	
 func get_active_ship():
 	if global.arena.player_has_valid_ship(players[active_player_i]):
@@ -41,11 +49,14 @@ func _on_ship_repaired(ship):
 	update_ship_state(ship)
 	
 func update_ship_state(ship):
+	if skip_cpus and ship.get_player().is_cpu():
+		return
+		
 	yield(get_tree(), "idle_frame") # we need to wait for ships to settle
 	
 	if ship == get_active_ship():
 		ship.time_unfreeze($Timer.time_left)
-	else:
+	elif not skip_cpus or not ship.get_player().is_cpu():
 		ship.time_freeze()
 
 func _on_Timer_timeout():

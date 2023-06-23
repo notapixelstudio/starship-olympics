@@ -10,6 +10,8 @@ var all_cards : CardPool
 var timestamp_local : String
 var timestamp : String
 
+var relay_mode := false
+
 class CardsSelection:
 	var cards_to_choose := [] # Array of DraftCard ids
 	var player_choice := {} # playerID : DraftCard Id
@@ -120,3 +122,10 @@ func set_deck(v : Deck) -> void:
 	# scripted first-time execeution
 	# do not shuffle the deck if this is the first game of this execution
 	deck = v
+
+func set_relay_mode(v: bool) -> void:
+	relay_mode = v
+	
+func get_relay_mode() -> bool:
+	return relay_mode
+	

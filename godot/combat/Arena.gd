@@ -184,6 +184,11 @@ func _ready():
 	# Pick controller label
 	$CanvasLayer/DemoLabel.visible = global.demo
 	
+	# enable relay mode
+	if name != 'DraftArena' and global.is_game_running() and global.the_game.get_relay_mode():
+		var relay_manager = load("res://combat/managers/TurnManager.tscn").instance()
+		relay_manager.skip_cpus = true
+		$Managers.add_child(relay_manager)
 	
 	# Setup goal, Gear and mode managers
 	setup_level(game_mode)

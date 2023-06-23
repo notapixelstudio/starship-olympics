@@ -109,13 +109,29 @@ func start_fight(selected_players: Array, fight_mode: String):
 	remove_child(parallax)
 	
 	# difficulty screen
+	var relay_mode := false
 	if global.demo:
 		add_cpu([2, 3, 4][randi()%3])
-	elif len(players) == 1:
-		var difficulty_screen = load("res://ui/difficulty_screen/DifficultyScreen.tscn").instance()
+	elif len(players) == 1 or len(players) == 2:
+		var difficulty_screen
+		if len(players) == 1:
+			difficulty_screen = load("res://ui/difficulty_screen/DifficultyScreen.tscn").instance()
+		else:
+			difficulty_screen = load("res://ui/difficulty_screen/DuplicityScreen.tscn").instance()
+	
 		add_child(difficulty_screen)
 		yield(Events, "difficulty_selection_done")
 		match difficulty_screen.get_selected_option_name():
+			'Versus':
+				pass
+			'Coopone':
+				relay_mode = true
+				enable_coop()
+				add_cpu(1, 'cpus')
+			'Cooptwo':
+				relay_mode = true
+				enable_coop()
+				add_cpu(2, 'cpus')
 			'Easy':
 				add_cpu(1)
 			'Medium':
@@ -140,6 +156,7 @@ func start_fight(selected_players: Array, fight_mode: String):
 		#TheUnlocker.unlock_element("starting_decks", global.starting_deck_id)
 	
 	global.new_game(players.values())
+	global.the_game.set_relay_mode(relay_mode)
 	safe_destroy_combat()
 	
 	create_map()
@@ -371,7 +388,10 @@ func add_cpu(how_many: int, team=null):
 			info_player.team = team
 		players[id_player] = info_player
 
-
+func enable_coop():
+	for player in players.values():
+		player.team = 'hoomans'
+		
 func _exit_tree():
 	global.local_multiplayer = null
 	
