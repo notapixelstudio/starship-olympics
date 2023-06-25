@@ -7,6 +7,7 @@ export (Resource) var species
 export (String) var team = ''
 # temporary for cpu
 export (bool) var cpu = false
+export var cpu_ship_texture : Texture
 
 signal player_assigned(info_player)
 signal entered_battlefield
@@ -31,7 +32,12 @@ func appears():
 		# Vibrate if joypad
 		Input.start_joy_vibration(device_controller_id, 1, 1, 0.8)
 	
-	sprite.texture = species.ship
+	if info_player.is_cpu():
+		sprite.texture = cpu_ship_texture
+		sprite.modulate = info_player.get_color()
+	else:
+		sprite.texture = species.ship
+		sprite.modulate = Color.white
 	visible = true
 	animation.play("Appearing")
 	yield(animation, "animation_finished")

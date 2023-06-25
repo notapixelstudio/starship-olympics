@@ -101,18 +101,31 @@ func start_fight(selected_players: Array, fight_mode: String):
 		players[player.id] = player
 		i += 1
 		
-	if global.demo:
-		add_cpu([2, 3, 4][randi()%3])
-		
-	# if single player, add a CPU
-	var num_CPUs = 0 if len(players) > 1 else 1
-	if len(players) == 0:
-		num_CPUs = 2
-	add_cpu(num_CPUs)
-	
 	# map initialization
 	remove_child(selection_screen)
-	remove_child(parallax)
+	# remove_child(parallax)
+	
+	# difficulty screen
+	if global.demo:
+		add_cpu([2, 3, 4][randi()%3])
+	elif len(players) == 1:
+		var difficulty_screen = load("res://ui/difficulty_screen/DifficultyScreen.tscn").instance()
+		add_child(difficulty_screen)
+		difficulty_screen.position.x = 1600
+		yield(Events, "difficulty_selection_done")
+		match difficulty_screen.get_selected_option_name():
+			'Easy':
+				add_cpu(1)
+			'Medium':
+				add_cpu(2)
+			'Hard':
+				add_cpu(3)
+			'HiveTwo':
+				add_cpu(2, 'cpus')
+			'HiveThree':
+				add_cpu(3, 'cpus')
+		if is_instance_valid(difficulty_screen):
+			difficulty_screen.queue_free()
 	
 	# add startdeck choosing
 	var playlists = global.get_playlist_starting_deck([ TheUnlocker.NEW, TheUnlocker.UNLOCKED])
@@ -320,7 +333,7 @@ func navigate_to_map(session_over := false):
 	
 	add_child(map)
 	
-func add_cpu(how_many: int):
+func add_cpu(how_many: int, team=null):
 	"""
 	Add cpu to the current pool of players
 	"""
@@ -352,6 +365,8 @@ func add_cpu(how_many: int):
 		info_player.id = id_player
 		info_player.cpu = true
 		info_player.species = cpu_species
+		if team:
+			info_player.team = team
 		players[id_player] = info_player
 
 

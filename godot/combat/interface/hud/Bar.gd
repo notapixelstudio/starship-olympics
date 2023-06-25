@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Bar
 
+export var cpu_ship_texture : Texture
+
 const max_bar_width = 950
 const bar_height = 20
 const ministar_width = 20
@@ -36,12 +38,17 @@ func post_ready(p: InfoPlayer):
 	
 	$Streaks.visible = streaks_enabled
 	
-	sprite.texture = species.ship
+	if player.is_cpu():
+		sprite.texture = cpu_ship_texture
+		sprite.modulate = player.get_color()
+	else:
+		sprite.texture = species.ship
+		sprite.modulate = Color.white
 	
 	# background
 	$Background.rect_position = Vector2(margin_left, margin_top)
 	$Background.rect_size = Vector2(max_bar_width - ministar_margin, bar_height)
-	$Background.color = species.color
+	$Background.color = player.get_color()
 	
 	$BlackBackground.rect_position = Vector2(margin_left-black_border, margin_top-black_border)
 	$BlackBackground.rect_size = Vector2(max_bar_width - ministar_margin + 2*black_border, bar_height + 2*black_border)
@@ -50,17 +57,17 @@ func post_ready(p: InfoPlayer):
 	$Background25D.rect_size = Vector2(max_bar_width - ministar_margin + 2*black_border, fake_3d)
 	
 	# megabar
-	$MegaBar.color = species.color
+	$MegaBar.color = player.get_color()
 	if not streaks_enabled:
 		$MegaBar.modulate = Color.white
 	
 	# ship and score
 	$Ship.position.x = margin_left
-	$Ship/ScoreLabel.modulate = species.color
+	$Ship/ScoreLabel.modulate = player.get_color()
 	
 	# max score
 	$MaxScoreLabel.text = str(max_score)
-	$MaxScoreLabel.modulate = species.color
+	$MaxScoreLabel.modulate = player.get_color()
 	$MaxScoreLabel.rect_position = Vector2(margin_left + max_bar_width - ministar_margin + black_border - 48, margin_top-black_border+2)
 	
 	# magenta max score if perfectionist mode enabled
@@ -144,7 +151,7 @@ func streak_off():
 	
 	# stop glowing for older bars
 	if current_streak_bar != null:
-		current_streak_bar.color = author.species.color
+		current_streak_bar.color = author.get_color()
 
 func _on_StreakTimer_timeout():
 	streak_off()
@@ -154,7 +161,7 @@ func add_streak_bar():
 	
 	# glow
 	current_streak_bar.material = CanvasItemMaterial.new()
-	current_streak_bar.color = GlowColor.new(author.species.color, 1.15).color
+	current_streak_bar.color = GlowColor.new(author.get_color(), 1.15).color
 	
 	streak_start = previous_value
 	$Streaks.add_child(current_streak_bar)

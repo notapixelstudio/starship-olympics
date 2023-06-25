@@ -159,7 +159,7 @@ func get_strategic_value(ship, premidgame=false, midgame=true, ending=false, ste
 	if fortified:
 		return null
 		
-	if global.the_match.get_game_mode().get_id() == 'board_conquest':
+	if global.the_match.get_game_mode().get_id() in ['board_conquest','Colorboard']:
 		if ending:
 			# no time left for fortification, let's target the most points possible
 			if empty:

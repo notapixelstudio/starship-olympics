@@ -56,6 +56,7 @@ tracks/2/keys = {
 [node name="Tile" type="Area2D" groups=["Tile"]]
 modulate = Color( 0.9, 0.9, 0.9, 1 )
 collision_layer = 128
+collision_mask = 129
 script = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://actors/battlers/Ship.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/atom.png" type="Texture" id=2]
@@ -45,6 +45,7 @@
 [ext_resource path="res://assets/shaders/trail.png" type="Texture" id=43]
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=44]
 [ext_resource path="res://assets/audio/gameplay/bricks/sfx_wpn_laser7.wav" type="AudioStream" id=45]
+[ext_resource path="res://combat/traits/TimeFreezable.tscn" type="PackedScene" id=46]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -130,6 +131,14 @@ shader_param/pattern = 1
 shader_param/inside = false
 shader_param/add_margins = true
 
+[sub_resource type="ShaderMaterial" id=14]
+shader = ExtResource( 38 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/width = 14.0
+shader_param/pattern = 0
+shader_param/inside = false
+shader_param/add_margins = true
+
 [sub_resource type="CircleShape2D" id=3]
 radius = 48.0
 
@@ -171,6 +180,7 @@ angular_damp = 80.0
 script = ExtResource( 1 )
 forward_bullet_scene = ExtResource( 33 )
 atom_texture = ExtResource( 2 )
+cpu_ship_texture = ExtResource( 20 )
 
 [node name="Intro" parent="." instance=ExtResource( 22 )]
 order = 1
@@ -182,6 +192,8 @@ order = 1
 [node name="Tracked" parent="." instance=ExtResource( 36 )]
 
 [node name="Target" parent="." instance=ExtResource( 11 )]
+
+[node name="TimeFreezable" parent="." instance=ExtResource( 46 )]
 
 [node name="Ammo" parent="." instance=ExtResource( 37 )]
 unique_name_in_owner = true
@@ -234,6 +246,7 @@ shape = SubResource( 2 )
 [node name="PlayerInfo" parent="." instance=ExtResource( 16 )]
 
 [node name="Graphics" type="Position2D" parent="."]
+unique_name_in_owner = true
 scale = Vector2( 1.25, 1.25 )
 script = SubResource( 11 )
 ship_texture = ExtResource( 41 )
@@ -289,7 +302,7 @@ offset = Vector2( 0, -64 )
 unique_name_in_owner = true
 
 [node name="BombType" type="Sprite" parent="Graphics/ChargeBar/BombPreview"]
-self_modulate = Color( 1, 1, 1, 0.501961 )
+self_modulate = Color( 1, 1, 1, 0.5 )
 scale = Vector2( 0.7, 0.7 )
 
 [node name="Symbol" type="Sprite" parent="Graphics/ChargeBar/BombPreview"]
@@ -315,6 +328,11 @@ anims/invincible = ExtResource( 3 )
 [node name="Sprite" type="Sprite" parent="Graphics"]
 material = SubResource( 10 )
 scale = Vector2( 5, 5 )
+texture = ExtResource( 41 )
+
+[node name="SpriteOverlay" type="Sprite" parent="Graphics"]
+modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 14 )
 texture = ExtResource( 41 )
 
 [node name="Shadow" parent="Graphics" instance=ExtResource( 40 )]
@@ -476,6 +494,7 @@ one_shot = true
 [connection signal="body_entered" from="." to="." method="_on_Ship_body_entered"]
 [connection signal="near_area_entered" from="." to="." method="_on_Ship_near_area_entered"]
 [connection signal="hit" from="Shields" to="." method="_on_Shields_hit"]
+[connection signal="countdown_expired" from="PlayerInfo" to="." method="_on_PlayerInfo_countdown_expired"]
 [connection signal="area_entered" from="NearArea" to="." method="_on_NearArea_area_entered"]
 [connection signal="area_exited" from="NearArea" to="." method="_on_NearArea_area_exited"]
 [connection signal="body_entered" from="NearArea" to="." method="_on_NearArea_body_entered"]

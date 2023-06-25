@@ -37,6 +37,12 @@ const DEFAULT_UNLOCKED = {
 
 var unlocked_elements := DEFAULT_UNLOCKED
 
+func reset_hall_of_fame():
+	# remove hall of fame
+	var d = Directory.new()
+	print("Will remove the hall of fame file")
+	var error = d.remove(InfoChampion.PATH_FILE_CHAMPIONS)
+		
 func reset_unlocks():
 	unlocked_elements = DEFAULT_UNLOCKED
 	

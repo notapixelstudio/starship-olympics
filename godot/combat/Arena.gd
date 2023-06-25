@@ -582,7 +582,7 @@ func ship_just_died(ship, killer, for_good):
 	
 	var deathflash = deathflash_scene.instance()
 	deathflash.big = for_good # big explosion if the ship is totally destroyed
-	deathflash.species = ship.species
+	deathflash.color = ship.get_color()
 	deathflash.position = ship.position
 	$Battlefield.call_deferred("add_child", deathflash)
 	
@@ -656,7 +656,7 @@ func ship_just_died(ship, killer, for_good):
 	if not global.is_match_running():
 		return
 	
-	# respawn
+	# repair (respawn from dead/deactivated ship)
 	
 	ship.linear_velocity = ship.dead_ship_instance.linear_velocity
 	ship.angular_velocity = ship.dead_ship_instance.angular_velocity
@@ -665,7 +665,7 @@ func ship_just_died(ship, killer, for_good):
 	ship.rotation = ship.dead_ship_instance.rotation
 	$Battlefield.call_deferred("add_child", ship)
 	create_trail(ship)
-	
+	Events.emit_signal("ship_repaired", ship)
 	
 func on_gameover():
 	set_process_unhandled_input(false)
@@ -756,6 +756,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	
 	ship.recheck_colliding()
 	emit_signal('ship_spawned', ship)
+	Events.emit_signal("ship_spawned", ship)
 	
 	if force_intro:
 		ship.intro()
@@ -834,12 +835,12 @@ func bomb_detonated(bomb):
 	
 const message_scene = preload('res://special_scenes/on_canvas_ui/FloatingMessage.tscn')
 
-func show_msg(species: Species, msg, pos):
+func show_msg(color: Color, msg, pos):
 	var msg_node = message_scene.instance()
 	msg_node.set_msg(msg)
 	msg_node.scale = camera.zoom
 	msg_node.position = pos
-	msg_node.modulate = species.color
+	msg_node.modulate = color
 	$Battlefield.add_child(msg_node)
 
 func _on_sth_collected(collector, collectee):
@@ -966,7 +967,7 @@ func _on_sth_just_froze(sth):
 
 func _on_goal_done(player, goal, pos, points=1):
 	global.the_match.add_score_to_team(player.team, points)
-	show_msg(player.species, points, pos)
+	show_msg(player.get_color(), points, pos)
 	
 var Ripple = load('res://actors/weapons/Ripple.tscn')
 func show_ripple(pos, size=1):

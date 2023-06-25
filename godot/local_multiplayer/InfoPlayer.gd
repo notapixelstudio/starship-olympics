@@ -70,7 +70,14 @@ func get_species_name() -> String:
 	return species.name
 
 func get_color() -> Color:
+	if is_cpu() and has_proper_team():
+		return Color.sandybrown
 	return species.color
+	
+func get_character_image():
+	if is_cpu():
+		return load("res://assets/sprites/species/drones/character_ok.png")
+	return species.character_ok
 	
 func has_proper_team() -> bool:
 	return self.team != self.id
@@ -89,3 +96,6 @@ func set_from_dictionary(data: Dictionary):
 	self.session_score = data.get("session_score", [])
 	self.cpu = data.get("cpu", false)
 	print(data)
+
+func is_cpu() -> bool:
+	return cpu

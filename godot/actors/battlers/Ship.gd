@@ -14,6 +14,7 @@ export var species : Resource
 
 export var forward_bullet_scene : PackedScene
 export var atom_texture : Texture
+export var cpu_ship_texture : Texture
 
 var controls_enabled = false
 
@@ -108,7 +109,6 @@ var game_mode : GameMode
 var teleport_to = null
 
 onready var player = name
-onready var skin = $Graphics
 onready var charging_sfx = $charging
 onready var target_dest = $TargetDest
 
@@ -173,7 +173,7 @@ func set_bomb_type(value):
 	bomb_type = value
 	update_weapon_indicator()
 	if bomb_type != GameMode.BOMB_TYPE.bubble:
-		$Graphics/ChargeBar/BombPreview/BombType.modulate = species.color
+		$Graphics/ChargeBar/BombPreview/BombType.modulate = get_color()
 	else:
 		next_symbol()
 	
@@ -200,6 +200,17 @@ func reset_health():
 	
 func has_max_health() -> bool:
 	return health == max_health
+	
+func reset_appearance():
+	if info_player.is_cpu():
+		$Graphics.ship_texture = cpu_ship_texture
+		$Graphics/Sprite.self_modulate = get_color()
+	else:
+		$Graphics.ship_texture = species.ship
+		$Graphics/Sprite.self_modulate = Color.white
+	
+	# sometimes the hit anim gets stuck, so...
+	$Graphics/Sprite.modulate = Color.white
 
 func _enter_tree():
 	alive = true
@@ -210,7 +221,7 @@ func _enter_tree():
 	phase = 'in'
 	empty_loaded_shot()
 	unhide()
-	$Graphics/Sprite.modulate = Color.white
+	reset_appearance()
 	
 	reset_health()
 	
@@ -223,26 +234,28 @@ func _enter_tree():
 	dash_init_appearance()
 	if controls_enabled and start_invincible:
 		make_invincible()
-		
-	$AutoTrail.starting_color = Color(species.color.r, species.color.g, species.color.b, 0.35)
-	$AutoTrail.ending_color = Color(species.color.r, species.color.g, species.color.b, 0.0)
-	$FlameAutoTrail.starting_color = Color(species.color.r, species.color.g, species.color.b, 0.5)
-	$FlameAutoTrail.ending_color = Color(species.color.r, species.color.g, species.color.b, 0.0)
+	var color = get_color()
+	$AutoTrail.starting_color = Color(color.r, color.g, color.b, 0.35)
+	$AutoTrail.ending_color = Color(color.r, color.g, color.b, 0.0)
+	$FlameAutoTrail.starting_color = Color(color.r, color.g, color.b, 0.5)
+	$FlameAutoTrail.ending_color = Color(color.r, color.g, color.b, 0.0)
 	
 func make_invincible():
 	invincible = true
-	if skin:
-		skin.invincible()
+	if $Graphics:
+		$Graphics.invincible()
 	yield(get_tree().create_timer(0.1), "timeout")
-	yield(skin, "stop_invincible")
+	yield($Graphics, "stop_invincible")
 	invincible = false
 	
 func _ready():
 	disable_controls()
 	dead_ship_instance = dead_ship_scene.instance()
 	dead_ship_instance.ship = self
-	skin.ship_texture = species.ship
-	# skin.invincible(1.0)
+	reset_appearance()
+	
+	$Graphics/SpriteOverlay.texture = species.ship_w
+	# $Graphics.invincible(1.0)
 	entity = ECM.E(self)
 	
 	entity.get('Conqueror').set_species(self)
@@ -251,18 +264,18 @@ func _ready():
 	var dash_process_material = $DashParticles.process_material.duplicate(true)
 	var transparent_color = Color(species.color_2)
 	transparent_color.a = 0
-	dash_process_material.color_ramp.gradient.set_color(0, species.color)
+	dash_process_material.color_ramp.gradient.set_color(0, get_color())
 	dash_process_material.color_ramp.gradient.set_color(1, transparent_color)
 	$DashParticles.process_material = dash_process_material
-	$Graphics/ChargeBar/Crosshair.modulate = species.color
+	$Graphics/ChargeBar/Crosshair.modulate = get_color()
 	
 	reset_charge()
 	
 	# if we are on a proper team, switch on the outline
-	if info_player.has_proper_team():
-		$Graphics/Sprite.material.set_shader_param('active', true)
-		var color = info_player.get_team_color()
-		$Graphics/Sprite.material.set_shader_param('color', color)
+#	if info_player.has_proper_team() and not info_player.is_cpu():
+#		$Graphics/Sprite.material.set_shader_param('active', true)
+#		var color = info_player.get_team_color()
+#		$Graphics/Sprite.material.set_shader_param('color', color)
 	
 func change_engine(value: bool):
 	responsive = value
@@ -631,7 +644,7 @@ func die(killer : Ship, for_good = false):
 		
 		reset_charge()
 		
-		# skin.play_death()
+		# $Graphics.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
 		yield(get_tree(), "idle_frame")
 		if info_player.lives >= 0:
@@ -731,11 +744,11 @@ func _on_Dashing_disabled():
 	
 #func _on_Phasing_enabled():
 #	modulate = Color(1,0,1)
-#	global.arena.show_msg(species, 'PHASE', position)
+#	global.arena.show_msg(get_color(), 'PHASE', position)
 
 #func _on_Phasing_disabled():
 #	modulate = Color(1,1,1)
-#	global.arena.show_msg(species, 'END', position)
+#	global.arena.show_msg(get_color(), 'END', position)
 
 
 signal thrusters_on
@@ -894,7 +907,7 @@ func apply_powerup(powerup):
 		$WeaponSlot.wield(powerup.type)
 		
 	if success:
-		global.arena.show_msg(species, powerup.type.to_upper().replace('_',' '), global_position)
+		global.arena.show_msg(get_color(), powerup.type.to_upper().replace('_',' '), global_position)
 		
 func rebound(direction = null, strength := 2000.0):
 	if direction == null:
@@ -1027,6 +1040,7 @@ func intro():
 
 func disable_controls():
 	controls_enabled = false
+	reset_charge()
 	
 func enable_controls():
 	controls_enabled = true
@@ -1075,7 +1089,7 @@ func get_species():
 	return info_player.species
 	
 func get_color():
-	return get_species().color
+	return info_player.get_color()
 
 func start_drift():
 	drifting = true
@@ -1186,10 +1200,15 @@ func do_brain_tick() -> void:
 	brain.tick()
 	
 func _on_charge_requested() -> void:
+	if not controls_enabled:
+		return
+		
 	if not is_diving(): # starting to charge inside water is forbidden
 		charge()
 	
 func _on_release_requested() -> void:
+	if not controls_enabled:
+		return
 	fire()
 	
 var loaded_shot = null
@@ -1214,3 +1233,26 @@ func on_collect(collectee):
 func get_bag():
 	return $PlayerInfo.get_bag()
 	
+# time freeze
+var last_unfrozen_state = {
+	'linear_velocity': Vector2(),
+	'angular_velocity': 0
+}
+
+func time_freeze():
+	$Graphics/SpriteOverlay.modulate = Color(0.5,0.7,1,0.6)
+	disable_controls()
+	last_unfrozen_state['linear_velocity'] = linear_velocity
+	last_unfrozen_state['angular_velocity'] = angular_velocity
+	linear_velocity = Vector2()
+	angular_velocity = 0
+	
+func time_unfreeze(time_left := 5.0):
+	$Graphics/SpriteOverlay.modulate = Color(1,1,1,0)
+	enable_controls()
+	linear_velocity += last_unfrozen_state['linear_velocity']
+	angular_velocity += last_unfrozen_state['angular_velocity']
+	$PlayerInfo.start_countdown(floor(time_left)) # not good
+
+func _on_PlayerInfo_countdown_expired():
+	Events.emit_signal('sth_countdown_expired', self)

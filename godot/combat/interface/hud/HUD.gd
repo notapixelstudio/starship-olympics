@@ -78,7 +78,7 @@ func _on_matchscore_updated(author, broadcasted):
 		
 	# sort_bars(false)
 	
-	update_leaders()
+#	update_leaders()
 	
 	# stars
 	for bar in bars:
@@ -120,9 +120,9 @@ func update_leaders():
 	var leaders = global.the_match.get_leader_players()
 	if len(leaders) > 0:
 		var leading: InfoPlayer = leaders[0]
-		Leading.set_species(leading.species)
+		Leading.set_player(leading)
 		var n = leading.get_species_name()
 		LeadingLabel.text = leading.get_species_name()
 	else:
-		Leading.set_species(null)
+		Leading.set_player(null)
 		LeadingLabel.text = ""

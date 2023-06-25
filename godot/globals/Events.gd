@@ -2,6 +2,8 @@ extends Node
 
 signal bumper_created(bumper)
 
+signal ship_spawned(ship)
+signal ship_repaired(ship)
 signal ship_damaged(ship, hazard, damager)
 signal ship_died(ship, killer, for_good)
 
@@ -33,6 +35,8 @@ signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no d
 
 signal sth_collected(collector, collectee)
 signal sth_conquered(conqueror, conquered)
+
+signal sth_countdown_expired(sth)
 
 signal navigation_zone_changed(zone)
 
@@ -88,6 +92,7 @@ signal draft_ended(choices, hand)
 
 # settings
 signal glow_setting_changed
+signal difficulty_selection_done
 
 # analytics
 signal analytics_event(event_dictionary, event_name)
