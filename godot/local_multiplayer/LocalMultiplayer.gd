@@ -106,7 +106,7 @@ func start_fight(selected_players: Array, fight_mode: String):
 		
 	# map initialization
 	remove_child(selection_screen)
-	remove_child(parallax)
+	# remove_child(parallax)
 	
 	# difficulty screen
 	if global.demo:
@@ -114,6 +114,7 @@ func start_fight(selected_players: Array, fight_mode: String):
 	elif len(players) == 1:
 		var difficulty_screen = load("res://ui/difficulty_screen/DifficultyScreen.tscn").instance()
 		add_child(difficulty_screen)
+		difficulty_screen.position.x = 1600
 		yield(Events, "difficulty_selection_done")
 		match difficulty_screen.get_selected_option_name():
 			'Easy':
