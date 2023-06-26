@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://ui/fancy_menus/FancyButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/fancy_menus/FancyMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/screens/credits/CreditsScreen.gd" type="Script" id=3]
+[ext_resource path="res://ui/screens/credits/credits.svg" type="Texture" id=4]
+[ext_resource path="res://ui/screens/credits/buttons/area_Back.png" type="BitMap" id=5]
+[ext_resource path="res://ui/screens/credits/buttons/outline_Back.png" type="Texture" id=6]
+[ext_resource path="res://ui/Screen.tscn" type="PackedScene" id=16]
+
+[node name="CreditsScreen" instance=ExtResource( 16 )]
+script = ExtResource( 3 )
+
+[node name="Reference" type="TextureRect" parent="." index="0"]
+visible = false
+modulate = Color( 0.196078, 0.360784, 0.533333, 1 )
+margin_right = 1280.0
+margin_bottom = 720.0
+texture = ExtResource( 4 )
+
+[node name="FancyMenu" parent="." index="1" instance=ExtResource( 2 )]
+auto_neighbours = "both"
+
+[node name="Back" parent="FancyMenu" index="0" instance=ExtResource( 1 )]
+margin_left = -53.0
+margin_top = -7.0
+margin_right = 233.0
+margin_bottom = 84.0
+texture_normal = ExtResource( 6 )
+texture_click_mask = ExtResource( 5 )
+
+[connection signal="button_down" from="FancyMenu/Back" to="." method="_on_Back_button_down"]
