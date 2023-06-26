@@ -1,0 +1,39 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://ui/difficulty_screen/art_medium.png" type="Texture" id=1]
+[ext_resource path="res://ui/difficulty_screen/art_hive_three.png" type="Texture" id=2]
+[ext_resource path="res://ui/fancy_menus/FancyButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/fancy_menus/FancyMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://NextScene.gd" type="Script" id=7]
+[ext_resource path="res://ui/difficulty_screen/art_hard.png" type="Texture" id=9]
+[ext_resource path="res://ui/difficulty_screen/mask_hive_three.png" type="BitMap" id=11]
+[ext_resource path="res://ui/difficulty_screen/mask_medium.png" type="BitMap" id=13]
+[ext_resource path="res://ui/difficulty_screen/mask_hard.png" type="BitMap" id=15]
+
+[node name="Screen"]
+margin_left = 0.0
+margin_right = 0.0
+script = ExtResource( 7 )
+
+[node name="FancyMenu" parent="." index="0" instance=ExtResource( 5 )]
+auto_neighbours = "horizontal"
+
+[node name="Medium" parent="FancyMenu" index="0" instance=ExtResource( 4 )]
+margin_right = 1228.0
+margin_bottom = 720.0
+texture_normal = ExtResource( 1 )
+texture_click_mask = ExtResource( 13 )
+
+[node name="Hard" parent="FancyMenu" index="1" instance=ExtResource( 4 )]
+margin_right = 1228.0
+margin_bottom = 720.0
+texture_normal = ExtResource( 9 )
+texture_click_mask = ExtResource( 15 )
+
+[node name="HiveThree" parent="FancyMenu" index="2" instance=ExtResource( 4 )]
+margin_right = 1228.0
+margin_bottom = 720.0
+texture_normal = ExtResource( 2 )
+texture_click_mask = ExtResource( 11 )
+
+[connection signal="pressed" from="FancyMenu/Medium" to="." method="_on_Medium_pressed"]

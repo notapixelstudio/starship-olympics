@@ -12,7 +12,7 @@ var focus_index = 0
 
 
 func _ready():
-	Events.connect("ui_back_menu", self,"back")
+	Events.connect("ui_back_menu", self, "back")
 	Events.connect("ui_nav_to", self, "nav_to")
 	assert( start_scene is PackedScene)
 	var instanced_scene = start_scene.instance()
