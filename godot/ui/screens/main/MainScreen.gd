@@ -24,3 +24,9 @@ func _on_Credits_button_down():
 
 func _on_Quit_button_down():
 	global.end_execution()
+
+func exit():
+	$FancyMenu.save_focused_element()
+	
+func enter():
+	$FancyMenu.restore_focused_element()
