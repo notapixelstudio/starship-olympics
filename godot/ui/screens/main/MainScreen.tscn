@@ -36,48 +36,49 @@ texture = ExtResource( 11 )
 auto_neighbours = "both"
 
 [node name="Versus" parent="FancyMenu" index="0" instance=ExtResource( 1 )]
+modulate = Color( 0.984314, 0.858824, 1, 1 )
 margin_left = 137.0
-margin_top = 135.0
+margin_top = 102.0
 margin_right = 500.0
-margin_bottom = 663.0
+margin_bottom = 630.0
 texture_normal = ExtResource( 12 )
 texture_click_mask = ExtResource( 8 )
 
 [node name="Campaign" parent="FancyMenu" index="1" instance=ExtResource( 1 )]
 margin_left = 501.0
-margin_top = 120.0
+margin_top = 87.0
 margin_right = 780.0
-margin_bottom = 623.0
+margin_bottom = 590.0
 
 [node name="HallOfFame" parent="FancyMenu" index="2" instance=ExtResource( 1 )]
 margin_left = 765.0
-margin_top = 128.0
+margin_top = 95.0
 margin_right = 950.0
-margin_bottom = 256.0
+margin_bottom = 223.0
 texture_normal = ExtResource( 10 )
 texture_click_mask = ExtResource( 4 )
 
 [node name="Settings" parent="FancyMenu" index="3" instance=ExtResource( 1 )]
 margin_left = 822.0
-margin_top = 259.0
+margin_top = 226.0
 margin_right = 1030.0
-margin_bottom = 390.0
+margin_bottom = 357.0
 texture_normal = ExtResource( 15 )
 texture_click_mask = ExtResource( 6 )
 
 [node name="Credits" parent="FancyMenu" index="4" instance=ExtResource( 1 )]
 margin_left = 885.0
-margin_top = 396.0
+margin_top = 363.0
 margin_right = 1106.0
-margin_bottom = 519.0
+margin_bottom = 486.0
 texture_normal = ExtResource( 3 )
 texture_click_mask = ExtResource( 13 )
 
 [node name="Quit" parent="FancyMenu" index="5" instance=ExtResource( 1 )]
 margin_left = 939.0
-margin_top = 526.0
+margin_top = 493.0
 margin_right = 1212.0
-margin_bottom = 660.0
+margin_bottom = 627.0
 texture_normal = ExtResource( 14 )
 texture_click_mask = ExtResource( 5 )
 
