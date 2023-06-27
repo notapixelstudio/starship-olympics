@@ -5,7 +5,7 @@
 [ext_resource path="res://ui/screens/credits/CreditsScreen.gd" type="Script" id=3]
 [ext_resource path="res://ui/screens/credits/credits.svg" type="Texture" id=4]
 [ext_resource path="res://ui/screens/credits/buttons/area_Back.png" type="BitMap" id=5]
-[ext_resource path="res://ui/screens/credits/buttons/outline_Back.png" type="Texture" id=6]
+[ext_resource path="res://ui/screens/credits/buttons/graphics_Back.png" type="Texture" id=6]
 [ext_resource path="res://ui/Screen.tscn" type="PackedScene" id=16]
 
 [node name="CreditsScreen" instance=ExtResource( 16 )]
@@ -22,10 +22,10 @@ texture = ExtResource( 4 )
 auto_neighbours = "both"
 
 [node name="Back" parent="FancyMenu" index="0" instance=ExtResource( 1 )]
-margin_left = -53.0
-margin_top = -7.0
-margin_right = 233.0
-margin_bottom = 84.0
+margin_left = 13.0
+margin_top = 15.0
+margin_right = 207.0
+margin_bottom = 106.0
 texture_normal = ExtResource( 6 )
 texture_click_mask = ExtResource( 5 )
 

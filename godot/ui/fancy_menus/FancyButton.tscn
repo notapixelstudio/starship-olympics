@@ -1,13 +1,31 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://ui/difficulty_screen/easy.png" type="Texture" id=1]
-[ext_resource path="res://ui/difficulty_screen/mask_easy.png" type="BitMap" id=2]
+[ext_resource path="res://assets/shaders/crt_local.shader" type="Shader" id=1]
+[ext_resource path="res://ui/screens/main/buttons/area_Campaign.png" type="BitMap" id=2]
 [ext_resource path="res://ui/fancy_menus/FancyButton.gd" type="Script" id=3]
+[ext_resource path="res://ui/screens/main/buttons/graphics_Campaign.png" type="Texture" id=4]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/boost = 1.2
+shader_param/grille_opacity = 0.85
+shader_param/scanlines_opacity = 0.9
+shader_param/vignette_opacity = 0.2
+shader_param/scanlines_speed = 2.0
+shader_param/show_grille = false
+shader_param/show_scanlines = true
+shader_param/show_vignette = false
+shader_param/show_curvature = false
+shader_param/screen_size = Vector2( 320, 180 )
+shader_param/aberration_amount = 1.5
+shader_param/move_aberration = false
+shader_param/aberration_speed = 1.0
 
 [node name="FancyButton" type="TextureButton"]
-margin_right = 40.0
-margin_bottom = 40.0
-texture_normal = ExtResource( 1 )
+material = SubResource( 2 )
+margin_right = 279.0
+margin_bottom = 503.0
+texture_normal = ExtResource( 4 )
 texture_click_mask = ExtResource( 2 )
 script = ExtResource( 3 )
 

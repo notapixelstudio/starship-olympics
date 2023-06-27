@@ -4,7 +4,7 @@ func _ready():
 	blur()
 	
 func focus():
-	self_modulate = Color(1.2, 1.2, 1.2)
+	self_modulate = Color(1.1, 1.1, 1.1)
 
 func blur():
 	self_modulate = Color(0.4, 0.4, 0.4)
