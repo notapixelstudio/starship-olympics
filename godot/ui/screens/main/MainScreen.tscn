@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://ui/fancy_menus/FancyButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/fancy_menus/FancyMenu.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://ui/screens/main/buttons/area_HallOfFame.png" type="BitMap" id=4]
 [ext_resource path="res://ui/screens/main/buttons/area_Quit.png" type="BitMap" id=5]
 [ext_resource path="res://ui/screens/main/buttons/area_Settings.png" type="BitMap" id=6]
+[ext_resource path="res://utils/ShearLabel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/screens/main/buttons/area_Versus.png" type="BitMap" id=8]
 [ext_resource path="res://ui/screens/main/buttons/graphics_HallOfFame.png" type="Texture" id=10]
 [ext_resource path="res://ui/screens/main/main.svg" type="Texture" id=11]
@@ -26,7 +27,6 @@ settings_scene = null
 credits_scene = ExtResource( 18 )
 
 [node name="Reference" type="TextureRect" parent="." index="0"]
-visible = false
 modulate = Color( 0.196078, 0.360784, 0.533333, 1 )
 margin_right = 1280.0
 margin_bottom = 720.0
@@ -36,49 +36,63 @@ texture = ExtResource( 11 )
 auto_neighbours = "both"
 
 [node name="Versus" parent="FancyMenu" index="0" instance=ExtResource( 1 )]
-modulate = Color( 0.984314, 0.858824, 1, 1 )
-margin_left = 137.0
-margin_top = 102.0
-margin_right = 500.0
-margin_bottom = 630.0
+self_modulate = Color( 0.984314, 0.858824, 1, 1 )
+margin_left = 176.0
+margin_top = 99.0
+margin_right = 539.0
+margin_bottom = 627.0
 texture_normal = ExtResource( 12 )
 texture_click_mask = ExtResource( 8 )
 
+[node name="MenuLabel" parent="FancyMenu/Versus" index="1" instance=ExtResource( 7 )]
+modulate = Color( 0.831373, 0.396078, 1, 1 )
+position = Vector2( 130.349, 501.427 )
+rotation = 0.10472
+scale = Vector2( 1.9, 1.9 )
+text = "GLR|OS"
+shear = Vector2( 0, -0.25 )
+
 [node name="Campaign" parent="FancyMenu" index="1" instance=ExtResource( 1 )]
-margin_left = 501.0
-margin_top = 87.0
-margin_right = 780.0
-margin_bottom = 590.0
+margin_left = 517.0
+margin_top = 84.0
+margin_right = 796.0
+margin_bottom = 587.0
+
+[node name="MenuLabel" parent="FancyMenu/Campaign" index="1" instance=ExtResource( 7 )]
+modulate = Color( 0.396078, 0.964706, 1, 1 )
+position = Vector2( 126.349, 496.427 )
+scale = Vector2( 1.9, 1.9 )
+text = "OE IU"
 
 [node name="HallOfFame" parent="FancyMenu" index="2" instance=ExtResource( 1 )]
-margin_left = 765.0
-margin_top = 95.0
-margin_right = 950.0
-margin_bottom = 223.0
+margin_left = 760.0
+margin_top = 92.0
+margin_right = 945.0
+margin_bottom = 220.0
 texture_normal = ExtResource( 10 )
 texture_click_mask = ExtResource( 4 )
 
 [node name="Settings" parent="FancyMenu" index="3" instance=ExtResource( 1 )]
-margin_left = 822.0
-margin_top = 226.0
-margin_right = 1030.0
-margin_bottom = 357.0
+margin_left = 813.0
+margin_top = 214.0
+margin_right = 1021.0
+margin_bottom = 345.0
 texture_normal = ExtResource( 15 )
 texture_click_mask = ExtResource( 6 )
 
 [node name="Credits" parent="FancyMenu" index="4" instance=ExtResource( 1 )]
-margin_left = 885.0
-margin_top = 363.0
-margin_right = 1106.0
-margin_bottom = 486.0
+margin_left = 870.0
+margin_top = 340.0
+margin_right = 1091.0
+margin_bottom = 463.0
 texture_normal = ExtResource( 3 )
 texture_click_mask = ExtResource( 13 )
 
 [node name="Quit" parent="FancyMenu" index="5" instance=ExtResource( 1 )]
-margin_left = 939.0
-margin_top = 493.0
-margin_right = 1212.0
-margin_bottom = 627.0
+margin_left = 920.517
+margin_top = 462.653
+margin_right = 1193.52
+margin_bottom = 596.653
 texture_normal = ExtResource( 14 )
 texture_click_mask = ExtResource( 5 )
 
