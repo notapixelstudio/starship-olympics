@@ -5,11 +5,11 @@ func _ready():
 	blur()
 	
 func focus():
-	modulate = Color(1.2, 1.2, 1.2)
+	modulate = Color(1.17, 1.17, 1.17)
 	$AnimationPlayer.play("Grow")
 
 func blur():
-	modulate = Color(0.4, 0.4, 0.4)
+	modulate = Color(0.45, 0.45, 0.45)
 	$AnimationPlayer.play("Shrink")
 	
 func _on_FancyButton_focus_entered():

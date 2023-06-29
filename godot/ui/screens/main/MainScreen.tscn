@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://ui/fancy_menus/FancyButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/fancy_menus/FancyMenu.tscn" type="PackedScene" id=2]
@@ -18,12 +18,13 @@
 [ext_resource path="res://ui/Screen.tscn" type="PackedScene" id=16]
 [ext_resource path="res://ui/screens/main/MainScreen.gd" type="Script" id=17]
 [ext_resource path="res://ui/screens/settings/SettingsScreen.tscn" type="PackedScene" id=18]
+[ext_resource path="res://ui/screens/hall_of_fame/HallOfFameScreen.tscn" type="PackedScene" id=19]
 
 [node name="MainScreen" instance=ExtResource( 16 )]
 script = ExtResource( 17 )
 versus_character_selection_scene = null
 coop_character_selection_scene = null
-hall_of_fame_scene = null
+hall_of_fame_scene = ExtResource( 19 )
 settings_scene = ExtResource( 18 )
 credits_scene = ExtResource( 9 )
 
@@ -40,63 +41,103 @@ auto_neighbours = "both"
 [node name="Versus" parent="FancyMenu" index="0" instance=ExtResource( 1 )]
 self_modulate = Color( 0.984314, 0.858824, 1, 1 )
 margin_left = 176.0
-margin_top = 99.0
+margin_top = 73.0
 margin_right = 539.0
-margin_bottom = 627.0
+margin_bottom = 601.0
 texture_normal = ExtResource( 12 )
 texture_click_mask = ExtResource( 8 )
 
 [node name="MenuLabel" parent="FancyMenu/Versus" index="1" instance=ExtResource( 7 )]
 modulate = Color( 0.831373, 0.396078, 1, 1 )
-position = Vector2( 130.349, 501.427 )
+position = Vector2( 131.349, 499.427 )
 rotation = 0.10472
-scale = Vector2( 1.9, 1.9 )
+scale = Vector2( 2.5, 2.5 )
 text = "GLR|OS"
-shear = Vector2( 0, -0.25 )
+shear = Vector2( -0.1, -0.26 )
+
+[node name="PlayerCountLabel" parent="FancyMenu/Versus" index="2" instance=ExtResource( 7 )]
+position = Vector2( 122, 562 )
+rotation = 0.10472
+scale = Vector2( 1.5, 1.5 )
+text = " 2  3  |3"
+shear = Vector2( -0.1, -0.26 )
 
 [node name="Campaign" parent="FancyMenu" index="1" instance=ExtResource( 1 )]
-margin_left = 517.0
-margin_top = 84.0
-margin_right = 796.0
-margin_bottom = 587.0
+margin_left = 518.0
+margin_top = 57.0
+margin_right = 798.0
+margin_bottom = 524.0
 
 [node name="MenuLabel" parent="FancyMenu/Campaign" index="1" instance=ExtResource( 7 )]
 modulate = Color( 0.396078, 0.964706, 1, 1 )
-position = Vector2( 126.349, 496.427 )
-scale = Vector2( 1.9, 1.9 )
+position = Vector2( 126.349, 493.427 )
+scale = Vector2( 2.5, 2.5 )
 text = "OE IU"
 
+[node name="PlayerCountLabel" parent="FancyMenu/Campaign" index="2" instance=ExtResource( 7 )]
+position = Vector2( 122, 556 )
+scale = Vector2( 1.5, 1.5 )
+text = "1  2  3  |3"
+
 [node name="HallOfFame" parent="FancyMenu" index="2" instance=ExtResource( 1 )]
-margin_left = 760.0
-margin_top = 92.0
-margin_right = 945.0
-margin_bottom = 220.0
+margin_left = 759.0
+margin_top = 49.0
+margin_right = 944.0
+margin_bottom = 188.0
 texture_normal = ExtResource( 10 )
 texture_click_mask = ExtResource( 4 )
 
+[node name="MenuLabel" parent="FancyMenu/HallOfFame" index="1" instance=ExtResource( 7 )]
+position = Vector2( 110.333, 78.6667 )
+scale = Vector2( 1.5, 1.5 )
+text = "eg !)b<a"
+shear = Vector2( 0.25, 0.1 )
+align = "left"
+
 [node name="Settings" parent="FancyMenu" index="3" instance=ExtResource( 1 )]
 margin_left = 813.0
-margin_top = 214.0
+margin_top = 184.0
 margin_right = 1021.0
-margin_bottom = 345.0
+margin_bottom = 315.0
 texture_normal = ExtResource( 15 )
 texture_click_mask = ExtResource( 6 )
 
+[node name="MenuLabel" parent="FancyMenu/Settings" index="1" instance=ExtResource( 7 )]
+position = Vector2( 135.333, 67.6667 )
+scale = Vector2( 1.5, 1.5 )
+text = "Y7. h#l"
+shear = Vector2( 0.25, 0.1 )
+align = "left"
+
 [node name="Credits" parent="FancyMenu" index="4" instance=ExtResource( 1 )]
-margin_left = 870.0
-margin_top = 340.0
-margin_right = 1091.0
-margin_bottom = 463.0
+margin_left = 869.0
+margin_top = 316.0
+margin_right = 1090.0
+margin_bottom = 439.0
 texture_normal = ExtResource( 3 )
 texture_click_mask = ExtResource( 13 )
 
+[node name="MenuLabel" parent="FancyMenu/Credits" index="1" instance=ExtResource( 7 )]
+position = Vector2( 109.455, 51.4919 )
+scale = Vector2( 1.5, 1.5 )
+text = "kur.2x9i"
+shear = Vector2( 0.25, 0.1 )
+align = "left"
+
 [node name="Quit" parent="FancyMenu" index="5" instance=ExtResource( 1 )]
 margin_left = 920.517
-margin_top = 462.653
+margin_top = 437.653
 margin_right = 1193.52
-margin_bottom = 596.653
+margin_bottom = 571.653
 texture_normal = ExtResource( 14 )
 texture_click_mask = ExtResource( 5 )
+
+[node name="MenuLabel" parent="FancyMenu/Quit" index="1" instance=ExtResource( 7 )]
+position = Vector2( 134.455, 59.4919 )
+scale = Vector2( 1.5, 1.5 )
+text = "u1tt.."
+shear = Vector2( 0.28, 0.1 )
+align = "left"
 
 [connection signal="button_down" from="FancyMenu/Versus" to="." method="_on_Versus_button_down"]
 [connection signal="button_down" from="FancyMenu/Campaign" to="." method="_on_CoOp_button_down"]

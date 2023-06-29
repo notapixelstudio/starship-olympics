@@ -67,13 +67,13 @@ void fragment() {
 			color.b = texture(TEXTURE, vec2(screen_crtUV.x - adjusted_amount, screen_crtUV.y)).b;
 		}
 		
-		vec2 crtUV = CRTCurveUV(UV);
+		vec2 crtUV = CRTCurveUV(SCREEN_UV);
 		if (crtUV.x < 0.0 || crtUV.x > 1.0 || crtUV.y < 0.0 || crtUV.y > 1.0) {
 			color = vec4(0.0, 0.0, 0.0, 1.0);
 		}
 		
 		//DrawVignette(color, crtUV);
-		DrawScanline(color, crtUV, TIME * scanlines_speed);
+		DrawScanline(color, crtUV, -TIME * scanlines_speed);
 		
 		COLOR = color;
 	}
