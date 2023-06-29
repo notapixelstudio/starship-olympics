@@ -23,10 +23,13 @@ func _on_Credits_button_down():
 	emit_signal("next", credits_scene)
 
 func _on_Quit_button_down():
+	$FancyMenu/Quit.isolate()
 	global.end_execution()
 
 func exit():
+	.exit()
 	$FancyMenu.save_focused_element()
 	
 func enter():
+	.enter()
 	$FancyMenu.restore_focused_element()

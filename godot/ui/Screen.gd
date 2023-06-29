@@ -8,7 +8,7 @@ signal back
 class_name ScreenScene
 
 func enter():
-	pass
+	set_process_input(true)
 
 func exit():
-	pass
+	set_process_input(false)
