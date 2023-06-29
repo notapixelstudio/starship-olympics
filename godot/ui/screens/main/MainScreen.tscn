@@ -47,32 +47,32 @@ auto_neighbours = "both"
 
 [node name="Versus" parent="FancyMenu" index="0" instance=ExtResource( 1 )]
 self_modulate = Color( 0.984314, 0.858824, 1, 1 )
-margin_left = 176.0
-margin_top = 73.0
-margin_right = 539.0
-margin_bottom = 601.0
+margin_left = 130.0
+margin_top = 69.0
+margin_right = 493.0
+margin_bottom = 597.0
 texture_normal = ExtResource( 12 )
 texture_click_mask = ExtResource( 8 )
 
 [node name="MenuLabel" parent="FancyMenu/Versus" index="1" instance=ExtResource( 7 )]
 modulate = Color( 0.831373, 0.396078, 1, 1 )
-position = Vector2( 131.349, 499.427 )
+position = Vector2( 148.349, 499.427 )
 rotation = 0.10472
 scale = Vector2( 2.5, 2.5 )
 text = "GLR|OS"
 shear = Vector2( -0.1, -0.26 )
 
 [node name="PlayerCountLabel" parent="FancyMenu/Versus" index="2" instance=ExtResource( 7 )]
-position = Vector2( 122, 562 )
+position = Vector2( 139, 562 )
 rotation = 0.10472
 scale = Vector2( 1.5, 1.5 )
 text = " 2  3  |3"
 shear = Vector2( -0.1, -0.26 )
 
 [node name="Campaign" parent="FancyMenu" index="1" instance=ExtResource( 1 )]
-margin_left = 518.0
+margin_left = 486.0
 margin_top = 57.0
-margin_right = 798.0
+margin_right = 766.0
 margin_bottom = 524.0
 
 [node name="MenuLabel" parent="FancyMenu/Campaign" index="1" instance=ExtResource( 7 )]
@@ -87,10 +87,10 @@ scale = Vector2( 1.5, 1.5 )
 text = "1  2  3  |3"
 
 [node name="HallOfFame" parent="FancyMenu" index="2" instance=ExtResource( 1 )]
-margin_left = 759.0
-margin_top = 49.0
-margin_right = 944.0
-margin_bottom = 188.0
+margin_left = 733.0
+margin_top = 47.0
+margin_right = 918.0
+margin_bottom = 186.0
 texture_normal = ExtResource( 10 )
 texture_click_mask = ExtResource( 4 )
 
@@ -102,10 +102,10 @@ shear = Vector2( 0.25, 0.1 )
 align = "left"
 
 [node name="Settings" parent="FancyMenu" index="3" instance=ExtResource( 1 )]
-margin_left = 813.0
-margin_top = 184.0
-margin_right = 1021.0
-margin_bottom = 315.0
+margin_left = 785.0
+margin_top = 185.0
+margin_right = 993.0
+margin_bottom = 316.0
 texture_normal = ExtResource( 15 )
 texture_click_mask = ExtResource( 6 )
 
@@ -117,10 +117,10 @@ shear = Vector2( 0.25, 0.1 )
 align = "left"
 
 [node name="Credits" parent="FancyMenu" index="4" instance=ExtResource( 1 )]
-margin_left = 869.0
-margin_top = 316.0
-margin_right = 1090.0
-margin_bottom = 439.0
+margin_left = 841.0
+margin_top = 320.0
+margin_right = 1062.0
+margin_bottom = 443.0
 texture_normal = ExtResource( 3 )
 texture_click_mask = ExtResource( 13 )
 
@@ -132,10 +132,10 @@ shear = Vector2( 0.25, 0.1 )
 align = "left"
 
 [node name="Quit" parent="FancyMenu" index="5" instance=ExtResource( 1 )]
-margin_left = 920.517
-margin_top = 437.653
-margin_right = 1193.52
-margin_bottom = 571.653
+margin_left = 894.0
+margin_top = 446.0
+margin_right = 1167.0
+margin_bottom = 580.0
 texture_normal = ExtResource( 14 )
 texture_click_mask = ExtResource( 5 )
 
