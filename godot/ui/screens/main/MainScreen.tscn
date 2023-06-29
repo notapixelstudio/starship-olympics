@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://ui/fancy_menus/FancyButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/fancy_menus/FancyMenu.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://ui/screens/main/MainScreen.gd" type="Script" id=17]
 [ext_resource path="res://ui/screens/settings/SettingsScreen.tscn" type="PackedScene" id=18]
 [ext_resource path="res://ui/screens/hall_of_fame/HallOfFameScreen.tscn" type="PackedScene" id=19]
+[ext_resource path="res://ui/screens/main/background.png" type="Texture" id=20]
 
 [node name="MainScreen" instance=ExtResource( 16 )]
 script = ExtResource( 17 )
@@ -29,12 +30,19 @@ settings_scene = ExtResource( 18 )
 credits_scene = ExtResource( 9 )
 
 [node name="Reference" type="TextureRect" parent="." index="0"]
-modulate = Color( 0.196078, 0.360784, 0.533333, 1 )
+visible = false
+modulate = Color( 0.172549, 0.431373, 0.705882, 1 )
 margin_right = 1280.0
 margin_bottom = 720.0
 texture = ExtResource( 11 )
 
-[node name="FancyMenu" parent="." index="1" instance=ExtResource( 2 )]
+[node name="Background" type="TextureRect" parent="." index="1"]
+modulate = Color( 0.207843, 0.294118, 0.388235, 1 )
+margin_right = 1280.0
+margin_bottom = 720.0
+texture = ExtResource( 20 )
+
+[node name="FancyMenu" parent="." index="2" instance=ExtResource( 2 )]
 auto_neighbours = "both"
 
 [node name="Versus" parent="FancyMenu" index="0" instance=ExtResource( 1 )]
