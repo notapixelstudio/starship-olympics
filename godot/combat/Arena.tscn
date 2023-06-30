@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://combat/Arena.gd" type="Script" id=1]
 [ext_resource path="res://special_scenes/combat_UI/gameover/GameOver.tscn" type="PackedScene" id=2]
@@ -27,7 +27,6 @@
 [ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=25]
 [ext_resource path="res://actors/environments/ElementInCamera.tscn" type="PackedScene" id=26]
 [ext_resource path="res://combat/interface/hud/HUD.tscn" type="PackedScene" id=27]
-[ext_resource path="res://map_with_sets/DescriptionMode.tscn" type="PackedScene" id=28]
 [ext_resource path="res://assets/audio/countdown.ogg" type="AudioStream" id=30]
 [ext_resource path="res://special_scenes/utils/DemoLabel.tscn" type="PackedScene" id=31]
 [ext_resource path="res://combat/interface/pause/PauseMode.tscn" type="PackedScene" id=32]
@@ -339,9 +338,6 @@ layer = 50
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 27 )]
 pause_mode = 2
-
-[node name="DescriptionMode" parent="CanvasLayer" instance=ExtResource( 28 )]
-visible = false
 
 [node name="Countdown" type="Label" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0.156863 )

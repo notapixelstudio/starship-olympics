@@ -30,7 +30,6 @@ export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
 
 export var show_hud : bool = true
-export var show_intro : bool = true
 export var random_starting_position : bool = true
 export var place_ships_at_start : bool = true
 export var dark_winter : bool = false
@@ -60,7 +59,6 @@ onready var camera = $Camera
 onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
 onready var pause = $CanvasLayer2/Pause
-onready var mode_description = $CanvasLayer/DescriptionMode
 onready var grid = $Battlefield/Background/GridWrapper/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
 
@@ -334,6 +332,9 @@ func _ready():
 	if game_mode.arena_style:
 		set_style(game_mode.arena_style)
 		
+	# update the grid
+	update_grid()
+	
 	# adapt camera to hud height
 	if show_hud:
 		camera.marginY = hud.get_height()
@@ -344,8 +345,6 @@ func _ready():
 		yield(camera, "transition_over")
 	else:
 		camera.initialize(compute_arena_size())
-	update_grid()
-	
 	
 	
 	if show_hud:
@@ -373,14 +372,6 @@ func _ready():
 	if match_duration_override > 0:
 		game_mode.max_timeout = match_duration_override
 		
-	if show_intro:
-		mode_description.set_gamemode(game_mode)
-		mode_description.appears()
-
-		if global.is_match_running():
-			mode_description.set_draft_card(global.the_match.get_draft_card())
-
-	
 	grid.set_max_timeout(game_mode.max_timeout)
 	grid.clock = game_mode.survival
 	if grid.clock:
@@ -432,8 +423,6 @@ func _ready():
 			if dark_winter:
 				ice.modulate = Color(0.55,0.55,0.55)
 				
-	if show_intro:
-		yield(mode_description, "ready_to_fight")
 	
 	if style and style.bgm:
 		Soundtrack.play(style.bgm, true)
