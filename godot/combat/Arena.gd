@@ -31,7 +31,7 @@ export var match_duration_override : float = 0
 
 export var show_hud : bool = true
 export var random_starting_position : bool = true
-export var skip_gameover : bool = false
+export var tutorial : bool = false
 export var place_ships_at_start : bool = true
 export var dark_winter : bool = false
 
@@ -362,7 +362,7 @@ func _ready():
 			$'%BackgroundImage'.texture = load("res://combat/levels/background/"+suit+".png")
 			
 	# update navigation zones if there is at least a cpu
-	if global.the_game.get_number_of_cpu_players() > 0:
+	if global.the_game.get_number_of_cpu_players() > 0 or tutorial:
 		if create_default_navzone and has_node('Battlefield/Background/OutsideWall'):
 			$Battlefield/Background/OutsideWall.add_child(NavigationZone_scene.instance())
 		update_navigation_zones()
@@ -441,11 +441,13 @@ func _ready():
 	# group by order for trait intro
 	var intro_nodes = {}
 	for trait in traits.get_all('Intro'):
-		if not(str(trait.order) in intro_nodes.keys()):
-			intro_nodes[str(trait.order)] = []
-		intro_nodes[str(trait.order)].append(trait.get_host())
+		if not(trait.order in intro_nodes.keys()):
+			intro_nodes[trait.order] = []
+		intro_nodes[trait.order].append(trait.get_host())
 	
-	for group in intro_nodes:
+	var groups = intro_nodes.keys()
+	groups.sort()
+	for group in groups:
 		for node in intro_nodes[group]:
 			node.intro()
 		for node in intro_nodes[group]:
@@ -669,7 +671,7 @@ func ship_just_died(ship, killer, for_good):
 	Events.emit_signal("ship_repaired", ship)
 	
 func on_gameover():
-	if skip_gameover:
+	if tutorial:
 		return
 		
 	set_process_unhandled_input(false)
