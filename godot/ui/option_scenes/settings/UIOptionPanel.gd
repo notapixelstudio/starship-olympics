@@ -27,3 +27,7 @@ func _on_Back_pressed():
 
 func get_focus():
 	container.get_child(0).grab_focus()
+
+func _on_Language_value_changed(value):
+	print(TranslationServer.get_locale())
+	Events.emit_signal("language_changed")

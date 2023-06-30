@@ -74,10 +74,11 @@ var available_languages = {
 	"italiano": "it",
 	"euskara": "eu",
 	"français": "fr",
-	"deutsch": "de"
+	"deutsch": "de",
+	"alien": "pr"
 	}
 onready var language: String setget _set_language, _get_language
-var array_language: Array = ["english", "italiano", "español", "euskara", "français", "deutsch"]
+var array_language: Array = ["english", "alien", "italiano", "español", "euskara", "français", "deutsch"]
 var full_screen = true setget _set_full_screen
 	
 func _set_full_screen(value: bool):
@@ -136,7 +137,7 @@ func _set_unlock_mode(value: String):
 
 func _set_language(value:String):
 	language = value
-	TranslationServer.set_locale(available_languages.get(language, "en"))
+	TranslationServer.set_locale(global.available_languages.get(value, "english"))
 
 func _get_language():
 	return language

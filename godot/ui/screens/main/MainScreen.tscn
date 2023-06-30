@@ -59,14 +59,14 @@ modulate = Color( 0.831373, 0.396078, 1, 1 )
 position = Vector2( 148.349, 499.427 )
 rotation = 0.10472
 scale = Vector2( 2.5, 2.5 )
-text = "GLR|OS"
+text = "VERSUS"
 shear = Vector2( -0.1, -0.26 )
 
 [node name="PlayerCountLabel" parent="FancyMenu/Versus" index="2" instance=ExtResource( 7 )]
 position = Vector2( 139, 562 )
 rotation = 0.10472
 scale = Vector2( 1.5, 1.5 )
-text = " 2  3  |3"
+text = "2 3 4"
 shear = Vector2( -0.1, -0.26 )
 
 [node name="Campaign" parent="FancyMenu" index="1" instance=ExtResource( 1 )]
@@ -79,12 +79,12 @@ margin_bottom = 542.0
 modulate = Color( 0.396078, 0.964706, 1, 1 )
 position = Vector2( 129.349, 493.427 )
 scale = Vector2( 2.5, 2.5 )
-text = "OE IU"
+text = "CO-OP"
 
 [node name="PlayerCountLabel" parent="FancyMenu/Campaign" index="2" instance=ExtResource( 7 )]
 position = Vector2( 125, 556 )
 scale = Vector2( 1.5, 1.5 )
-text = "1  2  3  |3"
+text = "1 2 3 4"
 
 [node name="HallOfFame" parent="FancyMenu" index="2" instance=ExtResource( 1 )]
 margin_left = 733.0
@@ -97,7 +97,7 @@ texture_click_mask = ExtResource( 4 )
 [node name="MenuLabel" parent="FancyMenu/HallOfFame" index="1" instance=ExtResource( 7 )]
 position = Vector2( 110.333, 78.6667 )
 scale = Vector2( 1.5, 1.5 )
-text = "eg !)b<a"
+text = "HALL OF FAME"
 shear = Vector2( 0.25, 0.1 )
 align = "left"
 
@@ -112,7 +112,7 @@ texture_click_mask = ExtResource( 6 )
 [node name="MenuLabel" parent="FancyMenu/Settings" index="1" instance=ExtResource( 7 )]
 position = Vector2( 135.333, 67.6667 )
 scale = Vector2( 1.5, 1.5 )
-text = "Y7. h#l"
+text = "SETTINGS"
 shear = Vector2( 0.25, 0.1 )
 align = "left"
 
@@ -127,7 +127,7 @@ texture_click_mask = ExtResource( 13 )
 [node name="MenuLabel" parent="FancyMenu/Credits" index="1" instance=ExtResource( 7 )]
 position = Vector2( 109.455, 51.4919 )
 scale = Vector2( 1.5, 1.5 )
-text = "kur.2x9i"
+text = "CREDITS"
 shear = Vector2( 0.25, 0.1 )
 align = "left"
 
@@ -142,7 +142,7 @@ texture_click_mask = ExtResource( 5 )
 [node name="MenuLabel" parent="FancyMenu/Quit" index="1" instance=ExtResource( 7 )]
 position = Vector2( 134.455, 59.4919 )
 scale = Vector2( 1.5, 1.5 )
-text = "u1tt.."
+text = "QUIT"
 shear = Vector2( 0.28, 0.1 )
 align = "left"
 

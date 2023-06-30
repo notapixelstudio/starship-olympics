@@ -117,4 +117,5 @@ margin_right = 778.0
 margin_bottom = 578.0
 text = "BACK"
 
+[connection signal="value_changed" from="Content/UIButtonsContainer/Language" to="." method="_on_Language_value_changed"]
 [connection signal="pressed" from="Content/UIButtonsContainer/Back" to="." method="_on_Back_pressed"]
