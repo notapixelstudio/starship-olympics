@@ -31,6 +31,7 @@ export var match_duration_override : float = 0
 
 export var show_hud : bool = true
 export var random_starting_position : bool = true
+export var skip_gameover : bool = false
 export var place_ships_at_start : bool = true
 export var dark_winter : bool = false
 
@@ -328,8 +329,10 @@ func _ready():
 		# initialize HUD
 		hud.post_ready()
 	
-	# load style from gamemode, if specified
-	if game_mode.arena_style:
+	# load style
+	if style:
+		set_style(style)
+	elif game_mode.arena_style:
 		set_style(game_mode.arena_style)
 		
 	# update the grid
@@ -666,6 +669,9 @@ func ship_just_died(ship, killer, for_good):
 	Events.emit_signal("ship_repaired", ship)
 	
 func on_gameover():
+	if skip_gameover:
+		return
+		
 	set_process_unhandled_input(false)
 	for child in $Managers.get_children():
 		if child is ModeManager:

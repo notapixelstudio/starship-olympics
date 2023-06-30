@@ -122,7 +122,8 @@ func compute_game_status(end_now = false):
 	
 	perfect_end = end_on_perfect and (leader.get_score() >= target_score or cumulative_points >= target_score)
 	
-	if end_now or perfect_end or time_left <= 0 or no_players:
+	var time_is_up = time_left <= 0 and time_left != -1 # -1 is no countdown
+	if end_now or perfect_end or time_is_up or no_players:
 		winners = []
 		var draw = true
 		var last_value = leader.get_score()

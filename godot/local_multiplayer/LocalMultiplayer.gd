@@ -216,16 +216,23 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	remove_child(map)
 	$"%UnlockSceneClassic".reset()
 	# show tutorial if this minigame has one, and the minigame has not been already played
-	if minigame.has_tutorial() and not global.demo:
-		var tutorial = minigame.get_tutorial_scene().instance()
-		# check if we are playing the introductory playlist
-		if global.starting_deck_id == 'first' and minigame.is_first_time_started():
-			add_child(tutorial)
-			yield(tutorial, 'over')
+#	if minigame.has_tutorial() and not global.demo:
+#		var tutorial = minigame.get_tutorial_scene().instance()
+#		# check if we are playing the introductory playlist
+#		if global.starting_deck_id == 'first' and minigame.is_first_time_started():
+#			add_child(tutorial)
+#			yield(tutorial, 'over')
+#
+#			$TransitionScreen.transition()
+#			yield($TransitionScreen, "transitioned")
+#			tutorial.queue_free()
 			
-			$TransitionScreen.transition()
-			yield($TransitionScreen, "transitioned")
-			tutorial.queue_free()
+	var tutorial = minigame.get_tutorial_scene().instance()
+	add_child(tutorial)
+	yield(tutorial, 'over')
+	$TransitionScreen.transition()
+	yield($TransitionScreen, "transitioned")
+	tutorial.queue_free()
 	
 	start_match(picked_card, minigame)
 	

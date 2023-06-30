@@ -68,6 +68,6 @@ func get_suit_bottom() -> Array:
 func has_tutorial() -> bool:
 	return tutorial_scene != null
 	
-func get_tutorial_scene() -> PackedScene:
-	return tutorial_scene
-	
+func get_tutorial_scene():
+	var filepath: String = arenas_dir.plus_file("TutorialArena.tscn")
+	return load(filepath)
