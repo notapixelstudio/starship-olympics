@@ -6,11 +6,11 @@ const menu_scene = "res://ui/menu_scenes/title_screen/MainScreen.tscn"
 
 export var champion_scene : PackedScene
 export var add_champion := false
+export var auto_quit := true
 
 var champion_info : InfoChampion
 
 func _ready():
-	$VBoxContainer/Label3.visible=false
 	$"%WinnerBanner".queue_free()
 	set_process_input(false)
 	var data = global.read_file_by_line(InfoChampion.PATH_FILE_CHAMPIONS)
@@ -58,7 +58,6 @@ func _ready():
 	tween.chain().tween_property($"%ScrollContainer", 'scroll_vertical', 0, 1 + $"%SessionWon".get_child_count()%3)
 	yield(tween, "finished")
 	if not add_champion:
-		$VBoxContainer/Label3.visible=true
 		$ScrollContainer.get_child(0).grab_focus()
 		set_process_input(true)
 	
@@ -68,7 +67,7 @@ func naming_champions():
 	$VBoxContainer/Label3.visible=true
 	
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
+	if auto_quit and event.is_action_pressed("ui_accept"):
 		Events.emit_signal("continue_after_session_ended")
 		set_process_input(false)
 		if self.get_parent() == get_tree().get_root():

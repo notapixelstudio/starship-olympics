@@ -18,7 +18,9 @@ const CARD_POOL_PATH = "res://map/draft/pool"
 func set_player(champion: InfoChampion):
 	this_champion = champion
 	$"%PlayerName".text = champion.player.username if champion.player.username else champion.player.id
-	$"%Headshot".set_species(global.get_species(champion.player.species))
+	var info_player = InfoPlayer.new()
+	info_player.set_from_dictionary(champion.player)
+	$"%Headshot".set_player(info_player)
 	var matches = champion.session_info.get("matches", [])
 	var all_cards = null
 	if global.the_game != null:
