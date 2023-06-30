@@ -18,7 +18,7 @@ var symbol = null
 var entity : Entity
 onready var explosion = Explosion.instance()
 
-var species : Species
+var ship_color : Color
 
 var team : String
 
@@ -45,7 +45,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 	if impulse:
 		apply_impulse(Vector2(0,0), impulse)
 	if ship:
-		species = ship.species
+		ship_color = ship.get_color()
 		team = ship.get_team()
 		
 		entity.get('Owned').set_owned_by(ship)
@@ -53,7 +53,7 @@ func initialize(bomb_type, pos : Vector2, impulse, ship, size = 1):
 		if type == GameMode.BOMB_TYPE.ice:
 			$Sprite.modulate = Color(0.9,1,1,1)
 		else:
-			$Sprite.modulate = ship.species.color
+			$Sprite.modulate = ship_color
 	else:
 		entity.get('Owned').disable()
 		ECM.E($Core).get('Owned').disable()
@@ -167,7 +167,7 @@ func _on_LifeTime_timeout():
 
 func dissolve() -> void:
 	var pfft = PfftScene.instance()
-	pfft.set_color(species.get_color())
+	pfft.set_color(ship_color)
 	get_parent().add_child(pfft)
 	pfft.global_position = global_position
 
@@ -207,7 +207,6 @@ func create_bubble():
 		return
 		
 	var bubble = BubbleScene.instance()
-	#bubble.set_species(entity.get('Owned').get_owned_by().species)
 	bubble.symbol = symbol
 	bubble.position = position
 	bubble.linear_velocity = linear_velocity

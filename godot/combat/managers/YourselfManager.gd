@@ -92,14 +92,14 @@ func _on_card_taken(card, player, ship):
 	else:
 		if card.get_character_player() == null:
 			score = -1
-			card.queue_free()
+			card.destroy()
 		else: # enemy character
 			score = 10
 			affected_player = card.get_character_player()
 			position = global.arena.get_ship_from_player_id(affected_player.id).global_position
 			
 	global.the_match.add_score(affected_player.id, score)
-	global.arena.show_msg(affected_player.species, score, position)
+	global.arena.show_msg(affected_player.get_color(), score, position)
 	
 # reveal cards at the end of the match
 func _on_match_ended(match_dict: Dictionary):

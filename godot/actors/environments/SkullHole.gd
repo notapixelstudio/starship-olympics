@@ -37,7 +37,7 @@ func _on_SkullHole_body_entered(body):
 		
 	if done:
 		global.the_match.add_score(body.get_player().get_id(), self.get_score())
-		global.arena.show_msg(body.get_player().species, 1, global_position)
+		global.arena.show_msg(body.get_color(), 1, global_position)
 		$Empty.visible = false
 		$Full.visible = true
 		full = true
@@ -45,7 +45,7 @@ func _on_SkullHole_body_entered(body):
 		$RandomAudioStreamPlayer.play()
 		
 		$Tween.stop_all()
-		$Tween.interpolate_property($Full, "modulate", $Full.modulate, body.get_player().species.color, 1.5,
+		$Tween.interpolate_property($Full, "modulate", $Full.modulate, body.get_color(), 1.5,
 			Tween.TRANS_CUBIC, Tween.EASE_OUT, 0)
 		$Tween.start()
 		

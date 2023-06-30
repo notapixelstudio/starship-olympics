@@ -24,6 +24,8 @@ export var player_brain_scene : PackedScene
 export var cpu_brain_scene : PackedScene
 export var NavigationZone_scene : PackedScene
 
+export var diamond_scene : PackedScene
+
 export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
 
@@ -201,7 +203,7 @@ func _ready():
 	run_time = OS.get_ticks_msec()
 	
 	# Analytics
-	analytics.start_elapsed_time()
+	Analytics.start_elapsed_time()
 
 	
 	connect("slomo", environments_manager, "activate_slomo", [self], CONNECT_ONESHOT)
@@ -215,8 +217,6 @@ func _ready():
 	collect_manager.connect("stolen", self, "_on_sth_stolen")
 	environments_manager.connect('repel_cargo', collect_manager, "_on_cargo_repelled")
 	collect_manager.connect('collected', collect_mode, "_on_sth_collected")
-	collect_manager.connect('coins_dropped', collect_mode, "_on_coins_dropped")
-	collect_manager.connect('coins_dropped', self, "_on_coins_dropped")
 	conquest_manager.connect('conquered', conquest_mode, "_on_sth_conquered")
 	conquest_manager.connect('lost', conquest_mode, "_on_sth_lost")
 	
@@ -474,6 +474,7 @@ func _ready():
 		anim.play("Rotate")
 		
 	emit_signal('battle_start')
+	Events.emit_signal('battle_start')
 	
 	for node in traits.get_all_with("Waiter"):
 		node.start()
@@ -569,7 +570,7 @@ func ship_just_died(ship, killer, for_good):
 	"""
 	var home : bool = game_mode.respawn_from_home
 	
-	if home:
+	if home and ship.info_player.lives != 0:
 		respawn_from_home(ship, ship.spawner)
 	
 	for_good = for_good or home
@@ -590,7 +591,7 @@ func ship_just_died(ship, killer, for_good):
 	
 	var deathflash = deathflash_scene.instance()
 	deathflash.big = for_good # big explosion if the ship is totally destroyed
-	deathflash.species = ship.species
+	deathflash.color = ship.get_color()
 	deathflash.position = ship.position
 	$Battlefield.call_deferred("add_child", deathflash)
 	
@@ -646,25 +647,25 @@ func ship_just_died(ship, killer, for_good):
 		return
 	
 	var respawn_timeout = 1.5
-	if game_mode.id == 'rocket_crown' or game_mode.id == 'rocket_queen_of_the_hive':
-		#respawn_timeout = 0.75
-		var cargo = ship.get_cargo()
-		if cargo.has_holdable() and cargo.get_holdable().has_type('crown'):
-			respawn_timeout = 1.25 + 0.5*global.the_game.get_number_of_players()
-	#elif conquest_mode.enabled:
-	#	respawn_timeout = 0.75
-	#elif game_mode.name == "GoalPortal":
-	#	respawn_timeout = 0.75
-		
-	if game_mode.id == 'diamond_warfare':
-		respawn_timeout = 3.5
+#	if game_mode.id == 'rocket_crown' or game_mode.id == 'rocket_queen_of_the_hive':
+#		#respawn_timeout = 0.75
+#		var cargo = ship.get_cargo()
+#		if cargo.has_holdable():
+#			respawn_timeout = 1.25 + 0.5*global.the_game.get_number_of_players()
+#	#elif conquest_mode.enabled:
+#	#	respawn_timeout = 0.75
+#	#elif game_mode.name == "GoalPortal":
+#	#	respawn_timeout = 0.75
+#
+#	if game_mode.id == 'diamond_warfare':
+#		respawn_timeout = 3.5
 	
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
 	
 	if not global.is_match_running():
 		return
 	
-	# respawn
+	# repair (respawn from dead/deactivated ship)
 	
 	ship.linear_velocity = ship.dead_ship_instance.linear_velocity
 	ship.angular_velocity = ship.dead_ship_instance.angular_velocity
@@ -673,7 +674,7 @@ func ship_just_died(ship, killer, for_good):
 	ship.rotation = ship.dead_ship_instance.rotation
 	$Battlefield.call_deferred("add_child", ship)
 	create_trail(ship)
-	
+	Events.emit_signal("ship_repaired", ship)
 	
 func on_gameover():
 	set_process_unhandled_input(false)
@@ -765,6 +766,7 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	
 	ship.recheck_colliding()
 	emit_signal('ship_spawned', ship)
+	Events.emit_signal("ship_spawned", ship)
 	
 	if force_intro:
 		ship.intro()
@@ -843,12 +845,12 @@ func bomb_detonated(bomb):
 	
 const message_scene = preload('res://special_scenes/on_canvas_ui/FloatingMessage.tscn')
 
-func show_msg(species: Species, msg, pos):
+func show_msg(color: Color, msg, pos):
 	var msg_node = message_scene.instance()
 	msg_node.set_msg(msg)
 	msg_node.scale = camera.zoom
 	msg_node.position = pos
-	msg_node.modulate = species.color
+	msg_node.modulate = color
 	$Battlefield.add_child(msg_node)
 
 func _on_sth_collected(collector, collectee):
@@ -892,12 +894,6 @@ func _on_sth_stolen(thief, mugged):
 	if what is Crown and what.type == Crown.types.SOCCERBALL:
 		what.owner_ship = thief
 		
-#func _on_coins_dropped(dropper, amount):
-#	for i in range(amount):
-#		var coin = coin_scene.instance()
-#		$Battlefield.add_child(coin)
-#		coin.position = dropper.position
-#		coin.linear_velocity = dropper.linear_velocity + Vector2(500,0).rotated(randi()/8/PI)
 
 signal wave_ready
 
@@ -981,7 +977,7 @@ func _on_sth_just_froze(sth):
 
 func _on_goal_done(player, goal, pos, points=1):
 	global.the_match.add_score_to_team(player.team, points)
-	show_msg(player.species, points, pos)
+	show_msg(player.get_color(), points, pos)
 	
 var Ripple = load('res://actors/weapons/Ripple.tscn')
 func show_ripple(pos, size=1):

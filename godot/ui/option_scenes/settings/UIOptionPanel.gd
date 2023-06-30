@@ -7,10 +7,6 @@ onready var back_button = $Back
 # N.B.: "find_node" is not really efficient but we need to be generic 
 onready var container = find_node("UIButtonsContainer", true)
 
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		_on_Back_pressed()
-	
 func _ready():
 	add_to_group("UIOptionPanel")
 	assert(content)
@@ -21,9 +17,10 @@ func _ready():
 	
 func _on_nav_pressed(title: String, nav_menu: PackedScene, extra_args: Dictionary = {}):
 	Events.emit_signal("ui_nav_to", title, nav_menu.instance(), extra_args)
-	
-func _on_Back_pressed():
-	Events.emit_signal("ui_back_menu")
 
 func get_focus():
 	container.get_child(0).grab_focus()
+
+func _on_Language_value_changed(value):
+	print(TranslationServer.get_locale())
+	Events.emit_signal("language_changed")

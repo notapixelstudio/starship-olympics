@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/shaders/crt_local.shader" type="Shader" id=1]
+[ext_resource path="res://ui/screens/main/buttons/area_Campaign.png" type="BitMap" id=2]
+[ext_resource path="res://ui/fancy_menus/FancyButton.gd" type="Script" id=3]
+[ext_resource path="res://ui/screens/main/buttons/graphics_Campaign.png" type="Texture" id=4]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/boost = 1.2
+shader_param/grille_opacity = 0.85
+shader_param/scanlines_opacity = 0.9
+shader_param/vignette_opacity = 0.2
+shader_param/scanlines_speed = 2.0
+shader_param/show_grille = false
+shader_param/show_scanlines = true
+shader_param/show_vignette = false
+shader_param/show_curvature = false
+shader_param/screen_size = Vector2( 320, 200 )
+shader_param/aberration_amount = 2.0
+shader_param/move_aberration = false
+shader_param/aberration_speed = 1.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "Grow"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.4 ),
+"transitions": PoolRealArray( 0.5, -0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ), Vector2( 1.07, 1.07 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Shrink"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 2, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1.07, 1.07 ), Vector2( 1, 1 ) ]
+}
+
+[node name="FancyButton" type="TextureButton"]
+material = SubResource( 2 )
+margin_right = 279.0
+margin_bottom = 503.0
+texture_normal = ExtResource( 4 )
+texture_click_mask = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Grow = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+anims/Shrink = SubResource( 5 )
+
+[connection signal="focus_entered" from="." to="." method="_on_FancyButton_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_FancyButton_focus_exited"]

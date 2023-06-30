@@ -38,7 +38,7 @@ func bomb_near_area_entered(other : CollisionObject2D, bomb : Bomb):
 #	if sth is Ship:
 #		if killer and killer is Ship:
 #			if sth == killer:
-#				emit_signal('show_msg', sth.species, 'SELF KILL!', sth.position)
+#				emit_signal('show_msg', sth.get_color(), 'SELF KILL!', sth.position)
 #			elif killer.info_player.team == sth.info_player.team:
-#				emit_signal('show_msg', sth.species, 'MATE KILL!', sth.position)
+#				emit_signal('show_msg', sth.get_color(), 'MATE KILL!', sth.position)
 #			

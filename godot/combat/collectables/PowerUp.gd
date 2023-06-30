@@ -4,7 +4,7 @@ extends RigidBody2D
 
 class_name PowerUp
 
-export (String, 'shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniball_gun', 'rocket_gun', 'spike_gun', 'bomb', 'wave_gun', 'bubble_gun', 'drill') var type = 'shield' setget set_type
+export (String, 'shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniball_gun', 'rocket_gun', 'spike_gun', 'bomb', 'wave_gun', 'bubble_gun', 'drill', 'medikit') var type = 'shield' setget set_type
 export var appear = true
 export var tease = false
 export var random_types = []
@@ -31,21 +31,25 @@ const CATEGORY = {
 	'bomb': 'weapon',
 	'wave_gun': 'weapon',
 	'bubble_gun': 'weapon',
-	'drill': 'weapon'
+	'drill': 'weapon',
+	
+	'medikit': 'heal'
 }
 
 const EXCLUSIVE = {
 	'weapon': true,
 	'strange': false,
 	'protection': false,
-	'addition': false
+	'addition': false,
+	'heal': false
 }
 
 const COLOR = {
 	'weapon': Color(1,0,0,1),
 	'strange': Color(1,0,1,1),
 	'protection': Color(0.5,1,1,1),
-	'addition': Color(1,0.25,0,1)
+	'addition': Color(1,0.25,0,1),
+	'heal': Color(1,0.9,0.9,1)
 }
 
 func _ready():
@@ -69,6 +73,9 @@ func _ready():
 func set_type(v):
 	type = v
 	refresh_type()
+	
+func has_type(t: String) -> bool:
+	return type == t
 	
 func refresh_type():
 	$Sprite.texture = load('res://assets/sprites/powerups/'+type+'.png')

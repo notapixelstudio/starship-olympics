@@ -1,0 +1,127 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
+[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=3]
+[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=5]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://selection/characters/auriels_1.tres" type="Resource" id=10]
+[ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=11]
+[ext_resource path="res://combat/modes/Spikeball.tres" type="Resource" id=12]
+[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=13]
+
+[node name="Arena" instance=ExtResource( 8 )]
+size_multiplier = 2.5
+game_mode = ExtResource( 12 )
+dark_winter = true
+
+[node name="KillModeManager" parent="Managers" index="8"]
+enabled = true
+
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
+hollow = true
+offset = 200
+hide_grid = true
+grid_color = Color( 0, 1, 0.741176, 0.435294 )
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+width = 3000
+height = 2000
+bevel = 600
+bevel_nw = 600
+bevel_ne = 600
+bevel_sw = 600
+bevel_se = 600
+
+[node name="NoShipZone13" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
+
+[node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/NoShipZone13" index="11"]
+script = ExtResource( 3 )
+width = 500
+height = 1200
+bevel = 249
+bevel_nw = 249
+bevel_ne = 249
+bevel_sw = 249
+bevel_se = 249
+
+[node name="NavigationZone" parent="Battlefield/Middleground/NoShipZone13" index="12" instance=ExtResource( 7 )]
+offset_type = "outset"
+
+[node name="Wall10" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
+position = Vector2( -1800, 0 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 5 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
+script = ExtResource( 1 )
+radius = 150
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall11" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
+position = Vector2( 1800, 0 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 5 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
+script = ExtResource( 1 )
+radius = 150
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall12" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
+position = Vector2( 2100, 0 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 5 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall12" index="4"]
+script = ExtResource( 1 )
+radius = 50
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="Wall13" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
+position = Vector2( -2100, 0 )
+solid_line_color = Color( 1.1, 1, 1, 1 )
+line_texture = ExtResource( 5 )
+
+[node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall13" index="4"]
+script = ExtResource( 1 )
+radius = 50
+sides = 4.0
+alternating_angle = 0
+rotation_degrees = 0
+
+[node name="CameraEye" parent="Battlefield/Foreground" index="0" instance=ExtResource( 4 )]
+position = Vector2( -1350, 850 )
+
+[node name="CameraEye2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 4 )]
+position = Vector2( 1350, -850 )
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
+position = Vector2( -1000, 500 )
+rotation = 0.0
+species = ExtResource( 13 )
+
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
+position = Vector2( 1000, -500 )
+rotation = 3.14159
+controls = "joy2"
+species = ExtResource( 10 )
+cpu = true
+
+[node name="Camera" parent="." index="6"]
+zoom = Vector2( 10, 10 )
+smoothing_speed = 0.3

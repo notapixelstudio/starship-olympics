@@ -17,7 +17,7 @@ func _on_ship_spawned(ship):
 func _on_ship_collect(what, ship):
 	if what is Fruit:
 		global.the_match.add_score(ship.get_player().id, 1)
-		global.arena.show_msg(ship.species, 1, what.global_position)
+		global.arena.show_msg(ship.get_color(), 1, what.global_position)
 	
 func _on_ship_respawned(ship):
 	update_trail(ship)
@@ -29,7 +29,7 @@ func _on_ship_died(ship, killer, for_good):
 	var malus = min(5, global.the_match.get_score(ship.get_player().id)-1)
 	if malus > 0:
 		global.the_match.add_score(ship.get_player().id, -malus)
-		global.arena.show_msg(ship.species, -malus, ship.position)
+		global.arena.show_msg(ship.get_color(), -malus, ship.position)
 		
 func update_trail(ship):
 	# set trail length to ship score

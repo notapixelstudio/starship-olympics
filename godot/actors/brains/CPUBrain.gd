@@ -31,12 +31,12 @@ func tick():
 	# obey the navigation rule of calling get_next_location every frame
 	var nav_location = $NavigationAgent2D.get_next_location()
 	
-	if controllee.has_method('are_controls_enabled') and not controllee.are_controls_enabled():
-		return
-	
 	# reset
 	target_velocity = Vector2.ZERO
 	rotation_request = 0.0
+	
+	if controllee.has_method('are_controls_enabled') and not controllee.are_controls_enabled():
+		return
 	
 	# no target to go to, just stay where we are
 	if target_location == null:
@@ -47,15 +47,16 @@ func tick():
 	
 	# use the position given by the navigation system, rather than the target location as it is
 	var relative_position = nav_location - global_position
-	# we are already arrived, just stay where we are
-	if $NavigationAgent2D.is_navigation_finished():
-		return
-		
+	
 	var front = Vector2(cos(global_rotation), sin(global_rotation))
 	
 	target_velocity = relative_position.normalized()
 	rotation_request = front.angle_to(target_velocity)
 	
+	# we are already arrived, attempt to stay where we are
+	if $NavigationAgent2D.is_navigation_finished():
+		return
+		
 	# if we are far, attempt a dash
 	var distance = relative_position.length()
 	if distance > 900 and randf() < 0.3:
@@ -153,3 +154,13 @@ func compute_average_position(positions) -> Vector2:
 	for p in positions:
 		result += p
 	return result / float(len(positions))
+
+func compute_nearest(nodes: Array) -> Node2D:
+	var nearest = nodes[0]
+	var d = nearest.global_position.distance_squared_to(global_position)
+	for node in nodes:
+		var new_d = (node as Node2D).global_position.distance_squared_to(global_position)
+		if new_d < d:
+			nearest = node
+			d = new_d
+	return nearest

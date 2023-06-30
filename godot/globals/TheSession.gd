@@ -118,6 +118,9 @@ func to_dict() -> Dictionary:
 	var serialized_cards := []
 	for card in self.get_hand():
 		serialized_cards.append((card as DraftCard).get_id())
+	var deck = global.the_game.deck if global.the_game else null
+	if deck:
+		deck.get_starting_deck_id()
 	var session_dict =  {
 		"game_id": game_id,
 		'timestamp': self.timestamp,
@@ -125,7 +128,8 @@ func to_dict() -> Dictionary:
 		"uuid": get_uuid(),
 		"matches": matches,
 		"hand": serialized_cards,
-		"playing_card": playing_card.get_id() if playing_card != null else null
+		"playing_card": playing_card.get_id() if playing_card != null else null,
+		"starting_deck": deck.get_starting_deck_id() if deck else null
 	}
 	return session_dict
 
@@ -177,5 +181,5 @@ func is_over() -> bool:
 	return false
 	
 func store():
-	global.write_into_file("user://sessions/{id}.json".format({"id":self.uuid}), self.to_dict())
+	global.write_into_file("user://sessions/{id}.json".format({"id":self.uuid}), to_json(self.to_dict()))
 	

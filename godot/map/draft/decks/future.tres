@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
+[ext_resource path="res://map/draft/cards/FutureMystery.tres" type="Resource" id=2]
+[ext_resource path="res://assets/map/cards/planets/future.png" type="Texture" id=3]
+[ext_resource path="res://map/draft/cards/Random.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+id = "future"
+order = 7
+name = "Future World"
+image = ExtResource( 3 )
+cards = [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 4 ) ]
+nexts = [  ]
+playlist = true
+unlocks = [  ]

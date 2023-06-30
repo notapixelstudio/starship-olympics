@@ -26,7 +26,6 @@ func _ready():
 		
 	players = {}
 	selection_screen.connect("fight", self, "start_fight")
-	selection_screen.connect("back", self, "back")
 	global.local_multiplayer = self
 	
 	Events.connect("minigame_selected", self, "_on_minigame_selected")
@@ -37,7 +36,10 @@ func _ready():
 	Events.connect('nav_to_map', self, '_on_nav_to_map')
 	Events.connect('nav_to_character_selection', self, '_on_nav_to_character_selection')
 	
-	var unfinished_game: Dictionary = global.read_file("user://games/latest.json")
+	var data = global.read_file("user://games/latest.json")
+	var unfinished_game = {}
+	if data:
+		unfinished_game = parse_json(data)
 	if not unfinished_game.empty():
 		setup_continue_game(unfinished_game)
 #		var confirm = load("res://special_scenes/combat_UI/gameover/AreYouSure.tscn").instance()
@@ -99,27 +101,41 @@ func start_fight(selected_players: Array, fight_mode: String):
 		players[player.id] = player
 		i += 1
 		
-	if global.demo:
-		add_cpu([2, 3, 4][randi()%3])
-		
-	# if single player, add a CPU
-	var num_CPUs = 0 if len(players) > 1 else 1
-	if len(players) == 0:
-		num_CPUs = 2
-	add_cpu(num_CPUs)
-	
 	# map initialization
 	remove_child(selection_screen)
-	remove_child(parallax)
+	# remove_child(parallax)
+	
+	# difficulty screen
+	if global.demo:
+		add_cpu([2, 3, 4][randi()%3])
+	elif len(players) == 1:
+		var difficulty_screen = load("res://ui/difficulty_screen/DifficultyScreen.tscn").instance()
+		add_child(difficulty_screen)
+		difficulty_screen.position.x = 1600
+		yield(Events, "difficulty_selection_done")
+		match difficulty_screen.get_selected_option_name():
+			'Easy':
+				add_cpu(1)
+			'Medium':
+				add_cpu(2)
+			'Hard':
+				add_cpu(3)
+			'HiveTwo':
+				add_cpu(2, 'cpus')
+			'HiveThree':
+				add_cpu(3, 'cpus')
+		if is_instance_valid(difficulty_screen):
+			difficulty_screen.queue_free()
 	
 	# add startdeck choosing
-	var playlists = global.get_playlist_starting_deck()
+	var playlists = global.get_playlist_starting_deck([ TheUnlocker.NEW, TheUnlocker.UNLOCKED])
 	if len(playlists) > 1:
 		var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instance()
 		add_child(choose_deck_scene)
 		yield(Events, "selection_starting_deck_over")
-		choose_deck_scene.queue_free()
-		TheUnlocker.unlock_element("starting_decks", global.starting_deck_id)
+		if is_instance_valid(choose_deck_scene):
+			choose_deck_scene.queue_free()
+		#TheUnlocker.unlock_element("starting_decks", global.starting_deck_id)
 	
 	global.new_game(players.values())
 	safe_destroy_combat()
@@ -179,6 +195,14 @@ func continue_after_session_over() -> void:
 			global.new_game(players.values())
 		confirm.queue_free()
 	"""
+	# a session has been completed with this deck, so mark it as not new anymore and unlock new ones from it
+	if not global.demo: # do not unlock new content if we are in demo mode
+		TheUnlocker.unlock_element("starting_decks", global.starting_deck_id)
+		var decks = global.get_resources(Deck.DECK_PATH)
+		var starting_deck: StartingDeck = global.get_actual_resource(decks, global.starting_deck_id)
+		for unlock in starting_deck.get_unlocks():
+			TheUnlocker.unlock_element("starting_decks", unlock, TheUnlocker.NEW)
+
 	navigate_to_celebration()
 	# navigate_to_map()
 	
@@ -194,7 +218,8 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	# show tutorial if this minigame has one, and the minigame has not been already played
 	if minigame.has_tutorial() and not global.demo:
 		var tutorial = minigame.get_tutorial_scene().instance()
-		if minigame.is_first_time_started() or not tutorial.should_appear_once():
+		# check if we are playing the introductory playlist
+		if global.starting_deck_id == 'first' and minigame.is_first_time_started():
 			add_child(tutorial)
 			yield(tutorial, 'over')
 			
@@ -203,6 +228,7 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 			tutorial.queue_free()
 	
 	start_match(picked_card, minigame)
+	
 
 
 func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
@@ -222,6 +248,7 @@ func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
 			child.queue_free()
 			yield(child, 'tree_exited')
 	add_child(combat)
+	Events.emit_signal("match_started")
 	
 func safe_destroy_combat():
 	if combat:
@@ -276,6 +303,8 @@ func _on_nav_to_map():
 	
 func create_map(data:= {}):
 	global.new_session(data)
+	if map and is_instance_valid(map):
+		map.queue_free()
 	map = map_scene.instance()
 
 var celebration: HallOfFame
@@ -291,6 +320,7 @@ func navigate_to_celebration():
 		Events.emit_signal("continue_after_session_ended")
 	else:
 		celebration = celebration_scene.instance()
+		celebration.add_champion = true
 		add_child(celebration)
 		
 		celebration.set_champion(champion)
@@ -303,7 +333,7 @@ func navigate_to_map(session_over := false):
 	
 	add_child(map)
 	
-func add_cpu(how_many: int):
+func add_cpu(how_many: int, team=null):
 	"""
 	Add cpu to the current pool of players
 	"""
@@ -335,6 +365,8 @@ func add_cpu(how_many: int):
 		info_player.id = id_player
 		info_player.cpu = true
 		info_player.species = cpu_species
+		if team:
+			info_player.team = team
 		players[id_player] = info_player
 
 

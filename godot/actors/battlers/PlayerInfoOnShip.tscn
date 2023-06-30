@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://actors/battlers/PlayerInfo.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/signs/minimoon.png" type="Texture" id=2]
@@ -7,8 +7,10 @@
 [ext_resource path="res://actors/battlers/Indicator.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/sprites/signs/minisun.png" type="Texture" id=6]
 [ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=7]
+[ext_resource path="res://utils/Bag.tscn" type="PackedScene" id=8]
 [ext_resource path="res://actors/battlers/HealthBar.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://actors/battlers/Countdown.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=2]
 resource_local_to_scene = true
@@ -75,7 +77,7 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 2 )
 
 [node name="Colored" type="Node2D" parent="Wrapper/Scaled"]
-z_index = 20
+z_index = 150
 z_as_relative = false
 
 [node name="Minisun" type="Sprite" parent="Wrapper/Scaled/Colored"]
@@ -111,3 +113,10 @@ still = true
 
 [node name="Indicator" parent="Wrapper/Scaled/Colored" instance=ExtResource( 5 )]
 visible = false
+
+[node name="Bag" parent="Wrapper/Scaled" instance=ExtResource( 8 )]
+
+[node name="Countdown" parent="Wrapper/Scaled" instance=ExtResource( 11 )]
+position = Vector2( 0, -56 )
+
+[connection signal="expired" from="Wrapper/Scaled/Countdown" to="." method="_on_Countdown_expired"]

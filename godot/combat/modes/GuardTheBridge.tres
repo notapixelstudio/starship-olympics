@@ -1,21 +1,16 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture" id=2]
 [ext_resource path="res://assets/icon/minicards/sets/guard_the_bridge.png" type="Texture" id=3]
 [ext_resource path="res://combat/styles/bridge.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 1 )
 id = "guard_the_bridge"
-is_mutator = false
 name = "Guard the Bridge"
 icon = ExtResource( 3 )
-logo = ExtResource( 2 )
 arena_style = ExtResource( 4 )
 description = "guard: touch the others - others: cross the bridge"
-tagline_pro = "A kill for the honour, a kill for the species"
-tagline_cons = "A self kill, apart from being embarassing, make you lose point"
 max_timeout = 60
 max_score = 10
 starting_score = 0
@@ -26,6 +21,7 @@ starting_health = 1
 respawn_from_home = false
 end_on_perfect = true
 fill_starting_score = false
+streaks_enabled = true
 death = true
 last_man = false
 crown = false

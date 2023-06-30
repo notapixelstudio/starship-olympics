@@ -1,18 +1,19 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
 [ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
-[ext_resource path="res://actors/environments/ShieldWall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=5]
 [ext_resource path="res://combat/modes/OldSchool.tres" type="Resource" id=6]
 [ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=7]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=10]
+[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=11]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=12]
 [ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=13]
 [ext_resource path="res://combat/levels/background/green.png" type="Texture" id=14]
+[ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=16]
 
 [node name="Arena" instance=ExtResource( 10 )]
@@ -55,13 +56,7 @@ texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0, 0.54902, 0.32549, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
-[node name="ShieldWall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
-type = "skin"
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/ShieldWall" index="5"]
-polygon = PoolVector2Array( 0, -400, 400, 0, 0, 400, -400, 0 )
-
-[node name="Wall10" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
+[node name="Wall10" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
 position = Vector2( -1600, -1200 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
@@ -72,7 +67,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall11" parent="Battlefield/Middleground" index="2" instance=ExtResource( 8 )]
+[node name="Wall11" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
 position = Vector2( -1600, 1200 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
@@ -83,7 +78,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall12" parent="Battlefield/Middleground" index="3" instance=ExtResource( 8 )]
+[node name="Wall12" parent="Battlefield/Middleground" index="2" instance=ExtResource( 8 )]
 position = Vector2( 1600, 1200 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
@@ -94,7 +89,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall13" parent="Battlefield/Middleground" index="4" instance=ExtResource( 8 )]
+[node name="Wall13" parent="Battlefield/Middleground" index="3" instance=ExtResource( 8 )]
 position = Vector2( 1600, -1200 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
@@ -105,7 +100,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall15" parent="Battlefield/Middleground" index="5" instance=ExtResource( 8 )]
+[node name="Wall15" parent="Battlefield/Middleground" index="4" instance=ExtResource( 8 )]
 position = Vector2( 0, 1200 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
@@ -117,7 +112,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall16" parent="Battlefield/Middleground" index="6" instance=ExtResource( 8 )]
+[node name="Wall16" parent="Battlefield/Middleground" index="5" instance=ExtResource( 8 )]
 position = Vector2( 0, -1200 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
@@ -129,7 +124,7 @@ sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall17" parent="Battlefield/Middleground" index="7" instance=ExtResource( 8 )]
+[node name="Wall17" parent="Battlefield/Middleground" index="6" instance=ExtResource( 8 )]
 position = Vector2( -1000, -600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
@@ -144,7 +139,7 @@ rotation_degrees = 0
 [node name="NavigationZone" parent="Battlefield/Middleground/Wall17" index="9" instance=ExtResource( 16 )]
 offset_type = "outset"
 
-[node name="Wall18" parent="Battlefield/Middleground" index="8" instance=ExtResource( 8 )]
+[node name="Wall18" parent="Battlefield/Middleground" index="7" instance=ExtResource( 8 )]
 position = Vector2( 1000, -600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
@@ -159,7 +154,7 @@ rotation_degrees = 0
 [node name="NavigationZone" parent="Battlefield/Middleground/Wall18" index="9" instance=ExtResource( 16 )]
 offset_type = "outset"
 
-[node name="Wall19" parent="Battlefield/Middleground" index="9" instance=ExtResource( 8 )]
+[node name="Wall19" parent="Battlefield/Middleground" index="8" instance=ExtResource( 8 )]
 position = Vector2( 1000, 600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
@@ -174,7 +169,7 @@ rotation_degrees = 0
 [node name="NavigationZone" parent="Battlefield/Middleground/Wall19" index="9" instance=ExtResource( 16 )]
 offset_type = "outset"
 
-[node name="Wall20" parent="Battlefield/Middleground" index="10" instance=ExtResource( 8 )]
+[node name="Wall20" parent="Battlefield/Middleground" index="9" instance=ExtResource( 8 )]
 position = Vector2( -1000, 600 )
 solid_line_color = Color( 1.1, 1, 1, 1 )
 line_texture = ExtResource( 7 )
@@ -189,9 +184,56 @@ rotation_degrees = 0
 [node name="NavigationZone" parent="Battlefield/Middleground/Wall20" index="9" instance=ExtResource( 16 )]
 offset_type = "outset"
 
+[node name="DramaticSpawner" parent="Battlefield/Foreground" index="0" instance=ExtResource( 15 )]
+match_progress_trigger = 0.3
+chance = 0.5
+
+[node name="PowerUp" parent="Battlefield/Foreground/DramaticSpawner" index="0" instance=ExtResource( 11 )]
+type = "medikit"
+
+[node name="DramaticSpawner2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 15 )]
+position = Vector2( -1600, 0 )
+match_progress_trigger = 0.4
+chance = 0.5
+
+[node name="PowerUp" parent="Battlefield/Foreground/DramaticSpawner2" index="0" instance=ExtResource( 11 )]
+type = "medikit"
+
+[node name="DramaticSpawner3" parent="Battlefield/Foreground" index="2" instance=ExtResource( 15 )]
+position = Vector2( 1600, 0 )
+match_progress_trigger = 0.4
+chance = 0.5
+
+[node name="PowerUp" parent="Battlefield/Foreground/DramaticSpawner3" index="0" instance=ExtResource( 11 )]
+type = "medikit"
+
+[node name="DramaticSpawner4" parent="Battlefield/Foreground" index="3" instance=ExtResource( 15 )]
+match_progress_trigger = 0.6
+chance = 0.5
+
+[node name="PowerUp" parent="Battlefield/Foreground/DramaticSpawner4" index="0" instance=ExtResource( 11 )]
+type = "medikit"
+
+[node name="DramaticSpawner5" parent="Battlefield/Foreground" index="4" instance=ExtResource( 15 )]
+position = Vector2( -1600, 0 )
+match_progress_trigger = 0.8
+chance = 0.5
+
+[node name="PowerUp" parent="Battlefield/Foreground/DramaticSpawner5" index="0" instance=ExtResource( 11 )]
+type = "medikit"
+
+[node name="DramaticSpawner6" parent="Battlefield/Foreground" index="5" instance=ExtResource( 15 )]
+position = Vector2( 1600, 0 )
+match_progress_trigger = 0.8
+chance = 0.5
+
+[node name="PowerUp" parent="Battlefield/Foreground/DramaticSpawner6" index="0" instance=ExtResource( 11 )]
+type = "medikit"
+
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
 position = Vector2( -1250, 850 )
 rotation = 0.0
+controls = "joy1"
 species = ExtResource( 12 )
 cpu = true
 
@@ -200,8 +242,7 @@ position = Vector2( 1250, -850 )
 rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 13 )
-cpu = true
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera" parent="." index="6"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
 smoothing_speed = 0.3

@@ -152,14 +152,14 @@ func get_strategy(ship, distance, game_mode):
 			
 	return {}
 	
-func get_strategic_value(ship, premidgame, midgame, ending, stealer):
+func get_strategic_value(ship, premidgame=false, midgame=true, ending=false, stealer=false): # default: midgame
 	var empty : bool = owner_ship == null and conquering_ship == null
 	var enemy : bool = owner_ship != ship
 	
 	if fortified:
 		return null
 		
-	if global.the_match.get_game_mode().get_id() == 'board_conquest':
+	if global.the_match.get_game_mode().get_id() in ['board_conquest','Colorboard']:
 		if ending:
 			# no time left for fortification, let's target the most points possible
 			if empty:

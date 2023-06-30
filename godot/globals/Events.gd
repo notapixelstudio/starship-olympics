@@ -2,6 +2,8 @@ extends Node
 
 signal bumper_created(bumper)
 
+signal ship_spawned(ship)
+signal ship_repaired(ship)
 signal ship_damaged(ship, hazard, damager)
 signal ship_died(ship, killer, for_good)
 
@@ -11,6 +13,10 @@ signal tappable_entered(tappable, ship)
 signal tappable_exited(tappable, ship)
 signal tap(tapper)
 signal sth_tapped(tapper, tappee)
+
+signal card_revealed(card)
+signal card_taken(card, player, ship)
+signal card_destroyed(card)
 
 signal holdable_loaded(holdable, ship)
 signal holdable_dropped(holdable, ship, cause)
@@ -30,6 +36,8 @@ signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no d
 signal sth_collected(collector, collectee)
 signal sth_conquered(conqueror, conquered)
 
+signal sth_countdown_expired(sth)
+
 signal navigation_zone_changed(zone)
 
 # Arena
@@ -46,6 +54,10 @@ signal match_ended(match_dict)
 signal session_ended
 signal game_ended
 signal execution_ended
+signal analytics_enabled
+signal analytics_disabled
+
+signal battle_start
 
 signal continue_after_game_over(session_ended)
 signal continue_after_session_ended
@@ -53,6 +65,7 @@ signal continue_after_session_ended
 signal nav_to_menu
 signal nav_to_map
 signal nav_to_character_selection
+signal nav_to_scene(scene)
 
 signal sth_unhid(what, by_what) # e.g., Set by MapPlanet
 signal sth_unlocked(what, by_what) # e.g., Set by MapPlanet
@@ -76,3 +89,11 @@ signal card_tapped(author, card)
 signal starting_deck_selected(starting_deck)
 signal selection_starting_deck_over
 signal draft_ended(choices, hand)
+
+# settings
+signal glow_setting_changed
+signal difficulty_selection_done
+signal language_changed
+
+# analytics
+signal analytics_event(event_dictionary, event_name)

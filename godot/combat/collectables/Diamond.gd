@@ -40,5 +40,8 @@ func on_collected_by(collector):
 	var particles = $Particles
 	remove_child(particles)
 	get_parent().add_child(particles)
+	particles.global_position = global_position
 	particles.go()
 	
+func drop() -> void:
+	$DropAnimationPlayer.play("drop")

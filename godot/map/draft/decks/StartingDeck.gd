@@ -1,11 +1,12 @@
 extends Resource
 
 class_name StartingDeck
-# This is NOT A DECK
+# This is NOT A DECK, This is basically a playlist
 
 export var id : String
 export var order : int = 0
 export var name : String
+export var image : StreamTexture
 export var cards : Array = [Object(), Object(), Object(), Object()] # DraftCard
 export var nexts : Array = [] # DraftCard
 export var playlist := false
@@ -18,7 +19,10 @@ func get_name() -> String:
 	return name
 	
 func deal_cards() -> Array:
-	var all_cards = cards.duplicate()
+	var all_cards = []
+	for card in cards:
+		# each card should be unique, even if it's the same card
+		all_cards.append(card.duplicate())
 	
 	if not is_playlist():
 		all_cards.shuffle()
@@ -34,3 +38,5 @@ func is_playlist() -> bool:
 func get_unlocks() -> Array:
 	return unlocks
 	
+func get_image() -> Texture:
+	return image
