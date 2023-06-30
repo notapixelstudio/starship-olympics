@@ -5,7 +5,7 @@ func _ready():
 	blur()
 	
 func focus():
-	modulate = Color(1.17, 1.17, 1.17)
+	modulate = Color(1.16, 1.16, 1.16)
 	$AnimationPlayer.play("Grow")
 
 func blur():
