@@ -1,4 +1,4 @@
-extends ColorRect
+extends Control
 
 signal back_at_you # signal that gives the line back to whoever instantiated the option
 
@@ -56,3 +56,6 @@ func set_content(instanced_scene: UIOptionPanel, nav_forward: bool, extra_args: 
 	if nav_forward:
 		navbar_scene.append(instanced_scene)
 
+
+func _on_Options_focus_entered():
+	get_child(0).get_focus()

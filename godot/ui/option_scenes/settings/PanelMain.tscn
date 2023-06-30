@@ -14,9 +14,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -391.0
-margin_top = -286.5
+margin_top = -238.5
 margin_right = 389.0
-margin_bottom = 270.5
+margin_bottom = 318.5
+focus_mode = 2
 theme = ExtResource( 7 )
 script = ExtResource( 1 )
 
@@ -32,7 +33,7 @@ __meta__ = {
 
 [node name="UIButtonsContainer" type="VBoxContainer" parent="Content"]
 margin_right = 778.0
-margin_bottom = 578.0
+margin_bottom = 536.0
 
 [node name="Language" parent="Content/UIButtonsContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -111,11 +112,4 @@ label_description = "GAME SPEED"
 elem_type = 2
 suffix = "X"
 
-[node name="Back" type="Button" parent="Content/UIButtonsContainer"]
-margin_top = 540.0
-margin_right = 778.0
-margin_bottom = 578.0
-text = "BACK"
-
 [connection signal="value_changed" from="Content/UIButtonsContainer/Language" to="." method="_on_Language_value_changed"]
-[connection signal="pressed" from="Content/UIButtonsContainer/Back" to="." method="_on_Back_pressed"]
