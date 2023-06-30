@@ -30,8 +30,8 @@ export var score_to_win_override : int = 0
 export var match_duration_override : float = 0
 
 export var show_hud : bool = true
-export var show_intro : bool = true
 export var random_starting_position : bool = true
+export var tutorial : bool = false
 export var place_ships_at_start : bool = true
 export var dark_winter : bool = false
 
@@ -60,11 +60,14 @@ onready var camera = $Camera
 onready var canvas = $CanvasLayer
 onready var hud = $CanvasLayer/HUD
 onready var pause = $CanvasLayer2/Pause
-onready var mode_description = $CanvasLayer/DescriptionMode
 onready var grid = $Battlefield/Background/GridWrapper/Grid
 onready var deathflash_scene = preload('res://actors/battlers/DeathFlash.tscn')
 
 export var standalone : bool = true
+
+export var initial_zoom_in := true
+export var drop_ship := true
+
 onready var battlefield = $Battlefield
 
 signal screensize_changed(screensize)
@@ -76,8 +79,6 @@ signal unslomo
 signal battle_start
 signal skip
 signal all_ships_spawned
-
-signal salvo
 
 var array_players = [] # Dictionary of InfoPlayers
 
@@ -328,17 +329,26 @@ func _ready():
 		# initialize HUD
 		hud.post_ready()
 	
-	# load style from gamemode, if specified
-	if game_mode.arena_style:
+	# load style
+	if style:
+		set_style(style)
+	elif game_mode.arena_style:
 		set_style(game_mode.arena_style)
 		
+	# update the grid
+	update_grid()
+	
 	# adapt camera to hud height
 	if show_hud:
 		camera.marginY = hud.get_height()
 		
-	camera.initialize(compute_arena_size().grow(100*30))
-	camera.to(compute_arena_size())
-	update_grid()
+	if initial_zoom_in:
+		camera.initialize(compute_arena_size().grow(100*30))
+		camera.to(compute_arena_size())
+		yield(camera, "transition_over")
+	else:
+		camera.initialize(compute_arena_size())
+	
 	
 	if show_hud:
 		hud.set_draft_card(global.the_match.get_draft_card())
@@ -352,12 +362,12 @@ func _ready():
 			$'%BackgroundImage'.texture = load("res://combat/levels/background/"+suit+".png")
 			
 	# update navigation zones if there is at least a cpu
-	if global.the_game.get_number_of_cpu_players() > 0:
+	if global.the_game.get_number_of_cpu_players() > 0 or tutorial:
 		if create_default_navzone and has_node('Battlefield/Background/OutsideWall'):
 			$Battlefield/Background/OutsideWall.add_child(NavigationZone_scene.instance())
 		update_navigation_zones()
 	
-	yield(camera, "transition_over")
+	
 	
 	# $Battlefield.visible = false
 	if score_to_win_override > 0:
@@ -365,14 +375,6 @@ func _ready():
 	if match_duration_override > 0:
 		game_mode.max_timeout = match_duration_override
 		
-	if show_intro:
-		mode_description.set_gamemode(game_mode)
-		mode_description.appears()
-
-		if global.is_match_running():
-			mode_description.set_draft_card(global.the_match.get_draft_card())
-
-	
 	grid.set_max_timeout(game_mode.max_timeout)
 	grid.clock = game_mode.survival
 	if grid.clock:
@@ -424,8 +426,6 @@ func _ready():
 			if dark_winter:
 				ice.modulate = Color(0.55,0.55,0.55)
 				
-	if show_intro:
-		yield(mode_description, "ready_to_fight")
 	
 	if style and style.bgm:
 		Soundtrack.play(style.bgm, true)
@@ -441,11 +441,13 @@ func _ready():
 	# group by order for trait intro
 	var intro_nodes = {}
 	for trait in traits.get_all('Intro'):
-		if not(str(trait.order) in intro_nodes.keys()):
-			intro_nodes[str(trait.order)] = []
-		intro_nodes[str(trait.order)].append(trait.get_host())
+		if not(trait.order in intro_nodes.keys()):
+			intro_nodes[trait.order] = []
+		intro_nodes[trait.order].append(trait.get_host())
 	
-	for group in intro_nodes:
+	var groups = intro_nodes.keys()
+	groups.sort()
+	for group in groups:
 		for node in intro_nodes[group]:
 			node.intro()
 		for node in intro_nodes[group]:
@@ -482,13 +484,14 @@ func spawn_all_ships(do_intro = false):
 	
 	for s in player_spawners:
 		var spawner = s as PlayerSpawner
-		spawner.appears()
+		spawner.appears(drop_ship)
 		# waiting for the ship to be entered
-		yield(get_tree().create_timer(0.5), "timeout")
+		if drop_ship:
+			yield(get_tree().create_timer(0.5), "timeout")
 		spawn_ship(spawner)
 		j += 1
 		# wait for the last ship
-		if j >= len(player_spawners):
+		if j >= len(player_spawners) and drop_ship:
 			yield(spawner, "entered_battlefield")
 			
 	yield(get_tree(), "idle_frame")
@@ -668,6 +671,9 @@ func ship_just_died(ship, killer, for_good):
 	Events.emit_signal("ship_repaired", ship)
 	
 func on_gameover():
+	if tutorial:
+		return
+		
 	set_process_unhandled_input(false)
 	for child in $Managers.get_children():
 		if child is ModeManager:
@@ -741,7 +747,8 @@ func spawn_ship(player:PlayerSpawner, force_intro=false):
 	
 	ship.set_start_invincible(game_mode.start_invincible)
 	
-	yield(player, "entered_battlefield")
+	if drop_ship:
+		yield(player, "entered_battlefield")
 	
 	$Battlefield.add_child(ship)
 	
@@ -935,7 +942,7 @@ func respawn_from_home(ship, spawner):
 	if ship.alive:
 		ship.die(null, true) # die for good
 	yield(get_tree().create_timer(respawn_timeout), "timeout")
-	spawner.appears()
+	spawner.appears(drop_ship)
 	spawn_ship(spawner, true) # force intro
 	
 func connect_killable(killable):

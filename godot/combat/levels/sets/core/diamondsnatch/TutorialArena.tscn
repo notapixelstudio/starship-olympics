@@ -1,0 +1,110 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://combat/TutorialArena.tscn" type="PackedScene" id=1]
+[ext_resource path="res://combat/modes/Diamondsnatch.tres" type="Resource" id=2]
+[ext_resource path="res://addons/geometry/icons/GRoundedRect.svg" type="Texture" id=3]
+[ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=4]
+[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=6]
+[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=8]
+[ext_resource path="res://actors/environments/ElementSpawnerGroup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://actors/environments/WaveGroupSpawner.gd" type="Script" id=10]
+[ext_resource path="res://combat/managers/SpawnerManager.tscn" type="PackedScene" id=11]
+[ext_resource path="res://combat/traits/Intro.tscn" type="PackedScene" id=12]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Intro"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Battlefield:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Battlefield:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends AnimationPlayer
+
+signal done
+
+func intro():
+	play(\"Intro\")
+	
+func _on_AnimationPlayer_animation_finished(anim_name):
+	emit_signal(\"done\")
+"
+
+[node name="TutorialArena" instance=ExtResource( 1 )]
+game_mode = ExtResource( 2 )
+
+[node name="SpawnerManager" parent="Managers" index="0" instance=ExtResource( 11 )]
+
+[node name="Battlefield" parent="." index="2"]
+visible = false
+
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
+hollow = true
+hide_grid = true
+solid_line_color = Color( 1.12, 0.51, 1.12, 1 )
+grid_color = Color( 0.945098, 0, 1, 0.588235 )
+
+[node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_icon": ExtResource( 3 )
+}
+width = 3000
+height = 1800
+radius = 800
+precision = 100.0
+
+[node name="Wave0" type="Node2D" parent="Battlefield/Middleground" index="0" groups=["spawn_waves"]]
+script = ExtResource( 10 )
+max_repeats = 1
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Middleground/Wave0" index="0" instance=ExtResource( 9 )]
+position = Vector2( 600, 0 )
+pattern = "single"
+element_scene = ExtResource( 8 )
+
+[node name="ElementSpawnerGroup5" parent="Battlefield/Middleground/Wave0" index="1" instance=ExtResource( 9 )]
+position = Vector2( -600, 0 )
+pattern = "single"
+element_scene = ExtResource( 8 )
+
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 7 )]
+position = Vector2( -600, 1.52588e-05 )
+rotation = 0.0
+species = ExtResource( 6 )
+cpu = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
+anims/Intro = SubResource( 1 )
+anims/RESET = SubResource( 3 )
+script = SubResource( 2 )
+
+[node name="Intro" parent="AnimationPlayer" index="0" instance=ExtResource( 12 )]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_AnimationPlayer_animation_finished"]

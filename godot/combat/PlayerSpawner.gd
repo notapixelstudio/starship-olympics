@@ -22,7 +22,7 @@ func _ready():
 	visible = false
 	global.arena.connect("all_ships_spawned", self, '_on_all_ships_spawned')
 	
-func appears():
+func appears(animate_drop_ship: bool):
 	var device_controller_id
 	if ("rm" in controls):
 		device_controller_id = 0
@@ -39,8 +39,9 @@ func appears():
 		sprite.texture = species.ship
 		sprite.modulate = Color.white
 	visible = true
-	animation.play("Appearing")
-	yield(animation, "animation_finished")
+	if animate_drop_ship:
+		animation.play("Appearing")
+		yield(animation, "animation_finished")
 	emit_signal("entered_battlefield")
 	visible = false
 	
