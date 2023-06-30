@@ -74,10 +74,11 @@ var available_languages = {
 	"italiano": "it",
 	"euskara": "eu",
 	"français": "fr",
-	"deutsch": "de"
+	"deutsch": "de",
+	"alien": "pr"
 	}
 onready var language: String setget _set_language, _get_language
-var array_language: Array = ["english", "italiano", "español", "euskara", "français", "deutsch"]
+var array_language: Array = ["english", "alien", "italiano", "español", "euskara", "français", "deutsch"]
 var full_screen = true setget _set_full_screen
 	
 func _set_full_screen(value: bool):
@@ -136,7 +137,7 @@ func _set_unlock_mode(value: String):
 
 func _set_language(value:String):
 	language = value
-	TranslationServer.set_locale(available_languages.get(language, "en"))
+	TranslationServer.set_locale(global.available_languages.get(value, "english"))
 
 func _get_language():
 	return language
@@ -433,13 +434,13 @@ func read_file(path: String) -> String:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
 	var file = File.new()
 	if not file.file_exists(path):
-		print("The save file does not exist.")
+		print("The file {filepath} does not exist.".format({"filepath":path}))
 		return ""
 	file.open(path, File.READ)
 	print("We are going to load from this JSON: ", file.get_path_absolute())
 	# parse file data - convert the JSON back to a dictionary
 	var data = ""
-	data = file.get_as_text()
+	data = file.get_as_text().strip_edges().strip_escapes()
 	file.close()
 	return data
 

@@ -128,5 +128,3 @@ func _on_Element_focus_exited():
 	value_node.set("custom_colors/font_color", null)
 	description_node.set("custom_colors/font_color", null)
 	set_process_input(false)
-
-

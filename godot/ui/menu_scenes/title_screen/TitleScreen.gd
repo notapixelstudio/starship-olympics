@@ -24,7 +24,9 @@ func appear():
 	
 	# check if continue should be enabled
 	var data = global.read_file("user://games/latest.json")
-	var parsed_data = parse_json(data)
+	var parsed_data = null
+	if data:
+		parsed_data = parse_json(data)
 	$"%Continue".disabled = parsed_data == null or parsed_data.empty()
 	
 	for button in buttons.get_children():
@@ -76,7 +78,6 @@ func _on_Continue_pressed():
 
 func _on_Credits_pressed():
 	get_tree().change_scene_to(credits_scene)
-
 
 func _on_HallOfFame_pressed():
 	print("loading")

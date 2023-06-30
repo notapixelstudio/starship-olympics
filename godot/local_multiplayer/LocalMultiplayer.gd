@@ -26,7 +26,6 @@ func _ready():
 		
 	players = {}
 	selection_screen.connect("fight", self, "start_fight")
-	selection_screen.connect("back", self, "back")
 	global.local_multiplayer = self
 	
 	Events.connect("minigame_selected", self, "_on_minigame_selected")
@@ -37,12 +36,10 @@ func _ready():
 	Events.connect('nav_to_map', self, '_on_nav_to_map')
 	Events.connect('nav_to_character_selection', self, '_on_nav_to_character_selection')
 	
-	var p = parse_json(global.read_file("user://games/latest.json"))
-	if typeof(p) == TYPE_ARRAY or typeof(p):
-		print("Correctly loaded session to continue") # Prints "hello"
-	else:
-		push_error("Unexpected results.")
+	var data = global.read_file("user://games/latest.json")
 	var unfinished_game = {}
+	if data:
+		unfinished_game = parse_json(data)
 	if not unfinished_game.empty():
 		setup_continue_game(unfinished_game)
 #		var confirm = load("res://special_scenes/combat_UI/gameover/AreYouSure.tscn").instance()
@@ -306,7 +303,7 @@ func _on_nav_to_map():
 	
 func create_map(data:= {}):
 	global.new_session(data)
-	if map:
+	if map and is_instance_valid(map):
 		map.queue_free()
 	map = map_scene.instance()
 
