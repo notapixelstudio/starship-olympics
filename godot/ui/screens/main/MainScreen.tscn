@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://ui/fancy_menus/FancyButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/fancy_menus/FancyMenu.tscn" type="PackedScene" id=2]
@@ -20,10 +20,11 @@
 [ext_resource path="res://ui/screens/settings/SettingsScreen.tscn" type="PackedScene" id=18]
 [ext_resource path="res://ui/screens/hall_of_fame/HallOfFameScreen.tscn" type="PackedScene" id=19]
 [ext_resource path="res://ui/screens/main/background.png" type="Texture" id=20]
+[ext_resource path="res://ui/screens/selection_screen/SelectionScreen.tscn" type="PackedScene" id=21]
 
 [node name="MainScreen" instance=ExtResource( 16 )]
 script = ExtResource( 17 )
-versus_character_selection_scene = null
+versus_character_selection_scene = ExtResource( 21 )
 coop_character_selection_scene = null
 hall_of_fame_scene = ExtResource( 19 )
 settings_scene = ExtResource( 18 )
