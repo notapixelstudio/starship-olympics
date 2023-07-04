@@ -1,4 +1,4 @@
- extends Control
+extends Control
 
 const MAX_PLAYERS = 4
 const MIN_PLAYERS = 1

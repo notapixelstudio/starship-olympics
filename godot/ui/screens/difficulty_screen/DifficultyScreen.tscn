@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ui/screens/difficulty_screen/DifficultyScreen.gd" type="Script" id=1]
 [ext_resource path="res://ui/screens/back_screen/BackScreen.tscn" type="PackedScene" id=2]
@@ -12,9 +12,7 @@
 [ext_resource path="res://ui/difficulty_screen/mask_hive_two.png" type="BitMap" id=10]
 [ext_resource path="res://ui/difficulty_screen/mask_medium.png" type="BitMap" id=11]
 [ext_resource path="res://ui/fancy_menus/FancyButton.tscn" type="PackedScene" id=12]
-[ext_resource path="res://ui/screens/main/buttons/area_Campaign.png" type="BitMap" id=13]
 [ext_resource path="res://assets/shaders/crt_local.shader" type="Shader" id=14]
-[ext_resource path="res://ui/fancy_menus/FancyButton.gd" type="Script" id=15]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 14 )
@@ -49,60 +47,47 @@ tracks/0/keys = {
 
 [node name="DifficultyScreen" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
+next_scene = null
 
-[node name="Easy" type="TextureButton" parent="FancyMenu" index="1" instance=ExtResource( 12 )]
+[node name="FancyMenu" parent="." index="1"]
+starting_focused_element = NodePath("Easy")
+
+[node name="Easy" parent="FancyMenu" index="1" instance=ExtResource( 12 )]
 material = SubResource( 2 )
 margin_right = 1280.0
 margin_bottom = 720.0
 texture_normal = ExtResource( 6 )
-texture_click_mask = ExtResource( 13 )
-script = ExtResource( 15 )
 
-[node name="Medium" type="TextureButton" parent="FancyMenu" index="2" instance=ExtResource( 12 )]
+[node name="Medium" parent="FancyMenu" index="2" instance=ExtResource( 12 )]
 material = SubResource( 2 )
 margin_right = 1280.0
 margin_bottom = 720.0
 texture_normal = ExtResource( 5 )
 texture_click_mask = ExtResource( 11 )
-script = ExtResource( 15 )
 
-[node name="Hard" type="TextureButton" parent="FancyMenu" index="3" instance=ExtResource( 12 )]
+[node name="Hard" parent="FancyMenu" index="3" instance=ExtResource( 12 )]
 material = SubResource( 2 )
 margin_right = 1280.0
 margin_bottom = 720.0
 texture_normal = ExtResource( 4 )
 texture_click_mask = ExtResource( 9 )
-script = ExtResource( 15 )
 
-[node name="HiveTwo" type="TextureButton" parent="FancyMenu" index="4" instance=ExtResource( 12 )]
+[node name="HiveTwo" parent="FancyMenu" index="4" instance=ExtResource( 12 )]
 material = SubResource( 2 )
 margin_right = 1280.0
 margin_bottom = 720.0
 focus_neighbour_bottom = NodePath("../HiveThree")
 texture_normal = ExtResource( 3 )
 texture_click_mask = ExtResource( 10 )
-script = ExtResource( 15 )
 
-[node name="HiveThree" type="TextureButton" parent="FancyMenu" index="5" instance=ExtResource( 12 )]
+[node name="HiveThree" parent="FancyMenu" index="5" instance=ExtResource( 12 )]
 material = SubResource( 2 )
 margin_right = 1280.0
 margin_bottom = 720.0
 focus_neighbour_top = NodePath("../HiveTwo")
 texture_normal = ExtResource( 7 )
 texture_click_mask = ExtResource( 8 )
-script = ExtResource( 15 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 autoplay = "slide_in"
 anims/slide_in = SubResource( 1 )
-
-[connection signal="focus_entered" from="FancyMenu/Easy" to="FancyMenu/Easy" method="_on_FancyButton_focus_entered"]
-[connection signal="focus_exited" from="FancyMenu/Easy" to="FancyMenu/Easy" method="_on_FancyButton_focus_exited"]
-[connection signal="focus_entered" from="FancyMenu/Medium" to="FancyMenu/Medium" method="_on_FancyButton_focus_entered"]
-[connection signal="focus_exited" from="FancyMenu/Medium" to="FancyMenu/Medium" method="_on_FancyButton_focus_exited"]
-[connection signal="focus_entered" from="FancyMenu/Hard" to="FancyMenu/Hard" method="_on_FancyButton_focus_entered"]
-[connection signal="focus_exited" from="FancyMenu/Hard" to="FancyMenu/Hard" method="_on_FancyButton_focus_exited"]
-[connection signal="focus_entered" from="FancyMenu/HiveTwo" to="FancyMenu/HiveTwo" method="_on_FancyButton_focus_entered"]
-[connection signal="focus_exited" from="FancyMenu/HiveTwo" to="FancyMenu/HiveTwo" method="_on_FancyButton_focus_exited"]
-[connection signal="focus_entered" from="FancyMenu/HiveThree" to="FancyMenu/HiveThree" method="_on_FancyButton_focus_entered"]
-[connection signal="focus_exited" from="FancyMenu/HiveThree" to="FancyMenu/HiveThree" method="_on_FancyButton_focus_exited"]

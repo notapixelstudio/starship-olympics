@@ -7,6 +7,9 @@
 [node name="HallOfFameScreen" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="FancyMenu" parent="." index="1"]
+starting_focused_element = NodePath("Back")
+
 [node name="Node2D" type="Node2D" parent="." index="2"]
 
 [node name="HallOfFame" parent="Node2D" index="0" instance=ExtResource( 3 )]

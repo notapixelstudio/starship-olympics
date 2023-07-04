@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/screens/selection_screen/VersusSelectionScreen.gd" type="Script" id=1]
+[ext_resource path="res://ui/screens/back_screen/BackScreen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://utils/ShearLabel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://selection/SelectionPanel.tscn" type="PackedScene" id=6]
+
+[node name="VersusSelectionScreen" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+next_scene = null
+
+[node name="MenuLabel" parent="." index="2" instance=ExtResource( 3 )]
+modulate = Color( 1, 0.827451, 0.396078, 1 )
+position = Vector2( 650, 50 )
+scale = Vector2( 2.5, 2.5 )
+text = "VERSUS"
+
+[node name="Node2D" type="Node2D" parent="." index="3"]
+
+[node name="SelectionPanel" parent="Node2D" index="0" instance=ExtResource( 6 )]
+unique_name_in_owner = true
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[connection signal="fight" from="Node2D/SelectionPanel" to="." method="_on_SelectionPanel_fight"]

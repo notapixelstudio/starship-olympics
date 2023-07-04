@@ -1,4 +1,4 @@
-extends ScreenScene
+extends Screen
 class_name BackScreen
 
 func _on_Back_button_down():

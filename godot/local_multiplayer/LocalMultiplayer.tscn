@@ -2,7 +2,7 @@
 
 [ext_resource path="res://local_multiplayer/LocalMultiplayer.gd" type="Script" id=1]
 [ext_resource path="res://map/DraftArena.tscn" type="PackedScene" id=2]
-[ext_resource path="res://selection/SelectionScreen.tscn" type="PackedScene" id=3]
+[ext_resource path="res://selection/SelectionPanel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://local_multiplayer/UI/ParallaxBackground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/shaders/crt.shader" type="Shader" id=5]
 [ext_resource path="res://default_env.tres" type="Environment" id=6]
@@ -12,6 +12,7 @@
 [ext_resource path="res://special_scenes/combat_UI/gameover/HallOfFame.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/map/galaxy.png" type="Texture" id=11]
 [ext_resource path="res://assets/sprites/background/static.png" type="Texture" id=12]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )

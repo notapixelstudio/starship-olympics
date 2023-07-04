@@ -13,8 +13,8 @@ func navigate_to(screen_scene: PackedScene):
 		disconnect_nav_signals(active_screen)
 		active_screen.exit()
 	
-	var new_screen = screen_scene.instance() as ScreenScene
-	assert(new_screen is ScreenScene)
+	var new_screen = screen_scene.instance() as Screen
+	assert(new_screen is Screen)
 	new_screen.rect_position.x = 1280 * len(screens_stack)
 	screens_stack.append(new_screen)
 	add_child(new_screen)
@@ -42,12 +42,12 @@ func back():
 	old_screen.queue_free()
 	active_screen.enter()
 
-func connect_nav_signals(screen : ScreenScene) -> void:
-	(screen as ScreenScene).connect("next", self, "navigate_to")
-	(screen as ScreenScene).connect("back", self, "back")
+func connect_nav_signals(screen : Screen) -> void:
+	(screen as Screen).connect("next", self, "navigate_to")
+	(screen as Screen).connect("back", self, "back")
 	
-func disconnect_nav_signals(screen : ScreenScene) -> void:
-	if (screen as ScreenScene).is_connected("next", self, "navigate_to"):
-		(screen as ScreenScene).disconnect("next", self, "navigate_to")
-	if (screen as ScreenScene).is_connected("back", self, "back"):
-		(screen as ScreenScene).disconnect("back", self, "back")
+func disconnect_nav_signals(screen : Screen) -> void:
+	if (screen as Screen).is_connected("next", self, "navigate_to"):
+		(screen as Screen).disconnect("next", self, "navigate_to")
+	if (screen as Screen).is_connected("back", self, "back"):
+		(screen as Screen).disconnect("back", self, "back")

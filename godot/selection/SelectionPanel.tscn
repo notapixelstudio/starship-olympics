@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://selection/SelectionScreen.gd" type="Script" id=1]
+[ext_resource path="res://selection/SelectionPanel.gd" type="Script" id=1]
 [ext_resource path="res://selection/PlayerSelection.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=3]
 [ext_resource path="res://selection/Fight.gd" type="Script" id=4]
@@ -144,9 +144,14 @@ tracks/2/keys = {
 "values": [ Vector2( -650, 260 ), Vector2( -650, 51 ), Vector2( -650, 101 ) ]
 }
 
-[node name="SelectionScreen" type="Control"]
+[node name="SelectionPanel" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath(".")
+focus_mode = 2
 script = ExtResource( 1 )
 
 [node name="Info" type="NinePatchRect" parent="."]

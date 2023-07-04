@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://ui/fancy_menus/FancyButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/fancy_menus/FancyMenu.tscn" type="PackedScene" id=2]
@@ -20,12 +20,13 @@
 [ext_resource path="res://ui/screens/settings/SettingsScreen.tscn" type="PackedScene" id=18]
 [ext_resource path="res://ui/screens/hall_of_fame/HallOfFameScreen.tscn" type="PackedScene" id=19]
 [ext_resource path="res://ui/screens/main/background.png" type="Texture" id=20]
-[ext_resource path="res://ui/screens/selection_screen/SelectionScreen.tscn" type="PackedScene" id=21]
+[ext_resource path="res://ui/screens/selection_screen/VersusSelectionScreen.tscn" type="PackedScene" id=21]
+[ext_resource path="res://ui/screens/selection_screen/CampaignSelectionScreen.tscn" type="PackedScene" id=22]
 
 [node name="MainScreen" instance=ExtResource( 16 )]
 script = ExtResource( 17 )
 versus_character_selection_scene = ExtResource( 21 )
-coop_character_selection_scene = null
+campaign_character_selection_scene = ExtResource( 22 )
 hall_of_fame_scene = ExtResource( 19 )
 settings_scene = ExtResource( 18 )
 credits_scene = ExtResource( 9 )
@@ -45,6 +46,7 @@ texture = ExtResource( 20 )
 
 [node name="FancyMenu" parent="." index="2" instance=ExtResource( 2 )]
 auto_neighbours = "both"
+starting_focused_element = NodePath("Campaign")
 
 [node name="Versus" parent="FancyMenu" index="0" instance=ExtResource( 1 )]
 self_modulate = Color( 0.984314, 0.858824, 1, 1 )
@@ -148,7 +150,7 @@ shear = Vector2( 0.28, 0.1 )
 align = "left"
 
 [connection signal="button_down" from="FancyMenu/Versus" to="." method="_on_Versus_button_down"]
-[connection signal="button_down" from="FancyMenu/Campaign" to="." method="_on_CoOp_button_down"]
+[connection signal="button_down" from="FancyMenu/Campaign" to="." method="_on_Campaign_button_down"]
 [connection signal="button_down" from="FancyMenu/HallOfFame" to="." method="_on_HallOfFame_button_down"]
 [connection signal="button_down" from="FancyMenu/Settings" to="." method="_on_Settings_button_down"]
 [connection signal="button_down" from="FancyMenu/Credits" to="." method="_on_Credits_button_down"]

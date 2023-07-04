@@ -2,12 +2,15 @@ extends Control
 
 export (String, 'horizontal', 'vertical', 'both', 'none') var auto_neighbours = 'none'
 export var wrap := true
+export var starting_focused_element : NodePath
 
 var saved_focused_element : Control
 
 func _ready():
+	if get_node_or_null(starting_focused_element):
+		get_node(starting_focused_element).grab_focus()
+	
 	var children = get_children()
-	children[0].grab_focus()
 	
 	if auto_neighbours in ['horizontal','both']:
 		for i in range(len(children)):
@@ -56,3 +59,12 @@ func restore_focused_element():
 	if not saved_focused_element:
 		return
 	saved_focused_element.grab_focus()
+
+func recursive_release_focus():
+	release_focus()
+	for child in get_children():
+		if child.has_method('recursive_release_focus'):
+			child.recursive_release_focus()
+		elif child.has_method('release_focus'):
+			child.release_focus()
+			
