@@ -1,5 +1,6 @@
 extends Node
 
+const ANALYTICS_TEMP_FILE = "user://temp_analytics.jsonl"
 # Global variables
 var start_time = 0
 var this_elapsed_time = 0
@@ -39,22 +40,23 @@ func send_event(event_body: Dictionary, event_name: String):
 	# Create a new HTTP request node and connect its completion signal
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
-	http_request.connect("request_completed", self, "_http_request_completed", [http_request])
+	http_request.connect("request_completed", self, "_http_request_completed", [http_request, event_body])
 	
 	# Set request headers and send the request
 	var headers = [
 		"Authorization: Basic " + Marshalls.utf8_to_base64(token),
 		"Content-Type: application/json"
 	]
+	print(to_json(event_body))
 	var error = http_request.request(api_hostname + "/" + ENDPOINT, headers, true, HTTPClient.METHOD_POST, to_json(event_body))
 	if error != OK:
 		push_error("An error occurred in the HTTP request. {error}".format({"error": error}) )
-
+		
 func add_timestamp() -> String:
 	"""Returns the current date and time as a formatted string."""
 	return Time.get_datetime_string_from_system(true, false)+"Z"
 
-func _http_request_completed(result, response_code, headers, body, http_request):
+func _http_request_completed(result, response_code, headers, body, http_request, event_body):
 	"""Called when the HTTP request is completed."""
 	print("Request completed! Result code: %s" % [result])    
 	print(response_code)
@@ -66,6 +68,7 @@ func _http_request_completed(result, response_code, headers, body, http_request)
 	if body:
 		print(parse_json(body.get_string_from_utf8()))
 	else:
+		global.write_into_file(ANALYTICS_TEMP_FILE, to_json(event_body), File.READ_WRITE)
 		push_error("An error occurred in the HTTP request to {api_endpoint}. {error}".format({"error": error, "api_endpoint": api_hostname}) )
 	
 	# Free the HTTP request node

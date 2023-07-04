@@ -12,13 +12,15 @@ func navigate_to(screen_scene: PackedScene):
 		var active_screen = screens_stack[-1]
 		disconnect_nav_signals(active_screen)
 		active_screen.exit()
-	
+	var from = "main"
 	var new_screen = screen_scene.instance() as Screen
 	assert(new_screen is Screen)
 	new_screen.rect_position.x = 1280 * len(screens_stack)
+	if len(screens_stack) > 0:
+		from=screens_stack[-1].name
 	screens_stack.append(new_screen)
 	add_child(new_screen)
-	
+	Events.emit_signal("analytics_event", {"id": UUID.v4(), "action": "navigate_to", "from": from, "to": new_screen.name}, "navigation")
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property($Camera2D, 'position:x', 1280 * (len(screens_stack)-1), 1)
 	yield(tween, "finished")
@@ -31,9 +33,10 @@ func back():
 	var old_screen = screens_stack.pop_back()
 	disconnect_nav_signals(old_screen)
 	old_screen.exit()
-	
 	var active_screen = screens_stack[-1]
 	connect_nav_signals(active_screen)
+	Events.emit_signal("analytics_event", {"id": UUID.v4(), "action": "back", "from": old_screen.name, "to": active_screen.name}, "navigation")
+	
 	
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property($Camera2D, 'position:x', 1280 * (len(screens_stack)-1), 1)
