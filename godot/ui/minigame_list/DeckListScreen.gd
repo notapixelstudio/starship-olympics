@@ -36,16 +36,6 @@ func _ready():
 		i += 1
 	yield(get_tree().create_timer(0.1), "timeout")
 	
-	# select latest deck
-	var found := false
-	for child in $"%DecksContainer".get_children():
-		if not child is DeckListItem:
-			continue
-		child.grab_focus()
-		break
-	
-#	$"%RandomDeckListItem".grab_focus()
-	
 	if global.demo:
 		choose_random_playlist()
 		return
@@ -76,7 +66,13 @@ func choose_random_playlist():
 func _on_RandomDeckListItem_pressed():
 	choose_random_playlist()
 
-func _on_BackButton_pressed():
-	queue_free()
-	Events.emit_signal("nav_to_character_selection")
+func _on_DeckListScreen_focus_entered():
+	# select latest deck
+	var found := false
+	for child in $"%DecksContainer".get_children():
+		if not child is DeckListItem:
+			continue
+		child.grab_focus()
+		break
 	
+#	$"%RandomDeckListItem".grab_focus()

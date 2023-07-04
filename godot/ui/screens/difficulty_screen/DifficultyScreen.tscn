@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ui/screens/difficulty_screen/DifficultyScreen.gd" type="Script" id=1]
 [ext_resource path="res://ui/screens/back_screen/BackScreen.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://ui/difficulty_screen/mask_hive_two.png" type="BitMap" id=10]
 [ext_resource path="res://ui/difficulty_screen/mask_medium.png" type="BitMap" id=11]
 [ext_resource path="res://ui/fancy_menus/FancyButton.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ui/screens/world_selection/WorldSelectionScreen.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/shaders/crt_local.shader" type="Shader" id=14]
 
 [sub_resource type="ShaderMaterial" id=2]
@@ -47,7 +48,7 @@ tracks/0/keys = {
 
 [node name="DifficultyScreen" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
-next_scene = null
+next_scene = ExtResource( 13 )
 
 [node name="FancyMenu" parent="." index="1"]
 starting_focused_element = NodePath("Easy")

@@ -7,9 +7,11 @@ class_name Screen
 
 func enter():
 	set_process_input(true)
+	set_process_unhandled_input(true)
 
 func exit():
 	set_process_input(false)
+	set_process_unhandled_input(false)
 	recursive_release_focus()
 
 func recursive_release_focus():

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/screens/back_screen/BackScreen.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/screens/world_selection/WorldSelectionScreen.gd" type="Script" id=2]
+[ext_resource path="res://ui/minigame_list/DeckListScreen.tscn" type="PackedScene" id=3]
+
+[node name="WorldSelectionScreen" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Back" parent="FancyMenu" index="0"]
+focus_neighbour_right = NodePath("../../DeckListPanel")
+focus_neighbour_bottom = NodePath("../../DeckListPanel")
+
+[node name="DeckListPanel" parent="." index="2" instance=ExtResource( 3 )]
+unique_name_in_owner = true
+margin_top = 120.0
