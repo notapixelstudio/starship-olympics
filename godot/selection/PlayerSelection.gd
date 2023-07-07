@@ -104,7 +104,7 @@ func _input(event):
 	if selected:
 		if event.is_action_pressed(controls+"_fire"):
 			sfx.get_node("ready").play()
-			emit_signal("ready_to_fight")
+			emit_signal("ready_to_fight", get_info_player())
 #		elif event.is_action_pressed(controls+"_cancel") and not global.demo:
 #			deselect()
 	elif joined:
@@ -192,4 +192,12 @@ func enable_choice(silent=false):
 	if global.demo_playtest:
 		speciesSelection.disable_arrows()
 	emit_signal("joined")
+	
+func disable():
+	set_process(false)
+	set_process_input(false)
+	
+func enable():
+	set_process(true)
+	set_process_input(true)
 	

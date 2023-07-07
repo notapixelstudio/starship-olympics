@@ -61,15 +61,18 @@ func _ready():
 func _input(event):
 	for player in human_players:
 		if event.is_action_pressed(player.controls+\"_fire\"):
-			deactivate(true)
+			deactivate()
 			emit_signal(\"letsfight\")
 	if event.is_action_pressed(\"ui_left\") or event.is_action_pressed(\"ui_right\") or event.is_action_pressed(\"ui_cancel\"):
 		deactivate()
 	if event.is_action_pressed(\"debug_action\"):
-		deactivate(true)
+		deactivate()
 		emit_signal(\"letsfight\")
 
 func start(players: Array, n_matches: int):
+	if visible:
+		return
+	
 	human_players = players
 	var num_players = len(players)
 	visible = true
@@ -80,9 +83,9 @@ func start(players: Array, n_matches: int):
 	set_process_input(true)
 	
 	
-func deactivate(show = false):
+func deactivate():
 	set_process_input(false)
-	visible = show
+	visible = false
 	emit_signal('deactivated')
 	
 "
@@ -402,6 +405,4 @@ margin_bottom = 670.0
 wait_time = 30.0
 autostart = true
 
-[connection signal="deactivated" from="CanvasLayer/ReadyToFight" to="." method="_on_ReadyToFight_deactivated"]
-[connection signal="letsfight" from="CanvasLayer/ReadyToFight" to="." method="_on_ReadyToFight_letsfight"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

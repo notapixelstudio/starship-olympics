@@ -515,6 +515,11 @@ _global_script_classes=[ {
 "path": "res://actors/weapons/Pew.gd"
 }, {
 "base": "Node2D",
+"class": "PilotSelector",
+"language": "GDScript",
+"path": "res://ui/screens/character_selection/selection_panel/PilotSelector.gd"
+}, {
+"base": "Node2D",
 "class": "PilotStats",
 "language": "GDScript",
 "path": "res://special_scenes/combat_UI/session_points/PilotStats.gd"
@@ -856,6 +861,7 @@ _global_script_class_icons={
 "PathStar": "",
 "Pentagoal": "",
 "Pew": "",
+"PilotSelector": "",
 "PilotStats": "",
 "PlayerSelection": "",
 "PlayerSide": "",

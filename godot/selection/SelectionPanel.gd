@@ -54,7 +54,7 @@ func post_ready():
 		child.connect("selected", self, "selected")
 		child.connect("joined", self, "joined")
 		child.connect("deselected", self, "deselected")
-		child.connect("ready_to_fight", self, "ready_to_fight")
+		child.connect("ready_to_fight", self, "check_if_we_can_go_on")
 		i +=1
 		# it gives the name of the player
 		child.uid = i
@@ -109,13 +109,13 @@ func get_adjacent(operator:int, player_selection : Node):
 	player_selection.change_species(ordered_species[current_index])
 
 
-func ready_to_fight():
+func check_if_we_can_go_on(player: InfoPlayer):
 	var players = get_players()
 	if len(players) >= MIN_PLAYERS:
 		ready_to_fight.start(players, global.win)
-		smoke_screen.visible = true
 	else:
 		print_debug("not enough players")
+
 
 func selected(player: PlayerSelection):
 	ready_to_fight.deactivate()
@@ -185,8 +185,8 @@ func _input(event):
 					return
 					
 func _unhandled_input(event):
-	if event.is_action_pressed("pause") and not global.demo:
-		Events.emit_signal("nav_to_menu")
+#	if event.is_action_pressed("pause") and not global.demo:
+#		Events.emit_signal("nav_to_menu")
 	if event.is_action_pressed("debug_action"):
 		ready_to_fight.start([], global.win)
 		
@@ -250,12 +250,18 @@ func _on_Timer_timeout():
 	emit_signal("fight", self.get_players(), fight_mode)
 	
 
-func _on_ReadyToFight_letsfight():
-	var players = get_players()
-	emit_signal("fight", players, fight_mode)
-
 func reset():
 	ready_to_fight.deactivate()
 
-func _on_ReadyToFight_deactivated():
-	smoke_screen.visible = false
+func disable():
+	reset()
+	set_process_input(false)
+	set_process_unhandled_input(false)
+	for selection_player in container.get_children():
+		selection_player.disable()
+	
+func enable():
+	set_process_input(true)
+	set_process_unhandled_input(true)
+	for selection_player in container.get_children():
+		selection_player.enable()

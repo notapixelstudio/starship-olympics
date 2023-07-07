@@ -51,7 +51,7 @@ script = ExtResource( 1 )
 next_scene = ExtResource( 13 )
 
 [node name="FancyMenu" parent="." index="1"]
-starting_focused_element = NodePath("Easy")
+default_focused_element = NodePath("Easy")
 
 [node name="Easy" parent="FancyMenu" index="1" instance=ExtResource( 12 )]
 material = SubResource( 2 )
