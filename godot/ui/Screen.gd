@@ -22,3 +22,5 @@ func recursive_release_focus():
 		elif child.has_method('release_focus'):
 			child.release_focus()
 			
+func get_id() -> String:
+	return name

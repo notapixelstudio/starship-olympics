@@ -1,16 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ui/ScreenController.tscn" type="PackedScene" id=1]
-[ext_resource path="res://default_env.tres" type="Environment" id=2]
+[ext_resource path="res://Main.gd" type="Script" id=2]
 [ext_resource path="res://ui/screens/main/MainScreen.tscn" type="PackedScene" id=3]
-[ext_resource path="res://local_multiplayer/WorldEnvironment.gd" type="Script" id=4]
 [ext_resource path="res://assets/sprites/background/static.png" type="Texture" id=5]
 
-[node name="Wrapper" type="Node2D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 2 )
-script = ExtResource( 4 )
+[node name="Main" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="ScreenController" parent="." instance=ExtResource( 1 )]
 starting_screen_scene = ExtResource( 3 )
@@ -23,3 +19,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource( 5 )
+
+[connection signal="transition" from="ScreenController" to="." method="_on_ScreenController_transition"]
