@@ -1,14 +1,16 @@
 extends Control
+class_name FancyMenu
 
 export (String, 'horizontal', 'vertical', 'both', 'none') var auto_neighbours = 'none'
 export var wrap := true
-export var starting_focused_element : NodePath
+export var default_focused_element : NodePath
+export var focus_default_element_on_ready := true
 
 var saved_focused_element : Control
 
 func _ready():
-	if get_node_or_null(starting_focused_element):
-		get_node(starting_focused_element).grab_focus()
+	if focus_default_element_on_ready and get_node_or_null(default_focused_element):
+		get_node(default_focused_element).grab_focus()
 	
 	var children = get_children()
 	
@@ -55,8 +57,11 @@ func _ready():
 func save_focused_element():
 	saved_focused_element = get_focus_owner()
 	
+## restore the focused element if there is one saved, otherwise give focus to the default one (if present)
 func restore_focused_element():
 	if not saved_focused_element:
+		if get_node_or_null(default_focused_element) != null:
+			get_node(default_focused_element).grab_focus()
 		return
 	saved_focused_element.grab_focus()
 

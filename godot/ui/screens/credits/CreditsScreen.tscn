@@ -11,10 +11,9 @@ font_data = ExtResource( 3 )
 
 [node name="CreditsScreen" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-next_scene = null
 
 [node name="FancyMenu" parent="." index="1"]
-starting_focused_element = NodePath("Back")
+default_focused_element = NodePath("Back")
 
 [node name="MenuLabel" parent="." index="2" instance=ExtResource( 4 )]
 modulate = Color( 1, 0.827451, 0.396078, 1 )

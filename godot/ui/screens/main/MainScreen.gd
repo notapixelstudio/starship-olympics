@@ -6,7 +6,6 @@ export var hall_of_fame_scene : PackedScene
 export var settings_scene : PackedScene
 export var credits_scene : PackedScene
 
-
 func _on_Versus_button_down():
 	emit_signal("next", versus_character_selection_scene)
 

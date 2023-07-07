@@ -19,6 +19,7 @@ texture = ExtResource( 4 )
 
 [node name="FancyMenu" parent="." index="1" instance=ExtResource( 2 )]
 auto_neighbours = "both"
+focus_default_element_on_ready = false
 
 [node name="Back" parent="FancyMenu" index="0" instance=ExtResource( 1 )]
 margin_left = 13.0

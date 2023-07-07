@@ -46,7 +46,8 @@ texture = ExtResource( 20 )
 
 [node name="FancyMenu" parent="." index="2" instance=ExtResource( 2 )]
 auto_neighbours = "both"
-starting_focused_element = NodePath("Campaign")
+default_focused_element = NodePath("Campaign")
+focus_default_element_on_ready = false
 
 [node name="Versus" parent="FancyMenu" index="0" instance=ExtResource( 1 )]
 self_modulate = Color( 0.984314, 0.858824, 1, 1 )
