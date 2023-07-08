@@ -37,3 +37,7 @@ player_id = "p3"
 [node name="PilotSelector4" parent="Node2D/SelectionPanel" index="3" instance=ExtResource( 6 )]
 position = Vector2( 984, 472 )
 player_id = "p4"
+
+[connection signal="selection_completed" from="Node2D/SelectionPanel" to="." method="_on_SelectionPanel_selection_completed"]
+
+[editable path="Node2D/SelectionPanel"]

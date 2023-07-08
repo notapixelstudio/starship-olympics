@@ -1,13 +1,11 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://selection/SelectionPanel.gd" type="Script" id=1]
 [ext_resource path="res://selection/PlayerSelection.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=3]
 [ext_resource path="res://selection/Fight.gd" type="Script" id=4]
 [ext_resource path="res://assets/UI/keys_and_buttons/joypad/PS4_Cross.png" type="Texture" id=5]
-[ext_resource path="res://assets/UI/futureui-panel-2.png" type="Texture" id=6]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=7]
-[ext_resource path="res://special_scenes/combat_UI/session_points/Star.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ui/screens/character_selection/ReadyToFight.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=9]
 
 [sub_resource type="DynamicFont" id=1]
@@ -41,110 +39,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1.27456, 1 ),
 "update": 0,
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.6, 0.6 ), Vector2( 0.5, 0.5 ) ]
-}
-
-[sub_resource type="GDScript" id=4]
-script/source = "extends Node2D
-
-signal letsfight
-signal deactivated
-const description : String = \"{n_players} READY TO FIGHT\"
-const win_condition : String = \"{n_matches} STARS TO WIN\"
-onready var win_label = $win1/WinLabel
-onready var anim = $AnimationPlayer
-var human_players = []
-
-func _ready():
-	set_process_input(false)
-	visible = false
-
-func _input(event):
-	for player in human_players:
-		if event.is_action_pressed(player.controls+\"_fire\"):
-			deactivate()
-			emit_signal(\"letsfight\")
-	if event.is_action_pressed(\"ui_left\") or event.is_action_pressed(\"ui_right\") or event.is_action_pressed(\"ui_cancel\"):
-		deactivate()
-	if event.is_action_pressed(\"debug_action\"):
-		deactivate()
-		emit_signal(\"letsfight\")
-
-func start(players: Array, n_matches: int):
-	if visible:
-		return
-	
-	human_players = players
-	var num_players = len(players)
-	visible = true
-	anim.play('close')
-	
-	$Label.text = tr(description.format({\"n_players\": str(num_players) + ' PLAYER' + ('S' if num_players != 1 else '')}))
-	win_label.text = tr(win_condition.format({\"n_matches\":n_matches}))
-	set_process_input(true)
-	
-	
-func deactivate():
-	set_process_input(false)
-	visible = false
-	emit_signal('deactivated')
-	
-"
-
-[sub_resource type="DynamicFont" id=5]
-size = 52
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 7 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 40
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 9 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 28
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 7 )
-
-[sub_resource type="Animation" id=8]
-resource_name = "close"
-tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 1 ),
-"transitions": PoolRealArray( 0.5, -2, -2 ),
-"update": 0,
-"values": [ Vector2( -10, -893 ), Vector2( -10, -705 ), Vector2( -10, -740 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("ColorRect:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 1 ),
-"transitions": PoolRealArray( 0.5, -2, -2 ),
-"update": 0,
-"values": [ Vector2( -10, 453 ), Vector2( -10, 251 ), Vector2( -10, 298 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Label2:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 1 ),
-"transitions": PoolRealArray( 0.5, -2, -2 ),
-"update": 0,
-"values": [ Vector2( -650, 260 ), Vector2( -650, 51 ), Vector2( -650, 101 ) ]
 }
 
 [node name="SelectionPanel" type="Control"]
@@ -327,73 +221,7 @@ __meta__ = {
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ReadyToFight" type="Node2D" parent="CanvasLayer"]
-position = Vector2( 650, 550 )
-script = SubResource( 4 )
-
-[node name="ColorRect" type="Sprite" parent="CanvasLayer/ReadyToFight"]
-modulate = Color( 0.227451, 0.133333, 0.12549, 1 )
-position = Vector2( -10, 453 )
-texture = ExtResource( 6 )
-
-[node name="ColorRect2" type="Sprite" parent="CanvasLayer/ReadyToFight"]
-modulate = Color( 0.227451, 0.133333, 0.12549, 1 )
-position = Vector2( -10, -893 )
-scale = Vector2( 1, -1 )
-texture = ExtResource( 6 )
-
-[node name="Label" type="Label" parent="CanvasLayer/ReadyToFight"]
-visible = false
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -650.0
-margin_top = -49.0
-margin_right = 630.0
-margin_bottom = 1.0
-custom_fonts/font = SubResource( 5 )
-text = "N PLAYERS READY TO FIGHT!"
-align = 1
-valign = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label2" type="Label" parent="CanvasLayer/ReadyToFight"]
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -650.0
-margin_top = 260.0
-margin_right = 630.0
-margin_bottom = 310.0
-custom_fonts/font = SubResource( 6 )
-text = "PRESS A BUTTON TO CONTINUE"
-align = 1
-valign = 1
-
-[node name="win1" parent="CanvasLayer/ReadyToFight" instance=ExtResource( 8 )]
-visible = false
-position = Vector2( 493.7, -23.4 )
-won = true
-
-[node name="WinLabel" type="Label" parent="CanvasLayer/ReadyToFight/win1"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -143.7
-margin_top = 73.4
-margin_right = 133.3
-margin_bottom = 123.4
-custom_fonts/font = SubResource( 7 )
-text = "N stars to win"
-align = 1
-valign = 1
-uppercase = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ReadyToFight"]
-playback_speed = 2.0
-anims/close = SubResource( 8 )
+[node name="ReadyToFight" parent="CanvasLayer" instance=ExtResource( 6 )]
 
 [node name="Label" type="Label" parent="."]
 margin_left = 1140.0

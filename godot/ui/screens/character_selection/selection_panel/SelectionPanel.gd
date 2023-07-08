@@ -1,6 +1,9 @@
 extends Control
 
+signal selection_completed
+
 export var min_players := 2
+export var ready_to_fight: PackedScene
 
 var relevant_actions := {}
 var mapping_controls_pilot := {}
@@ -9,6 +12,7 @@ var mapping_pilot_claimed := {}
 var available_species := []
 
 func _ready():
+	$Node2D/Label.visible = false
 	available_species = global.get_ordered_species()
 	for action in InputMap.get_actions():
 		for action_name in ["_fire", "_left", "_right", "_up", "_down"]:
@@ -37,17 +41,34 @@ func _input(event: InputEvent):
 		var pilot_selector : PilotSelector = mapping_controls_pilot[controls]
 		match action_suffix:
 			'fire':
+				if pilot_selector in mapping_pilot_claimed:
+					if $Node2D/Label.visible:
+						print("we can go to next scene")
+						$Node2D/Label.visible = false
+						emit_signal("selection_completed")
+						set_process_input(false)
+						return
+					$Node2D/Label.visible = true
+					if len(mapping_pilot_claimed) >= min_players:
+						$Node2D/Label.text = "{players} READY".format({"players":len(mapping_pilot_claimed)})
+					else: 
+						$Node2D/Label.text = "Not enough players. {players} needed".format({"players":min_players})
+					
 				_claim_displayed_species(pilot_selector)
 				pilot_selector.set_status('selected')
 			'left':
+				if $Node2D/Label.visible:
+					$Node2D/Label.visible = false
 				_unclaim_displayed_species(pilot_selector)
 				_display_adjacent_species(-1, pilot_selector)
 			'right':
+				if $Node2D/Label.visible:
+					$Node2D/Label.visible = false
 				_unclaim_displayed_species(pilot_selector)
 				_display_adjacent_species(+1, pilot_selector)
 	else:
 		# join
-		for pilot_selector in get_children():
+		for pilot_selector in _get_pilot_selectors():
 			if not pilot_selector in mapping_controls_pilot.values():
 				mapping_controls_pilot[controls] = pilot_selector
 				(pilot_selector as PilotSelector).set_controls(controls)
@@ -66,6 +87,8 @@ func _input(event: InputEvent):
 						'kb2': 'auriels_1'
 					}
 					(pilot_selector as PilotSelector).set_species(global.get_species(mapping[controls]))
+				if $Node2D/Label.visible:
+					$Node2D/Label.visible = false	
 				return
 				
 ## display the given Species in the given PilotSelector
@@ -98,7 +121,7 @@ func _claim_displayed_species(pilot_selector: PilotSelector):
 	for any_pilot_selector in mapping_pilot_displayed_species:
 		if any_pilot_selector != pilot_selector and mapping_pilot_displayed_species[any_pilot_selector] == species:
 			_display_adjacent_species(+1, any_pilot_selector)
-
+	
 ## remove the claim for the species currently displayed on the given PilotSelector (if actually
 ## claimed) - this also causes the selector to lose its selected status and revert back to joined
 func _unclaim_displayed_species(pilot_selector: PilotSelector):
@@ -123,3 +146,10 @@ func disable():
 func enable():
 	set_process(true)
 	set_process_input(true)
+
+func _get_pilot_selectors() -> Array:
+	var pilots := []
+	for child in get_children():
+		if child is PilotSelector:
+			pilots.append(child)
+	return pilots

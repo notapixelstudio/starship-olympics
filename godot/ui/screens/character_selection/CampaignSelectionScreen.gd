@@ -12,3 +12,7 @@ func enter():
 func exit():
 	$'%SelectionPanel'.disable()
 	.exit()
+
+
+func _on_SelectionPanel_selection_completed():
+	emit_signal("next", next_scene)
