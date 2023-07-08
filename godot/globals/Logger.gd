@@ -1,7 +1,7 @@
 extends Node
 
 const LOG_PATH ="user://log.ndjson"
-var file : File
+var file : FileAccess
 
 func log_event(event: Dictionary, event_name:String, immediate: bool = true) -> void:
 	#event.running_time = OS.get_ticks_usec()
@@ -18,18 +18,17 @@ func log_event(event: Dictionary, event_name:String, immediate: bool = true) -> 
 
 func _init():
 	# open the log file and go to the end
-	file = File.new()
-	var error = file.open(LOG_PATH, File.READ_WRITE)
+	var error = 0
+	file = FileAccess.open(LOG_PATH, FileAccess.READ_WRITE)
 	var filesize_in_kb = file.get_length()/float(1024)
 	print("Log file is {size} KB".format({"size":filesize_in_kb}))
 	if filesize_in_kb > 200:
 		file.close()
-		var d = DirAccess.new()
 		print("Will remove the file because too big")
-		error = d.remove(LOG_PATH)
+		error = DirAccess.remove_absolute(LOG_PATH)
 		error = ERR_FILE_NOT_FOUND
 	if error == ERR_FILE_NOT_FOUND :
-		error = file.open(LOG_PATH, File.WRITE_READ)
+		error = FileAccess.open(LOG_PATH, FileAccess.WRITE_READ)
 	if error == OK:
 		file.seek_end()
 	else:

@@ -768,7 +768,7 @@ func get_resources(base_path: String) -> Dictionary:
 	var ret := {}
 	var resources = global.dir_contents(base_path, "", ".tres")
 	for filename in resources:
-		var this_res = load(base_path.plus_file(filename))
+		var this_res = load(base_path.path_join(filename))
 		var res_id = this_res.get_id()
 		ret[res_id] = this_res
 	return ret

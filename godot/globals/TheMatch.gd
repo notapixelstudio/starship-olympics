@@ -155,7 +155,7 @@ func no_players_left():
 	
 func do_game_over():
 	game_over = true
-	emit_signal(game_ended)
+	emit_signal(game_ended.get_name())
 	
 func is_almost_game_over():
 	return time_left < 0.5

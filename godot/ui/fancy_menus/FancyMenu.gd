@@ -1,7 +1,7 @@
 extends Control
 class_name FancyMenu
 
-@export (String, 'horizontal', 'vertical', 'both', 'none') var auto_neighbours = 'none'
+@export_enum('horizontal', 'vertical', 'both', 'none') var auto_neighbours := 'none'
 @export var wrap := true
 @export var default_focused_element : NodePath
 @export var focus_default_element_on_ready := true

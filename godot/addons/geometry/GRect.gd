@@ -4,8 +4,8 @@ extends GShape
 
 class_name GRect
 
-@export (int) var width = 100: set = set_width
-@export (int) var height = 100: set = set_height
+@export var width := 100: set = set_width
+@export var height := 100: set = set_height
 
 func set_width(value):
 	width = value

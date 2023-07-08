@@ -48,7 +48,7 @@ func send_event(event_body: Dictionary, event_name: String):
 		"Content-Type: application/json"
 	]
 	print(JSON.new().stringify(event_body))
-	var error = http_request.request(api_hostname + "/" + ENDPOINT, headers, true, HTTPClient.METHOD_POST, JSON.new().stringify(event_body))
+	var error = http_request.request(api_hostname + "/" + ENDPOINT, headers, HTTPClient.METHOD_POST, JSON.new().stringify(event_body))
 	if error != OK:
 		push_error("An error occurred in the HTTP request. {error}".format({"error": error}) )
 		
@@ -67,10 +67,10 @@ func _http_request_completed(result, response_code, headers, body, http_request,
 		error = "Request endpoint not available"
 	if body:
 		var test_json_conv = JSON.new()
-		test_json_conv.parse(body.get_string_from_utf8()))
-		print(test_json_conv.get_data()
+		test_json_conv.parse(body.get_string_from_utf8())
+		print(test_json_conv.get_data())
 	else:
-		global.write_into_file(ANALYTICS_TEMP_FILE, JSON.new().stringify(event_body), File.READ_WRITE)
+		global.write_into_file(ANALYTICS_TEMP_FILE, JSON.new().stringify(event_body), FileAccess.READ_WRITE)
 		push_error("An error occurred in the HTTP request to {api_endpoint}. {error}".format({"error": error, "api_endpoint": api_hostname}) )
 	
 	# Free the HTTP request node

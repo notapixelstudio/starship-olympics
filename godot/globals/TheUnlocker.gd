@@ -6,7 +6,7 @@ const LOCKED = "locked"
 const UNLOCKED = "unlocked"
 const NEW = "new"
 
-@export (String, "hidden", "locked", "unlocked", "new") var status 
+@export_enum("hidden", "locked", "unlocked", "new") var status : String
 
 const PERSIST_GROUP = "persist_unlocking"
 func _ready():
@@ -39,9 +39,8 @@ var unlocked_elements := DEFAULT_UNLOCKED
 
 func reset_hall_of_fame():
 	# remove hall of fame
-	var d = DirAccess.new()
 	print("Will remove the hall of fame file")
-	var error = d.remove(InfoChampion.PATH_FILE_CHAMPIONS)
+	var error = DirAccess.remove_absolute(InfoChampion.PATH_FILE_CHAMPIONS)
 		
 func reset_unlocks():
 	unlocked_elements = DEFAULT_UNLOCKED

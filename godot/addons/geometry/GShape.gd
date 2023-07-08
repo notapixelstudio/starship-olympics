@@ -6,9 +6,9 @@ class_name GShape
 
 signal changed
 
-@export (Vector2) var center_offset = Vector2.ZERO: set = set_center_offset
+@export var center_offset := Vector2.ZERO: set = set_center_offset
 @export var jitter : float = 0.0: set = set_jitter
-@export (Rect2) var clip = Rect2(-10000, -10000, 20000, 20000): set = set_clip
+@export var clip := Rect2(-10000, -10000, 20000, 20000): set = set_clip
 
 func set_jitter(value):
 	jitter = value

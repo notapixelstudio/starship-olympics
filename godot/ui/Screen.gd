@@ -1,9 +1,9 @@
 extends Control
 
+class_name Screen
+
 signal next(next_packed_scene) 
 signal back
-
-class_name Screen
 
 func enter():
 	set_process_input(true)

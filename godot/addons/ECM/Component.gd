@@ -2,7 +2,10 @@ extends Node
 
 class_name Component
 
-@export var enabled : bool = true
+signal enabled
+signal disabled
+
+@export var should_be_enabled : bool = true
 
 func _enter_tree():
 	if enabled:
@@ -18,21 +21,19 @@ func _remove_from_corresponding_group():
 	if get_entity().is_in_group('component__'+name):
 		get_entity().remove_from_group('component__'+name)
 		
-signal enabled
-signal disabled
 func set_enabled(value : bool):
-	var old_enabled = enabled
+	var old_enabled = should_be_enabled
 	
-	enabled = value
+	should_be_enabled = value
 	
 	if enabled:
 		_add_to_corresponding_group()
 	else:
 		_remove_from_corresponding_group()
 		
-	if old_enabled == false and enabled == true:
+	if old_enabled == false and should_be_enabled == true:
 		emit_signal('enabled')
-	elif old_enabled == true and enabled == false:
+	elif old_enabled == true and should_be_enabled == false:
 		emit_signal('disabled')
 
 func enable():
@@ -45,7 +46,7 @@ func toggle_enabled():
 	set_enabled(not enabled)
 	
 func is_enabled() -> bool:
-	return enabled
+	return should_be_enabled
 	
 func get_entity():
 	return get_parent()

@@ -7,11 +7,11 @@ enum OPTION_TYPE{ON_OFF, NUMBER, ARRAY}
 signal value_changed(value)
 
 ### Properties ###
-@export (String) var element_path 
+@export var element_path : String
 # Text of the label that is going to appear on the Option
-@export (String) var label_description
+@export var label_description: String
 
-@export (String) var node_owner_path = "global"
+@export var node_owner_path := "global"
 
 var value : set = _set_value
 var node_owner
