@@ -1,15 +1,12 @@
 extends GenericOption
 
-@export (String) var bus_name = "Master"
+@export var bus_name := "Master"
 @onready var sfx_effect  = $AudioStreamPlayer
 @onready var value_node = $VBoxContainer/HSlider
 @onready var description_node = $VBoxContainer/Volume
 @onready var hslider =$VBoxContainer/HSlider
 
-func _process(delta):
-	description_node.text = tr("Volume" + " " + bus_name)
-
-func _ready():
+func setup():
 	description_node.text = tr(description_node.text + " " + bus_name)
 	value = node_owner.get(element_path)
 	value_node.value = value

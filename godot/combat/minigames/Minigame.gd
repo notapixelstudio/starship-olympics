@@ -2,7 +2,7 @@ extends Resource
 
 class_name Minigame
 
-@export var game_mode : Resource
+@export var game_mode : GameMode
 
 @export var arenas_dir: String
 

@@ -3,7 +3,6 @@ extends Control
 class_name UIOptionPanel
 
 @onready var content = $Content
-@onready var back_button = $Back
 # N.B.: "find_node" is not really efficient but we need to be generic 
 @onready var container = find_child("UIButtonsContainer", true)
 

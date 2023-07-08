@@ -3,11 +3,8 @@ extends GenericOption
 
 @onready var value_node = $ElementCheckbox
 @onready var description_node = $ElementCheckbox
-
-func _process(delta):
-	$ElementCheckbox.text = label_description.to_upper()
 	
-func _ready():
+func setup():
 	if not label_description:
 		label_description = element_path
 

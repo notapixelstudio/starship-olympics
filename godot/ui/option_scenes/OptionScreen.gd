@@ -1,11 +1,11 @@
 extends Control
+class_name UIOptions
 
 signal back_at_you # signal that gives the line back to whoever instantiated the option
 
-class_name UIOptions
-
 @export var title: String = "Options"
 @export var start_scene: PackedScene
+
 @onready var banner_info = $CanvasLayer/BannerInfo
 
 var focus_index = 0

@@ -1,6 +1,6 @@
 class_name GlowColor
 
-var base_color = Color(1,1,1,1): set = set_base_color
+var base_color := Color(1,1,1,1): set = set_base_color
 var strength = 1: set = set_strength
 var color = Color(1,1,1,1)
 

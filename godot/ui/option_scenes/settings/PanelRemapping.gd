@@ -3,7 +3,7 @@ extends UIOptionPanel
 class_name PanelRemapping
 
 @export var what_to_remap_scene: PackedScene
-@export (String, "keyboard", "joypad", "custom") var device_category = "keyboard"
+@export_enum("keyboard", "joypad", "custom") var device_category := "keyboard"
 
 var device
 @onready var device_node = $Content/VBoxContainer/Device

@@ -1,6 +1,6 @@
 extends Node2D
 
-@export (Array, PackedScene) var variant_scenes = []
+@export var variant_scenes: Array[PackedScene]= []
 @export var debug_variant_index := -1
 @export var automirror := false
 

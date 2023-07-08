@@ -132,7 +132,7 @@ func _set_input_mapping(value_):
 		for action in input_mapping:
 			if device in action:
 				var commands = input_mapping[action]
-				var events = []
+				var events : Array[InputEvent]= []
 				for command in commands:
 					var event = event_from_text(device, command["key"], command["device_id"])
 					events.append(event)
@@ -243,7 +243,7 @@ func clear_mapping(action:String, event: InputEvent):
 func clear_all_mapping(action: String):
 	InputMap.action_erase_events(action)
 	
-func remap_multiple_actions_to(action: String, new_events: Array, ui_flag=true) -> String:
+func remap_multiple_actions_to(action: String, new_events: Array[InputEvent], ui_flag=true) -> String:
 	"""
 	new_events: Array[InputEvent]
 	Will delete the events from the actions in order to put the new ones

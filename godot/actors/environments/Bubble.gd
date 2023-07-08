@@ -17,7 +17,7 @@ var about_to_pop = false
 
 @export var owner_player : NodePath
 var species : Resource
-@export (String, 'none', 'square', 'cross', 'triangle', 'circle') var symbol = 'none'
+@export_enum('none', 'square', 'cross', 'triangle', 'circle') var symbol := 'none'
 const symbols = ['square', 'cross', 'triangle', 'circle']
 const symbol_colors = {
 	'none': Color('#929292'),

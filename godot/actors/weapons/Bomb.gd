@@ -133,7 +133,7 @@ func _integrate_forces(state):
 	state.set_transform(xform)
 
 
-signal detonate
+signal detonated
 func detonate():
 	if type != GameMode.BOMB_TYPE.classic:
 		return
