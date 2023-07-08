@@ -8,7 +8,7 @@ and its keyboard control
 class_name Ship
 
 @export var debug_enabled = false
-@export (String, 'kb1', 'kb2', 'joy1', 'joy2', 'joy3', 'joy4') var controls = "kb1"
+@export_enum('kb1', 'kb2', 'joy1', 'joy2', 'joy3', 'joy4') var controls := "kb1"
 @export var absolute_controls : bool= true
 @export var species : Resource
 

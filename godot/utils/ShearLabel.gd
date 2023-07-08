@@ -3,8 +3,8 @@ extends Node2D
 
 @export var text : String = '': set = set_text
 @export var shear : Vector2 = Vector2(0,0): set = set_shear
-@export (String, 'left', 'center', 'right') var align = 'center': set = set_align
-@export var alien_font : Resource
+@export_enum('left', 'center', 'right') var align = 'center': set = set_align
+@export var alien_font : FontFile
 
 func _ready():
 	Events.connect("language_changed", Callable(self, '_on_language_changed'))
@@ -24,13 +24,13 @@ func set_align(v: String) -> void:
 	align = v
 	match align:
 		'left':
-			$'%Label'.align = Label.ALIGN_LEFT
+			$'%Label'.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 			$'%Label'.position.x = 0
 		'center':
-			$'%Label'.align = Label.ALIGNMENT_CENTER
+			$'%Label'.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			$'%Label'.position.x = -300
 		'right':
-			$'%Label'.align = Label.ALIGN_RIGHT
+			$'%Label'.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 			$'%Label'.position.x = -600
 			
 func _on_language_changed():

@@ -19,14 +19,15 @@ func navigate_to(screen_scene: PackedScene):
 	
 	var new_screen = screen_scene.instantiate() as Screen
 	assert(new_screen is Screen)
-	new_screen.position.x = 1280 * len(screens_stack)
 	#if len(screens_stack) > 0:
 	#	from=screens_stack[-1].name
-	screens_stack.append(new_screen)
 	add_child(new_screen)
+	new_screen.position.x = 1280 * len(screens_stack)
+	screens_stack.append(new_screen)
 	var to_screen_id = new_screen.get_id()
 	emit_signal('transition', 'navigate_to', from_screen_id, to_screen_id)
 	var new_camera_position_x = 1280 * (len(screens_stack)-1)
+	print(screens_stack)
 	if new_camera_position_x != $Camera2D.position.x: # move camera if needed
 		var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.tween_property($Camera2D, 'position:x', new_camera_position_x, 1)

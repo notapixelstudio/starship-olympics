@@ -26,7 +26,7 @@ func _ready():
 			champ_scene.set_player(champ)
 			$"%SessionWon".add_child(champ_scene)
 	
-	data.invert()
+	data.reverse()
 	for champion in data:
 		var champ_info := InfoChampion.new()
 		champ_info.session_info = champion.session_info
