@@ -4,7 +4,7 @@ const MULTIPLIER = 2
 
 signal show_msg
 
-onready var sound_action = $CollectAction
+@onready var sound_action = $CollectAction
 
 func _on_sth_collected(collector, collectee):
 	if not enabled:

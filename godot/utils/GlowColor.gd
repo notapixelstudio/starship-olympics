@@ -1,7 +1,7 @@
 class_name GlowColor
 
-var base_color = Color(1,1,1,1) setget set_base_color
-var strength = 1 setget set_strength
+var base_color = Color(1,1,1,1): set = set_base_color
+var strength = 1: set = set_strength
 var color = Color(1,1,1,1)
 
 func set_base_color(v):

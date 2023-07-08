@@ -5,7 +5,7 @@ var sure_of := {"cards": "Are you sure to go back to the cards?",
 "deck": "Do you want to use the new Deck?",
 "continue": "Do you want to Continue your last session?",
 "quit_current_game":"All progress will be lost! Really quit?"}
-export var where_to: PackedScene
+@export var where_to: PackedScene
 
 var choice := false
 

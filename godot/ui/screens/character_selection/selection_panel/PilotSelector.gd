@@ -2,7 +2,7 @@ extends Node2D
 
 class_name PilotSelector
 
-export var player_id := 'pp' setget set_player_id
+@export var player_id := 'pp': set = set_player_id
 
 func set_player_id(v: String) -> void:
 	player_id = v

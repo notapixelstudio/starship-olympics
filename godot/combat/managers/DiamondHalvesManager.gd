@@ -1,11 +1,11 @@
 extends Node
 
-export var left_icon : Texture
-export var right_icon : Texture
+@export var left_icon : Texture2D
+@export var right_icon : Texture2D
 
 func _ready():
-	Events.connect("sth_collected", self, '_on_sth_collected')
-	Events.connect("sths_bumped", self, '_on_sths_bumped')
+	Events.connect("sth_collected", Callable(self, '_on_sth_collected'))
+	Events.connect("sths_bumped", Callable(self, '_on_sths_bumped'))
 	
 func _on_sth_collected(collector, collectee):
 	if not collectee is HalfDiamond:

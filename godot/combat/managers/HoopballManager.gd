@@ -3,11 +3,11 @@ extends Node
 var gates : Array
 
 func _ready():
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	gates = get_tree().get_nodes_in_group('gates')
 	
 	for gate in gates:
-		gate.connect('crossed', self, '_on_gate_crossed')
+		gate.connect('crossed', Callable(self, '_on_gate_crossed'))
 		if gate.name != 'Gate':
 			gate.disable()
 			

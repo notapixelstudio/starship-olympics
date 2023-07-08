@@ -1,5 +1,5 @@
 extends BackScreen
 
 func enter():
-	.enter()
+	super.enter()
 	$"%DeckListPanel".grab_focus()

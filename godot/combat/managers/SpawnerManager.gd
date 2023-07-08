@@ -1,6 +1,6 @@
 extends Node
 
-export var base_time := 2.5
+@export var base_time := 2.5
 
 const WAVES_GROUP = "spawn_waves"
 const COLLECTABLE = "coin"
@@ -15,16 +15,16 @@ var spawners_per_wave : Dictionary
 var how_many_spawners: int
 var current_spawners = 0
 
-onready var wave_timer = $Timer
+@onready var wave_timer = $Timer
 signal done
 
 func _ready():
-	Events.connect("spawned", self, "spawned")
+	Events.connect("spawned", Callable(self, "spawned"))
 	
-	Events.connect("sth_collected", self, "_on_sth_collected")
+	Events.connect("sth_collected", Callable(self, "_on_sth_collected"))
 	# First spawner should already be in the field
 	# WARNING wait for variants to settle
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	setup(get_tree().get_nodes_in_group(WAVES_GROUP))
 	
 func get_spawner(spawners: Array) -> ElementSpawnerGroup:

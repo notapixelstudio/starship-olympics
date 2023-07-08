@@ -3,9 +3,9 @@ extends CPUBrain
 var mines_memory := {}
 
 func _ready():
-	._ready()
+	super._ready()
 	
-	Events.connect("battle_start", self, '_on_battle_start')
+	Events.connect("battle_start", Callable(self, '_on_battle_start'))
 	
 func think():
 	var targets

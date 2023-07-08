@@ -1,15 +1,15 @@
 extends Node
 
-onready var selection_screen = $SelectionScreen
+@onready var selection_screen = $SelectionScreen
 
 const menu_scene = "res://ui/menu_scenes/title_screen/MainScreen.tscn"
 const combat_scene = "res://combat/levels/"
-export var map_scene: PackedScene
-export var celebration_scene: PackedScene
+@export var map_scene: PackedScene
+@export var celebration_scene: PackedScene
 var games = {}  # {sport.name : Resource}
 
 var all_species = []
-onready var parallax = $ParallaxBackground
+@onready var parallax = $ParallaxBackground
 var map # MapArena
 var combat = null
 
@@ -25,22 +25,24 @@ func _ready():
 		all_species.append(global.get_species(species_id))
 		
 	players = {}
-	selection_screen.connect("fight", self, "start_fight")
+	selection_screen.connect("fight", Callable(self, "start_fight"))
 	global.local_multiplayer = self
 	
-	Events.connect("minigame_selected", self, "_on_minigame_selected")
-	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
-	Events.connect('continue_after_session_ended', self, '_on_continue_after_session_ended')
+	Events.connect("minigame_selected", Callable(self, "_on_minigame_selected"))
+	Events.connect('continue_after_game_over', Callable(self, '_on_continue_after_game_over'))
+	Events.connect('continue_after_session_ended', Callable(self, '_on_continue_after_session_ended'))
 	
-	Events.connect('nav_to_menu', self, '_on_nav_to_menu')
-	Events.connect('nav_to_map', self, '_on_nav_to_map')
-	Events.connect('nav_to_character_selection', self, '_on_nav_to_character_selection')
+	Events.connect('nav_to_menu', Callable(self, '_on_nav_to_menu'))
+	Events.connect('nav_to_map', Callable(self, '_on_nav_to_map'))
+	Events.connect('nav_to_character_selection', Callable(self, '_on_nav_to_character_selection'))
 	
 	var data = global.read_file("user://games/latest.json")
 	var unfinished_game = {}
 	if data:
-		unfinished_game = parse_json(data)
-	if not unfinished_game.empty():
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(data)
+		unfinished_game = test_json_conv.get_data()
+	if not unfinished_game.is_empty():
 		setup_continue_game(unfinished_game)
 #		var confirm = load("res://special_scenes/combat_UI/gameover/AreYouSure.tscn").instance()
 #		get_tree().paused = true
@@ -66,10 +68,10 @@ func setup_continue_game(game_data: Dictionary):
 		var infoplayer := InfoPlayer.new()
 		infoplayer.set_from_dictionary(player_data)
 		players[infoplayer.get_id()] = infoplayer
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	# setup deck
 	global.new_game(players.values(), game_data)
-	yield(get_tree(), "idle_frame")	
+	await get_tree().idle_frame	
 	
 	create_map(game_data.get("session", {}))
 	print("Last game played was {game}. Will be removed from last_played".format({"game":global.the_game.deck.played_pile.back()}))
@@ -109,10 +111,10 @@ func start_fight(selected_players: Array, fight_mode: String):
 	if global.demo:
 		add_cpu([2, 3, 4][randi()%3])
 	elif len(players) == 1:
-		var difficulty_screen = load("res://ui/difficulty_screen/DifficultyScreen.tscn").instance()
+		var difficulty_screen = load("res://ui/difficulty_screen/DifficultyScreen.tscn").instantiate()
 		add_child(difficulty_screen)
 		difficulty_screen.position.x = 1600
-		yield(Events, "difficulty_selection_done")
+		await Events.difficulty_selection_done
 		match difficulty_screen.get_selected_option_name():
 			'Easy':
 				add_cpu(1)
@@ -130,9 +132,9 @@ func start_fight(selected_players: Array, fight_mode: String):
 	# add startdeck choosing
 	var playlists = global.get_playlist_starting_deck([ TheUnlocker.NEW, TheUnlocker.UNLOCKED])
 	if len(playlists) > 1:
-		var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instance()
+		var choose_deck_scene = load("res://ui/minigame_list/DeckListScreen.tscn").instantiate()
 		add_child(choose_deck_scene)
-		yield(Events, "selection_starting_deck_over")
+		await Events.selection_starting_deck_over
 		if is_instance_valid(choose_deck_scene):
 			choose_deck_scene.queue_free()
 		#TheUnlocker.unlock_element("starting_decks", global.starting_deck_id)
@@ -177,19 +179,19 @@ func continue_after_session_over() -> void:
 	if global.sessions_played == 1:
 		var unlock: PackedScene = load("res://special_scenes/unlock_screen/NewDraft.tscn")
 		$"%UnlockSceneClassic".unlock(unlock, true, "first_unlock")
-		yield($"%UnlockSceneClassic", "unlocking_animation_over")
+		await $"%UnlockSceneClassic".unlocking_animation_over
 	elif global.sessions_played == 2:
 		var to_be_unlocked_deck := "winter"
 		var this_deck_name: String = global.starting_deck
 		var unlock: PackedScene = load("res://special_scenes/unlock_screen/NewDraft.tscn")
 		$"%UnlockSceneClassic".unlock(unlock, false, "second_unlock")
-		yield($"%UnlockSceneClassic", "unlocking_animation_over")
+		await $"%UnlockSceneClassic".unlocking_animation_over
 		TheUnlocker.unlock_element("starting_decks",to_be_unlocked_deck)
 		# add startdeck choosing
-		var confirm = load("res://special_scenes/combat_UI/gameover/AreYouSure.tscn").instance()
+		var confirm = load("res://special_scenes/combat_UI/gameover/AreYouSure.tscn").instantiate()
 		$"%UnlockSceneClassic".add_child(confirm)
 		confirm.setup("deck")
-		yield(confirm, "choice_selected")
+		await confirm.choice_selected
 		if confirm.choice:
 			global.starting_deck = to_be_unlocked_deck
 			global.new_game(players.values())
@@ -212,7 +214,7 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 	"""
 
 	$TransitionScreen.transition()
-	yield($TransitionScreen, "transitioned")
+	await $TransitionScreen.transitioned
 	remove_child(map)
 	$"%UnlockSceneClassic".reset()
 	# show tutorial if this minigame has one, and the minigame has not been already played
@@ -227,11 +229,11 @@ func start_new_match(picked_card: DraftCard, minigame: Minigame):
 #			yield($TransitionScreen, "transitioned")
 #			tutorial.queue_free()
 			
-	var tutorial = minigame.get_tutorial_scene().instance()
+	var tutorial = minigame.get_tutorial_scene().instantiate()
 	add_child(tutorial)
-	yield(tutorial, 'over')
+	await tutorial.over
 	$TransitionScreen.transition()
-	yield($TransitionScreen, "transitioned")
+	await $TransitionScreen.transitioned
 	tutorial.queue_free()
 	
 	start_match(picked_card, minigame)
@@ -242,18 +244,18 @@ func start_match(picked_card: DraftCard, minigame: Minigame, demo = false):
 	global.new_match()
 	global.the_match.set_minigame(minigame)
 	global.the_match.set_draft_card(picked_card)
-	combat = minigame.get_level(global.the_game.get_number_of_players()).instance()
+	combat = minigame.get_level(global.the_game.get_number_of_players()).instantiate()
 	last_card = picked_card
 	last_minigame = minigame
 	
-	combat.connect("restart", self, "_on_Pause_restart")
+	combat.connect("restart", Callable(self, "_on_Pause_restart"))
 	#combat.connect("continue_session", self, "_on_continue_session", [combat])
-	connect("updated", combat, "hud_update")
+	connect("updated", Callable(combat, "hud_update"))
 
 	for child in get_children():
 		if child is Arena:
 			child.queue_free()
-			yield(child, 'tree_exited')
+			await child.tree_exited
 	add_child(combat)
 	Events.emit_signal("match_started")
 	
@@ -288,7 +290,7 @@ func _on_Pause_restart():
 func _on_nav_to_menu():
 	persistance.save_game_as_latest()
 	global.safe_destroy_game()
-	get_tree().change_scene(menu_scene)
+	get_tree().change_scene_to_file(menu_scene)
 	
 func _on_nav_to_character_selection():
 	global.safe_destroy_game()
@@ -312,7 +314,7 @@ func create_map(data:= {}):
 	global.new_session(data)
 	if map and is_instance_valid(map):
 		map.queue_free()
-	map = map_scene.instance()
+	map = map_scene.instantiate()
 
 var celebration: HallOfFame
 
@@ -326,7 +328,7 @@ func navigate_to_celebration():
 	if champion.is_cpu():
 		Events.emit_signal("continue_after_session_ended")
 	else:
-		celebration = celebration_scene.instance()
+		celebration = celebration_scene.instantiate()
 		celebration.add_champion = true
 		add_child(celebration)
 		

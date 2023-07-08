@@ -1,4 +1,4 @@
-tool
+@tool
 extends Wall
 
 class_name MirrorWall

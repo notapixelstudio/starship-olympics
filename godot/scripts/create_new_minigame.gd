@@ -1,4 +1,4 @@
-tool
+@tool
 extends EditorScript
 
 const NAME := "Colorboard"
@@ -32,7 +32,7 @@ func _run():
 	
 func create_base_level(template):
 	# create the directory for new levels
-	var dir = Directory.new()
+	var dir = DirAccess.new()
 	dir.make_dir(LEVELS_BASE_DIR+snakecase(NAME))
 	
 	# instance the template Arena

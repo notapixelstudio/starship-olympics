@@ -2,7 +2,7 @@
 
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=1]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=3]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=3]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=4]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
@@ -10,7 +10,7 @@
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
 [ext_resource path="res://actors/environments/WaterWall.tscn" type="PackedScene" id=9]
 [ext_resource path="res://combat/modes/Poseidon.tres" type="Resource" id=10]
-[ext_resource path="res://assets/patterns/checkers.png" type="Texture" id=11]
+[ext_resource path="res://assets/patterns/checkers.png" type="Texture2D" id=11]
 [ext_resource path="res://actors/brains/TakeTheCrownBrain.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
@@ -84,7 +84,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera3D" parent="." index="6"]
 zoom = Vector2( 1.14795e+28, 1.14795e+28 )
-smoothing_speed = 0.3
+position_smoothing_speed = 0.3
 disabled_override = true

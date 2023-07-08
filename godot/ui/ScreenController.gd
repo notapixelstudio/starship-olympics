@@ -1,6 +1,6 @@
 extends Node2D
 
-export var starting_screen_scene : PackedScene
+@export var starting_screen_scene : PackedScene
 
 var screens_stack := []  # Array of ScreenScene to navigate back
 
@@ -17,9 +17,9 @@ func navigate_to(screen_scene: PackedScene):
 		active_screen.exit()
 		from_screen_id = active_screen.get_id()
 	
-	var new_screen = screen_scene.instance() as Screen
+	var new_screen = screen_scene.instantiate() as Screen
 	assert(new_screen is Screen)
-	new_screen.rect_position.x = 1280 * len(screens_stack)
+	new_screen.position.x = 1280 * len(screens_stack)
 	#if len(screens_stack) > 0:
 	#	from=screens_stack[-1].name
 	screens_stack.append(new_screen)
@@ -30,7 +30,7 @@ func navigate_to(screen_scene: PackedScene):
 	if new_camera_position_x != $Camera2D.position.x: # move camera if needed
 		var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.tween_property($Camera2D, 'position:x', new_camera_position_x, 1)
-		yield(tween, "finished")
+		await tween.finished
 	
 	connect_nav_signals(new_screen)
 	new_screen.enter()
@@ -47,17 +47,17 @@ func back():
 	
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property($Camera2D, 'position:x', 1280 * (len(screens_stack)-1), 1)
-	yield(tween, "finished")
+	await tween.finished
 	
 	old_screen.queue_free()
 	active_screen.enter()
 
 func connect_nav_signals(screen : Screen) -> void:
-	(screen as Screen).connect("next", self, "navigate_to")
-	(screen as Screen).connect("back", self, "back")
+	(screen as Screen).connect("next", Callable(self, "navigate_to"))
+	(screen as Screen).connect("back", Callable(self, "back"))
 	
 func disconnect_nav_signals(screen : Screen) -> void:
-	if (screen as Screen).is_connected("next", self, "navigate_to"):
-		(screen as Screen).disconnect("next", self, "navigate_to")
-	if (screen as Screen).is_connected("back", self, "back"):
-		(screen as Screen).disconnect("back", self, "back")
+	if (screen as Screen).is_connected("next", Callable(self, "navigate_to")):
+		(screen as Screen).disconnect("next", Callable(self, "navigate_to"))
+	if (screen as Screen).is_connected("back", Callable(self, "back")):
+		(screen as Screen).disconnect("back", Callable(self, "back"))

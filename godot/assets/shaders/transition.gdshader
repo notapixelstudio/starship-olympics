@@ -3,9 +3,9 @@ render_mode unshaded;
 
 uniform float cutoff : hint_range(0.0, 1.0);
 uniform float smooth_size : hint_range(0.0, 1.0);
-uniform sampler2D mask : hint_albedo;
+uniform sampler2D mask : source_color;
 
-uniform vec4 color : hint_color;
+uniform vec4 color : source_color;
 
 void fragment()
 {

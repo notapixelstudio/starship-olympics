@@ -20,7 +20,7 @@ func add_path(path, from: MapLocation, to: MapLocation) -> void:
 	neighbours[to][from] = path
 	
 ## return the MapLocation neighbours of the given MapLocation, along with their connecting Path
-func get_neighbourhood(loc: MapLocation) -> Dictionary: # {MapLocation: Path}
+func get_neighbourhood(loc: MapLocation) -> Dictionary: # {MapLocation: Path3D}
 	if not neighbours.has(loc):
 		return {}
 	return neighbours[loc]

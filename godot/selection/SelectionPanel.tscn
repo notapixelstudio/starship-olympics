@@ -2,13 +2,13 @@
 
 [ext_resource path="res://selection/SelectionPanel.gd" type="Script" id=1]
 [ext_resource path="res://selection/PlayerSelection.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="FontFile" id=3]
 [ext_resource path="res://selection/Fight.gd" type="Script" id=4]
-[ext_resource path="res://assets/UI/keys_and_buttons/joypad/PS4_Cross.png" type="Texture" id=5]
+[ext_resource path="res://assets/UI/keys_and_buttons/joypad/PS4_Cross.png" type="Texture2D" id=5]
 [ext_resource path="res://ui/screens/character_selection/ReadyToFight.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="FontFile" id=9]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 24
 font_data = ExtResource( 9 )
 
@@ -20,8 +20,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 0.5, 0.5 ) ]
 }
@@ -35,8 +35,8 @@ tracks/0/loop_wrap = false
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 0.965382 ),
-"transitions": PoolRealArray( 1, 1.27456, 1 ),
+"times": PackedFloat32Array( 0, 0.5, 0.965382 ),
+"transitions": PackedFloat32Array( 1, 1.27456, 1 ),
 "update": 0,
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 0.6, 0.6 ), Vector2( 0.5, 0.5 ) ]
 }
@@ -44,18 +44,18 @@ tracks/0/keys = {
 [node name="SelectionPanel" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-focus_neighbour_left = NodePath(".")
-focus_neighbour_top = NodePath(".")
-focus_neighbour_right = NodePath(".")
-focus_neighbour_bottom = NodePath(".")
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 focus_mode = 2
 script = ExtResource( 1 )
 
 [node name="Info" type="NinePatchRect" parent="."]
-margin_left = 440.0
-margin_top = 18.0
-margin_right = 813.0
-margin_bottom = 68.0
+offset_left = 440.0
+offset_top = 18.0
+offset_right = 813.0
+offset_bottom = 68.0
 patch_margin_left = 3
 patch_margin_top = 2
 patch_margin_right = 3
@@ -65,8 +65,8 @@ patch_margin_bottom = 3
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -305.0
-margin_bottom = 230.0
+offset_top = -305.0
+offset_bottom = 230.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -75,70 +75,70 @@ __meta__ = {
 [node name="p1" parent="Container" instance=ExtResource( 2 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
-margin_left = 234.0
-margin_top = 0.0
-margin_right = 434.0
-margin_bottom = 535.0
-rect_min_size = Vector2( 200, 400 )
+offset_left = 234.0
+offset_top = 0.0
+offset_right = 434.0
+offset_bottom = 535.0
+custom_minimum_size = Vector2( 200, 400 )
 
 [node name="p2" parent="Container" instance=ExtResource( 2 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
-margin_left = 438.0
-margin_top = 0.0
-margin_right = 638.0
-margin_bottom = 535.0
+offset_left = 438.0
+offset_top = 0.0
+offset_right = 638.0
+offset_bottom = 535.0
 
 [node name="p3" parent="Container" instance=ExtResource( 2 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
-margin_left = 642.0
-margin_top = 0.0
-margin_right = 842.0
-margin_bottom = 535.0
+offset_left = 642.0
+offset_top = 0.0
+offset_right = 842.0
+offset_bottom = 535.0
 
 [node name="p4" parent="Container" instance=ExtResource( 2 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
-margin_left = 846.0
-margin_top = 0.0
-margin_right = 1046.0
-margin_bottom = 535.0
+offset_left = 846.0
+offset_top = 0.0
+offset_right = 1046.0
+offset_bottom = 535.0
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="TopHUD" type="HBoxContainer" parent="."]
 anchor_right = 1.0
-margin_top = 11.0
-margin_bottom = 42.0
-custom_constants/separation = 13
+offset_top = 11.0
+offset_bottom = 42.0
+theme_override_constants/separation = 13
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Control" type="Control" parent="TopHUD"]
-margin_right = 633.0
-margin_bottom = 31.0
-rect_clip_content = true
+offset_right = 633.0
+offset_bottom = 31.0
+clip_contents = true
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="TopHUD"]
 visible = false
-margin_left = 484.0
-margin_top = 1.0
-margin_right = 795.0
-margin_bottom = 30.0
-custom_fonts/font = SubResource( 1 )
+offset_left = 484.0
+offset_top = 1.0
+offset_right = 795.0
+offset_bottom = 30.0
+theme_override_fonts/font = SubResource( 1 )
 text = "SELECT 1 TO 4 PLAYERS"
 align = 1
 valign = 1
 uppercase = true
 
 [node name="Control2" type="Control" parent="TopHUD"]
-margin_left = 646.0
-margin_right = 1280.0
-margin_bottom = 31.0
-rect_clip_content = true
+offset_left = 646.0
+offset_right = 1280.0
+offset_bottom = 31.0
+clip_contents = true
 size_flags_horizontal = 3
 
 [node name="BottomHUD" type="HBoxContainer" parent="."]
@@ -146,66 +146,66 @@ visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -46.0
-margin_bottom = -20.0
-custom_constants/separation = 25
+offset_top = -46.0
+offset_bottom = -20.0
+theme_override_constants/separation = 25
 
 [node name="Control" type="Control" parent="BottomHUD"]
-margin_right = 569.0
-margin_bottom = 26.0
-rect_clip_content = true
+offset_right = 569.0
+offset_bottom = 26.0
+clip_contents = true
 size_flags_horizontal = 3
 
 [node name="TopLeftLine" type="Line2D" parent="BottomHUD/Control"]
 position = Vector2( 1.00986, -664 )
 scale = Vector2( 1.25247, 1 )
-points = PoolVector2Array( 0, 676, 480, 676 )
+points = PackedVector2Array( 0, 676, 480, 676 )
 width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 91
 
 [node name="Fight" type="HBoxContainer" parent="BottomHUD"]
-margin_left = 594.0
-margin_right = 685.0
-margin_bottom = 26.0
+offset_left = 594.0
+offset_right = 685.0
+offset_bottom = 26.0
 script = ExtResource( 4 )
 
 [node name="Control" type="Control" parent="BottomHUD/Fight"]
-margin_right = 30.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 30, 0 )
+offset_right = 30.0
+offset_bottom = 26.0
+custom_minimum_size = Vector2( 30, 0 )
 
-[node name="Sprite" type="Sprite" parent="BottomHUD/Fight"]
+[node name="Sprite2D" type="Sprite2D" parent="BottomHUD/Fight"]
 position = Vector2( 9.5, 8.5 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 5 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomHUD/Fight/Sprite"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomHUD/Fight/Sprite2D"]
 anims/idle = SubResource( 2 )
 anims/wiggle = SubResource( 3 )
 
 [node name="Label" type="Label" parent="BottomHUD/Fight"]
-margin_left = 34.0
-margin_right = 91.0
-margin_bottom = 26.0
+offset_left = 34.0
+offset_right = 91.0
+offset_bottom = 26.0
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 3 )
+theme_override_fonts/font = ExtResource( 3 )
 text = "play"
 align = 1
 valign = 1
 uppercase = true
 
 [node name="Control2" type="Control" parent="BottomHUD"]
-margin_left = 710.0
-margin_right = 1280.0
-margin_bottom = 26.0
-rect_clip_content = true
+offset_left = 710.0
+offset_right = 1280.0
+offset_bottom = 26.0
+clip_contents = true
 size_flags_horizontal = 3
 
 [node name="BottomRightLine2" type="Line2D" parent="BottomHUD/Control2"]
 position = Vector2( -1073.52, -664 )
 scale = Vector2( 1.4124, 1 )
-points = PoolVector2Array( 740, 676, 1280, 676 )
+points = PackedVector2Array( 740, 676, 1280, 676 )
 width = 4.0
 default_color = Color( 1, 1, 1, 1 )
 texture_mode = 91
@@ -224,10 +224,10 @@ __meta__ = {
 [node name="ReadyToFight" parent="CanvasLayer" instance=ExtResource( 6 )]
 
 [node name="Label" type="Label" parent="."]
-margin_left = 1140.0
-margin_top = 656.0
-margin_right = 1257.0
-margin_bottom = 670.0
+offset_left = 1140.0
+offset_top = 656.0
+offset_right = 1257.0
+offset_bottom = 670.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 30.0

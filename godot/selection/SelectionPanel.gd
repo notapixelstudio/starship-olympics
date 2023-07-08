@@ -5,11 +5,11 @@ const MIN_PLAYERS = 1
 const NUM_KEYBOARDS = 2
 
 enum ALL_SPECIES {SPECIES0, SPECIES1, SPECIES2, SPECIES3, SPECIES4}
-onready var container = $Container
-onready var fight_node = $BottomHUD/Fight
-onready var ready_to_fight = $CanvasLayer/ReadyToFight
-onready var top_hud = $TopHUD
-onready var smoke_screen = $SmokeScreen
+@onready var container = $Container
+@onready var fight_node = $BottomHUD/Fight
+@onready var ready_to_fight = $CanvasLayer/ReadyToFight
+@onready var top_hud = $TopHUD
+@onready var smoke_screen = $SmokeScreen
 var ordered_species : Array # as available_species Dic [str:Resource]
 
 signal fight
@@ -25,7 +25,7 @@ func _ready():
 	post_ready()
 	for action in InputMap.get_actions():
 		if "_fire" in action: 
-			list_fire_action[action] = (InputMap.get_action_list(action))
+			list_fire_action[action] = (InputMap.action_get_events(action))
 	
 
 	# global.remotesServer.connect("new_remote_connected", self, "_onNewRemote")
@@ -49,12 +49,12 @@ func post_ready():
 		#set all to no
 		child.set_controls(global.CONTROLSMAP[global.Controls.NO])
 		child.change_species(ordered_species[i])
-		child.connect("prev", self, "get_adjacent", [-1, child])
-		child.connect("next", self, "get_adjacent", [+1, child])
-		child.connect("selected", self, "selected")
-		child.connect("joined", self, "joined")
-		child.connect("deselected", self, "deselected")
-		child.connect("ready_to_fight", self, "check_if_we_can_go_on")
+		child.connect("prev", Callable(self, "get_adjacent").bind(-1, child))
+		child.connect("next", Callable(self, "get_adjacent").bind(+1, child))
+		child.connect("selected", Callable(self, "selected"))
+		child.connect("joined", Callable(self, "joined"))
+		child.connect("deselected", Callable(self, "deselected"))
+		child.connect("ready_to_fight", Callable(self, "check_if_we_can_go_on"))
 		i +=1
 		# it gives the name of the player
 		child.uid = i
@@ -112,7 +112,7 @@ func get_adjacent(operator:int, player_selection : Node):
 func check_if_we_can_go_on(player: InfoPlayer):
 	var players = get_players()
 	if len(players) >= MIN_PLAYERS:
-		ready_to_fight.start(players, global.win)
+		ready_to_fight.start(Callable(players, global.win))
 	else:
 		print_debug("not enough players")
 
@@ -188,7 +188,7 @@ func _unhandled_input(event):
 #	if event.is_action_pressed("pause") and not global.demo:
 #		Events.emit_signal("nav_to_menu")
 	if event.is_action_pressed("debug_action"):
-		ready_to_fight.start([], global.win)
+		ready_to_fight.start(Callable([], global.win))
 		
 var fight_mode = "vs Mode"
 

@@ -3,7 +3,7 @@ shader_type canvas_item;
 
 uniform bool apply = true;
 uniform float amount = 1.0;
-uniform sampler2D offset_texture : hint_white;
+uniform sampler2D offset_texture : hint_default_white;
 
 void fragment() {
 	vec4 texture_color = texture(SCREEN_TEXTURE, SCREEN_UV);

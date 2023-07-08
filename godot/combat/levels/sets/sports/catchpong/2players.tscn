@@ -7,7 +7,7 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=6]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
-[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
+[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture2D" id=8]
 [ext_resource path="res://actors/environments/WallGoal.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/environments/ArkaBall.tscn" type="PackedScene" id=12]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=13]
@@ -17,7 +17,7 @@
 size_multiplier = 2.5
 game_mode = ExtResource( 1 )
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 8 )
 centered = false
 
@@ -46,7 +46,7 @@ script = ExtResource( 14 )
 __meta__ = {
 "_editor_description_": ""
 }
-polygon = PoolVector2Array( -2500, 900, -2500, -900, 0, -750, 2500, -900, 2500, 900, 0, 750 )
+polygon = PackedVector2Array( -2500, 900, -2500, -900, 0, -750, 2500, -900, 2500, 900, 0, 750 )
 
 [node name="WallGoal" parent="Battlefield/Middleground" index="0" instance=ExtResource( 11 )]
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
@@ -106,8 +106,8 @@ controls = "kb2"
 species = ExtResource( 6 )
 cpu = true
 
-[node name="Camera" parent="." index="6"]
-smoothing_speed = 0.3
+[node name="Camera3D" parent="." index="6"]
+position_smoothing_speed = 0.3
 enabled = false
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

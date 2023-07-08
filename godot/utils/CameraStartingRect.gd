@@ -1,4 +1,4 @@
-tool
+@tool
 extends Polygon2D
 
 var gshape : GShape
@@ -8,20 +8,20 @@ func _ready():
 		if node is GShape:
 			gshape = node
 			break
-	gshape.connect('changed', self, '_on_gshape_changed')
+	gshape.connect('changed', Callable(self, '_on_gshape_changed'))
 	refresh_shape()
 	
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		visible = false
 	
 func _on_gshape_changed():
 	refresh_shape()
 	
 func add_child(node, legible_unique_name=false):
-	.add_child(node, legible_unique_name)
+	super.add_child(node, legible_unique_name)
 	if node is GShape:
 		gshape = node
-		gshape.connect('changed', self, '_on_gshape_changed')
+		gshape.connect('changed', Callable(self, '_on_gshape_changed'))
 		refresh_shape()
 	
 func refresh_shape():

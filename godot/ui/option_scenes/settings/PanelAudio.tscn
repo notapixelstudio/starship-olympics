@@ -8,50 +8,50 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -389.0
-margin_top = -278.5
-margin_right = 389.0
-margin_bottom = 278.5
+offset_left = -389.0
+offset_top = -278.5
+offset_right = 389.0
+offset_bottom = 278.5
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Content" type="MarginContainer" parent="."]
-margin_top = 65.0
-margin_right = 778.0
-margin_bottom = 485.0
+offset_top = 65.0
+offset_right = 778.0
+offset_bottom = 485.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="UIButtonsContainer" type="VBoxContainer" parent="Content"]
-margin_right = 778.0
-margin_bottom = 420.0
+offset_right = 778.0
+offset_bottom = 420.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Music" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
-margin_top = 0.0
-margin_right = 778.0
-margin_bottom = 50.0
+offset_top = 0.0
+offset_right = 778.0
+offset_bottom = 50.0
 element_path = "master_volume"
 label_description = "Volume Master"
 
 [node name="Music2" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
-margin_top = 54.0
-margin_right = 778.0
-margin_bottom = 104.0
+offset_top = 54.0
+offset_right = 778.0
+offset_bottom = 104.0
 element_path = "music_volume"
 label_description = "Volume Music"
 bus_name = "Music"
 
 [node name="Music3" parent="Content/UIButtonsContainer" instance=ExtResource( 2 )]
-margin_top = 108.0
-margin_right = 778.0
-margin_bottom = 158.0
+offset_top = 108.0
+offset_right = 778.0
+offset_bottom = 158.0
 element_path = "sfx_volume"
 label_description = "Volume SFX"
 bus_name = "SFX"
@@ -61,10 +61,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -129.5
-margin_top = -65.0
-margin_right = 110.5
-margin_bottom = -7.0
+offset_left = -129.5
+offset_top = -65.0
+offset_right = 110.5
+offset_bottom = -7.0
 text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false

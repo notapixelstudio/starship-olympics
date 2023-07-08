@@ -3,10 +3,10 @@ extends Node2D
 var selected_option_name : String
 
 func _ready():
-	yield($AnimationPlayer, "animation_finished")
+	await $AnimationPlayer.animation_finished
 	
 	for option in $FancyMenu.get_children():
-		option.connect('button_down', self, '_on_option_selected', [option])
+		option.connect('button_down', Callable(self, '_on_option_selected').bind(option))
 		
 func _on_option_selected(option):
 	selected_option_name = option.name

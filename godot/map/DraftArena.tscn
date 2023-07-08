@@ -2,7 +2,7 @@
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map_with_sets/MapGameMode.tres" type="Resource" id=2]
-[ext_resource path="res://combat/levels/background/menus.png" type="Texture" id=3]
+[ext_resource path="res://combat/levels/background/menus.png" type="Texture2D" id=3]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=5]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=6]
@@ -12,11 +12,11 @@
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
 [ext_resource path="res://combat/traits/Tappable.tscn" type="PackedScene" id=11]
 [ext_resource path="res://map/DraftManager.gd" type="Script" id=12]
-[ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=13]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=14]
+[ext_resource path="res://assets/sprites/cards/card.png" type="Texture2D" id=13]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="FontFile" id=14]
 [ext_resource path="res://actors/brains/DraftBrain.tscn" type="PackedScene" id=15]
 [ext_resource path="res://ui/Typewriter.tscn" type="PackedScene" id=16]
-[ext_resource path="res://assets/map/cards/planets/planet.png" type="Texture" id=17]
+[ext_resource path="res://assets/map/cards/planets/planet.png" type="Texture2D" id=17]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=18]
 [ext_resource path="res://combat/styles/lightpurple.tres" type="Resource" id=20]
 
@@ -30,10 +30,10 @@ func tap(author):
 		self.emit_signal(\"tapped\", author)
 	
 func show_tap_preview(ship : Ship):
-	$Sprite.modulate = Color(1,1,1,1)
+	$Sprite2D.modulate = Color(1,1,1,1)
 	
 func hide_tap_preview():
-	$Sprite.modulate = Color(0.7,0.7,0.7,1)
+	$Sprite2D.modulate = Color(0.7,0.7,0.7,1)
 
 func _on_PASS_body_entered(body):
 	if body is Ship:
@@ -44,11 +44,11 @@ func _on_PASS_body_exited(body):
 		Events.emit_signal(\"tappable_exited\", self, body)
 "
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 100
 font_data = ExtResource( 14 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="FontFile" id=3]
 size = 96
 outline_size = 12
 outline_color = Color( 0, 0, 0, 1 )
@@ -58,12 +58,12 @@ font_data = ExtResource( 14 )
 script/source = "extends Node2D
 
 func set_deck(v: StartingDeck) -> void:
-	$Sprite.texture = v.get_image()
+	$Sprite2D.texture = v.get_image()
 	$SpriteShadow.texture = v.get_image()
 	$Label.text = v.get_name()
 "
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="FontFile" id=4]
 size = 64
 outline_size = 8
 outline_color = Color( 0, 0, 0, 1 )
@@ -79,8 +79,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 0.120742, 0.5 ),
+"times": PackedFloat32Array( 0, 2 ),
+"transitions": PackedFloat32Array( 0.120742, 0.5 ),
 "update": 0,
 "values": [ Vector2( 0, 1800 ), Vector2( 0, 400 ) ]
 }
@@ -91,8 +91,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ false, true ]
 }
@@ -106,8 +106,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 1800 ) ]
 }
@@ -118,8 +118,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ false ]
 }
@@ -188,42 +188,42 @@ __meta__ = {
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/PASS" index="1"]
 position = Vector2( -1400, -800 )
-polygon = PoolVector2Array( 1050, 600, 1750, 600, 1750, 1000, 1050, 1000 )
+polygon = PackedVector2Array( 1050, 600, 1750, 600, 1750, 1000, 1050, 1000 )
 
-[node name="Shadow" type="Sprite" parent="Battlefield/Middleground/PASS" index="2"]
+[node name="Shadow" type="Sprite2D" parent="Battlefield/Middleground/PASS" index="2"]
 modulate = Color( 0, 0, 0, 0.235294 )
 position = Vector2( 0, 32 )
 rotation = 1.5708
 scale = Vector2( 2, 3 )
 texture = ExtResource( 13 )
 
-[node name="Sprite" type="Sprite" parent="Battlefield/Middleground/PASS" index="3"]
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/Middleground/PASS" index="3"]
 modulate = Color( 0.7, 0.7, 0.7, 1 )
 rotation = 1.5708
 scale = Vector2( 2, 3 )
 texture = ExtResource( 13 )
 
 [node name="Label" type="Label" parent="Battlefield/Middleground/PASS" index="4"]
-margin_left = -250.0
-margin_top = -100.0
-margin_right = 250.0
-margin_bottom = 100.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 2 )
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color( 0, 0, 0, 1 )
+theme_override_fonts/font = SubResource( 2 )
 text = "PASS"
 align = 1
 valign = 1
 
 [node name="Message" parent="Battlefield/Middleground" index="2" instance=ExtResource( 16 )]
-margin_left = -1900.0
-margin_top = -850.0
-margin_right = 1900.0
-margin_bottom = -707.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0.2, 0.317647, 0.482353, 1 )
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 8
-custom_fonts/font = SubResource( 3 )
+offset_left = -1900.0
+offset_top = -850.0
+offset_right = 1900.0
+offset_bottom = -707.0
+theme_override_colors/font_color = Color( 1, 1, 1, 1 )
+theme_override_colors/font_shadow_color = Color( 0.2, 0.317647, 0.482353, 1 )
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 8
+theme_override_fonts/font = SubResource( 3 )
 percent_visible = 0.0
 
 [node name="World" type="Node2D" parent="Battlefield/Middleground" index="3"]
@@ -232,12 +232,12 @@ position = Vector2( 0, 1800 )
 scale = Vector2( 1.8, 1.8 )
 script = SubResource( 7 )
 
-[node name="SpriteShadow" type="Sprite" parent="Battlefield/Middleground/World" index="0"]
+[node name="SpriteShadow" type="Sprite2D" parent="Battlefield/Middleground/World" index="0"]
 modulate = Color( 0, 0, 0, 0.196078 )
 position = Vector2( 0, 27.7778 )
 texture = ExtResource( 17 )
 
-[node name="Sprite" type="Sprite" parent="Battlefield/Middleground/World" index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/Middleground/World" index="1"]
 texture = ExtResource( 17 )
 
 [node name="Label" type="Label" parent="Battlefield/Middleground/World" index="2"]
@@ -245,16 +245,16 @@ visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -467.0
-margin_top = 105.0
-margin_right = 467.0
-margin_bottom = 181.0
+offset_left = -467.0
+offset_top = 105.0
+offset_right = 467.0
+offset_bottom = 181.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 18 )
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 0
-custom_fonts/font = SubResource( 4 )
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = SubResource( 4 )
 text = "PLANET"
 align = 1
 uppercase = true
@@ -294,10 +294,10 @@ species = ExtResource( 6 )
 [node name="Pause" parent="CanvasLayer2" index="0"]
 in_match = false
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera3D" parent="." index="6"]
 current = false
 zoom = Vector2( inf, inf )
-smoothing_speed = 0.3
+position_smoothing_speed = 0.3
 zoomMin = 4.0
 marginY = -225.0
 subtractHeight = 450

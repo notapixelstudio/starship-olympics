@@ -1,3 +1,3 @@
 extends BackScreen
 
-export var next_scene : PackedScene
+@export var next_scene : PackedScene

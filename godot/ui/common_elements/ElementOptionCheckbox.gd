@@ -1,8 +1,8 @@
-tool
+@tool
 extends GenericOption
 
-onready var value_node = $ElementCheckbox
-onready var description_node = $ElementCheckbox
+@onready var value_node = $ElementCheckbox
+@onready var description_node = $ElementCheckbox
 
 func _process(delta):
 	$ElementCheckbox.text = label_description.to_upper()
@@ -13,7 +13,7 @@ func _ready():
 
 	description_node.text = label_description.to_upper()
 	value = node_owner.get(element_path)
-	value_node.pressed = value
+	value_node.button_pressed = value
 
 
 func _on_ElementCheckbox_toggled(button_pressed):
@@ -36,9 +36,9 @@ func focus():
 
 
 func _on_ElementCheckbox_focus_entered():
-	value_node.set("custom_colors/font_color_pressed",Color(0,0,0))
+	value_node.set("theme_override_colors/font_pressed_color",Color(0,0,0))
 	
 
 func _on_ElementCheckbox_focus_exited():
-	value_node.set("custom_colors/font_color_pressed", null)
+	value_node.set("theme_override_colors/font_pressed_color", null)
 

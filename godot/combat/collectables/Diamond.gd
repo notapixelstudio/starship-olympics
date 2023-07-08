@@ -1,10 +1,10 @@
-tool
+@tool
 
 extends RigidBody2D
 
 class_name Diamond
 
-export var appear = true
+@export var appear = true
 
 var points = 1
 
@@ -25,16 +25,16 @@ func get_strategy(ship, distance, game_mode):
 	return {'seek': points}
 	
 func set_tangible(tangible : bool):
-	call_deferred('set_collision_mask_bit', 1, tangible) # ship near area
+	call_deferred('set_collision_mask_value', 1, tangible) # ship near area
 	
 func set_appear(v : bool) -> void:
 	appear = v
 	
-func get_texture() -> Texture:
-	return $Sprite.texture
+func get_texture() -> Texture2D:
+	return $Sprite2D.texture
 
 func get_sprite_position() -> Vector2:
-	return $Sprite.position
+	return $Sprite2D.position
 	
 func on_collected_by(collector):
 	var particles = $Particles

@@ -1,31 +1,31 @@
-tool
+@tool
 
 extends StaticBody2D
 class_name Wall
 
-export (bool) var hollow setget set_hollow
+@export (bool) var hollow : set = set_hollow
 
-export (int) var offset = 800 setget set_offset
-export (int) var elongation setget set_elongation
+@export (int) var offset = 800: set = set_offset
+@export (int) var elongation : set = set_elongation
 
 enum TYPE { solid, hostile, ghost, decoration, glass }
-export(TYPE) var type = TYPE.solid setget set_type
+@export var type: TYPE = TYPE.solid: set = set_type
 
-export var hide_line : bool = false setget set_hide_line
-export var hide_line_below : bool = false setget set_hide_line_below
-export var hide_grid : bool = false setget set_hide_grid
+@export var hide_line : bool = false: set = set_hide_line
+@export var hide_line_below : bool = false: set = set_hide_line_below
+@export var hide_grid : bool = false: set = set_hide_grid
 
-export var line_width = 48 setget set_line_width
+@export var line_width = 48: set = set_line_width
 
-export var overridable_line_color = true
-export var solid_line_color = Color8(208, 245, 295, 255) setget set_solid_line_color
-export var line_texture : Texture setget set_line_texture
+@export var overridable_line_color = true
+@export var solid_line_color = Color8(208, 245, 295, 255): set = set_solid_line_color
+@export var line_texture : Texture2D: set = set_line_texture
 
-export var grid_color : Color = Color(1,1,1,0.33) setget set_grid_color
-export var grid_rotation : float = 0 setget set_grid_rotation
+@export var grid_color : Color = Color(1,1,1,0.33): set = set_grid_color
+@export var grid_rotation : float = 0: set = set_grid_rotation
 
-export var platform = false
-export(String, 'both', 'above', 'below') var under = 'both' setget set_under
+@export var platform = false
+@export var under = 'both': set = set_under
 
 const texture_glass = preload('res://assets/sprites/stripes.png')
 const spikes_texture = preload("res://assets/patterns/wall/spikesii.png")
@@ -84,7 +84,7 @@ func set_grid_rotation(value):
 	
 func set_under(value):
 	under = value
-	call_deferred('set_collision_layer_bit', 4, false)
+	call_deferred('set_collision_layer_value', 4, false)
 	add_to_group('nostyle')
 	
 	if under == 'below':
@@ -93,8 +93,8 @@ func set_under(value):
 		$line.z_index = -50
 		$lineBelow.z_index = -60
 		$InnerPolygon2D.visible = false
-		call_deferred('set_collision_mask_bit', 0, false)
-		call_deferred('set_collision_mask_bit', 18, true)
+		call_deferred('set_collision_mask_value', 0, false)
+		call_deferred('set_collision_mask_value', 18, true)
 		modulate = Color(0.5,0.5,1)
 		$Polygon2D.color = Color(0.7,0.7,0.7)
 	elif under == 'above':
@@ -103,8 +103,8 @@ func set_under(value):
 		$line.z_index = 0
 		$lineBelow.z_index = -10
 		$InnerPolygon2D.visible = false
-		call_deferred('set_collision_mask_bit', 0, true)
-		call_deferred('set_collision_mask_bit', 18, false)
+		call_deferred('set_collision_mask_value', 0, true)
+		call_deferred('set_collision_mask_value', 18, false)
 		modulate = Color(1,0.5,0.5)
 		$Polygon2D.color = Color(0.7,0.7,0.7)
 	elif under == 'both':
@@ -113,9 +113,9 @@ func set_under(value):
 		$line.z_index = 0
 		$lineBelow.z_index = -10
 		$InnerPolygon2D.visible = true
-		call_deferred('set_collision_layer_bit', 4, true)
-		call_deferred('set_collision_mask_bit', 0, true)
-		call_deferred('set_collision_mask_bit', 18, true)
+		call_deferred('set_collision_layer_value', 4, true)
+		call_deferred('set_collision_mask_value', 0, true)
+		call_deferred('set_collision_mask_value', 18, true)
 		remove_from_group('nostyle')
 		modulate = Color(1,1,1)
 		$Polygon2D.color = Color('#4f3f3c')
@@ -153,9 +153,9 @@ func get_gshape():
 	return null
 	
 func get_polygon():
-	return global_transform.xform(get_gshape().to_PoolVector2Array())
+	return global_transform * (get_gshape().to_PoolVector2Array())
 	
-func _get_configuration_warning():
+func _get_configuration_warnings():
 	if not get_gshape():
 		return 'Please provide a GShape as child node to define the geometry.\n'
 	return ''
@@ -168,8 +168,8 @@ func refresh():
 	if not gshape:
 		return
 		
-	if not gshape.is_connected('changed', self, 'refresh'):
-		gshape.connect('changed', self, 'refresh')
+	if not gshape.is_connected('changed', Callable(self, 'refresh')):
+		gshape.connect('changed', Callable(self, 'refresh'))
 		
 	var points = gshape.to_PoolVector2Array()
 	
@@ -182,8 +182,8 @@ func refresh():
 				var b = points[(i+1) % len(points)]
 				# elongation is used to avoid jumping outside the battlefield walls
 				var elo = (b-a).normalized()*elongation
-				var elo_polygon := PoolVector2Array([a-elo,a+a.normalized()*offset-elo,b+b.normalized()*offset+elo,b+elo])
-				var clipped_elo_polygons : Array = Geometry.clip_polygons_2d(elo_polygon, points) # this is to avoid elongation spikes inside the arena
+				var elo_polygon := PackedVector2Array([a-elo,a+a.normalized()*offset-elo,b+b.normalized()*offset+elo,b+elo])
+				var clipped_elo_polygons : Array = Geometry.clip_polygons(elo_polygon, points) # this is to avoid elongation spikes inside the arena
 				if len(clipped_elo_polygons) > 0:
 					shape.set_points(clipped_elo_polygons[0])
 				else:
@@ -200,7 +200,7 @@ func refresh():
 	$InnerPolygon2D.visible = not hollow and not(type == TYPE.ghost) and not(type == TYPE.glass) and under == 'both'
 	
 	$Polygon2D.set_polygon(points)
-	var shrunk = Geometry.offset_polygon_2d(points, -40)
+	var shrunk = Geometry.offset_polygon(points, -40)
 	if len(shrunk) > 0:
 		$InnerPolygon2D.set_polygon(shrunk[0])
 	else:
@@ -212,21 +212,21 @@ func refresh():
 	$line.visible = not hide_line
 	$lineBelow.visible = not hide_line_below
 	
-	$Grid.set_texture_rotation(rotation + deg2rad(grid_rotation))
+	$Grid.set_texture_rotation(rotation + deg_to_rad(grid_rotation))
 	
 	# glass pass-through
-	call_deferred('set_collision_layer_bit', 4, type != TYPE.glass and under == 'both')
+	call_deferred('set_collision_layer_value', 4, type != TYPE.glass and under == 'both')
 	$Polygon2D.self_modulate = Color(1,1,1,0.8) if type == TYPE.glass or under == 'above' else Color(1,1,1,1)
 	$Polygon2D.texture = texture_glass if type == TYPE.glass else null
 	$Polygon2D.set_texture_rotation(rotation)
 	$Entity/CrownDropper.enabled = type == TYPE.glass
 	
 	# close the line with a seamless join
-	var ps = PoolVector2Array(points)
+	var ps = PackedVector2Array(points)
 	ps.remove(0)
 	var p = points[0]+(points[1]-points[0])*0.5
-	$line.points = PoolVector2Array([p]) + ps + PoolVector2Array([points[0], p])
-	$lineBelow.points = PoolVector2Array([p]) + ps + PoolVector2Array([points[0], p])
+	$line.points = PackedVector2Array([p]) + ps + PackedVector2Array([points[0], p])
+	$lineBelow.points = PackedVector2Array([p]) + ps + PackedVector2Array([points[0], p])
 	
 	$line.texture = line_texture
 	$lineBelow.texture = line_texture
@@ -293,7 +293,7 @@ func _process(delta):
 	update_iso()
 	
 func update_iso():
-	if not Engine.editor_hint: # global is not available at editor time
+	if not Engine.is_editor_hint(): # global is not available at editor time
 		$lineBelow.position = global.isometric_offset.rotated(-global_rotation)
 	
 func animate(animation_name: String):

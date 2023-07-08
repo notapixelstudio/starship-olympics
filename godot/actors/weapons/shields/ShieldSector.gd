@@ -1,11 +1,11 @@
 extends CollisionPolygon2D
 
-export var inner_radius := 100.0
-export var outer_radius := 200.0
-export var angle := PI/2
-export var padding := 0.0
-export (String, 'shield', 'plate', 'skin') var type ='normal'
-export var fill : Color = Color(0,0,0,0)
+@export var inner_radius := 100.0
+@export var outer_radius := 200.0
+@export var angle := PI/2
+@export var padding := 0.0
+@export (String, 'shield', 'plate', 'skin') var type ='normal'
+@export var fill : Color = Color(0,0,0,0)
 
 const COLLISION_POLYGON_PRECISION := PI/8
 const DRAW_PRECISION := PI/32
@@ -18,7 +18,7 @@ func _ready():
 func _draw():
 	var polygon = create_polygon(draw_precision, padding)
 	draw_colored_polygon(polygon, fill, polygon, null, null, true)
-	draw_polyline(PoolVector2Array(Array(polygon) + [polygon[0]]), Color(0.6,1.0,1.4), 6.0, true)
+	draw_polyline(PackedVector2Array(Array(polygon) + [polygon[0]]), Color(0.6,1.0,1.4), 6.0, true)
 	$Shadow.polygon = polygon
 	$Shadow.fill = fill
 	$Shadow.update()
@@ -52,7 +52,7 @@ func enable_collisions():
 func disable_collisions():
 	self.call_deferred('set_disabled', true)
 	if type == 'skin':
-		yield(get_tree().create_timer(5), "timeout")
+		await get_tree().create_timer(5).timeout
 		if type == 'skin': # shield type could have changed (e.g., if switched off)
 			up('skin')
 	
@@ -67,7 +67,7 @@ func switch_off():
 	disable_collisions()
 	modulate = Color(1.0,1.0,1.0,0.0)
 
-func create_polygon(precision : float, padding := 0.0) -> PoolVector2Array:
+func create_polygon(precision : float, padding := 0.0) -> PackedVector2Array:
 	var steps := ceil(angle / precision)
 	var angle_delta := angle / steps
 	var points := []
@@ -81,5 +81,5 @@ func create_polygon(precision : float, padding := 0.0) -> PoolVector2Array:
 		var y := inner_radius*sin(theta)
 		points.append(Vector2(inner_radius*cos(theta), max(padding, y) ))
 		
-	return PoolVector2Array(points)
+	return PackedVector2Array(points)
 	

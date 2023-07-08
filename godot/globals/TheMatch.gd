@@ -29,7 +29,7 @@ var game_mode : GameMode
 
 
 const DEADZONE = 0.1
-signal game_over
+signal game_ended
 signal setup
 signal updated
 signal tick
@@ -112,7 +112,7 @@ func compute_game_status(end_now = false):
 	if game_over:
 		# print("Don't need to calculate winners again. Winners are: ")
 		return
-	player_scores.sort_custom(self, "sort_by_score")
+	player_scores.sort_custom(Callable(self, "sort_by_score"))
 	
 	leaders = []
 	var leader = player_scores.front()
@@ -155,7 +155,7 @@ func no_players_left():
 	
 func do_game_over():
 	game_over = true
-	emit_signal("game_over")
+	emit_signal(game_ended)
 	
 func is_almost_game_over():
 	return time_left < 0.5
@@ -290,7 +290,7 @@ func trigger_game_over_now():
 	compute_game_status(true) # end now
 
 func store():
-	global.write_into_file("user://matches/{id}.json".format({"id":self.uuid}), to_json(self.to_dict()))
+	global.write_into_file("user://matches/{id}.json".format({"id":self.uuid}), JSON.new().stringify(self.to_dict()))
 	
 func get_time_left() -> float:
 	return time_left

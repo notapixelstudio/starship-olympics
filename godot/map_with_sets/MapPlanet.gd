@@ -1,14 +1,14 @@
-tool
+@tool
 extends MapLocation
 
 class_name MapPlanet
 
-export var set : Resource # Set
-export var cursor_scene: PackedScene
-onready var sprite = $Sprite
+@export var set : Resource # Set
+@export var cursor_scene: PackedScene
+@onready var sprite = $Sprite2D
 var cursors = [] # of Cursor
 
-var not_available = false setget set_availability
+var not_available = false: set = set_availability
 
 signal updated
 signal unhid
@@ -20,17 +20,17 @@ func get_id() -> String:
 func set_status(v):
 	status = v
 	if not is_inside_tree():
-		yield(self, 'ready')
+		await self.ready
 	$Lock.visible = false
-	if Engine.editor_hint:
-		$Sprite.modulate = Color(1,1,1,1)
+	if Engine.is_editor_hint():
+		$Sprite2D.modulate = Color(1,1,1,1)
 	elif status == TheUnlocker.UNLOCKED:
-		$Sprite.modulate = Color(1,1,1,1)
+		$Sprite2D.modulate = Color(1,1,1,1)
 	elif status == TheUnlocker.LOCKED:
-		$Sprite.modulate = Color(0,0,0,0)
+		$Sprite2D.modulate = Color(0,0,0,0)
 		$Lock.visible = true
 	else:
-		$Sprite.modulate = Color(0,0,0,0)
+		$Sprite2D.modulate = Color(0,0,0,0)
 		
 	$DebugLabel.text = status
 	
@@ -60,7 +60,7 @@ func unhide():
 		return
 		
 	$AnimationPlayer.play("Unhide")
-	yield($AnimationPlayer, "animation_finished")
+	await $AnimationPlayer.animation_finished
 	self.set_status(TheUnlocker.LOCKED)
 	emit_signal('unhid')
 	Events.emit_signal("sth_unhid", set, self)
@@ -74,7 +74,7 @@ func unlock():
 		return
 		
 	$AnimationPlayer.play("Unlock")
-	yield($AnimationPlayer, "animation_finished")
+	await $AnimationPlayer.animation_finished
 	TheUnlocker.unlock_element("sets", self.get_id())
 	self.set_status(TheUnlocker.UNLOCKED)
 	emit_signal('unlocked')
@@ -114,7 +114,7 @@ func tap(author: Ship):
 		author.get_parent().remove_child(author)
 		
 func land_on(ship: Ship):
-	var cursor: MapCursor = cursor_scene.instance()
+	var cursor: MapCursor = cursor_scene.instantiate()
 	cursor.setup(ship.info_player)
 	cursor.position = self.position
 	get_parent().add_child(cursor)

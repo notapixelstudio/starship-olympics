@@ -1,16 +1,16 @@
 extends RigidBody2D
 
-export var weapon : PackedScene
-export var speed = 400
-export var rate = 1.0 setget set_rate
-export var rotation_speed = 0.4
-export var rays = 4
-export var spread = 90
-export var offset = 45
-export var radius = 125
-export var active := true setget set_active
-export var sleeping_modulate := Color(1,1,1,1) setget set_sleeping_modulate
-export var autoplay := true
+@export var weapon : PackedScene
+@export var speed = 400
+@export var rate = 1.0: set = set_rate
+@export var rotation_speed = 0.4
+@export var rays = 4
+@export var spread = 90
+@export var offset = 45
+@export var radius = 125
+@export var active := true: set = set_active
+@export var sleeping_modulate := Color(1,1,1,1): set = set_sleeping_modulate
+@export var autoplay := true
 
 var ccw = +1
 var direction = Vector2(1,0)
@@ -22,10 +22,10 @@ func fire():
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("Fire")
 	for r in range(rays):
-		fire_angled(r*deg2rad(spread)+deg2rad(offset))
+		fire_angled(r*deg_to_rad(spread)+deg_to_rad(offset))
 	
 func fire_angled(angle):
-	var bullet = weapon.instance()
+	var bullet = weapon.instantiate()
 	
 	bullet.global_position = global_position + radius*direction.rotated(angle)
 	bullet.linear_velocity = direction.rotated(angle)*speed
@@ -45,7 +45,7 @@ func set_rate(v):
 	
 func set_active(v: bool):
 	active = v
-	$Sprite.visible = active
+	$Sprite2D.visible = active
 	$SpriteOff.visible = not active
 	$Entity/Deadly.set_enabled(active)
 	

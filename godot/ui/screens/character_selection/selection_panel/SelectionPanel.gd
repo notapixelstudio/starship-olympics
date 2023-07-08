@@ -2,8 +2,8 @@ extends Control
 
 signal selection_completed
 
-export var min_players := 2
-export var ready_to_fight: PackedScene
+@export var min_players := 2
+@export var ready_to_fight: PackedScene
 
 var relevant_actions := {}
 var mapping_controls_pilot := {}
@@ -17,7 +17,7 @@ func _ready():
 	for action in InputMap.get_actions():
 		for action_name in ["_fire", "_left", "_right", "_up", "_down"]:
 			if action_name in action and not "ui" in action: 
-				relevant_actions[action] = (InputMap.get_action_list(action))
+				relevant_actions[action] = (InputMap.action_get_events(action))
 				
 ## return the first relevant action matching the given InputEvent, or null if it was not found
 func _get_action_from_event(event: InputEvent):

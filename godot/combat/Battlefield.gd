@@ -1,7 +1,7 @@
 extends Node
 
 var groups: Array
-onready var default_container = $Middleground
+@onready var default_container = $Middleground
 
 func _ready():
 	for container in get_children():

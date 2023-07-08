@@ -2,16 +2,16 @@
 
 [ext_resource path="res://combat/PlayerSpawner.gd" type="Script" id=1]
 [ext_resource path="res://assets/animations/Appearing.tres" type="Animation" id=2]
-[ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture2D" id=3]
 
-[node name="PlayerSpawner" type="Position2D" groups=["in_camera", "player_spawner"]]
-pause_mode = 2
+[node name="PlayerSpawner" type="Marker2D" groups=["in_camera", "player_spawner"]]
+process_mode = 3
 position = Vector2( 2432, 720 )
 rotation = -3.14159
 script = ExtResource( 1 )
 cpu_ship_texture = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2( 1.25, 1.25 )
 z_index = 20
 z_as_relative = false

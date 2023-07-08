@@ -1,12 +1,12 @@
 extends Node
 
-export var this_arena_path : NodePath
-export var hand_node_path : NodePath
-export var world_node_path : NodePath
-export var message_node_path : NodePath
-export var pass_path : NodePath
-export var hand_position_node_path : NodePath
-export var draft_card_scene : PackedScene
+@export var this_arena_path : NodePath
+@export var hand_node_path : NodePath
+@export var world_node_path : NodePath
+@export var message_node_path : NodePath
+@export var pass_path : NodePath
+@export var hand_position_node_path : NodePath
+@export var draft_card_scene : PackedScene
 
 var this_arena
 var hand_node : HandNode
@@ -25,8 +25,8 @@ signal selection_finished
 signal card_chosen
 
 func _ready():
-	Events.connect('continue_after_game_over', self, '_on_continue_after_game_over')
-	Events.connect("card_tapped", self, "player_just_chose_a_card")
+	Events.connect('continue_after_game_over', Callable(self, '_on_continue_after_game_over'))
+	Events.connect("card_tapped", Callable(self, "player_just_chose_a_card"))
 	
 	this_arena = get_node(this_arena_path)
 	hand_node = get_node(hand_node_path) # WARNING is this node ready here?
@@ -41,9 +41,9 @@ func _ready():
 	else:
 		hand_node.position.y = 0
 		world_node.set_deck(deck.get_starting_deck())
-		yield(get_tree().create_timer(1.0), "timeout")
+		await get_tree().create_timer(1.0).timeout
 	
-	var hand = global.session.get_hand()
+	var hand = global.session.get_tracker_hand()
 	if len(hand) > 0:
 		populate_hand(hand.duplicate())
 		pick_next_card()
@@ -57,7 +57,7 @@ func _ready():
 func _on_continue_after_game_over(session_ended):
 	if not is_inside_tree():
 		# this happens when the map is momentarily removed at the end of a session
-		yield(self, "tree_entered")
+		await self.tree_entered
 		
 	continue_draft(session_ended)
 	
@@ -65,9 +65,9 @@ func continue_draft(session_ended):
 	if session_ended:
 		draw_anew()
 		
-	yield(get_tree().create_timer(0.4), "timeout") # this is also needed to wait for entering the tree
+	await get_tree().create_timer(0.4).timeout # this is also needed to wait for entering the tree
 	var ships_have_to_choose = false
-	var hand = global.session.get_hand()
+	var hand = global.session.get_tracker_hand()
 	if len(hand) == 0:
 		ships_have_to_choose = true
 		
@@ -86,27 +86,27 @@ func continue_draft(session_ended):
 		global.session.set_hand(hand)
 		hand_refills += 1
 		
-		yield(get_tree().create_timer(1.0), "timeout")
+		await get_tree().create_timer(1.0).timeout
 		
 		populate_hand(hand.duplicate())
 		
 	
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	
 	if not playlist_mode and ships_have_to_choose:
 		message_node.type("Choose which minigames to play")
-		yield(message_node, "done")
-		yield(get_tree().create_timer(0.5), "timeout")
+		await message_node.done
+		await get_tree().create_timer(0.5).timeout
 		
 		this_arena.spawn_all_ships(true)
 	else:
 		if global.starting_deck_id == 'future' and global.is_before_first_match_of_the_session():
 			message_node.type("Thanks for playing our demo!")
-			yield(message_node, "done")
-			yield(get_tree().create_timer(1.0), "timeout")
+			await message_node.done
+			await get_tree().create_timer(1.0).timeout
 			message_node.type("This world has both random games and previews!")
-			yield(message_node, "done")
-		yield(get_tree().create_timer(0.5), "timeout")
+			await message_node.done
+		await get_tree().create_timer(0.5).timeout
 		self.pick_next_card()
 
 func draw_anew():
@@ -141,7 +141,7 @@ func selections_maybe_all_done():
 		message_node.visible_characters = 0
 		
 		var discarded = []
-		var hand = global.session.get_hand()
+		var hand = global.session.get_tracker_hand()
 		Events.emit_signal("draft_ended", players_choices, hand.duplicate())
 		# everyone chose. let's discard cards that have not been chosen
 		for draft_card in hand_node.get_all_cards():
@@ -180,9 +180,9 @@ func selections_maybe_all_done():
 	
 func pick_next_card():
 	# TBD animation
-	var hand = global.session.get_hand()
+	var hand = global.session.get_tracker_hand()
 	hand_node.update_card_positions()
-	yield(get_tree().create_timer(len(hand)*0.33+0.33), "timeout")
+	await get_tree().create_timer(len(hand)*0.33+0.33).timeout
 	
 	var picked_card : DraftCard = global.session.choose_next_card()
 	
@@ -193,19 +193,19 @@ func pick_next_card():
 		#global.add_card_to_shown_cards(picked_card.get_id(), global.the_game.get_deck().get_starting_deck_id())
 		TheUnlocker.unlock_element("cards", picked_card.get_id())
 	persistance.save_game()
-	yield(self, "card_chosen")
+	await self.card_chosen
 	Events.emit_signal("minigame_selected", picked_card)
 
 func add_card(card: DraftCard, selected=false, faceup=true):
 	# will put the card in first empty position
-	var draft_card:DraftCardGraphicNode = draft_card_scene.instance()
+	var draft_card:DraftCardGraphicNode = draft_card_scene.instantiate()
 	draft_card.set_content_card(card)
 	hand_node.add_card(draft_card)
 	for pos_card in hand_node.get_children():
 		if pos_card.get_child_count() == 0:
 			pos_card.add_child(draft_card)
 			break
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	if selected:
 		draft_card.select()
 	if faceup:
@@ -223,7 +223,7 @@ func populate_hand(hand: Array):
 	#hand.sort_custom(self, "sort_hand")
 	for card in hand:
 		(card as DraftCard).on_card_drawn()
-		yield(get_tree().create_timer(0.1), "timeout")
+		await get_tree().create_timer(0.1).timeout
 		add_card(card, false, not playlist_mode or TheUnlocker.get_status("cards", card.get_id()) == TheUnlocker.UNLOCKED) # if ships have not to choose, cards are already selected
 	hand_node.update_card_positions()
 	
@@ -250,18 +250,18 @@ func animate_selection(picked_card: DraftCard):
 	if playlist_mode and hand_refills <= 1:
 		if chosen_card.face_down:
 			chosen_card.reveal()
-			yield(chosen_card, "revealed")
+			await chosen_card.revealed
 		chosen_card.select()
-		yield(get_tree().create_timer(0.9), "timeout")
+		await get_tree().create_timer(0.9).timeout
 	else: # show yellow arrow
 		random_selection(hand_node.get_all_cards(), index_selection)
-		yield(self, "selection_finished")
+		await self.selection_finished
 		chosen_card.chosen = true
-		yield(get_tree().create_timer(0.7), "timeout")
+		await get_tree().create_timer(0.7).timeout
 		chosen_card.chosen = false
 		
 	chosen_card.gracefully_zoom_in()
-	yield(chosen_card, "zoomed_in")
+	await chosen_card.zoomed_in
 	# TODO: danger of lock
 	emit_signal("card_chosen")
 	
@@ -282,7 +282,7 @@ func random_selection(list: Array, sel_index, loops=3, max_duration=5):
 		# print("{i}: {what} for {miniga}".format({"i": i, "what": max(fastest_wait_time, duration_last_loop * 1/(pow(2, 1 + num_iterations-i))), "miniga":list[i%len(list)].content.get_id()}))
 		var wait_time = max(fastest_wait_time, duration_last_loop * 1/(pow(4, 1 + num_iterations-i)))
 		list[i%len(list)].chosen = true
-		yield(get_tree().create_timer(wait_time), "timeout")
+		await get_tree().create_timer(wait_time).timeout
 		total_wait+= wait_time
 		list[i%len(list)].chosen = false
 	print("Waited for "+ str(total_wait))

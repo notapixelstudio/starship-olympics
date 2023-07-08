@@ -2,14 +2,14 @@
 
 [ext_resource path="res://actors/environments/Cell.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture2D" id=3]
 [ext_resource path="res://actors/environments/components/Conquerable.gd" type="Script" id=4]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture2D" id=5]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/ECM/Component.gd" type="Script" id=7]
 [ext_resource path="res://actors/environments/hex_cell_shape.tres" type="Shape2D" id=8]
-[ext_resource path="res://assets/sprites/environments/hex.png" type="Texture" id=9]
-[ext_resource path="res://assets/sprites/environments/hex_filled.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/environments/hex.png" type="Texture2D" id=9]
+[ext_resource path="res://assets/sprites/environments/hex_filled.png" type="Texture2D" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Appear"
@@ -22,8 +22,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 8.2821 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 8.2821 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0.45, 0.45 ) ]
 }
@@ -34,20 +34,20 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.01 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.01 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:modulate")
+tracks/2/path = NodePath("Sprite2D:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.13, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.13, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0.0784314 ), Color( 1, 1, 1, 0.156863 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -63,8 +63,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 8.2821 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 8.2821 ),
 "update": 0,
 "values": [ Vector2( 0.45, 0.45 ), Vector2( 0, 0 ) ]
 }
@@ -75,20 +75,20 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.19 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.19 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:modulate")
+tracks/2/path = NodePath("Sprite2D:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.06, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.06, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.0784314 ) ]
 }
@@ -103,8 +103,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.01, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 0.5 ),
+"times": PackedFloat32Array( 0, 0.01, 0.6 ),
+"transitions": PackedFloat32Array( 1, 1, 0.5 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
 }
@@ -113,7 +113,7 @@ tracks/0/keys = {
 "cell",
 ]]
 input_pickable = false
-gravity_vec = Vector2( 0, 0 )
+gravity_direction = Vector2( 0, 0 )
 linear_damp = 8.0
 angular_damp = 50.0
 collision_layer = 128
@@ -143,12 +143,12 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource( 8 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color( 1, 1, 1, 0.0784314 )
 scale = Vector2( 0.45, 0.45 )
 texture = ExtResource( 9 )
 
-[node name="SpriteFilled" type="Sprite" parent="."]
+[node name="SpriteFilled" type="Sprite2D" parent="."]
 visible = false
 self_modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
 scale = Vector2( 1e-05, 1e-05 )

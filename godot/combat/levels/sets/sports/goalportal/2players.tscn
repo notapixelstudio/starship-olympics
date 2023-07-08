@@ -3,14 +3,14 @@
 [ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=1]
 [ext_resource path="res://combat/levels/sets/sports/goalportal/MovingGoalManager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=3]
-[ext_resource path="res://assets/sprites/signs/O.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/signs/O.png" type="Texture2D" id=4]
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=5]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=9]
 [ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=10]
-[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=11]
+[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture2D" id=11]
 [ext_resource path="res://combat/modes/GoalPortal.tres" type="Resource" id=12]
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=13]
 [ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=14]
@@ -18,12 +18,12 @@
 [ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=23]
-points = PoolVector2Array( -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757 )
+points = PackedVector2Array( -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757 )
 
 [sub_resource type="ConvexPolygonShape2D" id=24]
-points = PoolVector2Array( -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757 )
+points = PackedVector2Array( -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757 )
 
-[sub_resource type="ParticlesMaterial" id=19]
+[sub_resource type="ParticleProcessMaterial" id=19]
 resource_local_to_scene = true
 emission_shape = 2
 emission_box_extents = Vector3( 200, 100, 0 )
@@ -45,8 +45,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 20.0, 0.0 ]
 }
@@ -57,8 +57,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
 }
@@ -69,8 +69,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = false
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -81,8 +81,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Color( 0.2, 0.203333, 0.4, 1 ), Color( 1, 1, 1, 1 ), Color( 0.2, 0.203333, 0.4, 1 ), Color( 1, 1, 1, 1 ), Color( 0.2, 0.203333, 0.4, 1 ), Color( 1, 1, 1, 1 ), Color( 0.2, 0.203333, 0.4, 1 ) ]
 }
@@ -93,17 +93,17 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 1.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1.3 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 0.441912, 0.0509805, 1.30196, 1 ), Color( 0.337255, 0.411765, 0.8, 0.619608 ) ]
 }
 
 [sub_resource type="ConvexPolygonShape2D" id=25]
-points = PoolVector2Array( -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757 )
+points = PackedVector2Array( -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757 )
 
 [sub_resource type="ConvexPolygonShape2D" id=26]
-points = PoolVector2Array( -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757 )
+points = PackedVector2Array( -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757 )
 
 [sub_resource type="Animation" id=27]
 resource_local_to_scene = true
@@ -116,8 +116,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 20.0, 0.0 ]
 }
@@ -128,8 +128,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
 }
@@ -140,8 +140,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = false
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -152,8 +152,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Color( 0.2, 0.203333, 0.4, 1 ), Color( 1, 1, 1, 1 ), Color( 0.2, 0.203333, 0.4, 1 ), Color( 1, 1, 1, 1 ), Color( 0.2, 0.203333, 0.4, 1 ), Color( 1, 1, 1, 1 ), Color( 0.2, 0.203922, 0.4, 1 ) ]
 }
@@ -164,15 +164,15 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 1.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1.3 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 0.441912, 0.0509805, 1.30196, 1 ), Color( 0.337255, 0.411765, 0.8, 0.619608 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=12]
 resource_local_to_scene = true
-extents = Vector2( 250, 500 )
+size = Vector2( 250, 500 )
 
 [sub_resource type="Animation" id=13]
 resource_name = "Blink"
@@ -184,8 +184,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 0.5, 0.5 ),
+"times": PackedFloat32Array( 0, 1.5 ),
+"transitions": PackedFloat32Array( 0.5, 0.5 ),
 "update": 0,
 "values": [ Color( 1.6, 1.6, 1.6, 1 ), Color( 1.2, 1.2, 1.2, 1 ) ]
 }
@@ -199,8 +199,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Color( 1.2, 1.2, 1.2, 1 ) ]
 }
@@ -215,8 +215,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 0.5, 0.5 ),
+"times": PackedFloat32Array( 0, 1.5 ),
+"transitions": PackedFloat32Array( 0.5, 0.5 ),
 "update": 0,
 "values": [ Color( 1.6, 1.6, 1.6, 1 ), Color( 1.2, 1.2, 1.2, 1 ) ]
 }
@@ -230,8 +230,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Color( 1.2, 1.2, 1.2, 1 ) ]
 }
@@ -242,7 +242,7 @@ game_mode = ExtResource( 12 )
 
 [node name="MovingGoalManager" parent="Managers" index="0" instance=ExtResource( 2 )]
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 11 )
 centered = false
 
@@ -259,7 +259,7 @@ height = 3300
 radius = 600
 precision = 100.0
 
-[node name="O" type="Sprite" parent="Battlefield/Background" index="4"]
+[node name="O" type="Sprite2D" parent="Battlefield/Background" index="4"]
 modulate = Color( 1, 1, 1, 0.0470588 )
 position = Vector2( 0, 32 )
 rotation = 0.785398
@@ -269,14 +269,14 @@ texture = ExtResource( 4 )
 [node name="Line2D" type="Line2D" parent="Battlefield/Background" index="5"]
 modulate = Color( 1, 1, 1, 0.0470588 )
 position = Vector2( 0, 32 )
-points = PoolVector2Array( 0, -1650, 0, -550 )
+points = PackedVector2Array( 0, -1650, 0, -550 )
 width = 130.0
 default_color = Color( 1, 1, 1, 1 )
 
 [node name="Line2D2" type="Line2D" parent="Battlefield/Background" index="6"]
 modulate = Color( 1, 1, 1, 0.0470588 )
 position = Vector2( 880, 912 )
-points = PoolVector2Array( -880, -330, -880, 770 )
+points = PackedVector2Array( -880, -330, -880, 770 )
 width = 130.0
 default_color = Color( 1, 1, 1, 1 )
 
@@ -285,10 +285,10 @@ unique_name_in_owner = true
 position = Vector2( -2100, 0 )
 
 [node name="Polygon2D" parent="Battlefield/Background/LeftZone" index="1"]
-polygon = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222 )
+polygon = PackedVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222 )
 
 [node name="Line2D" parent="Battlefield/Background/LeftZone" index="2"]
-points = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
+points = PackedVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
 
 [node name="CollisionShape2D" parent="Battlefield/Background/LeftZone/Area2D" index="2"]
 shape = SubResource( 23 )
@@ -296,11 +296,11 @@ shape = SubResource( 23 )
 [node name="CollisionShape2D" parent="Battlefield/Background/LeftZone/CrownCollider" index="0"]
 shape = SubResource( 24 )
 
-[node name="Particles2D" parent="Battlefield/Background/LeftZone" index="5"]
+[node name="GPUParticles2D" parent="Battlefield/Background/LeftZone" index="5"]
 process_material = SubResource( 19 )
 
 [node name="FeedbackLine" parent="Battlefield/Background/LeftZone" index="7"]
-points = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
+points = PackedVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
 
 [node name="AnimationPlayer" parent="Battlefield/Background/LeftZone" index="8"]
 anims/Feedback = SubResource( 22 )
@@ -321,10 +321,10 @@ rotation = 3.14159
 
 [node name="Polygon2D" parent="Battlefield/Background/RightZone" index="1"]
 texture_rotation_degrees = -180.0
-polygon = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222 )
+polygon = PackedVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222 )
 
 [node name="Line2D" parent="Battlefield/Background/RightZone" index="2"]
-points = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
+points = PackedVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
 
 [node name="CollisionShape2D" parent="Battlefield/Background/RightZone/Area2D" index="2"]
 shape = SubResource( 25 )
@@ -332,11 +332,11 @@ shape = SubResource( 25 )
 [node name="CollisionShape2D" parent="Battlefield/Background/RightZone/CrownCollider" index="0"]
 shape = SubResource( 26 )
 
-[node name="Particles2D" parent="Battlefield/Background/RightZone" index="5"]
+[node name="GPUParticles2D" parent="Battlefield/Background/RightZone" index="5"]
 process_material = SubResource( 19 )
 
 [node name="FeedbackLine" parent="Battlefield/Background/RightZone" index="7"]
-points = PoolVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
+points = PackedVector2Array( 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0 )
 
 [node name="AnimationPlayer" parent="Battlefield/Background/RightZone" index="8"]
 anims/Feedback = SubResource( 27 )
@@ -408,7 +408,7 @@ amount = 14
 [node name="ColoredParticles2D" parent="Battlefield/Middleground/LeftGoalPortalGate/PortalEffect" index="2"]
 amount = 14
 
-[node name="Particles2D" parent="Battlefield/Middleground/LeftGoalPortalGate/PortalEffect" index="3"]
+[node name="GPUParticles2D" parent="Battlefield/Middleground/LeftGoalPortalGate/PortalEffect" index="3"]
 amount = 14
 
 [node name="RightGoalPortalGate" parent="Battlefield/Middleground" index="3" instance=ExtResource( 15 )]
@@ -451,7 +451,7 @@ amount = 14
 [node name="ColoredParticles2D" parent="Battlefield/Middleground/RightGoalPortalGate/PortalEffect" index="2"]
 amount = 14
 
-[node name="Particles2D" parent="Battlefield/Middleground/RightGoalPortalGate/PortalEffect" index="3"]
+[node name="GPUParticles2D" parent="Battlefield/Middleground/RightGoalPortalGate/PortalEffect" index="3"]
 amount = 14
 
 [node name="Wall" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
@@ -463,7 +463,7 @@ script = ExtResource( 16 )
 __meta__ = {
 "_editor_description_": ""
 }
-polygon = PoolVector2Array( 0, -550, -300, -400, -300, 400, 0, 550 )
+polygon = PackedVector2Array( 0, -550, -300, -400, -300, 400, 0, 550 )
 
 [node name="Wall2" parent="Battlefield/Middleground" index="5" instance=ExtResource( 6 )]
 position = Vector2( 2500, 0 )
@@ -475,7 +475,7 @@ script = ExtResource( 16 )
 __meta__ = {
 "_editor_description_": ""
 }
-polygon = PoolVector2Array( 0, -550, -300, -400, -300, 400, 0, 550 )
+polygon = PackedVector2Array( 0, -550, -300, -400, -300, 400, 0, 550 )
 
 [node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 10 )]
 position = Vector2( 0, -1 )
@@ -498,9 +498,9 @@ rotation = 3.14159
 controls = "kb2"
 species = ExtResource( 9 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 16000, 16000 )
-smoothing_speed = 0.3
+position_smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

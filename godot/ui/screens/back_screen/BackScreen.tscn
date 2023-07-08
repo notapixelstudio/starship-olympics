@@ -3,18 +3,18 @@
 [ext_resource path="res://ui/fancy_menus/FancyButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/fancy_menus/FancyMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/screens/back_screen/BackScreen.gd" type="Script" id=3]
-[ext_resource path="res://ui/screens/back_screen/back_screen.svg" type="Texture" id=4]
+[ext_resource path="res://ui/screens/back_screen/back_screen.svg" type="Texture2D" id=4]
 [ext_resource path="res://ui/screens/back_screen/buttons/area_Back.png" type="BitMap" id=5]
-[ext_resource path="res://ui/screens/back_screen/buttons/graphics_Back.png" type="Texture" id=6]
+[ext_resource path="res://ui/screens/back_screen/buttons/graphics_Back.png" type="Texture2D" id=6]
 [ext_resource path="res://ui/Screen.tscn" type="PackedScene" id=16]
 
 [node name="BackScreen" instance=ExtResource( 16 )]
 script = ExtResource( 3 )
 
-[node name="Reference" type="TextureRect" parent="." index="0"]
+[node name="RefCounted" type="TextureRect" parent="." index="0"]
 modulate = Color( 0.196078, 0.360784, 0.533333, 1 )
-margin_right = 1280.0
-margin_bottom = 720.0
+offset_right = 1280.0
+offset_bottom = 720.0
 texture = ExtResource( 4 )
 
 [node name="FancyMenu" parent="." index="1" instance=ExtResource( 2 )]
@@ -22,10 +22,10 @@ auto_neighbours = "both"
 focus_default_element_on_ready = false
 
 [node name="Back" parent="FancyMenu" index="0" instance=ExtResource( 1 )]
-margin_left = 13.0
-margin_top = 15.0
-margin_right = 207.0
-margin_bottom = 106.0
+offset_left = 13.0
+offset_top = 15.0
+offset_right = 207.0
+offset_bottom = 106.0
 texture_normal = ExtResource( 6 )
 texture_click_mask = ExtResource( 5 )
 

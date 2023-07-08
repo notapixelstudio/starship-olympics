@@ -2,7 +2,7 @@ extends Node
 
 class_name Component
 
-export var enabled : bool = true
+@export var enabled : bool = true
 
 func _enter_tree():
 	if enabled:

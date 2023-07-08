@@ -2,10 +2,10 @@ extends MarginContainer
 
 const pad = Vector2(0, 140)
 
-export var pilot_stats_scene : PackedScene 
+@export var pilot_stats_scene : PackedScene 
 
 signal animation_over
-onready var container = $Chart
+@onready var container = $Chart
 
 func setup():
 	
@@ -21,7 +21,7 @@ func setup():
 	var i = 0
 	for player_dict in previous_leaderboard:
 		var player : InfoPlayer = player_index[player_dict["id"]]
-		var pilot_stats = pilot_stats_scene.instance()
+		var pilot_stats = pilot_stats_scene.instantiate()
 		pilot_stats.max_points = max_points
 		pilot_stats.position = pad*i
 		container.add_child(pilot_stats)
@@ -44,7 +44,7 @@ func reorder():
 				tween.parallel().tween_property(pilot_stat, 'position:y', pad.y*i, 1.0)
 			i += 1
 			
-	yield(tween, "finished")
+	await tween.finished
 	emit_signal("animation_over")
 	if global.session and global.session.is_over():
 		celebrate()

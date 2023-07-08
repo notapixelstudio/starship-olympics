@@ -1,6 +1,6 @@
 extends Node
 
-export var turn_duration_secs := 5
+@export var turn_duration_secs := 5
 
 var players
 var active_player_i := 0
@@ -9,8 +9,8 @@ func start():
 	players = global.the_game.get_players()
 	
 	# we want these to fire only during play, not at the start
-	Events.connect("ship_spawned", self, '_on_ship_spawned')
-	Events.connect("ship_repaired", self, '_on_ship_repaired')
+	Events.connect("ship_spawned", Callable(self, '_on_ship_spawned'))
+	Events.connect("ship_repaired", Callable(self, '_on_ship_repaired'))
 	
 	for ship in get_tree().get_nodes_in_group('Ship'):
 		update_ship_state(ship)
@@ -41,7 +41,7 @@ func _on_ship_repaired(ship):
 	update_ship_state(ship)
 	
 func update_ship_state(ship):
-	yield(get_tree(), "idle_frame") # we need to wait for ships to settle
+	await get_tree().idle_frame # we need to wait for ships to settle
 	
 	if ship == get_active_ship():
 		ship.time_unfreeze($Timer.time_left)

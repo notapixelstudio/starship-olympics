@@ -2,13 +2,13 @@
 
 [ext_resource path="res://actors/NPC/Bull.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture2D" id=3]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=4]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture2D" id=5]
 [ext_resource path="res://combat/components/Pursuer.gd" type="Script" id=6]
 [ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=7]
-[ext_resource path="res://assets/sprites/NPC/bull.png" type="Texture" id=8]
-[ext_resource path="res://assets/sprites/NPC/bullseye.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/NPC/bull.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/sprites/NPC/bullseye.png" type="Texture2D" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 40.0
@@ -43,11 +43,11 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
 texture = ExtResource( 8 )
 
-[node name="Eye" type="Sprite" parent="Sprite"]
+[node name="Eye" type="Sprite2D" parent="Sprite2D"]
 modulate = Color( 0, 0, 0, 1 )
 texture = ExtResource( 9 )
 

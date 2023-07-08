@@ -1,11 +1,11 @@
 extends DraftCard
 class_name MysteryCard
 
-export var name : String
-export var description : String
-export var mystery_cover : Texture
-export var subcards : Array = [] # Array of DraftCard
-export (String, 'mystery', "blue", "white", "cyan", "red", "yellow", 'green', "magenta") var color = 'mystery'
+@export var name : String
+@export var description : String
+@export var mystery_cover : Texture2D
+@export var subcards : Array = [] # Array of DraftCard
+@export (String, 'mystery', "blue", "white", "cyan", "red", "yellow", 'green', "magenta") var color = 'mystery'
 
 var _subcards_copy : Array = []
 var current_subcard : DraftCard = null
@@ -20,7 +20,7 @@ func randomize_minigame() -> void:
 		_subcards_copy.shuffle()
 		
 		# prefer subcards not already seen, if possible
-		_subcards_copy.sort_custom(self, "sort_new_subcards_first")
+		_subcards_copy.sort_custom(Callable(self, "sort_new_subcards_first"))
 		
 	current_subcard = _subcards_copy.pop_front()
 
@@ -33,7 +33,7 @@ func on_card_drawn() -> void:
 func get_minigame() -> Minigame:
 	return current_subcard.get_minigame() if current_subcard else null
 	
-func get_cover() -> Texture:
+func get_cover() -> Texture2D:
 	return mystery_cover
 
 func has_level_for_player_count(player_count: int) -> bool:
@@ -57,7 +57,7 @@ func get_name() -> String:
 func get_description() -> String:
 	return description
 	
-func get_icon() -> Texture:
+func get_icon() -> Texture2D:
 	return get_cover()
 
 func get_color() -> Array:

@@ -4,9 +4,9 @@
 [ext_resource path="res://ui/common_elements/NavigateButton.gd" type="Script" id=2]
 
 [node name="NavigateButton" type="Button" groups=["UI_Navigator"]]
-margin_right = 445.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 0, 50 )
+offset_right = 445.0
+offset_bottom = 50.0
+custom_minimum_size = Vector2( 0, 50 )
 theme = ExtResource( 1 )
 text = "NAVIGATE TO"
 script = ExtResource( 2 )

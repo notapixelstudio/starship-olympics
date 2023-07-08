@@ -1,11 +1,11 @@
-tool
+@tool
 
 extends GShape
 
 class_name GRect
 
-export (int) var width = 100 setget set_width
-export (int) var height = 100 setget set_height
+@export (int) var width = 100: set = set_width
+@export (int) var height = 100: set = set_height
 
 func set_width(value):
 	width = value
@@ -16,7 +16,7 @@ func set_height(value):
 	emit_signal('changed')
 
 func to_PoolVector2Array():
-	return .clip([Vector2(-width/2,-height/2),Vector2(width/2,-height/2),Vector2(width/2,height/2),Vector2(-width/2,height/2)]) # clockwise!
+	return super.clip([Vector2(-width/2,-height/2),Vector2(width/2,-height/2),Vector2(width/2,height/2),Vector2(-width/2,height/2)]) # clockwise!
 	
 func to_Shape2D():
 	var shape = ConvexPolygonShape2D.new()

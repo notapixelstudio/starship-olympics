@@ -1,4 +1,4 @@
-tool
+@tool
 extends StaticBody2D
 
 func _ready():
@@ -13,8 +13,8 @@ func refresh():
 	if not gshape:
 		return
 		
-	if not gshape.is_connected('changed', self, '_on_GShape_changed'):
-		gshape.connect('changed', self, '_on_GShape_changed')
+	if not gshape.is_connected('changed', Callable(self, '_on_GShape_changed')):
+		gshape.connect('changed', Callable(self, '_on_GShape_changed'))
 		
 	var polygon = gshape.to_PoolVector2Array()
 	var line = gshape.to_closed_PoolVector2Array()

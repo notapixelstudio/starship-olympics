@@ -3,8 +3,8 @@ extends Node
 var last_sides := {}
 
 func _ready():
-	Events.connect("holdable_loaded", self, '_on_holdable_loaded')
-	Events.connect("holdable_swapped", self, '_on_holdable_swapped')
+	Events.connect("holdable_loaded", Callable(self, '_on_holdable_loaded'))
+	Events.connect("holdable_swapped", Callable(self, '_on_holdable_swapped'))
 
 func _on_LeftNoHolderZone_entered(zone, body):
 	check_side('left', body)

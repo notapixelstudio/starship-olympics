@@ -1,27 +1,27 @@
-tool
+@tool
 extends Area2D
 class_name Tile
 
 func get_klass():
 	return 'Tile'
 
-export var size := 1.0 setget set_size
-export var sides = 4 setget set_sides
-export var points = 1
-export var fortifiable = true
-export var need_royal = false
-export var foreground_offset := 16
-export var background_offset := 32
-export var background_scale := 0.85
-export var foreground_position := Vector2(0,0)
-export var background_color := Color('#212121')
-export var fortified_background_scale := Vector2(1.05,1.05)
-export var active_area_scale := 1.0
-export var neighbour_check_rotation_degrees := 0.0
-export var neighbour_check_scale := 1.1
+@export var size := 1.0: set = set_size
+@export var sides = 4: set = set_sides
+@export var points = 1
+@export var fortifiable = true
+@export var need_royal = false
+@export var foreground_offset := 16
+@export var background_offset := 32
+@export var background_scale := 0.85
+@export var foreground_position := Vector2(0,0)
+@export var background_color := Color('#212121')
+@export var fortified_background_scale := Vector2(1.05,1.05)
+@export var active_area_scale := 1.0
+@export var neighbour_check_rotation_degrees := 0.0
+@export var neighbour_check_scale := 1.1
 
 var conquering_ship : Ship
-var owner_ship : Ship setget set_owner_ship
+var owner_ship : Ship: set = set_owner_ship
 
 var neighbours
 var fortified = false
@@ -75,7 +75,7 @@ func _ready():
 	$Graphics.position = Vector2(0,background_offset).rotated(-global_rotation)
 	$Graphics/Wrapper.rotation = -global_rotation
 	$Graphics/Wrapper/Label.text = '' if points == 1 else str(points)
-	yield(get_tree(), "idle_frame") # wait for all tiles to be ready
+	await get_tree().idle_frame # wait for all tiles to be ready
 	
 	# tiles don't change neighbours over time
 	neighbours = []

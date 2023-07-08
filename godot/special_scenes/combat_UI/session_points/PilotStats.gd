@@ -1,11 +1,11 @@
+@tool
 extends Node2D
-tool
 
 class_name PilotStats
 
 var info: InfoPlayer
 
-var new_position setget change_position
+var new_position : set = change_position
 var max_points = 0
 
 var just_won: bool = false

@@ -8,9 +8,9 @@
 script = ExtResource( 2 )
 
 [node name="Back" parent="FancyMenu" index="0"]
-focus_neighbour_right = NodePath("../../DeckListPanel")
-focus_neighbour_bottom = NodePath("../../DeckListPanel")
+focus_neighbor_right = NodePath("../../DeckListPanel")
+focus_neighbor_bottom = NodePath("../../DeckListPanel")
 
 [node name="DeckListPanel" parent="." index="2" instance=ExtResource( 3 )]
 unique_name_in_owner = true
-margin_top = 120.0
+offset_top = 120.0

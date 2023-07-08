@@ -1,17 +1,17 @@
-tool
+@tool
 
 extends GShape
 
 class_name GConvexPolygon
 
-export (PoolVector2Array) var polygon setget set_polygon
+@export (PackedVector2Array) var polygon : set = set_polygon
 
 func set_polygon(value):
 	polygon = value
 	emit_signal('changed')
 	
-func to_PoolVector2Array() -> PoolVector2Array:
-	return .clip(polygon)
+func to_PoolVector2Array() -> PackedVector2Array:
+	return super.clip(polygon)
 	
 func to_Shape2D():
 	var shape = ConvexPolygonShape2D.new()

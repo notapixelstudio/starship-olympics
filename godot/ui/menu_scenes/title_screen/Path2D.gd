@@ -1,9 +1,9 @@
 extends Path2D
 
-onready var follow = $PathFollow2D
-export var trail_scene : PackedScene
-onready var ship = $PathFollow2D/Sprite
-onready var trail = $PathFollow2D/Sprite/Trail
+@onready var follow = $PathFollow2D
+@export var trail_scene : PackedScene
+@onready var ship = $PathFollow2D/Sprite2D
+@onready var trail = $PathFollow2D/Sprite2D/Trail
 
 var all_species = []
 var all_speed = [150, 120, 200, 130, 140]
@@ -18,7 +18,7 @@ func _ready():
 	
 func _process(delta):
 	follow.offset += speed*delta
-	if follow.unit_offset > 0.97: 
+	if follow.progress_ratio > 0.97: 
 		init_ship()
 		follow.offset = 0.0
 

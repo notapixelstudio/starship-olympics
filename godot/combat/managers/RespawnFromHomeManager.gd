@@ -1,9 +1,9 @@
 extends Node
 
-export var future_spawners_path : NodePath
+@export var future_spawners_path : NodePath
 
 func _ready():
-	global.arena.connect('all_ships_spawned', self, '_on_all_ships_spawned')
+	global.arena.connect('all_ships_spawned', Callable(self, '_on_all_ships_spawned'))
 
 func _on_all_ships_spawned(spawners):
 	var future_spawners = get_node(future_spawners_path)

@@ -10,8 +10,8 @@ func _unhandled_input(event):
 
 func exit():
 	$FancyMenu.save_focused_element()
-	.exit()
+	super.exit()
 	
 func enter():
-	.enter()
+	super.enter()
 	$FancyMenu.restore_focused_element()

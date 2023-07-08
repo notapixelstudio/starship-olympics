@@ -1,16 +1,16 @@
-extends Position2D
+extends Marker2D
 
-export var target_path: NodePath = @".."
+@export var target_path: NodePath = @".."
 
-onready var target = get_node(target_path) as Node2D if has_node(target_path) else null
-onready var player_id = $Wrapper/Scaled/Colored/PlayerID
-onready var player_team_outline = $Wrapper/Scaled/PlayerIDTeamOutline
-onready var target_entity = ECM.E(target)
-onready var point_score = $Wrapper/Scaled/Colored/PointsScored
-onready var minisun = $Wrapper/Scaled/Colored/Minisun
-onready var minimoon = $Wrapper/Scaled/Colored/Minimoon
-onready var minisun_outline = $Wrapper/Scaled/Minisun
-onready var minimoon_outline = $Wrapper/Scaled/Minimoon
+@onready var target = get_node(target_path) as Node2D if has_node(target_path) else null
+@onready var player_id = $Wrapper/Scaled/Colored/PlayerID
+@onready var player_team_outline = $Wrapper/Scaled/PlayerIDTeamOutline
+@onready var target_entity = ECM.E(target)
+@onready var point_score = $Wrapper/Scaled/Colored/PointsScored
+@onready var minisun = $Wrapper/Scaled/Colored/Minisun
+@onready var minimoon = $Wrapper/Scaled/Colored/Minimoon
+@onready var minisun_outline = $Wrapper/Scaled/Minisun
+@onready var minimoon_outline = $Wrapper/Scaled/Minimoon
 
 const SCALE_CORRECTION := 0.2
 
@@ -68,7 +68,7 @@ func update_score_ring():
 
 func _on_Royal_enabled():
 	$Wrapper/RoyalGlow.visible = true
-	yield(get_tree(), "idle_frame") # wait for cargo to load
+	await get_tree().idle_frame # wait for cargo to load
 	if target_entity.has('Cargo'):
 		var what = target_entity.get('Cargo').what
 		$Wrapper/Crown.visible = what.type == Crown.types.CROWN

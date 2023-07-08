@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://actors/enemies/Bomb_dropper.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/weapons/dashed-circle.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/weapons/dashed-circle.png" type="Texture2D" id=2]
 
 [node name="Dropper" type="Node2D" groups=[
 "in_camera",
@@ -9,6 +9,6 @@
 ]]
 script = ExtResource( 1 )
 
-[node name="Dashed_container" type="Sprite" parent="."]
+[node name="Dashed_container" type="Sprite2D" parent="."]
 texture = ExtResource( 2 )
 

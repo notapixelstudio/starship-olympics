@@ -2,10 +2,10 @@
 
 [ext_resource path="res://ui/screens/back_screen/BackScreen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/screens/credits/CreditsScreen.gd" type="Script" id=2]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="FontFile" id=3]
 [ext_resource path="res://utils/ShearLabel.tscn" type="PackedScene" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 26
 font_data = ExtResource( 3 )
 
@@ -26,19 +26,19 @@ text = "CREDITS"
 [node name="Text" type="RichTextLabel" parent="Node2D" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 300.0
-margin_top = 150.0
-margin_right = 1000.0
-margin_bottom = 850.0
-rect_clip_content = false
+offset_left = 300.0
+offset_top = 150.0
+offset_right = 1000.0
+offset_bottom = 850.0
+clip_contents = false
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_colors/font_color_shadow = Color( 0.215686, 0.301961, 0.439216, 1 )
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 3
-custom_fonts/normal_font = SubResource( 1 )
+theme_override_colors/font_shadow_color = Color( 0.215686, 0.301961, 0.439216, 1 )
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
-bbcode_text = "[center][color=#ffd365]SOUNDTRACK[/color][/center]
+text = "[center][color=#ffd365]SOUNDTRACK[/color][/center]
 Giovanni Nava - Haunting Aliens
 Mattek - Paradoxal Activity
 music from freesound

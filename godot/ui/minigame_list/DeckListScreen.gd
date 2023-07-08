@@ -1,11 +1,11 @@
 extends ScrollContainer
 
-export var DeckListItemScene : PackedScene
+@export var DeckListItemScene : PackedScene
 const DECK_PATH = "res://map/draft/decks/"
 const PATH_FILE_CHAMPIONS = "user://hall_of_fame.json"
 
 func _ready():
-	Events.connect("starting_deck_selected", self, "deck_chosen")
+	Events.connect("starting_deck_selected", Callable(self, "deck_chosen"))
 	var playlist_info = {}
 	var data = global.read_file_by_line(InfoChampion.PATH_FILE_CHAMPIONS)
 	for winner_info in data:
@@ -22,19 +22,19 @@ func _ready():
 	unlocked_deck_keys.append_array(new_deck_keys)
 	var i = 0
 	var deck_values = decks.values()
-	deck_values.sort_custom(self, 'sort_by_order')
+	deck_values.sort_custom(Callable(self, 'sort_by_order'))
 	for deck in deck_values:
 		# skip non playlists
 		if not deck.is_playlist() or not deck.get_id() in unlocked_deck_keys:
 			continue
-		var item = DeckListItemScene.instance()
+		var item = DeckListItemScene.instantiate()
 		item.set_deck(deck)
 		if playlist_info.get(deck.get_id()):
 			item.add_flag(playlist_info.get(deck.get_id()))
 		item.set_index(i)
 		$"%DecksContainer".add_child(item)
 		i += 1
-	yield(get_tree().create_timer(0.1), "timeout")
+	await get_tree().create_timer(0.1).timeout
 	
 	if global.demo:
 		choose_random_playlist()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/sprites/environments/diamond_outline.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/environments/diamond_outline.png" type="Texture2D" id=1]
 [ext_resource path="res://actors/environments/DiamondCollectParticles.gd" type="Script" id=2]
 
 [sub_resource type="Curve" id=3]
@@ -9,7 +9,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 7.5976, 0, 0, Vector2( 1, 0 ), -0.36566, 0.0, 0,
 [sub_resource type="CurveTexture" id=6]
 curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticleProcessMaterial" id=5]
 lifetime_randomness = 0.1
 emission_shape = 1
 emission_sphere_radius = 120.0
@@ -34,26 +34,26 @@ hue_variation_random = 1.0
 [sub_resource type="Animation" id=7]
 resource_name = "Fade"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1.4, 1.4, 1.4, 1 ), Color( 1.2, 1.2, 1.2, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
+tracks/1/path = NodePath("Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -200 ) ]
 }
@@ -64,8 +64,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 1 ),
+"transitions": PackedFloat32Array( 1 ),
 "values": [ {
 "args": [  ],
 "method": "queue_free"
@@ -75,31 +75,31 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=8]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Color( 1.2, 1.2, 1.2, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
+tracks/1/path = NodePath("Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[node name="DiamondCollectParticles" type="Particles2D"]
+[node name="DiamondCollectParticles" type="GPUParticles2D"]
 visible = false
 modulate = Color( 0.662745, 0.901961, 1, 1 )
 z_index = 1
@@ -111,7 +111,7 @@ explosiveness = 1.0
 process_material = SubResource( 5 )
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 texture = ExtResource( 1 )
 

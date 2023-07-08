@@ -1,4 +1,4 @@
-tool
+@tool
 extends RigidBody2D
 
 class_name Bubble
@@ -11,13 +11,13 @@ func get_class():
 const max_group_size = 3
 var about_to_pop = false
 
-onready var radius = $CollisionShape2D.shape.radius
+@onready var radius = $CollisionShape2D.shape.radius
 
-onready var ChemicalBondScene = preload('res://actors/environments/ChemicalBond.tscn')
+@onready var ChemicalBondScene = preload('res://actors/environments/ChemicalBond.tscn')
 
-export var owner_player : NodePath
+@export var owner_player : NodePath
 var species : Resource
-export (String, 'none', 'square', 'cross', 'triangle', 'circle') var symbol = 'none'
+@export (String, 'none', 'square', 'cross', 'triangle', 'circle') var symbol = 'none'
 const symbols = ['square', 'cross', 'triangle', 'circle']
 const symbol_colors = {
 	'none': Color('#929292'),
@@ -40,7 +40,7 @@ func _ready():
 	$NoRotate/Symbol.texture = load('res://assets/sprites/alchemy/'+symbol+'.png')
 	
 	# set color if bubble is owned by a player
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	if owner_player:
 		set_species(get_node(owner_player).species)
 
@@ -53,7 +53,7 @@ func set_species(v):
 func set_color(c):
 	color = c
 	$NoRotate.modulate = color
-	$Particles2D.modulate = color
+	$GPUParticles2D.modulate = color
 	
 func _process(_delta):
 	$NoRotate.rotation = -rotation
@@ -67,12 +67,12 @@ func get_group_bubbles():
 	return get_tree().get_nodes_in_group(group)
 	
 func attempt_binding(bubble_shooter):
-	yield(get_tree().create_timer(0.08), 'timeout')
+	await get_tree().create_timer(0.08).timeout
 	for bubble in $BindingArea.get_overlapping_bodies():
 		if bubble == self or bubble.get_class() != 'Bubble':
 			continue
 			
-		var bond = ChemicalBondScene.instance()
+		var bond = ChemicalBondScene.instantiate()
 		bond.node_a = get_path()
 		bond.node_b = bubble.get_path()
 		add_child(bond)
@@ -95,7 +95,7 @@ func attempt_binding(bubble_shooter):
 			maybe_pop(bubble_shooter) 
 
 func maybe_pop(bubble_shooter):
-	yield(get_tree().create_timer(0.6), 'timeout') # wait a bit to compute all group bindings
+	await get_tree().create_timer(0.6).timeout # wait a bit to compute all group bindings
 	
 	if about_to_pop:
 		return
@@ -110,16 +110,16 @@ func maybe_pop(bubble_shooter):
 	
 func pop(now, i=0, bubble_shooter=null):
 	about_to_pop = true
-	yield(get_tree().create_timer(i*0.1), "timeout") # pop in sequence
+	await get_tree().create_timer(i*0.1).timeout # pop in sequence
 	$CollisionShape2D.disabled = true
 	$AnimationPlayer.play('pop')
 	if now:
 		$AnimationPlayer.seek(0.3)
 	else:
-		yield(get_tree().create_timer(0.5), "timeout")
+		await get_tree().create_timer(0.5).timeout
 	emit_signal('killed', self, bubble_shooter)
 	$RandomPopSFX.play()
-	yield($RandomPopSFX, "finished")
-	yield($AnimationPlayer, "animation_finished")
+	await $RandomPopSFX.finished
+	await $AnimationPlayer.animation_finished
 	queue_free()
 	

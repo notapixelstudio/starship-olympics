@@ -7,10 +7,10 @@ var previous_global_positions : Array
 
 func _enter_tree():
 	if host == null:
-		yield(self, 'ready')
+		await self.ready
 		
 	if not host.is_inside_tree():
-		yield(host, 'ready')
+		await host.ready
 		
 	reset()
 	

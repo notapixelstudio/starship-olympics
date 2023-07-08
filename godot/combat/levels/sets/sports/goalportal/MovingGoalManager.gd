@@ -6,8 +6,8 @@ var last_ship_with_ball = null
 func _ready():
 	$"%LeftGoalPortalGate".disable()
 	$"%LeftZone".disable()
-	Events.connect("holdable_loaded", self, '_on_holdable_loaded')
-	Events.connect("holdable_swapped", self, '_on_holdable_swapped')
+	Events.connect("holdable_loaded", Callable(self, '_on_holdable_loaded'))
+	Events.connect("holdable_swapped", Callable(self, '_on_holdable_swapped'))
 	
 func _on_holdable_loaded(holdable, ship):
 	if ship != last_ship_with_ball:

@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://actors/environments/ElementInCamera.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/species/trixens/ship_plain.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/species/trixens/ship_plain.png" type="Texture2D" id=2]
 
-[node name="ElementInCamera" type="Position2D" groups=["in_camera"]]
+[node name="ElementInCamera" type="Marker2D" groups=["in_camera"]]
 script = ExtResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="DebugSprite" type="Sprite" parent="."]
+[node name="DebugSprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.454902 )
 texture = ExtResource( 2 )

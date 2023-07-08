@@ -1,6 +1,6 @@
 extends Brain
 
-var controls: String setget set_controls
+var controls: String: set = set_controls
 
 var action_buffer : Dictionary = {}
 
@@ -8,7 +8,7 @@ func set_controls(v: String) -> void:
 	controls = v
 	
 func _ready():
-	controllee.connect('dive_out', self, '_on_controllee_dive_out')
+	controllee.connect('dive_out', Callable(self, '_on_controllee_dive_out'))
 
 func local_handling() -> Vector2:
 	var target = Vector2()

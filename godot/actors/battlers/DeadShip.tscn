@@ -2,18 +2,18 @@
 
 [ext_resource path="res://actors/battlers/DeadShip.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture2D" id=3]
 [ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=4]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture2D" id=5]
 [ext_resource path="res://actors/battlers/PlayerInfoOnShip.tscn" type="PackedScene" id=6]
 [ext_resource path="res://actors/battlers/Trail.gd" type="Script" id=7]
 [ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/shaders/outline.shader" type="Shader" id=9]
+[ext_resource path="res://assets/shaders/outline.gdshader" type="Shader" id=9]
 [ext_resource path="res://combat/traits/Bumper.tscn" type="PackedScene" id=10]
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=11]
 [ext_resource path="res://assets/audio/FX/sfx_sound_shutdown1.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/audio/FX/sfx_sounds_interaction12.wav" type="AudioStream" id=13]
-[ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture2D" id=14]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
@@ -40,8 +40,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2, 0.6, 1 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, 0.0, 20.0, 0.0 ]
 }
@@ -52,8 +52,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.45 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0.45 ),
+"transitions": PackedFloat32Array( 1 ),
 "values": [ {
 "args": [  ],
 "method": "beep"
@@ -69,8 +69,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 20.0 ]
 }
@@ -78,14 +78,14 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=6]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/path = NodePath("Sprite2D:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Color( 0.101961, 0.101961, 0.101961, 1 ) ]
 }
@@ -94,14 +94,14 @@ tracks/0/keys = {
 resource_name = "hit"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/path = NodePath("Sprite2D:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 0.5, 0.5 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 0.5, 0.5 ),
 "update": 0,
 "values": [ Color( 3, 3, 3, 1 ), Color( 0.101961, 0.101961, 0.101961, 1 ) ]
 }
@@ -110,7 +110,7 @@ tracks/0/keys = {
 collision_layer = 8192
 collision_mask = 1168
 physics_material_override = SubResource( 1 )
-contacts_reported = 10
+max_contacts_reported = 10
 contact_monitor = true
 linear_damp = 1.0
 script = ExtResource( 1 )
@@ -132,12 +132,12 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="UnderSprite" type="Sprite" parent="."]
+[node name="UnderSprite" type="Sprite2D" parent="."]
 modulate = Color( 1.4, 1.4, 1.4, 1 )
 material = SubResource( 3 )
 scale = Vector2( 1.25, 1.25 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color( 0.101961, 0.101961, 0.101961, 1 )
 scale = Vector2( 1.25, 1.25 )
 

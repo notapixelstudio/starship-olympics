@@ -1,19 +1,19 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=1]
-[ext_resource path="res://combat/interface/pause/PauseMode.gd" type="Script" id=2]
-[ext_resource path="res://assets/UI/pause-window.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="FontFile" id=1]
+[ext_resource path="res://combat/interface/pause/ProcessMode.gd" type="Script" id=2]
+[ext_resource path="res://assets/UI/pause-window.png" type="Texture2D" id=3]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=4]
 [ext_resource path="res://combat/interface/pause/Buttons.gd" type="Script" id=5]
-[ext_resource path="res://assets/UI/pause-window-map.png" type="Texture" id=8]
-[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/UI/pause-window-map.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="FontFile" id=9]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="FontFile" id=4]
 size = 32
 use_mipmaps = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 60
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
@@ -21,17 +21,17 @@ extra_spacing_char = 1
 extra_spacing_space = 1
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="FontFile" id=3]
 size = 18
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
 [node name="Pause" type="Control"]
-pause_mode = 2
+process_mode = 3
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 834, 635 )
+custom_minimum_size = Vector2( 834, 635 )
 theme = ExtResource( 4 )
 script = ExtResource( 2 )
 map_texture = ExtResource( 8 )
@@ -41,7 +41,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.588235 )
 
-[node name="Window" type="Sprite" parent="."]
+[node name="Window" type="Sprite2D" parent="."]
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 self_modulate = Color( 0, 0.556863, 1, 1 )
 position = Vector2( 651.635, 357.94 )
@@ -53,10 +53,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -326.0
-margin_top = -274.0
-margin_right = 349.0
-margin_bottom = 263.0
+offset_left = -326.0
+offset_top = -274.0
+offset_right = 349.0
+offset_bottom = 263.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -66,14 +66,14 @@ modulate = Color( 1.15, 1.15, 1.15, 1 )
 self_modulate = Color( 0, 0.556863, 1, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -124.0
-margin_top = -24.0
-margin_right = 124.0
-margin_bottom = 54.0002
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 3
-custom_fonts/font = SubResource( 4 )
+offset_left = -124.0
+offset_top = -24.0
+offset_right = 124.0
+offset_bottom = 54.0002
+theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = SubResource( 4 )
 text = "GAME PAUSED"
 align = 1
 valign = 1
@@ -84,19 +84,19 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -338.5
-margin_top = -456.0
-margin_right = 339.5
-margin_bottom = -21.0
+offset_left = -338.5
+offset_top = -456.0
+offset_right = 339.5
+offset_bottom = -21.0
 
 [node name="Minigame" type="Label" parent="GuiElements/VBoxContainer"]
 modulate = Color( 1, 0.870588, 0.372549, 1 )
-margin_right = 678.0
-margin_bottom = 53.0
+offset_right = 678.0
+offset_bottom = 53.0
 size_flags_horizontal = 3
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 0
-custom_fonts/font = SubResource( 2 )
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = SubResource( 2 )
 text = "MINIGAME"
 align = 1
 valign = 1
@@ -106,13 +106,13 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="GuiElements/VBoxContainer"]
-margin_top = 57.0
-margin_right = 678.0
-margin_bottom = 79.0
+offset_top = 57.0
+offset_right = 678.0
+offset_bottom = 79.0
 size_flags_horizontal = 3
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 0
-custom_fonts/font = SubResource( 3 )
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = SubResource( 3 )
 text = "find the x and do the y"
 align = 1
 valign = 1
@@ -122,15 +122,15 @@ __meta__ = {
 }
 
 [node name="Control" type="Control" parent="GuiElements/VBoxContainer"]
-margin_top = 83.0
-margin_right = 678.0
-margin_bottom = 163.0
-rect_min_size = Vector2( 0, 80 )
+offset_top = 83.0
+offset_right = 678.0
+offset_bottom = 163.0
+custom_minimum_size = Vector2( 0, 80 )
 
 [node name="Buttons" type="VBoxContainer" parent="GuiElements/VBoxContainer"]
-margin_top = 167.0
-margin_right = 678.0
-margin_bottom = 397.0
+offset_top = 167.0
+offset_right = 678.0
+offset_bottom = 397.0
 alignment = 2
 script = ExtResource( 5 )
 __meta__ = {
@@ -139,52 +139,52 @@ __meta__ = {
 }
 
 [node name="Continue" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_right = 678.0
-margin_bottom = 38.0
+offset_right = 678.0
+offset_bottom = 38.0
 text = "CONTINUE"
 
 [node name="Restart" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 42.0
-margin_right = 678.0
-margin_bottom = 80.0
+offset_top = 42.0
+offset_right = 678.0
+offset_bottom = 80.0
 text = "RESTART"
 
 [node name="SkipLevel" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 84.0
-margin_right = 678.0
-margin_bottom = 122.0
+offset_top = 84.0
+offset_right = 678.0
+offset_bottom = 122.0
 text = "SKIP THIS MATCH"
 
 [node name="Options" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
 visible = false
-margin_top = 99.0
-margin_right = 182.0
-margin_bottom = 128.0
+offset_top = 99.0
+offset_right = 182.0
+offset_bottom = 128.0
 text = "OPTIONS"
 
 [node name="Control" type="Control" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 126.0
-margin_right = 678.0
-margin_bottom = 146.0
-rect_min_size = Vector2( 0, 20 )
+offset_top = 126.0
+offset_right = 678.0
+offset_bottom = 146.0
+custom_minimum_size = Vector2( 0, 20 )
 
 [node name="Quit1" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
 visible = false
-margin_top = 174.0
-margin_right = 678.0
-margin_bottom = 220.0
+offset_top = 174.0
+offset_right = 678.0
+offset_bottom = 220.0
 text = "QUIT TO CARDS"
 
 [node name="Quit2" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 150.0
-margin_right = 678.0
-margin_bottom = 188.0
+offset_top = 150.0
+offset_right = 678.0
+offset_bottom = 188.0
 text = "QUIT TO CHARACTERS"
 
 [node name="Quit3" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-margin_top = 192.0
-margin_right = 678.0
-margin_bottom = 230.0
+offset_top = 192.0
+offset_right = 678.0
+offset_bottom = 230.0
 text = "QUIT TO MAIN MENU"
 
 [node name="Tween" type="Tween" parent="."]

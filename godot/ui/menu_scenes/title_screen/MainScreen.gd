@@ -2,7 +2,7 @@ extends Control
 
 func _ready():
 	Soundtrack.play("Lobby", true)
-	Events.connect("nav_to_scene", self, "_navigate_to_scene")
+	Events.connect("nav_to_scene", Callable(self, "_navigate_to_scene"))
 	# TranslationServer.set_locale("es")
 	# Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	$Label.text = tr("DEMO BUILD - v"+ str(global.version))
@@ -19,5 +19,5 @@ func _process(delta):
 		persistance.save_game()
 
 func _navigate_to_scene(scene: PackedScene):
-	var instance = scene.instance()
+	var instance = scene.instantiate()
 	add_child(instance)

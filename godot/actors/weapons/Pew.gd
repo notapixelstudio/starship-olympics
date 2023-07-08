@@ -1,7 +1,7 @@
 extends RigidBody2D
 class_name Pew
 
-export var PfftScene : PackedScene
+@export var PfftScene : PackedScene
 
 var ship : Ship
 var ownership_transfer := true
@@ -39,12 +39,12 @@ func _on_ForwardBullet_body_entered(body):
 
 func set_ship(v : Ship):
 	ship = v
-	$"%Sprite".modulate = ship.get_color()
+	$"%Sprite2D".modulate = ship.get_color()
 	$AutoTrail.starting_color = ship.get_color()
 	team = ship.get_team() # remember team to avoid friendly fire (or checking up a dead ship)
 	
 func dissolve() -> void:
-	var pfft = PfftScene.instance()
+	var pfft = PfftScene.instantiate()
 	if ship != null and is_instance_valid(ship):
 		pfft.set_color(ship.get_color())
 	get_parent().add_child(pfft)

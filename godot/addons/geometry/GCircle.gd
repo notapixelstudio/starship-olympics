@@ -1,11 +1,11 @@
-tool
+@tool
 
 extends GShape
 
 class_name GCircle
 
-export (int) var radius = 100 setget set_radius
-export (float) var precision = 100 setget set_precision
+@export (int) var radius = 100: set = set_radius
+@export (float) var precision = 100: set = set_precision
 
 func set_radius(value):
 	radius = value
@@ -22,7 +22,7 @@ func to_PoolVector2Array():
 	for i in range(sides):
 		points.append(Vector2(radius*cos(i*angle),radius*sin(i*angle)))
 		
-	return .clip(points) # clockwise!
+	return super.clip(points) # clockwise!
 	
 func to_Shape2D():
 	var shape = ConvexPolygonShape2D.new()
@@ -43,7 +43,7 @@ func to_concave_Shape2D():
 	points.append(array[-1])
 	points.append(array[0])
 	
-	shape.set_segments(PoolVector2Array(points))
+	shape.set_segments(PackedVector2Array(points))
 	return shape
 	
 func get_extents() -> Vector2:

@@ -9,7 +9,7 @@ func type(text_to_type : String):
 	$Tween.interpolate_property(self, "visible_characters", 0, len(text_to_type), 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN, 1.0)
 	
 	$Tween.start()
-	yield($Tween, "tween_all_completed")
+	await $Tween.tween_all_completed
 	emit_signal('done')
 
 func done():

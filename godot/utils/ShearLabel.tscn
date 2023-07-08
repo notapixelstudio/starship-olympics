@@ -2,7 +2,7 @@
 
 [ext_resource path="res://utils/ShearLabel.gd" type="Script" id=1]
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=2]
-[ext_resource path="res://assets/fonts/AlienFont24.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/fonts/AlienFont24.tres" type="FontFile" id=3]
 
 [node name="MenuLabel" type="Node2D"]
 script = ExtResource( 1 )
@@ -12,8 +12,8 @@ alien_font = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="Wrapper"]
 unique_name_in_owner = true
-margin_left = -300.0
-margin_right = 300.0
-margin_bottom = 100.0
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 100.0
 theme = ExtResource( 2 )
 align = 1

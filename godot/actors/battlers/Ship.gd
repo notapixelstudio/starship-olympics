@@ -1,20 +1,20 @@
-tool
+@tool
 extends RigidBody2D
 """
-Node for the RigidBody and Ship physics
+Node for the RigidBody3D and Ship physics
 it will get as export variable the battle template (containing the species values)
 and its keyboard control
 """
 class_name Ship
 
-export var debug_enabled = false
-export (String, 'kb1', 'kb2', 'joy1', 'joy2', 'joy3', 'joy4') var controls = "kb1"
-export var absolute_controls : bool= true
-export var species : Resource
+@export var debug_enabled = false
+@export (String, 'kb1', 'kb2', 'joy1', 'joy2', 'joy3', 'joy4') var controls = "kb1"
+@export var absolute_controls : bool= true
+@export var species : Resource
 
-export var forward_bullet_scene : PackedScene
-export var atom_texture : Texture
-export var cpu_ship_texture : Texture
+@export var forward_bullet_scene : PackedScene
+@export var atom_texture : Texture2D
+@export var cpu_ship_texture : Texture2D
 
 var controls_enabled = false
 
@@ -73,8 +73,8 @@ const MIN_DIVING_TIME := 0.05
 
 const ROTATION_TORQUE = 49000*9 # 9 because we enlarged the radius of the ship's collision shape by 3
 
-var responsive = false setget change_engine
-var info_player setget set_info_player
+var responsive = false: set = change_engine
+var info_player : set = set_info_player
 
 func set_info_player(value):
 	info_player = value
@@ -108,9 +108,9 @@ var game_mode : GameMode
 
 var teleport_to = null
 
-onready var player = name
-onready var charging_sfx = $charging
-onready var target_dest = $TargetDest
+@onready var player = name
+@onready var charging_sfx = $charging
+@onready var target_dest = $TargetDest
 
 
 const dead_ship_scene = preload("res://actors/battlers/DeadShip.tscn")
@@ -157,7 +157,7 @@ func initialize():
 
 signal spawned
 
-var bombs_enabled : bool = true setget set_bombs_enabled
+var bombs_enabled : bool = true: set = set_bombs_enabled
 var bomb_type
 var default_bomb_type
 
@@ -204,13 +204,13 @@ func has_max_health() -> bool:
 func reset_appearance():
 	if info_player.is_cpu():
 		$Graphics.ship_texture = cpu_ship_texture
-		$Graphics/Sprite.self_modulate = get_color()
+		$Graphics/Sprite2D.self_modulate = get_color()
 	else:
 		$Graphics.ship_texture = species.ship
-		$Graphics/Sprite.self_modulate = Color.white
+		$Graphics/Sprite2D.self_modulate = Color.WHITE
 	
 	# sometimes the hit anim gets stuck, so...
-	$Graphics/Sprite.modulate = Color.white
+	$Graphics/Sprite2D.modulate = Color.WHITE
 
 func _enter_tree():
 	alive = true
@@ -244,8 +244,8 @@ func make_invincible():
 	invincible = true
 	if $Graphics:
 		$Graphics.invincible()
-	yield(get_tree().create_timer(0.1), "timeout")
-	yield($Graphics, "stop_invincible")
+	await get_tree().create_timer(0.1).timeout
+	await $Graphics.stop_invincible
 	invincible = false
 	
 func _ready():
@@ -303,15 +303,15 @@ func _integrate_forces(state):
 		thrust = min(thrust, ON_ICE_MAX_THRUST)
 		
 	if not absolute_controls:
-		add_central_force(Vector2(thrust, steer_force).rotated(rotation)*int(thrusting))
+		apply_central_force(Vector2(thrust, steer_force).rotated(rotation)*int(thrusting))
 		# rotation = atan2(target_velocity.y, target_velocity.x)
 	else:
 		#rotation = state.linear_velocity.angle()
 		#apply_impulse(Vector2(),target_velocity*thrust)
-		add_central_force(get_target_velocity()*thrust*int(thrusting))
+		apply_central_force(get_target_velocity()*thrust*int(thrusting))
 		
 	if entity.has('Flowing'):
-		apply_impulse(Vector2(), entity.get_node('Flowing').get_flow().get_flow_vector(position))
+		apply_impulse(entity.get_node('Flowing').get_flow().get_flow_vector(position), Vector2())
 		
 	# setting a maximum torque should prevent ship oscillation
 	set_applied_torque(min(PI/2, get_rotation_request()) * ROTATION_TORQUE) # * int(not entity.has('Dashing'))) # can't steer while dashing
@@ -514,11 +514,11 @@ func fire(override_charge = -1, dash_only = false):
 		# check if we need to limit dash
 		if is_on_ice():
 			recoil = min(recoil, ON_ICE_MAX_DASH)
-		apply_impulse(Vector2(0,0), Vector2(recoil, 0).rotated(rotation)) # recoil only if dashing
+		apply_impulse(Vector2(recoil, 0).rotated(rotation), Vector2(0,0)) # recoil only if dashing
 	
 	if golf:
 		var impulse = charge_impulse*ARKABALL_MULTIPLIER
-		var arkaball = arkaball_scene.instance()
+		var arkaball = arkaball_scene.instantiate()
 		arkaball.position = position + Vector2(-ARKABALL_OFFSET,0).rotated(rotation)
 		arkaball.apply_central_impulse(Vector2(-impulse,0).rotated(rotation))
 		get_parent().add_child(arkaball)
@@ -566,7 +566,7 @@ func fire(override_charge = -1, dash_only = false):
 	fire_cooldown = FIRE_COOLDOWN
 	charging_sfx.stop()
 	$Tween.remove_all()
-	$Graphics/Sprite.scale = DASH_RESTORED
+	$Graphics/Sprite2D.scale = DASH_RESTORED
 	
 	if will_dash:
 		entity.get('Dashing').enable()
@@ -631,7 +631,7 @@ func damage(hazard, damager : Ship, damager_team : String = ''):
 		
 		# slight, invisible invincibility
 		invincible = true
-		yield(get_tree().create_timer(0.1), "timeout")
+		await get_tree().create_timer(0.1).timeout
 		invincible = false
 	
 func show_hit():
@@ -646,7 +646,7 @@ func die(killer : Ship, for_good = false):
 		
 		# $Graphics.play_death()
 		# deactivate controls and whatnot and wait for the sound to finish
-		yield(get_tree(), "idle_frame")
+		await get_tree().idle_frame
 		if info_player.lives >= 0:
 			info_player.lives -= 1
 		emit_signal("dead", self, killer, for_good)
@@ -704,29 +704,29 @@ const DASH_FAT = Vector2(0.8,1.2)
 
 func dash_init_appearance():
 	$Tween.remove_all()
-	$Graphics/Sprite.scale = DASH_RESTORED
+	$Graphics/Sprite2D.scale = DASH_RESTORED
 	$DashParticles.restart()
 	$DashParticles.emitting = false
 	$DashParticles.visible = false
 	
 func dash_restore_appearance():
 	$Tween.remove_all()
-	$Tween.interpolate_property($Graphics/Sprite, "scale", $Graphics/Sprite.scale, DASH_RESTORED, 0.5,
+	$Tween.interpolate_property($Graphics/Sprite2D, "scale", $Graphics/Sprite2D.scale, DASH_RESTORED, 0.5,
 		Tween.TRANS_CUBIC, Tween.EASE_OUT, 0)
 	$Tween.start()
 	$DashFxTimer.start(0.1)
-	yield($DashFxTimer, 'timeout')
+	await $DashFxTimer.timeout
 	$DashParticles.emitting = false
 	
 func dash_fat_appearance():
 	$Tween.remove_all()
-	$Tween.interpolate_property($Graphics/Sprite, "scale", $Graphics/Sprite.scale, DASH_FAT, MAX_CHARGE,
+	$Tween.interpolate_property($Graphics/Sprite2D, "scale", $Graphics/Sprite2D.scale, DASH_FAT, MAX_CHARGE,
 		Tween.TRANS_QUAD, Tween.EASE_OUT, 0)
 	$Tween.start()
 
 func dash_thin_appearance():
 	$DashFxTimer.stop()
-	$Graphics/Sprite.scale = DASH_THIN
+	$Graphics/Sprite2D.scale = DASH_THIN
 	$DashParticles.emitting = true
 	$DashParticles.visible = true
 	
@@ -807,7 +807,7 @@ func unwield_scythe():
 const Flail = preload('res://actors/weapons/Flail.tscn')
 var the_flail = null
 func wield_flail():
-	the_flail = Flail.instance()
+	the_flail = Flail.instantiate()
 	the_flail.position = global_position
 	the_flail.rotation = global_rotation
 	get_parent().add_child(the_flail)
@@ -829,7 +829,7 @@ func unwield_drill():
 const PowerupScene = preload("res://combat/collectables/PowerUp.tscn")
 
 func drop_powerup(type):
-	var powerup = PowerupScene.instance()
+	var powerup = PowerupScene.instantiate()
 	powerup.type = type
 	powerup.appear = false
 	var behind = Vector2(-1,0).rotated(global_rotation)
@@ -957,7 +957,7 @@ func tap():
 			aim_angle = (target.global_position - global_position).angle()
 		for i in range(amount):
 			var angle = aim_angle + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
-			var bullet = forward_bullet_scene.instance()
+			var bullet = forward_bullet_scene.instantiate()
 			get_parent().add_child(bullet)
 			bullet.global_position = global_position + Vector2(120, 0).rotated(angle)
 			bullet.linear_velocity = Vector2(2500, 0).rotated(angle)
@@ -975,15 +975,15 @@ func submerge():
 	under = true
 	z_as_relative = false
 	z_index = -50
-	call_deferred('set_collision_layer_bit', 0, false)
-	call_deferred('set_collision_layer_bit', 18, true)
+	call_deferred('set_collision_layer_value', 0, false)
+	call_deferred('set_collision_layer_value', 18, true)
 	
 func emerge():
 	under = false
 	z_as_relative = true
 	z_index = 0
-	call_deferred('set_collision_layer_bit', 0, true)
-	call_deferred('set_collision_layer_bit', 18, false)
+	call_deferred('set_collision_layer_value', 0, true)
+	call_deferred('set_collision_layer_value', 18, false)
 	
 signal frozen
 func freeze():
@@ -998,7 +998,7 @@ func _on_Ship_near_area_entered(sth, this):
 func start_golf():
 	golf = true
 	update_weapon_indicator()
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	charge()
 
 func get_player():
@@ -1035,7 +1035,7 @@ func intro():
 	enable_controls()
 	if start_invincible:
 		make_invincible()
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	emit_signal('done')
 
 func disable_controls():
@@ -1106,10 +1106,10 @@ func end_drift():
 #	$CollisionShape2D.shape.radius = 48*size*sqrt(size)
 	
 func set_holder(v: bool) -> void:
-	call_deferred('set_collision_layer_bit', 21, v)
+	call_deferred('set_collision_layer_value', 21, v)
 
 func is_holder() -> bool:
-	return get_collision_layer_bit(21)
+	return get_collision_layer_value(21)
 	
 func phase_in() -> void:
 	if phasing_in_prevented:
@@ -1119,14 +1119,14 @@ func phase_in() -> void:
 	thrust_multiplier = 1.0
 	set_auto_thrust(false)
 	#enable_controls()
-	call_deferred('set_collision_layer_bit', 22, true)
+	call_deferred('set_collision_layer_value', 22, true)
 	
 func phase_out() -> void:
 	phase = 'out'
 	thrust_multiplier = 2.0
 	set_auto_thrust(true)
 	#disable_controls()
-	call_deferred('set_collision_layer_bit', 22, false)
+	call_deferred('set_collision_layer_value', 22, false)
 	
 func dive_in():
 	diving_time = 0.0
@@ -1162,12 +1162,12 @@ func get_brain() -> Brain:
 func set_brain(new_brain: Brain) -> void:
 	var old_brain = get_brain()
 	if old_brain != null:
-		old_brain.disconnect('charge', self, '_on_charge_requested')
-		old_brain.disconnect('release', self, '_on_release_requested')
+		old_brain.disconnect('charge', Callable(self, '_on_charge_requested'))
+		old_brain.disconnect('release', Callable(self, '_on_release_requested'))
 		old_brain.free()
 	new_brain.set_name('Brain')
-	new_brain.connect('charge', self, '_on_charge_requested')
-	new_brain.connect('release', self, '_on_release_requested')
+	new_brain.connect('charge', Callable(self, '_on_charge_requested'))
+	new_brain.connect('release', Callable(self, '_on_release_requested'))
 	add_child(new_brain)
 
 func get_rotation_request() -> float:

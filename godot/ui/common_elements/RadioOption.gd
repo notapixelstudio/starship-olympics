@@ -1,14 +1,14 @@
-tool
+@tool
 extends MapLocation
 
 class_name MapRadio
 
-export var value_name : String = "custom_win"
-export var value : Array # workaround for variant types
-export var texture : Texture setget set_texture 
-export var label = "victories"
+@export var value_name : String = "custom_win"
+@export var value : Array # workaround for variant types
+@export var texture : Texture2D: set = set_texture
+@export var label = "victories"
 
-var active := false setget set_active
+var active := false: set = set_active
 
 func _ready():
 	assert(len(value) == 1)
@@ -38,15 +38,15 @@ func show_tap_preview(_author):
 func hide_tap_preview():
 	$Wrapper/Label.visible = false
 
-func set_texture(v: Texture) -> void:
+func set_texture(v: Texture2D) -> void:
 	texture = v
-	$Sprite.texture = v
+	$Sprite2D.texture = v
 
 func set_active(v: bool) -> void:
 	active = v
 	if active:
-		$Sprite.modulate = Color.white
-		$Frame.modulate = Color.white
+		$Sprite2D.modulate = Color.WHITE
+		$Frame.modulate = Color.WHITE
 	else:
-		$Sprite.modulate = Color(0.5,0.5,0.5,1)
+		$Sprite2D.modulate = Color(0.5,0.5,0.5,1)
 		$Frame.modulate = Color('#24334a')

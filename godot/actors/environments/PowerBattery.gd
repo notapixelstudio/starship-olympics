@@ -1,18 +1,18 @@
-tool
+@tool
 extends RotoPowerline
 class_name PowerBattery
 
-export var charge := 0.0 setget set_charge
-export var charging_speed := 0.02
-export var score_multiplier := 100.0
+@export var charge := 0.0: set = set_charge
+@export var charging_speed := 0.02
+@export var score_multiplier := 100.0
 
-export var goal_owner : NodePath
+@export var goal_owner : NodePath
 var player
 
 func _ready():
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
-		yield(player_spawner, "player_assigned")
+		await player_spawner.player_assigned
 		set_player(player_spawner.get_player())
 		
 func set_player(v : InfoPlayer):
@@ -32,9 +32,9 @@ func set_charge(v: float) -> void:
 	charge = capped_v
 	
 	if not is_inside_tree():
-		yield(self, 'ready')
+		await self.ready
 	
-	$'%ChargePolygon'.polygon = PoolVector2Array([
+	$'%ChargePolygon'.polygon = PackedVector2Array([
 		Vector2(-125, 200-charge*390-10),
 		Vector2(125, 200-charge*390-10),
 		Vector2(125, 200),

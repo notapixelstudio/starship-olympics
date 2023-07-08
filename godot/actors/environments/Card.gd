@@ -2,20 +2,20 @@ extends Area2D
 
 class_name Card
 
-onready var outline = $Ground/Outline
-onready var border = $Ground/Front/Border
-onready var background = $Ground/Front/Background
-onready var monogram = $Ground/Front/Wrapper/Monogram
-onready var timer = $Timer
+@onready var outline = $Ground/Outline
+@onready var border = $Ground/Front/Border
+@onready var background = $Ground/Front/Background
+@onready var monogram = $Ground/Front/Wrapper/Monogram
+@onready var timer = $Timer
 
-export (String) var content = null setget set_content, get_content
+@export (String) var content = null: get = get_content, set = set_content
 
-export var auto_flip_back = false setget set_auto_flip_back
-export var take_ownership = false
-export var multiple_owners := false
-export var float_when_selected := true
-export var instant_reveal := false
-export var shadow_offset := 32 setget set_shadow_offset
+@export var auto_flip_back = false: set = set_auto_flip_back
+@export var take_ownership = false
+@export var multiple_owners := false
+@export var float_when_selected := true
+@export var instant_reveal := false
+@export var shadow_offset := 32: set = set_shadow_offset
 
 signal revealing_while_undetermined
 signal taken
@@ -25,13 +25,13 @@ var selected = false
 var flipping = false
 var face_down = true
 
-var player = null setget set_player, get_player
+var player = null: get = get_player, set = set_player
 var players := []
 var ship
 var character_player
 
 func get_size() -> Vector2:
-	return $"%CollisionShape2D".shape.extents
+	return $"%CollisionShape2D".shape.size
 	
 func set_shadow_offset(v : int) -> void:
 	shadow_offset = v
@@ -54,7 +54,7 @@ func set_player(v):
 				for p in players:
 					ids += '[color=#' + p.get_color().to_html() + ']' + p.get_username().to_upper() + '[/color]  '
 				ids = ids.strip_edges()
-				monogram.bbcode_text = "[center]" + ids + "[/center]"
+				monogram.text = "[center]" + ids + "[/center]"
 				monogram.visible = true
 				
 				self.select()
@@ -62,7 +62,7 @@ func set_player(v):
 			if player == null:
 				blur()
 			else:
-				monogram.bbcode_text = "[center]" + player.get_username().to_upper() + "[/center]"
+				monogram.text = "[center]" + player.get_username().to_upper() + "[/center]"
 				monogram.modulate = player.species.color
 				monogram.visible = true
 				
@@ -133,7 +133,7 @@ func reveal():
 	$AnimationPlayer.play("Reveal")
 	if instant_reveal:
 		$AnimationPlayer.seek(0.3)
-	yield($AnimationPlayer, "animation_finished")
+	await $AnimationPlayer.animation_finished
 	flipping = false
 	emit_signal("revealed")
 	Events.emit_signal("card_revealed", self)
@@ -170,7 +170,7 @@ func hide():
 	self.players = []
 	selected = false
 	$AnimationPlayer.play_backwards("Reveal")
-	yield($AnimationPlayer, "animation_finished")
+	await $AnimationPlayer.animation_finished
 	flipping = false
 
 func equals(other_card):
@@ -204,7 +204,7 @@ func set_auto_flip_back(v):
 		
 func show_mark(v):
 	$Ground/Front/Wrapper/Monogram.visible = true
-	$Ground/Front/Wrapper/Monogram.bbcode_text = "[center]" + str(v).to_upper() + "[/center]"
+	$Ground/Front/Wrapper/Monogram.text = "[center]" + str(v).to_upper() + "[/center]"
 	
 func is_face_down() -> bool:
 	return face_down
@@ -214,5 +214,5 @@ func is_face_up() -> bool:
 	
 func destroy() -> void:
 	Events.emit_signal("card_destroyed", self)
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	queue_free()

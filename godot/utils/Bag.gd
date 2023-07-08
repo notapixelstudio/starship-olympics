@@ -1,12 +1,12 @@
 extends Node2D
 
-export var image : Texture setget set_image
-export var amount := 0 setget set_amount, get_amount
-export var item_type : String setget set_item_type, get_item_type
+@export var image : Texture2D: set = set_image
+@export var amount := 0: get = get_amount, set = set_amount
+@export var item_type : String: get = get_item_type, set = set_item_type
 
-func set_image(v: Texture) -> void:
+func set_image(v: Texture2D) -> void:
 	image = v
-	$Sprite.texture = image
+	$Sprite2D.texture = image
 	
 func set_amount(v: int) -> void:
 	amount = v

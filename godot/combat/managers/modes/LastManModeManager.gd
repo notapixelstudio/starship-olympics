@@ -9,5 +9,5 @@ func _on_sth_killed(sth, killer : Ship, ship_for_good=false):
 		return
 	
 	if sth is Ship:
-		.broadcast_score(sth.get_id(), score_multiplier)
+		super.broadcast_score(sth.get_id(), score_multiplier)
 		
