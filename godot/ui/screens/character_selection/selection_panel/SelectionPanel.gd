@@ -41,21 +41,21 @@ func _input(event: InputEvent):
 		var pilot_selector : PilotSelector = mapping_controls_pilot[controls]
 		match action_suffix:
 			'fire':
-					
-				_claim_displayed_species(pilot_selector)
-				pilot_selector.set_status('selected')
-				
-				if $Node2D/Label.visible:
-					print("we can go to next scene")
-					$Node2D/Label.visible = false
-					emit_signal("selection_completed")
-					set_process_input(false)
-					return
-				$Node2D/Label.visible = true
-				if len(mapping_pilot_claimed) >= min_players:
-					$Node2D/Label.text = "{players} READY".format({"players":len(mapping_pilot_claimed)})
-				else: 
-					$Node2D/Label.text = "Not enough players. {players} needed".format({"players":min_players})
+				if pilot_selector in mapping_pilot_claimed:
+					if len(mapping_pilot_claimed) >= min_players:
+						print("we can go to next scene")
+						$Node2D/Label.visible = false
+						emit_signal("selection_completed")
+						set_process_input(false)
+						return
+				else:
+					_claim_displayed_species(pilot_selector)
+					pilot_selector.set_status('selected')
+					$Node2D/Label.visible = true
+					if len(mapping_pilot_claimed) >= min_players:
+						$Node2D/Label.text = "{players} READY".format({"players":len(mapping_pilot_claimed)})
+					else: 
+						$Node2D/Label.text = "Not enough players. {players} needed".format({"players":min_players})
 				
 			'left':
 				if $Node2D/Label.visible:
