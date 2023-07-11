@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://bagodu3id70gb"]
+[gd_scene load_steps=16 format=3 uid="uid://bagodu3id70gb"]
 
 [ext_resource type="Script" path="res://ui/screens/difficulty_screen/DifficultyScreen.gd" id="1"]
-[ext_resource type="PackedScene" path="res://ui/screens/back_screen/BackScreen.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://1s36m3u5ge1m" path="res://ui/screens/back_screen/BackScreen.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://daj06fe3j3bqk" path="res://ui/difficulty_screen/art_hive_two.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bivwevr1reobj" path="res://ui/difficulty_screen/art_hard.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://bb7e7up6vbum1" path="res://ui/difficulty_screen/art_medium.png" id="5"]
@@ -31,45 +31,12 @@ shader_parameter/aberration_amount = 2.0
 shader_parameter/move_aberration = false
 shader_parameter/aberration_speed = 1.0
 
-[sub_resource type="Animation" id="1"]
-resource_name = "slide_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1600, 0), Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rnybi"]
-_data = {
-"slide_in": SubResource("1")
-}
-
 [node name="DifficultyScreen" instance=ExtResource("2")]
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("1")
 next_scene = ExtResource("13")
 
-[node name="RefCounted" parent="." index="0"]
-layout_mode = 0
-
-[node name="FancyMenu" parent="." index="1"]
-anchors_preset = 0
+[node name="FancyMenu" parent="." index="0"]
 default_focused_element = NodePath("Easy")
-
-[node name="Back" parent="FancyMenu" index="0"]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 194.0
-offset_bottom = 91.0
 
 [node name="Easy" parent="FancyMenu" index="1" instance=ExtResource("12")]
 material = SubResource("2")
@@ -111,9 +78,3 @@ offset_bottom = 720.0
 focus_neighbor_top = NodePath("../HiveTwo")
 texture_normal = ExtResource("7")
 texture_click_mask = ExtResource("8")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
-autoplay = "slide_in"
-libraries = {
-"": SubResource("AnimationLibrary_rnybi")
-}
