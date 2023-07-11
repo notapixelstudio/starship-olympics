@@ -4,7 +4,7 @@ extends RigidBody2D
 
 class_name PowerUp
 
-@export (String, 'shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniball_gun', 'rocket_gun', 'spike_gun', 'bomb', 'wave_gun', 'bubble_gun', 'drill', 'medikit') var type = 'shield': set = set_type
+@export_enum('shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniball_gun', 'rocket_gun', 'spike_gun', 'bomb', 'wave_gun', 'bubble_gun', 'drill', 'medikit') var type = 'shield': set = set_type
 @export var appear = true
 @export var tease = false
 @export var random_types = []

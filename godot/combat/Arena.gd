@@ -11,8 +11,8 @@ var width
 var height
 var someone_died = 0
 
-@export (PackedScene) var gameover_scene
-@export (float) var size_multiplier = 2.0
+@export var gameover_scene: PackedScene
+@export var size_multiplier := 2.0
 @export var game_mode : Resource # Gamemode - might be useful
 @export var style : Resource: set = set_style
 @export var planet_name : String
