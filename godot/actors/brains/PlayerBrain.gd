@@ -1,6 +1,6 @@
 extends Brain
 
-var controls: String: set = set_controls
+@export_enum('kb1', 'joy1') var controls: String: set = set_controls
 
 var action_buffer : Dictionary = {}
 
