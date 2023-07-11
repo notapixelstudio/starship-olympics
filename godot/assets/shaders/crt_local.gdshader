@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+varying flat vec4 modulate;
+
 // 
 uniform float boost : hint_range(1.0, 2.0, 0.01) = float(1.2);
 uniform float grille_opacity : hint_range(0.0, 1.0, 0.01) = float(0.85);
@@ -50,6 +52,10 @@ void DrawScanline(inout vec4 color, vec2 uv, float time) {
 	color *= boost;
 }
 
+void vertex() {
+	modulate = COLOR;
+}
+
 void fragment() {
 	vec2 screen_crtUV = CRTCurveUV(UV);
 	vec4 color = texture(TEXTURE, screen_crtUV).rgba;
@@ -75,7 +81,7 @@ void fragment() {
 		//DrawVignette(color, crtUV);
 		DrawScanline(color, crtUV, -TIME * scanlines_speed);
 		
-		COLOR = color;
+		COLOR = color * modulate;
 	}
 	else {
 		COLOR = vec4(0.0,0.0,0.0,0.0);

@@ -21,11 +21,9 @@
 [ext_resource type="PackedScene" path="res://ui/screens/hall_of_fame/HallOfFameScreen.tscn" id="19"]
 [ext_resource type="Texture2D" uid="uid://dur6k2gx10cim" path="res://ui/screens/main/background.png" id="20"]
 [ext_resource type="PackedScene" path="res://ui/screens/character_selection/VersusSelectionScreen.tscn" id="21"]
-[ext_resource type="PackedScene" path="res://ui/screens/character_selection/CampaignSelectionScreen.tscn" id="22"]
+[ext_resource type="PackedScene" uid="uid://2cynjxryqe8t" path="res://ui/screens/character_selection/CampaignSelectionScreen.tscn" id="22"]
 
 [node name="MainScreen" instance=ExtResource("16")]
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("17")
 versus_character_selection_scene = ExtResource("21")
 campaign_character_selection_scene = ExtResource("22")
@@ -33,7 +31,7 @@ hall_of_fame_scene = ExtResource("19")
 settings_scene = ExtResource("18")
 credits_scene = ExtResource("9")
 
-[node name="RefCounted" type="TextureRect" parent="." index="0"]
+[node name="Reference" type="TextureRect" parent="." index="0"]
 visible = false
 modulate = Color(0.172549, 0.431373, 0.705882, 1)
 layout_mode = 0
