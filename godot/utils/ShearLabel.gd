@@ -3,7 +3,7 @@ extends Node2D
 
 @export var text : String = '': set = set_text
 @export var shear : Vector2 = Vector2(0,0): set = set_shear
-@export_enum('left', 'center', 'right') var align = 'center': set = set_align
+@export_enum('left', 'center', 'right') var align : String = 'center': set = set_align
 @export var alien_font : FontFile
 
 func _ready():
@@ -25,13 +25,13 @@ func set_align(v: String) -> void:
 	match align:
 		'left':
 			$'%Label'.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
-			$'%Label'.position.x = 0
+			$'%Label'.anchors_preset = Control.PRESET_TOP_LEFT
 		'center':
 			$'%Label'.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			$'%Label'.position.x = -300
+			$'%Label'.anchors_preset = Control.PRESET_CENTER_TOP
 		'right':
 			$'%Label'.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-			$'%Label'.position.x = -600
+			$'%Label'.anchors_preset = Control.PRESET_TOP_RIGHT
 			
 func _on_language_changed():
 	update_language_font()
