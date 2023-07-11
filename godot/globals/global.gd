@@ -459,7 +459,7 @@ func start_execution():
 	
 func end_execution():
 	# trigger quit
-	get_tree().notification(NOTIFICATION_WM_CLOSE_REQUEST)
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 	
 func _notification(what):
 	# actual quitting
