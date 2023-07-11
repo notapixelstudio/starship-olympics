@@ -22,7 +22,7 @@ func _on_Credits_button_down():
 	emit_signal("next", credits_scene.instantiate())
 
 func _on_Quit_button_down():
-	$FancyMenu/Quit.isolate()
+	$FancyMenu.isolate_child($FancyMenu/Quit)
 	global.end_execution()
 
 func exit():
