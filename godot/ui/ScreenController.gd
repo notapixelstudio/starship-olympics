@@ -7,9 +7,9 @@ var screens_stack := []  # Array of ScreenScene to navigate back
 signal transition
 
 func _ready():
-	navigate_to(starting_screen_scene)
+	navigate_to(starting_screen_scene.instantiate())
 
-func navigate_to(screen_scene: PackedScene):
+func navigate_to(new_screen: Screen):
 	var from_screen_id = 'start'
 	if len(screens_stack) > 0:
 		var active_screen = screens_stack[-1]
@@ -17,10 +17,6 @@ func navigate_to(screen_scene: PackedScene):
 		active_screen.exit()
 		from_screen_id = active_screen.get_id()
 	
-	var new_screen = screen_scene.instantiate() as Screen
-	assert(new_screen is Screen)
-	#if len(screens_stack) > 0:
-	#	from=screens_stack[-1].name
 	add_child(new_screen)
 	new_screen.position.x = 1280 * len(screens_stack)
 	screens_stack.append(new_screen)

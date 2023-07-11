@@ -7,19 +7,19 @@ extends Screen
 @export var credits_scene : PackedScene
 
 func _on_Versus_button_down():
-	emit_signal("next", versus_character_selection_scene)
+	emit_signal("next", versus_character_selection_scene.instantiate())
 
 func _on_Campaign_button_down():
-	emit_signal("next", campaign_character_selection_scene)
+	emit_signal("next", campaign_character_selection_scene.instantiate())
 
 func _on_HallOfFame_button_down():
-	emit_signal("next", hall_of_fame_scene)
+	emit_signal("next", hall_of_fame_scene.instantiate())
 
 func _on_Settings_button_down():
-	emit_signal("next", settings_scene)
+	emit_signal("next", settings_scene.instantiate())
 
 func _on_Credits_button_down():
-	emit_signal("next", credits_scene)
+	emit_signal("next", credits_scene.instantiate())
 
 func _on_Quit_button_down():
 	$FancyMenu/Quit.isolate()
