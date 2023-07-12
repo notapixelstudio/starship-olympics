@@ -9,7 +9,8 @@ func set_controls(v: String) -> void:
 	
 func _ready():
 	controllee.connect('dive_out', Callable(self, '_on_controllee_dive_out'))
-
+	assert(controllee.has_method('move'))
+	
 func local_handling() -> Vector2:
 	var target = Vector2()
 	
@@ -19,6 +20,10 @@ func local_handling() -> Vector2:
 		
 	return target
 
+func _physics_process(delta):
+	tick()
+	controllee.move(target_velocity, rotation_request)
+	
 func tick():
 	#var target_vel = Vector2()
 	var front = Vector2(cos(global_rotation), sin(global_rotation))

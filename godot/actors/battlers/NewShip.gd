@@ -2,8 +2,6 @@ extends RigidBody2D
 
 class_name NewShip
 ## Ship base class
-## 
-@onready var brain : Brain = $PlayerBrain
 
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
@@ -39,29 +37,10 @@ const THRUST := 6500
 ## 9 because we enlarged the radius of the ship's collision shape by 3
 const ROTATION_TORQUE := 49000*9 
 
-func get_brain() -> Brain:
-	if not has_node('Brain'):
-		return null
-	return ($Brain as Brain)
-
-func set_brain(new_brain: Brain) -> void:
-	var old_brain = get_brain()
-	if old_brain != null:
-		old_brain.disconnect('charge', Callable(self, '_on_charge_requested'))
-		old_brain.disconnect('release', Callable(self, '_on_release_requested'))
-		old_brain.free()
-	new_brain.set_name('Brain')
-	new_brain.connect('charge', Callable(self, '_on_charge_requested'))
-	new_brain.connect('release', Callable(self, '_on_release_requested'))
-	add_child(new_brain)
-
-func move():
-	set_constant_force(brain.get_target_velocity() * THRUST)
-	set_constant_torque(min(PI/2, brain.get_rotation_request())*ROTATION_TORQUE)
-	
+func move(target_velocity: Vector2, rotation_request: float ):
+	set_constant_force(target_velocity * THRUST)
+	set_constant_torque(min(PI/2, rotation_request) * ROTATION_TORQUE)
 	
 func are_controls_enabled():
+	# TODO: just yet
 	return true
-func _physics_process(delta):
-	brain.tick()
-	move()

@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=5 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" path="res://actors/battlers/NewShip.gd" id="1_0uf34"]
-[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="2_d3egg"]
 [ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="4_2dutk"]
 
 [sub_resource type="PhysicsMaterial" id="1"]
@@ -30,5 +29,3 @@ texture = ExtResource("4_2dutk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tm340")
-
-[node name="PlayerBrain" parent="." instance=ExtResource("2_d3egg")]

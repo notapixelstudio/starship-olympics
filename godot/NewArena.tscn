@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://kgg30lo5k8b6"]
+[gd_scene load_steps=4 format=3 uid="uid://kgg30lo5k8b6"]
 
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://actors/battlers/NewShip.tscn" id="1_ck6s2"]
 [ext_resource type="Script" path="res://NewArena.gd" id="1_oao3p"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_swyl2"]
 
 [node name="NewArena" type="Node2D"]
 script = ExtResource("1_oao3p")
@@ -9,5 +10,33 @@ script = ExtResource("1_oao3p")
 [node name="NewShip" parent="." instance=ExtResource("1_ck6s2")]
 position = Vector2(628, 360)
 
+[node name="PlayerBrain" parent="NewShip" instance=ExtResource("3_swyl2")]
+
+[node name="NewShip2" parent="." instance=ExtResource("1_ck6s2")]
+modulate = Color(0.694118, 0.027451, 0.298039, 1)
+position = Vector2(628, 360)
+
+[node name="PlayerBrain" parent="NewShip2" instance=ExtResource("3_swyl2")]
+controls = "kb2"
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(10, 10)
+text = "NORMAL"
+
+[node name="Label2" type="Label" parent="."]
+offset_top = -223.0
+offset_right = 70.0
+offset_bottom = -197.0
+scale = Vector2(10, 10)
+text = "NORMAL"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

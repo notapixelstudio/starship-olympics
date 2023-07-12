@@ -4,10 +4,13 @@ class_name Brain
 var target_velocity : Vector2
 var rotation_request : float
 
-@onready var controllee := get_parent()
+var controllee
 signal charge
 signal release
 
+func _enter_tree():
+	controllee = get_parent()
+	
 func set_controllee(v) -> void:
 	controllee = v
 
