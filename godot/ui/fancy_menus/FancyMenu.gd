@@ -1,12 +1,13 @@
 extends Control
 class_name FancyMenu
+## A parent [Control] for [FancyButton]s.
 
 @export_enum('horizontal', 'vertical', 'both', 'none') var auto_neighbours := 'none'
 @export var wrap := true
 @export var default_focused_element : NodePath
 @export var focus_default_element_on_ready := true
 
-var saved_focused_element : Control
+var _saved_focused_element : Control
 
 func _ready():
 	if focus_default_element_on_ready and get_node_or_null(default_focused_element):
@@ -54,22 +55,24 @@ func _ready():
 			if not children[i].focus_neighbor_bottom:
 				children[i].focus_neighbor_bottom = children[i].get_path()
 
+## Save the currently focused element. See [method restore_focused_element] to restore it.
 func save_focused_element():
-	saved_focused_element = get_viewport().gui_get_focus_owner()
+	_saved_focused_element = get_viewport().gui_get_focus_owner()
 	
-## restore the focused element if there is one saved, otherwise give focus to the default one (if present)
+## Restore the focused element if there is one saved, otherwise give focus to the default one (if present).
 func restore_focused_element():
-	if not saved_focused_element:
+	if not _saved_focused_element:
 		if get_node_or_null(default_focused_element) != null:
 			get_node(default_focused_element).grab_focus()
 		return
-	saved_focused_element.grab_focus()
-
-func recursive_release_focus():
-	release_focus()
-	for child in get_children():
-		if child.has_method('recursive_release_focus'):
-			child.recursive_release_focus()
-		elif child.has_method('release_focus'):
-			child.release_focus()
-			
+	_saved_focused_element.grab_focus()
+	
+## Isolate the given Control child, making other Controls unreachable from it.
+func isolate_child(child: Control):
+	if not child in get_children():
+		return
+		
+	child.focus_neighbor_top = child.get_path()
+	child.focus_neighbor_bottom = child.get_path()
+	child.focus_neighbor_left = child.get_path()
+	child.focus_neighbor_right = child.get_path()
