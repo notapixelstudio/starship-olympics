@@ -3,6 +3,6 @@
 [ext_resource type="PackedScene" path="res://actors/brains/Brain.tscn" id="1"]
 [ext_resource type="Script" path="res://actors/brains/PlayerBrain.gd" id="2"]
 
-[node name="PlayerBrain" groups=["brains"] instance=ExtResource("1")]
+[node name="PlayerBrain" instance=ExtResource("1")]
 script = ExtResource("2")
 controls = "kb1"
