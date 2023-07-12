@@ -1,6 +1,6 @@
 extends Brain
 
-@export_enum('kb1', 'joy1') var controls: String: set = set_controls
+@export_enum('kb1', 'kb2', 'joy1', 'joy2', 'joy3', 'joy4') var controls: String: set = set_controls
 
 var action_buffer : Dictionary = {}
 

@@ -1,10 +1,10 @@
 extends Node2D
 class_name Brain
 
-var controllee : set = set_controllee
 var target_velocity : Vector2
 var rotation_request : float
 
+@onready var controllee := get_parent()
 signal charge
 signal release
 

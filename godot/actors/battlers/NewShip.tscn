@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgjeqx4n1ot0e"]
+
+[ext_resource type="Script" path="res://actors/battlers/NewShip.gd" id="1_0uf34"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="2_d3egg"]
+[ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="4_2dutk"]
+
+[sub_resource type="PhysicsMaterial" id="1"]
+friction = 0.0
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tm340"]
+resource_local_to_scene = true
+radius = 48.0
+
+[node name="NewShip" type="RigidBody2D"]
+collision_layer = 4194305
+collision_mask = 1169
+physics_material_override = SubResource("1")
+gravity_scale = 2.0
+max_contacts_reported = 10
+contact_monitor = true
+linear_damp_mode = 1
+linear_damp = 7.0
+angular_damp_mode = 1
+angular_damp = 80.0
+script = ExtResource("1_0uf34")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_2dutk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tm340")
+
+[node name="PlayerBrain" parent="." instance=ExtResource("2_d3egg")]

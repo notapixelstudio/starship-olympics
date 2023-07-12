@@ -1,8 +1,9 @@
 extends RigidBody2D
 
-class_name NewRigid
+class_name NewShip
 ## Ship base class
 ## 
+@onready var brain : Brain = $PlayerBrain
 
 const max_steer_force = 2500
 const MAX_CHARGE = 0.6
@@ -33,10 +34,10 @@ const ON_ICE_CHARGE_BRAKE = 0.99
 const MIN_DRIFT := 400.0
 const MIN_DIVING_TIME := 0.05
 
-const ROTATION_TORQUE = 49000*9 # 9 because we enlarged the radius of the ship's collision shape by 3
-
-## constants for classic movements
+## constants for basic movement
 const THRUST := 6500
+## 9 because we enlarged the radius of the ship's collision shape by 3
+const ROTATION_TORQUE := 49000*9 
 
 func get_brain() -> Brain:
 	if not has_node('Brain'):
@@ -54,3 +55,13 @@ func set_brain(new_brain: Brain) -> void:
 	new_brain.connect('release', Callable(self, '_on_release_requested'))
 	add_child(new_brain)
 
+func move():
+	set_constant_force(brain.get_target_velocity() * THRUST)
+	set_constant_torque(min(PI/2, brain.get_rotation_request())*ROTATION_TORQUE)
+	
+	
+func are_controls_enabled():
+	return true
+func _physics_process(delta):
+	brain.tick()
+	move()

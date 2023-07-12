@@ -562,7 +562,8 @@ file_logging/enable_file_logging=true
 
 [physics]
 
-2d/physics_engine="GodotPhysics"
+2d/run_on_separate_thread=true
+2d/physics_engine="GodotPhysics2D"
 2d/default_gravity=0
 common/physics_fps=120
 2d/run_on_thread=2
