@@ -71,3 +71,18 @@ func dash(charge_started_since: float) -> void:
 	
 func tap():
 	pass
+
+
+func _on_charge_manager_charged_too_much_for_tap():
+	pass # Replace with function body.
+
+
+func _on_charge_manager_charged_enough_to_dash():
+	pass # Replace with function body.
+
+
+func _on_charge_manager_reset():
+	pass # Replace with function body.
+
+func graphics_enlarge():
+	pass

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=7 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" path="res://actors/battlers/NewShip.gd" id="1_0uf34"]
+[ext_resource type="Script" path="res://actors/battlers/Node2D.gd" id="3_a1vdf"]
 [ext_resource type="Script" path="res://actors/battlers/ChargeManager.gd" id="3_n2jar"]
 [ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="4_2dutk"]
 
@@ -31,6 +32,11 @@ texture = ExtResource("4_2dutk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tm340")
 
+[node name="Indicators" type="Node" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Indicators"]
+script = ExtResource("3_a1vdf")
+
 [node name="ChargeManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_n2jar")
@@ -41,5 +47,8 @@ one_shot = true
 [node name="DashTimer" type="Timer" parent="ChargeManager"]
 one_shot = true
 
+[connection signal="charged_enough_to_dash" from="ChargeManager" to="." method="_on_charge_manager_charged_enough_to_dash"]
+[connection signal="charged_too_much_for_tap" from="ChargeManager" to="." method="_on_charge_manager_charged_too_much_for_tap"]
+[connection signal="reset" from="ChargeManager" to="." method="_on_charge_manager_reset"]
 [connection signal="timeout" from="ChargeManager/TapTimer" to="ChargeManager" method="_on_tap_timer_timeout"]
 [connection signal="timeout" from="ChargeManager/DashTimer" to="ChargeManager" method="_on_dash_timer_timeout"]
