@@ -5,8 +5,6 @@ var target_velocity : Vector2
 var rotation_request : float
 
 var controllee
-signal charge
-signal release
 
 func _enter_tree():
 	controllee = get_parent()

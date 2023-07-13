@@ -58,13 +58,13 @@ func _unhandled_input(event):
 	# charge and release even if controls are disabled
 	if event.is_action_pressed(controls+'_fire'):
 		buffer_action('charge')
-		emit_signal('charge')
+		controllee.charge()
 	elif event.is_action_released(controls+'_fire'):
 		buffer_action('release')
-		emit_signal('release')
+		controllee.release()
 
 # replay charge input if diving out and it was buffered
 func _on_controllee_dive_out():
 	if is_action_buffered('charge', 300):
 		emit_signal('charge')
-		
+	
