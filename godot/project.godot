@@ -23,6 +23,7 @@ hostname.local="http://localhost:8000"
 [application]
 
 config/name="StarshipOlympics"
+config/tags=PackedStringArray("godot4", "starship_olympics")
 run/main_scene="res://ui/menu_scenes/intro_screen/Intro.tscn"
 config/features=PackedStringArray("4.1")
 boot_splash/bg_color=Color(0, 0, 0, 1)
@@ -571,6 +572,7 @@ common/physics_fps=120
 
 [rendering]
 
+renderer/rendering_method="mobile"
 environment/defaults/default_clear_color=Color(0.145098, 0.172549, 0.231373, 1)
 quality/intended_usage/framebuffer_allocation.mobile=2
 quality/filters/use_nearest_mipmap_filter=true
