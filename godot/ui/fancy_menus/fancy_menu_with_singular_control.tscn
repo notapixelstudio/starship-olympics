@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmfo87t1mhpfk"]
+
+[ext_resource type="PackedScene" uid="uid://cklefvrbsam55" path="res://ui/fancy_menus/FancyMenu.tscn" id="1_1a3vq"]
+[ext_resource type="Script" path="res://ui/fancy_menus/FancyMenuWithSingularControl.gd" id="2_xn2qs"]
+[ext_resource type="Script" path="res://ui/fancy_menus/Button.gd" id="3_rctcq"]
+
+[node name="FancyMenuWithSingularControl" instance=ExtResource("1_1a3vq")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2_xn2qs")
+controls = "kb1"
+auto_neighbours = "vertical"
+
+[node name="Button" type="Button" parent="." index="0"]
+layout_mode = 0
+offset_right = 114.0
+offset_bottom = 34.0
+focus_mode = 0
+script = ExtResource("3_rctcq")
+
+[node name="Button2" type="Button" parent="." index="1"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 114.0
+offset_bottom = 66.0
+focus_mode = 0
+script = ExtResource("3_rctcq")
+
+[node name="Button3" type="Button" parent="." index="2"]
+layout_mode = 0
+offset_top = 72.0
+offset_right = 114.0
+offset_bottom = 106.0
+focus_mode = 0
+script = ExtResource("3_rctcq")

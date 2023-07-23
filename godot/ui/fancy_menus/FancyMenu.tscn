@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cklefvrbsam55"]
 
-[ext_resource path="res://ui/fancy_menus/FancyMenu.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://ui/fancy_menus/FancyMenu.gd" id="1"]
 
 [node name="FancyMenu" type="Control"]
-script = ExtResource( 1 )
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1")
