@@ -2,6 +2,8 @@ extends Node
 
 class_name ChargeManager
 
+const MAX_CHARGE = 0.6
+
 @export var max_tap_charge := 0.3
 @export var min_dash_charge := 0.2
 
@@ -34,6 +36,9 @@ func end_charging() -> void:
 	
 func get_charge() -> float:
 	return _charge
+	
+func get_charge_normalized() -> float:
+	return min(get_charge(), MAX_CHARGE)/MAX_CHARGE
 	
 func can_tap() -> bool:
 	return _charge <= max_tap_charge

@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=10 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" path="res://actors/battlers/NewShip.gd" id="1_0uf34"]
+[ext_resource type="PackedScene" uid="uid://b6gg3o407i70x" path="res://actors/effects/DashRing.tscn" id="2_cdhkl"]
 [ext_resource type="Script" path="res://actors/battlers/Node2D.gd" id="3_a1vdf"]
 [ext_resource type="Script" path="res://actors/battlers/ChargeManager.gd" id="3_n2jar"]
 [ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="4_2dutk"]
@@ -9,6 +10,20 @@
 [sub_resource type="PhysicsMaterial" id="1"]
 friction = 0.0
 bounce = 0.5
+
+[sub_resource type="GDScript" id="GDScript_jwr13"]
+script/source = "extends Sprite2D
+
+const NORMAL = Vector2(1,1)
+const FAT_DELTA = Vector2(-0.2,+0.2)
+
+func _process(delta):
+	var weight = %ChargeManager.get_charge_normalized()
+	scale = Tween.interpolate_value(NORMAL, FAT_DELTA, weight, 1.0, Tween.TRANS_QUAD, Tween.EASE_OUT)
+
+func graphic_release():
+	pass
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tm340"]
 resource_local_to_scene = true
@@ -26,17 +41,27 @@ linear_damp = 7.0
 angular_damp_mode = 1
 angular_damp = 80.0
 script = ExtResource("1_0uf34")
+dash_ring_scene = ExtResource("2_cdhkl")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("4_2dutk")
+script = SubResource("GDScript_jwr13")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_tm340")
 
-[node name="Indicators" type="Node" parent="."]
+[node name="Indicators" type="Node2D" parent="."]
 
 [node name="Node2D" type="Node2D" parent="Indicators"]
 script = ExtResource("3_a1vdf")
+
+[node name="ChargeBar" type="Line2D" parent="Indicators/Node2D"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 0, 1)
+position = Vector2(-55, 0)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 25.0
+texture_mode = 221806672
 
 [node name="ChargeManager" type="Node" parent="."]
 unique_name_in_owner = true

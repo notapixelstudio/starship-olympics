@@ -3,15 +3,16 @@ extends RigidBody2D
 class_name NewShip
 ## Ship base class
 
+@export var dash_ring_scene : PackedScene
+
 const max_steer_force = 2500
 const MIN_CHARGE = 0.2
-const MAX_CHARGE = 0.6 ## after this value, the charge impulse stop to increase
 const MAX_OVERCHARGE = 1.8
 const MIN_FOR_DASH = 0.2 # it was MIN_CHARGE
 const MAX_TAP_CHARGE = 0.3
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 7000
-const DASH_BASE = -400
+const DASH_HANDICAP = 400
 const DASH_MULTIPLIER = 2.6 # was 2.7, decreased to lessen the chance of tunneling
 const BOMB_OFFSET = 50
 const BOMB_BOOST = 1600
@@ -57,17 +58,18 @@ func charge():
 	%ChargeManager.start_charging()
 	
 func release():
-	var charge
 	if %ChargeManager.can_tap():
 		tap()
 	if %ChargeManager.can_dash():
 		dash(%ChargeManager.get_charge())
 	%ChargeManager.end_charging()
 
-func dash(charge_started_since: float) -> void:
-	var dash_strength = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(charge_started_since - MIN_CHARGE, 0, MAX_CHARGE)
-	var recoil = max(0,DASH_BASE+dash_strength*DASH_MULTIPLIER)
+func dash(charge: float) -> void:
+	var dash_strength = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(charge - MIN_CHARGE, 0, %ChargeManager.MAX_CHARGE)
+	var recoil = max(0,-DASH_HANDICAP+dash_strength*DASH_MULTIPLIER)
 	apply_central_impulse(Vector2(recoil, 0).rotated(global_rotation)) # recoil only if dashing
+	
+	_drop_dash_ring_effect()
 	
 func tap():
 	pass
@@ -86,3 +88,10 @@ func _on_charge_manager_reset():
 
 func graphics_enlarge():
 	pass
+
+func _drop_dash_ring_effect() -> void:
+	var dash_ring = dash_ring_scene.instantiate()
+	get_parent().add_child(dash_ring)
+	dash_ring.global_position = global_position
+	dash_ring.global_rotation = global_rotation
+	dash_ring.scale = Vector2(1,1) * %ChargeManager.get_charge_normalized()

@@ -1,11 +1,9 @@
 extends Node2D
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+const AXIS = Vector2(-196, 0)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(%ChargeManager.get_charge())
+	var v = AXIS * %ChargeManager.get_charge_normalized()
+	%ChargeBar.set_point_position(1, v)
+	#$Graphics/ChargeBar/ChargeBackground.set_point_position(1, Vector2(v.x+4, v.y))
