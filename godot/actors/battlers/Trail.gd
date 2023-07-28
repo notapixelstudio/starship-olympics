@@ -23,8 +23,8 @@ class_name Trail2D
 
 ##### SIGNALS #####
 
-signal add_point
-signal remove_point
+signal before_add_point
+signal before_remove_point
 signal no_points
 signal point_added
 
@@ -49,7 +49,7 @@ var target: Node2D: set = set_target
 
 	
 # The NodePath to the target
-@export var target_path: NodePath = @"..": set = set_target_path
+@export var target_path: NodePath = ^"..": set = set_target_path
 # If not persisting, the number of points that should be allowed in the trail
 @export var trail_length: int = 10
 # To what degree the trail should remain in existence before automatically removing points.
@@ -90,7 +90,7 @@ func _notification(p_what: int):
 			if auto_z_index:
 				z_index = target.z_index - 1 if target else 0
 		NOTIFICATION_UNPARENTED:
-			self.target_path = @""
+			self.target_path = ^""
 			self.trail_length = 0
 
 func add_custom_point(point):
@@ -101,14 +101,14 @@ func add_custom_point(point):
 	if len(points) > 1:
 		if distanza < min_dist:
 			return
-	emit_signal("add_point", point)
+	emit_signal("before_add_point", point)
 	# actual_length += distanza
 	add_point(point)
 	monitor.append(0.0)
 	emit_signal("point_added", point, last_point if len(points) > 1 else null)
 
 func remove_custom_point(index):
-	emit_signal("remove_point", index)
+	emit_signal("before_remove_point", index)
 	remove_point(index)
 	if len(points) <= 0:
 		emit_signal("no_points")
@@ -148,7 +148,7 @@ func _process(delta: float):
 						to_be_deleted_count += 1
 						remove_custom_point(0)
 				for d in to_be_deleted_count:
-					monitor.remove(0)
+					monitor.remove_at(0)
 			Persistence.OFF:
 				add_custom_point(target.global_position)
 				while get_point_count() > trail_length :
@@ -198,12 +198,8 @@ func erase_trail():
 
 ##### SETTERS AND GETTERS #####
 
-func set_target(p_value: Node2D):
-	if p_value:
-		if get_path_to(p_value) != target_path:
-			target_path = get_path_to(p_value)
-	else:
-		target_path = @""
+func set_target(v: Node2D):
+	target = v
 
 func set_target_path(p_value: NodePath):
 	target_path = p_value

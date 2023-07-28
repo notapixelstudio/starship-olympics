@@ -11,13 +11,14 @@ script = ExtResource("1_oao3p")
 position = Vector2(628, 360)
 
 [node name="PlayerBrain" parent="NewShip" instance=ExtResource("3_swyl2")]
+controls = "joy2"
 
 [node name="NewShip2" parent="." instance=ExtResource("1_ck6s2")]
 modulate = Color(0.694118, 0.027451, 0.298039, 1)
 position = Vector2(628, 360)
 
 [node name="PlayerBrain" parent="NewShip2" instance=ExtResource("3_swyl2")]
-controls = "kb2"
+controls = "joy1"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)

@@ -5,9 +5,9 @@ extends Node2D
 @export var length := 30
 @export var width := 90
 @export var texture : Texture2D
-@export var texture_mode := Line2D.LINE_TEXTURE_NONE
+@export var texture_mode : int = Line2D.LINE_TEXTURE_NONE
 @export var max_segment_length := 1000
-@export (Trail2D.Persistence) var persistence := Trail2D.Persistence.FRAME_RATE_INDIPENDENT
+@export var persistence : int = Trail2D.Persistence.FRAME_RATE_INDIPENDENT
 @export var auto_create_on_enter := true
 @export var disappear_speed := 100.0
 
@@ -34,6 +34,7 @@ func create_trail():
 		trail.texture = texture
 		trail.texture_mode = texture_mode
 	add_child(trail)
+	trail.set_target(self)
 	trail.connect('point_added', Callable(self, '_on_trail_point_added'))
 	
 func drop_trail():

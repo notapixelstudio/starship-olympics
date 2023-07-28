@@ -7,7 +7,7 @@ class_name ChargeManager
 
 signal charged_enough_to_dash
 signal charged_too_much_for_tap
-signal reset
+signal reset_done
 
 var _charge := 0.0
 var _is_charging := false

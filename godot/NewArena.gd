@@ -4,8 +4,6 @@ extends Node2D
 var ships := []
 func _ready():
 	ships = [$NewShip, $NewShip2]
-func _process(delta):
-	$Label2.text = str(Input.get_action_strength("ui_right"))
 	
 var i = 0
 func _on_timer_timeout():
