@@ -11,7 +11,7 @@ var _saved_focused_element : Control
 
 func _ready():
 	if focus_default_element_on_ready and get_node_or_null(default_focused_element):
-		get_node(default_focused_element).grab_focus()
+		give_focus_to(get_node(default_focused_element))
 	
 	var children = get_children()
 	
@@ -76,3 +76,6 @@ func isolate_child(child: Control):
 	child.focus_neighbor_bottom = child.get_path()
 	child.focus_neighbor_left = child.get_path()
 	child.focus_neighbor_right = child.get_path()
+
+func give_focus_to(what : Control) -> void:
+	what.grab_focus()

@@ -1,35 +1,60 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://cgu7lwmnkg60h"]
 
-[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
-[ext_resource path="res://ui/screens/character_selection/selection_panel/PilotSelector.gd" type="Script" id=2]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1"]
+[ext_resource type="Script" path="res://ui/screens/character_selection/selection_panel/PilotSelector.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://cmfo87t1mhpfk" path="res://ui/fancy_menus/FancyMenuWithSingularControl.tscn" id="3_v4uwd"]
+[ext_resource type="PackedScene" uid="uid://bsnpuv1ss4bxe" path="res://ui/fancy_menus/FancyButton.tscn" id="4_y2plc"]
+[ext_resource type="Texture2D" uid="uid://da1y3mq0xgrxq" path="res://ui/screens/back_screen/buttons/graphics_Back.png" id="5_yiuxo"]
+[ext_resource type="BitMap" uid="uid://dfypfdal3vb7y" path="res://ui/screens/back_screen/buttons/area_Back.png" id="6_6p54n"]
 
 [node name="PilotSelector" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 14.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "pp"
 
 [node name="Label2" type="Label" parent="."]
 offset_top = 32.0
 offset_right = 119.0
 offset_bottom = 64.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "CONTROLS"
 
 [node name="Label3" type="Label" parent="."]
 offset_top = 64.0
 offset_right = 119.0
 offset_bottom = 96.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "DISABLED"
 
 [node name="Label4" type="Label" parent="."]
-modulate = Color( 1, 0.996078, 0.658824, 1 )
+modulate = Color(1, 0.996078, 0.658824, 1)
 offset_top = 104.0
 offset_right = 126.0
 offset_bottom = 136.0
-theme = ExtResource( 1 )
+theme = ExtResource("1")
 text = "no species"
+
+[node name="FancyMenuWithSingularControl" parent="." instance=ExtResource("3_v4uwd")]
+unique_name_in_owner = true
+offset_top = -200.0
+offset_bottom = -200.0
+default_focused_element = NodePath("FancyButton")
+
+[node name="FancyButton" parent="FancyMenuWithSingularControl" instance=ExtResource("4_y2plc")]
+layout_mode = 0
+offset_bottom = 91.0
+texture_normal = ExtResource("5_yiuxo")
+texture_click_mask = ExtResource("6_6p54n")
+
+[node name="FancyButton2" parent="FancyMenuWithSingularControl" instance=ExtResource("4_y2plc")]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 56.0
+offset_right = 335.0
+offset_bottom = 147.0
+texture_normal = ExtResource("5_yiuxo")
+texture_click_mask = ExtResource("6_6p54n")

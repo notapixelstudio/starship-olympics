@@ -13,6 +13,7 @@ func set_status(status: String):
 
 func set_controls(controls: String):
 	$Label2.text = controls
+	%FancyMenuWithSingularControl.set_controls(controls)
 
 func set_species(species: Species):
 	$Label4.text = species.name

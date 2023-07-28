@@ -4,20 +4,20 @@ class_name FancyButton
 
 func _ready():
 	pivot_offset = size / 2.0
-	_blur()
+	blur()
 	
 
-func _focus():
+func focus():
 	modulate = Color(1.16, 1.16, 1.16)
 	$AnimationPlayer.play("Grow")
 
-func _blur():
+func blur():
 	modulate = Color(0.45, 0.45, 0.45)
 	$AnimationPlayer.play("Shrink")
 	
 func _on_FancyButton_focus_entered():
-	_focus()
+	focus()
 	
 func _on_FancyButton_focus_exited():
-	_blur()
+	blur()
 	
