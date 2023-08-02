@@ -34,6 +34,9 @@ const ON_ICE_CHARGE_BRAKE = 0.99
 const MIN_DRIFT := 400.0
 const MIN_DIVING_TIME := 0.05
 
+signal hit(sth: CollisionObject2D)
+signal hurt_by(sth: CollisionObject2D)
+
 ## constants for basic movement
 const THRUST := 6500
 ## 9 because we enlarged the radius of the ship's collision shape by 3
@@ -98,13 +101,17 @@ func _drop_dash_ring_effect() -> void:
 
 
 func _on_hit_area_area_entered(area):
-	Events.emit_signal("ship_hit_sth", self, area)
+	hit.emit(area)
+	Events.ship_hit_sth.emit(self, area)
 
 func _on_hit_area_body_entered(body):
-	Events.emit_signal("ship_hit_sth", self, body)
+	hit.emit(body)
+	Events.ship_hit_sth.emit(self, body)
 
 func _on_hurt_area_area_entered(area):
-	Events.emit_signal("sth_hurt_ship", area, self)
+	hurt_by.emit(area)
+	Events.sth_hurt_ship.emit(area, self)
 
 func _on_hurt_area_body_entered(body):
-	Events.emit_signal("sth_hurt_ship", body, self)
+	hurt_by.emit(body)
+	Events.sth_hurt_ship.emit(body, self)

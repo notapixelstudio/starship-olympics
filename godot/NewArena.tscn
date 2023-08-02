@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://kgg30lo5k8b6"]
+[gd_scene load_steps=8 format=3 uid="uid://kgg30lo5k8b6"]
 
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://actors/battlers/ships/NewShip.tscn" id="1_ck6s2"]
 [ext_resource type="Script" path="res://NewArena.gd" id="1_oao3p"]
 [ext_resource type="PackedScene" uid="uid://bs7ud8bxiveec" path="res://actors/battlers/ships/FatShip.tscn" id="2_pfne4"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_swyl2"]
 [ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="5_3g02u"]
+[ext_resource type="PackedScene" uid="uid://c15t76wo8d02d" path="res://actors/battlers/ships/managers/FatManager.tscn" id="5_xanc7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3sh1n"]
 radius = 55.0
@@ -23,6 +24,8 @@ position = Vector2(628, 360)
 
 [node name="PlayerBrain" parent="NewShip2" instance=ExtResource("3_swyl2")]
 controls = "kb2"
+
+[node name="FatManager" parent="NewShip2" instance=ExtResource("5_xanc7")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
