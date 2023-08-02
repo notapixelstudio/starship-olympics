@@ -37,7 +37,7 @@ const MIN_DIVING_TIME := 0.05
 ## constants for basic movement
 const THRUST := 6500
 ## 9 because we enlarged the radius of the ship's collision shape by 3
-const ROTATION_TORQUE := 49000*9 
+var rotation_torque := 49000*9 
 
 # check variables for actions (e.g. dash, etc.)
 var charging := true
@@ -48,7 +48,7 @@ var charging_started_since := 0.0 ## in seconds
 func move(target_velocity: Vector2, rotation_request: float ):
 	var thrusting = not %ChargeManager.can_dash()
 	set_constant_force(target_velocity * THRUST*int(thrusting))
-	set_constant_torque(min(PI/2, rotation_request) * ROTATION_TORQUE)
+	set_constant_torque(min(PI/2, rotation_request) * rotation_torque)
 	
 func are_controls_enabled():
 	# TODO: just yet
@@ -95,3 +95,16 @@ func _drop_dash_ring_effect() -> void:
 	dash_ring.global_position = global_position
 	dash_ring.global_rotation = global_rotation
 	dash_ring.scale = Vector2(1,1) * %ChargeManager.get_charge_normalized()
+
+
+func _on_hit_area_area_entered(area):
+	Events.emit_signal("ship_hit_sth", self, area)
+
+func _on_hit_area_body_entered(body):
+	Events.emit_signal("ship_hit_sth", self, body)
+
+func _on_hurt_area_area_entered(area):
+	Events.emit_signal("sth_hurt_ship", area, self)
+
+func _on_hurt_area_body_entered(body):
+	Events.emit_signal("sth_hurt_ship", body, self)

@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://bs7ud8bxiveec"]
+
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://actors/battlers/ships/NewShip.tscn" id="1_bjrok"]
+
+[sub_resource type="GDScript" id="GDScript_qil6r"]
+script/source = "extends Node
+
+var host : NewShip
+var fat := 1.0
+var base_mass : float
+var base_rotation_torque : float
+var base_scale : Vector2
+var base_radius : float
+var base_hit_radius : float
+var base_hurt_radius : float
+
+func _ready():
+	Events.connect('ship_hit_sth', _on_ship_hit_sth)
+	host = get_parent()
+	base_mass = host.mass
+	base_rotation_torque = host.rotation_torque
+	base_scale = %Graphics.scale
+	base_radius = %ShipShape2D.shape.radius
+	base_hit_radius = %HitShape2D.shape.radius
+	base_hurt_radius = %HurtShape2D.shape.radius
+	
+func _on_ship_hit_sth(ship: NewShip, sth: PhysicsBody2D) -> void:
+	if ship != host:
+		return
+		
+	if sth.name == 'Food':
+		_grow()
+		
+func _grow() -> void:
+	fat *= 1.25
+	host.mass = sqrt(fat) * base_mass
+	host.rotation_torque = fat * fat * base_rotation_torque
+	%Graphics.scale = fat * base_scale
+	%ShipShape2D.shape.radius = fat * base_radius
+	%HitShape2D.shape.radius = fat * base_hit_radius
+	%HurtShape2D.shape.radius = fat * base_hurt_radius
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1tlse"]
+resource_local_to_scene = true
+radius = 55.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_igmkn"]
+resource_local_to_scene = true
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ktfy"]
+resource_local_to_scene = true
+radius = 48.0
+
+[node name="FatShip" instance=ExtResource("1_bjrok")]
+
+[node name="FatManager" type="Node" parent="." index="0"]
+script = SubResource("GDScript_qil6r")
+
+[node name="HitShape2D" parent="HitArea" index="0"]
+shape = SubResource("CircleShape2D_1tlse")
+
+[node name="HurtShape2D" parent="HurtArea" index="0"]
+shape = SubResource("CircleShape2D_igmkn")
+
+[node name="ShipShape2D" parent="." index="5"]
+shape = SubResource("CircleShape2D_2ktfy")

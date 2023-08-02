@@ -1,0 +1,126 @@
+[gd_scene load_steps=13 format=3 uid="uid://cgjeqx4n1ot0e"]
+
+[ext_resource type="Script" path="res://actors/battlers/ships/NewShip.gd" id="1_cvjhk"]
+[ext_resource type="PackedScene" uid="uid://b6gg3o407i70x" path="res://actors/effects/DashRing.tscn" id="2_42gb5"]
+[ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="3_gbkft"]
+[ext_resource type="Script" path="res://actors/battlers/Node2D.gd" id="4_557ck"]
+[ext_resource type="Script" path="res://actors/battlers/ChargeManager.gd" id="5_ostpb"]
+[ext_resource type="PackedScene" uid="uid://bklnkitol1qwq" path="res://utils/AutoTrail.tscn" id="6_uwlq3"]
+
+[sub_resource type="PhysicsMaterial" id="1"]
+friction = 0.0
+bounce = 0.5
+
+[sub_resource type="GDScript" id="GDScript_jwr13"]
+script/source = "extends Sprite2D
+
+const NORMAL = Vector2(1,1)
+const FAT_DELTA = Vector2(-0.2,+0.2)
+
+func _process(delta):
+	var weight = %ChargeManager.get_charge_normalized()
+	scale = Tween.interpolate_value(NORMAL, FAT_DELTA, weight, 1.0, Tween.TRANS_QUAD, Tween.EASE_OUT)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oi8fb"]
+resource_local_to_scene = true
+radius = 55.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kepy8"]
+resource_local_to_scene = true
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t1b3t"]
+radius = 700.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tm340"]
+resource_local_to_scene = true
+radius = 48.0
+
+[node name="NewShip" type="RigidBody2D"]
+collision_layer = 4194305
+collision_mask = 1169
+physics_material_override = SubResource("1")
+gravity_scale = 2.0
+max_contacts_reported = 10
+contact_monitor = true
+linear_damp_mode = 1
+linear_damp = 7.0
+angular_damp_mode = 1
+angular_damp = 80.0
+script = ExtResource("1_cvjhk")
+dash_ring_scene = ExtResource("2_42gb5")
+
+[node name="Graphics" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite" type="Sprite2D" parent="Graphics"]
+texture = ExtResource("3_gbkft")
+script = SubResource("GDScript_jwr13")
+
+[node name="HitArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2688
+
+[node name="HitShape2D" type="CollisionShape2D" parent="HitArea"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_oi8fb")
+debug_color = Color(0, 0.635294, 0.4, 0.419608)
+
+[node name="HurtArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 900
+
+[node name="HurtShape2D" type="CollisionShape2D" parent="HurtArea"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_kepy8")
+debug_color = Color(0.996078, 0, 0.235294, 0.235294)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4101
+input_pickable = false
+
+[node name="DetectionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_t1b3t")
+debug_color = Color(0.639216, 0.337255, 1, 0.0509804)
+
+[node name="ShipShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_tm340")
+debug_color = Color(1, 1, 1, 0.419608)
+
+[node name="Indicators" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Indicators"]
+script = ExtResource("4_557ck")
+
+[node name="ChargeBar" type="Line2D" parent="Indicators/Node2D"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 0, 1)
+position = Vector2(-55, 0)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 25.0
+texture_mode = 221806672
+
+[node name="ChargeManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_ostpb")
+
+[node name="TapTimer" type="Timer" parent="ChargeManager"]
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="ChargeManager"]
+one_shot = true
+
+[node name="AutoTrail" parent="." instance=ExtResource("6_uwlq3")]
+
+[connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]
+[connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]
+[connection signal="charged_enough_to_dash" from="ChargeManager" to="." method="_on_charge_manager_charged_enough_to_dash"]
+[connection signal="charged_too_much_for_tap" from="ChargeManager" to="." method="_on_charge_manager_charged_too_much_for_tap"]
+[connection signal="timeout" from="ChargeManager/TapTimer" to="ChargeManager" method="_on_tap_timer_timeout"]
+[connection signal="timeout" from="ChargeManager/DashTimer" to="ChargeManager" method="_on_dash_timer_timeout"]
