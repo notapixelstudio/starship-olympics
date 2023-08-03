@@ -48,7 +48,7 @@ var charging_enough := true
 var charging_started_since := 0.0 ## in seconds
 
 
-func move(target_velocity: Vector2, rotation_request: float ):
+func move(target_velocity: Vector2, rotation_request: float):
 	var thrusting = not %ChargeManager.can_dash()
 	set_constant_force(target_velocity * THRUST*int(thrusting))
 	set_constant_torque(min(PI/2, rotation_request) * rotation_torque)

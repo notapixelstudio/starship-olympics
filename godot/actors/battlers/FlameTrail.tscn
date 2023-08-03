@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5ijn75dnv8d7"]
+
+[ext_resource type="Texture2D" uid="uid://b45mxffwjy7yv" path="res://assets/shaders/trail.png" id="1_bjyil"]
+[ext_resource type="Script" path="res://actors/battlers/FlameTrail.gd" id="2_27emh"]
+
+[node name="FlameTrail" type="Line2D"]
+top_level = true
+z_index = -1
+width = 80.0
+default_color = Color(1, 0, 1, 1)
+texture = ExtResource("1_bjyil")
+texture_mode = 2
+script = ExtResource("2_27emh")

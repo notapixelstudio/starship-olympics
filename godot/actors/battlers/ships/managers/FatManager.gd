@@ -8,6 +8,7 @@ var base_scale : Vector2
 var base_radius : float
 var base_hit_radius : float
 var base_hurt_radius : float
+var base_charge_bar_offset : float
 
 func _ready():
 	host = get_parent()
@@ -20,6 +21,7 @@ func _ready():
 	base_radius = host.get_node("%ShipShape2D").shape.radius
 	base_hit_radius = host.get_node("%HitShape2D").shape.radius
 	base_hurt_radius = host.get_node("%HurtShape2D").shape.radius
+	base_charge_bar_offset = host.get_node("%ChargeBar").position.x
 	
 func _on_ship_hit_sth(sth: PhysicsBody2D) -> void:
 	if sth.name == 'Food':
@@ -33,3 +35,4 @@ func _grow() -> void:
 	host.get_node("%ShipShape2D").shape.radius = fat * base_radius
 	host.get_node("%HitShape2D").shape.radius = fat * base_hit_radius
 	host.get_node("%HurtShape2D").shape.radius = fat * base_hurt_radius
+	host.get_node("%ChargeBar").position.x = fat * base_charge_bar_offset

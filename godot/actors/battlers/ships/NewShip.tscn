@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=14 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" path="res://actors/battlers/ships/NewShip.gd" id="1_cvjhk"]
 [ext_resource type="PackedScene" uid="uid://b6gg3o407i70x" path="res://actors/effects/DashRing.tscn" id="2_42gb5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://actors/battlers/Node2D.gd" id="4_557ck"]
 [ext_resource type="Script" path="res://actors/battlers/ChargeManager.gd" id="5_ostpb"]
 [ext_resource type="PackedScene" uid="uid://bklnkitol1qwq" path="res://utils/AutoTrail.tscn" id="6_uwlq3"]
+[ext_resource type="PackedScene" uid="uid://b5ijn75dnv8d7" path="res://actors/battlers/FlameTrail.tscn" id="7_qqgwj"]
 
 [sub_resource type="PhysicsMaterial" id="1"]
 friction = 0.0
@@ -92,6 +93,7 @@ shape = SubResource("CircleShape2D_tm340")
 debug_color = Color(1, 1, 1, 0.419608)
 
 [node name="Indicators" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="Node2D" type="Node2D" parent="Indicators"]
 script = ExtResource("4_557ck")
@@ -115,6 +117,11 @@ one_shot = true
 one_shot = true
 
 [node name="AutoTrail" parent="." instance=ExtResource("6_uwlq3")]
+
+[node name="FlamePosition" type="Node2D" parent="."]
+position = Vector2(-72, 0)
+
+[node name="FlameTrail" parent="FlamePosition" instance=ExtResource("7_qqgwj")]
 
 [connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

@@ -4,6 +4,7 @@ extends Node2D
 @export var ending_color := Color(1,1,1,0)
 @export var length := 30
 @export var width := 90
+@export var width_curve : Curve
 @export var texture : Texture2D
 @export var texture_mode : int = Line2D.LINE_TEXTURE_NONE
 @export var max_segment_length := 1000
@@ -30,6 +31,8 @@ func create_trail():
 	trail.gradient.set_color(1, starting_color)
 	trail.trail_length = length
 	trail.width = width
+	if width_curve:
+		trail.width_curve = width_curve
 	if texture:
 		trail.texture = texture
 		trail.texture_mode = texture_mode
