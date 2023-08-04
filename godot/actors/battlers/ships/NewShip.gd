@@ -47,15 +47,25 @@ var charging := true
 var charging_enough := true
 var charging_started_since := 0.0 ## in seconds
 
+var target_velocity := Vector2(0, 0)
+var rotation_request := 0.0
 
-func move(target_velocity: Vector2, rotation_request: float):
-	var thrusting = not %ChargeManager.can_dash()
-	set_constant_force(target_velocity * THRUST*int(thrusting))
+func set_target_velocity(v: Vector2) -> void:
+	target_velocity = v
+	set_constant_force(target_velocity * THRUST*int(is_thrusting()))
+	
+func set_rotation_request(v: float) -> void:
+	rotation_request = v
 	set_constant_torque(min(PI/2, rotation_request) * rotation_torque)
 	
 func are_controls_enabled():
 	# TODO: just yet
 	return true
+	
+## returns whether the ship is using their thrusters, i.e., it's attempting to reach a nonzero
+## target velocity and it's not charging enough to dash
+func is_thrusting() -> bool:
+	return not %ChargeManager.can_dash() and target_velocity.length() > 0.1
 
 func charge():
 	%ChargeManager.start_charging()

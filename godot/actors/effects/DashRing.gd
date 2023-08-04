@@ -12,7 +12,7 @@ var polar_coords := []
 
 var dying := false
 
-func _physics_process(delta):
+func _process(delta):
 	radius += growth*delta
 	distance += speed*delta
 	polar_coords = []
@@ -24,21 +24,9 @@ func _physics_process(delta):
 			'offset': distance
 		})
 		
-	var cartesian_points := []
-	for p in polar_coords:
-		# the collision shape is smaller than the arc
-		if p.theta > -angle*0.4 and p.theta < angle*0.4:
-			cartesian_points.append(Vector2(p.rho, 0).rotated(p.theta) + Vector2(p.offset, 0))
-	
-	var segments = []
-	var i = 0
-	for p in cartesian_points:
-		i += 1
-		if i >= len(cartesian_points):
-			break
-			
-		segments.append(p)
-		segments.append(cartesian_points[i])
+	$Line2D.clear_points()
+	for polar_point in polar_coords:
+		$Line2D.add_point(Vector2(polar_point.rho,0).rotated(polar_point.theta) + Vector2(polar_point.offset, 0))
 		
 	t += delta
 	
@@ -46,9 +34,4 @@ func _physics_process(delta):
 		if t > lifetime:
 			dying = true
 			$AnimationPlayer.play("Disappear")
-		
-func _process(delta):
-	$Line2D.clear_points()
-	for polar_point in polar_coords:
-		$Line2D.add_point(Vector2(polar_point.rho,0).rotated(polar_point.theta) + Vector2(polar_point.offset, 0))
 		

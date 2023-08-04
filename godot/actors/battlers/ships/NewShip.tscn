@@ -118,10 +118,18 @@ one_shot = true
 
 [node name="AutoTrail" parent="." instance=ExtResource("6_uwlq3")]
 
-[node name="FlamePosition" type="Node2D" parent="."]
-position = Vector2(-72, 0)
+[node name="BottomFlameTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("7_qqgwj")]
+width = 120.0
+default_color = Color(1, 0.27451, 0, 0.470588)
+host = NodePath("..")
+max_length = 200.0
+offset = Vector2(-80, 0)
 
-[node name="FlameTrail" parent="FlamePosition" instance=ExtResource("7_qqgwj")]
+[node name="FlameTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("7_qqgwj")]
+width = 50.0
+host = NodePath("..")
+max_length = 100.0
+offset = Vector2(-95, 0)
 
 [connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
