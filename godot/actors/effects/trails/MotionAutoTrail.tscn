@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://5u7o8g8qd8ey"]
+
+[ext_resource type="PackedScene" uid="uid://d3qdjjh7pbm6k" path="res://actors/effects/trails/AutoTrail.tscn" id="1_vs62a"]
+
+[sub_resource type="Gradient" id="Gradient_81pqh"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.997561)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
+
+[node name="MotionAutoTrail" instance=ExtResource("1_vs62a")]
+width = 120.0
+gradient = SubResource("Gradient_81pqh")
+disappear_speed = 100.0
+long_segment_min_length = 1000
+count_criterion = false
+age_criterion = true

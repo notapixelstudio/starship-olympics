@@ -1,12 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=16 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" path="res://actors/battlers/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PackedScene" uid="uid://b6gg3o407i70x" path="res://actors/effects/DashRing.tscn" id="2_42gb5"]
 [ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="3_gbkft"]
 [ext_resource type="Script" path="res://actors/battlers/Node2D.gd" id="4_557ck"]
 [ext_resource type="Script" path="res://actors/battlers/ChargeManager.gd" id="5_ostpb"]
-[ext_resource type="PackedScene" uid="uid://bklnkitol1qwq" path="res://utils/AutoTrail.tscn" id="6_uwlq3"]
 [ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://actors/effects/trails/FlameTrail.tscn" id="7_slnb4"]
+[ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://actors/effects/trails/MotionAutoTrail.tscn" id="7_u4jif"]
 
 [sub_resource type="PhysicsMaterial" id="1"]
 friction = 0.0
@@ -50,6 +50,11 @@ func _process(delta):
 	for flame in flames:
 		flame.set_growing(flames_on)
 "
+
+[sub_resource type="Gradient" id="Gradient_x1a8h"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.997561)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
 
 [node name="Ship" type="RigidBody2D"]
 collision_layer = 4194305
@@ -134,8 +139,6 @@ script = SubResource("GDScript_mur34")
 host = NodePath("..")
 flames = [NodePath("../BottomFlameTrail"), NodePath("../FlameTrail")]
 
-[node name="AutoTrail" parent="." instance=ExtResource("6_uwlq3")]
-
 [node name="BottomFlameTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("7_slnb4")]
 width = 120.0
 default_color = Color(1, 0, 0, 0.556863)
@@ -146,6 +149,10 @@ offset = Vector2(-80, 0)
 width = 50.0
 host = NodePath("..")
 offset = Vector2(-95, 0)
+
+[node name="MotionAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("7_u4jif")]
+gradient = SubResource("Gradient_x1a8h")
+host = NodePath("..")
 
 [connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

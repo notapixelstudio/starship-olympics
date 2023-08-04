@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://kgg30lo5k8b6"]
+[gd_scene load_steps=10 format=3 uid="uid://kgg30lo5k8b6"]
 
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://actors/battlers/ships/Ship.tscn" id="1_ck6s2"]
 [ext_resource type="Script" path="res://NewArena.gd" id="1_oao3p"]
@@ -6,8 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_swyl2"]
 [ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="5_3g02u"]
 [ext_resource type="PackedScene" uid="uid://c15t76wo8d02d" path="res://actors/battlers/ships/managers/FatManager.tscn" id="5_xanc7"]
-[ext_resource type="PackedScene" uid="uid://bklnkitol1qwq" path="res://utils/AutoTrail.tscn" id="6_ks2je"]
-[ext_resource type="Texture2D" uid="uid://b45mxffwjy7yv" path="res://assets/shaders/trail.png" id="7_h50gu"]
 
 [sub_resource type="PhysicsMaterial" id="1"]
 friction = 0.0
@@ -15,6 +13,13 @@ bounce = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3sh1n"]
 radius = 55.0
+
+[sub_resource type="GDScript" id="GDScript_0wtoe"]
+script/source = "extends Area2D
+
+func _on_body_entered(body):
+	body.queue_free()
+"
 
 [node name="NewArena" type="Node2D"]
 script = ExtResource("1_oao3p")
@@ -34,22 +39,6 @@ controls = "kb2"
 
 [node name="FatManager" parent="Ship2" instance=ExtResource("5_xanc7")]
 
-[node name="AutoTrail2" parent="Ship2" instance=ExtResource("6_ks2je")]
-position = Vector2(-48, 20)
-starting_color = Color(1, 0, 0, 0.235294)
-length = 10
-width = 50
-texture = ExtResource("7_h50gu")
-texture_mode = 2
-
-[node name="AutoTrail3" parent="Ship2" instance=ExtResource("6_ks2je")]
-position = Vector2(-48, -20)
-starting_color = Color(1, 0, 0, 0.235294)
-length = 10
-width = 50
-texture = ExtResource("7_h50gu")
-texture_mode = 2
-
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
 
@@ -68,6 +57,7 @@ text = "NORMAL"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
+autostart = true
 
 [node name="Food" type="RigidBody2D" parent="."]
 position = Vector2(0, 624)
@@ -80,4 +70,15 @@ texture = ExtResource("5_3g02u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Food"]
 shape = SubResource("CircleShape2D_3sh1n")
 
+[node name="Death" type="Area2D" parent="."]
+script = SubResource("GDScript_0wtoe")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Death"]
+polygon = PackedVector2Array(-2350, -900, -2350, -500, -1900, -500, -1900, -900)
+
+[node name="Polygon2D" type="Polygon2D" parent="Death"]
+modulate = Color(1, 0.423529, 1, 1)
+polygon = PackedVector2Array(-2350, -500, -1900, -500, -1900, -900, -2350, -900)
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Death" to="Death" method="_on_body_entered"]
