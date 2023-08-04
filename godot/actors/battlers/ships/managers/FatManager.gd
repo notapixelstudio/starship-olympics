@@ -1,6 +1,6 @@
 extends Node
 
-var host : NewShip
+var host : Ship
 var fat := 1.0
 var base_mass : float
 var base_rotation_torque : float
@@ -12,7 +12,7 @@ var base_charge_bar_offset : float
 
 func _ready():
 	host = get_parent()
-	assert(host is NewShip)
+	assert(host is Ship)
 	host.hit.connect(_on_ship_hit_sth)
 	
 	base_mass = host.mass

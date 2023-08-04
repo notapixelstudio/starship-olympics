@@ -5,7 +5,7 @@ Node for the RigidBody3D and Ship physics
 it will get as export variable the battle template (containing the species values)
 and its keyboard control
 """
-class_name Ship
+class_name Shipz
 
 @export var debug_enabled = false
 @export_enum('kb1', 'kb2', 'joy1', 'joy2', 'joy3', 'joy4') var controls := "kb1"

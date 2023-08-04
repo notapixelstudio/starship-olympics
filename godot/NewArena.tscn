@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://kgg30lo5k8b6"]
+[gd_scene load_steps=11 format=3 uid="uid://kgg30lo5k8b6"]
 
-[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://actors/battlers/ships/NewShip.tscn" id="1_ck6s2"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://actors/battlers/ships/Ship.tscn" id="1_ck6s2"]
 [ext_resource type="Script" path="res://NewArena.gd" id="1_oao3p"]
 [ext_resource type="PackedScene" uid="uid://bs7ud8bxiveec" path="res://actors/battlers/ships/FatShip.tscn" id="2_pfne4"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_swyl2"]
@@ -9,27 +9,32 @@
 [ext_resource type="PackedScene" uid="uid://bklnkitol1qwq" path="res://utils/AutoTrail.tscn" id="6_ks2je"]
 [ext_resource type="Texture2D" uid="uid://b45mxffwjy7yv" path="res://assets/shaders/trail.png" id="7_h50gu"]
 
+[sub_resource type="PhysicsMaterial" id="1"]
+friction = 0.0
+bounce = 0.5
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_3sh1n"]
 radius = 55.0
 
 [node name="NewArena" type="Node2D"]
 script = ExtResource("1_oao3p")
 
-[node name="FatShip" parent="." instance=ExtResource("2_pfne4")]
+[node name="Ship" parent="." instance=ExtResource("2_pfne4")]
+physics_material_override = SubResource("1")
 
-[node name="PlayerBrain" parent="FatShip" instance=ExtResource("3_swyl2")]
+[node name="PlayerBrain" parent="Ship" instance=ExtResource("3_swyl2")]
 position = Vector2(-157, 360)
 
-[node name="NewShip2" parent="." instance=ExtResource("1_ck6s2")]
+[node name="Ship2" parent="." instance=ExtResource("1_ck6s2")]
 modulate = Color(0.694118, 0.027451, 0.298039, 1)
 position = Vector2(628, 360)
 
-[node name="PlayerBrain" parent="NewShip2" instance=ExtResource("3_swyl2")]
+[node name="PlayerBrain" parent="Ship2" instance=ExtResource("3_swyl2")]
 controls = "kb2"
 
-[node name="FatManager" parent="NewShip2" instance=ExtResource("5_xanc7")]
+[node name="FatManager" parent="Ship2" instance=ExtResource("5_xanc7")]
 
-[node name="AutoTrail2" parent="NewShip2" instance=ExtResource("6_ks2je")]
+[node name="AutoTrail2" parent="Ship2" instance=ExtResource("6_ks2je")]
 position = Vector2(-48, 20)
 starting_color = Color(1, 0, 0, 0.235294)
 length = 10
@@ -37,7 +42,7 @@ width = 50
 texture = ExtResource("7_h50gu")
 texture_mode = 2
 
-[node name="AutoTrail3" parent="NewShip2" instance=ExtResource("6_ks2je")]
+[node name="AutoTrail3" parent="Ship2" instance=ExtResource("6_ks2je")]
 position = Vector2(-48, -20)
 starting_color = Color(1, 0, 0, 0.235294)
 length = 10

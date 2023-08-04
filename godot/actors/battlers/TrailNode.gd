@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name Trail
+class_name Trailz
 
 var ship
 var ship_e : Entity

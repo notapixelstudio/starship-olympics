@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-class_name NewShip
+class_name Ship
 ## Ship base class
 
 @export var dash_ring_scene : PackedScene

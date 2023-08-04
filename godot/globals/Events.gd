@@ -34,8 +34,8 @@ signal sth_collided_with_ship(sth, ship) # on enter, no distinction between body
 signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no distinction between body or area, NearArea only
 
 # new events
-signal ship_hit_sth(ship:NewShip, sth:CollisionObject2D)
-signal sth_hurt_ship(sth:CollisionObject2D, ship:NewShip)
+signal ship_hit_sth(ship:Ship, sth:CollisionObject2D)
+signal sth_hurt_ship(sth:CollisionObject2D, ship:Ship)
 # new events
 
 signal sth_collected(collector, collectee)
