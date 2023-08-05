@@ -48,10 +48,10 @@ script/source = "extends Node
 func _process(delta):
 	var flames_on = host.is_thrusting()
 	for flame in flames:
-		flame.set_growing(flames_on)
+		flame.set_shrinking(not flames_on)
 "
 
-[sub_resource type="Gradient" id="Gradient_x1a8h"]
+[sub_resource type="Gradient" id="Gradient_jvxl8"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
@@ -151,7 +151,7 @@ host = NodePath("..")
 offset = Vector2(-95, 0)
 
 [node name="MotionAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("7_u4jif")]
-gradient = SubResource("Gradient_x1a8h")
+gradient = SubResource("Gradient_jvxl8")
 host = NodePath("..")
 
 [connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
