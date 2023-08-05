@@ -1,15 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://2cynjxryqe8t"]
+[gd_scene load_steps=6 format=3 uid="uid://2cynjxryqe8t"]
 
 [ext_resource type="Script" path="res://ui/screens/character_selection/CampaignSelectionScreen.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bhq3klwabv0i8" path="res://ui/screens/back_screen/BackScreen.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://bfjk2jikcv4ub" path="res://utils/ShearLabel.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://bagodu3id70gb" path="res://ui/screens/difficulty_screen/DifficultyScreen.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://ui/screens/character_selection/selection_panel/SelectionPanel.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://ui/screens/character_selection/selection_panel/PilotSelector.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://cgu7lwmnkg60h" path="res://ui/screens/character_selection/selection_panel/PilotSelector.tscn" id="6"]
 
 [node name="CampaignSelectionScreen" instance=ExtResource("2")]
 script = ExtResource("1")
-next_scene = ExtResource("4")
+next_scene = null
 
 [node name="MenuLabel" parent="." index="2" instance=ExtResource("3")]
 modulate = Color(1, 0.827451, 0.396078, 1)

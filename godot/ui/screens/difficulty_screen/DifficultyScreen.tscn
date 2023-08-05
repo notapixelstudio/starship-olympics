@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bagodu3id70gb"]
+[gd_scene load_steps=15 format=3 uid="uid://bagodu3id70gb"]
 
 [ext_resource type="Script" path="res://ui/screens/difficulty_screen/DifficultyScreen.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://1s36m3u5ge1m" path="res://ui/screens/back_screen/BackScreen.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bhq3klwabv0i8" path="res://ui/screens/back_screen/BackScreen.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://daj06fe3j3bqk" path="res://ui/difficulty_screen/art_hive_two.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bivwevr1reobj" path="res://ui/difficulty_screen/art_hard.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://bb7e7up6vbum1" path="res://ui/difficulty_screen/art_medium.png" id="5"]
@@ -12,7 +12,6 @@
 [ext_resource type="BitMap" uid="uid://ciabjoxrshgnu" path="res://ui/difficulty_screen/mask_hive_two.png" id="10"]
 [ext_resource type="BitMap" uid="uid://dna1hs4k7m2kt" path="res://ui/difficulty_screen/mask_medium.png" id="11"]
 [ext_resource type="PackedScene" uid="uid://bsnpuv1ss4bxe" path="res://ui/fancy_menus/FancyButton.tscn" id="12"]
-[ext_resource type="PackedScene" path="res://ui/screens/world_selection/WorldSelectionScreen.tscn" id="13"]
 [ext_resource type="Shader" path="res://assets/shaders/crt_local.gdshader" id="14"]
 
 [sub_resource type="ShaderMaterial" id="2"]
@@ -33,9 +32,9 @@ shader_parameter/aberration_speed = 1.0
 
 [node name="DifficultyScreen" instance=ExtResource("2")]
 script = ExtResource("1")
-next_scene = ExtResource("13")
+next_scene = null
 
-[node name="FancyMenu" parent="." index="0"]
+[node name="FancyMenu" parent="." index="1"]
 default_focused_element = NodePath("Easy")
 
 [node name="Easy" parent="FancyMenu" index="1" instance=ExtResource("12")]

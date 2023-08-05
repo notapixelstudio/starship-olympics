@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn7bm1m238rpp"]
+[gd_scene load_steps=5 format=3 uid="uid://bn7bm1m238rpp"]
 
 [ext_resource type="PackedScene" uid="uid://dxftfjyem72k6" path="res://ui/ScreenController.tscn" id="1"]
 [ext_resource type="Script" path="res://Main.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://WorldEnvironment.tscn" id="2_x8orw"]
-[ext_resource type="PackedScene" uid="uid://dhn4hc2tmwqkk" path="res://ui/screens/main/MainScreen.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://yuay7lcg5j7l" path="res://assets/sprites/background/static.png" id="5"]
 
 [node name="Main" type="Node2D"]
@@ -12,7 +11,6 @@ script = ExtResource("2")
 [node name="WorldEnvironment" parent="." instance=ExtResource("2_x8orw")]
 
 [node name="ScreenController" parent="." instance=ExtResource("1")]
-starting_screen_scene = ExtResource("3")
 
 [node name="ScreenPostProcessing" type="CanvasLayer" parent="."]
 layer = 119

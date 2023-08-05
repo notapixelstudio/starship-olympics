@@ -1,14 +1,13 @@
-[gd_scene load_steps=23 format=3 uid="uid://dhn4hc2tmwqkk"]
+[gd_scene load_steps=18 format=3 uid="uid://dhn4hc2tmwqkk"]
 
 [ext_resource type="PackedScene" uid="uid://bsnpuv1ss4bxe" path="res://ui/fancy_menus/FancyButton.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://ui/fancy_menus/FancyMenu.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cklefvrbsam55" path="res://ui/fancy_menus/FancyMenu.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://icu3hsbir54x" path="res://ui/screens/main/buttons/graphics_Credits.png" id="3"]
 [ext_resource type="BitMap" uid="uid://dq575clyd1jnt" path="res://ui/screens/main/buttons/area_HallOfFame.png" id="4"]
 [ext_resource type="BitMap" uid="uid://cvyfx63uo1ksg" path="res://ui/screens/main/buttons/area_Quit.png" id="5"]
 [ext_resource type="BitMap" uid="uid://dvhsyedagmr8n" path="res://ui/screens/main/buttons/area_Settings.png" id="6"]
 [ext_resource type="PackedScene" uid="uid://bfjk2jikcv4ub" path="res://utils/ShearLabel.tscn" id="7"]
 [ext_resource type="BitMap" uid="uid://ctbc2blnip55j" path="res://ui/screens/main/buttons/area_Versus.png" id="8"]
-[ext_resource type="PackedScene" path="res://ui/screens/credits/CreditsScreen.tscn" id="9"]
 [ext_resource type="Texture2D" uid="uid://dtm6odu2dquqx" path="res://ui/screens/main/buttons/graphics_HallOfFame.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://bjcmvo37vp1sw" path="res://ui/screens/main/main.svg" id="11"]
 [ext_resource type="Texture2D" uid="uid://b656raodeylgn" path="res://ui/screens/main/buttons/graphics_Versus.png" id="12"]
@@ -17,19 +16,15 @@
 [ext_resource type="Texture2D" uid="uid://4nfr7d0fvskg" path="res://ui/screens/main/buttons/graphics_Settings.png" id="15"]
 [ext_resource type="PackedScene" uid="uid://d3abq633jh74a" path="res://ui/Screen.tscn" id="16"]
 [ext_resource type="Script" path="res://ui/screens/main/MainScreen.gd" id="17"]
-[ext_resource type="PackedScene" uid="uid://c50sd4reltwxp" path="res://ui/screens/settings/SettingsScreen.tscn" id="18"]
-[ext_resource type="PackedScene" path="res://ui/screens/hall_of_fame/HallOfFameScreen.tscn" id="19"]
 [ext_resource type="Texture2D" uid="uid://dur6k2gx10cim" path="res://ui/screens/main/background.png" id="20"]
-[ext_resource type="PackedScene" path="res://ui/screens/character_selection/VersusSelectionScreen.tscn" id="21"]
-[ext_resource type="PackedScene" uid="uid://2cynjxryqe8t" path="res://ui/screens/character_selection/CampaignSelectionScreen.tscn" id="22"]
 
 [node name="MainScreen" instance=ExtResource("16")]
 script = ExtResource("17")
-versus_character_selection_scene = ExtResource("21")
-campaign_character_selection_scene = ExtResource("22")
-hall_of_fame_scene = ExtResource("19")
-settings_scene = ExtResource("18")
-credits_scene = ExtResource("9")
+versus_character_selection_scene = null
+campaign_character_selection_scene = null
+hall_of_fame_scene = null
+settings_scene = null
+credits_scene = null
 
 [node name="Reference" type="TextureRect" parent="." index="0"]
 visible = false
@@ -47,7 +42,6 @@ offset_bottom = 720.0
 texture = ExtResource("20")
 
 [node name="FancyMenu" parent="." index="2" instance=ExtResource("2")]
-anchors_preset = 0
 auto_neighbours = "both"
 default_focused_element = NodePath("Campaign")
 focus_default_element_on_ready = false
