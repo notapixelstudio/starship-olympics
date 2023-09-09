@@ -58,6 +58,11 @@ func set_rotation_request(v: float) -> void:
 	rotation_request = v
 	set_constant_torque(min(PI/2, rotation_request) * rotation_torque)
 	
+func _ready():
+	if DebugUtils.is_scene_standalone(self):
+		DebugUtils.apply_default_camera_to_node(self)
+		add_child(DebugUtils.get_default_ship_brain())
+		
 func are_controls_enabled():
 	# TODO: just yet
 	return true

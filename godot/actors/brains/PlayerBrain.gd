@@ -1,4 +1,5 @@
 extends Brain
+class_name PlayerBrain
 
 @export_enum('kb1', 'kb2', 'joy1', 'joy2', 'joy3', 'joy4') var controls: String: set = set_controls
 

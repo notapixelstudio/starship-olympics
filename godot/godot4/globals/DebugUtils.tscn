@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cexstqkjihqyd"]
+
+[ext_resource type="Script" path="res://godot4/globals/DebugUtils.gd" id="1_5bh8s"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="2_yuyh7"]
+
+[node name="DebugUtils" type="Node"]
+script = ExtResource("1_5bh8s")
+test_ship_brain = ExtResource("2_yuyh7")
