@@ -52,14 +52,13 @@ func _process(delta):
 		flame.set_shrinking(not flames_on)
 "
 
-[sub_resource type="Gradient" id="Gradient_jhffm"]
+[sub_resource type="Gradient" id="Gradient_v3ih2"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
 
 [sub_resource type="GDScript" id="GDScript_4hb7k"]
 script/source = "extends DebugNode
-
 
 @export var test_default_brain: PackedScene
 
@@ -166,12 +165,13 @@ host = NodePath("..")
 offset = Vector2(-95, 0)
 
 [node name="MotionAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("7_u4jif")]
-gradient = SubResource("Gradient_jhffm")
+gradient = SubResource("Gradient_v3ih2")
 host = NodePath("..")
 
-[node name="DebugNode" type="Node2D" parent="."]
+[node name="DebugNode" type="Node2D" parent="." node_paths=PackedStringArray("host")]
 script = SubResource("GDScript_4hb7k")
 test_default_brain = ExtResource("8_yfcmx")
+host = NodePath("..")
 
 [connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
