@@ -64,6 +64,7 @@ script/source = "extends DebugNode
 @export var test_default_brain: PackedScene
 
 func _ready():
+	super._ready()
 	if self.is_host_standalone():
 		await host.ready
 		host.add_child.call_deferred(test_default_brain.instantiate())
@@ -168,10 +169,9 @@ offset = Vector2(-95, 0)
 gradient = SubResource("Gradient_jhffm")
 host = NodePath("..")
 
-[node name="DebugNode" type="Node2D" parent="." node_paths=PackedStringArray("host")]
+[node name="DebugNode" type="Node2D" parent="."]
 script = SubResource("GDScript_4hb7k")
 test_default_brain = ExtResource("8_yfcmx")
-host = NodePath("..")
 
 [connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
 [connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
