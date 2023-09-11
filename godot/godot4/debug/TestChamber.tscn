@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmlwbymobhm0b"]
+
+[ext_resource type="PackedScene" uid="uid://30qipdf3bcop" path="res://godot4/debug/TestGrid.tscn" id="1_vte5m"]
+
+[node name="TestChamber" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.2, 0.2)
+
+[node name="TestGrid" parent="." instance=ExtResource("1_vte5m")]
+color = Color(0.235294, 0.545098, 0.780392, 1)
