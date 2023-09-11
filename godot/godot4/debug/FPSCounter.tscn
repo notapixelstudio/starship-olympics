@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7n50llh4jsu8"]
+
+[ext_resource type="Script" path="res://godot4/debug/FPSCounter.gd" id="1_c8wni"]
+
+[node name="FPSCounter" type="Node2D"]
+script = ExtResource("1_c8wni")
+
+[node name="Count" type="Label" parent="."]
+offset_left = -1.0
+offset_top = -7.0
+offset_right = 99.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 48
+text = "60"
+
+[node name="Units" type="Label" parent="."]
+offset_top = 48.0
+offset_right = 40.0
+offset_bottom = 74.0
+text = "FPS"
