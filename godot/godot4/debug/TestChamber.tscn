@@ -1,20 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://dmlwbymobhm0b"]
 
-[ext_resource type="PackedScene" uid="uid://30qipdf3bcop" path="res://godot4/debug/TestGrid.tscn" id="1_vte5m"]
 [ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="2_2i1b7"]
-[ext_resource type="PackedScene" uid="uid://c7n50llh4jsu8" path="res://godot4/debug/FPSCounter.tscn" id="3_2mddg"]
+[ext_resource type="Script" path="res://addons/debugToolbox/FPSCounter.gd" id="3_2gjjm"]
+[ext_resource type="Script" path="res://addons/debugToolbox/TestGrid.gd" id="3_dshuw"]
 
 [node name="TestChamber" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
 
-[node name="TestGrid" parent="." instance=ExtResource("1_vte5m")]
-position = Vector2(-1250, -1250)
-color = Color(0.235294, 0.545098, 0.780392, 1)
-
 [node name="WorldEnvironment" parent="." instance=ExtResource("2_2i1b7")]
 
-[node name="FPSCounter" parent="." instance=ExtResource("3_2mddg")]
-position = Vector2(1300, 1050)
-scale = Vector2(3, 3)
+[node name="FPSCounter" type="Node2D" parent="."]
+position = Vector2(1350, 1078)
+script = ExtResource("3_2gjjm")
+
+[node name="TestGrid" type="Node2D" parent="."]
+position = Vector2(-1250, -1250)
+script = ExtResource("3_dshuw")

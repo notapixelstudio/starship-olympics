@@ -5,8 +5,8 @@ extends Node2D
 @export var columns := 50
 @export var dx := 50
 @export var dy := 50
-@export var color := Color.WHITE
-@export var border_color := Color.WHITE
+@export var color := Color('#3c8bc7')
+@export var border_color := Color('#8ac4ff')
 @export var major_line_every := 2
 
 func _ready():
