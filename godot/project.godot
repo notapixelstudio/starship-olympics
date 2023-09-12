@@ -45,7 +45,6 @@ Analytics="*res://globals/analytics.gd"
 LifecycleAPI="*res://globals/LifecycleAPI.gd"
 Logger="*res://globals/Logger.gd"
 SoundEffects="*res://globals/SoundEffects.gd"
-DebugUtils="*res://godot4/globals/DebugUtils.tscn"
 
 [debug]
 
@@ -64,7 +63,7 @@ window/size/fullscreen.debug=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/traits/plugin.cfg")
+enabled=PackedStringArray("res://addons/debugToolbox/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/traits/plugin.cfg")
 
 [global]
 
