@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=20 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PackedScene" uid="uid://b6gg3o407i70x" path="res://godot4/actors/effects/DashRing.tscn" id="2_42gb5"]
 [ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="3_gbkft"]
 [ext_resource type="Script" path="res://actors/battlers/Node2D.gd" id="4_557ck"]
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="4_mpdfg"]
+[ext_resource type="PackedScene" uid="uid://d1673ytdlyny4" path="res://godot4/debug/OnShipDebug.tscn" id="5_0tcqu"]
 [ext_resource type="Script" path="res://actors/battlers/ChargeManager.gd" id="5_ostpb"]
 [ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://godot4/actors/effects/trails/FlameTrail.tscn" id="7_slnb4"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/actors/effects/trails/MotionAutoTrail.tscn" id="7_u4jif"]
@@ -30,6 +31,7 @@ func _ready():
 		
 		# place the ship inside the test chamber
 		self.place_host_in_test_chamber(test_chamber.instantiate())
+		
 "
 
 [sub_resource type="GDScript" id="GDScript_jwr13"]
@@ -71,7 +73,7 @@ func _process(delta):
 		flame.set_shrinking(not flames_on)
 "
 
-[sub_resource type="Gradient" id="Gradient_8eqnd"]
+[sub_resource type="Gradient" id="Gradient_vra2g"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
@@ -90,11 +92,14 @@ angular_damp = 80.0
 script = ExtResource("1_cvjhk")
 dash_ring_scene = ExtResource("2_42gb5")
 
-[node name="DebugNode" type="Node2D" parent="." node_paths=PackedStringArray("host")]
+[node name="DebugNode2D" type="Node2D" parent="." node_paths=PackedStringArray("host")]
 script = SubResource("GDScript_4hb7k")
 test_default_brain = ExtResource("8_yfcmx")
 test_chamber = ExtResource("4_mpdfg")
 host = NodePath("..")
+
+[node name="OnShipDebug" parent="DebugNode2D" node_paths=PackedStringArray("host") instance=ExtResource("5_0tcqu")]
+host = NodePath("../..")
 
 [node name="Graphics" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -177,7 +182,7 @@ host = NodePath("..")
 offset = Vector2(-95, 0)
 
 [node name="MotionAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("7_u4jif")]
-gradient = SubResource("Gradient_8eqnd")
+gradient = SubResource("Gradient_vra2g")
 host = NodePath("..")
 
 [connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
