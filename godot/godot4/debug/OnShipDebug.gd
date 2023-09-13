@@ -17,7 +17,10 @@ var colors = {
 
 const WIDTH = 8
 const MUL = 0.5
+const VELOCITY_SCALE = 0.5
 
+func _ready():
+	$Trajectory.host = host
 
 func _draw():
 	if not enabled:
@@ -27,7 +30,7 @@ func _draw():
 	draw_vector(Vector2.RIGHT.rotated(host.global_rotation)*400, Vector2(), colors['PINK'])
 	
 	# draw linear velocity
-	draw_vector(host.linear_velocity*0.5, Vector2(), colors['YELLOW'])
+	draw_vector(host.linear_velocity*VELOCITY_SCALE, Vector2(), colors['YELLOW'])
 	
 	# draw drift vector
 	#draw_vector(host.drift, Vector2(), colors['WHITE'] if host.drift.length() > 400 else colors['BLUE'])
@@ -67,5 +70,7 @@ func _process(_delta):
 	rotation = -host.rotation
 	#if host and host.cpu:
 	#	$Label.text = host.behaviour_mode
+	
+	$Comb.add_point(host.global_position + host.linear_velocity*0.25)
 	
 	queue_redraw()

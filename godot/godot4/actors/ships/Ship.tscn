@@ -30,7 +30,9 @@ func _ready():
 		host.add_child.call_deferred(test_default_brain.instantiate())
 		
 		# place the ship inside the test chamber
-		self.place_host_in_test_chamber(test_chamber.instantiate())
+		var test_chamber_instance = test_chamber.instantiate()
+		test_chamber_instance.set_test_subject(host)
+		self.place_host_in_test_chamber(test_chamber_instance)
 		
 "
 
@@ -73,7 +75,7 @@ func _process(delta):
 		flame.set_shrinking(not flames_on)
 "
 
-[sub_resource type="Gradient" id="Gradient_vra2g"]
+[sub_resource type="Gradient" id="Gradient_qcq3n"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
@@ -99,6 +101,7 @@ test_chamber = ExtResource("4_mpdfg")
 host = NodePath("..")
 
 [node name="OnShipDebug" parent="DebugNode2D" node_paths=PackedStringArray("host") instance=ExtResource("5_0tcqu")]
+enabled = true
 host = NodePath("../..")
 
 [node name="Graphics" type="Node2D" parent="."]
@@ -182,7 +185,7 @@ host = NodePath("..")
 offset = Vector2(-95, 0)
 
 [node name="MotionAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("7_u4jif")]
-gradient = SubResource("Gradient_vra2g")
+gradient = SubResource("Gradient_qcq3n")
 host = NodePath("..")
 
 [connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
