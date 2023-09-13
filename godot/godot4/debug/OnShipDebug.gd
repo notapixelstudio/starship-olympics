@@ -70,6 +70,7 @@ func _process(_delta):
 	#	$Label.text = host.behaviour_mode
 	
 	$Trajectory.add_point(host.global_position)
-	$VelocityComb.add_points_pair(host.global_position, host.linear_velocity*0.25)
+	$VelocityComb.add_points_pair(host.global_position, host.linear_velocity*0.5*0.5)
+	$DirectionComb.add_points_pair(host.global_position, Vector2.RIGHT.rotated(host.global_rotation)*400*0.5)
 	
 	queue_redraw()

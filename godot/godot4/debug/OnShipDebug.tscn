@@ -14,8 +14,14 @@ offset_right = 220.0
 offset_bottom = -50.0
 
 [node name="VelocityComb" parent="." instance=ExtResource("3_s30rr")]
+visible = false
 width = 4.0
 default_color = Color(1, 0.466667, 0, 1)
 
+[node name="DirectionComb" parent="." instance=ExtResource("3_s30rr")]
+visible = false
+width = 4.0
+default_color = Color(0.0980392, 0.458824, 0.819608, 1)
+
 [node name="Trajectory" parent="." instance=ExtResource("2_i5i4x")]
-default_color = Color(0.1, 0.46, 0.82, 1)
+default_color = Color(0.0980392, 0.458824, 0.819608, 1)
