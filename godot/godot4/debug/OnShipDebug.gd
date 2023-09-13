@@ -12,25 +12,23 @@ var colors = {
 	YELLOW = Color(1.0, .757, .027),
 	GREEN = Color(.282, .757, .255),
 	BLUE = Color(.098, .463, .824),
-	PINK = Color(.914, .118, .388)
+	PINK = Color(.914, .118, .388),
+	ORANGE = Color(1, 0.467, 0)
 }
 
 const WIDTH = 8
 const MUL = 0.5
 const VELOCITY_SCALE = 0.5
 
-func _ready():
-	$Trajectory.host = host
-
 func _draw():
 	if not enabled:
 		return
 	
 	# draw direction vector
-	draw_vector(Vector2.RIGHT.rotated(host.global_rotation)*400, Vector2(), colors['PINK'])
+	draw_vector(Vector2.RIGHT.rotated(host.global_rotation)*400, Vector2(), colors['BLUE'])
 	
 	# draw linear velocity
-	draw_vector(host.linear_velocity*VELOCITY_SCALE, Vector2(), colors['YELLOW'])
+	draw_vector(host.linear_velocity*VELOCITY_SCALE, Vector2(), colors['ORANGE'])
 	
 	# draw drift vector
 	#draw_vector(host.drift, Vector2(), colors['WHITE'] if host.drift.length() > 400 else colors['BLUE'])
@@ -71,6 +69,7 @@ func _process(_delta):
 	#if host and host.cpu:
 	#	$Label.text = host.behaviour_mode
 	
-	$Comb.add_point(host.global_position + host.linear_velocity*0.25)
+	$Trajectory.add_point(host.global_position)
+	$VelocityComb.add_points_pair(host.global_position, host.linear_velocity*0.25)
 	
 	queue_redraw()

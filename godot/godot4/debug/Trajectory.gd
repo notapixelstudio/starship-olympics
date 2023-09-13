@@ -1,31 +1,27 @@
 extends Line2D
 
-## A special type of [Line2D] that automatically erase old points.
+## A special type of [Line2D] that erases its oldest points if it gets too long.
 
-## The maximum age in seconds for a point in the trail.
-@export_range(0.0, 100000.0, 0.1, 'suffix:s') var max_age := 1.0
+## The maximum pixel length enforced for the line.
+@export_range(0, 100000, 1, 'suffix:px') var max_length := 6000
 
 var _curve : Curve2D
-var _timestamps : Array
-var _length : float
 	
 func _ready():
 	_curve = Curve2D.new()
-	_timestamps = []
 	
 func _process(delta):
-	assert(_curve.get_point_count() == _timestamps.size())
-	
-	while _timestamps.size() > 0 and Time.get_ticks_msec()-_timestamps[0] > max_age*1000.0:
+	while _curve.get_baked_length() > max_length:
 		_curve.remove_point(0)
-		_timestamps.pop_front()
 		
 	_redraw()
 	
 func add_point(new_point : Vector2, index : int = -1):
 	assert(index == -1)
-	_curve.add_point(new_point)
-	_timestamps.append(Time.get_ticks_msec())
+	
+	# add the new point only if it is far enough from the last one
+	if _curve.get_point_count() == 0 or new_point.distance_to(_curve.get_point_position(_curve.get_point_count()-1)) > 0.1:
+		_curve.add_point(new_point)
 	
 func _redraw() -> void:
 	set_points(_curve.get_baked_points())
