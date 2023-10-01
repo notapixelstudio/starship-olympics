@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bkvs83hnc26an"]
 
-[ext_resource type="PackedScene" path="res://actors/brains/Brain.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://bd2hhntyqbksl" path="res://actors/brains/Brain.tscn" id="1"]
 [ext_resource type="Script" path="res://actors/brains/CPUBrain.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bf2ddnyt7s7n5" path="res://assets/sprites/signs/X.png" id="3"]
 [ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="4"]
@@ -14,9 +14,6 @@ func _process(delta):
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("4")])
-face_index = null
-embolden = null
-transform = null
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0

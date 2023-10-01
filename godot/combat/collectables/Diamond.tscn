@@ -1,186 +1,191 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=19 format=3 uid="uid://ckykuuqee1aml"]
 
-[ext_resource path="res://combat/collectables/Diamond.gd" type="Script" id=1]
-[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture2D" id=3]
-[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture2D" id=5]
-[ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/sprites/environments/diamond.png" type="Texture2D" id=7]
-[ext_resource path="res://assets/sprites/environments/crown_halo.png" type="Texture2D" id=8]
-[ext_resource path="res://assets/animations/AppearFuhfuhfuh.tres" type="Animation" id=9]
-[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=10]
-[ext_resource path="res://actors/environments/DiamondCollectParticles.tscn" type="PackedScene" id=11]
-[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=12]
-[ext_resource path="res://assets/audio/FX/sfx_sounds_impact10.wav" type="AudioStream" id=13]
-[ext_resource path="res://assets/sprites/environments/diamond_outline.png" type="Texture2D" id=14]
+[ext_resource type="Script" path="res://combat/collectables/Diamond.gd" id="1"]
+[ext_resource type="Script" path="res://addons/ECM/Entity.gd" id="2"]
+[ext_resource type="Script" path="res://addons/ECM/Component.gd" id="4"]
+[ext_resource type="PackedScene" path="res://combat/traits/Strategic.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://cyqlaxwtqgk0u" path="res://assets/sprites/environments/diamond.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://brxcax73it83q" path="res://assets/sprites/environments/crown_halo.png" id="8"]
+[ext_resource type="Animation" path="res://assets/animations/AppearFuhfuhfuh.tres" id="9"]
+[ext_resource type="PackedScene" path="res://actors/environments/DiamondCollectParticles.tscn" id="11"]
+[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="12"]
+[ext_resource type="AudioStream" uid="uid://cjmuge1iae07f" path="res://assets/audio/FX/sfx_sounds_impact10.wav" id="13"]
+[ext_resource type="Texture2D" uid="uid://5bdkckp4a6ig" path="res://assets/sprites/environments/diamond_outline.png" id="14"]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id="1"]
 radius = 70.0
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "Blink"
 length = 2.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.5, 2 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Vector2( 0.8, 0.8 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ) ]
+"values": [Vector2(0.8, 0.8), Vector2(1, 1), Vector2(0.8, 0.8)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Sprite2D:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( -0.1, 0.5, 1.3, 2 ),
-"transitions": PackedFloat32Array( 0.5, 2, 1, 0.5 ),
+"times": PackedFloat32Array(-0.1, 0.5, 1.3, 2),
+"transitions": PackedFloat32Array(0.5, 2, 1, 0.5),
 "update": 0,
-"values": [ Color( 0.305882, 1, 0.968627, 0 ), Color( 0.305882, 1, 0.968627, 0 ), Color( 0.305882, 1, 0.968627, 0.388235 ), Color( 0.305882, 1, 0.968627, 0 ) ]
+"values": [Color(0.305882, 1, 0.968627, 0), Color(0.305882, 1, 0.968627, 0), Color(0.305882, 1, 0.968627, 0.388235), Color(0.305882, 1, 0.968627, 0)]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8xvxa"]
+_data = {
+"Blink": SubResource("2")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_njp27"]
+_data = {
+"AppearFuhfuhfuh": ExtResource("9")
+}
+
+[sub_resource type="Animation" id="3"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("OutlineSprite:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Sprite2D:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id="4"]
 resource_name = "drop"
 length = 1.5
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("OutlineSprite:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 1.5 ),
-"transitions": PackedFloat32Array( 0.5, 0.5 ),
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1.5, 1.5, 1.5, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Sprite2D:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 1.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1.7, 1.7, 1.7, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1.7, 1.7, 1.7, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fbxl1"]
+_data = {
+"RESET": SubResource("3"),
+"drop": SubResource("4")
 }
 
 [node name="Diamond" type="RigidBody2D" groups=["Diamond", "Foreground", "in_camera"]]
 collision_layer = 2048
 collision_mask = 3092
 linear_damp = 1.0
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="Strategic" parent="." instance=ExtResource( 6 )]
+[node name="Strategic" parent="." instance=ExtResource("6")]
 
 [node name="Entity" type="Node" parent="."]
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_icon": ExtResource( 3 )
-}
+script = ExtResource("2")
 
 [node name="Collectable" type="Node" parent="Entity"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
-
-[node name="Shadow" parent="." instance=ExtResource( 10 )]
-sprite = NodePath("../Sprite2D")
+script = ExtResource("4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2( 0, 3 )
-texture = ExtResource( 7 )
+position = Vector2(0, 3)
+texture = ExtResource("7")
 
 [node name="OutlineSprite" type="Sprite2D" parent="."]
-self_modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 3 )
-scale = Vector2( 1.05, 1.05 )
-texture = ExtResource( 14 )
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 3)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("14")
 
 [node name="SpriteEffect" type="Sprite2D" parent="."]
 visible = false
-position = Vector2( 0, 3 )
-scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 7 )
+position = Vector2(0, 3)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7")
 
 [node name="SpriteEffect2" type="Sprite2D" parent="."]
 visible = false
-position = Vector2( 0, 3 )
-texture = ExtResource( 7 )
+position = Vector2(0, 3)
+texture = ExtResource("7")
 
 [node name="SpriteEffect3" type="Sprite2D" parent="."]
 visible = false
-position = Vector2( 0, 3 )
-texture = ExtResource( 7 )
+position = Vector2(0, 3)
+texture = ExtResource("7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="Glow" type="Node2D" parent="."]
-scale = Vector2( 0.8, 0.8 )
+scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Glow"]
-modulate = Color( 0.305882, 1, 0.968627, 0.288831 )
-scale = Vector2( 0.869436, 0.869436 )
-texture = ExtResource( 8 )
+modulate = Color(0.305882, 1, 0.968627, 0.175307)
+scale = Vector2(0.928323, 0.928323)
+texture = ExtResource("8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
-playback_speed = 2.0
-anims/Blink = SubResource( 2 )
+libraries = {
+"": SubResource("AnimationLibrary_8xvxa")
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/AppearFuhfuhfuh = ExtResource( 9 )
+libraries = {
+"": SubResource("AnimationLibrary_njp27")
+}
 
-[node name="Particles" parent="." instance=ExtResource( 11 )]
+[node name="Particles" parent="." instance=ExtResource("11")]
 
 [node name="DropAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 3 )
-anims/drop = SubResource( 4 )
+libraries = {
+"": SubResource("AnimationLibrary_fbxl1")
+}
 
 [node name="DamageSFX" type="AudioStreamPlayer2D" parent="."]
-bus = "SFX"
-script = ExtResource( 12 )
-streams = [ ExtResource( 13 ) ]
-volume_min = 0
-volume_max = 0
+bus = &"SFX"
+script = ExtResource("12")
+streams = Array[AudioStream]([ExtResource("13")])
 randomize_pitch = true
-pitch_min = 1
 pitch_max = 1.2
