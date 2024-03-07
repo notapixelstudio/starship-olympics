@@ -7,7 +7,7 @@ class_name StartingDeck
 @export var order : int = 0
 @export var name : String
 @export var image : CompressedTexture2D
-@export var cards : Array = [Object(), Object(), Object(), Object()] # DraftCard
+@export var cards : Array = [Object.new(), Object.new(), Object.new(), Object.new()] # DraftCard
 @export var nexts : Array = [] # DraftCard
 @export var playlist := false
 @export var unlocks : Array # [String] # ids of decks (indifferent if they are playlists or not)

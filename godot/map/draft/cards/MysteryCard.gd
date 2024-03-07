@@ -5,7 +5,7 @@ class_name MysteryCard
 @export var description : String
 @export var mystery_cover : Texture2D
 @export var subcards : Array = [] # Array of DraftCard
-@export (String, 'mystery', "blue", "white", "cyan", "red", "yellow", 'green', "magenta") var color = 'mystery'
+@export_enum('mystery', "blue", "white", "cyan", "red", "yellow", 'green', "magenta") var color = 'mystery'
 
 var _subcards_copy : Array = []
 var current_subcard : DraftCard = null

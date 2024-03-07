@@ -25,7 +25,7 @@ hostname.local="http://localhost:8000"
 config/name="StarshipOlympics"
 config/tags=PackedStringArray("godot4", "starship_olympics")
 run/main_scene="res://ui/menu_scenes/intro_screen/Intro.tscn"
-config/features=PackedStringArray("4.1")
+config/features=PackedStringArray("4.2")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://assets/art/translucid.png"
 config/icon="res://logo.png"
@@ -38,13 +38,13 @@ Soundtrack="*res://globals/Soundtrack.tscn"
 global="*res://globals/global.gd"
 Controls="*res://globals/Controls.gd"
 TheUnlocker="*res://globals/TheUnlocker.gd"
-ECM="*res://addons/ECM/ECM.gd"
+ECM="res://addons/ECM/ECM.gd"
 traits="*res://addons/traits/traits.gd"
 Events="*res://globals/Events.gd"
 Analytics="*res://globals/analytics.gd"
-LifecycleAPI="*res://globals/LifecycleAPI.gd"
-Logger="*res://globals/Logger.gd"
-SoundEffects="*res://globals/SoundEffects.gd"
+LifecycleAPI="res://globals/LifecycleAPI.gd"
+Logger="res://globals/Logger.gd"
+SoundEffects="res://globals/SoundEffects.gd"
 
 [debug]
 

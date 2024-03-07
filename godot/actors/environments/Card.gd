@@ -8,7 +8,7 @@ class_name Card
 @onready var monogram = $Ground/Front/Wrapper/Monogram
 @onready var timer = $Timer
 
-@export (String) var content = null: get = get_content, set = set_content
+@export var content : String = '': get = get_content, set = set_content
 
 @export var auto_flip_back = false: set = set_auto_flip_back
 @export var take_ownership = false

@@ -20,19 +20,23 @@ func _init():
 	# open the log file and go to the end
 	var error = 0
 	file = FileAccess.open(LOG_PATH, FileAccess.READ_WRITE)
-	var filesize_in_kb = file.get_length()/float(1024)
-	print("Log file is {size} KB".format({"size":filesize_in_kb}))
-	if filesize_in_kb > 200:
-		file.close()
-		print("Will remove the file because too big")
-		error = DirAccess.remove_absolute(LOG_PATH)
-		error = ERR_FILE_NOT_FOUND
-	if error == ERR_FILE_NOT_FOUND :
-		error = FileAccess.open(LOG_PATH, FileAccess.WRITE_READ)
-	if error == OK:
-		file.seek_end()
-	else:
+	if file == null:
 		print("We could not open a log file")
+		print(FileAccess.get_open_error())
+	else:
+		var filesize_in_kb = file.get_length()/float(1024)
+		print("Log file is {size} KB".format({"size":filesize_in_kb}))
+		if filesize_in_kb > 200:
+			file.close()
+			print("Will remove the file because too big")
+			error = DirAccess.remove_absolute(LOG_PATH)
+			error = ERR_FILE_NOT_FOUND
+		if error == ERR_FILE_NOT_FOUND :
+			error = FileAccess.open(LOG_PATH, FileAccess.WRITE_READ)
+		if error == OK:
+			file.seek_end()
+		else:
+			print("We could not open a log file")
 	
 	# events connected and logged
 	Events.connect('analytics_event', Callable(self, 'log_event'))
