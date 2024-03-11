@@ -36,12 +36,13 @@ func get_texture() -> Texture2D:
 func get_sprite_position() -> Vector2:
 	return $Sprite2D.position
 	
-func on_collected_by(collector):
+func touched_by(toucher : Ship):
 	var particles = $Particles
 	remove_child(particles)
 	get_parent().add_child(particles)
 	particles.global_position = global_position
 	particles.go()
+	queue_free()
 	
 func drop() -> void:
 	$DropAnimationPlayer.play("drop")

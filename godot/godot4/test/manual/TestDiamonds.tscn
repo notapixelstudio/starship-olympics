@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://ovcqd8vqj5i1"]
+
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_gfqil"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_bhfha"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_x272x"]
+[ext_resource type="PackedScene" uid="uid://ckykuuqee1aml" path="res://combat/collectables/Diamond.tscn" id="4_cr58x"]
+
+[node name="TestChamber" instance=ExtResource("1_gfqil")]
+
+[node name="Ship" parent="." index="4" instance=ExtResource("2_bhfha")]
+
+[node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("3_x272x")]
+
+[node name="Diamond" parent="." index="5" instance=ExtResource("4_cr58x")]
+position = Vector2(800, 600)
+
+[node name="Diamond2" parent="." index="6" instance=ExtResource("4_cr58x")]
+position = Vector2(800, 400)
+
+[node name="Diamond3" parent="." index="7" instance=ExtResource("4_cr58x")]
+position = Vector2(800, 200)
+
+[node name="Diamond4" parent="." index="8" instance=ExtResource("4_cr58x")]
+position = Vector2(800, 0)
