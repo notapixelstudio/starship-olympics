@@ -1,9 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://ovcqd8vqj5i1"]
+[gd_scene load_steps=6 format=3 uid="uid://ovcqd8vqj5i1"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_gfqil"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_bhfha"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_x272x"]
 [ext_resource type="PackedScene" uid="uid://ckykuuqee1aml" path="res://combat/collectables/Diamond.tscn" id="4_cr58x"]
+
+[sub_resource type="GDScript" id="GDScript_wv7j7"]
+script/source = "extends RichTextLabel
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	Events.sth_collected.connect(_on_sth_collected)
+
+func _on_sth_collected(collector, collectee):
+	var t = Time.get_ticks_msec()
+	text = str(t) + \": \" + collector.name + \" collected \" + collectee.name + \"\\n\" + text
+	
+"
 
 [node name="TestChamber" instance=ExtResource("1_gfqil")]
 
@@ -22,3 +36,12 @@ position = Vector2(800, 200)
 
 [node name="Diamond4" parent="." index="8" instance=ExtResource("4_cr58x")]
 position = Vector2(800, 0)
+
+[node name="Log" type="RichTextLabel" parent="." index="9"]
+offset_left = 1300.0
+offset_top = -1200.0
+offset_right = 3150.0
+offset_bottom = 1050.0
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+script = SubResource("GDScript_wv7j7")

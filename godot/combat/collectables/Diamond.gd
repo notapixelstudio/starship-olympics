@@ -37,6 +37,7 @@ func get_sprite_position() -> Vector2:
 	return $Sprite2D.position
 	
 func touched_by(toucher : Ship):
+	Events.sth_collected.emit(toucher, self)
 	var particles = $Particles
 	remove_child(particles)
 	get_parent().add_child(particles)
