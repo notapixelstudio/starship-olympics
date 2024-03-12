@@ -1,22 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://ovcqd8vqj5i1"]
+[gd_scene load_steps=7 format=3 uid="uid://ovcqd8vqj5i1"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_gfqil"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_bhfha"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_x272x"]
 [ext_resource type="PackedScene" uid="uid://ckykuuqee1aml" path="res://combat/collectables/Diamond.tscn" id="4_cr58x"]
+[ext_resource type="FontFile" uid="uid://ckyr6ojx10hid" path="res://assets/fonts/fira_code/FiraCode-VF.ttf" id="5_pvvlo"]
 
 [sub_resource type="GDScript" id="GDScript_wv7j7"]
 script/source = "extends RichTextLabel
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	scroll_following = true
 	Events.sth_collected.connect(_on_sth_collected)
 
 func _on_sth_collected(collector, collectee):
-	var t = Time.get_ticks_msec()
-	text = str(t) + \": \" + collector.name + \" collected \" + collectee.name + \"\\n\" + text
+	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
 	
+func log_line(message : String) -> void:
+	var t = Time.get_ticks_msec()
+	var h = int(floor(t / 3600000))
+	var m = int(floor(t / 60000)) % 60
+	var s = int(floor(t / 1000)) % 60
+	var millis = t % 1000
+	append_text(\"[color=#8ac4ff]%0*d:%0*d:%0*d.%0*d[/color] %s\\n\" % [2, h, 2, m, 2, s, 3, millis, message.replace('[b]', '[color=orange]').replace('[/b]','[/color]')])
 "
 
 [node name="TestChamber" instance=ExtResource("1_gfqil")]
@@ -26,22 +33,251 @@ func _on_sth_collected(collector, collectee):
 [node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("3_x272x")]
 
 [node name="Diamond" parent="." index="5" instance=ExtResource("4_cr58x")]
-position = Vector2(800, 600)
+position = Vector2(1150, 1150)
 
 [node name="Diamond2" parent="." index="6" instance=ExtResource("4_cr58x")]
-position = Vector2(800, 400)
+position = Vector2(1150, 950)
 
 [node name="Diamond3" parent="." index="7" instance=ExtResource("4_cr58x")]
-position = Vector2(800, 200)
+position = Vector2(1150, 750)
 
 [node name="Diamond4" parent="." index="8" instance=ExtResource("4_cr58x")]
-position = Vector2(800, 0)
+position = Vector2(1150, 550)
 
-[node name="Log" type="RichTextLabel" parent="." index="9"]
+[node name="Diamond65" parent="." index="9" instance=ExtResource("4_cr58x")]
+position = Vector2(1000, 1150)
+
+[node name="Diamond66" parent="." index="10" instance=ExtResource("4_cr58x")]
+position = Vector2(1000, 950)
+
+[node name="Diamond67" parent="." index="11" instance=ExtResource("4_cr58x")]
+position = Vector2(1000, 750)
+
+[node name="Diamond68" parent="." index="12" instance=ExtResource("4_cr58x")]
+position = Vector2(1000, 550)
+
+[node name="Diamond69" parent="." index="13" instance=ExtResource("4_cr58x")]
+position = Vector2(850, 1150)
+
+[node name="Diamond70" parent="." index="14" instance=ExtResource("4_cr58x")]
+position = Vector2(850, 950)
+
+[node name="Diamond71" parent="." index="15" instance=ExtResource("4_cr58x")]
+position = Vector2(850, 750)
+
+[node name="Diamond72" parent="." index="16" instance=ExtResource("4_cr58x")]
+position = Vector2(850, 550)
+
+[node name="Diamond73" parent="." index="17" instance=ExtResource("4_cr58x")]
+position = Vector2(700, 1150)
+
+[node name="Diamond74" parent="." index="18" instance=ExtResource("4_cr58x")]
+position = Vector2(700, 950)
+
+[node name="Diamond75" parent="." index="19" instance=ExtResource("4_cr58x")]
+position = Vector2(700, 750)
+
+[node name="Diamond76" parent="." index="20" instance=ExtResource("4_cr58x")]
+position = Vector2(700, 550)
+
+[node name="Diamond77" parent="." index="21" instance=ExtResource("4_cr58x")]
+position = Vector2(550, 1150)
+
+[node name="Diamond78" parent="." index="22" instance=ExtResource("4_cr58x")]
+position = Vector2(550, 950)
+
+[node name="Diamond79" parent="." index="23" instance=ExtResource("4_cr58x")]
+position = Vector2(550, 750)
+
+[node name="Diamond80" parent="." index="24" instance=ExtResource("4_cr58x")]
+position = Vector2(550, 550)
+
+[node name="Diamond5" parent="." index="25" instance=ExtResource("4_cr58x")]
+position = Vector2(1150, -550)
+
+[node name="Diamond6" parent="." index="26" instance=ExtResource("4_cr58x")]
+position = Vector2(1150, -750)
+
+[node name="Diamond7" parent="." index="27" instance=ExtResource("4_cr58x")]
+position = Vector2(1150, -950)
+
+[node name="Diamond8" parent="." index="28" instance=ExtResource("4_cr58x")]
+position = Vector2(1150, -1150)
+
+[node name="Diamond49" parent="." index="29" instance=ExtResource("4_cr58x")]
+position = Vector2(1000, -550)
+
+[node name="Diamond50" parent="." index="30" instance=ExtResource("4_cr58x")]
+position = Vector2(1000, -750)
+
+[node name="Diamond51" parent="." index="31" instance=ExtResource("4_cr58x")]
+position = Vector2(1000, -950)
+
+[node name="Diamond52" parent="." index="32" instance=ExtResource("4_cr58x")]
+position = Vector2(1000, -1150)
+
+[node name="Diamond53" parent="." index="33" instance=ExtResource("4_cr58x")]
+position = Vector2(850, -550)
+
+[node name="Diamond54" parent="." index="34" instance=ExtResource("4_cr58x")]
+position = Vector2(850, -750)
+
+[node name="Diamond55" parent="." index="35" instance=ExtResource("4_cr58x")]
+position = Vector2(850, -950)
+
+[node name="Diamond56" parent="." index="36" instance=ExtResource("4_cr58x")]
+position = Vector2(850, -1150)
+
+[node name="Diamond57" parent="." index="37" instance=ExtResource("4_cr58x")]
+position = Vector2(700, -550)
+
+[node name="Diamond58" parent="." index="38" instance=ExtResource("4_cr58x")]
+position = Vector2(700, -750)
+
+[node name="Diamond59" parent="." index="39" instance=ExtResource("4_cr58x")]
+position = Vector2(700, -950)
+
+[node name="Diamond60" parent="." index="40" instance=ExtResource("4_cr58x")]
+position = Vector2(700, -1150)
+
+[node name="Diamond61" parent="." index="41" instance=ExtResource("4_cr58x")]
+position = Vector2(550, -550)
+
+[node name="Diamond62" parent="." index="42" instance=ExtResource("4_cr58x")]
+position = Vector2(550, -750)
+
+[node name="Diamond63" parent="." index="43" instance=ExtResource("4_cr58x")]
+position = Vector2(550, -950)
+
+[node name="Diamond64" parent="." index="44" instance=ExtResource("4_cr58x")]
+position = Vector2(550, -1150)
+
+[node name="Diamond9" parent="." index="45" instance=ExtResource("4_cr58x")]
+position = Vector2(-1150, -550)
+
+[node name="Diamond10" parent="." index="46" instance=ExtResource("4_cr58x")]
+position = Vector2(-1150, -750)
+
+[node name="Diamond11" parent="." index="47" instance=ExtResource("4_cr58x")]
+position = Vector2(-1150, -950)
+
+[node name="Diamond12" parent="." index="48" instance=ExtResource("4_cr58x")]
+position = Vector2(-1150, -1150)
+
+[node name="Diamond13" parent="." index="49" instance=ExtResource("4_cr58x")]
+position = Vector2(-1150, 1150)
+
+[node name="Diamond14" parent="." index="50" instance=ExtResource("4_cr58x")]
+position = Vector2(-1150, 950)
+
+[node name="Diamond15" parent="." index="51" instance=ExtResource("4_cr58x")]
+position = Vector2(-1150, 750)
+
+[node name="Diamond16" parent="." index="52" instance=ExtResource("4_cr58x")]
+position = Vector2(-1150, 550)
+
+[node name="Diamond17" parent="." index="53" instance=ExtResource("4_cr58x")]
+position = Vector2(-1000, -550)
+
+[node name="Diamond18" parent="." index="54" instance=ExtResource("4_cr58x")]
+position = Vector2(-1000, -750)
+
+[node name="Diamond19" parent="." index="55" instance=ExtResource("4_cr58x")]
+position = Vector2(-1000, -950)
+
+[node name="Diamond20" parent="." index="56" instance=ExtResource("4_cr58x")]
+position = Vector2(-1000, -1150)
+
+[node name="Diamond21" parent="." index="57" instance=ExtResource("4_cr58x")]
+position = Vector2(-1000, 1150)
+
+[node name="Diamond22" parent="." index="58" instance=ExtResource("4_cr58x")]
+position = Vector2(-1000, 950)
+
+[node name="Diamond23" parent="." index="59" instance=ExtResource("4_cr58x")]
+position = Vector2(-1000, 750)
+
+[node name="Diamond24" parent="." index="60" instance=ExtResource("4_cr58x")]
+position = Vector2(-1000, 550)
+
+[node name="Diamond25" parent="." index="61" instance=ExtResource("4_cr58x")]
+position = Vector2(-850, -550)
+
+[node name="Diamond26" parent="." index="62" instance=ExtResource("4_cr58x")]
+position = Vector2(-850, -750)
+
+[node name="Diamond27" parent="." index="63" instance=ExtResource("4_cr58x")]
+position = Vector2(-850, -950)
+
+[node name="Diamond28" parent="." index="64" instance=ExtResource("4_cr58x")]
+position = Vector2(-850, -1150)
+
+[node name="Diamond29" parent="." index="65" instance=ExtResource("4_cr58x")]
+position = Vector2(-850, 1150)
+
+[node name="Diamond30" parent="." index="66" instance=ExtResource("4_cr58x")]
+position = Vector2(-850, 950)
+
+[node name="Diamond31" parent="." index="67" instance=ExtResource("4_cr58x")]
+position = Vector2(-850, 750)
+
+[node name="Diamond32" parent="." index="68" instance=ExtResource("4_cr58x")]
+position = Vector2(-850, 550)
+
+[node name="Diamond33" parent="." index="69" instance=ExtResource("4_cr58x")]
+position = Vector2(-700, -550)
+
+[node name="Diamond34" parent="." index="70" instance=ExtResource("4_cr58x")]
+position = Vector2(-700, -750)
+
+[node name="Diamond35" parent="." index="71" instance=ExtResource("4_cr58x")]
+position = Vector2(-700, -950)
+
+[node name="Diamond36" parent="." index="72" instance=ExtResource("4_cr58x")]
+position = Vector2(-700, -1150)
+
+[node name="Diamond37" parent="." index="73" instance=ExtResource("4_cr58x")]
+position = Vector2(-700, 1150)
+
+[node name="Diamond38" parent="." index="74" instance=ExtResource("4_cr58x")]
+position = Vector2(-700, 950)
+
+[node name="Diamond39" parent="." index="75" instance=ExtResource("4_cr58x")]
+position = Vector2(-700, 750)
+
+[node name="Diamond40" parent="." index="76" instance=ExtResource("4_cr58x")]
+position = Vector2(-700, 550)
+
+[node name="Diamond41" parent="." index="77" instance=ExtResource("4_cr58x")]
+position = Vector2(-550, -550)
+
+[node name="Diamond42" parent="." index="78" instance=ExtResource("4_cr58x")]
+position = Vector2(-550, -750)
+
+[node name="Diamond43" parent="." index="79" instance=ExtResource("4_cr58x")]
+position = Vector2(-550, -950)
+
+[node name="Diamond44" parent="." index="80" instance=ExtResource("4_cr58x")]
+position = Vector2(-550, -1150)
+
+[node name="Diamond45" parent="." index="81" instance=ExtResource("4_cr58x")]
+position = Vector2(-550, 1150)
+
+[node name="Diamond46" parent="." index="82" instance=ExtResource("4_cr58x")]
+position = Vector2(-550, 950)
+
+[node name="Diamond47" parent="." index="83" instance=ExtResource("4_cr58x")]
+position = Vector2(-550, 750)
+
+[node name="Diamond48" parent="." index="84" instance=ExtResource("4_cr58x")]
+position = Vector2(-550, 550)
+
+[node name="Log" type="RichTextLabel" parent="." index="85"]
 offset_left = 1300.0
 offset_top = -1200.0
 offset_right = 3150.0
 offset_bottom = 1050.0
+theme_override_fonts/normal_font = ExtResource("5_pvvlo")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 script = SubResource("GDScript_wv7j7")
