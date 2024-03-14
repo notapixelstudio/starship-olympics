@@ -50,7 +50,7 @@ func _physics_process(delta):
 				
 			var relative_position = to_local(body.global_position)
 			
-			var past = previous_global_transforms[0](global_past_position) * 
+			var past = global_past_position * previous_global_transforms[0]
 			# save a new past for this tracked if it's new or it has moved enough
 			if not overlapping_trackeds.has(body) or relative_position.distance_squared_to(overlapping_trackeds[body]["past"]) > 0.1:
 				overlapping_trackeds[body] = {
@@ -60,7 +60,7 @@ func _physics_process(delta):
 			
 			var relative_past_position = overlapping_trackeds[body]["past"] # could be different form the "past" var
 			
-			var crossing_point = Geometry.segment_intersects_segment(relative_past_position, relative_position, top_end, bottom_end)
+			var crossing_point = Geometry2D.segment_intersects_segment(relative_past_position, relative_position, top_end, bottom_end)
 			var will_cross : bool = crossing_point is Vector2
 			var relative_angle_of_incidence : float = (relative_position - relative_past_position).angle()
 			
@@ -75,6 +75,8 @@ func _physics_process(delta):
 func _crossed_by(sth, trigger=true):
 	if enabled:
 		emit_signal("crossed", sth, self, trigger)
+		if trigger:
+			Events.sth_crossed_gate.emit(sth, self)
 	if auto_feedback:
 		show_feedback(trigger)
 	

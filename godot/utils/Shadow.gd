@@ -8,7 +8,7 @@ func set_sprite(v):
 	sprite = v
 	
 func _ready():
-	await get_tree().idle_frame # wait for e.g., ships to prepare
+	await get_tree().process_frame # wait for e.g., ships to prepare
 	redraw()
 	
 func redraw():
