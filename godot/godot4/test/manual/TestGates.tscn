@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://v0r0cq6gr4rd"]
+
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_acutt"]
+[ext_resource type="Script" path="res://godot4/test/manual/TestDiamonds.gd" id="2_gmp5y"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="3_hicvo"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="4_qldha"]
+[ext_resource type="PackedScene" path="res://actors/environments/Gate.tscn" id="5_0t42m"]
+
+[sub_resource type="GDScript" id="GDScript_sy7cc"]
+script/source = "extends \"res://addons/debugToolbox/Log.gd\"
+
+
+func _ready():
+	super._ready()
+	Events.sth_collected.connect(_on_sth_collected)
+
+func _on_sth_collected(collector, collectee):
+	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
+"
+
+[node name="TestChamber" instance=ExtResource("1_acutt")]
+script = ExtResource("2_gmp5y")
+
+[node name="Log" parent="." index="4"]
+script = SubResource("GDScript_sy7cc")
+
+[node name="Ship" parent="." index="6" instance=ExtResource("3_hicvo")]
+unique_name_in_owner = true
+
+[node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("4_qldha")]
+
+[node name="Gate" parent="." index="7" instance=ExtResource("5_0t42m")]
+position = Vector2(750, 0)
+rotation = 3.14159

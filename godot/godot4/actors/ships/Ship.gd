@@ -5,6 +5,8 @@ class_name Ship
 
 @export var dash_ring_scene : PackedScene
 
+@onready var tracked = %Tracked
+
 const max_steer_force = 2500
 const MIN_CHARGE = 0.2
 const MAX_OVERCHARGE = 1.8
@@ -86,6 +88,9 @@ func dash(charge: float) -> void:
 	
 func tap():
 	pass
+
+func _integrate_forces(state):
+	tracked.tick()
 
 
 func _on_charge_manager_charged_too_much_for_tap():
