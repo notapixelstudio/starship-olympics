@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmlwbymobhm0b"]
+[gd_scene load_steps=8 format=3 uid="uid://dmlwbymobhm0b"]
 
 [ext_resource type="Script" path="res://godot4/debug/TestChamber.gd" id="1_lsfmj"]
-[ext_resource type="PackedScene" path="res://godot4/WorldEnvironment.tscn" id="2_2i1b7"]
+[ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="2_2i1b7"]
 [ext_resource type="Script" path="res://addons/debugToolbox/FPSCounter.gd" id="3_2gjjm"]
 [ext_resource type="Script" path="res://addons/debugToolbox/TestGrid.gd" id="3_dshuw"]
+[ext_resource type="FontFile" uid="uid://ckyr6ojx10hid" path="res://assets/fonts/fira_code/FiraCode-VF.ttf" id="5_ghq4y"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="6_4tylc"]
+[ext_resource type="Script" path="res://godot4/debug/Log.gd" id="6_7mu5n"]
 
 [node name="TestChamber" type="Node2D"]
 script = ExtResource("1_lsfmj")
@@ -20,3 +23,29 @@ script = ExtResource("3_2gjjm")
 [node name="TestGrid" type="Node2D" parent="."]
 position = Vector2(-1250, -1250)
 script = ExtResource("3_dshuw")
+
+[node name="Log" type="RichTextLabel" parent="."]
+offset_left = 1300.0
+offset_top = -1200.0
+offset_right = 3150.0
+offset_bottom = 1050.0
+theme_override_fonts/normal_font = ExtResource("5_ghq4y")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+script = ExtResource("6_7mu5n")
+
+[node name="ControlSelector" type="OptionButton" parent="."]
+unique_name_in_owner = true
+offset_left = -1800.0
+offset_top = -1200.0
+offset_right = -1300.0
+offset_bottom = -1100.0
+theme = ExtResource("6_4tylc")
+item_count = 2
+selected = 0
+popup/item_0/text = "Keyboard"
+popup/item_0/id = 0
+popup/item_1/text = "Joypad"
+popup/item_1/id = 1
+
+[connection signal="item_selected" from="ControlSelector" to="." method="_on_control_selector_item_selected"]
