@@ -101,6 +101,7 @@ test_chamber = ExtResource("4_mpdfg")
 host = NodePath("..")
 
 [node name="OnShipDebug" parent="DebugNode2D" node_paths=PackedStringArray("host") instance=ExtResource("5_0tcqu")]
+visible = false
 enabled = true
 host = NodePath("../..")
 
@@ -111,11 +112,11 @@ unique_name_in_owner = true
 texture = ExtResource("3_gbkft")
 script = SubResource("GDScript_jwr13")
 
-[node name="HitArea" type="Area2D" parent="."]
+[node name="TouchArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2688
 
-[node name="HitShape2D" type="CollisionShape2D" parent="HitArea"]
+[node name="TouchShape2D" type="CollisionShape2D" parent="TouchArea"]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_oi8fb")
 debug_color = Color(0, 0.635294, 0.4, 0.419608)
@@ -188,8 +189,8 @@ offset = Vector2(-95, 0)
 gradient = SubResource("Gradient_tmbes")
 host = NodePath("..")
 
-[connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
-[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]
+[connection signal="body_entered" from="TouchArea" to="." method="_on_touch_area_body_entered"]
 [connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]
 [connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]
 [connection signal="charged_enough_to_dash" from="ChargeManager" to="." method="_on_charge_manager_charged_enough_to_dash"]

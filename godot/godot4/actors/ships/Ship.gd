@@ -34,7 +34,7 @@ const ON_ICE_CHARGE_BRAKE = 0.99
 const MIN_DRIFT := 400.0
 const MIN_DIVING_TIME := 0.05
 
-signal hit(sth: CollisionObject2D)
+signal touch(sth: CollisionObject2D)
 signal hurt_by(sth: CollisionObject2D)
 
 ## constants for basic movement
@@ -110,18 +110,25 @@ func _drop_dash_ring_effect() -> void:
 	dash_ring.scale = Vector2(1,1) * %ChargeManager.get_charge_normalized()
 
 
-func _on_hit_area_area_entered(area):
-	hit.emit(area)
-	Events.ship_hit_sth.emit(self, area)
+func _on_touch_area_area_entered(area):
+	_on_touch_area_entered(area)
 
-func _on_hit_area_body_entered(body):
-	hit.emit(body)
-	Events.ship_hit_sth.emit(self, body)
+func _on_touch_area_body_entered(body):
+	_on_touch_area_entered(body)
+	
+func _on_touch_area_entered(sth):
+	touch.emit(sth)
+	Events.ship_touch_sth.emit(self, sth)
+	
+	if sth.has_method('touched_by'):
+		sth.touched_by(self)
 
 func _on_hurt_area_area_entered(area):
-	hurt_by.emit(area)
-	Events.sth_hurt_ship.emit(area, self)
-
+	_on_hurt_area_entered(area)
+	
 func _on_hurt_area_body_entered(body):
-	hurt_by.emit(body)
-	Events.sth_hurt_ship.emit(body, self)
+	_on_hurt_area_entered(body)
+	
+func _on_hurt_area_entered(sth):
+	hurt_by.emit(sth)
+	Events.sth_hurt_ship.emit(sth, self)
