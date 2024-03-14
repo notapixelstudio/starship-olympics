@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://xoqhtny3wi7s"]
 
-[ext_resource type="PackedScene" path="res://actors/environments/Gate.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://actors/environments/Gate.tscn" id="1"]
 [ext_resource type="Script" path="res://actors/environments/PortalGate.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://6oqvsnv2v2s4" path="res://assets/sprites/environments/portal_spike.png" id="4"]
@@ -99,18 +99,18 @@ point_count = 3
 curve = SubResource("9")
 
 [sub_resource type="ParticleProcessMaterial" id="10"]
-emission_shape = 2
-emission_sphere_radius = 1.0
+emission_shape = 3
+emission_box_extents = Vector3(25, 250, 1)
 gravity = Vector3(40, 0, 0)
 scale_curve = SubResource("7")
 color_ramp = SubResource("5")
 
 [sub_resource type="ParticleProcessMaterial" id="11"]
-emission_shape = 2
-emission_sphere_radius = 1.0
+emission_shape = 3
+emission_box_extents = Vector3(100, 250, 1)
 gravity = Vector3(100, 0, 0)
+scale_max = 10.0
 scale_curve = SubResource("7")
-color_ramp = SubResource("5")
 
 [node name="PortalGate" groups=["in_camera"] instance=ExtResource("1")]
 collision_mask = 8705

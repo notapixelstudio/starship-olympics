@@ -75,7 +75,8 @@ func _physics_process(delta):
 func _crossed_by(sth, trigger=true):
 	if enabled:
 		emit_signal("crossed", sth, self, trigger)
-		Events.sth_crossed_gate.emit(sth, self)
+		if trigger:
+			Events.sth_crossed_gate.emit(sth, self)
 	if auto_feedback:
 		show_feedback(trigger)
 	
