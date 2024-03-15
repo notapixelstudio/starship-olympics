@@ -176,7 +176,7 @@ one_shot = true
 [node name="FlamesManager" type="Node" parent="." node_paths=PackedStringArray("host", "flames")]
 script = SubResource("GDScript_mur34")
 host = NodePath("..")
-flames = [NodePath("../BottomFlameTrail"), NodePath("../FlameTrail"), NodePath("../MotionAutoTrail")]
+flames = [NodePath("../BottomFlameTrail"), NodePath("../FlameTrail")]
 
 [node name="BottomFlameTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("10_4jj2i")]
 width = 120.0
