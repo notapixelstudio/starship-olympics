@@ -1,8 +1,8 @@
 @tool
 extends Node2D
 
-@export var rows := 50
-@export var columns := 50
+@export var rows := 52
+@export var columns := 52
 @export var dx := 50
 @export var dy := 50
 @export var color := Color('#3c8bc7')

@@ -1,6 +1,6 @@
-extends Diamond
+extends Diamondz
 
-class_name BigDiamond
+class_name BigDiamondz
 
 func _ready():
 	super.set_points(3)

@@ -16,26 +16,28 @@ zoom = Vector2(0.2, 0.2)
 [node name="WorldEnvironment" parent="." instance=ExtResource("2_2i1b7")]
 
 [node name="FPSCounter" type="Node2D" parent="."]
-position = Vector2(1350, 1078)
+position = Vector2(1400, 1128)
 script = ExtResource("3_2gjjm")
 
 [node name="TestGrid" type="Node2D" parent="."]
-position = Vector2(-1250, -1250)
+position = Vector2(-1300, -1300)
 script = ExtResource("3_dshuw")
+metadata/_edit_lock_ = true
 
 [node name="Log" type="RichTextLabel" parent="."]
-offset_left = 1300.0
-offset_top = -1200.0
+offset_left = 1350.0
+offset_top = -1250.0
 offset_right = 3150.0
-offset_bottom = 1050.0
+offset_bottom = 1100.0
 script = ExtResource("5_kif01")
+metadata/_edit_lock_ = true
 
 [node name="ControlSelector" type="OptionButton" parent="."]
 unique_name_in_owner = true
-offset_left = -1800.0
-offset_top = -1200.0
-offset_right = -1300.0
-offset_bottom = -1100.0
+offset_left = -1850.0
+offset_top = -1250.0
+offset_right = -1350.0
+offset_bottom = -1150.0
 theme = ExtResource("6_4tylc")
 item_count = 2
 selected = 0

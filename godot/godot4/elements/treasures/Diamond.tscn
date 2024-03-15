@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://u685qfrbxw4g"]
+
+[ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_h5g4u"]
+[ext_resource type="Texture2D" uid="uid://cyqlaxwtqgk0u" path="res://assets/sprites/environments/diamond.png" id="3_bdjru"]
+
+[node name="Diamond" instance=ExtResource("1_h5g4u")]
+texture = ExtResource("3_bdjru")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_bdjru")

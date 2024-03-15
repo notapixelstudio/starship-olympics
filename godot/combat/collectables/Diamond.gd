@@ -2,7 +2,7 @@
 
 extends RigidBody2D
 
-class_name Diamond
+class_name Diamondz
 
 @export var appear = true
 
