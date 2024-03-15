@@ -2,14 +2,19 @@
 class_name Treasure
 extends RigidBody2D
 
+@export var collectable := true
+@export var points := 1
 @export var texture : Texture : set = set_texture
 @export var treasure_picked_scene : PackedScene
 
 func set_texture(v: Texture) -> void:
 	texture = v
 	%Sprite2D.texture = v
-
+	
 func touched_by(toucher : Ship):
+	if not collectable:
+		return
+		
 	Events.sth_collected.emit(toucher, self)
 	
 	# drop a treasure picked effect on parent
