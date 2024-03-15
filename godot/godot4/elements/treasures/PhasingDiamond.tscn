@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://c4i1ha4suoesk" path="res://assets/sprites/environments/ghost_diamond.png" id="4_fav4h"]
 
 [node name="PhasingDiamond" instance=ExtResource("1_1em6e")]
+collision_mask = 3092
 script = ExtResource("2_v3ag5")
-texture = ExtResource("2_4hnq6")
 
 [node name="CollisionShape2D" parent="." index="0"]
 unique_name_in_owner = true

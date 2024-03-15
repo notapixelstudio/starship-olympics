@@ -78,31 +78,4 @@ position = Vector2(700, -1300)
 [node name="PhasingDiamond5" parent="." index="18" instance=ExtResource("7_0rc48")]
 position = Vector2(500, -1300)
 
-[node name="PhasingDiamond6" parent="." index="19" instance=ExtResource("7_0rc48")]
-position = Vector2(300, -1300)
-
-[node name="PhasingDiamond7" parent="." index="20" instance=ExtResource("7_0rc48")]
-position = Vector2(100, -1300)
-
-[node name="PhasingDiamond8" parent="." index="21" instance=ExtResource("7_0rc48")]
-position = Vector2(-100, -1300)
-
-[node name="PhasingDiamond9" parent="." index="22" instance=ExtResource("7_0rc48")]
-position = Vector2(-300, -1300)
-
-[node name="PhasingDiamond10" parent="." index="23" instance=ExtResource("7_0rc48")]
-position = Vector2(-500, -1300)
-
-[node name="PhasingDiamond11" parent="." index="24" instance=ExtResource("7_0rc48")]
-position = Vector2(-700, -1300)
-
-[node name="PhasingDiamond12" parent="." index="25" instance=ExtResource("7_0rc48")]
-position = Vector2(-900, -1300)
-
-[node name="PhasingDiamond13" parent="." index="26" instance=ExtResource("7_0rc48")]
-position = Vector2(-1100, -1300)
-
-[node name="PhasingDiamond14" parent="." index="27" instance=ExtResource("7_0rc48")]
-position = Vector2(-1300, -1300)
-
 [connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]
