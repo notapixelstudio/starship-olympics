@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://1jdlhqq8mf0c"]
+
+[ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_1em6e"]
+[ext_resource type="Texture2D" uid="uid://cyqlaxwtqgk0u" path="res://assets/sprites/environments/diamond.png" id="2_4hnq6"]
+[ext_resource type="Script" path="res://godot4/elements/treasures/PhasingDiamond.gd" id="2_v3ag5"]
+[ext_resource type="Texture2D" uid="uid://c4i1ha4suoesk" path="res://assets/sprites/environments/ghost_diamond.png" id="4_fav4h"]
+
+[node name="PhasingDiamond" instance=ExtResource("1_1em6e")]
+script = ExtResource("2_v3ag5")
+texture = ExtResource("2_4hnq6")
+
+[node name="CollisionShape2D" parent="." index="0"]
+unique_name_in_owner = true
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_4hnq6")
+
+[node name="GhostSprite2D" type="Sprite2D" parent="." index="2"]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("4_fav4h")
