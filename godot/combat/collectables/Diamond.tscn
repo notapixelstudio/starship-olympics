@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cyqlaxwtqgk0u" path="res://assets/sprites/environments/diamond.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://brxcax73it83q" path="res://assets/sprites/environments/crown_halo.png" id="8"]
 [ext_resource type="Animation" path="res://assets/animations/AppearFuhfuhfuh.tres" id="9"]
-[ext_resource type="PackedScene" path="res://actors/environments/DiamondCollectParticles.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://otu584npkmha" path="res://actors/environments/DiamondCollectParticles.tscn" id="11"]
 [ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="12"]
 [ext_resource type="AudioStream" uid="uid://cjmuge1iae07f" path="res://assets/audio/FX/sfx_sounds_impact10.wav" id="13"]
 [ext_resource type="Texture2D" uid="uid://5bdkckp4a6ig" path="res://assets/sprites/environments/diamond_outline.png" id="14"]
@@ -162,8 +162,8 @@ shape = SubResource("1")
 scale = Vector2(0.8, 0.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Glow"]
-modulate = Color(0.305882, 1, 0.968627, 0.0142306)
-scale = Vector2(0.979578, 0.979578)
+modulate = Color(0.305882, 1, 0.968627, 0.0508403)
+scale = Vector2(0.812222, 0.812222)
 texture = ExtResource("8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]

@@ -145,7 +145,7 @@ func _set_language(value:String):
 func _get_language():
 	return language
 
-var version = "0.14.4a5": set = set_version
+var version = "1.0.0-p1": set = set_version
 var first_time = true
 
 func set_version(value):
