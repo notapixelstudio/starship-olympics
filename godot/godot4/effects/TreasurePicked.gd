@@ -5,3 +5,6 @@ extends Node2D
 func set_texture(v: Texture) -> void:
 	texture = v
 	%Sprite2D.texture = v
+
+func _ready():
+	%GPUParticles2D.emitting = true

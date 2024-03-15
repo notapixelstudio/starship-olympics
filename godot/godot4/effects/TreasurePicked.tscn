@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4yru00x07tyi"]
+[gd_scene load_steps=9 format=3 uid="uid://c4yru00x07tyi"]
 
 [ext_resource type="Script" path="res://godot4/effects/TreasurePicked.gd" id="1_y1ss0"]
 [ext_resource type="Material" uid="uid://cglyqcx3on5qq" path="res://godot4/shaders/outline_ghost.tres" id="2_xwi8s"]
@@ -8,7 +8,7 @@ resource_name = "Fade"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -77,6 +77,33 @@ _data = {
 "RESET": SubResource("8")
 }
 
+[sub_resource type="Curve" id="3"]
+_data = [Vector2(0, 0), 0.0, 7.5976, 0, 0, Vector2(1, 0), -0.36566, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="6"]
+curve = SubResource("3")
+
+[sub_resource type="ParticleProcessMaterial" id="5"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 120.0
+angle_min = 45.0
+angle_max = 45.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 500.0
+initial_velocity_max = 600.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 30.0
+scale_curve = SubResource("6")
+color = Color(1.4, 1.4, 1.4, 1)
+hue_variation_min = 0.9
+hue_variation_max = 1.0
+turbulence_enabled = true
+
 [node name="TreasurePicked" type="Node2D"]
 modulate = Color(1.4, 1.4, 1.4, 1)
 script = ExtResource("1_y1ss0")
@@ -92,3 +119,14 @@ libraries = {
 "": SubResource("AnimationLibrary_uanx4")
 }
 autoplay = "Fade"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.662745, 0.901961, 1, 1)
+z_index = 1
+emitting = false
+amount = 6
+process_material = SubResource("5")
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0

@@ -12,13 +12,22 @@ curve = SubResource("3")
 
 [sub_resource type="ParticleProcessMaterial" id="5"]
 lifetime_randomness = 0.1
+particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 120.0
+angle_min = 45.0
+angle_max = 45.0
 direction = Vector3(0, -1, 0)
 spread = 0.0
+initial_velocity_min = 520.0
+initial_velocity_max = 570.0
 gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 30.0
 scale_curve = SubResource("6")
-color = Color(1.4, 1.4, 1.4, 1)
+hue_variation_min = 0.9
+hue_variation_max = 1.0
+turbulence_enabled = true
 
 [sub_resource type="Animation" id="7"]
 resource_name = "Fade"

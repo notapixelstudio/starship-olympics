@@ -41,41 +41,98 @@ unique_name_in_owner = true
 [node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("3_x272x")]
 
 [node name="Diamond" parent="." index="7" instance=ExtResource("5_wkp48")]
-position = Vector2(1000, -100)
+position = Vector2(1100, -200)
 
 [node name="Diamond2" parent="." index="8" instance=ExtResource("5_wkp48")]
-position = Vector2(1000, 100)
+position = Vector2(1100, 0)
 
 [node name="Diamond3" parent="." index="9" instance=ExtResource("5_wkp48")]
+position = Vector2(1300, -400)
+
+[node name="Diamond6" parent="." index="10" instance=ExtResource("5_wkp48")]
+position = Vector2(1100, -400)
+
+[node name="Diamond7" parent="." index="11" instance=ExtResource("5_wkp48")]
+position = Vector2(900, -400)
+
+[node name="Diamond8" parent="." index="12" instance=ExtResource("5_wkp48")]
+position = Vector2(700, -400)
+
+[node name="Diamond9" parent="." index="13" instance=ExtResource("5_wkp48")]
+position = Vector2(500, -400)
+
+[node name="Diamond21" parent="." index="14" instance=ExtResource("5_wkp48")]
+position = Vector2(700, 0)
+
+[node name="Diamond22" parent="." index="15" instance=ExtResource("5_wkp48")]
+position = Vector2(500, 0)
+
+[node name="Diamond10" parent="." index="16" instance=ExtResource("5_wkp48")]
+position = Vector2(900, -200)
+
+[node name="Diamond11" parent="." index="17" instance=ExtResource("5_wkp48")]
+position = Vector2(700, -200)
+
+[node name="Diamond12" parent="." index="18" instance=ExtResource("5_wkp48")]
+position = Vector2(500, -200)
+
+[node name="Diamond4" parent="." index="19" instance=ExtResource("5_wkp48")]
+position = Vector2(1300, -200)
+
+[node name="Diamond5" parent="." index="20" instance=ExtResource("5_wkp48")]
+position = Vector2(1300, 0)
+
+[node name="Diamond13" parent="." index="21" instance=ExtResource("5_wkp48")]
+position = Vector2(1100, 200)
+
+[node name="Diamond14" parent="." index="22" instance=ExtResource("5_wkp48")]
+position = Vector2(1100, 400)
+
+[node name="Diamond15" parent="." index="23" instance=ExtResource("5_wkp48")]
+position = Vector2(1300, 200)
+
+[node name="Diamond16" parent="." index="24" instance=ExtResource("5_wkp48")]
+position = Vector2(1300, 400)
+
+[node name="Diamond23" parent="." index="25" instance=ExtResource("5_wkp48")]
+position = Vector2(500, 200)
+
+[node name="Diamond24" parent="." index="26" instance=ExtResource("5_wkp48")]
+position = Vector2(500, 400)
+
+[node name="Diamond17" parent="." index="27" instance=ExtResource("5_wkp48")]
+position = Vector2(700, 200)
+
+[node name="Diamond18" parent="." index="28" instance=ExtResource("5_wkp48")]
+position = Vector2(700, 400)
+
+[node name="Diamond19" parent="." index="29" instance=ExtResource("5_wkp48")]
+position = Vector2(900, 200)
+
+[node name="Diamond20" parent="." index="30" instance=ExtResource("5_wkp48")]
+position = Vector2(900, 400)
+
+[node name="BigDiamond" parent="." index="31" instance=ExtResource("6_xtpgn")]
 position = Vector2(900, 0)
 
-[node name="Diamond4" parent="." index="10" instance=ExtResource("5_wkp48")]
-position = Vector2(1100, 6)
-
-[node name="Diamond5" parent="." index="11" instance=ExtResource("5_wkp48")]
-position = Vector2(1250, -5)
-
-[node name="BigDiamond" parent="." index="12" instance=ExtResource("6_xtpgn")]
-position = Vector2(550, 0)
-
-[node name="TestBeat" type="Timer" parent="." index="13"]
+[node name="TestBeat" type="Timer" parent="." index="32"]
 wait_time = 0.5
 autostart = true
 script = SubResource("GDScript_dqhjw")
 
-[node name="PhasingDiamond" parent="." index="14" instance=ExtResource("7_0rc48")]
+[node name="PhasingDiamond" parent="." index="33" instance=ExtResource("7_0rc48")]
 position = Vector2(1300, -1300)
 
-[node name="PhasingDiamond2" parent="." index="15" instance=ExtResource("7_0rc48")]
+[node name="PhasingDiamond2" parent="." index="34" instance=ExtResource("7_0rc48")]
 position = Vector2(1100, -1300)
 
-[node name="PhasingDiamond3" parent="." index="16" instance=ExtResource("7_0rc48")]
+[node name="PhasingDiamond3" parent="." index="35" instance=ExtResource("7_0rc48")]
 position = Vector2(900, -1300)
 
-[node name="PhasingDiamond4" parent="." index="17" instance=ExtResource("7_0rc48")]
+[node name="PhasingDiamond4" parent="." index="36" instance=ExtResource("7_0rc48")]
 position = Vector2(700, -1300)
 
-[node name="PhasingDiamond5" parent="." index="18" instance=ExtResource("7_0rc48")]
+[node name="PhasingDiamond5" parent="." index="37" instance=ExtResource("7_0rc48")]
 position = Vector2(500, -1300)
 
 [connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]
