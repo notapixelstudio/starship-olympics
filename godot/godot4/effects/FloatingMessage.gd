@@ -13,14 +13,12 @@ func set_message(value):
 		if value >= 0:
 			sgn = "+"
 		else:
-			$Label.visible = false
-			$BadLabel.visible = true
+			$Label.add_theme_color_override('font_outline_color', Color.RED)
 		msg = sgn+str(value)
 	else:
 		msg = value
 		
 	$Label.text = tr(msg)
-	$BadLabel.text = tr(msg)
 	
 func set_color(v):
 	pass
