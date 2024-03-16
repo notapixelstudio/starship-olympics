@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="2_2i1b7"]
 [ext_resource type="Script" path="res://addons/debugToolbox/FPSCounter.gd" id="3_2gjjm"]
 [ext_resource type="Script" path="res://addons/debugToolbox/TestGrid.gd" id="3_dshuw"]
-[ext_resource type="Script" path="res://addons/debugToolbox/Log.gd" id="5_kif01"]
+[ext_resource type="Script" path="res://godot4/debug/TestChamberLog.gd" id="5_upb84"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="6_4tylc"]
 
 [node name="TestChamber" type="Node2D"]
@@ -24,12 +24,12 @@ position = Vector2(-1300, -1300)
 script = ExtResource("3_dshuw")
 metadata/_edit_lock_ = true
 
-[node name="Log" type="RichTextLabel" parent="."]
+[node name="TestChamberLog" type="RichTextLabel" parent="."]
 offset_left = 1350.0
 offset_top = -1250.0
 offset_right = 3150.0
 offset_bottom = 1100.0
-script = ExtResource("5_kif01")
+script = ExtResource("5_upb84")
 metadata/_edit_lock_ = true
 
 [node name="ControlSelector" type="OptionButton" parent="."]

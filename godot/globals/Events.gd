@@ -39,6 +39,8 @@ signal sth_hurt_ship(sth:CollisionObject2D, ship:Ship)
 
 signal sth_crossed_gate(sth, gate:Gate)
 signal beat(period:int)
+
+signal log(message:String)
 # 4.x new events
 
 signal sth_collected(collector, collectee)
