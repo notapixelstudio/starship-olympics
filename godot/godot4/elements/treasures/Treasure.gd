@@ -5,6 +5,9 @@ extends RigidBody2D
 @export var points := 1
 @export var treasure_picked_scene : PackedScene
 
+func get_points() -> int:
+	return points
+
 func set_texture(v: Texture) -> void:
 	%Sprite2D.texture = v
 	

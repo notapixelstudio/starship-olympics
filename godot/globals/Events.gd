@@ -41,6 +41,7 @@ signal sth_crossed_gate(sth, gate:Gate)
 signal beat(period:int)
 
 signal log(message:String)
+signal message(message:Variant, color:Color, global_position:Vector2)
 # 4.x new events
 
 signal sth_collected(collector, collectee)
