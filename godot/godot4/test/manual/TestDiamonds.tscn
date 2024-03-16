@@ -141,21 +141,55 @@ position = Vector2(900, 400)
 position = Vector2(900, 0)
 
 [node name="PhasingDiamond" parent="." index="34" instance=ExtResource("7_0rc48")]
-position = Vector2(1300, -1300)
+position = Vector2(-500, -1300)
 
 [node name="PhasingDiamond2" parent="." index="35" instance=ExtResource("7_0rc48")]
-position = Vector2(1100, -1300)
+position = Vector2(-700, -1300)
 
 [node name="PhasingDiamond3" parent="." index="36" instance=ExtResource("7_0rc48")]
-position = Vector2(900, -1300)
+position = Vector2(-900, -1300)
 
 [node name="PhasingDiamond4" parent="." index="37" instance=ExtResource("7_0rc48")]
-position = Vector2(700, -1300)
+position = Vector2(-1100, -1300)
 
 [node name="PhasingDiamond5" parent="." index="38" instance=ExtResource("7_0rc48")]
-position = Vector2(500, -1300)
+position = Vector2(-1300, -1300)
 
-[node name="BadDiamond" parent="." index="39" instance=ExtResource("8_nqrgq")]
+[node name="PhasingDiamond6" parent="." index="39" instance=ExtResource("7_0rc48")]
+position = Vector2(1300, -900)
+starting_beats = 3
+collectable = false
+
+[node name="PhasingDiamond11" parent="." index="40" instance=ExtResource("7_0rc48")]
+position = Vector2(1100, -900)
+starting_beats = 2
+collectable = false
+
+[node name="PhasingDiamond12" parent="." index="41" instance=ExtResource("7_0rc48")]
+position = Vector2(900, -900)
+starting_beats = 1
+collectable = false
+
+[node name="PhasingDiamond13" parent="." index="42" instance=ExtResource("7_0rc48")]
+position = Vector2(900, -1100)
+collectable = false
+
+[node name="PhasingDiamond7" parent="." index="43" instance=ExtResource("7_0rc48")]
+position = Vector2(1300, -1100)
+
+[node name="PhasingDiamond8" parent="." index="44" instance=ExtResource("7_0rc48")]
+position = Vector2(1300, -1300)
+starting_beats = 1
+
+[node name="PhasingDiamond9" parent="." index="45" instance=ExtResource("7_0rc48")]
+position = Vector2(1100, -1300)
+starting_beats = 2
+
+[node name="PhasingDiamond10" parent="." index="46" instance=ExtResource("7_0rc48")]
+position = Vector2(900, -1300)
+starting_beats = 3
+
+[node name="BadDiamond" parent="." index="47" instance=ExtResource("8_nqrgq")]
 position = Vector2(1100, -400)
 
 [connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]

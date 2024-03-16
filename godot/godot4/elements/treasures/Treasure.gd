@@ -1,10 +1,17 @@
 class_name Treasure
 extends RigidBody2D
 
-@export var collectable := true
+@export var collectable := true : set = set_collectable
 @export var points := 1
 @export var treasure_picked_scene : PackedScene
 
+func set_collectable(v: bool) -> void:
+	collectable = v
+	update_solid()
+
+func is_collectable() -> bool:
+	return collectable
+	
 func get_points() -> int:
 	return points
 
@@ -13,6 +20,13 @@ func set_texture(v: Texture) -> void:
 	
 func get_texture() -> Texture:
 	return %Sprite2D.texture
+	
+func _ready():
+	update_solid()
+	
+func update_solid():
+	# ship bodies should push diamonds iff not collectable
+	set_collision_mask_value(1, not collectable)
 	
 func touched_by(toucher : Ship):
 	if not collectable:
