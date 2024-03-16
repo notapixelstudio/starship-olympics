@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://v0r0cq6gr4rd"]
+[gd_scene load_steps=8 format=3 uid="uid://v0r0cq6gr4rd"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_acutt"]
-[ext_resource type="Script" path="res://godot4/test/manual/TestDiamonds.gd" id="2_gmp5y"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="3_hicvo"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="4_qldha"]
 [ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://actors/environments/Gate.tscn" id="5_0t42m"]
@@ -20,7 +19,6 @@ func _on_sth_crossed_gate(sth, gate : Gate):
 "
 
 [node name="TestChamber" instance=ExtResource("1_acutt")]
-script = ExtResource("2_gmp5y")
 
 [node name="TestChamberLog" parent="." index="4"]
 script = SubResource("GDScript_0snmf")
