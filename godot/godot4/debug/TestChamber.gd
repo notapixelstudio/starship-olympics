@@ -8,6 +8,10 @@ func set_test_subject(v : Node2D) -> void:
 	
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	# default test subject is a node named Ship, accessible via local unique names
+	if get_node_or_null('%Ship'):
+		set_test_subject(%Ship)
 
 func _process(delta):
 	if not test_subject:

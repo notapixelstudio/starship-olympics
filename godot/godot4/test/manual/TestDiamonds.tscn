@@ -1,23 +1,26 @@
-[gd_scene load_steps=10 format=3 uid="uid://ovcqd8vqj5i1"]
+[gd_scene load_steps=9 format=3 uid="uid://ovcqd8vqj5i1"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_gfqil"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_bhfha"]
-[ext_resource type="Script" path="res://godot4/test/manual/TestDiamonds.gd" id="2_pen8y"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_x272x"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="5_wkp48"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="6_xtpgn"]
 [ext_resource type="PackedScene" uid="uid://1jdlhqq8mf0c" path="res://godot4/elements/treasures/PhasingDiamond.tscn" id="7_0rc48"]
 
-[sub_resource type="GDScript" id="GDScript_sy7cc"]
-script/source = "extends \"res://addons/debugToolbox/Log.gd\"
+[sub_resource type="GDScript" id="GDScript_0rj7w"]
+script/source = "extends TestChamberLog
 
 
 func _ready():
 	super._ready()
 	Events.sth_collected.connect(_on_sth_collected)
-
+	Events.beat.connect(_on_beat)
+	
 func _on_sth_collected(collector, collectee):
 	log_line(\"[b]%s[/b] collected [b]%s[/b] (%d points)\" % [collector.name, collectee.name, collectee.points])
+
+func _on_beat(period: int):
+	log_line('Beat!')
 "
 
 [sub_resource type="GDScript" id="GDScript_dqhjw"]
@@ -30,10 +33,9 @@ func _on_timeout():
 "
 
 [node name="TestChamber" instance=ExtResource("1_gfqil")]
-script = ExtResource("2_pen8y")
 
-[node name="Log" parent="." index="4"]
-script = SubResource("GDScript_sy7cc")
+[node name="TestChamberLog" parent="." index="4"]
+script = SubResource("GDScript_0rj7w")
 
 [node name="Ship" parent="." index="6" instance=ExtResource("2_bhfha")]
 unique_name_in_owner = true
