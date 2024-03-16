@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://ovcqd8vqj5i1"]
+[gd_scene load_steps=12 format=3 uid="uid://ovcqd8vqj5i1"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_gfqil"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_bhfha"]
+[ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="2_uu5ph"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_x272x"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="5_wkp48"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="6_xtpgn"]
 [ext_resource type="PackedScene" uid="uid://1jdlhqq8mf0c" path="res://godot4/elements/treasures/PhasingDiamond.tscn" id="7_0rc48"]
+[ext_resource type="PackedScene" uid="uid://cmul0ynkk8ctj" path="res://godot4/elements/treasures/BadDiamond.tscn" id="8_nqrgq"]
 
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
 script/source = "extends TestChamberLog
@@ -17,7 +19,7 @@ func _ready():
 	Events.beat.connect(_on_beat)
 	
 func _on_sth_collected(collector, collectee):
-	log_line(\"[b]%s[/b] collected [b]%s[/b] (%d points)\" % [collector.name, collectee.name, collectee.points])
+	log_line(\"[b]%s[/b] collected [b]%s[/b] (%d points)\" % [collector.name, collectee.name, collectee.get_points()])
 
 func _on_beat(period: int):
 	log_line('Beat!')
@@ -32,109 +34,128 @@ func _on_timeout():
 	Events.beat.emit(period)
 "
 
+[sub_resource type="GDScript" id="GDScript_qq6xw"]
+script/source = "extends Node
+
+
+func _ready():
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_sth_collected(collector, collectee):
+	# TBD assing score to player
+	# show feedback
+	Events.message.emit(collectee.get_points(), Color.WHITE, collectee.global_position)
+"
+
 [node name="TestChamber" instance=ExtResource("1_gfqil")]
 
 [node name="TestChamberLog" parent="." index="4"]
 script = SubResource("GDScript_0rj7w")
 
-[node name="Ship" parent="." index="6" instance=ExtResource("2_bhfha")]
-unique_name_in_owner = true
-
-[node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("3_x272x")]
-
-[node name="Diamond" parent="." index="7" instance=ExtResource("5_wkp48")]
-position = Vector2(1100, -200)
-
-[node name="Diamond2" parent="." index="8" instance=ExtResource("5_wkp48")]
-position = Vector2(1100, 0)
-
-[node name="Diamond3" parent="." index="9" instance=ExtResource("5_wkp48")]
-position = Vector2(1300, -400)
-
-[node name="Diamond6" parent="." index="10" instance=ExtResource("5_wkp48")]
-position = Vector2(1100, -400)
-
-[node name="Diamond7" parent="." index="11" instance=ExtResource("5_wkp48")]
-position = Vector2(900, -400)
-
-[node name="Diamond8" parent="." index="12" instance=ExtResource("5_wkp48")]
-position = Vector2(700, -400)
-
-[node name="Diamond9" parent="." index="13" instance=ExtResource("5_wkp48")]
-position = Vector2(500, -400)
-
-[node name="Diamond21" parent="." index="14" instance=ExtResource("5_wkp48")]
-position = Vector2(700, 0)
-
-[node name="Diamond22" parent="." index="15" instance=ExtResource("5_wkp48")]
-position = Vector2(500, 0)
-
-[node name="Diamond10" parent="." index="16" instance=ExtResource("5_wkp48")]
-position = Vector2(900, -200)
-
-[node name="Diamond11" parent="." index="17" instance=ExtResource("5_wkp48")]
-position = Vector2(700, -200)
-
-[node name="Diamond12" parent="." index="18" instance=ExtResource("5_wkp48")]
-position = Vector2(500, -200)
-
-[node name="Diamond4" parent="." index="19" instance=ExtResource("5_wkp48")]
-position = Vector2(1300, -200)
-
-[node name="Diamond5" parent="." index="20" instance=ExtResource("5_wkp48")]
-position = Vector2(1300, 0)
-
-[node name="Diamond13" parent="." index="21" instance=ExtResource("5_wkp48")]
-position = Vector2(1100, 200)
-
-[node name="Diamond14" parent="." index="22" instance=ExtResource("5_wkp48")]
-position = Vector2(1100, 400)
-
-[node name="Diamond15" parent="." index="23" instance=ExtResource("5_wkp48")]
-position = Vector2(1300, 200)
-
-[node name="Diamond16" parent="." index="24" instance=ExtResource("5_wkp48")]
-position = Vector2(1300, 400)
-
-[node name="Diamond23" parent="." index="25" instance=ExtResource("5_wkp48")]
-position = Vector2(500, 200)
-
-[node name="Diamond24" parent="." index="26" instance=ExtResource("5_wkp48")]
-position = Vector2(500, 400)
-
-[node name="Diamond17" parent="." index="27" instance=ExtResource("5_wkp48")]
-position = Vector2(700, 200)
-
-[node name="Diamond18" parent="." index="28" instance=ExtResource("5_wkp48")]
-position = Vector2(700, 400)
-
-[node name="Diamond19" parent="." index="29" instance=ExtResource("5_wkp48")]
-position = Vector2(900, 200)
-
-[node name="Diamond20" parent="." index="30" instance=ExtResource("5_wkp48")]
-position = Vector2(900, 400)
-
-[node name="BigDiamond" parent="." index="31" instance=ExtResource("6_xtpgn")]
-position = Vector2(900, 0)
-
-[node name="TestBeat" type="Timer" parent="." index="32"]
+[node name="TestBeat" type="Timer" parent="." index="6"]
 wait_time = 0.5
 autostart = true
 script = SubResource("GDScript_dqhjw")
 
-[node name="PhasingDiamond" parent="." index="33" instance=ExtResource("7_0rc48")]
+[node name="MessageManager" parent="." index="7" node_paths=PackedStringArray("arena") instance=ExtResource("2_uu5ph")]
+arena = NodePath("..")
+
+[node name="CollectGame" type="Node" parent="." index="8"]
+script = SubResource("GDScript_qq6xw")
+
+[node name="Ship" parent="." index="9" instance=ExtResource("2_bhfha")]
+unique_name_in_owner = true
+
+[node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("3_x272x")]
+
+[node name="Diamond" parent="." index="10" instance=ExtResource("5_wkp48")]
+position = Vector2(1100, -200)
+
+[node name="Diamond2" parent="." index="11" instance=ExtResource("5_wkp48")]
+position = Vector2(1100, 0)
+
+[node name="Diamond3" parent="." index="12" instance=ExtResource("5_wkp48")]
+position = Vector2(1300, -400)
+
+[node name="Diamond7" parent="." index="13" instance=ExtResource("5_wkp48")]
+position = Vector2(900, -400)
+
+[node name="Diamond8" parent="." index="14" instance=ExtResource("5_wkp48")]
+position = Vector2(700, -400)
+
+[node name="Diamond9" parent="." index="15" instance=ExtResource("5_wkp48")]
+position = Vector2(500, -400)
+
+[node name="Diamond21" parent="." index="16" instance=ExtResource("5_wkp48")]
+position = Vector2(700, 0)
+
+[node name="Diamond22" parent="." index="17" instance=ExtResource("5_wkp48")]
+position = Vector2(500, 0)
+
+[node name="Diamond10" parent="." index="18" instance=ExtResource("5_wkp48")]
+position = Vector2(900, -200)
+
+[node name="Diamond11" parent="." index="19" instance=ExtResource("5_wkp48")]
+position = Vector2(700, -200)
+
+[node name="Diamond12" parent="." index="20" instance=ExtResource("5_wkp48")]
+position = Vector2(500, -200)
+
+[node name="Diamond4" parent="." index="21" instance=ExtResource("5_wkp48")]
+position = Vector2(1300, -200)
+
+[node name="Diamond5" parent="." index="22" instance=ExtResource("5_wkp48")]
+position = Vector2(1300, 0)
+
+[node name="Diamond13" parent="." index="23" instance=ExtResource("5_wkp48")]
+position = Vector2(1100, 200)
+
+[node name="Diamond14" parent="." index="24" instance=ExtResource("5_wkp48")]
+position = Vector2(1100, 400)
+
+[node name="Diamond15" parent="." index="25" instance=ExtResource("5_wkp48")]
+position = Vector2(1300, 200)
+
+[node name="Diamond16" parent="." index="26" instance=ExtResource("5_wkp48")]
+position = Vector2(1300, 400)
+
+[node name="Diamond23" parent="." index="27" instance=ExtResource("5_wkp48")]
+position = Vector2(500, 200)
+
+[node name="Diamond24" parent="." index="28" instance=ExtResource("5_wkp48")]
+position = Vector2(500, 400)
+
+[node name="Diamond17" parent="." index="29" instance=ExtResource("5_wkp48")]
+position = Vector2(700, 200)
+
+[node name="Diamond18" parent="." index="30" instance=ExtResource("5_wkp48")]
+position = Vector2(700, 400)
+
+[node name="Diamond19" parent="." index="31" instance=ExtResource("5_wkp48")]
+position = Vector2(900, 200)
+
+[node name="Diamond20" parent="." index="32" instance=ExtResource("5_wkp48")]
+position = Vector2(900, 400)
+
+[node name="BigDiamond" parent="." index="33" instance=ExtResource("6_xtpgn")]
+position = Vector2(900, 0)
+
+[node name="PhasingDiamond" parent="." index="34" instance=ExtResource("7_0rc48")]
 position = Vector2(1300, -1300)
 
-[node name="PhasingDiamond2" parent="." index="34" instance=ExtResource("7_0rc48")]
+[node name="PhasingDiamond2" parent="." index="35" instance=ExtResource("7_0rc48")]
 position = Vector2(1100, -1300)
 
-[node name="PhasingDiamond3" parent="." index="35" instance=ExtResource("7_0rc48")]
+[node name="PhasingDiamond3" parent="." index="36" instance=ExtResource("7_0rc48")]
 position = Vector2(900, -1300)
 
-[node name="PhasingDiamond4" parent="." index="36" instance=ExtResource("7_0rc48")]
+[node name="PhasingDiamond4" parent="." index="37" instance=ExtResource("7_0rc48")]
 position = Vector2(700, -1300)
 
-[node name="PhasingDiamond5" parent="." index="37" instance=ExtResource("7_0rc48")]
+[node name="PhasingDiamond5" parent="." index="38" instance=ExtResource("7_0rc48")]
 position = Vector2(500, -1300)
+
+[node name="BadDiamond" parent="." index="39" instance=ExtResource("8_nqrgq")]
+position = Vector2(1100, -400)
 
 [connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]

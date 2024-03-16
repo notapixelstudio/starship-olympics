@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbnal076e0fd1"]
+
+[ext_resource type="Script" path="res://godot4/effects/FloatingMessage.gd" id="1_ononj"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="2_mbvra"]
+
+[sub_resource type="Animation" id="2"]
+resource_name = "Appear"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [-200.0, -400.0]
+}
+
+[sub_resource type="Animation" id="Animation_51et7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-400, -200)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_py11i"]
+_data = {
+"Appear": SubResource("2"),
+"RESET": SubResource("Animation_51et7")
+}
+
+[node name="FloatingMessage" type="Node2D" groups=["Overlay"]]
+z_index = 20
+z_as_relative = false
+script = ExtResource("1_ononj")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -200.0
+offset_right = 400.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(125, 20)
+theme = ExtResource("2_mbvra")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_font_sizes/font_size = 80
+text = "+{}"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_py11i")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

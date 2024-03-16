@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck7ir4e3p2vwi"]
+
+[ext_resource type="Script" path="res://godot4/arena/managers/MessageManager.gd" id="1_7fila"]
+[ext_resource type="PackedScene" uid="uid://bbnal076e0fd1" path="res://godot4/effects/FloatingMessage.tscn" id="2_mgjx1"]
+
+[node name="MessageManager" type="Node"]
+script = ExtResource("1_7fila")
+floating_message_scene = ExtResource("2_mgjx1")

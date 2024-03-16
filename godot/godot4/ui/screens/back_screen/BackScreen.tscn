@@ -9,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://d3abq633jh74a" path="res://godot4/ui/screens/Screen.tscn" id="16"]
 
 [node name="BackScreen" instance=ExtResource("16")]
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("3")
 
 [node name="Reference" type="TextureRect" parent="." index="0"]
@@ -21,7 +19,6 @@ offset_bottom = 720.0
 texture = ExtResource("4")
 
 [node name="FancyMenu" parent="." index="1" instance=ExtResource("2")]
-anchors_preset = 0
 auto_neighbours = "both"
 focus_default_element_on_ready = false
 
