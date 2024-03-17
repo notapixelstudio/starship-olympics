@@ -8,10 +8,9 @@ radius = 90.0
 
 [node name="BigDiamond" instance=ExtResource("1_qshej")]
 points = 3
-texture = ExtResource("2_k5jcj")
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_qj0q4")
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="Graphics" index="0"]
 texture = ExtResource("2_k5jcj")

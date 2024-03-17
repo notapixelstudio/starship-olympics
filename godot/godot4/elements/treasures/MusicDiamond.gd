@@ -2,6 +2,7 @@ extends Treasure
 
 @export var starting_beats := 0
 var _beats := 0
+var _even := true
 
 func _ready():
 	Events.beat.connect(_on_beat)
@@ -12,10 +13,16 @@ func _ready():
 		phase_out()
 	
 func _on_beat(period:int) -> void:
+	%AnimationPlayer.stop()
+	if _even:
+		%AnimationPlayer.play('Pulse')
+	else:
+		%AnimationPlayer.play('PulseBack')
 	_beats = (_beats + 1) % period
+	_even = not _even
 	if _beats == 0:
 		switch()
-		
+	
 func switch():
 	if collectable:
 		collectable = false
@@ -25,11 +32,9 @@ func switch():
 		phase_in()
 
 func phase_out():
-	%Sprite2D.visible = false
-	%GhostSprite2D.visible = true
+	%Sprite2D.modulate = Color('#45c2ff2d')
 	%CollisionShape2D.disabled = true
 	
 func phase_in():
-	%Sprite2D.visible = true
-	%GhostSprite2D.visible = false
+	%Sprite2D.modulate = Color.WHITE
 	%CollisionShape2D.disabled = false
