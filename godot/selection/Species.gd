@@ -17,6 +17,7 @@ class_name Species
 # color of the species
 @export var color : Color
 @export var color_2 : Color
+@export var color_accent : Color
 
 func get_id():
 	return id

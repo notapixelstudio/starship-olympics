@@ -1,23 +1,24 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="Species" load_steps=7 format=3 uid="uid://bcsa675ruiohh"]
 
-[ext_resource path="res://assets/sprites/species/trixens/tail_beaten.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/sprites/species/trixens.png" type="Texture2D" id=2]
-[ext_resource path="res://selection/Species.gd" type="Script" id=3]
-[ext_resource path="res://assets/sprites/species/trixens/ship.png" type="Texture2D" id=4]
-[ext_resource path="res://assets/sprites/species/trixens/ship_plain.png" type="Texture2D" id=5]
-[ext_resource path="res://assets/sprites/species/trixens/ship_w.png" type="Texture2D" id=6]
+[ext_resource type="Texture2D" uid="uid://dflfebm0gb3la" path="res://assets/sprites/species/trixens/tail_beaten.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dvaqcd7g170mr" path="res://assets/sprites/species/trixens.png" id="2"]
+[ext_resource type="Script" path="res://selection/Species.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://cb0qlj2bwsmkf" path="res://assets/sprites/species/trixens/ship.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cmdfjtnre8vjk" path="res://assets/sprites/species/trixens/ship_plain.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bm6fbogrtlefy" path="res://assets/sprites/species/trixens/ship_w.png" id="6"]
 
 [resource]
-script = ExtResource( 3 )
+script = ExtResource("3")
 id = "trixens_1"
 species_id = 3
 name = "trixens"
 tagline1 = "feisty<br>workaholics"
 tagline2 = ""
-ship = ExtResource( 4 )
-ship_off = ExtResource( 5 )
-ship_w = ExtResource( 6 )
-character_ok = ExtResource( 2 )
-character_beaten = ExtResource( 1 )
-color = Color( 1, 0.870588, 0.372549, 1 )
-color_2 = Color( 1, 0.301961, 0.0313726, 1 )
+ship = ExtResource("4")
+ship_off = ExtResource("5")
+ship_w = ExtResource("6")
+character_ok = ExtResource("2")
+character_beaten = ExtResource("1")
+color = Color(1, 0.870588, 0.372549, 1)
+color_2 = Color(1, 0.54902, 0.0313726, 1)
+color_accent = Color(0.101961, 1, 1, 1)

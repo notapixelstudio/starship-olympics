@@ -113,6 +113,7 @@ host = NodePath("../..")
 unique_name_in_owner = true
 
 [node name="Sprite" type="Sprite2D" parent="Graphics"]
+unique_name_in_owner = true
 texture = ExtResource("3_gbkft")
 script = SubResource("GDScript_jwr13")
 
@@ -179,17 +180,28 @@ host = NodePath("..")
 flames = [NodePath("../BottomFlameTrail"), NodePath("../FlameTrail")]
 
 [node name="BottomFlameTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("10_4jj2i")]
+unique_name_in_owner = true
+modulate = Color(1.6, 1.6, 1.6, 1)
 width = 120.0
-default_color = Color(1, 0, 0, 0.556863)
+default_color = Color(1, 0, 0, 1)
+joint_mode = 0
+round_precision = 8
 host = NodePath("..")
 offset = Vector2(-80, 0)
+max_length = 200
 
 [node name="FlameTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("10_4jj2i")]
+unique_name_in_owner = true
+modulate = Color(1.2, 1.2, 1.2, 1)
 width = 50.0
+joint_mode = 0
+round_precision = 8
 host = NodePath("..")
 offset = Vector2(-95, 0)
+max_length = 100
 
 [node name="MotionAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("11_tsmbp")]
+unique_name_in_owner = true
 gradient = SubResource("Gradient_tmbes")
 host = NodePath("..")
 

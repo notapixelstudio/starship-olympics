@@ -12,6 +12,8 @@ func _ready():
 	# default test subject is a node named Ship, accessible via local unique names
 	if get_node_or_null('%Ship'):
 		set_test_subject(%Ship)
+		var fake_player = Player.new()
+		%Ship.set_player(fake_player)
 
 func _process(delta):
 	if not test_subject:

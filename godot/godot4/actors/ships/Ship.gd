@@ -3,7 +3,18 @@ extends RigidBody2D
 class_name Ship
 ## Ship base class
 
+@export var player : Player : set = set_player
 @export var dash_ring_scene : PackedScene
+
+func set_player(v: Player) -> void:
+	player = v
+	%Sprite.texture = player.get_ship_image()
+	var trail_gradient = Gradient.new()
+	trail_gradient.set_color(0, Color(player.get_species().color_2, 0))
+	trail_gradient.set_color(1, Color(player.get_species().color, 0.2))
+	%MotionAutoTrail.gradient = trail_gradient
+	%FlameTrail.default_color = player.get_species().color_accent
+	%BottomFlameTrail.default_color = player.get_species().color
 
 @onready var tracked = %Tracked
 
@@ -137,3 +148,6 @@ func _on_hurt_area_body_entered(body):
 func _on_hurt_area_entered(sth):
 	hurt_by.emit(sth)
 	Events.sth_hurt_ship.emit(sth, self)
+
+func get_color() -> Color:
+	return player.get_color() if player else Color.WHITE

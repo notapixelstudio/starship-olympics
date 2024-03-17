@@ -1,23 +1,24 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="Species" load_steps=7 format=3 uid="uid://c8dkseibuofal"]
 
-[ext_resource path="res://assets/sprites/species/auriels/toriels_ship_plain.png" type="Texture2D" id=1]
-[ext_resource path="res://selection/Species.gd" type="Script" id=2]
-[ext_resource path="res://assets/sprites/species/auriels/ship_w.png" type="Texture2D" id=3]
-[ext_resource path="res://assets/sprites/species/auriels/toriels1_beaten.png" type="Texture2D" id=4]
-[ext_resource path="res://assets/sprites/species/toriels.png" type="Texture2D" id=5]
-[ext_resource path="res://assets/sprites/species/auriels/ship.png" type="Texture2D" id=6]
+[ext_resource type="Texture2D" uid="uid://ptu25pdm1jc7" path="res://assets/sprites/species/auriels/toriels_ship_plain.png" id="1"]
+[ext_resource type="Script" path="res://selection/Species.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bw4o7mf8sb8rs" path="res://assets/sprites/species/auriels/ship_w.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://d21bva80klrg5" path="res://assets/sprites/species/auriels/toriels1_beaten.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://bl1tvcs1kl7pk" path="res://assets/sprites/species/toriels.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://q5236w585nhy" path="res://assets/sprites/species/auriels/ship.png" id="6"]
 
 [resource]
-script = ExtResource( 2 )
+script = ExtResource("2")
 id = "auriels_1"
 species_id = 5
 name = "auriels"
 tagline1 = "overprotective<br>shepherds"
 tagline2 = ""
-ship = ExtResource( 6 )
-ship_off = ExtResource( 1 )
-ship_w = ExtResource( 3 )
-character_ok = ExtResource( 5 )
-character_beaten = ExtResource( 4 )
-color = Color( 1, 0.976471, 0.85098, 1 )
-color_2 = Color( 0.368627, 0.776471, 1, 1 )
+ship = ExtResource("6")
+ship_off = ExtResource("1")
+ship_w = ExtResource("3")
+character_ok = ExtResource("5")
+character_beaten = ExtResource("4")
+color = Color(1, 0.976471, 0.639216, 1)
+color_2 = Color(0.584314, 0.815686, 1, 1)
+color_accent = Color(1, 0.505882, 0, 1)

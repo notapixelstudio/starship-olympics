@@ -20,8 +20,8 @@ func set_message(value):
 		
 	$Label.text = tr(msg)
 	
-func set_color(v):
-	pass
+func set_color(color : Color):
+	$Label.add_theme_color_override('font_color', color)
 	
 signal end
 func _on_AnimationPlayer_animation_finished(anim_name):
