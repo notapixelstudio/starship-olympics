@@ -123,6 +123,7 @@ func _drop_dash_ring_effect() -> void:
 	get_parent().add_child(dash_ring)
 	dash_ring.global_position = global_position
 	dash_ring.global_rotation = global_rotation
+	dash_ring.set_color(get_color())
 	dash_ring.scale = Vector2(1,1) * %ChargeManager.get_charge_normalized()
 
 

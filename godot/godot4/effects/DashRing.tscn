@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6gg3o407i70x"]
+[gd_scene load_steps=6 format=3 uid="uid://b6gg3o407i70x"]
 
 [ext_resource type="Script" path="res://godot4/effects/DashRing.gd" id="1_ikcut"]
-
 
 [sub_resource type="Curve" id="2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.247191, 1), 0.0, 0.0, 0, 0, Vector2(0.752809, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -20,7 +19,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [35.0, 0.0]
+"values": [40.0, 0.0]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -37,18 +36,23 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_1drn0"]
+length = 0.001
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5cyov"]
 _data = {
-"Disappear": SubResource("3")
+"Disappear": SubResource("3"),
+"RESET": SubResource("Animation_1drn0")
 }
 
 [node name="DashRing" type="Node2D"]
 script = ExtResource("1_ikcut")
 
 [node name="Line2D" type="Line2D" parent="."]
+modulate = Color(1, 1, 1, 0.235294)
 rotation = 3.14159
 scale = Vector2(0.5, 1)
-width = 70.0
+width = 60.0
 width_curve = SubResource("2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

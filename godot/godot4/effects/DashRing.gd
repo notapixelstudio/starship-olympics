@@ -3,7 +3,7 @@ extends Node2D
 @export var angle = 3*PI/2
 @export var growth = 1000
 @export var speed = 0
-@export var lifetime = 0.2
+@export var lifetime = 0.3
 
 var radius = 0
 var distance = 0
@@ -35,3 +35,5 @@ func _process(delta):
 			dying = true
 			$AnimationPlayer.play("Disappear")
 		
+func set_color(color: Color) -> void:
+	$Line2D.default_color = color
