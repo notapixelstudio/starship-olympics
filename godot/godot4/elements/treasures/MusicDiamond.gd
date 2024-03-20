@@ -38,3 +38,4 @@ func phase_out():
 func phase_in():
 	%Sprite2D.modulate = Color.WHITE
 	%CollisionShape2D.disabled = false
+	shine()

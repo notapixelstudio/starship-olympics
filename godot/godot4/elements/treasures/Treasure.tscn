@@ -1,10 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://def8gegesl10e"]
+[gd_scene load_steps=7 format=3 uid="uid://def8gegesl10e"]
 
 [ext_resource type="Script" path="res://godot4/elements/treasures/Treasure.gd" id="1_q6gx3"]
 [ext_resource type="PackedScene" uid="uid://c4yru00x07tyi" path="res://godot4/effects/TreasurePicked.tscn" id="2_lfwwo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ycic"]
 radius = 70.0
+
+[sub_resource type="Animation" id="Animation_ijh7r"]
+resource_name = "Shine"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(1.4, 1.4, 1.4, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e7hm2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lqqh5"]
+_data = {
+"RESET": SubResource("Animation_e7hm2"),
+"Shine": SubResource("Animation_ijh7r")
+}
 
 [node name="Treasure" type="RigidBody2D"]
 collision_layer = 2048
@@ -20,3 +57,9 @@ shape = SubResource("CircleShape2D_0ycic")
 
 [node name="Sprite2D" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
+
+[node name="SpriteAnimation" type="AnimationPlayer" parent="Graphics"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_lqqh5")
+}

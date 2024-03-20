@@ -2,6 +2,7 @@ class_name Treasure
 extends RigidBody2D
 
 @export var collectable := true : set = set_collectable
+@export var solid := true
 @export var points := 1
 @export var treasure_picked_scene : PackedScene
 
@@ -26,7 +27,7 @@ func _ready():
 	
 func update_solid():
 	# ship bodies should push diamonds iff not collectable
-	set_collision_mask_value(1, not collectable)
+	set_collision_mask_value(1, not collectable and solid)
 	
 func touched_by(toucher : Ship):
 	if not collectable:
@@ -41,3 +42,6 @@ func touched_by(toucher : Ship):
 	get_parent().add_child(picked_effect)
 	
 	queue_free()
+
+func shine():
+	%SpriteAnimation.play('Shine')

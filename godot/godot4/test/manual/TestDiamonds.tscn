@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ovcqd8vqj5i1"]
+[gd_scene load_steps=13 format=3 uid="uid://ovcqd8vqj5i1"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_gfqil"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_bhfha"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="6_xtpgn"]
 [ext_resource type="PackedScene" uid="uid://1jdlhqq8mf0c" path="res://godot4/elements/treasures/MusicDiamond.tscn" id="7_0rc48"]
 [ext_resource type="PackedScene" uid="uid://cmul0ynkk8ctj" path="res://godot4/elements/treasures/BadDiamond.tscn" id="8_nqrgq"]
+[ext_resource type="PackedScene" uid="uid://dtdo2o8sagd7u" path="res://godot4/elements/treasures/SpikeDiamond.tscn" id="9_8qih7"]
 
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
 script/source = "extends TestChamberLog
@@ -207,5 +208,8 @@ starting_beats = 3
 
 [node name="BadDiamond" parent="." index="52" instance=ExtResource("8_nqrgq")]
 position = Vector2(1100, -400)
+
+[node name="SpikeDiamond" parent="." index="53" instance=ExtResource("9_8qih7")]
+position = Vector2(1100, -1100)
 
 [connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]

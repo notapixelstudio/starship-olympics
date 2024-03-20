@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtdo2o8sagd7u"]
+
+[ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_d0sat"]
+[ext_resource type="Texture2D" uid="uid://d1f81kxxt7y1i" path="res://assets/sprites/environments/diamond_spike_on.png" id="2_xptjw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6r7j6"]
+radius = 55.0
+
+[node name="SpikeDiamond" instance=ExtResource("1_d0sat")]
+collision_mask = 3092
+collectable = false
+solid = false
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_6r7j6")
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+texture = ExtResource("2_xptjw")
