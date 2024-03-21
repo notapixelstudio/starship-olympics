@@ -5,6 +5,7 @@ class_name Ship
 
 @export var player : Player : set = set_player
 @export var dash_ring_scene : PackedScene
+@export var death_feedback_scene : PackedScene
 
 func set_player(v: Player) -> void:
 	player = v
@@ -149,6 +150,20 @@ func _on_hurt_area_body_entered(body):
 func _on_hurt_area_entered(sth):
 	hurt_by.emit(sth)
 	Events.sth_hurt_ship.emit(sth, self)
+	
+	if sth.has_method('hurt'):
+		sth.hurt(self)
 
 func get_color() -> Color:
 	return player.get_color() if player else Color.WHITE
+
+func suffer_damage(amount: int) -> void:
+	# TBD health system
+	die()
+	
+func die():
+	var death_feedback = death_feedback_scene.instantiate()
+	death_feedback.color = get_color()
+	death_feedback.global_position = global_position
+	get_parent().add_child(death_feedback)
+	queue_free()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=22 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PackedScene" uid="uid://b6gg3o407i70x" path="res://godot4/effects/DashRing.tscn" id="2_0puh8"]
+[ext_resource type="PackedScene" uid="uid://ctqk6tu6rj77v" path="res://godot4/effects/DeathFeedback.tscn" id="3_3e4pi"]
 [ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="3_gbkft"]
 [ext_resource type="PackedScene" uid="uid://clbsrjsidxhav" path="res://combat/traits/Tracked.tscn" id="3_h4ehe"]
 [ext_resource type="Script" path="res://actors/battlers/Node2D.gd" id="4_557ck"]
@@ -94,6 +95,7 @@ angular_damp_mode = 1
 angular_damp = 80.0
 script = ExtResource("1_cvjhk")
 dash_ring_scene = ExtResource("2_0puh8")
+death_feedback_scene = ExtResource("3_3e4pi")
 
 [node name="Tracked" parent="." instance=ExtResource("3_h4ehe")]
 unique_name_in_owner = true
@@ -128,7 +130,7 @@ debug_color = Color(0, 0.635294, 0.4, 0.419608)
 
 [node name="HurtArea" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 900
+collision_mask = 528284
 
 [node name="HurtShape2D" type="CollisionShape2D" parent="HurtArea"]
 unique_name_in_owner = true
