@@ -1,0 +1,168 @@
+[gd_scene load_steps=13 format=3 uid="uid://knkx7cebps54"]
+
+[ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_86tmn"]
+[ext_resource type="Script" path="res://godot4/elements/treasures/MusicSpikeDiamond.gd" id="2_kmqd2"]
+[ext_resource type="Texture2D" uid="uid://c4m5n7bhcjgmt" path="res://assets/sprites/environments/diamond_spike_off.png" id="3_xy68c"]
+[ext_resource type="Texture2D" uid="uid://d1f81kxxt7y1i" path="res://assets/sprites/environments/diamond_spike_on.png" id="4_blpjq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2cdjs"]
+resource_local_to_scene = true
+radius = 70.0
+
+[sub_resource type="Animation" id="Animation_etq4v"]
+resource_name = "Pulse"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 0, 1),
+"update": 0,
+"values": [Color(1.4, 1.4, 1.4, 1), Color(1, 1, 1, 1), Color(1.4, 1.4, 1.4, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [0.349066, 0.349066, -0.349066]
+}
+
+[sub_resource type="Animation" id="Animation_ka7ew"]
+resource_name = "PulseBack"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 0, 1),
+"update": 0,
+"values": [Color(1.4, 1.4, 1.4, 1), Color(1, 1, 1, 1), Color(1.4, 1.4, 1.4, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [-0.349066, -0.349066, 0.349066]
+}
+
+[sub_resource type="Animation" id="Animation_ti5xo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.349066]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cwsrf"]
+_data = {
+"Pulse": SubResource("Animation_etq4v"),
+"PulseBack": SubResource("Animation_ka7ew"),
+"RESET": SubResource("Animation_ti5xo")
+}
+
+[sub_resource type="Animation" id="Animation_wyoqa"]
+resource_name = "KillFeedback"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1.8, 1.8, 1.8, 1), Color(1.6, 1.6, 1.6, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xl8d8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i6li3"]
+_data = {
+"KillFeedback": SubResource("Animation_wyoqa"),
+"RESET": SubResource("Animation_xl8d8")
+}
+
+[node name="MusicSpikeDiamond" instance=ExtResource("1_86tmn")]
+collision_mask = 3092
+script = ExtResource("2_kmqd2")
+good_texture = ExtResource("3_xy68c")
+bad_texture = ExtResource("4_blpjq")
+starting_beats = 0
+
+[node name="CollisionShape2D" parent="." index="0"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_2cdjs")
+
+[node name="Graphics" parent="." index="1"]
+rotation = 0.349066
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+texture = ExtResource("3_xy68c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_cwsrf")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="3"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_i6li3")
+}
