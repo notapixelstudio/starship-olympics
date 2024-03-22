@@ -1,0 +1,190 @@
+[gd_scene load_steps=9 format=3 uid="uid://ca7fdpwwgkj1u"]
+
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_sd71t"]
+[ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="2_sf1o5"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="3_ww2oh"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="4_oucrr"]
+[ext_resource type="PackedScene" uid="uid://cx3mw55rwlyvt" path="res://godot4/elements/treasures/Fruit.tscn" id="5_pw5bu"]
+
+[sub_resource type="GDScript" id="GDScript_0rj7w"]
+script/source = "extends TestChamberLog
+
+
+func _ready():
+	super._ready()
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_sth_collected(collector, collectee):
+	log_line(\"[b]%s[/b] collected [b]%s[/b] (%d points)\" % [collector.name, collectee.name, collectee.get_points()])
+"
+
+[sub_resource type="GDScript" id="GDScript_dqhjw"]
+script/source = "extends Timer
+
+@export var period := 4
+
+func _ready():
+	tick.call_deferred()
+
+func _on_timeout():
+	tick()
+
+func tick():
+	Events.beat.emit(period, wait_time)
+	wait_time *= 0.99
+"
+
+[sub_resource type="GDScript" id="GDScript_qq6xw"]
+script/source = "extends Node
+
+
+func _ready():
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_sth_collected(collector, collectee):
+	# TBD assing score to player
+	# show feedback
+	Events.message.emit(collectee.get_points(), collector.get_color(), collectee.global_position)
+"
+
+[node name="TestChamber" instance=ExtResource("1_sd71t")]
+
+[node name="TestChamberLog" parent="." index="4"]
+script = SubResource("GDScript_0rj7w")
+
+[node name="TestBeat" type="Timer" parent="." index="6"]
+autostart = true
+script = SubResource("GDScript_dqhjw")
+
+[node name="MessageManager" parent="." index="7" node_paths=PackedStringArray("arena") instance=ExtResource("2_sf1o5")]
+arena = NodePath("..")
+
+[node name="CollectGame" type="Node" parent="." index="8"]
+script = SubResource("GDScript_qq6xw")
+
+[node name="Ship" parent="." index="9" instance=ExtResource("3_ww2oh")]
+unique_name_in_owner = true
+
+[node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("4_oucrr")]
+
+[node name="Fruit" parent="." index="10" instance=ExtResource("5_pw5bu")]
+position = Vector2(1200, 0)
+
+[node name="Fruit2" parent="." index="11" instance=ExtResource("5_pw5bu")]
+position = Vector2(1200, -400)
+
+[node name="Fruit3" parent="." index="12" instance=ExtResource("5_pw5bu")]
+position = Vector2(800, -400)
+
+[node name="Fruit4" parent="." index="13" instance=ExtResource("5_pw5bu")]
+position = Vector2(800, 0)
+
+[node name="Fruit5" parent="." index="14" instance=ExtResource("5_pw5bu")]
+position = Vector2(1200, -800)
+
+[node name="Fruit6" parent="." index="15" instance=ExtResource("5_pw5bu")]
+position = Vector2(1200, -1200)
+
+[node name="Fruit7" parent="." index="16" instance=ExtResource("5_pw5bu")]
+position = Vector2(800, -1200)
+
+[node name="Fruit8" parent="." index="17" instance=ExtResource("5_pw5bu")]
+position = Vector2(800, -800)
+
+[node name="Fruit17" parent="." index="18" instance=ExtResource("5_pw5bu")]
+position = Vector2(-1200, -400)
+
+[node name="Fruit18" parent="." index="19" instance=ExtResource("5_pw5bu")]
+position = Vector2(-1200, 0)
+
+[node name="Fruit19" parent="." index="20" instance=ExtResource("5_pw5bu")]
+position = Vector2(-1200, -1200)
+
+[node name="Fruit20" parent="." index="21" instance=ExtResource("5_pw5bu")]
+position = Vector2(-1200, -800)
+
+[node name="Fruit9" parent="." index="22" instance=ExtResource("5_pw5bu")]
+position = Vector2(400, -800)
+
+[node name="Fruit10" parent="." index="23" instance=ExtResource("5_pw5bu")]
+position = Vector2(400, -1200)
+
+[node name="Fruit11" parent="." index="24" instance=ExtResource("5_pw5bu")]
+position = Vector2(0, -1200)
+
+[node name="Fruit12" parent="." index="25" instance=ExtResource("5_pw5bu")]
+position = Vector2(0, -800)
+
+[node name="Fruit13" parent="." index="26" instance=ExtResource("5_pw5bu")]
+position = Vector2(-400, -800)
+
+[node name="Fruit14" parent="." index="27" instance=ExtResource("5_pw5bu")]
+position = Vector2(-400, -1200)
+
+[node name="Fruit15" parent="." index="28" instance=ExtResource("5_pw5bu")]
+position = Vector2(-800, -1200)
+
+[node name="Fruit31" parent="." index="29" instance=ExtResource("5_pw5bu")]
+position = Vector2(1200, 1200)
+
+[node name="Fruit32" parent="." index="30" instance=ExtResource("5_pw5bu")]
+position = Vector2(800, 1200)
+
+[node name="Fruit33" parent="." index="31" instance=ExtResource("5_pw5bu")]
+position = Vector2(-1200, 1200)
+
+[node name="Fruit34" parent="." index="32" instance=ExtResource("5_pw5bu")]
+position = Vector2(400, 1200)
+
+[node name="Fruit35" parent="." index="33" instance=ExtResource("5_pw5bu")]
+position = Vector2(0, 1200)
+
+[node name="Fruit36" parent="." index="34" instance=ExtResource("5_pw5bu")]
+position = Vector2(-400, 1200)
+
+[node name="Fruit38" parent="." index="35" instance=ExtResource("5_pw5bu")]
+position = Vector2(400, 800)
+
+[node name="Fruit39" parent="." index="36" instance=ExtResource("5_pw5bu")]
+position = Vector2(0, 800)
+
+[node name="Fruit40" parent="." index="37" instance=ExtResource("5_pw5bu")]
+position = Vector2(-400, 800)
+
+[node name="Fruit37" parent="." index="38" instance=ExtResource("5_pw5bu")]
+position = Vector2(-800, 1200)
+
+[node name="Fruit16" parent="." index="39" instance=ExtResource("5_pw5bu")]
+position = Vector2(-800, -800)
+
+[node name="Fruit21" parent="." index="40" instance=ExtResource("5_pw5bu")]
+position = Vector2(-800, -400)
+
+[node name="Fruit22" parent="." index="41" instance=ExtResource("5_pw5bu")]
+position = Vector2(-800, 0)
+
+[node name="Fruit23" parent="." index="42" instance=ExtResource("5_pw5bu")]
+position = Vector2(-1200, 400)
+
+[node name="Fruit24" parent="." index="43" instance=ExtResource("5_pw5bu")]
+position = Vector2(-1200, 800)
+
+[node name="Fruit25" parent="." index="44" instance=ExtResource("5_pw5bu")]
+position = Vector2(-800, 400)
+
+[node name="Fruit26" parent="." index="45" instance=ExtResource("5_pw5bu")]
+position = Vector2(-800, 800)
+
+[node name="Fruit27" parent="." index="46" instance=ExtResource("5_pw5bu")]
+position = Vector2(800, 400)
+
+[node name="Fruit28" parent="." index="47" instance=ExtResource("5_pw5bu")]
+position = Vector2(800, 800)
+
+[node name="Fruit29" parent="." index="48" instance=ExtResource("5_pw5bu")]
+position = Vector2(1200, 400)
+
+[node name="Fruit30" parent="." index="49" instance=ExtResource("5_pw5bu")]
+position = Vector2(1200, 800)
+
+[connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]
