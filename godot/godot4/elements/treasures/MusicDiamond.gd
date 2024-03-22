@@ -12,8 +12,9 @@ func _ready():
 	if not collectable:
 		phase_out()
 	
-func _on_beat(period:int) -> void:
+func _on_beat(period: int, beat_duration: float) -> void:
 	%AnimationPlayer.stop()
+	%AnimationPlayer.speed_scale = 1/beat_duration
 	if _even:
 		%AnimationPlayer.play('Pulse')
 	else:

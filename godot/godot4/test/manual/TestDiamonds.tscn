@@ -28,8 +28,15 @@ script/source = "extends Timer
 
 @export var period := 4
 
+func _ready():
+	tick.call_deferred()
+
 func _on_timeout():
-	Events.beat.emit(period)
+	tick()
+
+func tick():
+	Events.beat.emit(period, wait_time)
+	wait_time *= 0.99
 "
 
 [sub_resource type="GDScript" id="GDScript_qq6xw"]
@@ -51,7 +58,6 @@ func _on_sth_collected(collector, collectee):
 script = SubResource("GDScript_0rj7w")
 
 [node name="TestBeat" type="Timer" parent="." index="6"]
-wait_time = 0.5
 autostart = true
 script = SubResource("GDScript_dqhjw")
 
