@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmlwbymobhm0b"]
+[gd_scene load_steps=8 format=3 uid="uid://dmlwbymobhm0b"]
 
 [ext_resource type="Script" path="res://godot4/debug/TestChamber.gd" id="1_lsfmj"]
 [ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="2_2i1b7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://addons/debugToolbox/TestGrid.gd" id="3_dshuw"]
 [ext_resource type="Script" path="res://godot4/debug/TestChamberLog.gd" id="5_upb84"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="6_4tylc"]
+[ext_resource type="Script" path="res://addons/debugToolbox/SecsCounter.gd" id="7_kveyl"]
 
 [node name="TestChamber" type="Node2D"]
 script = ExtResource("1_lsfmj")
@@ -46,5 +47,10 @@ popup/item_0/text = "KEYBOARD"
 popup/item_0/id = 0
 popup/item_1/text = "JOYPAD"
 popup/item_1/id = 1
+
+[node name="SecsCounter" type="Node2D" parent="."]
+position = Vector2(0, -1500)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("7_kveyl")
 
 [connection signal="item_selected" from="ControlSelector" to="." method="_on_control_selector_item_selected"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ca7fdpwwgkj1u"]
+[gd_scene load_steps=18 format=3 uid="uid://ca7fdpwwgkj1u"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_sd71t"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_7l1kw"]
@@ -23,6 +23,22 @@ func _ready():
 	
 func _on_sth_collected(collector, collectee):
 	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
+"
+
+[sub_resource type="GDScript" id="GDScript_dqhjw"]
+script/source = "extends Timer
+
+@export var period := 4
+
+func _ready():
+	tick.call_deferred()
+
+func _on_timeout():
+	tick()
+
+func tick():
+	Events.beat.emit(period, wait_time)
+	wait_time *= 0.99
 "
 
 [sub_resource type="GDScript" id="GDScript_qq6xw"]
@@ -55,7 +71,7 @@ func get_texture() -> Texture:
 	return $Sprite2D.texture
 
 func _on_timer_timeout():
-	$Timer.wait_time *= 0.9
+	$Timer.wait_time *= 0.95
 	pick_random()
 	reset_clock()
 	$Timer.start()
@@ -82,149 +98,150 @@ shader_parameter/color_off = Color(0.1, 0.1, 0.1, 1)
 
 [node name="TestChamber" instance=ExtResource("1_sd71t")]
 
-[node name="FPSCounter" parent="." index="2"]
-modulate = Color(0.541176, 0.768627, 1, 1)
-
 [node name="TestChamberLog" parent="." index="4"]
 script = SubResource("GDScript_0rj7w")
 
-[node name="ScoreManager" parent="." index="6" instance=ExtResource("2_7l1kw")]
+[node name="TestBeat" type="Timer" parent="." index="6"]
+autostart = true
+script = SubResource("GDScript_dqhjw")
+
+[node name="ScoreManager" parent="." index="7" instance=ExtResource("2_7l1kw")]
 teams = Array[String](["P1"])
 
-[node name="MessageManager" parent="." index="7" node_paths=PackedStringArray("arena") instance=ExtResource("2_sf1o5")]
+[node name="MessageManager" parent="." index="8" node_paths=PackedStringArray("arena") instance=ExtResource("2_sf1o5")]
 arena = NodePath("..")
 
-[node name="FruitsGame" type="Node" parent="." index="8" node_paths=PackedStringArray("choosy_clock")]
+[node name="FruitsGame" type="Node" parent="." index="9" node_paths=PackedStringArray("choosy_clock")]
 script = SubResource("GDScript_qq6xw")
 choosy_clock = NodePath("../ChoosyClock")
 
-[node name="Ship" parent="." index="9" instance=ExtResource("3_ww2oh")]
+[node name="Ship" parent="." index="10" instance=ExtResource("3_ww2oh")]
 unique_name_in_owner = true
 position = Vector2(0, -500)
 
 [node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("4_oucrr")]
 
-[node name="Fruit" parent="." index="10" instance=ExtResource("5_pw5bu")]
+[node name="Fruit" parent="." index="11" instance=ExtResource("5_pw5bu")]
 position = Vector2(1200, 0)
 
-[node name="Fruit2" parent="." index="11" instance=ExtResource("5_pw5bu")]
+[node name="Fruit2" parent="." index="12" instance=ExtResource("5_pw5bu")]
 position = Vector2(1200, -400)
 
-[node name="Fruit3" parent="." index="12" instance=ExtResource("5_pw5bu")]
+[node name="Fruit3" parent="." index="13" instance=ExtResource("5_pw5bu")]
 position = Vector2(800, -400)
 
-[node name="Fruit4" parent="." index="13" instance=ExtResource("5_pw5bu")]
+[node name="Fruit4" parent="." index="14" instance=ExtResource("5_pw5bu")]
 position = Vector2(800, 0)
 
-[node name="Fruit5" parent="." index="14" instance=ExtResource("5_pw5bu")]
+[node name="Fruit5" parent="." index="15" instance=ExtResource("5_pw5bu")]
 position = Vector2(1200, -800)
 
-[node name="Fruit6" parent="." index="15" instance=ExtResource("5_pw5bu")]
+[node name="Fruit6" parent="." index="16" instance=ExtResource("5_pw5bu")]
 position = Vector2(1200, -1200)
 
-[node name="Fruit7" parent="." index="16" instance=ExtResource("5_pw5bu")]
+[node name="Fruit7" parent="." index="17" instance=ExtResource("5_pw5bu")]
 position = Vector2(800, -1200)
 
-[node name="Fruit8" parent="." index="17" instance=ExtResource("5_pw5bu")]
+[node name="Fruit8" parent="." index="18" instance=ExtResource("5_pw5bu")]
 position = Vector2(800, -800)
 
-[node name="Fruit17" parent="." index="18" instance=ExtResource("5_pw5bu")]
+[node name="Fruit17" parent="." index="19" instance=ExtResource("5_pw5bu")]
 position = Vector2(-1200, -400)
 
-[node name="Fruit18" parent="." index="19" instance=ExtResource("5_pw5bu")]
+[node name="Fruit18" parent="." index="20" instance=ExtResource("5_pw5bu")]
 position = Vector2(-1200, 0)
 
-[node name="Fruit19" parent="." index="20" instance=ExtResource("5_pw5bu")]
+[node name="Fruit19" parent="." index="21" instance=ExtResource("5_pw5bu")]
 position = Vector2(-1200, -1200)
 
-[node name="Fruit20" parent="." index="21" instance=ExtResource("5_pw5bu")]
+[node name="Fruit20" parent="." index="22" instance=ExtResource("5_pw5bu")]
 position = Vector2(-1200, -800)
 
-[node name="Fruit9" parent="." index="22" instance=ExtResource("5_pw5bu")]
+[node name="Fruit9" parent="." index="23" instance=ExtResource("5_pw5bu")]
 position = Vector2(400, -800)
 
-[node name="Fruit10" parent="." index="23" instance=ExtResource("5_pw5bu")]
+[node name="Fruit10" parent="." index="24" instance=ExtResource("5_pw5bu")]
 position = Vector2(400, -1200)
 
-[node name="Fruit11" parent="." index="24" instance=ExtResource("5_pw5bu")]
+[node name="Fruit11" parent="." index="25" instance=ExtResource("5_pw5bu")]
 position = Vector2(0, -1200)
 
-[node name="Fruit12" parent="." index="25" instance=ExtResource("5_pw5bu")]
+[node name="Fruit12" parent="." index="26" instance=ExtResource("5_pw5bu")]
 position = Vector2(0, -800)
 
-[node name="Fruit13" parent="." index="26" instance=ExtResource("5_pw5bu")]
+[node name="Fruit13" parent="." index="27" instance=ExtResource("5_pw5bu")]
 position = Vector2(-400, -800)
 
-[node name="Fruit14" parent="." index="27" instance=ExtResource("5_pw5bu")]
+[node name="Fruit14" parent="." index="28" instance=ExtResource("5_pw5bu")]
 position = Vector2(-400, -1200)
 
-[node name="Fruit15" parent="." index="28" instance=ExtResource("5_pw5bu")]
+[node name="Fruit15" parent="." index="29" instance=ExtResource("5_pw5bu")]
 position = Vector2(-800, -1200)
 
-[node name="Fruit31" parent="." index="29" instance=ExtResource("5_pw5bu")]
+[node name="Fruit31" parent="." index="30" instance=ExtResource("5_pw5bu")]
 position = Vector2(1200, 1200)
 
-[node name="Fruit32" parent="." index="30" instance=ExtResource("5_pw5bu")]
+[node name="Fruit32" parent="." index="31" instance=ExtResource("5_pw5bu")]
 position = Vector2(800, 1200)
 
-[node name="Fruit33" parent="." index="31" instance=ExtResource("5_pw5bu")]
+[node name="Fruit33" parent="." index="32" instance=ExtResource("5_pw5bu")]
 position = Vector2(-1200, 1200)
 
-[node name="Fruit34" parent="." index="32" instance=ExtResource("5_pw5bu")]
+[node name="Fruit34" parent="." index="33" instance=ExtResource("5_pw5bu")]
 position = Vector2(400, 1200)
 
-[node name="Fruit35" parent="." index="33" instance=ExtResource("5_pw5bu")]
+[node name="Fruit35" parent="." index="34" instance=ExtResource("5_pw5bu")]
 position = Vector2(0, 1200)
 
-[node name="Fruit36" parent="." index="34" instance=ExtResource("5_pw5bu")]
+[node name="Fruit36" parent="." index="35" instance=ExtResource("5_pw5bu")]
 position = Vector2(-400, 1200)
 
-[node name="Fruit38" parent="." index="35" instance=ExtResource("5_pw5bu")]
+[node name="Fruit38" parent="." index="36" instance=ExtResource("5_pw5bu")]
 position = Vector2(400, 800)
 
-[node name="Fruit39" parent="." index="36" instance=ExtResource("5_pw5bu")]
+[node name="Fruit39" parent="." index="37" instance=ExtResource("5_pw5bu")]
 position = Vector2(0, 800)
 
-[node name="Fruit40" parent="." index="37" instance=ExtResource("5_pw5bu")]
+[node name="Fruit40" parent="." index="38" instance=ExtResource("5_pw5bu")]
 position = Vector2(-400, 800)
 
-[node name="Fruit37" parent="." index="38" instance=ExtResource("5_pw5bu")]
+[node name="Fruit37" parent="." index="39" instance=ExtResource("5_pw5bu")]
 position = Vector2(-800, 1200)
 
-[node name="Fruit16" parent="." index="39" instance=ExtResource("5_pw5bu")]
+[node name="Fruit16" parent="." index="40" instance=ExtResource("5_pw5bu")]
 position = Vector2(-800, -800)
 
-[node name="Fruit21" parent="." index="40" instance=ExtResource("5_pw5bu")]
+[node name="Fruit21" parent="." index="41" instance=ExtResource("5_pw5bu")]
 position = Vector2(-800, -400)
 
-[node name="Fruit22" parent="." index="41" instance=ExtResource("5_pw5bu")]
+[node name="Fruit22" parent="." index="42" instance=ExtResource("5_pw5bu")]
 position = Vector2(-800, 0)
 
-[node name="Fruit23" parent="." index="42" instance=ExtResource("5_pw5bu")]
+[node name="Fruit23" parent="." index="43" instance=ExtResource("5_pw5bu")]
 position = Vector2(-1200, 400)
 
-[node name="Fruit24" parent="." index="43" instance=ExtResource("5_pw5bu")]
+[node name="Fruit24" parent="." index="44" instance=ExtResource("5_pw5bu")]
 position = Vector2(-1200, 800)
 
-[node name="Fruit25" parent="." index="44" instance=ExtResource("5_pw5bu")]
+[node name="Fruit25" parent="." index="45" instance=ExtResource("5_pw5bu")]
 position = Vector2(-800, 400)
 
-[node name="Fruit26" parent="." index="45" instance=ExtResource("5_pw5bu")]
+[node name="Fruit26" parent="." index="46" instance=ExtResource("5_pw5bu")]
 position = Vector2(-800, 800)
 
-[node name="Fruit27" parent="." index="46" instance=ExtResource("5_pw5bu")]
+[node name="Fruit27" parent="." index="47" instance=ExtResource("5_pw5bu")]
 position = Vector2(800, 400)
 
-[node name="Fruit28" parent="." index="47" instance=ExtResource("5_pw5bu")]
+[node name="Fruit28" parent="." index="48" instance=ExtResource("5_pw5bu")]
 position = Vector2(800, 800)
 
-[node name="Fruit29" parent="." index="48" instance=ExtResource("5_pw5bu")]
+[node name="Fruit29" parent="." index="49" instance=ExtResource("5_pw5bu")]
 position = Vector2(1200, 400)
 
-[node name="Fruit30" parent="." index="49" instance=ExtResource("5_pw5bu")]
+[node name="Fruit30" parent="." index="50" instance=ExtResource("5_pw5bu")]
 position = Vector2(1200, 800)
 
-[node name="ChoosyClock" type="Node2D" parent="." index="50"]
+[node name="ChoosyClock" type="Node2D" parent="." index="51"]
 script = SubResource("GDScript_80ehj")
 textures = Array[Texture]([ExtResource("6_teoqp"), ExtResource("7_m2ews"), ExtResource("8_43d8u"), ExtResource("9_espkl")])
 
@@ -242,4 +259,5 @@ wait_time = 8.0
 one_shot = true
 autostart = true
 
+[connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]
 [connection signal="timeout" from="ChoosyClock/Timer" to="ChoosyClock" method="_on_timer_timeout"]
