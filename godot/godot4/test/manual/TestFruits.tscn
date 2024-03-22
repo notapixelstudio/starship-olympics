@@ -1,10 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://ca7fdpwwgkj1u"]
+[gd_scene load_steps=17 format=3 uid="uid://ca7fdpwwgkj1u"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_sd71t"]
 [ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="2_sf1o5"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="3_ww2oh"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="4_oucrr"]
 [ext_resource type="PackedScene" uid="uid://cx3mw55rwlyvt" path="res://godot4/elements/treasures/Fruit.tscn" id="5_pw5bu"]
+[ext_resource type="Texture2D" uid="uid://fjc48bw13nul" path="res://assets/sprites/fruits/banana.png" id="6_teoqp"]
+[ext_resource type="Texture2D" uid="uid://yhr2iwiak8j1" path="res://assets/sprites/fruits/cherry.png" id="7_m2ews"]
+[ext_resource type="Texture2D" uid="uid://dsegin3jm1org" path="res://assets/sprites/fruits/grape.png" id="8_43d8u"]
+[ext_resource type="Texture2D" uid="uid://brk160bqxjked" path="res://assets/sprites/fruits/pear.png" id="9_espkl"]
+[ext_resource type="Shader" path="res://assets/shaders/Clock.gdshader" id="10_u7ge3"]
+[ext_resource type="Texture2D" uid="uid://c1veqj7sis6ax" path="res://assets/sprites/10x10_square.png" id="11_k0lge"]
 
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
 script/source = "extends TestChamberLog
@@ -37,15 +43,42 @@ func tick():
 [sub_resource type="GDScript" id="GDScript_qq6xw"]
 script/source = "extends Node
 
+@export var choosy_clock : Node2D
 
 func _ready():
 	Events.sth_collected.connect(_on_sth_collected)
 	
 func _on_sth_collected(collector, collectee):
+	var points = collectee.get_points() if choosy_clock.get_texture() == collectee.get_texture() else -10
 	# TBD assing score to player
 	# show feedback
-	Events.message.emit(collectee.get_points(), collector.get_color(), collectee.global_position)
+	Events.message.emit(points, collector.get_color(), collectee.global_position)
 "
+
+[sub_resource type="GDScript" id="GDScript_80ehj"]
+script/source = "extends Node2D
+
+@export var textures : Array[Texture]
+
+
+func _ready():
+	pick_random()
+
+func get_texture() -> Texture:
+	return $Sprite2D.texture
+
+func _on_timer_timeout():
+	pick_random()
+
+func pick_random():
+	$Sprite2D.texture = textures.pick_random()
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hjd8o"]
+shader = ExtResource("10_u7ge3")
+shader_parameter/time_left = null
+shader_parameter/max_time = 10.0
+shader_parameter/active = true
 
 [node name="TestChamber" instance=ExtResource("1_sd71t")]
 
@@ -59,11 +92,13 @@ script = SubResource("GDScript_dqhjw")
 [node name="MessageManager" parent="." index="7" node_paths=PackedStringArray("arena") instance=ExtResource("2_sf1o5")]
 arena = NodePath("..")
 
-[node name="CollectGame" type="Node" parent="." index="8"]
+[node name="FruitsGame" type="Node" parent="." index="8" node_paths=PackedStringArray("choosy_clock")]
 script = SubResource("GDScript_qq6xw")
+choosy_clock = NodePath("../ChoosyClock")
 
 [node name="Ship" parent="." index="9" instance=ExtResource("3_ww2oh")]
 unique_name_in_owner = true
+position = Vector2(0, -500)
 
 [node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("4_oucrr")]
 
@@ -187,4 +222,26 @@ position = Vector2(1200, 400)
 [node name="Fruit30" parent="." index="49" instance=ExtResource("5_pw5bu")]
 position = Vector2(1200, 800)
 
+[node name="ChoosyClock" type="Node2D" parent="." index="50"]
+script = SubResource("GDScript_80ehj")
+textures = Array[Texture]([ExtResource("6_teoqp"), ExtResource("7_m2ews"), ExtResource("8_43d8u"), ExtResource("9_espkl")])
+
+[node name="Polygon2D" type="Polygon2D" parent="ChoosyClock" index="0"]
+polygon = PackedVector2Array(-300, -200, -200, -300, 200, -300, 300, -200, 300, 200, 200, 300, -200, 300, -300, 200)
+
+[node name="Sprite2D" type="Sprite2D" parent="ChoosyClock" index="1"]
+scale = Vector2(2, 2)
+texture = ExtResource("9_espkl")
+
+[node name="Polygon2D2" type="Polygon2D" parent="ChoosyClock" index="2"]
+visible = false
+material = SubResource("ShaderMaterial_hjd8o")
+texture = ExtResource("11_k0lge")
+polygon = PackedVector2Array(-300, -200, -200, -300, 200, -300, 300, -200, 300, 200, 200, 300, -200, 300, -300, 200)
+
+[node name="Timer" type="Timer" parent="ChoosyClock" index="3"]
+wait_time = 5.0
+autostart = true
+
 [connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]
+[connection signal="timeout" from="ChoosyClock/Timer" to="ChoosyClock" method="_on_timer_timeout"]
