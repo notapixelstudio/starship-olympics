@@ -156,6 +156,9 @@ func _on_hurt_area_entered(sth):
 
 func get_color() -> Color:
 	return player.get_color() if player else Color.WHITE
+	
+func get_team() -> String:
+	return player.get_team() if player else 'rogue'
 
 func suffer_damage(amount: int) -> void:
 	# TBD health system

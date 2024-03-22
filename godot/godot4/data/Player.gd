@@ -38,6 +38,9 @@ func get_character_image() -> Texture:
 func has_proper_team() -> bool:
 	return team != id
 	
+func get_team() -> String:
+	return team
+	
 func get_team_color() -> Color:
 	return Color('#ff4a2e') if self.team == 'A' else Color('#1a59ff')
 

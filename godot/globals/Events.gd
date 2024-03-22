@@ -40,6 +40,8 @@ signal sth_hurt_ship(sth:CollisionObject2D, ship:Ship)
 signal sth_crossed_gate(sth, gate:Gate)
 signal beat(period:int)
 
+signal points_scored(amount:int, team:String)
+
 signal log(message:String)
 signal message(message:Variant, color:Color, global_position:Vector2)
 # 4.x new events
