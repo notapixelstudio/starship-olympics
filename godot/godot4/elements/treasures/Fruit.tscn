@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cx3mw55rwlyvt"]
+[gd_scene load_steps=11 format=3 uid="uid://cx3mw55rwlyvt"]
 
 [ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_8scqn"]
 [ext_resource type="Script" path="res://godot4/elements/treasures/Fruit.gd" id="2_ouapt"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://yhr2iwiak8j1" path="res://assets/sprites/fruits/cherry.png" id="4_i0p36"]
 [ext_resource type="Texture2D" uid="uid://dsegin3jm1org" path="res://assets/sprites/fruits/grape.png" id="5_8h0eb"]
 [ext_resource type="Texture2D" uid="uid://brk160bqxjked" path="res://assets/sprites/fruits/pear.png" id="6_ofh8r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kerbb"]
+resource_local_to_scene = true
+radius = 60.0
 
 [sub_resource type="Animation" id="Animation_hs8rw"]
 resource_name = "Grow"
@@ -50,6 +54,7 @@ textures = Array[Texture]([ExtResource("3_xvg1r"), ExtResource("4_i0p36"), ExtRe
 
 [node name="CollisionShape2D" parent="." index="0"]
 unique_name_in_owner = true
+shape = SubResource("CircleShape2D_kerbb")
 
 [node name="Sprite2D" parent="Graphics" index="0"]
 texture = ExtResource("6_ofh8r")

@@ -28,13 +28,17 @@ func _on_sth_collected(collector, collectee):
 [sub_resource type="GDScript" id="GDScript_qq6xw"]
 script/source = "extends Node
 
-@export var choosy_clock : Node2D
+var _objective
 
 func _ready():
+	Events.new_objective.connect(_on_new_objective)
 	Events.sth_collected.connect(_on_sth_collected)
 	
+func _on_new_objective(objective) -> void:
+	_objective = objective
+	
 func _on_sth_collected(collector, collectee):
-	var points = collectee.get_points() if choosy_clock.get_texture() == collectee.get_texture() else -5
+	var points = collectee.get_points() if _objective == collectee.get_texture() else -5
 	# assign points
 	Events.points_scored.emit(points, collector.get_team())
 	# show feedback
@@ -46,24 +50,27 @@ script/source = "extends Node2D
 
 @export var textures : Array[Texture]
 
-
-func _ready():
-	pick_random()
-	reset_clock()
-
 func get_texture() -> Texture:
 	return $Sprite2D.texture
+	
+func _ready():
+	set_process(false)
 
 func _on_timer_timeout():
-	$Timer.wait_time *= 0.9
+	if $Timer.wait_time <= 1.0:
+		$Timer.wait_time = 8.0
+	else:
+		$Timer.wait_time *= 0.9
 	pick_random()
 	reset_clock()
 	$Timer.start()
 
 func pick_random():
 	$Sprite2D.texture = textures.pick_random()
+	Events.new_objective.emit($Sprite2D.texture)
 	
 func reset_clock():
+	set_process(true)
 	$Polygon2D.material.set_shader_parameter('max_time', $Timer.wait_time)
 	$Polygon2D.material.set_shader_parameter('time_left', 0)
 	
@@ -94,9 +101,8 @@ teams = Array[String](["P1"])
 [node name="MessageManager" parent="." index="8" node_paths=PackedStringArray("arena") instance=ExtResource("2_sf1o5")]
 arena = NodePath("..")
 
-[node name="FruitsGame" type="Node" parent="." index="9" node_paths=PackedStringArray("choosy_clock")]
+[node name="FruitsGame" type="Node" parent="." index="9"]
 script = SubResource("GDScript_qq6xw")
-choosy_clock = NodePath("../ChoosyClock")
 
 [node name="ChoosyClock" type="Node2D" parent="." index="10"]
 script = SubResource("GDScript_80ehj")
@@ -109,10 +115,8 @@ polygon = PackedVector2Array(-300, -200, -200, -300, 200, -300, 300, -200, 300, 
 
 [node name="Sprite2D" type="Sprite2D" parent="ChoosyClock" index="1"]
 scale = Vector2(2, 2)
-texture = ExtResource("9_espkl")
 
 [node name="Timer" type="Timer" parent="ChoosyClock" index="2"]
-wait_time = 8.0
 one_shot = true
 autostart = true
 

@@ -39,6 +39,7 @@ signal sth_hurt_ship(sth:CollisionObject2D, ship:Ship)
 
 signal sth_crossed_gate(sth, gate:Gate)
 signal beat(period:int)
+signal new_objective(objective:Variant)
 
 signal points_scored(amount:int, team:String)
 
