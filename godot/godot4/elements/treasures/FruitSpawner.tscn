@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://4r3mop0i5y3i"]
+
+[ext_resource type="Script" path="res://godot4/elements/treasures/FruitSpawner.gd" id="1_i4j6k"]
+[ext_resource type="PackedScene" uid="uid://cx3mw55rwlyvt" path="res://godot4/elements/treasures/Fruit.tscn" id="2_an7wl"]
+
+[node name="FruitSpawner" type="Node2D"]
+script = ExtResource("1_i4j6k")
+fruit_scene = ExtResource("2_an7wl")
