@@ -6,6 +6,8 @@ extends RigidBody2D
 @export var points := 1
 @export var treasure_picked_scene : PackedScene
 
+signal collected(PhysicsBody2D, Treasure)
+
 func set_collectable(v: bool) -> void:
 	collectable = v
 	update_solid()
@@ -33,6 +35,7 @@ func touched_by(toucher : Ship):
 	if not collectable:
 		return
 		
+	collected.emit(toucher, self)
 	Events.sth_collected.emit(toucher, self)
 	
 	# drop a treasure picked effect on parent
@@ -46,3 +49,9 @@ func touched_by(toucher : Ship):
 func shine():
 	%SpriteAnimation.stop()
 	%SpriteAnimation.play('Shine')
+	
+func disable_collisions() -> void:
+	%CollisionShape2D.disabled = true
+	
+func enable_collisions() -> void:
+	%CollisionShape2D.disabled = false

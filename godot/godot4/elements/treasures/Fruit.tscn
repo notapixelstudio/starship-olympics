@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cx3mw55rwlyvt"]
+[gd_scene load_steps=10 format=3 uid="uid://cx3mw55rwlyvt"]
 
 [ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_8scqn"]
 [ext_resource type="Script" path="res://godot4/elements/treasures/Fruit.gd" id="2_ouapt"]
@@ -7,9 +7,57 @@
 [ext_resource type="Texture2D" uid="uid://dsegin3jm1org" path="res://assets/sprites/fruits/grape.png" id="5_8h0eb"]
 [ext_resource type="Texture2D" uid="uid://brk160bqxjked" path="res://assets/sprites/fruits/pear.png" id="6_ofh8r"]
 
+[sub_resource type="Animation" id="Animation_hs8rw"]
+resource_name = "Grow"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(3.03143, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bsjpo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5r5px"]
+_data = {
+"Grow": SubResource("Animation_hs8rw"),
+"RESET": SubResource("Animation_bsjpo")
+}
+
 [node name="Fruit" instance=ExtResource("1_8scqn")]
 script = ExtResource("2_ouapt")
 textures = Array[Texture]([ExtResource("3_xvg1r"), ExtResource("4_i0p36"), ExtResource("5_8h0eb"), ExtResource("6_ofh8r")])
 
+[node name="CollisionShape2D" parent="." index="0"]
+unique_name_in_owner = true
+
 [node name="Sprite2D" parent="Graphics" index="0"]
 texture = ExtResource("6_ofh8r")
+
+[node name="GrowAnimation" type="AnimationPlayer" parent="Graphics" index="2"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_5r5px")
+}
+
+[connection signal="animation_finished" from="Graphics/GrowAnimation" to="." method="_on_grow_animation_animation_finished"]

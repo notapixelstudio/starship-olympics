@@ -1,8 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://4r3mop0i5y3i"]
+[gd_scene load_steps=6 format=3 uid="uid://4r3mop0i5y3i"]
 
 [ext_resource type="Script" path="res://godot4/elements/treasures/FruitSpawner.gd" id="1_i4j6k"]
 [ext_resource type="PackedScene" uid="uid://cx3mw55rwlyvt" path="res://godot4/elements/treasures/Fruit.tscn" id="2_an7wl"]
+[ext_resource type="Texture2D" uid="uid://brk160bqxjked" path="res://assets/sprites/fruits/pear.png" id="3_8uags"]
+[ext_resource type="Texture2D" uid="uid://m3j0tij6vm8h" path="res://assets/sprites/signs/O.png" id="3_qlyvj"]
+[ext_resource type="Script" path="res://addons/debugToolbox/Thumbnail2D.gd" id="4_bjttm"]
 
 [node name="FruitSpawner" type="Node2D"]
 script = ExtResource("1_i4j6k")
 fruit_scene = ExtResource("2_an7wl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.615686, 1, 0.682353, 0.00784314)
+texture = ExtResource("3_qlyvj")
+
+[node name="Thumbnail2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_8uags")
+script = ExtResource("4_bjttm")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

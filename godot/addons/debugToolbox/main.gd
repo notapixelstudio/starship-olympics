@@ -10,6 +10,7 @@ func _enter_tree():
 	add_custom_type("SecsCounter", "Node2D", preload("SecsCounter.gd"), preload("icons/FPSCounter.svg"))
 	add_custom_type("TestGrid", "Node2D", preload("TestGrid.gd"), preload("icons/TestGrid.svg"))
 	add_custom_type("Log", "RichTextLabel", preload("Log.gd"), preload("icons/Log.svg"))
+	add_custom_type("Thumbnail2D", "Sprite2D", preload("Thumbnail2D.gd"), preload("icons/Thumbnail2D.svg"))
 	
 func _exit_tree():
 	# Clean-up of the plugin goes here
@@ -20,3 +21,4 @@ func _exit_tree():
 	remove_custom_type("SecsCounter")
 	remove_custom_type("TestGrid")
 	remove_custom_type("Log")
+	remove_custom_type("Thumbnail2D")
