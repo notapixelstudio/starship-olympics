@@ -56,4 +56,16 @@ scale = Vector2(1.5, 1.5)
 script = ExtResource("7_kveyl")
 metadata/_edit_lock_ = true
 
+[node name="Label" type="Label" parent="."]
+modulate = Color(0.235294, 0.545098, 0.780392, 1)
+offset_left = -1300.0
+offset_top = 1350.0
+offset_right = 1300.0
+offset_bottom = 1431.0
+theme = ExtResource("6_4tylc")
+theme_override_font_sizes/font_size = 50
+text = "F8 to quit - F9 to restart - F11 to toggle fullscreen"
+horizontal_alignment = 1
+uppercase = true
+
 [connection signal="item_selected" from="ControlSelector" to="." method="_on_control_selector_item_selected"]

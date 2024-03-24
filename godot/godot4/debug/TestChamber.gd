@@ -25,3 +25,7 @@ func _on_control_selector_item_selected(index):
 		
 	test_subject.get_node('PlayerBrain').set_controls('kb1' if index == 0 else 'joy1')
 	%ControlSelector.release_focus()
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_restart_scene"):
+		get_tree().reload_current_scene()
