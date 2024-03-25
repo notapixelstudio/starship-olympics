@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://actors/battlers/ChargeManager.gd" id="5_ostpb"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="8_yfcmx"]
 [ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://godot4/effects/trails/FlameTrail.tscn" id="10_4jj2i"]
+[ext_resource type="PackedScene" uid="uid://cex35drwxeknp" path="res://godot4/effects/trails/FlamesManager.tscn" id="11_i3r85"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="11_tsmbp"]
 
 [sub_resource type="PhysicsMaterial" id="1"]
@@ -63,19 +64,6 @@ radius = 700.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_tm340"]
 resource_local_to_scene = true
 radius = 48.0
-
-[sub_resource type="GDScript" id="GDScript_mur34"]
-script/source = "extends Node
-
-@export var host : Ship
-@export var flames : Array[Trail]
-
-
-func _process(delta):
-	var flames_on = host.is_thrusting()
-	for flame in flames:
-		flame.set_shrinking(not flames_on)
-"
 
 [sub_resource type="Gradient" id="Gradient_tmbes"]
 resource_local_to_scene = true
@@ -176,8 +164,7 @@ one_shot = true
 [node name="DashTimer" type="Timer" parent="ChargeManager"]
 one_shot = true
 
-[node name="FlamesManager" type="Node" parent="." node_paths=PackedStringArray("host", "flames")]
-script = SubResource("GDScript_mur34")
+[node name="FlamesManager" parent="." node_paths=PackedStringArray("host", "flames") instance=ExtResource("11_i3r85")]
 host = NodePath("..")
 flames = [NodePath("../BottomFlameTrail"), NodePath("../FlameTrail")]
 

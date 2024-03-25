@@ -4,6 +4,7 @@ extends Line2D
 
 ## The maximum pixel length enforced for the line.
 @export_range(0, 100000, 1, 'suffix:px') var max_length := 6000
+@export var auto := true
 
 var _curve : Curve2D
 	
@@ -14,6 +15,8 @@ func _process(delta):
 	while _curve.get_baked_length() > max_length:
 		_curve.remove_point(0)
 		
+	if auto and get_parent():
+		self.add_point(get_parent().global_position)
 	_redraw()
 	
 func add_point(new_point : Vector2, index : int = -1):

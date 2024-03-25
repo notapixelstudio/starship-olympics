@@ -173,7 +173,7 @@ position = Vector2(-200, 900)
 position = Vector2(-400, 900)
 
 [node name="GodDiamond" parent="." index="43" instance=ExtResource("12_us4ci")]
-position = Vector2(900, 900)
+position = Vector2(1300, 700)
 
 [node name="MusicGhostDiamond" parent="." index="45" instance=ExtResource("12_5belf")]
 position = Vector2(0, -900)
@@ -245,6 +245,6 @@ position = Vector2(900, -900)
 starting_beats = 3
 
 [node name="MusicGodDiamond" parent="." index="63" instance=ExtResource("13_oaefj")]
-position = Vector2(-1000, 0)
+position = Vector2(900, 700)
 
 [connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]
