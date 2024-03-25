@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://1jdlhqq8mf0c"]
+[gd_scene load_steps=7 format=3 uid="uid://1jdlhqq8mf0c"]
 
 [ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_1em6e"]
-[ext_resource type="Texture2D" uid="uid://cyqlaxwtqgk0u" path="res://assets/sprites/environments/diamond.png" id="2_4hnq6"]
-[ext_resource type="Script" path="res://godot4/elements/treasures/MusicDiamond.gd" id="2_v3ag5"]
+[ext_resource type="Script" path="res://godot4/elements/treasures/MusicTreasure.gd" id="2_v3ag5"]
 
 [sub_resource type="Animation" id="Animation_etq4v"]
 resource_name = "Pulse"
@@ -94,7 +93,7 @@ _data = {
 "RESET": SubResource("Animation_ti5xo")
 }
 
-[node name="MusicDiamond" instance=ExtResource("1_1em6e")]
+[node name="MusicTreasure" instance=ExtResource("1_1em6e")]
 collision_mask = 3092
 script = ExtResource("2_v3ag5")
 starting_beats = 0
@@ -104,9 +103,6 @@ unique_name_in_owner = true
 
 [node name="Graphics" parent="." index="1"]
 rotation = 0.349066
-
-[node name="Sprite2D" parent="Graphics" index="0"]
-texture = ExtResource("2_4hnq6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 unique_name_in_owner = true
