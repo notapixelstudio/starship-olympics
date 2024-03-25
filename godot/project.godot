@@ -20,6 +20,33 @@ token.debug=""
 token="Godotexport_v1.0.0"
 hostname.local="http://localhost:8000"
 
+[addons]
+
+instance_dock/scenes=[{
+"name": "Treasures",
+"scenes": [{
+"scene": "res://godot4/elements/treasures/Diamond.tscn"
+}, {
+"scene": "res://godot4/elements/treasures/BigDiamond.tscn"
+}, {
+"scene": "res://godot4/elements/treasures/GodDiamond.tscn"
+}, {
+"scene": "res://godot4/elements/treasures/BadDiamond.tscn"
+}, {
+"scene": "res://godot4/elements/treasures/SpikeDiamond.tscn"
+}, {
+"scene": "res://godot4/elements/treasures/MusicGhostDiamond.tscn"
+}, {
+"scene": "res://godot4/elements/treasures/MusicGodDiamond.tscn"
+}, {
+"scene": "res://godot4/elements/treasures/MusicSpikeDiamond.tscn"
+}, {
+"scene": "res://godot4/elements/treasures/Fruit.tscn"
+}],
+"scroll": 0
+}]
+instance_dock/preview_resolution=Vector2i(200, 200)
+
 [application]
 
 config/name="StarshipOlympics"
@@ -45,6 +72,8 @@ Analytics="*res://globals/analytics.gd"
 LifecycleAPI="res://globals/LifecycleAPI.gd"
 Logger="res://globals/Logger.gd"
 SoundEffects="*res://globals/SoundEffects.gd"
+Config="*res://addons/gle2d/components/Config.gd"
+LevelManager="*res://addons/gle2d/components/LevelManager.gd"
 
 [debug]
 
@@ -63,7 +92,7 @@ window/size/fullscreen.debug=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debugToolbox/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/traits/plugin.cfg")
+enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/debugToolbox/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/traits/plugin.cfg")
 
 [global]
 
