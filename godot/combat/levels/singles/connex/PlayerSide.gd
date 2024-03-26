@@ -4,9 +4,9 @@ class_name PlayerSide
 func get_klass():
 	return 'Tile'
 
-export var side_owner : NodePath
+@export var side_owner : NodePath
 var player = null
-export var source := true
+@export var source := true
 
 var enabled := true
 var neighbours := []
@@ -15,13 +15,13 @@ var on := false
 func _ready():
 	var player_spawner = get_node(side_owner)
 	if player_spawner:
-		yield(player_spawner, "player_assigned")
+		await player_spawner.player_assigned
 		set_player(player_spawner.get_player())
 	else:
 		set_player(null)
 		
 	# need to wait for other tiles to settle
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	# tiles don't change neighbours over time
 	neighbours = []
 	for area in $Neighbourhood.get_overlapping_areas():

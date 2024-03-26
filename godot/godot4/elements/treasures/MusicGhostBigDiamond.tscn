@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://catnw4sskoiln"]
+
+[ext_resource type="PackedScene" uid="uid://1jdlhqq8mf0c" path="res://godot4/elements/treasures/MusicTreasure.tscn" id="1_n8iuy"]
+[ext_resource type="Script" path="res://godot4/elements/treasures/MusicGhostDiamond.gd" id="2_iix6r"]
+[ext_resource type="Texture2D" uid="uid://dldq7fl7u4nom" path="res://assets/sprites/environments/diamond_big.png" id="3_e82kk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1miu1"]
+radius = 95.0
+
+[node name="MusicGhostBigDiamond" instance=ExtResource("1_n8iuy")]
+script = ExtResource("2_iix6r")
+points = 3
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_1miu1")
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+texture = ExtResource("3_e82kk")

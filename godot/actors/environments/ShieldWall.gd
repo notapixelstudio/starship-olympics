@@ -1,22 +1,22 @@
 extends Area2D
 
-export (String, 'shield', 'plate', 'skin') var type = 'plate'
-export var starting_health := 3
-export var respawn_time := 6
-export var symbol_scale := 1.0 setget set_symbol_scale
+@export (String, 'shield', 'plate', 'skin') var type = 'plate'
+@export var starting_health := 3
+@export var respawn_time := 6
+@export var symbol_scale := 1.0: set = set_symbol_scale
 
 var health = starting_health
 
 func set_symbol_scale(v: float) -> void:
 	symbol_scale = v
 	if not is_inside_tree():
-		yield(self, "ready")
-	$Sprite.scale = Vector2(symbol_scale, symbol_scale)
+		await self.ready
+	$Sprite2D.scale = Vector2(symbol_scale, symbol_scale)
 	
 func _ready():
 	$Polygon2D.polygon = $CollisionPolygon2D.polygon
 	$IsoPolygon.set_polygon($CollisionPolygon2D.polygon)
-	$Line2D.points = $CollisionPolygon2D.polygon + PoolVector2Array([$CollisionPolygon2D.polygon[0]])
+	$Line2D.points = $CollisionPolygon2D.polygon + PackedVector2Array([$CollisionPolygon2D.polygon[0]])
 	up(type)
 
 func up(new_type):
@@ -44,7 +44,7 @@ func up(new_type):
 #	$Line2D.modulate = Color('#909bff')
 #	$IsoPolygon.color = Color('#a0abee')
 	$Polygon2D.modulate = Color('#207bff')
-	$Sprite.modulate = Color('#70abff')
+	$Sprite2D.modulate = Color('#70abff')
 	$Line2D.modulate = Color('#bbbbff')
 	$IsoPolygon.color = Color('#306bff')
 	
@@ -72,7 +72,7 @@ func enable_collisions():
 func disable_collisions():
 	$CollisionPolygon2D.call_deferred('set_disabled', true)
 	if type == 'skin':
-		yield(get_tree().create_timer(respawn_time), "timeout")
+		await get_tree().create_timer(respawn_time).timeout
 		if type == 'skin': # shield type could have changed (e.g., if switched off)
 			up('skin')
 
@@ -82,4 +82,4 @@ func _on_ShieldWall_body_entered(body):
 		self.down()
 
 func _process(delta):
-	$Sprite.rotation = -global_rotation
+	$Sprite2D.rotation = -global_rotation

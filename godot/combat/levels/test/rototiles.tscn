@@ -7,13 +7,13 @@
 [ext_resource path="res://actors/environments/RotoPowerline.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=6]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
-[ext_resource path="res://combat/levels/background/trixen.png" type="Texture" id=8]
+[ext_resource path="res://combat/levels/background/trixen.png" type="Texture2D" id=8]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=10]
 [ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=11]
 [ext_resource path="res://actors/environments/PowerBattery.tscn" type="PackedScene" id=12]
 [ext_resource path="res://actors/environments/PowerCore.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/boards/power_grid.png" type="Texture" id=14]
+[ext_resource path="res://assets/boards/power_grid.png" type="Texture2D" id=14]
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends Node2D
@@ -27,9 +27,9 @@ func _ready():
 			tile.set_on(false)
 			if tile.is_interactable():
 				tile.set_random_angle()
-				tile.connect('disconnected', self, '_on_tile_disconnected')
-				tile.connect('connected', self, '_on_tile_connected')
-			tile.connect('propagate', self, '_on_tile_propagate')
+				tile.connect('disconnected', Callable(self, '_on_tile_disconnected'))
+				tile.connect('connected', Callable(self, '_on_tile_connected'))
+			tile.connect('propagate', Callable(self, '_on_tile_propagate'))
 			matrix[tile.position/STEP] = tile
 		
 	recompute_power()
@@ -65,7 +65,7 @@ style = ExtResource( 2 )
 [node name="ConquestModeManager" parent="Managers" index="11"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 8 )
 centered = false
 
@@ -90,20 +90,20 @@ fg_color = Color( 0, 0.173333, 0.26, 1 )
 bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
 
 [node name="CameraStartingRect" parent="Battlefield/Background" index="4" instance=ExtResource( 4 )]
-polygon = PoolVector2Array( -1400, -1400, 1400, -1400, 1400, 1400, -1400, 1400, -1400, -1400 )
+polygon = PackedVector2Array( -1400, -1400, 1400, -1400, 1400, 1400, -1400, 1400, -1400, -1400 )
 
 [node name="GRect" type="Node" parent="Battlefield/Background/CameraStartingRect" index="0"]
 script = ExtResource( 3 )
 width = 2800
 height = 2800
 
-[node name="Sprite" type="Sprite" parent="Battlefield/Middleground" index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/Middleground" index="0"]
 modulate = Color( 0.231373, 0.192157, 0.141176, 1 )
 position = Vector2( 0, 24 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
 
-[node name="Sprite2" type="Sprite" parent="Battlefield/Middleground" index="1"]
+[node name="Sprite2" type="Sprite2D" parent="Battlefield/Middleground" index="1"]
 modulate = Color( 0.278431, 0.392157, 0.454902, 1 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 14 )
@@ -241,9 +241,9 @@ rotation = 3.14159
 controls = "joy2"
 species = ExtResource( 10 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 2.91038e+12, 2.91038e+12 )
-smoothing_speed = 0.3
+position_smoothing_speed = 0.3
 disabled_override = true
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

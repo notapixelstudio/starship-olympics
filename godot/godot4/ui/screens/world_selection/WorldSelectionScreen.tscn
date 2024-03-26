@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" uid="uid://bhq3klwabv0i8" path="res://godot4/ui/screens/back_screen/BackScreen.tscn" id="1"]
+[ext_resource type="Script" path="res://godot4/ui/screens/world_selection/WorldSelectionScreen.gd" id="2"]
+[ext_resource type="PackedScene" path="res://ui/minigame_list/DeckListScreen.tscn" id="3"]
+
+[node name="WorldSelectionScreen" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Back" parent="FancyMenu" index="0"]
+focus_neighbor_right = NodePath("../../DeckListPanel")
+focus_neighbor_bottom = NodePath("../../DeckListPanel")
+
+[node name="DeckListPanel" parent="." index="2" instance=ExtResource( 3 )]
+unique_name_in_owner = true
+offset_top = 120.0

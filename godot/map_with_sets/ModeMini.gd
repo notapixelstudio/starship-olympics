@@ -1,10 +1,10 @@
+@tool
 extends HBoxContainer
-tool
 
-export var mode: Resource setget set_mode
+@export var mode: Resource: set = set_mode
 
-onready var title = $Label
-onready var icon = $Icon
+@onready var title = $Label
+@onready var icon = $Icon
 
 func _ready():
 	refresh()

@@ -1,6 +1,6 @@
 extends Node2D
 
-export var bar_texture : Texture
+@export var bar_texture : Texture2D
 const bar_width := 26
 
 func set_total(amount):
@@ -8,7 +8,7 @@ func set_total(amount):
 		remove_child(child)
 		
 	for i in range(amount):
-		var bar = Sprite.new()
+		var bar = Sprite2D.new()
 		bar.texture = bar_texture
 		bar.position.x = (i - amount/2.0 + 0.5) * bar_width
 		add_child(bar)

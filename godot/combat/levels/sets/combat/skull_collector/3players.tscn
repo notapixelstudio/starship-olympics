@@ -7,8 +7,8 @@
 [ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=5]
 [ext_resource path="res://combat/managers/RespawnFromHomeManager.tscn" type="PackedScene" id=6]
 [ext_resource path="res://combat/modes/SkullCollectors.tres" type="Resource" id=7]
-[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
-[ext_resource path="res://assets/sprites/environments/skull_deco.png" type="Texture" id=9]
+[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture2D" id=8]
+[ext_resource path="res://assets/sprites/environments/skull_deco.png" type="Texture2D" id=9]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=10]
 [ext_resource path="res://combat/managers/SkullManager.tscn" type="PackedScene" id=11]
 [ext_resource path="res://actors/environments/SkullHole.tscn" type="PackedScene" id=12]
@@ -17,8 +17,8 @@
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=15]
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=16]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=17]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=18]
-[ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=19]
+[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture2D" id=18]
+[ext_resource path="res://assets/patterns/xgrid.png" type="Texture2D" id=19]
 [ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=20]
 [ext_resource path="res://actors/environments/MirrorWall.tscn" type="PackedScene" id=21]
 [ext_resource path="res://actors/environments/SpeciesDecal.tscn" type="PackedScene" id=23]
@@ -35,7 +35,7 @@ skull_scene = ExtResource( 14 )
 [node name="KillModeManager" parent="Managers" index="10"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 8 )
 centered = false
 
@@ -51,11 +51,11 @@ script = ExtResource( 4 )
 __meta__ = {
 "_editor_description_": ""
 }
-polygon = PoolVector2Array( -2100, -450, -2100, -1200, -2000, -1300, -800, -1300, -400, -1700, 400, -1700, 800, -1300, 2000, -1300, 2100, -1200, 2100, -450, 1650, 0, 2100, 450, 2100, 1200, 2000, 1300, 800, 1300, 400, 1700, -400, 1700, -800, 1300, -2000, 1300, -2100, 1200, -2100, 450, -1650, 0 )
+polygon = PackedVector2Array( -2100, -450, -2100, -1200, -2000, -1300, -800, -1300, -400, -1700, 400, -1700, 800, -1300, 2000, -1300, 2100, -1200, 2100, -450, 1650, 0, 2100, 450, 2100, 1200, 2000, 1300, 800, 1300, 400, 1700, -400, 1700, -800, 1300, -2000, 1300, -2100, 1200, -2100, 450, -1650, 0 )
 
 [node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWall" index="9"]
 visible = false
-polygon = PoolVector2Array( -2100, -450, -2100, -1200, -2000, -1300, -800, -1300, -400, -1700, 400, -1700, 800, -1300, 2000, -1300, 2100, -1200, 2100, -450, 1650, 0, 2100, 450, 2100, 1200, 2000, 1300, 800, 1300, 400, 1700, -400, 1700, -800, 1300, -2000, 1300, -2100, 1200, -2100, 450, -1650, 0 )
+polygon = PackedVector2Array( -2100, -450, -2100, -1200, -2000, -1300, -800, -1300, -400, -1700, 400, -1700, 800, -1300, 2000, -1300, 2100, -1200, 2100, -450, 1650, 0, 2100, 450, 2100, 1200, 2000, 1300, 800, 1300, 400, 1700, -400, 1700, -800, 1300, -2000, 1300, -2100, 1200, -2100, 450, -1650, 0 )
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
 modulate = Color( 1, 1, 1, 0.9 )
@@ -243,14 +243,14 @@ goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 [node name="CameraEye2" parent="Battlefield/Foreground" index="19" instance=ExtResource( 5 )]
 position = Vector2( 1850.5, -1037 )
 
-[node name="SkullDecoration" type="Sprite" parent="Battlefield/Foreground" index="20"]
+[node name="SkullDecoration" type="Sprite2D" parent="Battlefield/Foreground" index="20"]
 modulate = Color( 1, 1, 1, 0.470588 )
 self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -2100, 0 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 9 )
 
-[node name="SkullDecoration2" type="Sprite" parent="Battlefield/Foreground" index="21"]
+[node name="SkullDecoration2" type="Sprite2D" parent="Battlefield/Foreground" index="21"]
 modulate = Color( 1, 1, 1, 0.470588 )
 self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 2100, 0 )
@@ -277,8 +277,8 @@ controls = "kb2"
 species = ExtResource( 3 )
 cpu = true
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
-smoothing_speed = 0.3
+position_smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

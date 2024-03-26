@@ -1,4 +1,4 @@
-tool
+@tool
 extends EditorPlugin
 
 func _enter_tree():
@@ -8,8 +8,8 @@ func _enter_tree():
 	add_custom_type("Manager", "Node", preload("Manager.gd"), preload("icons/Manager.png"))
 	add_custom_type("Entity2D", "Node2D", preload("Entity.gd"), preload("icons/Entity2D.png"))
 	add_custom_type("Component2D", "Node2D", preload("Component.gd"), preload("icons/Component2D.png"))
-	add_custom_type("Entity3D", "Spatial", preload("Entity.gd"), preload("icons/Entity3D.png"))
-	add_custom_type("Component3D", "Spatial", preload("Component.gd"), preload("icons/Component3D.png"))
+	add_custom_type("Entity3D", "Node3D", preload("Entity.gd"), preload("icons/Entity3D.png"))
+	add_custom_type("Component3D", "Node3D", preload("Component.gd"), preload("icons/Component3D.png"))
 	add_custom_type("EntityControl", "Control", preload("Entity.gd"), preload("icons/EntityControl.png"))
 	add_custom_type("ComponentControl", "Control", preload("Component.gd"), preload("icons/ComponentControl.png"))
 	

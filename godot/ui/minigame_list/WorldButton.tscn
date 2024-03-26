@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="FontFile" id=2]
 [ext_resource path="res://ui/minigame_list/WorldButton.gd" type="Script" id=3]
-[ext_resource path="res://assets/map/cards/planets/planet.png" type="Texture" id=4]
-[ext_resource path="res://assets/map/ui/flag.png" type="Texture" id=5]
-[ext_resource path="res://assets/map/ui/flag_pole.png" type="Texture" id=6]
+[ext_resource path="res://assets/map/cards/planets/planet.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/map/ui/flag.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/map/ui/flag_pole.png" type="Texture2D" id=6]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="FontFile" id=5]
 size = 52
 font_data = ExtResource( 2 )
 
@@ -16,14 +16,14 @@ resource_name = "Float"
 length = 2.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position:y")
+tracks/0/path = NodePath("Sprite2D:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2 ),
-"transitions": PoolRealArray( -2, -2, -2 ),
+"times": PackedFloat32Array( 0, 1, 2 ),
+"transitions": PackedFloat32Array( -2, -2, -2 ),
 "update": 0,
 "values": [ 64.0, 53.0, 64.0 ]
 }
@@ -31,72 +31,72 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position:y")
+tracks/0/path = NodePath("Sprite2D:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 64.0 ]
 }
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 28
 outline_size = 2
 outline_color = Color( 1.1098, 0.870588, 0.368627, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 28
 font_data = ExtResource( 2 )
 
 [node name="WorldButton" type="Button"]
 unique_name_in_owner = true
-margin_right = 350.0
-margin_bottom = 170.0
-rect_min_size = Vector2( 350, 0 )
+offset_right = 350.0
+offset_bottom = 170.0
+custom_minimum_size = Vector2( 350, 0 )
 size_flags_horizontal = 0
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
 
-[node name="Shadow" type="Sprite" parent="."]
+[node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color( 0, 0, 0, 0.235294 )
 position = Vector2( 175, 74 )
 scale = Vector2( 0.32, 0.32 )
 texture = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color( 0.6, 0.6, 0.6, 1 )
 position = Vector2( 175, 64 )
 scale = Vector2( 0.32, 0.32 )
 texture = ExtResource( 4 )
 
-[node name="Flag" type="Node2D" parent="Sprite"]
+[node name="Flag" type="Node2D" parent="Sprite2D"]
 unique_name_in_owner = true
 visible = false
 position = Vector2( 64.25, -266.875 )
 
-[node name="Pole" type="Sprite" parent="Sprite/Flag"]
+[node name="Pole" type="Sprite2D" parent="Sprite2D/Flag"]
 position = Vector2( -62.5, 46.875 )
 texture = ExtResource( 6 )
 
-[node name="Flag" type="Sprite" parent="Sprite/Flag"]
+[node name="Flag" type="Sprite2D" parent="Sprite2D/Flag"]
 position = Vector2( 33, 26.875 )
 texture = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="Sprite/Flag"]
-margin_left = -36.0
-margin_top = -2.0
-margin_right = 82.0
-margin_bottom = 96.0
+[node name="Label" type="Label" parent="Sprite2D/Flag"]
+offset_left = -36.0
+offset_top = -2.0
+offset_right = 82.0
+offset_bottom = 96.0
 theme = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 0
-custom_fonts/font = SubResource( 5 )
+theme_override_colors/font_color = Color( 0, 0, 0, 1 )
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = SubResource( 5 )
 text = "PPP"
 align = 1
 uppercase = true
@@ -112,14 +112,14 @@ visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -44.0
+offset_top = -44.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
-custom_colors/font_color = Color( 1.11, 0.87, 0.37, 1 )
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 0
-custom_fonts/font = SubResource( 2 )
+theme_override_colors/font_color = Color( 1.11, 0.87, 0.37, 1 )
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = SubResource( 2 )
 text = "BUTTON"
 align = 1
 
@@ -127,13 +127,13 @@ align = 1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -44.0
+offset_top = -44.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 0
-custom_fonts/font = SubResource( 1 )
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = SubResource( 1 )
 text = "BUTTON"
 align = 1
 

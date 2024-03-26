@@ -3,8 +3,8 @@ extends Node
 var last_sides := {}
 
 func _ready():
-	Events.connect("holdable_loaded", self, '_on_holdable_loaded')
-	Events.connect("holdable_swapped", self, '_on_holdable_swapped')
+	Events.connect("holdable_loaded", Callable(self, '_on_holdable_loaded'))
+	Events.connect("holdable_swapped", Callable(self, '_on_holdable_swapped'))
 
 func _on_LeftNoHolderZone_entered(zone, body):
 	check_side('left', body)
@@ -17,7 +17,7 @@ func check_side(side, body):
 		if last_sides.has(body.get_id()) and last_sides[body.get_id()] != side:
 			var player = body.get_player()
 			global.the_match.add_score(player.get_id(), 1)
-			global.arena.show_msg(player.species, 1, body.position)
+			global.arena.show_msg(player.get_color(), 1, body.position)
 		last_sides[body.get_id()] = side
 
 func _on_holdable_loaded(holdable, ship):

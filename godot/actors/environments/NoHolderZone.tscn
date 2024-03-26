@@ -1,18 +1,18 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/sprites/environments/no_guard.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/environments/no_guard.png" type="Texture2D" id=1]
 [ext_resource path="res://actors/environments/NoHolderZone.gd" type="Script" id=3]
 [ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/patterns/waves_duotone.png" type="Texture" id=5]
+[ext_resource path="res://assets/patterns/waves_duotone.png" type="Texture2D" id=5]
 [ext_resource path="res://assets/audio/FX/87044__runnerpack__weapcollect.wav" type="AudioStream" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
-points = PoolVector2Array( -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14, 2.44929e-14, 400, -400, 4.89859e-14 )
+points = PackedVector2Array( -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14, 2.44929e-14, 400, -400, 4.89859e-14 )
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
-points = PoolVector2Array( -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14, 2.44929e-14, 400, -400, 4.89859e-14 )
+points = PackedVector2Array( -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14, 2.44929e-14, 400, -400, 4.89859e-14 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticleProcessMaterial" id=5]
 resource_local_to_scene = true
 emission_shape = 2
 emission_box_extents = Vector3( 200, 100, 0 )
@@ -33,8 +33,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 20.0, 0.0 ]
 }
@@ -45,8 +45,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ) ]
 }
@@ -57,8 +57,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = false
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -69,8 +69,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.4, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.4, 0.7, 1, 1.3, 1.6, 1.9, 2.2 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.796078, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.796078, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.796078, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0.501961, 0.27451, 0.054902, 1 ) ]
 }
@@ -81,8 +81,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 1.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1.3 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1.5, 0.8, 0, 1 ), Color( 1, 0.796078, 0, 1 ) ]
 }
@@ -100,11 +100,11 @@ modulate = Color( 1, 0.796078, 0, 1 )
 texture = ExtResource( 5 )
 texture_scale = Vector2( 0.25, 0.25 )
 texture_rotation_degrees = 90.0
-polygon = PoolVector2Array( 2.44929e-14, 400, -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14 )
+polygon = PackedVector2Array( 2.44929e-14, 400, -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14 )
 
 [node name="Line2D" parent="." index="2"]
 modulate = Color( 1, 0.796078, 0, 1 )
-points = PoolVector2Array( 2.44929e-14, 400, -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14, 2.44929e-14, 400 )
+points = PackedVector2Array( 2.44929e-14, 400, -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14, 2.44929e-14, 400 )
 
 [node name="CollisionShape2D" parent="Area2D" index="1"]
 shape = SubResource( 6 )
@@ -116,13 +116,13 @@ collision_mask = 2097152
 [node name="CollisionShape2D" parent="CrownCollider" index="0"]
 shape = SubResource( 7 )
 
-[node name="Particles2D" parent="." index="5"]
+[node name="GPUParticles2D" parent="." index="5"]
 process_material = SubResource( 5 )
 
 [node name="FeedbackLine" type="Line2D" parent="." index="7"]
 visible = false
 scale = Vector2( 1.4, 1.4 )
-points = PoolVector2Array( 2.44929e-14, 400, -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14, 2.44929e-14, 400 )
+points = PackedVector2Array( 2.44929e-14, 400, -400, 4.89859e-14, -7.34788e-14, -400, 400, -9.79717e-14, 2.44929e-14, 400 )
 width = 0.0
 default_color = Color( 1.5, 1.5, 1.5, 1 )
 texture_mode = 1
@@ -131,7 +131,7 @@ texture_mode = 1
 playback_speed = 1.2
 anims/Feedback = SubResource( 4 )
 
-[node name="NoShipSign" type="Sprite" parent="." index="9"]
+[node name="NoShipSign" type="Sprite2D" parent="." index="9"]
 modulate = Color( 0.501961, 0.27451, 0.054902, 1 )
 position = Vector2( 6, -16 )
 scale = Vector2( 1.5, 1.5 )

@@ -23,8 +23,8 @@ class_name Trail2D
 
 ##### SIGNALS #####
 
-signal add_point
-signal remove_point
+signal before_add_point
+signal before_remove_point
 signal no_points
 signal point_added
 
@@ -45,25 +45,25 @@ enum PersistWhen {
 ##### PROPERTIES #####
 
 # The target node to track
-var target: Node2D setget set_target
+var target: Node2D: set = set_target
 
 	
 # The NodePath to the target
-export var target_path: NodePath = @".." setget set_target_path
+@export var target_path: NodePath = ^"..": set = set_target_path
 # If not persisting, the number of points that should be allowed in the trail
-export var trail_length: int = 10
+@export var trail_length: int = 10
 # To what degree the trail should remain in existence before automatically removing points.
-export(int, "FrameRateIndependent", "Off", "Always", "Conditional") var persistence: int = Persistence.FRAME_RATE_INDIPENDENT
+@export var persistence: int = Persistence.FRAME_RATE_INDIPENDENT # (int, "FrameRateIndependent", "Off", "Always", "Conditional")
 # During conditional persistance, which persistance algorithm to use
-export(int, "On Movement", "Custom") var persistence_condition: int = PersistWhen.ON_MOVEMENT
+@export var persistence_condition: int = PersistWhen.ON_MOVEMENT # (int, "On Movement", "Custom")
 # During conditional persistance, how many points to remove per frame
-export var degen_rate: int = 1
+@export var degen_rate: int = 1
 # If true, automatically set z_index to be one less than the 'target'
-export var auto_z_index: bool = true
+@export var auto_z_index: bool = true
 # If true, will automatically setup a gradient for a gradually transparent trail
-export var auto_alpha_gradient: bool = true
-export var min_dist : float = 4.0
-export var time_alive_per_point : float = 1.0
+@export var auto_alpha_gradient: bool = true
+@export var min_dist : float = 4.0
+@export var time_alive_per_point : float = 1.0
 
 var monitor = []
 
@@ -73,7 +73,7 @@ var actual_length = 0.0
 ##### NOTIFICATIONS #####
 
 func _init():
-	set_as_toplevel(true)
+	set_as_top_level(true)
 	global_position = Vector2()
 	global_rotation = 0
 	if auto_alpha_gradient and not gradient:
@@ -90,7 +90,7 @@ func _notification(p_what: int):
 			if auto_z_index:
 				z_index = target.z_index - 1 if target else 0
 		NOTIFICATION_UNPARENTED:
-			self.target_path = @""
+			self.target_path = ^""
 			self.trail_length = 0
 
 func add_custom_point(point):
@@ -101,14 +101,14 @@ func add_custom_point(point):
 	if len(points) > 1:
 		if distanza < min_dist:
 			return
-	emit_signal("add_point", point)
+	emit_signal("before_add_point", point)
 	# actual_length += distanza
 	add_point(point)
 	monitor.append(0.0)
 	emit_signal("point_added", point, last_point if len(points) > 1 else null)
 
 func remove_custom_point(index):
-	emit_signal("remove_point", index)
+	emit_signal("before_remove_point", index)
 	remove_point(index)
 	if len(points) <= 0:
 		emit_signal("no_points")
@@ -148,7 +148,7 @@ func _process(delta: float):
 						to_be_deleted_count += 1
 						remove_custom_point(0)
 				for d in to_be_deleted_count:
-					monitor.remove(0)
+					monitor.remove_at(0)
 			Persistence.OFF:
 				add_custom_point(target.global_position)
 				while get_point_count() > trail_length :
@@ -191,19 +191,15 @@ func erase_trail():
 	monitor = []
 	for _i in range(get_point_count()):
 		remove_custom_point(0)
-	yield(get_tree().create_timer(0.01), "timeout")
+	await get_tree().create_timer(0.01).timeout
 	set_process(true)
 
 ##### PRIVATE METHODS #####
 
 ##### SETTERS AND GETTERS #####
 
-func set_target(p_value: Node2D):
-	if p_value:
-		if get_path_to(p_value) != target_path:
-			target_path = get_path_to(p_value)
-	else:
-		target_path = @""
+func set_target(v: Node2D):
+	target = v
 
 func set_target_path(p_value: NodePath):
 	target_path = p_value

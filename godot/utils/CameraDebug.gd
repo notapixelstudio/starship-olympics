@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var camera = get_parent().get_parent().get_node('Camera')
+@onready var camera = get_parent().get_parent().get_node('Camera3D')
 
 func _process(delta):
 	if camera.debug_mode:

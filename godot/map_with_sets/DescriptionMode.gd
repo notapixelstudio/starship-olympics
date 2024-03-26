@@ -1,8 +1,8 @@
 extends Control
 
-export var gamemode : Resource setget set_gamemode
+@export var gamemode : Resource: set = set_gamemode
 
-onready var animator = $AnimationPlayer
+@onready var animator = $AnimationPlayer
 
 var array_players = [] # Array of InfoPlayers
 var draft_card = null
@@ -18,10 +18,10 @@ func _ready():
 
 func refresh():
 	if not is_inside_tree():
-		yield(self, 'ready')
+		await self.ready
 	$Label.text = tr(gamemode.name)
 	$LabelShadow.text = tr(gamemode.name)
-	var label_width = $Label.get("custom_fonts/font").get_string_size(tr(gamemode.name)).x
+	var label_width = $Label.get("theme_override_fonts/font").get_string_size(tr(gamemode.name)).x
 	$LineLeft.position.x = -62 - label_width/2 - 35
 	$LineRight.position.x = 998 + label_width/2 + 35
 	
@@ -62,22 +62,22 @@ func appears():
 		# not playing. TODO: might need some love
 		if not p_node.visible: 
 			p_node.queue_free()
-	Events.connect("player_ready", self, "a_player_is_ready")
+	Events.connect("player_ready", Callable(self, "a_player_is_ready"))
 	visible = true
 	$AudioStreamPlayer.play()
 	$Description.type(tr(gamemode.description))
-	yield($Description, "done")
+	await $Description.done
 	animator.play("describeme")
 	
 	if len(array_players) == 0:
 		# no human players, wait a bit then go
-		yield(get_tree().create_timer(1.0), "timeout")
+		await get_tree().create_timer(1.0).timeout
 		disappear()
 	
 func disappear():
 	animator.play("getout")
 	$Continue.queue_free()
-	yield(animator, "animation_finished")
+	await animator.animation_finished
 	emit_signal("ready_to_fight")
 	queue_free()
 

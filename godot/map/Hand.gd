@@ -5,14 +5,14 @@ class_name HandNode
 const SEPARATION = 600
 var separation_angle_num_cards = [1.6, 1.4, 1.2, 1.4, 1.8]
 
-export var size:= Vector2()
+@export var size:= Vector2()
 
 var horizontal_radius := 2200.0
 var vertical_radius := 300.0
 
 func sync_with_hand():
 	for card in get_children():
-		if not card.card_content in global.session.get_hand():
+		if not card.card_content in global.session.get_tracker_hand():
 			card.queue_free()
 	
 func get_size() -> Vector2:
@@ -66,7 +66,7 @@ func calculate_angle(index_card: int) -> float:
 	var card_angle_min: float = 6.5
 	# Angle between cards
 	var card_angle = max(min(60 / num_cards, card_angle_max), card_angle_min)
-	return deg2rad(90 + card_separation*(half - index_card) * card_angle )
+	return deg_to_rad(90 + card_separation*(half - index_card) * card_angle )
 	# return deg2rad(card_angle)
 	# return PI/2 + CARD_SEPARATION*(float(index_card - self.get_card_count())/2 + 0.5)
 	
@@ -79,4 +79,4 @@ func calculate_pos(index_card: int) -> Vector2:
 
 func calculate_rot(index_card: int) -> float: 
 	var angle = self.calculate_angle(index_card)
-	return (90 - rad2deg(angle))/4
+	return (90 - rad_to_deg(angle))/4

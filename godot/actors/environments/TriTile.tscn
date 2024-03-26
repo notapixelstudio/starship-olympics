@@ -2,7 +2,7 @@
 
 [ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/environments/TriTile.gd" type="Script" id=2]
-[ext_resource path="res://assets/sprites/rect_triangle.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/rect_triangle.png" type="Texture2D" id=3]
 
 [node name="TriTile" instance=ExtResource( 1 )]
 scale = Vector2( 4, 4 )
@@ -13,19 +13,19 @@ foreground_position = Vector2( -3, 3 )
 fortified_background_scale = Vector2( 1, 1 )
 
 [node name="CollisionPolygon2D" parent="." index="0"]
-polygon = PoolVector2Array( -37.5, 37.5, -25, -25, 25, 25 )
+polygon = PackedVector2Array( -37.5, 37.5, -25, -25, 25, 25 )
 
 [node name="Foreground" parent="." index="4"]
 position = Vector2( -3, -4 )
 scale = Vector2( 0.85, 0.85 )
-polygon = PoolVector2Array( -50, 50, -50, -50, 50, 50 )
+polygon = PackedVector2Array( -50, 50, -50, -50, 50, 50 )
 
 [node name="Graphics" parent="." index="5"]
 position = Vector2( 0, 0 )
 
 [node name="Background" parent="Graphics" index="0"]
 position = Vector2( -3, 3 )
-polygon = PoolVector2Array( -50, 50, -50, -50, 50, 50 )
+polygon = PackedVector2Array( -50, 50, -50, -50, 50, 50 )
 
 [node name="Partial" parent="Graphics" index="1"]
 position = Vector2( -11, 13 )
@@ -33,4 +33,4 @@ rotation = 0.0
 texture = ExtResource( 3 )
 
 [node name="CollisionPolygon2D" parent="Neighbourhood" index="0"]
-polygon = PoolVector2Array( -73.8636, 73.8636, -73.8636, -73.8636, -11.3636, -73.8636, 73.8636, 11.3636, 73.8636, 73.8636 )
+polygon = PackedVector2Array( -73.8636, 73.8636, -73.8636, -73.8636, -11.3636, -73.8636, 73.8636, 11.3636, 73.8636, 73.8636 )

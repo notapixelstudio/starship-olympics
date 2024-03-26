@@ -4,9 +4,9 @@ var memory := [] # Array[String] - card.name
 var card_one = null
 
 func _ready():
-	._ready()
-	Events.connect('card_revealed', self, '_on_card_revealed')
-	Events.connect('card_taken', self, '_on_card_taken')
+	super._ready()
+	Events.connect('card_revealed', Callable(self, '_on_card_revealed'))
+	Events.connect('card_taken', Callable(self, '_on_card_taken'))
 	
 func think():
 	var targets

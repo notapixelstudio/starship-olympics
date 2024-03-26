@@ -1,8 +1,8 @@
+@tool
 extends VBoxContainer
-tool
 
-export var key: String setget set_key
-export var stats_value: String= str(0) setget set_stats_value
+@export var key: String: set = set_key
+@export var stats_value: String= str(0): set = set_stats_value
 
 func set_stats_value(value: String):
 	stats_value = value

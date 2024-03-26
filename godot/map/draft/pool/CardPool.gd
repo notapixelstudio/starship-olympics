@@ -2,8 +2,8 @@ extends Resource
 
 class_name CardPool
 
-export var id : String
-export var cards : Array = [] setget set_cards, get_cards # DraftCard
+@export var id : String
+@export var cards : Array = []: get = get_cards, set = set_cards # DraftCard
 var index : Dictionary = {}
 const CARD_POOL_PATH = "res://map/draft/cards"
 

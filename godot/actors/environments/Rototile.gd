@@ -1,7 +1,7 @@
 extends Area2D
 class_name Rototile
 
-export var interactable := true setget set_interactable
+@export var interactable := true: set = set_interactable
 
 var rotations := 0
 var angle := 0.0
@@ -13,8 +13,8 @@ signal all_rotations_finished
 func set_interactable(v: bool) -> void:
 	interactable = v
 	if not is_inside_tree():
-		yield(self, 'ready')
-	$Sprite.visible = interactable
+		await self.ready
+	$Sprite2D.visible = interactable
 
 func is_interactable() -> bool:
 	return interactable
@@ -22,10 +22,10 @@ func is_interactable() -> bool:
 func show_tap_preview(ship):
 	if not interactable:
 		return
-	$Sprite.modulate = Color.white
+	$Sprite2D.modulate = Color.WHITE
 	
 func hide_tap_preview():
-	$Sprite.modulate = Color('#b3b3b3')
+	$Sprite2D.modulate = Color('#b3b3b3')
 	
 func tap(author):
 	if not interactable:
@@ -40,7 +40,7 @@ func do_rotation():
 	var tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	angle += PI/2
 	tween.tween_property(self, 'rotation', angle, 0.5)
-	tween.connect('finished', self, '_on_rotation_finished')
+	tween.connect('finished', Callable(self, '_on_rotation_finished'))
 
 func set_random_angle():
 	angle = PI/2 * (randi() % 4)

@@ -2,17 +2,17 @@ extends Card
 class_name DraftCardGraphicNode
 
 var card_content: DraftCard
-export var order_id : int
+@export var order_id : int
 const SEPARATION = 0.25
 
-onready var chosen : bool = false setget set_chosen
+@onready var chosen : bool = false: set = set_chosen
 
 signal zoomed_in
 
 func set_chosen(v):
 	chosen = v
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 	$Ground/Select.visible = chosen
 	
 func set_minigame_label(name):
@@ -46,7 +46,7 @@ func set_content_card(card: DraftCard):
 	$Ground/Front/MinigameIconShadow.visible = not card is MysteryCard and not card is RandomCard
 	if card is MysteryCard or card is RandomCard:
 		$Ground/Front/Background.texture = card.get_cover()
-		$Ground/Front/Background.modulate = Color.white
+		$Ground/Front/Background.modulate = Color.WHITE
 		$"%BottomLabel".visible = true
 	else:
 		# winter
@@ -86,14 +86,14 @@ func set_content_card(card: DraftCard):
 			
 # @override
 func select():
-	.select()
+	super.select()
 	$"%SuitTopLeft".self_modulate = Color(0,0,0,0.75)
 	$"%SuitBottomRight".self_modulate = Color(0,0,0,0.75)
 	$'%Background'.modulate = Color(1.15,1.15,1.15)
 	
 # @override
 func tap(author):
-	.tap(author)
+	super.tap(author)
 	if author is Ship:
 		Events.emit_signal("card_tapped", author, self)
 		print("{minigame} tapped by {author_name}".format({"minigame": card_content.get_id(), "author_name":author.info_player.get_id()}))
@@ -103,9 +103,9 @@ func gracefully_go_to(point: Vector2, angle: float = 0.0, duration: float = 0.7,
 	tween.tween_property(self, 'position', point, duration)
 	tween.parallel().tween_property(self, 'rotation', angle, duration)
 
-onready var normal_scale = scale
-onready var normal_position = global_position
-onready var normal_rotation = rotation_degrees
+@onready var normal_scale = scale
+@onready var normal_position = global_position
+@onready var normal_rotation = rotation_degrees
 
 func back_to_normal():
 	global_position = normal_position
@@ -120,14 +120,14 @@ func gracefully_zoom_in():
 	tween.tween_property(self, 'global_position', Vector2(0, 300), 0.8)
 	var waiting_tweener = tween.parallel().tween_property(self, 'rotation_degrees', 0.0, 0.7)
 	tween.tween_property(self, 'scale', Vector2(8, 8), 1.4)
-	yield(waiting_tweener, "finished")
+	await waiting_tweener.finished
 	emit_signal("zoomed_in")
-	yield(tween, "finished")
+	await tween.finished
 	back_to_normal()
 	
 func reposition(target_position: Vector2, target_rotation := 0.0):
-	gracefully_go_to(target_position, deg2rad(target_rotation))
+	gracefully_go_to(target_position, deg_to_rad(target_rotation))
 	return 
 	# called to reposition the card. need a tween animation
 	self.position = target_position
-	self.rotation = deg2rad(target_rotation)
+	self.rotation = deg_to_rad(target_rotation)

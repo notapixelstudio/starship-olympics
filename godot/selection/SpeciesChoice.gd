@@ -1,27 +1,27 @@
-tool
+@tool
 extends Control
 
 """
 this Node is a renderer of the Species Selected. No logic in here. 
 """
 
-export var species : Resource 
-export var controls : String
+@export var species : Resource 
+@export var controls : String
 
-onready var ship = $Ship
-onready var tween = $Tween
-onready var species_name = $SpeciesName/Label
-onready var tagline1 = $SpeciesName/Tagline1
-onready var tagline2 = $SpeciesName/Tagline2
-onready var character = $CharacterWrapper/Character/Character
-onready var shadow = $CharacterWrapper/Character/Clip/Shadow
-onready var controls_sprite = $Controls 
-onready var player_infotext = $PlayerInfo/PlayerID
-onready var anim = $Ship/AnimationPlayer
+@onready var ship = $Ship
+@onready var tween = $Tween
+@onready var species_name = $SpeciesName/Label
+@onready var tagline1 = $SpeciesName/Tagline1
+@onready var tagline2 = $SpeciesName/Tagline2
+@onready var character = $CharacterWrapper/Character/Character
+@onready var shadow = $CharacterWrapper/Character/Clip/Shadow
+@onready var controls_sprite = $Controls 
+@onready var player_infotext = $PlayerInfo/PlayerID
+@onready var anim = $Ship/AnimationPlayer
 
-onready var select_rect = $CharacterWrapper/SelectRect
-onready var background = $CharacterWrapper/Character/Background
-onready var sel_animation = $CharacterWrapper/AnimationPlayer
+@onready var select_rect = $CharacterWrapper/SelectRect
+@onready var background = $CharacterWrapper/Character/Background
+@onready var sel_animation = $CharacterWrapper/AnimationPlayer
 
 const img_path : String = "res://assets/icon/"
 const stripes_texture = preload("res://assets/patterns/stripes_duotone.png")

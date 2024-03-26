@@ -1,9 +1,10 @@
 extends Node
 
+@export var base_time := 2.5
+
 const WAVES_GROUP = "spawn_waves"
 const COLLECTABLE = "coin"
 const WAVE_DELAY = 0.0
-const BASE_TIME = 2.5
 var to_next_wave = 2
 var current_wave = 0
 
@@ -14,16 +15,16 @@ var spawners_per_wave : Dictionary
 var how_many_spawners: int
 var current_spawners = 0
 
-onready var wave_timer = $Timer
+@onready var wave_timer = $Timer
 signal done
 
 func _ready():
-	Events.connect("spawned", self, "spawned")
+	Events.connect("spawned", Callable(self, "spawned"))
 	
-	Events.connect("sth_collected", self, "_on_sth_collected")
+	Events.connect("sth_collected", Callable(self, "_on_sth_collected"))
 	# First spawner should already be in the field
 	# WARNING wait for variants to settle
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	setup(get_tree().get_nodes_in_group(WAVES_GROUP))
 	
 func get_spawner(spawners: Array) -> ElementSpawnerGroup:
@@ -61,7 +62,7 @@ func _handle_waves():
 	var spawner: ElementSpawnerGroup = self.get_spawner(spawners_per_wave[current_wave])
 	Events.emit_signal("ask_to_spawn", spawner, WAVE_DELAY + waves[current_wave].extra_delay)
 	waves[current_wave].times_spawned += 1
-	wave_timer.wait_time = BASE_TIME + WAVE_DELAY + waves[current_wave].extra_delay
+	wave_timer.wait_time = base_time + WAVE_DELAY + waves[current_wave].extra_delay
 	self.reset_wave_timer()
 	
 func reset_wave_timer():

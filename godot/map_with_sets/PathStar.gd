@@ -1,12 +1,12 @@
-tool
-extends Sprite
+@tool
+extends Sprite2D
 
 class_name PathStar
 
 signal appeared
 
 func _ready() -> void:
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		appear()
 
 func appear(force: bool = false) -> void:

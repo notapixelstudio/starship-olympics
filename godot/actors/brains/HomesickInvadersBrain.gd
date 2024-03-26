@@ -1,12 +1,12 @@
 extends CPUBrain
 
-export var extents : Rect2 = Rect2(Vector2(-3200, 200), Vector2(6400, 1400))
-export var go_to_center_p := 0.1
+@export var size : Rect2 = Rect2(Vector2(-3200, 200), Vector2(6400, 1400))
+@export var go_to_center_p := 0.1
 
 var random_preference : int
 
 func _ready():
-	._ready()
+	super._ready()
 	random_preference = randi()
 	
 func think():
@@ -29,7 +29,7 @@ func think():
 			
 	targets = []
 	for a in get_tree().get_nodes_in_group('Alien'):
-		if extents.has_point(a.global_position): # don't consider aliens outside the battlefield
+		if size.has_point(a.global_position): # don't consider aliens outside the battlefield
 			targets.append(a)
 	if len(targets) > 0:
 		go_to(targets[random_preference%len(targets)].global_position)

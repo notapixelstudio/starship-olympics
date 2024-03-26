@@ -1,8 +1,8 @@
 extends Control
 
-export var hall_of_fame: PackedScene
+@export var hall_of_fame: PackedScene
 
-onready var last_winner:= InfoChampion.new()
+@onready var last_winner:= InfoChampion.new()
 
 func _ready():
 	var this_session: TheSession = global.get("session")
@@ -16,7 +16,7 @@ func _ready():
 		var info_player := InfoPlayer.new()
 		info_player.set_species(global.get_species(TheUnlocker.unlocked_elements["species"].keys()[randi()%4]))
 		last_winner.player = info_player.to_dict()
-		last_winner.session_info = {"timestamp": global.datetime_to_str(OS.get_datetime(true))}
+		last_winner.session_info = {"timestamp": global.datetime_to_str(Time.get_datetime_dict_from_system(true))}
 		
 	$"%InsertName".grab_focus()
 	$"%WinnerBanner".set_player(last_winner)
@@ -38,7 +38,7 @@ func _on_InsertName_name_inserted(player_real_name: String):
 
 
 func _on_Timer_timeout():
-	var scene = hall_of_fame.instance()
+	var scene = hall_of_fame.instantiate()
 	add_child(scene)
 	$CelebrateWinner.queue_free()
 	

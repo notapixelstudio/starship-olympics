@@ -2,8 +2,8 @@
 
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/environments/MirrorWall.gd" type="Script" id=2]
-[ext_resource path="res://assets/patterns/wall/double.png" type="Texture" id=3]
-[ext_resource path="res://assets/patterns/rhombus.png" type="Texture" id=4]
+[ext_resource path="res://assets/patterns/wall/double.png" type="Texture2D" id=3]
+[ext_resource path="res://assets/patterns/rhombus.png" type="Texture2D" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Hit"
@@ -15,8 +15,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 0.5, 2 ),
+"times": PackedFloat32Array( 0, 0.4 ),
+"transitions": PackedFloat32Array( 0.5, 2 ),
 "update": 0,
 "values": [ Color( 1.7, 1.7, 1.7, 1 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -24,14 +24,14 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/path = NodePath("Sprite2D:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0.27451 ) ]
 }
@@ -42,8 +42,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
@@ -54,8 +54,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }

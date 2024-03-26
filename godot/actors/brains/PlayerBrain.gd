@@ -1,6 +1,7 @@
 extends Brain
+class_name PlayerBrain
 
-var controls: String setget set_controls
+@export_enum('kb1', 'kb2', 'joy1', 'joy2', 'joy3', 'joy4') var controls: String: set = set_controls
 
 var action_buffer : Dictionary = {}
 
@@ -8,8 +9,8 @@ func set_controls(v: String) -> void:
 	controls = v
 	
 func _ready():
-	controllee.connect('dive_out', self, '_on_controllee_dive_out')
-
+	controllee.connect('dive_out', Callable(self, '_on_controllee_dive_out'))
+	
 func local_handling() -> Vector2:
 	var target = Vector2()
 	
@@ -19,6 +20,13 @@ func local_handling() -> Vector2:
 		
 	return target
 
+func _physics_process(delta):
+	tick()
+	if controllee.has_method("set_target_velocity"):
+		controllee.set_target_velocity(target_velocity)
+	if controllee.has_method("set_rotation_request"):
+		controllee.set_rotation_request(rotation_request)
+	
 func tick():
 	#var target_vel = Vector2()
 	var front = Vector2(cos(global_rotation), sin(global_rotation))
@@ -53,13 +61,13 @@ func _unhandled_input(event):
 	# charge and release even if controls are disabled
 	if event.is_action_pressed(controls+'_fire'):
 		buffer_action('charge')
-		emit_signal('charge')
+		controllee.charge()
 	elif event.is_action_released(controls+'_fire'):
 		buffer_action('release')
-		emit_signal('release')
+		controllee.release()
 
 # replay charge input if diving out and it was buffered
 func _on_controllee_dive_out():
 	if is_action_buffered('charge', 300):
 		emit_signal('charge')
-		
+	

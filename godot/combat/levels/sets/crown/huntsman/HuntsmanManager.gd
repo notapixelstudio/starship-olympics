@@ -1,7 +1,7 @@
 extends Node
 
 func _ready():
-	Events.connect('ship_damaged', self, '_on_ship_damaged')
+	Events.connect('ship_damaged', Callable(self, '_on_ship_damaged'))
 	
 func _on_ship_damaged(ship, hazard, damager):
 	if not damager:

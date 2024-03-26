@@ -1,16 +1,16 @@
 extends Area2D
 
-export var goal_owner : NodePath
+@export var goal_owner : NodePath
 var player
 
 func _ready():
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
-		yield(player_spawner, "player_assigned")
+		await player_spawner.player_assigned
 		set_player(player_spawner.get_player())
 		
 	$Polygon2D.polygon = $CollisionPolygon2D.polygon
-	$Line2D.points = $CollisionPolygon2D.polygon + PoolVector2Array([$CollisionPolygon2D.polygon[0]])
+	$Line2D.points = $CollisionPolygon2D.polygon + PackedVector2Array([$CollisionPolygon2D.polygon[0]])
 	
 func set_player(v : InfoPlayer):
 	player = v

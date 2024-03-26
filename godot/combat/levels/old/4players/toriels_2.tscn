@@ -1,12 +1,12 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
-[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture" id=2]
+[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture2D" id=2]
 [ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=4]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=5]
+[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=5]
 [ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=6]
-[ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=7]
+[ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture2D" id=7]
 [ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=8]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=10]
@@ -29,7 +29,7 @@
 [node name="Arena" index="0" instance=ExtResource( 1 )]
 size_multiplier = 3.0
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 2 )
 centered = false
 
@@ -119,7 +119,7 @@ rotation = -0.785398
 controls = "joy4"
 species = ExtResource( 13 )
 
-[node name="Camera" parent="." index="15"]
+[node name="Camera3D" parent="." index="15"]
 zoom_offset = 0.797
 
 

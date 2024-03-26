@@ -22,8 +22,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 180.0 ]
 }
@@ -39,8 +39,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 8 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 180.0, 540.0 ]
 }
@@ -54,8 +54,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 180.0 ]
 }
@@ -71,8 +71,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 8 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 180.0, 540.0 ]
 }
@@ -86,8 +86,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ 180.0 ]
 }
@@ -103,8 +103,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 8 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 180.0, 540.0 ]
 }
@@ -222,7 +222,7 @@ rotation = 0.0
 species = ExtResource( 12 )
 cpu = true
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 1.01958e+38, 1.01958e+38 )
-smoothing_speed = 0.3
+position_smoothing_speed = 0.3
 disabled_override = true

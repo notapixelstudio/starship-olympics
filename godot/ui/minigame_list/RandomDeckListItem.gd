@@ -1,4 +1,4 @@
-tool
+@tool
 extends DeckListItem
 
 signal pressed

@@ -1,13 +1,13 @@
-tool
+@tool
 
 extends GShape
 
 class_name GRegularPolygon
 
-export (int) var radius = 100 setget set_radius
-export (float) var sides = 6 setget set_sides
-export (float) var alternating_angle = 0 setget set_alternating_angle
-export (float) var rotation_degrees = 0 setget set_rotation_degrees
+@export (int) var radius = 100: set = set_radius
+@export (float) var sides = 6: set = set_sides
+@export (float) var alternating_angle = 0: set = set_alternating_angle
+@export (float) var rotation_degrees = 0: set = set_rotation_degrees
 
 func set_radius(value):
 	radius = value
@@ -27,13 +27,13 @@ func set_rotation_degrees(value):
 
 func to_PoolVector2Array():
 	var angle = 2*PI/sides
-	var current_a = deg2rad(rotation_degrees)
+	var current_a = deg_to_rad(rotation_degrees)
 	var points = []
 	for i in range(sides):
-		current_a += angle + (deg2rad(alternating_angle) if i %2 else -deg2rad(alternating_angle))
+		current_a += angle + (deg_to_rad(alternating_angle) if i %2 else -deg_to_rad(alternating_angle))
 		points.append(Vector2(radius*cos(current_a),radius*sin(current_a)))
 		
-	return .clip(points) # clockwise!
+	return super.clip(points) # clockwise!
 	
 func to_Shape2D():
 	var shape = ConvexPolygonShape2D.new()

@@ -1,12 +1,12 @@
 extends Node
 
-export var needs_water := false
-export var dive_in_bonus := 0.5
-export var underwater_pick_bonus := 0.5
+@export var needs_water := false
+@export var dive_in_bonus := 0.5
+@export var underwater_pick_bonus := 0.5
 
 func _ready():
-	Events.connect("ship_dive_in", self, '_on_ship_dive_in')
-	Events.connect("holdable_loaded", self, '_on_holdable_loaded')
+	Events.connect("ship_dive_in", Callable(self, '_on_ship_dive_in'))
+	Events.connect("holdable_loaded", Callable(self, '_on_holdable_loaded'))
 
 func _process(delta):
 	for player in global.the_game.get_players():

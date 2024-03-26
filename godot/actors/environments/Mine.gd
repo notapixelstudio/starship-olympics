@@ -1,9 +1,9 @@
 extends RigidBody2D
 class_name Mine
 
-export var explosion_scene : PackedScene
-export var explosion_kilotons := 400
-export var diving := false
+@export var explosion_scene : PackedScene
+@export var explosion_kilotons := 400
+@export var diving := false
 
 var dive_speed := 300.0
 
@@ -21,7 +21,7 @@ func _on_Mine_body_entered(body):
 	detonate()
 	
 func detonate():
-	var explosion = explosion_scene.instance()
+	var explosion = explosion_scene.instantiate()
 	explosion.scale = Vector2(4,4)
 	explosion.kilotons = explosion_kilotons
 	get_parent().add_child(explosion)

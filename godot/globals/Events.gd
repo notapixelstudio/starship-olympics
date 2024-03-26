@@ -2,6 +2,8 @@ extends Node
 
 signal bumper_created(bumper)
 
+signal ship_spawned(ship)
+signal ship_repaired(ship)
 signal ship_damaged(ship, hazard, damager)
 signal ship_died(ship, killer, for_good)
 
@@ -31,8 +33,24 @@ signal ship_dive_out(ship)
 signal sth_collided_with_ship(sth, ship) # on enter, no distinction between body or area, includes NearArea
 signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no distinction between body or area, NearArea only
 
+# 4.x new events
+signal ship_touch_sth(ship:Ship, sth:CollisionObject2D)
+signal sth_hurt_ship(sth:CollisionObject2D, ship:Ship)
+
+signal sth_crossed_gate(sth, gate:Gate)
+signal beat(period:int)
+signal new_objective(objective:Variant)
+
+signal points_scored(amount:int, team:String)
+
+signal log(message:String)
+signal message(message:Variant, color:Color, global_position:Vector2)
+# 4.x new events
+
 signal sth_collected(collector, collectee)
 signal sth_conquered(conqueror, conquered)
+
+signal sth_countdown_expired(sth)
 
 signal navigation_zone_changed(zone)
 
@@ -88,6 +106,8 @@ signal draft_ended(choices, hand)
 
 # settings
 signal glow_setting_changed
+signal difficulty_selection_done
+signal language_changed
 
 # analytics
 signal analytics_event(event_dictionary, event_name)

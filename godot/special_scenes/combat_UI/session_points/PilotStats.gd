@@ -1,11 +1,11 @@
+@tool
 extends Node2D
-tool
 
 class_name PilotStats
 
 var info: InfoPlayer
 
-var new_position setget change_position
+var new_position : set = change_position
 var max_points = 0
 
 var just_won: bool = false
@@ -13,7 +13,7 @@ var just_won: bool = false
 func set_info(value: InfoPlayer):
 	info = value
 	var player_stats: PlayerStats = info.stats
-	$"%Headshot".set_species(info.species)
+	$"%Headshot".set_player(info)
 	for stats in $"%StatsContainer".get_children():
 		stats.set_stats_value(str(player_stats.get(stats.key)))
 	$"%StarsContainer".initialize(info.session_score, max_points, just_won)

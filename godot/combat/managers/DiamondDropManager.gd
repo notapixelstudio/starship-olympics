@@ -1,10 +1,10 @@
 extends Node
 
-export var diamond_scene : PackedScene
-export var max_drops := 3
+@export var diamond_scene : PackedScene
+@export var max_drops := 3
 
 func _ready():
-	Events.connect('ship_died', self, '_on_ship_died')
+	Events.connect('ship_died', Callable(self, '_on_ship_died'))
 	
 func _on_ship_died(ship, killer, for_good):
 	# subtract loot from player's score
@@ -14,7 +14,7 @@ func _on_ship_died(ship, killer, for_good):
 
 	# spawn diamonds where the ship has died
 	for i in range(how_many_drops):
-		var diamond = diamond_scene.instance()
+		var diamond = diamond_scene.instantiate()
 		diamond.appear = false
 		ship.get_parent().add_child(diamond)
 		diamond.global_position = ship.global_position

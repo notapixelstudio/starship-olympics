@@ -3,7 +3,7 @@ extends StaticBody2D
 func _ready():
 	$"%Top".polygon = $CollisionPolygon2D.polygon
 	$"%Overlay".polygon = $CollisionPolygon2D.polygon
-	$"%Outline".points = $CollisionPolygon2D.polygon + PoolVector2Array([$CollisionPolygon2D.polygon[0]])
+	$"%Outline".points = $CollisionPolygon2D.polygon + PackedVector2Array([$CollisionPolygon2D.polygon[0]])
 	$"%Bottom".points = $"%Outline".points
 	$"%OverlapArea/CollisionPolygon2D".polygon = $CollisionPolygon2D.polygon
 

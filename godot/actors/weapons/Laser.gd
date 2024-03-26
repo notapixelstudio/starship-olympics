@@ -2,8 +2,8 @@ extends RayCast2D
 
 class_name Laser
 
-export var on = true setget set_on
-export (String, 'laser', 'freeze', 'barrier') var type = 'laser' setget set_type
+@export var on = true: set = set_on
+@export (String, 'laser', 'freeze', 'barrier') var type = 'laser': set = set_type
 
 const FLASH_DURATION = 0.1
 const WIDTH = 40
@@ -42,7 +42,7 @@ func set_on(v, duration=null):
 	enabled = on
 	
 	if not is_inside_tree():
-		yield(self, 'ready')
+		await self.ready
 	
 	$CastingParticles2D.emitting = on
 	
@@ -54,29 +54,29 @@ func set_on(v, duration=null):
 	
 	if is_inside_tree():
 		$Line2D.width = WIDTH if on else HINT_WIDTH
-		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		await get_tree().create_timer(FLASH_DURATION).timeout
 		$Line2D.width = WIDTH if not on else HINT_WIDTH
-		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		await get_tree().create_timer(FLASH_DURATION).timeout
 		
 		$Line2D.width = WIDTH if on else HINT_WIDTH
-		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		await get_tree().create_timer(FLASH_DURATION).timeout
 		$Line2D.width = WIDTH if not on else HINT_WIDTH
-		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		await get_tree().create_timer(FLASH_DURATION).timeout
 		
 		$Line2D.width = WIDTH if on else HINT_WIDTH
-		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		await get_tree().create_timer(FLASH_DURATION).timeout
 		$Line2D.width = WIDTH if not on else HINT_WIDTH
-		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		await get_tree().create_timer(FLASH_DURATION).timeout
 		
 		$Line2D.width = WIDTH if on else HINT_WIDTH
-		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		await get_tree().create_timer(FLASH_DURATION).timeout
 		$Line2D.width = WIDTH if not on else HINT_WIDTH
-		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		await get_tree().create_timer(FLASH_DURATION).timeout
 		
 		$Line2D.width = WIDTH if on else HINT_WIDTH
-		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		await get_tree().create_timer(FLASH_DURATION).timeout
 		$Line2D.width = WIDTH if not on else HINT_WIDTH
-		yield(get_tree().create_timer(FLASH_DURATION), "timeout")
+		await get_tree().create_timer(FLASH_DURATION).timeout
 	
 	$Line2D.width = WIDTH if on else HINT_WIDTH
 	
@@ -87,7 +87,7 @@ func set_on(v, duration=null):
 		$RayArea/CollisionShape2D.disabled = false
 	
 	if duration:
-		yield(get_tree().create_timer(duration), "timeout")
+		await get_tree().create_timer(duration).timeout
 		set_on(not on)
 
 func _ready():
@@ -103,14 +103,14 @@ func start():
 
 var laser_endpoint = Vector2(0,0)
 func _physics_process(delta):
-	var cast_point = cast_to
+	var cast_point = target_position
 	force_raycast_update()
 	
 	if is_colliding():
 		cast_point = to_local(get_collision_point())
 		
 	if cast_point.length() - laser_endpoint.length() > 50:
-		laser_endpoint = laser_endpoint.linear_interpolate(cast_point, delta*1000/laser_endpoint.distance_to(cast_point))
+		laser_endpoint = laser_endpoint.lerp(cast_point, delta*1000/laser_endpoint.distance_to(cast_point))
 	else:
 		laser_endpoint = cast_point
 		

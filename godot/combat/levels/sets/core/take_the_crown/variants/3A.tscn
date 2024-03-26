@@ -12,8 +12,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 10 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 360.0 ]
 }
@@ -24,8 +24,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 10 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 360.0 ]
 }
@@ -42,11 +42,11 @@ position = Vector2( -800, 0 )
 type = "skin"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall"]
-polygon = PoolVector2Array( 0, -450, 450, 0, 0, 450, -450, 0 )
+polygon = PackedVector2Array( 0, -450, 450, 0, 0, 450, -450, 0 )
 
 [node name="ShieldWall2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 800, 0 )
 type = "skin"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall2"]
-polygon = PoolVector2Array( 0, -450, 450, 0, 0, 450, -450, 0 )
+polygon = PackedVector2Array( 0, -450, 450, 0, 0, 450, -450, 0 )

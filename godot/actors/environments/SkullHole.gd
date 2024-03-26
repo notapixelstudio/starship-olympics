@@ -1,10 +1,10 @@
 extends Area2D
 
-export var goal_owner : NodePath
+@export var goal_owner : NodePath
 var player: InfoPlayer
 var full := false
 
-export var graphics_scale := 1.0
+@export var graphics_scale := 1.0
 
 func _ready():
 	$Empty.scale = graphics_scale*Vector2(1,1)
@@ -12,7 +12,7 @@ func _ready():
 	
 	if has_node(goal_owner):
 		var player_spawner = get_node(goal_owner)
-		yield(player_spawner, "player_assigned")
+		await player_spawner.player_assigned
 		set_player(player_spawner.get_player())
 
 func set_player(p: InfoPlayer) -> void:
@@ -29,7 +29,7 @@ func _on_SkullHole_body_entered(body):
 		
 	var done := false
 	if body is Ship and body.get_cargo().check_type('skull') and (body.get_player() == player or player == null):
-		body.get_cargo().empty()
+		body.get_cargo().is_empty()
 		done = true
 	elif body is Ball and body.has_type('skull') and body.active: # active is needed to score points on newly created skulls
 		body.queue_free()
@@ -37,7 +37,7 @@ func _on_SkullHole_body_entered(body):
 		
 	if done:
 		global.the_match.add_score(body.get_player().get_id(), self.get_score())
-		global.arena.show_msg(body.get_player().species, 1, global_position)
+		global.arena.show_msg(body.get_color(), 1, global_position)
 		$Empty.visible = false
 		$Full.visible = true
 		full = true
@@ -45,7 +45,7 @@ func _on_SkullHole_body_entered(body):
 		$RandomAudioStreamPlayer.play()
 		
 		$Tween.stop_all()
-		$Tween.interpolate_property($Full, "modulate", $Full.modulate, body.get_player().species.color, 1.5,
+		$Tween.interpolate_property($Full, "modulate", $Full.modulate, body.get_color(), 1.5,
 			Tween.TRANS_CUBIC, Tween.EASE_OUT, 0)
 		$Tween.start()
 		

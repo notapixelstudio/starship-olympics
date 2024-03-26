@@ -13,7 +13,7 @@ var timestamp : String
 var recovered_from_session := false
 
 func _init():
-	Events.connect("match_ended", self, "match_ended")
+	Events.connect("match_ended", Callable(self, "match_ended"))
 	uuid = UUID.v4()
 	if global.the_game:
 		game_id=global.the_game.get_uuid()
@@ -35,7 +35,7 @@ func setup_from_dictionary(data: Dictionary):
 	var existing_matches = data.get("matches", [])
 	for existing_match in existing_matches:
 		add_match_dict(existing_match)
-	if not data.empty():
+	if not data.is_empty():
 		recovered_from_session = true
 		
 func get_uuid() -> String:
@@ -111,12 +111,12 @@ func set_hand(cards : Array) -> void:
 func get_last_match() -> Dictionary:
 	return matches.back()
 	
-func get_hand() -> Array:
+func get_tracker_hand() -> Array:
 	return hand
 
 func to_dict() -> Dictionary:
 	var serialized_cards := []
-	for card in self.get_hand():
+	for card in self.get_tracker_hand():
 		serialized_cards.append((card as DraftCard).get_id())
 	var deck = global.the_game.deck if global.the_game else null
 	if deck:
@@ -159,7 +159,7 @@ func snapshot_leaderboard() -> void:
 		return
 	for player in global.the_game.get_players():
 		new_leaderboard.append(player.to_dict())
-	new_leaderboard.sort_custom(self, '_sort_by_session_score')
+	new_leaderboard.sort_custom(Callable(self, '_sort_by_session_score'))
 	leaderboards.insert(0, new_leaderboard)
 	if len(leaderboards) > 1:
 		leaderboards = leaderboards.slice(0, 1)
@@ -181,5 +181,5 @@ func is_over() -> bool:
 	return false
 	
 func store():
-	global.write_into_file("user://sessions/{id}.json".format({"id":self.uuid}), to_json(self.to_dict()))
+	global.write_into_file("user://sessions/{id}.json".format({"id":self.uuid}), JSON.new().stringify(self.to_dict()))
 	

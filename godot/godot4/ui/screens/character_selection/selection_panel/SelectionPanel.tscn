@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://godot4/ui/screens/character_selection/selection_panel/SelectionPanel.gd" id="1"]
+[ext_resource type="FontFile" path="res://assets/fonts/DefaultFont40.tres" id="2"]
+[ext_resource type="PackedScene" path="res://godot4/ui/screens/character_selection/ReadyToFight.tscn" id="3"]
+
+[node name="SelectionPanel" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+ready_to_fight = ExtResource( 3 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Node2D"]
+offset_left = 402.473
+offset_top = 321.178
+offset_right = 890.473
+offset_bottom = 375.178
+theme_override_fonts/font = ExtResource( 2 )
+text = "SADDSADSAD"
