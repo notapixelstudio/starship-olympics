@@ -52,9 +52,9 @@ signal touch(sth: CollisionObject2D)
 signal hurt_by(sth: CollisionObject2D)
 
 ## constants for basic movement
-const THRUST := 6500
+const THRUST := 6000 # 6500
 ## 9 because we enlarged the radius of the ship's collision shape by 3
-var rotation_torque := 49000*9 
+var rotation_torque := 130000 # 49000*9 
 
 # check variables for actions (e.g. dash, etc.)
 var charging := true

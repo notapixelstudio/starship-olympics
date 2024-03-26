@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=21 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PackedScene" uid="uid://b6gg3o407i70x" path="res://godot4/effects/DashRing.tscn" id="2_0puh8"]
@@ -13,10 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://godot4/effects/trails/FlameTrail.tscn" id="10_4jj2i"]
 [ext_resource type="PackedScene" uid="uid://cex35drwxeknp" path="res://godot4/effects/trails/FlamesManager.tscn" id="11_i3r85"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="11_tsmbp"]
-
-[sub_resource type="PhysicsMaterial" id="1"]
-friction = 0.0
-bounce = 0.5
 
 [sub_resource type="GDScript" id="GDScript_4hb7k"]
 script/source = "extends DebugNode
@@ -73,14 +69,8 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
 [node name="Ship" type="RigidBody2D"]
 collision_layer = 4194305
 collision_mask = 1169
-physics_material_override = SubResource("1")
-gravity_scale = 2.0
-max_contacts_reported = 10
-contact_monitor = true
-linear_damp_mode = 1
-linear_damp = 7.0
-angular_damp_mode = 1
-angular_damp = 80.0
+linear_damp = 5.0
+angular_damp = 30.0
 script = ExtResource("1_cvjhk")
 dash_ring_scene = ExtResource("2_0puh8")
 death_feedback_scene = ExtResource("3_3e4pi")
