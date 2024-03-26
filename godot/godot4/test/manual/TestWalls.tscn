@@ -43,3 +43,12 @@ polygon = PackedVector2Array(0, -100, 50, -400, 50, 600, 0, 600)
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D2" index="1"]
 polygon = PackedVector2Array(0, -100, 50, -400, 50, 600, 0, 600)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." index="11"]
+position = Vector2(-700, -200)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D3" index="0"]
+polygon = PackedVector2Array(-550, 1450, -550, -1050, -600, -1100, -600, 1500, 2000, 1500, 2000, -1100, -600, -1100, -550, -1050, 1950, -1050, 1950, 1450)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D3" index="1"]
+polygon = PackedVector2Array(-550, 1450, -550, -1050, -600, -1100, -600, 1500, 2000, 1500, 2000, -1100, -600, -1100, -550, -1050, 1950, -1050, 1950, 1450)
