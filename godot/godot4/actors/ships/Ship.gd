@@ -100,6 +100,12 @@ func dash(charge: float) -> void:
 	
 func tap():
 	pass
+	
+func _ready():
+	# apparently, setting this from code is necessary in order for box2d to correctly perform "bullet"-style collisions
+	# see https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_dynamics.html
+	# and https://github.com/search?q=repo%3Aappsinacup%2Fgodot-box2d+body_set_ccd_enabled&type=code
+	PhysicsServer2D.body_set_continuous_collision_detection_mode(get_rid(), PhysicsServer2D.CCD_MODE_CAST_SHAPE)
 
 func _integrate_forces(state):
 	tracked.tick()

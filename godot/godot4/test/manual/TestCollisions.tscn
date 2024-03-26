@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://fy1hekqfwwus"]
+[gd_scene load_steps=6 format=3 uid="uid://fy1hekqfwwus"]
 
-[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_nwksf"]
-[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="4_h8r75"]
-[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="5_4stax"]
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_krlxa"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_e6hl1"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_08emw"]
+[ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="4_5wsu2"]
 
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
 script/source = "extends TestChamberLog
@@ -16,15 +17,15 @@ func _on_sth_collected(collector, collectee):
 	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
 "
 
-[node name="TestChamber" instance=ExtResource("1_nwksf")]
+[node name="TestChamber" instance=ExtResource("1_krlxa")]
 
 [node name="TestChamberLog" parent="." index="4"]
 script = SubResource("GDScript_0rj7w")
 
-[node name="Ship" parent="." index="8" instance=ExtResource("4_h8r75")]
+[node name="Ship" parent="." index="8" instance=ExtResource("2_e6hl1")]
 unique_name_in_owner = true
 
-[node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("5_4stax")]
+[node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("3_08emw")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="9"]
 position = Vector2(700, 0)
@@ -52,3 +53,10 @@ polygon = PackedVector2Array(-550, 1450, -550, -1050, -600, -1100, -600, 1500, 2
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D3" index="1"]
 polygon = PackedVector2Array(-550, 1450, -550, -1050, -600, -1100, -600, 1500, 2000, 1500, 2000, -1100, -600, -1100, -550, -1050, 1950, -1050, 1950, 1450)
+
+[node name="Ship2" parent="." index="12" instance=ExtResource("2_e6hl1")]
+position = Vector2(-550, 900)
+
+[node name="Diamond" parent="." index="13" instance=ExtResource("4_5wsu2")]
+position = Vector2(0, -700)
+collectable = false
