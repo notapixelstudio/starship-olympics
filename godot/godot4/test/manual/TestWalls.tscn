@@ -1,0 +1,229 @@
+[gd_scene load_steps=37 format=3 uid="uid://bvuxtptpfc1lq"]
+
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_4pv1n"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_bml84"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_cir4l"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_open.gd" id="4_0y0hf"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/vertex_properties.gd" id="5_kf3df"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point.gd" id="6_0b4bb"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point_array.gd" id="7_i24vv"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="8_k6mco"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="9_klrds"]
+[ext_resource type="Texture2D" uid="uid://cul1qame2qpja" path="res://assets/patterns/wall/bones.png" id="9_o7a1m"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="10_fytlm"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="11_vueq6"]
+
+[sub_resource type="GDScript" id="GDScript_0rj7w"]
+script/source = "extends TestChamberLog
+
+
+func _ready():
+	super._ready()
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_sth_collected(collector, collectee):
+	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
+"
+
+[sub_resource type="Resource" id="Resource_sb08f"]
+script = ExtResource("5_kf3df")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_ptaef"]
+script = ExtResource("6_0b4bb")
+position = Vector2(-1200, -1300)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_sb08f")
+
+[sub_resource type="Resource" id="Resource_utvhv"]
+script = ExtResource("5_kf3df")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_jpgi6"]
+script = ExtResource("6_0b4bb")
+position = Vector2(1200, -1312)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_utvhv")
+
+[sub_resource type="Resource" id="Resource_e70t7"]
+script = ExtResource("5_kf3df")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_jgmms"]
+script = ExtResource("6_0b4bb")
+position = Vector2(1300, -1200)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_e70t7")
+
+[sub_resource type="Resource" id="Resource_5qfs8"]
+script = ExtResource("5_kf3df")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_vx72y"]
+script = ExtResource("6_0b4bb")
+position = Vector2(1300, 1200)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_5qfs8")
+
+[sub_resource type="Resource" id="Resource_y8cfr"]
+script = ExtResource("5_kf3df")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_bb03p"]
+script = ExtResource("6_0b4bb")
+position = Vector2(-1300, 1200)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_y8cfr")
+
+[sub_resource type="Resource" id="Resource_rvd3j"]
+script = ExtResource("5_kf3df")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_mw7tx"]
+script = ExtResource("6_0b4bb")
+position = Vector2(-1300, -1200)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_rvd3j")
+
+[sub_resource type="Resource" id="Resource_1cq2h"]
+script = ExtResource("5_kf3df")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_fufis"]
+script = ExtResource("6_0b4bb")
+position = Vector2(-1200, -1300)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_1cq2h")
+
+[sub_resource type="Resource" id="Resource_sjmcw"]
+script = ExtResource("5_kf3df")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_meeu0"]
+script = ExtResource("6_0b4bb")
+position = Vector2(-1200, 1300)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_sjmcw")
+
+[sub_resource type="Resource" id="Resource_j6ded"]
+script = ExtResource("5_kf3df")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_b1q0s"]
+script = ExtResource("6_0b4bb")
+position = Vector2(1200, 1300)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_j6ded")
+
+[sub_resource type="Resource" id="Resource_o8ku7"]
+script = ExtResource("7_i24vv")
+_points = {
+0: SubResource("Resource_ptaef"),
+1: SubResource("Resource_jpgi6"),
+2: SubResource("Resource_jgmms"),
+3: SubResource("Resource_vx72y"),
+4: SubResource("Resource_bb03p"),
+5: SubResource("Resource_mw7tx"),
+6: SubResource("Resource_fufis"),
+7: SubResource("Resource_meeu0"),
+8: SubResource("Resource_b1q0s")
+}
+_point_order = Array[int]([0, 1, 2, 3, 8, 7, 4, 5, 6])
+_constraints = {}
+_next_key = 9
+_material_overrides = {}
+
+[sub_resource type="Resource" id="Resource_ngpes"]
+script = ExtResource("8_k6mco")
+textures = Array[Texture2D]([ExtResource("9_o7a1m")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = false
+use_taper_texture = false
+fit_mode = 0
+
+[sub_resource type="Resource" id="Resource_jpqnx"]
+script = ExtResource("10_fytlm")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_r5xwd"]
+script = ExtResource("11_vueq6")
+edge_material = SubResource("Resource_ngpes")
+normal_range = SubResource("Resource_jpqnx")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_b3i06"]
+script = ExtResource("9_klrds")
+_edge_meta_materials = Array[ExtResource("11_vueq6")]([SubResource("Resource_r5xwd")])
+fill_textures = Array[Texture2D]([])
+fill_texture_z_index = -10
+fill_texture_show_behind_parent = false
+fill_texture_scale = 1.0
+fill_texture_absolute_position = false
+fill_texture_absolute_rotation = false
+fill_texture_offset = Vector2(0, 0)
+fill_texture_angle_offset = 0.0
+fill_mesh_offset = 0.0
+render_offset = 0.0
+
+[node name="TestChamber" instance=ExtResource("1_4pv1n")]
+
+[node name="TestChamberLog" parent="." index="4"]
+script = SubResource("GDScript_0rj7w")
+
+[node name="Ship" parent="." index="8" instance=ExtResource("2_bml84")]
+unique_name_in_owner = true
+
+[node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("3_cir4l")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="9"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
+polygon = PackedVector2Array(-1200, -1300, 1198.21, -1307.96, 1296.93, -1198.83, 1296.48, 1198.54, 1198.54, 1296.48, -1198.54, 1296.48, -1296.48, 1198.54, -1296.48, -1198.54, -1200, -1300, -1270.71, -1370.71, -1388.87, -1236.81, -1388.87, 1236.81, -1236.81, 1388.87, 1236.81, 1388.87, 1388.87, 1236.81, 1390.36, -1234.47, 1238.84, -1399.34, -1200.5, -1400)
+
+[node name="SS2D_Shape_Open" type="Node2D" parent="StaticBody2D" index="1"]
+texture_repeat = 2
+script = ExtResource("4_0y0hf")
+_points = SubResource("Resource_o8ku7")
+flip_edges = true
+shape_material = SubResource("Resource_b3i06")
+collision_size = 100.0
+collision_polygon_node_path = NodePath("../CollisionPolygon2D")

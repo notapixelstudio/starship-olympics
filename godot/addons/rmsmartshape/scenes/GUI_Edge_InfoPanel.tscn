@@ -1,0 +1,100 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy1l6tyadc4s3"]
+
+[ext_resource type="Theme" uid="uid://dud4fe6fsicvm" path="res://addons/rmsmartshape/assets/gui_theme.res" id="1_pwu3l"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/scenes/GUI_Edge_InfoPanel.gd" id="2"]
+
+[node name="GUI_Edge_InfoPanel" type="PanelContainer"]
+anchors_preset = -1
+anchor_right = 0.203125
+anchor_bottom = 0.345679
+offset_bottom = -62.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("1_pwu3l")
+script = ExtResource("2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Properties" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="IDX" type="Label" parent="Container/Properties"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "IDX: [1,2]"
+
+[node name="Functions" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Make Inner Curve" type="Button" parent="Container/Functions"]
+visible = false
+layout_mode = 2
+text = "Make Inner Curve"
+
+[node name="Make Outer Curve" type="Button" parent="Container/Functions"]
+visible = false
+layout_mode = 2
+text = "Make Outer Curve"
+
+[node name="MaterialOverride" type="Button" parent="Container/Functions"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Material Override"
+
+[node name="OverrideContainer" type="VBoxContainer" parent="Container"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Container/OverrideContainer"]
+layout_mode = 2
+
+[node name="Render" type="CheckBox" parent="Container/OverrideContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Render"
+
+[node name="Weld" type="CheckBox" parent="Container/OverrideContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Weld"
+
+[node name="ZIndexSection" type="HBoxContainer" parent="Container/OverrideContainer"]
+visible = false
+layout_mode = 2
+
+[node name="lbl" type="Label" parent="Container/OverrideContainer/ZIndexSection"]
+layout_mode = 2
+text = "Z:"
+
+[node name="ZIndex" type="SpinBox" parent="Container/OverrideContainer/ZIndexSection"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = -100.0
+
+[node name="SetMaterial" type="Button" parent="Container/OverrideContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Set Material"
+
+[node name="ClearMaterial" type="Button" parent="Container/OverrideContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Clear Material"
+
+[node name="MaterialStatus" type="Label" parent="Container/OverrideContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[No Material]"
