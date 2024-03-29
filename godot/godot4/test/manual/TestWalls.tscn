@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_4pv1n"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_bml84"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_cir4l"]
-[ext_resource type="Script" path="res://godot4/VBeveledRect.gd" id="4_exn8r"]
 
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
 script/source = "extends TestChamberLog
@@ -20,97 +19,115 @@ func _on_sth_collected(collector, collectee):
 [sub_resource type="GDScript" id="GDScript_6fggs"]
 script/source = "@tool
 extends Node
+class_name VBeveledRect
 
 @export var width := 200 : set = set_width
 @export var height := 200 : set = set_height
 @export var bevel := 50 : set = set_bevel
-@export var shape : VBeveledRect : set = set_shape
 
-@export var hosts : Array
+@export var hosts : Array[Node2D]
 
 
+var _dirty := false
+func taint() -> void:
+	_dirty = true
+	
+func is_dirty() -> bool:
+	return _dirty
+	
+func _process(delta):
+	if _dirty:
+		update()
+		_dirty = false
+		
+		
+		
 func set_width(v: int) -> void:
 	width = v
-	update()
+	taint()
 	
 func set_height(v: int) -> void:
 	height = v
-	update()
+	taint()
 	
 func set_bevel(v: int) -> void:
 	bevel = v
-	update()
+	taint()
 	
-func set_shape(v: VBeveledRect) -> void:
-	shape = v
-	update()
-	
-func _ready():
-	shape.changed.connect(update)
-	
+
 func update() -> void:
-	Events.log.emit('Updated')
+	var points = PackedVector2Array([
+		Vector2(-width/2,-height/2+bevel),
+		Vector2(-width/2+bevel,-height/2),
+		Vector2(width/2-bevel,-height/2),
+		Vector2(width/2,-height/2+bevel),
+		Vector2(width/2,height/2-bevel),
+		Vector2(width/2-bevel,height/2),
+		Vector2(-width/2+bevel,height/2),
+		Vector2(-width/2,height/2-bevel)
+	]) # clockwise!
+	
+	for host in hosts:
+		if host is Line2D:
+			host.set_points(points)
+		elif host is CollisionPolygon2D or host is Polygon2D:
+			host.set_polygon(points)
 "
-
-[sub_resource type="Resource" id="Resource_5qrvp"]
-script = ExtResource("4_exn8r")
-width = 200
-height = 200
-bevel = 50
-
-[sub_resource type="Animation" id="Animation_lxue6"]
-resource_name = "new_animation"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VShape:shape:width")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [200, 600]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VShape:shape:height")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [200, 100]
-}
 
 [sub_resource type="Animation" id="Animation_mki1b"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VShape:shape:width")
+tracks/0/path = NodePath("VBeveledRect:bevel")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [200]
+"values": [50]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("VShape:shape:height")
+tracks/1/path = NodePath("../StaticBody2D2/VCustomShape:curve:point_1/position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [200]
+"values": [Vector2(-734, -857)]
+}
+
+[sub_resource type="Animation" id="Animation_lxue6"]
+resource_name = "new_animation"
+length = 8.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBeveledRect:bevel")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [50, 600]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../StaticBody2D2/VCustomShape:curve:point_1/position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-734, -857), Vector2(-175, -658)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ebs3"]
@@ -118,6 +135,49 @@ _data = {
 "RESET": SubResource("Animation_mki1b"),
 "new_animation": SubResource("Animation_lxue6")
 }
+
+[sub_resource type="Curve2D" id="Curve2D_t7qfr"]
+bake_interval = 20.0
+_data = {
+"points": PackedVector2Array(-2932.59, 1512.91, 2932.59, -1512.91, -1410, -1076, 411.072, 171.633, -411.072, -171.633, -734, -857, 0, 0, 0, 0, -1240, -359, 0, 0, 0, 0, -1455, -342, 0, 0, 0, 0, -1649, -751, 353.861, 133.492, -353.861, -133.492, -1935, -1173)
+}
+point_count = 6
+
+[sub_resource type="GDScript" id="GDScript_qjmqq"]
+script/source = "@tool
+extends Path2D
+class_name VCustomShape
+
+@export var hosts : Array[Node2D]
+
+
+var _dirty := false
+func taint() -> void:
+	_dirty = true
+	
+func is_dirty() -> bool:
+	return _dirty
+	
+func _process(delta):
+	if _dirty:
+		update()
+		_dirty = false
+		
+		
+		
+func _ready():
+	curve.changed.connect(taint)
+	
+
+func update() -> void:
+	var points = curve.tessellate()
+	
+	for host in hosts:
+		if host is Line2D:
+			host.set_points(points)
+		elif host is CollisionPolygon2D or host is Polygon2D:
+			host.set_polygon(points)
+"
 
 [node name="TestChamber" instance=ExtResource("1_4pv1n")]
 
@@ -130,19 +190,46 @@ unique_name_in_owner = true
 [node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("3_cir4l")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="9"]
+position = Vector2(900, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
+polygon = PackedVector2Array(-700, -950, -650, -1000, 650, -1000, 700, -950, 700, 950, 650, 1000, -650, 1000, -700, 950)
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" index="1"]
+color = Color(0.231373, 1, 1, 1)
+polygon = PackedVector2Array(-700, -950, -650, -1000, 650, -1000, 700, -950, 700, 950, 650, 1000, -650, 1000, -700, 950)
 
 [node name="Line2D" type="Line2D" parent="StaticBody2D" index="2"]
+points = PackedVector2Array(-700, -950, -650, -1000, 650, -1000, 700, -950, 700, 950, 650, 1000, -650, 1000, -700, 950)
+closed = true
 
-[node name="VShape" type="Node" parent="StaticBody2D" index="3"]
+[node name="VBeveledRect" type="Node" parent="StaticBody2D" index="3" node_paths=PackedStringArray("hosts")]
 script = SubResource("GDScript_6fggs")
-shape = SubResource("Resource_5qrvp")
+width = 1400
+height = 2000
+hosts = [NodePath("../CollisionPolygon2D"), NodePath("../Polygon2D"), NodePath("../Line2D")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="StaticBody2D" index="4"]
 libraries = {
 "": SubResource("AnimationLibrary_2ebs3")
 }
 autoplay = "new_animation"
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="10"]
+position = Vector2(-900, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D2" index="0"]
+color = Color(0.231373, 1, 1, 1)
+polygon = PackedVector2Array(-1410, -1076, -522.118, -1493.92, -223.406, -1602.88, -106.376, -1635.88, -9.38006, -1655.91, 68.7197, -1663.95, 101.039, -1663.8, 129.061, -1661.03, 152.927, -1655.77, 172.78, -1648.15, 188.763, -1638.28, 201.016, -1626.31, 209.683, -1612.34, 214.906, -1596.51, 216.827, -1578.95, 215.587, -1559.77, 211.33, -1539.11, 204.198, -1517.09, 194.332, -1493.84, 181.875, -1469.48, 149.756, -1417.94, 108.978, -1363.47, 5.9986, -1249.78, -117.964, -1136.47, -253.808, -1031.56, -392.434, -943.123, -459.947, -907.589, -524.742, -879.186, -585.683, -858.92, -614.352, -852.153, -641.631, -847.797, -667.377, -845.978, -691.449, -846.821, -713.704, -850.454, -734, -857, -771.619, -870.672, -807.425, -879.691, -841.46, -884.335, -873.765, -884.879, -904.379, -881.6, -933.343, -874.776, -960.698, -864.682, -986.483, -851.595, -1010.74, -835.792, -1033.51, -817.55, -1054.83, -797.145, -1074.75, -774.854, -1110.52, -725.721, -1141.15, -672.362, -1188.29, -561.825, -1218.74, -460.948, -1240, -359, -1455, -342, -1649, -751, -1646.78, -763.658, -1643.93, -798.165, -1644.06, -821.989, -1646.19, -849.325, -1651.03, -879.526, -1659.3, -911.94, -1671.72, -945.919, -1689, -980.813, -1711.87, -1015.97, -1741.03, -1050.75, -1777.2, -1084.48, -1821.11, -1116.54, -1873.47, -1146.26, -1935, -1173)
+
+[node name="Line2D" type="Line2D" parent="StaticBody2D2" index="1"]
+points = PackedVector2Array(-1410, -1076, -522.118, -1493.92, -223.406, -1602.88, -106.376, -1635.88, -9.38006, -1655.91, 68.7197, -1663.95, 101.039, -1663.8, 129.061, -1661.03, 152.927, -1655.77, 172.78, -1648.15, 188.763, -1638.28, 201.016, -1626.31, 209.683, -1612.34, 214.906, -1596.51, 216.827, -1578.95, 215.587, -1559.77, 211.33, -1539.11, 204.198, -1517.09, 194.332, -1493.84, 181.875, -1469.48, 149.756, -1417.94, 108.978, -1363.47, 5.9986, -1249.78, -117.964, -1136.47, -253.808, -1031.56, -392.434, -943.123, -459.947, -907.589, -524.742, -879.186, -585.683, -858.92, -614.352, -852.153, -641.631, -847.797, -667.377, -845.978, -691.449, -846.821, -713.704, -850.454, -734, -857, -771.619, -870.672, -807.425, -879.691, -841.46, -884.335, -873.765, -884.879, -904.379, -881.6, -933.343, -874.776, -960.698, -864.682, -986.483, -851.595, -1010.74, -835.792, -1033.51, -817.55, -1054.83, -797.145, -1074.75, -774.854, -1110.52, -725.721, -1141.15, -672.362, -1188.29, -561.825, -1218.74, -460.948, -1240, -359, -1455, -342, -1649, -751, -1646.78, -763.658, -1643.93, -798.165, -1644.06, -821.989, -1646.19, -849.325, -1651.03, -879.526, -1659.3, -911.94, -1671.72, -945.919, -1689, -980.813, -1711.87, -1015.97, -1741.03, -1050.75, -1777.2, -1084.48, -1821.11, -1116.54, -1873.47, -1146.26, -1935, -1173)
+closed = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2" index="2"]
+polygon = PackedVector2Array(-1410, -1076, -522.118, -1493.92, -223.406, -1602.88, -106.376, -1635.88, -9.38006, -1655.91, 68.7197, -1663.95, 101.039, -1663.8, 129.061, -1661.03, 152.927, -1655.77, 172.78, -1648.15, 188.763, -1638.28, 201.016, -1626.31, 209.683, -1612.34, 214.906, -1596.51, 216.827, -1578.95, 215.587, -1559.77, 211.33, -1539.11, 204.198, -1517.09, 194.332, -1493.84, 181.875, -1469.48, 149.756, -1417.94, 108.978, -1363.47, 5.9986, -1249.78, -117.964, -1136.47, -253.808, -1031.56, -392.434, -943.123, -459.947, -907.589, -524.742, -879.186, -585.683, -858.92, -614.352, -852.153, -641.631, -847.797, -667.377, -845.978, -691.449, -846.821, -713.704, -850.454, -734, -857, -771.619, -870.672, -807.425, -879.691, -841.46, -884.335, -873.765, -884.879, -904.379, -881.6, -933.343, -874.776, -960.698, -864.682, -986.483, -851.595, -1010.74, -835.792, -1033.51, -817.55, -1054.83, -797.145, -1074.75, -774.854, -1110.52, -725.721, -1141.15, -672.362, -1188.29, -561.825, -1218.74, -460.948, -1240, -359, -1455, -342, -1649, -751, -1646.78, -763.658, -1643.93, -798.165, -1644.06, -821.989, -1646.19, -849.325, -1651.03, -879.526, -1659.3, -911.94, -1671.72, -945.919, -1689, -980.813, -1711.87, -1015.97, -1741.03, -1050.75, -1777.2, -1084.48, -1821.11, -1116.54, -1873.47, -1146.26, -1935, -1173)
+
+[node name="VCustomShape" type="Path2D" parent="StaticBody2D2" index="3" node_paths=PackedStringArray("hosts")]
+curve = SubResource("Curve2D_t7qfr")
+script = SubResource("GDScript_qjmqq")
+hosts = [NodePath("../CollisionPolygon2D"), NodePath("../Polygon2D"), NodePath("../Line2D")]
