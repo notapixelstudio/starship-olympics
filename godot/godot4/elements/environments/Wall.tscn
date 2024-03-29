@@ -1,18 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://5c144k74jpe7"]
 
-[sub_resource type="GDScript" id="GDScript_5bsdr"]
-script/source = "extends StaticBody2D
-
-func set_polygon(polygon: PackedVector2Array) -> void:
-	%CollisionPolygon2D.set_polygon(polygon)
-	%Polygon2D.set_polygon(polygon)
-	%Line2D.set_points(polygon)
-	%UnderLine2D.set_points(polygon)
-"
+[ext_resource type="Script" path="res://godot4/elements/environments/Wall.gd" id="1_on1u7"]
 
 [node name="Wall" type="StaticBody2D"]
 position = Vector2(900, 0)
-script = SubResource("GDScript_5bsdr")
+script = ExtResource("1_on1u7")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 unique_name_in_owner = true
@@ -27,13 +19,13 @@ polygon = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 
 unique_name_in_owner = true
 points = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
 closed = true
-width = 20.0
+width = 32.0
 
 [node name="UnderLine2D" type="Line2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(0.368627, 0.368627, 0.368627, 1)
 z_index = -1
-position = Vector2(0, 16)
+position = Vector2(0, 32)
 points = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
 closed = true
-width = 20.0
+width = 32.0
