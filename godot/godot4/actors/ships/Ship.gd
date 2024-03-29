@@ -27,7 +27,7 @@ const MAX_TAP_CHARGE = 0.3
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 7000
 const DASH_HANDICAP = 400
-const DASH_MULTIPLIER = 2.6 # was 2.7, decreased to lessen the chance of tunneling
+const DASH_MULTIPLIER = 2.9 # was 2.7, then 2.6 decreased to lessen the chance of tunneling
 const BOMB_OFFSET = 50
 const BOMB_BOOST = 1600
 const BALL_BOOST = 2300
@@ -52,9 +52,9 @@ signal touch(sth: CollisionObject2D)
 signal hurt_by(sth: CollisionObject2D)
 
 ## constants for basic movement
-const THRUST := 6000 # 6500
+const THRUST := 6700 # 6500
 ## 9 because we enlarged the radius of the ship's collision shape by 3
-var rotation_torque := 130000 # 49000*9 
+var rotation_torque := 250000 # 130000 # 49000*9 
 
 # check variables for actions (e.g. dash, etc.)
 var charging := true

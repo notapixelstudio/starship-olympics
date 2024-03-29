@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://godot4/elements/environments/Wall.gd" id="1_on1u7"]
 
 [node name="Wall" type="StaticBody2D"]
-position = Vector2(900, 0)
 script = ExtResource("1_on1u7")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
