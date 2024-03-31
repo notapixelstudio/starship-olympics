@@ -59,13 +59,13 @@ _data = {
 "RESET": SubResource("Animation_1e1uc")
 }
 
-[sub_resource type="Curve2D" id="Curve2D_m1xaf"]
+[sub_resource type="Curve2D" id="Curve2D_hcll5"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2800, -1450, 0, 0, 0, 0, -2300, -1200, 0, 0, 0, 0, -2850, -800, 0, 0, 0, 0, -3350, -1050)
 }
 point_count = 4
 
-[sub_resource type="Curve2D" id="Curve2D_5rbfa"]
+[sub_resource type="Curve2D" id="Curve2D_7kum2"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -3300, -750, 0, 0, 0, 0, -2700, -350, 0, 0, 0, 0, -2700, 450, 0, 0, 0, 0, -3300, 0)
 }
@@ -120,12 +120,24 @@ bevel_sw = 200.0
 position = Vector2(750, 300)
 
 [node name="VCustomShape" type="Path2D" parent="Wall3" index="4"]
-curve = SubResource("Curve2D_m1xaf")
+curve = SubResource("Curve2D_hcll5")
 script = ExtResource("8_k5t4d")
 
 [node name="Wall4" parent="." index="13" instance=ExtResource("4_l5458")]
 position = Vector2(750, 300)
 
 [node name="VCustomShape" type="Path2D" parent="Wall4" index="4"]
-curve = SubResource("Curve2D_5rbfa")
+curve = SubResource("Curve2D_7kum2")
 script = ExtResource("8_k5t4d")
+
+[node name="Wall5" parent="." index="14" instance=ExtResource("4_l5458")]
+position = Vector2(1900, -800)
+
+[node name="Wall6" parent="." index="15" instance=ExtResource("4_l5458")]
+position = Vector2(1900, -50)
+
+[node name="Wall7" parent="." index="16" instance=ExtResource("4_l5458")]
+position = Vector2(1900, 850)
+
+[node name="Wall8" parent="." index="17" instance=ExtResource("4_l5458")]
+position = Vector2(250, 950)
