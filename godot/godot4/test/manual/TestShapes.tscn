@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://do2vyllsu00yk"]
+[gd_scene load_steps=18 format=3 uid="uid://do2vyllsu00yk"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_2o1p3"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_0xx8t"]
@@ -8,6 +8,11 @@
 [ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="6_8jdyk"]
 [ext_resource type="Script" path="res://addons/vshapes/VMultiBeveledRect.gd" id="7_iwp2v"]
 [ext_resource type="Script" path="res://addons/vshapes/VCustomShape.gd" id="8_k5t4d"]
+[ext_resource type="Script" path="res://addons/vshapes/VCircle.gd" id="9_t6qou"]
+[ext_resource type="Script" path="res://addons/vshapes/VEllipse.gd" id="10_yba5m"]
+[ext_resource type="Script" path="res://addons/vshapes/VMultiRoundedRect.gd" id="11_ii6u5"]
+[ext_resource type="Script" path="res://addons/vshapes/VRect.gd" id="12_gjdva"]
+[ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="13_xy4ub"]
 
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
 script/source = "extends TestChamberLog
@@ -21,55 +26,23 @@ func _on_sth_collected(collector, collectee):
 	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
 "
 
-[sub_resource type="Animation" id="Animation_61utp"]
-resource_name = "Breathe"
-length = 4.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VRoundedRect:radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [935.0, 50.0]
-}
-
-[sub_resource type="Animation" id="Animation_1e1uc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VRoundedRect:radius")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [935.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_l1vkr"]
-_data = {
-"Breathe": SubResource("Animation_61utp"),
-"RESET": SubResource("Animation_1e1uc")
-}
-
-[sub_resource type="Curve2D" id="Curve2D_hcll5"]
+[sub_resource type="Curve2D" id="Curve2D_m4lo1"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2800, -1450, 0, 0, 0, 0, -2300, -1200, 0, 0, 0, 0, -2850, -800, 0, 0, 0, 0, -3350, -1050)
 }
 point_count = 4
 
-[sub_resource type="Curve2D" id="Curve2D_7kum2"]
+[sub_resource type="Curve2D" id="Curve2D_40b60"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -3300, -750, 0, 0, 0, 0, -2700, -350, 0, 0, 0, 0, -2700, 450, 0, 0, 0, 0, -3300, 0)
+"points": PackedVector2Array(-1424.48, -68.9535, 1424.48, 68.9535, -3300, -750, 0, 0, 0, 0, -2700, -350, 0, 0, 0, 0, -2700, 450, 396.903, -216.951, -396.903, 216.951, -3300, 0)
 }
 point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_t4xoq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -3450, 300, 0, 0, 0, 0, -2700, 800, 0, 0, 0, 0, -2750, 1350, 0, 0, 0, 0, -3300, 1200, 0, 0, 0, 0, -3150, 800, 0, 0, 0, 0, -3800, 550)
+}
+point_count = 6
 
 [node name="TestChamber" instance=ExtResource("1_2o1p3")]
 
@@ -82,28 +55,21 @@ position = Vector2(-794, 3)
 
 [node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("3_pikay")]
 
-[node name="OutsideWall" parent="." index="9" instance=ExtResource("4_l5458")]
-hollow = true
-
-[node name="VRoundedRect" type="Node" parent="OutsideWall" index="4" node_paths=PackedStringArray("hosts")]
-script = ExtResource("6_8jdyk")
-width = 6000.0
-height = 3200.0
-radius = 935.0
-hosts = [NodePath("..")]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="OutsideWall" index="5"]
-libraries = {
-"": SubResource("AnimationLibrary_l1vkr")
-}
-autoplay = "Breathe"
-
-[node name="Wall" parent="." index="10" instance=ExtResource("4_l5458")]
+[node name="Wall" parent="." index="9" instance=ExtResource("4_l5458")]
 position = Vector2(750, -800)
 
 [node name="VBeveledRect" type="Node" parent="Wall" index="4"]
 script = ExtResource("5_kg646")
 width = 400.0
+
+[node name="Wall10" parent="." index="10" instance=ExtResource("4_l5458")]
+position = Vector2(-800, -1250)
+
+[node name="VRoundedRect" type="Node" parent="Wall10" index="4"]
+script = ExtResource("6_8jdyk")
+width = 600.0
+height = 300.0
+radius = 100.0
 
 [node name="Wall2" parent="." index="11" instance=ExtResource("4_l5458")]
 position = Vector2(750, 300)
@@ -114,30 +80,63 @@ width = 400.0
 height = 400.0
 bevel_nw = 0.0
 bevel_ne = 100.0
-bevel_sw = 200.0
+bevel_sw = 150.0
 
 [node name="Wall3" parent="." index="12" instance=ExtResource("4_l5458")]
-position = Vector2(750, 300)
+position = Vector2(750, 200)
 
 [node name="VCustomShape" type="Path2D" parent="Wall3" index="4"]
-curve = SubResource("Curve2D_hcll5")
+curve = SubResource("Curve2D_m4lo1")
 script = ExtResource("8_k5t4d")
 
 [node name="Wall4" parent="." index="13" instance=ExtResource("4_l5458")]
 position = Vector2(750, 300)
 
 [node name="VCustomShape" type="Path2D" parent="Wall4" index="4"]
-curve = SubResource("Curve2D_7kum2")
+curve = SubResource("Curve2D_40b60")
 script = ExtResource("8_k5t4d")
 
-[node name="Wall5" parent="." index="14" instance=ExtResource("4_l5458")]
+[node name="Wall11" parent="." index="14" instance=ExtResource("4_l5458")]
+position = Vector2(750, 300)
+
+[node name="VCustomShape" type="Path2D" parent="Wall11" index="4"]
+curve = SubResource("Curve2D_t4xoq")
+script = ExtResource("8_k5t4d")
+
+[node name="Wall5" parent="." index="15" instance=ExtResource("4_l5458")]
 position = Vector2(1900, -800)
 
-[node name="Wall6" parent="." index="15" instance=ExtResource("4_l5458")]
-position = Vector2(1900, -50)
+[node name="VCircle" type="Node" parent="Wall5" index="4"]
+script = ExtResource("9_t6qou")
 
-[node name="Wall7" parent="." index="16" instance=ExtResource("4_l5458")]
+[node name="Wall6" parent="." index="16" instance=ExtResource("4_l5458")]
+position = Vector2(1900, 0)
+
+[node name="VEllipse" type="Node" parent="Wall6" index="4"]
+script = ExtResource("10_yba5m")
+
+[node name="Wall7" parent="." index="17" instance=ExtResource("4_l5458")]
 position = Vector2(1900, 850)
 
-[node name="Wall8" parent="." index="17" instance=ExtResource("4_l5458")]
+[node name="VMultiRoundedRect" type="Node" parent="Wall7" index="4"]
+script = ExtResource("11_ii6u5")
+width = 400.0
+height = 300.0
+radius_nw = 200.0
+radius_sw = 0.0
+radius_se = 100.0
+
+[node name="Wall8" parent="." index="18" instance=ExtResource("4_l5458")]
 position = Vector2(250, 950)
+
+[node name="VRect" type="Node" parent="Wall8" index="4"]
+script = ExtResource("12_gjdva")
+width = 400.0
+
+[node name="Wall9" parent="." index="19" instance=ExtResource("4_l5458")]
+position = Vector2(-1550, 1100)
+
+[node name="VRegularPolygon" type="Node" parent="Wall9" index="4"]
+script = ExtResource("13_xy4ub")
+radius = 200.0
+sides = 7

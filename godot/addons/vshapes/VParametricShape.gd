@@ -11,7 +11,7 @@ func set_hosts(v: Array[Node]) -> void:
 var points : PackedVector2Array
 
 
-var _dirty := false
+var _dirty := true
 func taint() -> void:
 	_dirty = true
 	
@@ -27,18 +27,19 @@ func update():
 	update_hosts()
 
 func update_hosts() -> void:
-	if len(hosts) == 0 and is_inside_tree():
-		if get_parent().has_method('set_polygon'):
-			get_parent().set_polygon(points)
-		elif get_parent().has_method('set_points'):
-			get_parent().set_points(points)
-		
 	for host in hosts:
-		if host.has_method('set_polygon'):
-			host.set_polygon(points)
-		elif host.has_method('set_points'):
-			host.set_points(points)
+		_inject_points(host)
+			
+	if len(hosts) == 0:
+		if not is_inside_tree():
+			await tree_entered
+		_inject_points(get_parent())
 		
+func _inject_points(node):
+	if node.has_method('set_polygon'):
+		node.set_polygon(points)
+	elif node.has_method('set_points'):
+		node.set_points(points)
 
 func get_points() -> PackedVector2Array:
 	return points

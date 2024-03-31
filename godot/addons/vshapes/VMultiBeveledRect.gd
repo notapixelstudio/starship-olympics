@@ -35,16 +35,21 @@ func set_bevel_se(value: float) -> void:
 	
 
 func update() -> void:
-	points = PackedVector2Array([
-		Vector2(-width/2,-height/2+bevel_nw),
-		Vector2(-width/2+bevel_nw,-height/2),
-		Vector2(width/2-bevel_ne,-height/2),
-		Vector2(width/2,-height/2+bevel_ne),
-		Vector2(width/2,height/2-bevel_se),
-		Vector2(width/2-bevel_se,height/2),
-		Vector2(-width/2+bevel_sw,height/2),
-		Vector2(-width/2,height/2-bevel_sw)
-	]) # clockwise!
+	points = PackedVector2Array()
+	
+	points.append(Vector2(-width/2,-height/2+bevel_nw))
+	if bevel_nw > 0.0:
+		points.append(Vector2(-width/2+bevel_nw,-height/2))
+	points.append(Vector2(width/2-bevel_ne,-height/2))
+	if bevel_ne > 0.0:
+		points.append(Vector2(width/2,-height/2+bevel_ne))
+	points.append(Vector2(width/2,height/2-bevel_se))
+	if bevel_se > 0.0:
+		points.append(Vector2(width/2-bevel_se,height/2))
+	points.append(Vector2(-width/2+bevel_sw,height/2))
+	if bevel_sw > 0.0:
+		points.append(Vector2(-width/2,height/2-bevel_sw))
+	# clockwise!
 	
 	super.update()
 

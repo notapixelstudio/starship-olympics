@@ -34,20 +34,28 @@ func _generate_corner(starting_angle, center):
 	return points
 
 func update() -> void:
-	points = PackedVector2Array()
-	points.append(Vector2(-width/2,-height/2+radius))
-	points = points + _generate_corner(-PI, Vector2(-width/2+radius,-height/2+radius))
-	points.append(Vector2(-width/2+radius,-height/2))
-	points.append(Vector2(width/2-radius,-height/2))
-	points = points + _generate_corner(-PI/2, Vector2(width/2-radius,-height/2+radius))
-	points.append(Vector2(width/2,-height/2+radius))
-	points.append(Vector2(width/2,height/2-radius))
-	points = points + _generate_corner(0, Vector2(width/2-radius,height/2-radius))
-	points.append(Vector2(width/2-radius,height/2))
-	points.append(Vector2(-width/2+radius,height/2))
-	points = points + _generate_corner(PI/2, Vector2(-width/2+radius,height/2-radius))
-	points.append(Vector2(-width/2,height/2-radius))
-	
+	if radius > 0.0:
+		points = PackedVector2Array()
+		points.append(Vector2(-width/2,-height/2+radius))
+		points = points + _generate_corner(-PI, Vector2(-width/2+radius,-height/2+radius))
+		points.append(Vector2(-width/2+radius,-height/2))
+		points.append(Vector2(width/2-radius,-height/2))
+		points = points + _generate_corner(-PI/2, Vector2(width/2-radius,-height/2+radius))
+		points.append(Vector2(width/2,-height/2+radius))
+		points.append(Vector2(width/2,height/2-radius))
+		points = points + _generate_corner(0, Vector2(width/2-radius,height/2-radius))
+		points.append(Vector2(width/2-radius,height/2))
+		points.append(Vector2(-width/2+radius,height/2))
+		points = points + _generate_corner(PI/2, Vector2(-width/2+radius,height/2-radius))
+		points.append(Vector2(-width/2,height/2-radius))
+	else:
+		points = PackedVector2Array([
+			Vector2(-width/2,-height/2),
+			Vector2(width/2,-height/2),
+			Vector2(width/2,height/2),
+			Vector2(-width/2,height/2)
+		]) # clockwise!
+		
 	super.update()
 
 func get_extents() -> Vector2:

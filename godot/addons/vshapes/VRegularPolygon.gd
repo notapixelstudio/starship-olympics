@@ -29,7 +29,7 @@ func set_rotation_degrees(v: float) -> void:
 func update() -> void:
 	var angle = 2*PI/sides
 	var current_a = deg_to_rad(rotation_degrees)
-	var points = PackedVector2Array()
+	points = PackedVector2Array()
 	for i in range(sides):
 		current_a += angle + (deg_to_rad(alternating_angle) if i %2 else -deg_to_rad(alternating_angle))
 		points.append(Vector2(radius*cos(current_a),radius*sin(current_a)))
