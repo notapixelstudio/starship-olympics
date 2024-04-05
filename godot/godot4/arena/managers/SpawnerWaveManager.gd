@@ -1,6 +1,8 @@
 extends Node
 
 @export var base_time := 2.5
+@export var waves : Array[SpawnerWave]
+@export var battlefield: Node2D
 
 const WAVES_GROUP = "spawn_waves"
 const COLLECTABLE = "coin"
@@ -8,42 +10,33 @@ const WAVE_DELAY = 0.0
 var to_next_wave = 2
 var current_wave = 0
 
-var waves : Dictionary = {}
 
 signal spawn_next
 var spawners_per_wave : Dictionary
 var how_many_spawners: int
 var current_spawners = 0
 
-@onready var wave_timer = $Timer
 signal done
 
 func _ready():
 	Events.connect("spawned", Callable(self, "spawned"))
 	
 	Events.connect("sth_collected", Callable(self, "_on_sth_collected"))
-	# First spawner should already be in the field
-	# WARNING wait for variants to settle
-	await get_tree().idle_frame
-	setup(get_tree().get_nodes_in_group(WAVES_GROUP))
 	
-func get_spawner(spawners: Array) -> ElementSpawnerGroup:
-	var next_spawner = spawners.pop_back()
-	return next_spawner
+	setup()
 	
-func setup(wave_nodes, starting_wave = 0):
+	
+func setup(starting_wave = 0):
 	current_wave = starting_wave
 	spawners_per_wave = {}
-	for wave_node in wave_nodes:
-		var number = wave_node.wave_number
-		if number >= current_wave:
-			spawners_per_wave[number] = wave_node.get_spawners()
-			spawners_per_wave[number].shuffle()
-		
-		waves[number] = wave_node
+	for i in range(len(waves)):
+		var wave = waves[i]
+		if i >= current_wave:
+			spawners_per_wave[i] = wave.get_spawners()
+			spawners_per_wave[i].shuffle()
 	
 func start():
-	wave_timer.start()
+	%Timer.start()
 	
 func spawned(element_spawned: ElementSpawnerGroup):
 	print("This just spawned {spawned_element}".format({"spawned_element": element_spawned}))
@@ -57,20 +50,21 @@ func _handle_waves():
 	var last_wave : bool = current_wave >= len(spawners_per_wave)
 	if last_wave:
 		current_wave -= 1 # keep spawning the last wave
-		setup(get_tree().get_nodes_in_group(WAVES_GROUP), current_wave)
+		setup(current_wave)
 		
-	var spawner: ElementSpawnerGroup = self.get_spawner(spawners_per_wave[current_wave])
-	Events.emit_signal("ask_to_spawn", spawner, WAVE_DELAY + waves[current_wave].extra_delay)
+	var spawner: ElementSpawnerGroup = spawners_per_wave[current_wave].pop_back()
+	#Events.emit_signal("ask_to_spawn", spawner, WAVE_DELAY + waves[current_wave].extra_delay)
+	spawner.spawn(battlefield)
 	waves[current_wave].times_spawned += 1
-	wave_timer.wait_time = base_time + WAVE_DELAY + waves[current_wave].extra_delay
+	%Timer.wait_time = base_time + WAVE_DELAY + waves[current_wave].extra_delay
 	self.reset_wave_timer()
 	
 func reset_wave_timer():
-	wave_timer.stop()
-	wave_timer.start()
+	%Timer.stop()
+	%Timer.start()
 	
 func _on_Timer_timeout():
-	print("asking to spawn because timer of {timer_wait_time} has expired".format({"timer_wait_time": wave_timer.wait_time}))
+	print("asking to spawn because timer of {timer_wait_time} has expired".format({"timer_wait_time": %Timer.wait_time}))
 	_handle_waves()
 
 func _on_sth_collected(_collector, collectee):

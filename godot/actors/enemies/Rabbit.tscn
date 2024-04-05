@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=10 format=3]
 
-[ext_resource path="res://actors/enemies/rabbit.png" type="Texture2D" id=1]
-[ext_resource path="res://actors/enemies/Rabbit.gd" type="Script" id=3]
-[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=5]
-[ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=6]
+[ext_resource type="Texture2D" uid="uid://d3y0tadcug43o" path="res://actors/enemies/rabbit.png" id="1"]
+[ext_resource type="Script" path="res://actors/enemies/Rabbit.gd" id="3"]
+[ext_resource type="PackedScene" path="res://utils/Shadow.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bklnkitol1qwq" path="res://utils/AutoTrail.tscn" id="6"]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0

@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=11 format=3]
 
-[ext_resource path="res://assets/sprites/atom.png" type="Texture2D" id=1]
-[ext_resource path="res://actors/environments/ArkaBall.gd" type="Script" id=2]
-[ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/audio/FX/270315__littlerobotsoundfactory__menu-navigate-03.wav" type="AudioStream" id=7]
+[ext_resource type="Texture2D" uid="uid://bii2tlio8ltjj" path="res://assets/sprites/atom.png" id="1"]
+[ext_resource type="Script" path="res://actors/environments/ArkaBall.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://bklnkitol1qwq" path="res://utils/AutoTrail.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://combat/traits/Strategic.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="6"]
+[ext_resource type="AudioStream" uid="uid://cifoe1viahak1" path="res://assets/audio/FX/270315__littlerobotsoundfactory__menu-navigate-03.wav" id="7"]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0

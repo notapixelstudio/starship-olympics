@@ -22,9 +22,12 @@ func refresh_preview():
 	else:
 		$PreviewSprite.queue_free()
 		
-func spawn():
+func spawn(parent_node = null):
+	if parent_node == null:
+		parent_node = get_parent()
 	var element = element_scene.instantiate()
-	add_child(element)
+	element.global_position = global_position
+	parent_node.add_child(element)
 	if traits.has_trait(element, 'Waiter'):
 		element.start()
 	

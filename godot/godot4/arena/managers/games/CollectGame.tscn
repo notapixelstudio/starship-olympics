@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3ujmd4xwgw6c"]
+
+[sub_resource type="GDScript" id="GDScript_qq6xw"]
+script/source = "extends Node
+
+
+func _ready():
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_sth_collected(collector, collectee):
+	# assign points
+	Events.points_scored.emit(collectee.get_points(), collector.get_team())
+	# show feedback
+	Events.message.emit(collectee.get_points(), collector.get_color(), collectee.global_position)
+"
+
+[node name="CollectGame" type="Node"]
+script = SubResource("GDScript_qq6xw")

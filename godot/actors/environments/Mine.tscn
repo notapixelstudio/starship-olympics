@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=10 format=3]
 
-[ext_resource path="res://assets/sprites/weapons/mine.png" type="Texture2D" id=1]
-[ext_resource path="res://actors/environments/Mine.gd" type="Script" id=2]
-[ext_resource path="res://actors/weapons/Explosion.tscn" type="PackedScene" id=3]
-[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/traits/Diver.tscn" type="PackedScene" id=6]
+[ext_resource type="Texture2D" uid="uid://dkuc8dmq1v4wb" path="res://assets/sprites/weapons/mine.png" id="1"]
+[ext_resource type="Script" path="res://actors/environments/Mine.gd" id="2"]
+[ext_resource type="PackedScene" path="res://actors/weapons/Explosion.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://utils/Shadow.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://combat/traits/Diver.tscn" id="6"]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 140.0

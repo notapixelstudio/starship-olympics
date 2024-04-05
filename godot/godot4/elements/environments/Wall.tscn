@@ -11,14 +11,15 @@ polygon = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 unique_name_in_owner = true
-color = Color(0.231373, 1, 1, 1)
+color = Color(0.3952, 0.52, 0.52, 1)
 polygon = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
 
 [node name="Line2D" type="Line2D" parent="."]
 unique_name_in_owner = true
 points = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
 closed = true
-width = 32.0
+width = 48.0
+joint_mode = 1
 
 [node name="UnderLine2D" type="Line2D" parent="."]
 unique_name_in_owner = true
@@ -27,4 +28,5 @@ z_index = -1
 position = Vector2(0, 32)
 points = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
 closed = true
-width = 32.0
+width = 48.0
+joint_mode = 1

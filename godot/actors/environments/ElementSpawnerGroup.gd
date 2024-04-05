@@ -4,12 +4,12 @@ extends Marker2D
 class_name ElementSpawnerGroup
 
 
-@export (String, 'slash', 'backslash', 'line', 'bigline', "vline", "single", "plus", "rhombus", "gigarhombus", "zig", "zag", "apart", "farapart", "doublefarapart", "triplefarapart", "veryfarapart", "farslash", "farbackslash", "custom") var pattern = "line": set = _set_pattern
+@export_enum('slash', 'backslash', 'line', 'bigline', "vline", "single", "plus", "rhombus", "gigarhombus", "zig", "zag", "apart", "farapart", "doublefarapart", "triplefarapart", "veryfarapart", "farslash", "farbackslash", "custom") var pattern = "line": set = _set_pattern
 
 @export var spawner_scene: PackedScene
 @export var element_scene: PackedScene: set = _set_element_scene
 @export var guest_star_scene: PackedScene: set = _set_guest_star_scene
-@export (String, "center", "random", "half") var guest_star_positioning = "center"
+@export_enum("center", "random", "half") var guest_star_positioning = "center"
 
 var map_pattern_distance = {
 	"line": [Vector2(-300,0), Vector2(-150,0), Vector2(0,0), Vector2(150,0), Vector2(300,0)],
@@ -82,6 +82,8 @@ func _ready():
 	# ignore instance if custom
 	set_spawners()
 
-func spawn():
+func spawn(parent_node = null):
+	if parent_node == null:
+		parent_node = get_parent()
 	for n in get_children():
-		n.spawn()
+		n.spawn(parent_node)

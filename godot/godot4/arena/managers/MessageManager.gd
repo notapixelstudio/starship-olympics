@@ -1,6 +1,6 @@
 extends Node
 
-@export var arena: Node2D
+@export var battlefield: Node2D
 @export var floating_message_scene: PackedScene
 
 func _ready():
@@ -11,4 +11,4 @@ func _on_message(message:Variant, color:Color, global_position:Vector2) -> void:
 	floating_message.set_message(message)
 	floating_message.set_color(color)
 	floating_message.global_position = global_position
-	arena.add_child(floating_message)
+	battlefield.add_child(floating_message)

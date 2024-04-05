@@ -33,7 +33,7 @@ signal ship_dive_out(ship)
 signal sth_collided_with_ship(sth, ship) # on enter, no distinction between body or area, includes NearArea
 signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no distinction between body or area, NearArea only
 
-# 4.x new events
+# 4.x events
 signal ship_touch_sth(ship:Ship, sth:CollisionObject2D)
 signal sth_hurt_ship(sth:CollisionObject2D, ship:Ship)
 
@@ -45,7 +45,9 @@ signal points_scored(amount:int, team:String)
 
 signal log(message:String)
 signal message(message:Variant, color:Color, global_position:Vector2)
-# 4.x new events
+
+signal battle_start
+# 4.x events
 
 signal sth_collected(collector, collectee)
 signal sth_conquered(conqueror, conquered)
@@ -70,8 +72,6 @@ signal game_ended
 signal execution_ended
 signal analytics_enabled
 signal analytics_disabled
-
-signal battle_start
 
 signal continue_after_game_over(session_ended)
 signal continue_after_session_ended

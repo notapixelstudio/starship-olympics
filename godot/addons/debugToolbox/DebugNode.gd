@@ -9,7 +9,6 @@ class_name DebugNode
 
 ## Returns the current host this node is attached to.
 func get_host() -> Node:
-	assert(host != null)
 	return host 
 
 func _ready():

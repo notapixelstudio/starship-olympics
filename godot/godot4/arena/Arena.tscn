@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctk8t0ohpljms"]
+
+[ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="1_1sf7u"]
+[ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
+[ext_resource type="PackedScene" uid="uid://dc5da7q2hh4do" path="res://godot4/arena/DebugSetupper.tscn" id="1_oiun6"]
+[ext_resource type="Script" path="res://godot4/arena/DebugSetupper.gd" id="2_fxyvr"]
+[ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_fyulk"]
+[ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_jxfg0"]
+
+[node name="Arena" type="Node2D"]
+
+[node name="DebugSetupper" parent="." node_paths=PackedStringArray("test_ships", "host") instance=ExtResource("1_oiun6")]
+script = ExtResource("2_fxyvr")
+test_ships = []
+host = NodePath("..")
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="IntroManager" parent="Managers" instance=ExtResource("1_m2x2u")]
+
+[node name="ScoreManager" parent="Managers" instance=ExtResource("2_fyulk")]
+
+[node name="MessageManager" parent="Managers" node_paths=PackedStringArray("battlefield") instance=ExtResource("3_jxfg0")]
+battlefield = NodePath("../../Battlefield")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.2, 0.2)
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_1sf7u")]
+
+[node name="Battlefield" type="Node2D" parent="."]

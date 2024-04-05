@@ -16,7 +16,7 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w3n3b"]
 friction = 0.0
-bounce = 0.5
+bounce = 0.35
 
 [sub_resource type="GDScript" id="GDScript_4hb7k"]
 script/source = "extends DebugNode
@@ -75,7 +75,7 @@ collision_layer = 4194305
 collision_mask = 1169
 physics_material_override = SubResource("PhysicsMaterial_w3n3b")
 linear_damp = 7.0
-angular_damp = 30.0
+angular_damp = 40.0
 script = ExtResource("1_cvjhk")
 dash_ring_scene = ExtResource("2_0puh8")
 death_feedback_scene = ExtResource("3_3e4pi")
@@ -96,6 +96,7 @@ host = NodePath("../..")
 
 [node name="Graphics" type="Node2D" parent="."]
 unique_name_in_owner = true
+scale = Vector2(1.25, 1.25)
 
 [node name="Sprite" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
