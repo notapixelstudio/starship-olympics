@@ -14,6 +14,8 @@ func get_id() -> String:
 	return id
 	
 func set_id(name: String) -> void:
+	if team == id:
+		team = name
 	id = name
 	
 func get_username() -> String:

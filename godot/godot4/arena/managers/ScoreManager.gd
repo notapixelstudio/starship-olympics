@@ -1,9 +1,12 @@
 extends Node
 
-@export var teams : Array[String]
+@export var teams : Array[String] : set = set_teams
 @export var starting_score := 0.0
 
 var _scores := {}
+
+func set_teams(v: Array[String]) -> void:
+	teams = v
 
 func _ready():
 	for team in teams:
