@@ -9,11 +9,6 @@
 
 [node name="Arena" type="Node2D"]
 
-[node name="DebugSetupper" parent="." node_paths=PackedStringArray("test_ships", "host") instance=ExtResource("1_oiun6")]
-script = ExtResource("2_fxyvr")
-test_ships = []
-host = NodePath("..")
-
 [node name="Managers" type="Node" parent="."]
 
 [node name="IntroManager" parent="Managers" instance=ExtResource("1_m2x2u")]
@@ -23,9 +18,14 @@ host = NodePath("..")
 [node name="MessageManager" parent="Managers" node_paths=PackedStringArray("battlefield") instance=ExtResource("3_jxfg0")]
 battlefield = NodePath("../../Battlefield")
 
+[node name="Battlefield" type="Node2D" parent="."]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_1sf7u")]
 
-[node name="Battlefield" type="Node2D" parent="."]
+[node name="DebugSetupper" parent="." node_paths=PackedStringArray("test_ships", "host") instance=ExtResource("1_oiun6")]
+script = ExtResource("2_fxyvr")
+test_ships = []
+host = NodePath("..")
