@@ -185,6 +185,7 @@ max_length = 100
 unique_name_in_owner = true
 gradient = SubResource("Gradient_tmbes")
 host = NodePath("..")
+max_age = 0.4
 
 [connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]
 [connection signal="body_entered" from="TouchArea" to="." method="_on_touch_area_body_entered"]

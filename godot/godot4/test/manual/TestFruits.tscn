@@ -98,8 +98,8 @@ script = SubResource("GDScript_0rj7w")
 [node name="ScoreManager" parent="." index="7" instance=ExtResource("2_7l1kw")]
 teams = Array[String](["P1"])
 
-[node name="MessageManager" parent="." index="8" node_paths=PackedStringArray("arena") instance=ExtResource("2_sf1o5")]
-arena = NodePath("..")
+[node name="MessageManager" parent="." index="8" node_paths=PackedStringArray("battlefield") instance=ExtResource("2_sf1o5")]
+battlefield = NodePath("..")
 
 [node name="FruitsGame" type="Node" parent="." index="9"]
 script = SubResource("GDScript_qq6xw")
