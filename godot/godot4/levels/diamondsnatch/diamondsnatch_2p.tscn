@@ -15,20 +15,14 @@
 
 [node name="VersusArena" instance=ExtResource("1_hdhns")]
 
-[node name="DebugSetupper" parent="." index="0" node_paths=PackedStringArray("test_ships")]
-test_ships = [NodePath("../Battlefield/Ship"), NodePath("../Battlefield/Ship2")]
-
-[node name="ScoreManager" parent="Managers" index="1"]
-unique_name_in_owner = true
+[node name="MessageManager" parent="Managers" index="2" node_paths=PackedStringArray("battlefield")]
+battlefield = NodePath("../../Battlefield")
 
 [node name="SpawnerWaveManager" parent="Managers" index="3" node_paths=PackedStringArray("waves", "battlefield") instance=ExtResource("2_4vl7f")]
 waves = [NodePath("../../Battlefield/Wave0"), NodePath("../../Battlefield/Wave1"), NodePath("../../Battlefield/Wave2"), NodePath("../../Battlefield/Wave3"), NodePath("../../Battlefield/Wave4"), NodePath("../../Battlefield/Wave5"), NodePath("../../Battlefield/Wave6")]
 battlefield = NodePath("../../Battlefield")
 
 [node name="CollectGame" parent="Managers" index="4" instance=ExtResource("3_6wfi0")]
-
-[node name="Camera2D" parent="." index="2"]
-zoom = Vector2(0.3, 0.3)
 
 [node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("4_pfuid")]
 hollow = true
@@ -392,11 +386,19 @@ position = Vector2(-600, 600)
 rotation = -0.785398
 
 [node name="PlayerBrain" parent="Battlefield/Ship" index="13" instance=ExtResource("8_adif3")]
-controls = "joy1"
 
 [node name="Ship2" parent="Battlefield" index="12" instance=ExtResource("7_vtfi2")]
 position = Vector2(600, -600)
 rotation = 2.35619
 
 [node name="PlayerBrain" parent="Battlefield/Ship2" index="13" instance=ExtResource("8_adif3")]
-controls = "joy2"
+controls = "kb2"
+
+[node name="DebugSetupper" parent="." index="4" node_paths=PackedStringArray("test_ships", "host")]
+test_ships = [NodePath("../Battlefield/Ship"), NodePath("../Battlefield/Ship2")]
+host = NodePath("..")
+
+[node name="SOLog" parent="HUD" index="1"]
+offset_left = 1000.0
+offset_right = 1250.0
+theme_override_font_sizes/normal_font_size = 4

@@ -16,11 +16,12 @@
 [ext_resource type="PackedScene" uid="uid://bodwipc6waars" path="res://godot4/elements/treasures/MusicGodDiamond.tscn" id="13_oaefj"]
 
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
-script/source = "extends TestChamberLog
+script/source = "extends SOLog
 
 
 func _ready():
 	super._ready()
+	add_theme_font_size_override(\"normal_font_size\", 40)
 	Events.sth_collected.connect(_on_sth_collected)
 	
 func _on_sth_collected(collector, collectee):

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="2_2i1b7"]
 [ext_resource type="Script" path="res://addons/debugToolbox/FPSCounter.gd" id="3_2gjjm"]
 [ext_resource type="Script" path="res://addons/debugToolbox/TestGrid.gd" id="3_dshuw"]
-[ext_resource type="Script" path="res://godot4/debug/TestChamberLog.gd" id="5_upb84"]
+[ext_resource type="Script" path="res://godot4/debug/SOLog.gd" id="5_upb84"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="6_4tylc"]
 [ext_resource type="Script" path="res://addons/debugToolbox/SecsCounter.gd" id="7_kveyl"]
 
@@ -42,10 +42,9 @@ offset_right = -1350.0
 offset_bottom = -1150.0
 theme = ExtResource("6_4tylc")
 theme_override_font_sizes/font_size = 50
-item_count = 2
 selected = 0
+item_count = 2
 popup/item_0/text = "KEYBOARD"
-popup/item_0/id = 0
 popup/item_1/text = "JOYPAD"
 popup/item_1/id = 1
 metadata/_edit_lock_ = true

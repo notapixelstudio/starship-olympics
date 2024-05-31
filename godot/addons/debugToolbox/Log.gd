@@ -5,7 +5,7 @@ func _ready():
 	bbcode_enabled = true
 	scroll_following = true
 	add_theme_font_override("normal_font", preload('fonts/fira_code/FiraCode-VF.ttf'))
-	add_theme_font_size_override("normal_font_size", 40)
+	add_theme_font_size_override("normal_font_size", 10)
 	
 func log_line(message : String) -> void:
 	var t = Time.get_ticks_msec()

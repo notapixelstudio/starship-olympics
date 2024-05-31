@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=8 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="1_1sf7u"]
 [ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://godot4/arena/DebugSetupper.gd" id="2_fxyvr"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_fyulk"]
 [ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_jxfg0"]
+[ext_resource type="PackedScene" uid="uid://dnny8ekvjg4ck" path="res://godot4/debug/SOLog.tscn" id="7_tad78"]
 
 [node name="Arena" type="Node2D"]
 
@@ -14,6 +15,7 @@
 [node name="IntroManager" parent="Managers" instance=ExtResource("1_m2x2u")]
 
 [node name="ScoreManager" parent="Managers" instance=ExtResource("2_fyulk")]
+unique_name_in_owner = true
 
 [node name="MessageManager" parent="Managers" node_paths=PackedStringArray("battlefield") instance=ExtResource("3_jxfg0")]
 battlefield = NodePath("../../Battlefield")
@@ -29,3 +31,11 @@ zoom = Vector2(0.2, 0.2)
 script = ExtResource("2_fxyvr")
 test_ships = []
 host = NodePath("..")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="SOLog" parent="HUD" instance=ExtResource("7_tad78")]
+offset_left = 950.0
+offset_top = 150.0
+offset_right = 1275.0
+offset_bottom = 550.0

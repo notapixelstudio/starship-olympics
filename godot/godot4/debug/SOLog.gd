@@ -1,4 +1,4 @@
-class_name TestChamberLog
+class_name SOLog
 extends "res://addons/debugToolbox/Log.gd"
 
 

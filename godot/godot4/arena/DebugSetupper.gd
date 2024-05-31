@@ -17,7 +17,6 @@ const test_species := [
 ]
 
 func _ready():
-	var teams : Array[String] = []
 	super._ready()
 	if self.is_host_standalone():
 		for i in len(test_ships):
@@ -26,5 +25,4 @@ func _ready():
 			fake_player.set_id(test_players[i])
 			fake_player.set_species(test_species[i])
 			test_ship.set_player(fake_player)
-			teams.append(test_players[i])
-	%ScoreManager.set_teams(teams)
+			%ScoreManager.add_team(test_players[i])

@@ -1,5 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuafr3l7073mo"]
+[gd_scene load_steps=4 format=3 uid="uid://cuafr3l7073mo"]
 
 [ext_resource type="PackedScene" uid="uid://ctk8t0ohpljms" path="res://godot4/arena/Arena.tscn" id="1_bkayc"]
+[ext_resource type="Script" path="res://godot4/arena/hud/VersusHUD.gd" id="2_mmfqj"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="2_th1i2"]
 
 [node name="VersusArena" instance=ExtResource("1_bkayc")]
+
+[node name="MessageManager" parent="Managers" index="2" node_paths=PackedStringArray("battlefield")]
+battlefield = NodePath("../../Battlefield")
+
+[node name="DebugSetupper" parent="." index="4" node_paths=PackedStringArray("host")]
+host = NodePath("..")
+
+[node name="VersusHUD" type="Node2D" parent="HUD" index="0"]
+script = ExtResource("2_mmfqj")
+
+[node name="P1" type="Label" parent="HUD/VersusHUD" index="0"]
+offset_right = 400.0
+offset_bottom = 100.0
+theme = ExtResource("2_th1i2")
+text = "00"
+
+[node name="P2" type="Label" parent="HUD/VersusHUD" index="1"]
+offset_left = 100.0
+offset_right = 500.0
+offset_bottom = 100.0
+theme = ExtResource("2_th1i2")
+text = "00"

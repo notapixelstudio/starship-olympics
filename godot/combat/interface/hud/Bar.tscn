@@ -1,87 +1,99 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://la2q2waouxoa"]
 
-[ext_resource path="res://combat/interface/hud/Bar.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/environments/shadow.png" type="Texture2D" id=2]
-[ext_resource path="res://assets/sprites/species/drones/ship.png" type="Texture2D" id=3]
-[ext_resource path="res://assets/fonts/04b_19.ttf" type="FontFile" id=4]
+[ext_resource type="Script" path="res://combat/interface/hud/Bar.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://ilhqcv1502mx" path="res://assets/sprites/environments/shadow.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="3"]
+[ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="4"]
 
-[sub_resource type="FontFile" id=2]
-size = 17
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 4 )
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("4")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="FontFile" id=1]
-size = 18
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 4 )
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("4")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
 [node name="Bar" type="Node2D"]
 z_index = 500
 z_as_relative = false
-script = ExtResource( 1 )
-cpu_ship_texture = ExtResource( 3 )
+script = ExtResource("1")
+cpu_ship_texture = ExtResource("3")
 
 [node name="BlackBackground" type="ColorRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
-color = Color( 0, 0, 0, 1 )
+color = Color(0, 0, 0, 1)
 
 [node name="Background" type="ColorRect" parent="."]
-modulate = Color( 0.2, 0.2, 0.2, 1 )
+modulate = Color(0.2, 0.2, 0.2, 1)
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="MaxScoreLabel" type="Label" parent="."]
-self_modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color(0, 0, 0, 1)
 offset_left = -58.0
 offset_top = 5.0
 offset_right = -14.0
 offset_bottom = 55.0
-theme_override_fonts/font = SubResource( 2 )
+theme_override_fonts/font = SubResource("2")
 text = "100"
-align = 2
+horizontal_alignment = 2
 
 [node name="MegaBar" type="Polygon2D" parent="."]
-modulate = Color( 0.3, 0.3, 0.3, 1 )
+modulate = Color(0.3, 0.3, 0.3, 1)
 
 [node name="Streaks" type="Node2D" parent="."]
 
 [node name="Ticks" type="Node2D" parent="."]
 
 [node name="Tween" type="Tween" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null
 
 [node name="Background25D" type="ColorRect" parent="."]
-modulate = Color( 0.2, 0.2, 0.2, 1 )
+modulate = Color(0.2, 0.2, 0.2, 1)
 offset_right = 40.0
 offset_bottom = 40.0
-color = Color( 0, 0, 0, 0.313726 )
+color = Color(0, 0, 0, 0.313726)
 
 [node name="Ship" type="Node2D" parent="."]
-position = Vector2( 20, 10 )
+position = Vector2(20, 10)
 
 [node name="Shadow" type="Sprite2D" parent="Ship"]
-modulate = Color( 1, 1, 1, 0.639216 )
-position = Vector2( -10, 10 )
-scale = Vector2( 1, 4 )
-texture = ExtResource( 2 )
+modulate = Color(1, 1, 1, 0.639216)
+position = Vector2(-10, 10)
+scale = Vector2(1, 4)
+texture = ExtResource("2")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ship"]
-position = Vector2( 0, 10 )
-scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 3 )
+position = Vector2(0, 10)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3")
 
 [node name="ScoreLabel" type="Label" parent="Ship"]
 offset_left = -58.0
 offset_top = 1.0
 offset_right = -14.0
 offset_bottom = 51.0
-theme_override_fonts/font = SubResource( 1 )
+theme_override_fonts/font = SubResource("1")
 text = "100"
-align = 2
+horizontal_alignment = 2
 
 [node name="StreakTimer" type="Timer" parent="."]
 wait_time = 0.5
