@@ -394,6 +394,9 @@ rotation = 2.35619
 [node name="PlayerBrain" parent="Battlefield/Ship2" index="13" instance=ExtResource("8_adif3")]
 controls = "kb2"
 
+[node name="Camera2D" parent="." index="2"]
+zoom = Vector2(0.3, 0.3)
+
 [node name="DebugSetupper" parent="." index="4" node_paths=PackedStringArray("test_ships", "host")]
 test_ships = [NodePath("../Battlefield/Ship"), NodePath("../Battlefield/Ship2")]
 host = NodePath("..")

@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://di86kl3ihl8op"]
+
+[ext_resource type="Script" path="res://godot4/arena/hud/Bar.gd" id="1_hx2m5"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="2_y2hlh"]
+
+[node name="Bar" type="ColorRect"]
+color = Color(0.2, 0.2, 0.2, 1)
+script = ExtResource("1_hx2m5")
+
+[node name="Fill" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, -1)
+
+[node name="Wrapper" type="Node2D" parent="."]
+
+[node name="MaxScore" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+theme = ExtResource("2_y2hlh")
+text = "100"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -50.0
+offset_right = 50.0
+offset_bottom = 30.0
+theme = ExtResource("2_y2hlh")
+text = "PPP"
+horizontal_alignment = 1
+vertical_alignment = 1
