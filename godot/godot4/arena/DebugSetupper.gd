@@ -26,3 +26,4 @@ func _ready():
 			fake_player.set_species(test_species[i])
 			test_ship.set_player(fake_player)
 			%ScoreManager.add_team(test_players[i])
+			%VersusHUD.add_team(test_players[i], test_species[i]) # FIXME species should be read from elsewhere

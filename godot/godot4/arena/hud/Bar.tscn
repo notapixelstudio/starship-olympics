@@ -3,11 +3,31 @@
 [ext_resource type="Script" path="res://godot4/arena/hud/Bar.gd" id="1_hx2m5"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="2_y2hlh"]
 
-[node name="Bar" type="ColorRect"]
-color = Color(0.2, 0.2, 0.2, 1)
+[node name="Bar" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource("1_hx2m5")
 
-[node name="Fill" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="MaxScore" type="Label" parent="Background"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -13.0
+offset_right = 13.0
+offset_bottom = 27.0
+grow_horizontal = 2
+theme = ExtResource("2_y2hlh")
+theme_override_font_sizes/font_size = 13
+text = "100"
+horizontal_alignment = 1
+
+[node name="Fill" type="ColorRect" parent="Background"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12
@@ -18,26 +38,15 @@ grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1, -1)
 
-[node name="Wrapper" type="Node2D" parent="."]
-
-[node name="MaxScore" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 27.0
-grow_horizontal = 2
-theme = ExtResource("2_y2hlh")
-text = "100"
-horizontal_alignment = 1
+[node name="Wrapper" type="Node2D" parent="Background"]
+position = Vector2(0, 9)
+scale = Vector2(1, -1)
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = -50.0
-offset_right = 50.0
-offset_bottom = 30.0
+layout_mode = 2
 theme = ExtResource("2_y2hlh")
+theme_override_font_sizes/font_size = 13
 text = "PPP"
 horizontal_alignment = 1
 vertical_alignment = 1

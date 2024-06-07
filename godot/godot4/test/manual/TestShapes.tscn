@@ -26,19 +26,19 @@ func _on_sth_collected(collector, collectee):
 	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
 "
 
-[sub_resource type="Curve2D" id="Curve2D_rr15c"]
+[sub_resource type="Curve2D" id="Curve2D_fkdx4"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -2800, -1450, 0, 0, 0, 0, -2300, -1200, 0, 0, 0, 0, -2850, -800, 0, 0, 0, 0, -3350, -1050)
 }
 point_count = 4
 
-[sub_resource type="Curve2D" id="Curve2D_l7be6"]
+[sub_resource type="Curve2D" id="Curve2D_xso3q"]
 _data = {
 "points": PackedVector2Array(-1424.48, -68.9535, 1424.48, 68.9535, -3300, -750, 0, 0, 0, 0, -2700, -350, 0, 0, 0, 0, -2700, 450, 396.903, -216.951, -396.903, 216.951, -3300, 0)
 }
 point_count = 4
 
-[sub_resource type="Curve2D" id="Curve2D_jj8er"]
+[sub_resource type="Curve2D" id="Curve2D_xo1f7"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -3450, 300, 0, 0, 0, 0, -2700, 800, 0, 0, 0, 0, -2750, 1350, 0, 0, 0, 0, -3300, 1200, 0, 0, 0, 0, -3150, 800, 0, 0, 0, 0, -3800, 550)
 }
@@ -86,21 +86,21 @@ bevel_sw = 150.0
 position = Vector2(750, 200)
 
 [node name="VCustomShape" type="Path2D" parent="Wall3" index="4"]
-curve = SubResource("Curve2D_rr15c")
+curve = SubResource("Curve2D_fkdx4")
 script = ExtResource("8_k5t4d")
 
 [node name="Wall4" parent="." index="13" instance=ExtResource("4_l5458")]
 position = Vector2(750, 300)
 
 [node name="VCustomShape" type="Path2D" parent="Wall4" index="4"]
-curve = SubResource("Curve2D_l7be6")
+curve = SubResource("Curve2D_xso3q")
 script = ExtResource("8_k5t4d")
 
 [node name="Wall11" parent="." index="14" instance=ExtResource("4_l5458")]
 position = Vector2(750, 300)
 
 [node name="VCustomShape" type="Path2D" parent="Wall11" index="4"]
-curve = SubResource("Curve2D_jj8er")
+curve = SubResource("Curve2D_xo1f7")
 script = ExtResource("8_k5t4d")
 
 [node name="Wall5" parent="." index="15" instance=ExtResource("4_l5458")]
