@@ -9,6 +9,8 @@ offset_bottom = 40.0
 script = ExtResource("1_hx2m5")
 
 [node name="Background" type="ColorRect" parent="."]
+unique_name_in_owner = true
+show_behind_parent = true
 layout_mode = 2
 size_flags_vertical = 3
 color = Color(0.2, 0.2, 0.2, 1)
@@ -41,6 +43,20 @@ scale = Vector2(1, -1)
 [node name="Wrapper" type="Node2D" parent="Background"]
 position = Vector2(0, 9)
 scale = Vector2(1, -1)
+
+[node name="Background3D" type="ColorRect" parent="Background"]
+modulate = Color(0, 0, 0, 0.501961)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(-1, 1)
+size_flags_vertical = 3
+color = Color(0.2, 0.2, 0.2, 1)
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
