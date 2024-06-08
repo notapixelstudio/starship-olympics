@@ -11,11 +11,11 @@ func set_player(v: Player) -> void:
 	player = v
 	%Sprite.texture = player.get_ship_image()
 	var trail_gradient = Gradient.new()
-	trail_gradient.set_color(0, Color(player.get_species().color_2, 0))
-	trail_gradient.set_color(1, Color(player.get_species().color, 0.2))
+	trail_gradient.set_color(0, Color(player.get_species().get_color_secondary(), 0))
+	trail_gradient.set_color(1, Color(player.get_species().get_color(), 0.2))
 	%MotionAutoTrail.gradient = trail_gradient
-	%FlameTrail.default_color = player.get_species().color_accent
-	%BottomFlameTrail.default_color = player.get_species().color
+	%FlameTrail.default_color = player.get_species().get_color_accent()
+	%BottomFlameTrail.default_color = player.get_species().get_color()
 
 @onready var tracked = %Tracked
 

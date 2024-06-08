@@ -12,5 +12,6 @@ func _on_score_updated(new_score:float, team:String):
 func add_team(name:String, species:Species) -> void:
 	var bar = bar_scene.instantiate()
 	bar.name = name
+	bar.set_team(name)
 	bar.set_species(species) # FIXME this should be read from elsewhere
 	%ScoreBars.add_child(bar)
