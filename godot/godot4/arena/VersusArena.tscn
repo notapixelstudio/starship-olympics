@@ -9,9 +9,6 @@
 [node name="MessageManager" parent="Managers" index="2" node_paths=PackedStringArray("battlefield")]
 battlefield = NodePath("../../Battlefield")
 
-[node name="DebugSetupper" parent="." index="4" node_paths=PackedStringArray("host")]
-host = NodePath("..")
-
 [node name="VersusHUD" type="Node2D" parent="HUD" index="0"]
 unique_name_in_owner = true
 script = ExtResource("2_mmfqj")
