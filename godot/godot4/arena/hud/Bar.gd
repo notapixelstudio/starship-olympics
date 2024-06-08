@@ -1,9 +1,13 @@
 extends Control
 
-@export var max_value := 100.0
+@export var max_value := 100.0 : set = set_max_value
 @export var value := 0.0 : set = set_value
 @export var ticks_thickness := 3.0
+@export var ticks_thickness_minor := 1.5
 
+func set_max_value(v: float) -> void:
+	max_value = v
+	
 func set_value(v: float) -> void:
 	value = v
 	%Value.text = str(int(value))
@@ -47,9 +51,12 @@ func _draw_ticks() -> void:
 		
 		var d = _get_max_size() - round(i * _get_max_size()/max_value)
 		var color = Color.BLACK
+		var thickness
 		if max_value <= 10 or (i%10 == 0 and max_value < 100) or i%100 == 0:
+			thickness = ticks_thickness
 			color.a = 0.9
 		else:
-			color.a = 0.3
-		draw_line(Vector2(0,d),Vector2(_get_width(),d), color, ticks_thickness)
+			thickness = ticks_thickness_minor
+			color.a = 0.5
+		draw_line(Vector2(0,d),Vector2(_get_width(),d), color, thickness)
 		

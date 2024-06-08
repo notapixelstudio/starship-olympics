@@ -6,6 +6,8 @@ extends Node2D
 @export var cpu_brain_scene : PackedScene
 
 func _ready() -> void:
+	var params = get_match_params()
+	
 	var teams := {}
 	
 	for home in %Homes.get_children():
@@ -37,4 +39,11 @@ func _ready() -> void:
 	
 	for team in teams.keys():
 		%ScoreManager.add_team(team)
+		%VersusHUD.set_max_score(params.score)
 		%VersusHUD.add_team(team, players[teams[team][0]].get_species()) # FIXME support teams of 2+ members
+
+func get_id() -> String:
+	return get_tree().current_scene.scene_file_path.get_file().split('.')[0]
+	
+func get_match_params() -> MatchParams:
+	return load('res://godot4/data/match_params/'+get_id()+'.tres')
