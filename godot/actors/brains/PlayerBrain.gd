@@ -1,12 +1,12 @@
 extends Brain
 class_name PlayerBrain
 
-@export_enum('kb1', 'kb2', 'joy1', 'joy2', 'joy3', 'joy4') var controls: String: set = set_controls
+var _controls: PackedStringArray
 
 var action_buffer : Dictionary = {}
 
 func set_controls(v: String) -> void:
-	controls = v
+	_controls = v.split('+')
 	
 func _ready():
 	controllee.connect('dive_out', Callable(self, '_on_controllee_dive_out'))
@@ -15,8 +15,9 @@ func local_handling() -> Vector2:
 	var target = Vector2()
 	
 	if controllee.has_method("are_controls_enabled") and controllee.are_controls_enabled():
-		target.x = Input.get_action_strength(controls+"_right") - Input.get_action_strength(controls+"_left")
-		target.y = Input.get_action_strength(controls+"_down") - Input.get_action_strength(controls+"_up")
+		for control in _controls: # support multiple controls at once
+			target.x += Input.get_action_strength(control+"_right") - Input.get_action_strength(control+"_left")
+			target.y += Input.get_action_strength(control+"_down") - Input.get_action_strength(control+"_up")
 		
 	return target
 
@@ -58,13 +59,14 @@ func is_action_buffered(action_name: String, since_msec: int) -> bool:
 	return action_buffer.has(action_name) and Time.get_ticks_msec() - action_buffer[action_name] <= since_msec
  
 func _unhandled_input(event):
-	# charge and release even if controls are disabled
-	if event.is_action_pressed(controls+'_fire'):
-		buffer_action('charge')
-		controllee.charge()
-	elif event.is_action_released(controls+'_fire'):
-		buffer_action('release')
-		controllee.release()
+	for control in _controls:
+		# charge and release even if controls are disabled
+		if event.is_action_pressed(control+'_fire'):
+			buffer_action('charge')
+			controllee.charge()
+		elif event.is_action_released(control+'_fire'):
+			buffer_action('release')
+			controllee.release()
 
 # replay charge input if diving out and it was buffered
 func _on_controllee_dive_out():
