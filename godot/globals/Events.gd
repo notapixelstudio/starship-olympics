@@ -34,6 +34,8 @@ signal sth_collided_with_ship(sth, ship) # on enter, no distinction between body
 signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no distinction between body or area, NearArea only
 
 # BEGIN 4.x events
+signal clock_ticked(t:float, t_secs:int)
+
 signal ship_touch_sth(ship:Ship, sth:CollisionObject2D)
 signal sth_hurt_ship(sth:CollisionObject2D, ship:Ship)
 

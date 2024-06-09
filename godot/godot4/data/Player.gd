@@ -1,13 +1,13 @@
-extends Node
+extends Resource
 
 class_name Player
 
-var id : String = "P1"
-var username : String = ""
-var controls : String = "kb1"
-var species : Species = preload("res://selection/characters/mantiacs_1.tres")
-var team : String = id
-var cpu : bool = false
+@export var id : String = "P1"
+@export var username : String = ""
+@export var controls : String = "kb1"
+@export var species : Species = preload("res://selection/characters/mantiacs_1.tres")
+@export var team : String = id
+@export var cpu : bool = false
 
 
 func get_id() -> String:
@@ -51,3 +51,7 @@ func get_ship_image() -> Texture:
 	
 func is_cpu() -> bool:
 	return cpu
+
+func get_controls() -> String:
+	return controls
+	

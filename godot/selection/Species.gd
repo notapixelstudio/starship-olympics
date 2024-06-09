@@ -17,6 +17,7 @@ class_name Species
 # color of the species
 @export var color : Color
 @export var color_2 : Color
+@export var color_background : Color
 @export var color_accent : Color
 
 func get_id():
@@ -30,4 +31,13 @@ func get_ship() -> Texture2D:
 
 func get_color() -> Color:
 	return color
+	
+func get_color_secondary() -> Color:
+	return color_2
+	
+func get_color_background() -> Color:
+	return color_background
+	
+func get_color_accent() -> Color:
+	return color_accent
 	
