@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://cak6yituiyf22"]
+
+[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_vqguc"]
+[ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="2_23keo"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="3_kcrxl"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="3_xi38v"]
+[ext_resource type="Script" path="res://addons/vshapes/VCustomShape.gd" id="4_l5ird"]
+[ext_resource type="Script" path="res://addons/vshapes/VEllipse.gd" id="5_j1q8m"]
+[ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="8_lv7b0"]
+
+[sub_resource type="Curve2D" id="Curve2D_aw2s6"]
+_data = {
+"points": PackedVector2Array(796.789, 2.78601, -796.789, -2.78601, -1200, -1100, 2.63009, -500.871, -2.63009, 500.871, -2600, 0, -801.292, -2.79325, 801.292, 2.79325, -1200, 1100, -300.82, 2.24493, 300.82, -2.24493, 0, 500, -790.323, -5.1941, 790.323, 5.1941, 1300, 1100, 6.73477, 471.434, -6.73477, -471.434, 2600, 0, 768.094, -7.90479, -768.094, 7.90479, 1300, -1100, 300.82, 0, -300.82, 0, 0, -500, 800.626, -1.47096, -800.626, 1.47096, -1200, -1100)
+}
+point_count = 9
+
+[node name="VersusArena" instance=ExtResource("1_vqguc")]
+
+[node name="CollectGame" parent="Managers" index="3" instance=ExtResource("2_23keo")]
+
+[node name="MessageManager" parent="Managers" index="4" node_paths=PackedStringArray("battlefield")]
+battlefield = NodePath("../../Battlefield")
+
+[node name="P1" parent="Homes" index="0" instance=ExtResource("3_kcrxl")]
+
+[node name="OutsideWall2" parent="Battlefield" index="0" instance=ExtResource("3_xi38v")]
+hollow = true
+metadata/_edit_lock_ = true
+
+[node name="VCustomShape" type="Path2D" parent="Battlefield/OutsideWall2" index="4"]
+curve = SubResource("Curve2D_aw2s6")
+script = ExtResource("4_l5ird")
+
+[node name="Wall" parent="Battlefield" index="1" instance=ExtResource("3_xi38v")]
+position = Vector2(-1300, 0)
+
+[node name="VEllipse" type="Node" parent="Battlefield/Wall" index="4"]
+script = ExtResource("5_j1q8m")
+rx = 250.0
+
+[node name="Wall2" parent="Battlefield" index="2" instance=ExtResource("3_xi38v")]
+position = Vector2(1300, 0)
+
+[node name="VEllipse" type="Node" parent="Battlefield/Wall2" index="4"]
+script = ExtResource("5_j1q8m")
+rx = 250.0
+
+[node name="Diamond" parent="." index="5" instance=ExtResource("8_lv7b0")]
+position = Vector2(-150, 250)
+
+[node name="Diamond7" parent="." index="6" instance=ExtResource("8_lv7b0")]
+position = Vector2(-400, 100)
+
+[node name="Diamond8" parent="." index="7" instance=ExtResource("8_lv7b0")]
+position = Vector2(-650, -100)
+
+[node name="Diamond2" parent="." index="8" instance=ExtResource("8_lv7b0")]
+position = Vector2(1050, 950)
+
+[node name="Diamond9" parent="." index="9" instance=ExtResource("8_lv7b0")]
+position = Vector2(1350, 1000)
+
+[node name="Diamond10" parent="." index="10" instance=ExtResource("8_lv7b0")]
+position = Vector2(1650, 950)
+
+[node name="Diamond3" parent="." index="11" instance=ExtResource("8_lv7b0")]
+position = Vector2(800, 850)
+
+[node name="Diamond4" parent="." index="12" instance=ExtResource("8_lv7b0")]
+position = Vector2(550, 700)
+
+[node name="Diamond5" parent="." index="13" instance=ExtResource("8_lv7b0")]
+position = Vector2(350, 550)
+
+[node name="Diamond6" parent="." index="14" instance=ExtResource("8_lv7b0")]
+position = Vector2(100, 400)
