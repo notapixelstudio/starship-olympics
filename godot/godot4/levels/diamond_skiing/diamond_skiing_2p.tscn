@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://addons/vshapes/VEllipse.gd" id="5_j1q8m"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="8_lv7b0"]
 
-[sub_resource type="Curve2D" id="Curve2D_aw2s6"]
+[sub_resource type="Curve2D" id="Curve2D_fkl36"]
 _data = {
 "points": PackedVector2Array(796.789, 2.78601, -796.789, -2.78601, -1200, -1100, 2.63009, -500.871, -2.63009, 500.871, -2600, 0, -801.292, -2.79325, 801.292, 2.79325, -1200, 1100, -300.82, 2.24493, 300.82, -2.24493, 0, 500, -790.323, -5.1941, 790.323, 5.1941, 1300, 1100, 6.73477, 471.434, -6.73477, -471.434, 2600, 0, 768.094, -7.90479, -768.094, 7.90479, 1300, -1100, 300.82, 0, -300.82, 0, 0, -500, 800.626, -1.47096, -800.626, 1.47096, -1200, -1100)
 }
@@ -28,7 +28,7 @@ hollow = true
 metadata/_edit_lock_ = true
 
 [node name="VCustomShape" type="Path2D" parent="Battlefield/OutsideWall2" index="4"]
-curve = SubResource("Curve2D_aw2s6")
+curve = SubResource("Curve2D_fkl36")
 script = ExtResource("4_l5ird")
 
 [node name="Wall" parent="Battlefield" index="1" instance=ExtResource("3_xi38v")]

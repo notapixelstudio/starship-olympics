@@ -4,6 +4,7 @@ extends Node2D
 @export var ship_scene : PackedScene
 @export var player_brain_scene : PackedScene
 @export var cpu_brain_scene : PackedScene
+@export var default_params : MatchParams
 
 func _ready() -> void:
 	var params = get_match_params()
@@ -50,7 +51,10 @@ func get_id() -> String:
 	return get_tree().current_scene.scene_file_path.get_file().split('.')[0]
 	
 func get_match_params() -> MatchParams:
-	return load('res://godot4/data/match_params/'+get_id()+'.tres')
+	var params_resource_path = 'res://godot4/data/match_params/'+get_id()+'.tres'
+	if not ResourceLoader.exists(params_resource_path):
+		return default_params
+	return load(params_resource_path)
 
 func _on_clock_ticked(t:float, t_secs:int) -> void:
 	%Clock.set_value(t_secs)
