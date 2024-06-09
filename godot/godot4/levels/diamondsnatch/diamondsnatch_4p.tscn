@@ -15,6 +15,7 @@
 [node name="VersusArena" instance=ExtResource("1_lvw7a")]
 
 [node name="MessageManager" parent="Managers" index="2" node_paths=PackedStringArray("battlefield")]
+unique_name_in_owner = false
 battlefield = NodePath("../../Battlefield")
 
 [node name="SpawnerWaveManager" parent="Managers" index="3" node_paths=PackedStringArray("waves") instance=ExtResource("2_l6uvh")]

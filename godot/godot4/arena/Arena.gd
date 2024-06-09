@@ -8,7 +8,9 @@ extends Node2D
 func _ready() -> void:
 	var params = get_match_params()
 	
+	%TimeManager.set_time(params.time)
 	%Clock.set_value(params.time)
+	Events.clock_ticked.connect(_on_clock_ticked)
 	
 	var teams := {}
 	
@@ -49,3 +51,6 @@ func get_id() -> String:
 	
 func get_match_params() -> MatchParams:
 	return load('res://godot4/data/match_params/'+get_id()+'.tres')
+
+func _on_clock_ticked(t:float, t_secs:int) -> void:
+	%Clock.set_value(t_secs)

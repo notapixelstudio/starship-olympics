@@ -14,13 +14,13 @@
 
 [node name="VersusArena" instance=ExtResource("1_2t2ka")]
 
-[node name="MessageManager" parent="Managers" index="2" node_paths=PackedStringArray("battlefield")]
-battlefield = NodePath("../../Battlefield")
-
 [node name="SpawnerWaveManager" parent="Managers" index="3" node_paths=PackedStringArray("waves") instance=ExtResource("2_ak7cm")]
 waves = [NodePath("../../Battlefield/Wave0"), NodePath("../../Battlefield/Wave1"), NodePath("../../Battlefield/Wave2"), NodePath("../../Battlefield/Wave3"), NodePath("../../Battlefield/Wave4"), NodePath("../../Battlefield/Wave5"), NodePath("../../Battlefield/Wave6")]
 
 [node name="CollectGame" parent="Managers" index="4" instance=ExtResource("3_dg11o")]
+
+[node name="MessageManager" parent="Managers" index="5" node_paths=PackedStringArray("battlefield")]
+battlefield = NodePath("../../Battlefield")
 
 [node name="Camera2D" parent="." index="1"]
 zoom = Vector2(0.3, 0.3)
