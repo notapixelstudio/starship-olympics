@@ -69,6 +69,7 @@ sides = 4
 [node name="Wave0" type="Node2D" parent="Battlefield" index="4" groups=["spawn_waves"]]
 script = ExtResource("9_01lf8")
 max_repeats = 1
+extra_delay = 0.25
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Wave0" index="0" instance=ExtResource("10_ajm4j")]
 position = Vector2(450, 450)
@@ -136,7 +137,7 @@ element_scene = ExtResource("8_ev06m")
 
 [node name="Wave2" type="Node2D" parent="Battlefield" index="6" groups=["spawn_waves"]]
 script = ExtResource("9_01lf8")
-max_repeats = 0
+max_repeats = 1
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Wave2" index="0" instance=ExtResource("10_ajm4j")]
 position = Vector2(0, 600)
@@ -163,6 +164,7 @@ element_scene = ExtResource("8_ev06m")
 [node name="Wave3" type="Node2D" parent="Battlefield" index="7" groups=["spawn_waves"]]
 script = ExtResource("9_01lf8")
 max_repeats = 1
+extra_delay = 1.5
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Wave3" index="0" instance=ExtResource("10_ajm4j")]
 position = Vector2(900, 0)
@@ -181,7 +183,7 @@ element_scene = ExtResource("8_ev06m")
 [node name="Wave4" type="Node2D" parent="Battlefield" index="8" groups=["spawn_waves"]]
 script = ExtResource("9_01lf8")
 max_repeats = 0
-extra_delay = 1.5
+extra_delay = 0.75
 
 [node name="ElementSpawnerGroup2" parent="Battlefield/Wave4" index="0" instance=ExtResource("10_ajm4j")]
 position = Vector2(-1350, 0)
@@ -195,8 +197,7 @@ element_scene = ExtResource("12_pcah0")
 
 [node name="Wave5" type="Node2D" parent="Battlefield" index="9" groups=["spawn_waves"]]
 script = ExtResource("9_01lf8")
-max_repeats = 1
-extra_delay = 1.5
+max_repeats = 2
 
 [node name="ElementSpawnerGroup35" parent="Battlefield/Wave5" index="0" instance=ExtResource("10_ajm4j")]
 position = Vector2(-450, -450)
