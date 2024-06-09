@@ -8,6 +8,8 @@ extends Node2D
 func _ready() -> void:
 	var params = get_match_params()
 	
+	%Clock.set_value(params.time)
+	
 	var teams := {}
 	
 	for home in %Homes.get_children():

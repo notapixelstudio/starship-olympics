@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuafr3l7073mo"]
+[gd_scene load_steps=5 format=3 uid="uid://cuafr3l7073mo"]
 
 [ext_resource type="PackedScene" uid="uid://ctk8t0ohpljms" path="res://godot4/arena/Arena.tscn" id="1_bkayc"]
 [ext_resource type="Script" path="res://godot4/arena/hud/VersusHUD.gd" id="2_mmfqj"]
+[ext_resource type="PackedScene" uid="uid://baqs1sh3hug4e" path="res://godot4/arena/hud/Counter.tscn" id="4_atujp"]
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="4_sdvq2"]
 
 [node name="VersusArena" instance=ExtResource("1_bkayc")]
@@ -9,7 +10,20 @@
 [node name="MessageManager" parent="Managers" index="2" node_paths=PackedStringArray("battlefield")]
 battlefield = NodePath("../../Battlefield")
 
-[node name="VersusHUD" type="Node2D" parent="HUD" index="0"]
+[node name="Clock" parent="HUD" index="0" instance=ExtResource("4_atujp")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -105.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 73.0
+grow_horizontal = 0
+grow_vertical = 1
+horizontal_alignment = 2
+vertical_alignment = 0
+
+[node name="VersusHUD" type="Node2D" parent="HUD" index="1"]
 unique_name_in_owner = true
 script = ExtResource("2_mmfqj")
 bar_scene = ExtResource("4_sdvq2")

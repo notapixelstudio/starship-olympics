@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://baqs1sh3hug4e"]
+
+[ext_resource type="Script" path="res://godot4/arena/hud/Counter.gd" id="1_hxy3i"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1_qd8n5"]
+[ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="2_qme86"]
+
+[node name="Counter" type="Label"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1183.0
+offset_bottom = -655.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qd8n5")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("2_qme86")
+theme_override_font_sizes/font_size = 64
+text = "120"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("1_hxy3i")
