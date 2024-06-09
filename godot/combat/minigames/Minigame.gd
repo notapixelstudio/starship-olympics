@@ -1,6 +1,6 @@
 extends Resource
 
-class_name Minigame
+class_name Minigamez
 
 @export var game_mode : GameMode
 

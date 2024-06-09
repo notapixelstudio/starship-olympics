@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="12_pcah0"]
 
 [node name="VersusArena" instance=ExtResource("1_lvw7a")]
-default_params = null
 
 [node name="SpawnerWaveManager" parent="Managers" index="3" node_paths=PackedStringArray("waves") instance=ExtResource("2_l6uvh")]
 waves = [NodePath("../../Battlefield/Wave0"), NodePath("../../Battlefield/Wave1"), NodePath("../../Battlefield/Wave2"), NodePath("../../Battlefield/Wave3"), NodePath("../../Battlefield/Wave4"), NodePath("../../Battlefield/Wave5"), NodePath("../../Battlefield/Wave6")]
@@ -24,7 +23,7 @@ waves = [NodePath("../../Battlefield/Wave0"), NodePath("../../Battlefield/Wave1"
 battlefield = NodePath("../../Battlefield")
 
 [node name="Camera2D" parent="." index="1"]
-zoom = Vector2(0.28, 0.28)
+zoom = Vector2(0.27, 0.27)
 
 [node name="P1" parent="Homes" index="0" instance=ExtResource("4_68kfs")]
 position = Vector2(-600, 600)
