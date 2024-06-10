@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=19 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="1_1sf7u"]
 [ext_resource type="Script" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://bpw2qo5744n7m" path="res://godot4/data/minigames/default.tres" id="9_vsuw2"]
 [ext_resource type="PackedScene" uid="uid://ctdiyn70rdfsq" path="res://godot4/arena/managers/TimeManager.tscn" id="10_mhlox"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="16_64a4r"]
+[ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="18_3l87r"]
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_avtyt")
@@ -65,13 +66,26 @@ offset_right = 1275.0
 offset_bottom = 550.0
 metadata/_edit_lock_ = true
 
-[node name="Header" type="RichTextLabel" parent="HUD"]
+[node name="MinigameText" type="RichTextLabel" parent="HUD"]
 unique_name_in_owner = true
-anchors_preset = 10
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-offset_top = 8.0
-offset_bottom = 35.0
+anchor_bottom = 1.0
+offset_left = -12.0
+offset_top = -54.0
+offset_right = -12.0
+offset_bottom = -8.0
 grow_horizontal = 2
+grow_vertical = 0
 theme = ExtResource("16_64a4r")
 bbcode_enabled = true
-text = "[center]TITLE + DESCRIPTION[/center]"
+text = "[right][color=#ffde5e]TITLE[/color]
+DESCRIPTION[/right]"
+fit_content = true
+
+[node name="MinigameIcon" type="Sprite2D" parent="HUD"]
+unique_name_in_owner = true
+position = Vector2(1222, 633)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("18_3l87r")

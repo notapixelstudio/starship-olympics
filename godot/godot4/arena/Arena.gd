@@ -11,7 +11,8 @@ func _ready() -> void:
 	var minigame = get_minigame()
 	var params = get_match_params()
 	
-	%Header.text = '[center][color=#ffde5e]%s[/color] - %s[/center]' % [minigame.title.to_upper(), minigame.description.to_upper()]
+	%MinigameText.text = '[right][color=#ffde5e]%s[/color]\n%s[/right]' % [minigame.title.to_upper(), minigame.description.to_upper()]
+	%MinigameIcon.texture = minigame.icon
 	
 	%TimeManager.set_time(params.time)
 	%Clock.set_value(params.time)
