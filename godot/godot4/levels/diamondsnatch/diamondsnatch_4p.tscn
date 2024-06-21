@@ -19,9 +19,6 @@ waves = [NodePath("../../Battlefield/Wave0"), NodePath("../../Battlefield/Wave1"
 
 [node name="CollectGame" parent="Managers" index="4" instance=ExtResource("3_qyx2q")]
 
-[node name="MessageManager" parent="Managers" index="5" node_paths=PackedStringArray("battlefield")]
-battlefield = NodePath("../../Battlefield")
-
 [node name="Camera2D" parent="." index="1"]
 zoom = Vector2(0.27, 0.27)
 
@@ -469,6 +466,3 @@ pattern = "gigarhombus"
 element_scene = ExtResource("8_ev06m")
 guest_star_scene = ExtResource("12_pcah0")
 guest_star_positioning = "random"
-
-[node name="MinigameIcon" parent="HUD" index="4"]
-position = Vector2(1222, 633)
