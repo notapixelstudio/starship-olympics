@@ -8,12 +8,14 @@ var polygon : PackedVector2Array
 func set_hollow(v: bool) -> void:
 	hollow = v
 	%Polygon2D.visible = not hollow
+	%UnderPolygon2D.visible = hollow
 
 func set_polygon(v: PackedVector2Array) -> void:
 	polygon = v
 	%Polygon2D.set_polygon(polygon)
 	%Line2D.set_points(polygon)
 	%UnderLine2D.set_points(polygon)
+	%UnderPolygon2D.set_polygon(polygon)
 	update_collision_polygon()
 	
 func update_collision_polygon() -> void:

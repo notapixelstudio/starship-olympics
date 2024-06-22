@@ -19,6 +19,7 @@ unique_name_in_owner = true
 points = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
 closed = true
 width = 48.0
+default_color = Color(0.552956, 0.552956, 0.552956, 1)
 joint_mode = 1
 
 [node name="UnderLine2D" type="Line2D" parent="."]
@@ -30,3 +31,11 @@ points = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 5
 closed = true
 width = 48.0
 joint_mode = 1
+
+[node name="UnderPolygon2D" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = -2
+position = Vector2(0, 32)
+color = Color(0.153307, 0.219909, 0.219992, 1)
+polygon = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
