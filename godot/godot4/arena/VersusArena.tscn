@@ -1,14 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuafr3l7073mo"]
+[gd_scene load_steps=6 format=3 uid="uid://cuafr3l7073mo"]
 
 [ext_resource type="PackedScene" uid="uid://ctk8t0ohpljms" path="res://godot4/arena/Arena.tscn" id="1_bkayc"]
 [ext_resource type="Script" path="res://godot4/arena/hud/VersusHUD.gd" id="2_mmfqj"]
+[ext_resource type="PackedScene" uid="uid://7l4wbr8f06he" path="res://godot4/arena/managers/VersusGameOverManager.tscn" id="2_tjvfq"]
 [ext_resource type="PackedScene" uid="uid://baqs1sh3hug4e" path="res://godot4/arena/hud/Counter.tscn" id="4_atujp"]
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="4_sdvq2"]
 
 [node name="VersusArena" instance=ExtResource("1_bkayc")]
 
-[node name="MessageManager" parent="Managers" index="3" node_paths=PackedStringArray("battlefield")]
-battlefield = NodePath("../../Battlefield")
+[node name="VersusGameOverManager" parent="Managers" index="4" instance=ExtResource("2_tjvfq")]
+unique_name_in_owner = true
 
 [node name="Clock" parent="HUD" index="0" instance=ExtResource("4_atujp")]
 anchors_preset = 1

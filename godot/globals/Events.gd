@@ -35,6 +35,7 @@ signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no d
 
 # BEGIN 4.x events
 signal clock_ticked(t:float, t_secs:int)
+signal clock_expired
 
 signal ship_touch_sth(ship:Ship, sth:CollisionObject2D)
 signal sth_hurt_ship(sth:CollisionObject2D, ship:Ship)
@@ -50,6 +51,7 @@ signal log(message:String)
 signal message(message:Variant, color:Color, global_position:Vector2)
 
 signal battle_start
+signal match_over
 # END 4.x events
 
 signal sth_collected(collector, collectee)

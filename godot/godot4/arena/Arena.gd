@@ -18,6 +18,8 @@ func _ready() -> void:
 	%Clock.set_value(params.time)
 	Events.clock_ticked.connect(_on_clock_ticked)
 	
+	%VersusGameOverManager.set_max_score(params.score)
+	
 	var teams := {}
 	
 	for home in %Homes.get_children():
