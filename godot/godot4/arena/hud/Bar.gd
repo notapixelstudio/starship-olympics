@@ -7,6 +7,7 @@ extends Control
 
 func set_max_value(v: float) -> void:
 	max_value = v
+	%MaxScore.text = str(int(max_value))
 	
 func set_value(v: float) -> void:
 	value = v
@@ -23,6 +24,7 @@ func set_species(species:Species) -> void:
 	%Fill.modulate = species.get_color()
 	%Label.modulate = species.get_color()
 	%Value.modulate = species.get_color()
+	%MaxScore.modulate = species.get_color()
 	%MiniShip.texture = species.get_ship()
 	
 func _get_max_size() -> float:
