@@ -19,6 +19,8 @@ var current_spawners = 0
 signal done
 
 func _ready():
+	Events.match_over.connect(_on_match_over)
+	
 	Events.connect("spawned", Callable(self, "spawned"))
 	
 	Events.connect("sth_collected", Callable(self, "_on_sth_collected"))
@@ -74,3 +76,5 @@ func _on_sth_collected(_collector, collectee):
 		print("asking to spawn because there are no collectable anymore")
 		_handle_waves()
 	
+func _on_match_over() -> void:
+	%Timer.stop()

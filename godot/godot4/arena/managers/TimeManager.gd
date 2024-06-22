@@ -3,6 +3,9 @@ extends Node
 var _time := 0.0
 var _time_secs := 0
 
+func _ready():
+	Events.match_over.connect(_on_match_over)
+
 func set_time(v: float) -> void:
 	_time = v
 
@@ -16,4 +19,6 @@ func _physics_process(delta: float) -> void:
 	if _time <= 0:
 		Events.clock_ticked.emit(0.0, 0)
 		Events.clock_expired.emit()
-		set_physics_process(false)
+		
+func _on_match_over() -> void:
+	set_physics_process(false)

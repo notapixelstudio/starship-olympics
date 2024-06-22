@@ -13,11 +13,11 @@ func _set_teams(v: Array[String]) -> void:
 func add_team(name:String) -> void:
 	_scores[name] = starting_score
 
-func _ready():
+func _ready() -> void:
 	reset_scores()
 	Events.points_scored.connect(_on_points_scored)
 	
-func reset_scores():
+func reset_scores() -> void:
 	for team in teams:
 		add_team(team)
 		
