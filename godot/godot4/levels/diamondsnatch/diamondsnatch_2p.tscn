@@ -19,9 +19,6 @@ waves = [NodePath("../../Battlefield/Wave0"), NodePath("../../Battlefield/Wave1"
 
 [node name="CollectGame" parent="Managers" index="4" instance=ExtResource("3_6wfi0")]
 
-[node name="MessageManager" parent="Managers" index="5" node_paths=PackedStringArray("battlefield")]
-battlefield = NodePath("../../Battlefield")
-
 [node name="Camera2D" parent="." index="1"]
 zoom = Vector2(0.32, 0.32)
 
@@ -392,3 +389,8 @@ pattern = "gigarhombus"
 element_scene = ExtResource("2_aq6w1")
 guest_star_scene = ExtResource("6_y2xdv")
 guest_star_positioning = "random"
+
+[node name="SOLog" parent="HUD" index="3"]
+visible = false
+
+[editable path="HUD/TimeBar"]

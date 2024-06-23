@@ -1,31 +1,20 @@
 extends Control
+class_name Bar
 
-@export var max_value := 100.0 : set = set_max_value
-@export var value := 0.0 : set = set_value
 @export var ticks_thickness := 3.0
 @export var ticks_thickness_minor := 1.5
 
+var max_value := 100.0 : set = set_max_value
+var value := 0.0 : set = set_value
+
+
 func set_max_value(v: float) -> void:
 	max_value = v
-	%MaxScore.text = str(int(max_value))
 	
 func set_value(v: float) -> void:
 	value = v
-	%Value.text = str(int(value))
 	var d = max(0, min(_get_max_size() / max_value * value, _get_max_size()))
 	%Fill.size.y = d
-	%Indicator.position.y = _get_max_size() - d
-
-func set_team(name:String) -> void:
-	%Label.text = name
-	
-func set_species(species:Species) -> void:
-	%Background.self_modulate = species.get_color_background()
-	%Fill.modulate = species.get_color()
-	%Label.modulate = species.get_color()
-	%Value.modulate = species.get_color()
-	%MaxScore.modulate = species.get_color()
-	%MiniShip.texture = species.get_ship()
 	
 func _get_max_size() -> float:
 	return %Background.size.y
@@ -37,7 +26,6 @@ func _get_width() -> float:
 func _ready() -> void:
 	await get_tree().process_frame # FIXME is there a better way?
 	set_value(value)
-	%Value.size.x = _get_width()
 	
 	# _draw() is automatically called once
 	# this assumes that ticks should never be redrawn

@@ -7,18 +7,22 @@ extends Node2D
 @export var default_minigame : Minigame
 @export var default_params : MatchParams
 
+var _params : MatchParams
+
 func _ready() -> void:
 	var minigame = get_minigame()
-	var params = get_match_params()
+	_params = get_match_params()
 	
 	%MinigameText.text = '[right][color=#ffde5e]%s[/color]\n%s[/right]' % [minigame.title.to_upper(), minigame.description.to_upper()]
 	%MinigameIcon.texture = minigame.icon
 	
-	%TimeManager.set_time(params.time)
-	%Clock.set_value(params.time)
+	%TimeManager.set_time(_params.time)
+	%Clock.set_value(_params.time)
+	%TimeBar.set_max_value(_params.time)
+	%TimeBar.set_value(0.0) # time always starts from 0
 	Events.clock_ticked.connect(_on_clock_ticked)
 	
-	%VersusGameOverManager.set_max_score(params.score)
+	%VersusGameOverManager.set_max_score(_params.score)
 	
 	var teams := {}
 	
@@ -51,7 +55,8 @@ func _ready() -> void:
 	
 	for team in teams.keys():
 		%ScoreManager.add_team(team)
-		%VersusHUD.set_max_score(params.score)
+		%VersusHUD.set_max_score(_params.score)
+		%VersusHUD.set_starting_score(_params.starting_score)
 		%VersusHUD.add_team(team, players[teams[team][0]].get_species()) # FIXME support teams of 2+ members
 
 func get_id() -> String:
@@ -75,3 +80,4 @@ func get_match_params() -> MatchParams:
 	
 func _on_clock_ticked(t:float, t_secs:int) -> void:
 	%Clock.set_value(t_secs)
+	%TimeBar.set_value(_params.time - t)

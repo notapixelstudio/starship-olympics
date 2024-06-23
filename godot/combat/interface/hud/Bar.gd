@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name Bar
+class_name Barz
 
 @export var cpu_ship_texture : Texture2D
 
