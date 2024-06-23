@@ -19,9 +19,6 @@ waves = [NodePath("../../Battlefield/Wave0"), NodePath("../../Battlefield/Wave1"
 
 [node name="CollectGame" parent="Managers" index="4" instance=ExtResource("3_dg11o")]
 
-[node name="MessageManager" parent="Managers" index="5" node_paths=PackedStringArray("battlefield")]
-battlefield = NodePath("../../Battlefield")
-
 [node name="Camera2D" parent="." index="1"]
 zoom = Vector2(0.3, 0.3)
 
