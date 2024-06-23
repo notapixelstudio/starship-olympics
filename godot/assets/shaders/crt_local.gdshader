@@ -70,15 +70,20 @@ void fragment() {
 		color.rgb /= color.a;
 		
 	}
-	DrawVignette(color, screen_crtUV);
+	
+	// aberration
+	float adjusted_amount = aberration_amount / screen_size.x; 
+	color.r = texture(SCREEN_TEXTURE, vec2(screen_crtUV.x + adjusted_amount, screen_crtUV.y)).r;
+	color.g = texture(SCREEN_TEXTURE, screen_crtUV).g;
+	color.b = texture(SCREEN_TEXTURE, vec2(screen_crtUV.x - adjusted_amount, screen_crtUV.y)).b;
+	
+	
 	COLOR *= color;
 	
 	// draw black pixels outside the CRT
 	if (screen_crtUV.x < 0.0 || screen_crtUV.x > 1.0 || screen_crtUV.y < 0.0 || screen_crtUV.y > 1.0) {
 		COLOR = vec4(0.0, 0.0, 0.0, 1.0);
 	}
-	
-	
 }
 
 //void fragment() {

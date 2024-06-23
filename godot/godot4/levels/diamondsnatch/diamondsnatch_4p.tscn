@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvp2cu7cq2g7p"]
+[gd_scene load_steps=14 format=3 uid="uid://cvp2cu7cq2g7p"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_lvw7a"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_l6uvh"]
@@ -10,7 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="8_ev06m"]
 [ext_resource type="Script" path="res://actors/environments/WaveGroupSpawner.gd" id="9_01lf8"]
 [ext_resource type="PackedScene" path="res://actors/environments/ElementSpawnerGroup.tscn" id="10_ajm4j"]
+[ext_resource type="Shader" path="res://assets/shaders/crt_black.gdshader" id="12_0l3ra"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="12_pcah0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k880g"]
+shader = ExtResource("12_0l3ra")
+shader_parameter/pincushion = 1.25
 
 [node name="VersusArena" instance=ExtResource("1_lvw7a")]
 
@@ -466,3 +471,6 @@ pattern = "gigarhombus"
 element_scene = ExtResource("8_ev06m")
 guest_star_scene = ExtResource("12_pcah0")
 guest_star_positioning = "random"
+
+[node name="TextureRect" parent="Noise" index="0"]
+material = SubResource("ShaderMaterial_k880g")
