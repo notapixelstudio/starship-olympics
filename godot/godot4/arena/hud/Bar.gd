@@ -2,7 +2,7 @@ extends Control
 class_name Bar
 
 @export var ticks_thickness := 3.0
-@export var ticks_thickness_minor := 1.5
+@export var ticks_thickness_minor := 2.0
 
 var max_value := 100.0 : set = set_max_value
 var value := 0.0 : set = set_value
@@ -47,6 +47,6 @@ func _draw_ticks() -> void:
 			color.a = 0.9
 		else:
 			thickness = ticks_thickness_minor
-			color.a = 0.5
+			color.a = 0.1
 		draw_line(Vector2(0,d),Vector2(_get_width(),d), color, thickness)
 		

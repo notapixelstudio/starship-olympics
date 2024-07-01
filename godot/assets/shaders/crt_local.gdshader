@@ -78,12 +78,7 @@ void fragment() {
 	color.b = texture(SCREEN_TEXTURE, vec2(screen_crtUV.x - adjusted_amount, screen_crtUV.y)).b;
 	
 	
-	COLOR *= color;
-	
-	// draw black pixels outside the CRT
-	if (screen_crtUV.x < 0.0 || screen_crtUV.x > 1.0 || screen_crtUV.y < 0.0 || screen_crtUV.y > 1.0) {
-		COLOR = vec4(0.0, 0.0, 0.0, 1.0);
-	}
+	COLOR *= color * boost;
 }
 
 //void fragment() {
