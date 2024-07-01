@@ -1,10 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhgfc2vafre2d"]
+[gd_scene load_steps=6 format=3 uid="uid://dhgfc2vafre2d"]
 
 [ext_resource type="Script" path="res://godot4/arena/hud/MatchOverScreen.gd" id="1_5buxb"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1_i5pyw"]
 
+[sub_resource type="Animation" id="Animation_jyscu"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wbkui"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4qdce"]
+_data = {
+"RESET": SubResource("Animation_wbkui"),
+"appear": SubResource("Animation_jyscu")
+}
+
 [node name="MatchOverScreen" type="ColorRect"]
-visible = false
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,3 +64,9 @@ theme = ExtResource("1_i5pyw")
 theme_override_font_sizes/font_size = 60
 text = "GAME OVER"
 horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_4qdce")
+}

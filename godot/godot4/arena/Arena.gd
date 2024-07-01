@@ -27,6 +27,7 @@ func _ready() -> void:
 	
 	var match_over_screen = match_over_screen_scene.instantiate()
 	%HUD.add_child(match_over_screen)
+	Events.match_over.connect(_on_match_over)
 	
 	var teams := {}
 	
@@ -85,3 +86,16 @@ func get_match_params() -> MatchParams:
 func _on_clock_ticked(t:float, t_secs:int) -> void:
 	%Clock.set_value(t_secs)
 	%TimeBar.set_value(_params.time - t)
+
+func _on_match_over(data:Dictionary) -> void:
+	# peform a match over animation
+	var tween = get_tree().create_tween()
+	tween.set_parallel()
+	tween.tween_property(Engine, "time_scale", 0.1, 0.6).set_trans(Tween.TRANS_CUBIC)
+	#tween.tween_property($Battlefield, "modulate", Color(0.7,0.7,0.7), 0.6).set_trans(Tween.TRANS_CUBIC)
+	tween.finished.connect(_on_match_over_anim_finished)
+
+func _on_match_over_anim_finished() -> void:
+	get_tree().paused = true
+	Engine.time_scale = 1
+	Events.match_over_anim_ended.emit()

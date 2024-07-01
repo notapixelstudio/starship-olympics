@@ -51,7 +51,8 @@ signal log(message:String)
 signal message(message:Variant, color:Color, global_position:Vector2)
 
 signal battle_start
-signal match_over
+signal match_over(data:Dictionary)
+signal match_over_anim_ended
 # END 4.x events
 
 signal sth_collected(collector, collectee)

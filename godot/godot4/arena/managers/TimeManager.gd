@@ -20,5 +20,5 @@ func _physics_process(delta: float) -> void:
 		Events.clock_ticked.emit(0.0, 0)
 		Events.clock_expired.emit()
 		
-func _on_match_over() -> void:
+func _on_match_over(data:Dictionary) -> void:
 	set_physics_process(false)

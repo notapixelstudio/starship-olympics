@@ -76,5 +76,5 @@ func _on_sth_collected(_collector, collectee):
 		print("asking to spawn because there are no collectable anymore")
 		_handle_waves()
 	
-func _on_match_over() -> void:
+func _on_match_over(data:Dictionary) -> void:
 	%Timer.stop()

@@ -12,8 +12,8 @@ func _ready() -> void:
 func _on_score_updated(score: float, team: String) -> void:
 	if int(score) >= _int_max_score:
 		Events.log.emit('Team [b]%s[/b] wins the match with perfect score %d (%d points actually).' % [team, _int_max_score, score])
-		Events.match_over.emit()
+		Events.match_over.emit({'winner': team})
 
 func _on_clock_expired() -> void:
 	Events.log.emit('Match ended because time has ran out.')
-	Events.match_over.emit()
+	Events.match_over.emit({'winner': 'pippo'})
