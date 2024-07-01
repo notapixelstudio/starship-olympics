@@ -12,33 +12,33 @@
 [node name="VersusGameOverManager" parent="Managers" index="4" instance=ExtResource("2_tjvfq")]
 unique_name_in_owner = true
 
-[node name="Clock" parent="HUD" index="0" instance=ExtResource("4_atujp")]
+[node name="Clock" parent="HUD/CanvasGroup" index="2" instance=ExtResource("4_atujp")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_bottom = 0.0
-offset_left = -105.0
+offset_left = 1162.0
 offset_top = 8.0
-offset_right = -8.0
+offset_right = 1272.0
 offset_bottom = 73.0
 grow_horizontal = 0
 grow_vertical = 1
 horizontal_alignment = 2
 vertical_alignment = 0
 
-[node name="TimeBar" parent="HUD" index="1" instance=ExtResource("6_aknw6")]
+[node name="TimeBar" parent="HUD/CanvasGroup" index="3" instance=ExtResource("6_aknw6")]
 unique_name_in_owner = true
 offset_left = 1251.0
 offset_top = 80.0
 offset_right = 1271.0
 offset_bottom = 594.0
 
-[node name="VersusHUD" type="Node2D" parent="HUD" index="2"]
+[node name="VersusHUD" type="Node2D" parent="HUD/CanvasGroup" index="4"]
 unique_name_in_owner = true
 script = ExtResource("2_mmfqj")
 score_bar_scene = ExtResource("5_ks1ew")
 metadata/_edit_lock_ = true
 
-[node name="ScoreBars" type="HBoxContainer" parent="HUD/VersusHUD" index="0"]
+[node name="ScoreBars" type="HBoxContainer" parent="HUD/CanvasGroup/VersusHUD" index="0"]
 unique_name_in_owner = true
 offset_left = 8.0
 offset_top = 46.0

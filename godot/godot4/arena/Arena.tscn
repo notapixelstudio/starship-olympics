@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=26 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="1_1sf7u"]
 [ext_resource type="Script" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
@@ -17,7 +17,32 @@
 [ext_resource type="Resource" uid="uid://bpw2qo5744n7m" path="res://godot4/data/minigames/default.tres" id="9_vsuw2"]
 [ext_resource type="PackedScene" uid="uid://ctdiyn70rdfsq" path="res://godot4/arena/managers/TimeManager.tscn" id="10_mhlox"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="16_64a4r"]
+[ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="16_jk7x4"]
+[ext_resource type="Shader" path="res://assets/shaders/crt_local.gdshader" id="17_7kknq"]
 [ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="18_3l87r"]
+[ext_resource type="Shader" path="res://godot4/shaders/screen_blend_overlay.gdshader" id="20_23pm5"]
+[ext_resource type="Texture2D" uid="uid://yuay7lcg5j7l" path="res://assets/sprites/background/static.png" id="20_osq8b"]
+[ext_resource type="Texture2D" uid="uid://c1mrjgvqqsgb3" path="res://assets/HUD/fake_crt.png" id="22_5e72g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qpmpd"]
+shader = ExtResource("17_7kknq")
+shader_parameter/boost = 1.2
+shader_parameter/grille_opacity = 0.85
+shader_parameter/scanlines_opacity = 0.95
+shader_parameter/vignette_opacity = 0.2
+shader_parameter/scanlines_speed = 1.0
+shader_parameter/show_grille = false
+shader_parameter/show_scanlines = false
+shader_parameter/show_vignette = true
+shader_parameter/show_curvature = true
+shader_parameter/screen_size = Vector2(320, 180)
+shader_parameter/aberration_amount = 0.35
+shader_parameter/move_aberration = false
+shader_parameter/aberration_speed = 1.0
+shader_parameter/pincushion = 1.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbnhk"]
+shader = ExtResource("20_23pm5")
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_avtyt")
@@ -59,23 +84,39 @@ unique_name_in_owner = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
+[node name="CrtUnder" type="TextureRect" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("16_jk7x4")
+expand_mode = 1
+
 [node name="SOLog" parent="HUD" instance=ExtResource("7_tad78")]
+visible = false
 offset_left = 950.0
 offset_top = 150.0
 offset_right = 1275.0
 offset_bottom = 550.0
 metadata/_edit_lock_ = true
 
-[node name="MinigameText" type="RichTextLabel" parent="HUD"]
+[node name="CanvasGroup" type="CanvasGroup" parent="HUD"]
+z_index = 200
+material = SubResource("ShaderMaterial_qpmpd")
+fit_margin = 50.0
+clear_margin = 50.0
+
+[node name="MinigameText" type="RichTextLabel" parent="HUD/CanvasGroup"]
 unique_name_in_owner = true
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -12.0
-offset_top = -54.0
-offset_right = -12.0
-offset_bottom = -8.0
+offset_top = 666.0
+offset_right = 1268.0
+offset_bottom = 750.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("16_64a4r")
@@ -84,8 +125,33 @@ text = "[right][color=#ffde5e]TITLE[/color]
 DESCRIPTION[/right]"
 fit_content = true
 
-[node name="MinigameIcon" type="Sprite2D" parent="HUD"]
+[node name="MinigameIcon" type="Sprite2D" parent="HUD/CanvasGroup"]
 unique_name_in_owner = true
 position = Vector2(1222, 633)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("18_3l87r")
+
+[node name="Noise" type="CanvasLayer" parent="."]
+layer = 120
+
+[node name="TextureRect" type="TextureRect" parent="Noise"]
+modulate = Color(1, 1, 1, 0.392157)
+material = SubResource("ShaderMaterial_gbnhk")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("20_osq8b")
+expand_mode = 1
+
+[node name="Crt" type="TextureRect" parent="Noise"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("22_5e72g")
+expand_mode = 1
