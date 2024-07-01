@@ -5,7 +5,7 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 varying flat vec4 modulate;
 
-// 
+//
 uniform float boost : hint_range(1.0, 2.0, 0.01) = float(1.2);
 uniform float grille_opacity : hint_range(0.0, 1.0, 0.01) = float(0.85);
 uniform float scanlines_opacity : hint_range(0.0, 1.0, 0.01) = float(0.95);
@@ -63,21 +63,21 @@ void vertex() {
 void fragment() {
 	vec2 screen_crtUV = CRTCurveUV(SCREEN_UV);
 	vec4 color = texture(SCREEN_TEXTURE, screen_crtUV);
-	
-	
-	
+
+
+
 	if (color.a > 0.0001) {
 		color.rgb /= color.a;
-		
+
 	}
-	
+
 	// aberration
-	float adjusted_amount = aberration_amount / screen_size.x; 
+	float adjusted_amount = aberration_amount / screen_size.x;
 	color.r = texture(SCREEN_TEXTURE, vec2(screen_crtUV.x + adjusted_amount, screen_crtUV.y)).r;
 	color.g = texture(SCREEN_TEXTURE, screen_crtUV).g;
 	color.b = texture(SCREEN_TEXTURE, vec2(screen_crtUV.x - adjusted_amount, screen_crtUV.y)).b;
-	
-	
+
+
 	COLOR *= color * boost;
 }
 
@@ -94,7 +94,7 @@ void fragment() {
 			//
 			//if (move_aberration == true) {
 				//adjusted_amount = (aberration_amount / screen_size.x) * cos((2.0 * 3.14159265359) * (TIME / aberration_speed));
-			//} 
+			//}
 			//
 			//color.r = texture(TEXTURE, vec2(screen_crtUV.x + adjusted_amount, screen_crtUV.y)).r;
 			//color.g = texture(TEXTURE, screen_crtUV).g;

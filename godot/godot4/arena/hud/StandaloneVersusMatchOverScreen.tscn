@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy7pqq7fivkj3"]
+
+[ext_resource type="PackedScene" uid="uid://dhgfc2vafre2d" path="res://godot4/arena/hud/MatchOverScreen.tscn" id="1_yxwln"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="2_bx7t8"]
+
+[node name="SingleVersusMatchOverScreen" instance=ExtResource("1_yxwln")]
+
+[node name="Title2" type="Label" parent="VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_vertical = 2
+theme = ExtResource("2_bx7t8")
+theme_override_font_sizes/font_size = 60
+text = "STANDALONE VERSUS MATCH"
+horizontal_alignment = 1

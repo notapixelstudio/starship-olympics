@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=27 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="1_1sf7u"]
 [ext_resource type="Script" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="7_o1qkg"]
 [ext_resource type="PackedScene" uid="uid://dnny8ekvjg4ck" path="res://godot4/debug/SOLog.tscn" id="7_tad78"]
 [ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://actors/brains/CPUBrain.tscn" id="8_segll"]
+[ext_resource type="PackedScene" uid="uid://dy7pqq7fivkj3" path="res://godot4/arena/hud/StandaloneVersusMatchOverScreen.tscn" id="9_kkxbo"]
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="9_nr0n0"]
 [ext_resource type="Resource" uid="uid://bpw2qo5744n7m" path="res://godot4/data/minigames/default.tres" id="9_vsuw2"]
 [ext_resource type="PackedScene" uid="uid://ctdiyn70rdfsq" path="res://godot4/arena/managers/TimeManager.tscn" id="10_mhlox"]
@@ -55,6 +56,7 @@ players = {
 ship_scene = ExtResource("6_p0dyi")
 player_brain_scene = ExtResource("7_o1qkg")
 cpu_brain_scene = ExtResource("8_segll")
+match_over_screen_scene = ExtResource("9_kkxbo")
 default_minigame = ExtResource("9_vsuw2")
 default_params = ExtResource("9_nr0n0")
 
@@ -83,6 +85,7 @@ unique_name_in_owner = true
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_1sf7u")]
 
 [node name="HUD" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 
 [node name="CrtUnder" type="TextureRect" parent="HUD"]
 anchors_preset = 15

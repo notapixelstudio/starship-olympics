@@ -4,6 +4,7 @@ extends Node2D
 @export var ship_scene : PackedScene
 @export var player_brain_scene : PackedScene
 @export var cpu_brain_scene : PackedScene
+@export var match_over_screen_scene : PackedScene
 @export var default_minigame : Minigame
 @export var default_params : MatchParams
 
@@ -23,6 +24,9 @@ func _ready() -> void:
 	Events.clock_ticked.connect(_on_clock_ticked)
 	
 	%VersusGameOverManager.set_max_score(_params.score)
+	
+	var match_over_screen = match_over_screen_scene.instantiate()
+	%HUD.add_child(match_over_screen)
 	
 	var teams := {}
 	
