@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=24 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="1_1sf7u"]
 [ext_resource type="Script" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
@@ -19,6 +19,7 @@
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="16_64a4r"]
 [ext_resource type="Shader" path="res://assets/shaders/crt_local.gdshader" id="17_7kknq"]
 [ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="18_3l87r"]
+[ext_resource type="Shader" path="res://godot4/shaders/screen_blend_overlay.gdshader" id="20_23pm5"]
 [ext_resource type="Texture2D" uid="uid://yuay7lcg5j7l" path="res://assets/sprites/background/static.png" id="20_osq8b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qpmpd"]
@@ -33,10 +34,13 @@ shader_parameter/show_scanlines = false
 shader_parameter/show_vignette = true
 shader_parameter/show_curvature = true
 shader_parameter/screen_size = Vector2(320, 180)
-shader_parameter/aberration_amount = 0.25
+shader_parameter/aberration_amount = 0.35
 shader_parameter/move_aberration = false
 shader_parameter/aberration_speed = 1.0
 shader_parameter/pincushion = 1.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbnhk"]
+shader = ExtResource("20_23pm5")
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_avtyt")
@@ -119,9 +123,13 @@ texture = ExtResource("18_3l87r")
 layer = 120
 
 [node name="TextureRect" type="TextureRect" parent="Noise"]
-modulate = Color(1, 1, 1, 0.223529)
+modulate = Color(1, 1, 1, 0.470588)
+material = SubResource("ShaderMaterial_gbnhk")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("20_osq8b")
+expand_mode = 1
