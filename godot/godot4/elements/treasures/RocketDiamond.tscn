@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cg66437tipora"]
+[gd_scene load_steps=8 format=3 uid="uid://cg66437tipora"]
 
 [ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_hcjf6"]
 [ext_resource type="Script" path="res://godot4/elements/treasures/RocketDiamond.gd" id="2_vtumx"]
 [ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://godot4/effects/trails/FlameTrail.tscn" id="3_esct5"]
+[ext_resource type="Material" uid="uid://nemcauwaghyq" path="res://godot4/shaders/outline_diamond.tres" id="3_k8fxh"]
 [ext_resource type="Texture2D" uid="uid://khucb55ymbms" path="res://assets/sprites/environments/diamond_rocket.png" id="3_rwmiw"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="5_17glh"]
 
@@ -19,6 +20,7 @@ steering = 10.0
 oscillation = 0.0
 
 [node name="Sprite2D" parent="Graphics" index="0"]
+material = ExtResource("3_k8fxh")
 rotation = -1.5708
 texture = ExtResource("3_rwmiw")
 
