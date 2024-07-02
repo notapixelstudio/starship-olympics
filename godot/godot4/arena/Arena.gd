@@ -99,3 +99,8 @@ func _on_match_over_anim_finished() -> void:
 	get_tree().paused = true
 	Engine.time_scale = 1
 	Events.match_over_anim_ended.emit()
+
+func _unhandled_key_input(event) -> void:
+	# cause the clock to expire for testing
+	if event.is_action_pressed("debug_action") and OS.is_debug_build():
+		Events.clock_expired.emit()
