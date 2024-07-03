@@ -6,7 +6,7 @@ func _ready() -> void:
 	Events.match_over_anim_ended.connect(_on_match_over_anim_ended)
 	
 func _on_match_over(data:Dictionary) -> void:
-	pass # populate UI
+	%Winner.text = 'WINNERS: ' + ' '.join(data['winners'])
 	
 func _on_match_over_anim_ended() -> void:
 	%AnimationPlayer.play("appear")

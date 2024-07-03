@@ -9,8 +9,8 @@ var _starting_score : float
 func _ready() -> void:
 	Events.score_updated.connect(_on_score_updated)
 	
-func _on_score_updated(new_score:float, team:String) -> void:
-	%ScoreBars.get_node(team).set_value(new_score)
+func _on_score_updated(score: float, team: String, new_standings: Array) -> void:
+	%ScoreBars.get_node(team).set_value(score)
 	
 func add_team(name:String, species:Species) -> void:
 	var bar = score_bar_scene.instantiate()

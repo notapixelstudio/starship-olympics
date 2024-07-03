@@ -1,9 +1,11 @@
 extends Node
+class_name ScoreManager
 
 @export var teams : Array[String] : set = _set_teams
 @export var starting_score := 0.0
 
 var _scores := {}
+var _standings := []
 
 func _set_teams(v: Array[String]) -> void:
 	teams = v
@@ -27,6 +29,8 @@ func _on_points_scored(amount: float, team: String) -> void:
 		return
 	
 	_scores[team] += amount
+	_standings = _scores.keys().map(func(k): return {'team': k, 'score': _scores[k]})
+	_standings.sort_custom(func(a,b): return a['score'] > b['score'])
 	
-	Events.score_updated.emit(_scores[team], team)
+	Events.score_updated.emit(_scores[team], team, _standings)
 	Events.log.emit('Team [b]%s[/b] scored %d points, and is now at %d points.' % [team, amount, _scores[team]])
