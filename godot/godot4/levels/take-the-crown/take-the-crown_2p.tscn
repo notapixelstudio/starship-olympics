@@ -72,12 +72,11 @@ width = 3500.0
 height = 1900.0
 bevel = 935.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/OutsideWall" index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/OutsideWall" index="6" groups=["animation_starts_with_battle"]]
 callback_mode_process = 0
 libraries = {
 "": SubResource("AnimationLibrary_aclk8")
 }
-autoplay = "default"
 
 [node name="Wall" parent="Battlefield" index="1" instance=ExtResource("5_q5cfv")]
 position = Vector2(0, -950)

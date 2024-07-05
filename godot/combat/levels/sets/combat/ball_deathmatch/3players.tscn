@@ -1,58 +1,100 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=26 format=3 uid="uid://dx18q7qfmdimh"]
 
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=3]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=4]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
-[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=8]
-[ext_resource path="res://selection/characters/auriels_1.tres" type="Resource" id=9]
-[ext_resource path="res://combat/modes/BallDeathmatch.tres" type="Resource" id=10]
-[ext_resource path="res://assets/icon/skull.png" type="Texture2D" id=11]
-[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture2D" id=12]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="4"]
+[ext_resource type="PackedScene" path="res://actors/environments/Wall.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://combat/Arena.tscn" id="7"]
+[ext_resource type="Resource" uid="uid://c2d0iaqf8sd0v" path="res://selection/characters/pentagonions_1.tres" id="8"]
+[ext_resource type="Resource" uid="uid://c8dkseibuofal" path="res://selection/characters/auriels_1.tres" id="9"]
+[ext_resource type="Resource" path="res://combat/modes/BallDeathmatch.tres" id="10"]
+[ext_resource type="Texture2D" uid="uid://biq52lhotmtyk" path="res://assets/icon/skull.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://21naqrw1n8iw" path="res://combat/levels/background/mantiacs.png" id="12"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Resource" id="Resource_g1lwm"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_xxxl7"]
+metadata/__load_path__ = "res://addons/geometry/icons/GBeveledRect.svg"
+
+[sub_resource type="Resource" id="Resource_sambt"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_no4tn"]
+metadata/__load_path__ = "res://addons/geometry/icons/GBeveledRect.svg"
+
+[sub_resource type="Resource" id="Resource_auhv2"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_s1tm7"]
+metadata/__load_path__ = "res://addons/geometry/icons/GBeveledRect.svg"
+
+[sub_resource type="Animation" id="1"]
 resource_name = "Rotate"
 length = 6.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("GBeveledRect:width")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 1 ),
-"transitions": PackedFloat32Array( 2, -2 ),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, -2),
 "update": 0,
-"values": [ 7800, 5400 ]
+"values": [7800, 5400]
 }
 
-[node name="Arena" instance=ExtResource( 7 )]
+[sub_resource type="Resource" id="Resource_jjrek"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_b2c1o"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_cqes3"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_ie22w"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_rr07q"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_f4by0"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_64r4a"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_6b0c0"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_3c05f"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[node name="Arena" instance=ExtResource("7")]
 size_multiplier = 2.5
-game_mode = ExtResource( 10 )
+game_mode = ExtResource("10")
 score_to_win_override = 8
 match_duration_override = 90.0
 
 [node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 12 )
+texture = ExtResource("12")
 centered = false
 
-[node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
+[node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource("5")]
 hollow = true
 offset = 200
 type = 2
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
-script = ExtResource( 2 )
+script = SubResource("Resource_g1lwm")
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_icon": SubResource("Resource_xxxl7")
 }
-center_offset = Vector2( 0, 0 )
+center_offset = Vector2(0, 0)
 jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
+clip = Rect2(-10000, -10000, 20000, 20000)
 width = 5400
 height = 1000
 bevel = 500
@@ -61,19 +103,19 @@ bevel_ne = 500
 bevel_sw = 500
 bevel_se = 500
 
-[node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
+[node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource("5")]
 hollow = true
 offset = 200
 type = 2
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
-script = ExtResource( 2 )
+script = SubResource("Resource_sambt")
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_icon": SubResource("Resource_no4tn")
 }
-center_offset = Vector2( 0, 0 )
+center_offset = Vector2(0, 0)
 jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
+clip = Rect2(-10000, -10000, 20000, 20000)
 width = 7800
 height = 1000
 bevel = 500
@@ -82,20 +124,20 @@ bevel_ne = 500
 bevel_sw = 500
 bevel_se = 500
 
-[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource("5")]
 hollow = true
 offset = 1200
 hide_grid = true
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
+grid_color = Color(0, 1, 0.741176, 0.435294)
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
-script = ExtResource( 2 )
+script = SubResource("Resource_auhv2")
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_icon": SubResource("Resource_s1tm7")
 }
-center_offset = Vector2( 0, 0 )
+center_offset = Vector2(0, 0)
 jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
+clip = Rect2(-10000, -10000, 20000, 20000)
 width = 7800
 height = 1000
 bevel = 500
@@ -104,158 +146,156 @@ bevel_ne = 500
 bevel_sw = 500
 bevel_se = 500
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=["animation_starts_with_battle"]]
 playback_speed = 0.25
-anims/Rotate = SubResource( 1 )
+anims/Rotate = SubResource("1")
 
 [node name="skull" type="Sprite2D" parent="Battlefield/Background" index="7"]
-modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
-position = Vector2( -700, -1.14441e-05 )
-scale = Vector2( 4, 4 )
-texture = ExtResource( 11 )
+modulate = Color(0.0588235, 0.909804, 0.439216, 0.0588235)
+position = Vector2(-700, -1.14441e-05)
+scale = Vector2(4, 4)
+texture = ExtResource("11")
 
 [node name="skull2" type="Sprite2D" parent="Battlefield/Background" index="8"]
-modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
-position = Vector2( 700, 3.8147e-06 )
-scale = Vector2( 4, 4 )
-texture = ExtResource( 11 )
+modulate = Color(0.0588235, 0.909804, 0.439216, 0.0588235)
+position = Vector2(700, 3.8147e-06)
+scale = Vector2(4, 4)
+texture = ExtResource("11")
 
-[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
-position = Vector2( -3300, -500 )
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource("5")]
+position = Vector2(-3300, -500)
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
+script = SubResource("Resource_jjrek")
+center_offset = Vector2(0, 0)
 jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
+clip = Rect2(-10000, -10000, 20000, 20000)
 radius = 100
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Wall3" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
-position = Vector2( 3300, 500 )
+[node name="Wall3" parent="Battlefield/Middleground" index="1" instance=ExtResource("5")]
+position = Vector2(3300, 500)
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
+script = SubResource("Resource_b2c1o")
+center_offset = Vector2(0, 0)
 jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
+clip = Rect2(-10000, -10000, 20000, 20000)
 radius = 100
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Wall2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 5 )]
-position = Vector2( 1350, 150 )
+[node name="Wall2" parent="Battlefield/Middleground" index="2" instance=ExtResource("5")]
+position = Vector2(1350, 150)
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
+script = SubResource("Resource_cqes3")
+center_offset = Vector2(0, 0)
 jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
+clip = Rect2(-10000, -10000, 20000, 20000)
 radius = 150
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Wall8" parent="Battlefield/Middleground" index="3" instance=ExtResource( 5 )]
-position = Vector2( 1650, -150 )
+[node name="Wall8" parent="Battlefield/Middleground" index="3" instance=ExtResource("5")]
+position = Vector2(1650, -150)
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall8" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
+script = SubResource("Resource_ie22w")
+center_offset = Vector2(0, 0)
 jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
+clip = Rect2(-10000, -10000, 20000, 20000)
 radius = 150
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Wall4" parent="Battlefield/Middleground" index="4" instance=ExtResource( 5 )]
-position = Vector2( -1350, 150 )
+[node name="Wall4" parent="Battlefield/Middleground" index="4" instance=ExtResource("5")]
+position = Vector2(-1350, 150)
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
+script = SubResource("Resource_rr07q")
+center_offset = Vector2(0, 0)
 jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
+clip = Rect2(-10000, -10000, 20000, 20000)
 radius = 150
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Wall11" parent="Battlefield/Middleground" index="5" instance=ExtResource( 5 )]
-position = Vector2( -1650, -150 )
+[node name="Wall11" parent="Battlefield/Middleground" index="5" instance=ExtResource("5")]
+position = Vector2(-1650, -150)
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
+script = SubResource("Resource_f4by0")
+center_offset = Vector2(0, 0)
 jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
+clip = Rect2(-10000, -10000, 20000, 20000)
 radius = 150
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Wall10" parent="Battlefield/Middleground" index="6" instance=ExtResource( 5 )]
-position = Vector2( 2700, -500 )
+[node name="Wall10" parent="Battlefield/Middleground" index="6" instance=ExtResource("5")]
+position = Vector2(2700, -500)
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
+script = SubResource("Resource_64r4a")
+center_offset = Vector2(0, 0)
 jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
+clip = Rect2(-10000, -10000, 20000, 20000)
 radius = 150
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Wall9" parent="Battlefield/Middleground" index="7" instance=ExtResource( 5 )]
-position = Vector2( -2700, 500 )
+[node name="Wall9" parent="Battlefield/Middleground" index="7" instance=ExtResource("5")]
+position = Vector2(-2700, 500)
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall9" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
+script = SubResource("Resource_6b0c0")
+center_offset = Vector2(0, 0)
 jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
+clip = Rect2(-10000, -10000, 20000, 20000)
 radius = 150
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="Wall7" parent="Battlefield/Middleground" index="8" instance=ExtResource( 5 )]
+[node name="Wall7" parent="Battlefield/Middleground" index="8" instance=ExtResource("5")]
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall7" index="4"]
-script = ExtResource( 1 )
-center_offset = Vector2( 0, 0 )
+script = SubResource("Resource_3c05f")
+center_offset = Vector2(0, 0)
 jitter = 0.0
-clip = Rect2( -10000, -10000, 20000, 20000 )
+clip = Rect2(-10000, -10000, 20000, 20000)
 radius = 200
 sides = 4.0
 alternating_angle = 0.0
 rotation_degrees = 0.0
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( -800, 0 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("6")]
+position = Vector2(-800, 0)
 rotation = 0.0
 controls = "joy1"
-species = ExtResource( 8 )
+species = ExtResource("8")
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( 800, 0 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("6")]
+position = Vector2(800, 0)
 rotation = 3.14159
 controls = "joy2"
-species = ExtResource( 9 )
+species = ExtResource("9")
 cpu = true
 
-[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 6 )]
-position = Vector2( -2200, 0 )
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource("6")]
+position = Vector2(-2200, 0)
 rotation = 0.0
 controls = "joy2"
-species = ExtResource( 4 )
+species = ExtResource("4")
 cpu = true
 
 [node name="Camera3D" parent="." index="6"]

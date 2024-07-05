@@ -67,7 +67,12 @@ func _ready() -> void:
 		%VersusHUD.set_max_score(_params.score)
 		%VersusHUD.set_starting_score(_params.starting_score)
 		%VersusHUD.add_team(team, players[teams[team][0]].get_species()) # FIXME support teams of 2+ members
-
+	
+	# BATTLE START
+	
+	for player in get_tree().get_nodes_in_group('animation_starts_with_battle'):
+		player.play('default')
+	
 func get_id() -> String:
 	return get_tree().current_scene.scene_file_path.get_file().split('.')[0]
 	

@@ -1,40 +1,65 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=22 format=3 uid="uid://of0vjk06gcw"]
 
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
-[ext_resource path="res://combat/modes/DiamondFishing.tres" type="Resource" id=2]
-[ext_resource path="res://combat/levels/background/trixen.png" type="Texture2D" id=3]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=5]
-[ext_resource path="res://combat/levels/test/water_set/diamond_fishing/Moon.gd" type="Script" id=6]
-[ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=7]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=9]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=10]
-[ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=11]
-[ext_resource path="res://actors/environments/ElementSpawner.tscn" type="PackedScene" id=12]
-[ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=15]
+[ext_resource type="PackedScene" path="res://combat/Arena.tscn" id="1"]
+[ext_resource type="Resource" path="res://combat/modes/DiamondFishing.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://vj4b32elgxe6" path="res://combat/levels/background/trixen.png" id="3"]
+[ext_resource type="PackedScene" path="res://actors/environments/Wall.tscn" id="4"]
+[ext_resource type="Script" path="res://combat/levels/test/water_set/diamond_fishing/Moon.gd" id="6"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="8"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="9"]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="10"]
+[ext_resource type="PackedScene" path="res://actors/environments/Field.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://cmjhs38gid4sk" path="res://actors/environments/ElementSpawner.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://ckykuuqee1aml" path="res://combat/collectables/Diamond.tscn" id="15"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Resource" id="Resource_5ax5j"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Animation" id="1"]
 resource_name = "Rotate"
 length = 120.0
-loop = true
+loop_mode = 1
 step = 1.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("GRegularPolygon:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 120 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 120),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ 0.0, -360.0 ]
+"values": [0.0, -360.0]
 }
 
-[node name="Arena" instance=ExtResource( 1 )]
+[sub_resource type="Resource" id="Resource_e8ne7"]
+metadata/__load_path__ = "res://addons/geometry/GCircle.gd"
+
+[sub_resource type="Resource" id="Resource_17elp"]
+metadata/__load_path__ = "res://addons/geometry/GCircle.gd"
+
+[sub_resource type="Resource" id="Resource_8rb1a"]
+metadata/__load_path__ = "res://addons/geometry/GCircle.gd"
+
+[sub_resource type="Resource" id="Resource_m1xgu"]
+metadata/__load_path__ = "res://addons/geometry/GCircle.gd"
+
+[sub_resource type="Resource" id="Resource_h3y0c"]
+metadata/__load_path__ = "res://addons/geometry/GCircle.gd"
+
+[sub_resource type="Resource" id="Resource_644c3"]
+metadata/__load_path__ = "res://addons/geometry/GCircle.gd"
+
+[sub_resource type="Resource" id="Resource_vt86a"]
+metadata/__load_path__ = "res://addons/geometry/GCircle.gd"
+
+[sub_resource type="Resource" id="Resource_uqt8l"]
+metadata/__load_path__ = "res://addons/geometry/GCircle.gd"
+
+[node name="Arena" instance=ExtResource("1")]
 size_multiplier = 2.5
-game_mode = ExtResource( 2 )
+game_mode = ExtResource("2")
 
 [node name="GoalModeManager" parent="Managers" index="9"]
 enabled = false
@@ -43,84 +68,82 @@ enabled = false
 enabled = true
 
 [node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 3 )
+texture = ExtResource("3")
 centered = false
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 4 )]
-position = Vector2( 3.05176e-05, 0 )
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource("4")]
+position = Vector2(3.05176e-05, 0)
 hollow = true
 offset = 200
 elongation = 100
 hide_grid = true
-grid_color = Color( 1, 1, 1, 0.329412 )
+grid_color = Color(1, 1, 1, 0.329412)
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
-script = ExtResource( 5 )
+script = SubResource("Resource_5ax5j")
 radius = 2500
 sides = 8.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="6" groups=[
-"animation_in_battle",
-]]
-anims/Rotate = SubResource( 1 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="6" groups=["animation_starts_with_battle"]]
+anims/Rotate = SubResource("1")
 
-[node name="Orbit" parent="Battlefield/Middleground" index="0" instance=ExtResource( 4 )]
+[node name="Orbit" parent="Battlefield/Middleground" index="0" instance=ExtResource("4")]
 type = 2
 hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Orbit" index="5"]
-script = ExtResource( 7 )
+script = SubResource("Resource_e8ne7")
 radius = 1700
 precision = 50.0
 
-[node name="Orbit2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 4 )]
+[node name="Orbit2" parent="Battlefield/Middleground" index="1" instance=ExtResource("4")]
 type = 2
 hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Orbit2" index="5"]
-script = ExtResource( 7 )
+script = SubResource("Resource_17elp")
 radius = 1450
 precision = 50.0
 
-[node name="Water" parent="Battlefield/Middleground" index="2" instance=ExtResource( 11 )]
+[node name="Water" parent="Battlefield/Middleground" index="2" instance=ExtResource("11")]
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Water" index="6"]
-script = ExtResource( 7 )
+script = SubResource("Resource_8rb1a")
 radius = 1000
 
-[node name="Planet" parent="Battlefield/Middleground" index="3" instance=ExtResource( 4 )]
+[node name="Planet" parent="Battlefield/Middleground" index="3" instance=ExtResource("4")]
 z_index = 51
 hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Planet" index="5"]
-script = ExtResource( 7 )
+script = SubResource("Resource_m1xgu")
 radius = 300
 precision = 50.0
 
 [node name="Moon" type="Node2D" parent="Battlefield/Middleground" index="4"]
-position = Vector2( 0, -1700 )
-script = ExtResource( 6 )
+position = Vector2(0, -1700)
+script = ExtResource("6")
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Water" parent="Battlefield/Middleground/Moon" index="0" instance=ExtResource( 11 )]
+[node name="Water" parent="Battlefield/Middleground/Moon" index="0" instance=ExtResource("11")]
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon/Water" index="6"]
-script = ExtResource( 7 )
+script = SubResource("Resource_h3y0c")
 radius = 500
 
-[node name="Planet" parent="Battlefield/Middleground/Moon" index="1" instance=ExtResource( 4 )]
+[node name="Planet" parent="Battlefield/Middleground/Moon" index="1" instance=ExtResource("4")]
 z_index = 51
 hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon/Planet" index="5"]
-script = ExtResource( 7 )
+script = SubResource("Resource_644c3")
 precision = 40.0
 
 [node name="Moon2" type="Node2D" parent="Battlefield/Middleground" index="5"]
-position = Vector2( 0, 1450 )
-script = ExtResource( 6 )
+position = Vector2(0, 1450)
+script = ExtResource("6")
 __meta__ = {
 "_edit_group_": true
 }
@@ -128,54 +151,55 @@ radius = 1450.0
 phase = 1.571
 speed = 0.07
 
-[node name="Water" parent="Battlefield/Middleground/Moon2" index="0" instance=ExtResource( 11 )]
+[node name="Water" parent="Battlefield/Middleground/Moon2" index="0" instance=ExtResource("11")]
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon2/Water" index="6"]
-script = ExtResource( 7 )
+script = SubResource("Resource_vt86a")
 radius = 350
 
-[node name="Planet" parent="Battlefield/Middleground/Moon2" index="1" instance=ExtResource( 4 )]
+[node name="Planet" parent="Battlefield/Middleground/Moon2" index="1" instance=ExtResource("4")]
 z_index = 51
 hide_grid = true
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Moon2/Planet" index="5"]
-script = ExtResource( 7 )
+script = SubResource("Resource_uqt8l")
 radius = 50
 precision = 30.0
 
-[node name="DiamondSpawner6" parent="Battlefield/Middleground/Moon2" index="2" instance=ExtResource( 12 )]
-position = Vector2( 0, -150 )
+[node name="DiamondSpawner6" parent="Battlefield/Middleground/Moon2" index="2" instance=ExtResource("12")]
+position = Vector2(0, -150)
 
-[node name="Coin" parent="Battlefield/Middleground/Moon2/DiamondSpawner6" index="0" instance=ExtResource( 15 )]
+[node name="Coin" parent="Battlefield/Middleground/Moon2/DiamondSpawner6" index="0" instance=ExtResource("15")]
 appear = false
 
-[node name="Diamond" parent="Battlefield/Foreground" index="0" instance=ExtResource( 15 )]
-position = Vector2( -500, 0 )
+[node name="Diamond" parent="Battlefield/Foreground" index="0" instance=ExtResource("15")]
+position = Vector2(-500, 0)
 
-[node name="Diamond3" parent="Battlefield/Foreground" index="1" instance=ExtResource( 15 )]
-position = Vector2( 0, 500 )
+[node name="Diamond3" parent="Battlefield/Foreground" index="1" instance=ExtResource("15")]
+position = Vector2(0, 500)
 
-[node name="Diamond4" parent="Battlefield/Foreground" index="2" instance=ExtResource( 15 )]
-position = Vector2( 0, -500 )
+[node name="Diamond4" parent="Battlefield/Foreground" index="2" instance=ExtResource("15")]
+position = Vector2(0, -500)
 
-[node name="Diamond2" parent="Battlefield/Foreground" index="3" instance=ExtResource( 15 )]
-position = Vector2( 500, 0 )
+[node name="Diamond2" parent="Battlefield/Foreground" index="3" instance=ExtResource("15")]
+position = Vector2(500, 0)
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( 2000, -3.05176e-05 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("8")]
+position = Vector2(2000, -3.05176e-05)
 rotation = 3.14159
 controls = "joy1"
-species = ExtResource( 9 )
+species = ExtResource("9")
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( -2000, 0 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("8")]
+position = Vector2(-2000, 0)
 rotation = 0.0
 controls = "kb2"
-species = ExtResource( 10 )
+species = ExtResource("10")
 
 [node name="Camera3D" parent="." index="6"]
-zoom = Vector2( 10, 10 )
+zoom = Vector2(10, 10)
 position_smoothing_speed = 0.3
+
 [connection signal="battle_start" from="." to="Battlefield/Middleground/Moon" method="_on_Arena_battle_start"]
 [connection signal="battle_start" from="." to="Battlefield/Middleground/Moon2" method="_on_Arena_battle_start"]
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

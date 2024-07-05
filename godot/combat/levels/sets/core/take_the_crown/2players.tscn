@@ -1,87 +1,108 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=23 format=3 uid="uid://bbjhlt35n3xsg"]
 
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=3]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=4]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
-[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=7]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=9]
-[ext_resource path="res://actors/environments/ShieldWall.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/patterns/checkers.png" type="Texture2D" id=11]
-[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=13]
-[ext_resource path="res://actors/brains/TakeTheCrownBrain.tscn" type="PackedScene" id=15]
-[ext_resource path="res://combat/managers/CrownManager.tscn" type="PackedScene" id=16]
-[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=17]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="4"]
+[ext_resource type="PackedScene" path="res://actors/environments/Wall.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="6"]
+[ext_resource type="Resource" uid="uid://b4mhr8ft2dgry" path="res://selection/characters/umidorians_1.tres" id="7"]
+[ext_resource type="PackedScene" path="res://combat/Arena.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://combat/traits/NavigationZone.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://actors/environments/ShieldWall.tscn" id="10"]
+[ext_resource type="Texture2D" uid="uid://mbgh35ypfdri" path="res://assets/patterns/checkers.png" id="11"]
+[ext_resource type="Resource" path="res://combat/modes/TakeTheCrown.tres" id="13"]
+[ext_resource type="PackedScene" path="res://actors/brains/TakeTheCrownBrain.tscn" id="15"]
+[ext_resource type="PackedScene" path="res://combat/managers/CrownManager.tscn" id="16"]
+[ext_resource type="PackedScene" uid="uid://nlnnx1golw11" path="res://actors/environments/Ball.tscn" id="17"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Resource" id="Resource_m4bsf"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_wd7i8"]
+metadata/__load_path__ = "res://addons/geometry/icons/GBeveledRect.svg"
+
+[sub_resource type="Resource" id="Resource_m5dlc"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_ulpq5"]
+metadata/__load_path__ = "res://addons/geometry/icons/GBeveledRect.svg"
+
+[sub_resource type="Resource" id="Resource_cgu44"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_r1a0o"]
+metadata/__load_path__ = "res://addons/geometry/icons/GBeveledRect.svg"
+
+[sub_resource type="Animation" id="1"]
 resource_name = "Rotate"
 length = 8.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("GBeveledRect:bevel")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 4 ),
-"transitions": PackedFloat32Array( -2, -2 ),
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [ 935, 50 ]
+"values": [935, 50]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Resource" id="Resource_tcaw3"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_7b1lh"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Animation" id="2"]
 length = 10.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("ShieldWall:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 10 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ 0.0, 360.0 ]
+"values": [0.0, 360.0]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("ShieldWall2:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 10 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ 0.0, 360.0 ]
+"values": [0.0, 360.0]
 }
 
-[node name="Arena" instance=ExtResource( 8 )]
+[node name="Arena" instance=ExtResource("8")]
 size_multiplier = 2.5
-game_mode = ExtResource( 13 )
-cpu_brain_scene = ExtResource( 15 )
+game_mode = ExtResource("13")
+cpu_brain_scene = ExtResource("15")
 create_default_navzone = false
 
-[node name="CrownManager" parent="Managers" index="0" instance=ExtResource( 16 )]
+[node name="CrownManager" parent="Managers" index="0" instance=ExtResource("16")]
 
 [node name="CrownModeManager" parent="Managers" index="8"]
 enabled = true
 
-[node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
+[node name="OutsideWallGhost" parent="Battlefield/Background" index="1" instance=ExtResource("5")]
 hollow = true
 offset = 200
 type = 2
-solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+solid_line_color = Color(1.13, 0.78, 0.47, 1)
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost" index="3"]
-script = ExtResource( 2 )
+script = SubResource("Resource_m4bsf")
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_icon": SubResource("Resource_wd7i8")
 }
 width = 3500
 height = 1900
@@ -91,18 +112,18 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="NavigationZone" parent="Battlefield/Background/OutsideWallGhost" index="9" instance=ExtResource( 9 )]
+[node name="NavigationZone" parent="Battlefield/Background/OutsideWallGhost" index="9" instance=ExtResource("9")]
 
-[node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
+[node name="OutsideWallGhost2" parent="Battlefield/Background" index="2" instance=ExtResource("5")]
 hollow = true
 offset = 200
 type = 2
-solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+solid_line_color = Color(1.13, 0.78, 0.47, 1)
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWallGhost2" index="3"]
-script = ExtResource( 2 )
+script = SubResource("Resource_m5dlc")
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_icon": SubResource("Resource_ulpq5")
 }
 width = 3500
 height = 1900
@@ -112,16 +133,16 @@ bevel_ne = 950
 bevel_sw = 950
 bevel_se = 950
 
-[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource("5")]
 hollow = true
 hide_grid = true
-solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
-grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+solid_line_color = Color(1.13, 0.78, 0.47, 1)
+grid_color = Color(0.996078, 0.584314, 0, 0.407843)
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
-script = ExtResource( 2 )
+script = SubResource("Resource_cgu44")
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_icon": SubResource("Resource_r1a0o")
 }
 width = 3500
 height = 1900
@@ -131,76 +152,76 @@ bevel_ne = 935
 bevel_sw = 935
 bevel_se = 935
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=["animation_in_battle"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=["animation_starts_with_battle"]]
 playback_speed = 0.5
-anims/Rotate = SubResource( 1 )
+anims/Rotate = SubResource("1")
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
-texture = ExtResource( 11 )
-fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
-bg_color = Color( 0.28, 0.14, 0.14, 1 )
+modulate = Color(1, 1, 1, 0.9)
+texture = ExtResource("11")
+fg_color = Color(0.32, 0.1632, 0.1632, 1)
+bg_color = Color(0.28, 0.14, 0.14, 1)
 
 [node name="FloodWater" parent="Battlefield/Background" index="5"]
-opaque_tint = Color( 0, 0, 0, 1 )
+opaque_tint = Color(0, 0, 0, 1)
 
-[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 5 )]
-position = Vector2( 0, -950 )
-solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource("5")]
+position = Vector2(0, -950)
+solid_line_color = Color(1.13, 0.78, 0.47, 1)
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="8"]
-script = ExtResource( 1 )
+script = SubResource("Resource_tcaw3")
 radius = 150
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 5 )]
-position = Vector2( 0, 950 )
-solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource("5")]
+position = Vector2(0, 950)
+solid_line_color = Color(1.13, 0.78, 0.47, 1)
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="8"]
-script = ExtResource( 1 )
+script = SubResource("Resource_7b1lh")
 radius = 150
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="2" groups=["animation_in_battle"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground" index="2" groups=["animation_starts_with_battle"]]
 playback_process_mode = 0
 playback_speed = 0.2
-anims/Rotate = SubResource( 2 )
+anims/Rotate = SubResource("2")
 
-[node name="ShieldWall" parent="Battlefield/Middleground" index="3" instance=ExtResource( 10 )]
-position = Vector2( -800, 0 )
+[node name="ShieldWall" parent="Battlefield/Middleground" index="3" instance=ExtResource("10")]
+position = Vector2(-800, 0)
 type = "skin"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/ShieldWall" index="6"]
-polygon = PackedVector2Array( 0, -400, 400, 0, 0, 400, -400, 0 )
+polygon = PackedVector2Array(0, -400, 400, 0, 0, 400, -400, 0)
 
-[node name="ShieldWall2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 10 )]
-position = Vector2( 800, 0 )
+[node name="ShieldWall2" parent="Battlefield/Middleground" index="4" instance=ExtResource("10")]
+position = Vector2(800, 0)
 type = "skin"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/ShieldWall2" index="6"]
-polygon = PackedVector2Array( 0, -400, 400, 0, 0, 400, -400, 0 )
+polygon = PackedVector2Array(0, -400, 400, 0, 0, 400, -400, 0)
 
-[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 17 )]
+[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource("17")]
 type = "crown"
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( -400, -400 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("6")]
+position = Vector2(-400, -400)
 rotation = 0.785398
-species = ExtResource( 4 )
+species = ExtResource("4")
 cpu = true
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( 400, 400 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("6")]
+position = Vector2(400, 400)
 rotation = -2.35619
 controls = "kb2"
-species = ExtResource( 7 )
+species = ExtResource("7")
 cpu = true
 
 [node name="Camera3D" parent="." index="6"]
-zoom = Vector2( 1.14795e+28, 1.14795e+28 )
+zoom = Vector2(1.14795e+28, 1.14795e+28)
 position_smoothing_speed = 0.3

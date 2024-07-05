@@ -1,11 +1,12 @@
-[gd_scene load_steps=28 format=3 uid="uid://epsl0tqkcgfj"]
+[gd_scene load_steps=29 format=3 uid="uid://craiyqeft81p6"]
 
-[ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://godot4/elements/gates/Gate.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://xoqhtny3wi7s" path="res://godot4/elements/gates/PortalGate.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="3"]
-[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="4"]
-[ext_resource type="Texture2D" uid="uid://baclyt1ayjb0e" path="res://assets/sprites/signs/arrow.png" id="5"]
-[ext_resource type="Resource" uid="uid://c2d0iaqf8sd0v" path="res://selection/characters/pentagonions_1.tres" id="6"]
+[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_yvuul"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_0d25p"]
+[ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://godot4/elements/gates/Gate.tscn" id="5_l0mo2"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="5_m1k8q"]
+[ext_resource type="PackedScene" uid="uid://xoqhtny3wi7s" path="res://godot4/elements/gates/PortalGate.tscn" id="6_6bfaj"]
+[ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="6_s3btm"]
+[ext_resource type="Texture2D" uid="uid://baclyt1ayjb0e" path="res://assets/sprites/signs/arrow.png" id="7_8grn8"]
 
 [sub_resource type="Animation" id="5"]
 length = 0.001
@@ -273,155 +274,162 @@ _data = {
 "default": SubResource("13")
 }
 
-[node name="B" type="Node2D"]
+[node name="VersusArena" instance=ExtResource("1_yvuul")]
 
-[node name="Gate" parent="." instance=ExtResource("1")]
+[node name="P1" parent="Homes" index="0" instance=ExtResource("4_0d25p")]
+position = Vector2(-1600, -1050)
+
+[node name="P2" parent="Homes" index="1" instance=ExtResource("4_0d25p")]
+position = Vector2(-1600, -750)
+
+[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("5_m1k8q")]
+hollow = true
+
+[node name="VRoundedRect" type="Node" parent="Battlefield/OutsideWall" index="4"]
+script = ExtResource("6_s3btm")
+width = 5600.0
+height = 3100.0
+radius = 900.0
+
+[node name="B" type="Node2D" parent="Battlefield" index="1"]
+
+[node name="Gate" parent="Battlefield/B" index="0" instance=ExtResource("5_l0mo2")]
 position = Vector2(500, 500)
 rotation = -2.3562
 width = 700.0
 show_arrow = false
 
-[node name="Gate12" parent="." instance=ExtResource("1")]
+[node name="Gate12" parent="Battlefield/B" index="1" instance=ExtResource("5_l0mo2")]
 position = Vector2(1450, 900)
 rotation = 3.14159
 width = 500.0
 show_arrow = false
 
-[node name="Gate13" parent="." instance=ExtResource("1")]
+[node name="Gate13" parent="Battlefield/B" index="2" instance=ExtResource("5_l0mo2")]
 position = Vector2(1150, 900)
 rotation = 3.14159
 width = 500.0
 show_arrow = false
 
-[node name="Gate6" parent="." instance=ExtResource("1")]
+[node name="Gate6" parent="Battlefield/B" index="3" instance=ExtResource("5_l0mo2")]
 position = Vector2(-1800, 800)
 rotation = 0.785398
 width = 500.0
 show_arrow = false
 
-[node name="Gate10" parent="." instance=ExtResource("1")]
+[node name="Gate10" parent="Battlefield/B" index="4" instance=ExtResource("5_l0mo2")]
 position = Vector2(-1100, -900)
 rotation = 3.14159
 width = 700.0
 show_arrow = false
 
-[node name="Gate11" parent="." instance=ExtResource("1")]
+[node name="Gate11" parent="Battlefield/B" index="5" instance=ExtResource("5_l0mo2")]
 position = Vector2(-1950, -650)
 rotation = 2.35619
 width = 700.0
 show_arrow = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate11" groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/B/Gate11" index="7" groups=["animation_starts_with_battle"]]
 libraries = {
 "": SubResource("AnimationLibrary_djol6")
 }
 
-[node name="Gate5" parent="." instance=ExtResource("1")]
+[node name="Gate5" parent="Battlefield/B" index="6" instance=ExtResource("5_l0mo2")]
 position = Vector2(-1300, 900)
 width = 500.0
 show_arrow = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate5" groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/B/Gate5" index="7" groups=["animation_starts_with_battle"]]
 libraries = {
 "": SubResource("AnimationLibrary_v85iv")
 }
 
-[node name="Gate8" parent="." instance=ExtResource("1")]
+[node name="Gate8" parent="Battlefield/B" index="7" instance=ExtResource("5_l0mo2")]
 position = Vector2(-1000, 900)
 width = 500.0
 show_arrow = false
 
-[node name="Gate14" parent="." instance=ExtResource("1")]
+[node name="Gate14" parent="Battlefield/B" index="8" instance=ExtResource("5_l0mo2")]
 position = Vector2(-700, 900)
 width = 500.0
 show_arrow = false
 
-[node name="Gate2" parent="." instance=ExtResource("1")]
+[node name="Gate2" parent="Battlefield/B" index="9" instance=ExtResource("5_l0mo2")]
 position = Vector2(2200, -6.10352e-05)
 rotation = 1.5708
 width = 700.0
 show_arrow = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate2" groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/B/Gate2" index="7" groups=["animation_starts_with_battle"]]
 libraries = {
 "": SubResource("AnimationLibrary_48p16")
 }
 
-[node name="Gate7" parent="." instance=ExtResource("1")]
+[node name="Gate7" parent="Battlefield/B" index="10" instance=ExtResource("5_l0mo2")]
 position = Vector2(-2200, 0)
 rotation = 1.5708
 width = 700.0
 show_arrow = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate7" groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/B/Gate7" index="7" groups=["animation_starts_with_battle"]]
 libraries = {
 "": SubResource("AnimationLibrary_07ajn")
 }
 
-[node name="Gate4" parent="." instance=ExtResource("1")]
+[node name="Gate4" parent="Battlefield/B" index="11" instance=ExtResource("5_l0mo2")]
 position = Vector2(1450, -900)
 width = 700.0
 show_arrow = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate4" groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/B/Gate4" index="7" groups=["animation_starts_with_battle"]]
 libraries = {
 "": SubResource("AnimationLibrary_yp778")
 }
 
-[node name="Gate15" parent="." instance=ExtResource("1")]
+[node name="Gate15" parent="Battlefield/B" index="12" instance=ExtResource("5_l0mo2")]
 position = Vector2(850, -900)
 width = 700.0
 show_arrow = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate15" groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/B/Gate15" index="7" groups=["animation_starts_with_battle"]]
 libraries = {
 "": SubResource("AnimationLibrary_jccpk")
 }
 
-[node name="Gate9" parent="." instance=ExtResource("1")]
+[node name="Gate9" parent="Battlefield/B" index="13" instance=ExtResource("5_l0mo2")]
 position = Vector2(1150, -900)
 width = 700.0
 show_arrow = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Gate9" groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/B/Gate9" index="7" groups=["animation_starts_with_battle"]]
 libraries = {
 "": SubResource("AnimationLibrary_4q3dy")
 }
 
-[node name="PortalGate" parent="." instance=ExtResource("2")]
+[node name="PortalGate" parent="Battlefield/B" index="14" node_paths=PackedStringArray("linked_to") instance=ExtResource("6_6bfaj")]
 position = Vector2(0, -900)
+linked_to = NodePath("../PortalGate2")
 
-[node name="PortalGate2" parent="." instance=ExtResource("2")]
+[node name="PortalGate2" parent="Battlefield/B" index="15" node_paths=PackedStringArray("linked_to") instance=ExtResource("6_6bfaj")]
 position = Vector2(0, 900)
+linked_to = NodePath("../PortalGate")
 tint = Color(0, 0.368627, 1, 1)
 inverted = true
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="Battlefield/B" index="16"]
 points = PackedVector2Array(-300, 900, -1700, 900, -2200, 400, -2200, -400, -1700, -900, -1650, -900)
 width = 130.0
 default_color = Color(0.133333, 0.666667, 1, 0.313726)
 
-[node name="Line2D2" type="Line2D" parent="."]
+[node name="Line2D2" type="Line2D" parent="Battlefield/B" index="17"]
 points = PackedVector2Array(-1150, -900, -900, -900, 900, 900, 1700, 900, 2200, 400, 2200, -400, 1700, -900, 200, -900)
 width = 130.0
 default_color = Color(0.133333, 0.666667, 1, 0.313726)
 
-[node name="Arrow" type="Sprite2D" parent="."]
+[node name="Arrow" type="Sprite2D" parent="Battlefield/B" index="18"]
 modulate = Color(0.133333, 0.666667, 1, 0.313726)
 position = Vector2(-1400, -900)
 rotation = 3.14159
 scale = Vector2(1.3, 1.3)
-texture = ExtResource("5")
+texture = ExtResource("7_8grn8")
 flip_h = true
-
-[node name="p1" parent="." instance=ExtResource("3")]
-position = Vector2(-1600, -1050)
-rotation = 0.0
-controls = "joy1"
-species = ExtResource("6")
-
-[node name="p2" parent="." instance=ExtResource("3")]
-position = Vector2(-1600, -750)
-rotation = 0.0
-controls = "joy2"
-species = ExtResource("4")
