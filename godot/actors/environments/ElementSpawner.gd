@@ -6,6 +6,8 @@ class_name ElementSpawner
 @export var element_scene: PackedScene: set = set_element_scene
 @export var preview_sprite_name := "Sprite2D"
 
+const JITTER = 0.1
+
 func set_element_scene(v: PackedScene):
 	element_scene = v
 	if not is_inside_tree():
@@ -26,7 +28,8 @@ func spawn(parent_node = null):
 	if parent_node == null:
 		parent_node = get_parent()
 	var element = element_scene.instantiate()
-	element.global_position = global_position
+	element.global_position = global_position + Vector2(randfn(0.0,JITTER),randfn(0.0,JITTER))
+	
 	parent_node.add_child(element)
 	if traits.has_trait(element, 'Waiter'):
 		element.start()

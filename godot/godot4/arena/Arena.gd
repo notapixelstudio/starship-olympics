@@ -101,6 +101,11 @@ func _on_match_over_anim_finished() -> void:
 	Events.match_over_anim_ended.emit()
 
 func _unhandled_key_input(event) -> void:
-	# cause the clock to expire for testing
-	if event.is_action_pressed("debug_action") and OS.is_debug_build():
-		Events.clock_expired.emit()
+	if OS.is_debug_build():
+		# cause the clock to expire for testing
+		if event.is_action_pressed("debug_action"):
+			Events.clock_expired.emit()
+			
+		# reset the current level
+		if event.is_action_pressed("debug_restart_scene"):
+			get_tree().reload_current_scene()

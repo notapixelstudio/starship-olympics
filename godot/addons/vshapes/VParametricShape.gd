@@ -18,7 +18,7 @@ func taint() -> void:
 func is_dirty() -> bool:
 	return _dirty
 	
-func _process(delta):
+func _physics_process(delta):
 	if _dirty:
 		update()
 		_dirty = false
