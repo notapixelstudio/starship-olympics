@@ -52,6 +52,10 @@ func _ready() -> void:
 			brain.set_controls(player.get_controls())
 		ship.add_child(brain)
 		
+		if minigame.starting_weapon:
+			var weapon = minigame.starting_weapon.instantiate()
+			ship.add_child(weapon)
+		
 		%Battlefield.add_child(ship)
 		
 		if player.get_team() not in teams:

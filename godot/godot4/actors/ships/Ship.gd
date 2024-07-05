@@ -69,6 +69,9 @@ var charging_started_since := 0.0 ## in seconds
 var target_velocity := Vector2(0, 0)
 var rotation_request := 0.0
 
+func get_target_velocity() -> Vector2:
+	return target_velocity
+	
 func set_target_velocity(v: Vector2) -> void:
 	target_velocity = v
 	set_constant_force(target_velocity * THRUST*int(is_thrusting()))
@@ -104,7 +107,7 @@ func dash(charge: float) -> void:
 	_drop_dash_ring_effect()
 	
 func tap():
-	pass
+	Events.tap.emit(self)
 	
 func _ready():
 	# apparently, setting this from code is necessary in order for box2d to correctly perform "bullet"-style collisions

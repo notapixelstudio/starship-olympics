@@ -1,5 +1,5 @@
 extends RigidBody2D
-class_name Pewz
+class_name Pew
 
 @export var PfftScene : PackedScene
 
@@ -10,12 +10,16 @@ var previous_velocity := Vector2.LEFT
 var team : String
 
 func _ready():
+	_update_rotation()
 	SoundEffects.play($RandomAudioStreamPlayer)
 
 func _physics_process(delta):
 	previous_velocity = linear_velocity
 
 func _process(delta):
+	_update_rotation()
+	
+func _update_rotation() -> void:
 	$Wrapper.rotation = linear_velocity.angle()
 
 func on_ship_near_area_hit(hit_ship: Ship) -> void:
@@ -25,17 +29,23 @@ func on_ship_near_area_hit(hit_ship: Ship) -> void:
 		destroy()
 	
 func _on_ForwardBullet_body_entered(body):
-	var is_mirror = body is Mirror or body is MirrorWall
+	var is_mirror = body is Mirror #or body is MirrorWall
 	#var foe = not body.has_method('get_team') or body.get_team() != get_team()
 	if not is_mirror:# and foe:
 		destroy()
 		
-	if body.has_method('damage'):
-		body.damage(self, ship)
+	if body.has_method('hit'):
+		body.hit()
 		
-	if body is Ball and has_ownership_transfer() and ship != null and is_instance_valid(ship):
-		body.set_player(ship.get_player())
-		body.activate()
+	# TBD this was needed in GoalPortal
+	#if body is Ball and has_ownership_transfer() and ship != null and is_instance_valid(ship):
+		#body.set_player(ship.get_player())
+		#body.activate()
+		
+func hurt(hurted) -> void:
+	if hurted.has_method('suffer_damage'):
+		hurted.suffer_damage(1)
+	destroy()
 
 func set_ship(v : Ship):
 	ship = v

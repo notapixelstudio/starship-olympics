@@ -1,6 +1,6 @@
 extends Area2D
 
-@export_enum('shield', 'plate', 'skin') var type = 'shield'
+@export_enum('shield', 'plate', 'skin') var type = 'skin'
 @export var starting_health := 3
 @export var respawn_time := 6
 @export var symbol_scale := 1.0: set = set_symbol_scale
@@ -15,7 +15,7 @@ func set_symbol_scale(v: float) -> void:
 	
 func _ready():
 	$Polygon2D.polygon = $CollisionPolygon2D.polygon
-	$IsoPolygon.set_polygon($CollisionPolygon2D.polygon)
+	#$IsoPolygon.set_polygon($CollisionPolygon2D.polygon)
 	$Line2D.points = $CollisionPolygon2D.polygon + PackedVector2Array([$CollisionPolygon2D.polygon[0]])
 	up(type)
 
@@ -46,7 +46,7 @@ func up(new_type):
 	$Polygon2D.modulate = Color('#207bff')
 	$Sprite2D.modulate = Color('#70abff')
 	$Line2D.modulate = Color('#bbbbff')
-	$IsoPolygon.color = Color('#306bff')
+	#$IsoPolygon.color = Color('#306bff')
 	
 	enable_collisions()
 	$AnimationPlayer.play("reset")

@@ -1,10 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://def8gegesl10e"]
+[gd_scene load_steps=9 format=3 uid="uid://def8gegesl10e"]
 
 [ext_resource type="Script" path="res://godot4/elements/treasures/Treasure.gd" id="1_q6gx3"]
 [ext_resource type="PackedScene" uid="uid://c4yru00x07tyi" path="res://godot4/effects/TreasurePicked.tscn" id="2_lfwwo"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ojvyv"]
+bounce = 0.35
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ycic"]
 radius = 70.0
+
+[sub_resource type="Animation" id="Animation_r82e2"]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(3, 3, 3, 1), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_e7hm2"]
 length = 0.001
@@ -51,6 +70,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lqqh5"]
 _data = {
+"Hit": SubResource("Animation_r82e2"),
 "RESET": SubResource("Animation_e7hm2"),
 "Shine": SubResource("Animation_ijh7r")
 }
@@ -58,6 +78,7 @@ _data = {
 [node name="Treasure" type="RigidBody2D"]
 collision_layer = 2048
 collision_mask = 3093
+physics_material_override = SubResource("PhysicsMaterial_ojvyv")
 can_sleep = false
 linear_damp = 1.0
 script = ExtResource("1_q6gx3")

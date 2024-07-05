@@ -46,6 +46,10 @@ func touched_by(toucher : Ship):
 	
 	queue_free()
 
+func hit():
+	%SpriteAnimation.stop()
+	%SpriteAnimation.play('Hit')
+	
 func shine():
 	%SpriteAnimation.stop()
 	%SpriteAnimation.play('Shine')

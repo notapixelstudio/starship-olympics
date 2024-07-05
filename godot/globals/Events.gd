@@ -11,7 +11,6 @@ signal sths_bumped(sth1, sth2) # just one for pair
 
 signal tappable_entered(tappable, ship)
 signal tappable_exited(tappable, ship)
-signal tap(tapper)
 signal sth_tapped(tapper, tappee)
 
 signal card_revealed(card)
@@ -56,6 +55,8 @@ signal match_over_anim_ended
 
 signal sth_collected(collector, collectee)
 signal sth_loaded(loader, loadee)
+
+signal tap(tapper)
 
 signal camera_updated(camera_state:Dictionary)
 # END 4.x events

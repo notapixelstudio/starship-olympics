@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8s08rc21o1ra"]
+[gd_scene load_steps=8 format=3 uid="uid://c8s08rc21o1ra"]
 
 [ext_resource type="Script" path="res://godot4/elements/cargos/Cargo.gd" id="1_mtln1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ribre"]
+bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ycic"]
 radius = 70.0
@@ -31,6 +34,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ijh7r"]
 resource_name = "Shine"
@@ -48,8 +63,25 @@ tracks/0/keys = {
 "values": [Color(1.4, 1.4, 1.4, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_5s86f"]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(3, 3, 3, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lqqh5"]
 _data = {
+"Hit": SubResource("Animation_5s86f"),
 "RESET": SubResource("Animation_e7hm2"),
 "Shine": SubResource("Animation_ijh7r")
 }
@@ -57,6 +89,7 @@ _data = {
 [node name="Cargo" type="RigidBody2D"]
 collision_layer = 512
 collision_mask = 3605
+physics_material_override = SubResource("PhysicsMaterial_ribre")
 can_sleep = false
 linear_damp = 1.0
 script = ExtResource("1_mtln1")

@@ -100,11 +100,11 @@ sides = 4
 [node name="ShieldWall" parent="Battlefield" index="4" instance=ExtResource("8_nyho4")]
 position = Vector2(-800, 0)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/ShieldWall" index="7"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/ShieldWall" index="6"]
 polygon = PackedVector2Array(400, 0, 0, 400, -400, 0, 0, -400)
 
 [node name="ShieldWall2" parent="Battlefield" index="5" instance=ExtResource("8_nyho4")]
 position = Vector2(800, 0)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/ShieldWall2" index="7"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/ShieldWall2" index="6"]
 polygon = PackedVector2Array(400, 0, 0, 400, -400, 0, 0, -400)

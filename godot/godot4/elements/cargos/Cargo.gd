@@ -14,3 +14,7 @@ func touched_by(toucher : Ship):
 
 func get_texture() -> Texture:
 	return %Sprite2D.texture
+
+func hit():
+	%SpriteAnimation.stop()
+	%SpriteAnimation.play('Hit')

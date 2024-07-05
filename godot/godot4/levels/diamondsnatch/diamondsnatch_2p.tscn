@@ -54,6 +54,7 @@ script = ExtResource("6_exy44")
 sides = 4
 
 [node name="Diamond" parent="Battlefield" index="3" instance=ExtResource("2_aq6w1")]
+physics_material_override = null
 
 [node name="Wave0" type="Node2D" parent="Battlefield" index="4" groups=["spawn_waves"]]
 script = ExtResource("3_tj16f")
