@@ -22,15 +22,19 @@ func _ready() -> void:
 func reset_scores() -> void:
 	for team in teams:
 		add_team(team)
-		
+	_compute_standings()
+	
+func _compute_standings() -> void:
+	_standings = _scores.keys().map(func(k): return {'team': k, 'score': _scores[k]})
+	_standings.sort_custom(func(a,b): return a['score'] > b['score'])
+	
 func _on_points_scored(amount: float, team: String) -> void:
 	if not _scores.has(team):
 		Events.log.emit('Error! [b]%s[/b] team not found.' % team)
 		return
 	
 	_scores[team] += amount
-	_standings = _scores.keys().map(func(k): return {'team': k, 'score': _scores[k]})
-	_standings.sort_custom(func(a,b): return a['score'] > b['score'])
+	_compute_standings()
 	
 	Events.score_updated.emit(_scores[team], team, _standings)
 	Events.log.emit('Team [b]%s[/b] scored %d points, and is now at %d points.' % [team, amount, _scores[team]])

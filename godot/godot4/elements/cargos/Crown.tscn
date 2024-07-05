@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cms0aqjusqct1"]
+
+[ext_resource type="PackedScene" uid="uid://ddtlawrotn0nb" path="res://godot4/elements/cargos/Hat.tscn" id="1_xre4g"]
+[ext_resource type="Texture2D" uid="uid://d34r6ew04rdjl" path="res://assets/sprites/balls/crown.png" id="2_hgd27"]
+
+[node name="Crown" instance=ExtResource("1_xre4g")]
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+texture = ExtResource("2_hgd27")

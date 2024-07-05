@@ -1,0 +1,97 @@
+[gd_scene load_steps=11 format=3 uid="uid://x751geeku5fx"]
+
+[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_bvhdi"]
+[ext_resource type="PackedScene" uid="uid://chnvt4cxrqrcv" path="res://godot4/arena/managers/games/CrownGame.tscn" id="2_3q1vj"]
+[ext_resource type="Script" path="res://addons/vshapes/VBeveledRect.gd" id="4_ij1ca"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_vjgex"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="5_q5cfv"]
+[ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="6_h5akp"]
+[ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="7_1nk4p"]
+
+[sub_resource type="Animation" id="Animation_vtipm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBeveledRect:bevel")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [935.0]
+}
+
+[sub_resource type="Animation" id="Animation_d4q4d"]
+resource_name = "default"
+length = 8.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBeveledRect:bevel")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [935.0, 50.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aclk8"]
+_data = {
+"RESET": SubResource("Animation_vtipm"),
+"default": SubResource("Animation_d4q4d")
+}
+
+[node name="VersusArena" instance=ExtResource("1_bvhdi")]
+
+[node name="CrownGame" parent="Managers" index="5" instance=ExtResource("2_3q1vj")]
+
+[node name="Camera2D" parent="." index="1"]
+zoom = Vector2(0.3, 0.3)
+
+[node name="P1" parent="Homes" index="0" instance=ExtResource("4_vjgex")]
+position = Vector2(-400, -400)
+rotation = 0.785398
+
+[node name="P2" parent="Homes" index="1" instance=ExtResource("4_vjgex")]
+position = Vector2(400, 400)
+rotation = -2.35619
+
+[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("5_q5cfv")]
+hollow = true
+
+[node name="VBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="5"]
+script = ExtResource("4_ij1ca")
+width = 3500.0
+height = 1900.0
+bevel = 935.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/OutsideWall" index="6"]
+callback_mode_process = 0
+libraries = {
+"": SubResource("AnimationLibrary_aclk8")
+}
+autoplay = "default"
+
+[node name="Wall" parent="Battlefield" index="1" instance=ExtResource("5_q5cfv")]
+position = Vector2(0, -950)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4"]
+script = ExtResource("7_1nk4p")
+radius = 150.0
+sides = 4
+
+[node name="Wall2" parent="Battlefield" index="2" instance=ExtResource("5_q5cfv")]
+position = Vector2(0, 950)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4"]
+script = ExtResource("7_1nk4p")
+radius = 150.0
+sides = 4
+
+[node name="Crown" parent="Battlefield" index="3" instance=ExtResource("6_h5akp")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=28 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="1_1sf7u"]
 [ext_resource type="Script" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://bpw2qo5744n7m" path="res://godot4/data/minigames/default.tres" id="9_vsuw2"]
 [ext_resource type="PackedScene" uid="uid://ctdiyn70rdfsq" path="res://godot4/arena/managers/TimeManager.tscn" id="10_mhlox"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="16_64a4r"]
+[ext_resource type="Script" path="res://godot4/arena/ArenaCamera2D.gd" id="16_ad0xh"]
 [ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="16_jk7x4"]
 [ext_resource type="Shader" path="res://assets/shaders/crt_local.gdshader" id="17_7kknq"]
 [ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="18_3l87r"]
@@ -75,6 +76,7 @@ battlefield = NodePath("../../Battlefield")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
+script = ExtResource("16_ad0xh")
 
 [node name="Homes" type="Node2D" parent="."]
 unique_name_in_owner = true

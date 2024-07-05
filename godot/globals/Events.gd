@@ -53,9 +53,13 @@ signal message(message:Variant, color:Color, global_position:Vector2)
 signal battle_start
 signal match_over(data:Dictionary)
 signal match_over_anim_ended
-# END 4.x events
 
 signal sth_collected(collector, collectee)
+signal sth_loaded(loader, loadee)
+
+signal camera_updated(camera_state:Dictionary)
+# END 4.x events
+
 signal sth_conquered(conqueror, conquered)
 
 signal sth_countdown_expired(sth)

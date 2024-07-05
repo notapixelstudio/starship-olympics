@@ -90,7 +90,7 @@ func _on_clock_ticked(t:float, t_secs:int) -> void:
 func _on_match_over(data:Dictionary) -> void:
 	# peform a match over animation
 	var tween = get_tree().create_tween()
-	tween.set_parallel()
+	#tween.set_parallel()
 	tween.tween_property(Engine, "time_scale", 0.1, 0.6).set_trans(Tween.TRANS_CUBIC)
 	#tween.tween_property($Battlefield, "modulate", Color(0.7,0.7,0.7), 0.6).set_trans(Tween.TRANS_CUBIC)
 	tween.finished.connect(_on_match_over_anim_finished)

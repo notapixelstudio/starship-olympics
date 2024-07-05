@@ -3,10 +3,13 @@ extends RigidBody2D
 class_name Ship
 ## Ship base class
 
-@export var player : Player : set = set_player
+@export var player : Player : get = get_player, set = set_player
 @export var dash_ring_scene : PackedScene
 @export var death_feedback_scene : PackedScene
 
+func get_player() -> Player:
+	return player
+	
 func set_player(v: Player) -> void:
 	player = v
 	%Sprite.texture = player.get_ship_image()
@@ -16,6 +19,8 @@ func set_player(v: Player) -> void:
 	%MotionAutoTrail.gradient = trail_gradient
 	%FlameTrail.default_color = player.get_species().get_color_accent()
 	%BottomFlameTrail.default_color = player.get_species().get_color()
+	%PlayerID.text = player.get_id()
+	%PlayerID.modulate = player.get_species().get_color()
 
 @onready var tracked = %Tracked
 
@@ -106,6 +111,7 @@ func _ready():
 	# see https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_dynamics.html
 	# and https://github.com/search?q=repo%3Aappsinacup%2Fgodot-box2d+body_set_ccd_enabled&type=code
 	PhysicsServer2D.body_set_continuous_collision_detection_mode(get_rid(), PhysicsServer2D.CCD_MODE_CAST_SHAPE)
+	Events.sth_loaded.connect(_on_sth_loaded)
 
 func _integrate_forces(state):
 	tracked.tick()
@@ -159,6 +165,12 @@ func _on_hurt_area_entered(sth):
 	
 	if sth.has_method('hurt'):
 		sth.hurt(self)
+		
+func _on_sth_loaded(loader, loadee) -> void:
+	if self != loader:
+		return
+		
+	%CargoSprite.texture = loadee.get_texture()
 
 func get_color() -> Color:
 	return player.get_color() if player else Color.WHITE

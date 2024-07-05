@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=24 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PackedScene" uid="uid://b6gg3o407i70x" path="res://godot4/effects/DashRing.tscn" id="2_0puh8"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://actors/battlers/ChargeManager.gd" id="5_ostpb"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="8_yfcmx"]
 [ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://godot4/effects/trails/FlameTrail.tscn" id="10_4jj2i"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="10_iega2"]
 [ext_resource type="PackedScene" uid="uid://cex35drwxeknp" path="res://godot4/effects/trails/FlamesManager.tscn" id="11_i3r85"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="11_tsmbp"]
 
@@ -64,6 +65,16 @@ radius = 700.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_tm340"]
 resource_local_to_scene = true
 radius = 48.0
+
+[sub_resource type="GDScript" id="GDScript_j55tj"]
+script/source = "extends Node2D
+
+func _ready() -> void:
+	Events.camera_updated.connect(_on_camera_updated)
+
+func _on_camera_updated(camera_state:Dictionary) -> void:
+	scale = Vector2(1,1)/camera_state['zoom']
+"
 
 [sub_resource type="Gradient" id="Gradient_tmbes"]
 resource_local_to_scene = true
@@ -150,6 +161,33 @@ position = Vector2(-55, 0)
 points = PackedVector2Array(0, 0, 0, 0)
 width = 25.0
 texture_mode = 221806672
+
+[node name="Wrapper" type="Node2D" parent="Indicators"]
+top_level = true
+
+[node name="Scaled" type="Node2D" parent="Indicators/Wrapper"]
+position = Vector2(0, -160)
+script = SubResource("GDScript_j55tj")
+
+[node name="PlayerID" type="Label" parent="Indicators/Wrapper/Scaled"]
+unique_name_in_owner = true
+z_index = 10
+offset_left = -128.0
+offset_top = -48.0
+offset_right = 128.0
+offset_bottom = -11.0
+theme = ExtResource("10_iega2")
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CargoSprite" type="Sprite2D" parent="Indicators/Wrapper"]
+unique_name_in_owner = true
+position = Vector2(0, -160)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Indicators"]
+remote_path = NodePath("../Wrapper")
+update_rotation = false
 
 [node name="ChargeManager" type="Node" parent="."]
 unique_name_in_owner = true

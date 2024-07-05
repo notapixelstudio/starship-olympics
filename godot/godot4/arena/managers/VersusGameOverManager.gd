@@ -2,7 +2,7 @@ extends Node
 
 
 var _int_max_score : int
-var _latest_standings : Array
+var _latest_standings : Array = []
 
 func set_max_score(value: float) -> void:
 	_int_max_score = int(value)
@@ -33,11 +33,11 @@ func _check_if_perfect() -> void:
 			
 func _end_the_match() -> void:
 	var winners : Array[String] = []
-	var best_score : float = _latest_standings[0]['score']
+	var best_score : float = _latest_standings[0]['score'] if len(_latest_standings) > 0 else 0.0
 	for standing in _latest_standings:
 		if abs(standing['score'] - best_score) < 0.1:
 			winners.append(standing['team'])
 		else:
 			break # standings are sorted
-	Events.match_over.emit({'winners': winners, 'standings': _latest_standings})
+	Events.match_over.emit({'winners': winners, 'standings': _latest_standings}) # no winners if score is zero
 	
