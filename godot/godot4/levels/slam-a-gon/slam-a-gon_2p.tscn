@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqruidxbhxmqw"]
+
+[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_xo2hy"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_dnkun"]
+[ext_resource type="Script" path="res://addons/vshapes/VCircle.gd" id="4_kul8a"]
+[ext_resource type="Texture2D" uid="uid://m3j0tij6vm8h" path="res://assets/sprites/signs/O.png" id="5_6gp1l"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="5_44qjn"]
+
+[node name="VersusArena" instance=ExtResource("1_xo2hy")]
+
+[node name="P1" parent="Homes" index="0" instance=ExtResource("4_dnkun")]
+position = Vector2(1400, 0)
+rotation = 3.14159
+
+[node name="P2" parent="Homes" index="1" instance=ExtResource("4_dnkun")]
+position = Vector2(-1400, 0)
+
+[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("5_44qjn")]
+hollow = true
+
+[node name="VCircle" type="Node" parent="Battlefield/OutsideWall" index="5"]
+script = ExtResource("4_kul8a")
+radius = 1700.0
+
+[node name="O" type="Sprite2D" parent="Battlefield" index="1"]
+modulate = Color(1, 1, 1, 0.0470588)
+position = Vector2(0, 32)
+rotation = 0.785398
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_6gp1l")
+
+[node name="Line2D" type="Line2D" parent="Battlefield/O" index="0"]
+points = PackedVector2Array(-433.315, -433.315, -120, -120)
+width = 32.0
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="Battlefield/O" index="1"]
+position = Vector2(880, 880)
+points = PackedVector2Array(-760, -760, -464.787, -464.787)
+width = 32.0
+begin_cap_mode = 2
+end_cap_mode = 2
