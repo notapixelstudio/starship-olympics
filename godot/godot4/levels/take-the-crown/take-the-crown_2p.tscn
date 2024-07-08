@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://x751geeku5fx"]
+[gd_scene load_steps=13 format=3 uid="uid://x751geeku5fx"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_bvhdi"]
 [ext_resource type="PackedScene" uid="uid://chnvt4cxrqrcv" path="res://godot4/arena/managers/games/CrownGame.tscn" id="2_3q1vj"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="6_h5akp"]
 [ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="7_1nk4p"]
 [ext_resource type="PackedScene" uid="uid://bia7yrbdvp8vw" path="res://godot4/elements/environments/ShieldWall.tscn" id="8_nyho4"]
+[ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="9_f33xf"]
 
 [sub_resource type="Animation" id="Animation_vtipm"]
 length = 0.001
@@ -98,12 +99,20 @@ sides = 4
 
 [node name="ShieldWall" parent="Battlefield" index="4" instance=ExtResource("8_nyho4")]
 position = Vector2(-800, 0)
+rotation = 0.785398
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/ShieldWall" index="6"]
-polygon = PackedVector2Array(400, 0, 0, 400, -400, 0, 0, -400)
+[node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall" index="7"]
+script = ExtResource("9_f33xf")
+width = 600.0
+height = 600.0
+precision = 20
 
 [node name="ShieldWall2" parent="Battlefield" index="5" instance=ExtResource("8_nyho4")]
 position = Vector2(800, 0)
+rotation = 0.785398
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/ShieldWall2" index="6"]
-polygon = PackedVector2Array(400, 0, 0, 400, -400, 0, 0, -400)
+[node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall2" index="7"]
+script = ExtResource("9_f33xf")
+width = 600.0
+height = 600.0
+precision = 20

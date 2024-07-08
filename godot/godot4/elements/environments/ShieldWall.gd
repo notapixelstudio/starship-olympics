@@ -1,3 +1,4 @@
+@tool
 extends Area2D
 
 @export_enum('shield', 'plate', 'skin') var type = 'skin'
@@ -5,6 +6,7 @@ extends Area2D
 @export var respawn_time := 6
 @export var symbol_scale := 1.0: set = set_symbol_scale
 
+var polygon : PackedVector2Array
 var health = starting_health
 
 func set_symbol_scale(v: float) -> void:
@@ -14,10 +16,13 @@ func set_symbol_scale(v: float) -> void:
 	$Sprite2D.scale = Vector2(symbol_scale, symbol_scale)
 	
 func _ready():
-	$Polygon2D.polygon = $CollisionPolygon2D.polygon
-	#$IsoPolygon.set_polygon($CollisionPolygon2D.polygon)
-	$Line2D.points = $CollisionPolygon2D.polygon + PackedVector2Array([$CollisionPolygon2D.polygon[0]])
 	up(type)
+	
+func set_polygon(v: PackedVector2Array) -> void:
+	polygon = v
+	%CollisionPolygon2D.set_polygon(polygon)
+	%Polygon2D.set_polygon(polygon)
+	%Line2D.set_points(polygon)
 
 func up(new_type):
 	health = starting_health
@@ -45,7 +50,7 @@ func up(new_type):
 #	$IsoPolygon.color = Color('#a0abee')
 	$Polygon2D.modulate = Color('#207bff')
 	$Sprite2D.modulate = Color('#70abff')
-	$Line2D.modulate = Color('#bbbbff')
+	$Line2D.modulate = Color('#3cd7ff')
 	#$IsoPolygon.color = Color('#306bff')
 	
 	enable_collisions()
@@ -58,13 +63,11 @@ func down():
 	health -= 1
 	
 	SoundEffects.play($DamageSFX)
-	
-	# collisions will be disabled near the end of the animation
-	$AnimationPlayer.advance(10) # should be enough to end the current animation and make the sector flash again
-	if health > 0 or type == 'plate':
-		$AnimationPlayer.play("IndestructibleHit")
-	else:
+	if health <= 0:
+		# collisions will be disabled near the end of the animation
 		$AnimationPlayer.play("Disappear")
+	else:
+		$AnimationPlayer.play("Hit")
 	
 func enable_collisions():
 	$CollisionPolygon2D.call_deferred('set_disabled', false)
