@@ -34,6 +34,22 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="2"]
+resource_name = "Hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Color(1.7, 1.7, 1.7, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="4"]
 length = 0.001
 tracks/0/type = "value"
@@ -64,22 +80,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0.01), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="2"]
-resource_name = "Hit"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(0.5, 2),
-"update": 0,
-"values": [Color(1.7, 1.7, 1.7, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_667pc"]
 _data = {
 "Disappear": SubResource("1"),
@@ -105,10 +105,11 @@ color = Color(1, 1, 1, 0.2)
 
 [node name="Line2D" type="Line2D" parent="."]
 unique_name_in_owner = true
+modulate = Color(0.235294, 0.843137, 1, 1)
 z_index = 8
 z_as_relative = false
 closed = true
-width = 5.0
+width = 6.0
 default_color = Color(2, 2, 2, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

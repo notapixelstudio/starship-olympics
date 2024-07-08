@@ -63,6 +63,7 @@ func down():
 	health -= 1
 	
 	SoundEffects.play($DamageSFX)
+	$AnimationPlayer.stop()
 	if health <= 0:
 		# collisions will be disabled near the end of the animation
 		$AnimationPlayer.play("Disappear")
