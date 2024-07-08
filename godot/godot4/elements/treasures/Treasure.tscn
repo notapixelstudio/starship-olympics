@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://def8gegesl10e"]
+[gd_scene load_steps=10 format=3 uid="uid://def8gegesl10e"]
 
 [ext_resource type="Script" path="res://godot4/elements/treasures/Treasure.gd" id="1_q6gx3"]
 [ext_resource type="PackedScene" uid="uid://c4yru00x07tyi" path="res://godot4/effects/TreasurePicked.tscn" id="2_lfwwo"]
+[ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="3_37ycv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ojvyv"]
 bounce = 0.35
@@ -98,3 +99,6 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_lqqh5")
 }
+
+[node name="Shadow" parent="Graphics" node_paths=PackedStringArray("sprite") instance=ExtResource("3_37ycv")]
+sprite = NodePath("../Sprite2D")

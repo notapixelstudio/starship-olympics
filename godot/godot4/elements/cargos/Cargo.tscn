@@ -1,12 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8s08rc21o1ra"]
+[gd_scene load_steps=9 format=3 uid="uid://c8s08rc21o1ra"]
 
 [ext_resource type="Script" path="res://godot4/elements/cargos/Cargo.gd" id="1_mtln1"]
+[ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="2_siay3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ribre"]
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ycic"]
 radius = 70.0
+
+[sub_resource type="Animation" id="Animation_5s86f"]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(3, 3, 3, 1), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_e7hm2"]
 length = 0.001
@@ -63,22 +80,6 @@ tracks/0/keys = {
 "values": [Color(1.4, 1.4, 1.4, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_5s86f"]
-resource_name = "Hit"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Color(3, 3, 3, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lqqh5"]
 _data = {
 "Hit": SubResource("Animation_5s86f"),
@@ -108,3 +109,6 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_lqqh5")
 }
+
+[node name="Shadow" parent="Graphics" node_paths=PackedStringArray("sprite") instance=ExtResource("2_siay3")]
+sprite = NodePath("../Sprite2D")

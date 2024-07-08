@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/sprites/planet.png" type="Texture2D" id=1]
-[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=2]
-[ext_resource path="res://actors/environments/Planet.gd" type="Script" id=3]
-[ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture2D" id=4]
-[ext_resource path="res://assets/sprites/planet_clouds.png" type="Texture2D" id=5]
+[ext_resource type="Texture2D" uid="uid://c0idcfpngkmbe" path="res://assets/sprites/planet.png" id="1"]
+[ext_resource type="PackedScene" path="res://godot4/effects/Shadow.tscn" id="2"]
+[ext_resource type="Script" path="res://actors/environments/Planet.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://bw57ikfd42dvu" path="res://assets/sprites/environments/wall_tile.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://coxt8aaa6hq31" path="res://assets/sprites/planet_clouds.png" id="5"]
 
 [node name="Planet" type="Node2D"]
 script = ExtResource( 3 )
