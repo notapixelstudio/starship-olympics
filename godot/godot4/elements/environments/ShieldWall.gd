@@ -21,8 +21,17 @@ func _ready():
 func set_polygon(v: PackedVector2Array) -> void:
 	polygon = v
 	%CollisionPolygon2D.set_polygon(polygon)
-	%Polygon2D.set_polygon(polygon)
-	%Line2D.set_points(polygon)
+	%TopLine2D.set_points(polygon)
+	
+	var translated = Transform2D(0, Vector2(0,32)) * polygon
+	%UnderLine2D.set_points(translated)
+	
+	var hull = Geometry2D.convex_hull(polygon + translated)
+	%OutLine2D.set_points(hull)
+	%Polygon2D.set_polygon(hull)
+	
+	var front = Geometry2D.clip_polygons(hull, polygon)[0]
+	%IsoPolygon2D.set_polygon(front)
 
 func up(new_type):
 	health = starting_health
@@ -48,9 +57,9 @@ func up(new_type):
 #	$Sprite.modulate = Color('#808bee')
 #	$Line2D.modulate = Color('#909bff')
 #	$IsoPolygon.color = Color('#a0abee')
-	$Polygon2D.modulate = Color('#207bff')
-	$Sprite2D.modulate = Color('#70abff')
-	$Line2D.modulate = Color('#3cd7ff')
+	#$Polygon2D.modulate = Color('#207bff')
+	#$Sprite2D.modulate = Color('#70abff')
+	#$Line2D.modulate = Color('#3cd7ff')
 	#$IsoPolygon.color = Color('#306bff')
 	
 	enable_collisions()

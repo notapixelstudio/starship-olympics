@@ -84,7 +84,6 @@ position = Vector2(0, -950)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4"]
 script = ExtResource("7_1nk4p")
-radius = 150.0
 sides = 4
 
 [node name="Wall2" parent="Battlefield" index="2" instance=ExtResource("5_q5cfv")]
@@ -92,27 +91,26 @@ position = Vector2(0, 950)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4"]
 script = ExtResource("7_1nk4p")
-radius = 150.0
 sides = 4
 
 [node name="Crown" parent="Battlefield" index="3" instance=ExtResource("6_h5akp")]
 
 [node name="ShieldWall" parent="Battlefield" index="4" instance=ExtResource("8_nyho4")]
 position = Vector2(-800, 0)
-rotation = 0.785398
 
 [node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall" index="7"]
 script = ExtResource("9_f33xf")
 width = 600.0
 height = 600.0
-precision = 20
+precision = 30
+rotation_degrees = 45.0
 
 [node name="ShieldWall2" parent="Battlefield" index="5" instance=ExtResource("8_nyho4")]
 position = Vector2(800, 0)
-rotation = 0.785398
 
 [node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall2" index="7"]
 script = ExtResource("9_f33xf")
 width = 600.0
 height = 600.0
-precision = 20
+precision = 30
+rotation_degrees = 45.0

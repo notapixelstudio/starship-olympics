@@ -3,9 +3,14 @@ extends Node
 class_name VParametricShape
 
 @export var hosts : Array[Node] : set = set_hosts
+@export var rotation_degrees : float = 0.0 : set = set_rotation_degrees
 
 func set_hosts(v: Array[Node]) -> void:
 	hosts = v
+	taint()
+	
+func set_rotation_degrees(v: float) -> void:
+	rotation_degrees = v
 	taint()
 
 var points : PackedVector2Array
@@ -29,7 +34,7 @@ func update():
 func update_hosts() -> void:
 	for host in hosts:
 		_inject_points(host)
-			
+		
 	if len(hosts) == 0:
 		if not is_inside_tree():
 			await tree_entered
@@ -37,12 +42,12 @@ func update_hosts() -> void:
 		
 func _inject_points(node):
 	if node.has_method('set_polygon'):
-		node.set_polygon(points)
+		node.set_polygon(get_points())
 	elif node.has_method('set_points'):
-		node.set_points(points)
+		node.set_points(get_points())
 
 func get_points() -> PackedVector2Array:
-	return points
+	return Transform2D(deg_to_rad(rotation_degrees), Vector2(0,0)) * points
 	
 func get_extents() -> Vector2:
 	return Vector2()

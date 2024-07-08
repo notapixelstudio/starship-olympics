@@ -7,7 +7,6 @@ class_name VRegularPolygon
 @export var radius = 100.0 : set = set_radius
 @export var sides = 6 : set = set_sides
 @export var alternating_angle = 0.0 : set = set_alternating_angle
-@export var rotation_degrees = 0.0 : set = set_rotation_degrees
 
 func set_radius(v: float) -> void:
 	radius = v
@@ -28,7 +27,7 @@ func set_rotation_degrees(v: float) -> void:
 
 func update() -> void:
 	var angle = 2*PI/sides
-	var current_a = deg_to_rad(rotation_degrees)
+	var current_a := 0.0
 	points = PackedVector2Array()
 	for i in range(sides):
 		current_a += angle + (deg_to_rad(alternating_angle) if i %2 else -deg_to_rad(alternating_angle))
