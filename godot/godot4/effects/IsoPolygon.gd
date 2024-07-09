@@ -2,7 +2,19 @@
 extends Node2D
 
 @export var height := 32.0
+@export var stroke := Color('#207bff') : set = set_stroke
+@export var fill := Color('#207bff') : set = set_fill
 
+func set_stroke(v: Color) -> void:
+	stroke = v
+	%TopLine2D.modulate = stroke
+	%OutLine2D.modulate = stroke
+	%UnderLine2D.modulate = stroke
+	
+func set_fill(v: Color) -> void:
+	fill = v
+	%Polygon2D.modulate = fill
+	%FrontPolygon2D.modulate = fill
 
 func set_polygon(polygon : PackedVector2Array) -> void:
 	%UnderLine2D.set_points(polygon)
@@ -15,4 +27,4 @@ func set_polygon(polygon : PackedVector2Array) -> void:
 	%Polygon2D.set_polygon(hull)
 	
 	var front = Geometry2D.clip_polygons(hull, translated)[0]
-	%IsoPolygon2D.set_polygon(front)
+	%FrontPolygon2D.set_polygon(front)

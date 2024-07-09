@@ -63,7 +63,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0.0117647)]
 }
 
 [sub_resource type="Animation" id="3"]
@@ -90,6 +90,7 @@ _data = {
 }
 
 [node name="ShieldWall" type="Area2D"]
+modulate = Color(1, 1, 1, 0.0117647)
 collision_layer = 128
 collision_mask = 4
 script = ExtResource("1_vjsnw")
@@ -100,6 +101,7 @@ unique_name_in_owner = true
 [node name="IsoPolygon" parent="." instance=ExtResource("4_nffqm")]
 unique_name_in_owner = true
 height = 48.0
+fill = Color(0.28, 0.568, 1, 0.596078)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

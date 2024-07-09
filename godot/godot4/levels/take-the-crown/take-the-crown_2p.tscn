@@ -166,6 +166,7 @@ libraries = {
 
 [node name="ShieldWall" parent="Battlefield" index="5" instance=ExtResource("8_nyho4")]
 position = Vector2(-800, 0)
+respawn_time = 10
 symbol_scale = 1.5
 
 [node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall" index="5"]
@@ -177,6 +178,7 @@ rotation_degrees = 45.0
 
 [node name="ShieldWall2" parent="Battlefield" index="6" instance=ExtResource("8_nyho4")]
 position = Vector2(800, 0)
+respawn_time = 10
 symbol_scale = 1.5
 
 [node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall2" index="5"]

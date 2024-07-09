@@ -3,6 +3,7 @@ extends Area2D
 
 @export_enum('shield', 'plate', 'skin') var type = 'skin'
 @export var starting_health := 3
+@export var starts_disabled := true
 @export var respawn_time := 6
 @export var symbol_scale := 1.0: set = set_symbol_scale
 
@@ -16,7 +17,10 @@ func set_symbol_scale(v: float) -> void:
 	$Sprite2D.scale = Vector2(symbol_scale, symbol_scale)
 	
 func _ready():
-	up(type)
+	if starts_disabled:
+		disable_collisions()
+	else:
+		up(type)
 	
 func set_polygon(v: PackedVector2Array) -> void:
 	polygon = v
