@@ -6,6 +6,7 @@ extends Area2D
 @export var starts_disabled := true
 @export var respawn_time := 6
 @export var symbol_scale := 1.0: set = set_symbol_scale
+@export var show_edges := true : set = set_show_edges
 
 var polygon : PackedVector2Array
 var health = starting_health
@@ -15,6 +16,10 @@ func set_symbol_scale(v: float) -> void:
 	if not is_inside_tree():
 		await self.ready
 	$Sprite2D.scale = Vector2(symbol_scale, symbol_scale)
+	
+func set_show_edges(v: bool) -> void:
+	show_edges = v
+	%IsoPolygon.set_show_edges(show_edges)
 	
 func _ready():
 	if starts_disabled:

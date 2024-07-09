@@ -49,6 +49,33 @@ _data = {
 "default": SubResource("Animation_d4q4d")
 }
 
+[sub_resource type="Animation" id="Animation_3nm4h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldWall/VRoundedRect:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [45.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShieldWall2/VRoundedRect:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [45.0]
+}
+
 [sub_resource type="Animation" id="Animation_xjb4e"]
 resource_name = "default"
 length = 50.0
@@ -77,33 +104,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [45.0, 405.0]
-}
-
-[sub_resource type="Animation" id="Animation_3nm4h"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShieldWall/VRoundedRect:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [45.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ShieldWall2/VRoundedRect:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [45.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kj0uy"]
@@ -168,6 +168,7 @@ libraries = {
 position = Vector2(-800, 0)
 respawn_time = 10
 symbol_scale = 1.5
+show_edges = false
 
 [node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall" index="5"]
 script = ExtResource("9_f33xf")
@@ -180,6 +181,7 @@ rotation_degrees = 45.0
 position = Vector2(800, 0)
 respawn_time = 10
 symbol_scale = 1.5
+show_edges = false
 
 [node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall2" index="5"]
 script = ExtResource("9_f33xf")

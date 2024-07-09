@@ -97,11 +97,13 @@ script = ExtResource("1_vjsnw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 unique_name_in_owner = true
+disabled = true
 
 [node name="IsoPolygon" parent="." instance=ExtResource("4_nffqm")]
 unique_name_in_owner = true
 height = 48.0
 fill = Color(0.28, 0.568, 1, 0.596078)
+show_edges = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
