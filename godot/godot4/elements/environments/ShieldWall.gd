@@ -21,17 +21,7 @@ func _ready():
 func set_polygon(v: PackedVector2Array) -> void:
 	polygon = v
 	%CollisionPolygon2D.set_polygon(polygon)
-	%TopLine2D.set_points(polygon)
-	
-	var translated = Transform2D(0, Vector2(0,32)) * polygon
-	%UnderLine2D.set_points(translated)
-	
-	var hull = Geometry2D.convex_hull(polygon + translated)
-	%OutLine2D.set_points(hull)
-	%Polygon2D.set_polygon(hull)
-	
-	var front = Geometry2D.clip_polygons(hull, polygon)[0]
-	%IsoPolygon2D.set_polygon(front)
+	%IsoPolygon.set_polygon(polygon)
 
 func up(new_type):
 	health = starting_health
