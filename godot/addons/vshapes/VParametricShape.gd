@@ -41,6 +41,8 @@ func update_hosts() -> void:
 		_inject_points(get_parent())
 		
 func _inject_points(node):
+	if not is_inside_tree():
+		return
 	if node.has_method('set_polygon'):
 		node.set_polygon(get_points())
 	elif node.has_method('set_points'):
