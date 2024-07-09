@@ -1,7 +1,9 @@
 extends RigidBody2D
 class_name Cargo
 
-@export var drop_distance := 0.0
+@export var drop_distance := 200.0
+
+var _self_scene : PackedScene
 
 func place_and_push(dropper, velocity, direction:='forward') -> void:
 	var dir = 1.0 if direction == 'forward' else -1.0
@@ -18,3 +20,10 @@ func get_texture() -> Texture:
 func hit():
 	%SpriteAnimation.stop()
 	%SpriteAnimation.play('Hit')
+
+func _ready():
+	_self_scene = PackedScene.new()
+	_self_scene.pack(self)
+	
+func clone_as_new() -> Cargo:
+	return _self_scene.instantiate()

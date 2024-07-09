@@ -114,7 +114,6 @@ func _ready():
 	# see https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_dynamics.html
 	# and https://github.com/search?q=repo%3Aappsinacup%2Fgodot-box2d+body_set_ccd_enabled&type=code
 	PhysicsServer2D.body_set_continuous_collision_detection_mode(get_rid(), PhysicsServer2D.CCD_MODE_CAST_SHAPE)
-	Events.sth_loaded.connect(_on_sth_loaded)
 
 func _integrate_forces(state):
 	tracked.tick()
@@ -169,17 +168,15 @@ func _on_hurt_area_entered(sth):
 	if sth.has_method('hurt'):
 		sth.hurt(self)
 		
-func _on_sth_loaded(loader, loadee) -> void:
-	if self != loader:
-		return
-		
-	%CargoSprite.texture = loadee.get_texture()
 
 func get_color() -> Color:
 	return player.get_color() if player else Color.WHITE
 	
 func get_team() -> String:
 	return player.get_team() if player else 'rogue'
+	
+func has_cargo() -> bool:
+	return %CargoManager.has_cargo()
 
 func suffer_damage(amount: int) -> void:
 	# TBD health system

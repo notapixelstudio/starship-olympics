@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2sxcvq53b3m7"]
+
+[ext_resource type="PackedScene" uid="uid://c8s08rc21o1ra" path="res://godot4/elements/cargos/Cargo.tscn" id="1_cnkt6"]
+[ext_resource type="Script" path="res://godot4/elements/cargos/Ball.gd" id="2_lcckc"]
+
+[node name="Ball" instance=ExtResource("1_cnkt6")]
+script = ExtResource("2_lcckc")

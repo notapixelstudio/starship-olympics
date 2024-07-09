@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-class_name Crown
+class_name Crownz
 var entity
 
 enum types {CROWN, BALL, SOCCERBALL, TENNISBALL}

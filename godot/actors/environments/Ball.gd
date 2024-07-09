@@ -1,7 +1,7 @@
 @tool
 extends RigidBody2D
 
-class_name Ball
+class_name Ballz
 
 const GRAB_DISTANCE = 84
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=26 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PackedScene" uid="uid://b6gg3o407i70x" path="res://godot4/effects/DashRing.tscn" id="2_0puh8"]
@@ -8,13 +8,14 @@
 [ext_resource type="Script" path="res://actors/battlers/Node2D.gd" id="4_557ck"]
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="4_mpdfg"]
 [ext_resource type="PackedScene" uid="uid://d1673ytdlyny4" path="res://godot4/debug/OnShipDebug.tscn" id="5_0tcqu"]
-[ext_resource type="Script" path="res://actors/battlers/ChargeManager.gd" id="5_ostpb"]
+[ext_resource type="Script" path="res://godot4/actors/managers/ChargeManager.gd" id="5_ostpb"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="8_yfcmx"]
 [ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://godot4/effects/trails/FlameTrail.tscn" id="10_4jj2i"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="10_iega2"]
 [ext_resource type="PackedScene" uid="uid://cex35drwxeknp" path="res://godot4/effects/trails/FlamesManager.tscn" id="11_i3r85"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="11_tsmbp"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="15_s48iq"]
+[ext_resource type="Script" path="res://godot4/actors/managers/CargoManager.gd" id="16_m8m51"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w3n3b"]
 friction = 0.0
@@ -111,6 +112,11 @@ host = NodePath("../..")
 unique_name_in_owner = true
 scale = Vector2(1.25, 1.25)
 
+[node name="BallSprite" type="Sprite2D" parent="Graphics"]
+unique_name_in_owner = true
+position = Vector2(64, 0)
+scale = Vector2(0.77, 0.77)
+
 [node name="Sprite" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
 texture = ExtResource("3_gbkft")
@@ -186,7 +192,7 @@ theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CargoSprite" type="Sprite2D" parent="Indicators/Wrapper"]
+[node name="HatSprite" type="Sprite2D" parent="Indicators/Wrapper"]
 unique_name_in_owner = true
 position = Vector2(0, -160)
 
@@ -230,6 +236,10 @@ unique_name_in_owner = true
 gradient = SubResource("Gradient_tmbes")
 host = NodePath("..")
 max_age = 0.4
+
+[node name="CargoManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("16_m8m51")
 
 [connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]
 [connection signal="body_entered" from="TouchArea" to="." method="_on_touch_area_body_entered"]

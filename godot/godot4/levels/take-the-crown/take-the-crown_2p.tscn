@@ -156,15 +156,13 @@ position = Vector2(0, 950)
 script = ExtResource("7_1nk4p")
 sides = 4
 
-[node name="Crown" parent="Battlefield" index="3" instance=ExtResource("6_h5akp")]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="4" groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="3" groups=["animation_starts_with_battle"]]
 callback_mode_process = 0
 libraries = {
 "": SubResource("AnimationLibrary_kj0uy")
 }
 
-[node name="ShieldWall" parent="Battlefield" index="5" instance=ExtResource("8_nyho4")]
+[node name="ShieldWall" parent="Battlefield" index="4" instance=ExtResource("8_nyho4")]
 position = Vector2(-800, 0)
 symbol_scale = 1.5
 show_edges = false
@@ -176,7 +174,7 @@ height = 600.0
 precision = 20
 rotation_degrees = 45.0
 
-[node name="ShieldWall2" parent="Battlefield" index="6" instance=ExtResource("8_nyho4")]
+[node name="ShieldWall2" parent="Battlefield" index="5" instance=ExtResource("8_nyho4")]
 position = Vector2(800, 0)
 symbol_scale = 1.5
 show_edges = false
@@ -187,3 +185,5 @@ width = 600.0
 height = 600.0
 precision = 20
 rotation_degrees = 45.0
+
+[node name="Crown" parent="Battlefield" index="6" instance=ExtResource("6_h5akp")]
