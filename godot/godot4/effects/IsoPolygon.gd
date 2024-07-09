@@ -8,10 +8,13 @@ extends Node2D
 @export var show_edges := true : set = set_show_edges
 @export var underline_alpha := 0.4 : set = set_underline_alpha
 
+var _polygon : PackedVector2Array
+
 func set_height(v: float) -> void:
 	height = v
 	%OutLine2D.set_height(height)
 	%UnderLine2D.set_height(height)
+	_redraw()
 
 func set_stroke_width(v: float) -> void:
 	stroke_width = v
@@ -39,13 +42,20 @@ func set_underline_alpha(v: float) -> void:
 	underline_alpha = v
 	%UnderLine2D.self_modulate = Color(1,1,1, underline_alpha)
 	
-func set_polygon(polygon : PackedVector2Array) -> void:
-	%UnderLine2D.set_points(polygon)
+func set_polygon(v : PackedVector2Array) -> void:
+	_polygon = v
+	_redraw()
 	
-	var translated = Transform2D(0, Vector2(0,-height)) * polygon
+func _redraw() -> void:
+	if len(_polygon) <= 0:
+		return
+		
+	%UnderLine2D.set_points(_polygon)
+	
+	var translated = Transform2D(0, Vector2(0,-height)) * _polygon
 	%TopLine2D.set_points(translated)
 	
-	var hull = Geometry2D.convex_hull(polygon + translated)
+	var hull = Geometry2D.convex_hull(_polygon + translated)
 	%OutLine2D.set_points(hull)
 	%Polygon2D.set_polygon(hull)
 	

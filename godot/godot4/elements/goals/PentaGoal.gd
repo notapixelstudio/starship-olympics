@@ -6,6 +6,7 @@ class_name PentaGoal
 @export var ring_width : float = 50 : set = set_ring_width
 @export var core_radius : float = 100 : set = set_core_radius
 @export var shape_rotation_degrees : float = 0 : set = set_shape_rotation_degrees
+@export var height := 64.0 : set = set_height
 
 var _current_ring : int = 0
 
@@ -26,6 +27,11 @@ func set_shape_rotation_degrees(v: float) -> void:
 	shape_rotation_degrees = v
 	%VRegularPolygon.set_rotation_degrees(shape_rotation_degrees)
 
+func set_height(v: float) -> void:
+	height = v
+	%IsoPolygon.set_height(height)
+	%Rings.position.y = -height
+	
 var _polygon : PackedVector2Array
 
 func set_polygon(v: PackedVector2Array) -> void:
