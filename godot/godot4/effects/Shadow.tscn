@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://godot4/effects/Shadow.gd" id="1"]
 
 [node name="Shadow" type="Node2D"]
+physics_interpolation_mode = 2
 script = ExtResource("1")
 
 [node name="Wrapper" type="Node2D" parent="."]

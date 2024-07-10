@@ -32,6 +32,8 @@ func has_cargo() -> bool:
 	return _current_cargo != null
 
 func kick(source) -> void:
-	_current_cargo.place_and_push(source, source.linear_velocity + Vector2(3000,0).rotated(source.global_rotation))
+	# TBD when https://github.com/godotengine/godot/pull/92218 will be merged, check if the first line
+	# needs to be done now, before place_and_push, to avoid seeing the Shadow node temporarily elsewhere
 	source.get_parent().add_child(_current_cargo)
+	_current_cargo.place_and_push(source, source.linear_velocity + Vector2(3000,0).rotated(source.global_rotation))
 	_empty_cargo()
