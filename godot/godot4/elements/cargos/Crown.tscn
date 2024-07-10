@@ -1,11 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://cms0aqjusqct1"]
+[gd_scene load_steps=5 format=3 uid="uid://cms0aqjusqct1"]
 
 [ext_resource type="PackedScene" uid="uid://ddtlawrotn0nb" path="res://godot4/elements/cargos/Hat.tscn" id="1_xre4g"]
 [ext_resource type="Script" path="res://godot4/elements/cargos/Crown.gd" id="2_3vkv2"]
 [ext_resource type="Texture2D" uid="uid://d34r6ew04rdjl" path="res://assets/sprites/balls/crown.png" id="2_hgd27"]
+
+[sub_resource type="Gradient" id="Gradient_5cley"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.997561)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
 
 [node name="Crown" instance=ExtResource("1_xre4g")]
 script = ExtResource("2_3vkv2")
 
 [node name="Sprite2D" parent="Graphics" index="0"]
 texture = ExtResource("2_hgd27")
+
+[node name="MotionAutoTrail" parent="." index="2"]
+modulate = Color(1, 0.772549, 0, 0.290196)
+gradient = SubResource("Gradient_5cley")

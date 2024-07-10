@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8s08rc21o1ra"]
+[gd_scene load_steps=11 format=3 uid="uid://c8s08rc21o1ra"]
 
 [ext_resource type="Script" path="res://godot4/elements/cargos/Cargo.gd" id="1_mtln1"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="2_siay3"]
+[ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="3_x7m7y"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ribre"]
 bounce = 1.0
@@ -87,6 +88,11 @@ _data = {
 "Shine": SubResource("Animation_ijh7r")
 }
 
+[sub_resource type="Gradient" id="Gradient_5cley"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.997561)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
+
 [node name="Cargo" type="RigidBody2D"]
 collision_layer = 512
 collision_mask = 3606
@@ -112,3 +118,9 @@ libraries = {
 
 [node name="Shadow" parent="Graphics" node_paths=PackedStringArray("sprite") instance=ExtResource("2_siay3")]
 sprite = NodePath("../Sprite2D")
+
+[node name="MotionAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("3_x7m7y")]
+gradient = SubResource("Gradient_5cley")
+disappear_speed = 1000.0
+host = NodePath("..")
+max_age = 0.6
