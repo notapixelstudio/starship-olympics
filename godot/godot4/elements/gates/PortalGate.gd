@@ -44,6 +44,7 @@ func _on_PortalGate_crossed(sth, _self, trigger):
 		
 	var vector = sth.global_position - global_position
 	sth.global_position = linked_to.global_position + vector
+	sth.reset_physics_interpolation() # TBD when https://github.com/godotengine/godot/pull/92218 is merged, check if this is sufficient for correctly displaying player id on Ship wthout jumps
 	
 	assert(traits.has_trait(sth, 'Tracked'))
 	traits.get_trait(sth, 'Tracked').reset()
