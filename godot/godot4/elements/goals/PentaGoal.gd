@@ -76,8 +76,6 @@ func _on_sth_impacted(actor, scenery: StaticBody2D) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if Engine.is_in_physics_frame():
-		print('phy')
 	if body is Ship and body.has_cargo():
 		var normal = _compute_collision_normal(body)
 		if normal == null:
@@ -96,12 +94,14 @@ func _compute_collision_normal(body: PhysicsBody2D) -> Variant:
 		return null
 		
 	var a = global_past_position
-	var b = global_past_position + 10*(body.global_position - global_past_position)
+	var b = body.global_position#global_past_position + 10*(body.global_position - global_past_position)
 	print(a)
 	print(b)
-	_debug_points[0] = to_local(a)
-	_debug_points[1] = to_local(b)
-	queue_redraw()
+	if _debug_point == Vector2(0,0):
+		_debug_point = to_local(a)
+		_debug_points[0] = to_local(a)
+		_debug_points[1] = to_local(b)
+		queue_redraw()
 	for i in range(len(_polygon)):
 		var c = to_global(_polygon[i])
 		var d = to_global(_polygon[(i+1) % len(_polygon)])
@@ -115,7 +115,9 @@ func _compute_collision_normal(body: PhysicsBody2D) -> Variant:
 			break
 	return null
 
+var _debug_point := Vector2(0,0)
 var _debug_points := [Vector2(0,0),Vector2(0,0),Vector2(0,0),Vector2(0,0)]
 func _draw() -> void:
 	draw_line(_debug_points[0],_debug_points[1],Color.RED,30.0)
 	draw_line(_debug_points[2],_debug_points[3],Color.YELLOW,30.0)
+	draw_circle(_debug_point, 50.0, Color.GREEN)
