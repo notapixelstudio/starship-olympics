@@ -33,13 +33,20 @@ func set_height(v: float) -> void:
 	%Rings.position.y = -height
 	
 var _polygon : PackedVector2Array
+var _curve_global := Curve2D.new()
 
 func set_polygon(v: PackedVector2Array) -> void:
 	_polygon = v
+	_curve_global.clear_points()
+	for p in _polygon:
+		_curve_global.add_point(to_global(p))
 	%CollisionPolygon2D.set_polygon(_polygon)
 	%IsoPolygon.set_polygon(_polygon)
+	%FeedbackLine2D.set_points(_polygon)
 
 func _ready() -> void:
+	Events.sth_impacted.connect(_on_sth_impacted)
+	
 	_refresh_shape()
 	
 	for ring in %Rings.get_children():
@@ -62,3 +69,53 @@ func _ready() -> void:
 
 func _refresh_shape() -> void:
 	%VRegularPolygon.radius = core_radius + ring_width * _current_ring
+	
+func _on_sth_impacted(actor, scenery: StaticBody2D) -> void:
+	if scenery == %SolidCollider and actor is Ball:
+		pass
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if Engine.is_in_physics_frame():
+		print('phy')
+	if body is Ship and body.has_cargo():
+		var normal = _compute_collision_normal(body)
+		if normal == null:
+			return
+		body.rebound_cargo(normal)
+		%FeedbackLine2D.visible = true
+		%FeedbackLine2D/AnimationPlayer.stop()
+		%FeedbackLine2D/AnimationPlayer.play('feedback')
+
+func _compute_collision_normal(body: PhysicsBody2D) -> Variant:
+	if not traits.has_trait(body, 'Tracked'):
+		return null
+		
+	var global_past_position = traits.get_trait(body, 'Tracked').get_previous_global_position()
+	if global_past_position == null:
+		return null
+		
+	var a = global_past_position
+	var b = global_past_position + 10*(body.global_position - global_past_position)
+	print(a)
+	print(b)
+	_debug_points[0] = to_local(a)
+	_debug_points[1] = to_local(b)
+	queue_redraw()
+	for i in range(len(_polygon)):
+		var c = to_global(_polygon[i])
+		var d = to_global(_polygon[(i+1) % len(_polygon)])
+		print(c)
+		print(d)
+		_debug_points[2] = to_local(c)
+		_debug_points[3] = to_local(d)
+		var crossing_point = Geometry2D.segment_intersects_segment(a, b, c, d)
+		if crossing_point != null:
+			print(crossing_point)
+			break
+	return null
+
+var _debug_points := [Vector2(0,0),Vector2(0,0),Vector2(0,0),Vector2(0,0)]
+func _draw() -> void:
+	draw_line(_debug_points[0],_debug_points[1],Color.RED,30.0)
+	draw_line(_debug_points[2],_debug_points[3],Color.YELLOW,30.0)

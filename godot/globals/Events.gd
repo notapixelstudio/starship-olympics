@@ -55,6 +55,7 @@ signal match_over_anim_ended
 
 signal sth_collected(collector, collectee)
 signal sth_loaded(loader, loadee)
+signal sth_impacted(actor, environment:StaticBody2D)
 
 signal tap(tapper)
 
