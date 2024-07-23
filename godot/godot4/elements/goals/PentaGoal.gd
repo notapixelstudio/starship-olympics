@@ -106,7 +106,7 @@ func _compute_collision(body: PhysicsBody2D) -> Variant:
 	query.collide_with_areas = true
 	query.collide_with_bodies = false
 	var result = space_state.intersect_ray(query)
-	if result == {}:
+	if result == {} or result['collider'] != self:
 		return null
 	
 	return result
