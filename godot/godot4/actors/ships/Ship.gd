@@ -178,8 +178,8 @@ func get_team() -> String:
 func has_cargo() -> bool:
 	return %CargoManager.has_cargo()
 	
-func rebound_cargo(collision_normal: Vector2) -> void:
-	%CargoManager.rebound_cargo.call_deferred(self, collision_normal)
+func rebound_cargo(collision_point: Vector2, collision_normal: Vector2) -> void:
+	%CargoManager.rebound_cargo.call_deferred(self, collision_point, collision_normal)
 
 func suffer_damage(amount: int) -> void:
 	# TBD health system
