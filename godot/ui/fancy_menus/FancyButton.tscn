@@ -1,25 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsnpuv1ss4bxe"]
+[gd_scene load_steps=8 format=3 uid="uid://bsnpuv1ss4bxe"]
 
-[ext_resource type="Shader" path="res://assets/shaders/crt_local.gdshader" id="1"]
 [ext_resource type="BitMap" uid="uid://b8klkndbgm8ya" path="res://godot4/ui/screens/main/buttons/area_Campaign.png" id="2"]
 [ext_resource type="Script" path="res://ui/fancy_menus/FancyButton.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://bdx58bmvismid" path="res://godot4/ui/screens/main/buttons/graphics_Campaign.png" id="4"]
-
-[sub_resource type="ShaderMaterial" id="2"]
-shader = ExtResource("1")
-shader_parameter/boost = 1.2
-shader_parameter/grille_opacity = 0.85
-shader_parameter/scanlines_opacity = 0.9
-shader_parameter/vignette_opacity = 0.2
-shader_parameter/scanlines_speed = 2.0
-shader_parameter/show_grille = false
-shader_parameter/show_scanlines = true
-shader_parameter/show_vignette = false
-shader_parameter/show_curvature = false
-shader_parameter/screen_size = Vector2(320, 200)
-shader_parameter/aberration_amount = 2.0
-shader_parameter/move_aberration = false
-shader_parameter/aberration_speed = 1.0
 
 [sub_resource type="Animation" id="3"]
 resource_name = "Grow"
@@ -78,7 +61,6 @@ _data = {
 }
 
 [node name="FancyButton" type="TextureButton"]
-material = SubResource("2")
 offset_right = 279.0
 offset_bottom = 503.0
 texture_normal = ExtResource("4")
