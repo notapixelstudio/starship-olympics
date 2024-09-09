@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource path="res://addons/ECM/icons/Manager.png" type="Texture" id=1]
-[ext_resource path="res://combat/managers/modes/SurvivalModeManager.gd" type="Script" id=2]
-[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=3]
+[ext_resource type="Texture2D" uid="uid://b4yot7f4wtbk7" path="res://addons/ECM/icons/Manager.png" id="1"]
+[ext_resource type="Script" path="res://combat/managers/modes/SurvivalModeManager.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="3"]
 
 [node name="SurvivalModeManager" type="Node"]
 script = ExtResource( 2 )

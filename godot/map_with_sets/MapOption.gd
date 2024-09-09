@@ -2,16 +2,16 @@ extends MapLocation
 
 class_name MapOption
 
-export var value_name : String = "win"
-export var selection : Array = []
-export var global_option : bool = true
-export var node_owner_path : NodePath
-export var single_texture: Texture
+@export var value_name : String = "win"
+@export var selection : Array = []
+@export var global_option : bool = true
+@export var node_owner_path : NodePath
+@export var single_texture: Texture2D
 var index : int = 0
 var node_owner
 
-export var description = "set the number of victories"
-onready var sprite = $Sprite
+@export var description = "set the number of victories"
+@onready var sprite = $Sprite2D
 
 func _ready():
 	while not node_owner:

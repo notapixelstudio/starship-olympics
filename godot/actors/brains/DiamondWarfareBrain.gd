@@ -1,12 +1,12 @@
 extends CPUBrain
 
-export var back_attack_distance := 1200
-export var back_attack_probability := 1.0
+@export var back_attack_distance := 1200
+@export var back_attack_probability := 1.0
 
 var random_preference : int
 
 func _ready():
-	._ready()
+	super._ready()
 	random_preference = randi()
 	
 func think():

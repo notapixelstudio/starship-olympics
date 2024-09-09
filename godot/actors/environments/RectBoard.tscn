@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://actors/environments/RectBoard.gd" type="Script" id=1]
+[ext_resource path="res://actors/environments/Tile.tscn" type="PackedScene" id=2]
+
+[node name="RectBoard" type="Node2D"]
+script = ExtResource( 1 )
+tile_scene = ExtResource( 2 )

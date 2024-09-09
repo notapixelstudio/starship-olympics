@@ -1,10 +1,10 @@
 extends Component
 
 enum TYPE { center, direction }
-export(TYPE) var type = TYPE.center
+@export var type: TYPE = TYPE.center
 
-export var vector_or_point : Vector2 = Vector2(0,0)
-export var charge : int = -1 # attractive
+@export var vector_or_point : Vector2 = Vector2(0,0)
+@export var charge : int = -1 # attractive
 
 func get_flow_vector(pos) -> Vector2:
 	if type == TYPE.center:

@@ -1,0 +1,155 @@
+[gd_scene load_steps=14 format=3 uid="uid://ba54n4w4qb18j"]
+
+[ext_resource type="Script" path="res://addons/InstanceDock/InstanceSlot.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dp0lseq583t66" path="res://addons/InstanceDock/Textures/Overrides.png" id="2_t8bng"]
+[ext_resource type="Texture2D" uid="uid://rsllva5pmojk" path="res://addons/InstanceDock/Textures/Loading.png" id="3_2l1qq"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0, 0, 0, 0.501961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.25098)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_khpyj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_au8j5"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.431373, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7yid"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hom1a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1u6qi"]
+
+[sub_resource type="Animation" id="2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="3"]
+resource_name = "Rotate"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u8ud1"]
+_data = {
+"RESET": SubResource("2"),
+"Rotate": SubResource("3")
+}
+
+[node name="InstanceSlot" type="PanelContainer"]
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_styles/panel = SubResource("1")
+script = ExtResource("1")
+normal = SubResource("1")
+custom = SubResource("4")
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Icon"]
+unique_name_in_owner = true
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 12
+text = "Drop scene to assign"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HasOverrides" type="TextureRect" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("2_t8bng")
+stretch_mode = 2
+
+[node name="PaintButton" type="Button" parent="."]
+visible = false
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_khpyj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_au8j5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s7yid")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hom1a")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1u6qi")
+toggle_mode = true
+
+[node name="Loading" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(32, 32)
+texture = ExtResource("3_2l1qq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Loading"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_u8ud1")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

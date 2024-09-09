@@ -1,10 +1,10 @@
 extends Trait
 
-export (String, 'none', 'inset', 'outset') var offset_type = 'none'
-export var layers := ['default', 'holder'] # of Strings
+@export (String, 'none', 'inset', 'outset') var offset_type = 'none'
+@export var layers := ['default', 'holder'] # of Strings
 
 func validate():
-	.validate()
+	super.validate()
 	assert(host.has_method('get_polygon'))
 	
 func get_polygon():

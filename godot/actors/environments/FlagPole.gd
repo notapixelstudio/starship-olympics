@@ -4,9 +4,9 @@ class_name FlagPole
 const MAX_FLAGS := 3
 var flags := []
 
-export var circuit_rotation_degrees := 0 setget set_circuit_rotation_degrees
+@export var circuit_rotation_degrees := 0: set = set_circuit_rotation_degrees
 
-export var goal_owner : NodePath
+@export var goal_owner : NodePath
 var player
 
 func set_circuit_rotation_degrees(v):
@@ -16,14 +16,14 @@ func set_circuit_rotation_degrees(v):
 func _ready():
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
-		yield(player_spawner, "player_assigned")
+		await player_spawner.player_assigned
 		set_player(player_spawner.get_player())
 		
 func set_player(v : InfoPlayer):
 	player = v
 	$'%PlayerLabel'.text = player.get_username().to_upper()
 	$'%PlayerLabel'.modulate = player.species.color
-	$Sprite.modulate = player.species.color
+	$Sprite2D.modulate = player.species.color
 	$"%Circuit".modulate = player.species.color
 	
 func get_player():

@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://nemcauwaghyq"]
+
+[ext_resource type="Shader" path="res://godot4/shaders/outline+ghost.gdshader" id="1_xqhxl"]
+
+[resource]
+shader = ExtResource("1_xqhxl")
+shader_parameter/key_color = null
+shader_parameter/target_color = Color(0, 0.254902, 0.427451, 1)
+shader_parameter/ghost = false

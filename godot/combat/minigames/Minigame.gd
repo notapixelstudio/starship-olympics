@@ -1,18 +1,18 @@
 extends Resource
 
-class_name Minigame
+class_name Minigamez
 
-export var game_mode : Resource
+@export var game_mode : GameMode
 
-export var arenas_dir: String
+@export var arenas_dir: String
 
-export var tutorial_scene : PackedScene
+@export var tutorial_scene : PackedScene
 
 var id = null
 var times_started := 0
 
-export (String, '', "blue", "white", "cyan", "red", "yellow", 'green', "magenta") var suit_top = ''
-export (String, '', "blue", "white", "cyan", "red", "yellow", 'green', "magenta") var suit_bottom = ''
+@export_enum("blue", "white", "cyan", "red", "yellow", 'green', "magenta") var suit_top = ''
+@export_enum("blue", "white", "cyan", "red", "yellow", 'green', "magenta") var suit_bottom = ''
 
 func get_id() -> String:
 	if id != null:
@@ -48,13 +48,13 @@ func reset_count():
 	times_started = 0
 
 func get_arena_filepath(num_players: int) -> String:
-	var dir := Directory.new()
-	var file_path = arenas_dir.plus_file(str(num_players) + "players.tscn")
-	if num_players <= 1 and not dir.file_exists(file_path):
-		file_path = arenas_dir.plus_file("2players.tscn")
-	if not dir.file_exists(file_path):
-		file_path = arenas_dir.plus_file("234players.tscn")
-	if dir.file_exists(file_path):
+	
+	var file_path = arenas_dir.path_join(str(num_players) + "players.tscn")
+	if num_players <= 1 and not FileAccess.file_exists(file_path):
+		file_path = arenas_dir.path_join("2players.tscn")
+	if not FileAccess.file_exists(file_path):
+		file_path = arenas_dir.path_join("234players.tscn")
+	if FileAccess.file_exists(file_path):
 		return file_path
 	else:
 		return ""
@@ -68,6 +68,6 @@ func get_suit_bottom() -> Array:
 func has_tutorial() -> bool:
 	return tutorial_scene != null
 	
-func get_tutorial_scene() -> PackedScene:
-	return tutorial_scene
-	
+func get_tutorial_scene():
+	var filepath: String = arenas_dir.path_join("TutorialArena.tscn")
+	return load(filepath)

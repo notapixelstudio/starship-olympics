@@ -1,15 +1,15 @@
 extends MapCell
 
-export var var_name : String = "win"
-export var selection : Array = []
-export var global_option : bool = true
-export var node_owner_path : NodePath
+@export var var_name : String = "win"
+@export var selection : Array = []
+@export var global_option : bool = true
+@export var node_owner_path : NodePath
 var index : int = 0
 var node_owner
 
-export var description = "{_} victories"
-onready var sprite = $Sprite
-onready var label = $Label
+@export var description = "{_} victories"
+@onready var sprite = $Sprite2D
+@onready var label = $Label
 
 func _ready():
 	while not node_owner:
@@ -43,7 +43,7 @@ func act(cursor):
 
 	sprite.texture = sprite.get_child(selection[index]).texture
 	label.text = description.format({"_": selection[index]})
-	.act(cursor)
+	super.act(cursor)
 	cursor.on_sth_pressed()
 	$act.play()
 	

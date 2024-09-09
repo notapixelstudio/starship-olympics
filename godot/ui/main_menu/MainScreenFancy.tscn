@@ -1,0 +1,77 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="PackedScene" path="res://ui/fancy_menus/FancyMenu.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://bsnpuv1ss4bxe" path="res://ui/fancy_menus/FancyButton.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://bb7e7up6vbum1" path="res://ui/difficulty_screen/art_medium.png" id="3"]
+[ext_resource type="BitMap" uid="uid://dna1hs4k7m2kt" path="res://ui/difficulty_screen/mask_medium.png" id="4"]
+[ext_resource type="Script" path="res://WorldEnvironment.gd" id="5"]
+[ext_resource type="Environment" path="res://default_env.tres" id="6"]
+[ext_resource type="Texture2D" uid="uid://daj06fe3j3bqk" path="res://ui/difficulty_screen/art_hive_two.png" id="7"]
+[ext_resource type="BitMap" uid="uid://xo4vbp02cqts" path="res://ui/difficulty_screen/mask_hard.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://b8gvaiovgynyu" path="res://ui/difficulty_screen/art_hive_three.png" id="9"]
+[ext_resource type="BitMap" uid="uid://ciabjoxrshgnu" path="res://ui/difficulty_screen/mask_hive_two.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://bivwevr1reobj" path="res://ui/difficulty_screen/art_hard.png" id="11"]
+[ext_resource type="BitMap" uid="uid://dousdby6hm4ji" path="res://ui/difficulty_screen/mask_hive_three.png" id="12"]
+[ext_resource type="Script" path="res://ui/difficulty_screen/DifficultyScreen.gd" id="13"]
+[ext_resource type="Texture2D" uid="uid://dxkn1set32t1w" path="res://ui/difficulty_screen/art_easy.png" id="14"]
+
+[sub_resource type="Animation" id=1]
+resource_name = "slide_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1600, 0 ), Vector2( 0, 0 ) ]
+}
+
+[node name="DifficultyScreen" type="Node2D"]
+position = Vector2( 1600, 0 )
+script = ExtResource( 13 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 6 )
+script = ExtResource( 5 )
+
+[node name="FancyMenu" parent="." instance=ExtResource( 1 )]
+auto_neighbours = "horizontal"
+
+[node name="Easy" parent="FancyMenu" instance=ExtResource( 2 )]
+offset_right = 1228.0
+offset_bottom = 720.0
+texture_normal = ExtResource( 14 )
+
+[node name="Medium" parent="FancyMenu" instance=ExtResource( 2 )]
+offset_right = 1228.0
+offset_bottom = 720.0
+texture_normal = ExtResource( 3 )
+texture_click_mask = ExtResource( 4 )
+
+[node name="Hard" parent="FancyMenu" instance=ExtResource( 2 )]
+offset_right = 1228.0
+offset_bottom = 720.0
+texture_normal = ExtResource( 11 )
+texture_click_mask = ExtResource( 8 )
+
+[node name="HiveTwo" parent="FancyMenu" instance=ExtResource( 2 )]
+offset_right = 1228.0
+offset_bottom = 720.0
+focus_neighbor_bottom = NodePath("../HiveThree")
+texture_normal = ExtResource( 7 )
+texture_click_mask = ExtResource( 10 )
+
+[node name="HiveThree" parent="FancyMenu" instance=ExtResource( 2 )]
+offset_right = 1228.0
+offset_bottom = 720.0
+focus_neighbor_top = NodePath("../HiveTwo")
+texture_normal = ExtResource( 9 )
+texture_click_mask = ExtResource( 12 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "slide_in"
+anims/slide_in = SubResource( 1 )

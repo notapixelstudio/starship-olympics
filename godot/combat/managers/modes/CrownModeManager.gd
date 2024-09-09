@@ -2,7 +2,7 @@ extends ModeManager
 
 signal show_msg
 
-onready var sound_action = $GrabAction
+@onready var sound_action = $GrabAction
 
 func _on_sth_collected(collector, collectee):
 	if collectee is Crown and ECM.E(collector).could_have('Royal'):
@@ -18,7 +18,7 @@ func _on_sth_stolen(thief, mugged):
 		var stuff = ECM.E(mugged).get('Cargo').unload()
 		assert(stuff is Crown)
 		ECM.E(mugged).get('Royal').disable()
-		yield(get_tree(), "idle_frame")
+		await get_tree().idle_frame
 		ECM.E(thief).get('Cargo').load(stuff)
 		ECM.E(thief).get("Royal").enable()
 		sound_action.play()

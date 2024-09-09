@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://c50sd4reltwxp"]
+
+[ext_resource type="PackedScene" uid="uid://bhq3klwabv0i8" path="res://godot4/ui/screens/back_screen/BackScreen.tscn" id="1"]
+[ext_resource type="Script" path="res://godot4/ui/screens/settings/SettingsScreen.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://oiowakvcdw8f" path="res://ui/option_scenes/OptionScreen.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://bfjk2jikcv4ub" path="res://utils/ShearLabel.tscn" id="4"]
+
+[node name="SettingsScreen" instance=ExtResource("1")]
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2")
+
+[node name="RefCounted" parent="." index="0"]
+layout_mode = 0
+
+[node name="FancyMenu" parent="." index="1"]
+anchors_preset = 0
+
+[node name="Back" parent="FancyMenu" index="0"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 194.0
+offset_bottom = 91.0
+focus_neighbor_bottom = NodePath("../../Node2D/Options")
+
+[node name="MenuLabel" parent="." index="2" instance=ExtResource("4")]
+modulate = Color(1, 0.827451, 0.396078, 1)
+position = Vector2(650, 50)
+scale = Vector2(2.5, 2.5)
+text = "SETTINGS"
+
+[node name="Node2D" type="Node2D" parent="." index="3"]
+
+[node name="Options" parent="Node2D" index="0" instance=ExtResource("3")]
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0

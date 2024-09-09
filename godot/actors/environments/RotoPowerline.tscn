@@ -12,8 +12,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Color( 1.2, 1.2, 1.1, 1 ) ]
 }
@@ -28,8 +28,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( -2, -2 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( -2, -2 ),
 "update": 0,
 "values": [ Color( 1.2, 1.2, 1.1, 1 ), Color( 1.05, 1.05, 1.05, 1 ) ]
 }
@@ -38,13 +38,13 @@ tracks/0/keys = {
 script = ExtResource( 2 )
 type = "T"
 
-[node name="Sprite" parent="." index="2"]
+[node name="Sprite2D" parent="." index="2"]
 self_modulate = Color( 0.478431, 0.65098, 0.737255, 1 )
 
 [node name="Line2D" type="Line2D" parent="." index="4"]
 modulate = Color( 1.2, 1.2, 1.1, 1 )
 self_modulate = Color( 1, 1, 0, 1 )
-points = PoolVector2Array( -300, 0, 300, 0, 0, 0, 0, 300 )
+points = PackedVector2Array( -300, 0, 300, 0, 0, 0, 0, 300 )
 width = 100.0
 default_color = Color( 1, 1, 1, 1 )
 

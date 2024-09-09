@@ -1,11 +1,11 @@
-tool
+@tool
 extends Button
 
 class_name NavigatorButton
 
-export var option_menu: PackedScene
-export var title: String
-export var extra_args: Dictionary = {}
+@export var option_menu: PackedScene
+@export var title: String
+@export var extra_args: Dictionary = {}
 
 signal request_nav_to #asking to Session container to nav through
 

@@ -1,26 +1,26 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=22 format=3]
 
-[ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/icons/GRoundedRect.svg" type="Texture" id=2]
-[ext_resource path="res://combat/levels/background/blue.png" type="Texture" id=3]
-[ext_resource path="res://assets/patterns/rhombus.png" type="Texture" id=4]
-[ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=6]
-[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=7]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=8]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=9]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=10]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=11]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=12]
-[ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=13]
-[ext_resource path="res://actors/brains/DiamondsnatchBrain.tscn" type="PackedScene" id=14]
-[ext_resource path="res://combat/modes/DiamondWarfare.tres" type="Resource" id=15]
-[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=16]
-[ext_resource path="res://combat/managers/DiamondDropManager.tscn" type="PackedScene" id=17]
-[ext_resource path="res://combat/managers/SpawnerManager.tscn" type="PackedScene" id=18]
-[ext_resource path="res://actors/environments/ElementSpawnerGroup.tscn" type="PackedScene" id=19]
-[ext_resource path="res://actors/environments/WaveGroupSpawner.gd" type="Script" id=20]
-[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=21]
+[ext_resource type="Script" path="res://addons/geometry/GRoundedRect.gd" id="1"]
+[ext_resource type="Texture2D" path="res://addons/geometry/icons/GRoundedRect.svg" id="2"]
+[ext_resource type="Texture2D" uid="uid://p3fpy4qsxbjc" path="res://combat/levels/background/blue.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://umy6kkoegsra" path="res://assets/patterns/rhombus.png" id="4"]
+[ext_resource type="PackedScene" uid="uid://ckykuuqee1aml" path="res://combat/collectables/Diamond.tscn" id="5"]
+[ext_resource type="Texture2D" uid="uid://cul1qame2qpja" path="res://assets/patterns/wall/bones.png" id="6"]
+[ext_resource type="PackedScene" path="res://combat/traits/NavigationZone.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://combat/Arena.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://actors/environments/Wall.tscn" id="9"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="10"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="11"]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="12"]
+[ext_resource type="PackedScene" path="res://combat/collectables/BigDiamond.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://cc33kbqafn06s" path="res://actors/brains/DiamondsnatchBrain.tscn" id="14"]
+[ext_resource type="Resource" path="res://combat/modes/DiamondWarfare.tres" id="15"]
+[ext_resource type="PackedScene" path="res://utils/CameraEye.tscn" id="16"]
+[ext_resource type="PackedScene" path="res://combat/managers/DiamondDropManager.tscn" id="17"]
+[ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="18"]
+[ext_resource type="PackedScene" path="res://actors/environments/ElementSpawnerGroup.tscn" id="19"]
+[ext_resource type="Script" path="res://actors/environments/WaveGroupSpawner.gd" id="20"]
+[ext_resource type="Resource" uid="uid://c2d0iaqf8sd0v" path="res://selection/characters/pentagonions_1.tres" id="21"]
 
 [node name="Arena" instance=ExtResource( 8 )]
 size_multiplier = 2.5
@@ -579,7 +579,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera3D" parent="." index="6"]
 current = false
 zoom = Vector2( 23841.9, 23841.9 )
-smoothing_speed = 0.3
+position_smoothing_speed = 0.3

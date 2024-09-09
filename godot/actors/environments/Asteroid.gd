@@ -1,10 +1,10 @@
-tool
+@tool
 extends RigidBody2D
 
 class_name Asteroid
 
 enum TYPE { solid, conquerable }
-export(TYPE) var type = TYPE.solid setget set_type
+@export var type: TYPE = TYPE.solid: set = set_type
 
 func set_type(value):
 	type = value
@@ -22,8 +22,8 @@ func refresh():
 	if not gshape:
 		return
 		
-	if not gshape.is_connected('changed', self, '_on_GShape_changed'):
-		gshape.connect('changed', self, '_on_GShape_changed')
+	if not gshape.is_connected('changed', Callable(self, '_on_GShape_changed')):
+		gshape.connect('changed', Callable(self, '_on_GShape_changed'))
 		
 	$Polygon2D.polygon = gshape.to_PoolVector2Array()
 	$Line2D.points = gshape.to_closed_PoolVector2Array()
@@ -51,7 +51,7 @@ func get_gshape():
 			return child
 	return null
 	
-func _get_configuration_warning():
+func _get_configuration_warnings():
 	if not get_gshape():
 		return 'Please provide a GShape as child node to define the geometry.\n'
 	return ''

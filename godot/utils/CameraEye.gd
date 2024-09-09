@@ -1,6 +1,6 @@
-extends Sprite
+extends Sprite2D
 
-export var active := true
+@export var active := true
 
 func _ready():
 	visible = false

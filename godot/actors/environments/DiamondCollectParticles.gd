@@ -1,4 +1,4 @@
-extends Particles2D
+extends GPUParticles2D
 
 func go():
 	$AnimationPlayer.play("Fade")

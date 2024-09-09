@@ -1,22 +1,22 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=22 format=3]
 
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=3]
-[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=5]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/levels/background/green.png" type="Texture" id=7]
-[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/modes/GuardTheBridge.tres" type="Resource" id=9]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=10]
-[ext_resource path="res://combat/styles/bones.tres" type="Resource" id=11]
-[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=12]
-[ext_resource path="res://actors/environments/NoHolderZone.tscn" type="PackedScene" id=13]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=14]
-[ext_resource path="res://combat/levels/singles/guard_the_bridge/BridgeManager.tscn" type="PackedScene" id=15]
-[ext_resource path="res://combat/levels/singles/guard_the_bridge/ShrinkAnimationPlayer.gd" type="Script" id=16]
-[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=17]
+[ext_resource type="Script" path="res://addons/geometry/GBeveledRect.gd" id="1"]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="2"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://utils/CameraEye.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://dsi0t7cms4bcn" path="res://assets/patterns/xgrid.png" id="5"]
+[ext_resource type="PackedScene" path="res://combat/Arena.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://bnwodi5cvfpoo" path="res://combat/levels/background/green.png" id="7"]
+[ext_resource type="PackedScene" path="res://actors/environments/Ball.tscn" id="8"]
+[ext_resource type="Resource" path="res://combat/modes/GuardTheBridge.tres" id="9"]
+[ext_resource type="Texture2D" uid="uid://cul1qame2qpja" path="res://assets/patterns/wall/bones.png" id="10"]
+[ext_resource type="Resource" path="res://combat/styles/bones.tres" id="11"]
+[ext_resource type="Resource" uid="uid://c2d0iaqf8sd0v" path="res://selection/characters/pentagonions_1.tres" id="12"]
+[ext_resource type="PackedScene" path="res://actors/environments/NoHolderZone.tscn" id="13"]
+[ext_resource type="PackedScene" path="res://actors/environments/Wall.tscn" id="14"]
+[ext_resource type="PackedScene" path="res://combat/levels/singles/guard_the_bridge/BridgeManager.tscn" id="15"]
+[ext_resource type="Script" path="res://combat/levels/singles/guard_the_bridge/ShrinkAnimationPlayer.gd" id="16"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="17"]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -27,8 +27,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( -1375, 0 ) ]
 }
@@ -43,8 +43,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 20 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 20 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( -1375, 0 ), Vector2( -2125, 0 ) ]
 }
@@ -58,8 +58,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 0,
 "values": [ Vector2( 1375, 0 ) ]
 }
@@ -74,8 +74,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 20 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 20 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1375, 0 ), Vector2( 2125, 0 ) ]
 }
@@ -146,7 +146,7 @@ script = ExtResource( 16 )
 position = Vector2( -50, 0 )
 z_index = -5
 z_as_relative = false
-points = PoolVector2Array( -1050, -350, -950, -250, -950, 250, -1050, 350 )
+points = PackedVector2Array( -1050, -350, -950, -250, -950, 250, -1050, 350 )
 width = 25.0
 default_color = Color( 0.2, 0.5, 0.28, 0.156863 )
 
@@ -154,7 +154,7 @@ default_color = Color( 0.2, 0.5, 0.28, 0.156863 )
 position = Vector2( 1950, 0 )
 z_index = -5
 z_as_relative = false
-points = PoolVector2Array( -850, -350, -950, -250, -950, 250, -850, 350 )
+points = PackedVector2Array( -850, -350, -950, -250, -950, 250, -850, 350 )
 width = 25.0
 default_color = Color( 0.2, 0.5, 0.28, 0.156863 )
 
@@ -195,9 +195,9 @@ rotation = 0.0
 controls = "kb2"
 species = ExtResource( 2 )
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
-smoothing_speed = 0.3
+position_smoothing_speed = 0.3
 disabled_override = true
 
 [connection signal="entered" from="Battlefield/Background/LeftNoHolderZone" to="Managers/BridgeManager" method="_on_LeftNoHolderZone_entered"]

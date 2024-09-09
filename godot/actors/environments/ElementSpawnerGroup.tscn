@@ -3,6 +3,6 @@
 [ext_resource path="res://actors/environments/ElementSpawnerGroup.gd" type="Script" id=1]
 [ext_resource path="res://actors/environments/ElementSpawner.tscn" type="PackedScene" id=2]
 
-[node name="ElementSpawnerGroup" type="Position2D"]
+[node name="ElementSpawnerGroup" type="Marker2D"]
 script = ExtResource( 1 )
 spawner_scene = ExtResource( 2 )

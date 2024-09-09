@@ -1,13 +1,13 @@
-tool
+@tool
 
 extends RigidBody2D
 
 class_name PowerUp
 
-export (String, 'shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniball_gun', 'rocket_gun', 'spike_gun', 'bomb', 'wave_gun', 'bubble_gun', 'drill') var type = 'shield' setget set_type
-export var appear = true
-export var tease = false
-export var random_types = []
+@export_enum('shield', 'shields', 'plate', 'skin', 'magnet', 'snake', 'kamikaze', 'sword', 'scythe', 'flail', 'miniball_gun', 'rocket_gun', 'spike_gun', 'bomb', 'wave_gun', 'bubble_gun', 'drill', 'medikit') var type = 'shield': set = set_type
+@export var appear = true
+@export var tease = false
+@export var random_types = []
 
 signal collected
 
@@ -31,26 +31,30 @@ const CATEGORY = {
 	'bomb': 'weapon',
 	'wave_gun': 'weapon',
 	'bubble_gun': 'weapon',
-	'drill': 'weapon'
+	'drill': 'weapon',
+	
+	'medikit': 'heal'
 }
 
 const EXCLUSIVE = {
 	'weapon': true,
 	'strange': false,
 	'protection': false,
-	'addition': false
+	'addition': false,
+	'heal': false
 }
 
 const COLOR = {
 	'weapon': Color(1,0,0,1),
 	'strange': Color(1,0,1,1),
 	'protection': Color(0.5,1,1,1),
-	'addition': Color(1,0.25,0,1)
+	'addition': Color(1,0.25,0,1),
+	'heal': Color(1,0.9,0.9,1)
 }
 
 func _ready():
 	if not is_inside_tree():
-		yield(self, 'ready')
+		await self.ready
 		
 	if len(random_types) > 0:
 		self.set_type(random_types[randi() % len(random_types)])
@@ -59,10 +63,10 @@ func _ready():
 	
 	if tease:
 		$AnimationPlayer.play('tease')
-		yield($AnimationPlayer, "animation_finished")
+		await $AnimationPlayer.animation_finished
 	if appear:
 		$AnimationPlayer.play('AppearFhuFhuFhu')
-		yield($AnimationPlayer, "animation_finished")
+		await $AnimationPlayer.animation_finished
 	$AnimationPlayer.play('idle')
 	activate()
 	
@@ -70,12 +74,15 @@ func set_type(v):
 	type = v
 	refresh_type()
 	
+func has_type(t: String) -> bool:
+	return type == t
+	
 func refresh_type():
-	$Sprite.texture = load('res://assets/sprites/powerups/'+type+'.png')
+	$Sprite2D.texture = load('res://assets/sprites/powerups/'+type+'.png')
 	$TeleportBeam.modulate = self.get_color(type)
 	
 func activate():
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		$CollisionShape2D.set_deferred('disabled', false)
 
 func get_strategy(ship, distance, game_mode):

@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://tytfenscfyp0"]
+
+[ext_resource type="Script" path="res://godot4/elements/gates/Gate.gd" id="1"]
+[ext_resource type="PackedScene" path="res://godot4/effects/Shadow.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://baclyt1ayjb0e" path="res://assets/sprites/signs/arrow.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bcoonsxenm7eg" path="res://assets/sprites/environments/ring_part.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cgbfpreevxmtx" path="res://assets/sprites/environments/ring_full.png" id="5"]
+[ext_resource type="AudioStream" uid="uid://cny4ebaabn7u4" path="res://assets/audio/FX/392693__screamstudio__sci-fi-sfx.wav" id="6"]
+[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" id="8"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+resource_local_to_scene = true
+size = Vector2(250, 500)
+
+[sub_resource type="Animation" id="2"]
+resource_name = "Blink"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RingPart:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1.6, 1.6, 1.6, 1), Color(1.2, 1.2, 1.2, 1)]
+}
+
+[sub_resource type="Animation" id="3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RingPart:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1.2, 1.2, 1.2, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bcjds"]
+_data = {
+"Blink": SubResource("2"),
+"RESET": SubResource("3")
+}
+
+[node name="Gate" type="Area2D" groups=["gates"]]
+collision_layer = 0
+collision_mask = 513
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("1")
+
+[node name="BottomRingPart" type="Sprite2D" parent="."]
+modulate = Color(0.388235, 0.388235, 0.388235, 1)
+self_modulate = Color(0.521569, 0.701961, 1, 1)
+z_index = -5
+z_as_relative = false
+position = Vector2(27, 0)
+texture = ExtResource("4")
+flip_h = true
+
+[node name="Arrow" type="Sprite2D" parent="."]
+modulate = Color(0.133333, 0.666667, 1, 0.313726)
+z_index = -2
+z_as_relative = false
+position = Vector2(-61, 0)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("3")
+flip_h = true
+
+[node name="RingPart" type="Sprite2D" parent="."]
+modulate = Color(1.2, 1.2, 1.2, 1)
+self_modulate = Color(0.521569, 0.701961, 1, 1)
+z_index = 12
+z_as_relative = false
+position = Vector2(-28, 0)
+texture = ExtResource("4")
+
+[node name="Shadow" parent="." instance=ExtResource("2")]
+texture = ExtResource("5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bcjds")
+}
+
+[node name="RandomAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource("8")
+streams = Array[AudioStream]([ExtResource("6")])
+randomize_pitch = true
+pitch_max = 1.4

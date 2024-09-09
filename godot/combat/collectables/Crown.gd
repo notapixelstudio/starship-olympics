@@ -1,14 +1,14 @@
 extends RigidBody2D
 
-class_name Crown
+class_name Crownz
 var entity
 
 enum types {CROWN, BALL, SOCCERBALL, TENNISBALL}
-export (types) var type = types.CROWN
-export var impulse : float = 0
+@export (types) var type = types.CROWN
+@export var impulse : float = 0
 var active : bool = false
 
-var owner_ship = null setget set_owner_ship
+var owner_ship = null: set = set_owner_ship
 
 const GRAB_DISTANCE = 72
 

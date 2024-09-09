@@ -1,26 +1,26 @@
 [gd_scene load_steps=29 format=2]
 
-[ext_resource path="res://actors/weapons/Bomb.gd" type="Script" id=1]
-[ext_resource path="res://actors/weapons/Pfft.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=3]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=4]
-[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=5]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=6]
-[ext_resource path="res://combat/components/Thrusters.gd" type="Script" id=7]
-[ext_resource path="res://combat/components/Flowing.gd" type="Script" id=8]
-[ext_resource path="res://combat/components/Owned.gd" type="Script" id=9]
-[ext_resource path="res://combat/components/Pursuer.gd" type="Script" id=10]
-[ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=11]
-[ext_resource path="res://assets/sprites/weapons/rocket.png" type="Texture" id=12]
-[ext_resource path="res://actors/weapons/BombCore.gd" type="Script" id=13]
-[ext_resource path="res://assets/audio/gameplay/GUI_Notification 10.wav" type="AudioStream" id=14]
-[ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=16]
-[ext_resource path="res://assets/audio/gameplay/ball/zapsplat_science_fiction_thud_impact_hit_generic_002_29337.ogg" type="AudioStream" id=17]
-[ext_resource path="res://actors/environments/Bubble.tscn" type="PackedScene" id=18]
-[ext_resource path="res://actors/weapons/Explosion.tscn" type="PackedScene" id=19]
-[ext_resource path="res://actors/weapons/Ripple.tscn" type="PackedScene" id=20]
-[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=21]
-[ext_resource path="res://assets/audio/FX/sfx_wpn_cannon4.wav" type="AudioStream" id=22]
+[ext_resource type="Script" path="res://actors/weapons/Bomb.gd" id="1"]
+[ext_resource type="PackedScene" path="res://godot4/effects/Pfft.tscn" id="2"]
+[ext_resource type="Script" path="res://addons/ECM/Entity.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://dxspwyydprxb1" path="res://addons/ECM/icons/Entity.png" id="4"]
+[ext_resource type="Script" path="res://addons/ECM/Component.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://boh3pf58gw6ig" path="res://addons/ECM/icons/Component.png" id="6"]
+[ext_resource type="Script" path="res://combat/components/Thrusters.gd" id="7"]
+[ext_resource type="Script" path="res://combat/components/Flowing.gd" id="8"]
+[ext_resource type="Script" path="res://combat/components/Owned.gd" id="9"]
+[ext_resource type="Script" path="res://combat/components/Pursuer.gd" id="10"]
+[ext_resource type="Script" path="res://combat/components/Teleportable.gd" id="11"]
+[ext_resource type="Texture2D" uid="uid://3joodndawyaj" path="res://assets/sprites/weapons/rocket.png" id="12"]
+[ext_resource type="Script" path="res://actors/weapons/BombCore.gd" id="13"]
+[ext_resource type="AudioStream" uid="uid://croqwq4o46hm8" path="res://assets/audio/gameplay/GUI_Notification 10.wav" id="14"]
+[ext_resource type="PackedScene" uid="uid://bklnkitol1qwq" path="res://utils/AutoTrail.tscn" id="16"]
+[ext_resource type="AudioStream" uid="uid://ccolq5305lf2o" path="res://assets/audio/gameplay/ball/zapsplat_science_fiction_thud_impact_hit_generic_002_29337.ogg" id="17"]
+[ext_resource type="PackedScene" path="res://actors/environments/Bubble.tscn" id="18"]
+[ext_resource type="PackedScene" path="res://actors/weapons/Explosion.tscn" id="19"]
+[ext_resource type="PackedScene" path="res://actors/weapons/Ripple.tscn" id="20"]
+[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="21"]
+[ext_resource type="AudioStream" uid="uid://bpk8o5wkci6vo" path="res://assets/audio/FX/sfx_wpn_cannon4.wav" id="22"]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -42,8 +42,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2, 3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 1, 2, 3 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, 120.0, 240.0, 360.0 ]
 }
@@ -59,8 +59,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( -2, -2, 1 ),
+"times": PackedFloat32Array( 0, 0.2, 0.4 ),
+"transitions": PackedFloat32Array( -2, -2, 1 ),
 "update": 0,
 "values": [ Vector2( 1.2, 1.6 ), Vector2( 1.6, 1.2 ), Vector2( 1.2, 1.6 ) ]
 }
@@ -76,7 +76,7 @@ collision_layer = 4
 collision_mask = 154
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
-contacts_reported = 1
+max_contacts_reported = 1
 contact_monitor = true
 linear_damp = 2.0
 script = ExtResource( 1 )
@@ -144,18 +144,18 @@ enabled = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color( 1.3, 1.3, 1.3, 1 )
 material = SubResource( 7 )
 scale = Vector2( 1.3, 1.5 )
 texture = ExtResource( 12 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 playback_speed = 0.5
 anims/rotate = SubResource( 3 )
 anims/wobble = SubResource( 4 )
 
-[node name="Symbol" type="Sprite" parent="."]
+[node name="Symbol" type="Sprite2D" parent="."]
 scale = Vector2( 0.6, 0.6 )
 
 [node name="NearArea" type="Area2D" parent="."]

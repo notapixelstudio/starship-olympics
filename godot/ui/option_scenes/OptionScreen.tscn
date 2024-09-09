@@ -1,22 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://oiowakvcdw8f"]
 
-[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
-[ext_resource path="res://ui/option_scenes/OptionScreen.gd" type="Script" id=2]
-[ext_resource path="res://ui/option_scenes/settings/PanelMain.tscn" type="PackedScene" id=3]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1"]
+[ext_resource type="Script" path="res://ui/option_scenes/OptionScreen.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://u0ejc5lbcu6l" path="res://ui/option_scenes/settings/PanelMain.tscn" id="3"]
 
-[node name="Options" type="ColorRect"]
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+focus_mode = 2
 mouse_filter = 2
-theme = ExtResource( 1 )
-color = Color( 0, 0, 0, 0.745098 )
-script = ExtResource( 2 )
-start_scene = ExtResource( 3 )
+theme = ExtResource("1")
+script = ExtResource("2")
+start_scene = ExtResource("3")
 
-[node name="Options" type="Label" parent="."]
-anchor_right = 1.0
-margin_top = 5.96063
-margin_bottom = 69.9606
-text = "OPTIONS"
-align = 1
-valign = 1
+[connection signal="focus_entered" from="." to="." method="_on_Options_focus_entered"]

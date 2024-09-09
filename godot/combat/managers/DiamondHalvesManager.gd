@@ -1,11 +1,11 @@
 extends Node
 
-export var left_icon : Texture
-export var right_icon : Texture
+@export var left_icon : Texture2D
+@export var right_icon : Texture2D
 
 func _ready():
-	Events.connect("sth_collected", self, '_on_sth_collected')
-	Events.connect("sths_bumped", self, '_on_sths_bumped')
+	Events.connect("sth_collected", Callable(self, '_on_sth_collected'))
+	Events.connect("sths_bumped", Callable(self, '_on_sths_bumped'))
 	
 func _on_sth_collected(collector, collectee):
 	if not collectee is HalfDiamond:
@@ -60,5 +60,5 @@ func collect_right(bag):
 func score(collector):
 	collector.get_bag().decrease()
 	global.the_match.add_score_to_team(collector.get_team(), 1)
-	global.arena.show_msg(collector.get_player().species, 1, collector.position)
+	global.arena.show_msg(collector.get_color(), 1, collector.position)
 	

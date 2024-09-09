@@ -23,11 +23,10 @@ func save_group_to_file(group_name: String):
 		save_dict[node.get_path()] = node.get_state()
 	
 	# Create a file
-	var save_file = File.new()
-	save_file.open(filename, File.WRITE)
+	var save_file = FileAccess.open(filename, FileAccess.WRITE)
 	print("We are going to save here: ", save_file.get_path_absolute(), " this JSON")
 	# Serialize the data dictionary to JSON
-	save_file.store_line(to_json(save_dict))
+	save_file.store_line(JSON.new().stringify(save_dict))
 	
 	# Write the JSON to the file and save to disk
 	save_file.close()
@@ -40,15 +39,16 @@ func save_game():
 
 func get_saved_data(filepath: String = SAVE_FILEPATH) -> Dictionary:
 		# When we load a file, we must check that it exists before we try to open it or it'll crash the game
-		var save_file = File.new()
-		if not save_file.file_exists(filepath):
+		if not FileAccess.file_exists(filepath):
 			print("The save file does not exist.")
 			return {}
-		save_file.open(filepath, File.READ)
+		var save_file = FileAccess.open(filepath, FileAccess.READ)
 		print("We are going to load from this JSON: ", save_file.get_path_absolute())
 		# parse file data - convert the JSON back to a dictionary
 		var data = {}
-		data = parse_json(save_file.get_as_text())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(save_file.get_as_text())
+		data = test_json_conv.get_data()
 		save_file.close()
 		return data
 	
@@ -74,9 +74,9 @@ func load_game() -> bool:
 func delete_latest_game() -> void:
 	if global.the_game:
 		var dict = global.the_game.to_dict()
-		global.write_into_file("user://games/{game_id}.json".format({"game_id": dict.get("game_uuid", Time.get_datetime_dict_from_system(false))}), to_json(dict), File.WRITE_READ)
-	global.write_into_file("user://games/latest.json", "", File.WRITE_READ)
+		global.write_into_file("user://games/{game_id}.json".format({"game_id": dict.get("game_uuid", Time.get_datetime_dict_from_system(false))}), JSON.new().stringify(dict), FileAccess.WRITE_READ)
+	global.write_into_file("user://games/latest.json", "", FileAccess.WRITE_READ)
 	
 func save_game_as_latest() -> void:
 	if global.the_game:
-		global.write_into_file("user://games/latest.json", to_json(global.the_game.to_dict()), File.WRITE_READ)
+		global.write_into_file("user://games/latest.json", JSON.new().stringify(global.the_game.to_dict()), FileAccess.WRITE_READ)

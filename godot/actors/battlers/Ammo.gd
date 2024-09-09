@@ -1,9 +1,9 @@
 extends Node
 
-var max_ammo = -1 setget set_max_ammo
+var max_ammo = -1: set = set_max_ammo
 var infinite_ammo : bool
 var current_ammo = max_ammo
-var reload_time setget set_reload_time
+var reload_time : set = set_reload_time
 var autoreload : bool
 
 func set_max_ammo(v):

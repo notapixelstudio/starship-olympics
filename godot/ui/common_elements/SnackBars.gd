@@ -1,3 +1,3 @@
 extends ColorRect
 
-export var text: String
+@export var text: String

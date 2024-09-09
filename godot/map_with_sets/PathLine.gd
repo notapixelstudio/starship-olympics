@@ -1,14 +1,14 @@
-tool
+@tool
 extends Line2D
 
 var start: Vector2
 var end: Vector2
-var current: Vector2 setget set_current
+var current: Vector2: set = set_current
 
 signal appeared
 
 func _ready() -> void:
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		appear()
 
 func set_current(v: Vector2) -> void:
@@ -34,7 +34,7 @@ func appear(force: bool = false) -> void:
 		$Tween.start()
 	
 func refresh() -> void:
-	set_points(PoolVector2Array([start, current]))
+	set_points(PackedVector2Array([start, current]))
 	
 func _on_Tween_tween_all_completed():
 	emit_signal('appeared')

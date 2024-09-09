@@ -1,6 +1,6 @@
 extends Area2D
 
-export var active := false setget set_active, get_active
+@export var active := false: get = get_active, set = set_active
 var owner_ship : Ship
 
 func _ready():
@@ -8,7 +8,7 @@ func _ready():
 
 func set_active(v):
 	active = v
-	$Sprite.visible = active
+	$Sprite2D.visible = active
 	$CollisionPolygon2D.call_deferred('set_disabled', not active)
 	
 func get_active() -> bool:

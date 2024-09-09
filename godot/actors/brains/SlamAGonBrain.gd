@@ -3,11 +3,11 @@ extends CPUBrain
 var random_preference : int
 
 func _ready():
-	._ready()
+	super._ready()
 	random_preference = randi()
 	
-	Events.connect("holdable_obtained", self, '_on_holdable_obtained')
-	Events.connect("holdable_lost", self, '_on_holdable_lost')
+	Events.connect("holdable_obtained", Callable(self, '_on_holdable_obtained'))
+	Events.connect("holdable_lost", Callable(self, '_on_holdable_lost'))
 
 func think():
 	assert(controllee.has_method('get_player'))

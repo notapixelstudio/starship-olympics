@@ -2,11 +2,11 @@
 
 [ext_resource path="res://actors/environments/Asteroid.gd" type="Script" id=1]
 [ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
+[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture2D" id=3]
 [ext_resource path="res://actors/environments/components/Conquerable.gd" type="Script" id=4]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
+[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture2D" id=5]
 [ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/sprites/environments/flag.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/environments/flag.png" type="Texture2D" id=7]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 30.0
@@ -46,5 +46,5 @@ texture_mode = -121671224
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
-[node name="Flag" type="Sprite" parent="."]
+[node name="Flag" type="Sprite2D" parent="."]
 texture = ExtResource( 7 )

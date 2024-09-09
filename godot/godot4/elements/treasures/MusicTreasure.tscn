@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://1jdlhqq8mf0c"]
+
+[ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_1em6e"]
+[ext_resource type="Script" path="res://godot4/elements/treasures/MusicTreasure.gd" id="2_v3ag5"]
+
+[sub_resource type="Animation" id="Animation_etq4v"]
+resource_name = "Pulse"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 0, 1),
+"update": 0,
+"values": [Color(1.4, 1.4, 1.4, 1), Color(1, 1, 1, 1), Color(1.4, 1.4, 1.4, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [0.349066, 0.349066, -0.349066]
+}
+
+[sub_resource type="Animation" id="Animation_ka7ew"]
+resource_name = "PulseBack"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 0, 1),
+"update": 0,
+"values": [Color(1.4, 1.4, 1.4, 1), Color(1, 1, 1, 1), Color(1.4, 1.4, 1.4, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [-0.349066, -0.349066, 0.349066]
+}
+
+[sub_resource type="Animation" id="Animation_ti5xo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.349066]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cwsrf"]
+_data = {
+"Pulse": SubResource("Animation_etq4v"),
+"PulseBack": SubResource("Animation_ka7ew"),
+"RESET": SubResource("Animation_ti5xo")
+}
+
+[node name="MusicTreasure" instance=ExtResource("1_1em6e")]
+collision_mask = 3092
+script = ExtResource("2_v3ag5")
+starting_beats = 0
+
+[node name="CollisionShape2D" parent="." index="0"]
+unique_name_in_owner = true
+
+[node name="Graphics" parent="." index="1"]
+rotation = 0.349066
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_cwsrf")
+}

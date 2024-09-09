@@ -8,16 +8,16 @@ func _ready():
 func unlock(what: PackedScene, stay_in_screen:= false, method_name := "first_unlock"):
 	$"%ColorRect".visible = true
 	self.visible = true
-	var unlock_thing= what.instance()
+	var unlock_thing= what.instantiate()
 	$"%Content".add_child(unlock_thing)
 	unlock_thing.call(method_name)
-	yield(unlock_thing, "animation_over")
+	await unlock_thing.animation_over
 	if stay_in_screen:
 		var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
 		tween.parallel().tween_property(unlock_thing, 'scale', Vector2(0.2,0.2), 1.0)
-		tween.parallel().tween_property(unlock_thing, 'position', $Position2D.position, 1.0)
+		tween.parallel().tween_property(unlock_thing, 'position', $Marker2D.position, 1.0)
 		# tween to put it somewhere in the screen
-		yield(tween, "finished")
+		await tween.finished
 		
 	else:
 		# animate and queue free

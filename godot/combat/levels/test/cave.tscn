@@ -4,10 +4,10 @@
 [ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
 [ext_resource path="res://combat/styles/cave.tres" type="Resource" id=3]
 [ext_resource path="res://actors/environments/SmolMine.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/icon/minicards/sets/death.png" type="Texture" id=5]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture" id=6]
-[ext_resource path="res://assets/patterns/xgrid.png" type="Texture" id=8]
-[ext_resource path="res://combat/levels/background/green.png" type="Texture" id=9]
+[ext_resource path="res://assets/icon/minicards/sets/death.png" type="Texture2D" id=5]
+[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture2D" id=6]
+[ext_resource path="res://assets/patterns/xgrid.png" type="Texture2D" id=8]
+[ext_resource path="res://combat/levels/background/green.png" type="Texture2D" id=9]
 [ext_resource path="res://actors/environments/Brick.tscn" type="PackedScene" id=10]
 [ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=11]
 [ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=12]
@@ -90,9 +90,9 @@ texture_scale = Vector2( 0.25, 0.25 )
 fg_color = Color( 0, 0.54902, 0.32549, 1 )
 bg_color = Color( 0, 0.2, 0.166667, 1 )
 
-[node name="YSort" type="YSort" parent="Battlefield/Middleground" index="0"]
+[node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="0"]
 
-[node name="Brick" parent="Battlefield/Middleground/YSort" index="0" instance=ExtResource( 10 )]
+[node name="Brick" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 10 )]
 position = Vector2( -500, -100 )
 points = 0
 strength = 3
@@ -101,7 +101,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick2" parent="Battlefield/Middleground/YSort" index="1" instance=ExtResource( 10 )]
+[node name="Brick2" parent="Battlefield/Middleground/Node2D" index="1" instance=ExtResource( 10 )]
 position = Vector2( -700, -100 )
 points = 0
 strength = 3
@@ -109,7 +109,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick3" parent="Battlefield/Middleground/YSort" index="2" instance=ExtResource( 10 )]
+[node name="Brick3" parent="Battlefield/Middleground/Node2D" index="2" instance=ExtResource( 10 )]
 position = Vector2( -700, 100 )
 points = 0
 strength = 3
@@ -117,7 +117,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick4" parent="Battlefield/Middleground/YSort" index="3" instance=ExtResource( 10 )]
+[node name="Brick4" parent="Battlefield/Middleground/Node2D" index="3" instance=ExtResource( 10 )]
 position = Vector2( -500, 100 )
 points = 0
 strength = 3
@@ -126,7 +126,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick5" parent="Battlefield/Middleground/YSort" index="4" instance=ExtResource( 10 )]
+[node name="Brick5" parent="Battlefield/Middleground/Node2D" index="4" instance=ExtResource( 10 )]
 position = Vector2( -300, 100 )
 points = 0
 strength = 3
@@ -135,7 +135,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.15
 type = 6
 
-[node name="Brick6" parent="Battlefield/Middleground/YSort" index="5" instance=ExtResource( 10 )]
+[node name="Brick6" parent="Battlefield/Middleground/Node2D" index="5" instance=ExtResource( 10 )]
 position = Vector2( -300, -100 )
 points = 0
 strength = 3
@@ -144,7 +144,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.15
 type = 6
 
-[node name="Brick7" parent="Battlefield/Middleground/YSort" index="6" instance=ExtResource( 10 )]
+[node name="Brick7" parent="Battlefield/Middleground/Node2D" index="6" instance=ExtResource( 10 )]
 position = Vector2( -300, -300 )
 points = 0
 strength = 3
@@ -153,7 +153,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.15
 type = 6
 
-[node name="Brick8" parent="Battlefield/Middleground/YSort" index="7" instance=ExtResource( 10 )]
+[node name="Brick8" parent="Battlefield/Middleground/Node2D" index="7" instance=ExtResource( 10 )]
 position = Vector2( -500, -300 )
 points = 0
 strength = 3
@@ -162,7 +162,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick9" parent="Battlefield/Middleground/YSort" index="8" instance=ExtResource( 10 )]
+[node name="Brick9" parent="Battlefield/Middleground/Node2D" index="8" instance=ExtResource( 10 )]
 position = Vector2( -700, -300 )
 points = 0
 strength = 3
@@ -170,7 +170,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick10" parent="Battlefield/Middleground/YSort" index="9" instance=ExtResource( 10 )]
+[node name="Brick10" parent="Battlefield/Middleground/Node2D" index="9" instance=ExtResource( 10 )]
 position = Vector2( -500, 500 )
 points = 0
 strength = 3
@@ -179,7 +179,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick11" parent="Battlefield/Middleground/YSort" index="10" instance=ExtResource( 10 )]
+[node name="Brick11" parent="Battlefield/Middleground/Node2D" index="10" instance=ExtResource( 10 )]
 position = Vector2( -700, 500 )
 points = 0
 strength = 3
@@ -187,7 +187,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick12" parent="Battlefield/Middleground/YSort" index="11" instance=ExtResource( 10 )]
+[node name="Brick12" parent="Battlefield/Middleground/Node2D" index="11" instance=ExtResource( 10 )]
 position = Vector2( -700, 700 )
 points = 0
 strength = 3
@@ -195,7 +195,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick13" parent="Battlefield/Middleground/YSort" index="12" instance=ExtResource( 10 )]
+[node name="Brick13" parent="Battlefield/Middleground/Node2D" index="12" instance=ExtResource( 10 )]
 position = Vector2( -500, 700 )
 points = 0
 strength = 3
@@ -203,7 +203,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick14" parent="Battlefield/Middleground/YSort" index="13" instance=ExtResource( 10 )]
+[node name="Brick14" parent="Battlefield/Middleground/Node2D" index="13" instance=ExtResource( 10 )]
 position = Vector2( -300, 700 )
 points = 0
 strength = 3
@@ -211,7 +211,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick15" parent="Battlefield/Middleground/YSort" index="14" instance=ExtResource( 10 )]
+[node name="Brick15" parent="Battlefield/Middleground/Node2D" index="14" instance=ExtResource( 10 )]
 position = Vector2( -300, 500 )
 points = 0
 strength = 3
@@ -220,7 +220,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick16" parent="Battlefield/Middleground/YSort" index="15" instance=ExtResource( 10 )]
+[node name="Brick16" parent="Battlefield/Middleground/Node2D" index="15" instance=ExtResource( 10 )]
 position = Vector2( -300, 300 )
 points = 0
 strength = 3
@@ -229,7 +229,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.15
 type = 6
 
-[node name="Brick17" parent="Battlefield/Middleground/YSort" index="16" instance=ExtResource( 10 )]
+[node name="Brick17" parent="Battlefield/Middleground/Node2D" index="16" instance=ExtResource( 10 )]
 position = Vector2( -500, 300 )
 points = 0
 strength = 3
@@ -238,7 +238,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick18" parent="Battlefield/Middleground/YSort" index="17" instance=ExtResource( 10 )]
+[node name="Brick18" parent="Battlefield/Middleground/Node2D" index="17" instance=ExtResource( 10 )]
 position = Vector2( -700, 300 )
 points = 0
 strength = 3
@@ -246,7 +246,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick37" parent="Battlefield/Middleground/YSort" index="18" instance=ExtResource( 10 )]
+[node name="Brick37" parent="Battlefield/Middleground/Node2D" index="18" instance=ExtResource( 10 )]
 position = Vector2( 700, 500 )
 points = 0
 strength = 3
@@ -254,7 +254,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick38" parent="Battlefield/Middleground/YSort" index="19" instance=ExtResource( 10 )]
+[node name="Brick38" parent="Battlefield/Middleground/Node2D" index="19" instance=ExtResource( 10 )]
 position = Vector2( 500, 500 )
 points = 0
 strength = 3
@@ -263,7 +263,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick39" parent="Battlefield/Middleground/YSort" index="20" instance=ExtResource( 10 )]
+[node name="Brick39" parent="Battlefield/Middleground/Node2D" index="20" instance=ExtResource( 10 )]
 position = Vector2( 500, 700 )
 points = 0
 strength = 3
@@ -271,7 +271,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick40" parent="Battlefield/Middleground/YSort" index="21" instance=ExtResource( 10 )]
+[node name="Brick40" parent="Battlefield/Middleground/Node2D" index="21" instance=ExtResource( 10 )]
 position = Vector2( 700, 700 )
 points = 0
 strength = 3
@@ -279,7 +279,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick41" parent="Battlefield/Middleground/YSort" index="22" instance=ExtResource( 10 )]
+[node name="Brick41" parent="Battlefield/Middleground/Node2D" index="22" instance=ExtResource( 10 )]
 position = Vector2( 700, 300 )
 points = 0
 strength = 3
@@ -287,7 +287,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick42" parent="Battlefield/Middleground/YSort" index="23" instance=ExtResource( 10 )]
+[node name="Brick42" parent="Battlefield/Middleground/Node2D" index="23" instance=ExtResource( 10 )]
 position = Vector2( 500, 300 )
 points = 0
 strength = 3
@@ -296,7 +296,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick19" parent="Battlefield/Middleground/YSort" index="24" instance=ExtResource( 10 )]
+[node name="Brick19" parent="Battlefield/Middleground/Node2D" index="24" instance=ExtResource( 10 )]
 position = Vector2( 100, 500 )
 points = 0
 strength = 3
@@ -305,7 +305,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick20" parent="Battlefield/Middleground/YSort" index="25" instance=ExtResource( 10 )]
+[node name="Brick20" parent="Battlefield/Middleground/Node2D" index="25" instance=ExtResource( 10 )]
 position = Vector2( -100, 500 )
 points = 0
 strength = 3
@@ -314,7 +314,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick21" parent="Battlefield/Middleground/YSort" index="26" instance=ExtResource( 10 )]
+[node name="Brick21" parent="Battlefield/Middleground/Node2D" index="26" instance=ExtResource( 10 )]
 position = Vector2( -100, 700 )
 points = 0
 strength = 3
@@ -322,7 +322,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick22" parent="Battlefield/Middleground/YSort" index="27" instance=ExtResource( 10 )]
+[node name="Brick22" parent="Battlefield/Middleground/Node2D" index="27" instance=ExtResource( 10 )]
 position = Vector2( 100, 700 )
 points = 0
 strength = 3
@@ -330,7 +330,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick43" parent="Battlefield/Middleground/YSort" index="28" instance=ExtResource( 10 )]
+[node name="Brick43" parent="Battlefield/Middleground/Node2D" index="28" instance=ExtResource( 10 )]
 position = Vector2( -100, -300 )
 points = 0
 strength = 3
@@ -339,7 +339,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.15
 type = 6
 
-[node name="Brick44" parent="Battlefield/Middleground/YSort" index="29" instance=ExtResource( 10 )]
+[node name="Brick44" parent="Battlefield/Middleground/Node2D" index="29" instance=ExtResource( 10 )]
 position = Vector2( 100, -300 )
 points = 0
 strength = 3
@@ -348,7 +348,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.15
 type = 6
 
-[node name="Brick23" parent="Battlefield/Middleground/YSort" index="30" instance=ExtResource( 10 )]
+[node name="Brick23" parent="Battlefield/Middleground/Node2D" index="30" instance=ExtResource( 10 )]
 position = Vector2( 300, 700 )
 points = 0
 strength = 3
@@ -356,7 +356,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick24" parent="Battlefield/Middleground/YSort" index="31" instance=ExtResource( 10 )]
+[node name="Brick24" parent="Battlefield/Middleground/Node2D" index="31" instance=ExtResource( 10 )]
 position = Vector2( 300, 500 )
 points = 0
 strength = 3
@@ -365,7 +365,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick25" parent="Battlefield/Middleground/YSort" index="32" instance=ExtResource( 10 )]
+[node name="Brick25" parent="Battlefield/Middleground/Node2D" index="32" instance=ExtResource( 10 )]
 position = Vector2( 300, 300 )
 points = 0
 strength = 3
@@ -374,7 +374,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.15
 type = 6
 
-[node name="Brick26" parent="Battlefield/Middleground/YSort" index="33" instance=ExtResource( 10 )]
+[node name="Brick26" parent="Battlefield/Middleground/Node2D" index="33" instance=ExtResource( 10 )]
 position = Vector2( 100, 300 )
 points = 0
 strength = 3
@@ -383,7 +383,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.15
 type = 6
 
-[node name="Brick27" parent="Battlefield/Middleground/YSort" index="34" instance=ExtResource( 10 )]
+[node name="Brick27" parent="Battlefield/Middleground/Node2D" index="34" instance=ExtResource( 10 )]
 position = Vector2( -100, 300 )
 points = 0
 strength = 3
@@ -392,7 +392,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.15
 type = 6
 
-[node name="Brick28" parent="Battlefield/Middleground/YSort" index="35" instance=ExtResource( 10 )]
+[node name="Brick28" parent="Battlefield/Middleground/Node2D" index="35" instance=ExtResource( 10 )]
 position = Vector2( 500, -100 )
 points = 0
 strength = 3
@@ -401,7 +401,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick29" parent="Battlefield/Middleground/YSort" index="36" instance=ExtResource( 10 )]
+[node name="Brick29" parent="Battlefield/Middleground/Node2D" index="36" instance=ExtResource( 10 )]
 position = Vector2( 300, -100 )
 points = 0
 strength = 3
@@ -410,7 +410,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.15
 type = 6
 
-[node name="Brick30" parent="Battlefield/Middleground/YSort" index="37" instance=ExtResource( 10 )]
+[node name="Brick30" parent="Battlefield/Middleground/Node2D" index="37" instance=ExtResource( 10 )]
 position = Vector2( 300, 100 )
 points = 0
 strength = 3
@@ -419,7 +419,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.15
 type = 6
 
-[node name="Brick31" parent="Battlefield/Middleground/YSort" index="38" instance=ExtResource( 10 )]
+[node name="Brick31" parent="Battlefield/Middleground/Node2D" index="38" instance=ExtResource( 10 )]
 position = Vector2( 500, 100 )
 points = 0
 strength = 3
@@ -428,7 +428,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick32" parent="Battlefield/Middleground/YSort" index="39" instance=ExtResource( 10 )]
+[node name="Brick32" parent="Battlefield/Middleground/Node2D" index="39" instance=ExtResource( 10 )]
 position = Vector2( 700, 100 )
 points = 0
 strength = 3
@@ -436,7 +436,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick33" parent="Battlefield/Middleground/YSort" index="40" instance=ExtResource( 10 )]
+[node name="Brick33" parent="Battlefield/Middleground/Node2D" index="40" instance=ExtResource( 10 )]
 position = Vector2( 700, -100 )
 points = 0
 strength = 3
@@ -444,7 +444,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick34" parent="Battlefield/Middleground/YSort" index="41" instance=ExtResource( 10 )]
+[node name="Brick34" parent="Battlefield/Middleground/Node2D" index="41" instance=ExtResource( 10 )]
 position = Vector2( 700, -300 )
 points = 0
 strength = 3
@@ -452,7 +452,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick35" parent="Battlefield/Middleground/YSort" index="42" instance=ExtResource( 10 )]
+[node name="Brick35" parent="Battlefield/Middleground/Node2D" index="42" instance=ExtResource( 10 )]
 position = Vector2( 500, -300 )
 points = 0
 strength = 3
@@ -461,7 +461,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick36" parent="Battlefield/Middleground/YSort" index="43" instance=ExtResource( 10 )]
+[node name="Brick36" parent="Battlefield/Middleground/Node2D" index="43" instance=ExtResource( 10 )]
 position = Vector2( 300, -300 )
 points = 0
 strength = 3
@@ -470,7 +470,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.15
 type = 6
 
-[node name="Brick45" parent="Battlefield/Middleground/YSort" index="44" instance=ExtResource( 10 )]
+[node name="Brick45" parent="Battlefield/Middleground/Node2D" index="44" instance=ExtResource( 10 )]
 position = Vector2( -300, -500 )
 points = 0
 strength = 3
@@ -479,7 +479,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick46" parent="Battlefield/Middleground/YSort" index="45" instance=ExtResource( 10 )]
+[node name="Brick46" parent="Battlefield/Middleground/Node2D" index="45" instance=ExtResource( 10 )]
 position = Vector2( -500, -500 )
 points = 0
 strength = 3
@@ -488,7 +488,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick47" parent="Battlefield/Middleground/YSort" index="46" instance=ExtResource( 10 )]
+[node name="Brick47" parent="Battlefield/Middleground/Node2D" index="46" instance=ExtResource( 10 )]
 position = Vector2( -700, -500 )
 points = 0
 strength = 3
@@ -496,7 +496,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick48" parent="Battlefield/Middleground/YSort" index="47" instance=ExtResource( 10 )]
+[node name="Brick48" parent="Battlefield/Middleground/Node2D" index="47" instance=ExtResource( 10 )]
 position = Vector2( -100, -500 )
 points = 0
 strength = 3
@@ -505,7 +505,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick49" parent="Battlefield/Middleground/YSort" index="48" instance=ExtResource( 10 )]
+[node name="Brick49" parent="Battlefield/Middleground/Node2D" index="48" instance=ExtResource( 10 )]
 position = Vector2( 100, -500 )
 points = 0
 strength = 3
@@ -514,7 +514,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick50" parent="Battlefield/Middleground/YSort" index="49" instance=ExtResource( 10 )]
+[node name="Brick50" parent="Battlefield/Middleground/Node2D" index="49" instance=ExtResource( 10 )]
 position = Vector2( 700, -500 )
 points = 0
 strength = 3
@@ -522,7 +522,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick51" parent="Battlefield/Middleground/YSort" index="50" instance=ExtResource( 10 )]
+[node name="Brick51" parent="Battlefield/Middleground/Node2D" index="50" instance=ExtResource( 10 )]
 position = Vector2( 500, -500 )
 points = 0
 strength = 3
@@ -531,7 +531,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick52" parent="Battlefield/Middleground/YSort" index="51" instance=ExtResource( 10 )]
+[node name="Brick52" parent="Battlefield/Middleground/Node2D" index="51" instance=ExtResource( 10 )]
 position = Vector2( 300, -500 )
 points = 0
 strength = 3
@@ -540,7 +540,7 @@ rare_content_scene = ExtResource( 11 )
 rare_content_probability = 0.1
 type = 6
 
-[node name="Brick53" parent="Battlefield/Middleground/YSort" index="52" instance=ExtResource( 10 )]
+[node name="Brick53" parent="Battlefield/Middleground/Node2D" index="52" instance=ExtResource( 10 )]
 position = Vector2( -300, -700 )
 points = 0
 strength = 3
@@ -548,7 +548,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick54" parent="Battlefield/Middleground/YSort" index="53" instance=ExtResource( 10 )]
+[node name="Brick54" parent="Battlefield/Middleground/Node2D" index="53" instance=ExtResource( 10 )]
 position = Vector2( -500, -700 )
 points = 0
 strength = 3
@@ -556,7 +556,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick55" parent="Battlefield/Middleground/YSort" index="54" instance=ExtResource( 10 )]
+[node name="Brick55" parent="Battlefield/Middleground/Node2D" index="54" instance=ExtResource( 10 )]
 position = Vector2( -700, -700 )
 points = 0
 strength = 3
@@ -564,7 +564,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick61" parent="Battlefield/Middleground/YSort" index="55" instance=ExtResource( 10 )]
+[node name="Brick61" parent="Battlefield/Middleground/Node2D" index="55" instance=ExtResource( 10 )]
 position = Vector2( -900, -100 )
 points = 0
 strength = 3
@@ -572,7 +572,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick62" parent="Battlefield/Middleground/YSort" index="56" instance=ExtResource( 10 )]
+[node name="Brick62" parent="Battlefield/Middleground/Node2D" index="56" instance=ExtResource( 10 )]
 position = Vector2( -1100, -100 )
 points = 0
 strength = 3
@@ -580,7 +580,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick63" parent="Battlefield/Middleground/YSort" index="57" instance=ExtResource( 10 )]
+[node name="Brick63" parent="Battlefield/Middleground/Node2D" index="57" instance=ExtResource( 10 )]
 position = Vector2( -1100, 100 )
 points = 0
 strength = 3
@@ -588,7 +588,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick64" parent="Battlefield/Middleground/YSort" index="58" instance=ExtResource( 10 )]
+[node name="Brick64" parent="Battlefield/Middleground/Node2D" index="58" instance=ExtResource( 10 )]
 position = Vector2( -900, 100 )
 points = 0
 strength = 3
@@ -596,7 +596,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick65" parent="Battlefield/Middleground/YSort" index="59" instance=ExtResource( 10 )]
+[node name="Brick65" parent="Battlefield/Middleground/Node2D" index="59" instance=ExtResource( 10 )]
 position = Vector2( -900, -300 )
 points = 0
 strength = 3
@@ -604,7 +604,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick66" parent="Battlefield/Middleground/YSort" index="60" instance=ExtResource( 10 )]
+[node name="Brick66" parent="Battlefield/Middleground/Node2D" index="60" instance=ExtResource( 10 )]
 position = Vector2( -1100, -300 )
 points = 0
 strength = 3
@@ -612,7 +612,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick67" parent="Battlefield/Middleground/YSort" index="61" instance=ExtResource( 10 )]
+[node name="Brick67" parent="Battlefield/Middleground/Node2D" index="61" instance=ExtResource( 10 )]
 position = Vector2( -900, 500 )
 points = 0
 strength = 3
@@ -620,7 +620,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick68" parent="Battlefield/Middleground/YSort" index="62" instance=ExtResource( 10 )]
+[node name="Brick68" parent="Battlefield/Middleground/Node2D" index="62" instance=ExtResource( 10 )]
 position = Vector2( -1100, 500 )
 points = 0
 strength = 3
@@ -628,7 +628,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick70" parent="Battlefield/Middleground/YSort" index="63" instance=ExtResource( 10 )]
+[node name="Brick70" parent="Battlefield/Middleground/Node2D" index="63" instance=ExtResource( 10 )]
 position = Vector2( -900, 700 )
 points = 0
 strength = 3
@@ -636,7 +636,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick71" parent="Battlefield/Middleground/YSort" index="64" instance=ExtResource( 10 )]
+[node name="Brick71" parent="Battlefield/Middleground/Node2D" index="64" instance=ExtResource( 10 )]
 position = Vector2( -900, 300 )
 points = 0
 strength = 3
@@ -644,7 +644,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick72" parent="Battlefield/Middleground/YSort" index="65" instance=ExtResource( 10 )]
+[node name="Brick72" parent="Battlefield/Middleground/Node2D" index="65" instance=ExtResource( 10 )]
 position = Vector2( -1100, 300 )
 points = 0
 strength = 3
@@ -652,7 +652,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick94" parent="Battlefield/Middleground/YSort" index="66" instance=ExtResource( 10 )]
+[node name="Brick94" parent="Battlefield/Middleground/Node2D" index="66" instance=ExtResource( 10 )]
 position = Vector2( -700, 1100 )
 points = 0
 strength = 3
@@ -660,7 +660,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick95" parent="Battlefield/Middleground/YSort" index="67" instance=ExtResource( 10 )]
+[node name="Brick95" parent="Battlefield/Middleground/Node2D" index="67" instance=ExtResource( 10 )]
 position = Vector2( -700, 1300 )
 points = 0
 strength = 3
@@ -668,7 +668,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick96" parent="Battlefield/Middleground/YSort" index="68" instance=ExtResource( 10 )]
+[node name="Brick96" parent="Battlefield/Middleground/Node2D" index="68" instance=ExtResource( 10 )]
 position = Vector2( -500, 1300 )
 points = 0
 strength = 3
@@ -676,7 +676,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick97" parent="Battlefield/Middleground/YSort" index="69" instance=ExtResource( 10 )]
+[node name="Brick97" parent="Battlefield/Middleground/Node2D" index="69" instance=ExtResource( 10 )]
 position = Vector2( -300, 1300 )
 points = 0
 strength = 3
@@ -684,7 +684,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick101" parent="Battlefield/Middleground/YSort" index="70" instance=ExtResource( 10 )]
+[node name="Brick101" parent="Battlefield/Middleground/Node2D" index="70" instance=ExtResource( 10 )]
 position = Vector2( -700, 900 )
 points = 0
 strength = 3
@@ -692,7 +692,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick102" parent="Battlefield/Middleground/YSort" index="71" instance=ExtResource( 10 )]
+[node name="Brick102" parent="Battlefield/Middleground/Node2D" index="71" instance=ExtResource( 10 )]
 position = Vector2( 700, 1100 )
 points = 0
 strength = 3
@@ -700,7 +700,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick104" parent="Battlefield/Middleground/YSort" index="72" instance=ExtResource( 10 )]
+[node name="Brick104" parent="Battlefield/Middleground/Node2D" index="72" instance=ExtResource( 10 )]
 position = Vector2( 500, 1300 )
 points = 0
 strength = 3
@@ -708,7 +708,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick105" parent="Battlefield/Middleground/YSort" index="73" instance=ExtResource( 10 )]
+[node name="Brick105" parent="Battlefield/Middleground/Node2D" index="73" instance=ExtResource( 10 )]
 position = Vector2( 700, 1300 )
 points = 0
 strength = 3
@@ -716,7 +716,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick106" parent="Battlefield/Middleground/YSort" index="74" instance=ExtResource( 10 )]
+[node name="Brick106" parent="Battlefield/Middleground/Node2D" index="74" instance=ExtResource( 10 )]
 position = Vector2( 700, 900 )
 points = 0
 strength = 3
@@ -724,7 +724,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick110" parent="Battlefield/Middleground/YSort" index="75" instance=ExtResource( 10 )]
+[node name="Brick110" parent="Battlefield/Middleground/Node2D" index="75" instance=ExtResource( 10 )]
 position = Vector2( -100, 1300 )
 points = 0
 strength = 3
@@ -732,7 +732,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick111" parent="Battlefield/Middleground/YSort" index="76" instance=ExtResource( 10 )]
+[node name="Brick111" parent="Battlefield/Middleground/Node2D" index="76" instance=ExtResource( 10 )]
 position = Vector2( 100, 1300 )
 points = 0
 strength = 3
@@ -740,7 +740,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick112" parent="Battlefield/Middleground/YSort" index="77" instance=ExtResource( 10 )]
+[node name="Brick112" parent="Battlefield/Middleground/Node2D" index="77" instance=ExtResource( 10 )]
 position = Vector2( 300, 1300 )
 points = 0
 strength = 3
@@ -748,7 +748,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick117" parent="Battlefield/Middleground/YSort" index="78" instance=ExtResource( 10 )]
+[node name="Brick117" parent="Battlefield/Middleground/Node2D" index="78" instance=ExtResource( 10 )]
 position = Vector2( -900, 1100 )
 points = 0
 strength = 3
@@ -756,7 +756,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick120" parent="Battlefield/Middleground/YSort" index="79" instance=ExtResource( 10 )]
+[node name="Brick120" parent="Battlefield/Middleground/Node2D" index="79" instance=ExtResource( 10 )]
 position = Vector2( -900, 1300 )
 points = 0
 strength = 3
@@ -764,7 +764,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick121" parent="Battlefield/Middleground/YSort" index="80" instance=ExtResource( 10 )]
+[node name="Brick121" parent="Battlefield/Middleground/Node2D" index="80" instance=ExtResource( 10 )]
 position = Vector2( -900, 900 )
 points = 0
 strength = 3
@@ -772,7 +772,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick73" parent="Battlefield/Middleground/YSort" index="81" instance=ExtResource( 10 )]
+[node name="Brick73" parent="Battlefield/Middleground/Node2D" index="81" instance=ExtResource( 10 )]
 position = Vector2( -900, -500 )
 points = 0
 strength = 3
@@ -780,7 +780,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick74" parent="Battlefield/Middleground/YSort" index="82" instance=ExtResource( 10 )]
+[node name="Brick74" parent="Battlefield/Middleground/Node2D" index="82" instance=ExtResource( 10 )]
 position = Vector2( -1100, -500 )
 points = 0
 strength = 3
@@ -788,7 +788,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick75" parent="Battlefield/Middleground/YSort" index="83" instance=ExtResource( 10 )]
+[node name="Brick75" parent="Battlefield/Middleground/Node2D" index="83" instance=ExtResource( 10 )]
 position = Vector2( -900, -700 )
 points = 0
 strength = 3
@@ -796,7 +796,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick81" parent="Battlefield/Middleground/YSort" index="84" instance=ExtResource( 10 )]
+[node name="Brick81" parent="Battlefield/Middleground/Node2D" index="84" instance=ExtResource( 10 )]
 position = Vector2( -1300, -300 )
 points = 0
 strength = 3
@@ -804,7 +804,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick82" parent="Battlefield/Middleground/YSort" index="85" instance=ExtResource( 10 )]
+[node name="Brick82" parent="Battlefield/Middleground/Node2D" index="85" instance=ExtResource( 10 )]
 position = Vector2( -1500, -300 )
 points = 0
 strength = 3
@@ -812,7 +812,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick83" parent="Battlefield/Middleground/YSort" index="86" instance=ExtResource( 10 )]
+[node name="Brick83" parent="Battlefield/Middleground/Node2D" index="86" instance=ExtResource( 10 )]
 position = Vector2( -1300, 500 )
 points = 0
 strength = 3
@@ -820,7 +820,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick84" parent="Battlefield/Middleground/YSort" index="87" instance=ExtResource( 10 )]
+[node name="Brick84" parent="Battlefield/Middleground/Node2D" index="87" instance=ExtResource( 10 )]
 position = Vector2( -1500, 500 )
 points = 0
 strength = 3
@@ -828,7 +828,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick87" parent="Battlefield/Middleground/YSort" index="88" instance=ExtResource( 10 )]
+[node name="Brick87" parent="Battlefield/Middleground/Node2D" index="88" instance=ExtResource( 10 )]
 position = Vector2( -1300, 300 )
 points = 0
 strength = 3
@@ -836,7 +836,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick88" parent="Battlefield/Middleground/YSort" index="89" instance=ExtResource( 10 )]
+[node name="Brick88" parent="Battlefield/Middleground/Node2D" index="89" instance=ExtResource( 10 )]
 position = Vector2( -1500, 300 )
 points = 0
 strength = 3
@@ -844,7 +844,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick89" parent="Battlefield/Middleground/YSort" index="90" instance=ExtResource( 10 )]
+[node name="Brick89" parent="Battlefield/Middleground/Node2D" index="90" instance=ExtResource( 10 )]
 position = Vector2( -1300, -500 )
 points = 0
 strength = 3
@@ -852,7 +852,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick90" parent="Battlefield/Middleground/YSort" index="91" instance=ExtResource( 10 )]
+[node name="Brick90" parent="Battlefield/Middleground/Node2D" index="91" instance=ExtResource( 10 )]
 position = Vector2( -1500, -500 )
 points = 0
 strength = 3
@@ -860,7 +860,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick123" parent="Battlefield/Middleground/YSort" index="92" instance=ExtResource( 10 )]
+[node name="Brick123" parent="Battlefield/Middleground/Node2D" index="92" instance=ExtResource( 10 )]
 position = Vector2( -1700, -100 )
 points = 0
 strength = 3
@@ -868,7 +868,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick124" parent="Battlefield/Middleground/YSort" index="93" instance=ExtResource( 10 )]
+[node name="Brick124" parent="Battlefield/Middleground/Node2D" index="93" instance=ExtResource( 10 )]
 position = Vector2( -1700, 100 )
 points = 0
 strength = 3
@@ -876,7 +876,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick125" parent="Battlefield/Middleground/YSort" index="94" instance=ExtResource( 10 )]
+[node name="Brick125" parent="Battlefield/Middleground/Node2D" index="94" instance=ExtResource( 10 )]
 position = Vector2( -1700, -300 )
 points = 0
 strength = 3
@@ -884,7 +884,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick126" parent="Battlefield/Middleground/YSort" index="95" instance=ExtResource( 10 )]
+[node name="Brick126" parent="Battlefield/Middleground/Node2D" index="95" instance=ExtResource( 10 )]
 position = Vector2( -1700, 500 )
 points = 0
 strength = 3
@@ -892,7 +892,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick127" parent="Battlefield/Middleground/YSort" index="96" instance=ExtResource( 10 )]
+[node name="Brick127" parent="Battlefield/Middleground/Node2D" index="96" instance=ExtResource( 10 )]
 position = Vector2( -1700, 300 )
 points = 0
 strength = 3
@@ -900,7 +900,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick128" parent="Battlefield/Middleground/YSort" index="97" instance=ExtResource( 10 )]
+[node name="Brick128" parent="Battlefield/Middleground/Node2D" index="97" instance=ExtResource( 10 )]
 position = Vector2( -1700, -500 )
 points = 0
 strength = 3
@@ -908,7 +908,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick143" parent="Battlefield/Middleground/YSort" index="98" instance=ExtResource( 10 )]
+[node name="Brick143" parent="Battlefield/Middleground/Node2D" index="98" instance=ExtResource( 10 )]
 position = Vector2( 1700, -100 )
 points = 0
 strength = 3
@@ -916,7 +916,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick144" parent="Battlefield/Middleground/YSort" index="99" instance=ExtResource( 10 )]
+[node name="Brick144" parent="Battlefield/Middleground/Node2D" index="99" instance=ExtResource( 10 )]
 position = Vector2( 1700, 100 )
 points = 0
 strength = 3
@@ -924,7 +924,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick145" parent="Battlefield/Middleground/YSort" index="100" instance=ExtResource( 10 )]
+[node name="Brick145" parent="Battlefield/Middleground/Node2D" index="100" instance=ExtResource( 10 )]
 position = Vector2( 1700, -300 )
 points = 0
 strength = 3
@@ -932,7 +932,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick146" parent="Battlefield/Middleground/YSort" index="101" instance=ExtResource( 10 )]
+[node name="Brick146" parent="Battlefield/Middleground/Node2D" index="101" instance=ExtResource( 10 )]
 position = Vector2( 1700, 500 )
 points = 0
 strength = 3
@@ -940,7 +940,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick147" parent="Battlefield/Middleground/YSort" index="102" instance=ExtResource( 10 )]
+[node name="Brick147" parent="Battlefield/Middleground/Node2D" index="102" instance=ExtResource( 10 )]
 position = Vector2( 1700, 300 )
 points = 0
 strength = 3
@@ -948,7 +948,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick148" parent="Battlefield/Middleground/YSort" index="103" instance=ExtResource( 10 )]
+[node name="Brick148" parent="Battlefield/Middleground/Node2D" index="103" instance=ExtResource( 10 )]
 position = Vector2( 1700, -500 )
 points = 0
 strength = 3
@@ -956,7 +956,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick149" parent="Battlefield/Middleground/YSort" index="104" instance=ExtResource( 10 )]
+[node name="Brick149" parent="Battlefield/Middleground/Node2D" index="104" instance=ExtResource( 10 )]
 position = Vector2( 1500, -300 )
 points = 0
 strength = 3
@@ -964,7 +964,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick150" parent="Battlefield/Middleground/YSort" index="105" instance=ExtResource( 10 )]
+[node name="Brick150" parent="Battlefield/Middleground/Node2D" index="105" instance=ExtResource( 10 )]
 position = Vector2( 1300, -300 )
 points = 0
 strength = 3
@@ -972,7 +972,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick151" parent="Battlefield/Middleground/YSort" index="106" instance=ExtResource( 10 )]
+[node name="Brick151" parent="Battlefield/Middleground/Node2D" index="106" instance=ExtResource( 10 )]
 position = Vector2( 1500, 500 )
 points = 0
 strength = 3
@@ -980,7 +980,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick152" parent="Battlefield/Middleground/YSort" index="107" instance=ExtResource( 10 )]
+[node name="Brick152" parent="Battlefield/Middleground/Node2D" index="107" instance=ExtResource( 10 )]
 position = Vector2( 1300, 500 )
 points = 0
 strength = 3
@@ -988,7 +988,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick153" parent="Battlefield/Middleground/YSort" index="108" instance=ExtResource( 10 )]
+[node name="Brick153" parent="Battlefield/Middleground/Node2D" index="108" instance=ExtResource( 10 )]
 position = Vector2( 1500, 300 )
 points = 0
 strength = 3
@@ -996,7 +996,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick154" parent="Battlefield/Middleground/YSort" index="109" instance=ExtResource( 10 )]
+[node name="Brick154" parent="Battlefield/Middleground/Node2D" index="109" instance=ExtResource( 10 )]
 position = Vector2( 1300, 300 )
 points = 0
 strength = 3
@@ -1004,7 +1004,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick155" parent="Battlefield/Middleground/YSort" index="110" instance=ExtResource( 10 )]
+[node name="Brick155" parent="Battlefield/Middleground/Node2D" index="110" instance=ExtResource( 10 )]
 position = Vector2( 1500, -500 )
 points = 0
 strength = 3
@@ -1012,7 +1012,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick156" parent="Battlefield/Middleground/YSort" index="111" instance=ExtResource( 10 )]
+[node name="Brick156" parent="Battlefield/Middleground/Node2D" index="111" instance=ExtResource( 10 )]
 position = Vector2( 1300, -500 )
 points = 0
 strength = 3
@@ -1020,7 +1020,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick157" parent="Battlefield/Middleground/YSort" index="112" instance=ExtResource( 10 )]
+[node name="Brick157" parent="Battlefield/Middleground/Node2D" index="112" instance=ExtResource( 10 )]
 position = Vector2( 1100, -100 )
 points = 0
 strength = 3
@@ -1028,7 +1028,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick158" parent="Battlefield/Middleground/YSort" index="113" instance=ExtResource( 10 )]
+[node name="Brick158" parent="Battlefield/Middleground/Node2D" index="113" instance=ExtResource( 10 )]
 position = Vector2( 1100, 100 )
 points = 0
 strength = 3
@@ -1036,7 +1036,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick159" parent="Battlefield/Middleground/YSort" index="114" instance=ExtResource( 10 )]
+[node name="Brick159" parent="Battlefield/Middleground/Node2D" index="114" instance=ExtResource( 10 )]
 position = Vector2( 1100, -300 )
 points = 0
 strength = 3
@@ -1044,7 +1044,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick160" parent="Battlefield/Middleground/YSort" index="115" instance=ExtResource( 10 )]
+[node name="Brick160" parent="Battlefield/Middleground/Node2D" index="115" instance=ExtResource( 10 )]
 position = Vector2( 1100, 500 )
 points = 0
 strength = 3
@@ -1052,7 +1052,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick161" parent="Battlefield/Middleground/YSort" index="116" instance=ExtResource( 10 )]
+[node name="Brick161" parent="Battlefield/Middleground/Node2D" index="116" instance=ExtResource( 10 )]
 position = Vector2( 1100, 300 )
 points = 0
 strength = 3
@@ -1060,7 +1060,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick162" parent="Battlefield/Middleground/YSort" index="117" instance=ExtResource( 10 )]
+[node name="Brick162" parent="Battlefield/Middleground/Node2D" index="117" instance=ExtResource( 10 )]
 position = Vector2( 1100, -500 )
 points = 0
 strength = 3
@@ -1068,7 +1068,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick56" parent="Battlefield/Middleground/YSort" index="118" instance=ExtResource( 10 )]
+[node name="Brick56" parent="Battlefield/Middleground/Node2D" index="118" instance=ExtResource( 10 )]
 position = Vector2( -100, -700 )
 points = 0
 strength = 3
@@ -1076,7 +1076,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick57" parent="Battlefield/Middleground/YSort" index="119" instance=ExtResource( 10 )]
+[node name="Brick57" parent="Battlefield/Middleground/Node2D" index="119" instance=ExtResource( 10 )]
 position = Vector2( 100, -700 )
 points = 0
 strength = 3
@@ -1084,7 +1084,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick58" parent="Battlefield/Middleground/YSort" index="120" instance=ExtResource( 10 )]
+[node name="Brick58" parent="Battlefield/Middleground/Node2D" index="120" instance=ExtResource( 10 )]
 position = Vector2( 700, -700 )
 points = 0
 strength = 3
@@ -1092,7 +1092,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick59" parent="Battlefield/Middleground/YSort" index="121" instance=ExtResource( 10 )]
+[node name="Brick59" parent="Battlefield/Middleground/Node2D" index="121" instance=ExtResource( 10 )]
 position = Vector2( 500, -700 )
 points = 0
 strength = 3
@@ -1100,7 +1100,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick60" parent="Battlefield/Middleground/YSort" index="122" instance=ExtResource( 10 )]
+[node name="Brick60" parent="Battlefield/Middleground/Node2D" index="122" instance=ExtResource( 10 )]
 position = Vector2( 300, -700 )
 points = 0
 strength = 3
@@ -1108,7 +1108,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick77" parent="Battlefield/Middleground/YSort" index="123" instance=ExtResource( 10 )]
+[node name="Brick77" parent="Battlefield/Middleground/Node2D" index="123" instance=ExtResource( 10 )]
 position = Vector2( -700, -900 )
 points = 0
 strength = 3
@@ -1116,7 +1116,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick80" parent="Battlefield/Middleground/YSort" index="124" instance=ExtResource( 10 )]
+[node name="Brick80" parent="Battlefield/Middleground/Node2D" index="124" instance=ExtResource( 10 )]
 position = Vector2( 700, -900 )
 points = 0
 strength = 3
@@ -1124,7 +1124,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick118" parent="Battlefield/Middleground/YSort" index="125" instance=ExtResource( 10 )]
+[node name="Brick118" parent="Battlefield/Middleground/Node2D" index="125" instance=ExtResource( 10 )]
 position = Vector2( -700, -1100 )
 points = 0
 strength = 3
@@ -1132,7 +1132,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick129" parent="Battlefield/Middleground/YSort" index="126" instance=ExtResource( 10 )]
+[node name="Brick129" parent="Battlefield/Middleground/Node2D" index="126" instance=ExtResource( 10 )]
 position = Vector2( 700, -1100 )
 points = 0
 strength = 3
@@ -1140,7 +1140,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick132" parent="Battlefield/Middleground/YSort" index="127" instance=ExtResource( 10 )]
+[node name="Brick132" parent="Battlefield/Middleground/Node2D" index="127" instance=ExtResource( 10 )]
 position = Vector2( -300, -1300 )
 points = 0
 strength = 3
@@ -1148,7 +1148,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick133" parent="Battlefield/Middleground/YSort" index="128" instance=ExtResource( 10 )]
+[node name="Brick133" parent="Battlefield/Middleground/Node2D" index="128" instance=ExtResource( 10 )]
 position = Vector2( -500, -1300 )
 points = 0
 strength = 3
@@ -1156,7 +1156,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick134" parent="Battlefield/Middleground/YSort" index="129" instance=ExtResource( 10 )]
+[node name="Brick134" parent="Battlefield/Middleground/Node2D" index="129" instance=ExtResource( 10 )]
 position = Vector2( -700, -1300 )
 points = 0
 strength = 3
@@ -1164,7 +1164,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick135" parent="Battlefield/Middleground/YSort" index="130" instance=ExtResource( 10 )]
+[node name="Brick135" parent="Battlefield/Middleground/Node2D" index="130" instance=ExtResource( 10 )]
 position = Vector2( -900, -900 )
 points = 0
 strength = 3
@@ -1172,7 +1172,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick136" parent="Battlefield/Middleground/YSort" index="131" instance=ExtResource( 10 )]
+[node name="Brick136" parent="Battlefield/Middleground/Node2D" index="131" instance=ExtResource( 10 )]
 position = Vector2( -900, -1100 )
 points = 0
 strength = 3
@@ -1180,7 +1180,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick137" parent="Battlefield/Middleground/YSort" index="132" instance=ExtResource( 10 )]
+[node name="Brick137" parent="Battlefield/Middleground/Node2D" index="132" instance=ExtResource( 10 )]
 position = Vector2( -900, -1300 )
 points = 0
 strength = 3
@@ -1188,7 +1188,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick138" parent="Battlefield/Middleground/YSort" index="133" instance=ExtResource( 10 )]
+[node name="Brick138" parent="Battlefield/Middleground/Node2D" index="133" instance=ExtResource( 10 )]
 position = Vector2( -100, -1300 )
 points = 0
 strength = 3
@@ -1196,7 +1196,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick139" parent="Battlefield/Middleground/YSort" index="134" instance=ExtResource( 10 )]
+[node name="Brick139" parent="Battlefield/Middleground/Node2D" index="134" instance=ExtResource( 10 )]
 position = Vector2( 100, -1300 )
 points = 0
 strength = 3
@@ -1204,7 +1204,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick140" parent="Battlefield/Middleground/YSort" index="135" instance=ExtResource( 10 )]
+[node name="Brick140" parent="Battlefield/Middleground/Node2D" index="135" instance=ExtResource( 10 )]
 position = Vector2( 700, -1300 )
 points = 0
 strength = 3
@@ -1212,7 +1212,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick163" parent="Battlefield/Middleground/YSort" index="136" instance=ExtResource( 10 )]
+[node name="Brick163" parent="Battlefield/Middleground/Node2D" index="136" instance=ExtResource( 10 )]
 position = Vector2( 900, 500 )
 points = 0
 strength = 3
@@ -1220,7 +1220,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick164" parent="Battlefield/Middleground/YSort" index="137" instance=ExtResource( 10 )]
+[node name="Brick164" parent="Battlefield/Middleground/Node2D" index="137" instance=ExtResource( 10 )]
 position = Vector2( 900, 700 )
 points = 0
 strength = 3
@@ -1228,7 +1228,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick165" parent="Battlefield/Middleground/YSort" index="138" instance=ExtResource( 10 )]
+[node name="Brick165" parent="Battlefield/Middleground/Node2D" index="138" instance=ExtResource( 10 )]
 position = Vector2( 900, 300 )
 points = 0
 strength = 3
@@ -1236,7 +1236,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick166" parent="Battlefield/Middleground/YSort" index="139" instance=ExtResource( 10 )]
+[node name="Brick166" parent="Battlefield/Middleground/Node2D" index="139" instance=ExtResource( 10 )]
 position = Vector2( 900, 100 )
 points = 0
 strength = 3
@@ -1244,7 +1244,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick167" parent="Battlefield/Middleground/YSort" index="140" instance=ExtResource( 10 )]
+[node name="Brick167" parent="Battlefield/Middleground/Node2D" index="140" instance=ExtResource( 10 )]
 position = Vector2( 900, -100 )
 points = 0
 strength = 3
@@ -1252,7 +1252,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick168" parent="Battlefield/Middleground/YSort" index="141" instance=ExtResource( 10 )]
+[node name="Brick168" parent="Battlefield/Middleground/Node2D" index="141" instance=ExtResource( 10 )]
 position = Vector2( 900, -300 )
 points = 0
 strength = 3
@@ -1260,7 +1260,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick169" parent="Battlefield/Middleground/YSort" index="142" instance=ExtResource( 10 )]
+[node name="Brick169" parent="Battlefield/Middleground/Node2D" index="142" instance=ExtResource( 10 )]
 position = Vector2( 900, -500 )
 points = 0
 strength = 3
@@ -1268,7 +1268,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick170" parent="Battlefield/Middleground/YSort" index="143" instance=ExtResource( 10 )]
+[node name="Brick170" parent="Battlefield/Middleground/Node2D" index="143" instance=ExtResource( 10 )]
 position = Vector2( 900, 1100 )
 points = 0
 strength = 3
@@ -1276,7 +1276,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick171" parent="Battlefield/Middleground/YSort" index="144" instance=ExtResource( 10 )]
+[node name="Brick171" parent="Battlefield/Middleground/Node2D" index="144" instance=ExtResource( 10 )]
 position = Vector2( 900, 1300 )
 points = 0
 strength = 3
@@ -1284,7 +1284,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick172" parent="Battlefield/Middleground/YSort" index="145" instance=ExtResource( 10 )]
+[node name="Brick172" parent="Battlefield/Middleground/Node2D" index="145" instance=ExtResource( 10 )]
 position = Vector2( 900, 900 )
 points = 0
 strength = 3
@@ -1292,7 +1292,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick173" parent="Battlefield/Middleground/YSort" index="146" instance=ExtResource( 10 )]
+[node name="Brick173" parent="Battlefield/Middleground/Node2D" index="146" instance=ExtResource( 10 )]
 position = Vector2( 900, -700 )
 points = 0
 strength = 3
@@ -1300,7 +1300,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick174" parent="Battlefield/Middleground/YSort" index="147" instance=ExtResource( 10 )]
+[node name="Brick174" parent="Battlefield/Middleground/Node2D" index="147" instance=ExtResource( 10 )]
 position = Vector2( 900, -900 )
 points = 0
 strength = 3
@@ -1308,7 +1308,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick175" parent="Battlefield/Middleground/YSort" index="148" instance=ExtResource( 10 )]
+[node name="Brick175" parent="Battlefield/Middleground/Node2D" index="148" instance=ExtResource( 10 )]
 position = Vector2( 900, -1100 )
 points = 0
 strength = 3
@@ -1316,7 +1316,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick176" parent="Battlefield/Middleground/YSort" index="149" instance=ExtResource( 10 )]
+[node name="Brick176" parent="Battlefield/Middleground/Node2D" index="149" instance=ExtResource( 10 )]
 position = Vector2( 900, -1300 )
 points = 0
 strength = 3
@@ -1324,7 +1324,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick141" parent="Battlefield/Middleground/YSort" index="150" instance=ExtResource( 10 )]
+[node name="Brick141" parent="Battlefield/Middleground/Node2D" index="150" instance=ExtResource( 10 )]
 position = Vector2( 500, -1300 )
 points = 0
 strength = 3
@@ -1332,7 +1332,7 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="Brick142" parent="Battlefield/Middleground/YSort" index="151" instance=ExtResource( 10 )]
+[node name="Brick142" parent="Battlefield/Middleground/Node2D" index="151" instance=ExtResource( 10 )]
 position = Vector2( 300, -1300 )
 points = 0
 strength = 3
@@ -1340,12 +1340,12 @@ content_scene = ExtResource( 17 )
 rare_content_scene = ExtResource( 11 )
 type = 6
 
-[node name="BigDiamond" parent="Battlefield/Middleground/YSort" index="152" instance=ExtResource( 11 )]
+[node name="BigDiamond" parent="Battlefield/Middleground/Node2D" index="152" instance=ExtResource( 11 )]
 
-[node name="SmolMine" parent="Battlefield/Middleground/YSort" index="153" instance=ExtResource( 4 )]
+[node name="SmolMine" parent="Battlefield/Middleground/Node2D" index="153" instance=ExtResource( 4 )]
 position = Vector2( -1400, 0 )
 
-[node name="SmolMine2" parent="Battlefield/Middleground/YSort" index="154" instance=ExtResource( 4 )]
+[node name="SmolMine2" parent="Battlefield/Middleground/Node2D" index="154" instance=ExtResource( 4 )]
 position = Vector2( 1400, 0 )
 
 [node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 12 )]
@@ -1369,7 +1369,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Camera" parent="." index="7"]
+[node name="Camera3D" parent="." index="7"]
 zoom = Vector2( 1.42109e+10, 1.42109e+10 )
-smoothing_speed = 0.3
+position_smoothing_speed = 0.3
 disabled_override = true

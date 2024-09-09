@@ -1,15 +1,16 @@
 extends Node2D
 
-export var starting_color := Color(1,1,1,0.1)
-export var ending_color := Color(1,1,1,0)
-export var length := 30
-export var width := 90
-export var texture : Texture
-export var texture_mode := Line2D.LINE_TEXTURE_NONE
-export var max_segment_length := 1000
-export (Trail2D.Persistence) var persistence := Trail2D.Persistence.FRAME_RATE_INDIPENDENT
-export var auto_create_on_enter := true
-export var disappear_speed := 100.0
+@export var starting_color := Color(1,1,1,0.1)
+@export var ending_color := Color(1,1,1,0)
+@export var length := 30
+@export var width := 90
+@export var width_curve : Curve
+@export var texture : Texture2D
+@export var texture_mode : int = Line2D.LINE_TEXTURE_NONE
+@export var max_segment_length := 1000
+@export var persistence : int = Trail2D.Persistence.FRAME_RATE_INDIPENDENT
+@export var auto_create_on_enter := true
+@export var disappear_speed := 100.0
 
 var trail
 
@@ -30,14 +31,17 @@ func create_trail():
 	trail.gradient.set_color(1, starting_color)
 	trail.trail_length = length
 	trail.width = width
+	if width_curve:
+		trail.width_curve = width_curve
 	if texture:
 		trail.texture = texture
 		trail.texture_mode = texture_mode
 	add_child(trail)
-	trail.connect('point_added', self, '_on_trail_point_added')
+	trail.set_target(self)
+	trail.connect('point_added', Callable(self, '_on_trail_point_added'))
 	
 func drop_trail():
-	if not trail or not is_instance_valid(trail) or not is_a_parent_of(trail):
+	if not trail or not is_instance_valid(trail) or not is_ancestor_of(trail):
 		return
 		
 	remove_child(trail)

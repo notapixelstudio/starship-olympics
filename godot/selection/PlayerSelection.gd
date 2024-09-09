@@ -23,25 +23,25 @@ var disabled = true
 var selected = false 
 var joined = true
 
-onready var wrapper = $Wrapper
-onready var speciesSelection = $Wrapper/SpeciesSelection
-onready var sfx = $SFX
+@onready var wrapper = $Wrapper
+@onready var speciesSelection = $Wrapper/SpeciesSelection
+@onready var sfx = $SFX
 
 const species_path : String = "res://selection/species/"
 
-export (CONTROLS) var key_controls = CONTROLS.KB1
-export (String, "", "kb1", "kb2") var force_to
-export (Resource) var species # : SpeciesTemplate
+@export (CONTROLS) var key_controls = CONTROLS.KB1
+@export (String, "", "kb1", "kb2") var force_to
+@export (Resource) var species # : SpeciesTemplate
 
 # this will be the String of controls
 var controls : String
 var is_team : bool = false
 signal ready_takeoff
 
-onready var info: InfoPlayer = InfoPlayer.new()
+@onready var info: InfoPlayer = InfoPlayer.new()
 
 func get_ship_position():
-	return rect_position
+	return position
 
 func get_info_player() -> InfoPlayer:
 	return self.info
@@ -104,7 +104,7 @@ func _input(event):
 	if selected:
 		if event.is_action_pressed(controls+"_fire"):
 			sfx.get_node("ready").play()
-			emit_signal("ready_to_fight")
+			emit_signal("ready_to_fight", get_info_player())
 #		elif event.is_action_pressed(controls+"_cancel") and not global.demo:
 #			deselect()
 	elif joined:
@@ -192,4 +192,12 @@ func enable_choice(silent=false):
 	if global.demo_playtest:
 		speciesSelection.disable_arrows()
 	emit_signal("joined")
+	
+func disable():
+	set_process(false)
+	set_process_input(false)
+	
+func enable():
+	set_process(true)
+	set_process_input(true)
 	

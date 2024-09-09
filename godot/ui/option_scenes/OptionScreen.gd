@@ -1,26 +1,26 @@
-extends ColorRect
+extends Control
+class_name UIOptions
 
 signal back_at_you # signal that gives the line back to whoever instantiated the option
 
-class_name UIOptions
+@export var title: String = "Options"
+@export var start_scene: PackedScene
 
-export var title: String = "Options"
-export var start_scene: PackedScene
-onready var banner_info = $CanvasLayer/BannerInfo
+@onready var banner_info = $CanvasLayer/BannerInfo
 
 var focus_index = 0
 
 
 func _ready():
-	Events.connect("ui_back_menu", self,"back")
-	Events.connect("ui_nav_to", self, "nav_to")
+	Events.connect("ui_back_menu", Callable(self, "back"))
+	Events.connect("ui_nav_to", Callable(self, "nav_to"))
 	assert( start_scene is PackedScene)
-	var instanced_scene = start_scene.instance()
+	var instanced_scene = start_scene.instantiate()
 	self.set_content(instanced_scene, true, {})
 	
 var separator = " > "
-onready var navbar = [title] # Navbar of title string screen
-onready var navbar_scene = []
+@onready var navbar = [title] # Navbar of title string screen
+@onready var navbar_scene = []
 
 func back_to_menu():
 	emit_signal("back_at_you")
@@ -56,3 +56,6 @@ func set_content(instanced_scene: UIOptionPanel, nav_forward: bool, extra_args: 
 	if nav_forward:
 		navbar_scene.append(instanced_scene)
 
+
+func _on_Options_focus_entered():
+	get_child(0).get_focus()

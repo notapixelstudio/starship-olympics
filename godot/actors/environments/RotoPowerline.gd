@@ -1,4 +1,4 @@
-tool
+@tool
 extends Rototile
 class_name RotoPowerline
 
@@ -8,8 +8,8 @@ signal propagate
 
 var placed := true
 
-export (String, 'I', 'T', 'C', 'X') var type = 'T' setget set_type
-var on := false setget set_on
+@export (String, 'I', 'T', 'C', 'X') var type = 'T': set = set_type
+var on := false: set = set_on
 
 func set_on(v: bool) -> void:
 	on = v
@@ -22,17 +22,17 @@ func set_type(v: String) -> void:
 	type = v
 	
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 		
 	match type:
 		'I':
-			$Line2D.points = PoolVector2Array([Vector2(-300,0),Vector2(300,0)])
+			$Line2D.points = PackedVector2Array([Vector2(-300,0),Vector2(300,0)])
 		'T':
-			$Line2D.points = PoolVector2Array([Vector2(-300,0),Vector2(300,0),Vector2(0,0),Vector2(0,300)])
+			$Line2D.points = PackedVector2Array([Vector2(-300,0),Vector2(300,0),Vector2(0,0),Vector2(0,300)])
 		'C':
-			$Line2D.points = PoolVector2Array([Vector2(-300,0),Vector2(-100,0),Vector2(0,100),Vector2(0,300)])
+			$Line2D.points = PackedVector2Array([Vector2(-300,0),Vector2(-100,0),Vector2(0,100),Vector2(0,300)])
 		'X':
-			$Line2D.points = PoolVector2Array([Vector2(-300,0),Vector2(300,0),Vector2(0,0),Vector2(0,300),Vector2(0,-300)])
+			$Line2D.points = PackedVector2Array([Vector2(-300,0),Vector2(300,0),Vector2(0,0),Vector2(0,300),Vector2(0,-300)])
 		
 
 func _on_RotoPowerline_start_rotating():

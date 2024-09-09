@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://upig65r4lwgn"]
+
+[ext_resource type="PackedScene" uid="uid://b2sxcvq53b3m7" path="res://godot4/elements/cargos/Ball.tscn" id="1_0wdp6"]
+[ext_resource type="Texture2D" uid="uid://di06cg3tt3lfs" path="res://assets/sprites/balls/croquet.png" id="2_drk6l"]
+
+[node name="CroquetBall" instance=ExtResource("1_0wdp6")]
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+texture = ExtResource("2_drk6l")

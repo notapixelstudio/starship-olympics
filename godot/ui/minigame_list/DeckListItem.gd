@@ -1,14 +1,14 @@
-tool
+@tool
 extends ColorRect
 class_name DeckListItem
 
-export var CardScene : PackedScene
-export var card_texture : Texture
-export var arrow_texture : Texture
-export var shuffle_texture : Texture
-export var starting_deck: Resource setget set_starting
+@export var CardScene : PackedScene
+@export var card_texture : Texture2D
+@export var arrow_texture : Texture2D
+@export var shuffle_texture : Texture2D
+@export var starting_deck: Resource: set = set_starting
 var deck: StartingDeck
-var index : int setget set_index
+var index : int: set = set_index
 
 func set_index(v: int) -> void:
 	index = v
@@ -16,7 +16,7 @@ func set_index(v: int) -> void:
 
 func set_starting(v: StartingDeck):
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 	starting_deck = v
 	set_deck(starting_deck)
 
@@ -40,10 +40,10 @@ func set_deck(v: StartingDeck) -> void:
 	var container
 	for card in deck.cards:
 		container = Container.new()
-		container.rect_min_size = CARD_SIZE
+		container.custom_minimum_size = CARD_SIZE
 		$"%HBoxContainer".add_child(container)
 		
-		var card_node = CardScene.instance()
+		var card_node = CardScene.instantiate()
 		card_node.scale = Vector2(0.42,0.42)
 		card_node.position = CARD_SIZE/2 + Vector2(0, 18)
 		card_node.set_content_card(card)
@@ -58,7 +58,7 @@ func set_deck(v: StartingDeck) -> void:
 			card_node.modulate = Color(0.6,0.6,0.6)
 		
 	container = Container.new()
-	container.rect_min_size = CARD_SIZE
+	container.custom_minimum_size = CARD_SIZE
 	$"%HBoxContainer".add_child(container)
 	
 #	var sprite = Sprite.new()

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://g2t7ocoioic1"]
+
+[ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_qshej"]
+[ext_resource type="Material" uid="uid://neusshjl7tyt" path="res://godot4/shaders/outline_big_diamond.tres" id="2_0bbu6"]
+[ext_resource type="Texture2D" uid="uid://dldq7fl7u4nom" path="res://assets/sprites/environments/diamond_big.png" id="2_k5jcj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qj0q4"]
+radius = 95.0
+
+[node name="BigDiamond" instance=ExtResource("1_qshej")]
+points = 3
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_qj0q4")
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = ExtResource("2_0bbu6")
+texture = ExtResource("2_k5jcj")

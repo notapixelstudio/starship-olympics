@@ -10,29 +10,29 @@ var matrix = []
 
 var players_selection : Dictionary = {}
 var selected_sports : Array
-export var playlist_item : PackedScene
-export var cursor_scene : PackedScene
-onready var camera = $Camera
-onready var first_time_camera =$FirstTimeCamera
-onready var panels = $CanvasLayerTop/PanelContainer
-onready var tween = $Tween
-export var focus_path_scene: PackedScene
-export var element_in_camera_scene: PackedScene = preload("res://actors/environments/ElementInCamera.tscn")
+@export var playlist_item : PackedScene
+@export var cursor_scene : PackedScene
+@onready var camera = $Camera3D
+@onready var first_time_camera =$FirstTimeCamera
+@onready var panels = $CanvasLayerTop/PanelContainer
+@onready var tween = $Tween
+@export var focus_path_scene: PackedScene
+@export var element_in_camera_scene: PackedScene = preload("res://actors/environments/ElementInCamera.tscn")
 var num_players : int
 var human_players : int = 0
 var cpu : int = 0
 var max_cpu: int
 
-var hive_shoot_bombs = true setget set_hive_bombs
-var diamondsnatch_shoot_bombs = true setget set_diamondsnatch_bombs
-var slam_a_gon_shoot_bombs = true setget set_slam_a_gon_bombs
+var hive_shoot_bombs = true: set = set_hive_bombs
+var diamondsnatch_shoot_bombs = true: set = set_diamondsnatch_bombs
+var slam_a_gon_shoot_bombs = true: set = set_slam_a_gon_bombs
 
-onready var ui = $CanvasLayerTop
-onready var cpus = $Content/Controls/CPUs
+@onready var ui = $CanvasLayerTop
+@onready var cpus = $Content/Controls/CPUs
 
-onready var cursor_tween = $CursorMoveTween
+@onready var cursor_tween = $CursorMoveTween
 
-var settings = {} setget set_settings
+var settings = {}: set = set_settings
 
 signal chose_level
 signal selection_finished
@@ -74,9 +74,9 @@ func _ready():
 		matrix[int(p.position.x/CELLSIZE)][int(p.position.y/CELLSIZE)] = p
 		
 	for cursor in get_tree().get_nodes_in_group('map_cursor'):
-		cursor.connect('try_move', self, '_on_cursor_try_move')
-		cursor.connect('select', self, '_on_cursor_select')
-		cursor.connect('cancel', self, '_on_cursor_cancel')
+		cursor.connect('try_move', Callable(self, '_on_cursor_try_move'))
+		cursor.connect('select', Callable(self, '_on_cursor_select'))
+		cursor.connect('cancel', Callable(self, '_on_cursor_cancel'))
 		
 		var panel = panels.get_node(cursor.player.id)
 		panel.species = cursor.species
@@ -95,7 +95,7 @@ func _ready():
 	
 	
 	for cell in get_tree().get_nodes_in_group('mapcell'):
-		cell.connect('pressed', self, '_on_cell_pressed', [cell])
+		cell.connect('pressed', Callable(self, '_on_cell_pressed').bind(cell))
 	
 	max_cpu = global.MAX_PLAYERS - human_players
 	
@@ -116,7 +116,7 @@ func initialize(players):
 		if player.cpu:
 			continue
 			
-		var cursor: MapCursor = cursor_scene.instance()
+		var cursor: MapCursor = cursor_scene.instantiate()
 		cursor.species = player.species
 		cursor.player = player
 		cursor.player_i = i
@@ -237,7 +237,7 @@ func _on_Start_pressed(cursor):
 		playing += " "+ str(sport.planet.id)
 		
 	print(playing)
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	emit_signal('done', {"sets": sets, "players_selection": players_selection})
 		
 func _on_Back_pressed(cursor):
@@ -248,8 +248,8 @@ func _unhandled_input(event):
 		
 		emit_signal("back")
 
-var screen_width = ProjectSettings.get_setting('display/window/size/width')
-var screen_height = ProjectSettings.get_setting('display/window/size/height')
+var screen_width = ProjectSettings.get_setting('display/window/size/viewport_width')
+var screen_height = ProjectSettings.get_setting('display/window/size/viewport_height')
 
 func choose_level(level, player):
 	# This will choose randonly one minigame. And animate afterwards
@@ -283,24 +283,24 @@ func choose_level(level, player):
 	# animation pseudo random for choosing minicard
 	var minicards = get_tree().get_nodes_in_group("minicard")
 	random_selection(minicards, index_selection)
-	yield(self, "selection_finished")
+	await self.selection_finished
 	chosen_minicard.selected = true
 	var wait_time = 0.5
-	yield(get_tree().create_timer(wait_time), "timeout")
+	await get_tree().create_timer(wait_time).timeout
 	chosen_minicard.selected = false
 	if chosen_minicard.status == "locked":
-		chosen_minicard.unlock()
-		yield(chosen_minicard, "unlocked")
+		false # chosen_minicard.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
+		await chosen_minicard.unlocked
 		
 		# unlock and SAVE
 		TheUnlocker.unlock_element("minigames", this_gamemode.id)
 		persistance.save_game()
 	
 	tween.start()
-	yield(tween, "tween_all_completed")
+	await tween.tween_all_completed
 	emit_signal("chose_level")
 	# TODO: danger of lock
-	yield(get_tree().create_timer(2), "timeout")
+	await get_tree().create_timer(2).timeout
 	# everything back to position
 	chosen_minicard.position = back_pos
 	chosen_minicard.scale = back_scale
@@ -322,7 +322,7 @@ func random_selection(list: Array, sel_index, loops=2, max_duration=5):
 		# print("{i}: {what} for {miniga}".format({"i": i, "what": max(fastest_wait_time, duration_last_loop * 1/(pow(2, 1 + num_iterations-i))), "miniga":list[i%len(list)].content.get_id()}))
 		var wait_time = max(fastest_wait_time, duration_last_loop * 1/(pow(4, 1 + num_iterations-i)))
 		list[i%len(list)].selected = true
-		yield(get_tree().create_timer(wait_time), "timeout")
+		await get_tree().create_timer(wait_time).timeout
 		total_wait+= wait_time
 		list[i%len(list)].selected = false
 	print("Waited for "+ str(total_wait))
@@ -343,8 +343,8 @@ func unlock_via_path(object_to_unlock: MapLocation, object_from: MapLocation) ->
 		if path.to == object_to_unlock and path.from == object_from:
 			path_to_traverse = path
 			break
-	assert(path_to_traverse) # Path between the two NOT FOUND
-	path_to_traverse.unlock()
+	assert(path_to_traverse) # Path3D between the two NOT FOUND
+	false # path_to_traverse.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	var center_camera = global.calculate_center(camera.camera_rect)
 	# remove cursors from camera, if any
 	var cursors = []
@@ -352,27 +352,27 @@ func unlock_via_path(object_to_unlock: MapLocation, object_from: MapLocation) ->
 		cursors.append(cameraman)
 		cameraman.remove_from_group("in_camera")
 		
-	var element_in_camera = element_in_camera_scene.instance()
+	var element_in_camera = element_in_camera_scene.instantiate()
 	element_in_camera.position = center_camera
 	var start_path = path_to_traverse.points[0]
 	
 	add_child(element_in_camera)
 	element_in_camera.move(start_path, 2)
-	var focus = focus_path_scene.instance()
-	yield(element_in_camera, "completed")
+	var focus = focus_path_scene.instantiate()
+	await element_in_camera.completed
 	
 	add_child(focus)
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	focus.set_points(path_to_traverse.points)
 	focus.add_point(object_to_unlock.position)
 	
 	focus.animate()
 	element_in_camera.deactivate()
-	yield(focus, "completed")
+	await focus.completed
 	
 	# Animation for unlocking SET
-	object_to_unlock.unlock()
-	yield(object_to_unlock, "unlocked")
+	false # object_to_unlock.unlock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
+	await object_to_unlock.unlocked
 	
 	element_in_camera.position = object_to_unlock.position
 	
@@ -382,7 +382,7 @@ func unlock_via_path(object_to_unlock: MapLocation, object_from: MapLocation) ->
 	# Let's clear everything
 	focus.clear()
 	focus.queue_free()
-	yield(element_in_camera, "completed")
+	await element_in_camera.completed
 	element_in_camera.queue_free()
 	
 	

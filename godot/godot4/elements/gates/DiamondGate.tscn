@@ -1,0 +1,133 @@
+[gd_scene load_steps=13 format=3 uid="uid://b4ndjhwgnr446"]
+
+[ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://godot4/elements/gates/Gate.tscn" id="1"]
+[ext_resource type="Script" path="res://godot4/elements/gates/DiamondGate.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://v7ikg5w65gkt" path="res://assets/sprites/environments/square_diamond.png" id="4"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+resource_local_to_scene = true
+size = Vector2(250, 500)
+
+[sub_resource type="Animation" id="2"]
+resource_name = "Blink"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RingPart:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1.6, 1.6, 1.6, 1), Color(1.2, 1.2, 1.2, 1)]
+}
+
+[sub_resource type="Animation" id="3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RingPart:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1.2, 1.2, 1.2, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kqo05"]
+_data = {
+"Blink": SubResource("2"),
+"RESET": SubResource("3")
+}
+
+[sub_resource type="Animation" id="Animation_42wux"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "RotateCCW"
+length = 12.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -360.0]
+}
+
+[sub_resource type="Animation" id="Animation_mlxo8"]
+resource_name = "RotateCW"
+length = 12.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 360.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_67qtv"]
+_data = {
+"RESET": SubResource("Animation_42wux"),
+"RotateCCW": SubResource("4"),
+"RotateCW": SubResource("Animation_mlxo8")
+}
+
+[node name="DiamondGate" instance=ExtResource("1")]
+script = ExtResource("2")
+
+[node name="Waiter" parent="." index="0" instance=ExtResource("3")]
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("1")
+
+[node name="BottomRingPart" parent="." index="2"]
+self_modulate = Color(1, 0.713726, 0.521569, 1)
+
+[node name="RingPart" parent="." index="4"]
+self_modulate = Color(1, 0.678431, 0.521569, 1)
+
+[node name="AnimationPlayer" parent="." index="6"]
+libraries = {
+"": SubResource("AnimationLibrary_kqo05")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="8"]
+libraries = {
+"": SubResource("AnimationLibrary_67qtv")
+}
+
+[node name="Diamond" type="Sprite2D" parent="." index="9"]
+modulate = Color(1.1, 1.1, 1.1, 1)
+z_index = 14
+position = Vector2(-55, 14)
+texture = ExtResource("4")

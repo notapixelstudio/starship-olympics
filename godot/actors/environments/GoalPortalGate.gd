@@ -1,15 +1,15 @@
-tool
+@tool
 extends PortalGate
 class_name GoalPortalGate
 
-export var goal_owner : NodePath
+@export var goal_owner : NodePath
 var player = null
 signal goal_done
 
 func _ready():
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
-		yield(player_spawner, "player_assigned")
+		await player_spawner.player_assigned
 		set_player(player_spawner.get_player())
 	else:
 		set_player(null)
@@ -37,7 +37,7 @@ func _on_PortalGate_crossed(sth, _self, silent):
 			emit_signal("goal_done", ball_player, self, sth.global_position, 1)
 		sth.set_player(null) # ownership is reset whenever a goal is done
 		
-	._on_PortalGate_crossed(sth, _self, silent)
+	super._on_PortalGate_crossed(sth, _self, silent)
 
 func _on_DefenseZone_body_entered(body):
 	# disable pew ownership transfer if is the defender

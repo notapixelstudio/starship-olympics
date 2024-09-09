@@ -7,8 +7,8 @@ script/source = "extends TriTile
 
 
 func _ready():
-	yield(get_tree(), \"idle_frame\")
-	yield(get_tree(), \"idle_frame\")
+	await get_tree().idle_frame
+	await get_tree().idle_frame
 	for n in neighbours:
 		n.modulate = Color(0,1,1)
 "

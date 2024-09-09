@@ -1,10 +1,10 @@
-tool
+@tool
 extends EditorScript
 
-const NAME := "Spikeball"
+const NAME := "Colorboard"
 const also_winter := true
 
-const TEMPLATE := "Snipermatch"
+const TEMPLATE := "BoardConquest"
 
 const LEVELS_BASE_DIR := "res://combat/levels/singles/"
 const GAME_MODES_BASE_DIR := "res://combat/modes/"
@@ -32,7 +32,7 @@ func _run():
 	
 func create_base_level(template):
 	# create the directory for new levels
-	var dir = Directory.new()
+	var dir = DirAccess.new()
 	dir.make_dir(LEVELS_BASE_DIR+snakecase(NAME))
 	
 	# instance the template Arena

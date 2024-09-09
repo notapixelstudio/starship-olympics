@@ -2,7 +2,9 @@ extends RigidBody2D
 
 class_name DeadShip
 
-var ship setget set_ship
+@export var cpu_ship_texture : Texture2D
+
+var ship : set = set_ship
 var info_player
 var species
 var camera
@@ -19,17 +21,23 @@ func set_ship(new_value):
 	camera = ship.camera
 	info_player = ship.info_player
 	species = ship.species
-	$UnderSprite.self_modulate = species.color
-	$UnderSprite.texture = species.ship
-	$Sprite.texture = species.ship
 	
-	
+	$UnderSprite.self_modulate = info_player.get_color()
+	if info_player.is_cpu():
+		$Sprite2D.texture = cpu_ship_texture
+		$Sprite2D.modulate = info_player.get_color()
+		$UnderSprite.texture = cpu_ship_texture
+	else:
+		$Sprite2D.texture = species.ship
+		$Sprite2D.modulate = Color.WHITE
+		$UnderSprite.texture = species.ship
+		
 func _enter_tree():
 	#linear_velocity = ship.linear_velocity
 	position = ship.position
 	rotation = ship.rotation
 	if not $Trail2D.is_inside_tree():
-		yield($Trail2D, "tree_entered")
+		await $Trail2D.tree_entered
 	$Trail2D.erase_trail()
 	SoundEffects.play($RandomAudioStreamPlayer2D)
 	

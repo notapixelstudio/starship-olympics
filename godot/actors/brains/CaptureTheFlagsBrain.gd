@@ -3,7 +3,7 @@ extends CPUBrain
 var random_preference : int
 
 func _ready():
-	._ready()
+	super._ready()
 	random_preference = randi()
 
 func think():

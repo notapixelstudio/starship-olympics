@@ -26,7 +26,7 @@ const ADVANCED_FIGURES = [
 var kind : String
 
 func _ready():
-	._ready()
+	super._ready()
 	remove_from_group('in_camera')
 	
 	kind = BASIC_FIGURES[randi() % len(BASIC_FIGURES)]
@@ -57,5 +57,5 @@ func has_kind(k):
 	return self.get_kind() == k
 	
 func is_equivalent_to(holdable2):
-	return .is_equivalent_to(holdable2) and self.has_kind(holdable2.get_kind())
+	return super.is_equivalent_to(holdable2) and self.has_kind(holdable2.get_kind())
 	

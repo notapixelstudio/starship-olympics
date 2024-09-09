@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://by5amjr0vhf4x"]
+
+[ext_resource type="PackedScene" uid="uid://bklnkitol1qwq" path="res://utils/AutoTrail.tscn" id="1"]
+[ext_resource type="Script" path="res://godot4/elements/projectiles/Pew.gd" id="1_1ir4h"]
+[ext_resource type="PackedScene" path="res://godot4/effects/Pfft.tscn" id="2_1b48o"]
+[ext_resource type="Texture2D" uid="uid://bepd02nujentm" path="res://assets/sprites/weapons/forward_bullet_halo.png" id="4"]
+[ext_resource type="AudioStream" uid="uid://dw4cf065vto37" path="res://assets/audio/gameplay/fail.wav" id="5"]
+[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" id="6"]
+
+[sub_resource type="PhysicsMaterial" id="1"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="2"]
+radius = 35.0
+
+[node name="Pew" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 8850
+physics_material_override = SubResource("1")
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_1ir4h")
+PfftScene = ExtResource("2_1b48o")
+
+[node name="Wrapper" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Wrapper"]
+unique_name_in_owner = true
+self_modulate = Color(1.4, 1.4, 1.4, 1)
+position = Vector2(-15, 0)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4")
+
+[node name="AutoTrail" parent="." instance=ExtResource("1")]
+width = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="RandomAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource("6")
+streams = Array[AudioStream]([ExtResource("5")])
+randomize_volume = true
+volume_min = -30.0
+volume_max = -20.0
+randomize_pitch = true
+pitch_max = 4.0
+
+[connection signal="body_entered" from="." to="." method="_on_ForwardBullet_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
