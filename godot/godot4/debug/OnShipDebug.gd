@@ -3,7 +3,6 @@ extends Node2D
 """
 Debug node for movement and vectors
 """
-@export var enabled : bool = false
 @export var host : Ship
 
 # GDquest colors
@@ -21,7 +20,7 @@ const MUL = 0.5
 const VELOCITY_SCALE = 0.5
 
 func _draw():
-	if not enabled:
+	if not visible:
 		return
 	
 	# draw direction vector
@@ -62,7 +61,7 @@ func draw_triangle_equilateral(center=Vector2(), direction=Vector2(), radius=50,
 
 
 func _process(_delta):
-	if not enabled:
+	if not visible:
 		return
 		
 	rotation = -host.rotation
