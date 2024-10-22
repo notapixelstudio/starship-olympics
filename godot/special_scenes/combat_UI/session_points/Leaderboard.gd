@@ -1,9 +1,11 @@
 extends MarginContainer
 
-const pad = Vector2(0, 140)
+const line_height = 140
 
 @export var pilot_stats_scene : PackedScene 
 @export var players : Array[Player]
+@export var max_session_score := 3 # default: classic session
+@export var session_scores : Dictionary # {team: points}
 
 signal animation_over
 
@@ -34,8 +36,9 @@ func _ready() -> void:
 	for player in players:
 		var pilot_stats = pilot_stats_scene.instantiate()
 		pilot_stats.set_player(player)
-		pilot_stats.set_session_score(1)
-		pilot_stats.position = pad*i
+		pilot_stats.set_max_session_score(max_session_score)
+		pilot_stats.set_session_score(session_scores.get(player.get_team()))
+		pilot_stats.position.y = line_height*i
 		%Container.add_child(pilot_stats)
 		i+=1
 		

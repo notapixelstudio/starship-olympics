@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends Node2D
 
 @export var star_scene : PackedScene
 const OFFSET = 128 
@@ -7,7 +7,7 @@ func initialize(points: int, max_points: int, just_won: bool = false):
 	for i in range(max_points):
 		var point = star_scene.instantiate()
 		add_child(point)
-		point.position.x = 100 + i*OFFSET
+		point.position.x = 100 + i*OFFSET - max_points*OFFSET/2.0
 		point.position.y = 68
 		point.floating_star(i)
 		if i < points:

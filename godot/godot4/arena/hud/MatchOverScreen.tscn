@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhgfc2vafre2d"]
+[gd_scene load_steps=7 format=3 uid="uid://dhgfc2vafre2d"]
 
 [ext_resource type="Script" path="res://godot4/arena/hud/MatchOverScreen.gd" id="1_5buxb"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1_i5pyw"]
+[ext_resource type="PackedScene" uid="uid://00s3ufothoqf" path="res://special_scenes/combat_UI/session_points/Leaderboard.tscn" id="3_t6iu7"]
 
 [sub_resource type="Animation" id="Animation_wbkui"]
 length = 0.001
@@ -15,7 +16,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_jyscu"]
@@ -40,7 +41,6 @@ _data = {
 }
 
 [node name="MatchOverScreen" type="ColorRect"]
-modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -59,20 +59,16 @@ grow_vertical = 2
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_vertical = 0
 theme = ExtResource("1_i5pyw")
 theme_override_font_sizes/font_size = 60
 text = "GAME OVER"
 horizontal_alignment = 1
 
-[node name="Winner" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
+[node name="Leaderboard" parent="VBoxContainer" instance=ExtResource("3_t6iu7")]
 layout_mode = 2
-size_flags_vertical = 2
-theme = ExtResource("1_i5pyw")
-theme_override_font_sizes/font_size = 60
-text = "GAME OVER"
-horizontal_alignment = 1
+size_flags_vertical = 3
+theme_override_constants/margin_left = 200
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

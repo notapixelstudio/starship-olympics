@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://00s3ufothoqf"]
+[gd_scene load_steps=11 format=3 uid="uid://00s3ufothoqf"]
 
 [ext_resource type="Script" path="res://special_scenes/combat_UI/session_points/Leaderboard.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c4wnumyysruol" path="res://special_scenes/combat_UI/session_points/PilotStats.tscn" id="2"]
 [ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_players/p1.tres" id="3_0uub2"]
+[ext_resource type="Script" path="res://godot4/data/Player.gd" id="3_t5h2s"]
 [ext_resource type="Resource" uid="uid://fc2yg6p4flm5" path="res://godot4/debug/default_players/p2.tres" id="4_hibp6"]
 [ext_resource type="Resource" uid="uid://c2u64vntxjiy6" path="res://godot4/debug/default_players/p3.tres" id="5_5cgsl"]
 [ext_resource type="Resource" uid="uid://dxdsvkvidj80p" path="res://godot4/debug/default_players/p4.tres" id="6_8vyt0"]
@@ -64,7 +65,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1")
 pilot_stats_scene = ExtResource("2")
-players = Array[Object]([ExtResource("3_0uub2"), ExtResource("4_hibp6"), ExtResource("5_5cgsl"), ExtResource("6_8vyt0")])
+players = Array[ExtResource("3_t5h2s")]([ExtResource("3_0uub2"), ExtResource("4_hibp6"), ExtResource("5_5cgsl"), ExtResource("6_8vyt0")])
+session_scores = {
+"P1": 1,
+"P2": 0,
+"P3": 0,
+"P4": 0
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
