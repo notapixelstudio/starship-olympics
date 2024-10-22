@@ -26,10 +26,12 @@ func _ready() -> void:
 	%VersusGameOverManager.set_max_score(_params.score)
 	
 	var match_over_screen = match_over_screen_scene.instantiate()
+	match_over_screen.visible = false
 	%HUD.add_child(match_over_screen)
 	Events.match_over.connect(_on_match_over)
 	
 	var teams := {}
+	var active_players : Array[Player] = []
 	
 	for home in %Homes.get_children():
 		home.visible = false
@@ -61,6 +63,10 @@ func _ready() -> void:
 		if player.get_team() not in teams:
 			teams[player.get_team()] = []
 		teams[player.get_team()].append(player.get_id())
+		
+		active_players.append(player)
+	
+	match_over_screen.set_players(active_players)
 	
 	for team in teams.keys():
 		%ScoreManager.add_team(team)

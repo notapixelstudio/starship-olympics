@@ -3,13 +3,13 @@ extends MarginContainer
 const line_height = 140
 
 @export var pilot_stats_scene : PackedScene 
-@export var players : Array[Player]
+@export var players : Array[Player] : set = set_players
 @export var max_session_score := 3 # default: classic session
 @export var session_scores : Dictionary # {team: points}
 
 signal animation_over
 
-func _ready() -> void:
+	
 	#var player_index = global.the_game.get_player_index()
 	#var match_played = global.the_match
 	#global.session.update_scores(match_played)
@@ -31,6 +31,15 @@ func _ready() -> void:
 	#		pilot_stats.just_won = true
 	#	pilot_stats.set_info(player)
 	#	i+=1
+	
+func set_players(v: Array[Player]) -> void:
+	players = v
+	if not is_inside_tree():
+		await self.ready
+		
+	# empty container
+	for child in %Container.get_children():
+		child.queue_free()
 		
 	var i := 0
 	for player in players:
@@ -42,7 +51,8 @@ func _ready() -> void:
 		%Container.add_child(pilot_stats)
 		i+=1
 		
-	%AnimationPlayer.play("entrance")
+
+#	%AnimationPlayer.play("entrance")
 	
 	
 func reorder():
