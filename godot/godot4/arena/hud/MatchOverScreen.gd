@@ -7,6 +7,9 @@ func hide() -> void:
 
 func show() -> void:
 	%AnimationPlayer.play("appear")
+	
+func _on_appear() -> void:
+	%Leaderboard.reorder()
 
 func set_players(players:Array) -> void:
 	if not is_inside_tree():

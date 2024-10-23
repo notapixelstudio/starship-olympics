@@ -73,24 +73,29 @@ func _refresh() -> void:
 	
 	
 func reorder():
-	pass
 	#var current_leaderboard = global.session.get_current_leaderboard()
-	#var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
-	#for pilot_stat in %Container.get_children():
-	#	var i = 0
-	#	for player_dict in current_leaderboard:
-	#		if player_dict["id"] == pilot_stat.info.get_id():
-	#			tween.parallel().tween_property(pilot_stat, 'position:y', pad.y*i, 1.0)
-	#		i += 1
+	var leaderboard : Array[Dictionary] = []
+	for player in players:
+		leaderboard.append({'player': player, 'score': session_scores.get(player.get_team())})
+		
+	leaderboard.sort_custom(func(a,b): return a['score'] > b['score'])
+	
+	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+	for pilot_stat in %Container.get_children():
+		var i = 0
+		for player_dict in leaderboard:
+			if player_dict['player'].get_id() == pilot_stat.get_player().get_id():
+				tween.parallel().tween_property(pilot_stat, 'position:y', line_height*i, 1.0)
+			i += 1
 			
-	#await tween.finished
+	await tween.finished
 	#emit_signal("animation_over")
 	#if global.session and global.session.is_over():
-	#	celebrate()
+	_celebrate()
 	
-func celebrate():
-	var session_winners = global.the_game.get_last_winners()
+func _celebrate():
+	#var session_winners = global.the_game.get_last_winners()
 	for pilot in %Container.get_children():
-		if pilot.info in session_winners:
+		if pilot.get_player().get_team() in match_winners: # FIXME this is good only for standalone!
 			# this is a session winner
 			pilot.celebrate()
