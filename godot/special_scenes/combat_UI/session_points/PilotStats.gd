@@ -54,4 +54,4 @@ func change_y(new_value):
 
 func celebrate():
 	%AnimationPlayer.play("Victory")
-	z_index = 100 + floor(position.y/10.0) # Y sorting, sort of!
+	z_index = 210 + floor(position.y/10.0) # Y sorting, sort of!
