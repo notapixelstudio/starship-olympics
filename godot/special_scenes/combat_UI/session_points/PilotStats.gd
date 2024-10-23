@@ -53,5 +53,5 @@ func change_y(new_value):
 		#await tween.finished
 
 func celebrate():
-	$AnimationPlayer.play("Victory")
-	z_index = 1
+	%AnimationPlayer.play("Victory")
+	z_index = 100 + floor(position.y/10.0) # Y sorting, sort of!
