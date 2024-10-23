@@ -6,6 +6,7 @@ const line_height = 140
 @export var players : Array[Player] : set = set_players
 @export var max_session_score := 3  : set = set_max_session_score # default: classic session
 @export var session_scores : Dictionary : set = set_session_scores # {team: points}
+@export var match_winners : Array[String] : set = set_match_winners # team
 
 signal animation_over
 
@@ -44,6 +45,10 @@ func set_session_scores(v:Dictionary) -> void:
 	session_scores = v
 	_refresh()
 	
+func set_match_winners(v:Array[String]) -> void:
+	match_winners = v
+	_refresh()
+	
 func _refresh() -> void:
 	if not is_inside_tree():
 		await self.ready
@@ -56,8 +61,9 @@ func _refresh() -> void:
 	for player in players:
 		var pilot_stats = pilot_stats_scene.instantiate()
 		pilot_stats.set_player(player)
-		pilot_stats.set_max_session_score(max_session_score)
-		pilot_stats.set_session_score(session_scores.get(player.get_team()))
+		pilot_stats.set_max_points(max_session_score)
+		pilot_stats.set_points(session_scores.get(player.get_team()))
+		pilot_stats.set_new_points(1 if player.get_team() in match_winners else 0)
 		pilot_stats.position.y = line_height*i
 		%Container.add_child(pilot_stats)
 		i+=1

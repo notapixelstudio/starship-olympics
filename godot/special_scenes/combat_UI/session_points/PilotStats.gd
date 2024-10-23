@@ -4,8 +4,9 @@ extends Node2D
 class_name PilotStats
 
 @export var player : Player : get = get_player, set = set_player
-@export var session_score := -1 : set = set_session_score
-@export var max_session_score := 3 : set = set_max_session_score
+@export var points := -1 : set = set_points
+@export var new_points := 1 : set = set_new_points
+@export var max_points := 3 : set = set_max_points
 
 var new_y : set = change_y
 
@@ -24,14 +25,22 @@ func set_player(v: Player):
 func get_player() -> Player:
 	return player
 
-func set_session_score(v: int):
-	session_score = v
+func set_points(v: int):
+	points = v
+	_refresh()
+	
+func set_new_points(v:int):
+	new_points = v
+	_refresh()
+	
+func set_max_points(v: int):
+	max_points = v
+	_refresh()
+	
+func _refresh() -> void:
 	if not is_inside_tree():
 		await self.ready
-	%StarsContainer.initialize(session_score, max_session_score, false)
-	
-func set_max_session_score(v: int):
-	max_session_score = v
+	%StarsContainer.update(points, new_points, max_points)
 	
 func change_y(new_value):
 	new_y = new_value

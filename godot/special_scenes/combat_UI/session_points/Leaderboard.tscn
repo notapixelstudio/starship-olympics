@@ -66,11 +66,12 @@ script = ExtResource("1")
 pilot_stats_scene = ExtResource("2")
 players = Array[ExtResource("3_t5h2s")]([ExtResource("3_0uub2"), ExtResource("4_hibp6"), ExtResource("5_5cgsl"), ExtResource("6_8vyt0")])
 session_scores = {
-"P1": 1,
+"P1": 0,
 "P2": 0,
-"P3": 0,
+"P3": 1,
 "P4": 0
 }
+match_winners = Array[String](["P3"])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

@@ -106,6 +106,7 @@ func _on_match_over(data:Dictionary) -> void:
 	var match_over_screen = match_over_screen_scene.instantiate()
 	match_over_screen.set_players(_active_players)
 	match_over_screen.set_session_scores(session_scores)
+	match_over_screen.set_match_winners(data['winners'])
 	%HUD.add_child(match_over_screen)
 	
 	# peform a match over animation

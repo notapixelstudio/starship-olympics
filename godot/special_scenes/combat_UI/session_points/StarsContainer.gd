@@ -3,7 +3,11 @@ extends Node2D
 @export var star_scene : PackedScene
 const OFFSET = 128 
 
-func initialize(points: int, max_points: int, just_won: bool = false):
+func update(points: int, new_points: int, max_points: int):
+	# empty container
+	for child in get_children():
+		child.queue_free()
+	
 	for i in range(max_points):
 		var point = star_scene.instantiate()
 		add_child(point)
@@ -13,7 +17,7 @@ func initialize(points: int, max_points: int, just_won: bool = false):
 		if i < points:
 			point.won = true
 			#point.perfect = points[i].perfect
-			if just_won and i == points-1:
+			if i > points - new_points-1:
 				point.score()
 		else:
 			point.won = false
