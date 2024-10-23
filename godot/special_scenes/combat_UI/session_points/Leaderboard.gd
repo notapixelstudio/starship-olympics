@@ -53,6 +53,9 @@ func _refresh() -> void:
 	if not is_inside_tree():
 		await self.ready
 		
+	# set size
+	custom_minimum_size.y = line_height * len(players) + 60 # margin handling
+	
 	# empty container
 	for child in %Container.get_children():
 		child.queue_free()
