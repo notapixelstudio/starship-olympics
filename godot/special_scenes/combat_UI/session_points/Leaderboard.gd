@@ -4,8 +4,8 @@ const line_height = 140
 
 @export var pilot_stats_scene : PackedScene 
 @export var players : Array[Player] : set = set_players
-@export var max_session_score := 3 # default: classic session
-@export var session_scores : Dictionary # {team: points}
+@export var max_session_score := 3  : set = set_max_session_score # default: classic session
+@export var session_scores : Dictionary : set = set_session_scores # {team: points}
 
 signal animation_over
 
@@ -32,8 +32,19 @@ signal animation_over
 	#	pilot_stats.set_info(player)
 	#	i+=1
 	
-func set_players(v: Array[Player]) -> void:
+func set_players(v:Array[Player]) -> void:
 	players = v
+	_refresh()
+	
+func set_max_session_score(v:int) -> void:
+	max_session_score = v
+	_refresh()
+	
+func set_session_scores(v:Dictionary) -> void:
+	session_scores = v
+	_refresh()
+	
+func _refresh() -> void:
 	if not is_inside_tree():
 		await self.ready
 		

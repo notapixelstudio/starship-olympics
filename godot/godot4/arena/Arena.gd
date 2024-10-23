@@ -9,6 +9,8 @@ extends Node2D
 @export var default_params : MatchParams
 
 var _params : MatchParams
+var _active_players : Array[Player] = []
+var _teams := {}
 
 func _ready() -> void:
 	var minigame = get_minigame()
@@ -24,22 +26,17 @@ func _ready() -> void:
 	Events.clock_ticked.connect(_on_clock_ticked)
 	
 	%VersusGameOverManager.set_max_score(_params.score)
-	
-	var match_over_screen = match_over_screen_scene.instantiate()
-	match_over_screen.visible = false
-	%HUD.add_child(match_over_screen)
 	Events.match_over.connect(_on_match_over)
 	
-	var teams := {}
-	var active_players : Array[Player] = []
 	
 	for home in %Homes.get_children():
 		home.visible = false
 		
 		if home.name not in players:
 			continue
-			
+		
 		var player = players[home.name] as Player
+		_active_players.append(player)
 		
 		var ship = ship_scene.instantiate()
 		ship.set_player(player)
@@ -60,19 +57,15 @@ func _ready() -> void:
 		
 		%Battlefield.add_child(ship)
 		
-		if player.get_team() not in teams:
-			teams[player.get_team()] = []
-		teams[player.get_team()].append(player.get_id())
+		if player.get_team() not in _teams:
+			_teams[player.get_team()] = []
+		_teams[player.get_team()].append(player.get_id())
 		
-		active_players.append(player)
-	
-	match_over_screen.set_players(active_players)
-	
-	for team in teams.keys():
+	for team in _teams.keys():
 		%ScoreManager.add_team(team)
 		%VersusHUD.set_max_score(_params.score)
 		%VersusHUD.set_starting_score(_params.starting_score)
-		%VersusHUD.add_team(team, players[teams[team][0]].get_species()) # FIXME support teams of 2+ members
+		%VersusHUD.add_team(team, players[_teams[team][0]].get_species()) # FIXME support teams of 2+ members
 	
 	# BATTLE START
 	
@@ -103,17 +96,29 @@ func _on_clock_ticked(t:float, t_secs:int) -> void:
 	%TimeBar.set_value(_params.time - t)
 
 func _on_match_over(data:Dictionary) -> void:
+	# assign session scores
+	# TODO move to session managers
+	var session_scores := {}
+	for team in _teams:
+		session_scores[team] = 1 if team in data['winners'] else 0
+	
+	# create the match over screen
+	var match_over_screen = match_over_screen_scene.instantiate()
+	match_over_screen.set_players(_active_players)
+	match_over_screen.set_session_scores(session_scores)
+	%HUD.add_child(match_over_screen)
+	
 	# peform a match over animation
+	match_over_screen.hide()
 	var tween = get_tree().create_tween()
 	#tween.set_parallel()
 	tween.tween_property(Engine, "time_scale", 0.1, 0.6).set_trans(Tween.TRANS_CUBIC)
 	#tween.tween_property($Battlefield, "modulate", Color(0.7,0.7,0.7), 0.6).set_trans(Tween.TRANS_CUBIC)
-	tween.finished.connect(_on_match_over_anim_finished)
-
-func _on_match_over_anim_finished() -> void:
-	get_tree().paused = true
-	Engine.time_scale = 1
-	Events.match_over_anim_ended.emit()
+	tween.finished.connect( func():
+		get_tree().paused = true
+		Engine.time_scale = 1
+		match_over_screen.show()
+	)
 
 func _unhandled_key_input(event) -> void:
 	if OS.is_debug_build():

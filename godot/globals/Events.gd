@@ -51,7 +51,6 @@ signal message(message:Variant, color:Color, global_position:Vector2)
 
 signal battle_start
 signal match_over(data:Dictionary)
-signal match_over_anim_ended
 
 signal sth_collected(collector, collectee)
 signal sth_loaded(loader, loadee)
