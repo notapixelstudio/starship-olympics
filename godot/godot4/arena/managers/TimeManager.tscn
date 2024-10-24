@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctdiyn70rdfsq"]
+[gd_scene load_steps=3 format=3 uid="uid://ctdiyn70rdfsq"]
 
 [ext_resource type="Script" path="res://godot4/arena/managers/TimeManager.gd" id="1_nhqk1"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="2_33q6j"]
 
 [node name="TimeManager" type="Node"]
 script = ExtResource("1_nhqk1")
+
+[node name="Waiter" parent="." instance=ExtResource("2_33q6j")]

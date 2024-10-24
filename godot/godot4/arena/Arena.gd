@@ -69,9 +69,11 @@ func _ready() -> void:
 		%VersusHUD.add_team(team, players[_teams[team][0]].get_species()) # FIXME support teams of 2+ members
 		
 	%PlayersReadyWheels.set_players(_active_players)
-	await %PlayersReadyWheels.all_players_ready
 	
+	
+	await Events.battle_start
 	# BATTLE START
+	
 	
 	for ship in ships_to_spawn:
 		%Battlefield.add_child(ship)
