@@ -20,7 +20,7 @@ func add_team(name:String, species:Species) -> void:
 	bar.set_max_value(_max_score)
 	bar.set_value(_starting_score)
 	%ScoreBars.add_child(bar)
-
+	
 func set_max_score(v: float) -> void:
 	_max_score = v
 

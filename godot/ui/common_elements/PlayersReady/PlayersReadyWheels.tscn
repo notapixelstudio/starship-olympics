@@ -1,0 +1,19 @@
+[gd_scene load_steps=8 format=3 uid="uid://cy5pkamh8gihg"]
+
+[ext_resource type="PackedScene" uid="uid://lmgqknygsukb" path="res://ui/common_elements/PlayersReady/PlayerReadyWheel.tscn" id="1"]
+[ext_resource type="Script" path="res://ui/common_elements/PlayersReady/PlayersReadyWheels.gd" id="1_t6ast"]
+[ext_resource type="Script" path="res://godot4/data/Player.gd" id="3_0htpg"]
+[ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_players/p1.tres" id="4_oacuq"]
+[ext_resource type="Resource" uid="uid://fc2yg6p4flm5" path="res://godot4/debug/default_players/p2.tres" id="5_e8fcu"]
+[ext_resource type="Resource" uid="uid://c2u64vntxjiy6" path="res://godot4/debug/default_players/p3.tres" id="6_bbjlw"]
+[ext_resource type="Resource" uid="uid://dxdsvkvidj80p" path="res://godot4/debug/default_players/p4.tres" id="7_w7gyr"]
+
+[node name="PlayersReadyWheels" type="HBoxContainer"]
+custom_minimum_size = Vector2(1280, 150)
+offset_top = 550.0
+offset_right = 1280.0
+offset_bottom = 700.0
+alignment = 1
+script = ExtResource("1_t6ast")
+player_ready_wheel_scene = ExtResource("1")
+players = Array[ExtResource("3_0htpg")]([ExtResource("4_oacuq"), ExtResource("5_e8fcu"), ExtResource("6_bbjlw"), ExtResource("7_w7gyr")])

@@ -2,7 +2,7 @@ extends MarginContainer
 
 const line_height = 140
 
-@export var pilot_stats_scene : PackedScene 
+@export var pilot_stats_scene : PackedScene
 @export var players : Array[Player] : set = set_players
 @export var max_session_score := 3  : set = set_max_session_score # default: classic session
 @export var session_scores : Dictionary : set = set_session_scores # {team: points}

@@ -431,13 +431,11 @@ scale = Vector2(0.8, 0.8)
 
 [node name="Background" type="Polygon2D" parent="Wrapper"]
 unique_name_in_owner = true
-scale = Vector2(1, 1)
 color = Color(0.364706, 0.364706, 0.364706, 0.901961)
 texture = ExtResource("6")
 polygon = PackedVector2Array(12.5, 162.5, 12.5, 12.5, 1062.5, 12.5, 1012.5, 162.5)
 
 [node name="Shadow" type="Polygon2D" parent="Wrapper"]
-scale = Vector2(1, 1)
 color = Color(0, 0, 0, 0.313726)
 polygon = PackedVector2Array(6.25, 156.25, 6.25, 6.25, 125, 6.25, 150, 156.25)
 
@@ -496,14 +494,12 @@ libraries = {
 [node name="WinnerOutline" type="Line2D" parent="Wrapper"]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
-scale = Vector2(1, 1)
 points = PackedVector2Array(43.75, -12.5, 125, -12.5, 156.25, 162.5, -12.5, 162.5, -12.5, -12.5, 43.75, -12.5)
 width = 6.0
 default_color = Color(2, 2, 2, 1)
 
 [node name="Node2D" type="Node2D" parent="Wrapper"]
 position = Vector2(132.5, 18.75)
-scale = Vector2(1, 1)
 
 [node name="PlayerID" type="Label" parent="Wrapper/Node2D"]
 unique_name_in_owner = true

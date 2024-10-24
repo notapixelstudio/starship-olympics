@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuafr3l7073mo"]
+[gd_scene load_steps=8 format=3 uid="uid://cuafr3l7073mo"]
 
 [ext_resource type="PackedScene" uid="uid://ctk8t0ohpljms" path="res://godot4/arena/Arena.tscn" id="1_bkayc"]
 [ext_resource type="Script" path="res://godot4/arena/hud/VersusHUD.gd" id="2_mmfqj"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://baqs1sh3hug4e" path="res://godot4/arena/hud/Counter.tscn" id="4_atujp"]
 [ext_resource type="PackedScene" uid="uid://dt8lwx0muu10p" path="res://godot4/arena/hud/ScoreBar.tscn" id="5_ks1ew"]
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="6_aknw6"]
+[ext_resource type="PackedScene" uid="uid://cy5pkamh8gihg" path="res://ui/common_elements/PlayersReady/PlayersReadyWheels.tscn" id="7_8ytmr"]
 
 [node name="VersusArena" instance=ExtResource("1_bkayc")]
 
@@ -45,3 +46,6 @@ offset_top = 46.0
 offset_right = 160.0
 offset_bottom = 716.0
 theme_override_constants/separation = 8
+
+[node name="PlayersReadyWheels" parent="HUD/CanvasGroup/VersusHUD" index="1" instance=ExtResource("7_8ytmr")]
+unique_name_in_owner = true

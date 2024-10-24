@@ -66,6 +66,8 @@ func _ready() -> void:
 		%VersusHUD.set_max_score(_params.score)
 		%VersusHUD.set_starting_score(_params.starting_score)
 		%VersusHUD.add_team(team, players[_teams[team][0]].get_species()) # FIXME support teams of 2+ members
+		
+	%PlayersReadyWheels.set_players(_active_players)
 	
 	# BATTLE START
 	
