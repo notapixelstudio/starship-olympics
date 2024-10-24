@@ -28,6 +28,7 @@ func _ready() -> void:
 	%VersusGameOverManager.set_max_score(_params.score)
 	Events.match_over.connect(_on_match_over)
 	
+	var ships_to_spawn : Array[Ship] = []
 	
 	for home in %Homes.get_children():
 		home.visible = false
@@ -55,7 +56,7 @@ func _ready() -> void:
 			var weapon = minigame.starting_weapon.instantiate()
 			ship.add_child(weapon)
 		
-		%Battlefield.add_child(ship)
+		ships_to_spawn.append(ship)
 		
 		if player.get_team() not in _teams:
 			_teams[player.get_team()] = []
@@ -68,8 +69,12 @@ func _ready() -> void:
 		%VersusHUD.add_team(team, players[_teams[team][0]].get_species()) # FIXME support teams of 2+ members
 		
 	%PlayersReadyWheels.set_players(_active_players)
+	await %PlayersReadyWheels.all_players_ready
 	
 	# BATTLE START
+	
+	for ship in ships_to_spawn:
+		%Battlefield.add_child(ship)
 	
 	for player in get_tree().get_nodes_in_group('animation_starts_with_battle'):
 		player.play('default')

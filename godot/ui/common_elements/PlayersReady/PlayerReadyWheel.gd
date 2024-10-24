@@ -3,7 +3,7 @@ extends Control
 const SPEED = 100
 const SPEED_DECREASE = 700
 var time = 0
-signal completed
+signal player_ready
 var player : Player: set = set_player
 @export var debug_controls: String
 
@@ -48,5 +48,6 @@ func _process(delta):
 		set_process_input(false)
 		set_process(false)
 		ready_label.visible = true
-		Events.emit_signal("player_ready", player)
+		Events.player_ready.emit(player)
+		player_ready.emit(player)
 		modulate = Color(1.16,1.16,1.16,1)
