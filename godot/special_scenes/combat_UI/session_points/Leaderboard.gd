@@ -7,9 +7,7 @@ const line_height = 140
 @export var max_session_score := 3  : set = set_max_session_score # default: classic session
 @export var session : Session : set = set_session
 
-signal animation_over
 
-	
 	#var player_index = global.the_game.get_player_index()
 	#var match_played = global.the_match
 	#global.session.update_scores(match_played)
@@ -87,14 +85,12 @@ func reorder():
 			i += 1
 			
 	await tween.finished
-	#emit_signal("animation_over")
 	
 	if session.is_over():
 		_celebrate()
 	
 func _celebrate():
-	#var session_winners = global.the_game.get_last_winners()
 	for pilot in %Container.get_children():
-		if session.is_winner(pilot.get_player().get_team()): # FIXME this is good only for standalone!
+		if session.is_winner(pilot.get_player().get_team()):
 			# this is a session winner
 			pilot.celebrate()
