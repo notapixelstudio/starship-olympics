@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://00s3ufothoqf"]
+[gd_scene load_steps=11 format=3 uid="uid://00s3ufothoqf"]
 
 [ext_resource type="Script" path="res://special_scenes/combat_UI/session_points/Leaderboard.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c4wnumyysruol" path="res://special_scenes/combat_UI/session_points/PilotStats.tscn" id="2"]
@@ -11,25 +11,13 @@
 
 [sub_resource type="Animation" id="1"]
 resource_name = "entrance"
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 0.307786),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -38,25 +26,9 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="2"]
-resource_name = "idle"
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate:a")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yl108"]
 _data = {
-"entrance": SubResource("1"),
-"idle": SubResource("2")
+"entrance": SubResource("1")
 }
 
 [node name="Leaderboard" type="MarginContainer"]
@@ -73,7 +45,7 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_yl108")
 }
-autoplay = "idle"
+autoplay = "entrance"
 
 [node name="Container" type="Control" parent="."]
 unique_name_in_owner = true

@@ -22,7 +22,9 @@ func set_session(v:Session) -> void:
 
 func _refresh() -> void:
 	if not is_inside_tree():
-		await self.ready
+		if not self.ready.is_connected(_refresh):
+			self.ready.connect(_refresh)
+		return
 		
 	%Leaderboard.players = players
 	%Leaderboard.session = session

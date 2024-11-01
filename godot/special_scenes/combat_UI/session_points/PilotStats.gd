@@ -39,7 +39,9 @@ func set_max_points(v: int):
 	
 func _refresh() -> void:
 	if not is_inside_tree():
-		await self.ready
+		if not self.ready.is_connected(_refresh):
+			self.ready.connect(_refresh)
+		return
 	%StarsContainer.update(points, new_points, max_points)
 	
 func change_y(new_value):
