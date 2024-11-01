@@ -89,7 +89,7 @@ func _ready() -> void:
 		player.play('default')
 	
 func get_id() -> String:
-	return get_tree().current_scene.scene_file_path.get_file().split('.')[0]
+	return scene_file_path.get_file().split('.')[0]
 	
 func get_minigame_id() -> String:
 	return get_id().split('_')[0]
@@ -131,13 +131,3 @@ func _on_match_over(data:Dictionary) -> void:
 		Engine.time_scale = 1
 		match_over_screen.show()
 	)
-
-func _unhandled_key_input(event) -> void:
-	if OS.is_debug_build():
-		# cause the clock to expire for testing
-		if event.is_action_pressed("debug_action"):
-			Events.clock_expired.emit()
-			
-		# reset the current level
-		if event.is_action_pressed("debug_restart_scene"):
-			get_tree().reload_current_scene()
