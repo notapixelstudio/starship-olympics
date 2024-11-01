@@ -10,3 +10,7 @@ func add_match_results(match_results:Dictionary) -> void:
 	
 func is_winner(team:String) -> bool:
 	return team in _winning_teams
+
+func is_over() -> bool:
+	# this type of session is over if there's at least a winner
+	return len(_winning_teams) > 0

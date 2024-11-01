@@ -88,8 +88,9 @@ func reorder():
 			
 	await tween.finished
 	#emit_signal("animation_over")
-	#if global.session and global.session.is_over():
-	_celebrate()
+	
+	if session.is_over():
+		_celebrate()
 	
 func _celebrate():
 	#var session_winners = global.the_game.get_last_winners()
