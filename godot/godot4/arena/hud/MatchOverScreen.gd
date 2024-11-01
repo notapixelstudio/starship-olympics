@@ -1,6 +1,7 @@
 extends ColorRect
 
-var session_scores = {}
+@export var players : Array[Player] : set = set_players
+@export var session : Session : set = set_session
 
 func hide() -> void:
 	modulate = Color(0,0,0,0)
@@ -11,17 +12,17 @@ func show() -> void:
 func _on_appear() -> void:
 	%Leaderboard.reorder()
 
-func set_players(players:Array) -> void:
+func set_players(v:Array[Player]) -> void:
+	players = v
+	_refresh()
+
+func set_session(v:Session) -> void:
+	session = v
+	_refresh()
+
+func _refresh() -> void:
 	if not is_inside_tree():
 		await self.ready
+		
 	%Leaderboard.players = players
-
-func set_session_scores(session_scores:Dictionary) -> void:
-	if not is_inside_tree():
-		await self.ready
-	%Leaderboard.session_scores = session_scores
-
-func set_match_winners(match_winners:Array[String]) -> void:
-	if not is_inside_tree():
-		await self.ready
-	%Leaderboard.match_winners = match_winners
+	%Leaderboard.session = session

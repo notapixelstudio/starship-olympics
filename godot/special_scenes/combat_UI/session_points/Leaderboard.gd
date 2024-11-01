@@ -5,8 +5,7 @@ const line_height = 140
 @export var pilot_stats_scene : PackedScene
 @export var players : Array[Player] : set = set_players
 @export var max_session_score := 3  : set = set_max_session_score # default: classic session
-@export var session_scores : Dictionary : set = set_session_scores # {team: points}
-@export var match_winners : Array[String] : set = set_match_winners # team
+@export var session : Session : set = set_session
 
 signal animation_over
 
@@ -41,12 +40,8 @@ func set_max_session_score(v:int) -> void:
 	max_session_score = v
 	_refresh()
 	
-func set_session_scores(v:Dictionary) -> void:
-	session_scores = v
-	_refresh()
-	
-func set_match_winners(v:Array[String]) -> void:
-	match_winners = v
+func set_session(v:Session) -> void:
+	session = v
 	_refresh()
 	
 func _refresh() -> void:
@@ -65,8 +60,8 @@ func _refresh() -> void:
 		var pilot_stats = pilot_stats_scene.instantiate()
 		pilot_stats.set_player(player)
 		pilot_stats.set_max_points(max_session_score)
-		pilot_stats.set_points(session_scores.get(player.get_team()))
-		pilot_stats.set_new_points(1 if player.get_team() in match_winners else 0)
+		pilot_stats.set_points(1 if session.is_winner(player.get_team()) else 0)
+		# pilot_stats.set_new_points(1 if player.get_team() in match_winners else 0)
 		pilot_stats.position.y = line_height*i
 		%Container.add_child(pilot_stats)
 		i+=1
@@ -79,7 +74,7 @@ func reorder():
 	#var current_leaderboard = global.session.get_current_leaderboard()
 	var leaderboard : Array[Dictionary] = []
 	for player in players:
-		leaderboard.append({'player': player, 'score': session_scores.get(player.get_team())})
+		leaderboard.append({'player': player, 'score': 1 if session.is_winner(player.get_team()) else 0 })
 		
 	leaderboard.sort_custom(func(a,b): return a['score'] > b['score'])
 	
@@ -99,6 +94,6 @@ func reorder():
 func _celebrate():
 	#var session_winners = global.the_game.get_last_winners()
 	for pilot in %Container.get_children():
-		if pilot.get_player().get_team() in match_winners: # FIXME this is good only for standalone!
+		if session.is_winner(pilot.get_player().get_team()): # FIXME this is good only for standalone!
 			# this is a session winner
 			pilot.celebrate()

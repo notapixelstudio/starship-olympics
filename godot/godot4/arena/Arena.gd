@@ -7,6 +7,7 @@ extends Node2D
 @export var match_over_screen_scene : PackedScene
 @export var default_minigame : Minigame
 @export var default_params : MatchParams
+@export var session : Session
 
 var _params : MatchParams
 var _active_players : Array[Player] = []
@@ -105,17 +106,12 @@ func _on_clock_ticked(t:float, t_secs:int) -> void:
 	%TimeBar.set_value(_params.time - t)
 
 func _on_match_over(data:Dictionary) -> void:
-	# assign session scores
-	# TODO move to session managers
-	var session_scores := {}
-	for team in _teams:
-		session_scores[team] = 1 if team in data['winners'] else 0
+	session.add_match_results(data)
 	
 	# create the match over screen
 	var match_over_screen = match_over_screen_scene.instantiate()
 	match_over_screen.set_players(_active_players)
-	match_over_screen.set_session_scores(session_scores)
-	match_over_screen.set_match_winners(data['winners'])
+	match_over_screen.set_session(session)
 	%HUD.add_child(match_over_screen)
 	
 	# peform a match over animation
