@@ -26,8 +26,6 @@ func _ready() -> void:
 	%TimeBar.set_value(0.0) # time always starts from 0
 	Events.clock_ticked.connect(_on_clock_ticked)
 	
-	%Camera2D
-	
 	%VersusGameOverManager.set_max_score(_params.score)
 	Events.match_over.connect(_on_match_over)
 	
