@@ -3,6 +3,9 @@ extends Node2D
 
 class_name PilotStats
 
+const STAR_OFFSET = 128
+
+@export var star_scene : PackedScene
 @export var player : Player : get = get_player, set = set_player
 @export var points := -1 : set = set_points
 @export var new_points := 1 : set = set_new_points
@@ -12,8 +15,20 @@ var new_y : set = change_y
 
 func set_player(v: Player):
 	player = v
-	if not is_inside_tree():
-		await self.ready
+	
+func get_player() -> Player:
+	return player
+
+func set_points(v: int):
+	points = v
+	
+func set_new_points(v:int):
+	new_points = v
+	
+func set_max_points(v: int):
+	max_points = v
+	
+func _ready() -> void:
 	%Headshot.set_player(player)
 	#for stats in $"%StatsContainer".get_children():
 	#	stats.set_stats_value(str(player_stats.get(stats.key)))
@@ -22,27 +37,30 @@ func set_player(v: Player):
 	%PlayerID.text = player.get_username()
 	%PlayerID.modulate = player.get_color()
 	
-func get_player() -> Player:
-	return player
+	_update_stars()
+	
+func _update_stars():
+	# empty container
+	for child in %StarsContainer.get_children():
+		child.queue_free()
+	
+	for i in range(max_points):
+		var point = star_scene.instantiate()
+		
+		point.position.x = 100 + i*STAR_OFFSET - max_points*STAR_OFFSET/2.0
+		point.position.y = 68
+		point.set_index(i)
+		if i < points:
+			point.set_scored(true)
+			#point.perfect = points[i].perfect
+			if i > points - new_points-1:
+				point.set_just_scored(true)
+		else:
+			point.set_scored(false)
+			point.set_perfect(false)
+			
+		%StarsContainer.add_child(point)
 
-func set_points(v: int):
-	points = v
-	_refresh()
-	
-func set_new_points(v:int):
-	new_points = v
-	_refresh()
-	
-func set_max_points(v: int):
-	max_points = v
-	_refresh()
-	
-func _refresh() -> void:
-	if not is_inside_tree():
-		if not self.ready.is_connected(_refresh):
-			self.ready.connect(_refresh)
-		return
-	%StarsContainer.update(points, new_points, max_points)
 	
 func change_y(new_value):
 	new_y = new_value

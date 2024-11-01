@@ -14,17 +14,11 @@ func _on_appear() -> void:
 
 func set_players(v:Array[Player]) -> void:
 	players = v
-	_refresh()
 
 func set_session(v:Session) -> void:
 	session = v
-	_refresh()
 
-func _refresh() -> void:
-	if not is_inside_tree():
-		if not self.ready.is_connected(_refresh):
-			self.ready.connect(_refresh)
-		return
-		
+func _ready() -> void:
 	%Leaderboard.players = players
 	%Leaderboard.session = session
+	%Leaderboard.redraw()

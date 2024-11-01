@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://c4wnumyysruol"]
+[gd_scene load_steps=12 format=3 uid="uid://c4wnumyysruol"]
 
 [ext_resource type="Script" path="res://special_scenes/combat_UI/session_points/PilotStats.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://b8llrhhkcnyfh" path="res://special_scenes/combat_UI/session_points/Headshot.tscn" id="2"]
 [ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="2_ajx2r"]
 [ext_resource type="PackedScene" path="res://special_scenes/combat_UI/session_points/Stat.tscn" id="3"]
-[ext_resource type="Script" path="res://special_scenes/combat_UI/session_points/StarsContainer.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://dw8dm4b52y11j" path="res://special_scenes/combat_UI/session_points/Star.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://ccvffra4l23u7" path="res://assets/patterns/stripes_duotone_lighter.png" id="6"]
 [ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="8"]
@@ -423,6 +422,7 @@ cache/0/60/0/scale = 1.0
 [node name="PilotStats" type="Node2D"]
 z_as_relative = false
 script = ExtResource("1")
+star_scene = ExtResource("5")
 player = ExtResource("2_ajx2r")
 points = 1
 
@@ -481,8 +481,6 @@ stats_value = "0"
 [node name="StarsContainer" type="Node2D" parent="Wrapper/Container"]
 unique_name_in_owner = true
 position = Vector2(535, 0)
-script = ExtResource("4")
-star_scene = ExtResource("5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper"]
 unique_name_in_owner = true
