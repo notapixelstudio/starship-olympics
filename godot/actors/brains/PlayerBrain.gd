@@ -29,6 +29,9 @@ func _physics_process(delta):
 		controllee.set_rotation_request(rotation_request)
 	
 func tick():
+	if not enabled:
+		return
+		
 	#var target_vel = Vector2()
 	var front = Vector2(cos(global_rotation), sin(global_rotation))
 	#target_vel = local_handling()
@@ -59,6 +62,9 @@ func is_action_buffered(action_name: String, since_msec: int) -> bool:
 	return action_buffer.has(action_name) and Time.get_ticks_msec() - action_buffer[action_name] <= since_msec
  
 func _unhandled_input(event):
+	if not enabled:
+		return
+		
 	for control in _controls:
 		# charge and release even if controls are disabled
 		if event.is_action_pressed(control+'_fire'):

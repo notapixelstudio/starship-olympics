@@ -5,6 +5,7 @@ var target_velocity : Vector2
 var rotation_request : float
 
 var controllee
+var enabled := true
 
 func _enter_tree():
 	controllee = get_parent()

@@ -28,6 +28,9 @@ func forget_current_target_location() -> void:
 		$DebugSprite.visible = false
 	
 func tick():
+	if not enabled:
+		return
+		
 	# obey the navigation rule of calling get_next_location every frame
 	var nav_location = $NavigationAgent2D.get_next_path_position()
 	

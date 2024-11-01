@@ -29,7 +29,7 @@ func _ready() -> void:
 	%VersusGameOverManager.set_max_score(_params.score)
 	Events.match_over.connect(_on_match_over)
 	
-	var ships_to_spawn : Array[Ship] = []
+	var brains_to_enable : Array[Brain] = []
 	
 	for home in %Homes.get_children():
 		home.visible = false
@@ -51,13 +51,19 @@ func _ready() -> void:
 		else:
 			brain = player_brain_scene.instantiate()
 			brain.set_controls(player.get_controls())
+		brain.enabled = false
+		brains_to_enable.append(brain)
 		ship.add_child(brain)
 		
 		if minigame.starting_weapon:
 			var weapon = minigame.starting_weapon.instantiate()
 			ship.add_child(weapon)
 		
-		ships_to_spawn.append(ship)
+		# add ship as soon as the player is ready
+		Events.player_ready.connect(func(p):
+			if p == ship.get_player():
+				%Battlefield.add_child(ship)
+		)
 		
 		if player.get_team() not in _teams:
 			_teams[player.get_team()] = []
@@ -76,8 +82,8 @@ func _ready() -> void:
 	# BATTLE START
 	
 	
-	for ship in ships_to_spawn:
-		%Battlefield.add_child(ship)
+	for brain in brains_to_enable:
+		brain.enabled = true
 	
 	for player in get_tree().get_nodes_in_group('animation_starts_with_battle'):
 		player.play('default')
