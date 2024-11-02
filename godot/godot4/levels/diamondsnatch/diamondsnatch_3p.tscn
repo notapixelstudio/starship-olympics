@@ -14,8 +14,7 @@
 
 [node name="VersusArena" instance=ExtResource("1_2t2ka")]
 
-[node name="SpawnerWaveManager" parent="Managers" index="3" node_paths=PackedStringArray("waves") instance=ExtResource("2_ak7cm")]
-waves = [NodePath("../../Battlefield/Wave0"), NodePath("../../Battlefield/Wave1"), NodePath("../../Battlefield/Wave2"), NodePath("../../Battlefield/Wave3"), NodePath("../../Battlefield/Wave4"), NodePath("../../Battlefield/Wave5"), NodePath("../../Battlefield/Wave6")]
+[node name="SpawnerWaveManager" parent="Managers" index="3" instance=ExtResource("2_ak7cm")]
 
 [node name="CollectGame" parent="Managers" index="4" instance=ExtResource("3_dg11o")]
 
@@ -61,7 +60,6 @@ sides = 4
 
 [node name="Wave0" type="Node2D" parent="Battlefield" index="4" groups=["spawn_waves"]]
 script = ExtResource("9_g44pl")
-max_repeats = 1
 extra_delay = 0.25
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Wave0" index="0" instance=ExtResource("10_nrilq")]
@@ -86,7 +84,6 @@ element_scene = ExtResource("8_ri0vu")
 
 [node name="Wave1" type="Node2D" parent="Battlefield" index="5" groups=["spawn_waves"]]
 script = ExtResource("9_g44pl")
-max_repeats = 1
 
 [node name="ElementSpawnerGroup5" parent="Battlefield/Wave1" index="0" instance=ExtResource("10_nrilq")]
 position = Vector2(750, 150)
@@ -130,7 +127,6 @@ element_scene = ExtResource("8_ri0vu")
 
 [node name="Wave2" type="Node2D" parent="Battlefield" index="6" groups=["spawn_waves"]]
 script = ExtResource("9_g44pl")
-max_repeats = 1
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Wave2" index="0" instance=ExtResource("10_nrilq")]
 position = Vector2(0, 600)
@@ -156,7 +152,6 @@ element_scene = ExtResource("8_ri0vu")
 
 [node name="Wave3" type="Node2D" parent="Battlefield" index="7" groups=["spawn_waves"]]
 script = ExtResource("9_g44pl")
-max_repeats = 1
 extra_delay = 1.5
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Wave3" index="0" instance=ExtResource("10_nrilq")]
@@ -175,7 +170,6 @@ element_scene = ExtResource("8_ri0vu")
 
 [node name="Wave4" type="Node2D" parent="Battlefield" index="8" groups=["spawn_waves"]]
 script = ExtResource("9_g44pl")
-max_repeats = 0
 extra_delay = 0.75
 
 [node name="ElementSpawnerGroup2" parent="Battlefield/Wave4" index="0" instance=ExtResource("10_nrilq")]
@@ -190,7 +184,6 @@ element_scene = ExtResource("11_u84p6")
 
 [node name="Wave5" type="Node2D" parent="Battlefield" index="9" groups=["spawn_waves"]]
 script = ExtResource("9_g44pl")
-max_repeats = 1
 extra_delay = 0.25
 
 [node name="ElementSpawnerGroup35" parent="Battlefield/Wave5" index="0" instance=ExtResource("10_nrilq")]

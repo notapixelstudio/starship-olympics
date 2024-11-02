@@ -73,9 +73,9 @@ _data = {
 "default": SubResource("Animation_hgkc3")
 }
 
-[node name="Bubble" type="RigidBody2D"]
+[node name="Bubble" type="RigidBody2D" groups=["collectable"]]
 collision_layer = 64
-collision_mask = 2645
+collision_mask = 2644
 physics_material_override = SubResource("PhysicsMaterial_2pppl")
 lock_rotation = true
 contact_monitor = true
@@ -84,6 +84,11 @@ linear_damp = 2.0
 script = ExtResource("1_ebahq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_clbnn")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_clbnn")
 
 [node name="ContentSprite2D" type="Sprite2D" parent="."]
@@ -104,14 +109,16 @@ autoplay = "default"
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
 visible = false
+z_index = 100
+z_as_relative = false
 offset_left = -300.0
-offset_top = 197.0
+offset_top = -350.0
 offset_right = 300.0
-offset_bottom = 342.0
+offset_bottom = -150.0
 theme = ExtResource("4_1ymov")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 72
 text = "HOLD BUTTON
 TO DASH!"
 horizontal_alignment = 1
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
