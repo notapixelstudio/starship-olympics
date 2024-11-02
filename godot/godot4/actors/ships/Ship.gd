@@ -104,7 +104,11 @@ func dash(charge: float) -> void:
 	var recoil = max(0,-DASH_HANDICAP+dash_strength*DASH_MULTIPLIER)
 	apply_central_impulse(Vector2(recoil, 0).rotated(global_rotation)) # recoil only if dashing
 	
+	%DashDurationTimer.start() # TBD vary dash duration
 	_drop_dash_ring_effect()
+	
+func is_dashing() -> bool:
+	return not %DashDurationTimer.is_stopped()
 	
 func tap():
 	Events.tap.emit(self)

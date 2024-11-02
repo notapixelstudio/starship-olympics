@@ -210,6 +210,11 @@ one_shot = true
 [node name="DashTimer" type="Timer" parent="ChargeManager"]
 one_shot = true
 
+[node name="DashDurationTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
 [node name="FlamesManager" parent="." node_paths=PackedStringArray("host", "flames") instance=ExtResource("11_i3r85")]
 host = NodePath("..")
 flames = [NodePath("../BottomFlameTrail"), NodePath("../FlameTrail")]

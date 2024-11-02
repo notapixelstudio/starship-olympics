@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1l3lu1qyupad"]
+[gd_scene load_steps=13 format=3 uid="uid://c1l3lu1qyupad"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_hdhns"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_4vl7f"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="5_n30yh"]
 [ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="6_exy44"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="6_y2xdv"]
+[ext_resource type="PackedScene" uid="uid://dvjdmo8ceeh5b" path="res://godot4/elements/bubbles/DiamondBubble.tscn" id="12_g0rc5"]
 
 [node name="VersusArena" instance=ExtResource("1_hdhns")]
 
@@ -132,25 +133,27 @@ max_repeats = 0
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Wave2" index="0" instance=ExtResource("4_8igwd")]
 position = Vector2(0, 600)
-element_scene = ExtResource("2_aq6w1")
+pattern = "single"
+element_scene = ExtResource("12_g0rc5")
 
 [node name="ElementSpawnerGroup2" parent="Battlefield/Wave2" index="1" instance=ExtResource("4_8igwd")]
 position = Vector2(0, -600)
-element_scene = ExtResource("2_aq6w1")
+pattern = "single"
+element_scene = ExtResource("12_g0rc5")
 
 [node name="ElementSpawnerGroup3" parent="Battlefield/Wave2" index="2" instance=ExtResource("4_8igwd")]
 position = Vector2(-1350, 0)
 pattern = "single"
-element_scene = ExtResource("2_aq6w1")
+element_scene = ExtResource("12_g0rc5")
 
 [node name="ElementSpawnerGroup4" parent="Battlefield/Wave2" index="3" instance=ExtResource("4_8igwd")]
 position = Vector2(1350, 0)
 pattern = "single"
-element_scene = ExtResource("2_aq6w1")
+element_scene = ExtResource("12_g0rc5")
 
 [node name="ElementSpawnerGroup5" parent="Battlefield/Wave2" index="4" instance=ExtResource("4_8igwd")]
 pattern = "single"
-element_scene = ExtResource("2_aq6w1")
+element_scene = ExtResource("12_g0rc5")
 
 [node name="Wave3" type="Node2D" parent="Battlefield" index="7" groups=["spawn_waves"]]
 script = ExtResource("3_tj16f")
