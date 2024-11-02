@@ -19,6 +19,12 @@ func set_session(v:Session) -> void:
 	session = v
 
 func _ready() -> void:
+	redraw()
+	
+func redraw() -> void:
 	%Leaderboard.players = players
 	%Leaderboard.session = session
 	%Leaderboard.redraw()
+
+func update_scores() -> void:
+	%Leaderboard.update_scores()

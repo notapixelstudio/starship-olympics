@@ -13,6 +13,8 @@ var _params : MatchParams
 var _active_players : Array[Player] = []
 var _teams := {}
 
+var _match_over_screen
+
 func _ready() -> void:
 	var minigame = get_minigame()
 	_params = get_match_params()
@@ -75,6 +77,13 @@ func _ready() -> void:
 		%VersusHUD.set_starting_score(_params.starting_score)
 		%VersusHUD.add_team(team, players[_teams[team][0]].get_species()) # FIXME support teams of 2+ members
 		
+	# create the match over screen
+	_match_over_screen = match_over_screen_scene.instantiate()
+	_match_over_screen.set_players(_active_players)
+	_match_over_screen.set_session(session)
+	_match_over_screen.hide()
+	%HUD.add_child(_match_over_screen)
+	
 	%PlayersReadyWheels.set_players(_active_players)
 	
 	
@@ -113,15 +122,9 @@ func _on_clock_ticked(t:float, t_secs:int) -> void:
 
 func _on_match_over(data:Dictionary) -> void:
 	session.add_match_results(data)
-	
-	# create the match over screen
-	var match_over_screen = match_over_screen_scene.instantiate()
-	match_over_screen.set_players(_active_players)
-	match_over_screen.set_session(session)
-	%HUD.add_child(match_over_screen)
+	_match_over_screen.update_scores()
 	
 	# peform a match over animation
-	match_over_screen.hide()
 	var tween = get_tree().create_tween()
 	#tween.set_parallel()
 	tween.tween_property(Engine, "time_scale", 0.1, 0.6).set_trans(Tween.TRANS_CUBIC)
@@ -129,5 +132,5 @@ func _on_match_over(data:Dictionary) -> void:
 	tween.finished.connect( func():
 		get_tree().paused = true
 		Engine.time_scale = 1
-		match_over_screen.show()
+		_match_over_screen.show()
 	)

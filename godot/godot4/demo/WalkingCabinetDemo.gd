@@ -15,6 +15,7 @@ func new_game(game_scene: PackedScene):
 		_current_game.queue_free()
 		
 	_current_game = game_scene.instantiate()
+	_current_game.session = SingleMatchSession.new()
 	add_child(_current_game)
 	
 	# hackish, I know

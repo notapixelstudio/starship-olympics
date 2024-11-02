@@ -29,6 +29,9 @@ func set_max_points(v: int):
 	max_points = v
 	
 func _ready() -> void:
+	redraw()
+	
+func redraw() -> void:
 	%Headshot.set_player(player)
 	#for stats in $"%StatsContainer".get_children():
 	#	stats.set_stats_value(str(player_stats.get(stats.key)))
@@ -37,9 +40,9 @@ func _ready() -> void:
 	%PlayerID.text = player.get_username()
 	%PlayerID.modulate = player.get_color()
 	
-	_update_stars()
+	update_score()
 	
-func _update_stars():
+func update_score():
 	# empty container
 	for child in %StarsContainer.get_children():
 		child.queue_free()
