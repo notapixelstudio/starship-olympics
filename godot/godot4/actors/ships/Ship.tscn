@@ -84,7 +84,7 @@ offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
 
 [node name="Ship" type="RigidBody2D"]
-collision_layer = 4194305
+collision_layer = 2151677953
 collision_mask = 1169
 physics_material_override = SubResource("PhysicsMaterial_w3n3b")
 can_sleep = false
@@ -188,7 +188,7 @@ offset_top = -48.0
 offset_right = 128.0
 offset_bottom = -11.0
 theme = ExtResource("10_iega2")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -254,3 +254,4 @@ script = ExtResource("16_m8m51")
 [connection signal="charged_too_much_for_tap" from="ChargeManager" to="." method="_on_charge_manager_charged_too_much_for_tap"]
 [connection signal="timeout" from="ChargeManager/TapTimer" to="ChargeManager" method="_on_tap_timer_timeout"]
 [connection signal="timeout" from="ChargeManager/DashTimer" to="ChargeManager" method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DashDurationTimer" to="." method="_on_dash_duration_timer_timeout"]

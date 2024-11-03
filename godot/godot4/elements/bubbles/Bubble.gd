@@ -20,4 +20,4 @@ func _on_area_2d_body_entered(body):
 		else:
 			_bumps += 1
 			%Label.visible = _bumps >= 3
-			apply_central_impulse(max(8,body.linear_velocity.length()/100.0)*(global_position-body.global_position))
+			apply_central_impulse(max(6,body.linear_velocity.length()/120.0)*(global_position-body.global_position))

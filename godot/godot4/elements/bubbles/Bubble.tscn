@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfgy3ee8k825d"]
+[gd_scene load_steps=10 format=3 uid="uid://cfgy3ee8k825d"]
 
 [ext_resource type="Script" path="res://godot4/elements/bubbles/Bubble.gd" id="1_ebahq"]
 [ext_resource type="Texture2D" uid="uid://d23n13gccawob" path="res://assets/sprites/weapons/bubble.png" id="1_ikpcv"]
@@ -7,7 +7,10 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2pppl"]
 bounce = 0.8
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_clbnn"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_o63h2"]
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tn7bv"]
 radius = 150.0
 
 [sub_resource type="Animation" id="Animation_jmnt2"]
@@ -52,7 +55,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.5, 1.5),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(3.1, 2.9), Vector2(2.9, 3.1)]
+"values": [Vector2(3.2, 2.8), Vector2(2.8, 3.2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -75,7 +78,7 @@ _data = {
 
 [node name="Bubble" type="RigidBody2D" groups=["collectable"]]
 collision_layer = 64
-collision_mask = 2644
+collision_mask = 2147486292
 physics_material_override = SubResource("PhysicsMaterial_2pppl")
 lock_rotation = true
 contact_monitor = true
@@ -84,12 +87,13 @@ linear_damp = 2.0
 script = ExtResource("1_ebahq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_clbnn")
+shape = SubResource("CircleShape2D_o63h2")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_clbnn")
+shape = SubResource("CircleShape2D_tn7bv")
 
 [node name="ContentSprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -112,11 +116,11 @@ visible = false
 z_index = 100
 z_as_relative = false
 offset_left = -300.0
-offset_top = -350.0
+offset_top = -373.0
 offset_right = 300.0
 offset_bottom = -150.0
 theme = ExtResource("4_1ymov")
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 80
 text = "HOLD BUTTON
 TO DASH!"
 horizontal_alignment = 1
