@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1l3lu1qyupad"]
+[gd_scene load_steps=14 format=3 uid="uid://c1l3lu1qyupad"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_hdhns"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_4vl7f"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="6_y2xdv"]
 [ext_resource type="PackedScene" uid="uid://dvjdmo8ceeh5b" path="res://godot4/elements/bubbles/DiamondBubble.tscn" id="12_g0rc5"]
 [ext_resource type="PackedScene" uid="uid://cie2xt6b1e8oy" path="res://godot4/elements/bubbles/BigDiamondBubble.tscn" id="13_mcimn"]
-[ext_resource type="PackedScene" uid="uid://cfgy3ee8k825d" path="res://godot4/elements/bubbles/Bubble.tscn" id="14_rr3gh"]
 
 [node name="VersusArena" instance=ExtResource("1_hdhns")]
 
@@ -579,18 +578,3 @@ pattern = "gigarhombus"
 element_scene = ExtResource("2_aq6w1")
 guest_star_scene = ExtResource("13_mcimn")
 guest_star_positioning = "random"
-
-[node name="DiamondBubble" parent="Battlefield" index="5" instance=ExtResource("12_g0rc5")]
-position = Vector2(-250, -300)
-
-[node name="DiamondBubble2" parent="Battlefield" index="6" instance=ExtResource("12_g0rc5")]
-position = Vector2(50, -300)
-
-[node name="DiamondBubble3" parent="Battlefield" index="7" instance=ExtResource("12_g0rc5")]
-position = Vector2(350, -300)
-
-[node name="Bubble" parent="Battlefield" index="8" instance=ExtResource("14_rr3gh")]
-position = Vector2(0, 300)
-
-[node name="BigDiamondBubble" parent="Battlefield" index="9" instance=ExtResource("13_mcimn")]
-position = Vector2(300, 300)
