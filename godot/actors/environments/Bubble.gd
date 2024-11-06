@@ -1,7 +1,7 @@
 @tool
 extends RigidBody2D
 
-class_name Bubble
+class_name Bubblez
 
 signal killed
 
