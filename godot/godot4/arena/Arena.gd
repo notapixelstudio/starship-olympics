@@ -90,6 +90,7 @@ func _ready() -> void:
 	await Events.battle_start
 	# BATTLE START
 	
+	DeeJay.play(minigame.soundtrack)
 	
 	for brain in brains_to_enable:
 		brain.enabled = true

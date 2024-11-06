@@ -5,3 +5,4 @@ class_name Minigame
 @export var icon: Texture
 @export var description : String = 'Description'
 @export var starting_weapon : PackedScene
+@export var soundtrack : AudioStream
