@@ -64,22 +64,22 @@ position = Vector2(0, -800)
 [node name="Bubble2" parent="." index="13" instance=ExtResource("6_o7hgl")]
 position = Vector2(0, 800)
 
-[node name="DiamondBubble" parent="." index="14" instance=ExtResource("7_8cafa")]
-position = Vector2(-800, 0)
-
-[node name="DiamondBubble2" parent="." index="15" instance=ExtResource("7_8cafa")]
-position = Vector2(-800, -800)
-
-[node name="DiamondBubble3" parent="." index="16" instance=ExtResource("7_8cafa")]
-position = Vector2(-800, 800)
-
-[node name="BigDiamondBubble" parent="." index="17" instance=ExtResource("8_q26wy")]
-position = Vector2(800, 0)
-
-[node name="BigDiamondBubble2" parent="." index="18" instance=ExtResource("8_q26wy")]
+[node name="Bubble3" parent="." index="14" instance=ExtResource("6_o7hgl")]
 position = Vector2(800, -800)
 
-[node name="BigDiamondBubble3" parent="." index="19" instance=ExtResource("8_q26wy")]
+[node name="Bubble4" parent="." index="15" instance=ExtResource("6_o7hgl")]
 position = Vector2(800, 800)
+
+[node name="Bubble7" parent="." index="16" instance=ExtResource("6_o7hgl")]
+position = Vector2(800, 0)
+
+[node name="DiamondBubble" parent="." index="17" instance=ExtResource("7_8cafa")]
+position = Vector2(-800, -800)
+
+[node name="DiamondBubble2" parent="." index="18" instance=ExtResource("7_8cafa")]
+position = Vector2(-800, 800)
+
+[node name="BigDiamondBubble" parent="." index="19" instance=ExtResource("8_q26wy")]
+position = Vector2(-800, 0)
 
 [connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]

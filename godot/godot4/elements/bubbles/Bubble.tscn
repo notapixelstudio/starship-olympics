@@ -1,13 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://cfgy3ee8k825d"]
+[gd_scene load_steps=19 format=3 uid="uid://cfgy3ee8k825d"]
 
 [ext_resource type="Script" path="res://godot4/elements/bubbles/Bubble.gd" id="1_ebahq"]
 [ext_resource type="Texture2D" uid="uid://d23n13gccawob" path="res://assets/sprites/weapons/bubble.png" id="1_ikpcv"]
+[ext_resource type="PackedScene" uid="uid://c5mydm0dx5rd5" path="res://godot4/effects/BubblePopped.tscn" id="2_ijaql"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="4_1ymov"]
 [ext_resource type="AudioStream" uid="uid://bi0qw3wfqwt4a" path="res://assets/audio/gameplay/bubbles/zapsplat_cartoon_pop_mouth_001_46664.ogg" id="5_8ymtj"]
-[ext_resource type="AudioStream" uid="uid://dh238rq8iy450" path="res://assets/audio/gameplay/bubbles/zapsplat_cartoon_bubble_pop_004_40276.ogg" id="6_wu1k0"]
 [ext_resource type="AudioStream" uid="uid://dw25rbo6knwhc" path="res://assets/audio/FX/zapsplat_cartoon_twang_bounce_boing_spring_53049.ogg" id="7_jon51"]
 [ext_resource type="AudioStream" uid="uid://b7qvxsyefgie4" path="res://assets/audio/gameplay/bubbles/zapsplat_cartoon_bubble_pop_005_40277.ogg" id="7_nip4u"]
 [ext_resource type="AudioStream" uid="uid://ba2kykijh6rei" path="res://assets/audio/gameplay/bubbles/zapsplat_cartoon_drip_or_bubble_pop_002_46212.mp3" id="8_luvl1"]
+[ext_resource type="Texture2D" uid="uid://dstv6ya1okra5" path="res://assets/sprites/weapons/bomb_frame_1.png" id="9_5yxd8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2pppl"]
 bounce = 0.8
@@ -82,17 +83,28 @@ _data = {
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lb1fb"]
+playback_mode = 1
 random_pitch = 1.2
-streams_count = 3
-stream_0/stream = ExtResource("6_wu1k0")
-stream_1/stream = ExtResource("7_nip4u")
-stream_2/stream = ExtResource("5_8ymtj")
+streams_count = 2
+stream_0/stream = ExtResource("7_nip4u")
+stream_1/stream = ExtResource("5_8ymtj")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_epica"]
 random_pitch = 1.6
 streams_count = 2
 stream_0/stream = ExtResource("7_jon51")
 stream_1/stream = ExtResource("8_luvl1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dyil8"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(150, 150, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+radial_velocity_min = 152.99
+radial_velocity_max = 475.77
+gravity = Vector3(0, 98, 0)
+scale_min = 0.1
+scale_max = 0.6
 
 [node name="Bubble" type="RigidBody2D" groups=["collectable"]]
 collision_layer = 64
@@ -103,6 +115,7 @@ contact_monitor = true
 max_contacts_reported = 1
 linear_damp = 2.0
 script = ExtResource("1_ebahq")
+bubble_popped_scene = ExtResource("2_ijaql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o63h2")
@@ -152,6 +165,14 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_epica")
 bus = &"SFX"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_dyil8")
+texture = ExtResource("9_5yxd8")
+lifetime = 0.5
+one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -2,6 +2,7 @@ extends RigidBody2D
 class_name Bubble
 
 @export var content_scene : PackedScene : set = set_content_scene
+@export var bubble_popped_scene : PackedScene
 
 var _content
 var _bumps := 0
@@ -19,6 +20,9 @@ func _on_area_2d_body_entered(body):
 				get_parent().add_child.call_deferred(_content)
 				_content.touched_by.call_deferred(body) # FIXME strong assumption
 			SoundEffects.play(%PopSFX)
+			var pop = bubble_popped_scene.instantiate()
+			pop.global_position = global_position
+			get_parent().add_child(pop)
 			queue_free()
 		else:
 			_bumps += 1
