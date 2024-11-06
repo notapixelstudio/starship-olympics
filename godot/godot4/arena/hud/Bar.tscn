@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://di86kl3ihl8op"]
+
+[ext_resource type="Script" path="res://godot4/arena/hud/Bar.gd" id="1_hx2m5"]
+
+[node name="Bar" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_hx2m5")
+
+[node name="Background" type="ColorRect" parent="."]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.317647, 0.317647, 0.317647, 1)
+
+[node name="Fill" type="ColorRect" parent="Background"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, -1)
+
+[node name="Background3D" type="ColorRect" parent="Background"]
+modulate = Color(0, 0, 0, 0.501961)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(-1, 1)
+size_flags_vertical = 3
+color = Color(0.2, 0.2, 0.2, 1)

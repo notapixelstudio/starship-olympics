@@ -1,9 +1,9 @@
 extends AudioStreamPlayer2D
 
-export var duration := 0.5 setget set_duration
-export var step := 0.1
+@export var duration := 0.5: set = set_duration
+@export var step := 0.1
 
-onready var starting_pitch_scale : float = pitch_scale
+@onready var starting_pitch_scale : float = pitch_scale
 
 func set_duration(v: float):
 	duration = v

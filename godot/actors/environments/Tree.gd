@@ -1,12 +1,12 @@
 extends Area2D
 
-export var height := 1
+@export var height := 1
 
 func _ready():
 	$"%HidingSpot/CollisionPolygon2D".polygon = $CollisionPolygon2D.polygon
 	$"%Canopy".polygon = $CollisionPolygon2D.polygon
 	$"%Shadow".polygon = $CollisionPolygon2D.polygon
-	$"%Leaves".points = $CollisionPolygon2D.polygon + PoolVector2Array([$CollisionPolygon2D.polygon[0]])
+	$"%Leaves".points = $CollisionPolygon2D.polygon + PackedVector2Array([$CollisionPolygon2D.polygon[0]])
 	
 	# compute the shade of the canopy
 	var polygon_bottom = []
@@ -18,7 +18,7 @@ func _ready():
 			
 	polygon_top.invert()
 	
-	$"%CanopyShade".polygon = PoolVector2Array(polygon_bottom + polygon_top)
+	$"%CanopyShade".polygon = PackedVector2Array(polygon_bottom + polygon_top)
 	
 	modulate.r = 1 + randf() * 5
 	modulate.g = 0.8 + randf() * 1

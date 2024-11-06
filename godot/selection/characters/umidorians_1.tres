@@ -1,23 +1,25 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="Species" load_steps=7 format=3 uid="uid://b4mhr8ft2dgry"]
 
-[ext_resource path="res://selection/Species.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/species/umidorians.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/species/umidorians/tsunamians_ship_plain.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/species/umidorians/tsunamians1_beaten.png" type="Texture" id=4]
-[ext_resource path="res://assets/sprites/species/umidorians/ship_w.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/species/umidorians/ship.png" type="Texture" id=6]
+[ext_resource type="Script" path="res://selection/Species.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://fh3cglc2wnh0" path="res://assets/sprites/species/umidorians.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://u6cao0ltlkir" path="res://assets/sprites/species/umidorians/tsunamians_ship_plain.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://p86dkbydnbvg" path="res://assets/sprites/species/umidorians/tsunamians1_beaten.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://bk2pmusyhyiue" path="res://assets/sprites/species/umidorians/ship_w.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://emipwhc1yrwp" path="res://assets/sprites/species/umidorians/ship.png" id="6"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "umidorians_1"
 species_id = 2
 name = "umidorians"
 tagline1 = "fancy<br>horrors"
 tagline2 = ""
-ship = ExtResource( 6 )
-ship_off = ExtResource( 3 )
-ship_w = ExtResource( 5 )
-character_ok = ExtResource( 2 )
-character_beaten = ExtResource( 4 )
-color = Color( 0, 0.501961, 1, 1 )
-color_2 = Color( 0.403922, 0.282353, 1, 1 )
+ship = ExtResource("6")
+ship_off = ExtResource("3")
+ship_w = ExtResource("5")
+character_ok = ExtResource("2")
+character_beaten = ExtResource("4")
+color = Color(0, 0.416667, 1, 1)
+color_2 = Color(0.227451, 0.282353, 1, 1)
+color_background = Color(0.0456, 0.184933, 0.38, 1)
+color_accent = Color(0.0352941, 0.266667, 1, 1)

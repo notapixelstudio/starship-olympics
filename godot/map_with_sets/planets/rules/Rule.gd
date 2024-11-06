@@ -2,5 +2,5 @@ extends Resource
 
 class_name Rule
 
-export var text: String
-export var logo: StreamTexture
+@export var text: String
+@export var logo: CompressedTexture2D

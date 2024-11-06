@@ -1,76 +1,80 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=14 format=3 uid="uid://7r2pj44tr8jc"]
 
-[ext_resource path="res://local_multiplayer/LocalMultiplayer.gd" type="Script" id=1]
-[ext_resource path="res://map/DraftArena.tscn" type="PackedScene" id=2]
-[ext_resource path="res://selection/SelectionScreen.tscn" type="PackedScene" id=3]
-[ext_resource path="res://local_multiplayer/UI/ParallaxBackground.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/shaders/crt.shader" type="Shader" id=5]
-[ext_resource path="res://default_env.tres" type="Environment" id=6]
-[ext_resource path="res://local_multiplayer/WorldEnvironment.gd" type="Script" id=7]
-[ext_resource path="res://assets/shaders/TransitionFade.tscn" type="PackedScene" id=8]
-[ext_resource path="res://special_scenes/unlock_screen/UnlockSceneClassic.tscn" type="PackedScene" id=9]
-[ext_resource path="res://special_scenes/combat_UI/gameover/HallOfFame.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/map/galaxy.png" type="Texture" id=11]
-[ext_resource path="res://assets/sprites/background/static.png" type="Texture" id=12]
+[ext_resource type="Script" path="res://local_multiplayer/LocalMultiplayer.gd" id="1"]
+[ext_resource type="PackedScene" path="res://map/DraftArena.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://selection/SelectionPanel.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://local_multiplayer/UI/ParallaxBackground.tscn" id="4"]
+[ext_resource type="Shader" path="res://assets/shaders/crt.gdshader" id="5"]
+[ext_resource type="Environment" uid="uid://kk8h7mji2rlv" path="res://default_env.tres" id="6"]
+[ext_resource type="Script" path="res://godot4/WorldEnvironment.gd" id="7"]
+[ext_resource type="PackedScene" path="res://assets/shaders/TransitionFade.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://special_scenes/unlock_screen/UnlockSceneClassic.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://special_scenes/combat_UI/gameover/HallOfFame.tscn" id="10"]
+[ext_resource type="Texture2D" uid="uid://fmv76p1cihpk" path="res://assets/map/galaxy.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://yuay7lcg5j7l" path="res://assets/sprites/background/static.png" id="12"]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 5 )
-shader_param/boost = 1.1
-shader_param/grille_opacity = 1.0
-shader_param/scanlines_opacity = 1.0
-shader_param/vignette_opacity = 0.2
-shader_param/scanlines_speed = 1.0
-shader_param/show_grille = false
-shader_param/show_scanlines = false
-shader_param/show_vignette = true
-shader_param/show_curvature = true
-shader_param/screen_size = Vector2( 640, 360 )
-shader_param/aberration_amount = 0.16
-shader_param/move_aberration = false
-shader_param/aberration_speed = 1.0
+[sub_resource type="ShaderMaterial" id="1"]
+shader = ExtResource("5")
 
 [node name="LocalMultiplayer" type="Node"]
-script = ExtResource( 1 )
-map_scene = ExtResource( 2 )
-celebration_scene = ExtResource( 10 )
+script = ExtResource("1")
+map_scene = ExtResource("2")
+celebration_scene = ExtResource("10")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 6 )
-script = ExtResource( 7 )
+environment = ExtResource("6")
+script = ExtResource("7")
 
-[node name="SelectionScreen" parent="." instance=ExtResource( 3 )]
+[node name="SelectionScreen" parent="." instance=ExtResource("3")]
+layout_mode = 3
+anchors_preset = 15
 mouse_filter = 2
 
-[node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
+[node name="ParallaxBackground" parent="." instance=ExtResource("4")]
 layer = -2
+
+[node name="TextureRect" parent="ParallaxBackground" index="0"]
+anchors_preset = 15
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
 [node name="Tween" type="Tween" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null
 
 [node name="ScreenPostProcessing" type="CanvasLayer" parent="."]
 layer = 119
 
 [node name="TextureRect" type="TextureRect" parent="ScreenPostProcessing"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-texture = ExtResource( 12 )
+texture = ExtResource("12")
 
 [node name="ScreenPostProcessing2" type="CanvasLayer" parent="."]
 layer = 120
 
 [node name="ColorRect" type="ColorRect" parent="ScreenPostProcessing2"]
-material = SubResource( 1 )
+material = SubResource("1")
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="TransitionScreen" parent="." instance=ExtResource( 8 )]
-color = Color( 1, 1, 1, 1 )
+[node name="TransitionScreen" parent="." instance=ExtResource("8")]
+color = Color(1, 1, 1, 1)
 
-[node name="UnlockSceneClassic" parent="." instance=ExtResource( 9 )]
+[node name="UnlockSceneClassic" parent="." instance=ExtResource("9")]
 unique_name_in_owner = true
 
 [node name="AddOnScreen" type="CanvasLayer" parent="."]
@@ -78,12 +82,12 @@ unique_name_in_owner = true
 visible = false
 
 [node name="TextureRect" type="TextureRect" parent="AddOnScreen"]
-margin_left = -657.0
-margin_top = -1270.0
-margin_right = 2362.0
-margin_bottom = 2919.0
+offset_left = -657.0
+offset_top = -1270.0
+offset_right = 2362.0
+offset_bottom = 2919.0
 mouse_filter = 2
-texture = ExtResource( 11 )
+texture = ExtResource("11")
 stretch_mode = 6
 
 [editable path="ParallaxBackground"]

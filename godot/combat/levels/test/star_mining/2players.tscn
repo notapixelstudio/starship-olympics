@@ -1,49 +1,65 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=3 uid="uid://1it23x4bvak4"]
 
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture" id=2]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=3]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/levels/background/takonauts.png" type="Texture" id=7]
-[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=8]
-[ext_resource path="res://combat/modes/StarMining.tres" type="Resource" id=9]
-[ext_resource path="res://actors/environments/Rock.tscn" type="PackedScene" id=10]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="3"]
+[ext_resource type="PackedScene" path="res://combat/Arena.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://actors/environments/Wall.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://t1xwfj7872mj" path="res://combat/levels/background/takonauts.png" id="7"]
+[ext_resource type="Resource" uid="uid://c2d0iaqf8sd0v" path="res://selection/characters/pentagonions_1.tres" id="8"]
+[ext_resource type="Resource" path="res://combat/modes/StarMining.tres" id="9"]
+[ext_resource type="PackedScene" path="res://actors/environments/Rock.tscn" id="10"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Resource" id="Resource_edetw"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_aoyv8"]
+metadata/__load_path__ = "res://addons/geometry/icons/GBeveledRect.svg"
+
+[sub_resource type="Resource" id="Resource_8hx8e"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_wmy8c"]
+metadata/__load_path__ = "res://addons/geometry/icons/GBeveledRect.svg"
+
+[sub_resource type="Resource" id="Resource_q3esp"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_gu84w"]
+metadata/__load_path__ = "res://addons/geometry/icons/GBeveledRect.svg"
+
+[sub_resource type="Animation" id="1"]
 resource_name = "Rotate"
 length = 20.0
-loop = true
+loop_mode = 1
 step = 1.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:width")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 10, 20 ),
-"transitions": PoolRealArray( -2, -2, 1 ),
+"times": PackedFloat32Array(0, 10, 20),
+"transitions": PackedFloat32Array(-2, -2, 1),
 "update": 0,
-"values": [ 4000, 3200, 4000 ]
+"values": [4000, 3200, 4000]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:height")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 10, 20 ),
-"transitions": PoolRealArray( -2, -2, 1 ),
+"times": PackedFloat32Array(0, 10, 20),
+"transitions": PackedFloat32Array(-2, -2, 1),
 "update": 0,
-"values": [ 4000, 3200, 4000 ]
+"values": [4000, 3200, 4000]
 }
 
-[node name="Arena" instance=ExtResource( 4 )]
+[node name="Arena" instance=ExtResource("4")]
 size_multiplier = 2.5
-game_mode = ExtResource( 9 )
+game_mode = ExtResource("9")
 
 [node name="PursueManager" parent="Managers" index="5"]
 enabled = false
@@ -51,21 +67,21 @@ enabled = false
 [node name="CollectModeManager" parent="Managers" index="13"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 7 )
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
+texture = ExtResource("7")
 centered = false
 
-[node name="OutsideGhostWall" parent="Battlefield/Background" index="1" instance=ExtResource( 5 )]
+[node name="OutsideGhostWall" parent="Battlefield/Background" index="1" instance=ExtResource("5")]
 hollow = true
 offset = 200
 type = 2
 hide_grid = true
-grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_color = Color(0.996078, 0.584314, 0, 0.407843)
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_edetw")
 __meta__ = {
-"_editor_icon": ExtResource( 2 )
+"_editor_icon": SubResource("Resource_aoyv8")
 }
 width = 3200
 height = 3200
@@ -75,17 +91,17 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="OutsideGhostWall2" parent="Battlefield/Background" index="2" instance=ExtResource( 5 )]
+[node name="OutsideGhostWall2" parent="Battlefield/Background" index="2" instance=ExtResource("5")]
 hollow = true
 offset = 200
 type = 2
 hide_grid = true
-grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_color = Color(0.996078, 0.584314, 0, 0.407843)
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideGhostWall2" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_8hx8e")
 __meta__ = {
-"_editor_icon": ExtResource( 2 )
+"_editor_icon": SubResource("Resource_wmy8c")
 }
 width = 4000
 height = 4000
@@ -95,16 +111,16 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 5 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource("5")]
 hollow = true
 offset = 200
 hide_grid = true
-grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+grid_color = Color(0.996078, 0.584314, 0, 0.407843)
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_q3esp")
 __meta__ = {
-"_editor_icon": ExtResource( 2 )
+"_editor_icon": SubResource("Resource_gu84w")
 }
 width = 4000
 height = 4000
@@ -114,54 +130,54 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall/GBeveledRect" index="0" groups=["animation_in_battle"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall/GBeveledRect" index="0" groups=["animation_starts_with_battle"]]
 playback_speed = 2.0
-anims/Rotate = SubResource( 1 )
+anims/Rotate = SubResource("1")
 
-[node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
+[node name="Rock" parent="Battlefield/Middleground" index="0" instance=ExtResource("10")]
 base_size = 42.0
 spawn_diamonds = false
 contains_star = true
 deadly = false
 
-[node name="Rock2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 10 )]
-position = Vector2( -900, -900 )
+[node name="Rock2" parent="Battlefield/Middleground" index="1" instance=ExtResource("10")]
+position = Vector2(-900, -900)
 base_size = 35.0
 spawn_diamonds = false
 deadly = false
 
-[node name="Rock3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 10 )]
-position = Vector2( 900, -900 )
+[node name="Rock3" parent="Battlefield/Middleground" index="2" instance=ExtResource("10")]
+position = Vector2(900, -900)
 base_size = 35.0
 spawn_diamonds = false
 deadly = false
 
-[node name="Rock4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 10 )]
-position = Vector2( 900, 900 )
+[node name="Rock4" parent="Battlefield/Middleground" index="3" instance=ExtResource("10")]
+position = Vector2(900, 900)
 base_size = 35.0
 spawn_diamonds = false
 deadly = false
 
-[node name="Rock5" parent="Battlefield/Middleground" index="4" instance=ExtResource( 10 )]
-position = Vector2( -900, 900 )
+[node name="Rock5" parent="Battlefield/Middleground" index="4" instance=ExtResource("10")]
+position = Vector2(-900, 900)
 base_size = 35.0
 spawn_diamonds = false
 deadly = false
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( 1550, 10 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("6")]
+position = Vector2(1550, 10)
 rotation = 3.14159
-species = ExtResource( 3 )
+species = ExtResource("3")
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( -1550, 0 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("6")]
+position = Vector2(-1550, 0)
 rotation = 0.0
 controls = "kb2"
-species = ExtResource( 8 )
+species = ExtResource("8")
 
-[node name="Camera" parent="." index="7"]
-zoom = Vector2( 5120, 5120 )
-smoothing_speed = 0.3
+[node name="Camera3D" parent="." index="7"]
+zoom = Vector2(5120, 5120)
+position_smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 [connection signal="request_spawn" from="Battlefield/Middleground/Rock" to="." method="_on_Rock_request_spawn"]

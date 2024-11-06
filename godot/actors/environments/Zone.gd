@@ -1,11 +1,11 @@
-tool
+@tool
 extends Area2D
 
-export var max_time = 10
+@export var max_time = 10
 var last_time = max_time
 
-export var active = false setget set_active, get_active
-var player setget set_player, get_player
+@export var active = false: get = get_active, set = set_active
+var player : get = get_player, set = set_player
 
 signal disappeared
 
@@ -13,7 +13,7 @@ func set_active(v):
 	active = v
 	
 	if not is_inside_tree():
-		yield(self, 'ready')
+		await self.ready
 	
 	if active:
 		$AnimationPlayer.play("Appear")
@@ -23,7 +23,7 @@ func set_active(v):
 	else:
 		remove_from_group('in_camera')
 		
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
 	$Background.visible = active
 	$Crown.visible = active
 	$Border.visible = active
@@ -56,7 +56,7 @@ func get_player():
 
 func _ready():
 	refresh_polygon()
-	$GShape.connect('changed', self, 'refresh_polygon')
+	$GShape.connect('changed', Callable(self, 'refresh_polygon'))
 	setup_clock()
 	
 func setup_clock():
@@ -67,7 +67,7 @@ func _process(delta):
 	refresh_clock()
 	
 func refresh_clock():
-	$Background.material.set_shader_param('time_left', $Timer.time_left)
+	$Background.material.set_shader_parameter('time_left', $Timer.time_left)
 	
 func refresh_polygon():
 	var polygon = $GShape.to_PoolVector2Array()
@@ -94,8 +94,8 @@ func refresh_polygon():
 	
 	castle_points.append(polygon[0]+Vector2(0,margin))
 	
-	$Border.points = PoolVector2Array(castle_points)
-	$Background.polygon = PoolVector2Array(castle_points)
+	$Border.points = PackedVector2Array(castle_points)
+	$Background.polygon = PackedVector2Array(castle_points)
 	
 	$Border/Tower1.position = polygon[0]
 	$Border/Tower2.position = polygon[1]
@@ -107,7 +107,7 @@ func take_control(p):
 	set_player(p)
 	set_process(true)
 	$Timer.start(last_time)
-	$Background.material.set_shader_param('max_time', max_time)
+	$Background.material.set_shader_parameter('max_time', max_time)
 	
 func lose_control():
 	set_process(false)
@@ -137,9 +137,9 @@ func _on_Zone_body_exited(body):
 func _on_Timer_timeout():
 	set_process(false)
 	$Timer.stop()
-	$Background.material.set_shader_param('time_left', 0)
+	$Background.material.set_shader_parameter('time_left', 0)
 	$AnimationPlayer.play("Disappear")
-	yield($AnimationPlayer, "animation_finished")
+	await $AnimationPlayer.animation_finished
 	set_active(false)
 	emit_signal('disappeared', self)
 

@@ -1,50 +1,158 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=3 uid="uid://c6c0tl4qqdfcc"]
 
-[ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=1]
-[ext_resource path="res://combat/levels/sets/sports/ring_racing/variants/A.tscn" type="PackedScene" id=2]
-[ext_resource path="res://combat/levels/sets/sports/ring_racing/variants/B.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=5]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=8]
-[ext_resource path="res://combat/managers/RingRaceManager.tscn" type="PackedScene" id=11]
-[ext_resource path="res://combat/modes/RingRacing.tres" type="Resource" id=12]
-[ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=13]
+[ext_resource type="PackedScene" uid="uid://cg4lpkp686swv" path="res://combat/levels/sets/sports/ring_racing/variants/A.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://epsl0tqkcgfj" path="res://combat/levels/sets/sports/ring_racing/variants/B.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://actors/environments/Wall.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://21naqrw1n8iw" path="res://combat/levels/background/mantiacs.png" id="8"]
+[ext_resource type="PackedScene" path="res://combat/managers/RingRaceManager.tscn" id="11"]
+[ext_resource type="Resource" path="res://combat/modes/RingRacing.tres" id="12"]
+[ext_resource type="PackedScene" path="res://utils/Variants.tscn" id="13"]
 
-[node name="Arena" instance=ExtResource( 5 )]
+[sub_resource type="Animation" id="2"]
+length = 1000.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 80),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 20000), Vector2(0, 9100)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o2b14"]
+_data = {
+"Rotate": SubResource("2")
+}
+
+[sub_resource type="Animation" id="5"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:time_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [1.0, 0.1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Battlefield/Background:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.32549, 0.32549, 0.32549, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("Battlefield/Middleground:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.32549, 0.32549, 0.32549, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vn7eq"]
+_data = {
+"Game Over": SubResource("5")
+}
+
+[node name="Arena" instance=ExtResource("5")]
 size_multiplier = 2.5
-game_mode = ExtResource( 12 )
+game_mode = ExtResource("12")
 dark_winter = true
 
-[node name="RingRaceManager" parent="Managers" index="0" instance=ExtResource( 11 )]
+[node name="RingRaceManager" parent="Managers" index="0" instance=ExtResource("11")]
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 8 )
+[node name="TargetLocked" parent="Managers/PursueManager" index="0"]
+bus = &"SFX"
+
+[node name="BullTargetLocked" parent="Managers/PursueManager" index="1"]
+bus = &"SFX"
+
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
+texture = ExtResource("8")
 centered = false
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource("6")]
 hollow = true
 offset = 200
 hide_grid = true
-solid_line_color = Color( 0.858824, 0.929412, 1, 1 )
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
+solid_line_color = Color(0.858824, 0.929412, 1, 1)
+grid_color = Color(0, 1, 0.741176, 0.435294)
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
-script = ExtResource( 1 )
-width = 5600
-height = 3100
-radius = 900
-precision = 100.0
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.7 )
-fg_color = Color( 0.04, 0.04, 0.04, 1 )
+modulate = Color(1, 1, 1, 0.7)
+fg_color = Color(0.04, 0.04, 0.04, 1)
 
-[node name="Variants" parent="Battlefield/Middleground" index="0" instance=ExtResource( 13 )]
-variant_scenes = [ ExtResource( 2 ), ExtResource( 3 ) ]
+[node name="AnimationPlayer" parent="Battlefield/Background/FloodWater" index="7" groups=["animation_starts_with_battle"]]
+callback_mode_process = 0
+libraries = {
+"": SubResource("AnimationLibrary_o2b14")
+}
 
-[node name="Camera" parent="." index="7"]
-zoom = Vector2( 1.01958e+38, 1.01958e+38 )
-smoothing_speed = 0.3
+[node name="GRect" parent="Battlefield/Background/FloodWater" index="8"]
+script = null
+
+[node name="Variants" parent="Battlefield/Middleground" index="0" instance=ExtResource("13")]
+variant_scenes = Array[PackedScene]([ExtResource("2"), ExtResource("3")])
+
+[node name="HUD" parent="CanvasLayer" index="0"]
+layout_mode = 3
+anchors_preset = 10
+
+[node name="Countdown" parent="CanvasLayer" index="1"]
+anchors_preset = 15
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DemoLabel" parent="CanvasLayer" index="2"]
+anchors_preset = 12
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pause" parent="CanvasLayer2" index="0"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null
+
+[node name="Camera3D" parent="." index="6"]
+zoom = Vector2(1.01958e+38, 1.01958e+38)
+position_smoothing_speed = 0.3
 disabled_override = true
+
+[node name="CenterCamera" parent="." index="7"]
+script = null
+
+[node name="GameOverAnim" parent="." index="8"]
+libraries = {
+"": SubResource("AnimationLibrary_vn7eq")
+}
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

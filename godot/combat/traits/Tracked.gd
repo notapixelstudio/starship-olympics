@@ -3,28 +3,41 @@
 
 extends Trait
 
-var previous_global_positions : Array
+var _previous_global_positions : Array
+var _previous_frame_ids : Array
 
 func _enter_tree():
 	if host == null:
-		yield(self, 'ready')
+		await self.ready
 		
 	if not host.is_inside_tree():
-		yield(host, 'ready')
+		await host.ready
 		
 	reset()
 	
 func reset():
-	previous_global_positions = [get_host().global_position]
+	_previous_global_positions = [get_host().global_position]
+	_previous_frame_ids = [0]
 	
 func tick():
-	# remember our previous global positions
-	previous_global_positions.push_back(get_host().global_position)
-	if len(previous_global_positions) > 2:
-		previous_global_positions.pop_front()
+	# remember the host's global position
+	_previous_global_positions.push_back(get_host().global_position)
+	_previous_frame_ids.push_back(Engine.get_physics_frames())
+	if len(_previous_global_positions) > 3:
+		_previous_global_positions.pop_front()
+		_previous_frame_ids.pop_front()
 		
-func get_previous_global_position(): # Vector2 or null
-	if len(previous_global_positions) <= 1:
+func get_past_global_position(frames := 1): # Vector2 or null
+	if frames > len(_previous_global_positions):
 		return null
-	return previous_global_positions[0]
+		
+	if len(_previous_global_positions) <= 1:
+		# just a single position or no positions at all
+		return null
+		
+	for i in range(-frames-1, -len(_previous_global_positions)-1, -1):
+		# avoid reading the current frame position
+		if _previous_frame_ids[i] != Engine.get_physics_frames():
+			return _previous_global_positions[i]
+	return null
 	

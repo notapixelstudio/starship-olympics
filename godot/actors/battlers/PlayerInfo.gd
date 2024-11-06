@@ -1,16 +1,16 @@
-extends Position2D
+extends Marker2D
 
-export var target_path: NodePath = @".."
+@export var target_path: NodePath = @".."
 
-onready var target = get_node(target_path) as Node2D if has_node(target_path) else null
-onready var player_id = $Wrapper/Scaled/Colored/PlayerID
-onready var player_team_outline = $Wrapper/Scaled/PlayerIDTeamOutline
-onready var target_entity = ECM.E(target)
-onready var point_score = $Wrapper/Scaled/Colored/PointsScored
-onready var minisun = $Wrapper/Scaled/Colored/Minisun
-onready var minimoon = $Wrapper/Scaled/Colored/Minimoon
-onready var minisun_outline = $Wrapper/Scaled/Minisun
-onready var minimoon_outline = $Wrapper/Scaled/Minimoon
+@onready var target = get_node(target_path) as Node2D if has_node(target_path) else null
+@onready var player_id = $Wrapper/Scaled/Colored/PlayerID
+@onready var player_team_outline = $Wrapper/Scaled/PlayerIDTeamOutline
+@onready var target_entity = ECM.E(target)
+@onready var point_score = $Wrapper/Scaled/Colored/PointsScored
+@onready var minisun = $Wrapper/Scaled/Colored/Minisun
+@onready var minimoon = $Wrapper/Scaled/Colored/Minimoon
+@onready var minisun_outline = $Wrapper/Scaled/Minisun
+@onready var minimoon_outline = $Wrapper/Scaled/Minimoon
 
 const SCALE_CORRECTION := 0.2
 
@@ -20,21 +20,21 @@ func _ready():
 		if target.info_player.cpu:
 			player_id.text = tr("CPU")
 			
-		if target.info_player.has_proper_team():
-			player_team_outline.visible = true
-			player_team_outline.text = tr(target.info_player.id)
+#		if target.info_player.has_proper_team():
+#			player_team_outline.visible = true
+#			player_team_outline.text = tr(target.info_player.id)
+#
+#			minisun_outline.visible = target.info_player.team == 'A'
+#			minimoon_outline.visible = target.info_player.team == 'B'
+#			minisun.visible = target.info_player.team == 'A'
+#			minimoon.visible = target.info_player.team == 'B'
+#
+#			var team_color = target.info_player.get_team_color()
+#			player_team_outline.modulate = team_color
+#			minisun_outline.material.set_shader_param('color', team_color)
+#			minimoon_outline.material.set_shader_param('color', team_color)
 			
-			minisun_outline.visible = target.info_player.team == 'A'
-			minimoon_outline.visible = target.info_player.team == 'B'
-			minisun.visible = target.info_player.team == 'A'
-			minimoon.visible = target.info_player.team == 'B'
-			
-			var team_color = target.info_player.get_team_color()
-			player_team_outline.modulate = team_color
-			minisun_outline.material.set_shader_param('color', team_color)
-			minimoon_outline.material.set_shader_param('color', team_color)
-			
-	$Wrapper/Scaled/Colored.modulate = target.species.color
+	$Wrapper/Scaled/Colored.modulate = target.info_player.get_color()
 	
 	update_scale()
 	update_rotation()
@@ -68,7 +68,7 @@ func update_score_ring():
 
 func _on_Royal_enabled():
 	$Wrapper/RoyalGlow.visible = true
-	yield(get_tree(), "idle_frame") # wait for cargo to load
+	await get_tree().idle_frame # wait for cargo to load
 	if target_entity.has('Cargo'):
 		var what = target_entity.get('Cargo').what
 		$Wrapper/Crown.visible = what.type == Crown.types.CROWN
@@ -113,3 +113,11 @@ func update_health(amount):
 
 func get_bag():
 	return $Wrapper/Scaled/Bag
+
+func start_countdown(from: int):
+	$Wrapper/Scaled/Countdown.start(from)
+
+signal countdown_expired
+
+func _on_Countdown_expired():
+	emit_signal("countdown_expired")

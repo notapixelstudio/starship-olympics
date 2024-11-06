@@ -1,0 +1,134 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5mydm0dx5rd5"]
+
+[ext_resource type="Script" path="res://godot4/effects/BubblePopped.gd" id="1_tojkl"]
+[ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="2_boe4i"]
+[ext_resource type="Texture2D" uid="uid://d23n13gccawob" path="res://assets/sprites/weapons/bubble.png" id="2_kbyta"]
+
+[sub_resource type="Animation" id="7"]
+resource_name = "Fade"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(4.2, 4.2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.619608, 0.909804, 1, 0.666667), Color(0.62, 0.911333, 1, 0)]
+}
+
+[sub_resource type="Animation" id="8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.5, 3.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.62, 0.911333, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uanx4"]
+_data = {
+"Fade": SubResource("7"),
+"RESET": SubResource("8")
+}
+
+[sub_resource type="Curve" id="Curve_phc3x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.72332, 0.634711), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_rd2ak"]
+curve = SubResource("Curve_phc3x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uf7n3"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 150.0
+emission_ring_inner_radius = 149.0
+direction = Vector3(0, -1, 0)
+radial_velocity_min = 482.28
+radial_velocity_max = 639.38
+gravity = Vector3(0, 1500, 0)
+scale_min = 0.0
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_rd2ak")
+hue_variation_min = -0.07
+hue_variation_max = 0.13
+turbulence_noise_strength = 5.93
+turbulence_noise_scale = 2.836
+
+[node name="BubblePopped" type="Node2D"]
+modulate = Color(1.4, 1.4, 1.4, 1)
+script = ExtResource("1_tojkl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.62, 0.911333, 1, 0)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_kbyta")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_uanx4")
+}
+autoplay = "Fade"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.43, 0.788333, 0.86, 0.847059)
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_uf7n3")
+texture = ExtResource("2_boe4i")
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+randomness = 0.6
+visibility_rect = Rect2(-300, -300, 600, 600)

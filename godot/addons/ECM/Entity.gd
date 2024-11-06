@@ -9,8 +9,8 @@ func get_host():
 func has(component_name : String) -> bool:
 	return could_have(component_name) and get_node(component_name).is_enabled()
 	
-func get(component_name : String) -> Component:
-	var result : Component = get_node(component_name)
+func get(component_name : StringName) -> Variant: # return a Component
+	var result : Component = get_node(NodePath(component_name))
 	return result
 	
 func could_have(component_name : String) -> bool:

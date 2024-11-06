@@ -2,10 +2,10 @@ extends Area2D
 
 const ELECTRICITY_DELTA := 80.0
 
-export var angle = PI/2
-export var growth = 300
-export var speed = 800
-export var lifetime = 0.5
+@export var angle = PI/2
+@export var growth = 300
+@export var speed = 800
+@export var lifetime = 0.5
 
 var radius = 0
 var distance = 32
@@ -54,7 +54,7 @@ func _physics_process(delta):
 	
 	if not $CollisionShape2D.disabled:
 		$CollisionShape2D.set_shape(ConcavePolygonShape2D.new())
-		$CollisionShape2D.shape.set_segments(PoolVector2Array(segments))
+		$CollisionShape2D.shape.set_segments(PackedVector2Array(segments))
 		
 		if t > lifetime:
 			$CollisionShape2D.set_deferred('disabled', true)

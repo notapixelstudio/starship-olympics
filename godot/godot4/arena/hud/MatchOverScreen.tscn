@@ -1,0 +1,102 @@
+[gd_scene load_steps=13 format=3 uid="uid://dhgfc2vafre2d"]
+
+[ext_resource type="Script" path="res://godot4/arena/hud/MatchOverScreen.gd" id="1_5buxb"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1_i5pyw"]
+[ext_resource type="Script" path="res://godot4/data/Player.gd" id="2_c41ur"]
+[ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="3_s1b3g"]
+[ext_resource type="PackedScene" uid="uid://00s3ufothoqf" path="res://special_scenes/combat_UI/session_points/Leaderboard.tscn" id="3_t6iu7"]
+[ext_resource type="Resource" uid="uid://fc2yg6p4flm5" path="res://godot4/debug/default_data/default_players/p2.tres" id="4_ggrol"]
+[ext_resource type="Resource" uid="uid://c2u64vntxjiy6" path="res://godot4/debug/default_data/default_players/p3.tres" id="5_mr3yj"]
+[ext_resource type="Resource" uid="uid://dxdsvkvidj80p" path="res://godot4/debug/default_data/default_players/p4.tres" id="6_ykgof"]
+[ext_resource type="Resource" uid="uid://dlut230hy2j3m" path="res://godot4/debug/default_data/single_match_example_session.tres" id="7_gqrlj"]
+
+[sub_resource type="Animation" id="Animation_wbkui"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jyscu"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_appear"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4qdce"]
+_data = {
+"RESET": SubResource("Animation_wbkui"),
+"appear": SubResource("Animation_jyscu")
+}
+
+[node name="MatchOverScreen" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.54902)
+script = ExtResource("1_5buxb")
+players = Array[ExtResource("2_c41ur")]([ExtResource("3_s1b3g"), ExtResource("4_ggrol"), ExtResource("5_mr3yj"), ExtResource("6_ykgof")])
+session = ExtResource("7_gqrlj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_i5pyw")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 6
+theme_override_font_sizes/font_size = 60
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Leaderboard" parent="VBoxContainer" instance=ExtResource("3_t6iu7")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/margin_left = 200
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_4qdce")
+}

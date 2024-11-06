@@ -2,7 +2,7 @@
 
 [ext_resource path="res://actors/enemies/Bomb_spawner.gd" type="Script" id=1]
 [ext_resource path="res://actors/weapons/Bomb.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/sprites/weapons/dashed-circle.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/weapons/dashed-circle.png" type="Texture2D" id=3]
 
 [node name="Spawner" type="Node2D" groups=[
 "in_camera",
@@ -11,6 +11,6 @@
 script = ExtResource( 1 )
 bomb_scene = ExtResource( 2 )
 
-[node name="Dashed_container" type="Sprite" parent="."]
+[node name="Dashed_container" type="Sprite2D" parent="."]
 texture = ExtResource( 3 )
 

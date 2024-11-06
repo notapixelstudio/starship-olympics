@@ -2,6 +2,8 @@ extends Node
 
 signal bumper_created(bumper)
 
+signal ship_spawned(ship)
+signal ship_repaired(ship)
 signal ship_damaged(ship, hazard, damager)
 signal ship_died(ship, killer, for_good)
 
@@ -9,7 +11,6 @@ signal sths_bumped(sth1, sth2) # just one for pair
 
 signal tappable_entered(tappable, ship)
 signal tappable_exited(tappable, ship)
-signal tap(tapper)
 signal sth_tapped(tapper, tappee)
 
 signal card_revealed(card)
@@ -31,8 +32,43 @@ signal ship_dive_out(ship)
 signal sth_collided_with_ship(sth, ship) # on enter, no distinction between body or area, includes NearArea
 signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no distinction between body or area, NearArea only
 
+# BEGIN 4.x events
+
+# players ready
+signal player_ready(player_info)
+signal battle_start
+
+# clock
+signal clock_ticked(t:float, t_secs:int)
+signal clock_expired
+
+signal ship_touch_sth(ship:Ship, sth:CollisionObject2D)
+signal sth_hurt_ship(sth:CollisionObject2D, ship:Ship)
+
+signal sth_crossed_gate(sth, gate:Gate)
+signal beat(period:int)
+signal new_objective(objective:Variant)
+
+signal points_scored(amount:float, team:String)
+signal score_updated(new_value:float, team:String, new_standings:Array)
+
+signal log(message:String)
+signal message(message:Variant, color:Color, global_position:Vector2)
+
+signal match_over(data:Dictionary)
+
 signal sth_collected(collector, collectee)
+signal sth_loaded(loader, loadee)
+signal sth_impacted(actor, environment:StaticBody2D)
+
+signal tap(tapper)
+
+signal camera_updated(camera_state:Dictionary)
+# END 4.x events
+
 signal sth_conquered(conqueror, conquered)
+
+signal sth_countdown_expired(sth)
 
 signal navigation_zone_changed(zone)
 
@@ -52,8 +88,6 @@ signal game_ended
 signal execution_ended
 signal analytics_enabled
 signal analytics_disabled
-
-signal battle_start
 
 signal continue_after_game_over(session_ended)
 signal continue_after_session_ended
@@ -77,9 +111,6 @@ signal ask_mapping_action(complete_action, remap_action_node)
 # signal remap_event(event, complete_action) # Decided to connect directly the nodes
 signal remap_done(remap_action_node) 
 
-# players ready
-signal player_ready(player_info)
-
 # draftcard 
 signal card_tapped(author, card)
 signal starting_deck_selected(starting_deck)
@@ -88,6 +119,8 @@ signal draft_ended(choices, hand)
 
 # settings
 signal glow_setting_changed
+signal difficulty_selection_done
+signal language_changed
 
 # analytics
 signal analytics_event(event_dictionary, event_name)

@@ -3,7 +3,7 @@ extends Control
 signal champion_has_a_name 
 
 var this_champion : InfoChampion # InfoChampion
-export var minigame_logo : PackedScene
+@export var minigame_logo : PackedScene
 
 func _ready():
 	$"%PlayerName".visible = true
@@ -18,7 +18,9 @@ const CARD_POOL_PATH = "res://map/draft/pool"
 func set_player(champion: InfoChampion):
 	this_champion = champion
 	$"%PlayerName".text = champion.player.username if champion.player.username else champion.player.id
-	$"%Headshot".set_species(global.get_species(champion.player.species))
+	var info_player = InfoPlayer.new()
+	info_player.set_from_dictionary(champion.player)
+	$"%Headshot".set_player(info_player)
 	var matches = champion.session_info.get("matches", [])
 	var all_cards = null
 	if global.the_game != null:
@@ -26,7 +28,7 @@ func set_player(champion: InfoChampion):
 	else:
 		all_cards = CardPool.new() 
 	for a_match in matches:
-		var logo = minigame_logo.instance()
+		var logo = minigame_logo.instantiate()
 		var card_id = a_match["card_id"]
 		var card: DraftCard = all_cards.get_card(card_id)
 		logo.texture = card.get_logo()
@@ -38,7 +40,7 @@ func set_player(champion: InfoChampion):
 	$"%InsertName".placeholder_text = $"%PlayerName".text
 	
 func insert_name():
-	$"%InsertName".connect("name_inserted", self, "_on_InsertName_name_inserted")
+	$"%InsertName".connect("name_inserted", Callable(self, "_on_InsertName_name_inserted"))
 	$"%PlayerName".visible = false
 	$"%HBoxContainer".visible = true
 	$"%InsertName".grab_focus()

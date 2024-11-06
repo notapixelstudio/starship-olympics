@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://5xq5tqpd4d3v"]
+
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_xc11c"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_ulre0"]
+[ext_resource type="PackedScene" uid="uid://cc33kbqafn06s" path="res://actors/brains/DiamondsnatchBrain.tscn" id="3_ah1qd"]
+[ext_resource type="PackedScene" uid="uid://ckykuuqee1aml" path="res://combat/collectables/Diamond.tscn" id="4_ukl5v"]
+
+[node name="TestChamber" instance=ExtResource("1_xc11c")]
+
+[node name="Ship" parent="." index="4" instance=ExtResource("2_ulre0")]
+
+[node name="DiamondsnatchBrain" parent="Ship" index="12" instance=ExtResource("3_ah1qd")]
+
+[node name="Diamond" parent="." index="5" instance=ExtResource("4_ukl5v")]
+position = Vector2(800, 600)

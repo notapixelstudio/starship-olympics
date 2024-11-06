@@ -2,7 +2,7 @@ extends Node
 
 var ball
 
-export var sample_player_bricks_path : NodePath
+@export var sample_player_bricks_path : NodePath
 
 var hit_count := 0
 
@@ -12,7 +12,7 @@ func start():
 	ball.linear_velocity = Vector2(10,0) if randf() > 0.5 else Vector2(-10,0)
 	ball.activate()
 	
-	ball.connect('body_entered', self, '_on_ball_body_entered')
+	ball.connect('body_entered', Callable(self, '_on_ball_body_entered'))
 	
 func _on_ball_body_entered(body):
 	if body is Brick:

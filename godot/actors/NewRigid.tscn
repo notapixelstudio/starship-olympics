@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c87li1wl026ic"]
+
+[ext_resource type="Script" path="res://actors/NewRigid.gd" id="1_g5qyy"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="2_1ntgm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m8vwx"]
+resource_local_to_scene = true
+radius = 48.0
+
+[node name="NewRigid" type="RigidBody2D"]
+script = ExtResource("1_g5qyy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m8vwx")
+
+[node name="Brain" parent="." instance=ExtResource("2_1ntgm")]

@@ -1,0 +1,204 @@
+[gd_scene load_steps=16 format=3 uid="uid://ca7fdpwwgkj1u"]
+
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_sd71t"]
+[ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_7l1kw"]
+[ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="2_sf1o5"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="3_ww2oh"]
+[ext_resource type="Texture2D" uid="uid://fjc48bw13nul" path="res://assets/sprites/fruits/banana.png" id="6_teoqp"]
+[ext_resource type="Texture2D" uid="uid://yhr2iwiak8j1" path="res://assets/sprites/fruits/cherry.png" id="7_m2ews"]
+[ext_resource type="Texture2D" uid="uid://dsegin3jm1org" path="res://assets/sprites/fruits/grape.png" id="8_43d8u"]
+[ext_resource type="Texture2D" uid="uid://brk160bqxjked" path="res://assets/sprites/fruits/pear.png" id="9_espkl"]
+[ext_resource type="Texture2D" uid="uid://c1veqj7sis6ax" path="res://assets/sprites/10x10_square.png" id="11_k0lge"]
+[ext_resource type="Shader" path="res://godot4/shaders/clock.gdshader" id="11_rx866"]
+[ext_resource type="PackedScene" uid="uid://4r3mop0i5y3i" path="res://godot4/elements/treasures/FruitSpawner.tscn" id="13_qjfsp"]
+
+[sub_resource type="GDScript" id="GDScript_0rj7w"]
+script/source = "extends SOLog
+
+
+func _ready():
+	super._ready()
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_sth_collected(collector, collectee):
+	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
+"
+
+[sub_resource type="GDScript" id="GDScript_qq6xw"]
+script/source = "extends Node
+
+var _objective
+
+func _ready():
+	Events.new_objective.connect(_on_new_objective)
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_new_objective(objective) -> void:
+	_objective = objective
+	
+func _on_sth_collected(collector, collectee):
+	var points = collectee.get_points() if _objective == collectee.get_texture() else -5
+	# assign points
+	Events.points_scored.emit(points, collector.get_team())
+	# show feedback
+	Events.message.emit(points, collector.get_color(), collectee.global_position)
+"
+
+[sub_resource type="GDScript" id="GDScript_80ehj"]
+script/source = "extends Node2D
+
+@export var textures : Array[Texture]
+
+func get_texture() -> Texture:
+	return $Sprite2D.texture
+	
+func _ready():
+	set_process(false)
+
+func _on_timer_timeout():
+	if $Timer.wait_time <= 1.0:
+		$Timer.wait_time = 8.0
+	else:
+		$Timer.wait_time *= 0.9
+	pick_random()
+	reset_clock()
+	$Timer.start()
+
+func pick_random():
+	$Sprite2D.texture = textures.pick_random()
+	Events.new_objective.emit($Sprite2D.texture)
+	
+func reset_clock():
+	set_process(true)
+	$Polygon2D.material.set_shader_parameter('max_time', $Timer.wait_time)
+	$Polygon2D.material.set_shader_parameter('time_left', 0)
+	
+func _process(delta):
+	$Polygon2D.material.set_shader_parameter('time_left', $Timer.time_left)
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8161s"]
+shader = ExtResource("11_rx866")
+shader_parameter/time_left = 0.0
+shader_parameter/max_time = 10.0
+shader_parameter/active = true
+shader_parameter/x_direction = 1.0
+shader_parameter/color_on = Color(1, 1, 1, 1)
+shader_parameter/color_off = Color(0.1, 0.1, 0.1, 1)
+
+[node name="TestChamber" instance=ExtResource("1_sd71t")]
+
+[node name="FPSCounter" parent="." index="2"]
+modulate = Color(0.541176, 0.768627, 1, 1)
+
+[node name="TestChamberLog" parent="." index="4"]
+script = SubResource("GDScript_0rj7w")
+
+[node name="ScoreManager" parent="." index="7" instance=ExtResource("2_7l1kw")]
+teams = Array[String](["P1"])
+
+[node name="MessageManager" parent="." index="8" node_paths=PackedStringArray("battlefield") instance=ExtResource("2_sf1o5")]
+battlefield = NodePath("..")
+
+[node name="FruitsGame" type="Node" parent="." index="9"]
+script = SubResource("GDScript_qq6xw")
+
+[node name="ChoosyClock" type="Node2D" parent="." index="10"]
+script = SubResource("GDScript_80ehj")
+textures = Array[Texture]([ExtResource("6_teoqp"), ExtResource("7_m2ews"), ExtResource("8_43d8u"), ExtResource("9_espkl")])
+
+[node name="Polygon2D" type="Polygon2D" parent="ChoosyClock" index="0"]
+material = SubResource("ShaderMaterial_8161s")
+texture = ExtResource("11_k0lge")
+polygon = PackedVector2Array(-300, -200, -200, -300, 200, -300, 300, -200, 300, 200, 200, 300, -200, 300, -300, 200)
+
+[node name="Sprite2D" type="Sprite2D" parent="ChoosyClock" index="1"]
+scale = Vector2(2, 2)
+
+[node name="Timer" type="Timer" parent="ChoosyClock" index="2"]
+one_shot = true
+autostart = true
+
+[node name="Ship" parent="." index="11" instance=ExtResource("3_ww2oh")]
+unique_name_in_owner = true
+position = Vector2(0, -500)
+
+[node name="FruitSpawner" parent="." index="12" instance=ExtResource("13_qjfsp")]
+position = Vector2(1200, 0)
+
+[node name="FruitSpawner2" parent="." index="13" instance=ExtResource("13_qjfsp")]
+position = Vector2(1800, 0)
+
+[node name="FruitSpawner3" parent="." index="14" instance=ExtResource("13_qjfsp")]
+position = Vector2(1200, -600)
+
+[node name="FruitSpawner4" parent="." index="15" instance=ExtResource("13_qjfsp")]
+position = Vector2(1800, -600)
+
+[node name="FruitSpawner5" parent="." index="16" instance=ExtResource("13_qjfsp")]
+position = Vector2(1200, -1200)
+
+[node name="FruitSpawner6" parent="." index="17" instance=ExtResource("13_qjfsp")]
+position = Vector2(600, -1200)
+
+[node name="FruitSpawner7" parent="." index="18" instance=ExtResource("13_qjfsp")]
+position = Vector2(1200, 1200)
+
+[node name="FruitSpawner25" parent="." index="19" instance=ExtResource("13_qjfsp")]
+position = Vector2(1800, -1200)
+
+[node name="FruitSpawner26" parent="." index="20" instance=ExtResource("13_qjfsp")]
+position = Vector2(1800, 1200)
+
+[node name="FruitSpawner8" parent="." index="21" instance=ExtResource("13_qjfsp")]
+position = Vector2(600, 1200)
+
+[node name="FruitSpawner9" parent="." index="22" instance=ExtResource("13_qjfsp")]
+position = Vector2(1200, 600)
+
+[node name="FruitSpawner10" parent="." index="23" instance=ExtResource("13_qjfsp")]
+position = Vector2(1800, 600)
+
+[node name="FruitSpawner11" parent="." index="24" instance=ExtResource("13_qjfsp")]
+position = Vector2(-1200, 0)
+
+[node name="FruitSpawner12" parent="." index="25" instance=ExtResource("13_qjfsp")]
+position = Vector2(-1800, 0)
+
+[node name="FruitSpawner13" parent="." index="26" instance=ExtResource("13_qjfsp")]
+position = Vector2(-1200, -600)
+
+[node name="FruitSpawner14" parent="." index="27" instance=ExtResource("13_qjfsp")]
+position = Vector2(-1800, -600)
+
+[node name="FruitSpawner15" parent="." index="28" instance=ExtResource("13_qjfsp")]
+position = Vector2(-600, -1200)
+
+[node name="FruitSpawner16" parent="." index="29" instance=ExtResource("13_qjfsp")]
+position = Vector2(-1800, -1200)
+
+[node name="FruitSpawner17" parent="." index="30" instance=ExtResource("13_qjfsp")]
+position = Vector2(-600, 1200)
+
+[node name="FruitSpawner21" parent="." index="31" instance=ExtResource("13_qjfsp")]
+position = Vector2(0, -1200)
+
+[node name="FruitSpawner22" parent="." index="32" instance=ExtResource("13_qjfsp")]
+position = Vector2(0, 1200)
+
+[node name="FruitSpawner18" parent="." index="33" instance=ExtResource("13_qjfsp")]
+position = Vector2(-1800, 1200)
+
+[node name="FruitSpawner23" parent="." index="34" instance=ExtResource("13_qjfsp")]
+position = Vector2(-1200, -1200)
+
+[node name="FruitSpawner24" parent="." index="35" instance=ExtResource("13_qjfsp")]
+position = Vector2(-1200, 1200)
+
+[node name="FruitSpawner19" parent="." index="36" instance=ExtResource("13_qjfsp")]
+position = Vector2(-1200, 600)
+
+[node name="FruitSpawner20" parent="." index="37" instance=ExtResource("13_qjfsp")]
+position = Vector2(-1800, 600)
+
+[connection signal="timeout" from="ChoosyClock/Timer" to="ChoosyClock" method="_on_timer_timeout"]

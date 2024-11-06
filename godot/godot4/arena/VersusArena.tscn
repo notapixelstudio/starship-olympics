@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://cuafr3l7073mo"]
+
+[ext_resource type="PackedScene" uid="uid://ctk8t0ohpljms" path="res://godot4/arena/Arena.tscn" id="1_bkayc"]
+[ext_resource type="Resource" uid="uid://dkvwr4voy6m3i" path="res://godot4/debug/default_data/single_match_empty_session.tres" id="2_dtxan"]
+[ext_resource type="Script" path="res://godot4/arena/hud/VersusHUD.gd" id="2_mmfqj"]
+[ext_resource type="PackedScene" uid="uid://7l4wbr8f06he" path="res://godot4/arena/managers/VersusGameOverManager.tscn" id="2_tjvfq"]
+[ext_resource type="PackedScene" uid="uid://baqs1sh3hug4e" path="res://godot4/arena/hud/Counter.tscn" id="4_atujp"]
+[ext_resource type="PackedScene" uid="uid://dt8lwx0muu10p" path="res://godot4/arena/hud/ScoreBar.tscn" id="5_ks1ew"]
+[ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="6_aknw6"]
+[ext_resource type="PackedScene" uid="uid://cy5pkamh8gihg" path="res://ui/common_elements/PlayersReady/PlayersReadyWheels.tscn" id="7_8ytmr"]
+
+[node name="VersusArena" instance=ExtResource("1_bkayc")]
+session = ExtResource("2_dtxan")
+
+[node name="VersusGameOverManager" parent="Managers" index="4" instance=ExtResource("2_tjvfq")]
+unique_name_in_owner = true
+
+[node name="Clock" parent="HUD/CanvasGroup" index="2" instance=ExtResource("4_atujp")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = 1162.0
+offset_top = 8.0
+offset_right = 1272.0
+offset_bottom = 73.0
+grow_horizontal = 0
+grow_vertical = 1
+horizontal_alignment = 2
+vertical_alignment = 0
+
+[node name="TimeBar" parent="HUD/CanvasGroup" index="3" instance=ExtResource("6_aknw6")]
+unique_name_in_owner = true
+offset_left = 1251.0
+offset_top = 80.0
+offset_right = 1271.0
+offset_bottom = 594.0
+
+[node name="VersusHUD" type="Node2D" parent="HUD/CanvasGroup" index="4"]
+unique_name_in_owner = true
+script = ExtResource("2_mmfqj")
+score_bar_scene = ExtResource("5_ks1ew")
+metadata/_edit_lock_ = true
+
+[node name="ScoreBars" type="HBoxContainer" parent="HUD/CanvasGroup/VersusHUD" index="0"]
+unique_name_in_owner = true
+offset_left = 8.0
+offset_top = 46.0
+offset_right = 160.0
+offset_bottom = 716.0
+theme_override_constants/separation = 8
+
+[node name="PlayersReadyWheels" parent="HUD/CanvasGroup/VersusHUD" index="1" instance=ExtResource("7_8ytmr")]
+unique_name_in_owner = true

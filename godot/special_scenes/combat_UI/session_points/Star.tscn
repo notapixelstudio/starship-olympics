@@ -1,181 +1,527 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=3 uid="uid://dw8dm4b52y11j"]
 
-[ext_resource path="res://special_scenes/combat_UI/session_points/Star.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon/star_empty.png" type="Texture" id=2]
-[ext_resource path="res://assets/icon/star_empty00.png" type="Texture" id=3]
-[ext_resource path="res://assets/icon/star_empty01.png" type="Texture" id=4]
-[ext_resource path="res://assets/icon/star_empty02.png" type="Texture" id=5]
-[ext_resource path="res://assets/icon/star_empty03.png" type="Texture" id=6]
-[ext_resource path="res://assets/icon/star_empty04.png" type="Texture" id=7]
-[ext_resource path="res://assets/icon/star_empty05.png" type="Texture" id=8]
-[ext_resource path="res://assets/icon/star_empty06.png" type="Texture" id=9]
-[ext_resource path="res://assets/icon/star_empty07.png" type="Texture" id=10]
-[ext_resource path="res://assets/icon/star_empty08.png" type="Texture" id=11]
-[ext_resource path="res://assets/icon/star_empty09.png" type="Texture" id=12]
-[ext_resource path="res://assets/icon/star_empty10.png" type="Texture" id=13]
-[ext_resource path="res://assets/icon/star_empty11.png" type="Texture" id=14]
-[ext_resource path="res://assets/icon/star_full00.png" type="Texture" id=15]
-[ext_resource path="res://assets/icon/star_full01.png" type="Texture" id=16]
-[ext_resource path="res://assets/icon/star_full02.png" type="Texture" id=17]
-[ext_resource path="res://assets/icon/star_full03.png" type="Texture" id=18]
-[ext_resource path="res://assets/icon/star_full04.png" type="Texture" id=19]
-[ext_resource path="res://assets/icon/star_full05.png" type="Texture" id=20]
-[ext_resource path="res://assets/icon/star_full06.png" type="Texture" id=21]
-[ext_resource path="res://assets/icon/star_full07.png" type="Texture" id=22]
-[ext_resource path="res://assets/icon/star_full08.png" type="Texture" id=23]
-[ext_resource path="res://assets/icon/star_full09.png" type="Texture" id=24]
-[ext_resource path="res://assets/icon/star_full10.png" type="Texture" id=25]
-[ext_resource path="res://assets/icon/star_full11.png" type="Texture" id=26]
-[ext_resource path="res://assets/icon/star_full.png" type="Texture" id=27]
-[ext_resource path="res://assets/fonts/bungee/Bungee-Regular.otf" type="DynamicFontData" id=28]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=29]
+[ext_resource type="Script" path="res://special_scenes/combat_UI/session_points/Star.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://du0cbkpajkt2d" path="res://assets/icon/star_empty.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://7bfr5g5yp0l2" path="res://assets/icon/star_empty00.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://ddlabrtpawcoo" path="res://assets/icon/star_empty01.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://v0j17gat5aoa" path="res://assets/icon/star_empty02.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bdpcxo3288pgq" path="res://assets/icon/star_empty03.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://dcxa508rbhyh8" path="res://assets/icon/star_empty04.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cpn15f7b3axgw" path="res://assets/icon/star_empty05.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://ce6em0u5cxky0" path="res://assets/icon/star_empty06.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://cyj8pm1kacm7b" path="res://assets/icon/star_empty07.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://cvhrbhcmb3ymr" path="res://assets/icon/star_empty08.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://c0x41xbroredk" path="res://assets/icon/star_empty09.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://yi7wmvi0swwf" path="res://assets/icon/star_empty10.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://by8tpcqod06g0" path="res://assets/icon/star_empty11.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://eyqm2diphhd4" path="res://assets/icon/star_full00.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://b2f0egh14agvs" path="res://assets/icon/star_full01.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://bo7f4sjb5prba" path="res://assets/icon/star_full02.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://dufr08i1rhceg" path="res://assets/icon/star_full03.png" id="18"]
+[ext_resource type="Texture2D" uid="uid://ohjrwjm37fy8" path="res://assets/icon/star_full04.png" id="19"]
+[ext_resource type="Texture2D" uid="uid://xon4u2at0y2b" path="res://assets/icon/star_full05.png" id="20"]
+[ext_resource type="Texture2D" uid="uid://ddrhl0u5s0p6n" path="res://assets/icon/star_full06.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://dv4x4mgsxnjg7" path="res://assets/icon/star_full07.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://da1fu3n1xyna" path="res://assets/icon/star_full08.png" id="23"]
+[ext_resource type="Texture2D" uid="uid://bylnf3fbwuxfy" path="res://assets/icon/star_full09.png" id="24"]
+[ext_resource type="Texture2D" uid="uid://0mvn3tivbmrh" path="res://assets/icon/star_full10.png" id="25"]
+[ext_resource type="Texture2D" uid="uid://bounp6dm6pj6x" path="res://assets/icon/star_full11.png" id="26"]
+[ext_resource type="Texture2D" uid="uid://gp70x26ysfca" path="res://assets/icon/star_full.png" id="27"]
+[ext_resource type="FontFile" uid="uid://51vlffimyv6j" path="res://assets/fonts/bungee/Bungee-Regular.otf" id="28"]
+[ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="29"]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 2 ) ],
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
 "loop": true,
-"name": "empty",
+"name": &"empty",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 27 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27")
+}],
 "loop": true,
-"name": "full",
+"name": &"full",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}],
 "loop": false,
-"name": "outline",
+"name": &"outline",
 "speed": 60.0
 }, {
-"frames": [ ExtResource( 15 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ), ExtResource( 15 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}],
 "loop": true,
-"name": "shine",
+"name": &"shine",
 "speed": 60.0
-} ]
+}]
 
-[sub_resource type="DynamicFont" id=5]
-size = 56
-font_data = ExtResource( 28 )
+[sub_resource type="FontFile" id="5"]
+fallbacks = Array[Font]([ExtResource("28"), ExtResource("28")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="DynamicFont" id=4]
-size = 24
-outline_size = 3
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 29 )
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("29"), ExtResource("29")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 length = 2.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 2 ),
-"transitions": PoolRealArray( -2, -2, -2, 1 ),
+"times": PackedFloat32Array(0, 0.4, 0.8, 2),
+"transitions": PackedFloat32Array(-2, -2, -2, 1),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 2.2, 2.2 ), Vector2( 2.2, 2.2 ), Vector2( 1.3, 1.3 ) ]
+"values": [Vector2(1, 1), Vector2(2.2, 2.2), Vector2(2.2, 2.2), Vector2(1.3, 1.3)]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ "shine" ]
+"values": ["shine"]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ true ]
+"values": [true]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 0 ]
+"values": [0]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fov38"]
+_data = {
+"won": SubResource("2")
+}
+
+[sub_resource type="Animation" id="3"]
 resource_name = "float"
 length = 2.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2 ),
-"transitions": PoolRealArray( -2, -2, 1 ),
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, 1),
 "update": 0,
-"values": [ 5.0, -5.0, 5.0 ]
+"values": [5.0, -5.0, 5.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_05wgk"]
+_data = {
+"float": SubResource("3")
 }
 
 [node name="Star" type="Node2D"]
-position = Vector2( 0, 5 )
-script = ExtResource( 1 )
+position = Vector2(0, 5)
+script = ExtResource("1")
 
-[node name="Shadow" type="Sprite" parent="."]
-modulate = Color( 0, 0, 0, 0.470588 )
-position = Vector2( 0, 20 )
-texture = ExtResource( 21 )
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.470588)
+position = Vector2(0, 20)
+texture = ExtResource("21")
 
 [node name="Wrapper" type="Node2D" parent="."]
-position = Vector2( 0, 5 )
-scale = Vector2( 1.3, 1.3 )
+position = Vector2(0, 5)
+scale = Vector2(1.3, 1.3)
 
-[node name="Sprite" type="AnimatedSprite" parent="Wrapper"]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Wrapper"]
 unique_name_in_owner = true
-modulate = Color( 1.1, 1.1, 1.1, 1 )
-position = Vector2( 0, 5 )
-frames = SubResource( 1 )
-animation = "shine"
+modulate = Color(1.25, 1.25, 1.25, 1)
+position = Vector2(0, 5)
+sprite_frames = SubResource("1")
+animation = &"shine"
 frame = 1
-playing = true
 
 [node name="P" type="Label" parent="Wrapper"]
 visible = false
-margin_left = -124.0
-margin_top = -27.0
-margin_right = 126.0
-margin_bottom = 49.0
-rect_pivot_offset = Vector2( 125, 20 )
-custom_fonts/font = SubResource( 5 )
+offset_left = -124.0
+offset_top = -27.0
+offset_right = 126.0
+offset_bottom = 49.0
+pivot_offset = Vector2(125, 20)
+theme_override_fonts/font = SubResource("5")
 text = "P"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label" type="Label" parent="Wrapper"]
-margin_left = -125.0
-margin_top = 35.0
-margin_right = 125.0
-margin_bottom = 98.0
-rect_pivot_offset = Vector2( 125, 20 )
-custom_fonts/font = SubResource( 4 )
-align = 1
+offset_left = -125.0
+offset_top = 35.0
+offset_right = 125.0
+offset_bottom = 98.0
+pivot_offset = Vector2(125, 20)
+theme_override_fonts/font = SubResource("4")
+horizontal_alignment = 1
 
 [node name="WonAnimationPlayer" type="AnimationPlayer" parent="Wrapper"]
-anims/won = SubResource( 2 )
+libraries = {
+"": SubResource("AnimationLibrary_fov38")
+}
 
 [node name="FloatAnimationPlayer" type="AnimationPlayer" parent="Wrapper"]
-anims/float = SubResource( 3 )
+libraries = {
+"": SubResource("AnimationLibrary_05wgk")
+}

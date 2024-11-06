@@ -1,64 +1,52 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://00s3ufothoqf"]
 
-[ext_resource path="res://special_scenes/combat_UI/session_points/Leaderboard.gd" type="Script" id=1]
-[ext_resource path="res://special_scenes/combat_UI/session_points/PilotStats.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" path="res://special_scenes/combat_UI/session_points/Leaderboard.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://c4wnumyysruol" path="res://special_scenes/combat_UI/session_points/PilotStats.tscn" id="2"]
+[ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="3_0uub2"]
+[ext_resource type="Script" path="res://godot4/data/Player.gd" id="3_t5h2s"]
+[ext_resource type="Resource" uid="uid://fc2yg6p4flm5" path="res://godot4/debug/default_data/default_players/p2.tres" id="4_hibp6"]
+[ext_resource type="Resource" uid="uid://c2u64vntxjiy6" path="res://godot4/debug/default_data/default_players/p3.tres" id="5_5cgsl"]
+[ext_resource type="Resource" uid="uid://dxdsvkvidj80p" path="res://godot4/debug/default_data/default_players/p4.tres" id="6_8vyt0"]
+[ext_resource type="Resource" uid="uid://dlut230hy2j3m" path="res://godot4/debug/default_data/single_match_example_session.tres" id="8_1n8qs"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_name = "entrance"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 0.307786 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "reorder"
-} ]
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reorder"
+}]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/path = NodePath(".:modulate:a")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yl108"]
+_data = {
+"entrance": SubResource("1")
 }
 
 [node name="Leaderboard" type="MarginContainer"]
-modulate = Color( 1, 1, 1, 0 )
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
-pilot_stats_scene = ExtResource( 2 )
+script = ExtResource("1")
+pilot_stats_scene = ExtResource("2")
+players = Array[ExtResource("3_t5h2s")]([ExtResource("3_0uub2"), ExtResource("4_hibp6"), ExtResource("5_5cgsl"), ExtResource("6_8vyt0")])
+session = ExtResource("8_1n8qs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
-autoplay = "idle"
-anims/entrance = SubResource( 1 )
-anims/idle = SubResource( 2 )
+libraries = {
+"": SubResource("AnimationLibrary_yl108")
+}
+autoplay = "entrance"
 
-[node name="Chart" type="Control" parent="."]
-margin_right = 1280.0
-margin_bottom = 720.0
+[node name="Container" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 2

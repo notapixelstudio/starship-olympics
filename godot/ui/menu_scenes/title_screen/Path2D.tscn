@@ -3,19 +3,19 @@
 [ext_resource path="res://ui/menu_scenes/title_screen/Path2D.gd" type="Script" id=1]
 [ext_resource path="res://actors/battlers/TrailNode.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/menu_scenes/title_screen/Sprite.gd" type="Script" id=3]
-[ext_resource path="res://assets/sprites/species/trixens/ship_plain.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/species/trixens/ship_plain.png" type="Texture2D" id=4]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( -36.5058, -50.86, 36.5058, 50.86, -249.698, -754.354, 40.343, -213.85, -40.343, 213.85, 1105.28, 477.833, 144.343, 90.2141, -144.343, -90.2141, 386.852, 616.926, 133.33, 63.8295, -133.33, -63.8295, 70.2823, 310.198, 0, 0, 0, 0, -481.847, 67.348 )
+"points": PackedVector2Array( -36.5058, -50.86, 36.5058, 50.86, -249.698, -754.354, 40.343, -213.85, -40.343, 213.85, 1105.28, 477.833, 144.343, 90.2141, -144.343, -90.2141, 386.852, 616.926, 133.33, 63.8295, -133.33, -63.8295, 70.2823, 310.198, 0, 0, 0, 0, -481.847, 67.348 )
 }
 
 [sub_resource type="CanvasItemMaterial" id=2]
 
 [sub_resource type="Gradient" id=3]
 resource_local_to_scene = true
-offsets = PoolRealArray( 0, 0.5, 1 )
-colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 )
+offsets = PackedFloat32Array( 0, 0.5, 1 )
+colors = PackedColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 )
 
 [sub_resource type="CanvasItemMaterial" id=4]
 blend_mode = 1
@@ -31,16 +31,16 @@ trail_scene = ExtResource( 2 )
 position = Vector2( -249.698, -754.354 )
 rotation = 0.846329
 
-[node name="Sprite" type="Sprite" parent="PathFollow2D"]
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D"]
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 4 )
 script = ExtResource( 3 )
 
-[node name="Trail" parent="PathFollow2D/Sprite" instance=ExtResource( 2 )]
+[node name="Trail" parent="PathFollow2D/Sprite2D" instance=ExtResource( 2 )]
 show_behind_parent = true
 trail_length = 90
 
-[node name="Trail" parent="PathFollow2D/Sprite/Trail" index="0"]
+[node name="Trail" parent="PathFollow2D/Sprite2D/Trail" index="0"]
 show_behind_parent = true
 material = SubResource( 2 )
 width = 60.0
@@ -48,10 +48,10 @@ gradient = SubResource( 3 )
 trail_length = 70
 time_alive_per_point = 1.4
 
-[node name="InnerTrail" parent="PathFollow2D/Sprite/Trail" index="1"]
+[node name="InnerTrail" parent="PathFollow2D/Sprite2D/Trail" index="1"]
 show_behind_parent = true
 material = SubResource( 4 )
 width = 16.0
 trail_length = 30
 
-[editable path="PathFollow2D/Sprite/Trail"]
+[editable path="PathFollow2D/Sprite2D/Trail"]

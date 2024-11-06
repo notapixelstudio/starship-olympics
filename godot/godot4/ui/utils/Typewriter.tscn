@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="FontFile" uid="uid://bsdjbpjy1umxj" path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" id="1"]
+[ext_resource type="Script" path="res://godot4/ui/utils/Typewriter.gd" id="2"]
+
+[sub_resource type="FontFile" id=1]
+size = 40
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[node name="Typewriter" type="Label"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = 100.0
+offset_right = 640.0
+offset_bottom = 243.0
+size_flags_horizontal = 3
+theme_override_fonts/font = SubResource( 1 )
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]

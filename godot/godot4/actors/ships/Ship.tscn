@@ -1,0 +1,257 @@
+[gd_scene load_steps=26 format=3 uid="uid://cgjeqx4n1ot0e"]
+
+[ext_resource type="Script" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
+[ext_resource type="PackedScene" uid="uid://b6gg3o407i70x" path="res://godot4/effects/DashRing.tscn" id="2_0puh8"]
+[ext_resource type="PackedScene" uid="uid://ctqk6tu6rj77v" path="res://godot4/effects/DeathFeedback.tscn" id="3_3e4pi"]
+[ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="3_gbkft"]
+[ext_resource type="PackedScene" uid="uid://clbsrjsidxhav" path="res://combat/traits/Tracked.tscn" id="3_h4ehe"]
+[ext_resource type="Script" path="res://actors/battlers/Node2D.gd" id="4_557ck"]
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="4_mpdfg"]
+[ext_resource type="PackedScene" uid="uid://d1673ytdlyny4" path="res://godot4/debug/OnShipDebug.tscn" id="5_0tcqu"]
+[ext_resource type="Script" path="res://godot4/actors/managers/ChargeManager.gd" id="5_ostpb"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="8_yfcmx"]
+[ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://godot4/effects/trails/FlameTrail.tscn" id="10_4jj2i"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="10_iega2"]
+[ext_resource type="PackedScene" uid="uid://cex35drwxeknp" path="res://godot4/effects/trails/FlamesManager.tscn" id="11_i3r85"]
+[ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="11_tsmbp"]
+[ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="15_s48iq"]
+[ext_resource type="Script" path="res://godot4/actors/managers/CargoManager.gd" id="16_m8m51"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w3n3b"]
+friction = 0.0
+bounce = 0.35
+
+[sub_resource type="GDScript" id="GDScript_4hb7k"]
+script/source = "extends DebugNode
+
+@export var test_default_brain : PackedScene
+@export var test_chamber : PackedScene
+
+func _ready():
+	super._ready()
+	if self.is_host_standalone():
+		await host.ready
+		
+		# set a default brain for the ship
+		host.add_child.call_deferred(test_default_brain.instantiate())
+		
+		# place the ship inside the test chamber
+		var test_chamber_instance = test_chamber.instantiate()
+		test_chamber_instance.set_test_subject(host)
+		self.place_host_in_test_chamber(test_chamber_instance)
+		
+"
+
+[sub_resource type="GDScript" id="GDScript_jwr13"]
+script/source = "extends Sprite2D
+
+const NORMAL = Vector2(1,1)
+const FAT_DELTA = Vector2(-0.2,+0.2)
+
+func _process(delta):
+	var weight = %ChargeManager.get_charge_normalized()
+	scale = Tween.interpolate_value(NORMAL, FAT_DELTA, weight, 1.0, Tween.TRANS_QUAD, Tween.EASE_OUT)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oi8fb"]
+resource_local_to_scene = true
+radius = 55.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kepy8"]
+resource_local_to_scene = true
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t1b3t"]
+radius = 700.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tm340"]
+resource_local_to_scene = true
+radius = 48.0
+
+[sub_resource type="GDScript" id="GDScript_j55tj"]
+script/source = "extends Node2D
+
+func _ready() -> void:
+	Events.camera_updated.connect(_on_camera_updated)
+
+func _on_camera_updated(camera_state:Dictionary) -> void:
+	scale = Vector2(1,1)/camera_state['zoom']
+"
+
+[sub_resource type="Gradient" id="Gradient_tmbes"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.997561)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
+
+[node name="Ship" type="RigidBody2D"]
+collision_layer = 2151677953
+collision_mask = 1169
+physics_material_override = SubResource("PhysicsMaterial_w3n3b")
+can_sleep = false
+max_contacts_reported = 10
+linear_damp = 7.0
+angular_damp = 40.0
+script = ExtResource("1_cvjhk")
+dash_ring_scene = ExtResource("2_0puh8")
+death_feedback_scene = ExtResource("3_3e4pi")
+
+[node name="Tracked" parent="." instance=ExtResource("3_h4ehe")]
+unique_name_in_owner = true
+
+[node name="DebugNode2D" type="Node2D" parent="." node_paths=PackedStringArray("host")]
+script = SubResource("GDScript_4hb7k")
+test_default_brain = ExtResource("8_yfcmx")
+test_chamber = ExtResource("4_mpdfg")
+host = NodePath("..")
+
+[node name="OnShipDebug" parent="DebugNode2D" node_paths=PackedStringArray("host") instance=ExtResource("5_0tcqu")]
+visible = false
+host = NodePath("../..")
+
+[node name="Graphics" type="Node2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(1.25, 1.25)
+
+[node name="BallSprite" type="Sprite2D" parent="Graphics"]
+unique_name_in_owner = true
+position = Vector2(64, 0)
+scale = Vector2(0.77, 0.77)
+
+[node name="Sprite" type="Sprite2D" parent="Graphics"]
+unique_name_in_owner = true
+texture = ExtResource("3_gbkft")
+script = SubResource("GDScript_jwr13")
+
+[node name="Shadow" parent="Graphics" node_paths=PackedStringArray("sprite") instance=ExtResource("15_s48iq")]
+scale = Vector2(0.8, 0.8)
+sprite = NodePath("../Sprite")
+
+[node name="TouchArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2688
+
+[node name="TouchShape2D" type="CollisionShape2D" parent="TouchArea"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_oi8fb")
+debug_color = Color(0, 0.635294, 0.4, 0.419608)
+
+[node name="HurtArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 528284
+
+[node name="HurtShape2D" type="CollisionShape2D" parent="HurtArea"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_kepy8")
+debug_color = Color(0.996078, 0, 0.235294, 0.235294)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4101
+input_pickable = false
+
+[node name="DetectionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_t1b3t")
+debug_color = Color(0.639216, 0.337255, 1, 0.0509804)
+
+[node name="ShipShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_tm340")
+debug_color = Color(1, 1, 1, 0.419608)
+
+[node name="Indicators" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Node2D" type="Node2D" parent="Indicators"]
+script = ExtResource("4_557ck")
+
+[node name="ChargeBar" type="Line2D" parent="Indicators/Node2D"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 0, 1)
+position = Vector2(-55, 0)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 25.0
+texture_mode = 221806672
+
+[node name="Wrapper" type="Node2D" parent="Indicators"]
+top_level = true
+
+[node name="Scaled" type="Node2D" parent="Indicators/Wrapper"]
+position = Vector2(0, -160)
+script = SubResource("GDScript_j55tj")
+
+[node name="PlayerID" type="Label" parent="Indicators/Wrapper/Scaled"]
+unique_name_in_owner = true
+z_index = 10
+offset_left = -128.0
+offset_top = -48.0
+offset_right = 128.0
+offset_bottom = -11.0
+theme = ExtResource("10_iega2")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HatSprite" type="Sprite2D" parent="Indicators/Wrapper"]
+unique_name_in_owner = true
+position = Vector2(0, -160)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Indicators"]
+remote_path = NodePath("../Wrapper")
+update_rotation = false
+
+[node name="ChargeManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_ostpb")
+
+[node name="TapTimer" type="Timer" parent="ChargeManager"]
+one_shot = true
+
+[node name="DashTimer" type="Timer" parent="ChargeManager"]
+one_shot = true
+
+[node name="DashDurationTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[node name="FlamesManager" parent="." node_paths=PackedStringArray("host", "flames") instance=ExtResource("11_i3r85")]
+host = NodePath("..")
+flames = [NodePath("../BottomFlameTrail"), NodePath("../FlameTrail")]
+
+[node name="BottomFlameTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("10_4jj2i")]
+unique_name_in_owner = true
+modulate = Color(1.6, 1.6, 1.6, 1)
+width = 120.0
+default_color = Color(1, 0, 0, 1)
+host = NodePath("..")
+offset = Vector2(-80, 0)
+max_length = 200
+
+[node name="FlameTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("10_4jj2i")]
+unique_name_in_owner = true
+modulate = Color(1.2, 1.2, 1.2, 1)
+width = 50.0
+host = NodePath("..")
+offset = Vector2(-95, 0)
+max_length = 100
+
+[node name="MotionAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("11_tsmbp")]
+unique_name_in_owner = true
+gradient = SubResource("Gradient_tmbes")
+host = NodePath("..")
+max_age = 0.4
+
+[node name="CargoManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("16_m8m51")
+
+[connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]
+[connection signal="body_entered" from="TouchArea" to="." method="_on_touch_area_body_entered"]
+[connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]
+[connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]
+[connection signal="charged_enough_to_dash" from="ChargeManager" to="." method="_on_charge_manager_charged_enough_to_dash"]
+[connection signal="charged_too_much_for_tap" from="ChargeManager" to="." method="_on_charge_manager_charged_too_much_for_tap"]
+[connection signal="timeout" from="ChargeManager/TapTimer" to="ChargeManager" method="_on_tap_timer_timeout"]
+[connection signal="timeout" from="ChargeManager/DashTimer" to="ChargeManager" method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DashDurationTimer" to="." method="_on_dash_duration_timer_timeout"]

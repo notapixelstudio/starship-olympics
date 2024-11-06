@@ -19,7 +19,7 @@ func get_all_cards():
 func _ready():
 	var cards = get_all_cards()
 	for card in cards:
-		card.connect('taken', self, '_on_card_taken')
+		card.connect('taken', Callable(self, '_on_card_taken'))
 		
 		displacement[card.position] = card
 		
@@ -34,7 +34,7 @@ func place_player_cards():
 	indices = indices.slice(0, FOUR * len(spawners)) # add four cards per player
 	for ps in spawners:
 		if ps.get_player() == null:
-			yield(ps, "player_assigned")
+			await ps.player_assigned
 		cards_left[ps.get_player()] = FOUR
 		players += 1
 		for i in range(FOUR):
@@ -50,18 +50,18 @@ func place_player_cards():
 func intro():
 	place_player_cards()
 	
-	Events.connect('match_ended', self, '_on_match_ended')
+	Events.connect('match_ended', Callable(self, '_on_match_ended'))
 	
 	for card in get_all_cards():
 		if card.get_character_player() != null:
 			card.reveal()
 		
-	yield(get_tree().create_timer(1 + players), "timeout")
+	await get_tree().create_timer(1 + players).timeout
 	
 	for card in get_all_cards():
 		card.hide()
 		
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	
 	emit_signal("done")
 	
@@ -76,9 +76,9 @@ func _on_card_taken(card, player, ship):
 		cards_left[card.get_character_player()] -= 1
 		
 	# wait a bit after animations
-	yield(card, 'revealed')
+	await card.revealed
 	
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	
 	# do nothing if the game has already ended
 	if not global.is_match_running():
@@ -99,15 +99,15 @@ func _on_card_taken(card, player, ship):
 			position = global.arena.get_ship_from_player_id(affected_player.id).global_position
 			
 	global.the_match.add_score(affected_player.id, score)
-	global.arena.show_msg(affected_player.species, score, position)
+	global.arena.show_msg(affected_player.get_color(), score, position)
 	
 # reveal cards at the end of the match
 func _on_match_ended(match_dict: Dictionary):
 	for card in get_all_cards():
 		card.set_auto_flip_back(false)
-		card.set_pause_mode(PAUSE_MODE_PROCESS)
+		card.set_process_mode(PROCESS_MODE_ALWAYS)
 		
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	
 	for card in get_all_cards():
 		card.reveal()

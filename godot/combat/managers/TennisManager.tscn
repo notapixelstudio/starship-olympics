@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/audio/gameplay/bricks/sfx_wpn_laser1.wav" type="AudioStream" id=2]
-[ext_resource path="res://combat/managers/TennisManager.gd" type="Script" id=3]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="1"]
+[ext_resource type="AudioStream" uid="uid://dqnub4f11wb1c" path="res://assets/audio/gameplay/bricks/sfx_wpn_laser1.wav" id="2"]
+[ext_resource type="Script" path="res://combat/managers/TennisManager.gd" id="3"]
 
 [node name="TennisManager" type="Node"]
 script = ExtResource( 3 )

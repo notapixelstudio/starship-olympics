@@ -1,0 +1,175 @@
+[gd_scene load_steps=18 format=3 uid="uid://xoqhtny3wi7s"]
+
+[ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://godot4/elements/gates/Gate.tscn" id="1"]
+[ext_resource type="Script" path="res://godot4/elements/gates/PortalGate.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://6oqvsnv2v2s4" path="res://assets/sprites/environments/portal_spike.png" id="4"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+resource_local_to_scene = true
+size = Vector2(250, 500)
+
+[sub_resource type="Animation" id="2"]
+resource_name = "Blink"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RingPart:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1.6, 1.6, 1.6, 1), Color(1.2, 1.2, 1.2, 1)]
+}
+
+[sub_resource type="Animation" id="3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RingPart:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1.2, 1.2, 1.2, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_caihj"]
+_data = {
+"Blink": SubResource("2"),
+"RESET": SubResource("3")
+}
+
+[sub_resource type="Animation" id="12"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.392157), Color(1, 1, 1, 0.627451), Color(1, 1, 1, 0.392157)]
+}
+
+[sub_resource type="Animation" id="13"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.392157)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jhjqe"]
+_data = {
+"Idle": SubResource("12"),
+"RESET": SubResource("13")
+}
+
+[sub_resource type="Gradient" id="8"]
+offsets = PackedFloat32Array(0, 0.338889, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="5"]
+gradient = SubResource("8")
+
+[sub_resource type="Curve" id="9"]
+max_value = 1.5
+_data = [Vector2(0, 0.703988), 0.0, -0.0509122, 0, 0, Vector2(0.373239, 1.5), 0.0, 0.0, 0, 0, Vector2(0.669014, 0.0322087), -7.66229, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="7"]
+curve = SubResource("9")
+
+[sub_resource type="ParticleProcessMaterial" id="10"]
+emission_shape = 3
+emission_box_extents = Vector3(25, 250, 1)
+gravity = Vector3(40, 0, 0)
+scale_curve = SubResource("7")
+color_ramp = SubResource("5")
+
+[sub_resource type="ParticleProcessMaterial" id="11"]
+emission_shape = 3
+emission_box_extents = Vector3(100, 250, 1)
+gravity = Vector3(100, 0, 0)
+scale_max = 10.0
+scale_curve = SubResource("7")
+
+[node name="PortalGate" groups=["in_camera"] instance=ExtResource("1")]
+collision_mask = 8705
+script = ExtResource("2")
+tint = Color(1, 0.4, 0, 1)
+inverted = false
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("1")
+
+[node name="BottomRingPart" parent="." index="1"]
+unique_name_in_owner = true
+self_modulate = Color(1, 0.4, 0, 1)
+
+[node name="RingPart" parent="." index="3"]
+self_modulate = Color(1, 0.58, 0.3, 1)
+
+[node name="AnimationPlayer" parent="." index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_caihj")
+}
+
+[node name="PortalEffect" type="Node2D" parent="." index="7"]
+rotation = 3.14159
+
+[node name="Inside" type="Sprite2D" parent="PortalEffect" index="0"]
+unique_name_in_owner = true
+modulate = Color(1, 0.4, 0, 1)
+self_modulate = Color(1, 1, 1, 0.392157)
+scale = Vector2(1, 4.5)
+texture = ExtResource("3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PortalEffect/Inside" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_jhjqe")
+}
+autoplay = "Idle"
+
+[node name="SpikeParticles2D" type="GPUParticles2D" parent="PortalEffect" index="1"]
+unique_name_in_owner = true
+modulate = Color(1, 0.4, 0, 1)
+self_modulate = Color(1.5, 1.5, 1.5, 1)
+position = Vector2(-50, 0)
+process_material = SubResource("10")
+texture = ExtResource("4")
+
+[node name="ColoredParticles2D" type="GPUParticles2D" parent="PortalEffect" index="2"]
+unique_name_in_owner = true
+modulate = Color(1, 0.4, 0, 1)
+self_modulate = Color(2, 2, 2, 1)
+position = Vector2(-102, -4.19629e-06)
+process_material = SubResource("11")
+lifetime = 2.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="PortalEffect" index="3"]
+unique_name_in_owner = true
+self_modulate = Color(1.5, 1.5, 1.5, 1)
+position = Vector2(-102, -4.19629e-06)
+process_material = SubResource("11")
+lifetime = 2.0
+
+[connection signal="crossed" from="." to="." method="_on_PortalGate_crossed"]

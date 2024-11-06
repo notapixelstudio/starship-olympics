@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtdo2o8sagd7u"]
+
+[ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_d0sat"]
+[ext_resource type="Script" path="res://godot4/elements/treasures/SpikeDiamond.gd" id="2_p0saq"]
+[ext_resource type="Texture2D" uid="uid://d1f81kxxt7y1i" path="res://assets/sprites/environments/diamond_spike_on.png" id="2_xptjw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6r7j6"]
+radius = 55.0
+
+[sub_resource type="Animation" id="Animation_wyoqa"]
+resource_name = "KillFeedback"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1.8, 1.8, 1.8, 1), Color(1.6, 1.6, 1.6, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xl8d8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i6li3"]
+_data = {
+"KillFeedback": SubResource("Animation_wyoqa"),
+"RESET": SubResource("Animation_xl8d8")
+}
+
+[node name="SpikeDiamond" instance=ExtResource("1_d0sat")]
+script = ExtResource("2_p0saq")
+collectable = false
+solid = false
+treasure_picked_scene = null
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_6r7j6")
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+texture = ExtResource("2_xptjw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_i6li3")
+}

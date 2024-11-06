@@ -1,7 +1,7 @@
 extends DraftCard
 class_name RandomCard
 
-export var cover : Texture
+@export var cover : Texture2D
 
 const CARDS_BASE_DIR := "res://map/draft/cards/"
 
@@ -47,10 +47,10 @@ func is_perfectionist() -> bool:
 func get_name() -> String:
 	return current_subcard.get_name() if current_subcard else ''
 	
-func get_icon() -> Texture:
+func get_icon() -> Texture2D:
 	return get_cover()
 	
-func get_cover() -> Texture:
+func get_cover() -> Texture2D:
 	return cover
 
 func get_suit_top() -> Array:

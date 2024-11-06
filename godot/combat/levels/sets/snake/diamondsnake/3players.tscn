@@ -1,24 +1,24 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=22 format=3]
 
-[ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture" id=1]
-[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=2]
-[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=3]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=4]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=5]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=7]
-[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=8]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
-[ext_resource path="res://combat/styles/purple.tres" type="Resource" id=10]
-[ext_resource path="res://assets/patterns/rhombus.png" type="Texture" id=11]
-[ext_resource path="res://actors/environments/ElementSpawner.tscn" type="PackedScene" id=12]
-[ext_resource path="res://combat/collectables/Diamond.tscn" type="PackedScene" id=13]
-[ext_resource path="res://combat/collectables/BigDiamond.tscn" type="PackedScene" id=14]
-[ext_resource path="res://actors/weapons/Laser.tscn" type="PackedScene" id=15]
-[ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture" id=16]
-[ext_resource path="res://combat/modes/DiamondSnake.tres" type="Resource" id=17]
-[ext_resource path="res://combat/managers/SpawnerManager.tscn" type="PackedScene" id=18]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=19]
+[ext_resource type="Texture2D" path="res://addons/geometry/icons/GRect.svg" id="1"]
+[ext_resource type="Script" path="res://addons/geometry/GConvexPolygon.gd" id="2"]
+[ext_resource type="Script" path="res://addons/geometry/GRect.gd" id="3"]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="4"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="5"]
+[ext_resource type="PackedScene" path="res://actors/environments/Wall.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="7"]
+[ext_resource type="Resource" uid="uid://b4mhr8ft2dgry" path="res://selection/characters/umidorians_1.tres" id="8"]
+[ext_resource type="PackedScene" path="res://combat/Arena.tscn" id="9"]
+[ext_resource type="Resource" path="res://combat/styles/purple.tres" id="10"]
+[ext_resource type="Texture2D" uid="uid://umy6kkoegsra" path="res://assets/patterns/rhombus.png" id="11"]
+[ext_resource type="PackedScene" path="res://actors/environments/ElementSpawner.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://ckykuuqee1aml" path="res://combat/collectables/Diamond.tscn" id="13"]
+[ext_resource type="PackedScene" path="res://combat/collectables/BigDiamond.tscn" id="14"]
+[ext_resource type="PackedScene" path="res://actors/weapons/Laser.tscn" id="15"]
+[ext_resource type="Texture2D" uid="uid://7wgufnrxjfvf" path="res://combat/levels/background/eelectrons.png" id="16"]
+[ext_resource type="Resource" path="res://combat/modes/DiamondSnake.tres" id="17"]
+[ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="18"]
+[ext_resource type="PackedScene" path="res://combat/collectables/PowerUp.tscn" id="19"]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Default"
@@ -32,8 +32,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 10, 20, 30 ),
-"transitions": PoolRealArray( 0.5, 2, 0.5, 2 ),
+"times": PackedFloat32Array( 0, 10, 20, 30 ),
+"transitions": PackedFloat32Array( 0.5, 2, 0.5, 2 ),
 "update": 0,
 "values": [ Vector2( -1350, -1250 ), Vector2( -1800, -800 ), Vector2( -1350, -1250 ), Vector2( -900, -1700 ) ]
 }
@@ -50,8 +50,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 10, 20, 30 ),
-"transitions": PoolRealArray( 0.5, 2, 0.5, 2 ),
+"times": PackedFloat32Array( 0, 10, 20, 30 ),
+"transitions": PackedFloat32Array( 0.5, 2, 0.5, 2 ),
 "update": 0,
 "values": [ Vector2( 1350, -1250 ), Vector2( 900, -1700 ), Vector2( 1350, -1250 ), Vector2( 1800, -800 ) ]
 }
@@ -67,7 +67,7 @@ match_duration_override = 90.0
 [node name="CollectModeManager" parent="Managers" index="14"]
 enabled = true
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
 texture = ExtResource( 16 )
 centered = false
 
@@ -81,7 +81,7 @@ grid_color = Color( 0.945098, 0, 1, 0.588235 )
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
 script = ExtResource( 2 )
-polygon = PoolVector2Array( -1800, 0, -900, -900, 900, -900, 1800, 0, 0, 2500 )
+polygon = PackedVector2Array( -1800, 0, -900, -900, 900, -900, 1800, 0, 0, 2500 )
 
 [node name="GridWrapper" parent="Battlefield/Background" index="2"]
 position = Vector2( 0, -800 )
@@ -597,9 +597,9 @@ controls = "joy2"
 species = ExtResource( 5 )
 cpu = true
 
-[node name="Camera" parent="." index="6"]
+[node name="Camera3D" parent="." index="6"]
 zoom = Vector2( 95367.5, 95367.5 )
-smoothing_speed = 0.3
+position_smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 

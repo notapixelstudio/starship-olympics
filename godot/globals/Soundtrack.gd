@@ -3,9 +3,9 @@ extends AudioLibrary
 func _ready():
 	print_debug("I'll be handling everything from now on. I am the master")
 	
-var array_songs setget , _get_songs
+var array_songs : get = _get_songs
 var current_album
-var current_song setget change_song
+var current_song : set = change_song
 
 
 func change_song(new_song):

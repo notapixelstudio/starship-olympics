@@ -1,88 +1,39 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://4nl4gqgmunx4"]
 
-[ext_resource path="res://ui/minigame_list/DeckListScreen.gd" type="Script" id=1]
-[ext_resource path="res://ui/minigame_list/DeckListItem.tscn" type="PackedScene" id=2]
-[ext_resource path="res://combat/levels/background/menus.png" type="Texture" id=4]
-[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=5]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=6]
-
-[sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 4 )
-region_rect = Rect2( 0, 0, 1280, 720 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 42
-font_data = ExtResource( 6 )
+[ext_resource type="Script" path="res://ui/minigame_list/DeckListScreen.gd" id="1"]
+[ext_resource type="PackedScene" path="res://ui/minigame_list/DeckListItem.tscn" id="2"]
 
 [node name="DeckListScreen" type="ScrollContainer"]
+clip_contents = false
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/bg = SubResource( 1 )
+focus_mode = 2
+mouse_filter = 2
 follow_focus = true
-scroll_horizontal_enabled = false
-script = ExtResource( 1 )
-DeckListItemScene = ExtResource( 2 )
+script = ExtResource("1")
+DeckListItemScene = ExtResource("2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 1280.0
-margin_bottom = 720.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Spacer" type="Control" parent="HBoxContainer"]
-margin_right = 100.0
-margin_bottom = 720.0
-rect_min_size = Vector2( 100, 0 )
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 
 [node name="DecksContainer" type="VBoxContainer" parent="HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 104.0
-margin_right = 1176.0
-margin_bottom = 720.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 50
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/DecksContainer"]
-margin_right = 1072.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 0, 80 )
-size_flags_horizontal = 3
-
-[node name="BackButton" type="Button" parent="HBoxContainer/DecksContainer/HBoxContainer"]
-margin_right = 200.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 200, 0 )
-theme = ExtResource( 5 )
-text = "BACK"
-
-[node name="Label" type="Label" parent="HBoxContainer/DecksContainer/HBoxContainer"]
-margin_left = 204.0
-margin_top = 14.0
-margin_right = 868.0
-margin_bottom = 65.0
-size_flags_horizontal = 3
-theme = ExtResource( 5 )
-custom_colors/font_color_shadow = Color( 0.2, 0.317647, 0.482353, 1 )
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 3
-custom_fonts/font = SubResource( 2 )
-text = "WORLD CUPS"
-align = 1
-
-[node name="Spacer" type="Control" parent="HBoxContainer/DecksContainer/HBoxContainer"]
-margin_left = 872.0
-margin_right = 1072.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 200, 0 )
+theme_override_constants/separation = 50
 
 [node name="Spacer2" type="Control" parent="HBoxContainer"]
-margin_left = 1180.0
-margin_right = 1280.0
-margin_bottom = 720.0
-rect_min_size = Vector2( 100, 0 )
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 
-[connection signal="pressed" from="HBoxContainer/DecksContainer/HBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="focus_entered" from="." to="." method="_on_DeckListScreen_focus_entered"]

@@ -1,7 +1,7 @@
 extends Node2D
 
-export var msg : String = '+1' setget set_msg
-export var still : bool = false
+@export var msg : String = '+1': set = set_msg
+@export var still : bool = false
 
 func _ready():
 	# no messages after game is over
@@ -13,7 +13,7 @@ func _ready():
 		appear()
 
 func set_msg(value):
-	if typeof(value) == TYPE_INT or typeof(value) == TYPE_REAL:
+	if typeof(value) == TYPE_INT or typeof(value) == TYPE_FLOAT:
 		var sgn = ""
 		if value >= 0:
 			sgn = "+"

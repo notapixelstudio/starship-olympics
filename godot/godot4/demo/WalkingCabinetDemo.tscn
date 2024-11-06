@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://nsjrr7osuuup"]
+
+[ext_resource type="Script" path="res://godot4/demo/WalkingCabinetDemo.gd" id="1_p7p20"]
+[ext_resource type="PackedScene" uid="uid://c1l3lu1qyupad" path="res://godot4/levels/diamondsnatch/diamondsnatch_2p.tscn" id="2_6j0hm"]
+[ext_resource type="PackedScene" uid="uid://vci7uxcbok6b" path="res://godot4/levels/diamondsnatch/diamondsnatch_3p.tscn" id="3_py8m6"]
+[ext_resource type="PackedScene" uid="uid://cvp2cu7cq2g7p" path="res://godot4/levels/diamondsnatch/diamondsnatch_4p.tscn" id="4_jr8cp"]
+
+[node name="WalkingCabinetDemo" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_p7p20")
+game_scene_2p = ExtResource("2_6j0hm")
+game_scene_3p = ExtResource("3_py8m6")
+game_scene_4p = ExtResource("4_jr8cp")

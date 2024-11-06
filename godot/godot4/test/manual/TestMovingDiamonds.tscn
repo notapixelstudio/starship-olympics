@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://dprgn126a4k1x"]
+
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_qysy1"]
+[ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_20trp"]
+[ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_t15vp"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="4_r1g03"]
+[ext_resource type="PackedScene" uid="uid://bjkxiwtf2i11" path="res://godot4/debug/Trajectory.tscn" id="7_06quw"]
+[ext_resource type="PackedScene" uid="uid://cg66437tipora" path="res://godot4/elements/treasures/RocketDiamond.tscn" id="14_l61ac"]
+
+[sub_resource type="GDScript" id="GDScript_0rj7w"]
+script/source = "extends SOLog
+
+
+func _ready():
+	super._ready()
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_sth_collected(collector, collectee):
+	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
+"
+
+[sub_resource type="GDScript" id="GDScript_qq6xw"]
+script/source = "extends Node
+
+
+func _ready():
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_sth_collected(collector, collectee):
+	# assign points
+	Events.points_scored.emit(collectee.get_points(), collector.get_team())
+	# show feedback
+	Events.message.emit(collectee.get_points(), collector.get_color(), collectee.global_position)
+"
+
+[node name="TestChamber" instance=ExtResource("1_qysy1")]
+
+[node name="TestGrid" parent="." index="3"]
+position = Vector2(-2600, -1300)
+columns = 104
+
+[node name="TestChamberLog" parent="." index="4"]
+script = SubResource("GDScript_0rj7w")
+
+[node name="ScoreManager" parent="." index="7" instance=ExtResource("2_20trp")]
+teams = Array[String](["P1"])
+
+[node name="MessageManager" parent="." index="8" node_paths=PackedStringArray("battlefield") instance=ExtResource("3_t15vp")]
+battlefield = NodePath("..")
+
+[node name="CollectGame" type="Node" parent="." index="9"]
+script = SubResource("GDScript_qq6xw")
+
+[node name="Ship" parent="." index="10" instance=ExtResource("4_r1g03")]
+unique_name_in_owner = true
+
+[node name="RocketDiamond" parent="." index="11" instance=ExtResource("14_l61ac")]
+position = Vector2(2600, 500)
+speed = 800.0
+steering = 42.0
+oscillation = 1.5
+
+[node name="Trajectory" parent="RocketDiamond" index="4" instance=ExtResource("7_06quw")]
+default_color = Color(0.403922, 1, 1, 1)
+
+[node name="RocketDiamond7" parent="." index="12" instance=ExtResource("14_l61ac")]
+position = Vector2(-1500, -900)
+speed = 600.0
+
+[node name="RocketDiamond8" parent="." index="13" instance=ExtResource("14_l61ac")]
+position = Vector2(-1900, -900)
+speed = 600.0
+
+[node name="RocketDiamond9" parent="." index="14" instance=ExtResource("14_l61ac")]
+position = Vector2(-1700, -1100)
+speed = 600.0
+
+[node name="RocketDiamond6" parent="." index="15" instance=ExtResource("14_l61ac")]
+position = Vector2(-1700, -700)
+speed = 600.0
+
+[node name="RocketDiamond5" parent="." index="16" instance=ExtResource("14_l61ac")]
+position = Vector2(-1700, -900)
+speed = 600.0
+
+[node name="Trajectory" parent="RocketDiamond5" index="4" instance=ExtResource("7_06quw")]
+default_color = Color(0.403922, 1, 1, 1)

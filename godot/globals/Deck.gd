@@ -106,7 +106,7 @@ func add_new_cards(amount := 1) -> void:
 			
 	new_cards.shuffle()
 	cards.append_array(new_cards) # new cards are placed on top
-	cards.invert()
+	cards.reverse()
 	# wipe the next array at each refill
 	next = []
 

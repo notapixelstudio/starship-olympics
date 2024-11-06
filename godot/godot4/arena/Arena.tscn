@@ -1,0 +1,170 @@
+[gd_scene load_steps=29 format=3 uid="uid://ctk8t0ohpljms"]
+
+[ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="1_1sf7u"]
+[ext_resource type="Script" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
+[ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
+[ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="2_3p1dt"]
+[ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_fyulk"]
+[ext_resource type="Resource" uid="uid://fc2yg6p4flm5" path="res://godot4/debug/default_data/default_players/p2.tres" id="3_jq12e"]
+[ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_jxfg0"]
+[ext_resource type="Resource" uid="uid://c2u64vntxjiy6" path="res://godot4/debug/default_data/default_players/p3.tres" id="4_c1158"]
+[ext_resource type="Resource" uid="uid://dxdsvkvidj80p" path="res://godot4/debug/default_data/default_players/p4.tres" id="5_ej3mp"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="6_p0dyi"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="7_o1qkg"]
+[ext_resource type="PackedScene" uid="uid://dnny8ekvjg4ck" path="res://godot4/debug/SOLog.tscn" id="7_tad78"]
+[ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://actors/brains/CPUBrain.tscn" id="8_segll"]
+[ext_resource type="PackedScene" uid="uid://dy7pqq7fivkj3" path="res://godot4/arena/hud/StandaloneVersusMatchOverScreen.tscn" id="9_kkxbo"]
+[ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="9_nr0n0"]
+[ext_resource type="Resource" uid="uid://bpw2qo5744n7m" path="res://godot4/data/minigames/default.tres" id="9_vsuw2"]
+[ext_resource type="PackedScene" uid="uid://ctdiyn70rdfsq" path="res://godot4/arena/managers/TimeManager.tscn" id="10_mhlox"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="16_64a4r"]
+[ext_resource type="Script" path="res://godot4/arena/ArenaCamera2D.gd" id="16_ad0xh"]
+[ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="16_jk7x4"]
+[ext_resource type="Script" path="res://godot4/debug/DebugActionsManager.gd" id="16_uol0h"]
+[ext_resource type="Shader" path="res://assets/shaders/crt_local.gdshader" id="17_7kknq"]
+[ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="18_3l87r"]
+[ext_resource type="Shader" path="res://godot4/shaders/screen_blend_overlay.gdshader" id="20_23pm5"]
+[ext_resource type="Texture2D" uid="uid://yuay7lcg5j7l" path="res://assets/sprites/background/static.png" id="20_osq8b"]
+[ext_resource type="Texture2D" uid="uid://c1mrjgvqqsgb3" path="res://assets/HUD/fake_crt.png" id="22_5e72g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qpmpd"]
+shader = ExtResource("17_7kknq")
+shader_parameter/boost = 1.2
+shader_parameter/grille_opacity = 0.85
+shader_parameter/scanlines_opacity = 0.95
+shader_parameter/vignette_opacity = 0.2
+shader_parameter/scanlines_speed = 1.0
+shader_parameter/show_grille = false
+shader_parameter/show_scanlines = false
+shader_parameter/show_vignette = true
+shader_parameter/show_curvature = true
+shader_parameter/screen_size = Vector2(320, 180)
+shader_parameter/aberration_amount = 0.35
+shader_parameter/move_aberration = false
+shader_parameter/aberration_speed = 1.0
+shader_parameter/pincushion = 1.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbnhk"]
+shader = ExtResource("20_23pm5")
+
+[node name="Arena" type="Node2D"]
+script = ExtResource("1_avtyt")
+players = {
+"P1": ExtResource("2_3p1dt"),
+"P2": ExtResource("3_jq12e"),
+"P3": ExtResource("4_c1158"),
+"P4": ExtResource("5_ej3mp")
+}
+ship_scene = ExtResource("6_p0dyi")
+player_brain_scene = ExtResource("7_o1qkg")
+cpu_brain_scene = ExtResource("8_segll")
+match_over_screen_scene = ExtResource("9_kkxbo")
+default_minigame = ExtResource("9_vsuw2")
+default_params = ExtResource("9_nr0n0")
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="IntroManager" parent="Managers" instance=ExtResource("1_m2x2u")]
+
+[node name="TimeManager" parent="Managers" instance=ExtResource("10_mhlox")]
+unique_name_in_owner = true
+
+[node name="ScoreManager" parent="Managers" instance=ExtResource("2_fyulk")]
+unique_name_in_owner = true
+
+[node name="MessageManager" parent="Managers" node_paths=PackedStringArray("battlefield") instance=ExtResource("3_jxfg0")]
+battlefield = NodePath("../../Battlefield")
+
+[node name="DebugActionsManager" type="Node" parent="Managers" node_paths=PackedStringArray("arena")]
+process_mode = 3
+script = ExtResource("16_uol0h")
+arena = NodePath("../..")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+zoom = Vector2(0.2, 0.2)
+script = ExtResource("16_ad0xh")
+
+[node name="Homes" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Battlefield" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_1sf7u")]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+
+[node name="CrtUnder" type="TextureRect" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("16_jk7x4")
+expand_mode = 1
+
+[node name="SOLog" parent="HUD" instance=ExtResource("7_tad78")]
+visible = false
+offset_left = 950.0
+offset_top = 150.0
+offset_right = 1275.0
+offset_bottom = 550.0
+metadata/_edit_lock_ = true
+
+[node name="CanvasGroup" type="CanvasGroup" parent="HUD"]
+z_index = 200
+material = SubResource("ShaderMaterial_qpmpd")
+fit_margin = 50.0
+clear_margin = 50.0
+
+[node name="MinigameText" type="RichTextLabel" parent="HUD/CanvasGroup"]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 666.0
+offset_right = 1268.0
+offset_bottom = 750.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("16_64a4r")
+bbcode_enabled = true
+text = "[right][color=#ffde5e]TITLE[/color]
+DESCRIPTION[/right]"
+fit_content = true
+
+[node name="MinigameIcon" type="Sprite2D" parent="HUD/CanvasGroup"]
+unique_name_in_owner = true
+position = Vector2(1222, 633)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("18_3l87r")
+
+[node name="Noise" type="CanvasLayer" parent="."]
+layer = 120
+
+[node name="TextureRect" type="TextureRect" parent="Noise"]
+modulate = Color(1, 1, 1, 0.392157)
+material = SubResource("ShaderMaterial_gbnhk")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("20_osq8b")
+expand_mode = 1
+
+[node name="Crt" type="TextureRect" parent="Noise"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("22_5e72g")
+expand_mode = 1

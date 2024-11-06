@@ -4,14 +4,14 @@ class_name MapPath
 
 const LIMIT_DIST = 201
 
-var status : String = "locked" setget set_status # unlocked, locked
+var status : String = "locked": set = set_status
 var from : MapLocation
 var to : MapLocation
 
 func set_status(v):
 	status=v
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 	visible = (status == "unlocked")
 	
 func get_id() -> String:

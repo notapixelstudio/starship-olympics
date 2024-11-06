@@ -1,111 +1,89 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://cmgckx46yk5vq"]
 
-[ext_resource path="res://ui/common_elements/ElementOption.gd" type="Script" id=1]
-[ext_resource path="res://assets/theme/DefaultOptionFont.tres" type="DynamicFont" id=2]
-[ext_resource path="res://interface/themes/ui_elements/grey_arrowLeftGrey.png" type="Texture" id=3]
-[ext_resource path="res://interface/themes/ui_elements/grey_arrowRightGrey.png" type="Texture" id=4]
-[ext_resource path="res://interface/themes/ui_elements/grey_arrowLeftWhite.png" type="Texture" id=5]
-[ext_resource path="res://interface/themes/ui_elements/grey_arrowRightWhite.png" type="Texture" id=6]
-[ext_resource path="res://interface/themes/ui_elements/grey_arrowTransparent.png" type="Texture" id=7]
-[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=8]
+[ext_resource type="Script" path="res://ui/common_elements/ElementOption.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://blt17w4p84h1a" path="res://interface/themes/ui_elements/grey_arrowLeftGrey.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://drshhwdgu7bel" path="res://interface/themes/ui_elements/grey_arrowRightGrey.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://n3hus67ohub6" path="res://interface/themes/ui_elements/grey_arrowLeftWhite.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bwquohn7bbpjy" path="res://interface/themes/ui_elements/grey_arrowRightWhite.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://dly35bp2nx203" path="res://interface/themes/ui_elements/grey_arrowTransparent.png" id="7"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="8"]
 
 [node name="Element" type="Panel"]
+custom_minimum_size = Vector2(700, 50)
+anchors_preset = 10
 anchor_right = 1.0
-margin_right = -778.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 0, 50 )
+offset_right = -580.0
+offset_bottom = 50.0
+grow_horizontal = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
 focus_mode = 2
-theme = ExtResource( 8 )
-script = ExtResource( 1 )
+theme = ExtResource("8")
+script = ExtResource("1")
+label_description = "SOMETHING"
 
 [node name="Container" type="HBoxContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Description" type="Label" parent="Container"]
-margin_bottom = 50.0
+layout_mode = 2
 size_flags_vertical = 7
-custom_fonts/font = ExtResource( 2 )
-align = 1
-valign = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+text = "SOMETHING"
+vertical_alignment = 1
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Padding" type="Label" parent="Container"]
-margin_top = 9.0
-margin_right = 302.0
-margin_bottom = 40.0
+layout_mode = 2
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 2 )
-align = 1
-valign = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ValueContainer" type="HBoxContainer" parent="Container"]
-margin_left = 302.0
-margin_right = 502.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 200, 0 )
-custom_constants/separation = 0
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="left" type="TextureButton" parent="Container/ValueContainer"]
-margin_right = 20.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 20, 0 )
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 5
-texture_normal = ExtResource( 3 )
-texture_pressed = ExtResource( 5 )
-texture_disabled = ExtResource( 7 )
-expand = true
-stretch_mode = 3
+texture_normal = ExtResource("3")
+texture_pressed = ExtResource("5")
+texture_disabled = ExtResource("7")
+stretch_mode = 5
 
 [node name="Value" type="Label" parent="Container/ValueContainer"]
-margin_left = 20.0
-margin_right = 180.0
-margin_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 5
-custom_fonts/font = ExtResource( 2 )
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 text = "Null"
-align = 2
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
 [node name="Suffix" type="Label" parent="Container/ValueContainer"]
-margin_left = 180.0
-margin_right = 180.0
-margin_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 5
-custom_fonts/font = ExtResource( 2 )
-valign = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 uppercase = true
 
 [node name="right" type="TextureButton" parent="Container/ValueContainer"]
-margin_left = 180.0
-margin_right = 200.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 20, 0 )
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 5
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 6 )
-texture_disabled = ExtResource( 7 )
-expand = true
-stretch_mode = 3
+texture_normal = ExtResource("4")
+texture_pressed = ExtResource("6")
+texture_disabled = ExtResource("7")
+stretch_mode = 5
 
 [connection signal="focus_entered" from="." to="." method="_on_Element_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_Element_focus_exited"]
+[connection signal="pressed" from="Container/ValueContainer/left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="Container/ValueContainer/right" to="." method="_on_right_pressed"]

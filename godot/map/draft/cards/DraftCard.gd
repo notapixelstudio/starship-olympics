@@ -2,15 +2,15 @@ extends Resource
 
 class_name DraftCard
 
-export var minigame: Resource setget , get_minigame # Minigame
-export var unlocks : Array = [] # of DraftCard IDs
+@export var minigame: Minigame # Minigame
+@export var unlocks : Array = [] # of DraftCard IDs
 var _unlocks_copy : Array = []
-export var unlock_strength := 1
+@export var unlock_strength := 1
 
-export var winter : bool = false
-export var perfectionist : bool = false
+@export var winter : bool = false
+@export var perfectionist : bool = false
 
-export var tint : Color
+@export var tint : Color
 
 var id = null
 
@@ -76,7 +76,7 @@ func get_name() -> String:
 func get_description() -> String:
 	return get_minigame().get_description()
 	
-func get_icon() -> Texture:
+func get_icon() -> Texture2D:
 	return get_minigame().get_icon()
 
 func set_new(v: bool) -> void:
@@ -109,12 +109,12 @@ func get_unlock() -> String:
 func get_unlock_strength() -> int:
 	return unlock_strength
 
-func get_logo() -> StreamTexture:
+func get_logo() -> CompressedTexture2D:
 	if get_minigame():
 		return get_minigame().get_icon()
 	return null
 
 func duplicate(subresources: bool = false) -> Resource:
-	var dup = .duplicate(subresources)
+	var dup = super.duplicate(subresources)
 	dup.id = get_id() # this is needed, since duplicates do not have a resource path
 	return dup

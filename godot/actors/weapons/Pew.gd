@@ -1,7 +1,7 @@
 extends RigidBody2D
-class_name Pew
+class_name Pewz
 
-export var PfftScene : PackedScene
+@export var PfftScene : PackedScene
 
 var ship : Ship
 var ownership_transfer := true
@@ -25,7 +25,9 @@ func on_ship_near_area_hit(hit_ship: Ship) -> void:
 		destroy()
 	
 func _on_ForwardBullet_body_entered(body):
-	if not (body is Mirror) and not (body is MirrorWall):
+	var is_mirror = body is Mirror or body is MirrorWall
+	#var foe = not body.has_method('get_team') or body.get_team() != get_team()
+	if not is_mirror:# and foe:
 		destroy()
 		
 	if body.has_method('damage'):
@@ -37,12 +39,12 @@ func _on_ForwardBullet_body_entered(body):
 
 func set_ship(v : Ship):
 	ship = v
-	$"%Sprite".modulate = ship.get_color()
+	$"%Sprite2D".modulate = ship.get_color()
 	$AutoTrail.starting_color = ship.get_color()
 	team = ship.get_team() # remember team to avoid friendly fire (or checking up a dead ship)
 	
 func dissolve() -> void:
-	var pfft = PfftScene.instance()
+	var pfft = PfftScene.instantiate()
 	if ship != null and is_instance_valid(ship):
 		pfft.set_color(ship.get_color())
 	get_parent().add_child(pfft)

@@ -1,14 +1,14 @@
-tool
+@tool
 extends CheckBox
 
 class_name RadioOption
 
-export var value_name : String = "custom_win"
-export var value : Array # workaround for variant types
-export var texture : Texture
-export var label = "victories"
+@export var value_name : String = "custom_win"
+@export var value : Array # workaround for variant types
+@export var texture : Texture2D
+@export var label = "victories"
 
-var active := false setget set_active
+var active := false: set = set_active
 
 func _ready():
 	
@@ -19,10 +19,10 @@ func _ready():
 func set_active(v: bool) -> void:
 	active = v
 	if active:
-		$Sprite.modulate = Color.white
-		$Frame.modulate = Color.white
+		$Sprite2D.modulate = Color.WHITE
+		$Frame.modulate = Color.WHITE
 	else:
-		$Sprite.modulate = Color(0.5,0.5,0.5,1)
+		$Sprite2D.modulate = Color(0.5,0.5,0.5,1)
 		$Frame.modulate = Color('#24334a')
 
 

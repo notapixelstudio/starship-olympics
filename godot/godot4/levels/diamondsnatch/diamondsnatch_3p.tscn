@@ -1,0 +1,547 @@
+[gd_scene load_steps=14 format=3 uid="uid://vci7uxcbok6b"]
+
+[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_2t2ka"]
+[ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_ak7cm"]
+[ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="3_dg11o"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_bva5u"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="5_1pfq3"]
+[ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="6_vibcf"]
+[ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="7_lvm3s"]
+[ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="8_ri0vu"]
+[ext_resource type="Script" path="res://actors/environments/WaveGroupSpawner.gd" id="9_g44pl"]
+[ext_resource type="PackedScene" path="res://actors/environments/ElementSpawnerGroup.tscn" id="10_nrilq"]
+[ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="11_u84p6"]
+[ext_resource type="PackedScene" uid="uid://dvjdmo8ceeh5b" path="res://godot4/elements/bubbles/DiamondBubble.tscn" id="11_w5u2t"]
+[ext_resource type="PackedScene" uid="uid://cie2xt6b1e8oy" path="res://godot4/elements/bubbles/BigDiamondBubble.tscn" id="13_laavj"]
+
+[node name="VersusArena" instance=ExtResource("1_2t2ka")]
+
+[node name="SpawnerWaveManager" parent="Managers" index="3" node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("2_ak7cm")]
+waves_container = NodePath("../../Battlefield/Waves")
+battlefield = NodePath("../../Battlefield")
+
+[node name="CollectGame" parent="Managers" index="4" instance=ExtResource("3_dg11o")]
+
+[node name="Camera2D" parent="." index="1"]
+zoom = Vector2(0.3, 0.3)
+
+[node name="P1" parent="Homes" index="0" instance=ExtResource("4_bva5u")]
+position = Vector2(-600, 600)
+rotation = -0.785398
+
+[node name="P2" parent="Homes" index="1" instance=ExtResource("4_bva5u")]
+position = Vector2(600, -600)
+rotation = 2.35619
+
+[node name="P3" parent="Homes" index="2" instance=ExtResource("4_bva5u")]
+position = Vector2(600, 600)
+rotation = -2.35619
+
+[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("5_1pfq3")]
+hollow = true
+
+[node name="VRoundedRect" type="Node" parent="Battlefield/OutsideWall" index="4"]
+script = ExtResource("6_vibcf")
+width = 3500.0
+height = 2000.0
+radius = 1000.0
+
+[node name="Wall" parent="Battlefield" index="1" instance=ExtResource("5_1pfq3")]
+position = Vector2(-900, 0)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4"]
+script = ExtResource("7_lvm3s")
+sides = 4
+
+[node name="Wall2" parent="Battlefield" index="2" instance=ExtResource("5_1pfq3")]
+position = Vector2(900, 0)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4"]
+script = ExtResource("7_lvm3s")
+sides = 4
+
+[node name="Diamond" parent="Battlefield" index="3" instance=ExtResource("8_ri0vu")]
+
+[node name="Waves" type="Node2D" parent="Battlefield" index="4"]
+
+[node name="Wave0" type="Node2D" parent="Battlefield/Waves" index="0" groups=["spawn_waves"]]
+script = ExtResource("9_g44pl")
+max_repeats = 2
+extra_delay = 0.75
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/Wave0" index="0" instance=ExtResource("10_nrilq")]
+position = Vector2(450, 450)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/Wave0" index="1" instance=ExtResource("10_nrilq")]
+position = Vector2(450, -450)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/Wave0" index="2" instance=ExtResource("10_nrilq")]
+position = Vector2(-450, -450)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/Wave0" index="3" instance=ExtResource("10_nrilq")]
+position = Vector2(-450, 450)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="Wave1" type="Node2D" parent="Battlefield/Waves" index="1" groups=["spawn_waves"]]
+script = ExtResource("9_g44pl")
+max_repeats = 2
+extra_delay = 0.75
+
+[node name="ElementSpawnerGroup13" parent="Battlefield/Waves/Wave1" index="0" instance=ExtResource("10_nrilq")]
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup14" parent="Battlefield/Waves/Wave1" index="1" instance=ExtResource("10_nrilq")]
+pattern = "farapart"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup15" parent="Battlefield/Waves/Wave1" index="2" instance=ExtResource("10_nrilq")]
+position = Vector2(0, 450)
+pattern = "apart"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup16" parent="Battlefield/Waves/Wave1" index="3" instance=ExtResource("10_nrilq")]
+position = Vector2(0, -450)
+pattern = "apart"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/Wave1" index="4" instance=ExtResource("10_nrilq")]
+position = Vector2(750, 150)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/Wave1" index="5" instance=ExtResource("10_nrilq")]
+position = Vector2(750, -150)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/Wave1" index="6" instance=ExtResource("10_nrilq")]
+position = Vector2(-750, -150)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/Wave1" index="7" instance=ExtResource("10_nrilq")]
+position = Vector2(-750, 150)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup9" parent="Battlefield/Waves/Wave1" index="8" instance=ExtResource("10_nrilq")]
+position = Vector2(-1050, 150)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup10" parent="Battlefield/Waves/Wave1" index="9" instance=ExtResource("10_nrilq")]
+position = Vector2(-1050, -150)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup11" parent="Battlefield/Waves/Wave1" index="10" instance=ExtResource("10_nrilq")]
+position = Vector2(1050, -150)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup12" parent="Battlefield/Waves/Wave1" index="11" instance=ExtResource("10_nrilq")]
+position = Vector2(1050, 150)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="FirstBubbleWave" type="Node2D" parent="Battlefield/Waves" index="2" groups=["spawn_waves"]]
+script = ExtResource("9_g44pl")
+max_repeats = 1
+extra_delay = 2.0
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/FirstBubbleWave" index="0" instance=ExtResource("10_nrilq")]
+position = Vector2(450, 450)
+pattern = "single"
+element_scene = ExtResource("11_w5u2t")
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/FirstBubbleWave" index="1" instance=ExtResource("10_nrilq")]
+position = Vector2(450, -450)
+pattern = "single"
+element_scene = ExtResource("11_w5u2t")
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/FirstBubbleWave" index="2" instance=ExtResource("10_nrilq")]
+position = Vector2(-450, -450)
+pattern = "single"
+element_scene = ExtResource("11_w5u2t")
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/FirstBubbleWave" index="3" instance=ExtResource("10_nrilq")]
+position = Vector2(-450, 450)
+pattern = "single"
+element_scene = ExtResource("11_w5u2t")
+
+[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/FirstBubbleWave" index="4" instance=ExtResource("10_nrilq")]
+pattern = "single"
+element_scene = ExtResource("11_w5u2t")
+
+[node name="Wave2" type="Node2D" parent="Battlefield/Waves" index="3" groups=["spawn_waves"]]
+script = ExtResource("9_g44pl")
+max_repeats = 1
+extra_delay = 2.0
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/Wave2" index="0" instance=ExtResource("10_nrilq")]
+position = Vector2(0, 600)
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/Wave2" index="1" instance=ExtResource("10_nrilq")]
+position = Vector2(0, -600)
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/Wave2" index="2" instance=ExtResource("10_nrilq")]
+position = Vector2(-1350, 0)
+pattern = "vline"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/Wave2" index="3" instance=ExtResource("10_nrilq")]
+position = Vector2(1350, 0)
+pattern = "vline"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/Wave2" index="4" instance=ExtResource("10_nrilq")]
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="Wave3" type="Node2D" parent="Battlefield/Waves" index="4" groups=["spawn_waves"]]
+script = ExtResource("9_g44pl")
+max_repeats = 2
+extra_delay = 0.25
+
+[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/Wave3" index="0" instance=ExtResource("10_nrilq")]
+position = Vector2(0, 600)
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/Wave3" index="1" instance=ExtResource("10_nrilq")]
+position = Vector2(0, -600)
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/Wave3" index="2" instance=ExtResource("10_nrilq")]
+position = Vector2(-1350, 0)
+pattern = "vline"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup9" parent="Battlefield/Waves/Wave3" index="3" instance=ExtResource("10_nrilq")]
+position = Vector2(1350, 0)
+pattern = "vline"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup10" parent="Battlefield/Waves/Wave3" index="4" instance=ExtResource("10_nrilq")]
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/Wave3" index="5" instance=ExtResource("10_nrilq")]
+position = Vector2(900, 0)
+pattern = "rhombus"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/Wave3" index="6" instance=ExtResource("10_nrilq")]
+position = Vector2(-900, 0)
+pattern = "rhombus"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/Wave3" index="7" instance=ExtResource("10_nrilq")]
+pattern = "rhombus"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="FirstBigDiamondWave" type="Node2D" parent="Battlefield/Waves" index="5" groups=["spawn_waves"]]
+script = ExtResource("9_g44pl")
+max_repeats = 1
+extra_delay = 2.0
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/FirstBigDiamondWave" index="0" instance=ExtResource("10_nrilq")]
+position = Vector2(-1350, 0)
+pattern = "single"
+element_scene = ExtResource("11_u84p6")
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/FirstBigDiamondWave" index="1" instance=ExtResource("10_nrilq")]
+position = Vector2(1350, 0)
+pattern = "single"
+element_scene = ExtResource("11_u84p6")
+
+[node name="Wave5" type="Node2D" parent="Battlefield/Waves" index="6" groups=["spawn_waves"]]
+script = ExtResource("9_g44pl")
+max_repeats = 1
+extra_delay = 1.0
+
+[node name="ElementSpawnerGroup35" parent="Battlefield/Waves/Wave5" index="0" instance=ExtResource("10_nrilq")]
+position = Vector2(-450, -450)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup39" parent="Battlefield/Waves/Wave5" index="1" instance=ExtResource("10_nrilq")]
+position = Vector2(-1350, 0)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup40" parent="Battlefield/Waves/Wave5" index="2" instance=ExtResource("10_nrilq")]
+position = Vector2(1350, 0)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup41" parent="Battlefield/Waves/Wave5" index="3" instance=ExtResource("10_nrilq")]
+pattern = "farapart"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup36" parent="Battlefield/Waves/Wave5" index="4" instance=ExtResource("10_nrilq")]
+position = Vector2(450, -450)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup37" parent="Battlefield/Waves/Wave5" index="5" instance=ExtResource("10_nrilq")]
+position = Vector2(450, 450)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup38" parent="Battlefield/Waves/Wave5" index="6" instance=ExtResource("10_nrilq")]
+position = Vector2(-450, 450)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup42" parent="Battlefield/Waves/Wave5" index="7" instance=ExtResource("10_nrilq")]
+position = Vector2(0, 600)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup43" parent="Battlefield/Waves/Wave5" index="8" instance=ExtResource("10_nrilq")]
+position = Vector2(0, -600)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup44" parent="Battlefield/Waves/Wave5" index="9" instance=ExtResource("10_nrilq")]
+position = Vector2(-450, 0)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup45" parent="Battlefield/Waves/Wave5" index="10" instance=ExtResource("10_nrilq")]
+position = Vector2(450, 0)
+pattern = "single"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="Wave6" type="Node2D" parent="Battlefield/Waves" index="7" groups=["spawn_waves"]]
+script = ExtResource("9_g44pl")
+extra_delay = 0.25
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/Wave6" index="0" instance=ExtResource("10_nrilq")]
+pattern = "farapart"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup12" parent="Battlefield/Waves/Wave6" index="1" instance=ExtResource("10_nrilq")]
+pattern = "farapart"
+element_scene = ExtResource("11_w5u2t")
+
+[node name="ElementSpawnerGroup13" parent="Battlefield/Waves/Wave6" index="2" instance=ExtResource("10_nrilq")]
+pattern = "farapart"
+element_scene = ExtResource("13_laavj")
+
+[node name="ElementSpawnerGroup11" parent="Battlefield/Waves/Wave6" index="3" instance=ExtResource("10_nrilq")]
+pattern = "farapart"
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_u84p6")
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup14" parent="Battlefield/Waves/Wave6" index="4" instance=ExtResource("10_nrilq")]
+pattern = "farapart"
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("13_laavj")
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/Wave6" index="5" instance=ExtResource("10_nrilq")]
+position = Vector2(900, 0)
+pattern = "rhombus"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/Wave6" index="6" instance=ExtResource("10_nrilq")]
+position = Vector2(-900, 0)
+pattern = "rhombus"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/Wave6" index="7" instance=ExtResource("10_nrilq")]
+pattern = "rhombus"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/Wave6" index="8" instance=ExtResource("10_nrilq")]
+position = Vector2(-1350, 0)
+pattern = "vline"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/Wave6" index="9" instance=ExtResource("10_nrilq")]
+position = Vector2(1350, 0)
+pattern = "vline"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/Wave6" index="10" instance=ExtResource("10_nrilq")]
+position = Vector2(300, 0)
+pattern = "vline"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/Wave6" index="11" instance=ExtResource("10_nrilq")]
+position = Vector2(-300, 0)
+pattern = "vline"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup9" parent="Battlefield/Waves/Wave6" index="12" instance=ExtResource("10_nrilq")]
+pattern = "plus"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup10" parent="Battlefield/Waves/Wave6" index="13" instance=ExtResource("10_nrilq")]
+pattern = "plus"
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_u84p6")
+
+[node name="ElementSpawnerGroup15" parent="Battlefield/Waves/Wave6" index="14" instance=ExtResource("10_nrilq")]
+pattern = "plus"
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("13_laavj")
+
+[node name="ElementSpawnerGroup16" parent="Battlefield/Waves/Wave6" index="15" instance=ExtResource("10_nrilq")]
+pattern = "plus"
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_w5u2t")
+
+[node name="ElementSpawnerGroup20" parent="Battlefield/Waves/Wave6" index="16" instance=ExtResource("10_nrilq")]
+position = Vector2(-1500, 0)
+pattern = "vline"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup21" parent="Battlefield/Waves/Wave6" index="17" instance=ExtResource("10_nrilq")]
+position = Vector2(1500, 0)
+pattern = "vline"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup22" parent="Battlefield/Waves/Wave6" index="18" instance=ExtResource("10_nrilq")]
+pattern = "gigarhombus"
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup23" parent="Battlefield/Waves/Wave6" index="19" instance=ExtResource("10_nrilq")]
+position = Vector2(-600, 600)
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup24" parent="Battlefield/Waves/Wave6" index="20" instance=ExtResource("10_nrilq")]
+position = Vector2(600, 600)
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup25" parent="Battlefield/Waves/Wave6" index="21" instance=ExtResource("10_nrilq")]
+position = Vector2(600, -600)
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup26" parent="Battlefield/Waves/Wave6" index="22" instance=ExtResource("10_nrilq")]
+position = Vector2(-600, -600)
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup35" parent="Battlefield/Waves/Wave6" index="23" instance=ExtResource("10_nrilq")]
+position = Vector2(0, -750)
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_u84p6")
+
+[node name="ElementSpawnerGroup36" parent="Battlefield/Waves/Wave6" index="24" instance=ExtResource("10_nrilq")]
+position = Vector2(0, 750)
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_u84p6")
+
+[node name="ElementSpawnerGroup38" parent="Battlefield/Waves/Wave6" index="25" instance=ExtResource("10_nrilq")]
+position = Vector2(0, -750)
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_w5u2t")
+
+[node name="ElementSpawnerGroup39" parent="Battlefield/Waves/Wave6" index="26" instance=ExtResource("10_nrilq")]
+position = Vector2(0, 750)
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_w5u2t")
+
+[node name="ElementSpawnerGroup40" parent="Battlefield/Waves/Wave6" index="27" instance=ExtResource("10_nrilq")]
+position = Vector2(0, -750)
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("13_laavj")
+
+[node name="ElementSpawnerGroup41" parent="Battlefield/Waves/Wave6" index="28" instance=ExtResource("10_nrilq")]
+position = Vector2(0, 750)
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("13_laavj")
+
+[node name="ElementSpawnerGroup27" parent="Battlefield/Waves/Wave6" index="29" instance=ExtResource("10_nrilq")]
+position = Vector2(-1050, 450)
+pattern = "backslash"
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_u84p6")
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup28" parent="Battlefield/Waves/Wave6" index="30" instance=ExtResource("10_nrilq")]
+position = Vector2(1050, -450)
+pattern = "backslash"
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_u84p6")
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup29" parent="Battlefield/Waves/Wave6" index="31" instance=ExtResource("10_nrilq")]
+position = Vector2(1050, 450)
+pattern = "slash"
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_u84p6")
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup30" parent="Battlefield/Waves/Wave6" index="32" instance=ExtResource("10_nrilq")]
+position = Vector2(-1050, -450)
+pattern = "slash"
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_u84p6")
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup31" parent="Battlefield/Waves/Wave6" index="33" instance=ExtResource("10_nrilq")]
+position = Vector2(-600, 300)
+pattern = "slash"
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_u84p6")
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup32" parent="Battlefield/Waves/Wave6" index="34" instance=ExtResource("10_nrilq")]
+position = Vector2(600, -300)
+pattern = "slash"
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_u84p6")
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup33" parent="Battlefield/Waves/Wave6" index="35" instance=ExtResource("10_nrilq")]
+position = Vector2(600, 300)
+pattern = "backslash"
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_u84p6")
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup34" parent="Battlefield/Waves/Wave6" index="36" instance=ExtResource("10_nrilq")]
+position = Vector2(-600, -300)
+pattern = "backslash"
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_u84p6")
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup37" parent="Battlefield/Waves/Wave6" index="37" instance=ExtResource("10_nrilq")]
+pattern = "gigarhombus"
+element_scene = ExtResource("8_ri0vu")
+guest_star_scene = ExtResource("11_u84p6")
+guest_star_positioning = "random"
+
+[node name="ElementSpawnerGroup19" parent="Battlefield/Waves/Wave6" index="38" instance=ExtResource("10_nrilq")]
+pattern = "farapart"
+element_scene = ExtResource("11_u84p6")
+
+[node name="ElementSpawnerGroup42" parent="Battlefield/Waves/Wave6" index="39" instance=ExtResource("10_nrilq")]
+position = Vector2(900, 450)
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup43" parent="Battlefield/Waves/Wave6" index="40" instance=ExtResource("10_nrilq")]
+position = Vector2(900, -450)
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup44" parent="Battlefield/Waves/Wave6" index="41" instance=ExtResource("10_nrilq")]
+position = Vector2(-900, -450)
+element_scene = ExtResource("8_ri0vu")
+
+[node name="ElementSpawnerGroup45" parent="Battlefield/Waves/Wave6" index="42" instance=ExtResource("10_nrilq")]
+position = Vector2(-900, 450)
+element_scene = ExtResource("8_ri0vu")

@@ -6,7 +6,7 @@ const LOCKED = "locked"
 const UNLOCKED = "unlocked"
 const NEW = "new"
 
-export (String, "hidden", "locked", "unlocked", "new") var status 
+@export_enum("hidden", "locked", "unlocked", "new") var status : String
 
 const PERSIST_GROUP = "persist_unlocking"
 func _ready():
@@ -37,6 +37,11 @@ const DEFAULT_UNLOCKED = {
 
 var unlocked_elements := DEFAULT_UNLOCKED
 
+func reset_hall_of_fame():
+	# remove hall of fame
+	print("Will remove the hall of fame file")
+	var error = DirAccess.remove_absolute(InfoChampion.PATH_FILE_CHAMPIONS)
+		
 func reset_unlocks():
 	unlocked_elements = DEFAULT_UNLOCKED
 	
@@ -77,7 +82,7 @@ func get_state():
 	"""
 	get_state will return everything we need to be persistent in the game
 	"""
-	if unlocked_elements.empty():
+	if unlocked_elements.is_empty():
 		unlocked_elements = DEFAULT_UNLOCKED
 	return {
 		unlocked_elements = self.unlocked_elements

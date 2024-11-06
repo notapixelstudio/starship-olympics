@@ -4,7 +4,7 @@ const MULTIPLIER = 2
 
 signal show_msg
 
-onready var sound_action = $CollectAction
+@onready var sound_action = $CollectAction
 
 func _on_sth_collected(collector, collectee):
 	if not enabled:
@@ -12,8 +12,8 @@ func _on_sth_collected(collector, collectee):
 		
 	if collectee is Diamond or collectee is Star:
 		var score_points = score_multiplier*collectee.points
-		.score(collector.get_id(), score_points)
-		emit_signal('show_msg', collector.species, score_points, collectee.global_position)
+		global.the_match.add_score_to_team(collector.get_team(), score_points)
+		global.arena.show_msg(collector.get_color(), score_points, collectee.global_position)
 		
 func _on_coins_dropped(dropper, amount):
-	emit_signal('score', dropper.get_id(), -score_multiplier * amount)
+	global.the_match.add_score_to_team(dropper.get_team(), -score_multiplier * amount)

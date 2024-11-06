@@ -1,36 +1,60 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=3 uid="uid://dxrdfypo3ao75"]
 
-[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/icons/GConvexPolygon.svg" type="Texture" id=2]
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=3]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=5]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=7]
-[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=8]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
-[ext_resource path="res://combat/levels/background/mantiacs.png" type="Texture" id=10]
-[ext_resource path="res://selection/characters/drones.tres" type="Resource" id=11]
+[ext_resource type="PackedScene" path="res://combat/Arena.tscn" id="4"]
+[ext_resource type="Resource" path="res://combat/modes/Deathmatch.tres" id="5"]
+[ext_resource type="PackedScene" path="res://actors/environments/Wall.tscn" id="6"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="7"]
+[ext_resource type="Resource" uid="uid://b4mhr8ft2dgry" path="res://selection/characters/umidorians_1.tres" id="8"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="9"]
+[ext_resource type="Texture2D" uid="uid://21naqrw1n8iw" path="res://combat/levels/background/mantiacs.png" id="10"]
+[ext_resource type="Resource" path="res://selection/characters/drones.tres" id="11"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Resource" id="Resource_bdi3k"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_svi1w"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_bebv8"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Animation" id="1"]
 resource_name = "Rotate"
 length = 8.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("GRegularPolygon:radius")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ 1500, 900 ]
+"values": [1500, 900]
 }
 
-[node name="Arena" instance=ExtResource( 4 )]
+[sub_resource type="Resource" id="Resource_83aag"]
+metadata/__load_path__ = "res://addons/geometry/GConvexPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_ekiqn"]
+metadata/__load_path__ = "res://addons/geometry/icons/GConvexPolygon.svg"
+
+[sub_resource type="Resource" id="Resource_kdvje"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_o1qc0"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_vidwe"]
+metadata/__load_path__ = "res://addons/geometry/GConvexPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_j5i4w"]
+metadata/__load_path__ = "res://addons/geometry/icons/GConvexPolygon.svg"
+
+[node name="Arena" instance=ExtResource("4")]
 size_multiplier = 2.5
-game_mode = ExtResource( 5 )
+game_mode = ExtResource("5")
 
 [node name="KillModeManager" parent="Managers" index="6"]
 enabled = true
@@ -38,134 +62,133 @@ enabled = true
 [node name="GoalModeManager" parent="Managers" index="9"]
 enabled = false
 
-[node name="mantiacs_background" type="Sprite" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 10 )
+[node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
+texture = ExtResource("10")
 centered = false
 
-[node name="OutsideWall1" parent="Battlefield/Background" index="1" instance=ExtResource( 6 )]
-modulate = Color( 0.2, 0.701961, 1, 0.2 )
+[node name="OutsideWall1" parent="Battlefield/Background" index="1" instance=ExtResource("6")]
+modulate = Color(0.2, 0.701961, 1, 0.2)
 hollow = true
 offset = 200
 elongation = 100
 type = 2
 hide_grid = true
 line_width = 28
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
+grid_color = Color(0, 1, 0.741176, 0.435294)
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall1" index="4"]
-script = ExtResource( 3 )
+script = SubResource("Resource_bdi3k")
 radius = 900
 sides = 7.0
 rotation_degrees = 90.0
 
-[node name="OutsideWall3" parent="Battlefield/Background" index="2" instance=ExtResource( 6 )]
-modulate = Color( 0.2, 0.701961, 1, 0.2 )
+[node name="OutsideWall3" parent="Battlefield/Background" index="2" instance=ExtResource("6")]
+modulate = Color(0.2, 0.701961, 1, 0.2)
 hollow = true
 offset = 200
 elongation = 100
 type = 2
 hide_grid = true
 line_width = 28
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
+grid_color = Color(0, 1, 0.741176, 0.435294)
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall3" index="4"]
-script = ExtResource( 3 )
+script = SubResource("Resource_svi1w")
 radius = 1500
 sides = 7.0
 rotation_degrees = 90.0
 
-[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 6 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource("6")]
 hollow = true
 offset = 200
 elongation = 100
 hide_grid = true
 line_width = 28
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
+grid_color = Color(0, 1, 0.741176, 0.435294)
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="4"]
-script = ExtResource( 3 )
+script = SubResource("Resource_bebv8")
 radius = 1500
 sides = 7.0
 rotation_degrees = 90.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=[
-"animation_in_battle",
-]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/OutsideWall" index="5" groups=["animation_starts_with_battle"]]
 playback_speed = 0.09
-anims/Rotate = SubResource( 1 )
+anims/Rotate = SubResource("1")
 
-[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
-position = Vector2( -100, -800 )
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource("6")]
+position = Vector2(-100, -800)
 line_width = 28
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_83aag")
 __meta__ = {
-"_editor_icon": ExtResource( 2 )
+"_editor_icon": SubResource("Resource_ekiqn")
 }
-points = PoolVector2Array( 100, -100, 200, 0, 100, 100, 0, 0 )
+points = PackedVector2Array(100, -100, 200, 0, 100, 100, 0, 0)
 
-[node name="Wall3" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
-position = Vector2( -750, 0 )
+[node name="Wall3" parent="Battlefield/Middleground" index="1" instance=ExtResource("6")]
+position = Vector2(-750, 0)
 line_width = 28
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
-script = ExtResource( 3 )
+script = SubResource("Resource_kdvje")
 radius = 200
 sides = 4.0
 
-[node name="Wall4" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
-position = Vector2( 750, 0 )
+[node name="Wall4" parent="Battlefield/Middleground" index="2" instance=ExtResource("6")]
+position = Vector2(750, 0)
 line_width = 28
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Wall4" index="4"]
-script = ExtResource( 3 )
+script = SubResource("Resource_o1qc0")
 radius = 200
 sides = 4.0
 
-[node name="Wall2" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
-position = Vector2( -100, 850 )
-scale = Vector2( 1, -1 )
+[node name="Wall2" parent="Battlefield/Middleground" index="3" instance=ExtResource("6")]
+position = Vector2(-100, 850)
+scale = Vector2(1, -1)
 line_width = 28
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_vidwe")
 __meta__ = {
-"_editor_icon": ExtResource( 2 )
+"_editor_icon": SubResource("Resource_j5i4w")
 }
-points = PoolVector2Array( 100, -100, 200, 0, 100, 100, 0, 0 )
+points = PackedVector2Array(100, -100, 200, 0, 100, 100, 0, 0)
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
-position = Vector2( -1000, -400 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("9")]
+position = Vector2(-1000, -400)
 rotation = 0.0
 controls = "joy1"
-species = ExtResource( 7 )
+species = ExtResource("7")
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-position = Vector2( 1000, 400 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("9")]
+position = Vector2(1000, 400)
 rotation = 3.14159
 controls = "joy2"
-species = ExtResource( 8 )
+species = ExtResource("8")
 
-[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
-position = Vector2( -1000, 400 )
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource("9")]
+position = Vector2(-1000, 400)
 rotation = 0.0
 controls = "joy1"
-species = ExtResource( 11 )
+species = ExtResource("11")
 team = "drones"
 cpu = true
 
-[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
-position = Vector2( 1000, -400 )
+[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource("9")]
+position = Vector2(1000, -400)
 rotation = 3.14159
 controls = "joy2"
-species = ExtResource( 11 )
+species = ExtResource("11")
 team = "drones"
 cpu = true
 
-[node name="Camera" parent="." index="6"]
-zoom = Vector2( 10, 10 )
-smoothing_speed = 0.3
+[node name="Camera3D" parent="." index="6"]
+zoom = Vector2(10, 10)
+position_smoothing_speed = 0.3
+
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]

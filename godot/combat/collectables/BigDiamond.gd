@@ -1,10 +1,10 @@
-extends Diamond
+extends Diamondz
 
-class_name BigDiamond
+class_name BigDiamondz
 
 func _ready():
-	.set_points(3)
+	super.set_points(3)
 
 func on_collected_by(collector):
-	.on_collected_by(collector)
+	super.on_collected_by(collector)
 	SoundEffects.play($AudioStreamPlayer2D)

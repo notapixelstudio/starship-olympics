@@ -1,13 +1,15 @@
 extends Node2D
 class_name Brain
 
-var controllee setget set_controllee # not necessarily a Ship, therefore no type is enforced
 var target_velocity : Vector2
 var rotation_request : float
 
-signal charge
-signal release
+var controllee
+var enabled := true
 
+func _enter_tree():
+	controllee = get_parent()
+	
 func set_controllee(v) -> void:
 	controllee = v
 

@@ -1,45 +1,48 @@
 extends Brain
 class_name CPUBrain
 
-export var debug := false
-export var target_location_jitter := 50.0
-export var random_dash_p := 0.04
-export var random_fire_p := 0.02
-export var think_time := 0.2
-export var think_time_jitter := 0.04
-export var start_time_jitter := 0.5
+@export var debug := false
+@export var target_location_jitter := 50.0
+@export var random_dash_p := 0.04
+@export var random_fire_p := 0.02
+@export var think_time := 0.2
+@export var think_time_jitter := 0.04
+@export var start_time_jitter := 0.5
 
-var target_location = null # (Vector2) will try to reach this location, if not null
+var target_position = null # (Vector2) will try to reach this location, if not null
 var stance := 'aggressive'
 var home_global_position : Vector2
 
 func go_to(global_point: Vector2) -> void:
-	target_location = global_point + target_location_jitter*Vector2(1,0).rotated(randf()*TAU)
-	$NavigationAgent2D.set_target_location(target_location)
+	target_position = global_point + target_location_jitter*Vector2(1,0).rotated(randf()*TAU)
+	$NavigationAgent2D.set_target_position(target_position)
 	
 func go_home() -> void:
 	go_to(home_global_position)
 	log_strategy('go home')
 	
 func forget_current_target_location() -> void:
-	target_location = null
+	target_position = null
 	# TBD turn off navigation... but how?
 	if debug:
 		$DebugSprite.visible = false
 	
 func tick():
-	# obey the navigation rule of calling get_next_location every frame
-	var nav_location = $NavigationAgent2D.get_next_location()
-	
-	if controllee.has_method('are_controls_enabled') and not controllee.are_controls_enabled():
+	if not enabled:
 		return
+		
+	# obey the navigation rule of calling get_next_location every frame
+	var nav_location = $NavigationAgent2D.get_next_path_position()
 	
 	# reset
 	target_velocity = Vector2.ZERO
 	rotation_request = 0.0
 	
+	if controllee.has_method('are_controls_enabled') and not controllee.are_controls_enabled():
+		return
+	
 	# no target to go to, just stay where we are
-	if target_location == null:
+	if target_position == null:
 		return
 		
 	if debug:
@@ -90,14 +93,14 @@ func _on_ThinkTimer_timeout():
 
 func update_debug() -> void:
 	$DebugSprite.visible = not $NavigationAgent2D.is_navigation_finished()
-	$DebugSprite.global_position = target_location
+	$DebugSprite.global_position = target_position
 	$DebugSprite.global_scale = Vector2(1,1)
 	$DebugSprite.global_rotation = 0
 	$DebugSprite.modulate = Color(0,1,0,1) if $NavigationAgent2D.is_target_reachable() else Color(1,0,0,1)
-	$"%Path".global_position = Vector2.ZERO
+	$"%Path3D".global_position = Vector2.ZERO
 
 func _on_NavigationAgent2D_path_changed():
-	$"%Path".points = $NavigationAgent2D.get_nav_path()
+	$"%Path3D".points = $NavigationAgent2D.get_current_navigation_path()
 
 func start_charging_to_dash(distance) -> void:
 	# skip if we are already charging or we are in cooldown
@@ -139,13 +142,13 @@ func log_strategy(txt: String) -> void:
 func get_danger_points_ahead() -> Array:
 	var dangers := []
 	
-	for body in $DangerArea2D.get_overlapping_bodies():
-		if (body is Bomb or body is Pew) and body.get_team() != controllee.get_team():
-			dangers.append(body.global_position)
-			
-	for area in $DangerArea2D.get_overlapping_areas():
-		if area is Explosion:
-			dangers.append(area.global_position)
+#	for body in $DangerArea2D.get_overlapping_bodies():
+#		if (body is Bomb or body is Pew) and body.get_team() != controllee.get_team():
+#			dangers.append(body.global_position)
+#
+#	for area in $DangerArea2D.get_overlapping_areas():
+#		if area is Explosion:
+#			dangers.append(area.global_position)
 			
 	return dangers
 

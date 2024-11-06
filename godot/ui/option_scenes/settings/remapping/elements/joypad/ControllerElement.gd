@@ -1,8 +1,8 @@
-extends Sprite
-tool
+@tool
+extends Sprite2D
 
-onready var text: String = "" setget _set_command
-onready var sprite = $Sprite
+@onready var text: String = "": set = _set_command
+@onready var sprite = $Sprite2D
 
 func _set_command(value):
 	text = value

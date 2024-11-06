@@ -27,11 +27,11 @@ position = Vector2( 0, -1300 )
 type = "skin"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall"]
-polygon = PoolVector2Array( -800, 0, -400, -400, 400, -400, 800, 0, 400, 400, -400, 400 )
+polygon = PackedVector2Array( -800, 0, -400, -400, 400, -400, 800, 0, 400, 400, -400, 400 )
 
 [node name="ShieldWall2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 1300 )
 type = "skin"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShieldWall2"]
-polygon = PoolVector2Array( -800, 0, -400, -400, 400, -400, 800, 0, 400, 400, -400, 400 )
+polygon = PackedVector2Array( -800, 0, -400, -400, 400, -400, 800, 0, 400, 400, -400, 400 )

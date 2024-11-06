@@ -1,98 +1,102 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=3 uid="uid://nlnnx1golw11"]
 
-[ext_resource path="res://assets/animations/RoyalGlow.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/sprites/balls/basket.png" type="Texture" id=2]
-[ext_resource path="res://actors/environments/Ball.gd" type="Script" id=3]
-[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/traits/Holdable.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=7]
-[ext_resource path="res://utils/AutoTrail.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/traits/Tracked.tscn" type="PackedScene" id=9]
-[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=10]
-[ext_resource path="res://assets/audio/FX/sfx_sounds_impact10.wav" type="AudioStream" id=11]
+[ext_resource type="PackedScene" path="res://assets/animations/RoyalGlow.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://d2ij5aoi4mvw6" path="res://assets/sprites/balls/basket.png" id="2"]
+[ext_resource type="Script" path="res://actors/environments/Ball.gd" id="3"]
+[ext_resource type="PackedScene" path="res://godot4/effects/Shadow.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://combat/traits/Holdable.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://combat/traits/Owned.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://combat/traits/Strategic.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://bklnkitol1qwq" path="res://utils/AutoTrail.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://clbsrjsidxhav" path="res://combat/traits/Tracked.tscn" id="9"]
+[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="10"]
+[ext_resource type="AudioStream" uid="uid://cjmuge1iae07f" path="res://assets/audio/FX/sfx_sounds_impact10.wav" id="11"]
 
-[sub_resource type="PhysicsMaterial" id=1]
+[sub_resource type="PhysicsMaterial" id="1"]
 bounce = 100.0
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id="2"]
 radius = 80.0
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id="4"]
 resource_name = "hit"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 0.5, 0.5 ),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [ Color( 3, 3, 3, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(3, 3, 3, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kbvsc"]
+_data = {
+"RESET": SubResource("3"),
+"hit": SubResource("4")
 }
 
 [node name="Ball" type="RigidBody2D" groups=["Ball", "in_camera"]]
 collision_layer = 512
 collision_mask = 50706
-physics_material_override = SubResource( 1 )
+physics_material_override = SubResource("1")
 gravity_scale = 2.0
-contacts_reported = 1
-contact_monitor = true
 can_sleep = false
+contact_monitor = true
+max_contacts_reported = 1
 linear_damp = 1.0
-script = ExtResource( 3 )
+script = ExtResource("3")
 type = "basket"
 
-[node name="Strategic" parent="." instance=ExtResource( 7 )]
+[node name="Strategic" parent="." instance=ExtResource("7")]
 
-[node name="Holdable" parent="." instance=ExtResource( 5 )]
+[node name="Holdable" parent="." instance=ExtResource("5")]
 
-[node name="Owned" parent="." instance=ExtResource( 6 )]
+[node name="Owned" parent="." instance=ExtResource("6")]
 
-[node name="Tracked" parent="." instance=ExtResource( 9 )]
+[node name="Tracked" parent="." instance=ExtResource("9")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource("2")
 
-[node name="AutoTrail" parent="." instance=ExtResource( 8 )]
+[node name="AutoTrail" parent="." instance=ExtResource("8")]
 
-[node name="Glow" parent="." instance=ExtResource( 1 )]
-scale = Vector2( 2.5, 2.5 )
+[node name="Glow" parent="." instance=ExtResource("1")]
+scale = Vector2(2.5, 2.5)
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2")
 
-[node name="Shadow" parent="." instance=ExtResource( 4 )]
-sprite = NodePath("../Sprite")
+[node name="Shadow" parent="." instance=ExtResource("4")]
+sprite = NodePath("../Sprite2D")
 
 [node name="DamageAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 3 )
-anims/hit = SubResource( 4 )
+libraries = {
+"": SubResource("AnimationLibrary_kbvsc")
+}
 
 [node name="DamageSFX" type="AudioStreamPlayer2D" parent="."]
-bus = "SFX"
-script = ExtResource( 10 )
-streams = [ ExtResource( 11 ) ]
-volume_min = 0
-volume_max = 0
+bus = &"SFX"
+script = ExtResource("10")
+streams = Array[AudioStream]([ExtResource("11")])
 randomize_pitch = true
-pitch_min = 1
 pitch_max = 1.2

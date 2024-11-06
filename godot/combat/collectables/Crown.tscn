@@ -1,18 +1,18 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://combat/collectables/Crown.gd" type="Script" id=1]
-[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
-[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
-[ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/components/Teleportable.gd" type="Script" id=7]
-[ext_resource path="res://assets/sprites/crown_color.png" type="Texture" id=8]
-[ext_resource path="res://assets/sprites/environments/ball.png" type="Texture" id=9]
-[ext_resource path="res://assets/animations/RoyalGlow.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/sprites/environments/soccer_ball.png" type="Texture" id=11]
-[ext_resource path="res://assets/sprites/environments/tennis_ball.png" type="Texture" id=12]
-[ext_resource path="res://utils/Shadow.tscn" type="PackedScene" id=13]
+[ext_resource type="Script" path="res://combat/collectables/Crown.gd" id="1"]
+[ext_resource type="Script" path="res://addons/ECM/Entity.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://dxspwyydprxb1" path="res://addons/ECM/icons/Entity.png" id="3"]
+[ext_resource type="Script" path="res://addons/ECM/Component.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://boh3pf58gw6ig" path="res://addons/ECM/icons/Component.png" id="5"]
+[ext_resource type="PackedScene" path="res://combat/traits/Strategic.tscn" id="6"]
+[ext_resource type="Script" path="res://combat/components/Teleportable.gd" id="7"]
+[ext_resource type="Texture2D" uid="uid://cg8r4s46hqvth" path="res://assets/sprites/crown_color.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://dfs08lowdsdbq" path="res://assets/sprites/environments/ball.png" id="9"]
+[ext_resource type="PackedScene" path="res://assets/animations/RoyalGlow.tscn" id="10"]
+[ext_resource type="Texture2D" uid="uid://c4i8b2uvnplve" path="res://assets/sprites/environments/soccer_ball.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://3i8aeaxnfy4o" path="res://assets/sprites/environments/tennis_ball.png" id="12"]
+[ext_resource type="PackedScene" path="res://godot4/effects/Shadow.tscn" id="13"]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 100.0
@@ -25,7 +25,7 @@ collision_layer = 512
 collision_mask = 50192
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
-contacts_reported = 1
+max_contacts_reported = 1
 contact_monitor = true
 can_sleep = false
 linear_damp = 1.0
@@ -63,19 +63,19 @@ shape = SubResource( 2 )
 [node name="RoyalGlow" parent="." instance=ExtResource( 10 )]
 scale = Vector2( 2.5, 2.5 )
 
-[node name="CrownSprite" type="Sprite" parent="."]
+[node name="CrownSprite" type="Sprite2D" parent="."]
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 8 )
 
-[node name="BallSprite" type="Sprite" parent="."]
+[node name="BallSprite" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource( 9 )
 
-[node name="SoccerBallSprite" type="Sprite" parent="."]
+[node name="SoccerBallSprite" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource( 11 )
 
-[node name="TennisBallSprite" type="Sprite" parent="."]
+[node name="TennisBallSprite" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource( 12 )
 

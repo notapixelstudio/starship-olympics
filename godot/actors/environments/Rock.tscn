@@ -1,46 +1,46 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=51 format=3]
 
-[ext_resource path="res://actors/environments/Rock.gd" type="Script" id=1]
-[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture" id=3]
-[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture" id=5]
-[ext_resource path="res://assets/icon/star_empty.png" type="Texture" id=6]
-[ext_resource path="res://assets/icon/star_empty00.png" type="Texture" id=7]
-[ext_resource path="res://assets/icon/star_empty01.png" type="Texture" id=8]
-[ext_resource path="res://assets/icon/star_empty02.png" type="Texture" id=9]
-[ext_resource path="res://assets/icon/star_empty03.png" type="Texture" id=10]
-[ext_resource path="res://assets/icon/star_empty04.png" type="Texture" id=11]
-[ext_resource path="res://assets/icon/star_empty05.png" type="Texture" id=12]
-[ext_resource path="res://assets/icon/star_empty06.png" type="Texture" id=13]
-[ext_resource path="res://assets/icon/star_empty07.png" type="Texture" id=14]
-[ext_resource path="res://assets/icon/star_empty08.png" type="Texture" id=15]
-[ext_resource path="res://assets/icon/star_empty09.png" type="Texture" id=16]
-[ext_resource path="res://assets/icon/star_empty10.png" type="Texture" id=17]
-[ext_resource path="res://assets/icon/star_empty11.png" type="Texture" id=18]
-[ext_resource path="res://assets/icon/star_full00.png" type="Texture" id=19]
-[ext_resource path="res://assets/icon/star_full01.png" type="Texture" id=20]
-[ext_resource path="res://assets/icon/star_full02.png" type="Texture" id=21]
-[ext_resource path="res://assets/icon/star_full03.png" type="Texture" id=22]
-[ext_resource path="res://assets/icon/star_full04.png" type="Texture" id=23]
-[ext_resource path="res://assets/icon/star_full05.png" type="Texture" id=24]
-[ext_resource path="res://assets/icon/star_full06.png" type="Texture" id=25]
-[ext_resource path="res://assets/icon/star_full07.png" type="Texture" id=26]
-[ext_resource path="res://assets/icon/star_full08.png" type="Texture" id=27]
-[ext_resource path="res://assets/icon/star_full09.png" type="Texture" id=28]
-[ext_resource path="res://assets/icon/star_full10.png" type="Texture" id=29]
-[ext_resource path="res://assets/icon/star_full11.png" type="Texture" id=30]
-[ext_resource path="res://assets/icon/star_full.png" type="Texture" id=31]
-[ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture" id=32]
-[ext_resource path="res://assets/sprites/environments/diamond_trapped.png" type="Texture" id=33]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="DynamicFontData" id=34]
-[ext_resource path="res://assets/audio/gameplay/asteroids/zapsplat_multimedia_game_sound_tone_button_select_menu_sci_fi_003_40731.ogg" type="AudioStream" id=35]
-[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=36]
-[ext_resource path="res://assets/audio/gameplay/asteroids/tspt_deep_laser_blast_01_026.ogg" type="AudioStream" id=37]
-[ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=38]
-[ext_resource path="res://combat/traits/Conquerable.tscn" type="PackedScene" id=39]
-[ext_resource path="res://combat/traits/Waiter.tscn" type="PackedScene" id=40]
-[ext_resource path="res://assets/fonts/04b_19.ttf" type="DynamicFontData" id=41]
+[ext_resource type="Script" path="res://actors/environments/Rock.gd" id="1"]
+[ext_resource type="Script" path="res://addons/ECM/Entity.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://dxspwyydprxb1" path="res://addons/ECM/icons/Entity.png" id="3"]
+[ext_resource type="Script" path="res://addons/ECM/Component.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://boh3pf58gw6ig" path="res://addons/ECM/icons/Component.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://du0cbkpajkt2d" path="res://assets/icon/star_empty.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://7bfr5g5yp0l2" path="res://assets/icon/star_empty00.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://ddlabrtpawcoo" path="res://assets/icon/star_empty01.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://v0j17gat5aoa" path="res://assets/icon/star_empty02.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://bdpcxo3288pgq" path="res://assets/icon/star_empty03.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://dcxa508rbhyh8" path="res://assets/icon/star_empty04.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://cpn15f7b3axgw" path="res://assets/icon/star_empty05.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://ce6em0u5cxky0" path="res://assets/icon/star_empty06.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://cyj8pm1kacm7b" path="res://assets/icon/star_empty07.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://cvhrbhcmb3ymr" path="res://assets/icon/star_empty08.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://c0x41xbroredk" path="res://assets/icon/star_empty09.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://yi7wmvi0swwf" path="res://assets/icon/star_empty10.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://by8tpcqod06g0" path="res://assets/icon/star_empty11.png" id="18"]
+[ext_resource type="Texture2D" uid="uid://eyqm2diphhd4" path="res://assets/icon/star_full00.png" id="19"]
+[ext_resource type="Texture2D" uid="uid://b2f0egh14agvs" path="res://assets/icon/star_full01.png" id="20"]
+[ext_resource type="Texture2D" uid="uid://bo7f4sjb5prba" path="res://assets/icon/star_full02.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://dufr08i1rhceg" path="res://assets/icon/star_full03.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://ohjrwjm37fy8" path="res://assets/icon/star_full04.png" id="23"]
+[ext_resource type="Texture2D" uid="uid://xon4u2at0y2b" path="res://assets/icon/star_full05.png" id="24"]
+[ext_resource type="Texture2D" uid="uid://ddrhl0u5s0p6n" path="res://assets/icon/star_full06.png" id="25"]
+[ext_resource type="Texture2D" uid="uid://dv4x4mgsxnjg7" path="res://assets/icon/star_full07.png" id="26"]
+[ext_resource type="Texture2D" uid="uid://da1fu3n1xyna" path="res://assets/icon/star_full08.png" id="27"]
+[ext_resource type="Texture2D" uid="uid://bylnf3fbwuxfy" path="res://assets/icon/star_full09.png" id="28"]
+[ext_resource type="Texture2D" uid="uid://0mvn3tivbmrh" path="res://assets/icon/star_full10.png" id="29"]
+[ext_resource type="Texture2D" uid="uid://bounp6dm6pj6x" path="res://assets/icon/star_full11.png" id="30"]
+[ext_resource type="Texture2D" uid="uid://gp70x26ysfca" path="res://assets/icon/star_full.png" id="31"]
+[ext_resource type="Texture2D" uid="uid://bw57ikfd42dvu" path="res://assets/sprites/environments/wall_tile.png" id="32"]
+[ext_resource type="Texture2D" uid="uid://cr1q3eoyqo7wi" path="res://assets/sprites/environments/diamond_trapped.png" id="33"]
+[ext_resource type="FontFile" uid="uid://bsdjbpjy1umxj" path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" id="34"]
+[ext_resource type="AudioStream" uid="uid://6s8ndp6hdidh" path="res://assets/audio/gameplay/asteroids/zapsplat_multimedia_game_sound_tone_button_select_menu_sci_fi_003_40731.ogg" id="35"]
+[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" id="36"]
+[ext_resource type="AudioStream" uid="uid://ct73tc84sut85" path="res://assets/audio/gameplay/asteroids/tspt_deep_laser_blast_01_026.ogg" id="37"]
+[ext_resource type="PackedScene" path="res://combat/traits/Strategic.tscn" id="38"]
+[ext_resource type="PackedScene" path="res://combat/traits/Conquerable.tscn" id="39"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="40"]
+[ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="41"]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 60.0
@@ -78,8 +78,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.1, 0.3, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 20, 0 ), Vector2( -20, 0 ), Vector2( 0, 0 ) ]
 }
@@ -99,8 +99,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = false
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.27451 ) ]
 }
@@ -116,7 +116,7 @@ tracks/1/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 35 )
 } ],
-"times": PoolRealArray( 0 )
+"times": PackedFloat32Array( 0 )
 }
 
 [sub_resource type="Animation" id=7]
@@ -129,8 +129,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = false
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.27451 ) ]
 }
@@ -141,21 +141,21 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.05 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0.05 ),
+"transitions": PackedFloat32Array( 1 ),
 "values": [ {
 "args": [  ],
 "method": "become_breakable"
 } ]
 }
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="FontFile" id=8]
 size = 72
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 34 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="FontFile" id=9]
 size = 52
 font_data = ExtResource( 41 )
 
@@ -165,7 +165,7 @@ collision_mask = 1053
 mass = 100.0
 physics_material_override = SubResource( 1 )
 gravity_scale = 2.0
-contacts_reported = 1
+max_contacts_reported = 1
 contact_monitor = true
 angular_velocity = 0.3
 angular_damp = 0.0
@@ -189,7 +189,7 @@ __meta__ = {
 "_editor_icon": ExtResource( 5 )
 }
 
-[node name="Star" type="AnimatedSprite" parent="."]
+[node name="Star" type="AnimatedSprite2D" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.752941 )
 frames = SubResource( 2 )
@@ -197,13 +197,13 @@ animation = "shine"
 frame = 76
 playing = true
 
-[node name="Diamond" type="Sprite" parent="."]
+[node name="Diamond" type="Sprite2D" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.454902 )
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 33 )
 
-[node name="Prisoner" type="Sprite" parent="."]
+[node name="Prisoner" type="Sprite2D" parent="."]
 modulate = Color( 1, 1, 1, 0.454902 )
 scale = Vector2( 0.9, 0.9 )
 
@@ -285,11 +285,11 @@ modulate = Color( 0, 0, 0, 1 )
 [node name="CountdownWrapper" type="Node2D" parent="NoRotate"]
 
 [node name="Countdown" type="Label" parent="NoRotate/CountdownWrapper"]
-margin_left = -30.0
-margin_top = -44.0
-margin_right = 30.0
-margin_bottom = 45.0
-custom_fonts/font = SubResource( 8 )
+offset_left = -30.0
+offset_top = -44.0
+offset_right = 30.0
+offset_bottom = 45.0
+theme_override_fonts/font = SubResource( 8 )
 align = 1
 valign = 1
 __meta__ = {
@@ -300,11 +300,11 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="NoRotate/Monogram"]
 self_modulate = Color( 1, 1, 1, 0.196078 )
-margin_left = -101.0
-margin_top = -100.0
-margin_right = 100.0
-margin_bottom = 100.0
-custom_fonts/font = SubResource( 9 )
+offset_left = -101.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_fonts/font = SubResource( 9 )
 align = 1
 valign = 1
 

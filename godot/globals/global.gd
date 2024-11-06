@@ -21,7 +21,7 @@ const SUIT_COLORS = {
 	'mystery': Color('#7c6989')
 }
 
-var enable_analytics : bool = false setget _set_analytics
+var enable_analytics : bool = false: set = _set_analytics
 signal send_statistics
 
 func _set_analytics(new_value):
@@ -38,18 +38,18 @@ func _set_analytics(new_value):
 #######################################
 
 var array_joypad_preset = ["default", "minimal"]
-onready var joypad_preset
+@onready var joypad_preset
 
 var array_keyboard_preset = ["custom", "everything", "minimal"]
-onready var keyboard_preset
+@onready var keyboard_preset
 
 var array_keyboard_device = ["kb1", "kb2"]
-onready var keyboard_device 
+@onready var keyboard_device 
 var array_joypad_device = ["joy1", "joy2", "joy3", "joy4"]
-onready var joypad_device 
+@onready var joypad_device 
 
 var array_custom_device = ["custom1"]
-onready var custom_device 
+@onready var custom_device 
 
 var remotesServer
 
@@ -60,7 +60,7 @@ var ui_downPressed  = false
 	
 
 var array_time_scale = ["0.5", "0.6", "0.7", "0.8", "0.9", "1.0"] 
-var time_scale = "1.0" setget _set_time_scale
+var time_scale = "1.0": set = _set_time_scale
 
 func _set_time_scale(new_value):
 	time_scale = new_value
@@ -74,23 +74,24 @@ var available_languages = {
 	"italiano": "it",
 	"euskara": "eu",
 	"français": "fr",
-	"deutsch": "de"
+	"deutsch": "de",
+	"alien": "pr"
 	}
-onready var language: String setget _set_language, _get_language
-var array_language: Array = ["english", "italiano", "español", "euskara", "français", "deutsch"]
-var full_screen = true setget _set_full_screen
+@onready var language: String: get = _get_language, set = _set_language
+var array_language: Array = ["english", "alien", "italiano", "español", "euskara", "français", "deutsch"]
+var full_screen = true: set = _set_full_screen
 	
 func _set_full_screen(value: bool):
 	full_screen = value
-	OS.window_fullscreen = full_screen
-	OS.move_window_to_foreground()
+	get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (full_screen) else Window.MODE_WINDOWED
+	get_window().move_to_foreground()
 	if full_screen:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 	
-onready var graphics_quality: String = "HD" setget _set_graphics_quality
+@onready var graphics_quality: String = "HD": set = _set_graphics_quality
 var array_graphics_quality: Array = ["minimum", "low", "medium", "maximum", "HD"]
 
 func _set_graphics_quality(value: String):
@@ -104,16 +105,19 @@ func _set_graphics_quality(value: String):
 		"maximum":
 			set_stretch(Vector2(1280,720), 1)
 		"HD":
-			set_stretch(Vector2(1280,720), 1, SceneTree.STRETCH_MODE_2D)
-func set_stretch(resolution:Vector2, stretch:float, stretch_mode := SceneTree.STRETCH_MODE_VIEWPORT):
-	get_tree().set_screen_stretch(stretch_mode,  SceneTree.STRETCH_ASPECT_KEEP, resolution, stretch)
+			pass
+			# set_stretch(Vector2(1280,720), 1, SceneTree.STRETCH_MODE_2D)
+func set_stretch(resolution:Vector2, stretch:float, stretch_mode = null):#SceneTree.STRETCH_MODE_VIEWPORT):
+	return
+	# TODO: https://www.reddit.com/r/godot/comments/14h4iir/how_can_i_set_the_stretch_mode_and_aspect_in/
+	# get_tree().set_screen_stretch(stretch_mode,  SceneTree.STRETCH_ASPECT_KEEP, resolution, stretch)
 	
 func get_graphics_scale() -> Vector2:
 	var viewport_size := get_tree().get_root().get_size()
-	var world_size := Vector2(ProjectSettings.get_setting("display/window/size/width"), ProjectSettings.get_setting("display/window/size/height"))
-	return viewport_size/world_size
+	var world_size := Vector2(ProjectSettings.get_setting("display/window/size/viewport_width"), ProjectSettings.get_setting("display/window/size/viewport_height"))
+	return Vector2(viewport_size)/world_size
 	
-var unlock_mode = "custom" setget _set_unlock_mode
+var unlock_mode = "custom": set = _set_unlock_mode
 var array_unlock_mode = ["custom", "demo", "core", "unlocked"]
 
 func _set_unlock_mode(value: String):
@@ -136,12 +140,12 @@ func _set_unlock_mode(value: String):
 
 func _set_language(value:String):
 	language = value
-	TranslationServer.set_locale(available_languages.get(language, "en"))
+	TranslationServer.set_locale(global.available_languages.get(value, "english"))
 
 func _get_language():
 	return language
 
-var version = "0.14.4a5" setget set_version
+var version = "1.0.0-p1": set = set_version
 var first_time = true
 
 func set_version(value):
@@ -155,7 +159,7 @@ const max_win = 10
 
 var campaign_win = win
 
-var custom_win:int = win setget set_custom_win
+var custom_win:int = win: set = set_custom_win
 
 func set_custom_win(value):
 	custom_win = value
@@ -169,7 +173,7 @@ var laser = "off"
 var level
 var array_level
 
-var audio_on : bool setget _audio_on
+var audio_on : bool: set = _audio_on
 
 var demo : bool = false
 # playtest mode, fixed selection player
@@ -179,7 +183,7 @@ func _audio_on(new_value):
 	audio_on = new_value
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), audio_on)
 
-var master_volume : int = 50 setget _set_master_volume
+var master_volume : int = 50: set = _set_master_volume
 var min_master_volume : int = 0
 var max_master_volume: int = 100
 
@@ -187,27 +191,27 @@ var rumbling: bool = true
 
 func _set_master_volume(new_value): 
 	master_volume = new_value
-	var db_volume = linear2db(float(new_value)/100)
+	var db_volume = linear_to_db(float(new_value)/100)
 	var bus_name = "Master"
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
 
-var music_volume : int = 50 setget _set_music_volume
+var music_volume : int = 50: set = _set_music_volume
 var min_music_volume : int = 0
 var max_music_volume: int = 100
 
 func _set_music_volume(new_value): 
 	music_volume = new_value
-	var db_volume = linear2db(float(new_value)/100)
+	var db_volume = linear_to_db(float(new_value)/100)
 	var bus_name = "Music"
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
 	
-var sfx_volume : int = 50 setget _set_sfx_volume
+var sfx_volume : int = 50: set = _set_sfx_volume
 var min_sfx_volume : int = 0
 var max_sfx_volume: int = 100
 
 func _set_sfx_volume(new_value): 
 	sfx_volume = new_value
-	var db_volume = linear2db(float(sfx_volume)/100)
+	var db_volume = linear_to_db(float(sfx_volume)/100)
 	var bus_name = "SFX"
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), db_volume)
 
@@ -216,7 +220,7 @@ func _set_sfx_volume(new_value):
 var debug : bool = false
 
 # Soundtrack
-onready var bgm = Soundtrack
+@onready var bgm = Soundtrack
 # Controls
 enum Controls {KB1, KB2, JOY1, JOY2, JOY3, JOY4,RM1,RM2,RM3,RM4, NO, CPU}
 
@@ -230,9 +234,9 @@ const CONTROLSMAP = {
 	Controls.JOY3 : "joy3",
 	Controls.JOY4 : "joy4",
 	Controls.RM1 : "rm1",
-	Controls.RM1 : "rm2",
-	Controls.RM1 : "rm3",
-	Controls.RM1 : "rm4",
+	Controls.RM2 : "rm2",
+	Controls.RM3 : "rm3",
+	Controls.RM4 : "rm4",
 }
 
 const CONTROLSMAP_TO_KEY = {
@@ -261,7 +265,7 @@ var colors = {
 }
 
 var scores
-var campaign_mode : bool = false setget set_campaign_mode
+var campaign_mode : bool = false: set = set_campaign_mode
 
 func set_campaign_mode(value):
 	campaign_mode = value
@@ -283,10 +287,10 @@ func _input(event):
 		
 	if event.is_action_pressed("fullscreen"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-		OS.window_fullscreen = not OS.window_fullscreen
+		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (not ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))) else Window.MODE_WINDOWED
 	
 	if demo_playtest and event.is_action_pressed("force_reset"):
-		get_tree().change_scene("res://local_multiplayer/LocalMultiplayer.tscn")
+		get_tree().change_scene_to_file("res://local_multiplayer/LocalMultiplayer.tscn")
 		get_tree().paused = false
 		reset_counts()
 		
@@ -301,11 +305,11 @@ func _ready():
 	print("Starting game...")
 	
 	
-	pause_mode = Node.PAUSE_MODE_PROCESS
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	add_to_group("persist")
 	
-	remotesServer = preload("res://Server.tscn").instance()
-	remotesServer.connect("remote_command_received",self,"_onRemoteCommand")	
+	remotesServer = preload("res://Server.tscn").instantiate()
+	remotesServer.connect("remote_command_received", Callable(self, "_onRemoteCommand"))	
 	
 	add_child(remotesServer)
 		
@@ -338,7 +342,7 @@ func getRemotesServer():
 func handleEvent(pressed,strength, event):
 	var ev = InputEventAction.new()
 	ev.action = event
-	ev.pressed = pressed
+	ev.button_pressed = pressed
 	ev.strength = abs(strength)
 	Input.parse_input_event(ev)
 
@@ -346,9 +350,9 @@ func handleEventAccept(cmd, event):
 	var ev = InputEventAction.new()
 	ev.action = event
 	if cmd == "1" or cmd == "2":
-		ev.pressed = true
+		ev.button_pressed = true
 	elif cmd == "0" or cmd == "3":
-		ev.pressed = false
+		ev.button_pressed = false
 	# Feedback.
 	Input.parse_input_event(ev)
 
@@ -356,16 +360,16 @@ func handleEventFire(cmd, event):
 	var ev = InputEventAction.new()
 	ev.action = event
 	if cmd == "1" or cmd == "2":
-		ev.pressed = true
+		ev.button_pressed = true
 	elif cmd == "0" or cmd == "3":
-		ev.pressed = false
+		ev.button_pressed = false
 	# Feedback.
 	Input.parse_input_event(ev)
 		
 func _onRemoteCommand(id,strength,button):
 	#print("Received data: %s" % cmds)
 	var controlsString = "rm" + str(id)
-	var data = str2var(strength)
+	var data = str_to_var(strength)
 	if data[0] >= 0:
 		handleEvent(true,data[0],controlsString + "_right")
 		handleEvent(false,data[0],controlsString + "_left")
@@ -379,77 +383,50 @@ func _onRemoteCommand(id,strength,button):
 	else:
 		handleEvent(false,data[1],controlsString + "_down")
 		handleEvent(true,data[1],controlsString + "_up")
-
-#		if data[0] >= 0.5:
-#			if !ui_rightPressed:
-#				handleEvent(true,data[0], "ui_right")
-#				ui_rightPressed = true
-#			ui_leftPressed = false
-#
-#		elif data[0] <= 0.5:
-#			if !ui_leftPressed:
-#				handleEvent(true,data[0],"ui_left")
-#				ui_leftPressed = true
-#			ui_rightPressed = false
-#
-#		if data[1] >= 0.5:
-#			if !ui_downPressed:
-#				handleEvent(true,data[1], "ui_down")
-#				ui_downPressed = true
-#			ui_upPressed = false
-#
-#		elif data[1] <= 0.5:
-#			if !ui_upPressed:
-#				handleEvent(true,data[1], "ui_up")		
-#				ui_upPressed = true
-#			ui_downPressed = false
-			
-		
 	handleEventFire(button,controlsString + "_fire")
 	handleEventAccept(button,"ui_accept")
-	 
+	
 func create_dir(path: String):
-	var dir = Directory.new()
+	var dir = DirAccess.open(path)
 	dir.make_dir_recursive(path)
 
 
-func write_into_file(filepath: String, data: String, mode := File.READ_WRITE):
+func write_into_file(filepath: String, data: String, mode := FileAccess.READ_WRITE):
 	#open the log file and go to the end
-	var file = File.new()
-	var error = file.open(filepath, mode)
-	if error == ERR_FILE_NOT_FOUND:
+	
+	var file = FileAccess.open(filepath, mode)
+	if not file:
 		create_dir(filepath.get_base_dir())
-		error = file.open(filepath, File.WRITE_READ)
-	if error == OK:
+		file = FileAccess.open(filepath, FileAccess.WRITE_READ)
+	if file:
 		file.seek_end()
 		file.store_line(data)
 		file.flush() # WARNING writing to disk too often could hurt performance
 		print(file.get_path_absolute())
 		file.close()
 	else: 
-		print("FILE WITH ERROR {error_code}".format({"error_code": error }))
+		print("FILE WITH ERROR {error_code}".format({"error_code": FileAccess.get_open_error() }))
 	
 func read_file(path: String) -> String:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
-	var file = File.new()
-	if not file.file_exists(path):
-		print("The save file does not exist.")
+	
+	if not FileAccess.file_exists(path):
+		print("The file {filepath} does not exist.".format({"filepath":path}))
 		return ""
-	file.open(path, File.READ)
+	var file = FileAccess.open(path, FileAccess.READ)
 	print("We are going to load from this JSON: ", file.get_path_absolute())
 	# parse file data - convert the JSON back to a dictionary
 	var data = ""
-	data = file.get_as_text()
+	data = file.get_as_text().strip_edges().strip_escapes()
 	file.close()
 	return data
 
 func read_file_by_line(path: String) -> Array:
 	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
-	var file = File.new()
-	if not file.file_exists(path):
+	if not FileAccess.file_exists(path):
 		print("The file does not exist.")
 		return []
-	file.open(path, File.READ)
+	var file = FileAccess.open(path, FileAccess.READ)
 	print("We are going to load from this JSON: ", file.get_path_absolute())
 	# parse file data - convert the JSON back to a dictionary
 	var data = []
@@ -458,7 +435,9 @@ func read_file_by_line(path: String) -> Array:
 		var content = file.get_line()
 		if content == "":
 			continue
-		data.append(parse_json(content))
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(content)
+		data.append(test_json_conv.get_data())
 		num_lines += 1
 	print("Read {lines}".format({"lines":num_lines}))
 	file.close()
@@ -468,7 +447,7 @@ func install():
 	installation_id = read_file("user://uuid").strip_edges()
 	if not installation_id:
 		installation_id=UUID.v4()
-		write_into_file("user://uuid", installation_id, File.WRITE_READ)
+		write_into_file("user://uuid", installation_id, FileAccess.WRITE_READ)
 		Events.emit_signal("analytics_event", {"id": installation_id}, "installation")
 		
 var execution_uuid : String
@@ -480,14 +459,14 @@ func start_execution():
 	
 func end_execution():
 	# trigger quit
-	get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 	
 func _notification(what):
 	# actual quitting
-	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		print("Thanks for playing")
 		Events.emit_signal('execution_ended')
-		yield(get_tree().create_timer(1), "timeout")
+		await get_tree().create_timer(1).timeout
 		print("Closing everything")
 		get_tree().quit() # default behavior
 
@@ -529,11 +508,10 @@ func dir_contents(path:String, starts_with:String = "", extension:String = ".tsc
 	@param path:String given the path 
 	@return a list of filename
 	"""
-		
-	var dir = Directory.new()
 	var list_files = []
-	if dir.open(path) == OK:
-		dir.list_dir_begin()
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		var file_name = dir.get_next()
 		while (file_name != ""):
 			if dir.current_is_dir():
@@ -558,16 +536,16 @@ func mod(a,b):
 		return ret
 
 func shake_node_backwards(node, tween):
-	var actual_d_pos = node.rect_position
-	tween.interpolate_method(node, "set_position", node.rect_position, node.rect_position - Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)
-	tween.interpolate_method(node, "set_position", node.rect_position - Vector2(5, 0), actual_d_pos, 0.05, Tween.TRANS_BACK, Tween.EASE_OUT, 0.05)
+	var actual_d_pos = node.position
+	tween.interpolate_method(node, "set_position", node.position, node.position - Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)
+	tween.interpolate_method(node, "set_position", node.position - Vector2(5, 0), actual_d_pos, 0.05, Tween.TRANS_BACK, Tween.EASE_OUT, 0.05)
 	tween.start()
 	
 
 func shake_node(node, tween):
-	var actual_d_pos = node.rect_position
-	tween.interpolate_method(node, "set_position", node.rect_position, node.rect_position + Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)
-	tween.interpolate_method(node, "set_position", node.rect_position + Vector2(5, 0), actual_d_pos, 0.05, Tween.TRANS_BACK, Tween.EASE_OUT, 0.05)
+	var actual_d_pos = node.position
+	tween.interpolate_method(node, "set_position", node.position, node.position + Vector2(5, 0), 0.05, Tween.TRANS_BACK, Tween.EASE_OUT)
+	tween.interpolate_method(node, "set_position", node.position + Vector2(5, 0), actual_d_pos, 0.05, Tween.TRANS_BACK, Tween.EASE_OUT, 0.05)
 	tween.start()
 	
 	
@@ -621,7 +599,7 @@ func invert_map(map:Dictionary):
 	return ret
 
 
-var glow_enable = true setget _set_glow
+var glow_enable = true: set = _set_glow
 
 func _set_glow(value):
 	glow_enable = value
@@ -661,12 +639,12 @@ var game_started_ms : int
 
 func new_game(players: Array, data := {}) -> TheGame:
 	safe_destroy_game()
-	game_started_ms = OS.get_ticks_msec()
+	game_started_ms = Time.get_ticks_msec()
 	the_game = TheGame.new()
 	game_number += 1
 	the_game.set_players(players)
 	var deck := Deck.new()
-	if not data.empty():
+	if not data.is_empty():
 		the_game.set_from_dictionary(data)
 		deck.set_from_dictionary(data.get("deck"))
 	else:
@@ -682,7 +660,7 @@ func new_game(players: Array, data := {}) -> TheGame:
 var match_started_ms: int
 func new_match() -> TheMatch:
 	safe_destroy_match()
-	match_started_ms = OS.get_ticks_msec()
+	match_started_ms = Time.get_ticks_msec()
 	the_match = TheMatch.new()
 	match_number_of_game += 1
 	match_number_of_session += 1
@@ -694,13 +672,13 @@ func new_match() -> TheMatch:
 var session_started_ms : int
 func new_session(existing_data := {}) -> TheSession:
 	safe_destroy_session()
-	session_started_ms = OS.get_ticks_msec()
+	session_started_ms = Time.get_ticks_msec()
 	session = TheSession.new()
 	session_number_of_game += 1
 	
 	# whenever a new session is created, InfoPlayer stats should be cleared. 
 	# Unless we are loading a existing session
-	if existing_data.empty():
+	if existing_data.is_empty():
 		the_game.reset_players()
 	
 	var deck: Deck = the_game.get_deck()
@@ -790,12 +768,12 @@ func get_resources(base_path: String) -> Dictionary:
 	var ret := {}
 	var resources = global.dir_contents(base_path, "", ".tres")
 	for filename in resources:
-		var this_res = load(base_path.plus_file(filename))
+		var this_res = load(base_path.path_join(filename))
 		var res_id = this_res.get_id()
 		ret[res_id] = this_res
 	return ret
 
-onready var species_resources: Dictionary = get_resources(SPECIES_PATH)
+@onready var species_resources: Dictionary = get_resources(SPECIES_PATH)
 func get_species(species_id: String):
 	return species_resources[species_id]
 
@@ -807,7 +785,7 @@ func get_ordered_species() -> Array:
 	var unlocked_species = TheUnlocker.get_unlocked_list("species")
 	for species_id in unlocked_species:
 		ordered_species.append(global.get_species(species_id))
-	ordered_species.sort_custom(self, 'compare_by_species_id')
+	ordered_species.sort_custom(Callable(self, 'compare_by_species_id'))
 	return ordered_species
 
 func compare_by_species_id(a: Species, b: Species):

@@ -3,19 +3,19 @@ extends Node2D
 class_name Pentagoal
 
 
-onready var glow_texture = preload('res://assets/sprites/environments/wall_tile.png')
+@onready var glow_texture = preload('res://assets/sprites/environments/wall_tile.png')
 
-export var rings : int = 5 setget set_rings
-export var ring_width : float = 50 setget set_ring_width
-export var core_radius : float = 100 setget set_core_radius
+@export var rings : int = 5: set = set_rings
+@export var ring_width : float = 50: set = set_ring_width
+@export var core_radius : float = 100: set = set_core_radius
 
-export var goal_owner : NodePath
+@export var goal_owner : NodePath
 var player
 
-onready var current_ring : int = rings-1
+@onready var current_ring : int = rings-1
 
-onready var field = $Field
-onready var gshape = $Field/GRegularPolygon
+@onready var field = $Field
+@onready var gshape = $Field/GRegularPolygon
 
 var nav_enabled := false
 
@@ -35,10 +35,10 @@ func update_label_size():
 	$LabelWrapper.scale = Vector2(1,1)*scale
 
 func _ready():
-	Events.connect('holdable_obtained', self, '_on_holdable_obtained')
+	Events.connect('holdable_obtained', Callable(self, '_on_holdable_obtained'))
 	
 	# connect feedback signal 
-	field.connect("entered", self, "_on_Field_entered")
+	field.connect("entered", Callable(self, "_on_Field_entered"))
 	
 	for i in range(rings):
 		var shape = GRegularPolygon.new()
@@ -58,7 +58,7 @@ func _ready():
 	
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
-		yield(player_spawner, "player_assigned")
+		await player_spawner.player_assigned
 		set_player(player_spawner.get_player())
 		update_label_size()
 		
@@ -106,7 +106,7 @@ func do_goal(player, pos):
 	emit_signal("goal_done", player, self, pos)
 	
 	if current_ring < 0:
-		yield(get_tree().create_timer(0.1), "timeout")
+		await get_tree().create_timer(0.1).timeout
 		field.queue_free()
 		
 	Events.emit_signal("navigation_zone_changed", self)
@@ -123,7 +123,7 @@ func get_player():
 
 func get_polygon():
 	if not nav_enabled or not has_node('Field'):
-		return PoolVector2Array([])
+		return PackedVector2Array([])
 	return $Field.get_polygon()
 
 func _on_holdable_obtained(holdable, ship):

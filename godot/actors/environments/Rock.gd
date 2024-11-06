@@ -6,27 +6,27 @@ var DiamondScene = load('res://combat/collectables/Diamond.tscn')
 var BigDiamondScene = load('res://combat/collectables/BigDiamond.tscn')
 var StarScene = load('res://combat/collectables/Star.tscn')
 
-export var order : int = 4
-export var last_order : int = 2
-export var divisions : int = 4
-export var base_size : float = 50.0
-export var spawn_diamonds : bool = true
-export var contains_star : bool = false
-export var self_destruct : bool = false
-export var self_destruct_position = 'center'
-export var lifetime = 6
-export var deadly : bool = true
-export var ice : bool = false
-export var smallest_break : bool = true
-export var conquerable : bool = false
-export var indestructible = false
-export var in_camera = true
-export var density := 0.001
+@export var order : int = 4
+@export var last_order : int = 2
+@export var divisions : int = 4
+@export var base_size : float = 50.0
+@export var spawn_diamonds : bool = true
+@export var contains_star : bool = false
+@export var self_destruct : bool = false
+@export var self_destruct_position = 'center'
+@export var lifetime = 6
+@export var deadly : bool = true
+@export var ice : bool = false
+@export var smallest_break : bool = true
+@export var conquerable : bool = false
+@export var indestructible = false
+@export var in_camera = true
+@export var density := 0.001
 
 var species : Resource
 var owner_ship : Ship
 
-var prisoner setget set_prisoner
+var prisoner : set = set_prisoner
 
 const colors = {
 	'deadly': Color(0.9, 0, 0.35),
@@ -36,7 +36,7 @@ const colors = {
 const spikes_texture = preload("res://assets/patterns/wall/spikes_some.png")
 
 var gshape
-var breakable = false setget set_breakable
+var breakable = false: set = set_breakable
 
 signal request_spawn
 signal bump
@@ -64,14 +64,14 @@ func _ready():
 	$Line2D.points = gshape.to_closed_PoolVector2Array()
 	var epoints = gshape.to_PoolVector2Array()
 	var ipoints = gshape.to_PoolVector2Array_offset(Vector2(0,0), 0.7)
-	$LightLine2D.points = PoolVector2Array([ipoints[0],ipoints[2]])
-	$LightLine2D2.points = PoolVector2Array([ipoints[2],ipoints[4]])
-	$LightLine2D3.points = PoolVector2Array([ipoints[4],ipoints[6]])
-	$LightLine2D4.points = PoolVector2Array([ipoints[6],ipoints[0]])
-	$LightLine2DE.points = PoolVector2Array([epoints[0], ipoints[0],epoints[1]])
-	$LightLine2DE2.points = PoolVector2Array([epoints[2], ipoints[2],epoints[3]])
-	$LightLine2DE3.points = PoolVector2Array([epoints[4], ipoints[4],epoints[5]])
-	$LightLine2DE4.points = PoolVector2Array([epoints[6], ipoints[6],epoints[7]])
+	$LightLine2D.points = PackedVector2Array([ipoints[0],ipoints[2]])
+	$LightLine2D2.points = PackedVector2Array([ipoints[2],ipoints[4]])
+	$LightLine2D3.points = PackedVector2Array([ipoints[4],ipoints[6]])
+	$LightLine2D4.points = PackedVector2Array([ipoints[6],ipoints[0]])
+	$LightLine2DE.points = PackedVector2Array([epoints[0], ipoints[0],epoints[1]])
+	$LightLine2DE2.points = PackedVector2Array([epoints[2], ipoints[2],epoints[3]])
+	$LightLine2DE3.points = PackedVector2Array([epoints[4], ipoints[4],epoints[5]])
+	$LightLine2DE4.points = PackedVector2Array([epoints[6], ipoints[6],epoints[7]])
 	$CollisionShape2D.shape = gshape.to_Shape2D()
 	$Area2D/CollisionShape2D.shape = gshape.to_Shape2D()
 	rotation_degrees = 45
@@ -107,15 +107,15 @@ func try_break():
 	if prisoner:
 		if prisoner is Ship:
 			prisoner.rotation_degrees += rotation_degrees-45
-		prisoner.linear_velocity = prisoner.linear_velocity.rotated(deg2rad(rotation_degrees-45))
+		prisoner.linear_velocity = prisoner.linear_velocity.rotated(deg_to_rad(rotation_degrees-45))
 		get_parent().get_parent().call_deferred('add_child', prisoner) # ugly: Battlefield
-		yield(prisoner, 'tree_entered')
+		await prisoner.tree_entered
 		# temporary disable collisions to avoid touching the rock
 		prisoner.get_node('CollisionShape2D').disabled = true
 		#if prisoner is Bomb:
 		#	# temporary disable collisions with fields because of freeze rays
 		#	prisoner.call_deferred('set_collision_mask_bit', 7, false)
-		yield(get_tree().create_timer(0.1), "timeout")
+		await get_tree().create_timer(0.1).timeout
 		prisoner.get_node('CollisionShape2D').disabled = false
 		#if prisoner is Bomb:
 		#	yield(get_tree().create_timer(0.15), "timeout")
@@ -138,18 +138,18 @@ func try_break():
 			child = new_child_rock(i)
 		elif order == last_order+1:
 			if spawn_diamonds and randf() < 0.025:
-				child = BigDiamondScene.instance()
+				child = BigDiamondScene.instantiate()
 				child.appear = false
 			else:
 				child = new_child_rock(i)
 		else: # order <= last_order
 			if not spawn_diamonds:
 				if contains_star and i == star_index:
-					child = StarScene.instance()
+					child = StarScene.instantiate()
 				else:
 					child = new_child_rock(i)
 			else:
-				child = DiamondScene.instance()
+				child = DiamondScene.instantiate()
 				child.appear = false
 				
 		if 'contains_star' in child and contains_star and i == star_index:
@@ -175,7 +175,7 @@ func try_break():
 		emit_signal('request_spawn', child)
 		
 func new_child_rock(index):
-	var child = RockScene.instance()
+	var child = RockScene.instantiate()
 	child.density = density
 	child.order = order - 1
 	child.spawn_diamonds = spawn_diamonds
@@ -200,7 +200,7 @@ func become_breakable():
 	if not indestructible:
 		self.breakable = true
 	
-onready var countdown = $NoRotate/CountdownWrapper/Countdown
+@onready var countdown = $NoRotate/CountdownWrapper/Countdown
 
 func _process(_delta):
 	$NoRotate.rotation = -rotation
@@ -208,12 +208,12 @@ func _process(_delta):
 func start():
 	if self_destruct:
 		if not $SelfDestructTimer.is_inside_tree():
-			yield($SelfDestructTimer, 'tree_entered')
+			await $SelfDestructTimer.tree_entered
 			
 		$SelfDestructTimer.start(randf())
 		
 		while lifetime > 0:
-			yield($SelfDestructTimer, 'timeout')
+			await $SelfDestructTimer.timeout
 			decrease_lifetime()
 			$SelfDestructTimer.start(1)
 		

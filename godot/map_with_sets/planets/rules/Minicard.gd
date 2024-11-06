@@ -1,20 +1,20 @@
-extends Sprite
+extends Sprite2D
 
-export var content : Resource setget set_content # Might be Minigame.
-var status: String = "locked" setget set_status
-var selected : bool = false setget set_select
+@export var content : Resource: set = set_content
+var status: String = "locked": set = set_status
+var selected : bool = false: set = set_select
 signal unlocked
 
 func set_select(v):
 	selected = v
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 	$Select.visible = selected
 	
 func set_content(v):
 	content = v
 	if not is_inside_tree():
-		yield(self, "ready")
+		await self.ready
 		
 	if content is Minigame:
 		texture = content.get_icon()
@@ -24,7 +24,7 @@ func set_content(v):
 
 func unlock():
 	$AnimationPlayer.play("unlock")
-	yield($AnimationPlayer, "animation_finished")
+	await $AnimationPlayer.animation_finished
 	emit_signal("unlocked")
 	
 func set_status(v):

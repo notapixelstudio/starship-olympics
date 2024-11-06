@@ -1,114 +1,121 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=12 format=3 uid="uid://dhifkys52grfm"]
 
-[ext_resource path="res://ui/minigame_list/DeckListItem.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/cards/card.png" type="Texture" id=2]
-[ext_resource path="res://assets/lock_generic.png" type="Texture" id=3]
-[ext_resource path="res://map/draft/DraftCardGraphicNode.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/shuffle.png" type="Texture" id=5]
-[ext_resource path="res://assets/arrow.png" type="Texture" id=6]
-[ext_resource path="res://ui/minigame_list/WorldButton.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="DynamicFontData" id=8]
-[ext_resource path="res://assets/icon/minicards/star.png" type="Texture" id=9]
+[ext_resource type="Script" path="res://ui/minigame_list/DeckListItem.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c6nom5xnpss1o" path="res://assets/sprites/cards/card.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bummcvqb14wv2" path="res://assets/lock_generic.png" id="3"]
+[ext_resource type="PackedScene" path="res://map/draft/DraftCardGraphicNode.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://ccuqf4ith0tnj" path="res://assets/shuffle.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://c15twfdbmm5oh" path="res://assets/arrow.png" id="6"]
+[ext_resource type="PackedScene" path="res://ui/minigame_list/WorldButton.tscn" id="7"]
+[ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="8"]
+[ext_resource type="Texture2D" uid="uid://glxoo30rpi68" path="res://assets/icon/minicards/star.png" id="9"]
 
-[sub_resource type="DynamicFont" id=2]
-size = 72
-outline_size = 6
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 8 )
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("8"), ExtResource("8")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="DynamicFont" id=1]
-size = 72
-font_data = ExtResource( 8 )
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("8"), ExtResource("8")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
 [node name="DeckListItem" type="ColorRect"]
+custom_minimum_size = Vector2(0, 170)
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 0, 170 )
 size_flags_horizontal = 3
-color = Color( 0, 0, 0, 0.235294 )
-script = ExtResource( 1 )
-CardScene = ExtResource( 4 )
-card_texture = ExtResource( 2 )
-arrow_texture = ExtResource( 6 )
-shuffle_texture = ExtResource( 5 )
+color = Color(0, 0, 0, 0.235294)
+script = ExtResource("1")
+CardScene = ExtResource("4")
+card_texture = ExtResource("2")
+arrow_texture = ExtResource("6")
+shuffle_texture = ExtResource("5")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 180.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 0, 170 )
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 64.0
 size_flags_vertical = 3
-custom_constants/separation = 10
+theme_override_constants/separation = 10
 
-[node name="Button" parent="HBoxContainer" instance=ExtResource( 7 )]
+[node name="Button" parent="HBoxContainer" instance=ExtResource("7")]
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
 unique_name_in_owner = true
-margin_left = 360.0
-margin_right = 360.0
-margin_bottom = 170.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Lock" type="Sprite" parent="."]
+[node name="Lock" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 visible = false
-position = Vector2( 14.2705, 2.37842 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 3 )
+position = Vector2(14.2705, 2.37842)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3")
 
 [node name="New" type="Node2D" parent="."]
 unique_name_in_owner = true
 visible = false
-position = Vector2( 40, 210 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2(40, 210)
+scale = Vector2(0.5, 0.5)
 
 [node name="NewLabelShadow" type="Label" parent="New"]
 unique_name_in_owner = true
-modulate = Color( 0, 0, 0, 1 )
-margin_left = -898.0
-margin_top = -578.0
-margin_right = 902.0
-margin_bottom = -264.0
-custom_fonts/font = SubResource( 2 )
+modulate = Color(0, 0, 0, 1)
+offset_left = -898.0
+offset_top = -578.0
+offset_right = 902.0
+offset_bottom = -264.0
+theme_override_fonts/font = SubResource("2")
 text = "NEW!"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Sprite" type="Sprite" parent="New/NewLabelShadow"]
-position = Vector2( 775, 156 )
-scale = Vector2( 1.3, 1.3 )
-texture = ExtResource( 9 )
+[node name="Sprite2D" type="Sprite2D" parent="New/NewLabelShadow"]
+position = Vector2(775, 156)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("9")
 
-[node name="Sprite2" type="Sprite" parent="New/NewLabelShadow"]
-position = Vector2( 1023, 156 )
-scale = Vector2( 1.3, 1.3 )
-texture = ExtResource( 9 )
+[node name="Sprite2" type="Sprite2D" parent="New/NewLabelShadow"]
+position = Vector2(1023, 156)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("9")
 
 [node name="NewLabel" type="Label" parent="New"]
 unique_name_in_owner = true
-modulate = Color( 1.2, 1.2, 1.2, 1 )
-self_modulate = Color( 1, 0.870588, 0.372549, 1 )
-margin_left = -900.0
-margin_top = -580.0
-margin_right = 900.0
-margin_bottom = -266.0
-custom_fonts/font = SubResource( 1 )
+modulate = Color(1.2, 1.2, 1.2, 1)
+self_modulate = Color(1, 0.870588, 0.372549, 1)
+offset_left = -900.0
+offset_top = -580.0
+offset_right = 900.0
+offset_bottom = -266.0
+theme_override_fonts/font = SubResource("1")
 text = "NEW!"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Sprite" type="Sprite" parent="New/NewLabel"]
-position = Vector2( 776, 157 )
-texture = ExtResource( 9 )
+[node name="Sprite2D" type="Sprite2D" parent="New/NewLabel"]
+position = Vector2(776, 157)
+texture = ExtResource("9")
 
-[node name="Sprite2" type="Sprite" parent="New/NewLabel"]
-position = Vector2( 1024, 157 )
-texture = ExtResource( 9 )
+[node name="Sprite2" type="Sprite2D" parent="New/NewLabel"]
+position = Vector2(1024, 157)
+texture = ExtResource("9")
 
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_Button_pressed"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/sprites/environments/grid.png" type="Texture" id=1]
-[ext_resource path="res://combat/Grid.shader" type="Shader" id=2]
+[ext_resource path="res://assets/sprites/environments/grid.png" type="Texture2D" id=1]
+[ext_resource path="res://combat/Grid.gdshader" type="Shader" id=2]
 [ext_resource path="res://combat/Grid.gd" type="Script" id=3]
-[ext_resource path="res://assets/sprites/10x10_square.png" type="Texture" id=4]
-[ext_resource path="res://assets/shaders/Clock.shader" type="Shader" id=5]
+[ext_resource path="res://assets/sprites/10x10_square.png" type="Texture2D" id=4]
+[ext_resource path="res://assets/shaders/Clock.gdshader" type="Shader" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 5 )
@@ -29,7 +29,7 @@ position = Vector2( 0, 32 )
 z_index = -20
 z_as_relative = false
 texture = ExtResource( 4 )
-polygon = PoolVector2Array( -1000, -982, 1000, -982, 1000, 1018, -1000, 1018 )
+polygon = PackedVector2Array( -1000, -982, 1000, -982, 1000, 1018, -1000, 1018 )
 script = ExtResource( 3 )
 
 [node name="Polygon" type="Polygon2D" parent="."]
@@ -37,4 +37,4 @@ self_modulate = Color( 1, 1, 1, 0.701961 )
 material = SubResource( 2 )
 texture = ExtResource( 1 )
 texture_scale = Vector2( 0.5, 0.5 )
-polygon = PoolVector2Array( -1000, 1000, -1000, -1000, 1000, -1000, 1000, 1000 )
+polygon = PackedVector2Array( -1000, 1000, -1000, -1000, 1000, -1000, 1000, 1000 )

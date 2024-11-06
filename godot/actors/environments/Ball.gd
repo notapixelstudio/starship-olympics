@@ -1,11 +1,11 @@
-tool
+@tool
 extends RigidBody2D
 
-class_name Ball
+class_name Ballz
 
 const GRAB_DISTANCE = 84
 
-export (String, 'crown', 'bee_crown', 'helm', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown', 'skull', 'flag', 'sea_crown', 'croquet', 'banner') var type setget set_type, get_type
+@export (String, 'crown', 'bee_crown', 'helm', 'basket', 'soccer', 'tennis', 'heart', 'star', 'negacrown', 'skull', 'flag', 'sea_crown', 'croquet', 'banner') var type : get = get_type, set = set_type
 
 var impulse := 0.0
 var player : InfoPlayer
@@ -25,8 +25,8 @@ func _ready():
 	
 func refresh():
 	if not is_inside_tree():
-		yield(self, 'ready')
-	$Sprite.texture = load('res://assets/sprites/balls/'+type+'.png')
+		await self.ready
+	$Sprite2D.texture = load('res://assets/sprites/balls/'+type+'.png')
 	
 func place_and_push(dropper, velocity, direction:='forward') -> void:
 	var dir = 1.0 if direction == 'forward' else -1.0
@@ -50,7 +50,7 @@ func get_strategy(ship, distance, game_mode):
 	return {"seek": 10}
 	
 func get_texture():
-	return $Sprite.texture
+	return $Sprite2D.texture
 	
 func show_on_top():
 	return type in ['crown', 'negacrown', 'bee_crown', 'helm', 'flag', 'sea_crown', 'banner']
