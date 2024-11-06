@@ -95,4 +95,3 @@ func end_run(start, end) -> String:
 
 func _on_analytics_event(event_body: Dictionary, event_name: String):
 	send_event(event_body, event_name)
-

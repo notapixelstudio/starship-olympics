@@ -85,7 +85,7 @@ settings/physics_interpolation/enable_warnings=false
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/mode=3
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/size/fullscreen=true
 window/size/fullscreen.release=false
 window/size/fullscreen.debug=false
@@ -101,6 +101,7 @@ token="Godotexport_v1.0.0"
 [global_group]
 
 animation_starts_with_battle=""
+collectable=""
 
 [importer_defaults]
 
@@ -556,6 +557,21 @@ debug_restart_scene={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194340,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+force_reset_2p={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":50,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+force_reset_3p={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":51,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+force_reset_4p={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":52,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
 
 [internationalization]
 
@@ -589,6 +605,8 @@ locale/translations=PackedStringArray("res://locale/pr.po", "res://locale/de.mo"
 2d_physics/layer_22="holders"
 2d_physics/layer_23="in_phase"
 2d_physics/layer_24="magnetic"
+2d_physics/layer_31="ship_dashing"
+2d_physics/layer_32="ship_no_dashing"
 
 [locale]
 
@@ -602,6 +620,7 @@ file_logging/enable_file_logging=true
 [physics]
 
 2d/run_on_separate_thread=true
+common/physics_jitter_fix=0.0
 2d/physics_engine="Box2D"
 2d/default_gravity=0
 common/physics_interpolation=true

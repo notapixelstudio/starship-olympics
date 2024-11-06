@@ -1,12 +1,30 @@
 extends ColorRect
 
+@export var players : Array[Player] : set = set_players
+@export var session : Session : set = set_session
+
+func hide() -> void:
+	modulate = Color(0,0,0,0)
+
+func show() -> void:
+	%AnimationPlayer.play("appear")
+	
+func _on_appear() -> void:
+	%Leaderboard.reorder()
+
+func set_players(v:Array[Player]) -> void:
+	players = v
+
+func set_session(v:Session) -> void:
+	session = v
 
 func _ready() -> void:
-	Events.match_over.connect(_on_match_over)
-	Events.match_over_anim_ended.connect(_on_match_over_anim_ended)
+	redraw()
 	
-func _on_match_over(data:Dictionary) -> void:
-	%Winner.text = 'WINNERS: ' + ' '.join(data['winners'])
-	
-func _on_match_over_anim_ended() -> void:
-	%AnimationPlayer.play("appear")
+func redraw() -> void:
+	%Leaderboard.players = players
+	%Leaderboard.session = session
+	%Leaderboard.redraw()
+
+func update_scores() -> void:
+	%Leaderboard.update_scores()

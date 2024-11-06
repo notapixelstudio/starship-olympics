@@ -1,10 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://ca7fdpwwgkj1u"]
+[gd_scene load_steps=16 format=3 uid="uid://ca7fdpwwgkj1u"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_sd71t"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_7l1kw"]
 [ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="2_sf1o5"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="3_ww2oh"]
-[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="4_oucrr"]
 [ext_resource type="Texture2D" uid="uid://fjc48bw13nul" path="res://assets/sprites/fruits/banana.png" id="6_teoqp"]
 [ext_resource type="Texture2D" uid="uid://yhr2iwiak8j1" path="res://assets/sprites/fruits/cherry.png" id="7_m2ews"]
 [ext_resource type="Texture2D" uid="uid://dsegin3jm1org" path="res://assets/sprites/fruits/grape.png" id="8_43d8u"]
@@ -123,8 +122,6 @@ autostart = true
 [node name="Ship" parent="." index="11" instance=ExtResource("3_ww2oh")]
 unique_name_in_owner = true
 position = Vector2(0, -500)
-
-[node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("4_oucrr")]
 
 [node name="FruitSpawner" parent="." index="12" instance=ExtResource("13_qjfsp")]
 position = Vector2(1200, 0)

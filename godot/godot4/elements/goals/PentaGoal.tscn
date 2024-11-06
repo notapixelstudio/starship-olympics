@@ -1,20 +1,85 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccigjuln5qq4b"]
+[gd_scene load_steps=7 format=3 uid="uid://ccigjuln5qq4b"]
 
 [ext_resource type="Script" path="res://godot4/elements/goals/PentaGoal.gd" id="1_efvqh"]
 [ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="2_d2f78"]
 [ext_resource type="PackedScene" uid="uid://b3jyuprf7rhpo" path="res://godot4/effects/IsoPolygon.tscn" id="2_k6hee"]
 
+[sub_resource type="Animation" id="Animation_cdh5s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [20.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_baae3"]
+resource_name = "feedback"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [20.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.4, 1.4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ido2i"]
+_data = {
+"RESET": SubResource("Animation_cdh5s"),
+"feedback": SubResource("Animation_baae3")
+}
+
 [node name="PentaGoal" type="Area2D"]
+collision_layer = 128
+collision_mask = 513
 script = ExtResource("1_efvqh")
 
-[node name="VRegularPolygon" type="Node" parent="."]
+[node name="VRegularPolygon" type="Node" parent="." node_paths=PackedStringArray("hosts")]
 unique_name_in_owner = true
 script = ExtResource("2_d2f78")
 sides = 5
+hosts = [NodePath(".."), NodePath("../SolidCollider/CollisionPolygon2D")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 unique_name_in_owner = true
-polygon = PackedVector2Array(30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44921e-14)
+polygon = PackedVector2Array(30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14)
 
 [node name="IsoPolygon" parent="." instance=ExtResource("2_k6hee")]
 unique_name_in_owner = true
@@ -28,3 +93,28 @@ underline_alpha = 0.1
 unique_name_in_owner = true
 modulate = Color(0.85, 0, 1, 1)
 position = Vector2(0, -64)
+
+[node name="SolidCollider" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SolidCollider"]
+polygon = PackedVector2Array(30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14)
+
+[node name="FeedbackLine2D" type="Line2D" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = -5
+z_as_relative = false
+points = PackedVector2Array(30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14)
+closed = true
+width = 20.0
+default_color = Color(2, 2, 2, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FeedbackLine2D"]
+libraries = {
+"": SubResource("AnimationLibrary_ido2i")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

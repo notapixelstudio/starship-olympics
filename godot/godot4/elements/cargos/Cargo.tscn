@@ -98,6 +98,7 @@ collision_layer = 512
 collision_mask = 3606
 physics_material_override = SubResource("PhysicsMaterial_ribre")
 can_sleep = false
+max_contacts_reported = 10
 linear_damp = 1.0
 script = ExtResource("1_mtln1")
 
@@ -124,3 +125,12 @@ gradient = SubResource("Gradient_5cley")
 disappear_speed = 1000.0
 host = NodePath("..")
 max_age = 0.6
+
+[node name="UntouchableTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+wait_time = 0.3
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="UntouchableTimer" to="." method="_on_untouchable_timer_timeout"]

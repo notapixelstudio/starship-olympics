@@ -1,6 +1,6 @@
 extends Control
 
-func set_player(player: InfoPlayer): # InfoPlayer
+func set_player(player: Player):
 	$DronesOverlay.visible = false
 	if player:
 		$Sprite2D.texture = player.get_character_image()

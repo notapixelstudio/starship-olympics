@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvuxtptpfc1lq"]
+[gd_scene load_steps=10 format=3 uid="uid://bvuxtptpfc1lq"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_4pv1n"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_bml84"]
-[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_cir4l"]
 [ext_resource type="Script" path="res://addons/vshapes/VBeveledRect.gd" id="4_ovdmt"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="4_u5rva"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="6_gjrjp"]
@@ -62,12 +61,10 @@ _data = {
 [node name="TestChamberLog" parent="." index="4"]
 script = SubResource("GDScript_0rj7w")
 
-[node name="Ship" parent="." index="8" instance=ExtResource("2_bml84")]
+[node name="Ship" parent="." index="7" instance=ExtResource("2_bml84")]
 unique_name_in_owner = true
 
-[node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("3_cir4l")]
-
-[node name="OutsideWall" parent="." index="9" instance=ExtResource("4_u5rva")]
+[node name="OutsideWall" parent="." index="8" instance=ExtResource("4_u5rva")]
 hollow = true
 
 [node name="VBeveledRect" type="Node" parent="OutsideWall" index="4" node_paths=PackedStringArray("hosts")]
@@ -83,8 +80,8 @@ libraries = {
 }
 autoplay = "new_animation"
 
-[node name="Diamond" parent="." index="10" instance=ExtResource("6_gjrjp")]
+[node name="Diamond" parent="." index="9" instance=ExtResource("6_gjrjp")]
 position = Vector2(1100, 1100)
 
-[node name="Diamond2" parent="." index="11" instance=ExtResource("6_gjrjp")]
+[node name="Diamond2" parent="." index="10" instance=ExtResource("6_gjrjp")]
 position = Vector2(1000, 1000)

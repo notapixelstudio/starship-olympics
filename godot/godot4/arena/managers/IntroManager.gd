@@ -2,5 +2,5 @@ extends Node
 
 
 func _ready():
-	await get_tree().process_frame
+	await %PlayersReadyWheels.all_players_ready
 	Events.battle_start.emit()

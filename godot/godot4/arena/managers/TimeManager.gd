@@ -4,7 +4,11 @@ var _time := 0.0
 var _time_secs := 0
 
 func _ready():
+	set_physics_process(false)
 	Events.match_over.connect(_on_match_over)
+	
+func start():
+	set_physics_process(true)
 
 func set_time(v: float) -> void:
 	_time = v

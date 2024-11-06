@@ -11,5 +11,6 @@ script = ExtResource("2")
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 2.5
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

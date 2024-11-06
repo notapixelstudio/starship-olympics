@@ -33,6 +33,12 @@ signal sth_collided_with_ship(sth, ship) # on enter, no distinction between body
 signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no distinction between body or area, NearArea only
 
 # BEGIN 4.x events
+
+# players ready
+signal player_ready(player_info)
+signal battle_start
+
+# clock
 signal clock_ticked(t:float, t_secs:int)
 signal clock_expired
 
@@ -49,12 +55,11 @@ signal score_updated(new_value:float, team:String, new_standings:Array)
 signal log(message:String)
 signal message(message:Variant, color:Color, global_position:Vector2)
 
-signal battle_start
 signal match_over(data:Dictionary)
-signal match_over_anim_ended
 
 signal sth_collected(collector, collectee)
 signal sth_loaded(loader, loadee)
+signal sth_impacted(actor, environment:StaticBody2D)
 
 signal tap(tapper)
 
@@ -105,9 +110,6 @@ signal hide_info
 signal ask_mapping_action(complete_action, remap_action_node)
 # signal remap_event(event, complete_action) # Decided to connect directly the nodes
 signal remap_done(remap_action_node) 
-
-# players ready
-signal player_ready(player_info)
 
 # draftcard 
 signal card_tapped(author, card)

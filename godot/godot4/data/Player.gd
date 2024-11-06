@@ -55,3 +55,5 @@ func is_cpu() -> bool:
 func get_controls() -> String:
 	return controls
 	
+func set_controls(v:String) -> void:
+	controls = v
