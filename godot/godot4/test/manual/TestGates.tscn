@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://v0r0cq6gr4rd"]
+[gd_scene load_steps=7 format=3 uid="uid://v0r0cq6gr4rd"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_acutt"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="3_hicvo"]
-[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="4_qldha"]
 [ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://godot4/elements/gates/Gate.tscn" id="5_0t42m"]
 [ext_resource type="PackedScene" uid="uid://b4ndjhwgnr446" path="res://godot4/elements/gates/DiamondGate.tscn" id="6_f2mcy"]
 [ext_resource type="PackedScene" uid="uid://xoqhtny3wi7s" path="res://godot4/elements/gates/PortalGate.tscn" id="7_pipcj"]
@@ -25,8 +24,6 @@ script = SubResource("GDScript_0snmf")
 
 [node name="Ship" parent="." index="6" instance=ExtResource("3_hicvo")]
 unique_name_in_owner = true
-
-[node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("4_qldha")]
 
 [node name="Gate" parent="." index="7" instance=ExtResource("5_0t42m")]
 position = Vector2(750, 0)

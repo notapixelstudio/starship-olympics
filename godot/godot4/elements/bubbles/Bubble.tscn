@@ -1,8 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfgy3ee8k825d"]
+[gd_scene load_steps=17 format=3 uid="uid://cfgy3ee8k825d"]
 
 [ext_resource type="Script" path="res://godot4/elements/bubbles/Bubble.gd" id="1_ebahq"]
 [ext_resource type="Texture2D" uid="uid://d23n13gccawob" path="res://assets/sprites/weapons/bubble.png" id="1_ikpcv"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="4_1ymov"]
+[ext_resource type="AudioStream" uid="uid://bi0qw3wfqwt4a" path="res://assets/audio/gameplay/bubbles/zapsplat_cartoon_pop_mouth_001_46664.ogg" id="5_8ymtj"]
+[ext_resource type="AudioStream" uid="uid://dh238rq8iy450" path="res://assets/audio/gameplay/bubbles/zapsplat_cartoon_bubble_pop_004_40276.ogg" id="6_wu1k0"]
+[ext_resource type="AudioStream" uid="uid://dw25rbo6knwhc" path="res://assets/audio/FX/zapsplat_cartoon_twang_bounce_boing_spring_53049.ogg" id="7_jon51"]
+[ext_resource type="AudioStream" uid="uid://b7qvxsyefgie4" path="res://assets/audio/gameplay/bubbles/zapsplat_cartoon_bubble_pop_005_40277.ogg" id="7_nip4u"]
+[ext_resource type="AudioStream" uid="uid://ba2kykijh6rei" path="res://assets/audio/gameplay/bubbles/zapsplat_cartoon_drip_or_bubble_pop_002_46212.mp3" id="8_luvl1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2pppl"]
 bounce = 0.8
@@ -76,6 +81,19 @@ _data = {
 "default": SubResource("Animation_hgkc3")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lb1fb"]
+random_pitch = 1.2
+streams_count = 3
+stream_0/stream = ExtResource("6_wu1k0")
+stream_1/stream = ExtResource("7_nip4u")
+stream_2/stream = ExtResource("5_8ymtj")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_epica"]
+random_pitch = 1.6
+streams_count = 2
+stream_0/stream = ExtResource("7_jon51")
+stream_1/stream = ExtResource("8_luvl1")
+
 [node name="Bubble" type="RigidBody2D" groups=["collectable"]]
 collision_layer = 64
 collision_mask = 2147486292
@@ -125,4 +143,15 @@ text = "HOLD BUTTON
 TO DASH!"
 horizontal_alignment = 1
 
+[node name="PopSFX" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_lb1fb")
+bus = &"SFX"
+
+[node name="BounceSFX" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_epica")
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

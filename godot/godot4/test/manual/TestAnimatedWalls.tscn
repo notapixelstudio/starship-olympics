@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bpewjhe2dru7w"]
+[gd_scene load_steps=9 format=3 uid="uid://bpewjhe2dru7w"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_qnu7u"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_xewg0"]
-[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_g1ovh"]
 
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
 script/source = "extends SOLog
@@ -72,12 +71,10 @@ _data = {
 [node name="TestChamberLog" parent="." index="4"]
 script = SubResource("GDScript_0rj7w")
 
-[node name="Ship" parent="." index="8" instance=ExtResource("2_xewg0")]
+[node name="Ship" parent="." index="7" instance=ExtResource("2_xewg0")]
 unique_name_in_owner = true
 
-[node name="PlayerBrain" parent="Ship" index="12" instance=ExtResource("3_g1ovh")]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="9"]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="8"]
 position = Vector2(700, 0)
 collision_layer = 16
 collision_mask = 0
@@ -93,7 +90,7 @@ libraries = {
 }
 autoplay = "Rotate"
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." index="10"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="9"]
 position = Vector2(0, -350)
 collision_layer = 16
 collision_mask = 0
@@ -109,7 +106,7 @@ libraries = {
 }
 autoplay = "Rotate"
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="." index="11"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="." index="10"]
 position = Vector2(150, 450)
 collision_layer = 16
 collision_mask = 0
