@@ -71,10 +71,14 @@ func _ready() -> void:
 			_teams[player.get_team()] = []
 		_teams[player.get_team()].append(player.get_id())
 		
+	%VersusHUD.set_max_score(_params.score)
+	%VersusHUD.set_starting_score(_params.starting_score)
+	
 	for team in _teams.keys():
+		Events.team_ready.emit(team, _teams[team])
+		# FIXME this could be moved to a team manager
+		# FIXME this could use signals for everything, since not all managers or huds are necessarily there
 		%ScoreManager.add_team(team)
-		%VersusHUD.set_max_score(_params.score)
-		%VersusHUD.set_starting_score(_params.starting_score)
 		%VersusHUD.add_team(team, players[_teams[team][0]].get_species()) # FIXME support teams of 2+ members
 		
 	# create the match over screen

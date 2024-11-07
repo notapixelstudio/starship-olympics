@@ -102,3 +102,6 @@ libraries = {
 
 [node name="Shadow" parent="Graphics" node_paths=PackedStringArray("sprite") instance=ExtResource("3_37ycv")]
 sprite = NodePath("../Sprite2D")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true

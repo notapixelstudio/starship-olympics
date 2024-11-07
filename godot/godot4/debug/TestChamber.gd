@@ -18,7 +18,8 @@ func _ready():
 		var brain = player_brain_scene.instantiate()
 		brain.set_controls(test_player.get_controls())
 		%Ship.add_child(brain)
-
+		Events.team_ready.emit(test_player.get_team(), [test_player])
+		
 func _process(delta):
 	if not test_subject:
 		return

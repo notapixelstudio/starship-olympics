@@ -35,7 +35,8 @@ signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no d
 # BEGIN 4.x events
 
 # players ready
-signal player_ready(player_info)
+signal player_ready(player)
+signal team_ready(id, members)
 signal battle_start
 
 # clock

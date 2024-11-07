@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3l3q0lbwwwan"]
+[gd_scene load_steps=12 format=3 uid="uid://d3l3q0lbwwwan"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_q2uoc"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_uj1ie"]
 [ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_remfy"]
 [ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="4_qgpcs"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="5_6d2la"]
+[ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="5_psfxu"]
 [ext_resource type="PackedScene" uid="uid://cfgy3ee8k825d" path="res://godot4/elements/bubbles/Bubble.tscn" id="6_o7hgl"]
 [ext_resource type="PackedScene" uid="uid://dvjdmo8ceeh5b" path="res://godot4/elements/bubbles/DiamondBubble.tscn" id="7_8cafa"]
 [ext_resource type="PackedScene" uid="uid://cie2xt6b1e8oy" path="res://godot4/elements/bubbles/BigDiamondBubble.tscn" id="8_q26wy"]
@@ -55,31 +56,33 @@ battlefield = NodePath("..")
 
 [node name="CollectGame" parent="." index="9" instance=ExtResource("4_qgpcs")]
 
-[node name="Ship" parent="." index="10" instance=ExtResource("5_6d2la")]
+[node name="TreasureSFXManager" parent="." index="10" instance=ExtResource("5_psfxu")]
+
+[node name="Ship" parent="." index="11" instance=ExtResource("5_6d2la")]
 unique_name_in_owner = true
 
-[node name="Bubble" parent="." index="12" instance=ExtResource("6_o7hgl")]
+[node name="Bubble" parent="." index="13" instance=ExtResource("6_o7hgl")]
 position = Vector2(0, -800)
 
-[node name="Bubble2" parent="." index="13" instance=ExtResource("6_o7hgl")]
+[node name="Bubble2" parent="." index="14" instance=ExtResource("6_o7hgl")]
 position = Vector2(0, 800)
 
-[node name="Bubble3" parent="." index="14" instance=ExtResource("6_o7hgl")]
+[node name="Bubble3" parent="." index="15" instance=ExtResource("6_o7hgl")]
 position = Vector2(800, -800)
 
-[node name="Bubble4" parent="." index="15" instance=ExtResource("6_o7hgl")]
+[node name="Bubble4" parent="." index="16" instance=ExtResource("6_o7hgl")]
 position = Vector2(800, 800)
 
-[node name="Bubble7" parent="." index="16" instance=ExtResource("6_o7hgl")]
+[node name="Bubble7" parent="." index="17" instance=ExtResource("6_o7hgl")]
 position = Vector2(800, 0)
 
-[node name="DiamondBubble" parent="." index="17" instance=ExtResource("7_8cafa")]
+[node name="DiamondBubble" parent="." index="18" instance=ExtResource("7_8cafa")]
 position = Vector2(-800, -800)
 
-[node name="DiamondBubble2" parent="." index="18" instance=ExtResource("7_8cafa")]
+[node name="DiamondBubble2" parent="." index="19" instance=ExtResource("7_8cafa")]
 position = Vector2(-800, 800)
 
-[node name="BigDiamondBubble" parent="." index="19" instance=ExtResource("8_q26wy")]
+[node name="BigDiamondBubble" parent="." index="20" instance=ExtResource("8_q26wy")]
 position = Vector2(-800, 0)
 
 [connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]

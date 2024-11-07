@@ -59,3 +59,7 @@ func disable_collisions() -> void:
 	
 func enable_collisions() -> void:
 	%CollisionShape2D.disabled = false
+
+func get_sfx_player() -> AudioStreamPlayer2D:
+	return %AudioStreamPlayer2D
+	

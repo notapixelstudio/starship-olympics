@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1l3lu1qyupad"]
+[gd_scene load_steps=15 format=3 uid="uid://c1l3lu1qyupad"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_hdhns"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_4vl7f"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://actors/environments/WaveGroupSpawner.gd" id="3_tj16f"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_5w5sg"]
 [ext_resource type="PackedScene" path="res://actors/environments/ElementSpawnerGroup.tscn" id="4_8igwd"]
+[ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="4_hj55b"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="4_pfuid"]
 [ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="5_n30yh"]
 [ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="6_exy44"]
@@ -21,6 +22,8 @@ waves_container = NodePath("../../Battlefield/Waves")
 battlefield = NodePath("../../Battlefield")
 
 [node name="CollectGame" parent="Managers" index="4" instance=ExtResource("3_6wfi0")]
+
+[node name="TreasureSFXManager" parent="Managers" index="8" instance=ExtResource("4_hj55b")]
 
 [node name="Camera2D" parent="." index="1"]
 zoom = Vector2(0.32, 0.32)

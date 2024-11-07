@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://knkx7cebps54"]
+[gd_scene load_steps=15 format=3 uid="uid://knkx7cebps54"]
 
 [ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_86tmn"]
 [ext_resource type="Script" path="res://godot4/elements/treasures/MusicSpikeDiamond.gd" id="2_kmqd2"]
 [ext_resource type="Texture2D" uid="uid://c4m5n7bhcjgmt" path="res://assets/sprites/environments/diamond_spike_off.png" id="3_xy68c"]
 [ext_resource type="Texture2D" uid="uid://d1f81kxxt7y1i" path="res://assets/sprites/environments/diamond_spike_on.png" id="4_blpjq"]
 [ext_resource type="Material" uid="uid://nemcauwaghyq" path="res://godot4/shaders/outline_diamond.tres" id="5_spwea"]
+[ext_resource type="AudioStream" uid="uid://bu272mhv7bhnp" path="res://assets/audio/FX/sfx_coin_double7.wav" id="6_3pkkr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2cdjs"]
 resource_local_to_scene = true
@@ -165,3 +166,6 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_i6li3")
 }
+
+[node name="AudioStreamPlayer2D" parent="." index="4"]
+stream = ExtResource("6_3pkkr")

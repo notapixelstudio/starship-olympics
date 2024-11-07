@@ -159,11 +159,14 @@ horizontal_alignment = 1
 [node name="PopSFX" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_lb1fb")
+volume_db = 10.0
 bus = &"SFX"
 
 [node name="BounceSFX" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_epica")
+volume_db = 10.0
+max_polyphony = 3
 bus = &"SFX"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
