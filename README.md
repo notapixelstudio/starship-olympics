@@ -2,7 +2,8 @@
 # Starship Olympics (formerly Superstarfighter)
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![GitHub release](https://img.shields.io/github/release/notapixelstudio/superstarfighter.svg)](https://gitHub.com/notapixelstudio/superstarfighter/tags/)
+[![Status In progress](https://img.shields.io/badge/status_in-developement)](http://makeapullrequest.com)
+[![GitHub release](https://img.shields.io/github/release/notapixelstudio/starship-olympics.svg)](https://github.com/notapixelstudio/starship-olympics/tags/)
 [![Tip Me via PayPal](https://img.shields.io/badge/PayPal-tip%20me-green.svg?logo=paypal)](https://www.paypal.me/notapixelstudio)
 <!-- [![GitHub commits](https://img.shields.io/github/commits-since/notapixelstudio/superstarfighter/v0.2-alpha.svg)](https://GitHub.com/notapixelstudio/superstarfighter/commit/) -->
 
@@ -32,7 +33,7 @@ In this game, you will pilot your own starship and face off against other player
 
 ## Follow the Development
 
-This game is being developed on **`Godot v3.5.2`**.
+This game is being developed on **`Godot v4.3.x`**.
 
 Join our Discord or follow us on Twitter ([@notapixelstudio](https://twitter.com/notapixelstudio)) or [Instagram](https://instagram.com/notapixelstudio) for updates and news.
 
