@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=27 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PackedScene" uid="uid://b6gg3o407i70x" path="res://godot4/effects/DashRing.tscn" id="2_0puh8"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cex35drwxeknp" path="res://godot4/effects/trails/FlamesManager.tscn" id="11_i3r85"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="11_tsmbp"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="15_s48iq"]
+[ext_resource type="PackedScene" uid="uid://cd12x0fubc17m" path="res://godot4/actors/ships/GravitonField.tscn" id="16_2i8oi"]
 [ext_resource type="Script" path="res://godot4/actors/managers/CargoManager.gd" id="16_m8m51"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w3n3b"]
@@ -241,6 +242,10 @@ unique_name_in_owner = true
 gradient = SubResource("Gradient_tmbes")
 host = NodePath("..")
 max_age = 0.4
+
+[node name="GravitonField" parent="." instance=ExtResource("16_2i8oi")]
+unique_name_in_owner = true
+position = Vector2(-120, 0)
 
 [node name="CargoManager" type="Node" parent="."]
 unique_name_in_owner = true

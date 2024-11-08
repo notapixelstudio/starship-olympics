@@ -91,6 +91,7 @@ func is_thrusting() -> bool:
 
 func charge():
 	%ChargeManager.start_charging()
+	%GravitonField.enable()
 	
 func release():
 	if %ChargeManager.can_tap():
@@ -98,6 +99,7 @@ func release():
 	if %ChargeManager.can_dash():
 		dash(%ChargeManager.get_charge())
 	%ChargeManager.end_charging()
+	%GravitonField.disable()
 
 func dash(charge: float) -> void:
 	var dash_strength = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(charge - MIN_CHARGE, 0, %ChargeManager.MAX_CHARGE)

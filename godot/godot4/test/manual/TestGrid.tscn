@@ -27,10 +27,7 @@ visible = false
 [node name="TestChamberLog" parent="." index="4"]
 script = SubResource("GDScript_0rj7w")
 
-[node name="Ship" parent="." index="6" instance=ExtResource("6_m6ivx")]
-unique_name_in_owner = true
-
-[node name="GridPack" type="Node2D" parent="." index="8"]
+[node name="GridPack" type="Node2D" parent="." index="7"]
 script = ExtResource("3_njxv1")
 
 [node name="Light2D" type="PointLight2D" parent="GridPack" index="0"]
@@ -42,3 +39,6 @@ script = ExtResource("4_3b4xo")
 
 [node name="Mask" type="Node2D" parent="GridPack/MaskViewPort" index="0"]
 script = ExtResource("4_w2kgm")
+
+[node name="Ship" parent="." index="8" instance=ExtResource("6_m6ivx")]
+unique_name_in_owner = true
