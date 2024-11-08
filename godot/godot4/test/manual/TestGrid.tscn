@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbconwt2qyuhw"]
+[gd_scene load_steps=7 format=3 uid="uid://cbconwt2qyuhw"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_xt7aj"]
+[ext_resource type="Script" path="res://godot4/test/manual/grid_pack/grid_pack.gd" id="3_njxv1"]
+[ext_resource type="Script" path="res://godot4/test/manual/grid.gd" id="4_3b4xo"]
+[ext_resource type="Script" path="res://godot4/test/manual/mask.gd" id="4_w2kgm"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="6_m6ivx"]
 
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
@@ -26,3 +29,16 @@ script = SubResource("GDScript_0rj7w")
 
 [node name="Ship" parent="." index="6" instance=ExtResource("6_m6ivx")]
 unique_name_in_owner = true
+
+[node name="GridPack" type="Node2D" parent="." index="8"]
+script = ExtResource("3_njxv1")
+
+[node name="Light2D" type="PointLight2D" parent="GridPack" index="0"]
+
+[node name="Grid" type="Node2D" parent="GridPack" index="1"]
+script = ExtResource("4_3b4xo")
+
+[node name="MaskViewPort" type="SubViewport" parent="GridPack" index="2"]
+
+[node name="Mask" type="Node2D" parent="GridPack/MaskViewPort" index="0"]
+script = ExtResource("4_w2kgm")
