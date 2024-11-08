@@ -10,8 +10,8 @@ extends Node2D
 var active_points = []
 var grid = []
 var lines = []
-var v_cells
-var h_cells
+var v_cells : int
+var h_cells : int
 
 const max_velocity = 4000
 

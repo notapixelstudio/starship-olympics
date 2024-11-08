@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var grid_color : Color = Color.GRAY
-@export var cell_size := Vector2.ONE * 200
+@export var cell_size := Vector2.ONE * 100
 @export var frames_wait := 3
 @export var scale_mask_texture := Vector2.ONE
 @export var factor_viewport_multiplier := 1.5
@@ -25,7 +25,7 @@ func _ready():
 	grid.grid_color = grid_color
 	grid.cell_size = cell_size
 	
-	init_grid(Vector2(2400,1200))
+	init_grid(Vector2(4800,3200))
 
 	mask.set_process(enabled)
 	light.enabled = enabled
