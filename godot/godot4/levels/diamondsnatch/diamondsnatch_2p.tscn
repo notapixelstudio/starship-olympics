@@ -38,6 +38,7 @@ rotation = 2.35619
 
 [node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("4_pfuid")]
 hollow = true
+background_color = Color(0.396078, 0.521569, 0.396078, 1)
 
 [node name="VRoundedRect" type="Node" parent="Battlefield/OutsideWall" index="4"]
 script = ExtResource("5_n30yh")
@@ -47,6 +48,7 @@ radius = 900.0
 
 [node name="Wall" parent="Battlefield" index="1" instance=ExtResource("4_pfuid")]
 position = Vector2(-900, 0)
+background_color = Color(0.396078, 0.521569, 0.396078, 1)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4"]
 script = ExtResource("6_exy44")
@@ -54,6 +56,7 @@ sides = 4
 
 [node name="Wall2" parent="Battlefield" index="2" instance=ExtResource("4_pfuid")]
 position = Vector2(900, 0)
+background_color = Color(0.396078, 0.521569, 0.396078, 1)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4"]
 script = ExtResource("6_exy44")

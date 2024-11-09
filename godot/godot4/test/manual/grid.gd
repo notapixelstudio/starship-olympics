@@ -2,6 +2,7 @@ extends Node2D
 
 @export var grid_color : Color = Color.GRAY
 @export var cell_size := Vector2.ONE * 100
+@export var grid_thickness := 10.0
 @export var enabled : bool = true
 
 @export_enum('square', 'triangular') var type = "square"
@@ -45,9 +46,8 @@ func init_grid(arena_size: Vector2):
 		var line = Line2D.new()
 		line.position = -position
 		add_child(line)
-		line.width = 5
+		line.width = grid_thickness
 		line.default_color = grid_color
-		line.light_mask |= 1 << 1
 		for y in v_cells:
 			line.add_point(grid[y][x].position)
 		lines[x] = line
@@ -57,9 +57,8 @@ func init_grid(arena_size: Vector2):
 			var line = Line2D.new()
 			line.position = -position
 			add_child(line)
-			line.width = 5
+			line.width = grid_thickness
 			line.default_color = grid_color
-			line.light_mask |= 1 << 1
 			for y in v_cells:
 				line.add_point(grid[y][x-y%2].position)
 			lines[h_cells + x] = line
@@ -68,9 +67,8 @@ func init_grid(arena_size: Vector2):
 		var line = Line2D.new()
 		line.position = -position
 		add_child(line)
-		line.width = 5
+		line.width = grid_thickness
 		line.default_color = grid_color
-		line.light_mask |= 1 << 1
 		for x in h_cells:
 			line.add_point(grid[y][x].position)
 		lines[h_cells + (0 if type == 'square' else h_cells) + y] = line

@@ -2,6 +2,7 @@
 extends StaticBody2D
 
 @export var hollow := false : set = set_hollow
+@export var background_color := Color('#658565') : set = set_background_color
 
 var polygon : PackedVector2Array
 
@@ -9,6 +10,10 @@ func set_hollow(v: bool) -> void:
 	hollow = v
 	%Polygon2D.visible = not hollow
 	%UnderPolygon2D.visible = hollow
+	
+func set_background_color(v:Color) -> void:
+	background_color = v
+	%UnderPolygon2D.color = background_color
 
 func set_polygon(v: PackedVector2Array) -> void:
 	polygon = v
