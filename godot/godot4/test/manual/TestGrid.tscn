@@ -1,9 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbconwt2qyuhw"]
+[gd_scene load_steps=10 format=3 uid="uid://cbconwt2qyuhw"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_xt7aj"]
-[ext_resource type="Script" path="res://godot4/test/manual/grid_pack/grid_pack.gd" id="3_njxv1"]
-[ext_resource type="Script" path="res://godot4/test/manual/grid.gd" id="4_3b4xo"]
-[ext_resource type="Script" path="res://godot4/test/manual/mask.gd" id="4_w2kgm"]
+[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="4_l06f8"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="6_fgpm1"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="6_m6ivx"]
 [ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="7_nrao4"]
@@ -21,6 +19,69 @@ func _on_sth_collected(collector, collectee):
 	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
 "
 
+[sub_resource type="Animation" id="Animation_6rl50"]
+resource_name = "default"
+length = 10.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VRoundedRect:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [900.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VRoundedRect:width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [1800.0, 3600.0]
+}
+
+[sub_resource type="Animation" id="Animation_tqgqe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VRoundedRect:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [900.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VRoundedRect:width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1800.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qp3l6"]
+_data = {
+"RESET": SubResource("Animation_tqgqe"),
+"default": SubResource("Animation_6rl50")
+}
+
 [node name="TestChamber" instance=ExtResource("1_xt7aj")]
 
 [node name="TestGrid" parent="." index="3"]
@@ -29,31 +90,31 @@ visible = false
 [node name="TestChamberLog" parent="." index="4"]
 script = SubResource("GDScript_0rj7w")
 
-[node name="GridPack" type="Node2D" parent="." index="7" node_paths=PackedStringArray("init_shape", "mask_shape")]
-z_index = -5
-z_as_relative = false
-script = ExtResource("3_njxv1")
-grid_color = Color(0.0795, 0.199633, 0.53, 1)
-cell_size = Vector2(150, 150)
-init_shape = NodePath("../Wall/VRoundedRect")
-mask_shape = NodePath("../Wall/VRoundedRect")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
+libraries = {
+"": SubResource("AnimationLibrary_qp3l6")
+}
+autoplay = "default"
 
-[node name="Mask" type="Node2D" parent="GridPack" index="0"]
-clip_children = 1
-script = ExtResource("4_w2kgm")
+[node name="VRoundedRect" type="Node" parent="." index="8" node_paths=PackedStringArray("hosts")]
+script = ExtResource("7_nrao4")
+width = 1800.0
+height = 1800.0
+radius = 900.0
+hosts = [NodePath("../Wall"), NodePath("../Grid")]
 
-[node name="Grid" type="Node2D" parent="GridPack/Mask" index="0"]
-script = ExtResource("4_3b4xo")
+[node name="VRoundedRectFull" type="Node" parent="." index="9"]
+script = ExtResource("7_nrao4")
+width = 3600.0
+height = 1800.0
+radius = 0.0
 
-[node name="Ship" parent="." index="8" instance=ExtResource("6_m6ivx")]
-unique_name_in_owner = true
-
-[node name="Wall" parent="." index="9" instance=ExtResource("6_fgpm1")]
+[node name="Wall" parent="." index="10" instance=ExtResource("6_fgpm1")]
 hollow = true
 background_color = Color(0.0627451, 0.105882, 0.2, 1)
 
-[node name="VRoundedRect" type="Node" parent="Wall" index="5"]
-script = ExtResource("7_nrao4")
-width = 3500.0
-height = 1800.0
-radius = 900.0
+[node name="Grid" parent="." index="11" node_paths=PackedStringArray("init_shape") instance=ExtResource("4_l06f8")]
+init_shape = NodePath("../VRoundedRectFull")
+
+[node name="Ship" parent="." index="12" instance=ExtResource("6_m6ivx")]
+unique_name_in_owner = true

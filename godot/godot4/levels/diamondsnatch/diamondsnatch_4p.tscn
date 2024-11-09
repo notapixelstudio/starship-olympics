@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cvp2cu7cq2g7p"]
+[gd_scene load_steps=16 format=3 uid="uid://cvp2cu7cq2g7p"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_lvw7a"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_l6uvh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="6_tvda7"]
 [ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="7_fm53b"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="8_ev06m"]
+[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="8_ncd8y"]
 [ext_resource type="Script" path="res://actors/environments/WaveGroupSpawner.gd" id="9_01lf8"]
 [ext_resource type="PackedScene" path="res://actors/environments/ElementSpawnerGroup.tscn" id="10_ajm4j"]
 [ext_resource type="PackedScene" uid="uid://dvjdmo8ceeh5b" path="res://godot4/elements/bubbles/DiamondBubble.tscn" id="11_6sc17"]
@@ -44,32 +45,37 @@ rotation = -2.35619
 position = Vector2(-600, -600)
 rotation = 0.785398
 
-[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("5_xe0w6")]
-hollow = true
-
-[node name="VRoundedRect" type="Node" parent="Battlefield/OutsideWall" index="4"]
+[node name="VRoundedRect" type="Node" parent="Battlefield" index="0" node_paths=PackedStringArray("hosts")]
 script = ExtResource("6_tvda7")
 width = 3500.0
 height = 2300.0
 radius = 1150.0
+hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
-[node name="Wall" parent="Battlefield" index="1" instance=ExtResource("5_xe0w6")]
+[node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource("5_xe0w6")]
+hollow = true
+background_color = Color(0.0627451, 0.105882, 0.2, 1)
+
+[node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_shape") instance=ExtResource("8_ncd8y")]
+init_shape = NodePath("../VRoundedRect")
+
+[node name="Wall" parent="Battlefield" index="3" instance=ExtResource("5_xe0w6")]
 position = Vector2(-900, 0)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4"]
 script = ExtResource("7_fm53b")
 sides = 4
 
-[node name="Wall2" parent="Battlefield" index="2" instance=ExtResource("5_xe0w6")]
+[node name="Wall2" parent="Battlefield" index="4" instance=ExtResource("5_xe0w6")]
 position = Vector2(900, 0)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4"]
 script = ExtResource("7_fm53b")
 sides = 4
 
-[node name="Diamond" parent="Battlefield" index="3" instance=ExtResource("8_ev06m")]
+[node name="Diamond" parent="Battlefield" index="5" instance=ExtResource("8_ev06m")]
 
-[node name="Waves" type="Node2D" parent="Battlefield" index="4"]
+[node name="Waves" type="Node2D" parent="Battlefield" index="6"]
 
 [node name="Wave0" type="Node2D" parent="Battlefield/Waves" index="0" groups=["spawn_waves"]]
 script = ExtResource("9_01lf8")

@@ -1,11 +1,40 @@
-extends Node2D
+[gd_scene load_steps=4 format=3 uid="uid://hqu0sjhj021n"]
+
+[ext_resource type="Script" path="res://godot4/effects/grid/Grid.gd" id="1_tx3yk"]
+
+[sub_resource type="GDScript" id="GDScript_3687u"]
+script/source = "extends Node2D
+
+#@export var frames_wait := 3
+
+var points = PackedVector2Array() : set = set_points
+
+#var frame_count: int = -1
+
+func set_points(v: PackedVector2Array) -> void:
+	points = v
+
+func _process(delta):
+	#frame_count += 1
+	#if frame_count % frames_wait: # FIXME check this optimization
+	#	return
+	
+	queue_redraw()
+
+func _draw():
+	draw_colored_polygon(points, Color(1,1,1))
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_1vrqt"]
+script/source = "extends Node2D
 
 @export var grid_color : Color = Color.GRAY
 @export var cell_size := Vector2.ONE * 100
 @export var grid_thickness := 10.0
 @export var enabled : bool = true
 
-@export_enum('square', 'triangular') var type = "square"
+@export_enum('square', 'triangular') var type = \"square\"
 
 
 var active_points = []
@@ -80,7 +109,7 @@ func _process(delta):
 	count_frame += 1
 	if count_frame % 2:
 		return
-	var gravity_wells = get_tree().get_nodes_in_group("gravity_wells")
+	var gravity_wells = get_tree().get_nodes_in_group(\"gravity_wells\")
 	for well in gravity_wells:
 		if abs(well.get_gravity() * MULTIPLIER) <= 1: continue
 		var index = (well.global_position - position).snapped(cell_size) / cell_size
@@ -141,3 +170,19 @@ class Point:
 	
 	func is_at_rest():
 		return (anchor - position).length() < 1 && velocity.length() < 1
+"
+
+[node name="Grid" type="Node2D"]
+z_index = -5
+z_as_relative = false
+script = ExtResource("1_tx3yk")
+
+[node name="Mask" type="Node2D" parent="."]
+unique_name_in_owner = true
+clip_children = 1
+position = Vector2(0, 32)
+script = SubResource("GDScript_3687u")
+
+[node name="GridLines" type="Node2D" parent="Mask"]
+unique_name_in_owner = true
+script = SubResource("GDScript_1vrqt")

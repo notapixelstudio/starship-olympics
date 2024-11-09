@@ -2,7 +2,7 @@
 extends StaticBody2D
 
 @export var hollow := false : set = set_hollow
-@export var background_color := Color('#658565') : set = set_background_color
+@export var background_color := Color('#333333') : set = set_background_color
 
 var polygon : PackedVector2Array
 

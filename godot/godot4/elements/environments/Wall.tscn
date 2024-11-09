@@ -6,7 +6,6 @@
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_on1u7")
-background_color = null
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 unique_name_in_owner = true
@@ -14,7 +13,7 @@ polygon = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 unique_name_in_owner = true
-color = Color(0.3952, 0.52, 0.52, 1)
+color = Color(0.28485, 0.28485, 0.28485, 1)
 polygon = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -40,5 +39,5 @@ unique_name_in_owner = true
 visible = false
 z_index = -7
 position = Vector2(0, 32)
-color = Color(0.153307, 0.219909, 0.219992, 1)
+color = Color(0.2, 0.2, 0.2, 1)
 polygon = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
