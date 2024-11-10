@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0wlmt037vudx"]
+
+[ext_resource type="Script" path="res://godot4/test/mesh.gd" id="1_xw8ei"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rb6qu"]
+
+[node name="mesh" type="MeshInstance2D"]
+modulate = Color(1, 1, 1, 0.160784)
+mesh = SubResource("ArrayMesh_rb6qu")
+script = ExtResource("1_xw8ei")
