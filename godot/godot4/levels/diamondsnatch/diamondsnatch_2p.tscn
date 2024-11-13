@@ -281,6 +281,10 @@ position = Vector2(1350, 0)
 pattern = "single"
 element_scene = ExtResource("6_y2xdv")
 
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/FirstBigDiamondWave" index="2" instance=ExtResource("4_8igwd")]
+pattern = "single"
+element_scene = ExtResource("6_y2xdv")
+
 [node name="MultiDiamondWave3" type="Node2D" parent="Battlefield/Waves" index="7" groups=["spawn_waves"]]
 script = ExtResource("3_tj16f")
 max_repeats = 1
