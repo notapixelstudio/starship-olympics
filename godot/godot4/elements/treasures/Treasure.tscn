@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://def8gegesl10e"]
+[gd_scene load_steps=11 format=3 uid="uid://def8gegesl10e"]
 
 [ext_resource type="Script" path="res://godot4/elements/treasures/Treasure.gd" id="1_q6gx3"]
 [ext_resource type="PackedScene" uid="uid://c4yru00x07tyi" path="res://godot4/effects/TreasurePicked.tscn" id="2_lfwwo"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="3_37ycv"]
+[ext_resource type="PackedScene" uid="uid://bkt3uw0ui0kxk" path="res://godot4/effects/appear/AppearTreasure.tscn" id="3_ufj5w"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ojvyv"]
 bounce = 0.35
@@ -84,6 +85,7 @@ can_sleep = false
 linear_damp = 1.0
 script = ExtResource("1_q6gx3")
 treasure_picked_scene = ExtResource("2_lfwwo")
+appear_scene = ExtResource("3_ufj5w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

@@ -5,6 +5,7 @@ extends RigidBody2D
 @export var solid := true
 @export var points := 1
 @export var treasure_picked_scene : PackedScene
+@export var appear_scene : PackedScene
 
 signal collected(PhysicsBody2D, Treasure)
 
@@ -62,4 +63,7 @@ func enable_collisions() -> void:
 
 func get_sfx_player() -> AudioStreamPlayer2D:
 	return %AudioStreamPlayer2D
+	
+func create_appear_effect() -> Node2D:
+	return appear_scene.instantiate()
 	
