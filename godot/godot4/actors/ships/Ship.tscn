@@ -243,9 +243,11 @@ gradient = SubResource("Gradient_tmbes")
 host = NodePath("..")
 max_age = 0.4
 
-[node name="GravitonField" parent="." instance=ExtResource("16_2i8oi")]
+[node name="GravitonField" parent="." node_paths=PackedStringArray("source") instance=ExtResource("16_2i8oi")]
 unique_name_in_owner = true
 position = Vector2(-120, 0)
+source = NodePath("../ChargeManager")
+source_strength_method_name = "get_charge_normalized"
 
 [node name="CargoManager" type="Node" parent="."]
 unique_name_in_owner = true
