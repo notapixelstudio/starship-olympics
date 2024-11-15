@@ -48,8 +48,8 @@ hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 hollow = true
 background_color = Color(0.0627451, 0.105882, 0.2, 1)
 
-[node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_shape") instance=ExtResource("8_pkpfw")]
-init_shape = NodePath("../VRoundedRect")
+[node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("8_pkpfw")]
+init_parametric_shape = NodePath("../VRoundedRect")
 
 [node name="Wall" parent="Battlefield" index="3" instance=ExtResource("4_pfuid")]
 position = Vector2(-900, 0)

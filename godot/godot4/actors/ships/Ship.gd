@@ -23,6 +23,7 @@ func set_player(v: Player) -> void:
 	%PlayerID.modulate = player.get_species().get_color()
 
 @onready var tracked = %Tracked
+@onready var dash_graviton_field = %DashGravitonField
 
 const max_steer_force = 2500
 const MIN_CHARGE = 0.2
@@ -91,7 +92,7 @@ func is_thrusting() -> bool:
 
 func charge():
 	%ChargeManager.start_charging()
-	%GravitonField.enable()
+	dash_graviton_field.enable()
 	
 func release():
 	if %ChargeManager.can_tap():
@@ -99,7 +100,7 @@ func release():
 	if %ChargeManager.can_dash():
 		dash(%ChargeManager.get_charge())
 	%ChargeManager.end_charging()
-	%GravitonField.disable()
+	dash_graviton_field.disable()
 
 func dash(charge: float) -> void:
 	var dash_strength = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(charge - MIN_CHARGE, 0, %ChargeManager.MAX_CHARGE)
