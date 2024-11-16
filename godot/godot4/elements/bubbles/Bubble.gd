@@ -3,6 +3,7 @@ class_name Bubble
 
 @export var content_scene : PackedScene : set = set_content_scene
 @export var bubble_popped_scene : PackedScene
+@export var appear_scene : PackedScene
 
 var _content
 var _bumps := 0
@@ -38,3 +39,7 @@ func _on_body_entered(body):
 		return
 		
 	SoundEffects.play(%BounceSFX)
+
+func create_appear_effect() -> Node2D:
+	return appear_scene.instantiate()
+	
