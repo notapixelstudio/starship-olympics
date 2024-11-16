@@ -119,7 +119,7 @@ func _process(delta):
 				if x <= 0 || x >= h_cells - 1 || y <= 0 || y >= v_cells - 1: continue
 				var point = grid[y][x]
 				if active_points.has(point): continue
-				var dist = (well.global_position - point.surface_position).length()
+				var dist = (well.global_position - point.position).length()
 				if dist < well.get_influence_radius():
 					active_points.append(point)
 	for point in active_points:
@@ -138,42 +138,44 @@ func _process(delta):
 			lines[h_cells + h_cells + point.index.y].set_point_position(point.index.x, point.position)
 
 class Point:
-	var velocity := Vector2.ZERO
-	var position : Vector2
-	var surface_position : Vector2
-	var anchor : Vector2
+	var velocity := Vector3.ZERO
+	var position_3d : Vector3
+	var anchor : Vector3
+	
 	var index : Vector2
+	var position : Vector2
 	
 	func _init(position, index):
 		self.position = position
 		self.index = index
-		anchor = position
-		surface_position = position
+		anchor = Vector3(position.x, position.y, 0.0)
+		position_3d = anchor
 	
 	func process(delta, gravity_wells):
 		# elastic velocity
-		var diff = anchor - surface_position
+		var diff = anchor - position_3d
 		var desired_velocity = diff * 24
 		velocity = velocity.lerp(desired_velocity, 0.15)
 		
 		# gravity velocity
 		for well in gravity_wells:
-			var well_diff = well.global_position - surface_position
-			if well_diff.length() < well.get_influence_radius():
-				velocity += well_diff * global.sigmoid(well_diff.length(), well.get_influence_radius()) * well.get_gravity() * MULTIPLIER * delta
-		
+			velocity += well.get_force(position_3d) * delta
+			#var well_diff = well.global_position - surface_position
+			#if well_diff.length() < well.get_influence_radius():
+				#velocity += well_diff * global.sigmoid(well_diff.length(), well.get_influence_radius()) * well.get_gravity() * MULTIPLIER * delta
+		#
 		velocity = velocity.normalized() * min(velocity.length(), max_velocity)
-		surface_position += velocity * delta
+		position_3d += velocity * delta
 		
-		position = surface_position# + Vector2(0, 1.0) FIXME implement parametric z axis gravitational effect
+		position = Vector2(position_3d.x, position_3d.y - position_3d.z * 0.5)
 		
 	func rest():
-		position = anchor
-		surface_position = anchor
-		velocity = Vector2.ZERO
+		position = Vector2(anchor.x, anchor.y)
+		position_3d = anchor
+		velocity = Vector3.ZERO
 	
 	func is_at_rest():
-		return (anchor - surface_position).length() < 1 && velocity.length() < 1
+		return (anchor - position_3d).length() < 1 && velocity.length() < 1
 "
 
 [node name="Grid" type="Node2D"]

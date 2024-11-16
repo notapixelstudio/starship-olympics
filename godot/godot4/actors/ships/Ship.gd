@@ -76,6 +76,7 @@ func get_target_velocity() -> Vector2:
 func set_target_velocity(v: Vector2) -> void:
 	target_velocity = v
 	set_constant_force(target_velocity * THRUST*int(is_thrusting()))
+	%GravitonField.enabled = not target_velocity.is_zero_approx()
 	
 func set_rotation_request(v: float) -> void:
 	rotation_request = v

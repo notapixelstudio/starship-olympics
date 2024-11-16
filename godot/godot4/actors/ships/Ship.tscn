@@ -244,13 +244,16 @@ host = NodePath("..")
 max_age = 0.4
 
 [node name="GravitonField" parent="." instance=ExtResource("16_2i8oi")]
-enabled = true
-gravity = 512.0
+unique_name_in_owner = true
+gravity = 64.0
+center = Vector3(0, 0, -500)
 influence_radius = 250.0
 
 [node name="DashGravitonField" parent="." node_paths=PackedStringArray("source") instance=ExtResource("16_2i8oi")]
 unique_name_in_owner = true
 position = Vector2(-120, 0)
+gravity = 128.0
+center = Vector3(0, 0, -100)
 source = NodePath("../ChargeManager")
 source_strength_method_name = "get_charge_normalized"
 
