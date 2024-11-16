@@ -251,8 +251,8 @@ influence_radius = 250.0
 
 [node name="DashGravitonField" parent="." node_paths=PackedStringArray("source") instance=ExtResource("16_2i8oi")]
 unique_name_in_owner = true
-position = Vector2(-120, 0)
-gravity = 128.0
+position = Vector2(-150, 0)
+gravity = 200.0
 center = Vector3(0, 0, -100)
 source = NodePath("../ChargeManager")
 source_strength_method_name = "get_charge_normalized"
