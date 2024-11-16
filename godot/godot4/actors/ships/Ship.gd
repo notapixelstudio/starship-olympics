@@ -76,7 +76,6 @@ func get_target_velocity() -> Vector2:
 func set_target_velocity(v: Vector2) -> void:
 	target_velocity = v
 	set_constant_force(target_velocity * THRUST*int(is_thrusting()))
-	%GravitonField.enabled = not target_velocity.is_zero_approx()
 	
 func set_rotation_request(v: float) -> void:
 	rotation_request = v
@@ -209,3 +208,6 @@ func die():
 	death_feedback.global_position = global_position
 	get_parent().add_child(death_feedback)
 	queue_free()
+
+func get_speed_normalized() -> float:
+	return min(1.0, linear_velocity.length() / 100.0)
