@@ -31,7 +31,7 @@ script/source = "extends Node2D
 
 @export var grid_color : Color = Color.GRAY
 @export var cell_size := Vector2.ONE * 100
-@export var grid_thickness := 10.0
+@export var grid_thickness := 8.0
 @export var enabled : bool = true
 
 @export_enum('square', 'triangular') var type = \"square\"
