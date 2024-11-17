@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1l3lu1qyupad"]
+[gd_scene load_steps=17 format=3 uid="uid://c1l3lu1qyupad"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_hdhns"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_4vl7f"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="5_n30yh"]
 [ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="6_exy44"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="6_y2xdv"]
+[ext_resource type="Resource" uid="uid://qv7ahl4mb6vo" path="res://godot4/data/styles/wall/cyber.tres" id="8_gbm1w"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="8_pkpfw"]
 [ext_resource type="PackedScene" uid="uid://dvjdmo8ceeh5b" path="res://godot4/elements/bubbles/DiamondBubble.tscn" id="12_g0rc5"]
 [ext_resource type="PackedScene" uid="uid://cie2xt6b1e8oy" path="res://godot4/elements/bubbles/BigDiamondBubble.tscn" id="13_mcimn"]
@@ -46,14 +47,15 @@ hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
 [node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource("4_pfuid")]
 hollow = true
-background_color = Color(0.0627451, 0.105882, 0.2, 1)
+style = ExtResource("8_gbm1w")
 
 [node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("8_pkpfw")]
+grid_color = Color(0.072, 0.1344, 0.36, 1)
 init_parametric_shape = NodePath("../VRoundedRect")
 
 [node name="Wall" parent="Battlefield" index="3" instance=ExtResource("4_pfuid")]
 position = Vector2(-900, 0)
-background_color = Color(0.396078, 0.521569, 0.396078, 1)
+style = ExtResource("8_gbm1w")
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4"]
 script = ExtResource("6_exy44")
@@ -61,7 +63,7 @@ sides = 4
 
 [node name="Wall2" parent="Battlefield" index="4" instance=ExtResource("4_pfuid")]
 position = Vector2(900, 0)
-background_color = Color(0.396078, 0.521569, 0.396078, 1)
+style = ExtResource("8_gbm1w")
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4"]
 script = ExtResource("6_exy44")

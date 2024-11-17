@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://5c144k74jpe7"]
+[gd_scene load_steps=3 format=3 uid="uid://5c144k74jpe7"]
 
 [ext_resource type="Script" path="res://godot4/elements/environments/Wall.gd" id="1_on1u7"]
+[ext_resource type="Texture2D" uid="uid://yuay7lcg5j7l" path="res://assets/sprites/background/static.png" id="2_amyo3"]
 
 [node name="Wall" type="StaticBody2D"]
 collision_layer = 16
@@ -13,31 +14,36 @@ polygon = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 unique_name_in_owner = true
-color = Color(0.28485, 0.28485, 0.28485, 1)
 polygon = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
 
 [node name="Line2D" type="Line2D" parent="."]
 unique_name_in_owner = true
+texture_repeat = 3
 points = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
 closed = true
 width = 48.0
-default_color = Color(0.552956, 0.552956, 0.552956, 1)
+default_color = Color(0.552941, 0.552941, 0.552941, 1)
+texture_mode = 1
 joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="UnderLine2D" type="Line2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.368627, 0.368627, 0.368627, 1)
 z_index = -1
 position = Vector2(0, 32)
 points = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
 closed = true
 width = 48.0
+default_color = Color(0.368627, 0.368627, 0.368627, 1)
 joint_mode = 1
 
 [node name="UnderPolygon2D" type="Polygon2D" parent="."]
 unique_name_in_owner = true
 visible = false
+modulate = Color(0.2, 0.2, 0.2, 1)
 z_index = -7
+texture_repeat = 2
 position = Vector2(0, 32)
-color = Color(0.2, 0.2, 0.2, 1)
+texture = ExtResource("2_amyo3")
 polygon = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
