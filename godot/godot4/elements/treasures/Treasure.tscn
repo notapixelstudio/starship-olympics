@@ -36,7 +36,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(3, 3, 3, 1)]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_osksh"]
@@ -155,7 +155,6 @@ visible = false
 shape = SubResource("CircleShape2D_0ycic")
 
 [node name="Graphics" type="Node2D" parent="."]
-modulate = Color(3, 3, 3, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true

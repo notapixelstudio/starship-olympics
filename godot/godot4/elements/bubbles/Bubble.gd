@@ -19,7 +19,8 @@ func _on_area_2d_body_entered(body):
 			if _content:
 				_content.global_position = global_position
 				get_parent().add_child.call_deferred(_content)
-				_content.touched_by.call_deferred(body) # FIXME strong assumption
+				if _content.has_method('touched_by'): # WARNING duck typing
+					_content.touched_by.call_deferred(body)
 			SoundEffects.play(%PopSFX)
 			var pop = bubble_popped_scene.instantiate()
 			pop.global_position = global_position
@@ -41,5 +42,7 @@ func _on_body_entered(body):
 	SoundEffects.play(%BounceSFX)
 
 func create_appear_effect() -> Node2D:
-	return appear_scene.instantiate()
-	
+	var appear = appear_scene.instantiate()
+	if _content.has_method('get_appear_texture'): # WARNING duck typing
+		appear.set_texture(_content.get_appear_texture())
+	return appear

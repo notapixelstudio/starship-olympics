@@ -30,7 +30,7 @@ func spawn(parent_node = null):
 	var element = element_scene.instantiate()
 	var where_to_spawn = global_position + Vector2(randfn(0.0,JITTER),randfn(0.0,JITTER))
 	
-	if element.has_method('create_appear_effect'): # WARNING duck typing, sort of
+	if element.has_method('create_appear_effect'): # WARNING duck typing
 		var appear = element.create_appear_effect()
 		appear.global_position = where_to_spawn
 		parent_node.add_child(appear)

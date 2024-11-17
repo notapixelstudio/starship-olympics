@@ -6,6 +6,7 @@ extends RigidBody2D
 @export var points := 1
 @export var treasure_picked_scene : PackedScene
 @export var appear_scene : PackedScene
+@export var outline_texture : Texture
 
 signal collected(PhysicsBody2D, Treasure)
 
@@ -41,7 +42,7 @@ func touched_by(toucher : Ship):
 	
 	# drop a treasure picked effect on parent
 	var picked_effect = treasure_picked_scene.instantiate()
-	picked_effect.set_texture(get_texture())
+	picked_effect.set_texture(outline_texture)
 	picked_effect.global_position = global_position
 	get_parent().add_child(picked_effect)
 	
@@ -65,5 +66,9 @@ func get_sfx_player() -> AudioStreamPlayer2D:
 	return %AudioStreamPlayer2D
 	
 func create_appear_effect() -> Node2D:
-	return appear_scene.instantiate()
+	var appear = appear_scene.instantiate()
+	appear.set_texture(get_appear_texture())
+	return appear
 	
+func get_appear_texture() -> Texture:
+	return outline_texture
