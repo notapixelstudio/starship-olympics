@@ -4,7 +4,7 @@ Arena Node that will handle all the combat logic
 """
 extends Node
 
-class_name Arena
+class_name Arenaz
 
 
 var width

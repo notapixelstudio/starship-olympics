@@ -1,4 +1,13 @@
 extends Node2D
+class_name Arena
+## Base class for Arena scenes, responsible for managing the overall logic of a single match.
+## It acts as a central hub for various components such as players, ships, and game modes.
+## This class is considered an abstract class and should not be used directly.
+## Instead, you should inherit from it and implement the necessary methods to handle a specific game logic.
+##
+## The Battlefield node is meant to contain the actual game elements such as collectables, enemies, and other game objects.
+## The Homes node is meant to contain the starting positions of the players.
+## Nodes under the HUD canvas layer are meant to be used for UI elements, such as the countdown timer, the match over screen, and the score bars.
 
 @export var players : Dictionary # String: Player
 @export var ship_scene : PackedScene
@@ -102,12 +111,19 @@ func _ready() -> void:
 	for player in get_tree().get_nodes_in_group('animation_starts_with_battle'):
 		player.play('default')
 	
+## Returns a [String] identifier for the [Arena] (defaults to the file name of the scene file).
 func get_id() -> String:
 	return scene_file_path.get_file().split('.')[0]
 	
+## Returns the identifier of the [Minigame] associated with this [Arena], which is the first part of the Arena's identifier (split by underscore).
+## For example, if the Arena's identifier is [code]diamondsnatch_2p.tscn[/code], then the Minigame's identifier is [code]diamondsnatch[/code].
 func get_minigame_id() -> String:
 	return get_id().split('_')[0]
 	
+## Returns the [Minigame] associated with this [Arena].
+## It does this by looking for a resource file named according to [method get_minigame_id] in the [code]res://godot4/data/minigames/[/code] directory.
+## For example, if the [Minigame] identifier is [code]diamondsnatch[/code], then the method looks for [code]res://godot4/data/minigames/diamondsnatch.tres[/code].
+## If the file is not found, it returns [code]default_minigame[/code] (see [member default_minigame]).
 func get_minigame() -> Minigame:
 	var minigame_resource_path = 'res://godot4/data/minigames/'+get_minigame_id()+'.tres'
 	if not ResourceLoader.exists(minigame_resource_path):
