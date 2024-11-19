@@ -6,8 +6,12 @@ vec4 overlay(vec4 base, vec4 blend){
 	vec4 limit = step(0.5, base);
 	return mix(2.0 * base * blend, 1.0 - 2.0 * (1.0 - base) * (1.0 - blend), limit);
 }
+vec4 screen(vec4 base, vec4 blend){
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
+
 
 void fragment() {
     vec4 screenColor = texture(SCREEN_TEXTURE, SCREEN_UV); // Sample the screen texture
-    COLOR = overlay(COLOR, screenColor); // Use screen color as blend color
+    COLOR = screen(COLOR, screenColor); // Use screen color as blend color
 }

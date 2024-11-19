@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=24 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="Script" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
 [ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://godot4/debug/DebugActionsManager.gd" id="16_uol0h"]
 [ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="18_3l87r"]
 [ext_resource type="Texture2D" uid="uid://bvtwlkbaasdkr" path="res://combat/levels/background/menus.png" id="18_f7kik"]
+[ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="19_hnpxt"]
 [ext_resource type="Texture2D" uid="uid://b6sliuwswrkev" path="res://assets/HUD/vignette_side.png" id="19_pglbe"]
 
 [node name="Arena" type="Node2D"]
@@ -62,10 +63,12 @@ zoom = Vector2(0.2, 0.2)
 script = ExtResource("16_ad0xh")
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
-layer = -1
+layer = -5
 
 [node name="Background" type="TextureRect" parent="BackgroundLayer"]
 unique_name_in_owner = true
+z_index = -500
+z_as_relative = false
 offset_right = 1280.0
 offset_bottom = 724.0
 texture = ExtResource("18_f7kik")
@@ -79,14 +82,16 @@ unique_name_in_owner = true
 [node name="HUD" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
+layer = 10
 
 [node name="VignetteLeft" type="Sprite2D" parent="HUD"]
 scale = Vector2(0.667, 0.667)
-texture = ExtResource("19_pglbe")
+texture = ExtResource("19_hnpxt")
 centered = false
 flip_h = true
 
 [node name="VignetteLeft2" type="Sprite2D" parent="HUD"]
+visible = false
 position = Vector2(903, 0)
 scale = Vector2(0.667, 0.667)
 texture = ExtResource("19_pglbe")

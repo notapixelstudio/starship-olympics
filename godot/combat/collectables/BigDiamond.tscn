@@ -1,116 +1,121 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=15 format=3 uid="uid://djoq6wjajdqnp"]
 
 [ext_resource type="Script" path="res://combat/collectables/BigDiamond.gd" id="1"]
 [ext_resource type="Script" path="res://addons/ECM/Entity.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://dxspwyydprxb1" path="res://addons/ECM/icons/Entity.png" id="3"]
 [ext_resource type="Script" path="res://addons/ECM/Component.gd" id="4"]
-[ext_resource type="Texture2D" uid="uid://boh3pf58gw6ig" path="res://addons/ECM/icons/Component.png" id="5"]
 [ext_resource type="PackedScene" path="res://combat/traits/Strategic.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://dldq7fl7u4nom" path="res://assets/sprites/environments/diamond_big.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://brxcax73it83q" path="res://assets/sprites/environments/crown_halo.png" id="8"]
 [ext_resource type="Animation" path="res://assets/animations/AppearFuhfuhfuh.tres" id="9"]
-[ext_resource type="PackedScene" path="res://godot4/effects/Shadow.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="10"]
 [ext_resource type="AudioStream" uid="uid://c5pidqn68fd5j" path="res://assets/audio/FX/sfx_coin_cluster3.wav" id="11"]
 [ext_resource type="PackedScene" path="res://actors/environments/BigDiamondCollectParticles.tscn" id="12"]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id="1"]
 radius = 90.0
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "Blink"
 length = 2.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.5, 2 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Vector2( 0.8, 0.8 ), Vector2( 1, 1 ), Vector2( 0.8, 0.8 ) ]
+"values": [Vector2(0.8, 0.8), Vector2(1, 1), Vector2(0.8, 0.8)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Sprite2D:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( -0.1, 0.5, 1.3, 2 ),
-"transitions": PackedFloat32Array( 0.5, 2, 1, 0.5 ),
+"times": PackedFloat32Array(-0.1, 0.5, 1.3, 2),
+"transitions": PackedFloat32Array(0.5, 2, 1, 0.5),
 "update": 0,
-"values": [ Color( 1, 0.956863, 0.305882, 0 ), Color( 1, 0.956863, 0.305882, 0 ), Color( 1, 0.92549, 0.305882, 0.388235 ), Color( 1, 0.956863, 0.305882, 0 ) ]
+"values": [Color(1, 0.956863, 0.305882, 0), Color(1, 0.956863, 0.305882, 0), Color(1, 0.92549, 0.305882, 0.388235), Color(1, 0.956863, 0.305882, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s2ray"]
+_data = {
+"Blink": SubResource("2")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4tqq1"]
+_data = {
+"AppearFuhfuhfuh": ExtResource("9")
 }
 
 [node name="BigDiamond" type="RigidBody2D" groups=["Diamond", "Foreground", "in_camera"]]
 collision_layer = 2048
 collision_mask = 3092
 linear_damp = 1.0
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="Strategic" parent="." instance=ExtResource( 6 )]
+[node name="Strategic" parent="." instance=ExtResource("6")]
 
 [node name="Entity" type="Node" parent="."]
-script = ExtResource( 2 )
-__meta__ = {
-"_editor_icon": ExtResource( 3 )
-}
+script = ExtResource("2")
 
 [node name="Collectable" type="Node" parent="Entity"]
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_icon": ExtResource( 5 )
-}
+script = ExtResource("4")
 
-[node name="Shadow" parent="." instance=ExtResource( 10 )]
+[node name="Shadow" parent="." instance=ExtResource("10")]
 sprite = NodePath("../Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
-position = Vector2( 0, 7 )
-texture = ExtResource( 7 )
+position = Vector2(0, 7)
+texture = ExtResource("7")
 
 [node name="SpriteEffect" type="Sprite2D" parent="."]
-self_modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 7 )
-scale = Vector2( 5, 5 )
-texture = ExtResource( 7 )
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 7)
+scale = Vector2(5, 5)
+texture = ExtResource("7")
 
 [node name="SpriteEffect2" type="Sprite2D" parent="."]
 visible = false
-position = Vector2( 0, 7 )
-texture = ExtResource( 7 )
+position = Vector2(0, 7)
+texture = ExtResource("7")
 
 [node name="SpriteEffect3" type="Sprite2D" parent="."]
 visible = false
-position = Vector2( 0, 7 )
-texture = ExtResource( 7 )
+position = Vector2(0, 7)
+texture = ExtResource("7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="Glow" type="Node2D" parent="."]
 visible = false
-scale = Vector2( 1.2, 1.2 )
+scale = Vector2(1.2, 1.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="Glow"]
-modulate = Color( 1, 0.932843, 0.305882, 0.297243 )
-scale = Vector2( 0.906667, 0.906667 )
-texture = ExtResource( 8 )
+modulate = Color(1, 0.932843, 0.305882, 0.297243)
+scale = Vector2(0.906667, 0.906667)
+texture = ExtResource("8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
-playback_speed = 2.0
-anims/Blink = SubResource( 2 )
+libraries = {
+"": SubResource("AnimationLibrary_s2ray")
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/AppearFuhfuhfuh = ExtResource( 9 )
+libraries = {
+"": SubResource("AnimationLibrary_4tqq1")
+}
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 11 )
+stream = ExtResource("11")
 volume_db = -1.0
-bus = "SFX_effect"
+bus = &"SFX_effect"
 
-[node name="Particles" parent="." instance=ExtResource( 12 )]
+[node name="Particles" parent="." instance=ExtResource("12")]

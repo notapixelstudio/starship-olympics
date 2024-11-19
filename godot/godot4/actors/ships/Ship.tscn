@@ -116,11 +116,10 @@ scale = Vector2(1.25, 1.25)
 
 [node name="Glow" type="PointLight2D" parent="Graphics"]
 unique_name_in_owner = true
-scale = Vector2(1, 1)
-energy = 8.0
+energy = 20.0
 blend_mode = 2
 texture = ExtResource("8_11rou")
-texture_scale = 0.8
+texture_scale = 0.7
 
 [node name="BallSprite" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
@@ -131,6 +130,8 @@ scale = Vector2(0.77, 0.77)
 [node name="Sprite" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
 light_mask = 0
+z_index = 20
+z_as_relative = false
 texture = ExtResource("3_gbkft")
 script = SubResource("GDScript_jwr13")
 
