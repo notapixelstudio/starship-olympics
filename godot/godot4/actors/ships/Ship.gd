@@ -21,6 +21,7 @@ func set_player(v: Player) -> void:
 	%BottomFlameTrail.default_color = player.get_species().get_color()
 	%PlayerID.text = player.get_id()
 	%PlayerID.modulate = player.get_species().get_color()
+	%Glow.color = player.get_species().get_color()
 
 @onready var tracked = %Tracked
 @onready var dash_graviton_field = %DashGravitonField

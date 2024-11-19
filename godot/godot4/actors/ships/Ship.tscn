@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=28 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PackedScene" uid="uid://b6gg3o407i70x" path="res://godot4/effects/DashRing.tscn" id="2_0puh8"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="4_mpdfg"]
 [ext_resource type="PackedScene" uid="uid://d1673ytdlyny4" path="res://godot4/debug/OnShipDebug.tscn" id="5_0tcqu"]
 [ext_resource type="Script" path="res://godot4/actors/managers/ChargeManager.gd" id="5_ostpb"]
+[ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="8_11rou"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="8_yfcmx"]
 [ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://godot4/effects/trails/FlameTrail.tscn" id="10_4jj2i"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="10_iega2"]
@@ -113,13 +114,23 @@ host = NodePath("../..")
 unique_name_in_owner = true
 scale = Vector2(1.25, 1.25)
 
+[node name="Glow" type="PointLight2D" parent="Graphics"]
+unique_name_in_owner = true
+scale = Vector2(1, 1)
+energy = 8.0
+blend_mode = 2
+texture = ExtResource("8_11rou")
+texture_scale = 0.8
+
 [node name="BallSprite" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
+light_mask = 0
 position = Vector2(64, 0)
 scale = Vector2(0.77, 0.77)
 
 [node name="Sprite" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
+light_mask = 0
 texture = ExtResource("3_gbkft")
 script = SubResource("GDScript_jwr13")
 

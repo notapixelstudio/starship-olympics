@@ -1,6 +1,5 @@
-[gd_scene load_steps=24 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=23 format=3 uid="uid://ctk8t0ohpljms"]
 
-[ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="1_1sf7u"]
 [ext_resource type="Script" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
 [ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
 [ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="2_3p1dt"]
@@ -76,8 +75,6 @@ unique_name_in_owner = true
 
 [node name="Battlefield" type="Node2D" parent="."]
 unique_name_in_owner = true
-
-[node name="WorldEnvironment" parent="." instance=ExtResource("1_1sf7u")]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
