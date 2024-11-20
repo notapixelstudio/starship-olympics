@@ -15,7 +15,10 @@
 
 [node name="VersusArena" instance=ExtResource("1_p501y")]
 
-[node name="Camera2D" parent="." index="1"]
+[node name="Styleable" parent="." index="0"]
+style = ExtResource("6_ffldp")
+
+[node name="Camera2D" parent="." index="2"]
 zoom = Vector2(0.25, 0.25)
 
 [node name="P1" parent="Homes" index="0" instance=ExtResource("2_w3bco")]
@@ -34,10 +37,8 @@ hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
 [node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource("3_kwgf4")]
 hollow = true
-style = ExtResource("6_ffldp")
 
 [node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("5_mqwfg")]
-style = ExtResource("6_ffldp")
 init_parametric_shape = NodePath("../VBeveledRect")
 
 [node name="Decoration" type="Node2D" parent="Battlefield" index="3"]
@@ -173,19 +174,19 @@ position = Vector2(1600, 0)
 script = ExtResource("9_q6fwx")
 sides = 4
 
-[node name="Wall15" parent="Battlefield" index="13" instance=ExtResource("3_kwgf4")]
-position = Vector2(800, -400)
-rotation = -0.785398
-
-[node name="VBeveledRect" type="Node" parent="Battlefield/Wall15" index="5"]
-script = ExtResource("4_7vi0o")
-height = 700.0
-
-[node name="Wall16" parent="Battlefield" index="14" instance=ExtResource("3_kwgf4")]
+[node name="Wall16" parent="Battlefield" index="13" instance=ExtResource("3_kwgf4")]
 position = Vector2(-800, 400)
 rotation = -0.785398
 
 [node name="VBeveledRect" type="Node" parent="Battlefield/Wall16" index="5"]
+script = ExtResource("4_7vi0o")
+height = 700.0
+
+[node name="Wall15" parent="Battlefield" index="14" instance=ExtResource("3_kwgf4")]
+position = Vector2(800, -400)
+rotation = -0.785398
+
+[node name="VBeveledRect" type="Node" parent="Battlefield/Wall15" index="5"]
 script = ExtResource("4_7vi0o")
 height = 700.0
 

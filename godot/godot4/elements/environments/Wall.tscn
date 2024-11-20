@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://5c144k74jpe7"]
+[gd_scene load_steps=4 format=3 uid="uid://5c144k74jpe7"]
 
 [ext_resource type="Script" path="res://godot4/elements/environments/Wall.gd" id="1_on1u7"]
 [ext_resource type="Texture2D" uid="uid://yuay7lcg5j7l" path="res://assets/sprites/background/static.png" id="2_amyo3"]
+[ext_resource type="PackedScene" uid="uid://bbh6dfcfwh26k" path="res://godot4/traits/Styleable.tscn" id="2_p8qx8"]
 
 [node name="Wall" type="StaticBody2D"]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_on1u7")
+
+[node name="Styleable" parent="." instance=ExtResource("2_p8qx8")]
+unique_name_in_owner = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 unique_name_in_owner = true

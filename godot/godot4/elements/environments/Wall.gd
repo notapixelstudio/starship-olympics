@@ -2,7 +2,6 @@
 extends StaticBody2D
 
 @export var hollow := false : set = set_hollow
-@export var style : Style : set = set_style
 
 var polygon : PackedVector2Array
 
@@ -11,8 +10,7 @@ func set_hollow(v: bool) -> void:
 	%Polygon2D.visible = not hollow
 	%UnderPolygon2D.visible = hollow
 	
-func set_style(v:Style) -> void:
-	style = v
+func set_style(style:Style) -> void:
 	%Polygon2D.modulate = style.color
 	%UnderPolygon2D.modulate = style.background_color
 	%Line2D.default_color = style.line_color
@@ -40,3 +38,6 @@ func update_collision_polygon() -> void:
 				%CollisionPolygon2D.set_polygon(internal)
 	else:
 		%CollisionPolygon2D.set_polygon(polygon)
+
+func _ready():
+	set_style(%Styleable.get_style_from_ancestor_or_self())

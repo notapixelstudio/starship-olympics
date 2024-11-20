@@ -19,6 +19,9 @@
 
 [node name="VersusArena" instance=ExtResource("1_hdhns")]
 
+[node name="Styleable" parent="." index="0"]
+style = ExtResource("8_gbm1w")
+
 [node name="SpawnerWaveManager" parent="Managers" index="3" node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("2_4vl7f")]
 waves_container = NodePath("../../Battlefield/Waves")
 battlefield = NodePath("../../Battlefield")
@@ -27,7 +30,7 @@ battlefield = NodePath("../../Battlefield")
 
 [node name="TreasureSFXManager" parent="Managers" index="8" instance=ExtResource("4_hj55b")]
 
-[node name="Camera2D" parent="." index="1"]
+[node name="Camera2D" parent="." index="2"]
 zoom = Vector2(0.32, 0.32)
 
 [node name="P1" parent="Homes" index="0" instance=ExtResource("4_5w5sg")]
@@ -47,15 +50,12 @@ hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
 [node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource("4_pfuid")]
 hollow = true
-style = ExtResource("8_gbm1w")
 
 [node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("8_pkpfw")]
-style = ExtResource("8_gbm1w")
 init_parametric_shape = NodePath("../VRoundedRect")
 
 [node name="Wall" parent="Battlefield" index="3" instance=ExtResource("4_pfuid")]
 position = Vector2(-900, 0)
-style = ExtResource("8_gbm1w")
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4"]
 script = ExtResource("6_exy44")
@@ -63,7 +63,6 @@ sides = 4
 
 [node name="Wall2" parent="Battlefield" index="4" instance=ExtResource("4_pfuid")]
 position = Vector2(900, 0)
-style = ExtResource("8_gbm1w")
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4"]
 script = ExtResource("6_exy44")

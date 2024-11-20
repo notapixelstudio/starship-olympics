@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=26 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="Script" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
 [ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
@@ -16,6 +16,8 @@
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="9_nr0n0"]
 [ext_resource type="Resource" uid="uid://bpw2qo5744n7m" path="res://godot4/data/minigames/default.tres" id="9_vsuw2"]
 [ext_resource type="PackedScene" uid="uid://ctdiyn70rdfsq" path="res://godot4/arena/managers/TimeManager.tscn" id="10_mhlox"]
+[ext_resource type="PackedScene" uid="uid://bbh6dfcfwh26k" path="res://godot4/traits/Styleable.tscn" id="12_g1af4"]
+[ext_resource type="Resource" uid="uid://dk1wwbut07grf" path="res://godot4/data/styles/default.tres" id="13_n4nm8"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="16_64a4r"]
 [ext_resource type="Script" path="res://godot4/arena/ArenaCamera2D.gd" id="16_ad0xh"]
 [ext_resource type="Script" path="res://godot4/debug/DebugActionsManager.gd" id="16_uol0h"]
@@ -38,6 +40,9 @@ cpu_brain_scene = ExtResource("8_segll")
 match_over_screen_scene = ExtResource("9_kkxbo")
 default_minigame = ExtResource("9_vsuw2")
 default_params = ExtResource("9_nr0n0")
+
+[node name="Styleable" parent="." instance=ExtResource("12_g1af4")]
+style = ExtResource("13_n4nm8")
 
 [node name="Managers" type="Node" parent="."]
 
