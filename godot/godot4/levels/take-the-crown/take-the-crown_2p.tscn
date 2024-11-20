@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://x751geeku5fx"]
+[gd_scene load_steps=18 format=3 uid="uid://x751geeku5fx"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_bvhdi"]
 [ext_resource type="PackedScene" uid="uid://chnvt4cxrqrcv" path="res://godot4/arena/managers/games/CrownGame.tscn" id="2_3q1vj"]
 [ext_resource type="Script" path="res://addons/vshapes/VBeveledRect.gd" id="4_ij1ca"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_vjgex"]
+[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="5_e3rpg"]
+[ext_resource type="Resource" uid="uid://cxorooq22c83" path="res://godot4/data/styles/palace.tres" id="5_jww8k"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="5_q5cfv"]
 [ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="6_h5akp"]
 [ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="7_1nk4p"]
@@ -15,7 +17,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VBeveledRect:bevel")
+tracks/0/path = NodePath("../VBeveledRect:bevel")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -33,7 +35,7 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VBeveledRect:bevel")
+tracks/0/path = NodePath("../VBeveledRect:bevel")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -127,42 +129,51 @@ rotation = 0.785398
 position = Vector2(400, 400)
 rotation = -2.35619
 
-[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("5_q5cfv")]
-hollow = true
-
-[node name="VBeveledRect" type="Node" parent="Battlefield/OutsideWall" index="5"]
+[node name="VBeveledRect" type="Node" parent="Battlefield" index="0" node_paths=PackedStringArray("hosts")]
 script = ExtResource("4_ij1ca")
 width = 3500.0
 height = 1900.0
 bevel = 935.0
+hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/OutsideWall" index="6" groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield" index="1" groups=["animation_starts_with_battle"]]
+root_node = NodePath("../OutsideWall")
 callback_mode_process = 0
 libraries = {
 "": SubResource("AnimationLibrary_aclk8")
 }
 
-[node name="Wall" parent="Battlefield" index="1" instance=ExtResource("5_q5cfv")]
+[node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource("5_q5cfv")]
+hollow = true
+style = ExtResource("5_jww8k")
+
+[node name="Grid" parent="Battlefield" index="3" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("5_e3rpg")]
+style = ExtResource("5_jww8k")
+init_parametric_shape = NodePath("../VBeveledRect")
+
+[node name="Wall" parent="Battlefield" index="4" instance=ExtResource("5_q5cfv")]
 position = Vector2(0, -950)
+style = ExtResource("5_jww8k")
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4"]
 script = ExtResource("7_1nk4p")
 sides = 4
 
-[node name="Wall2" parent="Battlefield" index="2" instance=ExtResource("5_q5cfv")]
+[node name="Wall2" parent="Battlefield" index="5" instance=ExtResource("5_q5cfv")]
 position = Vector2(0, 950)
+style = ExtResource("5_jww8k")
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4"]
 script = ExtResource("7_1nk4p")
 sides = 4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="3" groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="6" groups=["animation_starts_with_battle"]]
 callback_mode_process = 0
 libraries = {
 "": SubResource("AnimationLibrary_kj0uy")
 }
 
-[node name="ShieldWall" parent="Battlefield" index="4" instance=ExtResource("8_nyho4")]
+[node name="ShieldWall" parent="Battlefield" index="7" instance=ExtResource("8_nyho4")]
 position = Vector2(-800, 0)
 symbol_scale = 1.5
 show_edges = false
@@ -174,7 +185,7 @@ height = 600.0
 precision = 20
 rotation_degrees = 45.0
 
-[node name="ShieldWall2" parent="Battlefield" index="5" instance=ExtResource("8_nyho4")]
+[node name="ShieldWall2" parent="Battlefield" index="8" instance=ExtResource("8_nyho4")]
 position = Vector2(800, 0)
 symbol_scale = 1.5
 show_edges = false
@@ -186,4 +197,4 @@ height = 600.0
 precision = 20
 rotation_degrees = 45.0
 
-[node name="Crown" parent="Battlefield" index="6" instance=ExtResource("6_h5akp")]
+[node name="Crown" parent="Battlefield" index="9" instance=ExtResource("6_h5akp")]
