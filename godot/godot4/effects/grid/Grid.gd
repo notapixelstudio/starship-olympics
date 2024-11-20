@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var grid_color : Color = Color(0.0795,0.199633,0.53,1)
+@export var style : Style
 @export var cell_size := Vector2.ONE * 150
 #@export var frames_wait := 3
 #@export var enabled : bool = true
@@ -12,7 +12,7 @@ extends Node2D
 
 func _ready():
 	#mask.frames_wait = frames_wait
-	grid.grid_color = grid_color
+	grid.grid_color = style.grid_color
 	grid.cell_size = cell_size
 	if init_parametric_shape:
 		grid.init_grid(init_parametric_shape.get_extents())

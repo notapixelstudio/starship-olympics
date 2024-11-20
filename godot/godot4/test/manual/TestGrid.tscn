@@ -36,7 +36,6 @@ hosts = [NodePath("../Grid"), NodePath("../Wall")]
 
 [node name="Wall" parent="." index="8" instance=ExtResource("6_fgpm1")]
 hollow = true
-background_color = Color(0.0627451, 0.105882, 0.2, 1)
 
 [node name="Grid" parent="." index="9" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("4_l06f8")]
 init_parametric_shape = NodePath("../VRoundedRect")

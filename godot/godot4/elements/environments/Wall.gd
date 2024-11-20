@@ -2,7 +2,7 @@
 extends StaticBody2D
 
 @export var hollow := false : set = set_hollow
-@export var style : WallStyle : set = set_style
+@export var style : Style : set = set_style
 
 var polygon : PackedVector2Array
 
@@ -11,7 +11,7 @@ func set_hollow(v: bool) -> void:
 	%Polygon2D.visible = not hollow
 	%UnderPolygon2D.visible = hollow
 	
-func set_style(v:WallStyle) -> void:
+func set_style(v:Style) -> void:
 	style = v
 	%Polygon2D.modulate = style.color
 	%UnderPolygon2D.modulate = style.background_color

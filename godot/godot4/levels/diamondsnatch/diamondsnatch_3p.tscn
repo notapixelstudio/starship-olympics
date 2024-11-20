@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="7_lvm3s"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="8_p2chq"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="8_ri0vu"]
-[ext_resource type="Resource" uid="uid://qv7ahl4mb6vo" path="res://godot4/data/styles/wall/cyber.tres" id="8_uaq3n"]
+[ext_resource type="Resource" uid="uid://qv7ahl4mb6vo" path="res://godot4/data/styles/cyber.tres" id="8_uaq3n"]
 [ext_resource type="Script" path="res://actors/environments/WaveGroupSpawner.gd" id="9_g44pl"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="10_nrilq"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="11_u84p6"]
@@ -54,7 +54,6 @@ hollow = true
 style = ExtResource("8_uaq3n")
 
 [node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("8_p2chq")]
-grid_color = Color(0.0470588, 0.0313726, 0.301961, 1)
 init_parametric_shape = NodePath("../VRoundedRect")
 
 [node name="Wall" parent="Battlefield" index="3" instance=ExtResource("5_1pfq3")]
