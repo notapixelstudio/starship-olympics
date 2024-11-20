@@ -176,22 +176,22 @@ sides = 4
 
 [node name="Wall16" parent="Battlefield" index="13" instance=ExtResource("3_kwgf4")]
 position = Vector2(-800, 400)
-rotation = -0.785398
 
 [node name="VBeveledRect" type="Node" parent="Battlefield/Wall16" index="5"]
 script = ExtResource("4_7vi0o")
 height = 700.0
+rotation_degrees = -45.0
 
 [node name="Wall15" parent="Battlefield" index="14" instance=ExtResource("3_kwgf4")]
 position = Vector2(800, -400)
-rotation = -0.785398
 
 [node name="VBeveledRect" type="Node" parent="Battlefield/Wall15" index="5"]
 script = ExtResource("4_7vi0o")
 height = 700.0
+rotation_degrees = -45.0
 
 [node name="Bones" type="Sprite2D" parent="Battlefield" index="15"]
-modulate = Color(0.0588235, 0.909804, 0.439216, 0.0588235)
+modulate = Color(0.0546, 0.91, 0.43953, 0.0196078)
 position = Vector2(0, 32)
 scale = Vector2(5, 5)
 texture = ExtResource("10_peao6")

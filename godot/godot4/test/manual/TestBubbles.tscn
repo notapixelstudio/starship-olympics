@@ -41,7 +41,7 @@ func tick():
 
 [node name="TestChamber" instance=ExtResource("1_q2uoc")]
 
-[node name="TestChamberLog" parent="." index="4"]
+[node name="TestChamberLog" parent="." index="3"]
 script = SubResource("GDScript_0rj7w")
 
 [node name="TestBeat" type="Timer" parent="." index="6"]
@@ -61,28 +61,28 @@ battlefield = NodePath("..")
 [node name="Ship" parent="." index="11" instance=ExtResource("5_6d2la")]
 unique_name_in_owner = true
 
-[node name="Bubble" parent="." index="13" instance=ExtResource("6_o7hgl")]
+[node name="Bubble" parent="." index="12" instance=ExtResource("6_o7hgl")]
 position = Vector2(0, -800)
 
-[node name="Bubble2" parent="." index="14" instance=ExtResource("6_o7hgl")]
+[node name="Bubble2" parent="." index="13" instance=ExtResource("6_o7hgl")]
 position = Vector2(0, 800)
 
-[node name="Bubble3" parent="." index="15" instance=ExtResource("6_o7hgl")]
+[node name="Bubble3" parent="." index="14" instance=ExtResource("6_o7hgl")]
 position = Vector2(800, -800)
 
-[node name="Bubble4" parent="." index="16" instance=ExtResource("6_o7hgl")]
+[node name="Bubble4" parent="." index="15" instance=ExtResource("6_o7hgl")]
 position = Vector2(800, 800)
 
-[node name="Bubble7" parent="." index="17" instance=ExtResource("6_o7hgl")]
+[node name="Bubble7" parent="." index="16" instance=ExtResource("6_o7hgl")]
 position = Vector2(800, 0)
 
-[node name="DiamondBubble" parent="." index="18" instance=ExtResource("7_8cafa")]
+[node name="DiamondBubble" parent="." index="17" instance=ExtResource("7_8cafa")]
 position = Vector2(-800, -800)
 
-[node name="DiamondBubble2" parent="." index="19" instance=ExtResource("7_8cafa")]
+[node name="DiamondBubble2" parent="." index="18" instance=ExtResource("7_8cafa")]
 position = Vector2(-800, 800)
 
-[node name="BigDiamondBubble" parent="." index="20" instance=ExtResource("8_q26wy")]
+[node name="BigDiamondBubble" parent="." index="19" instance=ExtResource("8_q26wy")]
 position = Vector2(-800, 0)
 
 [connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]

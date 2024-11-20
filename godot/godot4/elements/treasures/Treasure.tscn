@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://def8gegesl10e"]
+[gd_scene load_steps=16 format=3 uid="uid://def8gegesl10e"]
 
 [ext_resource type="Script" path="res://godot4/elements/treasures/Treasure.gd" id="1_q6gx3"]
 [ext_resource type="PackedScene" uid="uid://c4yru00x07tyi" path="res://godot4/effects/TreasurePicked.tscn" id="2_lfwwo"]
-[ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="3_37ycv"]
 [ext_resource type="PackedScene" uid="uid://bkt3uw0ui0kxk" path="res://godot4/effects/appear/AppearDefault.tscn" id="3_ufj5w"]
 [ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="4_qifm1"]
 [ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="4_sn586"]
@@ -240,9 +239,6 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_lqqh5")
 }
-
-[node name="Shadow" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("3_37ycv")]
-sprite = NodePath("../Graphics/Sprite2D")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
