@@ -1,7 +1,7 @@
 [gd_scene load_steps=45 format=3 uid="uid://cbr8of5l0au68"]
 
 [ext_resource type="Script" path="res://combat/Arena.gd" id="1"]
-[ext_resource type="PackedScene" path="res://special_scenes/combat_UI/gameover/GameOver.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://brh61gpsh17s3" path="res://special_scenes/combat_UI/gameover/GameOver.tscn" id="2"]
 [ext_resource type="Script" path="res://combat/managers/CombatManager.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://b4yot7f4wtbk7" path="res://addons/ECM/icons/Manager.png" id="4"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="5"]
@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bl58cxyfi8kn5" path="res://assets/audio/FX/slow_motion_effect.ogg" id="10"]
 [ext_resource type="AudioStream" uid="uid://c5gqps1gr468y" path="res://assets/audio/FX/unslow_motion_effect.ogg" id="11"]
 [ext_resource type="Script" path="res://combat/managers/modes/CrownModeManager.gd" id="12"]
-[ext_resource type="AudioStream" uid="uid://dpgsvvngst2ut" path="res://assets/audio/FX/Fast Swish.wav" id="13"]
+[ext_resource type="AudioStream" uid="uid://dpgsvvngst2ut" path="res://assets/audio/gameplay/swoosh/Fast Swish.wav" id="13"]
 [ext_resource type="Script" path="res://combat/managers/modes/KillModeManager.gd" id="14"]
 [ext_resource type="PackedScene" path="res://combat/managers/BumpManager.tscn" id="15"]
 [ext_resource type="Script" path="res://combat/managers/modes/ConquestModeManager.gd" id="16"]
@@ -37,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://c3v1xyp8gveer" path="res://combat/levels/background/red.png" id="39"]
 [ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://actors/brains/CPUBrain.tscn" id="41"]
 [ext_resource type="PackedScene" path="res://combat/traits/NavigationZone.tscn" id="42"]
+
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(10000, 10000)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=30 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PackedScene" uid="uid://b6gg3o407i70x" path="res://godot4/effects/DashRing.tscn" id="2_0puh8"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="15_s48iq"]
 [ext_resource type="PackedScene" uid="uid://cd12x0fubc17m" path="res://godot4/actors/ships/GravitonField.tscn" id="16_2i8oi"]
 [ext_resource type="Script" path="res://godot4/actors/managers/CargoManager.gd" id="16_m8m51"]
+[ext_resource type="AudioStream" uid="uid://dpgsvvngst2ut" path="res://assets/audio/gameplay/swoosh/Fast Swish.wav" id="19_8du2k"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w3n3b"]
 friction = 0.0
@@ -84,6 +85,11 @@ func _on_camera_updated(camera_state:Dictionary) -> void:
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ntsfv"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("19_8du2k")
 
 [node name="Ship" type="RigidBody2D"]
 collision_layer = 2151677953
@@ -274,6 +280,12 @@ source_strength_method_name = "get_charge_normalized"
 [node name="CargoManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("16_m8m51")
+
+[node name="DashFXPlayer" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_ntsfv")
+panning_strength = 10.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]
 [connection signal="body_entered" from="TouchArea" to="." method="_on_touch_area_body_entered"]

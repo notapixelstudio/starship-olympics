@@ -112,6 +112,7 @@ func dash(charge: float) -> void:
 	set_collision_layer_value(32, false)
 	%DashDurationTimer.start() # TBD vary dash duration
 	_drop_dash_ring_effect()
+	SoundEffects.play(%DashFXPlayer)
 	
 func is_dashing() -> bool:
 	return not %DashDurationTimer.is_stopped()

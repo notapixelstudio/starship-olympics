@@ -12,12 +12,11 @@ outline_texture = ExtResource("2_6kphu")
 
 [node name="Glow" parent="Graphics" index="0"]
 self_modulate = Color(0.258824, 0.803922, 1, 1)
-scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_i54so")
 
 [node name="Sprite2D" parent="Graphics" index="1"]
 material = ExtResource("2_v6mp4")
 texture = ExtResource("3_bdjru")
 
-[node name="AudioStreamPlayer2D" parent="." index="3"]
+[node name="AudioStreamPlayer2D" parent="." index="2"]
 stream = ExtResource("2_3ohcf")
