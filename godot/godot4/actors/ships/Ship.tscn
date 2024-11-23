@@ -124,8 +124,8 @@ scale = Vector2(1.25, 1.25)
 unique_name_in_owner = true
 energy = 20.0
 blend_mode = 2
+range_item_cull_mask = 2
 texture = ExtResource("8_11rou")
-texture_scale = 0.7
 
 [node name="BallSprite" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
@@ -263,6 +263,7 @@ max_age = 0.4
 
 [node name="MovementGravitonField" parent="." node_paths=PackedStringArray("source") instance=ExtResource("16_2i8oi")]
 unique_name_in_owner = true
+enabled = true
 gravity = 64.0
 center = Vector3(0, 0, -500)
 influence_radius = 250.0

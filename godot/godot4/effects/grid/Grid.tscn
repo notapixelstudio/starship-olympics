@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://hqu0sjhj021n"]
+[gd_scene load_steps=6 format=3 uid="uid://hqu0sjhj021n"]
 
 [ext_resource type="Script" path="res://godot4/effects/grid/Grid.gd" id="1_tx3yk"]
 [ext_resource type="PackedScene" uid="uid://bbh6dfcfwh26k" path="res://godot4/traits/Styleable.tscn" id="3_j3xxa"]
@@ -27,6 +27,8 @@ func _draw():
 	
 "
 
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_ta8v7"]
+
 [sub_resource type="GDScript" id="GDScript_1vrqt"]
 script/source = "extends Node2D
 
@@ -43,6 +45,8 @@ var grid = []
 var lines = []
 var v_cells : int
 var h_cells : int
+
+var mesh : ImmediateMesh
 
 const max_velocity = 4000
 
@@ -140,6 +144,23 @@ func _process(delta):
 			if squiggly_y < h_cells:
 				lines[h_cells + squiggly_y].set_point_position(point.index.y, point.position)
 			lines[h_cells + h_cells + point.index.y].set_point_position(point.index.x, point.position)
+			
+	
+	mesh.clear_surfaces()
+	mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
+	for x in range(h_cells-1):
+		for y in range(v_cells-1):
+			#if (x+y) % 2:
+			#	continue
+			mesh.surface_add_vertex(Vector3(grid[y][x].x(), grid[y][x].y(), 0))
+			mesh.surface_add_vertex(Vector3(grid[y][x+1].x(), grid[y][x+1].y(), 0))
+			mesh.surface_add_vertex(Vector3(grid[y+1][x].x(), grid[y+1][x].y(), 0))
+			
+			#mesh.surface_add_vertex(Vector3(grid[y+1][x+1].x(), grid[y+1][x+1].y(), 0))
+			#mesh.surface_add_vertex(Vector3(grid[y][x+1].x(), grid[y][x+1].y(), 0))
+			#mesh.surface_add_vertex(Vector3(grid[y+1][x].x(), grid[y+1][x].y(), 0))
+	mesh.surface_end()
+
 
 class Point:
 	var velocity := Vector3.ZERO
@@ -180,6 +201,12 @@ class Point:
 	
 	func is_at_rest():
 		return (anchor - position_3d).length() < 1 && velocity.length() < 1
+		
+	func x():
+		return position.x
+	
+	func y():
+		return position.y
 "
 
 [node name="Grid" type="Node2D"]
@@ -195,6 +222,11 @@ unique_name_in_owner = true
 clip_children = 1
 position = Vector2(0, 32)
 script = SubResource("GDScript_3687u")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Mask"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.509804)
+mesh = SubResource("ImmediateMesh_ta8v7")
 
 [node name="GridLines" type="Node2D" parent="Mask"]
 unique_name_in_owner = true

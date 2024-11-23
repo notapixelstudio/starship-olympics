@@ -25,5 +25,7 @@ func _ready():
 	#mask.set_process(enabled)
 	#grid.set_process(enabled)
 	
+	%GridLines.mesh = %MeshInstance2D.mesh # FIXME please
+	
 func set_points(points: PackedVector2Array) -> void:
 	mask.set_points(points)
