@@ -6,6 +6,9 @@ func _ready():
 	Events.sth_collected.connect(_on_sth_collected)
 	
 func _on_sth_collected(collector, collectee):
+	if not collector is Ship:
+		return
+		
 	# assign points
 	Events.points_scored.emit(float(collectee.get_points()), collector.get_team())
 	# show feedback

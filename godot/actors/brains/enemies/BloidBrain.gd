@@ -16,8 +16,10 @@ func think():
 	
 	targets = get_tree().get_nodes_in_group('Treasure')
 	if len(targets) > 0:
+		#var nearest = compute_nearest(targets)
+		#go_to(nearest.global_position)
 		go_to(targets[random_preference%len(targets)].global_position)
-		log_strategy('chase diamond')
+		log_strategy('chase treasure')
 		return
 	
 	if randf() < go_to_center_p:

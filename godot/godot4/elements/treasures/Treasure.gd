@@ -33,7 +33,7 @@ func update_solid():
 	# ship bodies should push diamonds iff not collectable
 	set_collision_mask_value(1, not collectable and solid)
 	
-func touched_by(toucher : Ship):
+func touched_by(toucher):
 	if not collectable:
 		return
 		
