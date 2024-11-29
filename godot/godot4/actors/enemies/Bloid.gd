@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 ## constants for basic movement
-const THRUST := 800
+const THRUST := 1400
 ## 9 because we enlarged the radius of the ship's collision shape by 3
 var rotation_torque := 380000 # 130000 # 49000*9 
 

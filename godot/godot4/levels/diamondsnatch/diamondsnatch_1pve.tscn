@@ -272,7 +272,7 @@ element_scene = ExtResource("11_3hvh1")
 
 [node name="MultiBloidWave2" type="Node2D" parent="Battlefield/Waves" index="6" groups=["spawn_waves"]]
 script = ExtResource("12_lhdfm")
-max_repeats = 2
+max_repeats = 4
 extra_delay = 0.5
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Waves/MultiBloidWave2" index="0" instance=ExtResource("13_xjx32")]
