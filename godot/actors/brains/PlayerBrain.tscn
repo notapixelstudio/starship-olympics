@@ -1,8 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3d15u074tcak"]
 
-[ext_resource type="PackedScene" path="res://actors/brains/Brain.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://bd2hhntyqbksl" path="res://actors/brains/Brain.tscn" id="1"]
 [ext_resource type="Script" path="res://actors/brains/PlayerBrain.gd" id="2"]
 
 [node name="PlayerBrain" instance=ExtResource("1")]
 script = ExtResource("2")
-controls = "kb1"

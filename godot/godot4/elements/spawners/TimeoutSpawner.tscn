@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvio8aov6w0sq"]
+
+[ext_resource type="Script" path="res://godot4/elements/spawners/TimeoutSpawner.gd" id="1_nyakl"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="2_77wo1"]
+
+[node name="TimeoutSpawner" type="Node2D"]
+script = ExtResource("1_nyakl")
+
+[node name="Waiter" parent="." instance=ExtResource("2_77wo1")]
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

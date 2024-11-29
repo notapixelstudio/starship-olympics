@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Player" load_steps=3 format=3 uid="uid://cyhhprbpca54r"]
+
+[ext_resource type="Script" path="res://godot4/data/Player.gd" id="1_ibjl6"]
+[ext_resource type="Resource" path="res://selection/characters/drones.tres" id="2_ty8t5"]
+
+[resource]
+script = ExtResource("1_ibjl6")
+id = "CPU"
+username = ""
+controls = ""
+species = ExtResource("2_ty8t5")
+team = "CPU"
+cpu = true

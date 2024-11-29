@@ -134,6 +134,9 @@ func _ready():
 	# and https://github.com/search?q=repo%3Aappsinacup%2Fgodot-box2d+body_set_ccd_enabled&type=code
 	PhysicsServer2D.body_set_continuous_collision_detection_mode(get_rid(), PhysicsServer2D.CCD_MODE_CAST_SHAPE)
 
+func _physics_process(delta: float) -> void:
+	_continuous_collision_check()
+	
 func _integrate_forces(state):
 	tracked.tick()
 
@@ -160,6 +163,11 @@ func _drop_dash_ring_effect() -> void:
 	dash_ring.set_color(get_color())
 	dash_ring.scale = Vector2(1,1) * %ChargeManager.get_charge_normalized()
 
+# some collisions must be checked every frame
+func _continuous_collision_check():
+	var overlappers = %TouchArea.get_overlapping_bodies() + %TouchArea.get_overlapping_areas()
+	for sth in overlappers:
+		_on_touch_area_entered(sth)
 
 func _on_touch_area_area_entered(area):
 	_on_touch_area_entered(area)
@@ -173,7 +181,7 @@ func _on_touch_area_entered(sth):
 	
 	if sth.has_method('touched_by'):
 		sth.touched_by(self)
-
+		
 func _on_hurt_area_area_entered(area):
 	_on_hurt_area_entered(area)
 	
@@ -205,6 +213,8 @@ func suffer_damage(amount: int) -> void:
 	die()
 	
 func die():
+	$PlayerBrain.enabled = false
+	return
 	var death_feedback = death_feedback_scene.instantiate()
 	death_feedback.color = get_color()
 	death_feedback.global_position = global_position
@@ -213,3 +223,7 @@ func die():
 
 func get_speed_normalized() -> float:
 	return min(1.0, linear_velocity.length() / 100.0)
+
+func _on_body_entered(body: Node) -> void:
+	if body is Ship:
+		$PlayerBrain.enabled = true

@@ -173,3 +173,7 @@ func compute_nearest(nodes: Array) -> Node2D:
 			nearest = node
 			d = new_d
 	return nearest
+
+func _physics_process(delta: float) -> void:
+	tick()
+	

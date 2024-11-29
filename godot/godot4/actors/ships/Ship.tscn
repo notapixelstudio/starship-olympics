@@ -88,11 +88,12 @@ random_pitch = 1.5
 streams_count = 1
 stream_0/stream = ExtResource("19_8du2k")
 
-[node name="Ship" type="RigidBody2D"]
+[node name="Ship" type="RigidBody2D" groups=["Ship"]]
 collision_layer = 2151677953
 collision_mask = 1169
 physics_material_override = ExtResource("1_yr6p6")
 can_sleep = false
+contact_monitor = true
 max_contacts_reported = 10
 linear_damp = 7.0
 angular_damp = 40.0
@@ -143,8 +144,9 @@ scale = Vector2(0.8, 0.8)
 sprite = NodePath("../Sprite")
 
 [node name="TouchArea" type="Area2D" parent="."]
+unique_name_in_owner = true
 collision_layer = 0
-collision_mask = 2688
+collision_mask = 6784
 
 [node name="TouchShape2D" type="CollisionShape2D" parent="TouchArea"]
 unique_name_in_owner = true
@@ -285,6 +287,7 @@ stream = SubResource("AudioStreamRandomizer_ntsfv")
 panning_strength = 10.0
 bus = &"SFX"
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]
 [connection signal="body_entered" from="TouchArea" to="." method="_on_touch_area_body_entered"]
 [connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://godot4/actors/enemies/Bloid.gd" id="2_63srp"]
 [ext_resource type="Texture2D" uid="uid://mmwysrspo8he" path="res://assets/sprites/alchemy/circle.png" id="3_qtr2k"]
-[ext_resource type="PackedScene" uid="uid://cc33kbqafn06s" path="res://actors/brains/DiamondsnatchBrain.tscn" id="4_oxvut"]
+[ext_resource type="PackedScene" uid="uid://qyk6yqeg3vet" path="res://actors/brains/enemies/BloidBrain.tscn" id="3_vglww"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dks07"]
 bounce = 1.0
@@ -30,8 +30,7 @@ modulate = Color(0.15, 0.49, 1, 1)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_qtr2k")
 
-[node name="Brain" parent="." instance=ExtResource("4_oxvut")]
-unique_name_in_owner = true
+[node name="BloidBrain" parent="." instance=ExtResource("3_vglww")]
 
 [node name="TouchArea2D" type="Area2D" parent="."]
 collision_layer = 0
