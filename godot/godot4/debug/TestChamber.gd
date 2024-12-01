@@ -11,14 +11,17 @@ func set_test_subject(v : Node2D) -> void:
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
-	# default test subject is a node named Ship, accessible via local unique names
-	if get_node_or_null('%Ship'):
-		set_test_subject(%Ship)
-		%Ship.set_player(test_player)
+	# default test subject is the first ship found in group Ships
+	var ships = get_tree().get_nodes_in_group("Ship")
+	if len(ships) > 0:
+		set_test_subject(ships[0])
+		ships[0].set_player(test_player)
+		
+	for ship in ships:
 		var brain = player_brain_scene.instantiate()
-		brain.set_controls(test_player.get_controls())
-		%Ship.add_child(brain)
-		Events.team_ready.emit(test_player.get_team(), [test_player])
+		brain.set_controls(ship.get_player().get_controls())
+		ship.add_child(brain)
+		Events.team_ready.emit(ship.get_player().get_team(), [ship.get_player()])
 		
 func _process(delta):
 	if not test_subject:

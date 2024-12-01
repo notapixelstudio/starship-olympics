@@ -10,8 +10,9 @@ var _bumps := 0
 
 func set_content_scene(v:PackedScene) -> void:
 	content_scene = v
-	_content = content_scene.instantiate()
-	%ContentSprite2D.texture = _content.get_texture() # FIXME strong assumption
+	if content_scene:
+		_content = content_scene.instantiate()
+		%ContentSprite2D.texture = _content.get_texture() # FIXME strong assumption
 
 func _on_area_2d_body_entered(body):
 	if body is Ship:
@@ -46,3 +47,6 @@ func create_appear_effect() -> Node2D:
 	if _content.has_method('get_appear_texture'): # WARNING duck typing
 		appear.set_texture(_content.get_appear_texture())
 	return appear
+
+func set_content_rotation(v:float) -> void:
+	%ContentSprite2D.rotation = v

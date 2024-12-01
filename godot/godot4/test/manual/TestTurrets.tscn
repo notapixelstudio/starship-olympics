@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxkqttxi5fag5"]
+[gd_scene load_steps=12 format=3 uid="uid://bxkqttxi5fag5"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_26dvx"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_84uvt"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="5_2munr"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="6_p82g0"]
 [ext_resource type="PackedScene" uid="uid://wwxav5fs1qt" path="res://godot4/actors/enemies/Turret.tscn" id="7_eijt8"]
+[ext_resource type="Resource" uid="uid://fc2yg6p4flm5" path="res://godot4/debug/default_data/default_players/p2.tres" id="7_ggur8"]
 [ext_resource type="PackedScene" uid="uid://bb4kd7ebpdm2x" path="res://godot4/elements/projectiles/BubbleBullet.tscn" id="8_ydpfc"]
 
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
@@ -60,7 +61,13 @@ battlefield = NodePath("..")
 [node name="Ship" parent="." index="11" instance=ExtResource("6_p82g0")]
 unique_name_in_owner = true
 
-[node name="Turret" parent="." index="12" instance=ExtResource("7_eijt8")]
+[node name="Ship2" parent="." index="12" instance=ExtResource("6_p82g0")]
+unique_name_in_owner = true
+position = Vector2(800, -700)
+rotation = 3.14159
+player = ExtResource("7_ggur8")
+
+[node name="Turret" parent="." index="13" instance=ExtResource("7_eijt8")]
 position = Vector2(900, 0)
 bullet_scene = ExtResource("8_ydpfc")
 

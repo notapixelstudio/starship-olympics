@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bb4kd7ebpdm2x"]
+[gd_scene load_steps=12 format=3 uid="uid://bb4kd7ebpdm2x"]
 
 [ext_resource type="Script" path="res://godot4/elements/projectiles/BubbleBullet.gd" id="1_0xyqf"]
 [ext_resource type="Texture2D" uid="uid://jt5f0vvj50hq" path="res://assets/sprites/environments/bullet_bubble.png" id="2_pw1j4"]
+[ext_resource type="PackedScene" uid="uid://damh5pf35vid8" path="res://godot4/elements/bubbles/ShipBubble.tscn" id="2_q74f7"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="3_p7n4d"]
 
 [sub_resource type="PhysicsMaterial" id="1"]
@@ -20,6 +21,21 @@ resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
 
+[sub_resource type="Animation" id="Animation_2bv8s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wrapper:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_yk5pw"]
 resource_name = "default"
 loop_mode = 1
@@ -37,21 +53,6 @@ tracks/0/keys = {
 "values": [Vector2(1.1, 0.9), Vector2(0.9, 1.1)]
 }
 
-[sub_resource type="Animation" id="Animation_2bv8s"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Wrapper:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f08km"]
 _data = {
 "RESET": SubResource("Animation_2bv8s"),
@@ -66,6 +67,7 @@ lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_0xyqf")
+bubble_scene = ExtResource("2_q74f7")
 
 [node name="Wrapper" type="Node2D" parent="."]
 
