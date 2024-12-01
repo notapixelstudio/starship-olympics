@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://wwxav5fs1qt"]
+
+[ext_resource type="Script" path="res://godot4/actors/enemies/Turret.gd" id="1_nwro1"]
+[ext_resource type="Texture2D" uid="uid://mmwysrspo8he" path="res://assets/sprites/alchemy/circle.png" id="2_q1wp5"]
+
+[node name="Turret" type="Node2D"]
+script = ExtResource("1_nwro1")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_q1wp5")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -213,8 +213,6 @@ func suffer_damage(amount: int) -> void:
 	die()
 	
 func die():
-	$PlayerBrain.enabled = false
-	return
 	var death_feedback = death_feedback_scene.instantiate()
 	death_feedback.color = get_color()
 	death_feedback.global_position = global_position
@@ -223,7 +221,3 @@ func die():
 
 func get_speed_normalized() -> float:
 	return min(1.0, linear_velocity.length() / 100.0)
-
-func _on_body_entered(body: Node) -> void:
-	if body is Ship:
-		$PlayerBrain.enabled = true

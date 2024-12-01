@@ -1,0 +1,97 @@
+[gd_scene load_steps=11 format=3 uid="uid://bb4kd7ebpdm2x"]
+
+[ext_resource type="Script" path="res://godot4/elements/projectiles/BubbleBullet.gd" id="1_0xyqf"]
+[ext_resource type="Texture2D" uid="uid://jt5f0vvj50hq" path="res://assets/sprites/environments/bullet_bubble.png" id="2_pw1j4"]
+[ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="3_p7n4d"]
+
+[sub_resource type="PhysicsMaterial" id="1"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="2"]
+radius = 35.0
+
+[sub_resource type="Curve" id="Curve_8sa4a"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.997753, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_f8qs8"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.997561)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
+
+[sub_resource type="Animation" id="Animation_yk5pw"]
+resource_name = "default"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wrapper:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.25, 0.75),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1.1, 0.9), Vector2(0.9, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_2bv8s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wrapper:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f08km"]
+_data = {
+"RESET": SubResource("Animation_2bv8s"),
+"default": SubResource("Animation_yk5pw")
+}
+
+[node name="BubbleBullet" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 8850
+physics_material_override = SubResource("1")
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_0xyqf")
+
+[node name="Wrapper" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Wrapper"]
+unique_name_in_owner = true
+self_modulate = Color(1.4, 1.4, 1.4, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_pw1j4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="MotionAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("3_p7n4d")]
+width = 90.0
+width_curve = SubResource("Curve_8sa4a")
+gradient = SubResource("Gradient_f8qs8")
+host = NodePath("..")
+max_age = 0.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f08km")
+}
+autoplay = "default"
+
+[connection signal="body_entered" from="." to="." method="_on_ForwardBullet_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
