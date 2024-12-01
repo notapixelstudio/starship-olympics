@@ -11,8 +11,11 @@ var _bumps := 0
 func set_content_scene(v:PackedScene) -> void:
 	content_scene = v
 	if content_scene:
-		_content = content_scene.instantiate()
-		%ContentSprite2D.texture = _content.get_texture() # FIXME strong assumption
+		set_content(content_scene.instantiate())
+	
+func set_content(v) -> void:
+	_content = v
+	%ContentSprite2D.texture = _content.get_texture() # FIXME strong assumption
 
 func _on_area_2d_body_entered(body):
 	if body is Ship:

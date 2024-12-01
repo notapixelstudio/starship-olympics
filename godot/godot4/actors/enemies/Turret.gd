@@ -1,6 +1,13 @@
 extends Node2D
 
 @export var bullet_scene : PackedScene
+@export var wait_time := 4.0 : set = set_time
+
+func set_time(v:float) -> void:
+	wait_time = v
+	
+func start() -> void:
+	%Timer.start(wait_time)
 
 func _on_timer_timeout() -> void:
 	fire()

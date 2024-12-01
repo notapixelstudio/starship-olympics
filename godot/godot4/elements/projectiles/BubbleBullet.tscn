@@ -1,16 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://bb4kd7ebpdm2x"]
+[gd_scene load_steps=15 format=3 uid="uid://bb4kd7ebpdm2x"]
 
 [ext_resource type="Script" path="res://godot4/elements/projectiles/BubbleBullet.gd" id="1_0xyqf"]
+[ext_resource type="PackedScene" uid="uid://cfgy3ee8k825d" path="res://godot4/elements/bubbles/Bubble.tscn" id="2_opikx"]
 [ext_resource type="Texture2D" uid="uid://jt5f0vvj50hq" path="res://assets/sprites/environments/bullet_bubble.png" id="2_pw1j4"]
 [ext_resource type="PackedScene" uid="uid://damh5pf35vid8" path="res://godot4/elements/bubbles/ShipBubble.tscn" id="2_q74f7"]
+[ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="3_3v5p3"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="3_p7n4d"]
+[ext_resource type="PackedScene" uid="uid://c5mydm0dx5rd5" path="res://godot4/effects/BubblePopped.tscn" id="3_wgw47"]
 
 [sub_resource type="PhysicsMaterial" id="1"]
 friction = 0.0
 bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="2"]
-radius = 35.0
+radius = 60.0
 
 [sub_resource type="Curve" id="Curve_8sa4a"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.997753, 1), 0.0, 0.0, 0, 0]
@@ -67,14 +70,28 @@ lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_0xyqf")
-bubble_scene = ExtResource("2_q74f7")
+bubble_scene = ExtResource("2_opikx")
+ship_bubble_scene = ExtResource("2_q74f7")
+bubble_popped_scene = ExtResource("3_wgw47")
+
+[node name="TouchArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea2D"]
+shape = SubResource("2")
 
 [node name="Wrapper" type="Node2D" parent="."]
+
+[node name="LifetimeSprite2D" type="Sprite2D" parent="Wrapper"]
+unique_name_in_owner = true
+modulate = Color(0.66, 0.852667, 1, 0.839216)
+texture = ExtResource("3_3v5p3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Wrapper"]
 unique_name_in_owner = true
 self_modulate = Color(1.4, 1.4, 1.4, 1)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_pw1j4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -96,4 +113,5 @@ libraries = {
 autoplay = "default"
 
 [connection signal="body_entered" from="." to="." method="_on_ForwardBullet_body_entered"]
+[connection signal="body_entered" from="TouchArea2D" to="." method="_on_touch_area_2d_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
