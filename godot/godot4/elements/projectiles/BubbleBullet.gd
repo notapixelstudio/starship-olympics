@@ -4,7 +4,7 @@ class_name BubbleBullet
 @export var bubble_scene : PackedScene
 @export var ship_bubble_scene : PackedScene
 @export var bubble_popped_scene : PackedScene
-@export var lifetime := 5.0 # seconds
+@export var lifetime := 8.0 # seconds
 
 var _lifetime_left : float
 
@@ -19,12 +19,13 @@ func _physics_process(delta: float) -> void:
 
 func hurt(sth) -> void:
 	if sth is Ship:
-		var bubble = ship_bubble_scene.instantiate()
-		bubble.set_player(sth.get_player())
-		bubble.global_position = sth.global_position
-		sth.queue_free()
-		get_parent().add_child.call_deferred(bubble)
-		bubble.set_content_rotation(sth.global_rotation)
+		if not sth.is_dashing():
+			var bubble = ship_bubble_scene.instantiate()
+			bubble.set_player(sth.get_player())
+			bubble.global_position = sth.global_position
+			sth.queue_free()
+			get_parent().add_child.call_deferred(bubble)
+			bubble.set_content_rotation(sth.global_rotation)
 		destroy()
 
 func destroy() -> void:

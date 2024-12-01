@@ -20,7 +20,7 @@ func set_content(v) -> void:
 func _on_area_2d_body_entered(body):
 	if body is Ship:
 		if body.is_dashing():
-			if _content:
+			if _content and is_instance_valid(_content) and not _content.is_queued_for_deletion():
 				_content.global_position = global_position
 				get_parent().add_child.call_deferred(_content)
 				if _content.has_method('touched_by'): # WARNING duck typing
