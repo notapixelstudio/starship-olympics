@@ -4,7 +4,7 @@ extends Node2D
 class_name ElementSpawner
 
 @export var element_scene: PackedScene: set = set_element_scene
-@export var preview_sprite_name := "Sprite2D"
+@export var preview_sprite_name := "Graphics/Sprite2D"
 
 const JITTER = 0.1
 

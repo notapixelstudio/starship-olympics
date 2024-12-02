@@ -58,7 +58,7 @@ func set_spawners():
 		var index_guest_star = -1
 		if guest_star_scene:
 			if guest_star_positioning == "center":
-				index_guest_star = len(map_pattern_distance[pattern])%2+1
+				index_guest_star = floor(len(map_pattern_distance[pattern]))/2
 			elif guest_star_positioning == "random":
 				index_guest_star = randi()%len(map_pattern_distance[pattern])
 				
