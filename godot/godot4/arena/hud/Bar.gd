@@ -42,7 +42,7 @@ func _draw_ticks() -> void:
 		var d = _get_max_size() - round(i * _get_max_size()/max_value)
 		var color = Color.BLACK
 		var thickness
-		if max_value <= 10 or (i%10 == 0 and max_value < 100) or i%100 == 0:
+		if max_value <= 10 or (i%10 == 0 and max_value <= 100) or i%100 == 0:
 			thickness = ticks_thickness
 			color.a = 0.9
 		else:

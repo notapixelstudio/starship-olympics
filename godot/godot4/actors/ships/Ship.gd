@@ -134,8 +134,8 @@ func _ready():
 	# and https://github.com/search?q=repo%3Aappsinacup%2Fgodot-box2d+body_set_ccd_enabled&type=code
 	PhysicsServer2D.body_set_continuous_collision_detection_mode(get_rid(), PhysicsServer2D.CCD_MODE_CAST_SHAPE)
 
-func _physics_process(delta: float) -> void:
-	_continuous_collision_check()
+#func _physics_process(delta: float) -> void:
+	#_continuous_collision_check()
 	
 func _integrate_forces(state):
 	tracked.tick()
@@ -164,10 +164,12 @@ func _drop_dash_ring_effect() -> void:
 	dash_ring.scale = Vector2(1,1) * %ChargeManager.get_charge_normalized()
 
 # some collisions must be checked every frame
-func _continuous_collision_check():
-	var overlappers = %TouchArea.get_overlapping_bodies() + %TouchArea.get_overlapping_areas()
-	for sth in overlappers:
-		_on_touch_area_entered(sth)
+# WARNING collisions picked by this must be distinct from those picked by signals
+# otherwise there will be duplicates
+#func _continuous_collision_check():
+	#var overlappers = %TouchArea.get_overlapping_bodies() + %TouchArea.get_overlapping_areas()
+	#for sth in overlappers:
+		#_on_touch_area_entered(sth)
 
 func _on_touch_area_area_entered(area):
 	_on_touch_area_entered(area)

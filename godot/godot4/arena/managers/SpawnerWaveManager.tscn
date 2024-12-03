@@ -13,4 +13,8 @@ unique_name_in_owner = true
 wait_time = 2.5
 one_shot = true
 
+[node name="CheckEmptyTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="CheckEmptyTimer" to="." method="_on_check_empty_timer_timeout"]

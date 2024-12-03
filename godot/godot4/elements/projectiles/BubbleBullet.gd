@@ -40,6 +40,7 @@ func _on_touch_area_2d_body_entered(sth: Node2D) -> void:
 	if sth is Treasure:
 		var bubble = bubble_scene.instantiate()
 		bubble.set_content(sth)
+		bubble.add_to_group('Treasure')
 		bubble.global_position = sth.global_position
 		get_parent().remove_child.call_deferred(sth)
 		get_parent().add_child.call_deferred(bubble)
