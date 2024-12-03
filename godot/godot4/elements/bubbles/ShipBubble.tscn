@@ -13,3 +13,10 @@ player = null
 player_brain_scene = ExtResource("4_e1tme")
 cpu_brain_scene = ExtResource("5_ufxqr")
 appear_scene = null
+
+[node name="Timer" type="Timer" parent="." index="7"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

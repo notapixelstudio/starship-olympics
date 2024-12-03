@@ -16,20 +16,23 @@ func set_content_scene(v:PackedScene) -> void:
 func set_content(v) -> void:
 	_content = v
 	%ContentSprite2D.texture = _content.get_texture() # FIXME strong assumption
+	
+func pop(author=null) -> void:
+	if _content and is_instance_valid(_content) and not _content.is_queued_for_deletion():
+		_content.global_position = global_position
+		get_parent().add_child.call_deferred(_content)
+		if author and _content.has_method('touched_by'): # WARNING duck typing
+			_content.touched_by.call_deferred(author)
+	SoundEffects.play(%PopSFX)
+	var pop = bubble_popped_scene.instantiate()
+	pop.global_position = global_position
+	get_parent().add_child(pop)
+	queue_free()
 
 func _on_area_2d_body_entered(body):
 	if body is Ship:
 		if body.is_dashing():
-			if _content and is_instance_valid(_content) and not _content.is_queued_for_deletion():
-				_content.global_position = global_position
-				get_parent().add_child.call_deferred(_content)
-				if _content.has_method('touched_by'): # WARNING duck typing
-					_content.touched_by.call_deferred(body)
-			SoundEffects.play(%PopSFX)
-			var pop = bubble_popped_scene.instantiate()
-			pop.global_position = global_position
-			get_parent().add_child(pop)
-			queue_free()
+			pop(body)
 		else:
 			_bumps += 1
 			%Label.visible = _bumps >= 3

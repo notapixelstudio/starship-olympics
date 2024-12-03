@@ -4,7 +4,7 @@ class_name BubbleBullet
 @export var bubble_scene : PackedScene
 @export var ship_bubble_scene : PackedScene
 @export var bubble_popped_scene : PackedScene
-@export var lifetime := 8.0 # seconds
+@export var lifetime := 10.0 # seconds
 
 var _lifetime_left : float
 

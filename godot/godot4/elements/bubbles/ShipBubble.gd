@@ -27,3 +27,6 @@ func _ready() -> void:
 func set_content_rotation(v:float) -> void:
 	super(v)
 	_content.global_rotation = v
+
+func _on_timer_timeout():
+	pop()

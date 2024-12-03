@@ -24,7 +24,7 @@ func _on_timer_timeout() -> void:
 func fire() -> void:
 	var bullet = bullet_scene.instantiate()
 	# TODO configure bullet speed, size, lifetime
-	bullet.linear_velocity = (Vector2.RIGHT * 300).rotated(global_rotation)
+	bullet.linear_velocity = (Vector2.RIGHT * 350).rotated(global_rotation)
 	bullet.global_position = global_position + distance*Vector2.RIGHT.rotated(global_rotation)
 	#bullet.global_rotation = global_rotation
 	get_parent().add_child(bullet)
