@@ -3,7 +3,7 @@ class_name Bar
 
 @export var ticks_thickness := 3.0
 @export var ticks_thickness_minor := 2.0
-@export var thresholds := [{'value': 40}] # of {value: float, image: ImageTexture}
+@export var thresholds := [] # of {value: float, image: ImageTexture}
 
 var max_value := 100.0 : set = set_max_value
 var value := 0.0 : set = set_value
@@ -55,4 +55,5 @@ func _draw_thresholds() -> void:
 	for t in thresholds:
 		var d = _get_max_size() - round(t['value'] * _get_max_size()/max_value)
 		draw_line(Vector2(0,d),Vector2(_get_width(),d), Color.WHITE, ticks_thickness)
-		draw_string(ThemeDB.get_project_theme().default_font, Vector2(_get_width()/2.0,d), str(t['value']), HORIZONTAL_ALIGNMENT_CENTER, -1)
+		draw_string(ThemeDB.get_project_theme().default_font, Vector2(1,d+2+ThemeDB.get_project_theme().default_font_size), str(t['value']), HORIZONTAL_ALIGNMENT_FILL, -1, ThemeDB.get_project_theme().default_font_size)
+		draw_texture_rect(t['image'], Rect2(Vector2(_get_width(),d-16), 0.2*Vector2(173,205)), false)

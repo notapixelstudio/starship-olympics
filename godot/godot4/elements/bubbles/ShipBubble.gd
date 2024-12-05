@@ -29,4 +29,4 @@ func set_content_rotation(v:float) -> void:
 	_content.global_rotation = v
 
 func _on_timer_timeout():
-	pop()
+	pass#pop()

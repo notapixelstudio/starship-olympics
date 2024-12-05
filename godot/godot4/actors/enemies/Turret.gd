@@ -1,6 +1,8 @@
 extends Node2D
 
 @export var bullet_scene : PackedScene
+@export var bullet_speed := 250.0
+@export var bullet_lifetime := 10.0
 @export var wait_time := 2.0 : set = set_time
 @export var distance := 200.0
 @export_range(0, 360*10, 0.5, "radians_as_degrees", "suffix:deg/s") var rotation_speed := PI/8
@@ -23,8 +25,9 @@ func _on_timer_timeout() -> void:
 	
 func fire() -> void:
 	var bullet = bullet_scene.instantiate()
-	# TODO configure bullet speed, size, lifetime
-	bullet.linear_velocity = (Vector2.RIGHT * 350).rotated(global_rotation)
+	# TODO configure bullet size
+	bullet.lifetime = bullet_lifetime
+	bullet.linear_velocity = (Vector2.RIGHT * bullet_speed).rotated(global_rotation)
 	bullet.global_position = global_position + distance*Vector2.RIGHT.rotated(global_rotation)
 	#bullet.global_rotation = global_rotation
 	get_parent().add_child(bullet)

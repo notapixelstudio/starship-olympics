@@ -2,6 +2,7 @@ extends Node
 
 @export var base_time := 2.0
 @export var spawn_on_all_collected := false
+@export var spawn_count_on_all_collected := 2 : set = set_spawn_count_on_all_collected
 @export var spawn_on_timeout := true
 @export var waves_container : Node2D
 @export var battlefield: Node2D
@@ -19,8 +20,14 @@ var spawners_per_wave : Dictionary
 var how_many_spawners: int
 var current_spawners = 0
 
+var _spawn_time_on_all_collected : float
+
 signal done
 
+func set_spawn_count_on_all_collected(v:int) -> void:
+	spawn_count_on_all_collected = v
+	_spawn_time_on_all_collected = 1/(spawn_count_on_all_collected-1.0) # WARNING this works beacuse treasures take one second to enter
+	
 func _ready():
 	Events.match_over.connect(_on_match_over)
 	
@@ -44,7 +51,7 @@ func start():
 	if spawn_on_timeout:
 		%Timer.start()
 	if spawn_on_all_collected:
-		%CheckEmptyTimer.start()
+		%CheckEmptyTimer.start(_spawn_time_on_all_collected)
 	
 func spawned(element_spawned: ElementSpawnerGroup):
 	print("This just spawned {spawned_element}".format({"spawned_element": element_spawned}))

@@ -123,7 +123,11 @@ position = Vector2(900, 0)
 physics_material_override = null
 appear_scene = null
 
-[node name="Waves" type="Node2D" parent="Battlefield" index="5"]
+[node name="BubbleTurret" parent="Battlefield" index="5" instance=ExtResource("17_r2dq3")]
+position = Vector2(6.10352e-05, 0)
+wait_time = 8.0
+
+[node name="Waves" type="Node2D" parent="Battlefield" index="6"]
 
 [node name="SingleDiamondWave" type="Node2D" parent="Battlefield/Waves" index="0" groups=["spawn_waves"]]
 script = ExtResource("12_lhdfm")
@@ -598,10 +602,6 @@ position = Vector2(1350, 0)
 pattern = "vline"
 element_scene = ExtResource("11_3hvh1")
 guest_star_scene = ExtResource("15_hd42d")
-
-[node name="BubbleTurret" parent="Battlefield" index="6" instance=ExtResource("17_r2dq3")]
-position = Vector2(6.10352e-05, 0)
-wait_time = 8.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="7" groups=["animation_starts_with_battle"]]
 libraries = {
