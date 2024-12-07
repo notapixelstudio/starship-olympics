@@ -14,7 +14,7 @@ func _ready() -> void:
 func _on_score_updated(score: float, team: String, new_standings: Array) -> void:
 	_latest_standings = new_standings
 	
-	# we need to check perfect after other pootential callbacks have fired
+	# we need to check perfect after other potential callbacks have fired
 	# other scores could be updated during this frame
 	# this is needed for minigames that assign score simultaneously
 	_check_if_perfect.call_deferred()

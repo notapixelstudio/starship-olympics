@@ -16,6 +16,9 @@ func set_value(v: float) -> void:
 	var d = max(0, min(_get_max_size() / max_value * value, _get_max_size()))
 	%Fill.size.y = d
 	
+func set_thresholds(v: Array) -> void:
+	thresholds = v
+	
 func _get_max_size() -> float:
 	return %Background.size.y
 	

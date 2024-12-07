@@ -39,7 +39,7 @@ func spawn(parent_node = null):
 		
 	element.global_position = where_to_spawn
 	parent_node.add_child(element)
-	if appear.was_touched() and element.has_method('create_appear_effect'): # WARNING duck typing
+	if appear.was_touched() and element.has_method('touched_by'): # WARNING duck typing
 		element.touched_by(appear.get_toucher())
 	
 	if traits.has_trait(element, 'Waiter'):

@@ -31,13 +31,9 @@ func _ready() -> void:
 	%MinigameText.text = '[right][color=#ffde5e]%s[/color]\n%s[/right]' % [minigame.title.to_upper(), minigame.description.to_upper()]
 	%MinigameIcon.texture = minigame.icon
 	
-	%TimeManager.set_time(_params.time)
-	%Clock.set_value(_params.time)
-	%TimeBar.set_max_value(_params.time)
-	%TimeBar.set_value(0.0) # time always starts from 0
-	Events.clock_ticked.connect(_on_clock_ticked)
+	setup()
 	
-	%VersusGameOverManager.set_max_score(_params.score)
+	Events.clock_ticked.connect(_on_clock_ticked)
 	Events.match_over.connect(_on_match_over)
 	
 	var brains_to_enable : Array[Brain] = []
@@ -80,15 +76,11 @@ func _ready() -> void:
 			_teams[player.get_team()] = []
 		_teams[player.get_team()].append(player.get_id())
 		
-	%VersusHUD.set_max_score(_params.score)
-	%VersusHUD.set_starting_score(_params.starting_score)
-	
 	for team in _teams.keys():
 		Events.team_ready.emit(team, _teams[team])
 		# FIXME this could be moved to a team manager
 		# FIXME this could use signals for everything, since not all managers or huds are necessarily there
-		%ScoreManager.add_team(team)
-		%VersusHUD.add_team(team, players[_teams[team][0]].get_species()) # FIXME support teams of 2+ members
+		setup_team(team)
 		
 	# create the match over screen
 	_match_over_screen = match_over_screen_scene.instantiate()
@@ -110,6 +102,19 @@ func _ready() -> void:
 	
 	for player in get_tree().get_nodes_in_group('animation_starts_with_battle'):
 		player.play('default')
+	
+func setup() -> void:
+	%TimeManager.set_time(_params.time)
+	%Clock.set_value(_params.time)
+	%TimeBar.set_max_value(_params.time)
+	%TimeBar.set_value(0.0) # time always starts from 0
+	%GameOverManager.set_max_score(_params.score)
+	%ScoreHUD.set_max_score(_params.score)
+	%ScoreHUD.set_starting_score(_params.starting_score)
+	
+func setup_team(team:String) -> void:
+	%ScoreManager.add_team(team)
+	%ScoreHUD.add_team(team, players[_teams[team][0]].get_species()) # FIXME support teams of 2+ members
 	
 ## Returns a [String] identifier for the [Arena] (defaults to the file name of the scene file).
 func get_id() -> String:

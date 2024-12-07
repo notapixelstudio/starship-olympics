@@ -1,17 +1,20 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7uihxmdaadhj"]
+[gd_scene load_steps=23 format=3 uid="uid://evvknjrce5td"]
 
-[ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_jsab4"]
+[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_8cpmn"]
+[ext_resource type="Resource" uid="uid://b753hvihacdku" path="res://godot4/debug/default_data/default_players/p1ve.tres" id="2_mm6ln"]
 [ext_resource type="Resource" uid="uid://qv7ahl4mb6vo" path="res://godot4/data/styles/cyber.tres" id="2_xkjhl"]
+[ext_resource type="Resource" uid="uid://cm52kie76ynwm" path="res://godot4/debug/default_data/default_players/p2ve.tres" id="3_0oovw"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="3_knfq2"]
 [ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="4_l2iqi"]
+[ext_resource type="Resource" uid="uid://cp7olne2sr3dk" path="res://godot4/debug/default_data/default_players/p3ve.tres" id="4_qwb16"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="5_hnp1y"]
+[ext_resource type="Resource" uid="uid://dqdydntuyp5y2" path="res://godot4/debug/default_data/default_players/p4ve.tres" id="5_pw7jd"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="6_ip82o"]
 [ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="7_md3ay"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="8_gvfad"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="9_2extf"]
 [ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="10_mr7ed"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="11_3gire"]
-[ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="11_4ft3g"]
 [ext_resource type="PackedScene" uid="uid://bkt23g8b1tl77" path="res://godot4/actors/enemies/BubbleTurret.tscn" id="12_72cmw"]
 [ext_resource type="Script" path="res://actors/environments/WaveGroupSpawner.gd" id="13_rlskn"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="14_5b2yd"]
@@ -79,20 +82,25 @@ _data = {
 "default": SubResource("Animation_kdc2i")
 }
 
-[node name="PveArena" instance=ExtResource("1_jsab4")]
-default_params = ExtResource("11_4ft3g")
+[node name="VersusArena" instance=ExtResource("1_8cpmn")]
+players = {
+"P1": ExtResource("2_mm6ln"),
+"P2": ExtResource("3_0oovw"),
+"P3": ExtResource("4_qwb16"),
+"P4": ExtResource("5_pw7jd")
+}
 
 [node name="Styleable" parent="." index="0"]
 style = ExtResource("2_xkjhl")
 
-[node name="SpawnerWaveManager" parent="Managers" index="6" node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("3_knfq2")]
+[node name="SpawnerWaveManager" parent="Managers" index="3" node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("3_knfq2")]
 spawn_on_all_collected = true
 spawn_count_on_all_collected = 3
 spawn_on_timeout = false
 waves_container = NodePath("../../Battlefield/Waves")
 battlefield = NodePath("../../Battlefield")
 
-[node name="CollectGame" parent="Managers" index="7" instance=ExtResource("4_l2iqi")]
+[node name="CollectGame" parent="Managers" index="4" instance=ExtResource("4_l2iqi")]
 
 [node name="TreasureSFXManager" parent="Managers" index="8" instance=ExtResource("5_hnp1y")]
 

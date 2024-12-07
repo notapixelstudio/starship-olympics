@@ -1,0 +1,25 @@
+[gd_scene load_steps=12 format=3 uid="uid://ca36e5ga36lv0"]
+
+[ext_resource type="PackedScene" uid="uid://ctk8t0ohpljms" path="res://godot4/arena/Arena.tscn" id="1_q7r6t"]
+[ext_resource type="Script" path="res://godot4/arena/PveArena.gd" id="2_7y33o"]
+[ext_resource type="Texture2D" uid="uid://26nw5l0mmexe" path="res://assets/sprites/medals/bronze.png" id="3_4yxkd"]
+[ext_resource type="Resource" uid="uid://b753hvihacdku" path="res://godot4/debug/default_data/default_players/p1ve.tres" id="3_8cyur"]
+[ext_resource type="Resource" uid="uid://dkvwr4voy6m3i" path="res://godot4/debug/default_data/single_match_empty_session.tres" id="3_dx34l"]
+[ext_resource type="Texture2D" uid="uid://deeilj4jeljdc" path="res://assets/sprites/medals/silver.png" id="4_1nxvh"]
+[ext_resource type="Resource" uid="uid://cm52kie76ynwm" path="res://godot4/debug/default_data/default_players/p2ve.tres" id="4_7rfql"]
+[ext_resource type="Texture2D" uid="uid://c5x732uuna3ul" path="res://assets/sprites/medals/gold.png" id="5_d31xm"]
+[ext_resource type="Resource" uid="uid://cp7olne2sr3dk" path="res://godot4/debug/default_data/default_players/p3ve.tres" id="5_rtq0i"]
+[ext_resource type="Resource" uid="uid://dqdydntuyp5y2" path="res://godot4/debug/default_data/default_players/p4ve.tres" id="6_asjs1"]
+[ext_resource type="Resource" uid="uid://0dcws72ktfhh" path="res://godot4/data/match_params/default_pve.tres" id="7_colel"]
+
+[node name="PveArena" instance=ExtResource("1_q7r6t")]
+script = ExtResource("2_7y33o")
+medals_textures = Array[Texture]([ExtResource("3_4yxkd"), ExtResource("4_1nxvh"), ExtResource("5_d31xm")])
+players = {
+"P1": ExtResource("3_8cyur"),
+"P2": ExtResource("4_7rfql"),
+"P3": ExtResource("5_rtq0i"),
+"P4": ExtResource("6_asjs1")
+}
+default_params = ExtResource("7_colel")
+session = ExtResource("3_dx34l")
