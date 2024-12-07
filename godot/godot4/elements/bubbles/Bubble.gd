@@ -14,6 +14,9 @@ func set_content_scene(v:PackedScene) -> void:
 		set_content(content_scene.instantiate())
 	
 func set_content(v) -> void:
+	if _content:
+		return
+		
 	_content = v
 	%ContentSprite2D.texture = _content.get_texture() # FIXME strong assumption
 	
@@ -23,6 +26,7 @@ func pop(author=null) -> void:
 		get_parent().add_child.call_deferred(_content)
 		if author and _content.has_method('touched_by'): # WARNING duck typing
 			_content.touched_by.call_deferred(author)
+		_content = null
 	SoundEffects.play(%PopSFX)
 	var pop = bubble_popped_scene.instantiate()
 	pop.global_position = global_position

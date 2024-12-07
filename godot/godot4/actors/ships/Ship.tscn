@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=31 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PhysicsMaterial" uid="uid://v8mu2p8ukj54" path="res://godot4/actors/ships/ShipPhysicsMaterial.tres" id="1_yr6p6"]
@@ -53,9 +53,18 @@ func _process(delta):
 	scale = Tween.interpolate_value(NORMAL, FAT_DELTA, weight, 1.0, Tween.TRANS_QUAD, Tween.EASE_OUT)
 "
 
+[sub_resource type="GDScript" id="GDScript_ukxwp"]
+script/source = "extends Area2D
+
+@export var host : Ship
+
+func get_ship() -> Ship:
+	return host
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_oi8fb"]
 resource_local_to_scene = true
-radius = 55.0
+radius = 70.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kepy8"]
 resource_local_to_scene = true
@@ -143,10 +152,12 @@ script = SubResource("GDScript_jwr13")
 scale = Vector2(0.8, 0.8)
 sprite = NodePath("../Sprite")
 
-[node name="TouchArea" type="Area2D" parent="."]
+[node name="TouchArea" type="Area2D" parent="." node_paths=PackedStringArray("host")]
 unique_name_in_owner = true
-collision_layer = 0
+collision_layer = 2
 collision_mask = 6784
+script = SubResource("GDScript_ukxwp")
+host = NodePath("..")
 
 [node name="TouchShape2D" type="CollisionShape2D" parent="TouchArea"]
 unique_name_in_owner = true

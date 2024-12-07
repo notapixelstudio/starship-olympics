@@ -1,7 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://40eew2usts1v"]
+[gd_scene load_steps=3 format=3 uid="uid://40eew2usts1v"]
 
 [ext_resource type="Script" path="res://godot4/effects/appear/Appear.gd" id="1_miso7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_giyqx"]
+radius = 70.0
 
 [node name="Appear" type="Node2D"]
 modulate = Color(1.4, 1.4, 1.4, 1)
 script = ExtResource("1_miso7")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_giyqx")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

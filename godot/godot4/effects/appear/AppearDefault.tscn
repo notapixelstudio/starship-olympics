@@ -80,11 +80,23 @@ tracks/5/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Area2D:monitoring")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_irtfk"]
 resource_name = "default"
 length = 2.0
-step = 0.001
+step = 0.1
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -174,6 +186,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [0.0, 8.0, 0.0, 8.0, 0.0]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Area2D:monitoring")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_byjas"]
 _data = {
@@ -213,3 +237,6 @@ enabled = true
 gravity = 1.0
 center = Vector3(0, 0, -500)
 influence_radius = 250.0
+
+[node name="Area2D" parent="." index="4"]
+monitoring = false
