@@ -1,9 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://wpnsuvpmmcwb"]
+[gd_scene load_steps=23 format=3 uid="uid://wpnsuvpmmcwb"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_ri4lt"]
+[ext_resource type="Resource" uid="uid://b753hvihacdku" path="res://godot4/debug/default_data/default_players/p1ve.tres" id="2_xx50o"]
 [ext_resource type="Resource" uid="uid://qv7ahl4mb6vo" path="res://godot4/data/styles/cyber.tres" id="2_yhuwo"]
+[ext_resource type="Resource" uid="uid://cm52kie76ynwm" path="res://godot4/debug/default_data/default_players/p2ve.tres" id="3_5g8fs"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="3_si4ip"]
 [ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="4_bb0to"]
+[ext_resource type="Resource" uid="uid://cp7olne2sr3dk" path="res://godot4/debug/default_data/default_players/p3ve.tres" id="4_ijbcl"]
+[ext_resource type="Resource" uid="uid://dqdydntuyp5y2" path="res://godot4/debug/default_data/default_players/p4ve.tres" id="5_gvr2c"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="5_ub82h"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="6_nj3vk"]
 [ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="7_fvfdg"]
@@ -79,6 +83,12 @@ _data = {
 }
 
 [node name="VersusArena" instance=ExtResource("1_ri4lt")]
+players = {
+"P1": ExtResource("2_xx50o"),
+"P2": ExtResource("3_5g8fs"),
+"P3": ExtResource("4_ijbcl"),
+"P4": ExtResource("5_gvr2c")
+}
 
 [node name="Styleable" parent="." index="0"]
 style = ExtResource("2_yhuwo")
