@@ -1,5 +1,4 @@
-extends Node2D
-
+extends SessionPointIcon
 class_name StarIcon
 
 @onready var won_anim = $Wrapper/WonAnimationPlayer

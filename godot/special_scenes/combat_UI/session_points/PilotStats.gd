@@ -3,13 +3,12 @@ extends Node2D
 
 class_name PilotStats
 
-const STAR_OFFSET = 128
+const ICON_OFFSET = 128
 
-@export var star_scene : PackedScene
+@export var session_point_icon_scene : PackedScene
 @export var player : Player : get = get_player, set = set_player
-@export var points := -1 : set = set_points
-@export var new_points := 1 : set = set_new_points
 @export var max_points := 3 : set = set_max_points
+@export var session : Session : set = set_session
 
 var new_y : set = change_y
 
@@ -18,15 +17,12 @@ func set_player(v: Player):
 	
 func get_player() -> Player:
 	return player
-
-func set_points(v: int):
-	points = v
 	
-func set_new_points(v:int):
-	new_points = v
-	
-func set_max_points(v: int):
+func set_max_points(v) -> void:
 	max_points = v
+
+func set_session(v:Session) -> void:
+	session = v
 	
 func _ready() -> void:
 	redraw()
@@ -44,26 +40,35 @@ func redraw() -> void:
 	
 func update_score():
 	# empty container
-	for child in %StarsContainer.get_children():
+	for child in %IconContainer.get_children():
 		child.queue_free()
+		
+	var score = _compute_score()
 	
 	for i in range(max_points):
-		var point = star_scene.instantiate()
+		var icon = session_point_icon_scene.instantiate()
 		
-		point.position.x = 100 + i*STAR_OFFSET - max_points*STAR_OFFSET/2.0
-		point.position.y = 68
-		point.set_index(i)
-		if i < points:
-			point.set_scored(true)
-			#point.perfect = points[i].perfect
-			if i > points - new_points-1:
-				point.set_just_scored(true)
-		else:
-			point.set_scored(false)
-			point.set_perfect(false)
-			
-		%StarsContainer.add_child(point)
+		icon.position.x = 100 + i*ICON_OFFSET - max_points*ICON_OFFSET/2.0
+		icon.position.y = 68
+		_update_icon(icon, i, score)
+		
+		%IconContainer.add_child(icon)
 
+func _compute_score():
+	return 1 if session.is_winner(player.get_team()) else 0
+	# pilot_stats.set_new_points(1 if player.get_team() in match_winners else 0)
+	
+
+func _update_icon(icon, i, points) -> void:
+	icon.set_index(i)
+	if i < points:
+		icon.set_scored(true)
+		#icon.perfect = points[i].perfect
+		#if i > points - new_points-1:
+		#	icon.set_just_scored(true)
+	else:
+		icon.set_scored(false)
+		icon.set_perfect(false)
 	
 func change_y(new_value):
 	new_y = new_value

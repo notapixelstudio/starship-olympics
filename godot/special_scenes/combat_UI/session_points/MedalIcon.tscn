@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://c24fmp1dai6s7"]
+
+[ext_resource type="PackedScene" uid="uid://crrllm3fqdyjc" path="res://special_scenes/combat_UI/session_points/SessionPointIcon.tscn" id="1_msbep"]
+[ext_resource type="Script" path="res://special_scenes/combat_UI/session_points/MedalIcon.gd" id="2_55qob"]
+[ext_resource type="Resource" uid="uid://tcdgwuw4j8o8" path="res://godot4/data/Medals.tres" id="3_1iouc"]
+[ext_resource type="Texture2D" uid="uid://26nw5l0mmexe" path="res://assets/sprites/medals/bronze.png" id="3_jbkl3"]
+
+[node name="MedalIcon" instance=ExtResource("1_msbep")]
+script = ExtResource("2_55qob")
+icons = ExtResource("3_1iouc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+unique_name_in_owner = true
+texture = ExtResource("3_jbkl3")

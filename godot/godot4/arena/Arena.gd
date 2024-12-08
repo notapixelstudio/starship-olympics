@@ -147,7 +147,7 @@ func _on_clock_ticked(t:float, t_secs:int) -> void:
 	%TimeBar.set_value(_params.time - t)
 
 func _on_match_over(data:Dictionary) -> void:
-	session.add_match_results(data)
+	_update_session(data)
 	_match_over_screen.update_scores()
 	
 	# peform a match over animation
@@ -160,3 +160,7 @@ func _on_match_over(data:Dictionary) -> void:
 		Engine.time_scale = 1
 		_match_over_screen.show()
 	)
+
+func _update_session(data:Dictionary) -> void:
+	session.add_match_results(data)
+	
