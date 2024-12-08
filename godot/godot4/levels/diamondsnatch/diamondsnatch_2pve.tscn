@@ -144,6 +144,7 @@ wait_time = 8.0
 [node name="Waves" type="Node2D" parent="Battlefield" index="7"]
 
 [node name="SingleDiamondWave" type="Node2D" parent="Battlefield/Waves" index="0" groups=["spawn_waves"]]
+visible = false
 script = ExtResource("13_rlskn")
 max_repeats = 3
 extra_delay = 1.0
@@ -169,6 +170,7 @@ pattern = "single"
 element_scene = ExtResource("11_3gire")
 
 [node name="SingleDiamondWave2" type="Node2D" parent="Battlefield/Waves" index="1" groups=["spawn_waves"]]
+visible = false
 script = ExtResource("13_rlskn")
 max_repeats = 3
 extra_delay = 1.0
@@ -234,6 +236,7 @@ pattern = "single"
 element_scene = ExtResource("11_3gire")
 
 [node name="SingleDiamondWave3" type="Node2D" parent="Battlefield/Waves" index="2" groups=["spawn_waves"]]
+visible = false
 script = ExtResource("13_rlskn")
 max_repeats = 3
 extra_delay = 2.0
@@ -259,6 +262,7 @@ pattern = "single"
 element_scene = ExtResource("11_3gire")
 
 [node name="MultiDiamondWave" type="Node2D" parent="Battlefield/Waves" index="3" groups=["spawn_waves"]]
+visible = false
 script = ExtResource("13_rlskn")
 max_repeats = 1
 extra_delay = 0.5
@@ -294,24 +298,25 @@ pattern = "rhombus"
 element_scene = ExtResource("11_3gire")
 
 [node name="MultiDiamondWave2" type="Node2D" parent="Battlefield/Waves" index="4" groups=["spawn_waves"]]
+visible = false
 script = ExtResource("13_rlskn")
 max_repeats = 2
 extra_delay = 0.5
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Waves/MultiDiamondWave2" index="0" instance=ExtResource("14_5b2yd")]
-position = Vector2(0, 600)
-element_scene = ExtResource("11_3gire")
-
-[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/MultiDiamondWave2" index="1" instance=ExtResource("14_5b2yd")]
-position = Vector2(0, -750)
-element_scene = ExtResource("11_3gire")
-
-[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/MultiDiamondWave2" index="2" instance=ExtResource("14_5b2yd")]
 position = Vector2(0, 750)
 element_scene = ExtResource("11_3gire")
 
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/MultiDiamondWave2" index="1" instance=ExtResource("14_5b2yd")]
+position = Vector2(0, -900)
+element_scene = ExtResource("11_3gire")
+
+[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/MultiDiamondWave2" index="2" instance=ExtResource("14_5b2yd")]
+position = Vector2(0, 900)
+element_scene = ExtResource("11_3gire")
+
 [node name="ElementSpawnerGroup7" parent="Battlefield/Waves/MultiDiamondWave2" index="3" instance=ExtResource("14_5b2yd")]
-position = Vector2(0, -600)
+position = Vector2(0, -750)
 element_scene = ExtResource("11_3gire")
 
 [node name="ElementSpawnerGroup3" parent="Battlefield/Waves/MultiDiamondWave2" index="4" instance=ExtResource("14_5b2yd")]
@@ -335,6 +340,7 @@ pattern = "backslash"
 element_scene = ExtResource("11_3gire")
 
 [node name="FirstBigDiamondWave" type="Node2D" parent="Battlefield/Waves" index="5" groups=["spawn_waves"]]
+visible = false
 script = ExtResource("13_rlskn")
 max_repeats = 4
 extra_delay = 3.0
@@ -370,17 +376,18 @@ pattern = "single"
 element_scene = ExtResource("15_s487o")
 
 [node name="MultiDiamondWave3" type="Node2D" parent="Battlefield/Waves" index="6" groups=["spawn_waves"]]
+visible = false
 script = ExtResource("13_rlskn")
 max_repeats = 2
 extra_delay = 1.0
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Waves/MultiDiamondWave3" index="0" instance=ExtResource("14_5b2yd")]
-position = Vector2(0, 600)
+position = Vector2(0, 900)
 pattern = "bigline"
 element_scene = ExtResource("11_3gire")
 
 [node name="ElementSpawnerGroup2" parent="Battlefield/Waves/MultiDiamondWave3" index="1" instance=ExtResource("14_5b2yd")]
-position = Vector2(0, -600)
+position = Vector2(0, -900)
 pattern = "bigline"
 element_scene = ExtResource("11_3gire")
 
@@ -415,6 +422,7 @@ pattern = "vline"
 element_scene = ExtResource("11_3gire")
 
 [node name="SingleDiamondWave4" type="Node2D" parent="Battlefield/Waves" index="7" groups=["spawn_waves"]]
+visible = false
 script = ExtResource("13_rlskn")
 max_repeats = 6
 
@@ -490,19 +498,19 @@ position = Vector2(0, 600)
 element_scene = ExtResource("11_3gire")
 
 [node name="ElementSpawnerGroup5" parent="Battlefield/Waves/EverythingMixedWave" index="4" instance=ExtResource("14_5b2yd")]
-position = Vector2(750, 600)
+position = Vector2(450, 900)
 element_scene = ExtResource("11_3gire")
 
 [node name="ElementSpawnerGroup6" parent="Battlefield/Waves/EverythingMixedWave" index="5" instance=ExtResource("14_5b2yd")]
-position = Vector2(750, -600)
+position = Vector2(450, -900)
 element_scene = ExtResource("11_3gire")
 
 [node name="ElementSpawnerGroup7" parent="Battlefield/Waves/EverythingMixedWave" index="6" instance=ExtResource("14_5b2yd")]
-position = Vector2(-750, -600)
+position = Vector2(-450, -900)
 element_scene = ExtResource("11_3gire")
 
 [node name="ElementSpawnerGroup8" parent="Battlefield/Waves/EverythingMixedWave" index="7" instance=ExtResource("14_5b2yd")]
-position = Vector2(-750, 600)
+position = Vector2(-450, 900)
 element_scene = ExtResource("11_3gire")
 
 [node name="ElementSpawnerGroup9" parent="Battlefield/Waves/EverythingMixedWave" index="8" instance=ExtResource("14_5b2yd")]
@@ -552,7 +560,7 @@ element_scene = ExtResource("11_3gire")
 guest_star_scene = ExtResource("15_s487o")
 
 [node name="ElementSpawnerGroup18" parent="Battlefield/Waves/EverythingMixedWave" index="17" instance=ExtResource("14_5b2yd")]
-position = Vector2(-1350, 0)
+position = Vector2(-1500, 0)
 pattern = "vline"
 element_scene = ExtResource("11_3gire")
 guest_star_scene = ExtResource("15_s487o")
@@ -668,7 +676,7 @@ pattern = "zag"
 element_scene = ExtResource("11_3gire")
 
 [node name="ElementSpawnerGroup20" parent="Battlefield/Waves/EverythingMixedWave" index="37" instance=ExtResource("14_5b2yd")]
-position = Vector2(1350, 0)
+position = Vector2(1500, 0)
 pattern = "vline"
 element_scene = ExtResource("11_3gire")
 guest_star_scene = ExtResource("15_s487o")
