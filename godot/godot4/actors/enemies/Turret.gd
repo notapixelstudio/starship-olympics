@@ -5,7 +5,7 @@ extends Node2D
 @export var bullet_lifetime := 10.0
 @export var wait_time := 2.0 : set = set_time
 @export var distance := 200.0
-@export_range(0, 360*10, 0.5, "radians_as_degrees", "suffix:deg/s") var rotation_speed := PI/8
+@export_range(-360*10, 360*10, 0.5, "radians_as_degrees", "suffix:deg/s") var rotation_speed := PI/8
 @export var starting_angles_degrees := [45,45+90,45+180,45+270]
 
 func set_time(v:float) -> void:

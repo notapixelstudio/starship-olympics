@@ -4,7 +4,7 @@ extends Marker2D
 class_name ElementSpawnerGroup
 
 
-@export_enum('slash', 'backslash', 'line', 'bigline', "vline", "single", "plus", "rhombus", "gigarhombus", "zig", "zag", "apart", "farapart", "doublefarapart", "triplefarapart", "veryfarapart", "farslash", "farbackslash", "custom") var pattern = "line": set = _set_pattern
+@export_enum('slash', 'backslash', 'line', 'bigline', "vline", "single", "plus", "rhombus", "gigarhombus", "zig", "zag", "apart", "vapart", "farapart", "doublefarapart", "triplefarapart", "veryfarapart", "farslash", "farbackslash", "custom") var pattern = "line": set = _set_pattern
 
 @export var spawner_scene: PackedScene
 @export var element_scene: PackedScene: set = _set_element_scene
@@ -23,6 +23,7 @@ var map_pattern_distance = {
 	"zig": [Vector2(-300, 0), Vector2(-150, -150), Vector2(0, 0), Vector2(150, 150), Vector2(300, 0)],
 	"zag": [Vector2(-300, 0), Vector2(-150, 150), Vector2(0, 0), Vector2(150, -150), Vector2(300, 0)],
 	"apart": [Vector2(-900, 0), Vector2(900, 0)],
+	"vapart": [Vector2(0, -900), Vector2(0, 900)],
 	"farapart": [Vector2(-1350, 0), Vector2(1350, 0)],
 	"doublefarapart": [Vector2(-1350, -150), Vector2(-1350, 150), Vector2(1350, -150), Vector2(1350, 150)],
 	"triplefarapart": [Vector2(-1350, -150), Vector2(-1350, 0), Vector2(-1350, 150), Vector2(1350, -150), Vector2(1350, 0), Vector2(1350, 150)],
