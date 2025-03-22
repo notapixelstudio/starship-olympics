@@ -1,21 +1,16 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=4 format=3 uid="uid://2d3s3dj7fe7v"]
 
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon/hive_logo.png" type="Texture2D" id=2]
-[ext_resource path="res://assets/icon/minicards/sets/crown.png" type="Texture2D" id=3]
-[ext_resource path="res://combat/styles/palace.tres" type="Resource" id=4]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dvs4ry75sj8nh" path="res://assets/icon/minicards/sets/crown.png" id="3"]
+[ext_resource type="Resource" uid="uid://dvg6t2qvrs0dw" path="res://combat/styles/palace.tres" id="4"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "king_of_the_castle"
-is_mutator = false
 name = "King of the Castle"
-icon = ExtResource( 3 )
-logo = ExtResource( 2 )
-arena_style = ExtResource( 4 )
+icon = ExtResource("3")
+arena_style = ExtResource("4")
 description = "stay inside the castle"
-tagline_pro = "Don't forget your opponents would do the same"
-tagline_cons = "You could get killed in the meantime..."
 max_timeout = 60
 max_score = 60
 starting_score = 0
@@ -26,6 +21,7 @@ starting_health = 1
 respawn_from_home = false
 end_on_perfect = true
 fill_starting_score = false
+streaks_enabled = true
 death = false
 last_man = false
 crown = false
@@ -42,6 +38,7 @@ bomb_type = 0
 starting_ammo = -1
 reload_time = 3.0
 auto_thrust = false
+start_invincible = true
 floodable = true
 flood = false
 laserable = false

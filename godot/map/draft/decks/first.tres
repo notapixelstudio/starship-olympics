@@ -1,19 +1,19 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="StartingDeck" load_steps=7 format=3 uid="uid://dsfrl0t0h5jdr"]
 
-[ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
-[ext_resource path="res://map/draft/cards/Diamondsnatch.tres" type="Resource" id=2]
-[ext_resource path="res://map/draft/cards/DiamondWarfare.tres" type="Resource" id=3]
-[ext_resource path="res://map/draft/cards/Deathmatch.tres" type="Resource" id=4]
-[ext_resource path="res://map/draft/cards/DiamondDive.tres" type="Resource" id=5]
-[ext_resource path="res://assets/map/cards/planets/vidirium_prime.png" type="Texture2D" id=6]
+[ext_resource type="Script" uid="uid://bwveyhtu8y4uw" path="res://map/draft/decks/StartingDeck.gd" id="1"]
+[ext_resource type="Resource" uid="uid://d0t2m2xp75bah" path="res://map/draft/cards/Diamondsnatch.tres" id="2"]
+[ext_resource type="Resource" uid="uid://nohajt3eh1p2" path="res://map/draft/cards/DiamondWarfare.tres" id="3"]
+[ext_resource type="Resource" uid="uid://5b7lmi7rlj61" path="res://map/draft/cards/Deathmatch.tres" id="4"]
+[ext_resource type="Resource" uid="uid://bwoocvej0liso" path="res://map/draft/cards/DiamondDive.tres" id="5"]
+[ext_resource type="Texture2D" uid="uid://drgagfwxi3aes" path="res://assets/map/cards/planets/vidirium_prime.png" id="6"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "first"
 order = 0
 name = "Diamontide Prime"
-image = ExtResource( 6 )
-cards = [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ) ]
-nexts = [  ]
+image = ExtResource("6")
+cards = [ExtResource("2"), ExtResource("5"), ExtResource("4"), ExtResource("3")]
+nexts = []
 playlist = true
-unlocks = [ "oldcrown", "peace" ]
+unlocks = ["oldcrown", "peace"]

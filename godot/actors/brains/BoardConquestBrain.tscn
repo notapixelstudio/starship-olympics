@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://bpk7fpnrwayhs"]
 
-[ext_resource path="res://actors/brains/CPUBrain.tscn" type="PackedScene" id=1]
-[ext_resource path="res://actors/brains/BoardConquestBrain.gd" type="Script" id=2]
+[ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://actors/brains/CPUBrain.tscn" id="1"]
+[ext_resource type="Script" uid="uid://cn6n3a4nq05qy" path="res://actors/brains/BoardConquestBrain.gd" id="2"]
 
-[node name="BoardConquestBrain" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="BoardConquestBrain" instance=ExtResource("1")]
+script = ExtResource("2")
 target_location_jitter = 0.0
 random_dash_p = 0.004
 think_time = 0.05

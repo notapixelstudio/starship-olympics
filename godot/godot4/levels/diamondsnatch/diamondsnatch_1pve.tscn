@@ -6,14 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="3_bj3ek"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="4_5inup"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="9_tb6i2"]
-[ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="10_a43nh"]
+[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="10_a43nh"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="11_m6wto"]
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="11_xd7ch"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="12_pdbnl"]
-[ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="13_plvei"]
+[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="13_plvei"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="14_xeixg"]
 [ext_resource type="PackedScene" uid="uid://bkt23g8b1tl77" path="res://godot4/actors/enemies/BubbleTurret.tscn" id="15_ieca3"]
-[ext_resource type="Script" path="res://actors/environments/WaveGroupSpawner.gd" id="16_1ohm1"]
+[ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="16_1ohm1"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="17_ax7k0"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="18_w2bk3"]
 
@@ -75,8 +75,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g6aeh"]
 _data = {
-"RESET": SubResource("Animation_68mb6"),
-"default": SubResource("Animation_kdc2i")
+&"RESET": SubResource("Animation_68mb6"),
+&"default": SubResource("Animation_kdc2i")
 }
 
 [node name="PveArena" instance=ExtResource("1_g2yuu")]

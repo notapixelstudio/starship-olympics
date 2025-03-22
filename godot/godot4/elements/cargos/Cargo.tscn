@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://c8s08rc21o1ra"]
 
-[ext_resource type="Script" path="res://godot4/elements/cargos/Cargo.gd" id="1_mtln1"]
+[ext_resource type="Script" uid="uid://djawiwgh6pg6c" path="res://godot4/elements/cargos/Cargo.gd" id="1_mtln1"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="2_siay3"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="3_x7m7y"]
 
@@ -83,9 +83,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lqqh5"]
 _data = {
-"Hit": SubResource("Animation_5s86f"),
-"RESET": SubResource("Animation_e7hm2"),
-"Shine": SubResource("Animation_ijh7r")
+&"Hit": SubResource("Animation_5s86f"),
+&"RESET": SubResource("Animation_e7hm2"),
+&"Shine": SubResource("Animation_ijh7r")
 }
 
 [sub_resource type="Gradient" id="Gradient_5cley"]

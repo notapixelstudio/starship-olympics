@@ -1,17 +1,17 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="StartingDeck" load_steps=5 format=3 uid="uid://6mlgtcd4sm85"]
 
-[ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
-[ext_resource path="res://map/draft/cards/FutureMystery.tres" type="Resource" id=2]
-[ext_resource path="res://assets/map/cards/planets/future.png" type="Texture2D" id=3]
-[ext_resource path="res://map/draft/cards/Random.tres" type="Resource" id=4]
+[ext_resource type="Script" uid="uid://bwveyhtu8y4uw" path="res://map/draft/decks/StartingDeck.gd" id="1"]
+[ext_resource type="Resource" uid="uid://bblxm6p4k3ha3" path="res://map/draft/cards/FutureMystery.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://dijmr0uadsj04" path="res://assets/map/cards/planets/future.png" id="3"]
+[ext_resource type="Resource" uid="uid://dyc3mgv8j274p" path="res://map/draft/cards/Random.tres" id="4"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "future"
 order = 7
 name = "Future World"
-image = ExtResource( 3 )
-cards = [ ExtResource( 4 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 4 ) ]
-nexts = [  ]
+image = ExtResource("3")
+cards = [ExtResource("4"), ExtResource("4"), ExtResource("2"), ExtResource("4")]
+nexts = []
 playlist = true
-unlocks = [  ]
+unlocks = []

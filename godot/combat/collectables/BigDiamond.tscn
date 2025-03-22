@@ -1,15 +1,15 @@
 [gd_scene load_steps=15 format=3 uid="uid://djoq6wjajdqnp"]
 
-[ext_resource type="Script" path="res://combat/collectables/BigDiamond.gd" id="1"]
-[ext_resource type="Script" path="res://addons/ECM/Entity.gd" id="2"]
-[ext_resource type="Script" path="res://addons/ECM/Component.gd" id="4"]
+[ext_resource type="Script" uid="uid://ddprg0ux3nagi" path="res://combat/collectables/BigDiamond.gd" id="1"]
+[ext_resource type="Script" uid="uid://dg3ny04agcjtp" path="res://addons/ECM/Entity.gd" id="2"]
+[ext_resource type="Script" uid="uid://bx28gpgdlmtid" path="res://addons/ECM/Component.gd" id="4"]
 [ext_resource type="PackedScene" path="res://combat/traits/Strategic.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://dldq7fl7u4nom" path="res://assets/sprites/environments/diamond_big.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://brxcax73it83q" path="res://assets/sprites/environments/crown_halo.png" id="8"]
 [ext_resource type="Animation" path="res://assets/animations/AppearFuhfuhfuh.tres" id="9"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="10"]
 [ext_resource type="AudioStream" uid="uid://c5pidqn68fd5j" path="res://assets/audio/FX/sfx_coin_cluster3.wav" id="11"]
-[ext_resource type="PackedScene" path="res://actors/environments/BigDiamondCollectParticles.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://cgipkdmyejt6e" path="res://actors/environments/BigDiamondCollectParticles.tscn" id="12"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 90.0
@@ -45,12 +45,12 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s2ray"]
 _data = {
-"Blink": SubResource("2")
+&"Blink": SubResource("2")
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4tqq1"]
 _data = {
-"AppearFuhfuhfuh": ExtResource("9")
+&"AppearFuhfuhfuh": ExtResource("9")
 }
 
 [node name="BigDiamond" type="RigidBody2D" groups=["Diamond", "Foreground", "in_camera"]]

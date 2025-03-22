@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cx3mw55rwlyvt"]
 
 [ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_8scqn"]
-[ext_resource type="Script" path="res://godot4/elements/treasures/Fruit.gd" id="2_ouapt"]
+[ext_resource type="Script" uid="uid://cpqidtwiasht8" path="res://godot4/elements/treasures/Fruit.gd" id="2_ouapt"]
 [ext_resource type="Texture2D" uid="uid://fjc48bw13nul" path="res://assets/sprites/fruits/banana.png" id="3_xvg1r"]
 [ext_resource type="Texture2D" uid="uid://yhr2iwiak8j1" path="res://assets/sprites/fruits/cherry.png" id="4_i0p36"]
 [ext_resource type="Texture2D" uid="uid://dsegin3jm1org" path="res://assets/sprites/fruits/grape.png" id="5_8h0eb"]
@@ -44,8 +44,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5r5px"]
 _data = {
-"Grow": SubResource("Animation_hs8rw"),
-"RESET": SubResource("Animation_bsjpo")
+&"Grow": SubResource("Animation_hs8rw"),
+&"RESET": SubResource("Animation_bsjpo")
 }
 
 [node name="Fruit" instance=ExtResource("1_8scqn")]

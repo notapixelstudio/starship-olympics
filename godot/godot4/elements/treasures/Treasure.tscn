@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://def8gegesl10e"]
 
-[ext_resource type="Script" path="res://godot4/elements/treasures/Treasure.gd" id="1_q6gx3"]
+[ext_resource type="Script" uid="uid://cpxvapwxmi5c7" path="res://godot4/elements/treasures/Treasure.gd" id="1_q6gx3"]
 [ext_resource type="PackedScene" uid="uid://c4yru00x07tyi" path="res://godot4/effects/TreasurePicked.tscn" id="2_lfwwo"]
 [ext_resource type="PackedScene" uid="uid://bkt3uw0ui0kxk" path="res://godot4/effects/appear/AppearDefault.tscn" id="3_ufj5w"]
 [ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="4_qifm1"]
@@ -97,8 +97,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g125i"]
 _data = {
-"RESET": SubResource("Animation_7dqfj"),
-"default": SubResource("Animation_osksh")
+&"RESET": SubResource("Animation_7dqfj"),
+&"default": SubResource("Animation_osksh")
 }
 
 [sub_resource type="Animation" id="Animation_r82e2"]
@@ -198,9 +198,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lqqh5"]
 _data = {
-"Hit": SubResource("Animation_r82e2"),
-"RESET": SubResource("Animation_e7hm2"),
-"Shine": SubResource("Animation_ijh7r")
+&"Hit": SubResource("Animation_r82e2"),
+&"RESET": SubResource("Animation_e7hm2"),
+&"Shine": SubResource("Animation_ijh7r")
 }
 
 [node name="Treasure" type="RigidBody2D" groups=["Treasure", "collectable"]]

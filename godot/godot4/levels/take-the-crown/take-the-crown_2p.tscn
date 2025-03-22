@@ -3,14 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_bvhdi"]
 [ext_resource type="PackedScene" uid="uid://chnvt4cxrqrcv" path="res://godot4/arena/managers/games/CrownGame.tscn" id="2_3q1vj"]
 [ext_resource type="Resource" uid="uid://cxorooq22c83" path="res://godot4/data/styles/palace.tres" id="2_6lcix"]
-[ext_resource type="Script" path="res://addons/vshapes/VBeveledRect.gd" id="4_ij1ca"]
+[ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="4_ij1ca"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_vjgex"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="5_e3rpg"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="5_q5cfv"]
 [ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="6_h5akp"]
-[ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="7_1nk4p"]
+[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="7_1nk4p"]
 [ext_resource type="PackedScene" uid="uid://bia7yrbdvp8vw" path="res://godot4/elements/environments/ShieldWall.tscn" id="8_nyho4"]
-[ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="9_f33xf"]
+[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="9_f33xf"]
 
 [sub_resource type="Animation" id="Animation_vtipm"]
 length = 0.001
@@ -47,8 +47,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aclk8"]
 _data = {
-"RESET": SubResource("Animation_vtipm"),
-"default": SubResource("Animation_d4q4d")
+&"RESET": SubResource("Animation_vtipm"),
+&"default": SubResource("Animation_d4q4d")
 }
 
 [sub_resource type="Animation" id="Animation_3nm4h"]
@@ -110,8 +110,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kj0uy"]
 _data = {
-"RESET": SubResource("Animation_3nm4h"),
-"default": SubResource("Animation_xjb4e")
+&"RESET": SubResource("Animation_3nm4h"),
+&"default": SubResource("Animation_xjb4e")
 }
 
 [node name="VersusArena" instance=ExtResource("1_bvhdi")]

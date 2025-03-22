@@ -1,18 +1,18 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=5 format=3 uid="uid://dcfo1l7147jx0"]
 
-[ext_resource path="res://assets/icon/minicards/sets/death.png" type="Texture2D" id=1]
-[ext_resource path="res://actors/brains/DeathmatchBrain.tscn" type="PackedScene" id=2]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
-[ext_resource path="res://combat/styles/bones.tres" type="Resource" id=5]
+[ext_resource type="Texture2D" uid="uid://dgkukutasl81m" path="res://assets/icon/minicards/sets/death.png" id="1"]
+[ext_resource type="PackedScene" uid="uid://b2bsl0bc0oinj" path="res://actors/brains/DeathmatchBrain.tscn" id="2"]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="3"]
+[ext_resource type="Resource" uid="uid://b1cblnbj1ycjn" path="res://combat/styles/bones.tres" id="5"]
 
 [resource]
-script = ExtResource( 3 )
+script = ExtResource("3")
 id = "death"
 name = "Deathmatch"
-icon = ExtResource( 1 )
-arena_style = ExtResource( 5 )
+icon = ExtResource("1")
+arena_style = ExtResource("5")
 description = "kill the other players"
-cpu_brain = ExtResource( 2 )
+cpu_brain = ExtResource("2")
 max_timeout = 60
 max_score = 8
 starting_score = 0

@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cu80eyqvya17r"]
 
-[ext_resource path="res://utils/CameraEye.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/eye.png" type="Texture2D" id=2]
+[ext_resource type="Script" uid="uid://cutso81fg8cnp" path="res://utils/CameraEye.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bist3bn5heham" path="res://assets/sprites/eye.png" id="2"]
 
 [node name="CameraEye" type="Sprite2D" groups=["in_camera"]]
-modulate = Color( 0.207843, 0.741176, 1, 0.435294 )
-scale = Vector2( 3, 3 )
-texture = ExtResource( 2 )
-script = ExtResource( 1 )
+modulate = Color(0.207843, 0.741176, 1, 0.435294)
+scale = Vector2(3, 3)
+texture = ExtResource("2")
+script = ExtResource("1")

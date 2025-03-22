@@ -1,19 +1,19 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="Set" load_steps=7 format=3 uid="uid://6kh6d6o68pd4"]
 
-[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=1]
-[ext_resource path="res://combat/minigames/SkullCollectors.tres" type="Resource" id=2]
-[ext_resource path="res://combat/minigames/NineLives.tres" type="Resource" id=3]
-[ext_resource path="res://combat/minigames/Deathmatch.tres" type="Resource" id=4]
-[ext_resource path="res://combat/minigames/FirstBlood.tres" type="Resource" id=5]
-[ext_resource path="res://assets/map/cards/combat.png" type="Texture2D" id=6]
+[ext_resource type="Script" uid="uid://b561ai7rs4ndp" path="res://map_with_sets/planets/Set.gd" id="1"]
+[ext_resource type="Resource" uid="uid://by0q3x8iosiuq" path="res://combat/minigames/SkullCollectors.tres" id="2"]
+[ext_resource type="Resource" uid="uid://cy2o2yo2ujayd" path="res://combat/minigames/NineLives.tres" id="3"]
+[ext_resource type="Resource" uid="uid://cutejiy2ysq2i" path="res://combat/minigames/Deathmatch.tres" id="4"]
+[ext_resource type="Resource" uid="uid://dnr4qo0o7b0lo" path="res://combat/minigames/FirstBlood.tres" id="5"]
+[ext_resource type="Texture2D" uid="uid://crgpc143io4t7" path="res://assets/map/cards/combat.png" id="6"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "combat"
 name = "Manthar'n"
 tagline1 = "the Deadly Playgrounds of"
 tagline2 = ""
 description = ""
-minigames = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 2 ) ]
-planet_sprite = ExtResource( 6 )
-mutators = [  ]
+minigames = [ExtResource("4"), ExtResource("5"), ExtResource("3"), ExtResource("2")]
+planet_sprite = ExtResource("6")
+mutators = []

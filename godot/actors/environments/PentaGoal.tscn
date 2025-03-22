@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://p1d7of6lutxe"]
 
-[ext_resource type="Script" path="res://actors/environments/PentaGoal.gd" id="1"]
-[ext_resource type="PackedScene" path="res://actors/environments/Field.tscn" id="2"]
+[ext_resource type="Script" uid="uid://dnust1jwuyaw2" path="res://actors/environments/PentaGoal.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://c1duhx14s1f2t" path="res://actors/environments/Field.tscn" id="2"]
 [ext_resource type="AudioStream" uid="uid://blq5qxfnplj2y" path="res://assets/audio/gameplay/nocrown.ogg" id="5"]
 [ext_resource type="PackedScene" path="res://combat/traits/Goal.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://combat/traits/Owned.tscn" id="7"]
@@ -79,7 +79,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s7561"]
 _data = {
-"Feedback": SubResource("4")
+&"Feedback": SubResource("4")
 }
 
 [node name="PentaGoal" type="Node2D" groups=["in_camera"]]

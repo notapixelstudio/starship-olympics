@@ -1,18 +1,18 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" script_class="Set" load_steps=6 format=3 uid="uid://cbb4hb7r37gx3"]
 
-[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=1]
-[ext_resource path="res://combat/minigames/DiamondDefrost.tres" type="Resource" id=2]
-[ext_resource path="res://combat/minigames/FreezingDeath.tres" type="Resource" id=3]
-[ext_resource path="res://assets/map/cards/ice_set.png" type="Texture2D" id=4]
-[ext_resource path="res://combat/minigames/FreezeRace.tres" type="Resource" id=5]
+[ext_resource type="Script" uid="uid://b561ai7rs4ndp" path="res://map_with_sets/planets/Set.gd" id="1"]
+[ext_resource type="Resource" uid="uid://cxvp1mwmag64g" path="res://combat/minigames/DiamondDefrost.tres" id="2"]
+[ext_resource type="Resource" uid="uid://ctsr0lv6x388c" path="res://combat/minigames/FreezingDeath.tres" id="3"]
+[ext_resource type="Texture2D" uid="uid://bb3ffh8qt1odn" path="res://assets/map/cards/ice_set.png" id="4"]
+[ext_resource type="Resource" uid="uid://b5hn75atmjbhu" path="res://combat/minigames/FreezeRace.tres" id="5"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "ice"
 name = "Ice"
 tagline1 = ""
 tagline2 = ""
 description = ""
-minigames = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ) ]
-planet_sprite = ExtResource( 4 )
-mutators = [  ]
+minigames = [ExtResource("2"), ExtResource("3"), ExtResource("5")]
+planet_sprite = ExtResource("4")
+mutators = []

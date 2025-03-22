@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://brh61gpsh17s3"]
 
-[ext_resource type="Script" path="res://special_scenes/combat_UI/gameover/GameOver.gd" id="1"]
+[ext_resource type="Script" uid="uid://bi1a7ab63ange" path="res://special_scenes/combat_UI/gameover/GameOver.gd" id="1"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://00s3ufothoqf" path="res://special_scenes/combat_UI/session_points/Leaderboard.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://special_scenes/combat_UI/gameover/AreYouSure.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://4jhj2mctn8dl" path="res://special_scenes/combat_UI/gameover/AreYouSure.tscn" id="4"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "idle"
@@ -12,8 +12,8 @@ resource_name = "idle"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rk7g1"]
 _data = {
-"idle": SubResource("1"),
-"transition": SubResource("2")
+&"idle": SubResource("1"),
+&"transition": SubResource("2")
 }
 
 [node name="GameOverScreen" type="Control"]

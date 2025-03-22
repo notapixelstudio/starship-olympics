@@ -1,23 +1,25 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="Species" load_steps=7 format=3 uid="uid://bo0ne3t3lhbi0"]
 
-[ext_resource path="res://assets/sprites/species/umidorians/tsunamians1_beaten.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/sprites/species/umidorians/tsunamians1_character.png" type="Texture2D" id=2]
-[ext_resource path="res://selection/Species.gd" type="Script" id=3]
-[ext_resource path="res://assets/sprites/species/umidorians/ship2.png" type="Texture2D" id=4]
-[ext_resource path="res://assets/sprites/species/umidorians/tsunamians_ship_plain.png" type="Texture2D" id=5]
-[ext_resource path="res://assets/sprites/species/umidorians/tsunamians_ship_w.png" type="Texture2D" id=6]
+[ext_resource type="Texture2D" uid="uid://p86dkbydnbvg" path="res://assets/sprites/species/umidorians/tsunamians1_beaten.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cg3osamtnmnl7" path="res://assets/sprites/species/umidorians/tsunamians1_character.png" id="2"]
+[ext_resource type="Script" uid="uid://bp7ivxlmetkh5" path="res://selection/Species.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://dhviij1wi5laa" path="res://assets/sprites/species/umidorians/ship2.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://u6cao0ltlkir" path="res://assets/sprites/species/umidorians/tsunamians_ship_plain.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://dqpj8wsp3wj6f" path="res://assets/sprites/species/umidorians/tsunamians_ship_w.png" id="6"]
 
 [resource]
-script = ExtResource( 3 )
+script = ExtResource("3")
 id = "umidorians_2"
 species_id = 2
-species_name = "umidorians"
+name = ""
 tagline1 = "lovecraftian<br>libertines"
 tagline2 = ""
-ship = ExtResource( 4 )
-ship_off = ExtResource( 5 )
-ship_w = ExtResource( 6 )
-character_ok = ExtResource( 2 )
-character_beaten = ExtResource( 1 )
-color = Color( 0.494118, 0.694118, 1, 1 )
-color_2 = Color( 0.0392157, 0.337255, 1, 1 )
+ship = ExtResource("4")
+ship_off = ExtResource("5")
+ship_w = ExtResource("6")
+character_ok = ExtResource("2")
+character_beaten = ExtResource("1")
+color = Color(0.494118, 0.694118, 1, 1)
+color_2 = Color(0.0392157, 0.337255, 1, 1)
+color_background = Color(0, 0, 0, 1)
+color_accent = Color(0, 0, 0, 1)

@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://00s3ufothoqf"]
 
-[ext_resource type="Script" path="res://special_scenes/combat_UI/session_points/Leaderboard.gd" id="1"]
+[ext_resource type="Script" uid="uid://dain4a2dkxi8q" path="res://special_scenes/combat_UI/session_points/Leaderboard.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c4wnumyysruol" path="res://special_scenes/combat_UI/session_points/PilotStats.tscn" id="2"]
 [ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="3_0uub2"]
-[ext_resource type="Script" path="res://godot4/data/Player.gd" id="3_t5h2s"]
+[ext_resource type="Script" uid="uid://ctf1rg3hqs2hh" path="res://godot4/data/Player.gd" id="3_t5h2s"]
 [ext_resource type="Resource" uid="uid://fc2yg6p4flm5" path="res://godot4/debug/default_data/default_players/p2.tres" id="4_hibp6"]
 [ext_resource type="Resource" uid="uid://c2u64vntxjiy6" path="res://godot4/debug/default_data/default_players/p3.tres" id="5_5cgsl"]
 [ext_resource type="Resource" uid="uid://dxdsvkvidj80p" path="res://godot4/debug/default_data/default_players/p4.tres" id="6_8vyt0"]
@@ -28,7 +28,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yl108"]
 _data = {
-"entrance": SubResource("1")
+&"entrance": SubResource("1")
 }
 
 [node name="Leaderboard" type="MarginContainer"]

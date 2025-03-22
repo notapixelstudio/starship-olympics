@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://vh0e0jev2038"]
 
-[ext_resource type="Script" path="res://ui/menu_scenes/intro_screen/Intro.gd" id="1"]
+[ext_resource type="Script" uid="uid://bgo2ssnrh764g" path="res://ui/menu_scenes/intro_screen/Intro.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bn7bm1m238rpp" path="res://godot4/Main.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://b27dro8veauyx" path="res://ui/menu_scenes/intro_screen/Disclaimer.tscn" id="4"]
 [ext_resource type="AudioStream" uid="uid://b4odn63obyari" path="res://assets/audio/UI_effects/426759__magmi-soundtracks__scary-tension-buildup-02.wav" id="5"]
@@ -101,7 +101,7 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ys0d"]
 _data = {
-"Appear": SubResource("3")
+&"Appear": SubResource("3")
 }
 
 [node name="Intro" type="Control"]
@@ -164,7 +164,7 @@ text = "WHEN THE GAMES WERE CREATED"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_0ys0d")
+&"": SubResource("AnimationLibrary_0ys0d")
 }
 
 [node name="Disclaimer" parent="." instance=ExtResource("4")]

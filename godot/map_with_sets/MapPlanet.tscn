@@ -1,118 +1,143 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=22 format=3 uid="uid://bnxktcbhk64ne"]
 
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="FontFile" id=1]
-[ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=2]
-[ext_resource path="res://map_with_sets/MapPlanet.gd" type="Script" id=3]
-[ext_resource path="res://assets/audio/UI_effects/GUI_Notification 16.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/icon/iconmonstr-forbidden-5-240.png" type="Texture2D" id=5]
-[ext_resource path="res://assets/map/cards/checkbox_empty.png" type="Texture2D" id=6]
-[ext_resource path="res://assets/map/lock.png" type="Texture2D" id=7]
-[ext_resource path="res://assets/map/cards/checkbox_true.png" type="Texture2D" id=8]
-[ext_resource path="res://assets/map/the_hive.png" type="Texture2D" id=9]
-[ext_resource path="res://assets/map/cards/checkbox_blank.png" type="Texture2D" id=10]
-[ext_resource path="res://map_with_sets/Cursor.tscn" type="PackedScene" id=11]
-[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=12]
-[ext_resource path="res://map_with_sets/MapLocation.tscn" type="PackedScene" id=13]
+[ext_resource type="FontFile" uid="uid://bsdjbpjy1umxj" path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" id="1"]
+[ext_resource type="AudioStream" uid="uid://bi38pkb44oyyx" path="res://assets/audio/UI_effects/switch-selection.wav" id="2"]
+[ext_resource type="Script" uid="uid://c8luxmfi6v6i8" path="res://map_with_sets/MapPlanet.gd" id="3"]
+[ext_resource type="AudioStream" uid="uid://iudauhck757d" path="res://assets/audio/UI_effects/GUI_Notification 16.wav" id="4"]
+[ext_resource type="Texture2D" uid="uid://dfxygka3v3qkp" path="res://assets/icon/iconmonstr-forbidden-5-240.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://1lchoky7ymxj" path="res://assets/map/cards/checkbox_empty.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://cx8lu04gke6rt" path="res://assets/map/lock.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://btr7gbdrroogk" path="res://assets/map/cards/checkbox_true.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://ccafceydryu5p" path="res://assets/map/the_hive.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://c1snl7l5s676t" path="res://assets/map/cards/checkbox_blank.png" id="10"]
+[ext_resource type="PackedScene" uid="uid://6wt44ob8luxx" path="res://map_with_sets/Cursor.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://utils/CameraEye.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://dmstmme4i866s" path="res://map_with_sets/MapLocation.tscn" id="13"]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 6 ) ],
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10")
+}],
 "loop": true,
-"name": "empty",
+"name": &"blank",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6")
+}],
 "loop": true,
-"name": "blank",
+"name": &"empty",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8")
+}],
 "loop": true,
-"name": "true",
+"name": &"true",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="FontFile" id=2]
-size = 72
-outline_size = 8
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="FontFile" id=7]
-size = 72
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="7"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="FontFile" id=6]
-size = 42
-outline_size = 8
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="6"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="FontFile" id=8]
-size = 42
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="8"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="FontFile" id=3]
-size = 30
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id="9"]
 resource_name = "Unhide"
 length = 0.1
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id="5"]
 length = 1.5
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 1.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 0, 0, 0, 0.5 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(0, 0, 0, 0.5), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Lock:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 1.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[node name="MapPlanet" instance=ExtResource( 13 )]
-script = ExtResource( 3 )
-cursor_scene = ExtResource( 11 )
+[node name="MapPlanet" instance=ExtResource("13")]
+script = ExtResource("3")
+cursor_scene = ExtResource("11")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="3"]
-texture = ExtResource( 9 )
+texture = ExtResource("9")
 
 [node name="NA" type="Sprite2D" parent="." index="4"]
 visible = false
-position = Vector2( -4.27081, -2.55557 )
-scale = Vector2( 0.886355, 0.868757 )
-texture = ExtResource( 5 )
+position = Vector2(-4.27081, -2.55557)
+scale = Vector2(0.886355, 0.868757)
+texture = ExtResource("5")
 
 [node name="CheckBox" type="AnimatedSprite2D" parent="." index="5"]
 visible = false
-position = Vector2( 84, -84 )
-frames = SubResource( 1 )
+position = Vector2(84, -84)
+frames = SubResource("1")
 animation = "empty"
 playing = true
 
 [node name="switch_off" type="AudioStreamPlayer2D" parent="." index="6"]
-stream = ExtResource( 4 )
+stream = ExtResource("4")
 attenuation = 0.0412346
 
 [node name="switch_on" type="AudioStreamPlayer2D" parent="." index="7"]
-stream = ExtResource( 2 )
+stream = ExtResource("2")
 attenuation = 0.0412346
 
 [node name="Label" type="Label" parent="." index="8"]
@@ -121,8 +146,8 @@ offset_left = -500.0
 offset_top = 166.0
 offset_right = 500.0
 offset_bottom = 266.0
-theme_override_colors/font_color = Color( 0.419608, 0.27451, 0.113725, 1 )
-theme_override_fonts/font = SubResource( 2 )
+theme_override_colors/font_color = Color(0.419608, 0.27451, 0.113725, 1)
+theme_override_fonts/font = SubResource("2")
 text = "The Hive"
 align = 1
 valign = 1
@@ -137,8 +162,8 @@ offset_left = -500.0
 offset_top = 159.0
 offset_right = 500.0
 offset_bottom = 259.0
-theme_override_colors/font_color = Color( 1, 0.870588, 0.372549, 1 )
-theme_override_fonts/font = SubResource( 7 )
+theme_override_colors/font_color = Color(1, 0.870588, 0.372549, 1)
+theme_override_fonts/font = SubResource("7")
 text = "The Hive"
 align = 1
 valign = 1
@@ -153,8 +178,8 @@ offset_left = -500.0
 offset_top = 101.0
 offset_right = 500.0
 offset_bottom = 201.0
-theme_override_colors/font_color = Color( 0.4, 0.305882, 0.305882, 1 )
-theme_override_fonts/font = SubResource( 6 )
+theme_override_colors/font_color = Color(0.4, 0.305882, 0.305882, 1)
+theme_override_fonts/font = SubResource("6")
 text = "The Hive"
 align = 1
 valign = 1
@@ -169,7 +194,7 @@ offset_left = -500.0
 offset_top = 95.0
 offset_right = 500.0
 offset_bottom = 195.0
-theme_override_fonts/font = SubResource( 8 )
+theme_override_fonts/font = SubResource("8")
 text = "The Hive"
 align = 1
 valign = 1
@@ -184,7 +209,7 @@ offset_left = -243.066
 offset_top = 52.31
 offset_right = 259.934
 offset_bottom = 127.31
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 text = "hidden"
 align = 1
 valign = 1
@@ -194,15 +219,15 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="13"]
-anims/Unhide = SubResource( 9 )
-anims/Unlock = SubResource( 5 )
+anims/Unhide = SubResource("9")
+anims/Unlock = SubResource("5")
 
 [node name="Lock" type="Sprite2D" parent="." index="14"]
 visible = false
-position = Vector2( 0, -27 )
-texture = ExtResource( 7 )
+position = Vector2(0, -27)
+texture = ExtResource("7")
 
-[node name="CameraEye" parent="." index="16" instance=ExtResource( 12 )]
+[node name="CameraEye" parent="." index="16" instance=ExtResource("12")]
 visible = false
-position = Vector2( 0, 200 )
+position = Vector2(0, 200)
 active = false

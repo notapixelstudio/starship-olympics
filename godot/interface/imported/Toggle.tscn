@@ -1,195 +1,180 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=18 format=3 uid="uid://ox0py3dcn02n"]
 
-[ext_resource path="res://interface/imported/Scripts/ToggleTree.gd" type="Script" id=1]
-[ext_resource path="res://interface/imported/Images/Knob.png" type="Texture2D" id=2]
-[ext_resource path="res://interface/imported/Images/Blur.png" type="Texture2D" id=3]
-[ext_resource path="res://interface/imported/Images/Sad.png" type="Texture2D" id=4]
-[ext_resource path="res://interface/imported/Images/Smile.png" type="Texture2D" id=5]
-[ext_resource path="res://interface/imported/Images/GradientBase.png" type="Texture2D" id=6]
-[ext_resource path="res://interface/imported/Images/Base.png" type="Texture2D" id=7]
+[ext_resource type="Script" uid="uid://b41e31fen48mp" path="res://interface/imported/Scripts/ToggleTree.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://2q6va2nmebns" path="res://interface/imported/Images/Knob.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bvsuvn7olo5xt" path="res://interface/imported/Images/Blur.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://6atvu8t6qxg1" path="res://interface/imported/Images/Sad.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://c2wdjelxlt6oc" path="res://interface/imported/Images/Smile.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://cfx57wm1os8l0" path="res://interface/imported/Images/GradientBase.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://saniog6kmx2s" path="res://interface/imported/Images/Base.png" id="7"]
 
-[sub_resource type="VisualShader" id=1]
+[sub_resource type="VisualShader" id="1"]
 code = "shader_type canvas_item;
 render_mode blend_add;
 
 
 
-
-void vertex() {
-// Output:0
-
-}
-
-void fragment() {
-// Output:0
-
-}
-
-void light() {
-// Output:0
-
-}
 "
 mode = 1
 modes/blend = 1
 flags/light_only = false
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+[sub_resource type="ShaderMaterial" id="2"]
+shader = SubResource("1")
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 length = 0.5
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Knob:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 210, 10 ), Vector2( 10, 10 ) ]
+"values": [Vector2(210, 10), Vector2(10, 10)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Knob/Sad:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 120, 0 ), Vector2( 0, 0 ) ]
+"values": [Vector2(120, 0), Vector2(0, 0)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Knob/Smile:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0, 0.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -120, 0 ) ]
+"values": [Vector2(0, 0), Vector2(-120, 0)]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("Gradient:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0, 0.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("Blur:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0, 0.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 255.001, 55.001 ), Vector2( 55.0007, 55.0007 ) ]
+"values": [Vector2(255.001, 55.001), Vector2(55.0007, 55.0007)]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id="4"]
 length = 0.5
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Knob:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.5, 0.501 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.5, 0.501),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Vector2( 10, 10 ), Vector2( 210, 10 ), Vector2( 210, 10 ) ]
+"values": [Vector2(10, 10), Vector2(210, 10), Vector2(210, 10)]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Knob/Sad:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 120, 0 ) ]
+"values": [Vector2(0, 0), Vector2(120, 0)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Knob/Smile:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0, 0.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( -120, 0 ), Vector2( 0, 0 ) ]
+"values": [Vector2(-120, 0), Vector2(0, 0)]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("Gradient:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0, 0.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("Blur:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0, 0.5 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 55.0007, 55.0007 ), Vector2( 255.001, 55.001 ) ]
+"values": [Vector2(55.0007, 55.0007), Vector2(255.001, 55.001)]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=5]
-animation = "ToggleOff"
+[sub_resource type="AnimationNodeAnimation" id="5"]
+animation = &"ToggleOff"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
-animation = "ToggleOn"
+[sub_resource type="AnimationNodeAnimation" id="6"]
+animation = &"ToggleOn"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id="7"]
 xfade_time = 0.2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeStateMachineTransition" id="8"]
 xfade_time = 0.2
 
-[sub_resource type="AnimationNodeStateMachine" id=9]
-states/ToggleOff/node = SubResource( 5 )
-states/ToggleOff/position = Vector2( 700, 52.875 )
-states/ToggleOn/node = SubResource( 6 )
-states/ToggleOn/position = Vector2( 316.5, 52.25 )
-transitions = [ "ToggleOn", "ToggleOff", SubResource( 7 ), "ToggleOff", "ToggleOn", SubResource( 8 ) ]
+[sub_resource type="AnimationNodeStateMachine" id="9"]
+states/ToggleOff/node = SubResource("5")
+states/ToggleOff/position = Vector2(700, 52.875)
+states/ToggleOn/node = SubResource("6")
+states/ToggleOn/position = Vector2(316.5, 52.25)
+transitions = ["ToggleOn", "ToggleOff", SubResource("7"), "ToggleOff", "ToggleOn", SubResource("8")]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="10"]
 
 [node name="Toggle" type="CheckButton"]
 offset_left = 362.0
 offset_top = 250.0
 offset_right = 662.0
 offset_bottom = 350.0
-custom_minimum_size = Vector2( 300, 100 )
+custom_minimum_size = Vector2(300, 100)
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -197,44 +182,44 @@ __meta__ = {
 [node name="Base" type="NinePatchRect" parent="."]
 offset_right = 300.0
 offset_bottom = 100.0
-texture = ExtResource( 7 )
+texture = ExtResource("7")
 
 [node name="Gradient" type="NinePatchRect" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color(1, 1, 1, 0)
 offset_right = 300.0
 offset_bottom = 100.0
-texture = ExtResource( 6 )
+texture = ExtResource("6")
 
 [node name="Blur" type="Sprite2D" parent="."]
-position = Vector2( 55.0007, 55.0007 )
-texture = ExtResource( 3 )
+position = Vector2(55.0007, 55.0007)
+texture = ExtResource("3")
 
 [node name="Knob" type="NinePatchRect" parent="."]
-material = SubResource( 2 )
+material = SubResource("2")
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 90.0004
 offset_bottom = 90.0
 clip_contents = true
-texture = ExtResource( 2 )
+texture = ExtResource("2")
 
 [node name="Sad" type="Sprite2D" parent="Knob"]
-position = Vector2( 40, 40 )
-texture = ExtResource( 4 )
+position = Vector2(40, 40)
+texture = ExtResource("4")
 
 [node name="Smile" type="Sprite2D" parent="Knob"]
-position = Vector2( 40, 40 )
-texture = ExtResource( 5 )
-offset = Vector2( -120, 0 )
+position = Vector2(40, 40)
+texture = ExtResource("5")
+offset = Vector2(-120, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/ToggleOff = SubResource( 3 )
-anims/ToggleOn = SubResource( 4 )
+anims/ToggleOff = SubResource("3")
+anims/ToggleOn = SubResource("4")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 9 )
+tree_root = SubResource("9")
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 10 )
-script = ExtResource( 1 )
+parameters/playback = SubResource("10")
+script = ExtResource("1")
 
 [connection signal="toggled" from="." to="AnimationTree" method="_on_Toggle_toggled"]

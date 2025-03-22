@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cg4lpkp686swv" path="res://combat/levels/sets/sports/ring_racing/variants/A.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://epsl0tqkcgfj" path="res://combat/levels/sets/sports/ring_racing/variants/B.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://actors/environments/Wall.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://21naqrw1n8iw" path="res://combat/levels/background/mantiacs.png" id="8"]
 [ext_resource type="PackedScene" path="res://combat/managers/RingRaceManager.tscn" id="11"]
 [ext_resource type="Resource" path="res://combat/modes/RingRacing.tres" id="12"]
@@ -27,7 +27,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o2b14"]
 _data = {
-"Rotate": SubResource("2")
+&"Rotate": SubResource("2")
 }
 
 [sub_resource type="Animation" id="5"]
@@ -71,7 +71,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vn7eq"]
 _data = {
-"Game Over": SubResource("5")
+&"Game Over": SubResource("5")
 }
 
 [node name="Arena" instance=ExtResource("5")]

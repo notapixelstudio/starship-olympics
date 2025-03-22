@@ -10,12 +10,12 @@
 [ext_resource type="Resource" uid="uid://dqdydntuyp5y2" path="res://godot4/debug/default_data/default_players/p4ve.tres" id="5_gvr2c"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="5_ub82h"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="6_nj3vk"]
-[ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="7_fvfdg"]
+[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="7_fvfdg"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="8_vep3w"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="9_mdpaw"]
-[ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="10_wrypg"]
+[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="10_wrypg"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="11_3hvh1"]
-[ext_resource type="Script" path="res://actors/environments/WaveGroupSpawner.gd" id="12_lhdfm"]
+[ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="12_lhdfm"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="13_xjx32"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="15_hd42d"]
 [ext_resource type="PackedScene" uid="uid://bkt23g8b1tl77" path="res://godot4/actors/enemies/BubbleTurret.tscn" id="17_r2dq3"]
@@ -78,8 +78,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g6aeh"]
 _data = {
-"RESET": SubResource("Animation_68mb6"),
-"default": SubResource("Animation_kdc2i")
+&"RESET": SubResource("Animation_68mb6"),
+&"default": SubResource("Animation_kdc2i")
 }
 
 [node name="VersusArena" instance=ExtResource("1_ri4lt")]

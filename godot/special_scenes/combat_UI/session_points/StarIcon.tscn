@@ -1,6 +1,6 @@
 [gd_scene load_steps=37 format=3 uid="uid://dw8dm4b52y11j"]
 
-[ext_resource type="Script" path="res://special_scenes/combat_UI/session_points/StarIcon.gd" id="1_3wti5"]
+[ext_resource type="Script" uid="uid://cdmbwtgb46op3" path="res://special_scenes/combat_UI/session_points/StarIcon.gd" id="1_3wti5"]
 [ext_resource type="Texture2D" uid="uid://ddrhl0u5s0p6n" path="res://assets/icon/star_full06.png" id="2_3orll"]
 [ext_resource type="Texture2D" uid="uid://du0cbkpajkt2d" path="res://assets/icon/star_empty.png" id="3_bu6wq"]
 [ext_resource type="Texture2D" uid="uid://gp70x26ysfca" path="res://assets/icon/star_full.png" id="4_eow3t"]
@@ -459,7 +459,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fov38"]
 _data = {
-"won": SubResource("2")
+&"won": SubResource("2")
 }
 
 [sub_resource type="Animation" id="3"]
@@ -481,7 +481,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_05wgk"]
 _data = {
-"float": SubResource("3")
+&"float": SubResource("3")
 }
 
 [node name="StarIcon" type="Node2D"]

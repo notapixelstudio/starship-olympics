@@ -1,137 +1,129 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=15 format=3 uid="uid://dibsk4ebvcxqm"]
 
-[ext_resource path="res://assets/sprites/environments/wall_tile.png" type="Texture2D" id=1]
-[ext_resource path="res://actors/environments/Portal.gd" type="Script" id=2]
-[ext_resource path="res://assets/sprites/environments/portal_spike.png" type="Texture2D" id=3]
-[ext_resource path="res://combat/traits/Goal.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/traits/Owned.tscn" type="PackedScene" id=5]
+[ext_resource type="Texture2D" uid="uid://bw57ikfd42dvu" path="res://assets/sprites/environments/wall_tile.png" id="1"]
+[ext_resource type="Script" uid="uid://djr06681ckxii" path="res://actors/environments/Portal.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://6oqvsnv2v2s4" path="res://assets/sprites/environments/portal_spike.png" id="3"]
+[ext_resource type="PackedScene" path="res://combat/traits/Goal.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://combat/traits/Owned.tscn" id="5"]
 
-[sub_resource type="CanvasItemMaterial" id=1]
+[sub_resource type="CanvasItemMaterial" id="1"]
 
-[sub_resource type="RectangleShape2D" id=2]
-size = Vector2( 300, 30 )
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(300, 30)
 
-[sub_resource type="RectangleShape2D" id=3]
-size = Vector2( 300, 30 )
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(300, 30)
 
-[sub_resource type="Gradient" id=4]
-offsets = PackedFloat32Array( 0, 0.338889, 1 )
-colors = PackedColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+[sub_resource type="Gradient" id="4"]
+offsets = PackedFloat32Array(0, 0.338889, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id=10]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture2D" id="10"]
+gradient = SubResource("4")
 
-[sub_resource type="Curve" id=6]
-max_value = 1.5
-_data = [ Vector2( 0, 0.703988 ), 0.0, -0.0509122, 0, 0, Vector2( 0.373239, 1.5 ), 0.0, 0.0, 0, 0, Vector2( 0.669014, 0.0322087 ), -7.66229, 0.0, 0, 0 ]
+[sub_resource type="Curve" id="6"]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 0.703988), 0.0, -0.0509122, 0, 0, Vector2(0.373239, 1.5), 0.0, 0.0, 0, 0, Vector2(0.669014, 0.0322087), -7.66229, 0.0, 0, 0]
+point_count = 3
 
-[sub_resource type="CurveTexture" id=11]
-curve = SubResource( 6 )
+[sub_resource type="CurveTexture" id="11"]
+curve = SubResource("6")
 
-[sub_resource type="ParticleProcessMaterial" id=8]
+[sub_resource type="ParticleProcessMaterial" id="8"]
 emission_shape = 2
-emission_box_extents = Vector3( 25, 300, 1 )
-flag_disable_z = true
-gravity = Vector3( 40, 0, 0 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 3.0
-scale_random = 1.0
-scale_curve = SubResource( 11 )
-color_ramp = SubResource( 10 )
+emission_sphere_radius = 1.0
+gravity = Vector3(40, 0, 0)
+scale_min = 0.0
+scale_max = 0.0
+scale_curve = SubResource("11")
+color_ramp = SubResource("10")
 
-[sub_resource type="ParticleProcessMaterial" id=9]
+[sub_resource type="ParticleProcessMaterial" id="9"]
 emission_shape = 2
-emission_box_extents = Vector3( 100, 300, 1 )
-flag_disable_z = true
-gravity = Vector3( 100, 0, 0 )
-angular_velocity = 100.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-angle = 45.0
-angle_random = 1.0
-scale = 15.0
-scale_random = 1.0
-scale_curve = SubResource( 11 )
-color_ramp = SubResource( 10 )
+emission_sphere_radius = 1.0
+gravity = Vector3(100, 0, 0)
+scale_min = 0.0
+scale_max = 0.0
+scale_curve = SubResource("11")
+color_ramp = SubResource("10")
 
 [node name="Portal" type="Node2D" groups=["in_camera"]]
-material = SubResource( 1 )
-script = ExtResource( 2 )
-color = Color( 0.243137, 0, 1, 1 )
+material = SubResource("1")
+script = ExtResource("2")
+color = Color(0.243137, 0, 1, 1)
 
-[node name="Goal" parent="." instance=ExtResource( 4 )]
+[node name="Goal" parent="." instance=ExtResource("4")]
 
-[node name="Owned" parent="." instance=ExtResource( 5 )]
+[node name="Owned" parent="." instance=ExtResource("5")]
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2( -19, 0 )
+position = Vector2(-19, 0)
 rotation = 1.5708
 collision_layer = 16384
 collision_mask = 2565
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 8.58307e-05, 23 )
-shape = SubResource( 2 )
+position = Vector2(8.58307e-05, 23)
+shape = SubResource("2")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 15, 0 )
+position = Vector2(15, 0)
 rotation = 1.5708
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -7.15256e-06, -2 )
-shape = SubResource( 3 )
+position = Vector2(-7.15256e-06, -2)
+shape = SubResource("3")
 one_way_collision = true
 
 [node name="Line2D" type="Line2D" parent="."]
-modulate = Color( 0, 0, 0, 1 )
-self_modulate = Color( 1.5, 1.5, 1.5, 1 )
-position = Vector2( -28, 0 )
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1.5, 1.5, 1.5, 1)
+position = Vector2(-28, 0)
 rotation = 1.5708
-points = PackedVector2Array( -300, -14.7197, -270, -12.4245, -240, -19.2538, -210, -19.5795, -180, -5.12021, -150, -14.6916, -120, -7.0769, -90, -6.30447, -60, -18.4434, -30, -8.37624, 0, -2.5431, 30, -12.3033, 60, -2.41047, 90, -11.4796, 120, -5.16736, 150, -5.11037, 180, -11.1317, 210, -17.9777, 240, -19.806, 270, -5.06065 )
+points = PackedVector2Array(-300, -14.7197, -270, -12.4245, -240, -19.2538, -210, -19.5795, -180, -5.12021, -150, -14.6916, -120, -7.0769, -90, -6.30447, -60, -18.4434, -30, -8.37624, 0, -2.5431, 30, -12.3033, 60, -2.41047, 90, -11.4796, 120, -5.16736, 150, -5.11037, 180, -11.1317, 210, -17.9777, 240, -19.806, 270, -5.06065)
 width = 300.0
-default_color = Color( 1, 1, 1, 1 )
-texture = ExtResource( 1 )
+default_color = Color(1, 1, 1, 1)
+texture = ExtResource("1")
 texture_mode = 1
 
 [node name="Hole" type="Line2D" parent="."]
-position = Vector2( -27, 0 )
+position = Vector2(-27, 0)
 rotation = 1.5708
-points = PackedVector2Array( -198, 0, 198, 0 )
+points = PackedVector2Array(-198, 0, 198, 0)
 width = 30.0
-default_color = Color( 0, 0, 0, 1 )
+default_color = Color(0, 0, 0, 1)
 texture_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="SpikeParticles2D" type="GPUParticles2D" parent="."]
-modulate = Color( 0.243137, 0, 1, 1 )
-self_modulate = Color( 1.5, 1.5, 1.5, 1 )
-position = Vector2( -50, 0 )
-process_material = SubResource( 8 )
-texture = ExtResource( 3 )
+modulate = Color(0.243137, 0, 1, 1)
+self_modulate = Color(1.5, 1.5, 1.5, 1)
+position = Vector2(-50, 0)
+process_material = SubResource("8")
+texture = ExtResource("3")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-modulate = Color( 0.243137, 0, 1, 1 )
-self_modulate = Color( 2, 2, 2, 1 )
-position = Vector2( -150, 0 )
+modulate = Color(0.243137, 0, 1, 1)
+self_modulate = Color(2, 2, 2, 1)
+position = Vector2(-150, 0)
 lifetime = 2.0
-process_material = SubResource( 9 )
+process_material = SubResource("9")
 
 [node name="Particles2D2" type="GPUParticles2D" parent="."]
-self_modulate = Color( 1.5, 1.5, 1.5, 1 )
-position = Vector2( -150, 0 )
+self_modulate = Color(1.5, 1.5, 1.5, 1)
+position = Vector2(-150, 0)
 lifetime = 2.0
-process_material = SubResource( 9 )
+process_material = SubResource("9")
 
 [node name="WallLine" type="Line2D" parent="."]
-position = Vector2( 26, 0 )
+position = Vector2(26, 0)
 rotation = 1.5708
-points = PackedVector2Array( -300, 0, 300, 0 )
+points = PackedVector2Array(-300, 0, 300, 0)
 width = 40.0
-default_color = Color( 0.8, 0.8, 1.09, 1 )
+default_color = Color(0.8, 0.8, 1.09, 1)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

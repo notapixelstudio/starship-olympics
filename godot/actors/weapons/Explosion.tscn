@@ -1,172 +1,171 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=23 format=3 uid="uid://nnx2byqacbmh"]
 
-[ext_resource type="Script" path="res://actors/weapons/Explosion.gd" id="1"]
-[ext_resource type="Script" path="res://addons/ECM/Entity.gd" id="2"]
+[ext_resource type="Script" uid="uid://vnvvadsunywe" path="res://actors/weapons/Explosion.gd" id="1"]
+[ext_resource type="Script" uid="uid://dg3ny04agcjtp" path="res://addons/ECM/Entity.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://dxspwyydprxb1" path="res://addons/ECM/icons/Entity.png" id="3"]
-[ext_resource type="Script" path="res://addons/ECM/Component.gd" id="4"]
+[ext_resource type="Script" uid="uid://bx28gpgdlmtid" path="res://addons/ECM/Component.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://boh3pf58gw6ig" path="res://addons/ECM/icons/Component.png" id="5"]
-[ext_resource type="Script" path="res://combat/components/Owned.gd" id="6"]
+[ext_resource type="Script" uid="uid://bvnpkr7wj1wm7" path="res://combat/components/Owned.gd" id="6"]
 [ext_resource type="Texture2D" uid="uid://c4dqed4qk351s" path="res://assets/sprites/environments/explosion_halo.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://c7jdg3umgc6mk" path="res://assets/sprites/weapons/explosion.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://c44lusmm6vmy7" path="res://assets/sprites/weapons/explosion_spikes.png" id="10"]
 [ext_resource type="PackedScene" uid="uid://cd12x0fubc17m" path="res://godot4/actors/ships/GravitonField.tscn" id="11"]
 [ext_resource type="PackedScene" path="res://combat/traits/Strategic.tscn" id="12"]
-[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="15"]
+[ext_resource type="Script" uid="uid://bpexb6wjfpakj" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="15"]
 [ext_resource type="AudioStream" uid="uid://dl1x646cjvko5" path="res://assets/audio/FX/zapsplat_explosion_detonate_blast_designed_001_89753.mp3" id="16"]
 [ext_resource type="AudioStream" uid="uid://cijm0mf5igak7" path="res://assets/audio/FX/sfx_exp_medium7.wav" id="17"]
 [ext_resource type="AudioStream" uid="uid://daxg6b74vgt47" path="res://assets/audio/FX/sfx_exp_medium8.wav" id="18"]
 [ext_resource type="AudioStream" uid="uid://dhtshubrcru4n" path="res://assets/audio/FX/sfx_exp_medium1.wav" id="19"]
 [ext_resource type="AudioStream" uid="uid://c2h7ulcwcubx3" path="res://assets/audio/FX/sfx_exp_medium6.wav" id="20"]
 
+[sub_resource type="CanvasItemMaterial" id="1"]
 
-[sub_resource type="CanvasItemMaterial" id=1]
-
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("CollisionShape2D:shape:radius")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.3, 0.7, 0.9, 1 ),
-"transitions": PackedFloat32Array( 1, 1, 1, -2, 1 ),
+"times": PackedFloat32Array(0, 0.3, 0.7, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, -2, 1),
 "update": 0,
-"values": [ 20.0, 80.0, 80.0, 40.0, 0.01 ]
+"values": [20.0, 80.0, 80.0, 40.0, 0.01]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("Image:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.3, 0.8, 1 ),
-"transitions": PackedFloat32Array( 1, 1, -2, 1 ),
+"times": PackedFloat32Array(0, 0.3, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, -2, 1),
 "update": 0,
-"values": [ Vector2( 0.6, 0.6 ), Vector2( 1.2, 1.2 ), Vector2( 1.2, 1.2 ), Vector2( 0, 0 ) ]
+"values": [Vector2(0.6, 0.6), Vector2(1.2, 1.2), Vector2(1.2, 1.2), Vector2(0, 0)]
 }
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("Spikes:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"times": PackedFloat32Array( 0, 0.2, 1 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Vector2( 0.9, 0.9 ), Vector2( 2, 2 ), Vector2( 1.2, 1.2 ) ]
+"values": [Vector2(0.9, 0.9), Vector2(2, 2), Vector2(1.2, 1.2)]
 }
 tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("Spikes:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"times": PackedFloat32Array( 0, 0.6, 1 ),
-"transitions": PackedFloat32Array( 0.5, 0.5, 1 ),
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(0.5, 0.5, 1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("Halo/explosion_halo:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PackedFloat32Array( 0, 1 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 0.8, 0.8 ), Vector2( 5, 5 ) ]
+"values": [Vector2(0.8, 0.8), Vector2(5, 5)]
 }
 tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
 tracks/5/path = NodePath("Halo/explosion_halo:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
 tracks/5/keys = {
-"times": PackedFloat32Array( 0, 1 ),
-"transitions": PackedFloat32Array( 0.5, 1 ),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [ Color( 1.5, 0.35, 0.61, 1 ), Color( 1, 0.352941, 0, 0 ) ]
+"values": [Color(1.5, 0.35, 0.61, 1), Color(1, 0.352941, 0, 0)]
 }
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id="3"]
 radius = 20.0
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id="4"]
 radius = 240.0
 
 [node name="Explosion" type="Area2D" groups=["slomo"]]
 collision_layer = 8
 collision_mask = 11847
 input_pickable = false
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="Strategic" parent="." instance=ExtResource( 12 )]
+[node name="Strategic" parent="." instance=ExtResource("12")]
 
 [node name="Entity" type="Node" parent="."]
-script = ExtResource( 2 )
+script = ExtResource("2")
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_icon": ExtResource("3")
 }
 
 [node name="Deadly" type="Node" parent="Entity"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 
 [node name="Trigger" type="Node" parent="Entity"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": ExtResource("5")
 }
 
 [node name="Owned" type="Node" parent="Entity"]
-script = ExtResource( 6 )
+script = ExtResource("6")
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": ExtResource("5")
 }
 
 [node name="Halo" type="Node2D" parent="."]
 
 [node name="explosion_halo" type="Sprite2D" parent="Halo"]
-modulate = Color( 1.5, 0.35, 0.61, 1 )
-scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 7 )
+modulate = Color(1.5, 0.35, 0.61, 1)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("7")
 
 [node name="Image" type="Node2D" parent="."]
-scale = Vector2( 0.6, 0.6 )
+scale = Vector2(0.6, 0.6)
 
 [node name="Sprite2D" type="Sprite2D" parent="Image"]
-modulate = Color( 1.6, 1, 1.1, 1 )
-material = SubResource( 1 )
-texture = ExtResource( 8 )
+modulate = Color(1.6, 1, 1.1, 1)
+material = SubResource("1")
+texture = ExtResource("8")
 
 [node name="circle_glow" type="Sprite2D" parent="Image"]
 visible = false
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 9 )
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9")
 
 [node name="Spikes" type="Node2D" parent="."]
 visible = false
-scale = Vector2( 0.9, 0.9 )
+scale = Vector2(0.9, 0.9)
 
 [node name="Sprite2D" type="Sprite2D" parent="Spikes"]
-position = Vector2( 1, 20 )
-texture = ExtResource( 10 )
+position = Vector2(1, 20)
+texture = ExtResource("10")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Wow"
-anims/Wow = SubResource( 2 )
+anims/Wow = SubResource("2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource("3")
 
-[node name="GravitonField" parent="." instance=ExtResource( 11 )]
+[node name="GravitonField" parent="." instance=ExtResource("11")]
 visible = false
 multiplier = 0.6
 timeout = 0.1
@@ -178,18 +177,18 @@ collision_layer = 65536
 collision_mask = 10757
 
 [node name="Entity" type="Node" parent="RepealField"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_icon": ExtResource("3")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RepealField"]
-shape = SubResource( 4 )
+shape = SubResource("4")
 
 [node name="RandomAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = -4.0
-script = ExtResource( 15 )
-streams = [ ExtResource( 16 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 17 ), ExtResource( 18 ) ]
+script = ExtResource("15")
+streams = [ExtResource("16"), ExtResource("19"), ExtResource("20"), ExtResource("17"), ExtResource("18")]
 volume_min = 0
 volume_max = 0
 randomize_pitch = true

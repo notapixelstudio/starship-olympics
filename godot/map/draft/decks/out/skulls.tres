@@ -1,19 +1,19 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="StartingDeck" load_steps=7 format=3 uid="uid://dyfdianwpvlsm"]
 
-[ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
-[ext_resource path="res://map/draft/cards/Undertakers.tres" type="Resource" id=2]
-[ext_resource path="res://map/draft/cards/Deathmatch.tres" type="Resource" id=3]
-[ext_resource path="res://map/draft/cards/CaptureTheFlags.tres" type="Resource" id=4]
-[ext_resource path="res://map/draft/cards/SkullCollectors.tres" type="Resource" id=5]
-[ext_resource path="res://assets/map/cards/planets/planet_skrull.png" type="Texture2D" id=6]
+[ext_resource type="Script" uid="uid://bwveyhtu8y4uw" path="res://map/draft/decks/StartingDeck.gd" id="1"]
+[ext_resource type="Resource" uid="uid://c2mnjetd6fhs1" path="res://map/draft/cards/Undertakers.tres" id="2"]
+[ext_resource type="Resource" uid="uid://5b7lmi7rlj61" path="res://map/draft/cards/Deathmatch.tres" id="3"]
+[ext_resource type="Resource" uid="uid://cbmvbrjfwwcw8" path="res://map/draft/cards/CaptureTheFlags.tres" id="4"]
+[ext_resource type="Resource" uid="uid://jsqeehgc5s62" path="res://map/draft/cards/SkullCollectors.tres" id="5"]
+[ext_resource type="Texture2D" uid="uid://bqb2h1qcppae3" path="res://assets/map/cards/planets/planet_skrull.png" id="6"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "skulls"
 order = 3
 name = "Planet Skrull"
-image = ExtResource( 6 )
-cards = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ]
-nexts = [  ]
+image = ExtResource("6")
+cards = [ExtResource("3"), ExtResource("2"), ExtResource("4"), ExtResource("5")]
+nexts = []
 playlist = true
-unlocks = [  ]
+unlocks = []

@@ -1,50 +1,60 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://ddjn0a7hcqf3"]
 
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=1]
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=2]
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=3]
-[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture2D" id=5]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
-[ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=7]
+[ext_resource type="PackedScene" uid="uid://cf10dfhs4hgiu" path="res://combat/collectables/PowerUp.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://combat/traits/NavigationZone.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://cul1qame2qpja" path="res://assets/patterns/wall/bones.png" id="5"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://utils/DramaticSpawner.tscn" id="7"]
+
+[sub_resource type="Resource" id="Resource_p3xb4"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_065u5"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_pvf0e"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_lcyu1"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
 
 [node name="4B" type="Node2D"]
 
-[node name="Wall13" parent="." instance=ExtResource( 6 )]
-position = Vector2( 0, 400 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 5 )
+[node name="Wall13" parent="." instance=ExtResource("6")]
+position = Vector2(0, 400)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("5")
 
 [node name="GRegularPolygon" type="Node" parent="Wall13"]
-script = ExtResource( 2 )
+script = SubResource("Resource_p3xb4")
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="NavigationZone" parent="Wall13" instance=ExtResource( 4 )]
+[node name="NavigationZone" parent="Wall13" instance=ExtResource("4")]
 offset_type = "outset"
 
-[node name="Wall16" parent="." instance=ExtResource( 6 )]
-position = Vector2( 0, -400 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 5 )
+[node name="Wall16" parent="." instance=ExtResource("6")]
+position = Vector2(0, -400)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("5")
 
 [node name="GRegularPolygon" type="Node" parent="Wall16"]
-script = ExtResource( 2 )
+script = SubResource("Resource_065u5")
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="NavigationZone" parent="Wall16" instance=ExtResource( 4 )]
+[node name="NavigationZone" parent="Wall16" instance=ExtResource("4")]
 offset_type = "outset"
 
-[node name="Wall18" parent="." instance=ExtResource( 6 )]
-position = Vector2( -1000, 600 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 5 )
+[node name="Wall18" parent="." instance=ExtResource("6")]
+position = Vector2(-1000, 600)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("5")
 
 [node name="GBeveledRect" type="Node" parent="Wall18"]
-script = ExtResource( 3 )
+script = SubResource("Resource_pvf0e")
 height = 500
 bevel = 50
 bevel_nw = 50
@@ -52,16 +62,16 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="NavigationZone" parent="Wall18" instance=ExtResource( 4 )]
+[node name="NavigationZone" parent="Wall18" instance=ExtResource("4")]
 offset_type = "outset"
 
-[node name="Wall19" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1000, -600 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 5 )
+[node name="Wall19" parent="." instance=ExtResource("6")]
+position = Vector2(1000, -600)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("5")
 
 [node name="GBeveledRect" type="Node" parent="Wall19"]
-script = ExtResource( 3 )
+script = SubResource("Resource_lcyu1")
 height = 500
 bevel = 50
 bevel_nw = 50
@@ -69,25 +79,25 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="NavigationZone" parent="Wall19" instance=ExtResource( 4 )]
+[node name="NavigationZone" parent="Wall19" instance=ExtResource("4")]
 offset_type = "outset"
 
-[node name="DramaticSpawner5" parent="." instance=ExtResource( 7 )]
-position = Vector2( -1500, -450 )
+[node name="DramaticSpawner5" parent="." instance=ExtResource("7")]
+position = Vector2(-1500, -450)
 match_progress_trigger = 0.7
 jitter = 4.0
 chance = 0.8
 
-[node name="PowerUp" parent="DramaticSpawner5" instance=ExtResource( 1 )]
+[node name="PowerUp" parent="DramaticSpawner5" instance=ExtResource("1")]
 type = "shields"
 tease = true
 
-[node name="DramaticSpawner6" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1550, 450 )
+[node name="DramaticSpawner6" parent="." instance=ExtResource("7")]
+position = Vector2(1550, 450)
 match_progress_trigger = 0.7
 jitter = 4.0
 chance = 0.8
 
-[node name="PowerUp" parent="DramaticSpawner6" instance=ExtResource( 1 )]
+[node name="PowerUp" parent="DramaticSpawner6" instance=ExtResource("1")]
 type = "shields"
 tease = true

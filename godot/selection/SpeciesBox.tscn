@@ -1,48 +1,57 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=17 format=3 uid="uid://d4nlyia3fny44"]
 
-[ext_resource path="res://selection/SpeciesChoice.gd" type="Script" id=1]
-[ext_resource path="res://selection/characters/auriels_1.tres" type="Resource" id=2]
-[ext_resource path="res://assets/sprites/species/character_selection_rect.png" type="Texture2D" id=3]
-[ext_resource path="res://assets/sprites/species/trixens.png" type="Texture2D" id=4]
-[ext_resource path="res://assets/icon/kb1_old.png" type="Texture2D" id=5]
-[ext_resource path="res://selection/interface/SelectArrow.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/sprites/interface/circle_shadow.png" type="Texture2D" id=7]
-[ext_resource path="res://assets/sprites/species/trixens/ship_plain.png" type="Texture2D" id=8]
-[ext_resource path="res://assets/theme/montserrat_eb_20.tres" type="FontFile" id=9]
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="FontFile" id=10]
-[ext_resource path="res://interface/themes/ui_elements/grey_arrowDownWhite.png" type="Texture2D" id=11]
-[ext_resource path="res://assets/animations/wiggle_updown.tres" type="Animation" id=12]
+[ext_resource type="Script" uid="uid://bgddaw042ed3q" path="res://selection/SpeciesChoice.gd" id="1"]
+[ext_resource type="Resource" uid="uid://c8dkseibuofal" path="res://selection/characters/auriels_1.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://bwtgolh7whnkh" path="res://assets/sprites/species/character_selection_rect.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dvaqcd7g170mr" path="res://assets/sprites/species/trixens.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://doks4q55w352a" path="res://assets/icon/kb1_old.png" id="5"]
+[ext_resource type="PackedScene" uid="uid://dv4fay5xhsqoe" path="res://selection/interface/SelectArrow.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://mpkb5sgdqgrj" path="res://assets/sprites/interface/circle_shadow.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cmdfjtnre8vjk" path="res://assets/sprites/species/trixens/ship_plain.png" id="8"]
+[ext_resource type="FontFile" path="res://assets/theme/montserrat_eb_20.tres" id="9"]
+[ext_resource type="FontFile" uid="uid://bsdjbpjy1umxj" path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" id="10"]
+[ext_resource type="Texture2D" uid="uid://bpqmvafre1yng" path="res://interface/themes/ui_elements/grey_arrowDownWhite.png" id="11"]
+[ext_resource type="Animation" path="res://assets/animations/wiggle_updown.tres" id="12"]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 length = 4.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("Ship:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 4 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ 0.000255905, 360.0 ]
+"values": [0.000255905, 360.0]
 }
 
-[sub_resource type="FontFile" id=4]
-size = 10
-font_data = ExtResource( 10 )
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("10")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="FontFile" id=5]
-size = 28
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 10 )
+[sub_resource type="FontFile" id="5"]
+fallbacks = Array[Font]([ExtResource("10")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="FontFile" id=6]
-size = 24
-outline_size = 4
-font_data = ExtResource( 10 )
+[sub_resource type="FontFile" id="6"]
+fallbacks = Array[Font]([ExtResource("10")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
 [node name="CharacterSelection" type="Control"]
 offset_top = -14.0
@@ -50,18 +59,18 @@ offset_right = 200.0
 offset_bottom = 436.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_minimum_size = Vector2( 200, 400 )
-script = ExtResource( 1 )
+custom_minimum_size = Vector2(200, 400)
+script = ExtResource("1")
 __meta__ = {
 "_edit_use_anchors_": false
 }
-species = ExtResource( 2 )
+species = ExtResource("2")
 
 [node name="SelectRect" type="Sprite2D" parent="."]
 visible = false
-position = Vector2( -10.0661, 0.893982 )
-scale = Vector2( 0.586605, 0.485262 )
-texture = ExtResource( 3 )
+position = Vector2(-10.0661, 0.893982)
+scale = Vector2(0.586605, 0.485262)
+texture = ExtResource("3")
 centered = false
 
 [node name="Character" type="Control" parent="."]
@@ -71,61 +80,61 @@ offset_bottom = 535.0
 clip_contents = true
 
 [node name="Background" type="Polygon2D" parent="Character"]
-position = Vector2( 0, -3.05176e-05 )
-polygon = PackedVector2Array( 23, 35, 144, 35, 144, 550, 23, 550 )
+position = Vector2(0, -3.05176e-05)
+polygon = PackedVector2Array(23, 35, 144, 35, 144, 550, 23, 550)
 
 [node name="Border" type="Line2D" parent="Character"]
-points = PackedVector2Array( 23, 35, 144, 35, 144, 549, 23, 549, 23, 35 )
+points = PackedVector2Array(23, 35, 144, 35, 144, 549, 23, 549, 23, 35)
 width = 3.0
-default_color = Color( 0, 0, 0, 1 )
+default_color = Color(0, 0, 0, 1)
 texture_mode = 91
 begin_cap_mode = 1
 
 [node name="Character" type="Sprite2D" parent="Character"]
-modulate = Color( 0.8, 0.8, 0.8, 1 )
-position = Vector2( 90, 290 )
-scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 4 )
+modulate = Color(0.8, 0.8, 0.8, 1)
+position = Vector2(90, 290)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4")
 
 [node name="OverBorder" type="Line2D" parent="Character"]
-points = PackedVector2Array( 23, 35, 23, 548, 144, 548 )
+points = PackedVector2Array(23, 35, 23, 548, 144, 548)
 width = 3.0
-default_color = Color( 0, 0, 0, 1 )
+default_color = Color(0, 0, 0, 1)
 texture_mode = 91
 begin_cap_mode = 1
 
 [node name="Controls" type="Sprite2D" parent="."]
-position = Vector2( 82, 645 )
-texture = ExtResource( 5 )
+position = Vector2(82, 645)
+texture = ExtResource("5")
 
-[node name="LeftArrow" parent="." instance=ExtResource( 6 )]
+[node name="LeftArrow" parent="." instance=ExtResource("6")]
 offset_left = 9.0
 offset_top = 475.0
 offset_right = 9.0
 offset_bottom = 475.0
-scale = Vector2( -1.2, 1.2 )
+scale = Vector2(-1.2, 1.2)
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2( 87.174, 472 )
-scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 7 )
+position = Vector2(87.174, 472)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("7")
 
 [node name="Ship" type="Sprite2D" parent="."]
-position = Vector2( 87.174, 473 )
+position = Vector2(87.174, 473)
 rotation = 0.785402
-scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 8 )
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("8")
 
-[node name="RightArrow" parent="." instance=ExtResource( 6 )]
+[node name="RightArrow" parent="." instance=ExtResource("6")]
 offset_left = 159.0
 offset_top = 475.0
 offset_right = 159.0
 offset_bottom = 475.0
-scale = Vector2( 1.2, 1.2 )
+scale = Vector2(1.2, 1.2)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "standby"
-anims/standby = SubResource( 3 )
+anims/standby = SubResource("3")
 
 [node name="SpeciesName" type="VBoxContainer" parent="."]
 offset_left = -2.0
@@ -136,7 +145,7 @@ offset_bottom = 627.0
 [node name="Label" type="Label" parent="SpeciesName"]
 offset_right = 170.0
 offset_bottom = 22.0
-theme_override_fonts/font = ExtResource( 9 )
+theme_override_fonts/font = ExtResource("9")
 text = "pentagonions"
 align = 1
 valign = 1
@@ -146,13 +155,13 @@ uppercase = true
 offset_top = 26.0
 offset_right = 170.0
 offset_bottom = 28.0
-custom_minimum_size = Vector2( 0, 2 )
+custom_minimum_size = Vector2(0, 2)
 
 [node name="Tagline1" type="Label" parent="SpeciesName"]
 offset_top = 32.0
 offset_right = 170.0
 offset_bottom = 43.0
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "tagline"
 align = 1
 valign = 1
@@ -162,7 +171,7 @@ uppercase = true
 offset_top = 47.0
 offset_right = 170.0
 offset_bottom = 58.0
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "tagline"
 align = 1
 valign = 1
@@ -171,31 +180,31 @@ uppercase = true
 [node name="Tween" type="Tween" parent="."]
 
 [node name="PlayerInfo" type="Marker2D" parent="."]
-position = Vector2( 86, 33.5228 )
+position = Vector2(86, 33.5228)
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerInfo"]
-modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 0, 9 )
-scale = Vector2( 1.7, 1.8 )
-texture = ExtResource( 11 )
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 9)
+scale = Vector2(1.7, 1.8)
+texture = ExtResource("11")
 
 [node name="Sprite2" type="Sprite2D" parent="PlayerInfo"]
-position = Vector2( 0, 8 )
-texture = ExtResource( 11 )
+position = Vector2(0, 8)
+texture = ExtResource("11")
 
 [node name="PlayerID" type="Label" parent="PlayerInfo"]
 offset_left = -20.0
 offset_top = -30.0
 offset_right = 20.0
 offset_bottom = 3.0
-theme_override_fonts/font = SubResource( 5 )
+theme_override_fonts/font = SubResource("5")
 text = "P1"
 align = 1
 valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerInfo"]
 autoplay = "wiggle"
-anims/wiggle = ExtResource( 12 )
+anims/wiggle = ExtResource("12")
 
 [node name="TeamMode" type="Control" parent="."]
 anchor_left = 0.5
@@ -211,8 +220,8 @@ offset_bottom = 231.0
 anchor_right = 1.0
 offset_top = -28.0
 offset_bottom = 37.0
-theme_override_colors/font_outline_color = Color( 0, 0, 0, 1 )
-theme_override_fonts/font = SubResource( 6 )
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("6")
 text = "TEAM
 TRIXENS"
 align = 1

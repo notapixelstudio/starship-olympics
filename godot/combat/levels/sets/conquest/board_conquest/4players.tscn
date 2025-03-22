@@ -1,84 +1,86 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=13 format=3 uid="uid://de22efibb3s13"]
 
-[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
-[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=2]
-[ext_resource path="res://combat/modes/BoardConquest.tres" type="Resource" id=3]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=4]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=5]
-[ext_resource path="res://combat/levels/background/trixen.png" type="Texture2D" id=6]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
-[ext_resource path="res://actors/environments/RectBoard.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
-[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=10]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=11]
-[ext_resource path="res://combat/managers/TurnManager.tscn" type="PackedScene" id=12]
+[ext_resource type="Resource" uid="uid://bcsa675ruiohh" path="res://selection/characters/trixens_1.tres" id="2"]
+[ext_resource type="Resource" path="res://combat/modes/BoardConquest.tres" id="3"]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="4"]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="5"]
+[ext_resource type="Texture2D" uid="uid://vj4b32elgxe6" path="res://combat/levels/background/trixen.png" id="6"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://do784iw22swvn" path="res://actors/environments/RectBoard.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="9"]
+[ext_resource type="Resource" uid="uid://c2d0iaqf8sd0v" path="res://selection/characters/pentagonions_1.tres" id="10"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="11"]
+[ext_resource type="PackedScene" path="res://combat/managers/TurnManager.tscn" id="12"]
 
-[node name="Arena" instance=ExtResource( 4 )]
+[sub_resource type="Resource" id="Resource_r8eod"]
+metadata/__load_path__ = "res://addons/geometry/GRect.gd"
+
+[node name="Arena" instance=ExtResource("4")]
 size_multiplier = 2.5
-game_mode = ExtResource( 3 )
+game_mode = ExtResource("3")
 
-[node name="TurnManager" parent="Managers" index="0" instance=ExtResource( 12 )]
+[node name="TurnManager" parent="Managers" index="0" instance=ExtResource("12")]
 
 [node name="ConquestModeManager" parent="Managers" index="11"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 6 )
+texture = ExtResource("6")
 centered = false
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 7 )]
-position = Vector2( 3.05176e-05, 0 )
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource("7")]
+position = Vector2(3.05176e-05, 0)
 hollow = true
 hide_grid = true
-solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
-grid_color = Color( 1, 1, 1, 0.329412 )
+solid_line_color = Color(0.69, 1.12, 0.91, 1)
+grid_color = Color(1, 1, 1, 0.329412)
 
 [node name="GRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
-script = ExtResource( 1 )
+script = SubResource("Resource_r8eod")
 width = 4100
 height = 2700
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
-fg_color = Color( 0, 0.173333, 0.26, 1 )
-bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
+modulate = Color(1, 1, 1, 0.9)
+fg_color = Color(0, 0.173333, 0.26, 1)
+bg_color = Color(0, 0.0156863, 0.0431373, 1)
 
-[node name="RectBoard" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
+[node name="RectBoard" parent="Battlefield/Middleground" index="0" instance=ExtResource("8")]
 tile_size = 1.0
 rows = 15
 cols = 25
 huge_central_tile_probability = 0.9
 medium_tile_max_amount = 20
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
-position = Vector2( -1900, 1200 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("9")]
+position = Vector2(-1900, 1200)
 rotation = -0.785402
-species = ExtResource( 5 )
+species = ExtResource("5")
 cpu = true
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-position = Vector2( 1900, 1200 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("9")]
+position = Vector2(1900, 1200)
 rotation = -2.35619
 controls = "joy2"
-species = ExtResource( 11 )
+species = ExtResource("11")
 cpu = true
 
-[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
-position = Vector2( -1900, -1200 )
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource("9")]
+position = Vector2(-1900, -1200)
 rotation = 0.785398
 controls = "kb2"
-species = ExtResource( 2 )
+species = ExtResource("2")
 cpu = true
 
-[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
-position = Vector2( 1900, -1200 )
+[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource("9")]
+position = Vector2(1900, -1200)
 rotation = 2.35619
 controls = "kb2"
-species = ExtResource( 10 )
+species = ExtResource("10")
 cpu = true
 
 [node name="Camera3D" parent="." index="6"]
-zoom = Vector2( 2.91038e+12, 2.91038e+12 )
+zoom = Vector2(2.91038e+12, 2.91038e+12)
 position_smoothing_speed = 0.3
 disabled_override = true
 

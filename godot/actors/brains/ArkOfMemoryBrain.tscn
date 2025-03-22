@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://b4jfhksn6rxa8"]
 
-[ext_resource path="res://actors/brains/CPUBrain.tscn" type="PackedScene" id=1]
-[ext_resource path="res://actors/brains/ArkOfMemoryBrain.gd" type="Script" id=2]
+[ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://actors/brains/CPUBrain.tscn" id="1"]
+[ext_resource type="Script" uid="uid://dquxdwd5qetbh" path="res://actors/brains/ArkOfMemoryBrain.gd" id="2"]
 
-[node name="ArkOfMemoryBrain" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="ArkOfMemoryBrain" instance=ExtResource("1")]
+script = ExtResource("2")
 random_dash_p = 0.005
 random_fire_p = 0.0
 

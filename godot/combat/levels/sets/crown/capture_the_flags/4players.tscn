@@ -1,57 +1,79 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=23 format=3 uid="uid://dl5iknqrd57d1"]
 
-[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=1]
-[ext_resource path="res://actors/environments/Ball.tscn" type="PackedScene" id=2]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/patterns/checkers.png" type="Texture2D" id=4]
-[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=5]
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=6]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=7]
-[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=9]
-[ext_resource path="res://actors/environments/MirrorWall.tscn" type="PackedScene" id=10]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=11]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=12]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=13]
-[ext_resource path="res://combat/modes/CaptureTheFlags.tres" type="Resource" id=14]
-[ext_resource path="res://actors/environments/FlagPole.tscn" type="PackedScene" id=15]
-[ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=16]
+[ext_resource type="Resource" uid="uid://b4mhr8ft2dgry" path="res://selection/characters/umidorians_1.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://nlnnx1golw11" path="res://actors/environments/Ball.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://mbgh35ypfdri" path="res://assets/patterns/checkers.png" id="4"]
+[ext_resource type="PackedScene" path="res://utils/CameraEye.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://combat/traits/NavigationZone.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://kfvryupjv70u" path="res://actors/environments/MirrorWall.tscn" id="10"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="11"]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="13"]
+[ext_resource type="Resource" path="res://combat/modes/CaptureTheFlags.tres" id="14"]
+[ext_resource type="PackedScene" uid="uid://c73d4hrhtun0x" path="res://actors/environments/FlagPole.tscn" id="15"]
+[ext_resource type="Resource" uid="uid://c4n5tgxu5asop" path="res://selection/characters/eelectrons_1.tres" id="16"]
 
-[node name="Arena" instance=ExtResource( 9 )]
+[sub_resource type="Resource" id="Resource_ghui6"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_caykx"]
+metadata/__load_path__ = "res://addons/geometry/icons/GBeveledRect.svg"
+
+[sub_resource type="Resource" id="Resource_62jat"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_04g3v"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_q8qjf"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_j5grv"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_bvxcg"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_hhk1h"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[node name="Arena" instance=ExtResource("9")]
 size_multiplier = 2.5
-game_mode = ExtResource( 14 )
+game_mode = ExtResource("14")
 
 [node name="CrownModeManager" parent="Managers" index="7"]
 enabled = true
 
-[node name="FlagPole" parent="Battlefield/Background" index="1" instance=ExtResource( 15 )]
-position = Vector2( -3600, 1200 )
+[node name="FlagPole" parent="Battlefield/Background" index="1" instance=ExtResource("15")]
+position = Vector2(-3600, 1200)
 goal_owner = NodePath("../../../SpawnPositions/Players/p1")
 
-[node name="FlagPole2" parent="Battlefield/Background" index="2" instance=ExtResource( 15 )]
-position = Vector2( -1200, -1200 )
+[node name="FlagPole2" parent="Battlefield/Background" index="2" instance=ExtResource("15")]
+position = Vector2(-1200, -1200)
 circuit_rotation_degrees = 180
 goal_owner = NodePath("../../../SpawnPositions/Players/p2")
 
-[node name="FlagPole3" parent="Battlefield/Background" index="3" instance=ExtResource( 15 )]
-position = Vector2( 1200, 1200 )
+[node name="FlagPole3" parent="Battlefield/Background" index="3" instance=ExtResource("15")]
+position = Vector2(1200, 1200)
 goal_owner = NodePath("../../../SpawnPositions/Players/p3")
 
-[node name="FlagPole4" parent="Battlefield/Background" index="4" instance=ExtResource( 15 )]
-position = Vector2( 3600, -1200 )
+[node name="FlagPole4" parent="Battlefield/Background" index="4" instance=ExtResource("15")]
+position = Vector2(3600, -1200)
 circuit_rotation_degrees = 180
 goal_owner = NodePath("../../../SpawnPositions/Players/p4")
 
-[node name="OutsideWall" parent="Battlefield/Background" index="5" instance=ExtResource( 7 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="5" instance=ExtResource("7")]
 hollow = true
 hide_grid = true
-solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
-grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+solid_line_color = Color(1.13, 0.78, 0.47, 1)
+grid_color = Color(0.996078, 0.584314, 0, 0.407843)
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
-script = ExtResource( 6 )
+script = SubResource("Resource_ghui6")
 __meta__ = {
-"_editor_icon": ExtResource( 12 )
+"_editor_icon": SubResource("Resource_caykx")
 }
 width = 8400
 height = 3600
@@ -62,23 +84,23 @@ bevel_sw = 600
 bevel_se = 600
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
-texture = ExtResource( 4 )
-fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
-bg_color = Color( 0.28, 0.14, 0.14, 1 )
+modulate = Color(1, 1, 1, 0.9)
+texture = ExtResource("4")
+fg_color = Color(0.32, 0.1632, 0.1632, 1)
+bg_color = Color(0.28, 0.14, 0.14, 1)
 
 [node name="FloodWater" parent="Battlefield/Background" index="7"]
-opaque_tint = Color( 0, 0, 0, 1 )
+opaque_tint = Color(0, 0, 0, 1)
 
-[node name="MirrorWall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
-position = Vector2( -2700, -300 )
+[node name="MirrorWall" parent="Battlefield/Middleground" index="0" instance=ExtResource("10")]
+position = Vector2(-2700, -300)
 rotation = 2.35619
 
-[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall" index="9" instance=ExtResource( 8 )]
+[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall" index="9" instance=ExtResource("8")]
 offset_type = "outset"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/MirrorWall" index="10"]
-script = ExtResource( 6 )
+script = SubResource("Resource_62jat")
 width = 1300
 height = 200
 bevel = 40
@@ -87,15 +109,15 @@ bevel_ne = 40
 bevel_sw = 40
 bevel_se = 40
 
-[node name="MirrorWall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 10 )]
-position = Vector2( -2100, 300 )
+[node name="MirrorWall2" parent="Battlefield/Middleground" index="1" instance=ExtResource("10")]
+position = Vector2(-2100, 300)
 rotation = 2.35619
 
-[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall2" index="9" instance=ExtResource( 8 )]
+[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall2" index="9" instance=ExtResource("8")]
 offset_type = "outset"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/MirrorWall2" index="10"]
-script = ExtResource( 6 )
+script = SubResource("Resource_04g3v")
 width = 1300
 height = 200
 bevel = 40
@@ -104,15 +126,15 @@ bevel_ne = 40
 bevel_sw = 40
 bevel_se = 40
 
-[node name="MirrorWall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 10 )]
-position = Vector2( 2100, -300 )
+[node name="MirrorWall3" parent="Battlefield/Middleground" index="2" instance=ExtResource("10")]
+position = Vector2(2100, -300)
 rotation = 2.35619
 
-[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall3" index="9" instance=ExtResource( 8 )]
+[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall3" index="9" instance=ExtResource("8")]
 offset_type = "outset"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/MirrorWall3" index="10"]
-script = ExtResource( 6 )
+script = SubResource("Resource_q8qjf")
 width = 1300
 height = 200
 bevel = 40
@@ -121,15 +143,15 @@ bevel_ne = 40
 bevel_sw = 40
 bevel_se = 40
 
-[node name="MirrorWall4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 10 )]
-position = Vector2( 2700, 300 )
+[node name="MirrorWall4" parent="Battlefield/Middleground" index="3" instance=ExtResource("10")]
+position = Vector2(2700, 300)
 rotation = 2.35619
 
-[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall4" index="9" instance=ExtResource( 8 )]
+[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall4" index="9" instance=ExtResource("8")]
 offset_type = "outset"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/MirrorWall4" index="10"]
-script = ExtResource( 6 )
+script = SubResource("Resource_j5grv")
 width = 1300
 height = 200
 bevel = 40
@@ -138,15 +160,15 @@ bevel_ne = 40
 bevel_sw = 40
 bevel_se = 40
 
-[node name="MirrorWall5" parent="Battlefield/Middleground" index="4" instance=ExtResource( 10 )]
-position = Vector2( -300, 300 )
+[node name="MirrorWall5" parent="Battlefield/Middleground" index="4" instance=ExtResource("10")]
+position = Vector2(-300, 300)
 rotation = 0.785398
 
-[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall5" index="9" instance=ExtResource( 8 )]
+[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall5" index="9" instance=ExtResource("8")]
 offset_type = "outset"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/MirrorWall5" index="10"]
-script = ExtResource( 6 )
+script = SubResource("Resource_bvxcg")
 width = 1300
 height = 200
 bevel = 40
@@ -155,15 +177,15 @@ bevel_ne = 40
 bevel_sw = 40
 bevel_se = 40
 
-[node name="MirrorWall6" parent="Battlefield/Middleground" index="5" instance=ExtResource( 10 )]
-position = Vector2( 300, -300 )
+[node name="MirrorWall6" parent="Battlefield/Middleground" index="5" instance=ExtResource("10")]
+position = Vector2(300, -300)
 rotation = 0.785398
 
-[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall6" index="9" instance=ExtResource( 8 )]
+[node name="NavigationZone" parent="Battlefield/Middleground/MirrorWall6" index="9" instance=ExtResource("8")]
 offset_type = "outset"
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/MirrorWall6" index="10"]
-script = ExtResource( 6 )
+script = SubResource("Resource_hhk1h")
 width = 1300
 height = 200
 bevel = 40
@@ -172,64 +194,64 @@ bevel_ne = 40
 bevel_sw = 40
 bevel_se = 40
 
-[node name="Flag" parent="Battlefield/Foreground" index="0" instance=ExtResource( 2 )]
-position = Vector2( -2400, 0 )
+[node name="Flag" parent="Battlefield/Foreground" index="0" instance=ExtResource("2")]
+position = Vector2(-2400, 0)
 type = "flag"
 
-[node name="Flag2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 2 )]
-position = Vector2( 2400, 0 )
+[node name="Flag2" parent="Battlefield/Foreground" index="1" instance=ExtResource("2")]
+position = Vector2(2400, 0)
 type = "flag"
 
-[node name="Flag3" parent="Battlefield/Foreground" index="2" instance=ExtResource( 2 )]
-position = Vector2( -3300, -900 )
+[node name="Flag3" parent="Battlefield/Foreground" index="2" instance=ExtResource("2")]
+position = Vector2(-3300, -900)
 type = "flag"
 
-[node name="Flag4" parent="Battlefield/Foreground" index="3" instance=ExtResource( 2 )]
-position = Vector2( -1200, 1200 )
+[node name="Flag4" parent="Battlefield/Foreground" index="3" instance=ExtResource("2")]
+position = Vector2(-1200, 1200)
 type = "flag"
 
-[node name="Flag7" parent="Battlefield/Foreground" index="4" instance=ExtResource( 2 )]
-position = Vector2( 3300, 900 )
+[node name="Flag7" parent="Battlefield/Foreground" index="4" instance=ExtResource("2")]
+position = Vector2(3300, 900)
 type = "flag"
 
-[node name="Flag5" parent="Battlefield/Foreground" index="5" instance=ExtResource( 2 )]
+[node name="Flag5" parent="Battlefield/Foreground" index="5" instance=ExtResource("2")]
 type = "flag"
 
-[node name="Flag6" parent="Battlefield/Foreground" index="6" instance=ExtResource( 2 )]
-position = Vector2( 1200, -1200 )
+[node name="Flag6" parent="Battlefield/Foreground" index="6" instance=ExtResource("2")]
+position = Vector2(1200, -1200)
 type = "flag"
 
-[node name="CameraEye" parent="Battlefield/Foreground" index="7" instance=ExtResource( 5 )]
-position = Vector2( -3900, 1500 )
+[node name="CameraEye" parent="Battlefield/Foreground" index="7" instance=ExtResource("5")]
+position = Vector2(-3900, 1500)
 
-[node name="CameraEye2" parent="Battlefield/Foreground" index="8" instance=ExtResource( 5 )]
-position = Vector2( 3900, -1500 )
+[node name="CameraEye2" parent="Battlefield/Foreground" index="8" instance=ExtResource("5")]
+position = Vector2(3900, -1500)
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 3 )]
-position = Vector2( -3350, 950 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("3")]
+position = Vector2(-3350, 950)
 rotation = -0.785398
-species = ExtResource( 11 )
+species = ExtResource("11")
 cpu = true
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 3 )]
-position = Vector2( -1200, -1050 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("3")]
+position = Vector2(-1200, -1050)
 rotation = 1.5708
 controls = "kb2"
-species = ExtResource( 1 )
+species = ExtResource("1")
 cpu = true
 
-[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 3 )]
-position = Vector2( 1200, 950 )
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource("3")]
+position = Vector2(1200, 950)
 rotation = -1.5708
-species = ExtResource( 13 )
+species = ExtResource("13")
 cpu = true
 
-[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 3 )]
-position = Vector2( 3350, -950 )
+[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource("3")]
+position = Vector2(3350, -950)
 rotation = 2.35619
-species = ExtResource( 16 )
+species = ExtResource("16")
 cpu = true
 
 [node name="Camera3D" parent="." index="7"]
-zoom = Vector2( 1.14795e+28, 1.14795e+28 )
+zoom = Vector2(1.14795e+28, 1.14795e+28)
 position_smoothing_speed = 0.3

@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://bb4kd7ebpdm2x"]
 
-[ext_resource type="Script" path="res://godot4/elements/projectiles/BubbleBullet.gd" id="1_0xyqf"]
+[ext_resource type="Script" uid="uid://dkmls3fristu7" path="res://godot4/elements/projectiles/BubbleBullet.gd" id="1_0xyqf"]
 [ext_resource type="PackedScene" uid="uid://cfgy3ee8k825d" path="res://godot4/elements/bubbles/Bubble.tscn" id="2_opikx"]
 [ext_resource type="Texture2D" uid="uid://jt5f0vvj50hq" path="res://assets/sprites/environments/bullet_bubble.png" id="2_pw1j4"]
 [ext_resource type="PackedScene" uid="uid://damh5pf35vid8" path="res://godot4/elements/bubbles/ShipBubble.tscn" id="2_q74f7"]
@@ -58,8 +58,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f08km"]
 _data = {
-"RESET": SubResource("Animation_2bv8s"),
-"default": SubResource("Animation_yk5pw")
+&"RESET": SubResource("Animation_2bv8s"),
+&"default": SubResource("Animation_yk5pw")
 }
 
 [node name="BubbleBullet" type="RigidBody2D"]

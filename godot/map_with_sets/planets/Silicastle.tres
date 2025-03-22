@@ -1,30 +1,25 @@
-[gd_resource type="Resource" load_steps=11 format=2]
+[gd_resource type="Resource" script_class="Set" load_steps=11 format=3 uid="uid://hryoch1b21dj"]
 
-[ext_resource path="res://combat/modes/KingOfTheHill.tres" type="Resource" id=1]
-[ext_resource path="res://combat/levels/old/2players/silicastle_1.tscn" type="PackedScene" id=2]
-[ext_resource path="res://combat/levels/old/2players/silicastle_2.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/levels/old/2players/silicastle_3.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/levels/old/2players/silicastle_4.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/levels/old/2players/silicastle_5.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/levels/old/2players/silicastle_6.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/map/silicastle.png" type="Texture2D" id=8]
-[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=9]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=10]
-
-
-
-
+[ext_resource type="Resource" uid="uid://d4ebbr70wx4w2" path="res://combat/modes/KingOfTheHill.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://dtatw5kq4fk22" path="res://combat/levels/old/2players/silicastle_1.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b8u8g6l1wkl41" path="res://combat/levels/old/2players/silicastle_2.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://c1hrbqw3wojne" path="res://combat/levels/old/2players/silicastle_3.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://fira4s2oebfl" path="res://combat/levels/old/2players/silicastle_4.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bdjgp6ut54alj" path="res://combat/levels/old/2players/silicastle_5.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://c4bvo7yd4xxyb" path="res://combat/levels/old/2players/silicastle_6.tscn" id="7"]
+[ext_resource type="Texture2D" uid="uid://cmoa8mlriirlc" path="res://assets/map/silicastle.png" id="8"]
+[ext_resource type="Script" uid="uid://b561ai7rs4ndp" path="res://map_with_sets/planets/Set.gd" id="9"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="10"]
 
 [resource]
-script = ExtResource( 9 )
+script = ExtResource("9")
 name = "Silicastle"
 tagline1 = "Future robolords"
 tagline2 = "levels"
-species = ExtResource( 10 )
+species = ExtResource("10")
 levels_1players = null
-levels_2players = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
+levels_2players = [ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6"), ExtResource("7")]
 levels_3players = null
 levels_4players = null
-planet_sprite = ExtResource( 8 )
-game_mode = ExtResource( 1 )
-
+planet_sprite = ExtResource("8")
+game_mode = ExtResource("1")

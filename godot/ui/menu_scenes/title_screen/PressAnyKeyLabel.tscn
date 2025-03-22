@@ -1,20 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://qla0jp2uhh80"]
 
-[ext_resource path="res://assets/theme/DefaultLabelFont.tres" type="FontFile" id=1]
+[ext_resource type="FontFile" path="res://assets/theme/DefaultLabelFont.tres" id="1"]
 
-[sub_resource type="Animation" id=6]
-loop = true
+[sub_resource type="Animation" id="6"]
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.5, 1 ),
-"transitions": PackedFloat32Array( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ true, false, true ]
+"values": [true, false, true]
 }
 
 [node name="PressAnyKey" type="Label"]
@@ -23,11 +23,11 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 offset_top = 164.5
 offset_bottom = 195.5
-theme_override_fonts/font = ExtResource( 1 )
+theme_override_fonts/font = ExtResource("1")
 text = "press any key to continue"
 align = 1
 valign = 1
 uppercase = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/blink = SubResource( 6 )
+anims/blink = SubResource("6")

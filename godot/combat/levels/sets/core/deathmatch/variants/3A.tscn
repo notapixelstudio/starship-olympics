@@ -1,22 +1,30 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://3mshgelpnybs"]
 
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture2D" id=2]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=4]
-[ext_resource path="res://utils/DramaticSpawner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=6]
+[ext_resource type="Texture2D" uid="uid://cul1qame2qpja" path="res://assets/patterns/wall/bones.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cf10dfhs4hgiu" path="res://combat/collectables/PowerUp.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://utils/DramaticSpawner.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://combat/traits/NavigationZone.tscn" id="6"]
+
+[sub_resource type="Resource" id="Resource_6v8t5"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_8tr25"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_0df2b"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
 
 [node name="3A" type="Node2D"]
 
-[node name="Wall12" parent="." instance=ExtResource( 3 )]
-position = Vector2( 400, 400 )
+[node name="Wall12" parent="." instance=ExtResource("3")]
+position = Vector2(400, 400)
 rotation = -0.785398
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 2 )
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("2")
 
 [node name="GBeveledRect" type="Node" parent="Wall12"]
-script = ExtResource( 1 )
+script = SubResource("Resource_6v8t5")
 width = 700
 height = 200
 bevel = 50
@@ -25,17 +33,17 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="NavigationZone" parent="Wall12" instance=ExtResource( 6 )]
+[node name="NavigationZone" parent="Wall12" instance=ExtResource("6")]
 offset_type = "outset"
 
-[node name="Wall14" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, -6.10352e-05 )
+[node name="Wall14" parent="." instance=ExtResource("3")]
+position = Vector2(0, -6.10352e-05)
 rotation = -0.785398
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 2 )
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("2")
 
 [node name="GBeveledRect" type="Node" parent="Wall14"]
-script = ExtResource( 1 )
+script = SubResource("Resource_8tr25")
 width = 700
 height = 200
 bevel = 50
@@ -44,17 +52,17 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="NavigationZone" parent="Wall14" instance=ExtResource( 6 )]
+[node name="NavigationZone" parent="Wall14" instance=ExtResource("6")]
 offset_type = "outset"
 
-[node name="Wall15" parent="." instance=ExtResource( 3 )]
-position = Vector2( -400, -400 )
+[node name="Wall15" parent="." instance=ExtResource("3")]
+position = Vector2(-400, -400)
 rotation = -0.785398
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 2 )
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("2")
 
 [node name="GBeveledRect" type="Node" parent="Wall15"]
-script = ExtResource( 1 )
+script = SubResource("Resource_0df2b")
 width = 700
 height = 200
 bevel = 50
@@ -63,25 +71,25 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="NavigationZone" parent="Wall15" instance=ExtResource( 6 )]
+[node name="NavigationZone" parent="Wall15" instance=ExtResource("6")]
 offset_type = "outset"
 
-[node name="DramaticSpawner" parent="." instance=ExtResource( 5 )]
-position = Vector2( -200, -200 )
+[node name="DramaticSpawner" parent="." instance=ExtResource("5")]
+position = Vector2(-200, -200)
 match_progress_trigger = 0.25
 jitter = 2.0
 chance = 0.7
 
-[node name="PowerUp" parent="DramaticSpawner" instance=ExtResource( 4 )]
+[node name="PowerUp" parent="DramaticSpawner" instance=ExtResource("4")]
 type = "shields"
 tease = true
 
-[node name="DramaticSpawner2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 200, 200 )
+[node name="DramaticSpawner2" parent="." instance=ExtResource("5")]
+position = Vector2(200, 200)
 match_progress_trigger = 0.25
 jitter = 2.0
 chance = 0.7
 
-[node name="PowerUp" parent="DramaticSpawner2" instance=ExtResource( 4 )]
+[node name="PowerUp" parent="DramaticSpawner2" instance=ExtResource("4")]
 type = "shields"
 tease = true

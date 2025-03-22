@@ -1,8 +1,9 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://c1vihkhba24ee"]
 
 [ext_resource type="PackedScene" uid="uid://dg6cy6qsu6237" path="res://actors/battlers/Shipz.tscn" id="1"]
-[ext_resource type="Script" path="res://actors/battlers/CPUShip.gd" id="2"]
+[ext_resource type="Script" uid="uid://bbolgn1ujj34k" path="res://actors/battlers/CPUShip.gd" id="2"]
 
-[node name="CPU" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="CPU" instance=ExtResource("1")]
+script = ExtResource("2")
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]

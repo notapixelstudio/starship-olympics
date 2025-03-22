@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://cfgy3ee8k825d"]
 
-[ext_resource type="Script" path="res://godot4/elements/bubbles/Bubble.gd" id="1_ebahq"]
+[ext_resource type="Script" uid="uid://bwo1rikoxc8ox" path="res://godot4/elements/bubbles/Bubble.gd" id="1_ebahq"]
 [ext_resource type="PackedScene" uid="uid://c5mydm0dx5rd5" path="res://godot4/effects/BubblePopped.tscn" id="2_ijaql"]
 [ext_resource type="PackedScene" uid="uid://bkt3uw0ui0kxk" path="res://godot4/effects/appear/AppearDefault.tscn" id="3_h12s8"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="4_1ymov"]
@@ -77,8 +77,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g125i"]
 _data = {
-"RESET": SubResource("Animation_7dqfj"),
-"default": SubResource("Animation_osksh")
+&"RESET": SubResource("Animation_7dqfj"),
+&"default": SubResource("Animation_osksh")
 }
 
 [sub_resource type="Animation" id="Animation_jmnt2"]
@@ -140,8 +140,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_14ggj"]
 _data = {
-"RESET": SubResource("Animation_jmnt2"),
-"default": SubResource("Animation_hgkc3")
+&"RESET": SubResource("Animation_jmnt2"),
+&"default": SubResource("Animation_hgkc3")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lb1fb"]

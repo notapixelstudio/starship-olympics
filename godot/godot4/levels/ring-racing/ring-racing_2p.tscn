@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://godot4/elements/gates/Gate.tscn" id="5_l0mo2"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="5_m1k8q"]
 [ext_resource type="PackedScene" uid="uid://xoqhtny3wi7s" path="res://godot4/elements/gates/PortalGate.tscn" id="6_6bfaj"]
-[ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="6_s3btm"]
+[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="6_s3btm"]
 [ext_resource type="Texture2D" uid="uid://baclyt1ayjb0e" path="res://assets/sprites/signs/arrow.png" id="7_8grn8"]
 
 [sub_resource type="Animation" id="5"]
@@ -42,8 +42,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_djol6"]
 _data = {
-"RESET": SubResource("5"),
-"default": SubResource("6")
+&"RESET": SubResource("5"),
+&"default": SubResource("6")
 }
 
 [sub_resource type="Animation" id="9"]
@@ -80,8 +80,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v85iv"]
 _data = {
-"RESET": SubResource("9"),
-"default": SubResource("10")
+&"RESET": SubResource("9"),
+&"default": SubResource("10")
 }
 
 [sub_resource type="Animation" id="12"]
@@ -118,8 +118,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_48p16"]
 _data = {
-"RESET": SubResource("12"),
-"default": SubResource("11")
+&"RESET": SubResource("12"),
+&"default": SubResource("11")
 }
 
 [sub_resource type="Animation" id="3"]
@@ -156,8 +156,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_07ajn"]
 _data = {
-"RESET": SubResource("3"),
-"default": SubResource("4")
+&"RESET": SubResource("3"),
+&"default": SubResource("4")
 }
 
 [sub_resource type="Animation" id="15"]
@@ -194,8 +194,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yp778"]
 _data = {
-"RESET": SubResource("15"),
-"default": SubResource("16")
+&"RESET": SubResource("15"),
+&"default": SubResource("16")
 }
 
 [sub_resource type="Animation" id="17"]
@@ -232,8 +232,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jccpk"]
 _data = {
-"RESET": SubResource("17"),
-"default": SubResource("18")
+&"RESET": SubResource("17"),
+&"default": SubResource("18")
 }
 
 [sub_resource type="Animation" id="14"]
@@ -270,8 +270,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4q3dy"]
 _data = {
-"RESET": SubResource("14"),
-"default": SubResource("13")
+&"RESET": SubResource("14"),
+&"default": SubResource("13")
 }
 
 [node name="VersusArena" instance=ExtResource("1_yvuul")]

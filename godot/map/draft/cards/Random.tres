@@ -1,13 +1,13 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="RandomCard" load_steps=3 format=3 uid="uid://dyc3mgv8j274p"]
 
-[ext_resource path="res://map/draft/cards/RandomCard.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/cards/card_mystery.png" type="Texture2D" id=2]
+[ext_resource type="Script" uid="uid://cy5yqm85mfsn2" path="res://map/draft/cards/RandomCard.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://hd2pld2wvfb2" path="res://assets/sprites/cards/card_mystery.png" id="2"]
 
 [resource]
-script = ExtResource( 1 )
-unlocks = [  ]
+script = ExtResource("1")
+cover = ExtResource("2")
+unlocks = []
 unlock_strength = 1
 winter = false
 perfectionist = false
-tint = Color( 0, 0, 0, 1 )
-cover = ExtResource( 2 )
+tint = Color(0, 0, 0, 1)

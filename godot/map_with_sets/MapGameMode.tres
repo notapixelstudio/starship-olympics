@@ -1,13 +1,13 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=3 format=3 uid="uid://jf1rbct4bdul"]
 
-[ext_resource path="res://map_with_sets/MapArenaStyle.tres" type="Resource" id=1]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=2]
+[ext_resource type="Resource" uid="uid://7h45jmqa6pdv" path="res://map_with_sets/MapArenaStyle.tres" id="1"]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="2"]
 
 [resource]
-script = ExtResource( 2 )
+script = ExtResource("2")
 id = "map"
 name = "Map"
-arena_style = ExtResource( 1 )
+arena_style = ExtResource("1")
 description = "tap cards, avoid black diamond"
 max_timeout = -1
 max_score = 70

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_4pv1n"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_bml84"]
-[ext_resource type="Script" path="res://addons/vshapes/VBeveledRect.gd" id="4_ovdmt"]
+[ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="4_ovdmt"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="4_u5rva"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="6_gjrjp"]
 
@@ -52,8 +52,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kppvy"]
 _data = {
-"RESET": SubResource("Animation_qgy5i"),
-"new_animation": SubResource("Animation_lwdmv")
+&"RESET": SubResource("Animation_qgy5i"),
+&"new_animation": SubResource("Animation_lwdmv")
 }
 
 [node name="TestChamber" instance=ExtResource("1_4pv1n")]

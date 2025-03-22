@@ -1,51 +1,69 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=3 uid="uid://b8u8g6l1wkl41"]
 
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
-[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture2D" id=2]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=4]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=5]
-[ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=6]
-[ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=7]
-[ext_resource path="res://addons/geometry/icons/GCircle.svg" type="Texture2D" id=8]
-[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=9]
-[ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture2D" id=10]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=11]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=12]
-[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=13]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://cyhqm3c6nap45" path="res://combat/levels/background/mantiacs_background.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://c1duhx14s1f2t" path="res://actors/environments/Field.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="11"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="12"]
+[ext_resource type="Resource" uid="uid://b4mhr8ft2dgry" path="res://selection/characters/umidorians_1.tres" id="13"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Resource" id="Resource_fkinl"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_au7uu"]
+metadata/__load_path__ = "res://addons/geometry/icons/GBeveledRect.svg"
+
+[sub_resource type="Resource" id="Resource_supwj"]
+metadata/__load_path__ = "res://addons/geometry/GCircle.gd"
+
+[sub_resource type="Resource" id="Resource_wccrx"]
+metadata/__load_path__ = "res://addons/geometry/icons/GCircle.svg"
+
+[sub_resource type="Animation" id="1"]
 resource_name = "Pulse"
 length = 8.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("GCircle:radius")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 4, 8 ),
-"transitions": PackedFloat32Array( -2, -2, -0.5 ),
+"times": PackedFloat32Array(0, 4, 8),
+"transitions": PackedFloat32Array(-2, -2, -0.5),
 "update": 0,
-"values": [ 200, 500, 200 ]
+"values": [200, 500, 200]
 }
 
-[node name="Arena" instance=ExtResource( 1 )]
+[sub_resource type="Resource" id="Resource_8nku7"]
+metadata/__load_path__ = "res://addons/geometry/GRect.gd"
+
+[sub_resource type="Resource" id="Resource_4akih"]
+metadata/__load_path__ = "res://addons/geometry/icons/GRect.svg"
+
+[sub_resource type="Resource" id="Resource_x33h3"]
+metadata/__load_path__ = "res://addons/geometry/GRect.gd"
+
+[sub_resource type="Resource" id="Resource_dtjn6"]
+metadata/__load_path__ = "res://addons/geometry/icons/GRect.svg"
+
+[node name="Arena" instance=ExtResource("1")]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 2 )
+texture = ExtResource("2")
 centered = false
 
-[node name="OutsideWall" parent="Battlefield/Background" index="0" instance=ExtResource( 3 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="0" instance=ExtResource("3")]
 hollow = true
 offset = 200
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
-script = ExtResource( 4 )
+script = SubResource("Resource_fkinl")
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": SubResource("Resource_au7uu")
 }
 width = 1600
 height = 1300
@@ -55,13 +73,13 @@ bevel_ne = 350
 bevel_sw = 350
 bevel_se = 350
 
-[node name="Field" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
+[node name="Field" parent="Battlefield/Middleground" index="0" instance=ExtResource("6")]
 type = 5
 
 [node name="GCircle" type="Node" parent="Battlefield/Middleground/Field" index="6"]
-script = ExtResource( 7 )
+script = SubResource("Resource_supwj")
 __meta__ = {
-"_editor_icon": ExtResource( 8 )
+"_editor_icon": SubResource("Resource_wccrx")
 }
 radius = 200
 precision = 10.0
@@ -69,36 +87,36 @@ precision = 10.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Middleground/Field" index="7"]
 autoplay = "Pulse"
 playback_process_mode = 0
-anims/Pulse = SubResource( 1 )
+anims/Pulse = SubResource("1")
 
-[node name="Wall" parent="Battlefield/Middleground" index="1" instance=ExtResource( 3 )]
-position = Vector2( -300, 0 )
+[node name="Wall" parent="Battlefield/Middleground" index="1" instance=ExtResource("3")]
+position = Vector2(-300, 0)
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
-script = ExtResource( 9 )
+script = SubResource("Resource_8nku7")
 __meta__ = {
-"_editor_icon": ExtResource( 10 )
+"_editor_icon": SubResource("Resource_4akih")
 }
 
-[node name="Wall2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 3 )]
-position = Vector2( 301.304, 0 )
+[node name="Wall2" parent="Battlefield/Middleground" index="2" instance=ExtResource("3")]
+position = Vector2(301.304, 0)
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
-script = ExtResource( 9 )
+script = SubResource("Resource_x33h3")
 __meta__ = {
-"_editor_icon": ExtResource( 10 )
+"_editor_icon": SubResource("Resource_dtjn6")
 }
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 11 )]
-position = Vector2( -700, 0 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("11")]
+position = Vector2(-700, 0)
 rotation = 0.0
 controls = "joy1"
-species = ExtResource( 12 )
+species = ExtResource("12")
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 11 )]
-position = Vector2( 700, 0 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("11")]
+position = Vector2(700, 0)
 rotation = 3.14159
-species = ExtResource( 13 )
+species = ExtResource("13")
 
 [node name="Camera3D" parent="." index="6"]
 position_smoothing_speed = 0.3

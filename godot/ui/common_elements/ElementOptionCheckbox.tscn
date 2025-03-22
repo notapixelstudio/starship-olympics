@@ -1,19 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cdsqmhpe35s24"]
 
-[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
-[ext_resource path="res://ui/common_elements/ElementOptionCheckbox.gd" type="Script" id=3]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1"]
+[ext_resource type="Script" uid="uid://33tg6p3ji4gr" path="res://ui/common_elements/ElementOptionCheckbox.gd" id="3"]
 
 [node name="MarginContainer" type="MarginContainer"]
 offset_right = 247.0
 offset_bottom = 50.0
-custom_minimum_size = Vector2( 0, 50 )
-theme = ExtResource( 1 )
-script = ExtResource( 3 )
+custom_minimum_size = Vector2(0, 50)
+theme = ExtResource("1")
+script = ExtResource("3")
 
 [node name="ElementCheckbox" type="CheckBox" parent="."]
 offset_right = 247.0
 offset_bottom = 50.0
-custom_minimum_size = Vector2( 0, 31 )
+custom_minimum_size = Vector2(0, 31)
 
 [node name="Tween" type="Tween" parent="ElementCheckbox"]
 

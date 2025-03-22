@@ -1,37 +1,39 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://cbb204wfsqvd3"]
 
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="FontFile" id=1]
-[ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=2]
-[ext_resource path="res://map_with_sets/MapMoon.gd" type="Script" id=3]
-[ext_resource path="res://map_with_sets/MapLocation.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/map/cards/moon_off.png" type="Texture2D" id=5]
-[ext_resource path="res://assets/map/cards/moon_random.png" type="Texture2D" id=6]
-[ext_resource path="res://assets/map/cards/moon_on.png" type="Texture2D" id=7]
-[ext_resource path="res://assets/map/cards/flood_moon.png" type="Texture2D" id=8]
+[ext_resource type="FontFile" uid="uid://bsdjbpjy1umxj" path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" id="1"]
+[ext_resource type="AudioStream" uid="uid://bi38pkb44oyyx" path="res://assets/audio/UI_effects/switch-selection.wav" id="2"]
+[ext_resource type="Script" uid="uid://cbgpu25l42vba" path="res://map_with_sets/MapMoon.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://dmstmme4i866s" path="res://map_with_sets/MapLocation.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://ck8bbg1oqi0ug" path="res://assets/map/cards/moon_off.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://b75r103vcydli" path="res://assets/map/cards/moon_random.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://cd5yq41dg2l42" path="res://assets/map/cards/moon_on.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://dis4o0ipph70n" path="res://assets/map/cards/flood_moon.png" id="8"]
 
-[sub_resource type="FontFile" id=3]
-size = 36
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[node name="MapMoon" instance=ExtResource( 4 )]
-script = ExtResource( 3 )
+[node name="MapMoon" instance=ExtResource("4")]
+script = ExtResource("3")
 status = ""
-values = [ "off", "on", "random" ]
-texture = ExtResource( 8 )
-textures = [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ) ]
+values = ["off", "on", "random"]
+texture = ExtResource("8")
+textures = [ExtResource("5"), ExtResource("7"), ExtResource("6")]
 description = "set the number of victories"
 
 [node name="CollisionPolygon2D" parent="ExitArea" index="0"]
-polygon = PackedVector2Array( -200, -200, 200, -200, 200, 200, -200, 200 )
+polygon = PackedVector2Array(-200, -200, 200, -200, 200, 200, -200, 200)
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="4"]
-texture = ExtResource( 8 )
+texture = ExtResource("8")
 
 [node name="StatusSprite" type="Sprite2D" parent="." index="5"]
 z_as_relative = false
-texture = ExtResource( 6 )
+texture = ExtResource("6")
 
 [node name="Wrapper" type="Node2D" parent="." index="6"]
 z_index = 10
@@ -43,7 +45,7 @@ offset_left = -150.0
 offset_top = 50.0
 offset_right = 150.0
 offset_bottom = 200.0
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 text = "MapMoon"
 align = 1
 autowrap = true
@@ -53,6 +55,6 @@ __meta__ = {
 }
 
 [node name="act" type="AudioStreamPlayer2D" parent="." index="7"]
-stream = ExtResource( 2 )
+stream = ExtResource("2")
 attenuation = 0.0412346
 bus = "SFX"

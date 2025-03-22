@@ -54,7 +54,7 @@ instance_dock/preview_resolution=Vector2i(200, 200)
 config/name="StarshipOlympics"
 config/tags=PackedStringArray("godot4", "starship_olympics")
 run/main_scene="res://ui/menu_scenes/intro_screen/Intro.tscn"
-config/features=PackedStringArray("4.3")
+config/features=PackedStringArray("4.4")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://assets/art/translucid.png"
 config/icon="res://logo.png"
@@ -78,8 +78,8 @@ DeeJay="*res://godot4/global/DeeJay.tscn"
 
 [debug]
 
-gdscript/warnings/enable=false
 settings/physics_interpolation/enable_warnings=false
+gdscript/warnings/enable=false
 
 [display]
 
@@ -642,8 +642,8 @@ common/physics_interpolation=true
 [rendering]
 
 renderer/rendering_method="mobile"
-environment/defaults/default_clear_color=Color(0.184121, 0.156271, 0.367138, 1)
 viewport/hdr_2d=true
+environment/defaults/default_clear_color=Color(0.184121, 0.156271, 0.367138, 1)
 quality/intended_usage/framebuffer_allocation.mobile=2
 quality/filters/use_nearest_mipmap_filter=true
 gles3/shaders/shader_compilation_mode=2

@@ -1,18 +1,18 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=5 format=3 uid="uid://cg75spxvl4705"]
 
-[ext_resource path="res://combat/styles/claim_the_banner.tres" type="Resource" id=1]
-[ext_resource path="res://assets/icon/minicards/sets/claim_the_banner.png" type="Texture2D" id=2]
-[ext_resource path="res://actors/brains/ClaimTheBannerBrain.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=4]
+[ext_resource type="Resource" path="res://combat/styles/claim_the_banner.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://bn812712nirip" path="res://assets/icon/minicards/sets/claim_the_banner.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://vltqfud8jji6" path="res://actors/brains/ClaimTheBannerBrain.tscn" id="3"]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="4"]
 
 [resource]
-script = ExtResource( 4 )
+script = ExtResource("4")
 id = "ClaimTheBanner"
 name = "Claim the Banner"
-icon = ExtResource( 2 )
-arena_style = ExtResource( 1 )
+icon = ExtResource("2")
+arena_style = ExtResource("1")
 description = "keep the banner on your side"
-cpu_brain = ExtResource( 3 )
+cpu_brain = ExtResource("3")
 max_timeout = 60
 max_score = 20
 starting_score = 0

@@ -1,68 +1,73 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://iydjredm2oye"]
 
-[ext_resource path="res://addons/geometry/GCircle.gd" type="Script" id=1]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/modes/Sumo.tres" type="Resource" id=4]
-[ext_resource path="res://combat/levels/background/trixen.png" type="Texture2D" id=5]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
-[ext_resource path="res://selection/characters/pentagonions_1.tres" type="Resource" id=8]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="2"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="3"]
+[ext_resource type="Resource" path="res://combat/modes/Sumo.tres" id="4"]
+[ext_resource type="Texture2D" uid="uid://vj4b32elgxe6" path="res://combat/levels/background/trixen.png" id="5"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="7"]
+[ext_resource type="Resource" uid="uid://c2d0iaqf8sd0v" path="res://selection/characters/pentagonions_1.tres" id="8"]
 
-[node name="Arena" instance=ExtResource( 7 )]
+[sub_resource type="Resource" id="Resource_1g3kg"]
+metadata/__load_path__ = "res://addons/geometry/GCircle.gd"
+
+[sub_resource type="Resource" id="Resource_8tsx0"]
+metadata/__load_path__ = "res://addons/geometry/GCircle.gd"
+
+[node name="Arena" instance=ExtResource("7")]
 size_multiplier = 2.5
-game_mode = ExtResource( 4 )
+game_mode = ExtResource("4")
 
 [node name="ConquestModeManager" parent="Managers" index="11"]
 enabled = true
 
 [node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 5 )
+texture = ExtResource("5")
 centered = false
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 3 )]
-position = Vector2( 3.05176e-05, 0 )
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource("3")]
+position = Vector2(3.05176e-05, 0)
 hollow = true
 type = 1
 hide_grid = true
-solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
-grid_color = Color( 1, 1, 1, 0.329412 )
+solid_line_color = Color(0.69, 1.12, 0.91, 1)
+grid_color = Color(1, 1, 1, 0.329412)
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
-script = ExtResource( 1 )
+script = SubResource("Resource_1g3kg")
 radius = 750
 
-[node name="OutsideWall2" parent="Battlefield/Background" index="2" instance=ExtResource( 3 )]
-position = Vector2( 3.05176e-05, 0 )
+[node name="OutsideWall2" parent="Battlefield/Background" index="2" instance=ExtResource("3")]
+position = Vector2(3.05176e-05, 0)
 hollow = true
 offset = 200
 type = 2
 hide_grid = true
-solid_line_color = Color( 0.69, 1.12, 0.91, 1 )
-grid_color = Color( 1, 1, 1, 0.329412 )
+solid_line_color = Color(0.69, 1.12, 0.91, 1)
+grid_color = Color(1, 1, 1, 0.329412)
 
 [node name="GCircle" type="Node" parent="Battlefield/Background/OutsideWall2" index="8"]
-script = ExtResource( 1 )
+script = SubResource("Resource_8tsx0")
 radius = 500
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
-fg_color = Color( 0, 0.173333, 0.26, 1 )
-bg_color = Color( 0, 0.0156863, 0.0431373, 1 )
+modulate = Color(1, 1, 1, 0.9)
+fg_color = Color(0, 0.173333, 0.26, 1)
+bg_color = Color(0, 0.0156863, 0.0431373, 1)
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 6 )]
-position = Vector2( 500, 0 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("6")]
+position = Vector2(500, 0)
 rotation = 3.14159
-species = ExtResource( 8 )
+species = ExtResource("8")
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 6 )]
-position = Vector2( -500, 0 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("6")]
+position = Vector2(-500, 0)
 rotation = 0.0
 controls = "joy2"
-species = ExtResource( 2 )
+species = ExtResource("2")
 
 [node name="Camera3D" parent="." index="7"]
-zoom = Vector2( 2.91038e+12, 2.91038e+12 )
+zoom = Vector2(2.91038e+12, 2.91038e+12)
 position_smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

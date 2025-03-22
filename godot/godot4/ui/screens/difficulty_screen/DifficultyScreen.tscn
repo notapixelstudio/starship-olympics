@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=3 uid="uid://bagodu3id70gb"]
 
-[ext_resource type="Script" path="res://godot4/ui/screens/difficulty_screen/DifficultyScreen.gd" id="1"]
+[ext_resource type="Script" uid="uid://bl2lbp2jry8na" path="res://godot4/ui/screens/difficulty_screen/DifficultyScreen.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bhq3klwabv0i8" path="res://godot4/ui/screens/back_screen/BackScreen.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://daj06fe3j3bqk" path="res://ui/difficulty_screen/art_hive_two.png" id="3"]
-[ext_resource type="PackedScene" path="res://godot4/ui/screens/world_selection/WorldSelectionScreen.tscn" id="3_uufuo"]
+[ext_resource type="PackedScene" uid="uid://bwcneu6jfprb3" path="res://godot4/ui/screens/world_selection/WorldSelectionScreen.tscn" id="3_uufuo"]
 [ext_resource type="Texture2D" uid="uid://bivwevr1reobj" path="res://ui/difficulty_screen/art_hard.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://bb7e7up6vbum1" path="res://ui/difficulty_screen/art_medium.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://dxkn1set32t1w" path="res://ui/difficulty_screen/art_easy.png" id="6"]
@@ -13,7 +13,7 @@
 [ext_resource type="BitMap" uid="uid://ciabjoxrshgnu" path="res://ui/difficulty_screen/mask_hive_two.png" id="10"]
 [ext_resource type="BitMap" uid="uid://dna1hs4k7m2kt" path="res://ui/difficulty_screen/mask_medium.png" id="11"]
 [ext_resource type="PackedScene" uid="uid://bsnpuv1ss4bxe" path="res://ui/fancy_menus/FancyButton.tscn" id="12"]
-[ext_resource type="Shader" path="res://assets/shaders/crt_local.gdshader" id="14"]
+[ext_resource type="Shader" uid="uid://d2qbwcjlqoech" path="res://assets/shaders/crt_local.gdshader" id="14"]
 
 [sub_resource type="ShaderMaterial" id="2"]
 shader = ExtResource("14")
@@ -30,6 +30,7 @@ shader_parameter/screen_size = Vector2(320, 200)
 shader_parameter/aberration_amount = 2.0
 shader_parameter/move_aberration = false
 shader_parameter/aberration_speed = 1.0
+shader_parameter/pincushion = 1.0
 
 [node name="DifficultyScreen" instance=ExtResource("2")]
 script = ExtResource("1")

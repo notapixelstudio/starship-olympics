@@ -1,16 +1,16 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="StartingDeck" load_steps=5 format=3 uid="uid://dghsixfvjrykr"]
 
-[ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
-[ext_resource path="res://map/draft/cards/AsteroidInfection.tres" type="Resource" id=2]
-[ext_resource path="res://map/draft/cards/DiscoBullet.tres" type="Resource" id=3]
-[ext_resource path="res://map/draft/cards/Flowsnake.tres" type="Resource" id=4]
+[ext_resource type="Script" uid="uid://bwveyhtu8y4uw" path="res://map/draft/decks/StartingDeck.gd" id="1"]
+[ext_resource type="Resource" uid="uid://c8twx2v32fxd3" path="res://map/draft/cards/AsteroidInfection.tres" id="2"]
+[ext_resource type="Resource" uid="uid://rueqp0f8rjni" path="res://map/draft/cards/DiscoBullet.tres" id="3"]
+[ext_resource type="Resource" uid="uid://dmqk122bm80ba" path="res://map/draft/cards/Flowsnake.tres" id="4"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "survival"
 order = 0
 name = ""
-cards = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ]
-nexts = [  ]
+cards = [ExtResource("3"), ExtResource("2"), ExtResource("4")]
+nexts = []
 playlist = false
-unlocks = [  ]
+unlocks = []

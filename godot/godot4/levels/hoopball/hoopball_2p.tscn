@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b8xagcj3qbmq1" path="res://godot4/arena/managers/games/HoopballGame.tscn" id="2_b200e"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="2_u6ms3"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="3_cu13y"]
-[ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="4_hsj36"]
+[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="4_hsj36"]
 [ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://godot4/elements/gates/Gate.tscn" id="5_8c10i"]
 [ext_resource type="PackedScene" uid="uid://upig65r4lwgn" path="res://godot4/elements/cargos/CroquetBall.tscn" id="7_sk0cx"]
 
@@ -42,8 +42,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_col3i"]
 _data = {
-"RESET": SubResource("1"),
-"Rotate": SubResource("2")
+&"RESET": SubResource("1"),
+&"Rotate": SubResource("2")
 }
 
 [sub_resource type="Animation" id="3"]
@@ -80,8 +80,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1a3qn"]
 _data = {
-"RESET": SubResource("3"),
-"Rotate": SubResource("4")
+&"RESET": SubResource("3"),
+&"Rotate": SubResource("4")
 }
 
 [sub_resource type="Animation" id="7"]
@@ -118,8 +118,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mkp0k"]
 _data = {
-"RESET": SubResource("7"),
-"Rotate": SubResource("8")
+&"RESET": SubResource("7"),
+&"Rotate": SubResource("8")
 }
 
 [node name="VersusArena" instance=ExtResource("1_v5rbn")]

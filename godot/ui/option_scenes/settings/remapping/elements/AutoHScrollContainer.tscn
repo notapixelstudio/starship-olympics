@@ -1,24 +1,24 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://b2srnrmb8qml8"]
 
-[ext_resource path="res://ui/option_scenes/settings/remapping/elements/AutoHScrollContainer.gd" type="Script" id=1]
-[ext_resource path="res://ui/option_scenes/settings/remapping/elements/keyboard/ButtonRepresentation.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" uid="uid://i3qtlcjv83c2" path="res://ui/option_scenes/settings/remapping/elements/AutoHScrollContainer.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://ds3joydebsl3q" path="res://ui/option_scenes/settings/remapping/elements/keyboard/ButtonRepresentation.tscn" id="2"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_local_to_scene = true
 resource_name = "Scroll"
 length = 6.0
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("MarginContainer/Buttons:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 3, 6 ),
-"transitions": PackedFloat32Array( -2, -2, -2 ),
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(-2, -2, -2),
 "update": 0,
-"values": [ 0.0, 0.0, 0.0 ]
+"values": [0.0, 0.0, 0.0]
 }
 
 [node name="AutoHScrollContainer" type="Control"]
@@ -26,13 +26,13 @@ offset_left = 153.0
 offset_right = 232.0
 offset_bottom = 80.0
 grow_horizontal = 2
-custom_minimum_size = Vector2( 300, 50 )
+custom_minimum_size = Vector2(300, 50)
 clip_contents = true
-script = ExtResource( 1 )
+script = ExtResource("1")
 __meta__ = {
 "_edit_use_anchors_": false
 }
-button_scene = ExtResource( 2 )
+button_scene = ExtResource("2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 300.0
@@ -53,4 +53,4 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Scroll"
-anims/Scroll = SubResource( 1 )
+anims/Scroll = SubResource("1")

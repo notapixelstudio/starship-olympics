@@ -1,24 +1,44 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=3 uid="uid://cugb4d34wouut"]
 
-[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture2D" id=2]
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=3]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=4]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=5]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=7]
-[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=8]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
-[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture2D" id=10]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="6"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="7"]
+[ext_resource type="Resource" uid="uid://b4mhr8ft2dgry" path="res://selection/characters/umidorians_1.tres" id="8"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="9"]
+[ext_resource type="Texture2D" uid="uid://cyhqm3c6nap45" path="res://combat/levels/background/mantiacs_background.png" id="10"]
 
-[node name="Arena" instance=ExtResource( 5 )]
+[sub_resource type="Resource" id="Resource_1p83d"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_cvkh4"]
+metadata/__load_path__ = "res://addons/geometry/icons/GBeveledRect.svg"
+
+[sub_resource type="Resource" id="Resource_s5bp2"]
+metadata/__load_path__ = "res://addons/geometry/GRect.gd"
+
+[sub_resource type="Resource" id="Resource_u20xs"]
+metadata/__load_path__ = "res://addons/geometry/icons/GRect.svg"
+
+[sub_resource type="Resource" id="Resource_hlm3p"]
+metadata/__load_path__ = "res://addons/geometry/GRect.gd"
+
+[sub_resource type="Resource" id="Resource_j7oh8"]
+metadata/__load_path__ = "res://addons/geometry/icons/GRect.svg"
+
+[sub_resource type="Resource" id="Resource_t7eyh"]
+metadata/__load_path__ = "res://addons/geometry/GRect.gd"
+
+[sub_resource type="Resource" id="Resource_4gsa7"]
+metadata/__load_path__ = "res://addons/geometry/icons/GRect.svg"
+
+[node name="Arena" instance=ExtResource("5")]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 10 )
+texture = ExtResource("10")
 centered = false
 
-[node name="OutsideWall" parent="Battlefield/Background" index="0" instance=ExtResource( 6 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="0" instance=ExtResource("6")]
 hollow = true
 offset = 200
 elongation = 100
@@ -26,15 +46,15 @@ type = 0
 hide_line = false
 hide_grid = false
 line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
+grid_color = Color(1, 1, 1, 0.33)
 grid_rotation = 0.0
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
-script = ExtResource( 3 )
+script = SubResource("Resource_1p83d")
 __meta__ = {
-"_editor_icon": ExtResource( 4 )
+"_editor_icon": SubResource("Resource_cvkh4")
 }
-center_offset = Vector2( 0, 0 )
+center_offset = Vector2(0, 0)
 jitter = 0.0
 width = 2200
 height = 2000
@@ -44,8 +64,8 @@ bevel_ne = 800
 bevel_sw = 800
 bevel_se = 800
 
-[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
-position = Vector2( -300, -1.52588e-05 )
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource("6")]
+position = Vector2(-300, -1.52588e-05)
 rotation = 0.785398
 hollow = false
 offset = 0
@@ -54,21 +74,21 @@ type = 0
 hide_line = false
 hide_grid = false
 line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
+grid_color = Color(1, 1, 1, 0.33)
 grid_rotation = 0.0
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_s5bp2")
 __meta__ = {
-"_editor_icon": ExtResource( 2 )
+"_editor_icon": SubResource("Resource_u20xs")
 }
-center_offset = Vector2( 0, 0 )
+center_offset = Vector2(0, 0)
 jitter = 0.0
 width = 100
 height = 100
 
-[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
-position = Vector2( -500, -200 )
+[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource("6")]
+position = Vector2(-500, -200)
 rotation = 0.785398
 hollow = false
 offset = 0
@@ -77,21 +97,21 @@ type = 0
 hide_line = false
 hide_grid = false
 line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
+grid_color = Color(1, 1, 1, 0.33)
 grid_rotation = 0.0
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_hlm3p")
 __meta__ = {
-"_editor_icon": ExtResource( 2 )
+"_editor_icon": SubResource("Resource_j7oh8")
 }
-center_offset = Vector2( 0, 0 )
+center_offset = Vector2(0, 0)
 jitter = 0.0
 width = 100
 height = 100
 
-[node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
-position = Vector2( -400, -100 )
+[node name="Wall3" parent="Battlefield/Middleground" index="2" instance=ExtResource("6")]
+position = Vector2(-400, -100)
 rotation = 0.785398
 hollow = false
 offset = 0
@@ -100,33 +120,34 @@ type = 0
 hide_line = false
 hide_grid = false
 line_width = 28
-grid_color = Color( 1, 1, 1, 0.33 )
+grid_color = Color(1, 1, 1, 0.33)
 grid_rotation = 0.0
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall3" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_t7eyh")
 __meta__ = {
-"_editor_icon": ExtResource( 2 )
+"_editor_icon": SubResource("Resource_4gsa7")
 }
-center_offset = Vector2( 0, 0 )
+center_offset = Vector2(0, 0)
 jitter = 0.0
 width = 100
 height = 100
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
-position = Vector2( -900, 0 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("9")]
+position = Vector2(-900, 0)
 rotation = 0.0
 controls = "joy2"
-species = ExtResource( 7 )
+species = ExtResource("7")
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-position = Vector2( 900, 0 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("9")]
+position = Vector2(900, 0)
 rotation = 3.14159
 controls = "joy1"
-species = ExtResource( 8 )
+species = ExtResource("8")
 
 [node name="Camera3D" parent="." index="6"]
 position_smoothing_speed = 0.3
+
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]

@@ -1,18 +1,18 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=5 format=3 uid="uid://cneaeb32f0vba"]
 
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://actors/brains/UndertakersBrain.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/icon/minicards/sets/skull.png" type="Texture2D" id=3]
-[ext_resource path="res://combat/styles/skulls.tres" type="Resource" id=4]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://cdne3k8xfhspr" path="res://actors/brains/UndertakersBrain.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://dvjds4qmeqmud" path="res://assets/icon/minicards/sets/skull.png" id="3"]
+[ext_resource type="Resource" path="res://combat/styles/skulls.tres" id="4"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "skull_collector"
 name = "Skull Collectors"
-icon = ExtResource( 3 )
-arena_style = ExtResource( 4 )
+icon = ExtResource("3")
+arena_style = ExtResource("4")
 description = "kill, then take the skulls to your base"
-cpu_brain = ExtResource( 2 )
+cpu_brain = ExtResource("2")
 max_timeout = 60
 max_score = 8
 starting_score = 0
@@ -23,6 +23,7 @@ starting_health = 1
 respawn_from_home = false
 end_on_perfect = true
 fill_starting_score = false
+streaks_enabled = true
 death = false
 last_man = false
 crown = false

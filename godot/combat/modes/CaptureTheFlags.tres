@@ -1,32 +1,32 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=7 format=3 uid="uid://b6hnvc5kxie7j"]
 
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon/minicards/sets/capture_the_flags.png" type="Texture2D" id=2]
-[ext_resource path="res://assets/patterns/checkers.png" type="Texture2D" id=3]
-[ext_resource path="res://actors/brains/CaptureTheFlagsBrain.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/styles/ArenaStyle.gd" type="Script" id=5]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c320e2w34wu41" path="res://assets/icon/minicards/sets/capture_the_flags.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://mbgh35ypfdri" path="res://assets/patterns/checkers.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://bwq7fmaykw1mq" path="res://actors/brains/CaptureTheFlagsBrain.tscn" id="4"]
+[ext_resource type="Script" uid="uid://cofvcj06mgmi" path="res://combat/styles/ArenaStyle.gd" id="5"]
 
-[sub_resource type="Resource" id=1]
+[sub_resource type="Resource" id="1"]
 resource_name = "keep"
-script = ExtResource( 5 )
-battlefield_texture = ExtResource( 3 )
-battlefield_texture_offset = Vector2( 0, 0 )
-battlefield_texture_scale = Vector2( 0.25, 0.25 )
+script = ExtResource("5")
+battlefield_texture = ExtResource("3")
+battlefield_texture_offset = Vector2(0, 0)
+battlefield_texture_scale = Vector2(0.25, 0.25)
 battlefield_texture_rotation_degrees = 0.0
-battlefield_fg_color = Color( 0.16632, 0.27, 0.1404, 1 )
-battlefield_bg_color = Color( 0.17495, 0.3, 0.117, 1 )
+battlefield_fg_color = Color(0.16632, 0.27, 0.1404, 1)
+battlefield_bg_color = Color(0.17495, 0.3, 0.117, 1)
 battlefield_opacity = 1.0
-wall_color = Color( 1.1, 0.8, 0.54, 1 )
+wall_color = Color(1.1, 0.8, 0.54, 1)
 bgm = "keep"
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "capture_the_flag"
 name = "Capture the Flags"
-icon = ExtResource( 2 )
-arena_style = SubResource( 1 )
+icon = ExtResource("2")
+arena_style = SubResource("1")
 description = "take the flags to your base"
-cpu_brain = ExtResource( 4 )
+cpu_brain = ExtResource("4")
 max_timeout = 60
 max_score = 60
 starting_score = 0

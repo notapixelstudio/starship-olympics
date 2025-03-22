@@ -1,16 +1,16 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" script_class="Minigamez" load_steps=6 format=3 uid="uid://b4jmmkf48sc5i"]
 
-[ext_resource path="res://combat/styles/flags.tres" type="Resource" id=1]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=2]
-[ext_resource path="res://combat/minigames/Minigame.gd" type="Script" id=3]
-[ext_resource path="res://assets/icon/minicards/sets/marble_conquest.png" type="Texture2D" id=5]
+[ext_resource type="Resource" path="res://combat/styles/flags.tres" id="1"]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="2"]
+[ext_resource type="Script" uid="uid://b2qcneugoovge" path="res://combat/minigames/Minigame.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://djt5r4mfinchl" path="res://assets/icon/minicards/sets/marble_conquest.png" id="5"]
 
-[sub_resource type="Resource" id=1]
-script = ExtResource( 2 )
+[sub_resource type="Resource" id="1"]
+script = ExtResource("2")
 id = "atomic_marbles"
 name = "Atomic Marbles"
-icon = ExtResource( 5 )
-arena_style = ExtResource( 1 )
+icon = ExtResource("5")
+arena_style = ExtResource("1")
 description = "shoot the atom to light the marbles"
 max_timeout = 25
 max_score = 500
@@ -46,8 +46,8 @@ laserable = false
 additional_lasers = false
 
 [resource]
-script = ExtResource( 3 )
-game_mode = SubResource( 1 )
+script = ExtResource("3")
+game_mode = SubResource("1")
 arenas_dir = "res://combat/levels/sets/conquest/marble_conquest/"
 suit_top = "magenta"
 suit_bottom = "red"

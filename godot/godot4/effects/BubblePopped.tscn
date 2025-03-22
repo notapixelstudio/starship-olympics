@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c5mydm0dx5rd5"]
 
-[ext_resource type="Script" path="res://godot4/effects/BubblePopped.gd" id="1_tojkl"]
+[ext_resource type="Script" uid="uid://yteqnfa8id7b" path="res://godot4/effects/BubblePopped.gd" id="1_tojkl"]
 [ext_resource type="Texture2D" uid="uid://brix715f5o5d1" path="res://assets/sprites/environments/bubble_big.png" id="2_b10q5"]
 [ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="2_boe4i"]
 
@@ -74,8 +74,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uanx4"]
 _data = {
-"Fade": SubResource("7"),
-"RESET": SubResource("8")
+&"Fade": SubResource("7"),
+&"RESET": SubResource("8")
 }
 
 [sub_resource type="Curve" id="Curve_phc3x"]
@@ -92,6 +92,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 150.0
 emission_ring_inner_radius = 149.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, -1, 0)
 radial_velocity_min = 482.28
 radial_velocity_max = 639.38

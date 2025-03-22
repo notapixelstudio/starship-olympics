@@ -1,18 +1,18 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" script_class="Set" load_steps=6 format=3 uid="uid://bv4i086h2t55c"]
 
-[ext_resource path="res://assets/map/cards/cards_set.png" type="Texture2D" id=1]
-[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=2]
-[ext_resource path="res://combat/minigames/ArkOfMemory.tres" type="Resource" id=3]
-[ext_resource path="res://combat/minigames/DiamondMinefield.tres" type="Resource" id=4]
-[ext_resource path="res://combat/minigames/FindingYourself.tres" type="Resource" id=5]
+[ext_resource type="Texture2D" uid="uid://dy28e6bj677sr" path="res://assets/map/cards/cards_set.png" id="1"]
+[ext_resource type="Script" uid="uid://b561ai7rs4ndp" path="res://map_with_sets/planets/Set.gd" id="2"]
+[ext_resource type="Resource" uid="uid://d3c60kolsndwn" path="res://combat/minigames/ArkOfMemory.tres" id="3"]
+[ext_resource type="Resource" uid="uid://bm0m7l5i8qlaa" path="res://combat/minigames/DiamondMinefield.tres" id="4"]
+[ext_resource type="Resource" uid="uid://bqcc3rgfxk1gt" path="res://combat/minigames/FindingYourself.tres" id="5"]
 
 [resource]
-script = ExtResource( 2 )
+script = ExtResource("2")
 id = "cards"
 name = "Cards"
 tagline1 = ""
 tagline2 = ""
 description = ""
-minigames = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ) ]
-planet_sprite = ExtResource( 1 )
-mutators = [  ]
+minigames = [ExtResource("4"), ExtResource("3"), ExtResource("5")]
+planet_sprite = ExtResource("1")
+mutators = []

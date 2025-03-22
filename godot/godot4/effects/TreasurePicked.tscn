@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c4yru00x07tyi"]
 
-[ext_resource type="Script" path="res://godot4/effects/TreasurePicked.gd" id="1_y1ss0"]
+[ext_resource type="Script" uid="uid://svkgukp1it67" path="res://godot4/effects/TreasurePicked.gd" id="1_y1ss0"]
 
 [sub_resource type="Animation" id="7"]
 resource_name = "Fade"
@@ -72,8 +72,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uanx4"]
 _data = {
-"Fade": SubResource("7"),
-"RESET": SubResource("8")
+&"Fade": SubResource("7"),
+&"RESET": SubResource("8")
 }
 
 [sub_resource type="Curve" id="3"]

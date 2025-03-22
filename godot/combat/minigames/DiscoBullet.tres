@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="Minigamez" load_steps=3 format=3 uid="uid://bu1ucge57j2ir"]
 
-[ext_resource path="res://combat/minigames/Minigame.gd" type="Script" id=1]
-[ext_resource path="res://combat/modes/DiscoBullet.tres" type="Resource" id=3]
+[ext_resource type="Script" uid="uid://b2qcneugoovge" path="res://combat/minigames/Minigame.gd" id="1"]
+[ext_resource type="Resource" path="res://combat/modes/DiscoBullet.tres" id="3"]
 
 [resource]
-script = ExtResource( 1 )
-game_mode = ExtResource( 3 )
+script = ExtResource("1")
+game_mode = ExtResource("3")
 arenas_dir = "res://combat/levels/singles/disco_bullet/"
 suit_top = "cyan"
 suit_bottom = "cyan"

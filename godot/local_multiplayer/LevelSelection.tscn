@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://62gd0hk06srh"]
 
-[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/UI/pause-window.png" type="Texture2D" id=3]
-[ext_resource path="res://ui/common_elements/ElementOption.tscn" type="PackedScene" id=4]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://bcrncs8bt61iy" path="res://assets/UI/pause-window.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://cmgckx46yk5vq" path="res://ui/common_elements/ElementOption.tscn" id="4"]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id="1"]
 script/source = "extends Control
 
 var array_levels : Array
@@ -60,18 +60,18 @@ func _exit_tree():
 process_mode = 3
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 1 )
-color = Color( 0, 0, 0, 0.313726 )
-script = SubResource( 1 )
+theme = ExtResource("1")
+color = Color(0, 0, 0, 0.313726)
+script = SubResource("1")
 
 [node name="pause-window" type="Sprite2D" parent="."]
-position = Vector2( 612.724, 320.736 )
-scale = Vector2( 0.797916, 0.797916 )
-texture = ExtResource( 3 )
+position = Vector2(612.724, 320.736)
+scale = Vector2(0.797916, 0.797916)
+texture = ExtResource("3")
 
 [node name="panel" type="Control" parent="."]
 process_mode = 3
-modulate = Color( 1, 1, 1, 0.988235 )
+modulate = Color(1, 1, 1, 0.988235)
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -104,17 +104,17 @@ offset_left = -328.584
 offset_top = -216.705
 offset_right = 951.416
 offset_bottom = 503.295
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2(0.5, 0.5)
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="panel/SubViewportContainer"]
 process_mode = 1
-size = Vector2( 1280, 720 )
+size = Vector2(1280, 720)
 handle_input_locally = false
 render_target_update_mode = 3
 gui_disable_input = true
 
-[node name="Element" parent="panel" instance=ExtResource( 4 )]
+[node name="Element" parent="panel" instance=ExtResource("4")]
 process_mode = 3
 anchor_left = 0.5
 anchor_top = 1.0

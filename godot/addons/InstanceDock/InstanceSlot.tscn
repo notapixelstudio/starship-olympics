@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://ba54n4w4qb18j"]
 
-[ext_resource type="Script" path="res://addons/InstanceDock/InstanceSlot.gd" id="1"]
+[ext_resource type="Script" uid="uid://cdpv35jboa6xi" path="res://addons/InstanceDock/InstanceSlot.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dp0lseq583t66" path="res://addons/InstanceDock/Textures/Overrides.png" id="2_t8bng"]
 [ext_resource type="Texture2D" uid="uid://rsllva5pmojk" path="res://addons/InstanceDock/Textures/Loading.png" id="3_2l1qq"]
 
@@ -82,8 +82,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u8ud1"]
 _data = {
-"RESET": SubResource("2"),
-"Rotate": SubResource("3")
+&"RESET": SubResource("2"),
+&"Rotate": SubResource("3")
 }
 
 [node name="InstanceSlot" type="PanelContainer"]

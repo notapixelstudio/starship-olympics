@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ceny8gj2681mb"]
 
-[ext_resource type="Script" path="res://godot4/effects/HaloEmission.gd" id="1_5dajf"]
+[ext_resource type="Script" uid="uid://b4dm5rt8ig6gs" path="res://godot4/effects/HaloEmission.gd" id="1_5dajf"]
 [ext_resource type="Material" uid="uid://dauasb4k0t7a6" path="res://godot4/shaders/outline_ghost_white.tres" id="1_fpy07"]
 [ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="3_jir6m"]
 
@@ -74,8 +74,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_85akh"]
 _data = {
-"Grow": SubResource("Animation_ibpg0"),
-"RESET": SubResource("Animation_0mmk1")
+&"Grow": SubResource("Animation_ibpg0"),
+&"RESET": SubResource("Animation_0mmk1")
 }
 
 [node name="HaloEmission" type="Node2D"]

@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="Minigamez" load_steps=3 format=3 uid="uid://dnr4qo0o7b0lo"]
 
-[ext_resource path="res://combat/minigames/Minigame.gd" type="Script" id=1]
-[ext_resource path="res://combat/modes/FirstBlood.tres" type="Resource" id=5]
+[ext_resource type="Script" uid="uid://b2qcneugoovge" path="res://combat/minigames/Minigame.gd" id="1"]
+[ext_resource type="Resource" path="res://combat/modes/FirstBlood.tres" id="5"]
 
 [resource]
-script = ExtResource( 1 )
-game_mode = ExtResource( 5 )
+script = ExtResource("1")
+game_mode = ExtResource("5")
 arenas_dir = "res://combat/levels/sets/combat/first_blood/"
 suit_top = "green"
 suit_bottom = "green"

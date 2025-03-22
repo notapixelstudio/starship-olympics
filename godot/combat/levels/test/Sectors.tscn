@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://b7k0rfiyvkkb1"]
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id="3"]
 script/source = "extends Node2D
 
 @export var side := 130.0
@@ -123,5 +123,5 @@ func generate_voronoi_diagram():
 "
 
 [node name="Sectors" type="Node2D"]
-self_modulate = Color( 1, 1, 1, 0 )
-script = SubResource( 3 )
+self_modulate = Color(1, 1, 1, 0)
+script = SubResource("3")

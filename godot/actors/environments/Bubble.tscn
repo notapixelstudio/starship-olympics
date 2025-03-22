@@ -1,10 +1,10 @@
 [gd_scene load_steps=23 format=3 uid="uid://ddl3wjodylp45"]
 
 [ext_resource type="Texture2D" uid="uid://b4lee0uhxw1b7" path="res://assets/sprites/environments/bubble.png" id="1"]
-[ext_resource type="Script" path="res://actors/environments/Bubble.gd" id="2"]
+[ext_resource type="Script" uid="uid://b5tdobsou7p1d" path="res://actors/environments/Bubble.gd" id="2"]
 [ext_resource type="FontFile" uid="uid://bsdjbpjy1umxj" path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" id="3"]
 [ext_resource type="Texture2D" uid="uid://dstv6ya1okra5" path="res://assets/sprites/weapons/bomb_frame_1.png" id="4"]
-[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="5"]
+[ext_resource type="Script" uid="uid://bpexb6wjfpakj" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="5"]
 [ext_resource type="AudioStream" uid="uid://ck5r2mikarmcb" path="res://assets/audio/gameplay/bubbles/zapsplat_cartoon_bubble_pop_003_40275.ogg" id="6"]
 [ext_resource type="AudioStream" uid="uid://bi0qw3wfqwt4a" path="res://assets/audio/gameplay/bubbles/zapsplat_cartoon_pop_mouth_001_46664.ogg" id="7"]
 [ext_resource type="AudioStream" uid="uid://dh238rq8iy450" path="res://assets/audio/gameplay/bubbles/zapsplat_cartoon_bubble_pop_004_40276.ogg" id="8"]
@@ -97,7 +97,7 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yteb3"]
 _data = {
-"pop": SubResource("5")
+&"pop": SubResource("5")
 }
 
 [sub_resource type="Curve" id="6"]

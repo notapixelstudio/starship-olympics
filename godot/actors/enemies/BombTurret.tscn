@@ -1,44 +1,42 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://dc1sbv5g0ed1g"]
 
-[ext_resource path="res://actors/enemies/BombTurret.gd" type="Script" id=1]
-[ext_resource path="res://actors/weapons/Bomb.tscn" type="PackedScene" id=2]
-[ext_resource path="res://actors/enemies/towerDefense_tile249.png" type="Texture2D" id=3]
-[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=4]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture2D" id=5]
-[ext_resource path="res://actors/environments/components/Conquerable.gd" type="Script" id=6]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture2D" id=7]
+[ext_resource type="Script" uid="uid://cks6khgqhio23" path="res://actors/enemies/BombTurret.gd" id="1"]
+[ext_resource type="PackedScene" path="res://actors/weapons/Bomb.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://brbst4inrv2ub" path="res://actors/enemies/towerDefense_tile249.png" id="3"]
+[ext_resource type="Script" uid="uid://dg3ny04agcjtp" path="res://addons/ECM/Entity.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://dxspwyydprxb1" path="res://addons/ECM/icons/Entity.png" id="5"]
+[ext_resource type="Script" uid="uid://bavhxg3jobcnh" path="res://actors/environments/components/Conquerable.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://boh3pf58gw6ig" path="res://addons/ECM/icons/Component.png" id="7"]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id="1"]
 radius = 30.0
 
-[node name="BombTurret" type="StaticBody2D" groups=[
-"in_camera",
-"turret",
-]]
-script = ExtResource( 1 )
-bomb_scene = ExtResource( 2 )
+[node name="BombTurret" type="StaticBody2D" groups=["in_camera", "turret"]]
+script = ExtResource("1")
+bomb_scene = ExtResource("2")
 
 [node name="Turret" type="Sprite2D" parent="."]
-position = Vector2( 5.96046e-07, -5.96046e-08 )
-scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 3 )
+position = Vector2(5.96046e-07, -5.96046e-08)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
 
 [node name="Entity" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource("4")
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": ExtResource("5")
 }
 
 [node name="Conquerable" type="Node" parent="Entity"]
-script = ExtResource( 6 )
+script = ExtResource("6")
 __meta__ = {
-"_editor_icon": ExtResource( 7 )
+"_editor_icon": ExtResource("7")
 }
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://c4wnumyysruol"]
 
-[ext_resource type="Script" path="res://special_scenes/combat_UI/session_points/PilotStats.gd" id="1"]
+[ext_resource type="Script" uid="uid://bgwvuqjgokcfo" path="res://special_scenes/combat_UI/session_points/PilotStats.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://b8llrhhkcnyfh" path="res://special_scenes/combat_UI/session_points/Headshot.tscn" id="2"]
 [ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="2_ajx2r"]
 [ext_resource type="PackedScene" uid="uid://dw8dm4b52y11j" path="res://special_scenes/combat_UI/session_points/StarIcon.tscn" id="2_ny8yu"]
@@ -114,8 +114,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4l6uv"]
 _data = {
-"RESET": SubResource("1"),
-"Victory": SubResource("2")
+&"RESET": SubResource("1"),
+&"Victory": SubResource("2")
 }
 
 [sub_resource type="FontFile" id="3"]

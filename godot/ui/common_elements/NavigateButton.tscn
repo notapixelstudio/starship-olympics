@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://t3ow0yws6dop"]
 
-[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=1]
-[ext_resource path="res://ui/common_elements/NavigateButton.gd" type="Script" id=2]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1"]
+[ext_resource type="Script" uid="uid://ceiarckv8ehfo" path="res://ui/common_elements/NavigateButton.gd" id="2"]
 
 [node name="NavigateButton" type="Button" groups=["UI_Navigator"]]
 offset_right = 445.0
 offset_bottom = 50.0
-custom_minimum_size = Vector2( 0, 50 )
-theme = ExtResource( 1 )
+custom_minimum_size = Vector2(0, 50)
+theme = ExtResource("1")
 text = "NAVIGATE TO"
-script = ExtResource( 2 )
+script = ExtResource("2")
 title = "navigate to"
 
 [connection signal="focus_entered" from="." to="." method="_on_NavigatorButton_focus_entered"]

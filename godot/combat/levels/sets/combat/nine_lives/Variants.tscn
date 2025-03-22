@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://d1k7bn82h1clb"]
 
-[ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=1]
-[ext_resource path="res://combat/levels/sets/combat/nine_lives/variants/A.tscn" type="PackedScene" id=2]
+[ext_resource type="PackedScene" path="res://utils/Variants.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dlwyovjso3c7x" path="res://combat/levels/sets/combat/nine_lives/variants/A.tscn" id="2"]
 
-[node name="Variants" instance=ExtResource( 1 )]
-variant_scenes = [ ExtResource( 2 ) ]
+[node name="Variants" instance=ExtResource("1")]
+variant_scenes = [ExtResource("2")]

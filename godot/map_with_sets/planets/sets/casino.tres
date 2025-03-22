@@ -1,19 +1,19 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="Set" load_steps=7 format=3 uid="uid://bg53y3e6wwymm"]
 
-[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=1]
-[ext_resource path="res://combat/minigames/Diamondsnatch.tres" type="Resource" id=2]
-[ext_resource path="res://combat/minigames/Foundlings.tres" type="Resource" id=3]
-[ext_resource path="res://combat/minigames/AlchemicalBombing.tres" type="Resource" id=4]
-[ext_resource path="res://combat/minigames/ArkOfMemory.tres" type="Resource" id=5]
-[ext_resource path="res://assets/map/cards/diamonds.png" type="Texture2D" id=6]
+[ext_resource type="Script" uid="uid://b561ai7rs4ndp" path="res://map_with_sets/planets/Set.gd" id="1"]
+[ext_resource type="Resource" uid="uid://d38cmslouylqy" path="res://combat/minigames/Diamondsnatch.tres" id="2"]
+[ext_resource type="Resource" uid="uid://skcocog1ay5x" path="res://combat/minigames/Foundlings.tres" id="3"]
+[ext_resource type="Resource" uid="uid://ceunm7lkkwi21" path="res://combat/minigames/AlchemicalBombing.tres" id="4"]
+[ext_resource type="Resource" uid="uid://d3c60kolsndwn" path="res://combat/minigames/ArkOfMemory.tres" id="5"]
+[ext_resource type="Texture2D" uid="uid://xu65mw7u56r6" path="res://assets/map/cards/diamonds.png" id="6"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "casual"
 name = "Lumira IV"
 tagline1 = "the Diamond Rings of"
 tagline2 = ""
 description = ""
-minigames = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ) ]
-planet_sprite = ExtResource( 6 )
-mutators = [  ]
+minigames = [ExtResource("2"), ExtResource("4"), ExtResource("5"), ExtResource("3")]
+planet_sprite = ExtResource("6")
+mutators = []

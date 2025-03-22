@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b4ndjhwgnr446"]
 
 [ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://godot4/elements/gates/Gate.tscn" id="1"]
-[ext_resource type="Script" path="res://godot4/elements/gates/DiamondGate.gd" id="2"]
+[ext_resource type="Script" uid="uid://caykdt4qq6yis" path="res://godot4/elements/gates/DiamondGate.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://v7ikg5w65gkt" path="res://assets/sprites/environments/square_diamond.png" id="4"]
 
@@ -42,8 +42,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kqo05"]
 _data = {
-"Blink": SubResource("2"),
-"RESET": SubResource("3")
+&"Blink": SubResource("2"),
+&"RESET": SubResource("3")
 }
 
 [sub_resource type="Animation" id="Animation_42wux"]
@@ -97,9 +97,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_67qtv"]
 _data = {
-"RESET": SubResource("Animation_42wux"),
-"RotateCCW": SubResource("4"),
-"RotateCW": SubResource("Animation_mlxo8")
+&"RESET": SubResource("Animation_42wux"),
+&"RotateCCW": SubResource("4"),
+&"RotateCW": SubResource("Animation_mlxo8")
 }
 
 [node name="DiamondGate" instance=ExtResource("1")]

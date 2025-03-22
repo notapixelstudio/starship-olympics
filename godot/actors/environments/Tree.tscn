@@ -1,48 +1,48 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://cxv8s7yl7u0v"]
 
-[ext_resource path="res://assets/patterns/waves_duotone_lighter.png" type="Texture2D" id=1]
-[ext_resource path="res://assets/patterns/wall/leaves.png" type="Texture2D" id=2]
-[ext_resource path="res://actors/environments/Tree.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://djs558n6qavii" path="res://assets/patterns/waves_duotone_lighter.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dim73ghxit2cl" path="res://assets/patterns/wall/leaves.png" id="2"]
+[ext_resource type="Script" uid="uid://c826heh6ldpu6" path="res://actors/environments/Tree.gd" id="3"]
 
 [node name="Tree" type="Area2D"]
 collision_layer = 128
 collision_mask = 4
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="Graphics" type="Node2D" parent="."]
-modulate = Color( 1, 1, 1, 0.95 )
+modulate = Color(1, 1, 1, 0.95)
 
 [node name="Canopy" type="Polygon2D" parent="Graphics"]
 unique_name_in_owner = true
 z_index = 500
 z_as_relative = false
-color = Color( 0.0980392, 0.34902, 0.0941176, 1 )
-texture = ExtResource( 1 )
-texture_scale = Vector2( 0.25, 0.25 )
+color = Color(0.0980392, 0.34902, 0.0941176, 1)
+texture = ExtResource("1")
+texture_scale = Vector2(0.25, 0.25)
 
 [node name="CanopyShade" type="Polygon2D" parent="Graphics"]
 unique_name_in_owner = true
 z_index = 500
 z_as_relative = false
-color = Color( 0.0431373, 0.141176, 0.0431373, 0.784314 )
+color = Color(0.0431373, 0.141176, 0.0431373, 0.784314)
 
 [node name="Shadow" type="Polygon2D" parent="Graphics"]
 unique_name_in_owner = true
-position = Vector2( 0, 96 )
-color = Color( 0, 0, 0, 0.235294 )
+position = Vector2(0, 96)
+color = Color(0, 0, 0, 0.235294)
 
 [node name="Leaves" type="Line2D" parent="Graphics"]
 unique_name_in_owner = true
 z_index = 500
 z_as_relative = false
 width = 38.0
-default_color = Color( 0.0588235, 0.2, 0.0705882, 1 )
-texture = ExtResource( 2 )
+default_color = Color(0.0588235, 0.2, 0.0705882, 1)
+texture = ExtResource("2")
 texture_mode = 1
 
 [node name="HidingSpot" type="Area2D" parent="." groups=["hiding_spot"]]
 unique_name_in_owner = true
-scale = Vector2( 0.7, 0.7 )
+scale = Vector2(0.7, 0.7)
 collision_layer = 128
 collision_mask = 3
 

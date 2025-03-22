@@ -1,125 +1,158 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=30 format=3 uid="uid://cx52uwykhjive"]
 
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=3]
-[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=4]
-[ext_resource path="res://assets/patterns/xgrid.png" type="Texture2D" id=5]
-[ext_resource path="res://combat/styles/bones.tres" type="Resource" id=6]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture2D" id=7]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/sprites/environments/bones_deco.png" type="Texture2D" id=11]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=12]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=13]
-[ext_resource path="res://combat/levels/background/green.png" type="Texture2D" id=14]
-[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=15]
-[ext_resource path="res://combat/levels/background/green/pylon.png" type="Texture2D" id=22]
-[ext_resource path="res://combat/levels/background/green/pylon_mini2.png" type="Texture2D" id=23]
-[ext_resource path="res://combat/levels/background/green/pylon2.png" type="Texture2D" id=24]
-[ext_resource path="res://combat/levels/background/green/pylon_mini.png" type="Texture2D" id=25]
-[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=26]
+[ext_resource type="Resource" path="res://combat/modes/Deathmatch.tres" id="4"]
+[ext_resource type="Texture2D" uid="uid://dsi0t7cms4bcn" path="res://assets/patterns/xgrid.png" id="5"]
+[ext_resource type="Resource" uid="uid://b1cblnbj1ycjn" path="res://combat/styles/bones.tres" id="6"]
+[ext_resource type="Texture2D" uid="uid://cul1qame2qpja" path="res://assets/patterns/wall/bones.png" id="7"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="10"]
+[ext_resource type="Texture2D" uid="uid://btr2iabavi15p" path="res://assets/sprites/environments/bones_deco.png" id="11"]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="12"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="13"]
+[ext_resource type="Texture2D" uid="uid://bnwodi5cvfpoo" path="res://combat/levels/background/green.png" id="14"]
+[ext_resource type="PackedScene" path="res://combat/traits/NavigationZone.tscn" id="15"]
+[ext_resource type="Texture2D" uid="uid://c4dit8b535l8" path="res://combat/levels/background/green/pylon.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://dhygks3tcbxsu" path="res://combat/levels/background/green/pylon_mini2.png" id="23"]
+[ext_resource type="Texture2D" uid="uid://bvre88vkfx1y" path="res://combat/levels/background/green/pylon2.png" id="24"]
+[ext_resource type="Texture2D" uid="uid://4uue5h2eik0r" path="res://combat/levels/background/green/pylon_mini.png" id="25"]
+[ext_resource type="PackedScene" path="res://utils/CameraEye.tscn" id="26"]
 
-[node name="Arena" instance=ExtResource( 10 )]
+[sub_resource type="Resource" id="Resource_xjvwi"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_ffvb5"]
+metadata/__load_path__ = "res://addons/geometry/icons/GBeveledRect.svg"
+
+[sub_resource type="Resource" id="Resource_xb262"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_u88if"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_j4inv"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_h7h28"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_p1xp0"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_2s7b2"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_aue1j"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_kuuvc"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_0c0lf"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_rf4hm"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[node name="Arena" instance=ExtResource("10")]
 size_multiplier = 2.5
-game_mode = ExtResource( 4 )
-style = ExtResource( 6 )
+game_mode = ExtResource("4")
+style = ExtResource("6")
 
 [node name="KillModeManager" parent="Managers" index="8"]
 enabled = true
 
 [node name="BackgroundImage" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 14 )
+texture = ExtResource("14")
 
 [node name="Decoration" type="Node2D" parent="Battlefield/Background" index="0"]
 z_index = -100
 z_as_relative = false
 
 [node name="Polygon2D" type="Polygon2D" parent="Battlefield/Background/Decoration" index="0"]
-modulate = Color( 0.729412, 0.729412, 0.729412, 1 )
-color = Color( 0.627451, 0.564706, 0.47451, 1 )
-polygon = PackedVector2Array( -1600, 1000, -1600, 850, -1250, 1200, -1250, 1350 )
+modulate = Color(0.729412, 0.729412, 0.729412, 1)
+color = Color(0.627451, 0.564706, 0.47451, 1)
+polygon = PackedVector2Array(-1600, 1000, -1600, 850, -1250, 1200, -1250, 1350)
 
 [node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/Decoration" index="1"]
-modulate = Color( 0.729412, 0.729412, 0.729412, 1 )
-color = Color( 0.435294, 0.396078, 0.313726, 1 )
-polygon = PackedVector2Array( -1250, 1200, -1250, 1350, 1250, 1350, 1250, 1200 )
+modulate = Color(0.729412, 0.729412, 0.729412, 1)
+color = Color(0.435294, 0.396078, 0.313726, 1)
+polygon = PackedVector2Array(-1250, 1200, -1250, 1350, 1250, 1350, 1250, 1200)
 
 [node name="Polygon2D6" type="Polygon2D" parent="Battlefield/Background/Decoration" index="2"]
-modulate = Color( 0.729412, 0.729412, 0.729412, 1 )
-color = Color( 0.262745, 0.239216, 0.196078, 1 )
-polygon = PackedVector2Array( 1250, 1200, 1250, 1350, 1600, 1000, 1600, 850 )
+modulate = Color(0.729412, 0.729412, 0.729412, 1)
+color = Color(0.262745, 0.239216, 0.196078, 1)
+polygon = PackedVector2Array(1250, 1200, 1250, 1350, 1600, 1000, 1600, 850)
 
 [node name="Sprite2" type="Sprite2D" parent="Battlefield/Background/Decoration" index="3"]
-modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
-position = Vector2( 1600, 1289 )
-scale = Vector2( 1, -1 )
-texture = ExtResource( 24 )
+modulate = Color(0.568627, 0.568627, 0.568627, 1)
+position = Vector2(1600, 1289)
+scale = Vector2(1, -1)
+texture = ExtResource("24")
 
 [node name="Sprite4" type="Sprite2D" parent="Battlefield/Background/Decoration" index="4"]
-modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
-position = Vector2( 400, 1289 )
-scale = Vector2( 1, -1 )
-texture = ExtResource( 23 )
+modulate = Color(0.568627, 0.568627, 0.568627, 1)
+position = Vector2(400, 1289)
+scale = Vector2(1, -1)
+texture = ExtResource("23")
 
 [node name="Sprite5" type="Sprite2D" parent="Battlefield/Background/Decoration" index="5"]
-modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
-position = Vector2( -1600, 89 )
-scale = Vector2( 1, -1 )
-texture = ExtResource( 25 )
+modulate = Color(0.568627, 0.568627, 0.568627, 1)
+position = Vector2(-1600, 89)
+scale = Vector2(1, -1)
+texture = ExtResource("25")
 
 [node name="Sprite6" type="Sprite2D" parent="Battlefield/Background/Decoration" index="6"]
-modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
-position = Vector2( 1600, 89 )
-scale = Vector2( 1, -1 )
-texture = ExtResource( 23 )
+modulate = Color(0.568627, 0.568627, 0.568627, 1)
+position = Vector2(1600, 89)
+scale = Vector2(1, -1)
+texture = ExtResource("23")
 
 [node name="Sprite3" type="Sprite2D" parent="Battlefield/Background/Decoration" index="7"]
-modulate = Color( 0.568627, 0.568627, 0.568627, 1 )
-position = Vector2( -1600, -1111 )
-scale = Vector2( 1, -1 )
-texture = ExtResource( 24 )
+modulate = Color(0.568627, 0.568627, 0.568627, 1)
+position = Vector2(-1600, -1111)
+scale = Vector2(1, -1)
+texture = ExtResource("24")
 
 [node name="DecorationOverlay" type="Node2D" parent="Battlefield/Background" index="1"]
 z_index = 18
 z_as_relative = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Battlefield/Background/DecorationOverlay" index="0"]
-position = Vector2( -400, -1226 )
-texture = ExtResource( 23 )
+position = Vector2(-400, -1226)
+texture = ExtResource("23")
 
 [node name="Sprite2" type="Sprite2D" parent="Battlefield/Background/DecorationOverlay" index="1"]
-position = Vector2( -1600, -1262 )
-texture = ExtResource( 24 )
+position = Vector2(-1600, -1262)
+texture = ExtResource("24")
 
 [node name="Sprite3" type="Sprite2D" parent="Battlefield/Background/DecorationOverlay" index="2"]
-position = Vector2( -1600, -26 )
-texture = ExtResource( 25 )
+position = Vector2(-1600, -26)
+texture = ExtResource("25")
 
 [node name="Sprite4" type="Sprite2D" parent="Battlefield/Background/DecorationOverlay" index="3"]
-position = Vector2( 1600, -26 )
-texture = ExtResource( 23 )
+position = Vector2(1600, -26)
+texture = ExtResource("23")
 
 [node name="Sprite5" type="Sprite2D" parent="Battlefield/Background/DecorationOverlay" index="4"]
-position = Vector2( 1600, 1140 )
-texture = ExtResource( 22 )
+position = Vector2(1600, 1140)
+texture = ExtResource("22")
 
 [node name="Sprite6" type="Sprite2D" parent="Battlefield/Background/DecorationOverlay" index="5"]
-position = Vector2( 400, 1174 )
-texture = ExtResource( 25 )
+position = Vector2(400, 1174)
+texture = ExtResource("25")
 
-[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 8 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource("8")]
 hollow = true
 hide_grid = true
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("7")
+grid_color = Color(0, 1, 0.741176, 0.435294)
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
-script = ExtResource( 2 )
+script = SubResource("Resource_xjvwi")
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_icon": SubResource("Resource_ffvb5")
 }
 width = 3200
 height = 2400
@@ -130,119 +163,119 @@ bevel_sw = 360
 bevel_se = 360
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-texture = ExtResource( 5 )
-texture_scale = Vector2( 0.25, 0.25 )
-fg_color = Color( 0, 0.54902, 0.32549, 1 )
-bg_color = Color( 0, 0.2, 0.166667, 1 )
+texture = ExtResource("5")
+texture_scale = Vector2(0.25, 0.25)
+fg_color = Color(0, 0.54902, 0.32549, 1)
+bg_color = Color(0, 0.2, 0.166667, 1)
 
 [node name="Bones" type="Sprite2D" parent="Battlefield/Background" index="6"]
-modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
-position = Vector2( 0, 32 )
-scale = Vector2( 5, 5 )
-texture = ExtResource( 11 )
+modulate = Color(0.0588235, 0.909804, 0.439216, 0.0588235)
+position = Vector2(0, 32)
+scale = Vector2(5, 5)
+texture = ExtResource("11")
 
-[node name="Wall10" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
-position = Vector2( -1000, -600 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
+[node name="Wall10" parent="Battlefield/Middleground" index="0" instance=ExtResource("8")]
+position = Vector2(-1000, -600)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("7")
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_xb262")
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="NavigationZone" parent="Battlefield/Middleground/Wall10" index="9" instance=ExtResource( 15 )]
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall10" index="9" instance=ExtResource("15")]
 offset_type = "outset"
 
-[node name="Wall15" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
-position = Vector2( 1000, 600 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
+[node name="Wall15" parent="Battlefield/Middleground" index="1" instance=ExtResource("8")]
+position = Vector2(1000, 600)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("7")
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall15" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_u88if")
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="NavigationZone" parent="Battlefield/Middleground/Wall15" index="9" instance=ExtResource( 15 )]
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall15" index="9" instance=ExtResource("15")]
 offset_type = "outset"
 
-[node name="Wall11" parent="Battlefield/Middleground" index="2" instance=ExtResource( 8 )]
-position = Vector2( -1600, -1200 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
+[node name="Wall11" parent="Battlefield/Middleground" index="2" instance=ExtResource("8")]
+position = Vector2(-1600, -1200)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("7")
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_j4inv")
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall7" parent="Battlefield/Middleground" index="3" instance=ExtResource( 8 )]
-position = Vector2( -400, -1200 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
+[node name="Wall7" parent="Battlefield/Middleground" index="3" instance=ExtResource("8")]
+position = Vector2(-400, -1200)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("7")
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall7" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_h7h28")
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall8" parent="Battlefield/Middleground" index="4" instance=ExtResource( 8 )]
-position = Vector2( 400, 1200 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
+[node name="Wall8" parent="Battlefield/Middleground" index="4" instance=ExtResource("8")]
+position = Vector2(400, 1200)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("7")
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall8" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_p1xp0")
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall5" parent="Battlefield/Middleground" index="5" instance=ExtResource( 8 )]
-position = Vector2( -1600, 0 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
+[node name="Wall5" parent="Battlefield/Middleground" index="5" instance=ExtResource("8")]
+position = Vector2(-1600, 0)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("7")
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall5" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_2s7b2")
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall9" parent="Battlefield/Middleground" index="6" instance=ExtResource( 8 )]
-position = Vector2( 1600, 1200 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
+[node name="Wall9" parent="Battlefield/Middleground" index="6" instance=ExtResource("8")]
+position = Vector2(1600, 1200)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("7")
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall9" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_aue1j")
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall2" parent="Battlefield/Middleground" index="7" instance=ExtResource( 8 )]
-position = Vector2( 1600, 0 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
+[node name="Wall2" parent="Battlefield/Middleground" index="7" instance=ExtResource("8")]
+position = Vector2(1600, 0)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("7")
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_kuuvc")
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall12" parent="Battlefield/Middleground" index="8" instance=ExtResource( 8 )]
-position = Vector2( -800, 400 )
+[node name="Wall12" parent="Battlefield/Middleground" index="8" instance=ExtResource("8")]
+position = Vector2(-800, 400)
 rotation = -0.785398
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("7")
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall12" index="8"]
-script = ExtResource( 2 )
+script = SubResource("Resource_0c0lf")
 height = 700
 bevel = 50
 bevel_nw = 50
@@ -250,17 +283,17 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="NavigationZone" parent="Battlefield/Middleground/Wall12" index="9" instance=ExtResource( 15 )]
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall12" index="9" instance=ExtResource("15")]
 offset_type = "outset"
 
-[node name="Wall13" parent="Battlefield/Middleground" index="9" instance=ExtResource( 8 )]
-position = Vector2( 800, -400 )
+[node name="Wall13" parent="Battlefield/Middleground" index="9" instance=ExtResource("8")]
+position = Vector2(800, -400)
 rotation = -0.785398
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 7 )
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("7")
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Middleground/Wall13" index="8"]
-script = ExtResource( 2 )
+script = SubResource("Resource_rf4hm")
 height = 700
 bevel = 50
 bevel_nw = 50
@@ -268,27 +301,27 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="NavigationZone" parent="Battlefield/Middleground/Wall13" index="9" instance=ExtResource( 15 )]
+[node name="NavigationZone" parent="Battlefield/Middleground/Wall13" index="9" instance=ExtResource("15")]
 offset_type = "outset"
 
-[node name="CameraEye" parent="Battlefield/Foreground" index="0" instance=ExtResource( 26 )]
-position = Vector2( -1500, 1100 )
+[node name="CameraEye" parent="Battlefield/Foreground" index="0" instance=ExtResource("26")]
+position = Vector2(-1500, 1100)
 
-[node name="CameraEye2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 26 )]
-position = Vector2( 1500, -1100 )
+[node name="CameraEye2" parent="Battlefield/Foreground" index="1" instance=ExtResource("26")]
+position = Vector2(1500, -1100)
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
-position = Vector2( -1200, 800 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("9")]
+position = Vector2(-1200, 800)
 rotation = 0.0
-species = ExtResource( 12 )
+species = ExtResource("12")
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-position = Vector2( 1200, -800 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("9")]
+position = Vector2(1200, -800)
 rotation = 3.14159
 controls = "joy2"
-species = ExtResource( 13 )
+species = ExtResource("13")
 cpu = true
 
 [node name="Camera3D" parent="." index="6"]
-zoom = Vector2( 1.42109e+10, 1.42109e+10 )
+zoom = Vector2(1.42109e+10, 1.42109e+10)
 position_smoothing_speed = 0.3

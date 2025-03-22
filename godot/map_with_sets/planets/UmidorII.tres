@@ -1,29 +1,25 @@
-[gd_resource type="Resource" load_steps=11 format=2]
+[gd_resource type="Resource" script_class="Set" load_steps=11 format=3 uid="uid://dx2tqw8t6cfrb"]
 
-[ext_resource path="res://combat/modes/Diamondsnatch.tres" type="Resource" id=1]
-[ext_resource path="res://combat/levels/old/2players/umidor_1.tscn" type="PackedScene" id=2]
-[ext_resource path="res://combat/levels/old/2players/umidor_2.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/levels/old/2players/umidor_3.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/levels/old/2players/umidor_4.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/levels/old/3players/umidor_1-3.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/levels/old/4players/umidor_1-4.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/map/umidor_ii.png" type="Texture2D" id=8]
-[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=9]
-[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=10]
-
-
-
-
+[ext_resource type="Resource" uid="uid://g2u2u62gf3ju" path="res://combat/modes/Diamondsnatch.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://ciu5lylgcqjv1" path="res://combat/levels/old/2players/umidor_1.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://ctrkm5yd88wra" path="res://combat/levels/old/2players/umidor_2.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://br8kv8crjiy1b" path="res://combat/levels/old/2players/umidor_3.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://cpu6yeckqht4d" path="res://combat/levels/old/2players/umidor_4.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dcso118b238sj" path="res://combat/levels/old/3players/umidor_1-3.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://l1ljt6t520le" path="res://combat/levels/old/4players/umidor_1-4.tscn" id="7"]
+[ext_resource type="Texture2D" uid="uid://o60swdpjipmg" path="res://assets/map/umidor_ii.png" id="8"]
+[ext_resource type="Script" uid="uid://b561ai7rs4ndp" path="res://map_with_sets/planets/Set.gd" id="9"]
+[ext_resource type="Resource" uid="uid://b4mhr8ft2dgry" path="res://selection/characters/umidorians_1.tres" id="10"]
 
 [resource]
-script = ExtResource( 9 )
+script = ExtResource("9")
 name = "Umidor II"
 tagline1 = "blah"
 tagline2 = "blah"
-species = ExtResource( 10 )
-levels_1players = [  ]
-levels_2players = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
-levels_3players = [ ExtResource( 6 ) ]
-levels_4players = [ ExtResource( 7 ) ]
-planet_sprite = ExtResource( 8 )
-game_mode = ExtResource( 1 )
+species = ExtResource("10")
+levels_1players = []
+levels_2players = [ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5")]
+levels_3players = [ExtResource("6")]
+levels_4players = [ExtResource("7")]
+planet_sprite = ExtResource("8")
+game_mode = ExtResource("1")

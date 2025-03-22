@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://tytfenscfyp0"]
 
-[ext_resource type="Script" path="res://godot4/elements/gates/Gate.gd" id="1"]
-[ext_resource type="PackedScene" path="res://godot4/effects/Shadow.tscn" id="2"]
+[ext_resource type="Script" uid="uid://dem1yvo86rb2v" path="res://godot4/elements/gates/Gate.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://baclyt1ayjb0e" path="res://assets/sprites/signs/arrow.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bcoonsxenm7eg" path="res://assets/sprites/environments/ring_part.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://cgbfpreevxmtx" path="res://assets/sprites/environments/ring_full.png" id="5"]
 [ext_resource type="AudioStream" uid="uid://cny4ebaabn7u4" path="res://assets/audio/FX/392693__screamstudio__sci-fi-sfx.wav" id="6"]
-[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" id="8"]
+[ext_resource type="Script" uid="uid://ddxaklng2222g" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" id="8"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 resource_local_to_scene = true
@@ -45,8 +45,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bcjds"]
 _data = {
-"Blink": SubResource("2"),
-"RESET": SubResource("3")
+&"Blink": SubResource("2"),
+&"RESET": SubResource("3")
 }
 
 [node name="Gate" type="Area2D" groups=["gates"]]

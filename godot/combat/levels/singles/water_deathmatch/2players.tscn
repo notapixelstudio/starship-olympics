@@ -1,88 +1,92 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=16 format=3 uid="uid://cybko6iey0ttr"]
 
-[ext_resource path="res://addons/geometry/GRoundedRect.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=2]
-[ext_resource path="res://actors/environments/WaterWall.tscn" type="PackedScene" id=3]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=7]
-[ext_resource path="res://assets/sprites/environments/bones_deco.png" type="Texture2D" id=10]
-[ext_resource path="res://selection/characters/eelectrons_1.tres" type="Resource" id=11]
-[ext_resource path="res://combat/levels/background/green.png" type="Texture2D" id=12]
-[ext_resource path="res://combat/styles/bones.tres" type="Resource" id=13]
-[ext_resource path="res://assets/patterns/xgrid.png" type="Texture2D" id=14]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=15]
-[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=18]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=20]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture2D" id=24]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=25]
-[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=26]
+[ext_resource type="PackedScene" uid="uid://o3ho65sxsg2o" path="res://actors/environments/WaterWall.tscn" id="3"]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="7"]
+[ext_resource type="Texture2D" uid="uid://btr2iabavi15p" path="res://assets/sprites/environments/bones_deco.png" id="10"]
+[ext_resource type="Resource" uid="uid://c4n5tgxu5asop" path="res://selection/characters/eelectrons_1.tres" id="11"]
+[ext_resource type="Texture2D" uid="uid://bnwodi5cvfpoo" path="res://combat/levels/background/green.png" id="12"]
+[ext_resource type="Resource" uid="uid://b1cblnbj1ycjn" path="res://combat/styles/bones.tres" id="13"]
+[ext_resource type="Texture2D" uid="uid://dsi0t7cms4bcn" path="res://assets/patterns/xgrid.png" id="14"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="15"]
+[ext_resource type="Resource" path="res://combat/modes/Deathmatch.tres" id="18"]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="20"]
+[ext_resource type="Texture2D" uid="uid://cul1qame2qpja" path="res://assets/patterns/wall/bones.png" id="24"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="25"]
+[ext_resource type="PackedScene" path="res://utils/CameraEye.tscn" id="26"]
 
-[node name="Arena" instance=ExtResource( 20 )]
+[sub_resource type="Resource" id="Resource_d71g1"]
+metadata/__load_path__ = "res://addons/geometry/GConvexPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_wb21o"]
+metadata/__load_path__ = "res://addons/geometry/GRoundedRect.gd"
+
+[node name="Arena" instance=ExtResource("20")]
 size_multiplier = 2.5
-game_mode = ExtResource( 18 )
-style = ExtResource( 13 )
+game_mode = ExtResource("18")
+style = ExtResource("13")
 
 [node name="KillModeManager" parent="Managers" index="8"]
 enabled = true
 
 [node name="BackgroundImage" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 12 )
+texture = ExtResource("12")
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 25 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource("25")]
 hollow = true
 hide_grid = true
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 24 )
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("24")
+grid_color = Color(0, 1, 0.741176, 0.435294)
 
 [node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWall" index="8"]
 visible = false
-polygon = PackedVector2Array( -700, -1200, -400, -1200, 0, -800, 400, -1200, 700, -1200, 1600, -300, 1600, 300, 700, 1200, 400, 1200, 0, 800, -400, 1200, -700, 1200, -1600, 300, -1600, -300 )
+polygon = PackedVector2Array(-700, -1200, -400, -1200, 0, -800, 400, -1200, 700, -1200, 1600, -300, 1600, 300, 700, 1200, 400, 1200, 0, 800, -400, 1200, -700, 1200, -1600, 300, -1600, -300)
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="9"]
-script = ExtResource( 2 )
+script = SubResource("Resource_d71g1")
 __meta__ = {
 "_editor_description_": ""
 }
-polygon = PackedVector2Array( -700, -1200, -400, -1200, 0, -800, 400, -1200, 700, -1200, 1600, -300, 1600, 300, 700, 1200, 400, 1200, 0, 800, -400, 1200, -700, 1200, -1600, 300, -1600, -300 )
+polygon = PackedVector2Array(-700, -1200, -400, -1200, 0, -800, 400, -1200, 700, -1200, 1600, -300, 1600, 300, 700, 1200, 400, 1200, 0, 800, -400, 1200, -700, 1200, -1600, 300, -1600, -300)
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-texture = ExtResource( 14 )
-texture_scale = Vector2( 0.25, 0.25 )
-fg_color = Color( 0, 0.54902, 0.32549, 1 )
-bg_color = Color( 0, 0.2, 0.166667, 1 )
+texture = ExtResource("14")
+texture_scale = Vector2(0.25, 0.25)
+fg_color = Color(0, 0.54902, 0.32549, 1)
+bg_color = Color(0, 0.2, 0.166667, 1)
 
 [node name="Bones" type="Sprite2D" parent="Battlefield/Background" index="4"]
-modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
-position = Vector2( 0, 32 )
-scale = Vector2( 5, 5 )
-texture = ExtResource( 10 )
+modulate = Color(0.0588235, 0.909804, 0.439216, 0.0588235)
+position = Vector2(0, 32)
+scale = Vector2(5, 5)
+texture = ExtResource("10")
 
-[node name="WaterWall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 3 )]
+[node name="WaterWall" parent="Battlefield/Middleground" index="0" instance=ExtResource("3")]
 
 [node name="GRoundedRect" type="Node" parent="Battlefield/Middleground/WaterWall" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_wb21o")
 width = 300
 height = 2000
 radius = 140
 precision = 10
 
-[node name="CameraEye" parent="Battlefield/Foreground" index="0" instance=ExtResource( 26 )]
-position = Vector2( -1300, 900 )
+[node name="CameraEye" parent="Battlefield/Foreground" index="0" instance=ExtResource("26")]
+position = Vector2(-1300, 900)
 
-[node name="CameraEye2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 26 )]
-position = Vector2( 1300, -900 )
+[node name="CameraEye2" parent="Battlefield/Foreground" index="1" instance=ExtResource("26")]
+position = Vector2(1300, -900)
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 15 )]
-position = Vector2( -1000, 600 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("15")]
+position = Vector2(-1000, 600)
 rotation = 0.0
-species = ExtResource( 7 )
+species = ExtResource("7")
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 15 )]
-position = Vector2( 1000, -600 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("15")]
+position = Vector2(1000, -600)
 rotation = 3.14159
 controls = "kb2"
-species = ExtResource( 11 )
+species = ExtResource("11")
 
 [node name="Camera3D" parent="." index="6"]
-zoom = Vector2( 1.42109e+10, 1.42109e+10 )
+zoom = Vector2(1.42109e+10, 1.42109e+10)
 position_smoothing_speed = 0.3

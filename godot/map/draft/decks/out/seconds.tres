@@ -1,19 +1,19 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" script_class="StartingDeck" load_steps=8 format=3 uid="uid://vsempy67y0ro"]
 
-[ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
-[ext_resource path="res://map/draft/cards/DiamondMinefield.tres" type="Resource" id=2]
-[ext_resource path="res://map/draft/cards/Connex.tres" type="Resource" id=3]
-[ext_resource path="res://map/draft/cards/ArkOfMemory.tres" type="Resource" id=4]
-[ext_resource path="res://map/draft/cards/Undertakers.tres" type="Resource" id=5]
-[ext_resource path="res://map/draft/cards/GuardTheBridge.tres" type="Resource" id=6]
-[ext_resource path="res://map/draft/cards/GoalPortal.tres" type="Resource" id=7]
+[ext_resource type="Script" uid="uid://bwveyhtu8y4uw" path="res://map/draft/decks/StartingDeck.gd" id="1"]
+[ext_resource type="Resource" uid="uid://c662pko802ttn" path="res://map/draft/cards/DiamondMinefield.tres" id="2"]
+[ext_resource type="Resource" uid="uid://k5v0whb4ciqt" path="res://map/draft/cards/Connex.tres" id="3"]
+[ext_resource type="Resource" uid="uid://cnv4ioitqvt0v" path="res://map/draft/cards/ArkOfMemory.tres" id="4"]
+[ext_resource type="Resource" uid="uid://c2mnjetd6fhs1" path="res://map/draft/cards/Undertakers.tres" id="5"]
+[ext_resource type="Resource" uid="uid://cu78yo25xowkn" path="res://map/draft/cards/GuardTheBridge.tres" id="6"]
+[ext_resource type="Resource" uid="uid://cls01i5haqscc" path="res://map/draft/cards/GoalPortal.tres" id="7"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "seconds"
 order = 0
 name = "Seconds"
-cards = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 4 ) ]
-nexts = [  ]
+cards = [ExtResource("2"), ExtResource("3"), ExtResource("6"), ExtResource("5"), ExtResource("7"), ExtResource("4")]
+nexts = []
 playlist = false
-unlocks = [  ]
+unlocks = []
