@@ -1,11 +1,14 @@
 extends Node
 
 @export var base_time := 2.0
+@export var spawn_on_all_collected := false
+@export var spawn_count_on_all_collected := 2 : set = set_spawn_count_on_all_collected
+@export var spawn_on_timeout := true
 @export var waves_container : Node2D
 @export var battlefield: Node2D
 
 const WAVES_GROUP = "spawn_waves"
-#const COLLECTABLE = "collectable"
+const COLLECTABLE_GROUP = "Treasure"
 const WAVE_DELAY = 0.0
 var to_next_wave = 2
 var current_wave = 0
@@ -17,14 +20,18 @@ var spawners_per_wave : Dictionary
 var how_many_spawners: int
 var current_spawners = 0
 
+var _spawn_time_on_all_collected : float
+
 signal done
 
+func set_spawn_count_on_all_collected(v:int) -> void:
+	spawn_count_on_all_collected = v
+	_spawn_time_on_all_collected = 1/(spawn_count_on_all_collected-1.0) # WARNING this works beacuse treasures take one second to enter
+	
 func _ready():
 	Events.match_over.connect(_on_match_over)
 	
-	Events.connect("spawned", Callable(self, "spawned"))
-	
-	#Events.connect("sth_collected", Callable(self, "_on_sth_collected"))
+	Events.connect("spawned", spawned)
 	
 	waves = waves_container.get_children()
 	
@@ -41,7 +48,10 @@ func setup(starting_wave = 0):
 			spawners_per_wave[i].shuffle()
 	
 func start():
-	%Timer.start()
+	if spawn_on_timeout:
+		%Timer.start()
+	if spawn_on_all_collected:
+		%CheckEmptyTimer.start(_spawn_time_on_all_collected)
 	
 func spawned(element_spawned: ElementSpawnerGroup):
 	print("This just spawned {spawned_element}".format({"spawned_element": element_spawned}))
@@ -81,15 +91,22 @@ func _handle_waves():
 	%Timer.start()
 	
 func _on_Timer_timeout():
+	if not spawn_on_timeout:
+		return
+		
 	print("asking to spawn because timer of {timer_wait_time} has expired".format({"timer_wait_time": %Timer.wait_time}))
 	_handle_waves()
 
-#func _on_sth_collected(_collector, collectee):
-#	# if there are no collectables to be collected anymore. We can move on with spawning
-#	var all = len(get_tree().get_nodes_in_group(COLLECTABLE))
-#	if all <= 1:
-#		print("asking to spawn because there are no collectable anymore")
-#		_handle_waves()
-
 func _on_match_over(data:Dictionary) -> void:
 	%Timer.stop()
+
+
+func _on_check_empty_timer_timeout() -> void:
+	if not spawn_on_all_collected:
+		return
+		
+	# if there are no collectables to be collected anymore. We can move on with spawning
+	var all = len(get_tree().get_nodes_in_group(COLLECTABLE_GROUP))
+	if all <= 0:
+		print("asking to spawn because there are no collectable anymore")
+		_handle_waves()

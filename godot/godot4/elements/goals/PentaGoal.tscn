@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ccigjuln5qq4b"]
 
-[ext_resource type="Script" path="res://godot4/elements/goals/PentaGoal.gd" id="1_efvqh"]
-[ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="2_d2f78"]
+[ext_resource type="Script" uid="uid://ddv1q23rekiug" path="res://godot4/elements/goals/PentaGoal.gd" id="1_efvqh"]
+[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="2_d2f78"]
 [ext_resource type="PackedScene" uid="uid://b3jyuprf7rhpo" path="res://godot4/effects/IsoPolygon.tscn" id="2_k6hee"]
 
 [sub_resource type="Animation" id="Animation_cdh5s"]
@@ -62,8 +62,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ido2i"]
 _data = {
-"RESET": SubResource("Animation_cdh5s"),
-"feedback": SubResource("Animation_baae3")
+&"RESET": SubResource("Animation_cdh5s"),
+&"feedback": SubResource("Animation_baae3")
 }
 
 [node name="PentaGoal" type="Area2D"]

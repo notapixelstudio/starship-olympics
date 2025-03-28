@@ -1,19 +1,19 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" script_class="StartingDeck" load_steps=8 format=3 uid="uid://bvf77ontr62nk"]
 
-[ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
-[ext_resource path="res://map/draft/cards/WhiteMystery.tres" type="Resource" id=2]
-[ext_resource path="res://map/draft/cards/BlueMystery.tres" type="Resource" id=3]
-[ext_resource path="res://map/draft/cards/MagentaMystery.tres" type="Resource" id=4]
-[ext_resource path="res://map/draft/cards/YellowMystery.tres" type="Resource" id=5]
-[ext_resource path="res://map/draft/cards/RedMystery.tres" type="Resource" id=6]
-[ext_resource path="res://map/draft/cards/GreenMystery.tres" type="Resource" id=7]
+[ext_resource type="Script" uid="uid://bwveyhtu8y4uw" path="res://map/draft/decks/StartingDeck.gd" id="1"]
+[ext_resource type="Resource" uid="uid://bnqc07mgdy581" path="res://map/draft/cards/WhiteMystery.tres" id="2"]
+[ext_resource type="Resource" uid="uid://glhb2frvkg3x" path="res://map/draft/cards/BlueMystery.tres" id="3"]
+[ext_resource type="Resource" uid="uid://csr3mwvi0ul2n" path="res://map/draft/cards/MagentaMystery.tres" id="4"]
+[ext_resource type="Resource" uid="uid://b8tak7ys6jt84" path="res://map/draft/cards/YellowMystery.tres" id="5"]
+[ext_resource type="Resource" uid="uid://b8rjofrcwirxh" path="res://map/draft/cards/RedMystery.tres" id="6"]
+[ext_resource type="Resource" uid="uid://c8ti4b5tfmv8y" path="res://map/draft/cards/GreenMystery.tres" id="7"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "mystery"
 order = 100
 name = "Mystery"
-cards = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ]
-nexts = [  ]
+cards = [ExtResource("7"), ExtResource("6"), ExtResource("5"), ExtResource("3"), ExtResource("2"), ExtResource("4")]
+nexts = []
 playlist = false
-unlocks = [  ]
+unlocks = []

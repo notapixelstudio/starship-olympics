@@ -55,6 +55,7 @@ func redraw() -> void:
 		var pilot_stats = pilot_stats_scene.instantiate()
 		pilot_stats.set_player(player)
 		pilot_stats.set_max_points(max_session_score)
+		pilot_stats.set_session(session)
 		pilot_stats.position.y = line_height*i
 		%Container.add_child(pilot_stats)
 		i+=1
@@ -65,8 +66,6 @@ func update_scores() -> void:
 	var i := 0
 	for player in players:
 		var pilot_stats = %Container.get_child(i)
-		pilot_stats.set_points(1 if session.is_winner(player.get_team()) else 0)
-		# pilot_stats.set_new_points(1 if player.get_team() in match_winners else 0)
 		pilot_stats.update_score()
 		i+=1
 		

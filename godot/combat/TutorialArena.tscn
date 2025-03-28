@@ -1,21 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://cakd1aeudf34v"]
 
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
-[ext_resource path="res://combat/TutorialArena.gd" type="Script" id=2]
-[ext_resource path="res://combat/styles/tutorial.tres" type="Resource" id=3]
-[ext_resource path="res://map_with_sets/DescriptionMode.tscn" type="PackedScene" id=6]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="1"]
+[ext_resource type="Script" uid="uid://dvrev5bvvhuco" path="res://combat/TutorialArena.gd" id="2"]
+[ext_resource type="Resource" uid="uid://c615oub45w1dm" path="res://combat/styles/tutorial.tres" id="3"]
+[ext_resource type="PackedScene" path="res://map_with_sets/DescriptionMode.tscn" id="6"]
 
-[node name="TutorialArena" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="TutorialArena" instance=ExtResource("1")]
+script = ExtResource("2")
 gameover_scene = null
-style = ExtResource( 3 )
+style = ExtResource("3")
 match_duration_override = -1.0
 show_hud = false
 tutorial = true
 initial_zoom_in = false
 drop_ship = false
 
-[node name="DescriptionMode" parent="CanvasLayer" index="1" instance=ExtResource( 6 )]
+[node name="DescriptionMode" parent="CanvasLayer" index="1" instance=ExtResource("6")]
 unique_name_in_owner = true
 visible = false
 
@@ -24,8 +24,8 @@ current = false
 disabled_override = true
 
 [node name="Camera2D" type="Camera2D" parent="." index="9"]
-position = Vector2( -1500, -700 )
+position = Vector2(-1500, -700)
 current = true
-zoom = Vector2( 5, 5 )
+zoom = Vector2(5, 5)
 
 [connection signal="ready_to_fight" from="CanvasLayer/DescriptionMode" to="." method="_on_DescriptionMode_ready_to_fight"]

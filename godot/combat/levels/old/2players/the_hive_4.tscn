@@ -1,20 +1,38 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=3 uid="uid://ddaupfjpdndvv"]
 
-[ext_resource path="res://addons/geometry/GRect.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/icons/GRect.svg" type="Texture2D" id=2]
-[ext_resource path="res://addons/geometry/icons/GSegment.svg" type="Texture2D" id=3]
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=4]
-[ext_resource path="res://addons/geometry/GSegment.gd" type="Script" id=5]
-[ext_resource path="res://addons/geometry/icons/GBeveledRect.svg" type="Texture2D" id=6]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=7]
-[ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=8]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=9]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=10]
-[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=11]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=12]
-[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture2D" id=13]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://c1duhx14s1f2t" path="res://actors/environments/Field.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="9"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="10"]
+[ext_resource type="Resource" uid="uid://b4mhr8ft2dgry" path="res://selection/characters/umidorians_1.tres" id="11"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="12"]
+[ext_resource type="Texture2D" uid="uid://cyhqm3c6nap45" path="res://combat/levels/background/mantiacs_background.png" id="13"]
 
-[node name="Arena" index="0" instance=ExtResource( 7 )]
+[sub_resource type="Resource" id="Resource_wyb1h"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_s7nu6"]
+metadata/__load_path__ = "res://addons/geometry/icons/GBeveledRect.svg"
+
+[sub_resource type="Resource" id="Resource_sa5s2"]
+metadata/__load_path__ = "res://addons/geometry/GSegment.gd"
+
+[sub_resource type="Resource" id="Resource_t68eg"]
+metadata/__load_path__ = "res://addons/geometry/icons/GSegment.svg"
+
+[sub_resource type="Resource" id="Resource_rig4b"]
+metadata/__load_path__ = "res://addons/geometry/GRect.gd"
+
+[sub_resource type="Resource" id="Resource_7x2c6"]
+metadata/__load_path__ = "res://addons/geometry/icons/GRect.svg"
+
+[sub_resource type="Resource" id="Resource_3sd0c"]
+metadata/__load_path__ = "res://addons/geometry/GRect.gd"
+
+[sub_resource type="Resource" id="Resource_fjy2k"]
+metadata/__load_path__ = "res://addons/geometry/icons/GRect.svg"
+
+[node name="Arena" index="0" instance=ExtResource("7")]
 size_multiplier = 2.5
 
 [node name="CrownModeManager" parent="." index="5"]
@@ -24,72 +42,73 @@ enabled = false
 enabled = true
 
 [node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 13 )
+texture = ExtResource("13")
 centered = false
 
-[node name="OutsideWall" parent="Battlefield/Background" index="0" instance=ExtResource( 9 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="0" instance=ExtResource("9")]
 hollow = true
 offset = 200
 elongation = 100
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
-script = ExtResource( 4 )
+script = SubResource("Resource_wyb1h")
 __meta__ = {
-"_editor_icon": ExtResource( 6 )
+"_editor_icon": SubResource("Resource_s7nu6")
 }
 width = 1700
 height = 1800
 bevel = 600
 
-[node name="Field" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
+[node name="Field" parent="Battlefield/Middleground" index="0" instance=ExtResource("8")]
 type = 0
 
 [node name="GSegment" type="Node" parent="Battlefield/Middleground/Field" index="4"]
-script = ExtResource( 5 )
+script = SubResource("Resource_sa5s2")
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_icon": SubResource("Resource_t68eg")
 }
-a = Vector2( 0, -500 )
-b = Vector2( 0, 500 )
+a = Vector2(0, -500)
+b = Vector2(0, 500)
 
-[node name="Wall" parent="Battlefield/Middleground" index="1" instance=ExtResource( 9 )]
-position = Vector2( 0, 500 )
+[node name="Wall" parent="Battlefield/Middleground" index="1" instance=ExtResource("9")]
+position = Vector2(0, 500)
 rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_rig4b")
 __meta__ = {
-"_editor_icon": ExtResource( 2 )
+"_editor_icon": SubResource("Resource_7x2c6")
 }
 width = 100
 height = 100
 
-[node name="Wall2" parent="Battlefield/Middleground" index="2" instance=ExtResource( 9 )]
-position = Vector2( 0, -500 )
+[node name="Wall2" parent="Battlefield/Middleground" index="2" instance=ExtResource("9")]
+position = Vector2(0, -500)
 rotation = 0.785398
 
 [node name="GRect" type="Node" parent="Battlefield/Middleground/Wall2" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_3sd0c")
 __meta__ = {
-"_editor_icon": ExtResource( 2 )
+"_editor_icon": SubResource("Resource_fjy2k")
 }
 width = 100
 height = 100
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 12 )]
-position = Vector2( -700, 0 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("12")]
+position = Vector2(-700, 0)
 rotation = 0.0
 controls = "joy1"
-species = ExtResource( 10 )
+species = ExtResource("10")
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 12 )]
-position = Vector2( 700, 0 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("12")]
+position = Vector2(700, 0)
 rotation = 3.14159
 controls = "joy2"
-species = ExtResource( 11 )
+species = ExtResource("11")
 
 [node name="Camera3D" parent="." index="15"]
 position_smoothing_speed = 0.3
+
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]
 
 [editable path="CanvasLayer/Pause"]

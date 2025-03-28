@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://chegk33457388"]
 
-[ext_resource path="res://assets/icon/deathmatch_logo.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://cbk483xmjsnla" path="res://assets/icon/deathmatch_logo.png" id="1"]
 
 [node name="LogoMinigame" type="TextureRect"]
 offset_right = 80.0
 offset_bottom = 80.0
-custom_minimum_size = Vector2( 80, 80 )
-texture = ExtResource( 1 )
+custom_minimum_size = Vector2(80, 80)
+texture = ExtResource("1")
 expand = true
 stretch_mode = 5

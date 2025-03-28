@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://bsyle6xluwvc3"]
 
-[ext_resource path="res://map/ButtonCell.gd" type="Script" id=1]
-[ext_resource path="res://assets/map/cards/start.png" type="Texture2D" id=2]
+[ext_resource type="Texture2D" uid="uid://be48pt5yymil6" path="res://assets/map/cards/start.png" id="2"]
 
-[node name="ButtonCell" type="Node2D" groups=[
-"map_point",
-]]
-script = ExtResource( 1 )
+[sub_resource type="Resource" id="Resource_cyked"]
+metadata/__load_path__ = "res://map/ButtonCell.gd"
+
+[node name="ButtonCell" type="Node2D" groups=["map_point"]]
+script = SubResource("Resource_cyked")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource("2")

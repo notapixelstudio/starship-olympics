@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://bia7yrbdvp8vw"]
 
-[ext_resource type="Script" path="res://godot4/elements/environments/ShieldWall.gd" id="1_vjsnw"]
+[ext_resource type="Script" uid="uid://bxnllekqfjvdf" path="res://godot4/elements/environments/ShieldWall.gd" id="1_vjsnw"]
 [ext_resource type="Texture2D" uid="uid://csxyu2y2crrca" path="res://assets/sprites/signs/shield.png" id="2"]
-[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="4"]
+[ext_resource type="Script" uid="uid://bpexb6wjfpakj" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://b3jyuprf7rhpo" path="res://godot4/effects/IsoPolygon.tscn" id="4_nffqm"]
 
 [sub_resource type="Animation" id="1"]
@@ -83,10 +83,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_667pc"]
 _data = {
-"Disappear": SubResource("1"),
-"Hit": SubResource("2"),
-"RESET": SubResource("4"),
-"reset": SubResource("3")
+&"Disappear": SubResource("1"),
+&"Hit": SubResource("2"),
+&"RESET": SubResource("4"),
+&"reset": SubResource("3")
 }
 
 [node name="ShieldWall" type="Area2D"]

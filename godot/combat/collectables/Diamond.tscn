@@ -1,14 +1,14 @@
 [gd_scene load_steps=19 format=3 uid="uid://ckykuuqee1aml"]
 
-[ext_resource type="Script" path="res://combat/collectables/Diamond.gd" id="1"]
-[ext_resource type="Script" path="res://addons/ECM/Entity.gd" id="2"]
-[ext_resource type="Script" path="res://addons/ECM/Component.gd" id="4"]
+[ext_resource type="Script" uid="uid://8ipmyjvpdhg0" path="res://combat/collectables/Diamond.gd" id="1"]
+[ext_resource type="Script" uid="uid://dg3ny04agcjtp" path="res://addons/ECM/Entity.gd" id="2"]
+[ext_resource type="Script" uid="uid://bx28gpgdlmtid" path="res://addons/ECM/Component.gd" id="4"]
 [ext_resource type="PackedScene" path="res://combat/traits/Strategic.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://cyqlaxwtqgk0u" path="res://assets/sprites/environments/diamond.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://brxcax73it83q" path="res://assets/sprites/environments/crown_halo.png" id="8"]
 [ext_resource type="Animation" path="res://assets/animations/AppearFuhfuhfuh.tres" id="9"]
 [ext_resource type="PackedScene" uid="uid://otu584npkmha" path="res://actors/environments/DiamondCollectParticles.tscn" id="11"]
-[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="12"]
+[ext_resource type="Script" uid="uid://bpexb6wjfpakj" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="12"]
 [ext_resource type="AudioStream" uid="uid://cjmuge1iae07f" path="res://assets/audio/FX/sfx_sounds_impact10.wav" id="13"]
 [ext_resource type="Texture2D" uid="uid://5bdkckp4a6ig" path="res://assets/sprites/environments/diamond_outline.png" id="14"]
 
@@ -46,12 +46,12 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8xvxa"]
 _data = {
-"Blink": SubResource("2")
+&"Blink": SubResource("2")
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_njp27"]
 _data = {
-"AppearFuhfuhfuh": ExtResource("9")
+&"AppearFuhfuhfuh": ExtResource("9")
 }
 
 [sub_resource type="Animation" id="3"]
@@ -111,8 +111,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fbxl1"]
 _data = {
-"RESET": SubResource("3"),
-"drop": SubResource("4")
+&"RESET": SubResource("3"),
+&"drop": SubResource("4")
 }
 
 [node name="Diamond" type="RigidBody2D" groups=["Diamond", "Foreground", "in_camera"]]
@@ -130,6 +130,7 @@ script = ExtResource("2")
 script = ExtResource("4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 3)
 texture = ExtResource("7")
 
@@ -140,19 +141,20 @@ scale = Vector2(1.05, 1.05)
 texture = ExtResource("14")
 
 [node name="SpriteEffect" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, 3)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.767029, 0.767029)
 texture = ExtResource("7")
 
 [node name="SpriteEffect2" type="Sprite2D" parent="."]
-visible = false
+self_modulate = Color(1, 1, 1, 0.888544)
 position = Vector2(0, 3)
+scale = Vector2(1.53499, 1.53499)
 texture = ExtResource("7")
 
 [node name="SpriteEffect3" type="Sprite2D" parent="."]
-visible = false
+self_modulate = Color(1, 1, 1, 0.666253)
 position = Vector2(0, 3)
+scale = Vector2(1.26687, 1.26687)
 texture = ExtResource("7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

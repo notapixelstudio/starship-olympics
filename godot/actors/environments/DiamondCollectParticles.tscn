@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://otu584npkmha"]
 
 [ext_resource type="Texture2D" uid="uid://5bdkckp4a6ig" path="res://assets/sprites/environments/diamond_outline.png" id="1"]
-[ext_resource type="Script" path="res://actors/environments/DiamondCollectParticles.gd" id="2"]
+[ext_resource type="Script" uid="uid://ewdt0efudhcl" path="res://actors/environments/DiamondCollectParticles.gd" id="2"]
 
 [sub_resource type="Curve" id="3"]
 _data = [Vector2(0, 0), 0.0, 7.5976, 0, 0, Vector2(1, 0), -0.36566, 0.0, 0, 0]
@@ -99,8 +99,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uanx4"]
 _data = {
-"Fade": SubResource("7"),
-"RESET": SubResource("8")
+&"Fade": SubResource("7"),
+&"RESET": SubResource("8")
 }
 
 [node name="DiamondCollectParticles" type="GPUParticles2D"]

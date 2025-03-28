@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b6gg3o407i70x"]
 
-[ext_resource type="Script" path="res://godot4/effects/DashRing.gd" id="1_ikcut"]
+[ext_resource type="Script" uid="uid://6tgv4dln4rkn" path="res://godot4/effects/DashRing.gd" id="1_ikcut"]
 
 [sub_resource type="Curve" id="2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.247191, 1), 0.0, 0.0, 0, 0, Vector2(0.752809, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -41,8 +41,8 @@ length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5cyov"]
 _data = {
-"Disappear": SubResource("3"),
-"RESET": SubResource("Animation_1drn0")
+&"Disappear": SubResource("3"),
+&"RESET": SubResource("Animation_1drn0")
 }
 
 [node name="DashRing" type="Node2D"]

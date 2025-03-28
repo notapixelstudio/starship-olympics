@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bsnpuv1ss4bxe"]
 
 [ext_resource type="BitMap" uid="uid://b8klkndbgm8ya" path="res://godot4/ui/screens/main/buttons/area_Campaign.png" id="2"]
-[ext_resource type="Script" path="res://ui/fancy_menus/FancyButton.gd" id="3"]
+[ext_resource type="Script" uid="uid://b18t4o8grk0q7" path="res://ui/fancy_menus/FancyButton.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://bdx58bmvismid" path="res://godot4/ui/screens/main/buttons/graphics_Campaign.png" id="4"]
 
 [sub_resource type="Animation" id="3"]
@@ -55,9 +55,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ajxy4"]
 _data = {
-"Grow": SubResource("3"),
-"RESET": SubResource("4"),
-"Shrink": SubResource("5")
+&"Grow": SubResource("3"),
+&"RESET": SubResource("4"),
+&"Shrink": SubResource("5")
 }
 
 [node name="FancyButton" type="TextureButton"]

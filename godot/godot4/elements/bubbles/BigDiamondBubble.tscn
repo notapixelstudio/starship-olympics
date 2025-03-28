@@ -3,5 +3,5 @@
 [ext_resource type="PackedScene" uid="uid://cfgy3ee8k825d" path="res://godot4/elements/bubbles/Bubble.tscn" id="1_m2d67"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="2_puw3y"]
 
-[node name="BigDiamondBubble" instance=ExtResource("1_m2d67")]
+[node name="BigDiamondBubble" groups=["Treasure"] instance=ExtResource("1_m2d67")]
 content_scene = ExtResource("2_puw3y")

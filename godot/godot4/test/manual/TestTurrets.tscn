@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxkqttxi5fag5"]
+
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_26dvx"]
+[ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="6_lxn0p"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="6_p82g0"]
+[ext_resource type="PackedScene" uid="uid://wwxav5fs1qt" path="res://godot4/actors/enemies/Turret.tscn" id="7_eijt8"]
+[ext_resource type="Resource" uid="uid://fc2yg6p4flm5" path="res://godot4/debug/default_data/default_players/p2.tres" id="7_ggur8"]
+[ext_resource type="PackedScene" uid="uid://bb4kd7ebpdm2x" path="res://godot4/elements/projectiles/BubbleBullet.tscn" id="8_ydpfc"]
+
+[sub_resource type="GDScript" id="GDScript_0rj7w"]
+script/source = "extends SOLog
+
+
+func _ready():
+	super._ready()
+	add_theme_font_size_override(\"normal_font_size\", 40)
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_sth_collected(collector, collectee):
+	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
+"
+
+[node name="TestChamber" instance=ExtResource("1_26dvx")]
+
+[node name="TestChamberLog" parent="." index="3"]
+script = SubResource("GDScript_0rj7w")
+
+[node name="Ship" parent="." index="6" instance=ExtResource("6_p82g0")]
+unique_name_in_owner = true
+
+[node name="Ship2" parent="." index="7" instance=ExtResource("6_p82g0")]
+unique_name_in_owner = true
+position = Vector2(800, -700)
+rotation = 3.14159
+player = ExtResource("7_ggur8")
+
+[node name="Turret" parent="." index="8" instance=ExtResource("7_eijt8")]
+position = Vector2(900, 0)
+bullet_scene = ExtResource("8_ydpfc")
+
+[node name="Diamond" parent="." index="9" instance=ExtResource("6_lxn0p")]
+position = Vector2(1100, 400)

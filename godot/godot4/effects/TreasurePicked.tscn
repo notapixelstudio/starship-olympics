@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4yru00x07tyi"]
+[gd_scene load_steps=8 format=3 uid="uid://c4yru00x07tyi"]
 
-[ext_resource type="Script" path="res://godot4/effects/TreasurePicked.gd" id="1_y1ss0"]
-[ext_resource type="Material" uid="uid://cglyqcx3on5qq" path="res://godot4/shaders/outline_ghost_black.tres" id="2_xwi8s"]
+[ext_resource type="Script" uid="uid://svkgukp1it67" path="res://godot4/effects/TreasurePicked.gd" id="1_y1ss0"]
 
 [sub_resource type="Animation" id="7"]
 resource_name = "Fade"
@@ -15,7 +14,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1.4, 1.4, 1.4, 1), Color(1.2, 1.2, 1.2, 0)]
+"values": [Color(1, 1, 1, 1), Color(1.2, 1.2, 1.2, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -73,8 +72,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uanx4"]
 _data = {
-"Fade": SubResource("7"),
-"RESET": SubResource("8")
+&"Fade": SubResource("7"),
+&"RESET": SubResource("8")
 }
 
 [sub_resource type="Curve" id="3"]
@@ -111,7 +110,6 @@ script = ExtResource("1_y1ss0")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(1.2, 1.2, 1.2, 1)
-material = ExtResource("2_xwi8s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

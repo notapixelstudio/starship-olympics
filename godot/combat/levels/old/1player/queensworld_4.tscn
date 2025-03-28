@@ -1,138 +1,175 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=23 format=3 uid="uid://cigc5w824y6om"]
 
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
-[ext_resource path="res://combat/levels/background/mantiacs_background.png" type="Texture2D" id=2]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=4]
-[ext_resource path="res://addons/geometry/icons/GRegularPolygon.svg" type="Texture2D" id=5]
-[ext_resource path="res://actors/environments/Field.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=7]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=8]
-[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=9]
-[ext_resource path="res://selection/characters/drones.tres" type="Resource" id=10]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://cyhqm3c6nap45" path="res://combat/levels/background/mantiacs_background.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://c1duhx14s1f2t" path="res://actors/environments/Field.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://qusfwou0xdom" path="res://combat/collectables/Crown.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="8"]
+[ext_resource type="Resource" uid="uid://bcsa675ruiohh" path="res://selection/characters/trixens_1.tres" id="9"]
+[ext_resource type="Resource" path="res://selection/characters/drones.tres" id="10"]
 
+[sub_resource type="Resource" id="Resource_lyida"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
 
+[sub_resource type="Resource" id="Resource_vims1"]
+metadata/__load_path__ = "res://addons/geometry/icons/GRegularPolygon.svg"
 
+[sub_resource type="Resource" id="Resource_nrncy"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
 
-[node name="Arena" index="0" instance=ExtResource( 1 )]
+[sub_resource type="Resource" id="Resource_5j7iy"]
+metadata/__load_path__ = "res://addons/geometry/icons/GRegularPolygon.svg"
+
+[sub_resource type="Resource" id="Resource_rhf5h"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_deyob"]
+metadata/__load_path__ = "res://addons/geometry/icons/GRegularPolygon.svg"
+
+[sub_resource type="Resource" id="Resource_ckuk1"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_0an6m"]
+metadata/__load_path__ = "res://addons/geometry/icons/GRegularPolygon.svg"
+
+[sub_resource type="Resource" id="Resource_7l11c"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_2hq5e"]
+metadata/__load_path__ = "res://addons/geometry/icons/GRegularPolygon.svg"
+
+[sub_resource type="Resource" id="Resource_yc2gx"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_j7dih"]
+metadata/__load_path__ = "res://addons/geometry/icons/GRegularPolygon.svg"
+
+[sub_resource type="Resource" id="Resource_88wna"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_xfiy5"]
+metadata/__load_path__ = "res://addons/geometry/icons/GRegularPolygon.svg"
+
+[node name="Arena" index="0" instance=ExtResource("1")]
 size_multiplier = 2.5
 
 [node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 2 )
+texture = ExtResource("2")
 centered = false
 
-[node name="OutsideWall" parent="Battlefield/Background" index="0" instance=ExtResource( 3 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="0" instance=ExtResource("3")]
 rotation = 0.523599
 hollow = true
 offset = 200
 elongation = 100
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="3"]
-script = ExtResource( 4 )
+script = SubResource("Resource_lyida")
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": SubResource("Resource_vims1")
 }
 radius = 1450
 sides = 6.0
 
-[node name="Field" parent="Battlefield/Middleground" index="0" instance=ExtResource( 6 )]
-position = Vector2( 0, 600 )
+[node name="Field" parent="Battlefield/Middleground" index="0" instance=ExtResource("6")]
+position = Vector2(0, 600)
 rotation = 0.523599
 type = 4
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Field" index="5"]
-script = ExtResource( 4 )
+script = SubResource("Resource_nrncy")
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": SubResource("Resource_5j7iy")
 }
 radius = 400
 sides = 6.0
 
-[node name="Field2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 6 )]
-position = Vector2( -550, -300 )
+[node name="Field2" parent="Battlefield/Middleground" index="1" instance=ExtResource("6")]
+position = Vector2(-550, -300)
 rotation = 0.523599
 type = 4
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Field2" index="5"]
-script = ExtResource( 4 )
+script = SubResource("Resource_rhf5h")
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": SubResource("Resource_deyob")
 }
 radius = 400
 sides = 6.0
 
-[node name="Field3" parent="Battlefield/Middleground" index="2" instance=ExtResource( 6 )]
-position = Vector2( 550, -300 )
+[node name="Field3" parent="Battlefield/Middleground" index="2" instance=ExtResource("6")]
+position = Vector2(550, -300)
 rotation = 0.523599
 type = 4
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Field3" index="5"]
-script = ExtResource( 4 )
+script = SubResource("Resource_ckuk1")
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": SubResource("Resource_0an6m")
 }
 radius = 400
 sides = 6.0
 
-[node name="Field4" parent="Battlefield/Middleground" index="3" instance=ExtResource( 6 )]
-position = Vector2( 800, 470 )
+[node name="Field4" parent="Battlefield/Middleground" index="3" instance=ExtResource("6")]
+position = Vector2(800, 470)
 rotation = 0.523599
 type = 4
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Field4" index="5"]
-script = ExtResource( 4 )
+script = SubResource("Resource_7l11c")
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": SubResource("Resource_2hq5e")
 }
 radius = 200
 sides = 6.0
 
-[node name="Field5" parent="Battlefield/Middleground" index="4" instance=ExtResource( 6 )]
-position = Vector2( -800, 470 )
+[node name="Field5" parent="Battlefield/Middleground" index="4" instance=ExtResource("6")]
+position = Vector2(-800, 470)
 rotation = 0.523599
 type = 4
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Field5" index="5"]
-script = ExtResource( 4 )
+script = SubResource("Resource_yc2gx")
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": SubResource("Resource_j7dih")
 }
 radius = 200
 sides = 6.0
 
-[node name="Field6" parent="Battlefield/Middleground" index="5" instance=ExtResource( 6 )]
-position = Vector2( 0, -900 )
+[node name="Field6" parent="Battlefield/Middleground" index="5" instance=ExtResource("6")]
+position = Vector2(0, -900)
 rotation = 0.523599
 type = 4
 
 [node name="GRegularPolygon" type="Node" parent="Battlefield/Middleground/Field6" index="5"]
-script = ExtResource( 4 )
+script = SubResource("Resource_88wna")
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": SubResource("Resource_xfiy5")
 }
 radius = 200
 sides = 6.0
 
-[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource( 7 )]
+[node name="Crown" parent="Battlefield/Foreground" index="0" instance=ExtResource("7")]
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 8 )]
-position = Vector2( -1100, 650 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("8")]
+position = Vector2(-1100, 650)
 rotation = -0.523599
 controls = "joy1"
-species = ExtResource( 9 )
+species = ExtResource("9")
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 8 )]
-position = Vector2( 0, -1250 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("8")]
+position = Vector2(0, -1250)
 rotation = 1.5708
 controls = "joy1"
-species = ExtResource( 10 )
+species = ExtResource("10")
 cpu = true
 
-[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 8 )]
-position = Vector2( 1100, 650 )
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource("8")]
+position = Vector2(1100, 650)
 rotation = -2.61799
 controls = "joy3"
-species = ExtResource( 10 )
+species = ExtResource("10")
 cpu = true
 
 [node name="Camera3D" parent="." index="15"]

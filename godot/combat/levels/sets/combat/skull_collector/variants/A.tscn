@@ -1,16 +1,27 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://doaar3x2jigq5"]
 
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
-[ext_resource path="res://actors/environments/NoShipZone.tscn" type="PackedScene" id=2]
+[ext_resource type="PackedScene" uid="uid://dv0wi2aar7c6i" path="res://actors/environments/NoShipZone.tscn" id="2"]
+
+[sub_resource type="Resource" id="Resource_gb10c"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_lrd1s"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_uqohw"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_l87xl"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
 
 [node name="A" type="Node2D"]
 
-[node name="NoShipZone5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 450, 450 )
+[node name="NoShipZone5" parent="." instance=ExtResource("2")]
+position = Vector2(450, 450)
 symbol_scale = 1.0
 
 [node name="GBeveledRect" type="Node" parent="NoShipZone5"]
-script = ExtResource( 1 )
+script = SubResource("Resource_gb10c")
 width = 600
 height = 200
 bevel = 42
@@ -19,12 +30,12 @@ bevel_ne = 42
 bevel_sw = 42
 bevel_se = 42
 
-[node name="NoShipZone6" parent="." instance=ExtResource( 2 )]
-position = Vector2( -450, -450 )
+[node name="NoShipZone6" parent="." instance=ExtResource("2")]
+position = Vector2(-450, -450)
 symbol_scale = 1.0
 
 [node name="GBeveledRect" type="Node" parent="NoShipZone6"]
-script = ExtResource( 1 )
+script = SubResource("Resource_lrd1s")
 width = 600
 height = 200
 bevel = 42
@@ -33,12 +44,12 @@ bevel_ne = 42
 bevel_sw = 42
 bevel_se = 42
 
-[node name="NoShipZone7" parent="." instance=ExtResource( 2 )]
-position = Vector2( -451, 450 )
+[node name="NoShipZone7" parent="." instance=ExtResource("2")]
+position = Vector2(-451, 450)
 symbol_scale = 1.0
 
 [node name="GBeveledRect" type="Node" parent="NoShipZone7"]
-script = ExtResource( 1 )
+script = SubResource("Resource_uqohw")
 height = 600
 bevel = 42
 bevel_nw = 42
@@ -46,12 +57,12 @@ bevel_ne = 42
 bevel_sw = 42
 bevel_se = 42
 
-[node name="NoShipZone8" parent="." instance=ExtResource( 2 )]
-position = Vector2( 450, -450 )
+[node name="NoShipZone8" parent="." instance=ExtResource("2")]
+position = Vector2(450, -450)
 symbol_scale = 1.0
 
 [node name="GBeveledRect" type="Node" parent="NoShipZone8"]
-script = ExtResource( 1 )
+script = SubResource("Resource_l87xl")
 height = 600
 bevel = 42
 bevel_nw = 42

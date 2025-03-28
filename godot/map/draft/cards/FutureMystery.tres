@@ -1,21 +1,21 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="MysteryCard" load_steps=7 format=3 uid="uid://bblxm6p4k3ha3"]
 
-[ext_resource path="res://map/draft/cards/MysteryCard.gd" type="Script" id=1]
-[ext_resource path="res://map/draft/cards/WinterDiamondsnatch.tres" type="Resource" id=3]
-[ext_resource path="res://map/draft/cards/Undertakers.tres" type="Resource" id=4]
-[ext_resource path="res://assets/sprites/cards/card_future.png" type="Texture2D" id=5]
-[ext_resource path="res://map/draft/cards/BoardConquest.tres" type="Resource" id=6]
-[ext_resource path="res://map/draft/cards/SlamAGon.tres" type="Resource" id=7]
+[ext_resource type="Script" uid="uid://rg8yp0mu5bco" path="res://map/draft/cards/MysteryCard.gd" id="1"]
+[ext_resource type="Resource" path="res://map/draft/cards/WinterDiamondsnatch.tres" id="3"]
+[ext_resource type="Resource" path="res://map/draft/cards/Undertakers.tres" id="4"]
+[ext_resource type="Texture2D" uid="uid://cfhcrbamw6enu" path="res://assets/sprites/cards/card_future.png" id="5"]
+[ext_resource type="Resource" uid="uid://cgmqb1g5axbvq" path="res://map/draft/cards/BoardConquest.tres" id="6"]
+[ext_resource type="Resource" path="res://map/draft/cards/SlamAGon.tres" id="7"]
 
 [resource]
-script = ExtResource( 1 )
-unlocks = [  ]
+script = ExtResource("1")
+name = "Future"
+description = "A random minigame from the future"
+mystery_cover = ExtResource("5")
+subcards = [ExtResource("6"), ExtResource("7"), ExtResource("4"), ExtResource("3")]
+color = "mystery"
+unlocks = []
 unlock_strength = 1
 winter = false
 perfectionist = false
-tint = Color( 0, 0, 0, 1 )
-name = "Future"
-description = "A random minigame from the future"
-mystery_cover = ExtResource( 5 )
-subcards = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ) ]
-color = "mystery"
+tint = Color(0, 0, 0, 1)

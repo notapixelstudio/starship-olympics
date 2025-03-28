@@ -1,7 +1,6 @@
-[gd_scene load_steps=29 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=31 format=3 uid="uid://ctk8t0ohpljms"]
 
-[ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="1_1sf7u"]
-[ext_resource type="Script" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
+[ext_resource type="Script" uid="uid://cdwca4jvfkafg" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
 [ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
 [ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="2_3p1dt"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_fyulk"]
@@ -17,35 +16,20 @@
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="9_nr0n0"]
 [ext_resource type="Resource" uid="uid://bpw2qo5744n7m" path="res://godot4/data/minigames/default.tres" id="9_vsuw2"]
 [ext_resource type="PackedScene" uid="uid://ctdiyn70rdfsq" path="res://godot4/arena/managers/TimeManager.tscn" id="10_mhlox"]
+[ext_resource type="PackedScene" uid="uid://bbh6dfcfwh26k" path="res://godot4/traits/Styleable.tscn" id="12_g1af4"]
+[ext_resource type="Resource" uid="uid://dk1wwbut07grf" path="res://godot4/data/styles/default.tres" id="13_n4nm8"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="16_64a4r"]
-[ext_resource type="Script" path="res://godot4/arena/ArenaCamera2D.gd" id="16_ad0xh"]
-[ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="16_jk7x4"]
-[ext_resource type="Script" path="res://godot4/debug/DebugActionsManager.gd" id="16_uol0h"]
-[ext_resource type="Shader" path="res://assets/shaders/crt_local.gdshader" id="17_7kknq"]
+[ext_resource type="Script" uid="uid://tvmm4mdwnb4y" path="res://godot4/arena/ArenaCamera2D.gd" id="16_ad0xh"]
+[ext_resource type="Script" uid="uid://rnvhumm1cowb" path="res://godot4/debug/DebugActionsManager.gd" id="16_uol0h"]
+[ext_resource type="PackedScene" uid="uid://7l4wbr8f06he" path="res://godot4/arena/managers/GameOverManager.tscn" id="17_u22a8"]
 [ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="18_3l87r"]
-[ext_resource type="Shader" path="res://godot4/shaders/screen_blend_overlay.gdshader" id="20_23pm5"]
-[ext_resource type="Texture2D" uid="uid://yuay7lcg5j7l" path="res://assets/sprites/background/static.png" id="20_osq8b"]
-[ext_resource type="Texture2D" uid="uid://c1mrjgvqqsgb3" path="res://assets/HUD/fake_crt.png" id="22_5e72g"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qpmpd"]
-shader = ExtResource("17_7kknq")
-shader_parameter/boost = 1.2
-shader_parameter/grille_opacity = 0.85
-shader_parameter/scanlines_opacity = 0.95
-shader_parameter/vignette_opacity = 0.2
-shader_parameter/scanlines_speed = 1.0
-shader_parameter/show_grille = false
-shader_parameter/show_scanlines = false
-shader_parameter/show_vignette = true
-shader_parameter/show_curvature = true
-shader_parameter/screen_size = Vector2(320, 180)
-shader_parameter/aberration_amount = 0.35
-shader_parameter/move_aberration = false
-shader_parameter/aberration_speed = 1.0
-shader_parameter/pincushion = 1.25
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbnhk"]
-shader = ExtResource("20_23pm5")
+[ext_resource type="Texture2D" uid="uid://bvtwlkbaasdkr" path="res://combat/levels/background/menus.png" id="18_f7kik"]
+[ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="19_hnpxt"]
+[ext_resource type="PackedScene" uid="uid://baqs1sh3hug4e" path="res://godot4/arena/hud/Counter.tscn" id="26_picc7"]
+[ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="27_8sctu"]
+[ext_resource type="Script" uid="uid://ba4f506maocjs" path="res://godot4/arena/hud/VersusHUD.gd" id="28_mtqpa"]
+[ext_resource type="PackedScene" uid="uid://dt8lwx0muu10p" path="res://godot4/arena/hud/ScoreBar.tscn" id="29_infxo"]
+[ext_resource type="PackedScene" uid="uid://cy5pkamh8gihg" path="res://ui/common_elements/PlayersReady/PlayersReadyWheels.tscn" id="30_um0tc"]
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_avtyt")
@@ -62,6 +46,9 @@ match_over_screen_scene = ExtResource("9_kkxbo")
 default_minigame = ExtResource("9_vsuw2")
 default_params = ExtResource("9_nr0n0")
 
+[node name="Styleable" parent="." instance=ExtResource("12_g1af4")]
+style = ExtResource("13_n4nm8")
+
 [node name="Managers" type="Node" parent="."]
 
 [node name="IntroManager" parent="Managers" instance=ExtResource("1_m2x2u")]
@@ -70,6 +57,9 @@ default_params = ExtResource("9_nr0n0")
 unique_name_in_owner = true
 
 [node name="ScoreManager" parent="Managers" instance=ExtResource("2_fyulk")]
+unique_name_in_owner = true
+
+[node name="GameOverManager" parent="Managers" instance=ExtResource("17_u22a8")]
 unique_name_in_owner = true
 
 [node name="MessageManager" parent="Managers" node_paths=PackedStringArray("battlefield") instance=ExtResource("3_jxfg0")]
@@ -85,27 +75,33 @@ unique_name_in_owner = true
 zoom = Vector2(0.2, 0.2)
 script = ExtResource("16_ad0xh")
 
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -5
+
+[node name="Background" type="TextureRect" parent="BackgroundLayer"]
+unique_name_in_owner = true
+z_index = -500
+z_as_relative = false
+offset_right = 1280.0
+offset_bottom = 724.0
+texture = ExtResource("18_f7kik")
+
 [node name="Homes" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [node name="Battlefield" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="WorldEnvironment" parent="." instance=ExtResource("1_1sf7u")]
-
 [node name="HUD" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
+layer = 10
 
-[node name="CrtUnder" type="TextureRect" parent="HUD"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("16_jk7x4")
-expand_mode = 1
+[node name="Vignette" type="Sprite2D" parent="HUD"]
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("19_hnpxt")
+centered = false
+flip_h = true
 
 [node name="SOLog" parent="HUD" instance=ExtResource("7_tad78")]
 visible = false
@@ -117,7 +113,6 @@ metadata/_edit_lock_ = true
 
 [node name="CanvasGroup" type="CanvasGroup" parent="HUD"]
 z_index = 200
-material = SubResource("ShaderMaterial_qpmpd")
 fit_margin = 50.0
 clear_margin = 50.0
 
@@ -144,27 +139,39 @@ position = Vector2(1222, 633)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("18_3l87r")
 
-[node name="Noise" type="CanvasLayer" parent="."]
-layer = 120
+[node name="Clock" parent="HUD" instance=ExtResource("26_picc7")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -115.0
+offset_top = 8.0
+offset_right = -5.0
+offset_bottom = 73.0
+grow_horizontal = 0
+grow_vertical = 1
+horizontal_alignment = 2
+vertical_alignment = 0
 
-[node name="TextureRect" type="TextureRect" parent="Noise"]
-modulate = Color(1, 1, 1, 0.392157)
-material = SubResource("ShaderMaterial_gbnhk")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("20_osq8b")
-expand_mode = 1
+[node name="TimeBar" parent="HUD" instance=ExtResource("27_8sctu")]
+unique_name_in_owner = true
+offset_left = 1251.0
+offset_top = 80.0
+offset_right = 1271.0
+offset_bottom = 594.0
 
-[node name="Crt" type="TextureRect" parent="Noise"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("22_5e72g")
-expand_mode = 1
+[node name="ScoreHUD" type="Node2D" parent="HUD"]
+unique_name_in_owner = true
+script = ExtResource("28_mtqpa")
+score_bar_scene = ExtResource("29_infxo")
+metadata/_edit_lock_ = true
+
+[node name="ScoreBars" type="HBoxContainer" parent="HUD/ScoreHUD"]
+unique_name_in_owner = true
+offset_left = 8.0
+offset_top = 46.0
+offset_right = 160.0
+offset_bottom = 716.0
+theme_override_constants/separation = 8
+
+[node name="PlayersReadyWheels" parent="HUD/ScoreHUD" instance=ExtResource("30_um0tc")]
+unique_name_in_owner = true

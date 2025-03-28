@@ -1,52 +1,59 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://bdnijlionsghd"]
 
-[ext_resource path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" type="FontFile" id=1]
-[ext_resource path="res://combat/interface/pause/ProcessMode.gd" type="Script" id=2]
-[ext_resource path="res://assets/UI/pause-window.png" type="Texture2D" id=3]
-[ext_resource path="res://interface/themes/olympic_theme.tres" type="Theme" id=4]
-[ext_resource path="res://combat/interface/pause/Buttons.gd" type="Script" id=5]
-[ext_resource path="res://assets/UI/pause-window-map.png" type="Texture2D" id=8]
-[ext_resource path="res://assets/fonts/Commando/commando.ttf" type="FontFile" id=9]
+[ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="1"]
+[ext_resource type="Texture2D" uid="uid://bcrncs8bt61iy" path="res://assets/UI/pause-window.png" id="3"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="4"]
+[ext_resource type="Script" uid="uid://cooqrnf6e4y6n" path="res://combat/interface/pause/Buttons.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://hhwga1jpxuu4" path="res://assets/UI/pause-window-map.png" id="8"]
+[ext_resource type="FontFile" uid="uid://cmvmqjwssraau" path="res://assets/fonts/Commando/commando.ttf" id="9"]
 
-[sub_resource type="FontFile" id=4]
-size = 32
-use_mipmaps = true
-font_data = ExtResource( 1 )
+[sub_resource type="Resource" id="Resource_7p7og"]
+metadata/__load_path__ = "res://combat/interface/pause/ProcessMode.gd"
 
-[sub_resource type="FontFile" id=2]
-size = 60
-outline_size = 3
-outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_char = 1
-extra_spacing_space = 1
-font_data = ExtResource( 9 )
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="FontFile" id=3]
-size = 18
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("9")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
 [node name="Pause" type="Control"]
 process_mode = 3
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_minimum_size = Vector2( 834, 635 )
-theme = ExtResource( 4 )
-script = ExtResource( 2 )
-map_texture = ExtResource( 8 )
+custom_minimum_size = Vector2(834, 635)
+theme = ExtResource("4")
+script = SubResource("Resource_7p7og")
+map_texture = ExtResource("8")
 
 [node name="BlackOverlay" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.588235 )
+color = Color(0, 0, 0, 0.588235)
 
 [node name="Window" type="Sprite2D" parent="."]
-modulate = Color( 1.2, 1.2, 1.2, 1 )
-self_modulate = Color( 0, 0.556863, 1, 1 )
-position = Vector2( 651.635, 357.94 )
-scale = Vector2( 0.745386, 0.745386 )
-texture = ExtResource( 3 )
+modulate = Color(1.2, 1.2, 1.2, 1)
+self_modulate = Color(0, 0.556863, 1, 1)
+position = Vector2(651.635, 357.94)
+scale = Vector2(0.745386, 0.745386)
+texture = ExtResource("3")
 
 [node name="GuiElements" type="Control" parent="."]
 anchor_left = 0.5
@@ -62,18 +69,18 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="GuiElements"]
-modulate = Color( 1.15, 1.15, 1.15, 1 )
-self_modulate = Color( 0, 0.556863, 1, 1 )
+modulate = Color(1.15, 1.15, 1.15, 1)
+self_modulate = Color(0, 0.556863, 1, 1)
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -124.0
 offset_top = -24.0
 offset_right = 124.0
 offset_bottom = 54.0002
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 3
-theme_override_fonts/font = SubResource( 4 )
+theme_override_fonts/font = SubResource("4")
 text = "GAME PAUSED"
 align = 1
 valign = 1
@@ -90,13 +97,13 @@ offset_right = 339.5
 offset_bottom = -21.0
 
 [node name="Minigame" type="Label" parent="GuiElements/VBoxContainer"]
-modulate = Color( 1, 0.870588, 0.372549, 1 )
+modulate = Color(1, 0.870588, 0.372549, 1)
 offset_right = 678.0
 offset_bottom = 53.0
 size_flags_horizontal = 3
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
-theme_override_fonts/font = SubResource( 2 )
+theme_override_fonts/font = SubResource("2")
 text = "MINIGAME"
 align = 1
 valign = 1
@@ -112,7 +119,7 @@ offset_bottom = 79.0
 size_flags_horizontal = 3
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 text = "find the x and do the y"
 align = 1
 valign = 1
@@ -125,14 +132,14 @@ __meta__ = {
 offset_top = 83.0
 offset_right = 678.0
 offset_bottom = 163.0
-custom_minimum_size = Vector2( 0, 80 )
+custom_minimum_size = Vector2(0, 80)
 
 [node name="Buttons" type="VBoxContainer" parent="GuiElements/VBoxContainer"]
 offset_top = 167.0
 offset_right = 678.0
 offset_bottom = 397.0
 alignment = 2
-script = ExtResource( 5 )
+script = ExtResource("5")
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -166,7 +173,7 @@ text = "OPTIONS"
 offset_top = 126.0
 offset_right = 678.0
 offset_bottom = 146.0
-custom_minimum_size = Vector2( 0, 20 )
+custom_minimum_size = Vector2(0, 20)
 
 [node name="Quit1" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
 visible = false

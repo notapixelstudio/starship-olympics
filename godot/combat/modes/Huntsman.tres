@@ -1,21 +1,16 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=4 format=3 uid="uid://c2jfp7mtp0rav"]
 
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://combat/styles/garden.tres" type="Resource" id=2]
-[ext_resource path="res://assets/icon/crown_logo.png" type="Texture2D" id=3]
-[ext_resource path="res://assets/icon/minicards/sets/crown.png" type="Texture2D" id=4]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="1"]
+[ext_resource type="Resource" path="res://combat/styles/garden.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://dvs4ry75sj8nh" path="res://assets/icon/minicards/sets/crown.png" id="4"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "huntsman"
-is_mutator = false
 name = "the Huntsman"
-icon = ExtResource( 4 )
-logo = ExtResource( 3 )
-arena_style = ExtResource( 2 )
+icon = ExtResource("4")
+arena_style = ExtResource("2")
 description = "take the hat and shoot the others"
-tagline_pro = "If killing is not enough, steal it by bumping in the queen"
-tagline_cons = "getting killed will make you lose the crown, if you have it"
 max_timeout = 80
 max_score = 40
 starting_score = 0
@@ -26,6 +21,7 @@ starting_health = -1
 respawn_from_home = false
 end_on_perfect = true
 fill_starting_score = false
+streaks_enabled = true
 death = false
 last_man = false
 crown = true
@@ -42,6 +38,7 @@ bomb_type = 7
 starting_ammo = 3
 reload_time = 0.4
 auto_thrust = false
+start_invincible = true
 floodable = true
 flood = false
 laserable = true

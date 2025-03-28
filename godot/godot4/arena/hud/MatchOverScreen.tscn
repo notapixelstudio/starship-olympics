@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://dhgfc2vafre2d"]
 
-[ext_resource type="Script" path="res://godot4/arena/hud/MatchOverScreen.gd" id="1_5buxb"]
+[ext_resource type="Script" uid="uid://dh41l07yl0hda" path="res://godot4/arena/hud/MatchOverScreen.gd" id="1_5buxb"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1_i5pyw"]
-[ext_resource type="Script" path="res://godot4/data/Player.gd" id="2_c41ur"]
+[ext_resource type="Script" uid="uid://ctf1rg3hqs2hh" path="res://godot4/data/Player.gd" id="2_c41ur"]
 [ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="3_s1b3g"]
 [ext_resource type="PackedScene" uid="uid://00s3ufothoqf" path="res://special_scenes/combat_UI/session_points/Leaderboard.tscn" id="3_t6iu7"]
 [ext_resource type="Resource" uid="uid://fc2yg6p4flm5" path="res://godot4/debug/default_data/default_players/p2.tres" id="4_ggrol"]
@@ -56,8 +56,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4qdce"]
 _data = {
-"RESET": SubResource("Animation_wbkui"),
-"appear": SubResource("Animation_jyscu")
+&"RESET": SubResource("Animation_wbkui"),
+&"appear": SubResource("Animation_jyscu")
 }
 
 [node name="MatchOverScreen" type="ColorRect"]

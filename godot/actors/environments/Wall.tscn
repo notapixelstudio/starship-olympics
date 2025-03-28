@@ -1,85 +1,85 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://bbyb0wmv7vn0t"]
 
-[ext_resource path="res://actors/environments/Wall.gd" type="Script" id=1]
-[ext_resource path="res://addons/ECM/Entity.gd" type="Script" id=2]
-[ext_resource path="res://addons/ECM/icons/Entity.png" type="Texture2D" id=3]
-[ext_resource path="res://addons/ECM/Component.gd" type="Script" id=4]
-[ext_resource path="res://addons/ECM/icons/Component.png" type="Texture2D" id=5]
-[ext_resource path="res://assets/sprites/environments/grid.png" type="Texture2D" id=6]
-[ext_resource path="res://assets/patterns/wall/clear.png" type="Texture2D" id=7]
-[ext_resource path="res://combat/traits/Strategic.tscn" type="PackedScene" id=8]
+[ext_resource type="Script" uid="uid://kq21ptu3axom" path="res://actors/environments/Wall.gd" id="1"]
+[ext_resource type="Script" uid="uid://dg3ny04agcjtp" path="res://addons/ECM/Entity.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://dxspwyydprxb1" path="res://addons/ECM/icons/Entity.png" id="3"]
+[ext_resource type="Script" uid="uid://bx28gpgdlmtid" path="res://addons/ECM/Component.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://boh3pf58gw6ig" path="res://addons/ECM/icons/Component.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bxvhoo056mnhn" path="res://assets/sprites/environments/grid.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://b02owwc2lsn8q" path="res://assets/patterns/wall/clear.png" id="7"]
+[ext_resource type="PackedScene" path="res://combat/traits/Strategic.tscn" id="8"]
 
 [node name="Wall" type="StaticBody2D" groups=["wall"]]
 collision_layer = 2147483664
 collision_mask = 270337
-script = ExtResource( 1 )
+script = ExtResource("1")
 __meta__ = {
 "_edit_group_": true
 }
 elongation = 100
 
-[node name="Strategic" parent="." instance=ExtResource( 8 )]
+[node name="Strategic" parent="." instance=ExtResource("8")]
 
 [node name="Entity" type="Node" parent="."]
-script = ExtResource( 2 )
+script = ExtResource("2")
 __meta__ = {
-"_editor_icon": ExtResource( 3 )
+"_editor_icon": ExtResource("3")
 }
 
 [node name="Deadly" type="Node" parent="Entity"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": ExtResource("5")
 }
 enabled = false
 
 [node name="Trigger" type="Node" parent="Entity"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 __meta__ = {
-"_editor_icon": ExtResource( 5 )
+"_editor_icon": ExtResource("5")
 }
 enabled = false
 
 [node name="CrownDropper" type="Node" parent="Entity"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 enabled = false
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color( 0.309804, 0.247059, 0.235294, 1 )
-texture_scale = Vector2( 0.5, 0.5 )
-polygon = PackedVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
+color = Color(0.309804, 0.247059, 0.235294, 1)
+texture_scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
 
 [node name="InnerPolygon2D" type="Polygon2D" parent="."]
-self_modulate = Color( 1, 1, 1, 0.1 )
-scale = Vector2( 0.995648, 1.05232 )
-texture_scale = Vector2( 0.5, 0.5 )
-polygon = PackedVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
+self_modulate = Color(1, 1, 1, 0.1)
+scale = Vector2(0.995648, 1.05232)
+texture_scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
 
 [node name="Grid" type="Polygon2D" parent="."]
-modulate = Color( 1, 1, 1, 0.368627 )
-color = Color( 0.847656, 0.847656, 0.847656, 1 )
-texture = ExtResource( 6 )
-polygon = PackedVector2Array( -100, -100, 100, -100, 100, 100, -100, 100 )
+modulate = Color(1, 1, 1, 0.368627)
+color = Color(0.847656, 0.847656, 0.847656, 1)
+texture = ExtResource("6")
+polygon = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
 
 [node name="line" type="Line2D" parent="."]
 z_as_relative = false
-points = PackedVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -99.9999, -100, 0, -100 )
+points = PackedVector2Array(0, -100, 100, -100, 100, 100, -100, 100, -99.9999, -100, 0, -100)
 width = 48.0
-default_color = Color( 1, 1, 1, 1 )
+default_color = Color(1, 1, 1, 1)
 texture_mode = 1
 sharp_limit = 0.0
 round_precision = 20
 antialiased = true
 
 [node name="lineBelow" type="Line2D" parent="."]
-self_modulate = Color( 0.596078, 0.596078, 0.596078, 1 )
-position = Vector2( -1.39876e-06, 32 )
+self_modulate = Color(0.596078, 0.596078, 0.596078, 1)
+position = Vector2(-1.39876e-06, 32)
 z_index = -10
 z_as_relative = false
-points = PackedVector2Array( 0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 0, -100 )
+points = PackedVector2Array(0, -100, 100, -100, 100, 100, -100, 100, -100, -100, 0, -100)
 width = 48.0
-default_color = Color( 1, 1, 1, 1 )
-texture = ExtResource( 7 )
+default_color = Color(1, 1, 1, 1)
+texture = ExtResource("7")
 texture_mode = 1
 sharp_limit = 0.0
 round_precision = 10
@@ -95,5 +95,5 @@ linear_damp = 7.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformArea"]
 visible = false
-modulate = Color( 1, 0, 0, 1 )
+modulate = Color(1, 0, 0, 1)
 disabled = true

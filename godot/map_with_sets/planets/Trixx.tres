@@ -1,33 +1,27 @@
-[gd_resource type="Resource" load_steps=13 format=2]
+[gd_resource type="Resource" script_class="Set" load_steps=13 format=3 uid="uid://bht440b5eb6wa"]
 
-[ext_resource path="res://combat/modes/Conquest.tres" type="Resource" id=1]
-[ext_resource path="res://combat/levels/old/1player/conquest_1.tscn" type="PackedScene" id=2]
-[ext_resource path="res://combat/levels/old/1player/rain_1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/levels/old/2players/conquest_5.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/levels/old/1player/rain_2.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/levels/old/3players/conquest_1.tscn" type="PackedScene" id=6]
-[ext_resource path="res://combat/levels/old/1player/rain_3.tscn" type="PackedScene" id=7]
-[ext_resource path="res://combat/levels/old/4players/conquest_4.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/levels/old/1player/rain_4.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/map/trixxx.png" type="Texture2D" id=10]
-[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=11]
-[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=12]
-
-
-
-
-
+[ext_resource type="Resource" uid="uid://bvoec63pq0jow" path="res://combat/modes/Conquest.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://bm5quegupaid4" path="res://combat/levels/old/1player/conquest_1.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bkvmyxhyjvjj8" path="res://combat/levels/old/1player/rain_1.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dywxnvywfapjg" path="res://combat/levels/old/2players/conquest_5.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://etsb3iojlsni" path="res://combat/levels/old/1player/rain_2.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://cs70joektm8vr" path="res://combat/levels/old/3players/conquest_1.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://dnv1tj4yiu85q" path="res://combat/levels/old/1player/rain_3.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://d2gf32a8m32f2" path="res://combat/levels/old/4players/conquest_4.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://c40tyhd6ncot3" path="res://combat/levels/old/1player/rain_4.tscn" id="9"]
+[ext_resource type="Texture2D" uid="uid://cn0kfxur4pd8i" path="res://assets/map/trixxx.png" id="10"]
+[ext_resource type="Script" uid="uid://b561ai7rs4ndp" path="res://map_with_sets/planets/Set.gd" id="11"]
+[ext_resource type="Resource" uid="uid://bcsa675ruiohh" path="res://selection/characters/trixens_1.tres" id="12"]
 
 [resource]
-script = ExtResource( 11 )
+script = ExtResource("11")
 name = "Trixx"
 tagline1 = "Cute adorable planet"
 tagline2 = "just adorably mercyless"
-species = ExtResource( 12 )
-levels_1players = [ ExtResource( 2 ), ExtResource( 3 ) ]
-levels_2players = [ ExtResource( 4 ), ExtResource( 5 ) ]
-levels_3players = [ ExtResource( 6 ), ExtResource( 7 ) ]
-levels_4players = [ ExtResource( 8 ), ExtResource( 9 ) ]
-planet_sprite = ExtResource( 10 )
-game_mode = ExtResource( 1 )
-
+species = ExtResource("12")
+levels_1players = [ExtResource("2"), ExtResource("3")]
+levels_2players = [ExtResource("4"), ExtResource("5")]
+levels_3players = [ExtResource("6"), ExtResource("7")]
+levels_4players = [ExtResource("8"), ExtResource("9")]
+planet_sprite = ExtResource("10")
+game_mode = ExtResource("1")

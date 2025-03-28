@@ -1,34 +1,36 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://c7jmvd0n8bh2x"]
 
-[ext_resource path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" type="FontFile" id=1]
-[ext_resource path="res://assets/audio/UI_effects/switch-selection.wav" type="AudioStream" id=2]
-[ext_resource path="res://map_with_sets/MapLocation.tscn" type="PackedScene" id=3]
-[ext_resource path="res://map_with_sets/MapRadio.gd" type="Script" id=4]
-[ext_resource path="res://assets/map/cards/option.png" type="Texture2D" id=5]
+[ext_resource type="FontFile" uid="uid://bsdjbpjy1umxj" path="res://assets/fonts/bungee/BungeeLayers-Regular.otf" id="1"]
+[ext_resource type="AudioStream" uid="uid://bi38pkb44oyyx" path="res://assets/audio/UI_effects/switch-selection.wav" id="2"]
+[ext_resource type="PackedScene" uid="uid://dmstmme4i866s" path="res://map_with_sets/MapLocation.tscn" id="3"]
+[ext_resource type="Script" uid="uid://dsf1onntweldq" path="res://map_with_sets/MapRadio.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://senlelu2xnx3" path="res://assets/map/cards/option.png" id="5"]
 
-[sub_resource type="FontFile" id=3]
-size = 36
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[node name="MapRadio" instance=ExtResource( 3 )]
-script = ExtResource( 4 )
+[node name="MapRadio" instance=ExtResource("3")]
+script = ExtResource("4")
 
 [node name="CollisionPolygon2D" parent="." index="0"]
 visible = true
-polygon = PackedVector2Array( 0, -150, 125, -25, 0, 100, -125, -25 )
+polygon = PackedVector2Array(0, -150, 125, -25, 0, 100, -125, -25)
 
 [node name="CollisionPolygon2D" parent="ExitArea" index="0"]
 visible = true
-polygon = PackedVector2Array( 0, -200, 175, -25, 0, 150, -175, -25 )
+polygon = PackedVector2Array(0, -200, 175, -25, 0, 150, -175, -25)
 
 [node name="Frame" type="Sprite2D" parent="." index="4"]
-position = Vector2( 0, -28 )
-texture = ExtResource( 5 )
+position = Vector2(0, -28)
+texture = ExtResource("5")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="5"]
-position = Vector2( 0, -28 )
+position = Vector2(0, -28)
 
 [node name="Wrapper" type="Node2D" parent="." index="6"]
 z_index = 10
@@ -40,7 +42,7 @@ offset_left = -150.0
 offset_top = 50.0
 offset_right = 150.0
 offset_bottom = 200.0
-theme_override_fonts/font = SubResource( 3 )
+theme_override_fonts/font = SubResource("3")
 text = "victories"
 align = 1
 autowrap = true
@@ -50,6 +52,6 @@ __meta__ = {
 }
 
 [node name="act" type="AudioStreamPlayer2D" parent="." index="7"]
-stream = ExtResource( 2 )
+stream = ExtResource("2")
 attenuation = 0.0412346
 bus = "SFX"

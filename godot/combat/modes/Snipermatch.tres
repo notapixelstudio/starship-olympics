@@ -1,18 +1,18 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=5 format=3 uid="uid://dv6d4ujys7isg"]
 
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon/minicards/sets/snipermatch.png" type="Texture2D" id=2]
-[ext_resource path="res://actors/brains/SnipermatchBrain.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/styles/sniperrifle.tres" type="Resource" id=4]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bc6x4eyv73edc" path="res://assets/icon/minicards/sets/snipermatch.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://dsv7wpdd8g31u" path="res://actors/brains/SnipermatchBrain.tscn" id="3"]
+[ext_resource type="Resource" path="res://combat/styles/sniperrifle.tres" id="4"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "snipermatch"
 name = "Snipermatch"
-icon = ExtResource( 2 )
-arena_style = ExtResource( 4 )
+icon = ExtResource("2")
+arena_style = ExtResource("4")
 description = "kill the other players"
-cpu_brain = ExtResource( 3 )
+cpu_brain = ExtResource("3")
 max_timeout = 60
 max_score = 8
 starting_score = 0
@@ -23,6 +23,7 @@ starting_health = 1
 respawn_from_home = true
 end_on_perfect = true
 fill_starting_score = false
+streaks_enabled = true
 death = true
 last_man = false
 crown = false

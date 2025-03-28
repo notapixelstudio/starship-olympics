@@ -1,18 +1,18 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=5 format=3 uid="uid://daynqhxgaptjw"]
 
-[ext_resource path="res://combat/styles/fort.tres" type="Resource" id=1]
-[ext_resource path="res://assets/icon/minicards/sets/rocket_take_the_crown.png" type="Texture2D" id=2]
-[ext_resource path="res://actors/brains/RocketTheCrownBrain.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=4]
+[ext_resource type="Resource" path="res://combat/styles/fort.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://yjtmgnjit2qc" path="res://assets/icon/minicards/sets/rocket_take_the_crown.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://ctmdsoafwadu4" path="res://actors/brains/RocketTheCrownBrain.tscn" id="3"]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="4"]
 
 [resource]
-script = ExtResource( 4 )
+script = ExtResource("4")
 id = "rocket_crown"
 name = "Rocket the Crown"
-icon = ExtResource( 2 )
-arena_style = ExtResource( 1 )
+icon = ExtResource("2")
+arena_style = ExtResource("1")
 description = "take and keep the crown"
-cpu_brain = ExtResource( 3 )
+cpu_brain = ExtResource("3")
 max_timeout = 80
 max_score = 40
 starting_score = 0

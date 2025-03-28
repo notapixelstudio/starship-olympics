@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://dr2jhun1do667"]
 
-[ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=1]
-[ext_resource path="res://combat/levels/sets/core/diamondsnatch/variants/C.tscn" type="PackedScene" id=2]
-[ext_resource path="res://combat/levels/sets/core/diamondsnatch/variants/B.tscn" type="PackedScene" id=3]
-[ext_resource path="res://combat/levels/sets/core/diamondsnatch/variants/A.tscn" type="PackedScene" id=4]
+[ext_resource type="PackedScene" path="res://utils/Variants.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://l7bj2wgsxrar" path="res://combat/levels/sets/core/diamondsnatch/variants/C.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b12lwnb527qkd" path="res://combat/levels/sets/core/diamondsnatch/variants/B.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://l2mwqdibjvmh" path="res://combat/levels/sets/core/diamondsnatch/variants/A.tscn" id="4"]
 
-[node name="DiamondsnatchVariants" instance=ExtResource( 1 )]
-variant_scenes = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ]
+[node name="DiamondsnatchVariants" instance=ExtResource("1")]
+variant_scenes = [ExtResource("4"), ExtResource("3"), ExtResource("2")]
 automirror = true

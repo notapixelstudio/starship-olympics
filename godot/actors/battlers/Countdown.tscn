@@ -1,18 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://iub6lw5vahsu"]
 
-[ext_resource path="res://assets/fonts/04b_19.ttf" type="FontFile" id=1]
-[ext_resource path="res://actors/battlers/Countdown.gd" type="Script" id=2]
+[ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="1"]
+[ext_resource type="Script" uid="uid://dmi38r7rb4qyj" path="res://actors/battlers/Countdown.gd" id="2"]
 
-[sub_resource type="FontFile" id=1]
+[sub_resource type="FontFile" id="1"]
 resource_local_to_scene = true
-size = 36
-outline_size = 5
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
 [node name="Countdown" type="Node2D"]
 visible = false
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="CountdownValue" type="Label" parent="."]
 unique_name_in_owner = true
@@ -20,7 +22,7 @@ offset_left = -63.0
 offset_top = -38.0
 offset_right = 67.0
 offset_bottom = 41.0
-theme_override_fonts/font = SubResource( 1 )
+theme_override_fonts/font = SubResource("1")
 text = "0"
 align = 1
 valign = 1

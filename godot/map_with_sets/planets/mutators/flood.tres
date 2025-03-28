@@ -1,10 +1,10 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="Mutator" load_steps=3 format=3 uid="uid://ctyg5kmwkvr57"]
 
-[ext_resource path="res://map_with_sets/planets/mutators/Mutator.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon/minicards/mutators/flood.png" type="Texture2D" id=2]
+[ext_resource type="Script" uid="uid://dqlm0g6hskwb3" path="res://map_with_sets/planets/mutators/Mutator.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://gddmgxi87uut" path="res://assets/icon/minicards/mutators/flood.png" id="2"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 name = "flood"
 text = "waaater!"
-logo = ExtResource( 2 )
+logo = ExtResource("2")

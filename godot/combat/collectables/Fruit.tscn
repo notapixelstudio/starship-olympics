@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://cny3lr830mybk"]
 
-[ext_resource type="Script" path="res://addons/ECM/Component.gd" id="1"]
-[ext_resource type="Script" path="res://addons/ECM/Entity.gd" id="2"]
+[ext_resource type="Script" uid="uid://bx28gpgdlmtid" path="res://addons/ECM/Component.gd" id="1"]
+[ext_resource type="Script" uid="uid://dg3ny04agcjtp" path="res://addons/ECM/Entity.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://brk160bqxjked" path="res://assets/sprites/fruits/pear.png" id="5"]
 [ext_resource type="PackedScene" path="res://combat/traits/Strategic.tscn" id="6"]
-[ext_resource type="Script" path="res://combat/collectables/Fruit.gd" id="7"]
-[ext_resource type="PackedScene" path="res://godot4/effects/Shadow.tscn" id="8"]
+[ext_resource type="Script" uid="uid://crd2nf02rb7vf" path="res://combat/collectables/Fruit.gd" id="7"]
+[ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="8"]
 [ext_resource type="Texture2D" uid="uid://brxcax73it83q" path="res://assets/sprites/environments/crown_halo.png" id="9"]
 [ext_resource type="PackedScene" path="res://combat/traits/Collectable.tscn" id="10"]
 
@@ -43,7 +43,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fbn3i"]
 _data = {
-"Blink": SubResource("2")
+&"Blink": SubResource("2")
 }
 
 [node name="Fruit" type="RigidBody2D" groups=["Foreground", "coin", "in_camera"]]

@@ -1,20 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://cmeqeg6xugf3s"]
 
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=1]
-[ext_resource path="res://combat/traits/NavigationZone.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture2D" id=5]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=6]
+[ext_resource type="PackedScene" path="res://combat/traits/NavigationZone.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://cul1qame2qpja" path="res://assets/patterns/wall/bones.png" id="5"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="6"]
+
+[sub_resource type="Resource" id="Resource_hm5su"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_0360p"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
 
 [node name="2D" type="Node2D"]
 
-[node name="Wall7" parent="." instance=ExtResource( 6 )]
-position = Vector2( -800, 400 )
+[node name="Wall7" parent="." instance=ExtResource("6")]
+position = Vector2(-800, 400)
 rotation = -0.785398
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 5 )
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("5")
 
 [node name="GBeveledRect" type="Node" parent="Wall7"]
-script = ExtResource( 1 )
+script = SubResource("Resource_hm5su")
 height = 700
 bevel = 50
 bevel_nw = 50
@@ -22,17 +27,17 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="NavigationZone" parent="Wall7" instance=ExtResource( 2 )]
+[node name="NavigationZone" parent="Wall7" instance=ExtResource("2")]
 offset_type = "outset"
 
-[node name="Wall8" parent="." instance=ExtResource( 6 )]
-position = Vector2( 800, -400 )
+[node name="Wall8" parent="." instance=ExtResource("6")]
+position = Vector2(800, -400)
 rotation = -0.785398
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 5 )
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("5")
 
 [node name="GBeveledRect" type="Node" parent="Wall8"]
-script = ExtResource( 1 )
+script = SubResource("Resource_0360p")
 height = 700
 bevel = 50
 bevel_nw = 50
@@ -40,5 +45,5 @@ bevel_ne = 50
 bevel_sw = 50
 bevel_se = 50
 
-[node name="NavigationZone" parent="Wall8" instance=ExtResource( 2 )]
+[node name="NavigationZone" parent="Wall8" instance=ExtResource("2")]
 offset_type = "outset"

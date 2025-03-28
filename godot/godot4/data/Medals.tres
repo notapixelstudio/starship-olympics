@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Medals" load_steps=5 format=3 uid="uid://tcdgwuw4j8o8"]
+
+[ext_resource type="Texture2D" uid="uid://26nw5l0mmexe" path="res://assets/sprites/medals/bronze.png" id="1_hlwjt"]
+[ext_resource type="Script" uid="uid://451388lx5kae" path="res://godot4/data/Medals.gd" id="1_mh5qw"]
+[ext_resource type="Texture2D" uid="uid://c5x732uuna3ul" path="res://assets/sprites/medals/gold.png" id="2_4lgaw"]
+[ext_resource type="Texture2D" uid="uid://deeilj4jeljdc" path="res://assets/sprites/medals/silver.png" id="4_8glft"]
+
+[resource]
+script = ExtResource("1_mh5qw")
+bronze = ExtResource("1_hlwjt")
+silver = ExtResource("4_8glft")
+gold = ExtResource("2_4lgaw")

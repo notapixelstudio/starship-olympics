@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://1jdlhqq8mf0c"]
 
 [ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_1em6e"]
-[ext_resource type="Script" path="res://godot4/elements/treasures/MusicTreasure.gd" id="2_v3ag5"]
+[ext_resource type="Script" uid="uid://b2gjmow1qf58h" path="res://godot4/elements/treasures/MusicTreasure.gd" id="2_v3ag5"]
 
 [sub_resource type="Animation" id="Animation_etq4v"]
 resource_name = "Pulse"
@@ -88,9 +88,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cwsrf"]
 _data = {
-"Pulse": SubResource("Animation_etq4v"),
-"PulseBack": SubResource("Animation_ka7ew"),
-"RESET": SubResource("Animation_ti5xo")
+&"Pulse": SubResource("Animation_etq4v"),
+&"PulseBack": SubResource("Animation_ka7ew"),
+&"RESET": SubResource("Animation_ti5xo")
 }
 
 [node name="MusicTreasure" instance=ExtResource("1_1em6e")]

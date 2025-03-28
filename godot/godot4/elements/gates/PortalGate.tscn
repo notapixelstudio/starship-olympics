@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://xoqhtny3wi7s"]
 
 [ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://godot4/elements/gates/Gate.tscn" id="1"]
-[ext_resource type="Script" path="res://godot4/elements/gates/PortalGate.gd" id="2"]
+[ext_resource type="Script" uid="uid://45d0yxfr7op3" path="res://godot4/elements/gates/PortalGate.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://6oqvsnv2v2s4" path="res://assets/sprites/environments/portal_spike.png" id="4"]
 
@@ -42,8 +42,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_caihj"]
 _data = {
-"Blink": SubResource("2"),
-"RESET": SubResource("3")
+&"Blink": SubResource("2"),
+&"RESET": SubResource("3")
 }
 
 [sub_resource type="Animation" id="12"]
@@ -79,8 +79,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jhjqe"]
 _data = {
-"Idle": SubResource("12"),
-"RESET": SubResource("13")
+&"Idle": SubResource("12"),
+&"RESET": SubResource("13")
 }
 
 [sub_resource type="Gradient" id="8"]
@@ -91,7 +91,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 gradient = SubResource("8")
 
 [sub_resource type="Curve" id="9"]
-max_value = 1.5
+_limits = [0.0, 1.5, 0.0, 1.0]
 _data = [Vector2(0, 0.703988), 0.0, -0.0509122, 0, 0, Vector2(0.373239, 1.5), 0.0, 0.0, 0, 0, Vector2(0.669014, 0.0322087), -7.66229, 0.0, 0, 0]
 point_count = 3
 

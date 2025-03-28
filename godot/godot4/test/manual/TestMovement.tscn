@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_6di7u"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_cg3mp"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="4_o6m0c"]
-[ext_resource type="Script" path="res://addons/vshapes/VBeveledRect.gd" id="5_5tfmx"]
+[ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="5_5tfmx"]
 
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
 script/source = "extends SOLog
@@ -53,8 +53,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l1vkr"]
 _data = {
-"Breathe": SubResource("Animation_61utp"),
-"RESET": SubResource("Animation_1e1uc")
+&"Breathe": SubResource("Animation_61utp"),
+&"RESET": SubResource("Animation_1e1uc")
 }
 
 [sub_resource type="ConcavePolygonShape2D" id="ConcavePolygonShape2D_dv7wk"]
@@ -62,21 +62,21 @@ segments = PackedVector2Array(-600, -600, -600, 600, -600, 600, 600, 600)
 
 [node name="TestChamber" instance=ExtResource("1_b5mb0")]
 
-[node name="TestChamberLog" parent="." index="4"]
+[node name="TestChamberLog" parent="." index="3"]
 script = SubResource("GDScript_0rj7w")
 
-[node name="Ship" parent="." index="7" instance=ExtResource("2_6di7u")]
+[node name="Ship" parent="." index="6" instance=ExtResource("2_6di7u")]
 unique_name_in_owner = true
 position = Vector2(-794, 3)
 
-[node name="Ship2" parent="." index="8" instance=ExtResource("2_6di7u")]
+[node name="Ship2" parent="." index="7" instance=ExtResource("2_6di7u")]
 unique_name_in_owner = true
 position = Vector2(800, 0)
 rotation = 3.14159
 
 [node name="PlayerBrain" parent="Ship2" index="12" instance=ExtResource("3_cg3mp")]
 
-[node name="OutsideWall" parent="." index="9" instance=ExtResource("4_o6m0c")]
+[node name="OutsideWall" parent="." index="8" instance=ExtResource("4_o6m0c")]
 hollow = true
 
 [node name="VBeveledRect" type="Node" parent="OutsideWall" index="4" node_paths=PackedStringArray("hosts")]
@@ -92,13 +92,13 @@ libraries = {
 }
 autoplay = "Breathe"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="10"]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="9"]
 position = Vector2(0, 2650)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
 shape = SubResource("ConcavePolygonShape2D_dv7wk")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." index="11"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="10"]
 position = Vector2(0, 2750)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2" index="0"]

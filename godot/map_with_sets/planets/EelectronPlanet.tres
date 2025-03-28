@@ -1,20 +1,20 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="Set" load_steps=5 format=3 uid="uid://bq32phcgdl3i7"]
 
-[ext_resource path="res://combat/modes/Deathmatch.tres" type="Resource" id=1]
-[ext_resource path="res://combat/levels/sets/snake/snake_deathmatch/2players.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/map/the_hive.png" type="Texture2D" id=5]
-[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=6]
+[ext_resource type="Resource" uid="uid://dcfo1l7147jx0" path="res://combat/modes/Deathmatch.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://d0jmtpxe1tu7k" path="res://combat/levels/sets/snake/snake_deathmatch/2players.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://ccafceydryu5p" path="res://assets/map/the_hive.png" id="5"]
+[ext_resource type="Script" uid="uid://b561ai7rs4ndp" path="res://map_with_sets/planets/Set.gd" id="6"]
 
 [resource]
-script = ExtResource( 6 )
+script = ExtResource("6")
 name = "Eelectron"
 tagline1 = "Solo"
 tagline2 = "Death"
-minigames = [ null, null, null, null ]
-levels_1players = [  ]
-levels_2players = [ ExtResource( 2 ) ]
-levels_3players = [  ]
-levels_4players = [  ]
-planet_sprite = ExtResource( 5 )
-game_mode = ExtResource( 1 )
-mutators = [  ]
+minigames = [null, null, null, null]
+levels_1players = []
+levels_2players = [ExtResource("2")]
+levels_3players = []
+levels_4players = []
+planet_sprite = ExtResource("5")
+game_mode = ExtResource("1")
+mutators = []

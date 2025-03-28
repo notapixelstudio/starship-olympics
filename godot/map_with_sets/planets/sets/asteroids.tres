@@ -1,19 +1,19 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="Set" load_steps=7 format=3 uid="uid://cldv3dni26vec"]
 
-[ext_resource path="res://combat/minigames/AsteroidConquest.tres" type="Resource" id=1]
-[ext_resource path="res://combat/minigames/DiamondDefrost.tres" type="Resource" id=2]
-[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=3]
-[ext_resource path="res://combat/minigames/AsteroidInfection.tres" type="Resource" id=4]
-[ext_resource path="res://combat/minigames/FreezingDeath.tres" type="Resource" id=5]
-[ext_resource path="res://assets/map/cards/asteroids_set.png" type="Texture2D" id=6]
+[ext_resource type="Resource" uid="uid://dj1radr53mlwh" path="res://combat/minigames/AsteroidConquest.tres" id="1"]
+[ext_resource type="Resource" uid="uid://cxvp1mwmag64g" path="res://combat/minigames/DiamondDefrost.tres" id="2"]
+[ext_resource type="Script" uid="uid://b561ai7rs4ndp" path="res://map_with_sets/planets/Set.gd" id="3"]
+[ext_resource type="Resource" uid="uid://b6yxwm4orup2u" path="res://combat/minigames/AsteroidInfection.tres" id="4"]
+[ext_resource type="Resource" uid="uid://ctsr0lv6x388c" path="res://combat/minigames/FreezingDeath.tres" id="5"]
+[ext_resource type="Texture2D" uid="uid://dt3bgnnaswnrg" path="res://assets/map/cards/asteroids_set.png" id="6"]
 
 [resource]
-script = ExtResource( 3 )
+script = ExtResource("3")
 id = "asteroids"
 name = "Asteroids"
 tagline1 = ""
 tagline2 = ""
 description = ""
-minigames = [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ) ]
-planet_sprite = ExtResource( 6 )
-mutators = [  ]
+minigames = [ExtResource("1"), ExtResource("4"), ExtResource("5"), ExtResource("2")]
+planet_sprite = ExtResource("6")
+mutators = []

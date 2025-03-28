@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://qyk6yqeg3vet"]
+
+[ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://actors/brains/CPUBrain.tscn" id="1_im17o"]
+[ext_resource type="Script" uid="uid://citvjsht87py8" path="res://actors/brains/enemies/BloidBrain.gd" id="2_3oo5w"]
+
+[node name="BloidBrain" instance=ExtResource("1_im17o")]
+script = ExtResource("2_3oo5w")
+go_to_center_p = 0.1
+random_fire_p = 0.02

@@ -1,17 +1,17 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" script_class="StartingDeck" load_steps=6 format=3 uid="uid://dtn12nah70ot0"]
 
-[ext_resource path="res://map/draft/decks/StartingDeck.gd" type="Script" id=1]
-[ext_resource path="res://map/draft/cards/Undertakers.tres" type="Resource" id=2]
-[ext_resource path="res://map/draft/cards/Deathmatch.tres" type="Resource" id=3]
-[ext_resource path="res://map/draft/cards/FirstBlood.tres" type="Resource" id=4]
-[ext_resource path="res://map/draft/cards/SkullCollectors.tres" type="Resource" id=5]
+[ext_resource type="Script" uid="uid://bwveyhtu8y4uw" path="res://map/draft/decks/StartingDeck.gd" id="1"]
+[ext_resource type="Resource" uid="uid://c2mnjetd6fhs1" path="res://map/draft/cards/Undertakers.tres" id="2"]
+[ext_resource type="Resource" uid="uid://5b7lmi7rlj61" path="res://map/draft/cards/Deathmatch.tres" id="3"]
+[ext_resource type="Resource" uid="uid://bdq5b6bqiu3oa" path="res://map/draft/cards/FirstBlood.tres" id="4"]
+[ext_resource type="Resource" uid="uid://jsqeehgc5s62" path="res://map/draft/cards/SkullCollectors.tres" id="5"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "combat"
 order = 0
 name = "Combat"
-cards = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ) ]
-nexts = [  ]
+cards = [ExtResource("3"), ExtResource("2"), ExtResource("5"), ExtResource("4")]
+nexts = []
 playlist = false
-unlocks = [  ]
+unlocks = []

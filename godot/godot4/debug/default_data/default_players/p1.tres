@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Player" load_steps=3 format=3 uid="uid://cmmvbrr51qwj1"]
 
-[ext_resource type="Script" path="res://godot4/data/Player.gd" id="1_jed02"]
+[ext_resource type="Script" uid="uid://ctf1rg3hqs2hh" path="res://godot4/data/Player.gd" id="1_jed02"]
 [ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="2_qvope"]
 
 [resource]
@@ -9,5 +9,5 @@ id = "P1"
 username = ""
 controls = "kb1+joy1"
 species = ExtResource("2_qvope")
-team = null
+team = "P1"
 cpu = false

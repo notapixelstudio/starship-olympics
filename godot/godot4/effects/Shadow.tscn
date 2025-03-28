@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://mjjon1epk4qn"]
 
-[ext_resource type="Script" path="res://godot4/effects/Shadow.gd" id="1"]
+[ext_resource type="Script" uid="uid://jg7nwvcrtdq0" path="res://godot4/effects/Shadow.gd" id="1"]
 
 [node name="Shadow" type="Node2D"]
 physics_interpolation_mode = 2
@@ -11,7 +11,8 @@ top_level = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Wrapper"]
 unique_name_in_owner = true
-self_modulate = Color(0, 0, 0, 0.301961)
+self_modulate = Color(0, 0, 0, 0.54902)
+light_mask = 0
 z_index = -6
 z_as_relative = false
 position = Vector2(0, 32)

@@ -56,6 +56,12 @@ func tick():
 	target_velocity = relative_position.normalized()
 	rotation_request = front.angle_to(target_velocity)
 	
+	# FIXME ...maybee?
+	if controllee.has_method("set_target_velocity"):
+		controllee.set_target_velocity(target_velocity)
+	if controllee.has_method("set_rotation_request"):
+		controllee.set_rotation_request(rotation_request)
+	
 	# we are already arrived, attempt to stay where we are
 	if $NavigationAgent2D.is_navigation_finished():
 		return
@@ -167,3 +173,7 @@ func compute_nearest(nodes: Array) -> Node2D:
 			nearest = node
 			d = new_d
 	return nearest
+
+func _physics_process(delta: float) -> void:
+	tick()
+	

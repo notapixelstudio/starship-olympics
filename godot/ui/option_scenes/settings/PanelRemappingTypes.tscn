@@ -1,16 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://dmf0l4g1nvatf"]
 
-[ext_resource path="res://interface/UIButtonsContainerMapping.gd" type="Script" id=1]
-[ext_resource path="res://ui/option_scenes/settings/PanelRemapping.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ui/common_elements/NavigateButton.tscn" type="PackedScene" id=3]
-[ext_resource path="res://ui/option_scenes/settings/UIOptionPanel.gd" type="Script" id=4]
-[ext_resource path="res://assets/UI/Xelu_Free_Controller&Key_Prompts/Keyboard & Mouse/Dark/Print_Screen_Key_Dark.png" type="Texture2D" id=5]
-[ext_resource path="res://assets/UI/Xelu_Free_Controller&Key_Prompts/Keyboard & Mouse/Dark/Q_Key_Dark.png" type="Texture2D" id=6]
+[ext_resource type="Script" uid="uid://dmc5q65uj58vi" path="res://interface/UIButtonsContainerMapping.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://ddogy3d6wj63n" path="res://ui/option_scenes/settings/PanelRemapping.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://t3ow0yws6dop" path="res://ui/common_elements/NavigateButton.tscn" id="3"]
+[ext_resource type="Script" uid="uid://l0xw4bvfliad" path="res://ui/option_scenes/settings/UIOptionPanel.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://cnvbw5d07jwjk" path="res://assets/UI/Xelu_Free_Controller&Key_Prompts/Keyboard & Mouse/Dark/Print_Screen_Key_Dark.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://dtypfnsgdm6eo" path="res://assets/UI/Xelu_Free_Controller&Key_Prompts/Keyboard & Mouse/Dark/Q_Key_Dark.png" id="6"]
 
 [node name="PanelMain" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 4 )
+script = ExtResource("4")
 
 [node name="Content" type="MarginContainer" parent="."]
 anchor_left = 0.5
@@ -28,13 +28,13 @@ __meta__ = {
 [node name="UIButtonsContainer" type="VBoxContainer" parent="Content"]
 offset_right = 800.0
 offset_bottom = 216.0
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="Toggle" type="CheckButton" parent="Content/UIButtonsContainer"]
 offset_right = 800.0
 offset_bottom = 108.0
-theme_override_icons/off = ExtResource( 5 )
-theme_override_icons/on = ExtResource( 6 )
+theme_override_icons/off = ExtResource("5")
+theme_override_icons/on = ExtResource("6")
 
 [node name="Dynamic" type="HBoxContainer" parent="Content/UIButtonsContainer"]
 offset_top = 112.0
@@ -45,21 +45,21 @@ offset_bottom = 216.0
 offset_right = 378.0
 offset_bottom = 104.0
 
-[node name="Keyboard" parent="Content/UIButtonsContainer/Dynamic/Classic" instance=ExtResource( 3 )]
+[node name="Keyboard" parent="Content/UIButtonsContainer/Dynamic/Classic" instance=ExtResource("3")]
 offset_right = 378.0
 text = "CONFIGURE KEYBOARD"
-option_menu = ExtResource( 2 )
+option_menu = ExtResource("2")
 title = "Configure keyboard"
 extra_args = {
 "device_category": "keyboard"
 }
 
-[node name="Joypad" parent="Content/UIButtonsContainer/Dynamic/Classic" instance=ExtResource( 3 )]
+[node name="Joypad" parent="Content/UIButtonsContainer/Dynamic/Classic" instance=ExtResource("3")]
 offset_top = 54.0
 offset_right = 378.0
 offset_bottom = 104.0
 text = "CONFIGURE JOYPADS"
-option_menu = ExtResource( 2 )
+option_menu = ExtResource("2")
 title = "configure joypads"
 extra_args = {
 "device_category": "joypad"
@@ -70,12 +70,12 @@ offset_left = 382.0
 offset_right = 800.0
 offset_bottom = 104.0
 
-[node name="Custom" parent="Content/UIButtonsContainer/Dynamic/Custom" instance=ExtResource( 3 )]
+[node name="Custom" parent="Content/UIButtonsContainer/Dynamic/Custom" instance=ExtResource("3")]
 offset_right = 418.0
 offset_bottom = 104.0
 disabled = true
 text = "CUSTOM CONFIGURATION"
-option_menu = ExtResource( 2 )
+option_menu = ExtResource("2")
 title = "custom configuration"
 extra_args = {
 "device_category": "custom"

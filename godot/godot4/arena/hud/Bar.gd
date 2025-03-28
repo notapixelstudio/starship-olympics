@@ -3,10 +3,10 @@ class_name Bar
 
 @export var ticks_thickness := 3.0
 @export var ticks_thickness_minor := 2.0
+@export var thresholds := [] # of {value: float, image: ImageTexture}
 
 var max_value := 100.0 : set = set_max_value
 var value := 0.0 : set = set_value
-
 
 func set_max_value(v: float) -> void:
 	max_value = v
@@ -15,6 +15,9 @@ func set_value(v: float) -> void:
 	value = v
 	var d = max(0, min(_get_max_size() / max_value * value, _get_max_size()))
 	%Fill.size.y = d
+	
+func set_thresholds(v: Array) -> void:
+	thresholds = v
 	
 func _get_max_size() -> float:
 	return %Background.size.y
@@ -32,6 +35,7 @@ func _ready() -> void:
 
 func _draw() -> void:
 	_draw_ticks()
+	_draw_thresholds()
 	
 func _draw_ticks() -> void:
 	for i in range(1, int(max_value)):
@@ -42,7 +46,7 @@ func _draw_ticks() -> void:
 		var d = _get_max_size() - round(i * _get_max_size()/max_value)
 		var color = Color.BLACK
 		var thickness
-		if max_value <= 10 or (i%10 == 0 and max_value < 100) or i%100 == 0:
+		if max_value <= 10 or (i%10 == 0 and max_value <= 100) or i%100 == 0:
 			thickness = ticks_thickness
 			color.a = 0.9
 		else:
@@ -50,3 +54,9 @@ func _draw_ticks() -> void:
 			color.a = 0.1
 		draw_line(Vector2(0,d),Vector2(_get_width(),d), color, thickness)
 		
+func _draw_thresholds() -> void:
+	for t in thresholds:
+		var d = _get_max_size() - round(t['value'] * _get_max_size()/max_value)
+		draw_line(Vector2(0,d),Vector2(_get_width(),d), Color.WHITE, ticks_thickness)
+		draw_string(ThemeDB.get_project_theme().default_font, Vector2(1,d+2+ThemeDB.get_project_theme().default_font_size), str(t['value']), HORIZONTAL_ALIGNMENT_FILL, -1, ThemeDB.get_project_theme().default_font_size)
+		draw_texture_rect(t['image'], Rect2(Vector2(_get_width(),d-16), 0.2*Vector2(173,205)), false)

@@ -1,15 +1,14 @@
 [gd_scene load_steps=14 format=3 uid="uid://ctqk6tu6rj77v"]
 
-[ext_resource type="Script" path="res://godot4/effects/DeathFeedback.gd" id="1_stgea"]
+[ext_resource type="Script" uid="uid://b27vo4h2l4rm0" path="res://godot4/effects/DeathFeedback.gd" id="1_stgea"]
 [ext_resource type="Texture2D" uid="uid://bonj3coqe6d0i" path="res://assets/sprites/debris.png" id="2"]
-[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="3"]
+[ext_resource type="Script" uid="uid://bpexb6wjfpakj" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="3"]
 [ext_resource type="AudioStream" uid="uid://dqbaltmvowb8o" path="res://assets/audio/FX/sfx_exp_odd3.wav" id="4"]
 
 [sub_resource type="CanvasItemMaterial" id="1"]
 
 [sub_resource type="Curve" id="Curve_2qafq"]
-min_value = -2.0
-max_value = 2.0
+_limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -94,8 +93,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bsdn4"]
 _data = {
-"Blink": SubResource("5"),
-"RESET": SubResource("6")
+&"Blink": SubResource("5"),
+&"RESET": SubResource("6")
 }
 
 [node name="DeathFeedback" type="Node2D"]

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://xoqhtny3wi7s" path="res://godot4/elements/gates/PortalGate.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://combat/traits/Goal.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://combat/traits/Owned.tscn" id="3"]
-[ext_resource type="Script" path="res://actors/environments/GoalPortalGate.gd" id="4"]
+[ext_resource type="Script" uid="uid://bnjbn20g042a3" path="res://actors/environments/GoalPortalGate.gd" id="4"]
 [ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="5"]
 
 [sub_resource type="RectangleShape2D" id="1"]
@@ -43,8 +43,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_po8ge"]
 _data = {
-"Blink": SubResource("2"),
-"RESET": SubResource("3")
+&"Blink": SubResource("2"),
+&"RESET": SubResource("3")
 }
 
 [sub_resource type="GDScript" id="10"]
@@ -96,8 +96,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l6owi"]
 _data = {
-"Idle": SubResource("12"),
-"RESET": SubResource("13")
+&"Idle": SubResource("12"),
+&"RESET": SubResource("13")
 }
 
 [node name="GoalPortalGate" instance=ExtResource("1")]

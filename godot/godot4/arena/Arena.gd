@@ -1,4 +1,13 @@
 extends Node2D
+class_name Arena
+## Base class for Arena scenes, responsible for managing the overall logic of a single match.
+## It acts as a central hub for various components such as players, ships, and game modes.
+## This class is considered an abstract class and should not be used directly.
+## Instead, you should inherit from it and implement the necessary methods to handle a specific game logic.
+##
+## The Battlefield node is meant to contain the actual game elements such as collectables, enemies, and other game objects.
+## The Homes node is meant to contain the starting positions of the players.
+## Nodes under the HUD canvas layer are meant to be used for UI elements, such as the countdown timer, the match over screen, and the score bars.
 
 @export var players : Dictionary # String: Player
 @export var ship_scene : PackedScene
@@ -22,13 +31,9 @@ func _ready() -> void:
 	%MinigameText.text = '[right][color=#ffde5e]%s[/color]\n%s[/right]' % [minigame.title.to_upper(), minigame.description.to_upper()]
 	%MinigameIcon.texture = minigame.icon
 	
-	%TimeManager.set_time(_params.time)
-	%Clock.set_value(_params.time)
-	%TimeBar.set_max_value(_params.time)
-	%TimeBar.set_value(0.0) # time always starts from 0
-	Events.clock_ticked.connect(_on_clock_ticked)
+	setup()
 	
-	%VersusGameOverManager.set_max_score(_params.score)
+	Events.clock_ticked.connect(_on_clock_ticked)
 	Events.match_over.connect(_on_match_over)
 	
 	var brains_to_enable : Array[Brain] = []
@@ -71,15 +76,11 @@ func _ready() -> void:
 			_teams[player.get_team()] = []
 		_teams[player.get_team()].append(player.get_id())
 		
-	%VersusHUD.set_max_score(_params.score)
-	%VersusHUD.set_starting_score(_params.starting_score)
-	
 	for team in _teams.keys():
 		Events.team_ready.emit(team, _teams[team])
 		# FIXME this could be moved to a team manager
 		# FIXME this could use signals for everything, since not all managers or huds are necessarily there
-		%ScoreManager.add_team(team)
-		%VersusHUD.add_team(team, players[_teams[team][0]].get_species()) # FIXME support teams of 2+ members
+		setup_team(team)
 		
 	# create the match over screen
 	_match_over_screen = match_over_screen_scene.instantiate()
@@ -102,12 +103,32 @@ func _ready() -> void:
 	for player in get_tree().get_nodes_in_group('animation_starts_with_battle'):
 		player.play('default')
 	
+func setup() -> void:
+	%TimeManager.set_time(_params.time)
+	%Clock.set_value(_params.time)
+	%TimeBar.set_max_value(_params.time)
+	%TimeBar.set_value(0.0) # time always starts from 0
+	%GameOverManager.set_max_score(_params.score)
+	%ScoreHUD.set_max_score(_params.score)
+	%ScoreHUD.set_starting_score(_params.starting_score)
+	
+func setup_team(team:String) -> void:
+	%ScoreManager.add_team(team)
+	%ScoreHUD.add_team(team, players[_teams[team][0]].get_species()) # FIXME support teams of 2+ members
+	
+## Returns a [String] identifier for the [Arena] (defaults to the file name of the scene file).
 func get_id() -> String:
 	return scene_file_path.get_file().split('.')[0]
 	
+## Returns the identifier of the [Minigame] associated with this [Arena], which is the first part of the Arena's identifier (split by underscore).
+## For example, if the Arena's identifier is [code]diamondsnatch_2p.tscn[/code], then the Minigame's identifier is [code]diamondsnatch[/code].
 func get_minigame_id() -> String:
 	return get_id().split('_')[0]
 	
+## Returns the [Minigame] associated with this [Arena].
+## It does this by looking for a resource file named according to [method get_minigame_id] in the [code]res://godot4/data/minigames/[/code] directory.
+## For example, if the [Minigame] identifier is [code]diamondsnatch[/code], then the method looks for [code]res://godot4/data/minigames/diamondsnatch.tres[/code].
+## If the file is not found, it returns [code]default_minigame[/code] (see [member default_minigame]).
 func get_minigame() -> Minigame:
 	var minigame_resource_path = 'res://godot4/data/minigames/'+get_minigame_id()+'.tres'
 	if not ResourceLoader.exists(minigame_resource_path):
@@ -126,7 +147,7 @@ func _on_clock_ticked(t:float, t_secs:int) -> void:
 	%TimeBar.set_value(_params.time - t)
 
 func _on_match_over(data:Dictionary) -> void:
-	session.add_match_results(data)
+	_update_session(data)
 	_match_over_screen.update_scores()
 	
 	# peform a match over animation
@@ -139,3 +160,7 @@ func _on_match_over(data:Dictionary) -> void:
 		Engine.time_scale = 1
 		_match_over_screen.show()
 	)
+
+func _update_session(data:Dictionary) -> void:
+	session.add_match_results(data)
+	

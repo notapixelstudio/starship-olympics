@@ -9,6 +9,16 @@ func set_hollow(v: bool) -> void:
 	hollow = v
 	%Polygon2D.visible = not hollow
 	%UnderPolygon2D.visible = hollow
+	
+func set_style(style:Style) -> void:
+	%Polygon2D.modulate = style.color
+	%UnderPolygon2D.modulate = style.background_color
+	%Line2D.default_color = style.line_color
+	%Line2D.texture = style.line_texture
+	%Line2D.width = style.line_width
+	%UnderLine2D.default_color = style.underline_color
+	%UnderLine2D.texture = style.underline_texture
+	%UnderLine2D.width = style.underline_width
 
 func set_polygon(v: PackedVector2Array) -> void:
 	polygon = v
@@ -28,3 +38,6 @@ func update_collision_polygon() -> void:
 				%CollisionPolygon2D.set_polygon(internal)
 	else:
 		%CollisionPolygon2D.set_polygon(polygon)
+
+func _ready():
+	set_style(%Styleable.get_style_from_ancestor_or_self())

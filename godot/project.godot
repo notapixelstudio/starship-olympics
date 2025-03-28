@@ -54,7 +54,7 @@ instance_dock/preview_resolution=Vector2i(200, 200)
 config/name="StarshipOlympics"
 config/tags=PackedStringArray("godot4", "starship_olympics")
 run/main_scene="res://ui/menu_scenes/intro_screen/Intro.tscn"
-config/features=PackedStringArray("4.3")
+config/features=PackedStringArray("4.4")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://assets/art/translucid.png"
 config/icon="res://logo.png"
@@ -78,8 +78,8 @@ DeeJay="*res://godot4/global/DeeJay.tscn"
 
 [debug]
 
-gdscript/warnings/enable=false
 settings/physics_interpolation/enable_warnings=false
+gdscript/warnings/enable=false
 
 [display]
 
@@ -91,9 +91,14 @@ window/size/fullscreen=true
 window/size/fullscreen.release=false
 window/size/fullscreen.debug=false
 
+[editor]
+
+naming/scene_name_casing=1
+naming/script_name_casing=1
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/debugToolbox/plugin.cfg", "res://addons/godot-box2d/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/traits/plugin.cfg", "res://addons/vshapes/plugin.cfg")
+enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/debugToolbox/plugin.cfg", "res://addons/godot-box2d/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/traits/plugin.cfg", "res://addons/vshapes/plugin.cfg")
 
 [global]
 
@@ -103,6 +108,13 @@ token="Godotexport_v1.0.0"
 
 animation_starts_with_battle=""
 collectable=""
+gravity_wells=""
+Treasure=""
+Ship=""
+
+[gui]
+
+theme/custom="res://interface/themes/olympic_theme.tres"
 
 [importer_defaults]
 
@@ -582,7 +594,7 @@ locale/translations=PackedStringArray("res://locale/pr.po", "res://locale/de.mo"
 
 2d_physics/layer_1="ships"
 2d_navigation/layer_1="default"
-2d_physics/layer_2="ships_near_area"
+2d_physics/layer_2="ships_touch_area"
 2d_navigation/layer_2="holder"
 2d_physics/layer_3="bombs"
 2d_physics/layer_4="explosions"
@@ -594,7 +606,7 @@ locale/translations=PackedStringArray("res://locale/pr.po", "res://locale/de.mo"
 2d_physics/layer_10="balls"
 2d_physics/layer_11="asteroids"
 2d_physics/layer_12="treasures"
-2d_physics/layer_13="bull"
+2d_physics/layer_13="enemies"
 2d_physics/layer_14="deadship"
 2d_physics/layer_15="portal"
 2d_physics/layer_16="castle"
@@ -629,8 +641,9 @@ common/physics_interpolation=true
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.381314, 0.23857, 0.263316, 1)
+renderer/rendering_method="mobile"
 viewport/hdr_2d=true
+environment/defaults/default_clear_color=Color(0.184121, 0.156271, 0.367138, 1)
 quality/intended_usage/framebuffer_allocation.mobile=2
 quality/filters/use_nearest_mipmap_filter=true
 gles3/shaders/shader_compilation_mode=2

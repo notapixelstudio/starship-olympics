@@ -1,14 +1,105 @@
-[gd_scene load_steps=10 format=3 uid="uid://def8gegesl10e"]
+[gd_scene load_steps=16 format=3 uid="uid://def8gegesl10e"]
 
-[ext_resource type="Script" path="res://godot4/elements/treasures/Treasure.gd" id="1_q6gx3"]
+[ext_resource type="Script" uid="uid://cpxvapwxmi5c7" path="res://godot4/elements/treasures/Treasure.gd" id="1_q6gx3"]
 [ext_resource type="PackedScene" uid="uid://c4yru00x07tyi" path="res://godot4/effects/TreasurePicked.tscn" id="2_lfwwo"]
-[ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="3_37ycv"]
+[ext_resource type="PackedScene" uid="uid://bkt3uw0ui0kxk" path="res://godot4/effects/appear/AppearDefault.tscn" id="3_ufj5w"]
+[ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="4_qifm1"]
+[ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="4_sn586"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ojvyv"]
 bounce = 0.35
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ycic"]
 radius = 70.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q3g5c"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_7dqfj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="Animation" id="Animation_osksh"]
+resource_name = "default"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.7, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, -2, -2, -2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -12), Vector2(0, 6), Vector2(0, -2), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(3, 3, 3, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glow:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g125i"]
+_data = {
+&"RESET": SubResource("Animation_7dqfj"),
+&"default": SubResource("Animation_osksh")
+}
 
 [sub_resource type="Animation" id="Animation_r82e2"]
 resource_name = "Hit"
@@ -20,6 +111,18 @@ tracks/0/path = NodePath("%Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(3, 3, 3, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
@@ -52,6 +155,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Glow:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ijh7r"]
 resource_name = "Shine"
@@ -68,15 +183,27 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1.4, 1.4, 1.4, 1), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(1.4, 1.4, 1.4, 1), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lqqh5"]
 _data = {
-"Hit": SubResource("Animation_r82e2"),
-"RESET": SubResource("Animation_e7hm2"),
-"Shine": SubResource("Animation_ijh7r")
+&"Hit": SubResource("Animation_r82e2"),
+&"RESET": SubResource("Animation_e7hm2"),
+&"Shine": SubResource("Animation_ijh7r")
 }
 
-[node name="Treasure" type="RigidBody2D" groups=["collectable"]]
+[node name="Treasure" type="RigidBody2D" groups=["Treasure", "collectable"]]
 collision_layer = 2048
 collision_mask = 3093
 physics_material_override = SubResource("PhysicsMaterial_ojvyv")
@@ -84,6 +211,7 @@ can_sleep = false
 linear_damp = 1.0
 script = ExtResource("1_q6gx3")
 treasure_picked_scene = ExtResource("2_lfwwo")
+appear_scene = ExtResource("3_ufj5w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -91,8 +219,20 @@ shape = SubResource("CircleShape2D_0ycic")
 
 [node name="Graphics" type="Node2D" parent="."]
 
+[node name="Glow" type="Sprite2D" parent="Graphics"]
+material = SubResource("CanvasItemMaterial_q3g5c")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_sn586")
+
 [node name="Sprite2D" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
+texture = ExtResource("4_qifm1")
+
+[node name="IntroAnimation" type="AnimationPlayer" parent="Graphics"]
+libraries = {
+"": SubResource("AnimationLibrary_g125i")
+}
+autoplay = "default"
 
 [node name="SpriteAnimation" type="AnimationPlayer" parent="Graphics"]
 unique_name_in_owner = true
@@ -100,8 +240,6 @@ libraries = {
 "": SubResource("AnimationLibrary_lqqh5")
 }
 
-[node name="Shadow" parent="Graphics" node_paths=PackedStringArray("sprite") instance=ExtResource("3_37ycv")]
-sprite = NodePath("../Sprite2D")
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
+bus = &"SFX"

@@ -1,45 +1,49 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://bcxf22n6j4337"]
 
-[ext_resource path="res://assets/fonts/04b_19.ttf" type="FontFile" id=1]
-[ext_resource path="res://combat/levels/singles/connex/PlayerSide.gd" type="Script" id=2]
-[ext_resource path="res://utils/CameraEye.tscn" type="PackedScene" id=3]
+[ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="1"]
+[ext_resource type="Script" uid="uid://bxbia2fv78hhf" path="res://combat/levels/singles/connex/PlayerSide.gd" id="2"]
+[ext_resource type="PackedScene" path="res://utils/CameraEye.tscn" id="3"]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id="1"]
 script/source = "extends Node2D
 
 func _ready():
 	global_rotation = 0
 "
 
-[sub_resource type="FontFile" id=2]
-size = 196
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
 [node name="PlayerSide" type="Area2D"]
 collision_layer = 128
 collision_mask = 0
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( 0, -200 )
-polygon = PackedVector2Array( -950, 2700, -800, 2400, 800, 2400, 950, 2700 )
+position = Vector2(0, -200)
+polygon = PackedVector2Array(-950, 2700, -800, 2400, 800, 2400, 950, 2700)
 
 [node name="ColorBand" type="Polygon2D" parent="."]
-position = Vector2( 0, -2600 )
-polygon = PackedVector2Array( -950, 5250, -750, 5050, -750, 4800, 750, 4800, 750, 5050, 950, 5250 )
+position = Vector2(0, -2600)
+polygon = PackedVector2Array(-950, 5250, -750, 5050, -750, 4800, 750, 4800, 750, 5050, 950, 5250)
 
 [node name="AutoRotate" type="Node2D" parent="."]
-position = Vector2( 0, 2400 )
-script = SubResource( 1 )
+position = Vector2(0, 2400)
+script = SubResource("1")
 
 [node name="PlayerLabel" type="Label" parent="AutoRotate"]
 unique_name_in_owner = true
-self_modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color(0, 0, 0, 1)
 offset_left = -900.0
 offset_top = -150.0
 offset_right = 900.0
 offset_bottom = 200.0
-theme_override_fonts/font = SubResource( 2 )
+theme_override_fonts/font = SubResource("2")
 text = "PPP"
 align = 1
 valign = 1
@@ -49,8 +53,8 @@ collision_layer = 0
 collision_mask = 128
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Neighbourhood"]
-position = Vector2( 0, -200 )
-polygon = PackedVector2Array( -750, 2500, -750, 2325, 750, 2325, 750, 2500 )
+position = Vector2(0, -200)
+polygon = PackedVector2Array(-750, 2500, -750, 2325, 750, 2325, 750, 2500)
 
-[node name="CameraEye" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, 2450 )
+[node name="CameraEye" parent="." instance=ExtResource("3")]
+position = Vector2(0, 2450)

@@ -1,13 +1,13 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=3 format=3 uid="uid://bvoec63pq0jow"]
 
-[ext_resource path="res://assets/modes/hill-conquest.png" type="Texture2D" id=1]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://c2oa2rltwfjcj" path="res://assets/modes/hill-conquest.png" id="1"]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="3"]
 
 [resource]
-script = ExtResource( 3 )
+script = ExtResource("3")
 id = "hive_fill"
 name = ""
-icon = ExtResource( 1 )
+icon = ExtResource("1")
 description = "fill more cells than opponents"
 max_timeout = 300
 max_score = 100
@@ -19,6 +19,7 @@ starting_health = 1
 respawn_from_home = true
 end_on_perfect = true
 fill_starting_score = false
+streaks_enabled = true
 death = false
 last_man = false
 crown = false

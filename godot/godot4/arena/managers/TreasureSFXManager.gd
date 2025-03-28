@@ -21,6 +21,9 @@ func _on_team_ready(team, members) -> void:
 	timer.timeout.connect(func(): _team_data[team]['pitch_scale'] = 1.0)
 	
 func _on_sth_collected(collector, collectee):
+	if not collector is Ship or not collector.get_team() in _team_data:
+		return
+		
 	var sfx_player = collectee.get_sfx_player()
 	var team = _team_data[collector.get_team()]
 	sfx_player.pitch_scale = team['pitch_scale']

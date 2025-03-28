@@ -1,13 +1,13 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=3 format=3 uid="uid://bk1e8xqel27p1"]
 
-[ext_resource path="res://assets/icon/minicards/sets/connex.png" type="Texture2D" id=1]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://260vqyexp3ap" path="res://assets/icon/minicards/sets/connex.png" id="1"]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="3"]
 
 [resource]
-script = ExtResource( 3 )
+script = ExtResource("3")
 id = "connex"
 name = "Connexxion"
-icon = ExtResource( 1 )
+icon = ExtResource("1")
 description = "connect your sides"
 max_timeout = 30
 max_score = 15

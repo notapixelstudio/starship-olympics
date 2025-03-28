@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cdne3k8xfhspr"]
 
-[ext_resource path="res://actors/brains/CPUBrain.tscn" type="PackedScene" id=1]
-[ext_resource path="res://actors/brains/UndertakersBrain.gd" type="Script" id=2]
+[ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://actors/brains/CPUBrain.tscn" id="1"]
+[ext_resource type="Script" uid="uid://h0k6v740ehwc" path="res://actors/brains/UndertakersBrain.gd" id="2"]
 
-[node name="UndertakersBrain" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="UndertakersBrain" instance=ExtResource("1")]
+script = ExtResource("2")
 random_fire_p = 0.03
 think_time_jitter = 0.04

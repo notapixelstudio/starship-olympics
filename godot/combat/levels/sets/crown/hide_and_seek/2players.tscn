@@ -1,25 +1,23 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=3 uid="uid://cvfhsigqs1cwq"]
 
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=1]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=2]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/patterns/checkers.png" type="Texture2D" id=4]
-[ext_resource path="res://assets/icon/minicards/sets/crown.png" type="Texture2D" id=5]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=6]
-[ext_resource path="res://actors/environments/Tree.tscn" type="PackedScene" id=7]
-[ext_resource path="res://combat/styles/garden.tres" type="Resource" id=8]
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=9]
-[ext_resource path="res://addons/geometry/GConvexPolygon.gd" type="Script" id=10]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=11]
-[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=12]
-[ext_resource path="res://actors/enemies/Rabbit.tscn" type="PackedScene" id=13]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://mbgh35ypfdri" path="res://assets/patterns/checkers.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dvs4ry75sj8nh" path="res://assets/icon/minicards/sets/crown.png" id="5"]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://cxv8s7yl7u0v" path="res://actors/environments/Tree.tscn" id="7"]
+[ext_resource type="Resource" path="res://combat/styles/garden.tres" id="8"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="11"]
+[ext_resource type="Resource" uid="uid://b4mhr8ft2dgry" path="res://selection/characters/umidorians_1.tres" id="12"]
+[ext_resource type="PackedScene" uid="uid://b5vliphrq4sky" path="res://actors/enemies/Rabbit.tscn" id="13"]
 
-[sub_resource type="Resource" id=1]
-script = ExtResource( 6 )
+[sub_resource type="Resource" id="1"]
+script = ExtResource("6")
 id = "hide_and_seek"
 name = "Hide n Seek n Destroy"
-icon = ExtResource( 5 )
-arena_style = ExtResource( 8 )
+icon = ExtResource("5")
+arena_style = ExtResource("8")
 description = "find and shoot the others"
 max_timeout = 80
 max_score = 40
@@ -31,6 +29,7 @@ starting_health = 1
 respawn_from_home = false
 end_on_perfect = true
 fill_starting_score = false
+streaks_enabled = true
 death = false
 last_man = false
 crown = true
@@ -53,56 +52,65 @@ flood = false
 laserable = true
 additional_lasers = false
 
-[node name="Arena" instance=ExtResource( 1 )]
+[sub_resource type="Resource" id="Resource_ffucb"]
+metadata/__load_path__ = "res://addons/geometry/GConvexPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_dn8l5"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_n7e2f"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[node name="Arena" instance=ExtResource("1")]
 size_multiplier = 2.5
-game_mode = SubResource( 1 )
+game_mode = SubResource("1")
 
 [node name="CrownModeManager" parent="Managers" index="7"]
 enabled = true
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 3 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource("3")]
 hollow = true
 hide_grid = true
-solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
-grid_color = Color( 0.996078, 0.584314, 0, 0.407843 )
+solid_line_color = Color(1.13, 0.78, 0.47, 1)
+grid_color = Color(0.996078, 0.584314, 0, 0.407843)
 
 [node name="GConvexPolygon" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
-script = ExtResource( 10 )
+script = SubResource("Resource_ffucb")
 __meta__ = {
 "_editor_description_": ""
 }
-polygon = PackedVector2Array( -2900, -1500, -2100, -700, -2100, 700, -2900, 1500, 2900, 1500, 2100, 700, 2100, -700, 2900, -1500 )
+polygon = PackedVector2Array(-2900, -1500, -2100, -700, -2100, 700, -2900, 1500, 2900, 1500, 2100, 700, 2100, -700, 2900, -1500)
 
 [node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Background/OutsideWall" index="9"]
 visible = false
-polygon = PackedVector2Array( -2900, -1500, -2100, -700, -2100, 700, -2900, 1500, 2900, 1500, 2100, 700, 2100, -700, 2900, -1500 )
+polygon = PackedVector2Array(-2900, -1500, -2100, -700, -2100, 700, -2900, 1500, 2900, 1500, 2100, 700, 2100, -700, 2900, -1500)
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 1, 1, 1, 0.9 )
-texture = ExtResource( 4 )
-fg_color = Color( 0.32, 0.1632, 0.1632, 1 )
-bg_color = Color( 0.28, 0.14, 0.14, 1 )
+modulate = Color(1, 1, 1, 0.9)
+texture = ExtResource("4")
+fg_color = Color(0.32, 0.1632, 0.1632, 1)
+bg_color = Color(0.28, 0.14, 0.14, 1)
 
 [node name="FloodWater" parent="Battlefield/Background" index="3"]
-opaque_tint = Color( 0, 0, 0, 1 )
+opaque_tint = Color(0, 0, 0, 1)
 
-[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource( 3 )]
-position = Vector2( 0, -1500 )
-solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+[node name="Wall" parent="Battlefield/Middleground" index="0" instance=ExtResource("3")]
+position = Vector2(0, -1500)
+solid_line_color = Color(1.13, 0.78, 0.47, 1)
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall" index="8"]
-script = ExtResource( 9 )
+script = SubResource("Resource_dn8l5")
 radius = 150
 sides = 4.0
 alternating_angle = 0
 rotation_degrees = 0
 
-[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 3 )]
-position = Vector2( 0, 1500 )
-solid_line_color = Color( 1.13, 0.78, 0.47, 1 )
+[node name="Wall2" parent="Battlefield/Middleground" index="1" instance=ExtResource("3")]
+position = Vector2(0, 1500)
+solid_line_color = Color(1.13, 0.78, 0.47, 1)
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall2" index="8"]
-script = ExtResource( 9 )
+script = SubResource("Resource_n7e2f")
 radius = 150
 sides = 4.0
 alternating_angle = 0
@@ -110,270 +118,270 @@ rotation_degrees = 0
 
 [node name="Node2D" type="Node2D" parent="Battlefield/Middleground" index="2"]
 
-[node name="Tree" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource( 7 )]
-position = Vector2( -1950, 0 )
+[node name="Tree" parent="Battlefield/Middleground/Node2D" index="0" instance=ExtResource("7")]
+position = Vector2(-1950, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree" index="1"]
-polygon = PackedVector2Array( -50, -500, 50, -500, 450, -100, 450, 50, 50, 450, -50, 450, -450, 50, -450, -100 )
+polygon = PackedVector2Array(-50, -500, 50, -500, 450, -100, 450, 50, 50, 450, -50, 450, -450, 50, -450, -100)
 
-[node name="Tree30" parent="Battlefield/Middleground/Node2D" index="1" instance=ExtResource( 7 )]
-position = Vector2( 2450, 1250 )
+[node name="Tree30" parent="Battlefield/Middleground/Node2D" index="1" instance=ExtResource("7")]
+position = Vector2(2450, 1250)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree30" index="1"]
-polygon = PackedVector2Array( -50, -500, 50, -500, 450, -100, 450, 50, 50, 450, -50, 450, -450, 50, -450, -100 )
+polygon = PackedVector2Array(-50, -500, 50, -500, 450, -100, 450, 50, 50, 450, -50, 450, -450, 50, -450, -100)
 
-[node name="Tree3" parent="Battlefield/Middleground/Node2D" index="2" instance=ExtResource( 7 )]
-position = Vector2( -2500, -1400 )
+[node name="Tree3" parent="Battlefield/Middleground/Node2D" index="2" instance=ExtResource("7")]
+position = Vector2(-2500, -1400)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree3" index="1"]
-polygon = PackedVector2Array( -50, -300, 50, -300, 300, -50, 300, 50, 50, 300, -50, 300, -300, 50, -300, -50 )
+polygon = PackedVector2Array(-50, -300, 50, -300, 300, -50, 300, 50, 50, 300, -50, 300, -300, 50, -300, -50)
 
-[node name="Tree4" parent="Battlefield/Middleground/Node2D" index="3" instance=ExtResource( 7 )]
-position = Vector2( 1300, -150 )
+[node name="Tree4" parent="Battlefield/Middleground/Node2D" index="3" instance=ExtResource("7")]
+position = Vector2(1300, -150)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree4" index="1"]
-polygon = PackedVector2Array( -50, -300, 50, -300, 300, -50, 300, 50, 50, 300, -50, 300, -300, 50, -300, -50 )
+polygon = PackedVector2Array(-50, -300, 50, -300, 300, -50, 300, 50, 50, 300, -50, 300, -300, 50, -300, -50)
 
-[node name="Tree27" parent="Battlefield/Middleground/Node2D" index="4" instance=ExtResource( 7 )]
-position = Vector2( -2050, -850 )
+[node name="Tree27" parent="Battlefield/Middleground/Node2D" index="4" instance=ExtResource("7")]
+position = Vector2(-2050, -850)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree27" index="1"]
-polygon = PackedVector2Array( -50, -300, 50, -300, 300, -50, 300, 50, 50, 300, -50, 300, -300, 50, -300, -50 )
+polygon = PackedVector2Array(-50, -300, 50, -300, 300, -50, 300, 50, 50, 300, -50, 300, -300, 50, -300, -50)
 
-[node name="Tree5" parent="Battlefield/Middleground/Node2D" index="5" instance=ExtResource( 7 )]
-position = Vector2( -1550, 800 )
+[node name="Tree5" parent="Battlefield/Middleground/Node2D" index="5" instance=ExtResource("7")]
+position = Vector2(-1550, 800)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree5" index="1"]
-polygon = PackedVector2Array( -50, -400, 50, -400, 400, -50, 400, 50, 50, 400, -50, 400, -400, 50, -400, -50 )
+polygon = PackedVector2Array(-50, -400, 50, -400, 400, -50, 400, 50, 50, 400, -50, 400, -400, 50, -400, -50)
 
-[node name="Tree19" parent="Battlefield/Middleground/Node2D" index="6" instance=ExtResource( 7 )]
-position = Vector2( 550, -1000 )
+[node name="Tree19" parent="Battlefield/Middleground/Node2D" index="6" instance=ExtResource("7")]
+position = Vector2(550, -1000)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree19" index="1"]
-polygon = PackedVector2Array( -50, -400, 50, -400, 400, -50, 400, 50, 50, 400, -50, 400, -400, 50, -400, -50 )
+polygon = PackedVector2Array(-50, -400, 50, -400, 400, -50, 400, 50, 50, 400, -50, 400, -400, 50, -400, -50)
 
-[node name="Tree8" parent="Battlefield/Middleground/Node2D" index="7" instance=ExtResource( 7 )]
-position = Vector2( -700, 950 )
+[node name="Tree8" parent="Battlefield/Middleground/Node2D" index="7" instance=ExtResource("7")]
+position = Vector2(-700, 950)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree8" index="1"]
-polygon = PackedVector2Array( -50, -300, 50, -300, 300, -50, 300, 50, 50, 300, -50, 300, -300, 50, -300, -50 )
+polygon = PackedVector2Array(-50, -300, 50, -300, 300, -50, 300, 50, 50, 300, -50, 300, -300, 50, -300, -50)
 
-[node name="Tree21" parent="Battlefield/Middleground/Node2D" index="8" instance=ExtResource( 7 )]
-position = Vector2( -1250, -400 )
+[node name="Tree21" parent="Battlefield/Middleground/Node2D" index="8" instance=ExtResource("7")]
+position = Vector2(-1250, -400)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree21" index="1"]
-polygon = PackedVector2Array( -50, -300, 50, -300, 300, -50, 300, 50, 50, 300, -50, 300, -300, 50, -300, -50 )
+polygon = PackedVector2Array(-50, -300, 50, -300, 300, -50, 300, 50, 50, 300, -50, 300, -300, 50, -300, -50)
 
-[node name="Tree6" parent="Battlefield/Middleground/Node2D" index="9" instance=ExtResource( 7 )]
-position = Vector2( 1000, 1350 )
+[node name="Tree6" parent="Battlefield/Middleground/Node2D" index="9" instance=ExtResource("7")]
+position = Vector2(1000, 1350)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree6" index="1"]
-polygon = PackedVector2Array( -50, -300, 50, -300, 300, -50, 300, 50, 50, 300, -50, 300, -300, 50, -300, -50 )
+polygon = PackedVector2Array(-50, -300, 50, -300, 300, -50, 300, 50, 50, 300, -50, 300, -300, 50, -300, -50)
 
-[node name="Tree10" parent="Battlefield/Middleground/Node2D" index="10" instance=ExtResource( 7 )]
-position = Vector2( 1450, 1200 )
+[node name="Tree10" parent="Battlefield/Middleground/Node2D" index="10" instance=ExtResource("7")]
+position = Vector2(1450, 1200)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree10" index="1"]
-polygon = PackedVector2Array( -50, -300, 50, -300, 250, -100, 250, 50, 50, 250, -50, 250, -250, 50, -250, -100 )
+polygon = PackedVector2Array(-50, -300, 50, -300, 250, -100, 250, 50, 50, 250, -50, 250, -250, 50, -250, -100)
 
-[node name="Tree23" parent="Battlefield/Middleground/Node2D" index="11" instance=ExtResource( 7 )]
-position = Vector2( -1650, -1050 )
+[node name="Tree23" parent="Battlefield/Middleground/Node2D" index="11" instance=ExtResource("7")]
+position = Vector2(-1650, -1050)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree23" index="1"]
-polygon = PackedVector2Array( -50, -300, 50, -300, 250, -100, 250, 50, 50, 250, -50, 250, -250, 50, -250, -100 )
+polygon = PackedVector2Array(-50, -300, 50, -300, 250, -100, 250, 50, 50, 250, -50, 250, -250, 50, -250, -100)
 
-[node name="Tree13" parent="Battlefield/Middleground/Node2D" index="12" instance=ExtResource( 7 )]
-position = Vector2( 950, -1300 )
+[node name="Tree13" parent="Battlefield/Middleground/Node2D" index="12" instance=ExtResource("7")]
+position = Vector2(950, -1300)
 height = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree13" index="1"]
-polygon = PackedVector2Array( -50, -600, 50, -600, 250, -400, 250, 50, 50, 250, -50, 250, -250, 50, -250, -400 )
+polygon = PackedVector2Array(-50, -600, 50, -600, 250, -400, 250, 50, 50, 250, -50, 250, -250, 50, -250, -400)
 
-[node name="Tree14" parent="Battlefield/Middleground/Node2D" index="13" instance=ExtResource( 7 )]
-position = Vector2( -1050, -1100 )
+[node name="Tree14" parent="Battlefield/Middleground/Node2D" index="13" instance=ExtResource("7")]
+position = Vector2(-1050, -1100)
 height = 6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree14" index="1"]
-polygon = PackedVector2Array( -50, -800, 50, -800, 250, -600, 250, 50, 50, 250, -50, 250, -250, 50, -250, -600 )
+polygon = PackedVector2Array(-50, -800, 50, -800, 250, -600, 250, 50, 50, 250, -50, 250, -250, 50, -250, -600)
 
-[node name="Tree15" parent="Battlefield/Middleground/Node2D" index="14" instance=ExtResource( 7 )]
-position = Vector2( 2050, 850 )
+[node name="Tree15" parent="Battlefield/Middleground/Node2D" index="14" instance=ExtResource("7")]
+position = Vector2(2050, 850)
 height = 6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree15" index="1"]
-polygon = PackedVector2Array( -50, -800, 50, -800, 250, -600, 250, 50, 50, 250, -50, 250, -250, 50, -250, -600 )
+polygon = PackedVector2Array(-50, -800, 50, -800, 250, -600, 250, 50, 50, 250, -50, 250, -250, 50, -250, -600)
 
-[node name="Tree16" parent="Battlefield/Middleground/Node2D" index="15" instance=ExtResource( 7 )]
-position = Vector2( -1300, 1200 )
+[node name="Tree16" parent="Battlefield/Middleground/Node2D" index="15" instance=ExtResource("7")]
+position = Vector2(-1300, 1200)
 height = 6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree16" index="1"]
-polygon = PackedVector2Array( -50, -750, 50, -750, 200, -600, 200, 50, 50, 200, -50, 200, -200, 50, -200, -600 )
+polygon = PackedVector2Array(-50, -750, 50, -750, 200, -600, 200, 50, 50, 200, -50, 200, -200, 50, -200, -600)
 
-[node name="Tree20" parent="Battlefield/Middleground/Node2D" index="16" instance=ExtResource( 7 )]
-position = Vector2( 850, -200 )
+[node name="Tree20" parent="Battlefield/Middleground/Node2D" index="16" instance=ExtResource("7")]
+position = Vector2(850, -200)
 height = 6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree20" index="1"]
-polygon = PackedVector2Array( -50, -750, 50, -750, 200, -600, 200, 50, 50, 200, -50, 200, -200, 50, -200, -600 )
+polygon = PackedVector2Array(-50, -750, 50, -750, 200, -600, 200, 50, 50, 200, -50, 200, -200, 50, -200, -600)
 
-[node name="Tree35" parent="Battlefield/Middleground/Node2D" index="17" instance=ExtResource( 7 )]
-position = Vector2( -400, 1400 )
+[node name="Tree35" parent="Battlefield/Middleground/Node2D" index="17" instance=ExtResource("7")]
+position = Vector2(-400, 1400)
 height = 6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree35" index="1"]
-polygon = PackedVector2Array( -50, -750, 50, -750, 200, -600, 200, 50, 50, 200, -50, 200, -200, 50, -200, -600 )
+polygon = PackedVector2Array(-50, -750, 50, -750, 200, -600, 200, 50, 50, 200, -50, 200, -200, 50, -200, -600)
 
-[node name="Tree11" parent="Battlefield/Middleground/Node2D" index="18" instance=ExtResource( 7 )]
-position = Vector2( 600, 500 )
+[node name="Tree11" parent="Battlefield/Middleground/Node2D" index="18" instance=ExtResource("7")]
+position = Vector2(600, 500)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree11" index="1"]
-polygon = PackedVector2Array( -50, -200, 50, -200, 200, -50, 200, 50, 50, 200, -50, 200, -200, 50, -200, -50 )
+polygon = PackedVector2Array(-50, -200, 50, -200, 200, -50, 200, 50, 50, 200, -50, 200, -200, 50, -200, -50)
 
-[node name="Tree25" parent="Battlefield/Middleground/Node2D" index="19" instance=ExtResource( 7 )]
-position = Vector2( -2050, 1350 )
+[node name="Tree25" parent="Battlefield/Middleground/Node2D" index="19" instance=ExtResource("7")]
+position = Vector2(-2050, 1350)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree25" index="1"]
-polygon = PackedVector2Array( -50, -200, 50, -200, 200, -50, 200, 50, 50, 200, -50, 200, -200, 50, -200, -50 )
+polygon = PackedVector2Array(-50, -200, 50, -200, 200, -50, 200, 50, 50, 200, -50, 200, -200, 50, -200, -50)
 
-[node name="Tree12" parent="Battlefield/Middleground/Node2D" index="20" instance=ExtResource( 7 )]
-position = Vector2( -1300, -900 )
+[node name="Tree12" parent="Battlefield/Middleground/Node2D" index="20" instance=ExtResource("7")]
+position = Vector2(-1300, -900)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree12" index="1"]
-polygon = PackedVector2Array( -50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100 )
+polygon = PackedVector2Array(-50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100)
 
-[node name="Tree34" parent="Battlefield/Middleground/Node2D" index="21" instance=ExtResource( 7 )]
-position = Vector2( -100, 350 )
+[node name="Tree34" parent="Battlefield/Middleground/Node2D" index="21" instance=ExtResource("7")]
+position = Vector2(-100, 350)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree34" index="1"]
-polygon = PackedVector2Array( -50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100 )
+polygon = PackedVector2Array(-50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100)
 
-[node name="Tree28" parent="Battlefield/Middleground/Node2D" index="22" instance=ExtResource( 7 )]
-position = Vector2( 2200, -950 )
+[node name="Tree28" parent="Battlefield/Middleground/Node2D" index="22" instance=ExtResource("7")]
+position = Vector2(2200, -950)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree28" index="1"]
-polygon = PackedVector2Array( -50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100 )
+polygon = PackedVector2Array(-50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100)
 
-[node name="Tree17" parent="Battlefield/Middleground/Node2D" index="23" instance=ExtResource( 7 )]
-position = Vector2( 400, -550 )
+[node name="Tree17" parent="Battlefield/Middleground/Node2D" index="23" instance=ExtResource("7")]
+position = Vector2(400, -550)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree17" index="1"]
-polygon = PackedVector2Array( -50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100 )
+polygon = PackedVector2Array(-50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100)
 
-[node name="Tree26" parent="Battlefield/Middleground/Node2D" index="24" instance=ExtResource( 7 )]
-position = Vector2( -1900, 1100 )
+[node name="Tree26" parent="Battlefield/Middleground/Node2D" index="24" instance=ExtResource("7")]
+position = Vector2(-1900, 1100)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree26" index="1"]
-polygon = PackedVector2Array( -50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100 )
+polygon = PackedVector2Array(-50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100)
 
-[node name="Tree24" parent="Battlefield/Middleground/Node2D" index="25" instance=ExtResource( 7 )]
-position = Vector2( -1600, -200 )
+[node name="Tree24" parent="Battlefield/Middleground/Node2D" index="25" instance=ExtResource("7")]
+position = Vector2(-1600, -200)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree24" index="1"]
-polygon = PackedVector2Array( -50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100 )
+polygon = PackedVector2Array(-50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100)
 
-[node name="Tree31" parent="Battlefield/Middleground/Node2D" index="26" instance=ExtResource( 7 )]
-position = Vector2( -850, 1350 )
+[node name="Tree31" parent="Battlefield/Middleground/Node2D" index="26" instance=ExtResource("7")]
+position = Vector2(-850, 1350)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree31" index="1"]
-polygon = PackedVector2Array( -50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100 )
+polygon = PackedVector2Array(-50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100)
 
-[node name="Tree32" parent="Battlefield/Middleground/Node2D" index="27" instance=ExtResource( 7 )]
-position = Vector2( -2350, 1300 )
+[node name="Tree32" parent="Battlefield/Middleground/Node2D" index="27" instance=ExtResource("7")]
+position = Vector2(-2350, 1300)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree32" index="1"]
-polygon = PackedVector2Array( -50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100 )
+polygon = PackedVector2Array(-50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100)
 
-[node name="Tree33" parent="Battlefield/Middleground/Node2D" index="28" instance=ExtResource( 7 )]
-position = Vector2( 1750, 1400 )
+[node name="Tree33" parent="Battlefield/Middleground/Node2D" index="28" instance=ExtResource("7")]
+position = Vector2(1750, 1400)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree33" index="1"]
-polygon = PackedVector2Array( -50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100 )
+polygon = PackedVector2Array(-50, -200, 50, -200, 150, -100, 150, 50, 50, 150, -50, 150, -150, 50, -150, -100)
 
-[node name="Tree2" parent="Battlefield/Middleground/Node2D" index="29" instance=ExtResource( 7 )]
-position = Vector2( 1950, 0 )
+[node name="Tree2" parent="Battlefield/Middleground/Node2D" index="29" instance=ExtResource("7")]
+position = Vector2(1950, 0)
 height = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree2" index="1"]
-polygon = PackedVector2Array( -50, -600, 50, -600, 450, -200, 450, 50, 50, 450, -50, 450, -450, 50, -450, -200 )
+polygon = PackedVector2Array(-50, -600, 50, -600, 450, -200, 450, 50, 50, 450, -50, 450, -450, 50, -450, -200)
 
-[node name="Tree18" parent="Battlefield/Middleground/Node2D" index="30" instance=ExtResource( 7 )]
-position = Vector2( -400, -850 )
+[node name="Tree18" parent="Battlefield/Middleground/Node2D" index="30" instance=ExtResource("7")]
+position = Vector2(-400, -850)
 height = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree18" index="1"]
-polygon = PackedVector2Array( -50, -600, 50, -600, 450, -200, 450, 50, 50, 450, -50, 450, -450, 50, -450, -200 )
+polygon = PackedVector2Array(-50, -600, 50, -600, 450, -200, 450, 50, 50, 450, -50, 450, -450, 50, -450, -200)
 
-[node name="Tree29" parent="Battlefield/Middleground/Node2D" index="31" instance=ExtResource( 7 )]
-position = Vector2( 350, 1200 )
+[node name="Tree29" parent="Battlefield/Middleground/Node2D" index="31" instance=ExtResource("7")]
+position = Vector2(350, 1200)
 height = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree29" index="1"]
-polygon = PackedVector2Array( -50, -600, 50, -600, 450, -200, 450, 50, 50, 450, -50, 450, -450, 50, -450, -200 )
+polygon = PackedVector2Array(-50, -600, 50, -600, 450, -200, 450, 50, 50, 450, -50, 450, -450, 50, -450, -200)
 
-[node name="Tree7" parent="Battlefield/Middleground/Node2D" index="32" instance=ExtResource( 7 )]
-position = Vector2( -1000, 400 )
+[node name="Tree7" parent="Battlefield/Middleground/Node2D" index="32" instance=ExtResource("7")]
+position = Vector2(-1000, 400)
 height = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree7" index="1"]
-polygon = PackedVector2Array( -100, -650, 100, -650, 500, -250, 500, 50, 100, 450, -100, 450, -500, 50, -500, -250 )
+polygon = PackedVector2Array(-100, -650, 100, -650, 500, -250, 500, 50, 100, 450, -100, 450, -500, 50, -500, -250)
 
-[node name="Tree22" parent="Battlefield/Middleground/Node2D" index="33" instance=ExtResource( 7 )]
-position = Vector2( 1150, 700 )
+[node name="Tree22" parent="Battlefield/Middleground/Node2D" index="33" instance=ExtResource("7")]
+position = Vector2(1150, 700)
 height = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree22" index="1"]
-polygon = PackedVector2Array( -100, -650, 100, -650, 500, -250, 500, 50, 100, 450, -100, 450, -500, 50, -500, -250 )
+polygon = PackedVector2Array(-100, -650, 100, -650, 500, -250, 500, 50, 100, 450, -100, 450, -500, 50, -500, -250)
 
-[node name="Tree9" parent="Battlefield/Middleground/Node2D" index="34" instance=ExtResource( 7 )]
-position = Vector2( 1650, -1150 )
+[node name="Tree9" parent="Battlefield/Middleground/Node2D" index="34" instance=ExtResource("7")]
+position = Vector2(1650, -1150)
 height = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Middleground/Node2D/Tree9" index="1"]
-polygon = PackedVector2Array( -100, -650, 100, -650, 500, -250, 500, 50, 100, 450, -100, 450, -500, 50, -500, -250 )
+polygon = PackedVector2Array(-100, -650, 100, -650, 500, -250, 500, 50, 100, 450, -100, 450, -500, 50, -500, -250)
 
-[node name="Rabbit" parent="Battlefield/Middleground" index="3" instance=ExtResource( 13 )]
-position = Vector2( -200, -300 )
+[node name="Rabbit" parent="Battlefield/Middleground" index="3" instance=ExtResource("13")]
+position = Vector2(-200, -300)
 
-[node name="Rabbit2" parent="Battlefield/Middleground" index="4" instance=ExtResource( 13 )]
-position = Vector2( -950, 250 )
+[node name="Rabbit2" parent="Battlefield/Middleground" index="4" instance=ExtResource("13")]
+position = Vector2(-950, 250)
 
-[node name="Rabbit3" parent="Battlefield/Middleground" index="5" instance=ExtResource( 13 )]
-position = Vector2( 850, 200 )
+[node name="Rabbit3" parent="Battlefield/Middleground" index="5" instance=ExtResource("13")]
+position = Vector2(850, 200)
 
-[node name="Rabbit4" parent="Battlefield/Middleground" index="6" instance=ExtResource( 13 )]
-position = Vector2( 1250, -500 )
+[node name="Rabbit4" parent="Battlefield/Middleground" index="6" instance=ExtResource("13")]
+position = Vector2(1250, -500)
 
-[node name="Rabbit5" parent="Battlefield/Middleground" index="7" instance=ExtResource( 13 )]
-position = Vector2( -1650, -1000 )
+[node name="Rabbit5" parent="Battlefield/Middleground" index="7" instance=ExtResource("13")]
+position = Vector2(-1650, -1000)
 
-[node name="Rabbit6" parent="Battlefield/Middleground" index="8" instance=ExtResource( 13 )]
-position = Vector2( -1650, 150 )
+[node name="Rabbit6" parent="Battlefield/Middleground" index="8" instance=ExtResource("13")]
+position = Vector2(-1650, 150)
 
-[node name="Rabbit7" parent="Battlefield/Middleground" index="9" instance=ExtResource( 13 )]
-position = Vector2( -1450, 1300 )
+[node name="Rabbit7" parent="Battlefield/Middleground" index="9" instance=ExtResource("13")]
+position = Vector2(-1450, 1300)
 
-[node name="Rabbit8" parent="Battlefield/Middleground" index="10" instance=ExtResource( 13 )]
-position = Vector2( -250, 1200 )
+[node name="Rabbit8" parent="Battlefield/Middleground" index="10" instance=ExtResource("13")]
+position = Vector2(-250, 1200)
 
-[node name="Rabbit9" parent="Battlefield/Middleground" index="11" instance=ExtResource( 13 )]
-position = Vector2( 1800, 1150 )
+[node name="Rabbit9" parent="Battlefield/Middleground" index="11" instance=ExtResource("13")]
+position = Vector2(1800, 1150)
 
-[node name="Rabbit10" parent="Battlefield/Middleground" index="12" instance=ExtResource( 13 )]
-position = Vector2( 1250, 1050 )
+[node name="Rabbit10" parent="Battlefield/Middleground" index="12" instance=ExtResource("13")]
+position = Vector2(1250, 1050)
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 2 )]
-position = Vector2( 0, 0 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("2")]
+position = Vector2(0, 0)
 rotation = -1.5708
-species = ExtResource( 11 )
+species = ExtResource("11")
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 2 )]
-position = Vector2( 500, 0 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("2")]
+position = Vector2(500, 0)
 rotation = 3.14159
 controls = "joy1"
-species = ExtResource( 12 )
+species = ExtResource("12")
 
 [node name="Camera3D" parent="." index="7"]
-zoom = Vector2( 1.14795e+28, 1.14795e+28 )
+zoom = Vector2(1.14795e+28, 1.14795e+28)
 position_smoothing_speed = 0.3
 disabled_override = true

@@ -1,9 +1,9 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="Rule" load_steps=3 format=3 uid="uid://dledir6bggncn"]
 
-[ext_resource path="res://map_with_sets/planets/rules/Rule.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon/minicards/goal.png" type="Texture2D" id=2]
+[ext_resource type="Script" uid="uid://bq6404bknl386" path="res://map_with_sets/planets/rules/Rule.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cvfsiws4n0gds" path="res://assets/icon/minicards/goal.png" id="2"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 text = "launch the ball into an opponent's portal"
-logo = ExtResource( 2 )
+logo = ExtResource("2")

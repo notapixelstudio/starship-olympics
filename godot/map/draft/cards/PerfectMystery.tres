@@ -1,21 +1,21 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="MysteryCard" load_steps=7 format=3 uid="uid://d008po7gwl3lf"]
 
-[ext_resource path="res://map/draft/cards/MysteryCard.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/cards/card_perfectionist.png" type="Texture2D" id=2]
-[ext_resource path="res://map/draft/cards/PerfectionitsFlowsnake.tres" type="Resource" id=3]
-[ext_resource path="res://map/draft/cards/PerfectionistAtomicMarbles.tres" type="Resource" id=4]
-[ext_resource path="res://map/draft/cards/PerfectionistWinterRingRacing.tres" type="Resource" id=5]
-[ext_resource path="res://map/draft/cards/PerfectionistSlamAGon.tres" type="Resource" id=6]
+[ext_resource type="Script" uid="uid://rg8yp0mu5bco" path="res://map/draft/cards/MysteryCard.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cyahb5k5q761r" path="res://assets/sprites/cards/card_perfectionist.png" id="2"]
+[ext_resource type="Resource" uid="uid://c7ovmvfnbr6mb" path="res://map/draft/cards/PerfectionitsFlowsnake.tres" id="3"]
+[ext_resource type="Resource" uid="uid://bb5nwpif8u2b6" path="res://map/draft/cards/PerfectionistAtomicMarbles.tres" id="4"]
+[ext_resource type="Resource" uid="uid://dgqreppe8151j" path="res://map/draft/cards/PerfectionistWinterRingRacing.tres" id="5"]
+[ext_resource type="Resource" uid="uid://bhcpnaq051x5b" path="res://map/draft/cards/PerfectionistSlamAGon.tres" id="6"]
 
 [resource]
-script = ExtResource( 1 )
-unlocks = [ "ClassicMystery", "WinterMystery" ]
+script = ExtResource("1")
+name = "Perfectionist"
+description = "A random perfectionist minigame"
+mystery_cover = ExtResource("2")
+subcards = [ExtResource("4"), ExtResource("3"), ExtResource("5"), ExtResource("6")]
+color = "mystery"
+unlocks = ["ClassicMystery", "WinterMystery"]
 unlock_strength = 1
 winter = false
 perfectionist = false
-tint = Color( 0, 0, 0, 1 )
-name = "Perfectionist"
-description = "A random perfectionist minigame"
-mystery_cover = ExtResource( 2 )
-subcards = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ]
-color = "mystery"
+tint = Color(0, 0, 0, 1)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://m3j0tij6vm8h" path="res://assets/sprites/signs/O.png" id="4"]
 [ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="5"]
-[ext_resource type="PackedScene" path="res://actors/environments/Wall.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="8"]
 [ext_resource type="Resource" uid="uid://c2d0iaqf8sd0v" path="res://selection/characters/pentagonions_1.tres" id="10"]
@@ -11,14 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://w1sm6hbl2isn" path="res://combat/levels/background/pentagonions.png" id="13"]
 [ext_resource type="Resource" path="res://combat/styles/parquet.tres" id="14"]
 [ext_resource type="Texture2D" uid="uid://2hshh63fabyh" path="res://assets/patterns/stripes.png" id="15"]
-[ext_resource type="PackedScene" path="res://actors/environments/PentaGoal.tscn" id="17"]
-[ext_resource type="Shader" path="res://assets/shaders/Clock.gdshader" id="18"]
+[ext_resource type="PackedScene" uid="uid://p1d7of6lutxe" path="res://actors/environments/PentaGoal.tscn" id="17"]
+[ext_resource type="Shader" uid="uid://478yhpwk34ah" path="res://assets/shaders/Clock.gdshader" id="18"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 resource_local_to_scene = true
 shader = ExtResource("18")
-shader_parameter/time_left = null
-shader_parameter/max_time = null
+shader_parameter/time_left = 0.0
+shader_parameter/max_time = 0.0
 shader_parameter/active = false
 shader_parameter/x_direction = 1.0
 shader_parameter/color_on = Color(1, 1, 1, 1)
@@ -42,7 +42,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jslj6"]
 _data = {
-"Rotate": SubResource("2")
+&"Rotate": SubResource("2")
 }
 
 [sub_resource type="Animation" id="5"]
@@ -86,7 +86,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kylpu"]
 _data = {
-"Game Over": SubResource("5")
+&"Game Over": SubResource("5")
 }
 
 [node name="Arena" instance=ExtResource("8")]

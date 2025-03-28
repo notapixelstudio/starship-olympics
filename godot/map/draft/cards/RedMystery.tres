@@ -1,21 +1,21 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="MysteryCard" load_steps=7 format=3 uid="uid://b8rjofrcwirxh"]
 
-[ext_resource path="res://map/draft/cards/MysteryCard.gd" type="Script" id=1]
-[ext_resource path="res://map/draft/cards/GuardTheBridge.tres" type="Resource" id=2]
-[ext_resource path="res://map/draft/cards/TakeTheCrown.tres" type="Resource" id=3]
-[ext_resource path="res://map/draft/cards/Negacrown.tres" type="Resource" id=4]
-[ext_resource path="res://assets/sprites/cards/card_mystery_red.png" type="Texture2D" id=5]
-[ext_resource path="res://map/draft/cards/QueenOfTheHive.tres" type="Resource" id=6]
+[ext_resource type="Script" uid="uid://rg8yp0mu5bco" path="res://map/draft/cards/MysteryCard.gd" id="1"]
+[ext_resource type="Resource" uid="uid://cu78yo25xowkn" path="res://map/draft/cards/GuardTheBridge.tres" id="2"]
+[ext_resource type="Resource" path="res://map/draft/cards/TakeTheCrown.tres" id="3"]
+[ext_resource type="Resource" uid="uid://mbf5v2ttfbxm" path="res://map/draft/cards/Negacrown.tres" id="4"]
+[ext_resource type="Texture2D" uid="uid://x10sysj7sc5l" path="res://assets/sprites/cards/card_mystery_red.png" id="5"]
+[ext_resource type="Resource" uid="uid://cs2h3i1d8gxe2" path="res://map/draft/cards/QueenOfTheHive.tres" id="6"]
 
 [resource]
-script = ExtResource( 1 )
-unlocks = [  ]
+script = ExtResource("1")
+name = "Traditional"
+description = "A random traditional minigame"
+mystery_cover = ExtResource("5")
+subcards = [ExtResource("3"), ExtResource("2"), ExtResource("4"), ExtResource("6")]
+color = "red"
+unlocks = []
 unlock_strength = 1
 winter = false
 perfectionist = false
-tint = Color( 0, 0, 0, 1 )
-name = "Traditional"
-description = "A random traditional minigame"
-mystery_cover = ExtResource( 5 )
-subcards = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 6 ) ]
-color = "red"
+tint = Color(0, 0, 0, 1)

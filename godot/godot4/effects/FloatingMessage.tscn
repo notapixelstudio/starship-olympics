@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bbnal076e0fd1"]
 
-[ext_resource type="Script" path="res://godot4/effects/FloatingMessage.gd" id="1_ononj"]
+[ext_resource type="Script" uid="uid://b021qh4jt4llj" path="res://godot4/effects/FloatingMessage.gd" id="1_ononj"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="2_mbvra"]
 
 [sub_resource type="Animation" id="2"]
@@ -61,8 +61,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_py11i"]
 _data = {
-"Appear": SubResource("2"),
-"RESET": SubResource("Animation_51et7")
+&"Appear": SubResource("2"),
+&"RESET": SubResource("Animation_51et7")
 }
 
 [node name="FloatingMessage" type="Node2D" groups=["Overlay"]]

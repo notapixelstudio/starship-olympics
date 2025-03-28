@@ -1,25 +1,25 @@
-[gd_scene load_steps=26 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=31 format=3 uid="uid://cgjeqx4n1ot0e"]
 
-[ext_resource type="Script" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
+[ext_resource type="Script" uid="uid://57bbtul52rl7" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
+[ext_resource type="PhysicsMaterial" uid="uid://v8mu2p8ukj54" path="res://godot4/actors/ships/ShipPhysicsMaterial.tres" id="1_yr6p6"]
 [ext_resource type="PackedScene" uid="uid://b6gg3o407i70x" path="res://godot4/effects/DashRing.tscn" id="2_0puh8"]
 [ext_resource type="PackedScene" uid="uid://ctqk6tu6rj77v" path="res://godot4/effects/DeathFeedback.tscn" id="3_3e4pi"]
 [ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="3_gbkft"]
 [ext_resource type="PackedScene" uid="uid://clbsrjsidxhav" path="res://combat/traits/Tracked.tscn" id="3_h4ehe"]
-[ext_resource type="Script" path="res://actors/battlers/Node2D.gd" id="4_557ck"]
+[ext_resource type="Script" uid="uid://kdib40tvbvo8" path="res://actors/battlers/Node2D.gd" id="4_557ck"]
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="4_mpdfg"]
 [ext_resource type="PackedScene" uid="uid://d1673ytdlyny4" path="res://godot4/debug/OnShipDebug.tscn" id="5_0tcqu"]
-[ext_resource type="Script" path="res://godot4/actors/managers/ChargeManager.gd" id="5_ostpb"]
+[ext_resource type="Script" uid="uid://csgls77y2kr7l" path="res://godot4/actors/managers/ChargeManager.gd" id="5_ostpb"]
+[ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="8_11rou"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="8_yfcmx"]
 [ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://godot4/effects/trails/FlameTrail.tscn" id="10_4jj2i"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="10_iega2"]
 [ext_resource type="PackedScene" uid="uid://cex35drwxeknp" path="res://godot4/effects/trails/FlamesManager.tscn" id="11_i3r85"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="11_tsmbp"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="15_s48iq"]
-[ext_resource type="Script" path="res://godot4/actors/managers/CargoManager.gd" id="16_m8m51"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w3n3b"]
-friction = 0.0
-bounce = 0.35
+[ext_resource type="PackedScene" uid="uid://cd12x0fubc17m" path="res://godot4/actors/ships/GravitonField.tscn" id="16_2i8oi"]
+[ext_resource type="Script" uid="uid://b7tqdyagdrwog" path="res://godot4/actors/managers/CargoManager.gd" id="16_m8m51"]
+[ext_resource type="AudioStream" uid="uid://dpgsvvngst2ut" path="res://assets/audio/gameplay/swoosh/Fast Swish.wav" id="19_8du2k"]
 
 [sub_resource type="GDScript" id="GDScript_4hb7k"]
 script/source = "extends DebugNode
@@ -53,9 +53,18 @@ func _process(delta):
 	scale = Tween.interpolate_value(NORMAL, FAT_DELTA, weight, 1.0, Tween.TRANS_QUAD, Tween.EASE_OUT)
 "
 
+[sub_resource type="GDScript" id="GDScript_ukxwp"]
+script/source = "extends Area2D
+
+@export var host : Ship
+
+func get_ship() -> Ship:
+	return host
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_oi8fb"]
 resource_local_to_scene = true
-radius = 55.0
+radius = 70.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kepy8"]
 resource_local_to_scene = true
@@ -83,11 +92,17 @@ resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
 
-[node name="Ship" type="RigidBody2D"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ntsfv"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("19_8du2k")
+
+[node name="Ship" type="RigidBody2D" groups=["Ship"]]
 collision_layer = 2151677953
 collision_mask = 1169
-physics_material_override = SubResource("PhysicsMaterial_w3n3b")
+physics_material_override = ExtResource("1_yr6p6")
 can_sleep = false
+contact_monitor = true
 max_contacts_reported = 10
 linear_damp = 7.0
 angular_damp = 40.0
@@ -112,13 +127,24 @@ host = NodePath("../..")
 unique_name_in_owner = true
 scale = Vector2(1.25, 1.25)
 
+[node name="Glow" type="PointLight2D" parent="Graphics"]
+unique_name_in_owner = true
+energy = 20.0
+blend_mode = 2
+range_item_cull_mask = 2
+texture = ExtResource("8_11rou")
+
 [node name="BallSprite" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
+light_mask = 0
 position = Vector2(64, 0)
 scale = Vector2(0.77, 0.77)
 
 [node name="Sprite" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
+light_mask = 0
+z_index = 20
+z_as_relative = false
 texture = ExtResource("3_gbkft")
 script = SubResource("GDScript_jwr13")
 
@@ -126,9 +152,12 @@ script = SubResource("GDScript_jwr13")
 scale = Vector2(0.8, 0.8)
 sprite = NodePath("../Sprite")
 
-[node name="TouchArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2688
+[node name="TouchArea" type="Area2D" parent="." node_paths=PackedStringArray("host")]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 6784
+script = SubResource("GDScript_ukxwp")
+host = NodePath("..")
 
 [node name="TouchShape2D" type="CollisionShape2D" parent="TouchArea"]
 unique_name_in_owner = true
@@ -242,9 +271,31 @@ gradient = SubResource("Gradient_tmbes")
 host = NodePath("..")
 max_age = 0.4
 
+[node name="MovementGravitonField" parent="." node_paths=PackedStringArray("source") instance=ExtResource("16_2i8oi")]
+unique_name_in_owner = true
+gravity = 64.0
+center = Vector3(0, 0, -500)
+influence_radius = 250.0
+source = NodePath("..")
+source_strength_method_name = "get_speed_normalized"
+
+[node name="DashGravitonField" parent="." node_paths=PackedStringArray("source") instance=ExtResource("16_2i8oi")]
+unique_name_in_owner = true
+position = Vector2(-150, 0)
+gravity = 200.0
+center = Vector3(0, 0, -100)
+source = NodePath("../ChargeManager")
+source_strength_method_name = "get_charge_normalized"
+
 [node name="CargoManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("16_m8m51")
+
+[node name="DashFXPlayer" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_ntsfv")
+panning_strength = 10.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]
 [connection signal="body_entered" from="TouchArea" to="." method="_on_touch_area_body_entered"]

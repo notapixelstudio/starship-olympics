@@ -1,18 +1,18 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=5 format=3 uid="uid://dhu0r184oy0dh"]
 
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://combat/styles/diamond_rings.tres" type="Resource" id=2]
-[ext_resource path="res://assets/icon/minicards/sets/diamondsnatch.png" type="Texture2D" id=3]
-[ext_resource path="res://actors/brains/DiamondRingsBrain.tscn" type="PackedScene" id=4]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="1"]
+[ext_resource type="Resource" path="res://combat/styles/diamond_rings.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://jfc67ub28dwg" path="res://actors/brains/DiamondRingsBrain.tscn" id="4"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "DiamondRings"
 name = "DiamondRings"
-icon = ExtResource( 3 )
-arena_style = ExtResource( 2 )
+icon = ExtResource("3")
+arena_style = ExtResource("2")
 description = "cross the rings"
-cpu_brain = ExtResource( 4 )
+cpu_brain = ExtResource("4")
 max_timeout = 50
 max_score = 20
 starting_score = 0

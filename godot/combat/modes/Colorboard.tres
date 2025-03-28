@@ -1,18 +1,18 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=5 format=3 uid="uid://cahwqp2mgwu"]
 
-[ext_resource path="res://assets/icon/minicards/sets/board_conquest.png" type="Texture2D" id=1]
-[ext_resource path="res://actors/brains/BoardConquestBrain.tscn" type="PackedScene" id=2]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=3]
-[ext_resource path="res://combat/styles/colorboard.tres" type="Resource" id=4]
+[ext_resource type="Texture2D" uid="uid://bnka7aphps1wa" path="res://assets/icon/minicards/sets/board_conquest.png" id="1"]
+[ext_resource type="PackedScene" uid="uid://bpk7fpnrwayhs" path="res://actors/brains/BoardConquestBrain.tscn" id="2"]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="3"]
+[ext_resource type="Resource" path="res://combat/styles/colorboard.tres" id="4"]
 
 [resource]
-script = ExtResource( 3 )
+script = ExtResource("3")
 id = "Colorboard"
 name = "Colorboard"
-icon = ExtResource( 1 )
-arena_style = ExtResource( 4 )
+icon = ExtResource("1")
+arena_style = ExtResource("4")
 description = "color the board"
-cpu_brain = ExtResource( 2 )
+cpu_brain = ExtResource("2")
 max_timeout = 30
 max_score = 60
 starting_score = 0

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://jutuv5k67s36"]
+
+[ext_resource type="PackedScene" uid="uid://dhgfc2vafre2d" path="res://godot4/arena/hud/MatchOverScreen.tscn" id="1_0v4r6"]
+[ext_resource type="PackedScene" uid="uid://b1r8aolw78box" path="res://special_scenes/combat_UI/session_points/PvePilotStats.tscn" id="2_o4xsq"]
+[ext_resource type="Resource" uid="uid://beprbdd0hd64y" path="res://godot4/debug/default_data/single_pve_match_example_session.tres" id="2_qb634"]
+
+[node name="StandalonePveMatchOverScreen" instance=ExtResource("1_0v4r6")]
+session = ExtResource("2_qb634")
+
+[node name="Leaderboard" parent="VBoxContainer" index="1"]
+pilot_stats_scene = ExtResource("2_o4xsq")
+max_session_score = 1
+session = ExtResource("2_qb634")

@@ -4,7 +4,7 @@ extends Node2D
 
 var _max_score : float
 var _starting_score : float
-
+var _thresholds := []
 
 func _ready() -> void:
 	Events.score_updated.connect(_on_score_updated)
@@ -19,6 +19,7 @@ func add_team(name:String, species:Species) -> void:
 	bar.set_species(species) # FIXME this should be read from elsewhere
 	bar.set_max_value(_max_score)
 	bar.set_value(_starting_score)
+	bar.set_thresholds(_thresholds)
 	%ScoreBars.add_child(bar)
 	
 func set_max_score(v: float) -> void:
@@ -26,3 +27,7 @@ func set_max_score(v: float) -> void:
 
 func set_starting_score(v: float) -> void:
 	_starting_score = v
+
+func set_thresholds(v: Array) -> void:
+	_thresholds = v
+	

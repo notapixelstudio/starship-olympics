@@ -29,6 +29,9 @@ func get_monogram():
 func get_ship() -> Texture2D:
 	return ship
 
+func get_ship_silhouette() -> Texture2D:
+	return ship_w
+
 func get_color() -> Color:
 	return color
 	

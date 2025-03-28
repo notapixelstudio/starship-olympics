@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://dr5s7p60bcq8c"]
 
-[ext_resource path="res://combat/levels/sets/combat/skull_collector/variants/D.tscn" type="PackedScene" id=4]
-[ext_resource path="res://utils/Variants.tscn" type="PackedScene" id=5]
-[ext_resource path="res://combat/levels/sets/combat/skull_collector/variants/B.tscn" type="PackedScene" id=6]
+[ext_resource type="PackedScene" uid="uid://y27fhptjja5" path="res://combat/levels/sets/combat/skull_collector/variants/D.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://utils/Variants.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://c11a10bwblof" path="res://combat/levels/sets/combat/skull_collector/variants/B.tscn" id="6"]
 
-[node name="SkullVariants" instance=ExtResource( 5 )]
-variant_scenes = [ ExtResource( 6 ), ExtResource( 4 ) ]
+[node name="SkullVariants" instance=ExtResource("5")]
+variant_scenes = [ExtResource("6"), ExtResource("4")]
 debug_variant_index = 0

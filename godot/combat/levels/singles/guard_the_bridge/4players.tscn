@@ -1,106 +1,114 @@
-[gd_scene load_steps=24 format=3]
+[gd_scene load_steps=26 format=3 uid="uid://cspgltil1mx2t"]
 
-[ext_resource type="Script" path="res://addons/geometry/GBeveledRect.gd" id="1"]
-[ext_resource type="PackedScene" path="res://actors/environments/Wall.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://actors/environments/Ball.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://nlnnx1golw11" path="res://actors/environments/Ball.tscn" id="3"]
 [ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="4"]
-[ext_resource type="PackedScene" path="res://combat/Arena.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="5"]
 [ext_resource type="Resource" uid="uid://bcsa675ruiohh" path="res://selection/characters/trixens_1.tres" id="6"]
 [ext_resource type="Texture2D" uid="uid://dsi0t7cms4bcn" path="res://assets/patterns/xgrid.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://bnwodi5cvfpoo" path="res://combat/levels/background/green.png" id="8"]
 [ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://utils/CameraEye.tscn" id="10"]
 [ext_resource type="Texture2D" uid="uid://cul1qame2qpja" path="res://assets/patterns/wall/bones.png" id="11"]
-[ext_resource type="Resource" path="res://combat/styles/bones.tres" id="12"]
+[ext_resource type="Resource" uid="uid://b1cblnbj1ycjn" path="res://combat/styles/bones.tres" id="12"]
 [ext_resource type="Resource" uid="uid://c4n5tgxu5asop" path="res://selection/characters/eelectrons_1.tres" id="13"]
-[ext_resource type="PackedScene" path="res://actors/environments/NoHolderZone.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://dvcbsasx566u1" path="res://actors/environments/NoHolderZone.tscn" id="14"]
 [ext_resource type="Resource" path="res://combat/modes/GuardTheBridge.tres" id="15"]
 [ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="16"]
 [ext_resource type="PackedScene" path="res://combat/levels/singles/guard_the_bridge/BridgeManager.tscn" id="17"]
-[ext_resource type="Script" path="res://combat/levels/singles/guard_the_bridge/ShrinkAnimationPlayer.gd" id="18"]
+[ext_resource type="Script" uid="uid://csyhg5limgqmk" path="res://combat/levels/singles/guard_the_bridge/ShrinkAnimationPlayer.gd" id="18"]
 [ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="19"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Resource" id="Resource_tt51j"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Animation" id="1"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( -1375, 0 ) ]
+"values": [Vector2(-1375, 0)]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "Shrink"
 length = 20.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 20 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( -1375, 0 ), Vector2( -2125, 0 ) ]
+"values": [Vector2(-1375, 0), Vector2(-2125, 0)]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Resource" id="Resource_bpura"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Animation" id="4"]
 length = 0.001
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Vector2( 1375, 0 ) ]
+"values": [Vector2(1375, 0)]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 resource_name = "Shrink"
 length = 20.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 20 ),
-"transitions": PackedFloat32Array( 1, 1 ),
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Vector2( 1375, 0 ), Vector2( 2125, 0 ) ]
+"values": [Vector2(1375, 0), Vector2(2125, 0)]
 }
 
-[node name="Arena" instance=ExtResource( 5 )]
+[sub_resource type="Resource" id="Resource_mwo3n"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[node name="Arena" instance=ExtResource("5")]
 size_multiplier = 2.5
-game_mode = ExtResource( 15 )
-style = ExtResource( 12 )
+game_mode = ExtResource("15")
+style = ExtResource("12")
 score_to_win_override = 14
 
-[node name="BridgeManager" parent="Managers" index="0" instance=ExtResource( 17 )]
+[node name="BridgeManager" parent="Managers" index="0" instance=ExtResource("17")]
 
 [node name="KillModeManager" parent="Managers" index="10"]
 enabled = true
 
 [node name="BackgroundImage" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 8 )
+texture = ExtResource("8")
 
-[node name="LeftNoHolderZone" parent="Battlefield/Background" index="1" instance=ExtResource( 14 )]
-position = Vector2( -1375, 0 )
+[node name="LeftNoHolderZone" parent="Battlefield/Background" index="1" instance=ExtResource("14")]
+position = Vector2(-1375, 0)
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/LeftNoHolderZone" index="11"]
-script = ExtResource( 1 )
+script = SubResource("Resource_tt51j")
 width = 750
 height = 1100
 bevel = 100
@@ -111,17 +119,17 @@ bevel_se = 100
 
 [node name="ShrinkAnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/LeftNoHolderZone" index="12"]
 playback_speed = 2.0
-anims/RESET = SubResource( 1 )
-anims/Shrink = SubResource( 2 )
-script = ExtResource( 18 )
+anims/RESET = SubResource("1")
+anims/Shrink = SubResource("2")
+script = ExtResource("18")
 
-[node name="Waiter" parent="Battlefield/Background/LeftNoHolderZone/ShrinkAnimationPlayer" index="0" instance=ExtResource( 19 )]
+[node name="Waiter" parent="Battlefield/Background/LeftNoHolderZone/ShrinkAnimationPlayer" index="0" instance=ExtResource("19")]
 
-[node name="RightNoHolderZone" parent="Battlefield/Background" index="2" instance=ExtResource( 14 )]
-position = Vector2( 1375, 0 )
+[node name="RightNoHolderZone" parent="Battlefield/Background" index="2" instance=ExtResource("14")]
+position = Vector2(1375, 0)
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/RightNoHolderZone" index="11"]
-script = ExtResource( 1 )
+script = SubResource("Resource_bpura")
 width = 750
 height = 1100
 bevel = 100
@@ -132,21 +140,21 @@ bevel_se = 100
 
 [node name="ShrinkAnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/RightNoHolderZone" index="12"]
 playback_speed = 2.0
-anims/RESET = SubResource( 4 )
-anims/Shrink = SubResource( 3 )
-script = ExtResource( 18 )
+anims/RESET = SubResource("4")
+anims/Shrink = SubResource("3")
+script = ExtResource("18")
 
-[node name="Waiter" parent="Battlefield/Background/RightNoHolderZone/ShrinkAnimationPlayer" index="0" instance=ExtResource( 19 )]
+[node name="Waiter" parent="Battlefield/Background/RightNoHolderZone/ShrinkAnimationPlayer" index="0" instance=ExtResource("19")]
 
-[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource( 2 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="3" instance=ExtResource("2")]
 hollow = true
 hide_grid = true
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 11 )
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("11")
+grid_color = Color(0, 1, 0.741176, 0.435294)
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
-script = ExtResource( 1 )
+script = SubResource("Resource_mwo3n")
 width = 3500
 height = 1100
 bevel = 100
@@ -156,61 +164,61 @@ bevel_sw = 100
 bevel_se = 100
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-texture = ExtResource( 7 )
-texture_scale = Vector2( 0.25, 0.25 )
-fg_color = Color( 0, 0.54902, 0.32549, 1 )
-bg_color = Color( 0, 0.2, 0.166667, 1 )
+texture = ExtResource("7")
+texture_scale = Vector2(0.25, 0.25)
+fg_color = Color(0, 0.54902, 0.32549, 1)
+bg_color = Color(0, 0.2, 0.166667, 1)
 
 [node name="Line2D" type="Line2D" parent="Battlefield/Background" index="6"]
-position = Vector2( -50, 0 )
+position = Vector2(-50, 0)
 z_index = -5
 z_as_relative = false
-points = PackedVector2Array( -1050, -550, -950, -450, -950, 450, -1050, 550 )
+points = PackedVector2Array(-1050, -550, -950, -450, -950, 450, -1050, 550)
 width = 25.0
-default_color = Color( 0.2, 0.5, 0.28, 0.156863 )
+default_color = Color(0.2, 0.5, 0.28, 0.156863)
 
 [node name="Line2D2" type="Line2D" parent="Battlefield/Background" index="7"]
-position = Vector2( 1950, 0 )
+position = Vector2(1950, 0)
 z_index = -5
 z_as_relative = false
-points = PackedVector2Array( -850, -550, -950, -450, -950, 450, -850, 550 )
+points = PackedVector2Array(-850, -550, -950, -450, -950, 450, -850, 550)
 width = 25.0
-default_color = Color( 0.2, 0.5, 0.28, 0.156863 )
+default_color = Color(0.2, 0.5, 0.28, 0.156863)
 
-[node name="CameraEye" parent="Battlefield/Middleground" index="0" instance=ExtResource( 10 )]
-position = Vector2( 1750, 0 )
+[node name="CameraEye" parent="Battlefield/Middleground" index="0" instance=ExtResource("10")]
+position = Vector2(1750, 0)
 
-[node name="CameraEye2" parent="Battlefield/Middleground" index="1" instance=ExtResource( 10 )]
-position = Vector2( -1750, 0 )
+[node name="CameraEye2" parent="Battlefield/Middleground" index="1" instance=ExtResource("10")]
+position = Vector2(-1750, 0)
 
-[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource( 3 )]
+[node name="Ball" parent="Battlefield/Foreground" index="0" instance=ExtResource("3")]
 type = "helm"
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
-position = Vector2( 0, 0 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("9")]
+position = Vector2(0, 0)
 rotation = 3.14159
-species = ExtResource( 4 )
+species = ExtResource("4")
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-position = Vector2( -1300, -300 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("9")]
+position = Vector2(-1300, -300)
 rotation = 0.0
 controls = "kb2"
-species = ExtResource( 13 )
+species = ExtResource("13")
 
-[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
-position = Vector2( -1300, 0 )
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource("9")]
+position = Vector2(-1300, 0)
 rotation = 0.0
 controls = "kb2"
-species = ExtResource( 6 )
+species = ExtResource("6")
 
-[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
-position = Vector2( -1300, 300 )
+[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource("9")]
+position = Vector2(-1300, 300)
 rotation = 0.0
 controls = "kb2"
-species = ExtResource( 16 )
+species = ExtResource("16")
 
 [node name="Camera3D" parent="." index="7"]
-zoom = Vector2( 1.42109e+10, 1.42109e+10 )
+zoom = Vector2(1.42109e+10, 1.42109e+10)
 position_smoothing_speed = 0.3
 disabled_override = true
 

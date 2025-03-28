@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name Weapon
+class_name Weaponz
 
 # Declare member variables here. Examples:
 # var a = 2

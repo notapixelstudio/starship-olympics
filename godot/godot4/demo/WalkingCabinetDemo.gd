@@ -19,7 +19,7 @@ func new_game(game_scene: PackedScene):
 	add_child(_current_game)
 	
 	# hackish, I know
-	#Engine.time_scale = 1 # doesn't work as expected
+	Engine.time_scale = 1 # doesn't work as expected
 	get_tree().paused = false
 	
 func _input(event):

@@ -2,14 +2,14 @@
 
 [ext_resource type="PackedScene" path="res://assets/animations/RoyalGlow.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://d2ij5aoi4mvw6" path="res://assets/sprites/balls/basket.png" id="2"]
-[ext_resource type="Script" path="res://actors/environments/Ball.gd" id="3"]
-[ext_resource type="PackedScene" path="res://godot4/effects/Shadow.tscn" id="4"]
+[ext_resource type="Script" uid="uid://btc31yq0310wh" path="res://actors/environments/Ball.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://combat/traits/Holdable.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://combat/traits/Owned.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://combat/traits/Strategic.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://bklnkitol1qwq" path="res://utils/AutoTrail.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://clbsrjsidxhav" path="res://combat/traits/Tracked.tscn" id="9"]
-[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="10"]
+[ext_resource type="Script" uid="uid://bpexb6wjfpakj" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="10"]
 [ext_resource type="AudioStream" uid="uid://cjmuge1iae07f" path="res://assets/audio/FX/sfx_sounds_impact10.wav" id="11"]
 
 [sub_resource type="PhysicsMaterial" id="1"]
@@ -51,8 +51,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kbvsc"]
 _data = {
-"RESET": SubResource("3"),
-"hit": SubResource("4")
+&"RESET": SubResource("3"),
+&"hit": SubResource("4")
 }
 
 [node name="Ball" type="RigidBody2D" groups=["Ball", "in_camera"]]

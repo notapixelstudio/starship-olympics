@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bnuqv4aw4eied" path="res://interface/themes/ui_elements/grey_boxTick.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://cc1wnck1faph2" path="res://interface/themes/ui_elements/grey_boxCheckmark.png" id="7"]
 [ext_resource type="StyleBox" path="res://interface/themes/olympic/disabled.tres" id="8"]
-[ext_resource type="Script" path="res://interface/themes/theme.gd" id="9"]
+[ext_resource type="Script" uid="uid://dsqnt3ot12fjt" path="res://interface/themes/theme.gd" id="9"]
 [ext_resource type="Texture2D" uid="uid://cp3j357ifdskd" path="res://interface/themes/ui_elements/grey_circle.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://dbs288c1ncfqh" path="res://interface/themes/ui_elements/grey_box.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://dhvjkxs2lc4bt" path="res://interface/themes/ui_elements/grey_boxCross.png" id="12"]
@@ -72,8 +72,35 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/18/0/ascent = 0.0
+cache/0/18/0/descent = 0.0
+cache/0/18/0/underline_position = 0.0
+cache/0/18/0/underline_thickness = 0.0
+cache/0/18/0/scale = 1.0
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
+cache/0/12/0/ascent = 0.0
+cache/0/12/0/descent = 0.0
+cache/0/12/0/underline_position = 0.0
+cache/0/12/0/underline_thickness = 0.0
+cache/0/12/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
 
 [resource]
+default_font = ExtResource("21")
+default_font_size = 14
 BoxContainer/constants/separation = 4
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_color_disabled = Color(0.490196, 0.490196, 0.490196, 0.470588)
@@ -95,7 +122,7 @@ CheckBox/colors/font_color_pressed = Color(1, 1, 1, 1)
 CheckBox/colors/icon_color_hover = Color(1, 1, 1, 1)
 CheckBox/constants/check_vadjust = 0
 CheckBox/constants/hseparation = 4
-CheckBox/fonts/font = null
+CheckBox/fonts/font = ExtResource("21")
 CheckBox/icons/checked = ExtResource("7")
 CheckBox/icons/radio_checked = ExtResource("6")
 CheckBox/icons/radio_unchecked = ExtResource("10")
@@ -152,14 +179,14 @@ Editor/constants/dark_theme = 1
 Editor/constants/scale = 1
 Editor/constants/thumb_size = 64
 EditorAbout/styles/panel = ExtResource("2")
-EditorFonts/fonts/doc = null
-EditorFonts/fonts/doc_source = null
-EditorFonts/fonts/doc_title = null
-EditorFonts/fonts/output_source = null
-EditorFonts/fonts/rulers = null
-EditorFonts/fonts/source = null
-EditorFonts/fonts/status_source = null
-EditorFonts/fonts/title = null
+EditorFonts/fonts/doc = ExtResource("21")
+EditorFonts/fonts/doc_source = ExtResource("21")
+EditorFonts/fonts/doc_title = ExtResource("21")
+EditorFonts/fonts/output_source = ExtResource("21")
+EditorFonts/fonts/rulers = ExtResource("21")
+EditorFonts/fonts/source = ExtResource("21")
+EditorFonts/fonts/status_source = ExtResource("21")
+EditorFonts/fonts/title = ExtResource("21")
 EditorHelp/colors/headline_color = Color(1, 1, 1, 1)
 EditorIcons/icons/2D = null
 EditorIcons/icons/3D = null
@@ -960,7 +987,7 @@ Window/colors/title_color = Color(1, 1, 1, 1)
 Window/constants/close_h_ofs = 22
 Window/constants/close_v_ofs = 20
 Window/constants/title_height = 24
-Window/fonts/title_font = null
+Window/fonts/title_font = ExtResource("21")
 Window/icons/close = ExtResource("13")
 Window/icons/close_highlight = null
 Window/styles/panel = ExtResource("2")

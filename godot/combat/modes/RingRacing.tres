@@ -1,15 +1,15 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=4 format=3 uid="uid://dgrqfnxwdfsxw"]
 
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon/minicards/sets/ring_racing.png" type="Texture2D" id=2]
-[ext_resource path="res://combat/styles/asphalt.tres" type="Resource" id=3]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://drj24nhdnma8w" path="res://assets/icon/minicards/sets/ring_racing.png" id="2"]
+[ext_resource type="Resource" path="res://combat/styles/asphalt.tres" id="3"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "ring_racing"
 name = "Portal Race"
-icon = ExtResource( 2 )
-arena_style = ExtResource( 3 )
+icon = ExtResource("2")
+arena_style = ExtResource("3")
 description = "race through the rings"
 max_timeout = 40
 max_score = 65

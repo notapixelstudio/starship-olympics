@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://vci7uxcbok6b"]
+[gd_scene load_steps=17 format=3 uid="uid://vci7uxcbok6b"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_2t2ka"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_ak7cm"]
@@ -6,16 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_bva5u"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="4_n77t6"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="5_1pfq3"]
-[ext_resource type="Script" path="res://addons/vshapes/VRoundedRect.gd" id="6_vibcf"]
-[ext_resource type="Script" path="res://addons/vshapes/VRegularPolygon.gd" id="7_lvm3s"]
+[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="6_vibcf"]
+[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="7_lvm3s"]
+[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="8_p2chq"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="8_ri0vu"]
-[ext_resource type="Script" path="res://actors/environments/WaveGroupSpawner.gd" id="9_g44pl"]
-[ext_resource type="PackedScene" path="res://actors/environments/ElementSpawnerGroup.tscn" id="10_nrilq"]
+[ext_resource type="Resource" uid="uid://qv7ahl4mb6vo" path="res://godot4/data/styles/cyber.tres" id="8_uaq3n"]
+[ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="9_g44pl"]
+[ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="10_nrilq"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="11_u84p6"]
 [ext_resource type="PackedScene" uid="uid://dvjdmo8ceeh5b" path="res://godot4/elements/bubbles/DiamondBubble.tscn" id="11_w5u2t"]
 [ext_resource type="PackedScene" uid="uid://cie2xt6b1e8oy" path="res://godot4/elements/bubbles/BigDiamondBubble.tscn" id="13_laavj"]
 
 [node name="VersusArena" instance=ExtResource("1_2t2ka")]
+
+[node name="Styleable" parent="." index="0"]
+style = ExtResource("8_uaq3n")
 
 [node name="SpawnerWaveManager" parent="Managers" index="3" node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("2_ak7cm")]
 waves_container = NodePath("../../Battlefield/Waves")
@@ -25,7 +30,7 @@ battlefield = NodePath("../../Battlefield")
 
 [node name="TreasureSFXManager" parent="Managers" index="8" instance=ExtResource("4_n77t6")]
 
-[node name="Camera2D" parent="." index="1"]
+[node name="Camera2D" parent="." index="2"]
 zoom = Vector2(0.3, 0.3)
 
 [node name="P1" parent="Homes" index="0" instance=ExtResource("4_bva5u")]
@@ -40,32 +45,36 @@ rotation = 2.35619
 position = Vector2(600, 600)
 rotation = -2.35619
 
-[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("5_1pfq3")]
-hollow = true
-
-[node name="VRoundedRect" type="Node" parent="Battlefield/OutsideWall" index="4"]
+[node name="VRoundedRect" type="Node" parent="Battlefield" index="0" node_paths=PackedStringArray("hosts")]
 script = ExtResource("6_vibcf")
 width = 3500.0
 height = 2000.0
 radius = 1000.0
+hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
-[node name="Wall" parent="Battlefield" index="1" instance=ExtResource("5_1pfq3")]
+[node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource("5_1pfq3")]
+hollow = true
+
+[node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("8_p2chq")]
+init_parametric_shape = NodePath("../VRoundedRect")
+
+[node name="Wall" parent="Battlefield" index="3" instance=ExtResource("5_1pfq3")]
 position = Vector2(-900, 0)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4"]
 script = ExtResource("7_lvm3s")
 sides = 4
 
-[node name="Wall2" parent="Battlefield" index="2" instance=ExtResource("5_1pfq3")]
+[node name="Wall2" parent="Battlefield" index="4" instance=ExtResource("5_1pfq3")]
 position = Vector2(900, 0)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4"]
 script = ExtResource("7_lvm3s")
 sides = 4
 
-[node name="Diamond" parent="Battlefield" index="3" instance=ExtResource("8_ri0vu")]
+[node name="Diamond" parent="Battlefield" index="5" instance=ExtResource("8_ri0vu")]
 
-[node name="Waves" type="Node2D" parent="Battlefield" index="4"]
+[node name="Waves" type="Node2D" parent="Battlefield" index="6"]
 
 [node name="Wave0" type="Node2D" parent="Battlefield/Waves" index="0" groups=["spawn_waves"]]
 script = ExtResource("9_g44pl")
@@ -262,7 +271,11 @@ position = Vector2(-1350, 0)
 pattern = "single"
 element_scene = ExtResource("11_u84p6")
 
-[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/FirstBigDiamondWave" index="1" instance=ExtResource("10_nrilq")]
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/FirstBigDiamondWave" index="1" instance=ExtResource("10_nrilq")]
+pattern = "single"
+element_scene = ExtResource("11_u84p6")
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/FirstBigDiamondWave" index="2" instance=ExtResource("10_nrilq")]
 position = Vector2(1350, 0)
 pattern = "single"
 element_scene = ExtResource("11_u84p6")

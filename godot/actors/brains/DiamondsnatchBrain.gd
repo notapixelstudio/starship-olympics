@@ -14,7 +14,7 @@ func think():
 	set_stance('quiet') # we can't shoot in this minigame
 	log_strategy('')
 	
-	targets = get_tree().get_nodes_in_group('Diamond')
+	targets = get_tree().get_nodes_in_group('Treasure')
 	if len(targets) > 0:
 		go_to(targets[random_preference%len(targets)].global_position)
 		log_strategy('chase diamond')

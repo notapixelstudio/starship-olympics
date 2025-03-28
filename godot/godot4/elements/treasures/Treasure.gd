@@ -5,6 +5,8 @@ extends RigidBody2D
 @export var solid := true
 @export var points := 1
 @export var treasure_picked_scene : PackedScene
+@export var appear_scene : PackedScene
+@export var outline_texture : Texture
 
 signal collected(PhysicsBody2D, Treasure)
 
@@ -31,7 +33,7 @@ func update_solid():
 	# ship bodies should push diamonds iff not collectable
 	set_collision_mask_value(1, not collectable and solid)
 	
-func touched_by(toucher : Ship):
+func touched_by(toucher):
 	if not collectable:
 		return
 		
@@ -40,7 +42,7 @@ func touched_by(toucher : Ship):
 	
 	# drop a treasure picked effect on parent
 	var picked_effect = treasure_picked_scene.instantiate()
-	picked_effect.set_texture(get_texture())
+	picked_effect.set_texture(outline_texture)
 	picked_effect.global_position = global_position
 	get_parent().add_child(picked_effect)
 	
@@ -63,3 +65,10 @@ func enable_collisions() -> void:
 func get_sfx_player() -> AudioStreamPlayer2D:
 	return %AudioStreamPlayer2D
 	
+func create_appear_effect() -> Node2D:
+	var appear = appear_scene.instantiate()
+	appear.set_texture(get_appear_texture())
+	return appear
+	
+func get_appear_texture() -> Texture:
+	return outline_texture

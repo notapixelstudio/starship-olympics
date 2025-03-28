@@ -1,26 +1,27 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=4 format=3 uid="uid://bxnkkht7rn45x"]
 
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=1]
-[ext_resource path="res://combat/styles/purple.tres" type="Resource" id=2]
-[ext_resource path="res://assets/icon/minicards/sets/diamond_defrost.png" type="Texture2D" id=4]
-[ext_resource path="res://assets/icon/diamond_mining_logo.png" type="Texture2D" id=5]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="1"]
+[ext_resource type="Resource" path="res://combat/styles/purple.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://dd7q1u3gnpkq7" path="res://assets/icon/minicards/sets/diamond_defrost.png" id="4"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "diamond_mining"
-is_mutator = false
 name = "Diamond Defrost"
-icon = ExtResource( 4 )
-logo = ExtResource( 5 )
-arena_style = ExtResource( 2 )
+icon = ExtResource("4")
+arena_style = ExtResource("2")
 description = "collect the diamonds"
-tagline_pro = "The Universe provides enough to satisfy everyone's need, but not every species' greed"
-tagline_cons = "Getting killed will make you lose most of the coins"
 max_timeout = 45
 max_score = 130
 starting_score = 0
 cumulative = false
+shared_targets = true
 starting_lives = -1
+starting_health = 1
+respawn_from_home = false
+end_on_perfect = true
+fill_starting_score = false
+streaks_enabled = true
 death = false
 last_man = false
 crown = false
@@ -36,6 +37,8 @@ deadly_trails_duration = 2.0
 bomb_type = 2
 starting_ammo = -1
 reload_time = 3.0
+auto_thrust = false
+start_invincible = true
 floodable = true
 flood = false
 laserable = false

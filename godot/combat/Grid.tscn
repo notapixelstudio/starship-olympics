@@ -1,40 +1,43 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://b4hc8gaekfjx3"]
 
-[ext_resource path="res://assets/sprites/environments/grid.png" type="Texture2D" id=1]
-[ext_resource path="res://combat/Grid.gdshader" type="Shader" id=2]
-[ext_resource path="res://combat/Grid.gd" type="Script" id=3]
-[ext_resource path="res://assets/sprites/10x10_square.png" type="Texture2D" id=4]
-[ext_resource path="res://assets/shaders/Clock.gdshader" type="Shader" id=5]
+[ext_resource type="Texture2D" uid="uid://bxvhoo056mnhn" path="res://assets/sprites/environments/grid.png" id="1"]
+[ext_resource type="Shader" uid="uid://16cybt8xpagy" path="res://combat/Grid.gdshader" id="2"]
+[ext_resource type="Script" uid="uid://b35r6r7hdtquj" path="res://combat/Grid.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://c1veqj7sis6ax" path="res://assets/sprites/10x10_square.png" id="4"]
+[ext_resource type="Shader" uid="uid://478yhpwk34ah" path="res://assets/shaders/Clock.gdshader" id="5"]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 5 )
-shader_param/time_left = null
-shader_param/max_time = 0
-shader_param/active = false
+[sub_resource type="ShaderMaterial" id="1"]
+shader = ExtResource("5")
+shader_parameter/time_left = 0.0
+shader_parameter/max_time = 0.0
+shader_parameter/active = false
+shader_parameter/x_direction = 1.0
+shader_parameter/color_on = Color(1, 1, 1, 1)
+shader_parameter/color_off = Color(0, 0, 0, 1)
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id="2"]
 resource_local_to_scene = true
-shader = ExtResource( 2 )
-shader_param/cell_size = 200.0
-shader_param/stroke = 10.0
-shader_param/time = 3841.1
-shader_param/triangular = false
-shader_param/fg_color = Color( 0.12, 0.488, 0.6, 1 )
-shader_param/bg_color = Color( 0.112, 0.4256, 0.56, 1 )
-shader_param/saturation = 1.0
+shader = ExtResource("2")
+shader_parameter/cell_size = 200.0
+shader_parameter/stroke = 10.0
+shader_parameter/time = 3841.1
+shader_parameter/triangular = false
+shader_parameter/fg_color = Vector4(0, 0, 0, 0)
+shader_parameter/bg_color = Vector4(0, 0, 0, 0)
+shader_parameter/saturation = 1.0
 
 [node name="Grid" type="Polygon2D" groups=["grid"]]
-material = SubResource( 1 )
-position = Vector2( 0, 32 )
+material = SubResource("1")
+position = Vector2(0, 32)
 z_index = -20
 z_as_relative = false
-texture = ExtResource( 4 )
-polygon = PackedVector2Array( -1000, -982, 1000, -982, 1000, 1018, -1000, 1018 )
-script = ExtResource( 3 )
+texture = ExtResource("4")
+polygon = PackedVector2Array(-1000, -982, 1000, -982, 1000, 1018, -1000, 1018)
+script = ExtResource("3")
 
 [node name="Polygon" type="Polygon2D" parent="."]
-self_modulate = Color( 1, 1, 1, 0.701961 )
-material = SubResource( 2 )
-texture = ExtResource( 1 )
-texture_scale = Vector2( 0.5, 0.5 )
-polygon = PackedVector2Array( -1000, 1000, -1000, -1000, 1000, -1000, 1000, 1000 )
+self_modulate = Color(1, 1, 1, 0.701961)
+material = SubResource("2")
+texture = ExtResource("1")
+texture_scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-1000, 1000, -1000, -1000, 1000, -1000, 1000, 1000)

@@ -1,13 +1,13 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" script_class="DraftCard" load_steps=3 format=3 uid="uid://d0c8nejrjg155"]
 
-[ext_resource path="res://map/draft/cards/DraftCard.gd" type="Script" id=1]
-[ext_resource path="res://combat/minigames/RocketTakeTheCrown.tres" type="Resource" id=2]
+[ext_resource type="Script" uid="uid://crg36vq4ral5s" path="res://map/draft/cards/DraftCard.gd" id="1"]
+[ext_resource type="Resource" uid="uid://dcbqpn4i3yaik" path="res://combat/minigames/RocketTakeTheCrown.tres" id="2"]
 
 [resource]
-script = ExtResource( 1 )
-minigame = ExtResource( 2 )
-unlocks = [ "QueenOfTheHive" ]
+script = ExtResource("1")
+minigame = ExtResource("2")
+unlocks = ["QueenOfTheHive"]
 unlock_strength = 1
 winter = false
 perfectionist = false
-tint = Color( 0, 0, 0, 1 )
+tint = Color(0, 0, 0, 1)

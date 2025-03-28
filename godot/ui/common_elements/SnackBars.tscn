@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://bfgeefssqxne6"]
 
-[ext_resource path="res://ui/common_elements/SnackBars.gd" type="Script" id=1]
+[ext_resource type="Script" uid="uid://cfu417pqg3anq" path="res://ui/common_elements/SnackBars.gd" id="1"]
 
 [node name="SnackBars" type="ColorRect"]
 anchor_left = 0.5
@@ -11,8 +11,8 @@ offset_left = -340.5
 offset_top = -90.5649
 offset_right = 340.5
 offset_bottom = -28.5649
-color = Color( 0.14902, 0.14902, 0.14902, 1 )
-script = ExtResource( 1 )
+color = Color(0.14902, 0.14902, 0.14902, 1)
+script = ExtResource("1")
 __meta__ = {
 "_edit_use_anchors_": false
 }

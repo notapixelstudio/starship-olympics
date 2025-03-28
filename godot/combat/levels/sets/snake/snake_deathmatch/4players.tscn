@@ -1,26 +1,45 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=22 format=3 uid="uid://cemsen5av27sc"]
 
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
-[ext_resource path="res://addons/geometry/GBeveledRect.gd" type="Script" id=2]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=3]
-[ext_resource path="res://assets/patterns/xgrid.png" type="Texture2D" id=4]
-[ext_resource path="res://combat/styles/bones.tres" type="Resource" id=5]
-[ext_resource path="res://assets/patterns/wall/bones.png" type="Texture2D" id=6]
-[ext_resource path="res://selection/characters/robolords_1.tres" type="Resource" id=7]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=8]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
-[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=10]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=11]
-[ext_resource path="res://selection/characters/trixens_1.tres" type="Resource" id=12]
-[ext_resource path="res://assets/icon/skull.png" type="Texture2D" id=13]
-[ext_resource path="res://combat/modes/SnakeDeathmatch.tres" type="Resource" id=14]
-[ext_resource path="res://combat/levels/background/eelectrons.png" type="Texture2D" id=15]
-[ext_resource path="res://combat/collectables/PowerUp.tscn" type="PackedScene" id=16]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="3"]
+[ext_resource type="Texture2D" uid="uid://dsi0t7cms4bcn" path="res://assets/patterns/xgrid.png" id="4"]
+[ext_resource type="Resource" uid="uid://b1cblnbj1ycjn" path="res://combat/styles/bones.tres" id="5"]
+[ext_resource type="Texture2D" uid="uid://cul1qame2qpja" path="res://assets/patterns/wall/bones.png" id="6"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="7"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="9"]
+[ext_resource type="Resource" uid="uid://b4mhr8ft2dgry" path="res://selection/characters/umidorians_1.tres" id="10"]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="11"]
+[ext_resource type="Resource" uid="uid://bcsa675ruiohh" path="res://selection/characters/trixens_1.tres" id="12"]
+[ext_resource type="Texture2D" uid="uid://biq52lhotmtyk" path="res://assets/icon/skull.png" id="13"]
+[ext_resource type="Resource" path="res://combat/modes/SnakeDeathmatch.tres" id="14"]
+[ext_resource type="Texture2D" uid="uid://7wgufnrxjfvf" path="res://combat/levels/background/eelectrons.png" id="15"]
+[ext_resource type="PackedScene" uid="uid://cf10dfhs4hgiu" path="res://combat/collectables/PowerUp.tscn" id="16"]
 
-[node name="Arena" instance=ExtResource( 11 )]
+[sub_resource type="Resource" id="Resource_5ucjj"]
+metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
+
+[sub_resource type="Resource" id="Resource_xbjhk"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_hux7k"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_uiis3"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_niskw"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_6juca"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[sub_resource type="Resource" id="Resource_jh2so"]
+metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
+
+[node name="Arena" instance=ExtResource("11")]
 size_multiplier = 2.5
-game_mode = ExtResource( 14 )
-style = ExtResource( 5 )
+game_mode = ExtResource("14")
+style = ExtResource("5")
 score_to_win_override = 14
 match_duration_override = 70.0
 
@@ -28,19 +47,19 @@ match_duration_override = 70.0
 enabled = true
 
 [node name="mantiacs_background" type="Sprite2D" parent="BackgroundLayer" index="0"]
-texture = ExtResource( 15 )
+texture = ExtResource("15")
 centered = false
 
-[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource( 8 )]
+[node name="OutsideWall" parent="Battlefield/Background" index="1" instance=ExtResource("8")]
 hollow = true
 offset = 200
 hide_grid = true
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 6 )
-grid_color = Color( 0, 1, 0.741176, 0.435294 )
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("6")
+grid_color = Color(0, 1, 0.741176, 0.435294)
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="5"]
-script = ExtResource( 2 )
+script = SubResource("Resource_5ucjj")
 width = 3800
 height = 3000
 bevel = 300
@@ -50,126 +69,126 @@ bevel_sw = 300
 bevel_se = 300
 
 [node name="Grid" parent="Battlefield/Background/GridWrapper" index="0"]
-modulate = Color( 0.8, 0.8, 0.8, 0.9 )
-texture = ExtResource( 4 )
-texture_scale = Vector2( 0.25, 0.25 )
-fg_color = Color( 0, 0.48, 0.24, 1 )
-bg_color = Color( 0, 0.2, 0.166667, 1 )
+modulate = Color(0.8, 0.8, 0.8, 0.9)
+texture = ExtResource("4")
+texture_scale = Vector2(0.25, 0.25)
+fg_color = Color(0, 0.48, 0.24, 1)
+bg_color = Color(0, 0.2, 0.166667, 1)
 
 [node name="skull" type="Sprite2D" parent="Battlefield/Background" index="4"]
-modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
-position = Vector2( -800, -1.14441e-05 )
-scale = Vector2( 4, 4 )
-texture = ExtResource( 13 )
+modulate = Color(0.0588235, 0.909804, 0.439216, 0.0588235)
+position = Vector2(-800, -1.14441e-05)
+scale = Vector2(4, 4)
+texture = ExtResource("13")
 
 [node name="skull2" type="Sprite2D" parent="Battlefield/Background" index="5"]
-modulate = Color( 0.0588235, 0.909804, 0.439216, 0.0588235 )
-position = Vector2( 800, 3.8147e-06 )
-scale = Vector2( 4, 4 )
-texture = ExtResource( 13 )
+modulate = Color(0.0588235, 0.909804, 0.439216, 0.0588235)
+position = Vector2(800, 3.8147e-06)
+scale = Vector2(4, 4)
+texture = ExtResource("13")
 
-[node name="Wall10" parent="Battlefield/Middleground" index="0" instance=ExtResource( 8 )]
-position = Vector2( -800, 500 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 6 )
+[node name="Wall10" parent="Battlefield/Middleground" index="0" instance=ExtResource("8")]
+position = Vector2(-800, 500)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("6")
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall10" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_xbjhk")
 radius = 50
 sides = 4.0
 
-[node name="Wall13" parent="Battlefield/Middleground" index="1" instance=ExtResource( 8 )]
-position = Vector2( -800, -1500 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 6 )
+[node name="Wall13" parent="Battlefield/Middleground" index="1" instance=ExtResource("8")]
+position = Vector2(-800, -1500)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("6")
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall13" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_hux7k")
 sides = 4.0
 
-[node name="Wall14" parent="Battlefield/Middleground" index="2" instance=ExtResource( 8 )]
-position = Vector2( -1900, -300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 6 )
+[node name="Wall14" parent="Battlefield/Middleground" index="2" instance=ExtResource("8")]
+position = Vector2(-1900, -300)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("6")
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall14" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_uiis3")
 radius = 200
 sides = 4.0
 
-[node name="Wall15" parent="Battlefield/Middleground" index="3" instance=ExtResource( 8 )]
-position = Vector2( 1900, 300 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 6 )
+[node name="Wall15" parent="Battlefield/Middleground" index="3" instance=ExtResource("8")]
+position = Vector2(1900, 300)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("6")
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall15" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_niskw")
 radius = 200
 sides = 4.0
 
-[node name="Wall11" parent="Battlefield/Middleground" index="4" instance=ExtResource( 8 )]
-position = Vector2( 800, -500 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 6 )
+[node name="Wall11" parent="Battlefield/Middleground" index="4" instance=ExtResource("8")]
+position = Vector2(800, -500)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("6")
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall11" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_6juca")
 radius = 50
 sides = 4.0
 
-[node name="Wall12" parent="Battlefield/Middleground" index="5" instance=ExtResource( 8 )]
-position = Vector2( 800, 1500 )
-solid_line_color = Color( 1.1, 1, 1, 1 )
-line_texture = ExtResource( 6 )
+[node name="Wall12" parent="Battlefield/Middleground" index="5" instance=ExtResource("8")]
+position = Vector2(800, 1500)
+solid_line_color = Color(1.1, 1, 1, 1)
+line_texture = ExtResource("6")
 
 [node name="GRegularPolygon2" type="Node" parent="Battlefield/Middleground/Wall12" index="4"]
-script = ExtResource( 1 )
+script = SubResource("Resource_jh2so")
 sides = 4.0
 
-[node name="PowerUp" parent="Battlefield/Foreground" index="0" instance=ExtResource( 16 )]
-position = Vector2( -100, -100 )
+[node name="PowerUp" parent="Battlefield/Foreground" index="0" instance=ExtResource("16")]
+position = Vector2(-100, -100)
 type = "snake"
 
-[node name="PowerUp2" parent="Battlefield/Foreground" index="1" instance=ExtResource( 16 )]
-position = Vector2( 100, -100 )
+[node name="PowerUp2" parent="Battlefield/Foreground" index="1" instance=ExtResource("16")]
+position = Vector2(100, -100)
 type = "snake"
 
-[node name="PowerUp3" parent="Battlefield/Foreground" index="2" instance=ExtResource( 16 )]
-position = Vector2( 100, 100 )
+[node name="PowerUp3" parent="Battlefield/Foreground" index="2" instance=ExtResource("16")]
+position = Vector2(100, 100)
 type = "snake"
 
-[node name="PowerUp4" parent="Battlefield/Foreground" index="3" instance=ExtResource( 16 )]
-position = Vector2( -100, 100 )
+[node name="PowerUp4" parent="Battlefield/Foreground" index="3" instance=ExtResource("16")]
+position = Vector2(-100, 100)
 type = "snake"
 
-[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource( 9 )]
-position = Vector2( -99.9999, -99.9999 )
+[node name="p1" parent="SpawnPositions/Players" index="0" instance=ExtResource("9")]
+position = Vector2(-99.9999, -99.9999)
 rotation = -2.35619
-species = ExtResource( 7 )
+species = ExtResource("7")
 cpu = true
 
-[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource( 9 )]
-position = Vector2( 100, 100 )
+[node name="p2" parent="SpawnPositions/Players" index="1" instance=ExtResource("9")]
+position = Vector2(100, 100)
 rotation = 0.785398
 controls = "joy2"
-species = ExtResource( 10 )
+species = ExtResource("10")
 cpu = true
 
-[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource( 9 )]
-position = Vector2( -100, 100 )
+[node name="p3" parent="SpawnPositions/Players" index="2" instance=ExtResource("9")]
+position = Vector2(-100, 100)
 rotation = 2.35619
 controls = "joy1"
-species = ExtResource( 3 )
+species = ExtResource("3")
 
-[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource( 9 )]
-position = Vector2( 100, -100 )
+[node name="p4" parent="SpawnPositions/Players" index="3" instance=ExtResource("9")]
+position = Vector2(100, -100)
 rotation = -0.785398
 controls = "joy2"
-species = ExtResource( 12 )
+species = ExtResource("12")
 cpu = true
 
 [node name="Camera3D" parent="." index="6"]
-zoom = Vector2( 62.5, 62.5 )
+zoom = Vector2(62.5, 62.5)
 position_smoothing_speed = 0.3
 
 [connection signal="item_rect_changed" from="BackgroundLayer/mantiacs_background" to="." method="_on_mantiacs_background_item_rect_changed"]

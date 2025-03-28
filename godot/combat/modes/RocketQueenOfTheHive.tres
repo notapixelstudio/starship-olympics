@@ -1,21 +1,16 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" script_class="GameMode" load_steps=4 format=3 uid="uid://d260uo87em5rh"]
 
-[ext_resource path="res://combat/styles/flags.tres" type="Resource" id=1]
-[ext_resource path="res://assets/icon/hive_logo.png" type="Texture2D" id=2]
-[ext_resource path="res://assets/icon/minicards/sets/queen_of_the_hive.png" type="Texture2D" id=3]
-[ext_resource path="res://combat/modes/GameMode.gd" type="Script" id=4]
+[ext_resource type="Resource" path="res://combat/styles/flags.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://dnon8vf7f6v6k" path="res://assets/icon/minicards/sets/queen_of_the_hive.png" id="3"]
+[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="4"]
 
 [resource]
-script = ExtResource( 4 )
+script = ExtResource("4")
 id = "rocket_queen_of_the_hive"
-is_mutator = false
 name = "Rocket Queen of the Hive"
-icon = ExtResource( 3 )
-logo = ExtResource( 2 )
-arena_style = ExtResource( 1 )
+icon = ExtResource("3")
+arena_style = ExtResource("1")
 description = "take the crown to color the cells"
-tagline_pro = "Don't forget your opponents would do the same"
-tagline_cons = "You could get killed in the meantime..."
 max_timeout = 50
 max_score = 500
 starting_score = 0
@@ -26,6 +21,7 @@ starting_health = 1
 respawn_from_home = false
 end_on_perfect = true
 fill_starting_score = false
+streaks_enabled = true
 death = false
 last_man = false
 crown = false

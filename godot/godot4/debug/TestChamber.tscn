@@ -1,14 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmlwbymobhm0b"]
+[gd_scene load_steps=9 format=3 uid="uid://dmlwbymobhm0b"]
 
-[ext_resource type="Script" path="res://godot4/debug/TestChamber.gd" id="1_lsfmj"]
-[ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="2_2i1b7"]
+[ext_resource type="Script" uid="uid://dw2od40imwath" path="res://godot4/debug/TestChamber.gd" id="1_lsfmj"]
 [ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="2_wo8qe"]
-[ext_resource type="Script" path="res://addons/debugToolbox/FPSCounter.gd" id="3_2gjjm"]
-[ext_resource type="Script" path="res://addons/debugToolbox/TestGrid.gd" id="3_dshuw"]
+[ext_resource type="Script" uid="uid://corxhnlgcdndf" path="res://addons/debugToolbox/FPSCounter.gd" id="3_2gjjm"]
+[ext_resource type="Script" uid="uid://d1qequfxd8y2t" path="res://addons/debugToolbox/TestGrid.gd" id="3_dshuw"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="3_giljv"]
-[ext_resource type="Script" path="res://godot4/debug/SOLog.gd" id="5_upb84"]
+[ext_resource type="Script" uid="uid://ba6h70eocaj3g" path="res://godot4/debug/SOLog.gd" id="5_upb84"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="6_4tylc"]
-[ext_resource type="Script" path="res://addons/debugToolbox/SecsCounter.gd" id="7_kveyl"]
+[ext_resource type="Script" uid="uid://bgk1mknwdxwdr" path="res://addons/debugToolbox/SecsCounter.gd" id="7_kveyl"]
 
 [node name="TestChamber" type="Node2D"]
 script = ExtResource("1_lsfmj")
@@ -17,8 +16,6 @@ player_brain_scene = ExtResource("3_giljv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
-
-[node name="WorldEnvironment" parent="." instance=ExtResource("2_2i1b7")]
 
 [node name="FPSCounter" type="Node2D" parent="."]
 position = Vector2(1400, 1128)

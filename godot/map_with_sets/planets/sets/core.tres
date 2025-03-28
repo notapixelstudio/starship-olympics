@@ -1,20 +1,19 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="Set" load_steps=7 format=3 uid="uid://dyljdhsjb8i6k"]
 
-[ext_resource path="res://combat/minigames/RocketTakeTheCrown.tres" type="Resource" id=1]
-[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=2]
-[ext_resource path="res://assets/map/cards/core.png" type="Texture2D" id=3]
-[ext_resource path="res://combat/minigames/Diamondsnatch.tres" type="Resource" id=4]
-[ext_resource path="res://combat/minigames/SlamAGon.tres" type="Resource" id=5]
-[ext_resource path="res://combat/minigames/Deathmatch.tres" type="Resource" id=6]
-
+[ext_resource type="Resource" uid="uid://dcbqpn4i3yaik" path="res://combat/minigames/RocketTakeTheCrown.tres" id="1"]
+[ext_resource type="Script" uid="uid://b561ai7rs4ndp" path="res://map_with_sets/planets/Set.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://djat1rtwl0spo" path="res://assets/map/cards/core.png" id="3"]
+[ext_resource type="Resource" uid="uid://d38cmslouylqy" path="res://combat/minigames/Diamondsnatch.tres" id="4"]
+[ext_resource type="Resource" uid="uid://d0e0bdqgpri4i" path="res://combat/minigames/SlamAGon.tres" id="5"]
+[ext_resource type="Resource" uid="uid://cutejiy2ysq2i" path="res://combat/minigames/Deathmatch.tres" id="6"]
 
 [resource]
-script = ExtResource( 2 )
+script = ExtResource("2")
 id = "core"
 name = "Coredan Prime"
 tagline1 = "the Olympic Capital of"
 tagline2 = ""
 description = ""
-minigames = [ ExtResource( 1 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ) ]
-planet_sprite = ExtResource( 3 )
-mutators = [  ]
+minigames = [ExtResource("1"), ExtResource("6"), ExtResource("4"), ExtResource("5")]
+planet_sprite = ExtResource("3")
+mutators = []

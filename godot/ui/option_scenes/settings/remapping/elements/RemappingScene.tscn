@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://4pwgtgw7c2ii"]
 
-[ext_resource path="res://ui/option_scenes/settings/remapping/elements/RemappingScene.gd" type="Script" id=1]
-[ext_resource path="res://ui/option_scenes/settings/remapping/elements/keyboard/ButtonRepresentation.tscn" type="PackedScene" id=2]
+[ext_resource type="Script" uid="uid://b3q4w0ougf8v8" path="res://ui/option_scenes/settings/remapping/elements/RemappingScene.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://ds3joydebsl3q" path="res://ui/option_scenes/settings/remapping/elements/keyboard/ButtonRepresentation.tscn" id="2"]
 
 [node name="RemapEvent" type="Panel"]
 process_mode = 3
@@ -14,7 +14,7 @@ offset_top = -155.0
 offset_right = 253.5
 offset_bottom = 155.0
 focus_mode = 2
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="Description" type="Label" parent="."]
 anchor_right = 1.0
@@ -37,7 +37,7 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="ButtonRepresentation" parent="." instance=ExtResource( 2 )]
+[node name="ButtonRepresentation" parent="." instance=ExtResource("2")]
 visible = false
 offset_left = 229.5
 offset_top = 200.0

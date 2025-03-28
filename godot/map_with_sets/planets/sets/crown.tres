@@ -1,20 +1,19 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" script_class="Set" load_steps=7 format=3 uid="uid://b52tn1kakophb"]
 
-[ext_resource path="res://combat/minigames/QueenOfTheHive.tres" type="Resource" id=1]
-[ext_resource path="res://combat/minigames/RocketTakeTheCrown.tres" type="Resource" id=2]
-[ext_resource path="res://combat/minigames/Negacrown.tres" type="Resource" id=3]
-[ext_resource path="res://combat/minigames/AtomicMarbles.tres" type="Resource" id=4]
-[ext_resource path="res://map_with_sets/planets/Set.gd" type="Script" id=5]
-[ext_resource path="res://assets/map/cards/crown.png" type="Texture2D" id=6]
-
+[ext_resource type="Resource" uid="uid://dqt3boi76f3xr" path="res://combat/minigames/QueenOfTheHive.tres" id="1"]
+[ext_resource type="Resource" uid="uid://dcbqpn4i3yaik" path="res://combat/minigames/RocketTakeTheCrown.tres" id="2"]
+[ext_resource type="Resource" uid="uid://dw6pdqekh5n4g" path="res://combat/minigames/Negacrown.tres" id="3"]
+[ext_resource type="Resource" uid="uid://b4jmmkf48sc5i" path="res://combat/minigames/AtomicMarbles.tres" id="4"]
+[ext_resource type="Script" uid="uid://b561ai7rs4ndp" path="res://map_with_sets/planets/Set.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://bi3p2f4o75kmn" path="res://assets/map/cards/crown.png" id="6"]
 
 [resource]
-script = ExtResource( 5 )
+script = ExtResource("5")
 id = "crown"
 name = "Queen Motherboard"
 tagline1 = "his planetary circuitry"
 tagline2 = ""
 description = ""
-minigames = [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 3 ) ]
-planet_sprite = ExtResource( 6 )
-mutators = [  ]
+minigames = [ExtResource("2"), ExtResource("1"), ExtResource("4"), ExtResource("3")]
+planet_sprite = ExtResource("6")
+mutators = []

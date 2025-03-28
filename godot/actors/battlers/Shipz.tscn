@@ -1,19 +1,19 @@
 [gd_scene load_steps=58 format=3 uid="uid://dg6cy6qsu6237"]
 
-[ext_resource type="Script" path="res://actors/battlers/Ship.gd" id="1"]
+[ext_resource type="Script" uid="uid://ctubsmgdsnddo" path="res://actors/battlers/Ship.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bii2tlio8ltjj" path="res://assets/sprites/atom.png" id="2"]
 [ext_resource type="Animation" path="res://assets/animations/Invincible.tres" id="3"]
-[ext_resource type="Script" path="res://addons/ECM/Entity.gd" id="4"]
-[ext_resource type="Script" path="res://addons/ECM/Component.gd" id="7"]
-[ext_resource type="Script" path="res://combat/components/Flowing.gd" id="9"]
-[ext_resource type="Script" path="res://combat/components/Cargo.gd" id="10"]
+[ext_resource type="Script" uid="uid://dg3ny04agcjtp" path="res://addons/ECM/Entity.gd" id="4"]
+[ext_resource type="Script" uid="uid://bx28gpgdlmtid" path="res://addons/ECM/Component.gd" id="7"]
+[ext_resource type="Script" uid="uid://dvsqui64nkn1g" path="res://combat/components/Flowing.gd" id="9"]
+[ext_resource type="Script" uid="uid://g1hrqoxo1cv2" path="res://combat/components/Cargo.gd" id="10"]
 [ext_resource type="PackedScene" path="res://combat/traits/Target.tscn" id="11"]
-[ext_resource type="Script" path="res://combat/components/Conqueror.gd" id="12"]
-[ext_resource type="Script" path="res://combat/components/Thrusters.gd" id="13"]
-[ext_resource type="Script" path="res://combat/components/Teleportable.gd" id="14"]
+[ext_resource type="Script" uid="uid://dq3irg72shdhp" path="res://combat/components/Conqueror.gd" id="12"]
+[ext_resource type="Script" uid="uid://cxs28qfg3oq0w" path="res://combat/components/Thrusters.gd" id="13"]
+[ext_resource type="Script" uid="uid://cbwfk2klo8fhh" path="res://combat/components/Teleportable.gd" id="14"]
 [ext_resource type="PackedScene" uid="uid://dkvmbcd4lbegu" path="res://actors/battlers/DebugShip.tscn" id="15"]
-[ext_resource type="PackedScene" path="res://actors/battlers/PlayerInfoOnShip.tscn" id="16"]
-[ext_resource type="Script" path="res://actors/battlers/TargetDest.gd" id="17"]
+[ext_resource type="PackedScene" uid="uid://t3rjpb70bm4q" path="res://actors/battlers/PlayerInfoOnShip.tscn" id="16"]
+[ext_resource type="Script" uid="uid://h386lnjcr5ss" path="res://actors/battlers/TargetDest.gd" id="17"]
 [ext_resource type="PackedScene" path="res://combat/traits/Strategic.tscn" id="18"]
 [ext_resource type="Texture2D" uid="uid://dih85s8b72e2l" path="res://assets/sprites/weapons/trail_spark.png" id="19"]
 [ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="20"]
@@ -33,14 +33,14 @@
 [ext_resource type="Texture2D" uid="uid://jqegv0xiifs2" path="res://assets/sprites/interface/arrow_tip.png" id="34"]
 [ext_resource type="AudioStream" uid="uid://bu272mhv7bhnp" path="res://assets/audio/FX/sfx_coin_double7.wav" id="35"]
 [ext_resource type="PackedScene" uid="uid://clbsrjsidxhav" path="res://combat/traits/Tracked.tscn" id="36"]
-[ext_resource type="PackedScene" path="res://actors/battlers/Ammo.tscn" id="37"]
-[ext_resource type="Shader" path="res://assets/shaders/outline.gdshader" id="38"]
+[ext_resource type="PackedScene" uid="uid://ccf8lnnnpc7br" path="res://actors/battlers/Ammo.tscn" id="37"]
+[ext_resource type="Shader" uid="uid://ctwaq21cw4j8y" path="res://assets/shaders/outline.gdshader" id="38"]
 [ext_resource type="Animation" path="res://assets/animations/Appearing.tres" id="39"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="40"]
 [ext_resource type="Texture2D" uid="uid://itev6b25l54t" path="res://assets/sprites/species/trixens/ship2.png" id="41"]
 [ext_resource type="PackedScene" path="res://interface/ShootingLine.tscn" id="42"]
 [ext_resource type="Texture2D" uid="uid://b45mxffwjy7yv" path="res://assets/shaders/trail.png" id="43"]
-[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="44"]
+[ext_resource type="Script" uid="uid://bpexb6wjfpakj" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="44"]
 [ext_resource type="AudioStream" uid="uid://cswvdme3d1wuh" path="res://assets/audio/gameplay/bricks/sfx_wpn_laser7.wav" id="45"]
 [ext_resource type="PackedScene" path="res://combat/traits/TimeFreezable.tscn" id="46"]
 
@@ -121,10 +121,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ofvoh"]
 _data = {
-"RESET": SubResource("12"),
-"appearing": ExtResource("39"),
-"hit": SubResource("13"),
-"invincible": ExtResource("3")
+&"RESET": SubResource("12"),
+&"appearing": ExtResource("39"),
+&"hit": SubResource("13"),
+&"invincible": ExtResource("3")
 }
 
 [sub_resource type="ShaderMaterial" id="10"]
