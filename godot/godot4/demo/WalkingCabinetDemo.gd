@@ -48,7 +48,9 @@ func _input(event):
 		player_count = 3
 	elif event.is_action_pressed("force_reset_4p"):
 		player_count = 4
-	
+	else:
+		return
+		
 	if mode == 'vs':
 		if player_count == 2:
 			new_game(game_scene_2p)
