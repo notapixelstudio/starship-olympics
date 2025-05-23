@@ -31,7 +31,7 @@ sure_scene = ExtResource("4")
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_rk7g1")
+&"": SubResource("AnimationLibrary_rk7g1")
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -97,4 +97,3 @@ offset_bottom = 251.0
 [connection signal="pressed" from="Buttons/Cards" to="." method="_on_Cards_pressed"]
 [connection signal="pressed" from="Buttons/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Buttons/ShowArena" to="." method="_show_arena"]
-[connection signal="animation_over" from="LeaderBoard" to="." method="_on_LeaderBoard_animation_over"]

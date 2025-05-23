@@ -49,6 +49,7 @@ func back():
 	transition_started.emit('back', from_screen_id, active_screen.get_id())
 	
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	var cam = $Camera2D
 	tween.tween_property($Camera2D, 'position:x', 1280 * (len(screens_stack)-1), 1)
 	await tween.finished
 	
@@ -67,3 +68,7 @@ func disconnect_nav_signals(screen : Screen) -> void:
 		(screen as Screen).disconnect("next", Callable(self, "navigate_to"))
 	if (screen as Screen).is_connected("back", Callable(self, "back")):
 		(screen as Screen).disconnect("back", Callable(self, "back"))
+
+func get_current_screen() -> Screen:
+	return screens_stack[-1]
+	

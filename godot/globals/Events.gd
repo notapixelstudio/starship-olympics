@@ -69,6 +69,10 @@ signal sth_impacted(actor, environment:StaticBody2D)
 signal tap(tapper)
 
 signal camera_updated(camera_state:Dictionary)
+
+# match over
+signal continue_after_match_over
+
 # END 4.x events
 
 signal sth_conquered(conqueror, conquered)

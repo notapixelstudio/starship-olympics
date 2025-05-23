@@ -14,6 +14,7 @@ var _current_game
 func _ready() -> void:
 	Events.versus_game_start.connect(begin_versus_game)
 	Events.campaign_game_start.connect(begin_campaign_game)
+	Events.continue_after_match_over.connect(reset)
 
 func _on_ScreenController_transition_started(action:String, from_id:String, to_id:String):
 	Events.emit_signal("analytics_event", {"id": UUID.v4(), "action": action, "from": from_id, "to": to_id}, "navigation")
@@ -56,10 +57,6 @@ func new_game(session:Session, players:Dictionary, game_scene:PackedScene):
 	_current_game.session = session
 	add_child(_current_game)
 	
-	# hackish, I know
-	Engine.time_scale = 1 # doesn't work as expected
-	get_tree().paused = false
-
 func _remove_screens():
 	_screen_controller = %ScreenController
 	remove_child(_screen_controller)
@@ -69,3 +66,11 @@ func _prepare_players_dictionary(players_array:Array[Player]) -> Dictionary[Stri
 	for player in players_array:
 		players[player.get_id()] = player
 	return players
+
+func reset():
+	if _current_game:
+		remove_child(_current_game)
+		_current_game.queue_free()
+		
+	add_child(_screen_controller)
+	_screen_controller.get_current_screen().back.emit()
