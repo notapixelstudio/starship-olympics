@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dhn4hc2tmwqkk"]
+[gd_scene load_steps=25 format=3 uid="uid://dhn4hc2tmwqkk"]
 
 [ext_resource type="PackedScene" uid="uid://d3abq633jh74a" path="res://godot4/ui/screens/Screen.tscn" id="1_vrbqb"]
 [ext_resource type="Script" uid="uid://bkbxh63c01eee" path="res://godot4/ui/screens/main_menu/MainMenuScreen.gd" id="2_k7fo1"]
@@ -22,6 +22,10 @@
 [ext_resource type="BitMap" uid="uid://c7s1sa31yto7h" path="res://godot4/ui/screens/main_menu/buttons/area_Credits.png" id="20_1fdvi"]
 [ext_resource type="Texture2D" uid="uid://b88llv5k6scle" path="res://godot4/ui/screens/main_menu/buttons/graphics_Quit.png" id="21_b74ih"]
 [ext_resource type="BitMap" uid="uid://cvyfx63uo1ksg" path="res://godot4/ui/screens/main_menu/buttons/area_Quit.png" id="22_6ve22"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_om3hj"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_br3wu"]
 
 [node name="MainMenuScreen" instance=ExtResource("1_vrbqb")]
 script = ExtResource("2_k7fo1")
@@ -100,7 +104,9 @@ offset_left = 733.0
 offset_top = 47.0
 offset_right = 918.0
 offset_bottom = 186.0
+disabled = true
 texture_normal = ExtResource("15_v45ox")
+texture_disabled = SubResource("CanvasTexture_om3hj")
 texture_click_mask = ExtResource("16_ru06s")
 
 [node name="MenuLabel" parent="FancyMenu/HallOfFame" index="1" instance=ExtResource("14_q1uha")]
@@ -116,7 +122,9 @@ offset_left = 785.0
 offset_top = 185.0
 offset_right = 993.0
 offset_bottom = 316.0
+disabled = true
 texture_normal = ExtResource("17_oiyfm")
+texture_disabled = SubResource("CanvasTexture_br3wu")
 texture_click_mask = ExtResource("18_38wqh")
 
 [node name="MenuLabel" parent="FancyMenu/Settings" index="1" instance=ExtResource("14_q1uha")]
