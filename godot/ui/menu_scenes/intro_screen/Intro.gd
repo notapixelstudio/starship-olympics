@@ -8,7 +8,7 @@ extends Control
 @onready var line3 = $Line3
 
 
-@export var main_screen : PackedScene
+@export var main : PackedScene
 
 func _ready():
 	
@@ -28,7 +28,7 @@ func _ready():
 	global.start_execution()
 
 func go_ahead():
-	get_tree().change_scene_to_packed(main_screen)
+	get_tree().change_scene_to_packed(main)
 	
 	
 func _input(event):
