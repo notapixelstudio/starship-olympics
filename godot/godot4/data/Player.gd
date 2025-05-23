@@ -43,6 +43,9 @@ func has_proper_team() -> bool:
 func get_team() -> String:
 	return team
 	
+func set_team(name:String) -> void:
+	team = name
+	
 func get_team_color() -> Color:
 	return Color('#ff4a2e') if self.team == 'A' else Color('#1a59ff')
 

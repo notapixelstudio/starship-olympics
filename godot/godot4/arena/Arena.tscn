@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=32 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="Script" uid="uid://cdwca4jvfkafg" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
 [ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
 [ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="2_3p1dt"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_fyulk"]
+[ext_resource type="Script" uid="uid://ctf1rg3hqs2hh" path="res://godot4/data/Player.gd" id="2_wi08g"]
 [ext_resource type="Resource" uid="uid://fc2yg6p4flm5" path="res://godot4/debug/default_data/default_players/p2.tres" id="3_jq12e"]
 [ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_jxfg0"]
 [ext_resource type="Resource" uid="uid://c2u64vntxjiy6" path="res://godot4/debug/default_data/default_players/p3.tres" id="4_c1158"]
@@ -33,12 +34,7 @@
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_avtyt")
-players = {
-"P1": ExtResource("2_3p1dt"),
-"P2": ExtResource("3_jq12e"),
-"P3": ExtResource("4_c1158"),
-"P4": ExtResource("5_ej3mp")
-}
+players = Array[ExtResource("2_wi08g")]([ExtResource("2_3p1dt"), ExtResource("3_jq12e"), ExtResource("4_c1158"), ExtResource("5_ej3mp")])
 ship_scene = ExtResource("6_p0dyi")
 player_brain_scene = ExtResource("7_o1qkg")
 cpu_brain_scene = ExtResource("8_segll")

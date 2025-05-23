@@ -19,4 +19,8 @@ func _on_SelectionPanel_selection_completed():
 func exited():
 	super.exited()
 	if _selection_completed:
-		Events.campaign_game_start.emit(%SelectionPanel.get_players_data())
+		var players = %SelectionPanel.get_players_data()
+		# put all players into the same team
+		for player in players:
+			player.set_team('GG')
+		Events.campaign_game_start.emit(players)

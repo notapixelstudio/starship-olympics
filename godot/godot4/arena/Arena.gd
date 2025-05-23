@@ -9,7 +9,7 @@ class_name Arena
 ## The Homes node is meant to contain the starting positions of the players.
 ## Nodes under the HUD canvas layer are meant to be used for UI elements, such as the countdown timer, the match over screen, and the score bars.
 
-@export var players : Dictionary[String,Player]
+@export var players : Array[Player]
 @export var ship_scene : PackedScene
 @export var player_brain_scene : PackedScene
 @export var cpu_brain_scene : PackedScene
@@ -21,10 +21,14 @@ class_name Arena
 var _params : MatchParams
 var _active_players : Array[Player] = []
 var _teams := {}
+var _players_by_id : Dictionary[String,Player] = {}
 
 var _match_over_screen
 
 func _ready() -> void:
+	for player in players:
+		_players_by_id[player.get_id()] = player
+	
 	var minigame = get_minigame()
 	_params = get_match_params()
 	
@@ -38,13 +42,11 @@ func _ready() -> void:
 	
 	var brains_to_enable : Array[Brain] = []
 	
+	var i = 0
 	for home in %Homes.get_children():
 		home.visible = false
 		
-		if home.name not in players:
-			continue
-		
-		var player = players[home.name] as Player
+		var player = players[i] as Player
 		_active_players.append(player)
 		
 		var ship = ship_scene.instantiate()
@@ -75,6 +77,8 @@ func _ready() -> void:
 		if player.get_team() not in _teams:
 			_teams[player.get_team()] = []
 		_teams[player.get_team()].append(player.get_id())
+		
+		i += 1
 		
 	for team in _teams.keys():
 		Events.team_ready.emit(team, _teams[team])
@@ -114,7 +118,7 @@ func setup() -> void:
 	
 func setup_team(team:String) -> void:
 	%ScoreManager.add_team(team)
-	%ScoreHUD.add_team(team, players[_teams[team][0]].get_species()) # FIXME support teams of 2+ members
+	%ScoreHUD.add_team(team, _players_by_id[_teams[team][0]].get_species()) # FIXME support teams of 2+ members
 	
 ## Returns a [String] identifier for the [Arena] (defaults to the file name of the scene file).
 func get_id() -> String:

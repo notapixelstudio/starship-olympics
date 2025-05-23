@@ -22,12 +22,12 @@
 [ext_resource type="PackedScene" uid="uid://ckykuuqee1aml" path="res://combat/collectables/Diamond.tscn" id="20"]
 [ext_resource type="Script" uid="uid://bp4upxifobt4h" path="res://combat/managers/modes/SnakeTrailManager.gd" id="21"]
 [ext_resource type="Script" uid="uid://du2ve8v1531un" path="res://combat/Battlefield.gd" id="22"]
-[ext_resource type="PackedScene" path="res://combat/Grid.tscn" id="23"]
+[ext_resource type="PackedScene" uid="uid://b4hc8gaekfjx3" path="res://combat/Grid.tscn" id="23"]
 [ext_resource type="PackedScene" uid="uid://c1duhx14s1f2t" path="res://actors/environments/Field.tscn" id="25"]
 [ext_resource type="PackedScene" uid="uid://wpm774hgbws" path="res://actors/environments/ElementInCamera.tscn" id="26"]
 [ext_resource type="PackedScene" uid="uid://to66qlsne0jp" path="res://combat/interface/hud/HUD.tscn" id="27"]
 [ext_resource type="AudioStream" uid="uid://bc48t83w07wks" path="res://assets/audio/countdown.ogg" id="30"]
-[ext_resource type="PackedScene" path="res://special_scenes/utils/DemoLabel.tscn" id="31"]
+[ext_resource type="PackedScene" uid="uid://b6dos2o5dm82d" path="res://special_scenes/utils/DemoLabel.tscn" id="31"]
 [ext_resource type="Script" uid="uid://4j07yvhlw2qs" path="res://utils/Camera.gd" id="33"]
 [ext_resource type="PackedScene" uid="uid://4mpt8mxtqqtr" path="res://combat/managers/HoldablesManager.tscn" id="34"]
 [ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="35"]
@@ -57,8 +57,10 @@ tracks/0/keys = {
 "values": [Vector2(0, 20000), Vector2(0, 9100)]
 }
 
-[sub_resource type="Resource" id="Resource_xeac4"]
-metadata/__load_path__ = "res://addons/geometry/GRect.gd"
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xvsuu"]
+_data = {
+&"Rotate": SubResource("2")
+}
 
 [sub_resource type="FontFile" id="6"]
 fallbacks = Array[Font]([ExtResource("35")])
@@ -67,57 +69,11 @@ cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
-
-[sub_resource type="Animation" id="4"]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:time_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 0.5),
-"update": 0,
-"values": [1.0, 0.01]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("Battlefield/Background:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 0.5),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.32549, 0.32549, 0.32549, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("Battlefield/Middleground:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 0.5),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.32549, 0.32549, 0.32549, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("BackgroundLayer/mantiacs_background:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.32549, 0.32549, 0.32549, 1)]
-}
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
 
 [sub_resource type="Animation" id="5"]
 length = 0.5
@@ -158,6 +114,11 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.32549, 0.32549, 0.32549, 1)]
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xlpnw"]
+_data = {
+&"Game Over": SubResource("5")
+}
+
 [node name="Arena" type="Node"]
 script = ExtResource("1")
 __meta__ = {
@@ -193,12 +154,12 @@ __meta__ = {
 [node name="TargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
 stream = ExtResource("7")
 volume_db = -10.0
-bus = "SFX"
+bus = &"SFX"
 
 [node name="BullTargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
 stream = ExtResource("7")
 pitch_scale = 0.5
-bus = "SFX"
+bus = &"SFX"
 
 [node name="CollectManager" type="Node" parent="Managers"]
 script = ExtResource("8")
@@ -245,9 +206,6 @@ enabled = false
 
 [node name="ConquestModeManager" type="Node" parent="Managers"]
 script = ExtResource("16")
-__meta__ = {
-"_editor_icon": ExtResource("4")
-}
 enabled = false
 
 [node name="ConquestManager" type="Node" parent="Managers"]
@@ -265,9 +223,6 @@ enabled = false
 
 [node name="TrailManager" type="Node" parent="Managers"]
 script = ExtResource("21")
-__meta__ = {
-"_editor_icon": ExtResource("4")
-}
 
 [node name="SurvivalModeManager" parent="Managers" instance=ExtResource("17")]
 
@@ -290,7 +245,6 @@ unique_name_in_owner = true
 [node name="MegaSpace" type="Area2D" parent="Battlefield/Background"]
 collision_layer = 0
 collision_mask = 8193
-space_override = 3
 gravity = 0.0
 linear_damp = 9.0
 angular_damp = 25.0
@@ -304,18 +258,17 @@ shape = SubResource("1")
 [node name="Grid" parent="Battlefield/Background/GridWrapper" instance=ExtResource("23")]
 
 [node name="FloodWater" parent="Battlefield/Background" instance=ExtResource("25")]
-position = Vector2(0, 20000)
 z_index = 50
 z_as_relative = false
+position = Vector2(0, 20000)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" groups=["animation_starts_with_battle"]]
-playback_process_mode = 0
-anims/Rotate = SubResource("2")
+callback_mode_process = 0
+libraries = {
+&"": SubResource("AnimationLibrary_xvsuu")
+}
 
 [node name="GRect" type="Node" parent="Battlefield/Background/FloodWater"]
-script = SubResource("Resource_xeac4")
-width = 20000
-height = 20000
 
 [node name="TrailLayer" type="Node2D" parent="Battlefield"]
 
@@ -343,16 +296,19 @@ layer = 50
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("27")]
 process_mode = 3
+layout_mode = 3
+anchors_preset = 10
 
 [node name="Countdown" type="Label" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.156863)
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 50.0
 size_flags_vertical = 1
 theme_override_fonts/font = SubResource("6")
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Countdown"]
@@ -360,26 +316,23 @@ stream = ExtResource("30")
 
 [node name="DemoLabel" parent="CanvasLayer" instance=ExtResource("31")]
 visible = false
+anchors_preset = 12
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 100
 
-[node name="Pause" parent="CanvasLayer2"]
-visible = false
-
 [node name="Camera3D" type="Camera2D" parent="."]
 process_mode = 3
-current = true
 zoom = Vector2(8192, 8192)
 script = ExtResource("33")
 zoomMin = 3.0
 debug_mode = false
 
 [node name="CenterCamera" type="Marker2D" parent="."]
-script = SubResource("4")
 
 [node name="GameOverAnim" type="AnimationPlayer" parent="."]
-"anims/Game Over" = SubResource("5")
-
-[connection signal="restart" from="CanvasLayer2/Pause" to="." method="_on_Pause_restart"]
-[connection signal="skip" from="CanvasLayer2/Pause" to="." method="_on_Pause_skip"]
+libraries = {
+&"": SubResource("AnimationLibrary_xlpnw")
+}

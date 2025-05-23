@@ -12,6 +12,8 @@ var _screen_controller
 var _current_game
 
 func _ready() -> void:
+	_screen_controller = %ScreenController
+	
 	Events.versus_game_start.connect(begin_versus_game)
 	Events.campaign_game_start.connect(begin_campaign_game)
 	Events.continue_after_match_over.connect(reset)
@@ -19,9 +21,8 @@ func _ready() -> void:
 func _on_ScreenController_transition_started(action:String, from_id:String, to_id:String):
 	Events.emit_signal("analytics_event", {"id": UUID.v4(), "action": action, "from": from_id, "to": to_id}, "navigation")
 	
-func begin_versus_game(players_data:Array[Player]) -> void:
+func begin_versus_game(players:Array[Player]) -> void:
 	_remove_screens()
-	var players = _prepare_players_dictionary(players_data)
 	var session = SingleMatchSession.new()
 	var player_count = len(players)
 	
@@ -32,9 +33,8 @@ func begin_versus_game(players_data:Array[Player]) -> void:
 	elif player_count == 4:
 		new_game(session, players, game_scene_4p)
 		
-func begin_campaign_game(players_data:Array[Player]) -> void:
+func begin_campaign_game(players:Array[Player]) -> void:
 	_remove_screens()
-	var players = _prepare_players_dictionary(players_data)
 	var session = SinglePveMatchSession.new()
 	var player_count = len(players)
 	
@@ -47,7 +47,7 @@ func begin_campaign_game(players_data:Array[Player]) -> void:
 	elif player_count == 4:
 		new_game(session, players, game_scene_4pve)
 	
-func new_game(session:Session, players:Dictionary, game_scene:PackedScene):
+func new_game(session:Session, players:Array[Player], game_scene:PackedScene):
 	if _current_game:
 		remove_child(_current_game)
 		_current_game.queue_free()
@@ -58,15 +58,8 @@ func new_game(session:Session, players:Dictionary, game_scene:PackedScene):
 	add_child(_current_game)
 	
 func _remove_screens():
-	_screen_controller = %ScreenController
 	remove_child(_screen_controller)
 	
-func _prepare_players_dictionary(players_array:Array[Player]) -> Dictionary[String,Player]:
-	var players : Dictionary[String,Player] = {}
-	for player in players_array:
-		players[player.get_id()] = player
-	return players
-
 func reset():
 	if _current_game:
 		remove_child(_current_game)
