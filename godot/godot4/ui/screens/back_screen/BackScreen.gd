@@ -8,9 +8,9 @@ func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
 		emit_signal("back")
 
-func exit():
+func exiting():
 	$FancyMenu.save_focused_element()
-	super.exit()
+	super.exiting()
 	
 func enter():
 	super.enter()

@@ -154,3 +154,10 @@ func _get_pilot_selectors() -> Array:
 		if child is PilotSelector:
 			pilots.append(child)
 	return pilots
+
+func get_players_data() -> Array[Player]:
+	var players : Array[Player] = []
+	for child in get_children():
+		if child is PilotSelector and child.is_status('selected'):
+			players.append(child.get_player_data())
+	return players

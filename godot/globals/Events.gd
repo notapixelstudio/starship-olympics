@@ -34,6 +34,10 @@ signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no d
 
 # BEGIN 4.x events
 
+# after character selection
+signal versus_game_start(players_data:Array[Player])
+signal campaign_game_start(players_data:Array[Player])
+
 # players ready
 signal player_ready(player)
 signal team_ready(id, members)

@@ -9,7 +9,7 @@ class_name Arena
 ## The Homes node is meant to contain the starting positions of the players.
 ## Nodes under the HUD canvas layer are meant to be used for UI elements, such as the countdown timer, the match over screen, and the score bars.
 
-@export var players : Dictionary # String: Player
+@export var players : Dictionary[String,Player]
 @export var ship_scene : PackedScene
 @export var player_brain_scene : PackedScene
 @export var cpu_brain_scene : PackedScene

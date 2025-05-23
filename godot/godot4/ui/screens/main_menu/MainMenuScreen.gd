@@ -25,9 +25,9 @@ func _on_Quit_button_down():
 	$FancyMenu.isolate_child($FancyMenu/Quit)
 	global.end_execution()
 
-func exit():
+func exiting():
 	$FancyMenu.save_focused_element()
-	super.exit()
+	super.exiting()
 	
 func enter():
 	super.enter()

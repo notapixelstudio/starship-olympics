@@ -16,12 +16,17 @@ func enter() -> void:
 	set_process_unhandled_input(true)
 
 ## Executed right before starting a transition from this Screen. Override it in your inherited scenes
-## to customize its behavior. Remember to either call [code]super.exit()[/code] in your override method if
+## to customize its behavior. Remember to either call [code]super.exiting()[/code] in your override method if
 ## you also want to retain the default behavior (which disables input processing and release focus).
-func exit() -> void:
+func exiting() -> void:
 	set_process_input(false)
 	set_process_unhandled_input(false)
 	recursive_release_focus()
+	
+## Executed right after a transition from this Screen has ended. Override it in your inherited scenes
+## to customize its behavior.
+func exited() -> void:
+	pass
 
 ## Call this method to recursively cause this Screen and all of its Control descendants to lose focus.
 func recursive_release_focus() -> void:

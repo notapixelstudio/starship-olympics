@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://5p281bf2avw7" path="res://godot4/ui/screens/character_selection/selection_panel/SelectionPanel.gd" id="1"]
 [ext_resource type="FontFile" path="res://assets/fonts/DefaultFont40.tres" id="2"]
-[ext_resource type="PackedScene" path="res://godot4/ui/screens/character_selection/ReadyToFight.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dhwmg2rg40f8q" path="res://godot4/ui/screens/character_selection/ReadyToFight.tscn" id="3"]
 
 [node name="SelectionPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1")
