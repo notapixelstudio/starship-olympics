@@ -12,9 +12,9 @@ func log_event(event: Dictionary, event_name:String, immediate: bool = true) -> 
 	event.timestamp = Time.get_datetime_string_from_system(true, true)
 	event.running_time = Time.get_ticks_usec()
 	
-	file.store_line(JSON.new().stringify(event))
-	if immediate:
-		file.flush() # WARNING writing to disk too often could hurt performance
+	#file.store_line(JSON.new().stringify(event))
+	#if immediate:
+	#	file.flush() # WARNING writing to disk too often could hurt performance
 
 func _init():
 	# open the log file and go to the end
