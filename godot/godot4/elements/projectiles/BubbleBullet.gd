@@ -26,6 +26,7 @@ func hurt(sth) -> void:
 			sth.queue_free()
 			get_parent().add_child.call_deferred(bubble)
 			bubble.set_content_rotation(sth.global_rotation)
+			Events.ship_captured.emit.call_deferred(sth, bubble)
 		destroy()
 
 func destroy() -> void:

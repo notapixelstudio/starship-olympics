@@ -49,6 +49,8 @@ signal clock_expired
 
 signal ship_touch_sth(ship:Ship, sth:CollisionObject2D)
 signal sth_hurt_ship(sth:CollisionObject2D, ship:Ship)
+signal ship_captured(ship:Ship, trap)#, capturer) maybe?
+signal ship_released(ship:Ship, trap)#, capturer, saviour)
 
 signal sth_crossed_gate(sth, gate:Gate)
 signal beat(period:int)

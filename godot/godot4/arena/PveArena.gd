@@ -4,6 +4,10 @@ class_name PveArena
 
 @export var medals : Medals
 
+func _ready():
+	super._ready()
+	Events.ship_captured.connect(_on_ship_captured)
+
 func setup() -> void:
 	super()
 	%ScoreHUD.set_thresholds([
@@ -26,3 +30,15 @@ func _update_session(data:Dictionary) -> void:
 		elif int(standing['score']) >= _params.bronze:
 			data['medal'] = 'bronze'
 	super(data)
+
+func _on_ship_captured(ship:Ship, trap) -> void:
+	if trap is ShipBubble:
+		if len(players) > 1:
+			# if we are not playing solo, teammates have to pop your bubble by dashing
+			trap.disable_auto_popping()
+			
+			# also, end the game if all ships have been captured
+			await get_tree().process_frame
+			if get_tree().get_node_count_in_group('Ship') == 0:
+				await get_tree().create_timer(1).timeout
+				Events.clock_expired.emit()

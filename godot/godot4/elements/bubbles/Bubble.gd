@@ -22,16 +22,19 @@ func set_content(v) -> void:
 	
 func pop(author=null) -> void:
 	if _content and is_instance_valid(_content) and not _content.is_queued_for_deletion():
-		_content.global_position = global_position
-		get_parent().add_child.call_deferred(_content)
-		if author and _content.has_method('touched_by'): # WARNING duck typing
-			_content.touched_by.call_deferred(author)
+		release_content(author)
 		_content = null
 	SoundEffects.play(%PopSFX)
 	var pop = bubble_popped_scene.instantiate()
 	pop.global_position = global_position
 	get_parent().add_child(pop)
 	queue_free()
+	
+func release_content(author) -> void:
+	_content.global_position = global_position
+	get_parent().add_child.call_deferred(_content)
+	if author and _content.has_method('touched_by'): # WARNING duck typing
+		_content.touched_by.call_deferred(author)
 
 func _on_area_2d_body_entered(body):
 	if body is Ship:
