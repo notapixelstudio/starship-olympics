@@ -11,7 +11,6 @@ func show() -> void:
 	
 func _on_appear() -> void:
 	%Leaderboard.reorder()
-	set_process_unhandled_input(true)
 
 func set_players(v:Array[Player]) -> void:
 	players = v
@@ -34,9 +33,14 @@ func update_scores() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton or event is InputEventKey:
-		# hackish, I know
-		Engine.time_scale = 1 # doesn't work as expected
 		get_tree().paused = false
 		
 		Events.continue_after_match_over.emit()
 		
+
+func enable_continue() -> void:
+	# hackish, I know
+	Engine.time_scale = 1 # doesn't work as expected
+	set_process_unhandled_input(true)
+	%ContinueAnimationPlayer.play("blink")
+	
