@@ -60,58 +60,58 @@ void vertex() {
 	modulate = COLOR;
 }
 
-void fragment() {
-	vec2 screen_crtUV = CRTCurveUV(SCREEN_UV);
-	vec4 color = texture(SCREEN_TEXTURE, screen_crtUV);
-
-
-
-	if (color.a > 0.0001) {
-		color.rgb /= color.a;
-
-	}
-
-	// aberration
-	float adjusted_amount = aberration_amount / screen_size.x;
-	color.r = texture(SCREEN_TEXTURE, vec2(screen_crtUV.x + adjusted_amount, screen_crtUV.y)).r;
-	color.g = texture(SCREEN_TEXTURE, screen_crtUV).g;
-	color.b = texture(SCREEN_TEXTURE, vec2(screen_crtUV.x - adjusted_amount, screen_crtUV.y)).b;
-
-
-	COLOR *= color * boost;
-}
-
 //void fragment() {
-	//vec2 screen_crtUV = CRTCurveUV(UV);
-	//vec4 color = textureLod(TEXTURE, screen_crtUV, 0.0).rgba;
-	//
-	//if (color.a > 0.01) {
+	//vec2 screen_crtUV = CRTCurveUV(SCREEN_UV);
+	//vec4 color = texture(SCREEN_TEXTURE, screen_crtUV);
+//
+//
+//
+	//if (color.a > 0.0001) {
 		//color.rgb /= color.a;
-		//COLOR *= color;
-		//
-		//if (aberration_amount > 0.0) {
-			//float adjusted_amount = aberration_amount / screen_size.x;
-			//
-			//if (move_aberration == true) {
-				//adjusted_amount = (aberration_amount / screen_size.x) * cos((2.0 * 3.14159265359) * (TIME / aberration_speed));
-			//}
-			//
-			//color.r = texture(TEXTURE, vec2(screen_crtUV.x + adjusted_amount, screen_crtUV.y)).r;
-			//color.g = texture(TEXTURE, screen_crtUV).g;
-			//color.b = texture(TEXTURE, vec2(screen_crtUV.x - adjusted_amount, screen_crtUV.y)).b;
-		//}
-		//
-		//vec2 crtUV = CRTCurveUV(SCREEN_UV);
-		//if (crtUV.x < 0.0 || crtUV.x > 1.0 || crtUV.y < 0.0 || crtUV.y > 1.0) {
-			//color = vec4(0.0, 0.0, 0.0, 1.0);
-		//}
-		//
-		//DrawVignette(color, crtUV);
-		//DrawScanline(color, crtUV, -TIME * scanlines_speed);
-		//
-		//COLOR = color * modulate;
+//
 	//}
-	//else {
-		//COLOR = vec4(0.0,0.0,0.0,0.0);
-	//}
+//
+	//// aberration
+	//float adjusted_amount = aberration_amount / screen_size.x;
+	//color.r = texture(SCREEN_TEXTURE, vec2(screen_crtUV.x + adjusted_amount, screen_crtUV.y)).r;
+	//color.g = texture(SCREEN_TEXTURE, screen_crtUV).g;
+	//color.b = texture(SCREEN_TEXTURE, vec2(screen_crtUV.x - adjusted_amount, screen_crtUV.y)).b;
+//
+//
+	//COLOR *= color * boost;
 //}
+
+void fragment() {
+	vec2 screen_crtUV = CRTCurveUV(UV);
+	vec4 color = textureLod(TEXTURE, screen_crtUV, 0.0).rgba;
+	
+	if (color.a > 0.01) {
+		color.rgb /= color.a;
+		COLOR *= color;
+		
+		if (aberration_amount > 0.0) {
+			float adjusted_amount = aberration_amount / screen_size.x;
+			
+			if (move_aberration == true) {
+				adjusted_amount = (aberration_amount / screen_size.x) * cos((2.0 * 3.14159265359) * (TIME / aberration_speed));
+			}
+			
+			color.r = texture(TEXTURE, vec2(screen_crtUV.x + adjusted_amount, screen_crtUV.y)).r;
+			color.g = texture(TEXTURE, screen_crtUV).g;
+			color.b = texture(TEXTURE, vec2(screen_crtUV.x - adjusted_amount, screen_crtUV.y)).b;
+		}
+		
+		vec2 crtUV = CRTCurveUV(SCREEN_UV);
+		if (crtUV.x < 0.0 || crtUV.x > 1.0 || crtUV.y < 0.0 || crtUV.y > 1.0) {
+			color = vec4(0.0, 0.0, 0.0, 1.0);
+		}
+		
+		DrawVignette(color, crtUV);
+		DrawScanline(color, crtUV, -TIME * scanlines_speed);
+		
+		COLOR = color * modulate;
+	}
+	else {
+		COLOR = vec4(0.0,0.0,0.0,0.0);
+	}
+}

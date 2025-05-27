@@ -10,9 +10,10 @@ func _ready():
 func focus():
 	modulate = Color(1.16, 1.16, 1.16)
 	$AnimationPlayer.play("Grow")
-
+	SoundEffects.play(%AudioStreamPlayer2D)
+	
 func blur():
-	modulate = Color(0.4, 0.4, 0.4)
+	modulate = Color(0.3, 0.3, 0.3)
 	$AnimationPlayer.play("Shrink")
 	
 func _on_FancyButton_focus_entered():

@@ -6,6 +6,11 @@ extends Screen
 @export var settings_scene : PackedScene
 @export var credits_scene : PackedScene
 
+@export var bgm : AudioStream
+
+func _ready():
+	DeeJay.play(bgm)
+
 func _on_Versus_button_down():
 	emit_signal("next", versus_character_selection_scene.instantiate())
 

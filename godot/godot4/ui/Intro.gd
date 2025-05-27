@@ -14,7 +14,7 @@ func _ready():
 	
 	line1.text = tr("[center]MILLENNIA OF INTERGALACTIC WARS[/center]")
 	line2.text = tr("[center]FINALLY CAME TO AN END[/center]")
-	line3.text = tr("[center]WHEN [i]THE GAMES[/i] WERE CREATED[/center]")
+	line3.text = tr("[center]WHEN [color=#ffde5e][i]THE GAMES[/i][/color] WERE CREATED[/center]")
 	set_process_input(false)
 	
 	# disclaimer for analytics
@@ -29,7 +29,6 @@ func _ready():
 
 func go_ahead():
 	get_tree().change_scene_to_packed(main)
-	
 	
 func _input(event):
 	if not event is InputEventJoypadMotion and not event is InputEventMouse and not event is InputEventPanGesture and not event.pressed:

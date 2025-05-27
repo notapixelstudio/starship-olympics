@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://vh0e0jev2038"]
+[gd_scene load_steps=12 format=3 uid="uid://vh0e0jev2038"]
 
 [ext_resource type="Script" uid="uid://bgo2ssnrh764g" path="res://godot4/ui/Intro.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bn7bm1m238rpp" path="res://godot4/Main.tscn" id="2"]
@@ -197,7 +197,8 @@ cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="Animation" id="3"]
 resource_name = "Appear"
-length = 7.0
+length = 7.5
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -241,7 +242,7 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 7),
+"times": PackedFloat32Array(0, 7.5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [true],
@@ -258,15 +259,43 @@ tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.2),
+"times": PackedFloat32Array(1.7),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera2D:zoom")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 7.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_5nxm3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ys0d"]
 _data = {
-&"Appear": SubResource("3")
+&"Appear": SubResource("3"),
+&"RESET": SubResource("Animation_5nxm3")
 }
 
 [node name="Intro" type="Control"]
@@ -341,10 +370,14 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("5")
-bus = &"Music"
+bus = &"SFX"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6")
 autoplay = true
 bus = &"Music"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(640, 360)

@@ -54,6 +54,7 @@ func _ready():
 				children[i].focus_neighbor_top = children[i].get_path()
 			if not children[i].focus_neighbor_bottom:
 				children[i].focus_neighbor_bottom = children[i].get_path()
+				
 
 ## Save the currently focused element. See [method restore_focused_element] to restore it.
 func save_focused_element():
