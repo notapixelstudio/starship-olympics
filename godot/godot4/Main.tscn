@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bn7bm1m238rpp"]
+[gd_scene load_steps=11 format=3 uid="uid://bn7bm1m238rpp"]
 
 [ext_resource type="PackedScene" uid="uid://dxftfjyem72k6" path="res://godot4/ui/screens/ScreenController.tscn" id="1"]
 [ext_resource type="Script" uid="uid://dd6qk4byqtqvp" path="res://godot4/Main.gd" id="2"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cvp2cu7cq2g7p" path="res://godot4/levels/diamondsnatch/diamondsnatch_4p.tscn" id="4_ll0pi"]
 [ext_resource type="PackedScene" uid="uid://dhn4hc2tmwqkk" path="res://godot4/ui/screens/main_menu/MainMenuScreen.tscn" id="4_ply7b"]
 [ext_resource type="Texture2D" uid="uid://yuay7lcg5j7l" path="res://assets/sprites/background/static.png" id="5"]
-[ext_resource type="PackedScene" uid="uid://dsq5pbqdelscr" path="res://godot4/WorldEnvironment.tscn" id="5_22uyu"]
 [ext_resource type="PackedScene" uid="uid://41vn2qw4djss" path="res://godot4/levels/diamondsnatch/diamondsnatch_1pve.tscn" id="5_kl13l"]
 [ext_resource type="PackedScene" uid="uid://c7uihxmdaadhj" path="res://godot4/levels/diamondsnatch/diamondsnatch_2pve.tscn" id="6_dmfy3"]
 [ext_resource type="PackedScene" uid="uid://br2xue6kgmc5f" path="res://godot4/levels/diamondsnatch/diamondsnatch_3pve.tscn" id="7_m66ln"]
@@ -36,7 +35,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource("5")
-
-[node name="WorldEnvironment" parent="." instance=ExtResource("5_22uyu")]
 
 [connection signal="transition_started" from="ScreenController" to="." method="_on_ScreenController_transition_started"]
