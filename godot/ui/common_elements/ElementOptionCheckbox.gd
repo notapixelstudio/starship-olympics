@@ -3,19 +3,19 @@ extends GenericOption
 
 @onready var value_node = $ElementCheckbox
 @onready var description_node = $ElementCheckbox
-	
+
 func setup():
 	if not label_description:
-		label_description = element_path
+		label_description = option_name
 
 	description_node.text = label_description.to_upper()
-	value = node_owner.get(element_path)
+	value = node_owner.get(option_name)
 	value_node.button_pressed = value
 
 
 func _on_ElementCheckbox_toggled(button_pressed):
 	value = button_pressed
-	node_owner.set(element_path, value)
+	set_value(value)
 
 
 func _on_MarginContainer_focus_entered():
@@ -38,4 +38,3 @@ func _on_ElementCheckbox_focus_entered():
 
 func _on_ElementCheckbox_focus_exited():
 	value_node.set("theme_override_colors/font_pressed_color", null)
-

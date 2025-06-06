@@ -6,13 +6,11 @@ enum OPTION_TYPE{ON_OFF, NUMBER, ARRAY}
 
 var value
 
-signal value_changed(value)
-
 ### Properties ###
-@export var element_path : String
+@export var option_name : String
 ### Text of the label that is going to appear on the Option ###
 @export var label_description: String
-@export var node_owner_path := "global"
+@export var node_owner_path := "Options"
 
 var node_owner
 
@@ -27,8 +25,7 @@ func setup():
 func set_value(v):
 	value = v
 	if node_owner:
-		node_owner.set(element_path, value)
-		emit_signal("value_changed", value)
+		Events.option_changed.emit(option_name, value)
 	else:
 		print_debug("Setter has been called without a proper setup")
 		

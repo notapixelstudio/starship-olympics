@@ -23,24 +23,24 @@ var action_time = 0.0
 
 func setup():
 	if not label_description:
-		label_description = element_path
+		label_description = option_name
 		
 	description_node.text = label_description.to_upper()
 	suffix_node.text = suffix
 	
 	left.disabled = false
 	right.disabled = false
-	self.value = node_owner.get(element_path)
+	self.value = node_owner.get(option_name)
 	
 	if elem_type == OPTION_TYPE.NUMBER:
-		min_value = node_owner.get("min_"+element_path)
-		max_value = node_owner.get("max_"+element_path)
+		min_value = node_owner.get("min_"+option_name)
+		max_value = node_owner.get("max_"+option_name)
 		left.disabled = value <= min_value
 		right.disabled = value >= max_value
 	elif elem_type == OPTION_TYPE.ARRAY:
-		array_value = node_owner.get("array_"+element_path)
+		array_value = node_owner.get("array_"+option_name)
 		# get first element if there is not already set
-		var default_value = node_owner.get(element_path)
+		var default_value = node_owner.get(option_name)
 		if default_value:
 			self.value = default_value
 		else:

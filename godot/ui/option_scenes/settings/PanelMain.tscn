@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cmgckx46yk5vq" path="res://ui/common_elements/ElementOption.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://t3ow0yws6dop" path="res://ui/common_elements/NavigateButton.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://0n5ft8p5qbkp" path="res://ui/option_scenes/settings/PanelAudio.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://ui/option_scenes/settings/PanelRemappingTypes.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://dmf0l4g1nvatf" path="res://ui/option_scenes/settings/PanelRemappingTypes.tscn" id="6"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="7"]
 
 [node name="PanelMain" type="Container"]
@@ -29,28 +29,33 @@ alignment = 1
 [node name="Language" parent="UIButtonsContainer" instance=ExtResource("3")]
 layout_mode = 2
 elem_type = 2
-element_path = "language"
+option_name = null
 label_description = "language"
+node_owner_path = "global"
 
 [node name="FullScreen" parent="UIButtonsContainer" instance=ExtResource("2")]
 layout_mode = 2
-element_path = "full_screen"
+option_name = null
 label_description = "FULLSCREEN"
+node_owner_path = "global"
 
 [node name="Glow" parent="UIButtonsContainer" instance=ExtResource("2")]
 layout_mode = 2
-element_path = "glow_enable"
+option_name = null
 label_description = "GLOW"
+node_owner_path = "global"
 
 [node name="Camera3D" parent="UIButtonsContainer" instance=ExtResource("2")]
 layout_mode = 2
-element_path = "enable_camera"
+option_name = null
 label_description = "DYNAMIC CAMERA"
+node_owner_path = "global"
 
 [node name="Analytics" parent="UIButtonsContainer" instance=ExtResource("2")]
 layout_mode = 2
-element_path = "enable_analytics"
+option_name = null
 label_description = "analytics"
+node_owner_path = "global"
 
 [node name="Audio" parent="UIButtonsContainer" instance=ExtResource("4")]
 layout_mode = 2
@@ -66,23 +71,24 @@ title = "REMAP CONTROLS"
 
 [node name="Rumbling" parent="UIButtonsContainer" instance=ExtResource("2")]
 layout_mode = 2
-element_path = "rumbling"
+option_name = null
 label_description = "JOYPAD RUMBLING"
+node_owner_path = "global"
 
 [node name="Resolution" parent="UIButtonsContainer" instance=ExtResource("3")]
 layout_mode = 2
 elem_type = 2
-element_path = "graphics_quality"
+option_name = null
 label_description = "RESOLUTION"
+node_owner_path = "global"
 
 [node name="TimeScale" parent="UIButtonsContainer" instance=ExtResource("3")]
 layout_mode = 2
 elem_type = 2
 suffix = "X"
-element_path = "time_scale"
+option_name = null
 label_description = "GAME SPEED"
+node_owner_path = "global"
 
 [node name="Content" type="MarginContainer" parent="."]
 layout_mode = 2
-
-[connection signal="value_changed" from="UIButtonsContainer/Language" to="." method="_on_Language_value_changed"]
