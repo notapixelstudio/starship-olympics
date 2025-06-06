@@ -33,7 +33,7 @@ In this game, you will pilot your own starship and face off against other player
 
 ## Follow the Development
 
-This game is being developed on **`Godot v4.3.x`**.
+This game is being developed on **`Godot v4.4.x`**.
 
 Join our Discord or follow us on Twitter ([@notapixelstudio](https://twitter.com/notapixelstudio)) or [Instagram](https://instagram.com/notapixelstudio) for updates and news.
 
