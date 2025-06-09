@@ -44,7 +44,7 @@ func _ready() -> void:
 	
 func redraw() -> void:
 	# set size
-	custom_minimum_size.y = line_height * len(players) + 60 # margin handling
+	custom_minimum_size.y = line_height * len(players) # margin handling
 	
 	# empty container
 	for child in %Container.get_children():

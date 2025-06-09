@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://c4wnumyysruol"]
+[gd_scene load_steps=12 format=3 uid="uid://c4wnumyysruol"]
 
 [ext_resource type="Script" uid="uid://bgwvuqjgokcfo" path="res://special_scenes/combat_UI/session_points/PilotStats.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://b8llrhhkcnyfh" path="res://special_scenes/combat_UI/session_points/Headshot.tscn" id="2"]
 [ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="2_ajx2r"]
 [ext_resource type="PackedScene" uid="uid://dw8dm4b52y11j" path="res://special_scenes/combat_UI/session_points/StarIcon.tscn" id="2_ny8yu"]
-[ext_resource type="PackedScene" path="res://special_scenes/combat_UI/session_points/Stat.tscn" id="3"]
 [ext_resource type="Resource" uid="uid://dlut230hy2j3m" path="res://godot4/debug/default_data/single_match_example_session.tres" id="4_fy5x0"]
 [ext_resource type="Texture2D" uid="uid://ccvffra4l23u7" path="res://assets/patterns/stripes_duotone_lighter.png" id="6"]
 [ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="8"]
@@ -451,34 +450,6 @@ offset_bottom = 150.0
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="StatsContainer" type="GridContainer" parent="Wrapper/Container"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 26
-columns = 2
-
-[node name="Stat2" parent="Wrapper/Container/StatsContainer" instance=ExtResource("3")]
-layout_mode = 2
-key = "kills"
-stats_value = "0"
-
-[node name="Stat3" parent="Wrapper/Container/StatsContainer" instance=ExtResource("3")]
-layout_mode = 2
-key = "deaths"
-stats_value = "0"
-
-[node name="Stat4" parent="Wrapper/Container/StatsContainer" instance=ExtResource("3")]
-layout_mode = 2
-key = "selfkills"
-stats_value = "0"
-
-[node name="Stat5" parent="Wrapper/Container/StatsContainer" instance=ExtResource("3")]
-layout_mode = 2
-key = "bombs"
-stats_value = "0"
-
 [node name="IconContainer" type="Node2D" parent="Wrapper/Container"]
 unique_name_in_owner = true
 position = Vector2(535, 0)
@@ -487,7 +458,7 @@ position = Vector2(535, 0)
 unique_name_in_owner = true
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_4l6uv")
+&"": SubResource("AnimationLibrary_4l6uv")
 }
 
 [node name="WinnerOutline" type="Line2D" parent="Wrapper"]
