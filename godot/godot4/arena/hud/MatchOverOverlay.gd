@@ -19,7 +19,6 @@ func set_session(v:Session) -> void:
 	session = v
 
 func _ready() -> void:
-	set_process_unhandled_input(false)
 	redraw()
 	
 func redraw() -> void:
@@ -30,17 +29,12 @@ func redraw() -> void:
 func update_scores() -> void:
 	%Leaderboard.update_scores()
 
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventJoypadButton or event is InputEventKey:
-		get_tree().paused = false
-		
-		Events.continue_after_match_over.emit()
-		
-
 func enable_continue() -> void:
 	# hackish, I know
 	Engine.time_scale = 1 # doesn't work as expected
-	set_process_unhandled_input(true)
-	%ContinueAnimationPlayer.play("blink")
+	%PressAnyKey.enable()
 	
+
+func _on_press_any_key_any_key_pressed() -> void:
+	get_tree().paused = false
+	Events.continue_after_match_over.emit()

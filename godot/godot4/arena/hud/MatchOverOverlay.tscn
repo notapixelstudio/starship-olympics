@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dhgfc2vafre2d"]
+[gd_scene load_steps=14 format=3 uid="uid://dhgfc2vafre2d"]
 
 [ext_resource type="Script" uid="uid://dh41l07yl0hda" path="res://godot4/arena/hud/MatchOverOverlay.gd" id="1_6bfhl"]
 [ext_resource type="Script" uid="uid://ctf1rg3hqs2hh" path="res://godot4/data/Player.gd" id="2_llkrh"]
@@ -9,44 +9,7 @@
 [ext_resource type="Resource" uid="uid://dlut230hy2j3m" path="res://godot4/debug/default_data/single_match_example_session.tres" id="7_30v0d"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="8_jh136"]
 [ext_resource type="PackedScene" uid="uid://00s3ufothoqf" path="res://special_scenes/combat_UI/session_points/Leaderboard.tscn" id="9_ukike"]
-
-[sub_resource type="Animation" id="Animation_llkrh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_6bfhl"]
-resource_name = "blink"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_uc5by"]
-_data = {
-&"RESET": SubResource("Animation_llkrh"),
-&"blink": SubResource("Animation_6bfhl")
-}
+[ext_resource type="PackedScene" uid="uid://37vcan82kgvg" path="res://godot4/ui/utils/PressAnyKey.tscn" id="10_llkrh"]
 
 [sub_resource type="Animation" id="Animation_wbkui"]
 length = 0.001
@@ -137,25 +100,14 @@ layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/margin_left = 200
 
-[node name="PressAnyKey" type="Label" parent="VBoxContainer"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_vertical = 0
-theme = ExtResource("8_jh136")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_y = 6
-theme_override_font_sizes/font_size = 40
-text = "PRESS ANY KEY TO CONTINUE"
-horizontal_alignment = 1
-
-[node name="ContinueAnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/PressAnyKey"]
+[node name="PressAnyKey" parent="VBoxContainer" instance=ExtResource("10_llkrh")]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_uc5by")
-}
+layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_4qdce")
 }
+
+[connection signal="any_key_pressed" from="VBoxContainer/PressAnyKey" to="." method="_on_press_any_key_any_key_pressed"]

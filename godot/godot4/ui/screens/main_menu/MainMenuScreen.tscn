@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dhn4hc2tmwqkk"]
+[gd_scene load_steps=25 format=3 uid="uid://dhn4hc2tmwqkk"]
 
 [ext_resource type="PackedScene" uid="uid://d3abq633jh74a" path="res://godot4/ui/screens/Screen.tscn" id="1_vrbqb"]
 [ext_resource type="Script" uid="uid://bkbxh63c01eee" path="res://godot4/ui/screens/main_menu/MainMenuScreen.gd" id="2_k7fo1"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://85gtnlxh82ug" path="res://godot4/ui/screens/hall_of_fame/HallOfFameScreen.tscn" id="5_bwgoe"]
 [ext_resource type="PackedScene" uid="uid://c50sd4reltwxp" path="res://godot4/ui/screens/settings/SettingsScreen.tscn" id="6_rh0f1"]
 [ext_resource type="PackedScene" uid="uid://biutbjggs5j80" path="res://godot4/ui/screens/credits/CreditsScreen.tscn" id="7_f8uos"]
-[ext_resource type="AudioStream" uid="uid://dvyudxmqjls3a" path="res://assets/audio/soundtracks/PM_ATG_120_3_3+PM_NIGHTPULSE_120BPM_06.ogg" id="8_br3wu"]
 [ext_resource type="Texture2D" uid="uid://bjcmvo37vp1sw" path="res://godot4/ui/screens/main_menu/main_menu.svg" id="8_hk5oe"]
 [ext_resource type="Texture2D" uid="uid://dur6k2gx10cim" path="res://godot4/ui/screens/main_menu/background.png" id="9_ottn0"]
 [ext_resource type="PackedScene" uid="uid://cklefvrbsam55" path="res://ui/fancy_menus/FancyMenu.tscn" id="10_sdory"]
@@ -35,7 +34,6 @@ campaign_character_selection_scene = ExtResource("4_vwu28")
 hall_of_fame_scene = ExtResource("5_bwgoe")
 settings_scene = ExtResource("6_rh0f1")
 credits_scene = ExtResource("7_f8uos")
-bgm = ExtResource("8_br3wu")
 
 [node name="Reference" type="TextureRect" parent="." index="0"]
 visible = false
