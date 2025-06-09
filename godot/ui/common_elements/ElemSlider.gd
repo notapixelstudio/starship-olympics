@@ -8,8 +8,8 @@ extends GenericOption
 
 func setup():
 	description_node.text = tr(description_node.text + " " + bus_name)
-	value = node_owner.get(element_path)
-	value_node.value = value
+	#value = node_owner.get(element_path)
+	#value_node.value = value
 	
 func _on_HSlider_value_changed(new_value: int):
 	self.value = new_value

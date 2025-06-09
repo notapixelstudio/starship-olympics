@@ -26,19 +26,16 @@ size_flags_vertical = 3
 
 [node name="Music" parent="Content/UIButtonsContainer" instance=ExtResource("2")]
 layout_mode = 2
-element_path = "master_volume"
 label_description = "Volume Master"
 
 [node name="Music2" parent="Content/UIButtonsContainer" instance=ExtResource("2")]
 layout_mode = 2
 bus_name = "Music"
-element_path = "music_volume"
 label_description = "Volume Music"
 
 [node name="Music3" parent="Content/UIButtonsContainer" instance=ExtResource("2")]
 layout_mode = 2
 bus_name = "SFX"
-element_path = "sfx_volume"
 label_description = "Volume SFX"
 
 [node name="Back" type="Button" parent="."]

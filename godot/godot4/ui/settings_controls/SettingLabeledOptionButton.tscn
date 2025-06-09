@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://3w4gj0ferswq"]
+
+[ext_resource type="Script" uid="uid://cxoc8qsmryoc5" path="res://godot4/ui/settings_controls/SettingLabeledOptionButton.gd" id="1_58cqq"]
+
+[node name="SettingLabeledOptionButton" type="HBoxContainer"]
+theme_override_constants/separation = 40
+script = ExtResource("1_58cqq")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Lnaguaugu"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]

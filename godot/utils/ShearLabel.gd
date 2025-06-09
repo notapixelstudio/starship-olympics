@@ -7,7 +7,7 @@ extends Node2D
 @export var alien_font : FontFile
 
 func _ready():
-	Events.connect("language_changed", Callable(self, '_on_language_changed'))
+	Events.connect("language_changed", _on_language_changed)
 	
 	update_language_font()
 	
@@ -37,7 +37,7 @@ func _on_language_changed():
 	update_language_font()
 	
 func update_language_font():
-	if global.language == 'alien':
+	if Settings.language == 'alien':
 		$'%Label'.set("theme_override_fonts/font", alien_font)
 	else:
 		$'%Label'.set("theme_override_fonts/font", null)

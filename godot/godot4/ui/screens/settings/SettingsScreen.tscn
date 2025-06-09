@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c50sd4reltwxp"]
+[gd_scene load_steps=8 format=3 uid="uid://c50sd4reltwxp"]
 
 [ext_resource type="PackedScene" uid="uid://bhq3klwabv0i8" path="res://godot4/ui/screens/back_screen/BackScreen.tscn" id="1"]
 [ext_resource type="Script" uid="uid://dy1lwfh72rk3a" path="res://godot4/ui/screens/settings/SettingsScreen.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://bfjk2jikcv4ub" path="res://utils/ShearLabel.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://cdsqmhpe35s24" path="res://ui/common_elements/ElementOptionCheckbox.tscn" id="5_hktjs"]
+[ext_resource type="PackedScene" uid="uid://bjlvraluuegsk" path="res://godot4/ui/settings_controls/SettingCheckBox.tscn" id="4_7shd3"]
+[ext_resource type="PackedScene" uid="uid://3w4gj0ferswq" path="res://godot4/ui/settings_controls/SettingLabeledOptionButton.tscn" id="5_hktjs"]
+[ext_resource type="PackedScene" uid="uid://3dt40m8sna42" path="res://ui/common_elements/ElemSlider.tscn" id="6_m0wfn"]
 
 [sub_resource type="GDScript" id="GDScript_hktjs"]
 script/source = "extends VBoxContainer
@@ -12,7 +14,7 @@ func _ready() -> void:
 	focus_entered.connect(_on_focus_entered)
 	
 func _on_focus_entered():
-	get_child(0).grab_focus()
+	find_next_valid_focus().grab_focus()
 "
 
 [node name="SettingsScreen" instance=ExtResource("1")]
@@ -23,7 +25,7 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = 194.0
 offset_bottom = 91.0
-focus_neighbor_bottom = NodePath("../../Options")
+focus_neighbor_bottom = NodePath("../../SettingsContainer")
 
 [node name="MenuLabel" parent="." index="2" instance=ExtResource("4")]
 modulate = Color(1, 0.827451, 0.396078, 1)
@@ -31,17 +33,40 @@ position = Vector2(650, 50)
 scale = Vector2(2.5, 2.5)
 text = "SETTINGS"
 
-[node name="Options" type="VBoxContainer" parent="." index="3"]
+[node name="SettingsContainer" type="VBoxContainer" parent="." index="3"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 50.0
+offset_left = 340.0
 offset_top = 150.0
-offset_right = 1250.0
+offset_right = 940.0
 offset_bottom = 700.0
 focus_mode = 2
 script = SubResource("GDScript_hktjs")
 
-[node name="FullScreen" parent="Options" index="0" instance=ExtResource("5_hktjs")]
+[node name="Language" parent="SettingsContainer" index="0" instance=ExtResource("5_hktjs")]
 layout_mode = 2
-option_name = "fullscreen"
-label_description = "fullscreen"
+setting_name = "language"
+
+[node name="Fullscreen" parent="SettingsContainer" index="1" instance=ExtResource("4_7shd3")]
+layout_mode = 2
+setting_name = "fullscreen"
+
+[node name="Sound" type="Label" parent="SettingsContainer" index="2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "SOUND VOLUME"
+horizontal_alignment = 1
+
+[node name="Master" parent="SettingsContainer" index="3" instance=ExtResource("6_m0wfn")]
+layout_mode = 2
+label_description = "Volume Master"
+
+[node name="Music" parent="SettingsContainer" index="4" instance=ExtResource("6_m0wfn")]
+layout_mode = 2
+bus_name = "Music"
+label_description = "Volume Music"
+
+[node name="SFX" parent="SettingsContainer" index="5" instance=ExtResource("6_m0wfn")]
+layout_mode = 2
+bus_name = "SFX"
+label_description = "Volume SFX"

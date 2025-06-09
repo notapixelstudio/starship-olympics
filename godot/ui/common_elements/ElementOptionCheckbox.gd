@@ -28,7 +28,7 @@ func _on_MarginContainer_focus_exited():
 	
 
 
-func focus():
+func _on_focus_entered():
 	get_child(0).grab_focus()
 
 

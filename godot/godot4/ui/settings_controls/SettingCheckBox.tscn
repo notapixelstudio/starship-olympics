@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjlvraluuegsk"]
+
+[ext_resource type="Script" uid="uid://bo8hf1lhdnmwh" path="res://godot4/ui/settings_controls/SettingCheckBox.gd" id="1_fk662"]
+
+[node name="SettingCheckBox" type="CheckBox"]
+script = ExtResource("1_fk662")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]
