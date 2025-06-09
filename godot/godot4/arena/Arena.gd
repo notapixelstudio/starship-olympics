@@ -168,3 +168,5 @@ func _on_match_over(data:Dictionary) -> void:
 func _update_session(data:Dictionary) -> void:
 	session.add_match_results(data)
 	
+func get_active_players() -> Array[Player]:
+	return _active_players

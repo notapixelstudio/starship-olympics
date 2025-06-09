@@ -33,7 +33,7 @@ func _update_session(data:Dictionary) -> void:
 
 func _on_ship_captured(ship:Ship, trap) -> void:
 	if trap is ShipBubble:
-		if len(players) > 1:
+		if len(get_active_players()) > 1:
 			# if we are not playing solo, teammates have to pop your bubble by dashing
 			trap.disable_auto_popping()
 			

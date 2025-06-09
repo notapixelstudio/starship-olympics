@@ -34,18 +34,13 @@ func _ready():
 	Events.connect("spawned", spawned)
 	
 	waves = waves_container.get_children()
-	
-	setup()
-	
-	
-func setup(starting_wave = 0):
-	current_wave = starting_wave
 	spawners_per_wave = {}
 	for i in range(len(waves)):
-		var wave = waves[i]
-		if i >= current_wave:
-			spawners_per_wave[i] = wave.get_spawners()
-			spawners_per_wave[i].shuffle()
+		setup_wave_with_index(i)
+	
+func setup_wave_with_index(i):
+	spawners_per_wave[i] = waves[i].get_spawners()
+	spawners_per_wave[i].shuffle()
 	
 func start():
 	if spawn_on_timeout:
@@ -67,7 +62,10 @@ func _handle_waves():
 		print('wave ', current_wave)
 		var no_spawners_left : bool = len(spawners_per_wave[current_wave]) == 0
 		var max_repeats_reached : bool = waves[current_wave].max_repeats != -1 and waves[current_wave].times_spawned >= waves[current_wave].max_repeats
-		if no_spawners_left or max_repeats_reached:
+		if no_spawners_left:
+			# populate the current wave again
+			setup_wave_with_index(current_wave)
+		if max_repeats_reached:
 			current_wave += 1
 		else:
 			break
