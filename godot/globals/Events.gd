@@ -78,6 +78,8 @@ signal continue_after_match_over
 # options
 signal option_changed(option_name:String,new_value)
 
+signal loading_screen_done
+
 # END 4.x events
 
 signal sth_conquered(conqueror, conquered)

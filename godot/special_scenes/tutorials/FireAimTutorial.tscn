@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bpd6rapk87dig"]
+[gd_scene load_steps=13 format=3 uid="uid://bpd6rapk87dig"]
 
-[ext_resource type="PackedScene" path="res://special_scenes/tutorials/Tutorial.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://c45jigljjkt3l" path="res://special_scenes/tutorials/Tutorial.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://cvdmpr50nsgi7" path="res://assets/UI/buttons/button.png" id="2"]
 [ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="3"]
 [ext_resource type="Texture2D" uid="uid://gwv8kafcts4o" path="res://assets/UI/controller.png" id="4"]
@@ -13,6 +13,16 @@ cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/42/0/ascent = 0.0
+cache/0/42/0/descent = 0.0
+cache/0/42/0/underline_position = 0.0
+cache/0/42/0/underline_thickness = 0.0
+cache/0/42/0/scale = 1.0
 
 [sub_resource type="Animation" id="2"]
 length = 0.001
@@ -69,6 +79,12 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b1m0c"]
+_data = {
+&"RESET": SubResource("2"),
+&"Show": SubResource("3")
+}
+
 [sub_resource type="FontFile" id="4"]
 fallbacks = Array[Font]([ExtResource("3")])
 cache/0/16/0/ascent = 0.0
@@ -76,6 +92,16 @@ cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/42/0/ascent = 0.0
+cache/0/42/0/descent = 0.0
+cache/0/42/0/underline_position = 0.0
+cache/0/42/0/underline_thickness = 0.0
+cache/0/42/0/scale = 1.0
 
 [sub_resource type="FontFile" id="5"]
 fallbacks = Array[Font]([ExtResource("3")])
@@ -84,6 +110,16 @@ cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/42/0/ascent = 0.0
+cache/0/42/0/descent = 0.0
+cache/0/42/0/underline_position = 0.0
+cache/0/42/0/underline_thickness = 0.0
+cache/0/42/0/scale = 1.0
 
 [sub_resource type="FontFile" id="6"]
 fallbacks = Array[Font]([ExtResource("3")])
@@ -92,28 +128,27 @@ cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/42/0/ascent = 0.0
+cache/0/42/0/descent = 0.0
+cache/0/42/0/underline_position = 0.0
+cache/0/42/0/underline_thickness = 0.0
+cache/0/42/0/scale = 1.0
 
 [node name="FireAimTutorial" instance=ExtResource("1")]
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Background" type="ColorRect" parent="." index="0"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -640.0
-offset_top = -360.0
-offset_right = 640.0
-offset_bottom = 360.0
-
-[node name="TextureRect" type="TextureRect" parent="." index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 modulate = Color(0.619608, 0.580392, 0.580392, 1)
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 100.0
+position = Vector2(640, 410)
 texture = ExtResource("4")
-stretch_mode = 4
 
-[node name="Fire" type="Node2D" parent="." index="3"]
+[node name="Fire" type="Node2D" parent="." index="2"]
 modulate = Color(1, 1, 1, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Fire" index="0"]
@@ -132,70 +167,66 @@ offset_top = 400.0
 offset_right = 1284.0
 offset_bottom = 500.0
 theme_override_fonts/font = SubResource("1")
+theme_override_font_sizes/font_size = 42
 text = "FIRE"
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_b1m0c")
+}
 autoplay = "Show"
-anims/RESET = SubResource("2")
-anims/Show = SubResource("3")
 
-[node name="DashLabel" type="Label" parent="." index="5"]
+[node name="DashLabel" type="Label" parent="." index="4"]
 modulate = Color(0.560784, 0.560784, 0.560784, 1)
+layout_mode = 0
 offset_left = 934.0
-offset_top = 205.0
+offset_top = 220.0
 offset_right = 1284.0
-offset_bottom = 409.0
+offset_bottom = 424.0
 theme_override_fonts/font = SubResource("4")
-text = "CHARGE AND DASH
+theme_override_font_sizes/font_size = 42
+text = "CHARGE
+AND DASH
 +"
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Move" type="Node2D" parent="." index="6"]
+[node name="Move" type="Node2D" parent="." index="5"]
 
 [node name="Stick" type="Node2D" parent="Move" index="0"]
 position = Vector2(549, 465)
 
-[node name="Line2D" type="Line2D" parent="Move" index="1"]
-points = PackedVector2Array(250, 475, 475, 475)
-default_color = Color(0, 0, 0, 0.470588)
-
-[node name="MoveLabel" type="Label" parent="Move" index="2"]
+[node name="MoveLabel" type="Label" parent="Move" index="1"]
 modulate = Color(0.560784, 0.560784, 0.560784, 1)
 offset_left = 12.0
-offset_top = 297.0
+offset_top = 305.0
 offset_right = 312.0
-offset_bottom = 447.0
+offset_bottom = 455.0
 theme_override_fonts/font = SubResource("5")
+theme_override_font_sizes/font_size = 42
 text = "MOVE
 +"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Line2D2" type="Line2D" parent="." index="7"]
-points = PackedVector2Array(1000, 450, 875, 450, 850, 425, 850, 425)
-default_color = Color(0, 0, 0, 0.470588)
-
-[node name="Aim" type="Node2D" parent="." index="8"]
+[node name="Aim" type="Node2D" parent="." index="6"]
 modulate = Color(1, 1, 1, 0)
 
 [node name="Label" type="Label" parent="Aim" index="0"]
 modulate = Color(0, 0, 0, 1)
-offset_left = -14.0
-offset_top = 395.0
-offset_right = 336.0
-offset_bottom = 695.0
+offset_left = -11.0
+offset_top = 380.0
+offset_right = 339.0
+offset_bottom = 680.0
 theme_override_fonts/font = SubResource("6")
+theme_override_font_sizes/font_size = 42
 text = "AIM
 WHILE
 CHARGING"
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Stick" type="Node2D" parent="Aim" index="1"]
 position = Vector2(549, 465)

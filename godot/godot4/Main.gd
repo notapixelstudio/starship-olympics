@@ -22,7 +22,6 @@ func _on_ScreenController_transition_started(action:String, from_id:String, to_i
 	Events.emit_signal("analytics_event", {"id": UUID.v4(), "action": action, "from": from_id, "to": to_id}, "navigation")
 	
 func begin_versus_game(players:Array[Player]) -> void:
-	_remove_screens()
 	var session = SingleMatchSession.new()
 	var player_count = len(players)
 	
@@ -34,7 +33,6 @@ func begin_versus_game(players:Array[Player]) -> void:
 		new_game(session, players, game_scene_4p)
 		
 func begin_campaign_game(players:Array[Player]) -> void:
-	_remove_screens()
 	var session = SinglePveMatchSession.new()
 	var player_count = len(players)
 	
@@ -52,6 +50,9 @@ func new_game(session:Session, players:Array[Player], game_scene:PackedScene):
 		remove_child(_current_game)
 		_current_game.queue_free()
 		
+	await Events.loading_screen_done
+	_remove_screens()
+	
 	_current_game = game_scene.instantiate()
 	_current_game.players = players
 	_current_game.session = session
