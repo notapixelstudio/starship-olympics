@@ -30,8 +30,9 @@ func _ready() -> void:
 	await get_tree().process_frame # FIXME is there a better way?
 	set_value(value)
 	
-	# _draw() is automatically called once
-	# this assumes that ticks should never be redrawn
+	# _draw() is automatically called once, but too early
+	# we need to queue another redraw with the updated value
+	queue_redraw()
 
 func _draw() -> void:
 	_draw_ticks()
