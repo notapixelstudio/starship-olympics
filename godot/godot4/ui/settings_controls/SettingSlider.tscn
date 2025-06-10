@@ -1,33 +1,33 @@
 [gd_scene load_steps=4 format=3 uid="uid://3dt40m8sna42"]
 
-[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1"]
+[ext_resource type="StyleBox" uid="uid://da2jh2a1uk8je" path="res://interface/themes/olympic/normal.tres" id="1_igfgy"]
 [ext_resource type="Script" uid="uid://dsu7ya3a8xop3" path="res://godot4/ui/settings_controls/SettingSlider.gd" id="3"]
 [ext_resource type="AudioStream" uid="uid://bi38pkb44oyyx" path="res://assets/audio/UI_effects/switch-selection.wav" id="4"]
 
 [node name="SettingSlider" type="Panel"]
 custom_minimum_size = Vector2(0, 50)
-offset_top = 175.0
-offset_right = 448.0
-offset_bottom = 220.0
-theme = ExtResource("1")
+offset_bottom = 50.0
+theme_override_styles/panel = ExtResource("1_igfgy")
 script = ExtResource("3")
 
-[node name="VBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_constants/separation = 5
 
-[node name="Spacer" type="Control" parent="VBoxContainer"]
+[node name="Spacer" type="Control" parent="HBoxContainer"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
-[node name="Volume" type="Label" parent="VBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+[node name="Volume" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 uppercase = true
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+[node name="HSlider" type="HSlider" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -37,7 +37,7 @@ value = 50.0
 tick_count = 1
 ticks_on_borders = true
 
-[node name="Spacer2" type="Control" parent="VBoxContainer"]
+[node name="Spacer2" type="Control" parent="HBoxContainer"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
@@ -46,6 +46,6 @@ stream = ExtResource("4")
 bus = &"SFX"
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
-[connection signal="focus_entered" from="VBoxContainer/HSlider" to="." method="_on_h_slider_focus_entered"]
-[connection signal="focus_exited" from="VBoxContainer/HSlider" to="." method="_on_h_slider_focus_exited"]
-[connection signal="value_changed" from="VBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="focus_entered" from="HBoxContainer/HSlider" to="." method="_on_h_slider_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer/HSlider" to="." method="_on_h_slider_focus_exited"]
+[connection signal="value_changed" from="HBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]

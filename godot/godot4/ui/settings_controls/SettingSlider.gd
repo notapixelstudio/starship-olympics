@@ -3,8 +3,8 @@ extends Panel
 @export var setting_name : String
 
 @onready var sfx_effect  = $AudioStreamPlayer
-@onready var label = $VBoxContainer/Volume
-@onready var slider =$VBoxContainer/HSlider
+@onready var label = %Volume
+@onready var slider = %HSlider
 
 func _ready() -> void:
 	slider.value = Settings.get(setting_name)

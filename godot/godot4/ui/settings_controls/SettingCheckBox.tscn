@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://bo8hf1lhdnmwh" path="res://godot4/ui/settings_controls/SettingCheckBox.gd" id="1_fk662"]
 
 [node name="SettingCheckBox" type="CheckBox"]
+custom_minimum_size = Vector2(0, 50)
+theme_override_font_sizes/font_size = 16
 script = ExtResource("1_fk662")
 
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="toggled" from="." to="." method="_on_toggled"]
