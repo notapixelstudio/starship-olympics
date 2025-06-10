@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=43 format=3 uid="uid://dui8cebqku8x5"]
+[gd_resource type="Theme" load_steps=46 format=3 uid="uid://dui8cebqku8x5"]
 
 [ext_resource type="StyleBox" path="res://interface/themes/olympic/scroll.tres" id="1"]
 [ext_resource type="StyleBox" path="res://interface/themes/olympic/panel.tres" id="2"]
@@ -54,9 +54,21 @@ corner_detail = 1
 
 [sub_resource type="StyleBoxEmpty" id="10"]
 
-[sub_resource type="StyleBoxEmpty" id="11"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2twtw"]
 
-[sub_resource type="StyleBoxEmpty" id="12"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g7m5v"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gbqai"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbqai"]
+bg_color = Color(0.87451, 0.623529, 0, 1)
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cuoh0"]
+bg_color = Color(0, 0, 0, 1)
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
 
 [sub_resource type="ImageTexture" id="13"]
 
@@ -802,10 +814,12 @@ HScrollBar/styles/grabber_pressed = SubResource("7")
 HScrollBar/styles/scroll = SubResource("8")
 HScrollBar/styles/scroll_focus = SubResource("9")
 HSeparator/styles/separator = SubResource("10")
-HSlider/icons/grabber = null
-HSlider/icons/grabber_highlight = null
-HSlider/styles/grabber_area = SubResource("11")
-HSlider/styles/slider = SubResource("12")
+HSlider/icons/grabber = SubResource("PlaceholderTexture2D_2twtw")
+HSlider/icons/grabber_disabled = SubResource("PlaceholderTexture2D_g7m5v")
+HSlider/icons/grabber_highlight = SubResource("PlaceholderTexture2D_gbqai")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_gbqai")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_gbqai")
+HSlider/styles/slider = SubResource("StyleBoxFlat_cuoh0")
 HSplitContainer/constants/separation = 8
 HSplitContainer/icons/grabber = SubResource("13")
 HSplitContainer/styles/bg = SubResource("14")

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bfjk2jikcv4ub" path="res://utils/ShearLabel.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bjlvraluuegsk" path="res://godot4/ui/settings_controls/SettingCheckBox.tscn" id="4_7shd3"]
 [ext_resource type="PackedScene" uid="uid://3w4gj0ferswq" path="res://godot4/ui/settings_controls/SettingLabeledOptionButton.tscn" id="5_hktjs"]
-[ext_resource type="PackedScene" uid="uid://3dt40m8sna42" path="res://ui/common_elements/ElemSlider.tscn" id="6_m0wfn"]
+[ext_resource type="PackedScene" uid="uid://3dt40m8sna42" path="res://godot4/ui/settings_controls/SettingSlider.tscn" id="6_m0wfn"]
 
 [sub_resource type="GDScript" id="GDScript_hktjs"]
 script/source = "extends VBoxContainer
@@ -59,14 +59,12 @@ horizontal_alignment = 1
 
 [node name="Master" parent="SettingsContainer" index="3" instance=ExtResource("6_m0wfn")]
 layout_mode = 2
-label_description = "Volume Master"
+setting_name = "master"
 
 [node name="Music" parent="SettingsContainer" index="4" instance=ExtResource("6_m0wfn")]
 layout_mode = 2
-bus_name = "Music"
-label_description = "Volume Music"
+setting_name = "music"
 
 [node name="SFX" parent="SettingsContainer" index="5" instance=ExtResource("6_m0wfn")]
 layout_mode = 2
-bus_name = "SFX"
-label_description = "Volume SFX"
+setting_name = "sfx"
