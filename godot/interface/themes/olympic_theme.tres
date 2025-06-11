@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b61np4e47jr3m" path="res://assets/UI/checkboxina_full.png" id="7_cuoh0"]
 [ext_resource type="StyleBox" path="res://interface/themes/olympic/disabled.tres" id="8"]
 [ext_resource type="Texture2D" uid="uid://bn3opueusmejr" path="res://assets/UI/radioino_full.png" id="8_rc188"]
-[ext_resource type="Script" uid="uid://d0budp3isqsex" path="res://interface/themes/theme.gd" id="9"]
+[ext_resource type="Script" uid="uid://dsqnt3ot12fjt" path="res://interface/themes/theme.gd" id="9"]
 [ext_resource type="Texture2D" uid="uid://ckl7lubb0w8vf" path="res://assets/UI/radioino_empty.png" id="9_beerk"]
 [ext_resource type="Texture2D" uid="uid://bo8x1joqk65be" path="res://assets/UI/checkboxina_empty.png" id="10_t4kbx"]
 [ext_resource type="Texture2D" uid="uid://dbs288c1ncfqh" path="res://interface/themes/ui_elements/grey_box.png" id="11"]
@@ -29,7 +29,7 @@
 [ext_resource type="StyleBox" path="res://interface/themes/olympic/normal_line_edit.tres" id="24"]
 [ext_resource type="FontFile" path="res://assets/fonts/DefaultFont26.tres" id="26"]
 
-[sub_resource type="Image" id="Image_beerk"]
+[sub_resource type="Image" id="Image_cuoh0"]
 data = {
 "data": PackedByteArray(25, 25, 25, 0, 25, 25, 25, 0, 25, 25, 25, 0, 24, 24, 24, 0, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 0, 24, 24, 24, 0, 25, 25, 25, 0, 25, 25, 25, 0, 25, 25, 25, 0, 25, 25, 25, 0, 25, 25, 25, 11, 25, 25, 25, 51, 24, 24, 24, 63, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 24, 24, 24, 63, 25, 25, 25, 51, 25, 25, 25, 11, 25, 25, 25, 0, 25, 25, 25, 0, 25, 25, 25, 51, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 25, 25, 25, 50, 25, 25, 25, 0, 24, 24, 24, 0, 24, 24, 24, 63, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 24, 24, 24, 63, 24, 24, 24, 0, 28, 28, 28, 0, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 0, 24, 24, 24, 0, 24, 24, 24, 63, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 24, 24, 24, 63, 24, 24, 24, 0, 25, 25, 25, 0, 25, 25, 25, 51, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 25, 25, 25, 50, 25, 25, 25, 0, 25, 25, 25, 0, 25, 25, 25, 11, 25, 25, 25, 50, 24, 24, 24, 63, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 28, 28, 28, 64, 24, 24, 24, 63, 25, 25, 25, 50, 25, 25, 25, 10, 25, 25, 25, 0, 25, 25, 25, 0, 25, 25, 25, 0, 25, 25, 25, 0, 24, 24, 24, 0, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 0, 28, 28, 28, 0, 24, 24, 24, 0, 25, 25, 25, 0, 25, 25, 25, 0, 25, 25, 25, 0),
 "format": "RGBA8",
@@ -39,7 +39,7 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_fh7d4"]
-image = SubResource("Image_beerk")
+image = SubResource("Image_cuoh0")
 
 [sub_resource type="StyleBoxFlat" id="16"]
 bg_color = Color(0.309804, 0.270588, 0.239216, 1)
@@ -121,16 +121,12 @@ cache/0/14/0/scale = 1.0
 
 [sub_resource type="ImageTexture" id="ImageTexture_t4kbx"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cuoh0"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2twtw"]
 bg_color = Color(0.277037, 0.2759, 0.31, 0)
 border_width_bottom = 6
 border_color = Color(0.219608, 0.219608, 0.219608, 0)
-corner_radius_top_left = 12
-corner_radius_bottom_right = 12
-corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7m5v"]
-border_color = Color(0.173438, 0.173438, 0.173438, 1)
 corner_radius_top_left = 12
 corner_radius_bottom_right = 12
 corner_detail = 1
@@ -903,10 +899,10 @@ OptionButton/constants/arrow_margin = 4
 OptionButton/constants/modulate_arrow = 1
 OptionButton/icons/arrow = SubResource("ImageTexture_t4kbx")
 OptionButton/styles/disabled = ExtResource("8")
-OptionButton/styles/focus = ExtResource("5")
-OptionButton/styles/hover = ExtResource("5")
+OptionButton/styles/focus = SubResource("StyleBoxEmpty_cuoh0")
+OptionButton/styles/hover = SubResource("StyleBoxEmpty_cuoh0")
 OptionButton/styles/normal = SubResource("StyleBoxFlat_2twtw")
-OptionButton/styles/pressed = SubResource("StyleBoxFlat_g7m5v")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_2twtw")
 Panel/styles/panel = ExtResource("2")
 PanelContainer/styles/panel = ExtResource("2")
 PopupMenu/colors/font_color = Color(1, 1, 1, 1)
