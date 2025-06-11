@@ -48,18 +48,47 @@ default_focused_element = NodePath("Go")
 
 [node name="Settings" parent="FancyMenuWithSingularControl" instance=ExtResource("4_y2plc")]
 layout_mode = 0
-offset_left = -105.0
-offset_top = 26.0
-offset_right = 263.0
-offset_bottom = 119.0
+offset_left = -101.0
+offset_top = 76.0
+offset_right = 97.0
+offset_bottom = 128.0
 texture_normal = ExtResource("5_0wc3t")
 texture_click_mask = ExtResource("6_v1h44")
 
+[node name="Label" type="Label" parent="FancyMenuWithSingularControl/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Go" parent="FancyMenuWithSingularControl" instance=ExtResource("4_y2plc")]
 layout_mode = 0
-offset_left = -100.0
-offset_top = 100.0
-offset_right = 305.0
-offset_bottom = 216.0
+offset_left = -96.0
+offset_top = 134.0
+offset_right = 121.0
+offset_bottom = 197.0
 texture_normal = ExtResource("7_a2o8n")
 texture_click_mask = ExtResource("8_s31hs")
+
+[node name="Label" type="Label" parent="FancyMenuWithSingularControl/Go"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -21.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "GO!"
+horizontal_alignment = 1
+vertical_alignment = 1

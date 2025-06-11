@@ -12,7 +12,7 @@ var mapping_pilot_claimed := {}
 var available_species := []
 
 func _ready():
-	$Node2D/Label.visible = false
+	%Label.visible = false
 	available_species = global.get_ordered_species()
 	for action in InputMap.get_actions():
 		for action_name in ["_fire", "_left", "_right", "_up", "_down"]:
@@ -44,27 +44,27 @@ func _input(event: InputEvent):
 				if pilot_selector in mapping_pilot_claimed:
 					if len(mapping_pilot_claimed) >= min_players:
 						print("we can go to next scene")
-						$Node2D/Label.visible = false
+						%Label.visible = false
 						emit_signal("selection_completed")
 						set_process_input(false)
 						return
 				else:
 					_claim_displayed_species(pilot_selector)
 					pilot_selector.set_status('selected')
-					$Node2D/Label.visible = true
+					%Label.visible = true
 					if len(mapping_pilot_claimed) >= min_players:
-						$Node2D/Label.text = "{players} READY".format({"players":len(mapping_pilot_claimed)})
+						%Label.text = "{players} READY".format({"players":len(mapping_pilot_claimed)})
 					else: 
-						$Node2D/Label.text = "Not enough players. {players} needed".format({"players":min_players})
+						%Label.text = "Not enough players. {players} needed".format({"players":min_players})
 				
 			'left':
-				if $Node2D/Label.visible:
-					$Node2D/Label.visible = false
+				if %Label.visible:
+					%Label.visible = false
 				_unclaim_displayed_species(pilot_selector)
 				_display_adjacent_species(-1, pilot_selector)
 			'right':
-				if $Node2D/Label.visible:
-					$Node2D/Label.visible = false
+				if %Label.visible:
+					%Label.visible = false
 				_unclaim_displayed_species(pilot_selector)
 				_display_adjacent_species(+1, pilot_selector)
 	else:
@@ -88,8 +88,8 @@ func _input(event: InputEvent):
 						'kb2': 'auriels_1'
 					}
 					(pilot_selector as PilotSelector).set_species(global.get_species(mapping[controls]))
-				if $Node2D/Label.visible:
-					$Node2D/Label.visible = false	
+				if %Label.visible:
+					%Label.visible = false	
 				return
 				
 ## display the given Species in the given PilotSelector

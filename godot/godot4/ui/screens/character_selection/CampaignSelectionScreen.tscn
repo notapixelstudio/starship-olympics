@@ -21,24 +21,24 @@ text = "CO-OP"
 
 [node name="SelectionPanel" parent="Node2D" index="0" instance=ExtResource("5")]
 unique_name_in_owner = true
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 1280.0
+offset_bottom = 720.0
 min_players = 1
 
 [node name="PilotSelector" parent="Node2D/SelectionPanel" index="0" instance=ExtResource("6")]
-position = Vector2(136, 472)
+position = Vector2(180, 522)
 player_id = "P1"
 
 [node name="PilotSelector2" parent="Node2D/SelectionPanel" index="1" instance=ExtResource("6")]
-position = Vector2(408, 472)
+position = Vector2(487, 522)
 player_id = "P2"
 
 [node name="PilotSelector3" parent="Node2D/SelectionPanel" index="2" instance=ExtResource("6")]
-position = Vector2(696, 472)
+position = Vector2(794, 522)
 player_id = "P3"
 
 [node name="PilotSelector4" parent="Node2D/SelectionPanel" index="3" instance=ExtResource("6")]
-position = Vector2(984, 472)
+position = Vector2(1101, 522)
 player_id = "P4"
 
 [connection signal="selection_completed" from="Node2D/SelectionPanel" to="." method="_on_SelectionPanel_selection_completed"]
