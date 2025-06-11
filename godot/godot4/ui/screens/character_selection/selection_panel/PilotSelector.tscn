@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgu7lwmnkg60h"]
+[gd_scene load_steps=9 format=3 uid="uid://cgu7lwmnkg60h"]
 
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://dyw5oprdnddvj" path="res://godot4/ui/screens/character_selection/selection_panel/PilotSelector.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://cmfo87t1mhpfk" path="res://ui/fancy_menus/FancyMenuWithSingularControl.tscn" id="3_v4uwd"]
 [ext_resource type="PackedScene" uid="uid://bsnpuv1ss4bxe" path="res://ui/fancy_menus/FancyButton.tscn" id="4_y2plc"]
-[ext_resource type="Texture2D" uid="uid://da1y3mq0xgrxq" path="res://godot4/ui/screens/back_screen/buttons/graphics_Back.png" id="5_yiuxo"]
-[ext_resource type="BitMap" uid="uid://dfypfdal3vb7y" path="res://godot4/ui/screens/back_screen/buttons/area_Back.png" id="6_6p54n"]
+[ext_resource type="Texture2D" uid="uid://ciixsssbcba6n" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Settings.png" id="5_0wc3t"]
+[ext_resource type="BitMap" uid="uid://b6h0mq1gaiw24" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Settings.png" id="6_v1h44"]
+[ext_resource type="Texture2D" uid="uid://vvskfwhalc7m" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Go.png" id="7_a2o8n"]
+[ext_resource type="BitMap" uid="uid://45gispdyaj5g" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Go.png" id="8_s31hs"]
 
 [node name="PilotSelector" type="Node2D"]
 script = ExtResource("2")
@@ -42,19 +44,22 @@ text = "no species"
 unique_name_in_owner = true
 offset_top = -200.0
 offset_bottom = -200.0
-default_focused_element = NodePath("FancyButton")
+default_focused_element = NodePath("Go")
 
-[node name="FancyButton" parent="FancyMenuWithSingularControl" instance=ExtResource("4_y2plc")]
+[node name="Settings" parent="FancyMenuWithSingularControl" instance=ExtResource("4_y2plc")]
 layout_mode = 0
-offset_bottom = 91.0
-texture_normal = ExtResource("5_yiuxo")
-texture_click_mask = ExtResource("6_6p54n")
+offset_left = -105.0
+offset_top = 26.0
+offset_right = 263.0
+offset_bottom = 119.0
+texture_normal = ExtResource("5_0wc3t")
+texture_click_mask = ExtResource("6_v1h44")
 
-[node name="FancyButton2" parent="FancyMenuWithSingularControl" instance=ExtResource("4_y2plc")]
+[node name="Go" parent="FancyMenuWithSingularControl" instance=ExtResource("4_y2plc")]
 layout_mode = 0
-offset_left = 56.0
-offset_top = 56.0
-offset_right = 335.0
-offset_bottom = 147.0
-texture_normal = ExtResource("5_yiuxo")
-texture_click_mask = ExtResource("6_6p54n")
+offset_left = -100.0
+offset_top = 100.0
+offset_right = 305.0
+offset_bottom = 216.0
+texture_normal = ExtResource("7_a2o8n")
+texture_click_mask = ExtResource("8_s31hs")
