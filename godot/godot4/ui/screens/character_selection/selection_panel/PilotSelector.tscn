@@ -1,13 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgu7lwmnkg60h"]
+[gd_scene load_steps=14 format=3 uid="uid://cgu7lwmnkg60h"]
 
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://dyw5oprdnddvj" path="res://godot4/ui/screens/character_selection/selection_panel/PilotSelector.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://cmfo87t1mhpfk" path="res://ui/fancy_menus/FancyMenuWithSingularControl.tscn" id="3_v4uwd"]
 [ext_resource type="PackedScene" uid="uid://bsnpuv1ss4bxe" path="res://ui/fancy_menus/FancyButton.tscn" id="4_y2plc"]
-[ext_resource type="Texture2D" uid="uid://ciixsssbcba6n" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Settings.png" id="5_0wc3t"]
-[ext_resource type="BitMap" uid="uid://b6h0mq1gaiw24" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Settings.png" id="6_v1h44"]
-[ext_resource type="Texture2D" uid="uid://vvskfwhalc7m" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Go.png" id="7_a2o8n"]
-[ext_resource type="BitMap" uid="uid://45gispdyaj5g" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Go.png" id="8_s31hs"]
+[ext_resource type="Texture2D" uid="uid://oc1y1q60yyfr" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Settings.png" id="5_0wc3t"]
+[ext_resource type="BitMap" uid="uid://ul1j2ckg00cp" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Settings.png" id="6_v1h44"]
+[ext_resource type="Texture2D" uid="uid://d0nefr1aus26p" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Go.png" id="7_a2o8n"]
+[ext_resource type="Texture2D" uid="uid://dfy3prd18h4ji" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Ready.png" id="7_b7klw"]
+[ext_resource type="BitMap" uid="uid://7hiofadvtm5f" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Ready.png" id="8_jibk1"]
+[ext_resource type="BitMap" uid="uid://b43pi655spa51" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Go.png" id="8_s31hs"]
+[ext_resource type="Texture2D" uid="uid://cwegg5yu4of73" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Back.png" id="9_u4af2"]
+[ext_resource type="BitMap" uid="uid://c18xu8vi0yegj" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Back.png" id="10_oolja"]
+[ext_resource type="PackedScene" uid="uid://t6dfl0yckkei" path="res://godot4/ui/screens/character_selection/selection_panel/PilotCharacter.tscn" id="13_jibk1"]
 
 [node name="PilotSelector" type="Node2D"]
 script = ExtResource("2")
@@ -40,22 +45,47 @@ offset_bottom = 136.0
 theme = ExtResource("1")
 text = "no species"
 
-[node name="FancyMenuWithSingularControl" parent="." instance=ExtResource("3_v4uwd")]
+[node name="ReadyMenu" parent="." instance=ExtResource("3_v4uwd")]
 unique_name_in_owner = true
+visible = false
 offset_top = -200.0
 offset_bottom = -200.0
-default_focused_element = NodePath("Go")
+default_focused_element = NodePath("Select")
 
-[node name="Settings" parent="FancyMenuWithSingularControl" instance=ExtResource("4_y2plc")]
+[node name="Select" parent="ReadyMenu" instance=ExtResource("4_y2plc")]
+layout_mode = 0
+offset_left = -84.0
+offset_top = 68.0
+offset_right = 133.0
+offset_bottom = 131.0
+texture_normal = ExtResource("7_b7klw")
+texture_click_mask = ExtResource("8_jibk1")
+
+[node name="Label" type="Label" parent="ReadyMenu/Select"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -21.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "SELECT  "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" parent="ReadyMenu" instance=ExtResource("4_y2plc")]
 layout_mode = 0
 offset_left = -101.0
-offset_top = 76.0
+offset_top = 143.0
 offset_right = 97.0
-offset_bottom = 128.0
+offset_bottom = 195.0
 texture_normal = ExtResource("5_0wc3t")
 texture_click_mask = ExtResource("6_v1h44")
 
-[node name="Label" type="Label" parent="FancyMenuWithSingularControl/Settings"]
+[node name="Label" type="Label" parent="ReadyMenu/Settings"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,16 +99,23 @@ text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Go" parent="FancyMenuWithSingularControl" instance=ExtResource("4_y2plc")]
+[node name="GoMenu" parent="." instance=ExtResource("3_v4uwd")]
+unique_name_in_owner = true
+visible = false
+offset_top = -200.0
+offset_bottom = -200.0
+default_focused_element = NodePath("Go")
+
+[node name="Go" parent="GoMenu" instance=ExtResource("4_y2plc")]
 layout_mode = 0
 offset_left = -96.0
-offset_top = 134.0
-offset_right = 121.0
-offset_bottom = 197.0
+offset_top = 68.0
+offset_right = 123.0
+offset_bottom = 131.0
 texture_normal = ExtResource("7_a2o8n")
 texture_click_mask = ExtResource("8_s31hs")
 
-[node name="Label" type="Label" parent="FancyMenuWithSingularControl/Go"]
+[node name="Label" type="Label" parent="GoMenu/Go"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,3 +129,31 @@ theme_override_font_sizes/font_size = 35
 text = "GO!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Back" parent="GoMenu" instance=ExtResource("4_y2plc")]
+layout_mode = 0
+offset_left = -101.0
+offset_top = 144.0
+offset_right = 98.0
+offset_bottom = 196.0
+texture_normal = ExtResource("9_u4af2")
+texture_click_mask = ExtResource("10_oolja")
+
+[node name="Label" type="Label" parent="GoMenu/Back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "BACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PilotCharacter" parent="." instance=ExtResource("13_jibk1")]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-70, -307)

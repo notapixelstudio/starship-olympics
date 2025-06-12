@@ -15,15 +15,22 @@ func set_player_id(v: String) -> void:
 func set_status(status: String):
 	_status = status
 	$Label3.text = _status
-
+	%ReadyMenu.visible = _status == 'joined'
+	%GoMenu.visible = _status == 'selected'
+	%PilotCharacter.visible = _status != 'disabled'
+	
 func set_controls(controls: String):
 	_controls = controls
 	$Label2.text = _controls
-	%FancyMenuWithSingularControl.set_controls(_controls)
+	%ReadyMenu.set_controls(_controls)
+	%GoMenu.set_controls(_controls)
 
 func set_species(species: Species):
 	_species = species
 	$Label4.text = _species.name
+	%ReadyMenu.set_tint(_species.get_color())
+	%GoMenu.set_tint(_species.get_color())
+	%PilotCharacter.set_species(_species)
 
 func is_status(check:String) -> bool:
 	return _status == check

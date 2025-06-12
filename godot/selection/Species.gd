@@ -44,3 +44,5 @@ func get_color_background() -> Color:
 func get_color_accent() -> Color:
 	return color_accent
 	
+func get_character_image() -> Texture:
+	return character_ok
