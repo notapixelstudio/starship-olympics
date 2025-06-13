@@ -39,5 +39,5 @@ func get_force(application_point:Vector3) -> Vector3:
 	var distance = get_position_3d() - application_point
 	var surface_distance = Vector2(distance.x, distance.y)
 	if surface_distance.length() < get_influence_radius():
-		return distance * global.sigmoid(surface_distance.length(), get_influence_radius()) * get_gravity()
+		return distance * Utils.sigmoid(surface_distance.length(), get_influence_radius()) * get_gravity()
 	return Vector3.ZERO

@@ -17,15 +17,9 @@ func _ready():
 	line3.text = tr("[center]WHEN [color=#ffde5e][i]THE GAMES[/i][/color] WERE CREATED[/center]")
 	set_process_input(false)
 	
-	# disclaimer for analytics
-	if global.first_time:
-		disclaimer.start()
-		await disclaimer.okay
 	
 	anim.play("Appear")
 	
-	global.install()
-	global.start_execution()
 
 func go_ahead():
 	get_tree().change_scene_to_packed(main)
