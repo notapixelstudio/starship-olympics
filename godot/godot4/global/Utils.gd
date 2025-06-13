@@ -4,7 +4,6 @@ const E = 2.71828
 ###############################
 ##### FILE SYSTEM UTILS #######
 ###############################
-const SPECIES_PATH = "res://selection/characters"
 
 
 func dir_contents(path:String, starts_with:String = "", extension:String = ".tscn"):

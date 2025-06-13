@@ -1,9 +1,12 @@
 extends Node
 
+const SPECIES_PATH = "res://selection/characters"
 
-@onready var species_resources: Dictionary = get_resources(SPECIES_PATH)
+@onready var species_resources: Dictionary = Utils.get_resources(SPECIES_PATH)
+
 func get_species(species_id: String):
 	return species_resources[species_id]
+
 
 const LANGUAGES = {
 	"español": "es",
@@ -84,7 +87,7 @@ func get_ordered_species() -> Array:
 	var ordered_species = []
 	var unlocked_species = TheUnlocker.get_unlocked_list("species")
 	for species_id in unlocked_species:
-		ordered_species.append(global.get_species(species_id))
+		ordered_species.append(get_species(species_id))
 	ordered_species.sort_custom(Callable(self, 'compare_by_species_id'))
 	return ordered_species
 
