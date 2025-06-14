@@ -1,6 +1,8 @@
 extends Node
 
 const SPECIES_PATH = "res://selection/characters"
+# playtest mode, fixed selection player
+var demo_playtest : bool = false
 
 @onready var species_resources: Dictionary = Utils.get_resources(SPECIES_PATH)
 

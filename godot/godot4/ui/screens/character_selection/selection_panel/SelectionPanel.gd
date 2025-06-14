@@ -13,7 +13,7 @@ var available_species := []
 
 func _ready():
 	%Label.visible = false
-	available_species = global.get_ordered_species()
+	available_species = Settings.get_ordered_species()
 	for action in InputMap.get_actions():
 		for action_name in ["_fire", "_left", "_right", "_up", "_down"]:
 			if action_name in action and not "ui" in action: 
@@ -78,7 +78,7 @@ func _input(event: InputEvent):
 				
 				(pilot_selector as PilotSelector).set_status('joined')
 				# if in demo playtest, also select the pre-assigned character
-				if global.demo_playtest:
+				if Settings.demo_playtest:
 					var mapping = {
 						'joy1': 'trixens_1',
 						'joy2': 'umidorians_1',
@@ -87,7 +87,7 @@ func _input(event: InputEvent):
 						'kb1': 'pentagonions_1',
 						'kb2': 'auriels_1'
 					}
-					(pilot_selector as PilotSelector).set_species(global.get_species(mapping[controls]))
+					(pilot_selector as PilotSelector).set_species(Settings.get_species(mapping[controls]))
 				if %Label.visible:
 					%Label.visible = false	
 				return
@@ -102,13 +102,13 @@ func _display_species(species: Species, pilot_selector: PilotSelector):
 func _display_adjacent_species(operator: int, pilot_selector: PilotSelector):
 	var current_species = mapping_pilot_displayed_species[pilot_selector]
 	var current_index = available_species.find(current_species)
-	current_index = global.mod(current_index + operator, len(available_species))
+	current_index = Settings.mod(current_index + operator, len(available_species))
 	var selected_species_indices = []
 	for species in mapping_pilot_claimed.values():
 		if species in available_species:
 			selected_species_indices.append(available_species.find(species))
 	while current_index in selected_species_indices:
-		current_index = global.mod(current_index + operator,len(available_species))
+		current_index = Settings.mod(current_index + operator,len(available_species))
 	_display_species(available_species[current_index], pilot_selector)
 	
 ## claim the currently displayed species in the given PilotSelector for the corresponding player

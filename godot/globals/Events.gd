@@ -137,3 +137,6 @@ signal language_changed
 
 # analytics
 signal analytics_event(event_dictionary, event_name)
+
+# persistence
+signal store_settings
