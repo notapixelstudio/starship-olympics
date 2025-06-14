@@ -23,7 +23,7 @@ func _on_Credits_button_down():
 
 func _on_Quit_button_down():
 	$FancyMenu.isolate_child($FancyMenu/Quit)
-	global.end_execution()
+	Utils.end_execution()
 
 func exiting():
 	$FancyMenu.save_focused_element()

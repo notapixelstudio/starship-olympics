@@ -11,6 +11,10 @@ var savegame_config := {
 	"persist_controls": CONTROLS_FILEPATH
 }
 
+func _ready() -> void:
+	Events.store_settings.connect(save_game)
+	
+	
 func save_group_to_file(group_name: String):
 	var filename = self.savegame_config[group_name]
 	var save_nodes = get_tree().get_nodes_in_group(group_name)
@@ -68,15 +72,8 @@ func load_game() -> bool:
 			# Both the node to load (e.g. Player, Player2) and the node's data with data[node_path]
 			var node_data = data[node_path]
 			# We find the right node to load node_data into and call its load method
-			get_node(node_path).load_state(node_data)
+			if get_node(node_path):
+				get_node(node_path).load_state(node_data)
+			else:
+				printerr(node_path, " not found in the tree. Are you sure is it the right one?")
 	return true
-
-func delete_latest_game() -> void:
-	if global.the_game:
-		var dict = global.the_game.to_dict()
-		global.write_into_file("user://games/{game_id}.json".format({"game_id": dict.get("game_uuid", Time.get_datetime_dict_from_system(false))}), JSON.new().stringify(dict), FileAccess.WRITE_READ)
-	global.write_into_file("user://games/latest.json", "", FileAccess.WRITE_READ)
-	
-func save_game_as_latest() -> void:
-	if global.the_game:
-		global.write_into_file("user://games/latest.json", JSON.new().stringify(global.the_game.to_dict()), FileAccess.WRITE_READ)
