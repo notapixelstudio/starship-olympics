@@ -51,5 +51,14 @@ func end_execution():
 	# trigger quit
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 	
+func _notification(what):
+	# actual quitting
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		print("Thanks for playing")
+		Events.emit_signal('execution_ended')
+		await get_tree().create_timer(1).timeout
+		print("Closing everything")
+		get_tree().quit() # default behavior
+
 func sigmoid(x, width):
 	return 1-1/(1+pow(E, -10*(x/width-0.5)))
