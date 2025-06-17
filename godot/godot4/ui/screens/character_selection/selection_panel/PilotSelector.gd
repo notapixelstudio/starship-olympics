@@ -46,7 +46,7 @@ func get_player_data() -> Player:
 	
 	return p
 
-var ignore := false
+var ignore := true
 func _process(delta):
 	if _controls == 'none' or _status == 'disabled':
 		return

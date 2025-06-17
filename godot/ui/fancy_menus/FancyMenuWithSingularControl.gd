@@ -12,7 +12,7 @@ func set_tint(value: Color) -> void:
 	for child in get_fancy_button_children():
 		child.self_modulate = tint
 
-var ignore := false
+var ignore := true
 func _process(delta):
 	if controls == 'none':
 		return
