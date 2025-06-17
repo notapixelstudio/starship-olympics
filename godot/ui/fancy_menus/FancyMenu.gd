@@ -13,7 +13,7 @@ func _ready():
 	if focus_default_element_on_ready and get_node_or_null(default_focused_element):
 		give_focus_to(get_node(default_focused_element))
 	
-	var children = get_children()
+	var children : Array[FancyButton] = get_fancy_button_children()
 	
 	if auto_neighbours in ['horizontal','both']:
 		for i in range(len(children)):
@@ -78,5 +78,13 @@ func isolate_child(child: Control):
 	child.focus_neighbor_left = child.get_path()
 	child.focus_neighbor_right = child.get_path()
 
+## Return an Array of children FancyButtons
+func get_fancy_button_children() -> Array[FancyButton]:
+	var children : Array[FancyButton] = []
+	for child in get_children():
+		if child is FancyButton:
+			children.append(child)
+	return children
+	
 func give_focus_to(what : Control) -> void:
 	what.grab_focus()

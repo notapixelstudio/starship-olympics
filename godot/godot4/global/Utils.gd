@@ -62,3 +62,9 @@ func _notification(what):
 
 func sigmoid(x, width):
 	return 1-1/(1+pow(E, -10*(x/width-0.5)))
+
+func is_action_strong(action:String) -> bool:
+	return Input.get_action_strength(action) > 0.5
+
+func are_controls_at_rest(controls:String) -> bool:
+	return Input.get_action_strength(controls+"_down") < 0.1 and Input.get_action_strength(controls+"_up") < 0.1 and Input.get_action_strength(controls+"_left") < 0.1 and Input.get_action_strength(controls+"_right") < 0.1
