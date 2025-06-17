@@ -21,9 +21,9 @@ const LANGUAGES = {
 }
 var language : String = 'english' : set = _set_language
 var fullscreen : bool = true : set = _set_fullscreen
-var master : int = 50 : set = _set_master
-var music : int = 50 : set = _set_music
-var sfx : int = 50 : set = _set_sfx
+var master : int = 100 : set = _set_master
+var music : int = 100 : set = _set_music
+var sfx : int = 100 : set = _set_sfx
 
 func _ready() -> void:
 	add_to_group("persist")
