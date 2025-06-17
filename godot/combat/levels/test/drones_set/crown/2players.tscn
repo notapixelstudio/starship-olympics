@@ -1,16 +1,17 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://addons/geometry/GRegularPolygon.gd" type="Script" id=1]
-[ext_resource path="res://selection/characters/mantiacs_1.tres" type="Resource" id=2]
-[ext_resource path="res://combat/Arena.tscn" type="PackedScene" id=3]
-[ext_resource path="res://actors/environments/Wall.tscn" type="PackedScene" id=4]
-[ext_resource path="res://combat/levels/background/robolords.png" type="Texture2D" id=5]
-[ext_resource path="res://combat/modes/TakeTheCrown.tres" type="Resource" id=6]
-[ext_resource path="res://actors/environments/NoCrownZone.tscn" type="PackedScene" id=7]
-[ext_resource path="res://selection/characters/umidorians_1.tres" type="Resource" id=8]
-[ext_resource path="res://combat/PlayerSpawner.tscn" type="PackedScene" id=9]
-[ext_resource path="res://combat/collectables/Crown.tscn" type="PackedScene" id=10]
-[ext_resource path="res://selection/characters/drones.tres" type="Resource" id=11]
+[ext_resource type="Script" path="res://addons/geometry/GRegularPolygon.gd" id="1"]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://godot4/data/species/mantiacs_1.tres" id="2"]
+[ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://fakwo441rrfd" path="res://combat/levels/background/robolords.png" id="5"]
+[ext_resource type="Resource" uid="uid://bojh0k5c8mssv" path="res://combat/modes/TakeTheCrown.tres" id="6"]
+[ext_resource type="PackedScene" path="res://actors/environments/NoCrownZone.tscn" id="7"]
+[ext_resource type="Resource" uid="uid://b4mhr8ft2dgry" path="res://godot4/data/species/umidorians_1.tres" id="8"]
+[ext_resource type="PackedScene" uid="uid://cah6yn37ym2q5" path="res://combat/PlayerSpawner.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://qusfwou0xdom" path="res://combat/collectables/Crown.tscn" id="10"]
+[ext_resource type="Resource" uid="uid://c8utu2y3di3p8" path="res://godot4/data/species/drones.tres" id="11"]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "Rotate"

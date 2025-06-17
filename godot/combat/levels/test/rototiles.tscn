@@ -1,18 +1,19 @@
 [gd_scene load_steps=17 format=3 uid="uid://idj8nxs3kg8r"]
 
 [ext_resource type="Resource" uid="uid://bkfmgx5yxcw3i" path="res://combat/levels/singles/power_grid/2players.tres" id="1"]
-[ext_resource type="Resource" path="res://combat/styles/thegrid.tres" id="2"]
-[ext_resource type="PackedScene" path="res://utils/CameraStartingRect.tscn" id="4"]
+[ext_resource type="Resource" uid="uid://c61a0pqhd3sjl" path="res://combat/styles/thegrid.tres" id="2"]
+[ext_resource type="PackedScene" uid="uid://dyh2c30jyxh8n" path="res://utils/CameraStartingRect.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://cqv65678ptgny" path="res://actors/environments/RotoPowerline.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="7"]
 [ext_resource type="Texture2D" uid="uid://vj4b32elgxe6" path="res://combat/levels/background/trixen.png" id="8"]
-[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="9"]
-[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="10"]
-[ext_resource type="Resource" uid="uid://bcsa675ruiohh" path="res://selection/characters/trixens_1.tres" id="11"]
+[ext_resource type="PackedScene" uid="uid://cah6yn37ym2q5" path="res://combat/PlayerSpawner.tscn" id="9"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://godot4/data/species/robolords_1.tres" id="10"]
+[ext_resource type="Resource" uid="uid://bcsa675ruiohh" path="res://godot4/data/species/trixens_1.tres" id="11"]
 [ext_resource type="PackedScene" uid="uid://5ne7n6i1g4vt" path="res://actors/environments/PowerBattery.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://dxhls8w4elyxx" path="res://actors/environments/PowerCore.tscn" id="13"]
 [ext_resource type="Texture2D" uid="uid://upu8b3wli1f4" path="res://assets/boards/power_grid.png" id="14"]
+
 
 [sub_resource type="Resource" id="Resource_cgq4b"]
 metadata/__load_path__ = "res://addons/geometry/GRect.gd"

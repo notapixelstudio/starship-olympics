@@ -9,11 +9,11 @@ var relevant_actions := {}
 var mapping_controls_pilot := {}
 var mapping_pilot_displayed_species := {}
 var mapping_pilot_claimed := {}
-var available_species := []
+var available_species : Array[Species] = []
 
 func _ready():
 	%Label.visible = false
-	available_species = Settings.get_ordered_species()
+	available_species = Species.get_all_unlocked()
 	for action in InputMap.get_actions():
 		for action_name in ["_fire", "_left", "_right", "_up", "_down"]:
 			if action_name in action and not "ui" in action: 
@@ -77,17 +77,18 @@ func _input(event: InputEvent):
 				_display_species(_get_first_undisplayed_species(), pilot_selector)
 				
 				(pilot_selector as PilotSelector).set_status('joined')
+				# FIXME - NOT RELEVANT ANYMORE?
 				# if in demo playtest, also select the pre-assigned character
-				if Settings.demo_playtest:
-					var mapping = {
-						'joy1': 'trixens_1',
-						'joy2': 'umidorians_1',
-						'joy3': 'robolords_1',
-						'joy4': 'mantiacs_1',
-						'kb1': 'pentagonions_1',
-						'kb2': 'auriels_1'
-					}
-					(pilot_selector as PilotSelector).set_species(Settings.get_species(mapping[controls]))
+				#if global.demo_playtest:
+					#var mapping = {
+						#'joy1': 'trixens_1',
+						#'joy2': 'umidorians_1',
+						#'joy3': 'robolords_1',
+						#'joy4': 'mantiacs_1',
+						#'kb1': 'pentagonions_1',
+						#'kb2': 'auriels_1'
+					#}
+					#(pilot_selector as PilotSelector).set_species(global.get_species(mapping[controls]))
 				if %Label.visible:
 					%Label.visible = false	
 				return
@@ -102,13 +103,13 @@ func _display_species(species: Species, pilot_selector: PilotSelector):
 func _display_adjacent_species(operator: int, pilot_selector: PilotSelector):
 	var current_species = mapping_pilot_displayed_species[pilot_selector]
 	var current_index = available_species.find(current_species)
-	current_index = Settings.mod(current_index + operator, len(available_species))
+	current_index = Utils.mod(current_index + operator, len(available_species))
 	var selected_species_indices = []
 	for species in mapping_pilot_claimed.values():
 		if species in available_species:
 			selected_species_indices.append(available_species.find(species))
 	while current_index in selected_species_indices:
-		current_index = Settings.mod(current_index + operator,len(available_species))
+		current_index = Utils.mod(current_index + operator,len(available_species))
 	_display_species(available_species[current_index], pilot_selector)
 	
 ## claim the currently displayed species in the given PilotSelector for the corresponding player

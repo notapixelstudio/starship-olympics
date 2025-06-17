@@ -5,7 +5,7 @@ class_name Player
 @export var id : String = "P1"
 @export var username : String = ""
 @export var controls : String = "kb1"
-@export var species : Species = preload("res://selection/characters/mantiacs_1.tres")
+@export var species : Species = preload("res://godot4/data/species/mantiacs_1.tres")
 @export var team : String = id
 @export var cpu : bool = false
 

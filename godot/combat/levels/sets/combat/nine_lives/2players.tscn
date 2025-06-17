@@ -1,15 +1,16 @@
 [gd_scene load_steps=15 format=3 uid="uid://buwmi5wvrsh0o"]
 
-[ext_resource type="PackedScene" path="res://combat/levels/sets/combat/nine_lives/Variants.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://d1k7bn82h1clb" path="res://combat/levels/sets/combat/nine_lives/Variants.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://dsi0t7cms4bcn" path="res://assets/patterns/xgrid.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://21naqrw1n8iw" path="res://combat/levels/background/mantiacs.png" id="5"]
-[ext_resource type="Resource" uid="uid://c8dkseibuofal" path="res://selection/characters/auriels_1.tres" id="6"]
-[ext_resource type="Resource" path="res://combat/modes/NineLives.tres" id="7"]
-[ext_resource type="Resource" uid="uid://c2d0iaqf8sd0v" path="res://selection/characters/pentagonions_1.tres" id="8"]
-[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="9"]
+[ext_resource type="Resource" uid="uid://c8dkseibuofal" path="res://godot4/data/species/auriels_1.tres" id="6"]
+[ext_resource type="Resource" uid="uid://c1tsu8nxiwrbj" path="res://combat/modes/NineLives.tres" id="7"]
+[ext_resource type="Resource" uid="uid://c2d0iaqf8sd0v" path="res://godot4/data/species/pentagonions_1.tres" id="8"]
+[ext_resource type="PackedScene" uid="uid://cah6yn37ym2q5" path="res://combat/PlayerSpawner.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="11"]
-[ext_resource type="PackedScene" path="res://combat/levels/sets/combat/nine_lives/DontDieManager.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://bwbp4v87hocso" path="res://combat/levels/sets/combat/nine_lives/DontDieManager.tscn" id="13"]
+
 
 [sub_resource type="Resource" id="Resource_ywhgy"]
 metadata/__load_path__ = "res://addons/geometry/GConvexPolygon.gd"

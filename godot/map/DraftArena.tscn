@@ -1,16 +1,16 @@
 [gd_scene load_steps=27 format=3 uid="uid://dug8ntw7rw11k"]
 
 [ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="1"]
-[ext_resource type="Resource" path="res://map_with_sets/MapGameMode.tres" id="2"]
+[ext_resource type="Resource" uid="uid://jf1rbct4bdul" path="res://map_with_sets/MapGameMode.tres" id="2"]
 [ext_resource type="Texture2D" uid="uid://bvtwlkbaasdkr" path="res://combat/levels/background/menus.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="4"]
-[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="6"]
-[ext_resource type="Script" uid="uid://cdngb40tm8mo5" path="res://map/Hand.gd" id="7"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://godot4/data/species/robolords_1.tres" id="6"]
+[ext_resource type="Script" uid="uid://b717e76t5njvl" path="res://map/Hand.gd" id="7"]
 [ext_resource type="PackedScene" uid="uid://cah6yn37ym2q5" path="res://combat/PlayerSpawner.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://ciqspero1xa0e" path="res://map/draft/DraftCardGraphicNode.tscn" id="9"]
-[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="10"]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://godot4/data/species/mantiacs_1.tres" id="10"]
 [ext_resource type="PackedScene" uid="uid://csn2rfqiu2f1a" path="res://combat/traits/Tappable.tscn" id="11"]
-[ext_resource type="Script" uid="uid://rv0igg8bic75" path="res://map/DraftManager.gd" id="12"]
+[ext_resource type="Script" uid="uid://cs8caotsqrctu" path="res://map/DraftManager.gd" id="12"]
 [ext_resource type="Texture2D" uid="uid://c6nom5xnpss1o" path="res://assets/sprites/cards/card.png" id="13"]
 [ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="14"]
 [ext_resource type="PackedScene" uid="uid://cftaa5a8h60a6" path="res://actors/brains/DraftBrain.tscn" id="15"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://x2sylnm067mh" path="res://assets/map/cards/planets/planet.png" id="17"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="18"]
 [ext_resource type="Resource" uid="uid://cd30eo4h1oj3o" path="res://combat/styles/lightpurple.tres" id="20"]
+
 
 [sub_resource type="Resource" id="Resource_5rfo4"]
 metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"

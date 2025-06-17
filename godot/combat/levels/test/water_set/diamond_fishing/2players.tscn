@@ -1,16 +1,17 @@
 [gd_scene load_steps=22 format=3 uid="uid://of0vjk06gcw"]
 
 [ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="1"]
-[ext_resource type="Resource" path="res://combat/modes/DiamondFishing.tres" id="2"]
+[ext_resource type="Resource" uid="uid://dhb3rngck4f3h" path="res://combat/modes/DiamondFishing.tres" id="2"]
 [ext_resource type="Texture2D" uid="uid://vj4b32elgxe6" path="res://combat/levels/background/trixen.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="4"]
-[ext_resource type="Script" uid="uid://spj2n6nbfgn8" path="res://combat/levels/test/water_set/diamond_fishing/Moon.gd" id="6"]
-[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="8"]
-[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="9"]
-[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="10"]
+[ext_resource type="Script" uid="uid://dncduyyvu7hj1" path="res://combat/levels/test/water_set/diamond_fishing/Moon.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://cah6yn37ym2q5" path="res://combat/PlayerSpawner.tscn" id="8"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://godot4/data/species/robolords_1.tres" id="9"]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://godot4/data/species/mantiacs_1.tres" id="10"]
 [ext_resource type="PackedScene" uid="uid://c1duhx14s1f2t" path="res://actors/environments/Field.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://cmjhs38gid4sk" path="res://actors/environments/ElementSpawner.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://ckykuuqee1aml" path="res://combat/collectables/Diamond.tscn" id="15"]
+
 
 [sub_resource type="Resource" id="Resource_5ax5j"]
 metadata/__load_path__ = "res://addons/geometry/GRegularPolygon.gd"
