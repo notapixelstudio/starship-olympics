@@ -4,7 +4,10 @@ class_name PilotSelector
 
 @export var player_id := 'pp': set = set_player_id
 
-var _controls : String
+signal next(PilotSelector)
+signal previous(PilotSelector)
+
+var _controls : String = 'none'
 var _species : Species
 var _status : String
 
@@ -42,3 +45,17 @@ func get_player_data() -> Player:
 	p.set_species(_species)
 	
 	return p
+
+var ignore := false
+func _process(delta):
+	if _controls == 'none' or _status == 'disabled':
+		return
+		
+	if not ignore and Utils.is_action_strong(_controls+"_right"):
+		ignore = true
+		next.emit(self)
+	elif not ignore and Utils.is_action_strong(_controls+"_left"):
+		ignore = true
+		previous.emit(self)
+	elif Utils.are_controls_at_rest(_controls):
+		ignore = false

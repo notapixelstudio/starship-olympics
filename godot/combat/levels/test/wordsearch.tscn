@@ -1,15 +1,16 @@
 [gd_scene load_steps=16 format=3 uid="uid://rg7ogpb37i8a"]
 
 [ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="1"]
-[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="2"]
+[ext_resource type="Script" uid="uid://cm4l12ltshl45" path="res://combat/modes/GameMode.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://vj4b32elgxe6" path="res://combat/levels/background/trixen.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://cah6yn37ym2q5" path="res://combat/PlayerSpawner.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://nqgyfs7octfa" path="res://combat/levels/test/WordBoard.tscn" id="9"]
-[ext_resource type="Resource" path="res://combat/styles/blackboard.tres" id="10"]
-[ext_resource type="Resource" uid="uid://bcsa675ruiohh" path="res://selection/characters/trixens_1.tres" id="11"]
+[ext_resource type="Resource" uid="uid://c038w7w2q6sd" path="res://combat/styles/blackboard.tres" id="10"]
+[ext_resource type="Resource" uid="uid://bcsa675ruiohh" path="res://godot4/data/species/trixens_1.tres" id="11"]
 [ext_resource type="Texture2D" uid="uid://c2oa2rltwfjcj" path="res://assets/modes/hill-conquest.png" id="12"]
-[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="13"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://godot4/data/species/robolords_1.tres" id="13"]
+
 
 [sub_resource type="Resource" id="1"]
 script = ExtResource("2")

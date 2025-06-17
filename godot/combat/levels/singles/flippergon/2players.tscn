@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=3 uid="uid://by7qx30bnfgq5"]
 
-[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="2"]
-[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="3"]
-[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="4"]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://godot4/data/species/mantiacs_1.tres" id="2"]
+[ext_resource type="PackedScene" uid="uid://cah6yn37ym2q5" path="res://combat/PlayerSpawner.tscn" id="3"]
+[ext_resource type="Script" uid="uid://cm4l12ltshl45" path="res://combat/modes/GameMode.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://dsi0t7cms4bcn" path="res://assets/patterns/xgrid.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://bnwodi5cvfpoo" path="res://combat/levels/background/green.png" id="7"]
@@ -10,10 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://duk3updxsxh66" path="res://assets/icon/minicards/sets/guard_the_bridge.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://cul1qame2qpja" path="res://assets/patterns/wall/bones.png" id="10"]
 [ext_resource type="Resource" uid="uid://b1cblnbj1ycjn" path="res://combat/styles/bones.tres" id="11"]
-[ext_resource type="Resource" uid="uid://c2d0iaqf8sd0v" path="res://selection/characters/pentagonions_1.tres" id="12"]
-[ext_resource type="Resource" path="res://combat/styles/bridge.tres" id="13"]
+[ext_resource type="Resource" uid="uid://c2d0iaqf8sd0v" path="res://godot4/data/species/pentagonions_1.tres" id="12"]
+[ext_resource type="Resource" uid="uid://clhd2xkviyycf" path="res://combat/styles/bridge.tres" id="13"]
 [ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="14"]
 [ext_resource type="PackedScene" uid="uid://bsfrqrmna0k1n" path="res://actors/environments/RainbowPentagoal.tscn" id="16"]
+
 
 [sub_resource type="Resource" id="1"]
 script = ExtResource("4")

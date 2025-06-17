@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://c0aldvs8j0kbn"]
 
-[ext_resource type="Resource" uid="uid://c4n5tgxu5asop" path="res://selection/characters/eelectrons_1.tres" id="1"]
-[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="2"]
-[ext_resource type="Resource" path="res://combat/styles/cave.tres" id="3"]
+[ext_resource type="Resource" uid="uid://c4n5tgxu5asop" path="res://godot4/data/species/eelectrons_1.tres" id="1"]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://godot4/data/species/mantiacs_1.tres" id="2"]
+[ext_resource type="Resource" uid="uid://dtwo5yqb4bsut" path="res://combat/styles/cave.tres" id="3"]
 [ext_resource type="PackedScene" uid="uid://f0anqqkfbm8o" path="res://actors/environments/SmolMine.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://dgkukutasl81m" path="res://assets/icon/minicards/sets/death.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://cul1qame2qpja" path="res://assets/patterns/wall/bones.png" id="6"]
@@ -10,11 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://bnwodi5cvfpoo" path="res://combat/levels/background/green.png" id="9"]
 [ext_resource type="PackedScene" uid="uid://cvdbvykm2f8aq" path="res://actors/environments/Brick.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://djoq6wjajdqnp" path="res://combat/collectables/BigDiamond.tscn" id="11"]
-[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://cah6yn37ym2q5" path="res://combat/PlayerSpawner.tscn" id="12"]
 [ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="14"]
-[ext_resource type="Script" uid="uid://djkxd1ulofcgw" path="res://combat/modes/GameMode.gd" id="15"]
+[ext_resource type="Script" uid="uid://cm4l12ltshl45" path="res://combat/modes/GameMode.gd" id="15"]
 [ext_resource type="PackedScene" uid="uid://ckykuuqee1aml" path="res://combat/collectables/Diamond.tscn" id="17"]
+
 
 [sub_resource type="Resource" id="1"]
 script = ExtResource("15")

@@ -1,19 +1,20 @@
 [gd_scene load_steps=32 format=3 uid="uid://c8hvsa18iw0ae"]
 
 [ext_resource type="Texture2D" uid="uid://m3j0tij6vm8h" path="res://assets/sprites/signs/O.png" id="1"]
-[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://selection/characters/robolords_1.tres" id="2"]
+[ext_resource type="Resource" uid="uid://bfis81ndvgf74" path="res://godot4/data/species/robolords_1.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://dv0wi2aar7c6i" path="res://actors/environments/NoShipZone.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cbr8of5l0au68" path="res://combat/Arena.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://bbyb0wmv7vn0t" path="res://actors/environments/Wall.tscn" id="6"]
-[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://selection/characters/mantiacs_1.tres" id="7"]
-[ext_resource type="PackedScene" path="res://combat/PlayerSpawner.tscn" id="8"]
+[ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://godot4/data/species/mantiacs_1.tres" id="7"]
+[ext_resource type="PackedScene" uid="uid://cah6yn37ym2q5" path="res://combat/PlayerSpawner.tscn" id="8"]
 [ext_resource type="Texture2D" uid="uid://21naqrw1n8iw" path="res://combat/levels/background/mantiacs.png" id="9"]
-[ext_resource type="Resource" uid="uid://bcsa675ruiohh" path="res://selection/characters/trixens_1.tres" id="10"]
-[ext_resource type="PackedScene" path="res://utils/CameraEye.tscn" id="11"]
+[ext_resource type="Resource" uid="uid://bcsa675ruiohh" path="res://godot4/data/species/trixens_1.tres" id="10"]
+[ext_resource type="PackedScene" uid="uid://cu80eyqvya17r" path="res://utils/CameraEye.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://nlnnx1golw11" path="res://actors/environments/Ball.tscn" id="12"]
-[ext_resource type="Resource" path="res://combat/modes/GoalPortal.tres" id="13"]
-[ext_resource type="PackedScene" path="res://combat/levels/sets/sports/goalportal/MovingGoalManager.tscn" id="14"]
+[ext_resource type="Resource" uid="uid://dq53ohchy87c2" path="res://combat/modes/GoalPortal.tres" id="13"]
+[ext_resource type="PackedScene" uid="uid://bl12vir5uaya0" path="res://combat/levels/sets/sports/goalportal/MovingGoalManager.tscn" id="14"]
 [ext_resource type="PackedScene" uid="uid://be3p88ka45p15" path="res://actors/environments/GoalPortalGate.tscn" id="15"]
+
 
 [sub_resource type="ConvexPolygonShape2D" id="20"]
 points = PackedVector2Array(-648.093, -49.757, -632.902, -148.105, -602.877, -242.981, -558.72, -332.162, -501.468, -413.558, -432.462, -485.26, -353.319, -545.588, -265.895, -593.127, -172.238, -626.765, -74.5442, -645.711, 24.8968, -649.523, 123.754, -638.11, 219.711, -611.741, 310.518, -571.033, 394.047, -516.94, 468.339, -450.731, 531.654, -373.957, 582.508, -288.418, 619.708, -196.118, 642.382, -99.222, 650, 0, 642.382, 99.222, 619.708, 196.118, 582.508, 288.418, 531.654, 373.957, 468.339, 450.731, 394.047, 516.94, 310.518, 571.033, 219.711, 611.741, 123.754, 638.11, 24.8968, 649.523, -74.5442, 645.711, -172.238, 626.765, -265.895, 593.127, -353.319, 545.588, -432.462, 485.26, -501.468, 413.558, -558.72, 332.162, -602.877, 242.981, -632.902, 148.105, -648.093, 49.757, -648.093, -49.757)
