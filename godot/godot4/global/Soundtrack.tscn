@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://cq8lg513tatba"]
 
 [ext_resource type="PackedScene" uid="uid://dbnnedvy80ft" path="res://globals/AudioLibrary.tscn" id="1"]
-[ext_resource type="Script" uid="uid://cayx82g5es6fe" path="res://globals/Soundtrack.gd" id="2"]
+[ext_resource type="Script" uid="uid://cayx82g5es6fe" path="res://godot4/global/Soundtrack.gd" id="2"]
 [ext_resource type="AudioStream" uid="uid://dvyudxmqjls3a" path="res://assets/audio/soundtracks/PM_ATG_120_3_3+PM_NIGHTPULSE_120BPM_06.ogg" id="3"]
 [ext_resource type="AudioStream" uid="uid://cn1gxq21q5uyt" path="res://assets/audio/soundtracks/giovanni_nava/Haunting Aliens/Haunting Aliens.ogg" id="4"]
 [ext_resource type="AudioStream" uid="uid://p74taqcp8rsj" path="res://assets/audio/soundtracks/Bhangra_bass-PunchDeck.ogg" id="6"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bxyqhlvcm17rq" path="res://assets/audio/soundtracks/music_zapsplat_telectro.ogg" id="12"]
 [ext_resource type="AudioStream" uid="uid://b766l5ivenqus" path="res://assets/audio/soundtracks/music_zapsplat_well_oiled_machine_114.ogg" id="13"]
 [ext_resource type="AudioStream" uid="uid://ohagl03vaiqt" path="res://assets/audio/soundtracks/music_zapsplat_game_music_arcade_electro_repeating_retro_arp_electro_drums_serious_012.ogg" id="14"]
+
 
 [node name="Soundtrack" instance=ExtResource("1")]
 script = ExtResource("2")
