@@ -12,13 +12,13 @@ func set_tint(value: Color) -> void:
 	for child in get_children():
 		child.self_modulate = tint
 
-func _input(event):
+func _process(delta):
 	if controls == 'none':
 		return
 		
-	if event.get_action_strength(controls+"_down") > 0.5:
+	if Input.is_action_just_pressed(controls+"_down"):# and Input.get_action_strength(controls+"_down") > 0.5:
 		give_focus_to(get_node(current_focused_element.focus_neighbor_bottom))
-	elif event.get_action_strength(controls+"_up") > 0.5:
+	elif Input.is_action_just_pressed(controls+"_up"):# and Input.get_action_strength(controls+"_up") > 0.5:
 		give_focus_to(get_node(current_focused_element.focus_neighbor_top))
 
 func give_focus_to(what : Control) -> void:
