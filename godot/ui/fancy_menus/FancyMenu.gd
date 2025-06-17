@@ -86,5 +86,5 @@ func get_fancy_button_children() -> Array[FancyButton]:
 			children.append(child)
 	return children
 	
-func give_focus_to(what : Control) -> void:
+func give_focus_to(what: FancyButton) -> void:
 	what.grab_focus()

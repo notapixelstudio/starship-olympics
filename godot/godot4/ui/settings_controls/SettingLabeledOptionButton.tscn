@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://3w4gj0ferswq"]
+[gd_scene load_steps=6 format=3 uid="uid://3w4gj0ferswq"]
 
 [ext_resource type="Script" uid="uid://cxoc8qsmryoc5" path="res://godot4/ui/settings_controls/SettingLabeledOptionButton.gd" id="1_58cqq"]
 [ext_resource type="StyleBox" uid="uid://da2jh2a1uk8je" path="res://interface/themes/olympic/normal.tres" id="1_ipseg"]
+[ext_resource type="AudioStream" uid="uid://dvn3ibmeai2po" path="res://assets/audio/UI_effects/zapsplat_multimedia_button_click_005_53866.mp3" id="3_qjo2b"]
+[ext_resource type="AudioStream" uid="uid://bi38pkb44oyyx" path="res://assets/audio/UI_effects/switch-selection.wav" id="4_eqtlu"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_eqtlu"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_qjo2b")
 
 [node name="SettingLabeledOptionButton" type="Panel"]
 custom_minimum_size = Vector2(0, 50)
@@ -39,6 +46,18 @@ alignment = 1
 [node name="Spacer2" type="Control" parent="HBox"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+
+[node name="focus_sfx" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_eqtlu")
+volume_db = 5.0
+pitch_scale = 0.7
+bus = &"SFX"
+
+[node name="confirm_sfx" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_eqtlu")
+bus = &"SFX"
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_entered" from="HBox/OptionButton" to="." method="_on_option_button_focus_entered"]

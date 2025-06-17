@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://3dt40m8sna42"]
+[gd_scene load_steps=6 format=3 uid="uid://3dt40m8sna42"]
 
 [ext_resource type="StyleBox" uid="uid://da2jh2a1uk8je" path="res://interface/themes/olympic/normal.tres" id="1_igfgy"]
 [ext_resource type="Script" uid="uid://dsu7ya3a8xop3" path="res://godot4/ui/settings_controls/SettingSlider.gd" id="3"]
 [ext_resource type="AudioStream" uid="uid://bi38pkb44oyyx" path="res://assets/audio/UI_effects/switch-selection.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://dvn3ibmeai2po" path="res://assets/audio/UI_effects/zapsplat_multimedia_button_click_005_53866.mp3" id="4_cks8r"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0so3s"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("4_cks8r")
 
 [node name="SettingSlider" type="Panel"]
 custom_minimum_size = Vector2(0, 50)
@@ -43,6 +49,13 @@ layout_mode = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4")
+bus = &"SFX"
+
+[node name="focus_sfx" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_0so3s")
+volume_db = 5.0
+pitch_scale = 0.7
 bus = &"SFX"
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]

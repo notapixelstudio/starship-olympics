@@ -2,15 +2,21 @@ extends TextureButton
 class_name FancyButton
 ## A special [TextureButton] that grows and glows when focused.
 
+var _silent := true
+
 func _ready():
 	pivot_offset = size / 2.0
 	blur()
 	
-
+	# start without sound to disable audio feedback on appearing
+	await get_tree().process_frame
+	_silent = false
+	
 func focus():
 	modulate = Color(1.16, 1.16, 1.16)
 	$AnimationPlayer.play("Grow")
-	SoundEffects.play(%AudioStreamPlayer2D)
+	if not _silent:
+		%AudioStreamPlayer2D.play()
 	
 func blur():
 	modulate = Color(0.3, 0.3, 0.3)

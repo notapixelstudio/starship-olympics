@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cd7wgjami50oi"]
+[gd_scene load_steps=34 format=3 uid="uid://cd7wgjami50oi"]
 
 [ext_resource type="Script" uid="uid://v50u48xj1p3i" path="res://selection/PlayerSelection.gd" id="1"]
 [ext_resource type="Script" uid="uid://jvic6mylplyu" path="res://selection/SpeciesChoice.gd" id="2"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://dv4fay5xhsqoe" path="res://selection/interface/SelectArrow.tscn" id="17"]
 [ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="18"]
 [ext_resource type="FontFile" path="res://assets/fonts/DefaultFont10.tres" id="19"]
-
 
 [sub_resource type="Animation" id="1"]
 resource_name = "appear"
@@ -100,6 +99,13 @@ tracks/1/keys = {
 }
 tracks/1/use_blend = true
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ijemo"]
+_data = {
+&"appear": SubResource("1"),
+&"deselect": SubResource("2"),
+&"select": SubResource("3")
+}
+
 [sub_resource type="Animation" id="4"]
 resource_name = "barber"
 loop_mode = 1
@@ -114,6 +120,11 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-50, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xj1q3"]
+_data = {
+&"barber": SubResource("4")
 }
 
 [sub_resource type="Animation" id="5"]
@@ -132,6 +143,11 @@ tracks/0/keys = {
 "values": [-90.0, 270.0]
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_krxx5"]
+_data = {
+&"standby": SubResource("5")
+}
+
 [sub_resource type="FontFile" id="7"]
 fallbacks = Array[Font]([ExtResource("18")])
 cache/0/16/0/ascent = 0.0
@@ -139,6 +155,16 @@ cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h8nwj"]
+_data = {
+&"wiggle": ExtResource("15")
+}
 
 [sub_resource type="FontFile" id="8"]
 fallbacks = Array[Font]([ExtResource("9")])
@@ -147,6 +173,11 @@ cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
 
 [sub_resource type="Animation" id="9"]
 resource_name = "Blink"
@@ -180,43 +211,47 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vdenv"]
+_data = {
+&"Blink": SubResource("9"),
+&"RESET": SubResource("10")
+}
+
 [node name="PlayerSelection" type="Control"]
+custom_minimum_size = Vector2(200, 430)
+layout_mode = 3
+anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -360.0
 offset_right = 200.0
 offset_bottom = 213.0
-custom_minimum_size = Vector2(200, 430)
 script = ExtResource("1")
 
 [node name="Wrapper" type="Node2D" parent="."]
 z_as_relative = false
 
 [node name="SpeciesSelection" type="Control" parent="Wrapper"]
+custom_minimum_size = Vector2(200, 400)
+layout_mode = 3
+anchors_preset = 0
 offset_top = -14.0
 offset_right = 200.0
 offset_bottom = 386.0
 grow_horizontal = 0
 grow_vertical = 0
-custom_minimum_size = Vector2(200, 400)
 script = ExtResource("2")
-__meta__ = {
-"_edit_use_anchors_": false
-}
 species = ExtResource("12")
 
 [node name="CharacterWrapper" type="Node2D" parent="Wrapper/SpeciesSelection"]
 position = Vector2(84, 257)
 scale = Vector2(0.95, 1.05)
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/SpeciesSelection/CharacterWrapper"]
+libraries = {
+&"": SubResource("AnimationLibrary_ijemo")
+}
 autoplay = "appear"
-anims/appear = SubResource("1")
-anims/deselect = SubResource("2")
-anims/select = SubResource("3")
 
 [node name="SelectRect" type="Sprite2D" parent="Wrapper/SpeciesSelection/CharacterWrapper"]
 visible = false
@@ -227,23 +262,23 @@ texture = ExtResource("13")
 centered = false
 
 [node name="Character" type="Control" parent="Wrapper/SpeciesSelection/CharacterWrapper"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
 offset_left = -84.0
 offset_top = -272.0
 offset_right = 126.0
 offset_bottom = 278.0
-clip_contents = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Background" type="Polygon2D" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character"]
 position = Vector2(0, -3.05176e-05)
-texture_rotation_degrees = 90.0
 polygon = PackedVector2Array(23, 35, 144, 35, 144, 550, 23, 550)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character/Background"]
+libraries = {
+&"": SubResource("AnimationLibrary_xj1q3")
+}
 autoplay = "barber"
-anims/barber = SubResource("4")
 
 [node name="Border" type="Line2D" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character"]
 points = PackedVector2Array(23, 35, 144, 35, 144, 549, 23, 549, 23, 35)
@@ -253,15 +288,13 @@ texture_mode = 91
 begin_cap_mode = 1
 
 [node name="Clip" type="Control" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character"]
+clip_contents = true
+anchors_preset = 0
 anchor_right = 0.19
 offset_left = 23.0
 offset_top = 37.0
 offset_right = 104.1
 offset_bottom = 549.0
-clip_contents = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Shadow" type="Sprite2D" parent="Wrapper/SpeciesSelection/CharacterWrapper/Character/Clip"]
 modulate = Color(0, 0, 0, 0.196078)
@@ -288,6 +321,7 @@ unique_name_in_owner = true
 visible = false
 
 [node name="LeftArrow" parent="Wrapper/SpeciesSelection" instance=ExtResource("17")]
+anchors_preset = 0
 offset_left = 9.0
 offset_top = 454.0
 offset_right = 9.0
@@ -301,19 +335,19 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("10")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/SpeciesSelection/Ship"]
+libraries = {
+&"": SubResource("AnimationLibrary_krxx5")
+}
 autoplay = "standby"
-anims/standby = SubResource("5")
 
 [node name="ShipShadow" parent="Wrapper/SpeciesSelection/Ship" instance=ExtResource("8")]
 unique_name_in_owner = true
 self_modulate = Color(0, 0, 0, 0.627451)
 show_behind_parent = true
-z_index = 0
-z_as_relative = true
 sprite = NodePath("..")
-dy = 22
 
 [node name="RightArrow" parent="Wrapper/SpeciesSelection" instance=ExtResource("17")]
+anchors_preset = 0
 offset_left = 159.0
 offset_top = 454.0
 offset_right = 159.0
@@ -323,47 +357,51 @@ scale = Vector2(1.2, 1.2)
 [node name="SpeciesName" type="VBoxContainer" parent="Wrapper/SpeciesSelection"]
 unique_name_in_owner = true
 visible = false
+layout_mode = 0
 offset_left = -2.0
 offset_top = 558.0
 offset_right = 168.0
 offset_bottom = 627.0
 
 [node name="Label" type="Label" parent="Wrapper/SpeciesSelection/SpeciesName"]
-offset_right = 170.0
-offset_bottom = 22.0
+layout_mode = 2
 theme_override_fonts/font = ExtResource("16")
 text = "pentagonions"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
 [node name="ColorRect" type="ColorRect" parent="Wrapper/SpeciesSelection/SpeciesName"]
-offset_top = 26.0
-offset_right = 170.0
-offset_bottom = 28.0
 custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
 
 [node name="Tagline1" type="Label" parent="Wrapper/SpeciesSelection/SpeciesName"]
-offset_top = 32.0
-offset_right = 170.0
-offset_bottom = 44.0
+layout_mode = 2
 theme_override_fonts/font = ExtResource("19")
 text = "tagline"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
 [node name="Tagline2" type="Label" parent="Wrapper/SpeciesSelection/SpeciesName"]
-offset_top = 48.0
-offset_right = 170.0
-offset_bottom = 60.0
+layout_mode = 2
 theme_override_fonts/font = ExtResource("19")
 text = "tagline"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
 [node name="Tween" type="Tween" parent="Wrapper/SpeciesSelection"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+script = null
 
 [node name="PlayerInfo" type="Marker2D" parent="Wrapper/SpeciesSelection"]
 position = Vector2(86, 33.5228)
@@ -385,15 +423,18 @@ offset_right = 20.0
 offset_bottom = 3.0
 theme_override_fonts/font = SubResource("7")
 text = "P1"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/SpeciesSelection/PlayerInfo"]
+libraries = {
+&"": SubResource("AnimationLibrary_h8nwj")
+}
 autoplay = "wiggle"
-anims/wiggle = ExtResource("15")
 
 [node name="TeamMode" type="Control" parent="Wrapper/SpeciesSelection"]
 visible = false
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -404,6 +445,7 @@ offset_right = 75.0
 offset_bottom = 231.0
 
 [node name="Label" type="Label" parent="Wrapper/SpeciesSelection/TeamMode"]
+layout_mode = 0
 anchor_right = 1.0
 offset_top = -28.0
 offset_bottom = 37.0
@@ -411,12 +453,13 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("8")
 text = "TEAM
 TRIXENS"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
 [node name="JoinMsg" type="Label" parent="Wrapper"]
 unique_name_in_owner = true
+anchors_preset = 10
 anchor_right = 1.0
 offset_top = 541.0
 offset_right = 166.0
@@ -425,30 +468,31 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("8")
 text = "PRESS
 TO JOIN!"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper/JoinMsg"]
+libraries = {
+&"": SubResource("AnimationLibrary_vdenv")
+}
 autoplay = "Blink"
-anims/Blink = SubResource("9")
-anims/RESET = SubResource("10")
 
 [node name="SFX" type="Node" parent="."]
 
 [node name="switch-selection" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("3")
-bus = "SFX"
+bus = &"SFX"
 
 [node name="selected" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("4")
-bus = "SFX"
+bus = &"SFX"
 
 [node name="ready" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("5")
 volume_db = 10.0
-bus = "SFX"
+bus = &"SFX"
 
 [node name="deselected" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("6")
-bus = "SFX"
+bus = &"SFX"

@@ -26,7 +26,7 @@ func _process(delta):
 	elif Utils.are_controls_at_rest(controls):
 		ignore = false
 		
-func give_focus_to(what : Control) -> void:
+func give_focus_to(what: FancyButton) -> void:
 	if current_focused_element:
 		current_focused_element.blur()
 	current_focused_element = what

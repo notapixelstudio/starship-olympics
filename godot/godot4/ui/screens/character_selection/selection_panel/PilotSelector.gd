@@ -21,6 +21,11 @@ func set_status(status: String):
 	%ReadyMenu.visible = _status == 'joined'
 	%GoMenu.visible = _status == 'selected'
 	%PilotCharacter.visible = _status != 'disabled'
+	match status:
+		'joined':
+			%selected.play()
+		'disabled':
+			%deselected.play()
 	
 func set_controls(controls: String):
 	_controls = controls
@@ -53,9 +58,11 @@ func _process(delta):
 		
 	if not ignore and Utils.is_action_strong(_controls+"_right"):
 		ignore = true
+		%"switch-selection".play()
 		next.emit(self)
 	elif not ignore and Utils.is_action_strong(_controls+"_left"):
 		ignore = true
+		%"switch-selection".play()
 		previous.emit(self)
 	elif Utils.are_controls_at_rest(_controls):
 		ignore = false
