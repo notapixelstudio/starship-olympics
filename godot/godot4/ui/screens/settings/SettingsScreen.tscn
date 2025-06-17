@@ -21,10 +21,6 @@ func _on_focus_entered():
 script = ExtResource("2")
 
 [node name="Back" parent="FancyMenu" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 194.0
-offset_bottom = 91.0
 focus_neighbor_bottom = NodePath("../../SettingsContainer")
 
 [node name="MenuLabel" parent="." index="2" instance=ExtResource("4")]

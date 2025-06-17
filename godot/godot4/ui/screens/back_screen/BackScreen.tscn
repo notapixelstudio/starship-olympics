@@ -12,6 +12,7 @@
 script = ExtResource("3")
 
 [node name="Reference" type="TextureRect" parent="." index="0"]
+visible = false
 modulate = Color(0.196078, 0.360784, 0.533333, 1)
 layout_mode = 0
 offset_right = 1280.0
@@ -24,10 +25,10 @@ focus_default_element_on_ready = false
 
 [node name="Back" parent="FancyMenu" index="0" instance=ExtResource("1")]
 layout_mode = 0
-offset_left = 13.0
-offset_top = 15.0
-offset_right = 207.0
-offset_bottom = 106.0
+offset_left = 15.0
+offset_top = 17.0
+offset_right = 209.0
+offset_bottom = 108.0
 texture_normal = ExtResource("6")
 texture_click_mask = ExtResource("5")
 
