@@ -36,7 +36,6 @@ credits_scene = ExtResource("7_f8uos")
 
 [node name="Reference" type="TextureRect" parent="." index="0"]
 visible = false
-modulate = Color(0.172549, 0.431373, 0.705882, 1)
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -57,10 +56,10 @@ focus_default_element_on_ready = false
 [node name="Versus" parent="FancyMenu" index="0" instance=ExtResource("11_ydftu")]
 self_modulate = Color(0.984314, 0.858824, 1, 1)
 layout_mode = 0
-offset_left = 130.0
-offset_top = 69.0
-offset_right = 493.0
-offset_bottom = 597.0
+offset_left = 117.0
+offset_top = 57.0
+offset_right = 480.0
+offset_bottom = 585.0
 texture_normal = ExtResource("12_7gffd")
 texture_click_mask = ExtResource("13_vkwtr")
 
@@ -81,10 +80,10 @@ shear = Vector2(-0.1, -0.26)
 
 [node name="Campaign" parent="FancyMenu" index="1" instance=ExtResource("11_ydftu")]
 layout_mode = 0
-offset_left = 478.0
-offset_top = 57.0
-offset_right = 758.0
-offset_bottom = 542.0
+offset_left = 477.0
+offset_top = 47.0
+offset_right = 757.0
+offset_bottom = 541.0
 
 [node name="MenuLabel" parent="FancyMenu/Campaign" index="1" instance=ExtResource("14_q1uha")]
 modulate = Color(0.396078, 0.964706, 1, 1)
@@ -99,10 +98,10 @@ text = "1 2 3 4"
 
 [node name="HallOfFame" parent="FancyMenu" index="2" instance=ExtResource("11_ydftu")]
 layout_mode = 0
-offset_left = 733.0
-offset_top = 47.0
-offset_right = 918.0
-offset_bottom = 186.0
+offset_left = 725.0
+offset_top = 46.0
+offset_right = 910.0
+offset_bottom = 192.0
 disabled = true
 texture_normal = ExtResource("15_v45ox")
 texture_disabled = SubResource("CanvasTexture_om3hj")
@@ -117,10 +116,10 @@ align = "left"
 
 [node name="Settings" parent="FancyMenu" index="3" instance=ExtResource("11_ydftu")]
 layout_mode = 0
-offset_left = 785.0
-offset_top = 185.0
-offset_right = 993.0
-offset_bottom = 316.0
+offset_left = 778.0
+offset_top = 184.0
+offset_right = 986.0
+offset_bottom = 320.0
 texture_normal = ExtResource("17_oiyfm")
 texture_disabled = SubResource("CanvasTexture_br3wu")
 texture_click_mask = ExtResource("18_38wqh")
@@ -134,9 +133,9 @@ align = "left"
 
 [node name="Credits" parent="FancyMenu" index="4" instance=ExtResource("11_ydftu")]
 layout_mode = 0
-offset_left = 841.0
-offset_top = 320.0
-offset_right = 1062.0
+offset_left = 834.0
+offset_top = 314.0
+offset_right = 1055.0
 offset_bottom = 443.0
 texture_normal = ExtResource("19_ktikj")
 texture_click_mask = ExtResource("20_1fdvi")
@@ -150,9 +149,9 @@ align = "left"
 
 [node name="Quit" parent="FancyMenu" index="5" instance=ExtResource("11_ydftu")]
 layout_mode = 0
-offset_left = 894.0
-offset_top = 446.0
-offset_right = 1167.0
+offset_left = 884.0
+offset_top = 438.0
+offset_right = 1173.0
 offset_bottom = 580.0
 texture_normal = ExtResource("21_b74ih")
 texture_click_mask = ExtResource("22_6ve22")

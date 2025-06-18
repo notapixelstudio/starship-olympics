@@ -13,7 +13,7 @@ func _ready():
 	_silent = false
 	
 func focus():
-	modulate = Color(1.16, 1.16, 1.16)
+	modulate = Color(1, 1, 1)
 	$AnimationPlayer.play("Grow")
 	if not _silent:
 		%AudioStreamPlayer2D.play()
