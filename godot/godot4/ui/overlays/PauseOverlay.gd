@@ -6,7 +6,7 @@ extends Control
 @onready var buttons = $GuiElements/VBoxContainer/Buttons
 @onready var pause_window = $Window
 @onready var gui = $GuiElements
-var unpause_ready = false
+var paused = false
 
 signal restart
 signal skip
@@ -24,37 +24,40 @@ func _ready():
 		$GuiElements/VBoxContainer/Description.queue_free()
 		$Window.texture = map_texture
 	else:
-		await get_tree().idle_frame # wait for match to be set up
-		$GuiElements/VBoxContainer/Minigame.text = global.the_match.get_game_mode().name
-		$GuiElements/VBoxContainer/Description.text = global.the_match.get_game_mode().description
+		await get_tree().process_frame # wait for match to be set up
+		#$GuiElements/VBoxContainer/Minigame.text = global.the_match.get_game_mode().name
+		#$GuiElements/VBoxContainer/Description.text = global.the_match.get_game_mode().description
 	
-func start():
-	$Tween.interpolate_property(pause_window, "scale", Vector2(0.75,0), Vector2(0.75, 0.75), 0.15, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	$Tween.start()
+func pause():
+	#$Tween.interpolate_property(pause_window, "scale", Vector2(0.75,0), Vector2(0.75, 0.75), 0.15, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	#$Tween.start()
 	visible = true
 	get_tree().paused = true
-	await $Tween.tween_completed
+	#await $Tween.tween_completed
 	gui.visible = true
 	buttons.enable()
-	unpause_ready = true
-	raise()
+	paused = true
+	#raise()
 
 func _unhandled_input(event):
-	if unpause_ready and event.is_action_pressed("pause"):
-		unpause()
+	if event.is_action_pressed("pause"):
+		if paused:
+			unpause()
+		else:
+			pause()
 		
 	
 func _on_Continue_pressed():
 	unpause()
 	
 func unpause():
-	$Tween.interpolate_property(pause_window, "scale", Vector2(0.75,0.75), Vector2(0.75, 0), 0.1, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	$Tween.start()
+	#$Tween.interpolate_property(pause_window, "scale", Vector2(0.75,0.75), Vector2(0.75, 0), 0.1, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	#$Tween.start()
 	buttons.disable()
 	gui.visible = false
-	await $Tween.tween_completed
+	#await $Tween.tween_completed
 	visible = false
-	unpause_ready = false
+	paused = false
 	get_tree().paused = false
 
 func _on_Restart_pressed():
@@ -63,7 +66,7 @@ func _on_Restart_pressed():
 	
 func _on_SkipLevel_pressed():
 	get_tree().paused = false
-	global.safe_destroy_match()
+	#global.safe_destroy_match()
 	Events.emit_signal("continue_after_game_over", false)
 	
 func _on_Quit1_pressed():

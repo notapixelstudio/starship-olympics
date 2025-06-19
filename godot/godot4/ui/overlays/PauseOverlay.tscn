@@ -1,49 +1,82 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdnijlionsghd"]
+[gd_scene load_steps=10 format=3 uid="uid://bdnijlionsghd"]
 
-[ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="1"]
-[ext_resource type="Texture2D" uid="uid://bcrncs8bt61iy" path="res://assets/UI/pause-window.png" id="3"]
-[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="4"]
-[ext_resource type="Script" uid="uid://cooqrnf6e4y6n" path="res://combat/interface/pause/Buttons.gd" id="5"]
-[ext_resource type="Texture2D" uid="uid://hhwga1jpxuu4" path="res://assets/UI/pause-window-map.png" id="8"]
-[ext_resource type="FontFile" uid="uid://cmvmqjwssraau" path="res://assets/fonts/Commando/commando.ttf" id="9"]
-
-[sub_resource type="Resource" id="Resource_7p7og"]
-metadata/__load_path__ = "res://combat/interface/pause/ProcessMode.gd"
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1_bnhne"]
+[ext_resource type="Script" uid="uid://h3goxkvpd4sv" path="res://godot4/ui/overlays/PauseOverlay.gd" id="2_22hpj"]
+[ext_resource type="Texture2D" uid="uid://bcrncs8bt61iy" path="res://assets/UI/pause-window.png" id="2_hxyup"]
+[ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="3_g01oh"]
+[ext_resource type="FontFile" uid="uid://cmvmqjwssraau" path="res://assets/fonts/Commando/commando.ttf" id="4_2ooet"]
 
 [sub_resource type="FontFile" id="4"]
-fallbacks = Array[Font]([ExtResource("1")])
+fallbacks = Array[Font]([ExtResource("3_g01oh")])
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
 
 [sub_resource type="FontFile" id="2"]
-fallbacks = Array[Font]([ExtResource("9")])
+fallbacks = Array[Font]([ExtResource("4_2ooet")])
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
 
 [sub_resource type="FontFile" id="3"]
-fallbacks = Array[Font]([ExtResource("1")])
+fallbacks = Array[Font]([ExtResource("3_g01oh")])
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
 
-[node name="Pause" type="Control"]
+[sub_resource type="GDScript" id="GDScript_oi8t0"]
+script/source = "extends VBoxContainer
+
+func _ready():
+	disable()
+
+func disable():
+	for button in get_children():
+		if button is Button:
+			button.disabled = true
+
+func enable():
+	for button in get_children():
+		if button is Button:
+			button.disabled = false
+	get_child(0).grab_focus()
+"
+
+[node name="PauseOverlay" type="Control"]
 process_mode = 3
+custom_minimum_size = Vector2(834, 635)
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_minimum_size = Vector2(834, 635)
-theme = ExtResource("4")
-script = SubResource("Resource_7p7og")
-map_texture = ExtResource("8")
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_bnhne")
+script = ExtResource("2_22hpj")
 
 [node name="BlackOverlay" type="ColorRect" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 0.588235)
@@ -53,9 +86,10 @@ modulate = Color(1.2, 1.2, 1.2, 1)
 self_modulate = Color(0, 0.556863, 1, 1)
 position = Vector2(651.635, 357.94)
 scale = Vector2(0.745386, 0.745386)
-texture = ExtResource("3")
+texture = ExtResource("2_hxyup")
 
 [node name="GuiElements" type="Control" parent="."]
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -64,13 +98,11 @@ offset_left = -326.0
 offset_top = -274.0
 offset_right = 349.0
 offset_bottom = 263.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Title" type="Label" parent="GuiElements"]
 modulate = Color(1.15, 1.15, 1.15, 1)
 self_modulate = Color(0, 0.556863, 1, 1)
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -124.0
@@ -82,11 +114,12 @@ theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 3
 theme_override_fonts/font = SubResource("4")
 text = "GAME PAUSED"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GuiElements"]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -98,103 +131,69 @@ offset_bottom = -21.0
 
 [node name="Minigame" type="Label" parent="GuiElements/VBoxContainer"]
 modulate = Color(1, 0.870588, 0.372549, 1)
-offset_right = 678.0
-offset_bottom = 53.0
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_fonts/font = SubResource("2")
 text = "MINIGAME"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Description" type="Label" parent="GuiElements/VBoxContainer"]
-offset_top = 57.0
-offset_right = 678.0
-offset_bottom = 79.0
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_fonts/font = SubResource("3")
 text = "find the x and do the y"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Control" type="Control" parent="GuiElements/VBoxContainer"]
-offset_top = 83.0
-offset_right = 678.0
-offset_bottom = 163.0
 custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
 
 [node name="Buttons" type="VBoxContainer" parent="GuiElements/VBoxContainer"]
-offset_top = 167.0
-offset_right = 678.0
-offset_bottom = 397.0
+layout_mode = 2
 alignment = 2
-script = ExtResource("5")
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
+script = SubResource("GDScript_oi8t0")
 
 [node name="Continue" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-offset_right = 678.0
-offset_bottom = 38.0
+layout_mode = 2
 text = "CONTINUE"
 
 [node name="Restart" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-offset_top = 42.0
-offset_right = 678.0
-offset_bottom = 80.0
+layout_mode = 2
 text = "RESTART"
 
 [node name="SkipLevel" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-offset_top = 84.0
-offset_right = 678.0
-offset_bottom = 122.0
+layout_mode = 2
 text = "SKIP THIS MATCH"
 
 [node name="Options" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
 visible = false
-offset_top = 99.0
-offset_right = 182.0
-offset_bottom = 128.0
+layout_mode = 2
 text = "OPTIONS"
 
 [node name="Control" type="Control" parent="GuiElements/VBoxContainer/Buttons"]
-offset_top = 126.0
-offset_right = 678.0
-offset_bottom = 146.0
 custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="Quit1" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
 visible = false
-offset_top = 174.0
-offset_right = 678.0
-offset_bottom = 220.0
+layout_mode = 2
 text = "QUIT TO CARDS"
 
 [node name="Quit2" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-offset_top = 150.0
-offset_right = 678.0
-offset_bottom = 188.0
+layout_mode = 2
 text = "QUIT TO CHARACTERS"
 
 [node name="Quit3" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
-offset_top = 192.0
-offset_right = 678.0
-offset_bottom = 230.0
+layout_mode = 2
 text = "QUIT TO MAIN MENU"
-
-[node name="Tween" type="Tween" parent="."]
 
 [connection signal="pressed" from="GuiElements/VBoxContainer/Buttons/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="GuiElements/VBoxContainer/Buttons/Restart" to="." method="_on_Restart_pressed"]
