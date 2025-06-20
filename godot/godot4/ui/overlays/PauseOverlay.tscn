@@ -166,10 +166,12 @@ layout_mode = 2
 text = "CONTINUE"
 
 [node name="Restart" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+visible = false
 layout_mode = 2
 text = "RESTART"
 
 [node name="SkipLevel" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+visible = false
 layout_mode = 2
 text = "SKIP THIS MATCH"
 
@@ -192,6 +194,7 @@ layout_mode = 2
 text = "QUIT TO CHARACTERS"
 
 [node name="Quit3" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+visible = false
 layout_mode = 2
 text = "QUIT TO MAIN MENU"
 

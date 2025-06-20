@@ -16,7 +16,8 @@ func _ready() -> void:
 	
 	Events.versus_game_start.connect(begin_versus_game)
 	Events.campaign_game_start.connect(begin_campaign_game)
-	Events.continue_after_match_over.connect(reset)
+	Events.continue_after_match_over.connect(_on_continue_after_match_over_event)
+	Events.nav_to_character_selection.connect(_on_nav_to_character_selection_event)
 
 func _on_ScreenController_transition_started(action:String, from_id:String, to_id:String):
 	Events.emit_signal("analytics_event", {"id": UUID.v4(), "action": action, "from": from_id, "to": to_id}, "navigation")
@@ -60,6 +61,12 @@ func new_game(session:Session, players:Array[Player], game_scene:PackedScene):
 	
 func _remove_screens():
 	remove_child(_screen_controller)
+	
+func _on_continue_after_match_over_event():
+	reset()
+	
+func _on_nav_to_character_selection_event():
+	reset()
 	
 func reset():
 	if _current_game:
