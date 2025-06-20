@@ -18,6 +18,16 @@ cache/0/14/0/descent = 0.0
 cache/0/14/0/underline_position = 0.0
 cache/0/14/0/underline_thickness = 0.0
 cache/0/14/0/scale = 1.0
+cache/0/18/0/ascent = 0.0
+cache/0/18/0/descent = 0.0
+cache/0/18/0/underline_position = 0.0
+cache/0/18/0/underline_thickness = 0.0
+cache/0/18/0/scale = 1.0
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
 
 [sub_resource type="FontFile" id="2"]
 fallbacks = Array[Font]([ExtResource("4_2ooet")])
@@ -31,6 +41,26 @@ cache/0/14/0/descent = 0.0
 cache/0/14/0/underline_position = 0.0
 cache/0/14/0/underline_thickness = 0.0
 cache/0/14/0/scale = 1.0
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/52/0/ascent = 0.0
+cache/0/52/0/descent = 0.0
+cache/0/52/0/underline_position = 0.0
+cache/0/52/0/underline_thickness = 0.0
+cache/0/52/0/scale = 1.0
 
 [sub_resource type="FontFile" id="3"]
 fallbacks = Array[Font]([ExtResource("3_g01oh")])
@@ -44,6 +74,11 @@ cache/0/14/0/descent = 0.0
 cache/0/14/0/underline_position = 0.0
 cache/0/14/0/underline_thickness = 0.0
 cache/0/14/0/scale = 1.0
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
 
 [sub_resource type="GDScript" id="GDScript_oi8t0"]
 script/source = "extends VBoxContainer
@@ -113,6 +148,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 3
 theme_override_fonts/font = SubResource("4")
+theme_override_font_sizes/font_size = 22
 text = "GAME PAUSED"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -130,23 +166,27 @@ offset_right = 339.5
 offset_bottom = -21.0
 
 [node name="Minigame" type="Label" parent="GuiElements/VBoxContainer"]
-modulate = Color(1, 0.870588, 0.372549, 1)
+unique_name_in_owner = true
+self_modulate = Color(1, 0.870588, 0.372549, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_fonts/font = SubResource("2")
+theme_override_font_sizes/font_size = 52
 text = "MINIGAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
 [node name="Description" type="Label" parent="GuiElements/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_fonts/font = SubResource("3")
+theme_override_font_sizes/font_size = 22
 text = "find the x and do the y"
 horizontal_alignment = 1
 vertical_alignment = 1

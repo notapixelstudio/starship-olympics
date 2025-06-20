@@ -34,6 +34,7 @@ func _ready() -> void:
 	
 	%MinigameText.text = '[right][color=#ffde5e]%s[/color]\n%s[/right]' % [minigame.title.to_upper(), minigame.description.to_upper()]
 	%MinigameIcon.texture = minigame.icon
+	%PauseOverlay.set_minigame(minigame)
 	
 	setup()
 	

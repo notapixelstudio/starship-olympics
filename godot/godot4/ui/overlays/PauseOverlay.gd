@@ -8,20 +8,21 @@ extends Control
 @onready var gui = $GuiElements
 var paused = false
 
+var _minigame : Minigame
+
 signal restart
 signal skip
 
 func _ready():
-	gui.visible = false
-	visible = false
+	if not _minigame:
+		%Minigame.modulate = Color(0,0,0,0)
+		%Description.modulate = Color(0,0,0,0)
 	
 	# hide buttons that are relevant only during matches
 	if not in_match:
 		$GuiElements/VBoxContainer/Buttons/Restart.queue_free()
 		$GuiElements/VBoxContainer/Buttons/SkipLevel.queue_free()
 		$GuiElements/VBoxContainer/Buttons/Quit1.queue_free()
-		$GuiElements/VBoxContainer/Minigame.queue_free()
-		$GuiElements/VBoxContainer/Description.queue_free()
 		$Window.texture = map_texture
 	else:
 		await get_tree().process_frame # wait for match to be set up
@@ -80,3 +81,11 @@ func _on_Quit2_pressed():
 func _on_Quit3_pressed():
 	get_tree().paused = false
 	Events.emit_signal("nav_to_menu")
+
+func set_minigame(value: Minigame):
+	_minigame = value
+	%Minigame.text = _minigame.title.to_upper()
+	%Description.text = _minigame.description.to_upper()
+	%Minigame.modulate = Color.WHITE
+	%Description.modulate = Color.WHITE
+	
