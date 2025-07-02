@@ -119,7 +119,10 @@ func setup() -> void:
 	
 func setup_team(team:String) -> void:
 	%ScoreManager.add_team(team)
-	%ScoreHUD.add_team(team, _players_by_id[_teams[team][0]].get_species()) # FIXME support teams of 2+ members
+	var species_list : Array[Species] = []
+	for player_id in _teams[team]:
+		species_list.append( _players_by_id[player_id].get_species() )
+	%ScoreHUD.add_team(team, species_list)
 	
 ## Returns a [String] identifier for the [Arena] (defaults to the file name of the scene file).
 func get_id() -> String:

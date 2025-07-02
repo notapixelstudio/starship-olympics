@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dt8lwx0muu10p"]
+[gd_scene load_steps=5 format=3 uid="uid://dt8lwx0muu10p"]
 
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="1_4ev1s"]
 [ext_resource type="Script" uid="uid://b1o0qfmugu6t5" path="res://godot4/arena/hud/ScoreBar.gd" id="2_11j5v"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="3_vxowj"]
+[ext_resource type="Material" uid="uid://78ncnjfs8b5h" path="res://godot4/arena/hud/ScoreBarMaterial.tres" id="4_5b4au"]
 
 [node name="ScoreBar" instance=ExtResource("1_4ev1s")]
 custom_minimum_size = Vector2(26, 0)
 script = ExtResource("2_11j5v")
 
 [node name="Background" parent="." index="0"]
+material = ExtResource("4_5b4au")
 color = Color(1, 1, 1, 1)
 
 [node name="MaxScore" type="Label" parent="Background" index="0"]
@@ -26,14 +28,23 @@ theme_override_font_sizes/font_size = 13
 text = "100"
 horizontal_alignment = 1
 
+[node name="Fill" parent="Background" index="1"]
+material = ExtResource("4_5b4au")
+
 [node name="Indicator" type="Node2D" parent="." index="1"]
 unique_name_in_owner = true
 
 [node name="MiniShip" type="Sprite2D" parent="Indicator" index="0"]
 unique_name_in_owner = true
-position = Vector2(12, 0)
+position = Vector2(13, 0)
 rotation = -1.5708
 scale = Vector2(0.2, 0.2)
+
+[node name="Timer" type="Timer" parent="Indicator/MiniShip" index="0"]
+unique_name_in_owner = true
+wait_time = 0.5
+autostart = true
+ignore_time_scale = true
 
 [node name="Value" type="Label" parent="Indicator" index="1"]
 unique_name_in_owner = true
@@ -55,3 +66,5 @@ theme_override_font_sizes/font_size = 13
 text = "PPP"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[connection signal="timeout" from="Indicator/MiniShip/Timer" to="." method="_on_miniship_timer_timeout"]

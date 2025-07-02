@@ -12,11 +12,11 @@ func _ready() -> void:
 func _on_score_updated(score: float, team: String, new_standings: Array) -> void:
 	%ScoreBars.get_node(team).set_value(score)
 	
-func add_team(name:String, species:Species) -> void:
+func add_team(name:String, species_list: Array[Species]) -> void:
 	var bar = score_bar_scene.instantiate()
 	bar.name = name
 	bar.set_team(name)
-	bar.set_species(species) # FIXME this should be read from elsewhere
+	bar.set_species_list(species_list)
 	bar.set_max_value(_max_score)
 	bar.set_value(_starting_score)
 	bar.set_thresholds(_thresholds)
