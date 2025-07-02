@@ -8,12 +8,12 @@ uniform float angle = 0.7854; // in radians
 
 void fragment() {
 	float w = cos(angle) * UV.x + sin(angle) * SCREEN_UV.y*(-32.0);// - speed * TIME;
-	float modulus = floor(mod(w/stripe_size, float(number_of_colors)));
+	float modulus = w/stripe_size-1.0;//floor(mod(w/stripe_size, float(number_of_colors)));
 	if (modulus < 0.0001) {
 		COLOR *= colors[0];
-	} else if (modulus < 1.0001) {
+	} else if (modulus < 1.0001 || number_of_colors == 2) {
 		COLOR *= colors[1];
-	} else if (modulus < 2.0001) {
+	} else if (modulus < 2.0001 || number_of_colors == 3) {
 		COLOR *= colors[2];
 	} else {
 		COLOR *= colors[3];

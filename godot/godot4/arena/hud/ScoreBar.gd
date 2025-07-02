@@ -40,7 +40,7 @@ func set_species_list(species_list: Array[Species]) -> void:
 		%Fill.material.set_shader_parameter('stripe_size', 1.0/len(colors))
 		%Background.material.set_shader_parameter('colors', colors)
 		%Background.material.set_shader_parameter('number_of_colors', len(colors))
-		%Background.material.set_shader_parameter('stripe_size', 1.0/len(colors))
+		%Background.material.set_shader_parameter('stripe_size', 0.85/len(colors))
 		%MiniShip.texture = _species_list[_miniship_index].get_ship()
 		
 var _miniship_index := 1
