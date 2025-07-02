@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=34 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="Script" uid="uid://cdwca4jvfkafg" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
 [ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="19_hnpxt"]
 [ext_resource type="PackedScene" uid="uid://baqs1sh3hug4e" path="res://godot4/arena/hud/Counter.tscn" id="26_picc7"]
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="27_8sctu"]
+[ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="28_fhoky"]
 [ext_resource type="Script" uid="uid://ba4f506maocjs" path="res://godot4/arena/hud/ScoreHUD.gd" id="28_mtqpa"]
 [ext_resource type="PackedScene" uid="uid://dt8lwx0muu10p" path="res://godot4/arena/hud/ScoreBar.tscn" id="29_infxo"]
 [ext_resource type="PackedScene" uid="uid://cy5pkamh8gihg" path="res://ui/common_elements/PlayersReady/PlayersReadyWheels.tscn" id="30_um0tc"]
@@ -148,6 +149,15 @@ grow_horizontal = 0
 grow_vertical = 1
 horizontal_alignment = 2
 vertical_alignment = 0
+
+[node name="Countdown" parent="HUD" instance=ExtResource("26_picc7")]
+visible = false
+modulate = Color(1, 1, 1, 0.0313726)
+offset_right = 0.0
+offset_bottom = 0.0
+theme_override_fonts/font = ExtResource("28_fhoky")
+theme_override_font_sizes/font_size = 400
+text = "00"
 
 [node name="TimeBar" parent="HUD" instance=ExtResource("27_8sctu")]
 unique_name_in_owner = true

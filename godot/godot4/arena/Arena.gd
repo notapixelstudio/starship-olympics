@@ -111,6 +111,7 @@ func _ready() -> void:
 func setup() -> void:
 	%TimeManager.set_time(_params.time)
 	%Clock.set_value(_params.time)
+	%Countdown.set_value(_params.time)
 	%TimeBar.set_max_value(_params.time)
 	%TimeBar.set_value(0.0) # time always starts from 0
 	%GameOverManager.set_max_score(_params.score)
@@ -152,6 +153,8 @@ func get_match_params() -> MatchParams:
 	
 func _on_clock_ticked(t:float, t_secs:int) -> void:
 	%Clock.set_value(t_secs)
+	%Countdown.set_value(t_secs)
+	%Countdown.visible = t_secs <= 5
 	%TimeBar.set_value(_params.time - t)
 
 func _on_match_over(data:Dictionary) -> void:
