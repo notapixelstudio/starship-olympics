@@ -13,3 +13,8 @@ func set_species(species: Species):
 		$Line2D.visible = false
 		$Sprite2D.modulate = Color(1,1,1)
 		$Sprite2D.self_modulate = Color(1,1,1)
+
+func set_selected(value: bool):
+	%Left.visible = not value
+	%Right.visible = not value
+	

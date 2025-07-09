@@ -13,29 +13,36 @@ var _status : String
 
 func set_player_id(v: String) -> void:
 	player_id = v
-	$Label.text = player_id
+	%PPLabel.text = player_id
 
 func set_status(status: String):
 	_status = status
-	$Label3.text = _status
+	%StatusLabel.text = _status
 	%ReadyMenu.visible = _status == 'joined'
 	%GoMenu.visible = _status == 'selected'
 	%PilotCharacter.visible = _status != 'disabled'
+	%ControlsLabel.visible = _status != 'disabled'
+	%SpeciesLabel.visible = _status != 'disabled'
 	match status:
 		'joined':
 			%selected.play()
 		'disabled':
 			%deselected.play()
+			%SpeciesLabel.modulate = Color('#7d7d7d')
+			
+	%PilotCharacter.set_selected(_status == 'selected')
 	
 func set_controls(controls: String):
 	_controls = controls
-	$Label2.text = _controls
+	%ControlsLabel.text = _controls
 	%ReadyMenu.set_controls(_controls)
 	%GoMenu.set_controls(_controls)
 
 func set_species(species: Species):
 	_species = species
-	$Label4.text = _species.name
+	%PPLabel.modulate = _species.get_color()
+	%SpeciesLabel.modulate = _species.get_color()
+	%SpeciesLabel.text = _species.name
 	%ReadyMenu.set_tint(_species.get_color())
 	%GoMenu.set_tint(_species.get_color())
 	%PilotCharacter.set_species(_species)

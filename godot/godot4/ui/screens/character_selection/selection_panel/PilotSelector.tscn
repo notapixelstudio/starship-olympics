@@ -21,44 +21,69 @@
 [node name="PilotSelector" type="Node2D"]
 script = ExtResource("2")
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 14.0
+[node name="PPLabel" type="Label" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.49, 0.49, 0.49, 1)
+offset_left = -59.0
+offset_top = -296.0
+offset_right = 41.0
+offset_bottom = -244.0
 theme = ExtResource("1")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_font_sizes/font_size = 32
 text = "pp"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Label2" type="Label" parent="."]
-offset_top = 32.0
-offset_right = 119.0
-offset_bottom = 64.0
+[node name="ControlsLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -118.0
+offset_top = -244.0
+offset_right = 101.0
+offset_bottom = -212.0
 theme = ExtResource("1")
 text = "CONTROLS"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Label3" type="Label" parent="."]
-offset_top = 64.0
+[node name="StatusLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -100.0
+offset_top = 264.0
 offset_right = 119.0
-offset_bottom = 96.0
+offset_bottom = 296.0
 theme = ExtResource("1")
 text = "DISABLED"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Label4" type="Label" parent="."]
-modulate = Color(1, 0.996078, 0.658824, 1)
-offset_top = 104.0
-offset_right = 126.0
-offset_bottom = 136.0
+[node name="SpeciesLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -150.0
+offset_top = -46.0
+offset_right = 150.0
+offset_bottom = 6.0
 theme = ExtResource("1")
+theme_override_font_sizes/font_size = 32
 text = "no species"
+horizontal_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
 
 [node name="ReadyMenu" parent="." instance=ExtResource("3_v4uwd")]
 unique_name_in_owner = true
 visible = false
-offset_top = -200.0
-offset_bottom = -200.0
+offset_top = -67.0
+offset_bottom = -67.0
+controls = null
+tint = null
 wrap = null
 default_focused_element = NodePath("Select")
 focus_default_element_on_ready = null
-controls = null
-tint = null
+metadata/_edit_use_anchors_ = true
 
 [node name="Select" parent="ReadyMenu" instance=ExtResource("4_y2plc")]
 layout_mode = 0
@@ -68,6 +93,7 @@ offset_right = 133.0
 offset_bottom = 131.0
 texture_normal = ExtResource("7_b7klw")
 texture_click_mask = ExtResource("8_jibk1")
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="ReadyMenu/Select"]
 layout_mode = 1
@@ -80,20 +106,76 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
-text = "SELECT  "
+text = "SELECT"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Settings" parent="ReadyMenu" instance=ExtResource("4_y2plc")]
+[node name="GoMenu" parent="." instance=ExtResource("3_v4uwd")]
+unique_name_in_owner = true
+visible = false
+offset_left = -1.0
+offset_top = -65.0
+offset_right = -1.0
+offset_bottom = -65.0
+controls = null
+tint = null
+wrap = null
+default_focused_element = NodePath("Go")
+focus_default_element_on_ready = null
+metadata/_edit_use_anchors_ = true
+
+[node name="Go" parent="GoMenu" instance=ExtResource("4_y2plc")]
 layout_mode = 0
-offset_left = -101.0
-offset_top = 143.0
-offset_right = 97.0
-offset_bottom = 195.0
+offset_left = -96.0
+offset_top = 68.0
+offset_right = 123.0
+offset_bottom = 131.0
+texture_normal = ExtResource("7_a2o8n")
+texture_click_mask = ExtResource("8_s31hs")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="GoMenu/Go"]
+layout_mode = 2
+offset_left = -7.0
+offset_top = 26.0
+offset_right = 224.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "START"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="GameTypeLabel" type="Label" parent="GoMenu/Go"]
+layout_mode = 2
+offset_left = -8.0
+offset_top = 64.0
+offset_right = 223.0
+offset_bottom = 99.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "SOLO"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Settings" parent="GoMenu" instance=ExtResource("4_y2plc")]
+layout_mode = 0
+offset_left = -100.0
+offset_top = 155.0
+offset_right = 141.0
+offset_bottom = 266.0
 texture_normal = ExtResource("5_0wc3t")
 texture_click_mask = ExtResource("6_v1h44")
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="ReadyMenu/Settings"]
+[node name="Label" type="Label" parent="GoMenu/Settings"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,52 +188,19 @@ theme_override_font_sizes/font_size = 16
 text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="GoMenu" parent="." instance=ExtResource("3_v4uwd")]
-unique_name_in_owner = true
-visible = false
-offset_top = -200.0
-offset_bottom = -200.0
-wrap = null
-default_focused_element = NodePath("Go")
-focus_default_element_on_ready = null
-controls = null
-tint = null
-
-[node name="Go" parent="GoMenu" instance=ExtResource("4_y2plc")]
+[node name="Disconnect" parent="GoMenu" instance=ExtResource("4_y2plc")]
 layout_mode = 0
-offset_left = -96.0
-offset_top = 68.0
+offset_left = -86.0
+offset_top = 223.0
 offset_right = 123.0
-offset_bottom = 131.0
-texture_normal = ExtResource("7_a2o8n")
-texture_click_mask = ExtResource("8_s31hs")
-
-[node name="Label" type="Label" parent="GoMenu/Go"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -21.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 35
-text = "GO!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Back" parent="GoMenu" instance=ExtResource("4_y2plc")]
-layout_mode = 0
-offset_left = -101.0
-offset_top = 144.0
-offset_right = 98.0
-offset_bottom = 196.0
+offset_bottom = 325.0
 texture_normal = ExtResource("9_u4af2")
 texture_click_mask = ExtResource("10_oolja")
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="GoMenu/Back"]
+[node name="Label" type="Label" parent="GoMenu/Disconnect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -161,16 +210,18 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 16
-text = "BACK"
+text = "DISCONNECT"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="PilotCharacter" parent="." instance=ExtResource("13_jibk1")]
 unique_name_in_owner = true
 visible = false
-position = Vector2(-70, -307)
+position = Vector2(-70, -207)
 
 [node name="SFX" type="Node2D" parent="."]
+position = Vector2(0, 100)
 
 [node name="switch-selection" type="AudioStreamPlayer2D" parent="SFX"]
 unique_name_in_owner = true
