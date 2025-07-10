@@ -15,6 +15,10 @@ func _ready():
 	
 	var children : Array[FancyButton] = get_fancy_button_children()
 	
+	# do not set neighbours if there's only one child
+	if len(children) == 1:
+		return
+	
 	if auto_neighbours in ['horizontal','both']:
 		for i in range(len(children)):
 			if not children[i].focus_neighbor_left:
