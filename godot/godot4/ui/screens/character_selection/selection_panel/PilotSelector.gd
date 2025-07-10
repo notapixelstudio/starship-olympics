@@ -18,7 +18,6 @@ func set_player_id(v: String) -> void:
 func set_status(status: String):
 	_status = status
 	%StatusLabel.text = _status
-	%ReadyMenu.visible = _status == 'joined'
 	%GoMenu.visible = _status == 'selected'
 	%PilotCharacter.visible = _status != 'disabled'
 	%ControlsLabel.visible = _status != 'disabled'
@@ -35,7 +34,6 @@ func set_status(status: String):
 func set_controls(controls: String):
 	_controls = controls
 	%ControlsLabel.text = _controls
-	%ReadyMenu.set_controls(_controls)
 	%GoMenu.set_controls(_controls)
 
 func set_species(species: Species):
@@ -43,7 +41,6 @@ func set_species(species: Species):
 	%PPLabel.modulate = _species.get_color()
 	%SpeciesLabel.modulate = _species.get_color()
 	%SpeciesLabel.text = _species.name
-	%ReadyMenu.set_tint(_species.get_color())
 	%GoMenu.set_tint(_species.get_color())
 	%PilotCharacter.set_species(_species)
 
