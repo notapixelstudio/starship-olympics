@@ -27,6 +27,9 @@ func _process(delta):
 		ignore = false
 		
 func give_focus_to(what: FancyButton) -> void:
+	if what == null:
+		return
+		
 	if current_focused_element:
 		current_focused_element.blur()
 	current_focused_element = what
