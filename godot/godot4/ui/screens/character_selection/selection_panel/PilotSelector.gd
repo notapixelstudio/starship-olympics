@@ -6,6 +6,10 @@ class_name PilotSelector
 
 signal next(PilotSelector)
 signal previous(PilotSelector)
+signal ready_selected(PilotSelector)
+signal settings_selected(PilotSelector)
+signal back_selected(PilotSelector)
+signal disconnect_selected(PilotSelector)
 
 var _controls : String = 'none'
 var _species : Species
@@ -73,3 +77,16 @@ func _process(delta):
 		previous.emit(self)
 	elif Utils.are_controls_at_rest(_controls):
 		ignore = false
+
+
+func _on_ready_pressed() -> void:
+	ready_selected.emit(self)
+
+func _on_settings_pressed() -> void:
+	settings_selected.emit(self)
+
+func _on_back_pressed() -> void:
+	back_selected.emit(self)
+
+func _on_disconnect_pressed() -> void:
+	disconnect_selected.emit(self)

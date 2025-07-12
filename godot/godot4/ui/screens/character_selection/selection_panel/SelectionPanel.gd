@@ -25,6 +25,9 @@ func _ready():
 			continue
 		child.next.connect(_on_pilot_selector_next)
 		child.previous.connect(_on_pilot_selector_previous)
+		child.ready_selected.connect(_on_pilot_ready_selected)
+		child.back_selected.connect(_on_pilot_back_selected)
+		child.disconnect_selected.connect(_on_pilot_disconnect_selected)
 		
 ## return the first relevant action matching the given InputEvent, or null if it was not found
 func _get_action_from_event(event: InputEvent):
@@ -48,14 +51,7 @@ func _input(event: InputEvent):
 		var pilot_selector : PilotSelector = mapping_controls_pilot[controls]
 		match action_suffix:
 			'fire':
-				if pilot_selector in mapping_pilot_claimed:
-					if len(mapping_pilot_claimed) >= min_players:
-						print("we can go to next scene")
-						%Label.visible = false
-						emit_signal("selection_completed")
-						set_process_input(false)
-						return
-				else:
+				if not pilot_selector in mapping_pilot_claimed:
 					_claim_displayed_species(pilot_selector)
 					pilot_selector.set_status('selected')
 					%Label.visible = true
@@ -183,3 +179,23 @@ func get_players_data() -> Array[Player]:
 		if child is PilotSelector and child.is_status('selected'):
 			players.append(child.get_player_data())
 	return players
+
+func _on_pilot_ready_selected(pilot_selector: PilotSelector):
+	_check_all_ready()
+	
+func _on_pilot_back_selected(pilot_selector: PilotSelector):
+	_unclaim_displayed_species(pilot_selector)
+	
+func _on_pilot_disconnect_selected(pilot_selector: PilotSelector):
+	_disconnect_pilot(pilot_selector)
+
+func _check_all_ready():
+	if len(mapping_pilot_claimed) >= min_players:
+		print("we can go to next scene")
+		%Label.visible = false
+		emit_signal("selection_completed")
+		set_process_input(false)
+		
+func _disconnect_pilot(pilot_selector: PilotSelector):
+	_unclaim_displayed_species(pilot_selector)
+	pilot_selector.set_status('disabled')

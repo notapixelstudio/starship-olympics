@@ -80,10 +80,10 @@ offset_left = -1.0
 offset_top = -65.0
 offset_right = -1.0
 offset_bottom = -65.0
-default_focused_element = NodePath("Go")
+default_focused_element = NodePath("Ready")
 metadata/_edit_use_anchors_ = true
 
-[node name="Go" parent="GoMenu" instance=ExtResource("4_y2plc")]
+[node name="Ready" parent="GoMenu" instance=ExtResource("4_y2plc")]
 layout_mode = 0
 offset_left = -96.0
 offset_top = 62.0
@@ -92,7 +92,7 @@ offset_bottom = 164.0
 texture_normal = ExtResource("7_a2o8n")
 texture_click_mask = ExtResource("8_s31hs")
 
-[node name="Label" type="Label" parent="GoMenu/Go"]
+[node name="Label" type="Label" parent="GoMenu/Ready"]
 layout_mode = 2
 anchor_top = 0.0366355
 anchor_bottom = 0.0366355
@@ -209,3 +209,8 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = ExtResource("17_ct6yd")
 bus = &"SFX"
+
+[connection signal="pressed" from="GoMenu/Ready" to="." method="_on_ready_pressed"]
+[connection signal="pressed" from="GoMenu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="GoMenu/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="GoMenu/Disconnect" to="." method="_on_disconnect_pressed"]

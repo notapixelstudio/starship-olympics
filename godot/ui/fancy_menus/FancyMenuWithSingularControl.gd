@@ -14,10 +14,23 @@ func set_tint(value: Color) -> void:
 		child.self_modulate = tint
 
 var ignore := true
+var released_while_enabled := false
 func _process(delta):
 	if controls == 'none' or not _enabled:
 		return
 		
+	# emulate button press
+	if Input.is_action_just_released(controls+"_fire"):
+		if not released_while_enabled:
+			released_while_enabled = true
+			return
+			
+		if current_focused_element != null:
+			current_focused_element.pressed.emit()
+		
+		return
+		
+	# emulate focus cycling
 	if not ignore and Utils.is_action_strong(controls+"_down"):
 		ignore = true
 		give_focus_to(get_node(current_focused_element.focus_neighbor_bottom))
@@ -41,3 +54,5 @@ func set_controls(v: String) -> void:
 
 func set_enabled(v: bool) -> void:
 	_enabled = v
+	if not _enabled:
+		released_while_enabled = false
