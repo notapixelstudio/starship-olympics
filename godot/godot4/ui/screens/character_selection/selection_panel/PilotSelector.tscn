@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgu7lwmnkg60h"]
+[gd_scene load_steps=18 format=3 uid="uid://cgu7lwmnkg60h"]
 
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://dyw5oprdnddvj" path="res://godot4/ui/screens/character_selection/selection_panel/PilotSelector.gd" id="2"]
@@ -9,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://d0nefr1aus26p" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Go.png" id="7_a2o8n"]
 [ext_resource type="BitMap" uid="uid://b43pi655spa51" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Go.png" id="8_s31hs"]
 [ext_resource type="Texture2D" uid="uid://cwegg5yu4of73" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Back.png" id="9_u4af2"]
-[ext_resource type="BitMap" uid="uid://c18xu8vi0yegj" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Back.png" id="10_oolja"]
+[ext_resource type="BitMap" uid="uid://dfypfdal3vb7y" path="res://godot4/ui/screens/back_screen/buttons/area_Back.png" id="10_0qq4x"]
+[ext_resource type="Texture2D" uid="uid://dmw1ljywi5qf" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Disconnect.png" id="11_ohtdp"]
+[ext_resource type="BitMap" uid="uid://pm73sfd7crba" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Disconnect.png" id="12_84drq"]
 [ext_resource type="PackedScene" uid="uid://t6dfl0yckkei" path="res://godot4/ui/screens/character_selection/selection_panel/PilotCharacter.tscn" id="13_jibk1"]
 [ext_resource type="AudioStream" uid="uid://bi38pkb44oyyx" path="res://assets/audio/UI_effects/switch-selection.wav" id="14_0qq4x"]
 [ext_resource type="AudioStream" uid="uid://db7byxw1cn5kp" path="res://assets/audio/UI_effects/GUI_Select_02.wav" id="15_ohtdp"]
@@ -88,17 +90,16 @@ metadata/_edit_use_anchors_ = true
 [node name="Go" parent="GoMenu" instance=ExtResource("4_y2plc")]
 layout_mode = 0
 offset_left = -96.0
-offset_top = 68.0
-offset_right = 123.0
-offset_bottom = 131.0
+offset_top = 62.0
+offset_right = 134.0
+offset_bottom = 164.0
 texture_normal = ExtResource("7_a2o8n")
 texture_click_mask = ExtResource("8_s31hs")
-metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="GoMenu/Go"]
 layout_mode = 2
-anchor_top = 0.105263
-anchor_bottom = 0.105263
+anchor_top = 0.0366355
+anchor_bottom = 0.0366355
 offset_left = -7.0
 offset_top = 26.0
 offset_right = 224.0
@@ -114,13 +115,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Settings" parent="GoMenu" instance=ExtResource("4_y2plc")]
 layout_mode = 0
-offset_left = -100.0
-offset_top = 155.0
-offset_right = 141.0
-offset_bottom = 266.0
+offset_left = -99.0
+offset_top = 130.0
+offset_right = 142.0
+offset_bottom = 241.0
 texture_normal = ExtResource("5_0wc3t")
 texture_click_mask = ExtResource("6_v1h44")
-metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="GoMenu/Settings"]
 layout_mode = 1
@@ -137,21 +137,44 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Disconnect" parent="GoMenu" instance=ExtResource("4_y2plc")]
+[node name="Back" parent="GoMenu" instance=ExtResource("4_y2plc")]
 layout_mode = 0
-offset_left = -86.0
-offset_top = 223.0
-offset_right = 123.0
-offset_bottom = 325.0
+offset_left = -88.0
+offset_top = 190.0
+offset_right = 153.0
+offset_bottom = 301.0
 texture_normal = ExtResource("9_u4af2")
-texture_click_mask = ExtResource("10_oolja")
-metadata/_edit_use_anchors_ = true
+texture_click_mask = ExtResource("10_0qq4x")
 
-[node name="Label" type="Label" parent="GoMenu/Disconnect"]
+[node name="Label" type="Label" parent="GoMenu/Back"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "BACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Disconnect" parent="GoMenu" instance=ExtResource("4_y2plc")]
+layout_mode = 0
+offset_left = -71.0
+offset_top = 251.0
+offset_right = 145.0
+offset_bottom = 356.0
+texture_normal = ExtResource("11_ohtdp")
+texture_click_mask = ExtResource("12_84drq")
+
+[node name="Label" type="Label" parent="GoMenu/Disconnect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.00952381
+anchor_right = 0.861111
+anchor_bottom = 0.990476
 offset_left = 8.0
 grow_horizontal = 2
 grow_vertical = 2
