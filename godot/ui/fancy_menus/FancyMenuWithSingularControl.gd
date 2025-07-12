@@ -4,6 +4,7 @@ extends FancyMenu
 @export var tint := Color(1,1,1,1) : set = set_tint
 
 var current_focused_element : Control
+var _enabled := true
 
 func set_tint(value: Color) -> void:
 	tint = value
@@ -14,7 +15,7 @@ func set_tint(value: Color) -> void:
 
 var ignore := true
 func _process(delta):
-	if controls == 'none':
+	if controls == 'none' or not _enabled:
 		return
 		
 	if not ignore and Utils.is_action_strong(controls+"_down"):
@@ -37,3 +38,6 @@ func give_focus_to(what: FancyButton) -> void:
 
 func set_controls(v: String) -> void:
 	controls = v
+
+func set_enabled(v: bool) -> void:
+	_enabled = v

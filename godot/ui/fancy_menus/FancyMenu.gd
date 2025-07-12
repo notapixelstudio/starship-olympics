@@ -72,6 +72,11 @@ func restore_focused_element():
 		return
 	_saved_focused_element.grab_focus()
 	
+## Reset focused element to default, if any
+func reset_focused_element():
+	if get_node_or_null(default_focused_element):
+		give_focus_to(get_node(default_focused_element))
+	
 ## Isolate the given Control child, making other Controls unreachable from it.
 func isolate_child(child: Control):
 	if not child in get_children():
