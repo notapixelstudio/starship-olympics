@@ -12,3 +12,5 @@ func enable():
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton or event is InputEventKey:
 		any_key_pressed.emit()
+		set_process_unhandled_input(false)
+ 

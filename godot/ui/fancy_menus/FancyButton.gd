@@ -20,7 +20,7 @@ func focus():
 		%AudioStreamPlayer2D.play()
 	
 func blur():
-	modulate = Color(0.3, 0.3, 0.3)
+	modulate = Color(0.4, 0.4, 0.4)
 	z_index = 0
 	$AnimationPlayer.play("Shrink")
 	

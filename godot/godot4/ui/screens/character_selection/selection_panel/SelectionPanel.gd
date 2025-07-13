@@ -12,7 +12,6 @@ var mapping_pilot_claimed := {}
 var available_species : Array[Species] = []
 
 func _ready():
-	%Label.visible = false
 	available_species = Species.get_all_unlocked()
 	for action in InputMap.get_actions():
 		for action_name in ["_fire", "_left", "_right", "_up", "_down"]:
@@ -54,7 +53,6 @@ func _input(event: InputEvent):
 				if not pilot_selector in mapping_pilot_claimed:
 					_claim_displayed_species(pilot_selector)
 					pilot_selector.set_status('selected')
-					%Label.visible = true
 					if len(mapping_pilot_claimed) >= min_players:
 						%Label.text = "{players} READY".format({"players":len(mapping_pilot_claimed)})
 					else: 
@@ -92,21 +90,15 @@ func _input(event: InputEvent):
 						#'kb2': 'auriels_1'
 					#}
 					#(pilot_selector as PilotSelector).set_species(global.get_species(mapping[controls]))
-				if %Label.visible:
-					%Label.visible = false	
 				return
 				
 ## called whenever a pilot selector asks for the next character
 func _on_pilot_selector_next(pilot_selector: PilotSelector) -> void:
-	if %Label.visible:
-		%Label.visible = false
 	_unclaim_displayed_species(pilot_selector)
 	_display_adjacent_species(1, pilot_selector)
 	
 ## called whenever a pilot selector asks for the previous character
 func _on_pilot_selector_previous(pilot_selector: PilotSelector) -> void:
-	if %Label.visible:
-		%Label.visible = false
 	_unclaim_displayed_species(pilot_selector)
 	_display_adjacent_species(-1, pilot_selector)
 	
@@ -176,11 +168,12 @@ func _get_pilot_selectors() -> Array:
 func get_players_data() -> Array[Player]:
 	var players : Array[Player] = []
 	for child in get_children():
-		if child is PilotSelector and child.is_status('selected'):
+		if child is PilotSelector and child.is_status('ready'):
 			players.append(child.get_player_data())
 	return players
 
 func _on_pilot_ready_selected(pilot_selector: PilotSelector):
+	pilot_selector.set_status('ready')
 	_check_all_ready()
 	
 func _on_pilot_back_selected(pilot_selector: PilotSelector):
@@ -190,12 +183,21 @@ func _on_pilot_disconnect_selected(pilot_selector: PilotSelector):
 	_disconnect_pilot(pilot_selector)
 
 func _check_all_ready():
+	# we need to wait for all joined or selected players
+	for pilot in _get_pilot_selectors():
+		if pilot.is_status('joined') or pilot.is_status('selected'):
+			return
+	
+	# we also need to check of there are enough players
 	if len(mapping_pilot_claimed) >= min_players:
 		print("we can go to next scene")
-		%Label.visible = false
 		emit_signal("selection_completed")
 		set_process_input(false)
 		
 func _disconnect_pilot(pilot_selector: PilotSelector):
 	_unclaim_displayed_species(pilot_selector)
+	# also, no species is displayed anymore when we disconnect
+	mapping_pilot_displayed_species.erase(pilot_selector) 
+	# also, controls are removed from the associated pilot
+	mapping_controls_pilot.erase(pilot_selector.get_controls())
 	pilot_selector.set_status('disabled')

@@ -34,14 +34,17 @@ func set_status(status: String):
 			%selected.play()
 		'disabled':
 			%deselected.play()
-			%SpeciesLabel.modulate = Color('#7d7d7d')
+			%PPLabel.modulate = Color('#7d7d7d')
 			
-	%PilotCharacter.set_selected(_status == 'selected')
+	%PilotCharacter.set_status(_status)
 	
 func set_controls(controls: String):
 	_controls = controls
 	%ControlsLabel.text = _controls
 	%GoMenu.set_controls(_controls)
+	
+func get_controls() -> String:
+	return _controls
 
 func set_species(species: Species):
 	_species = species
