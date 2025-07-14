@@ -157,6 +157,11 @@ func disable():
 func enable():
 	set_process(true)
 	set_process_input(true)
+	
+func reset_ready_pilots():
+	for pilot in _get_pilot_selectors():
+		if pilot.is_status('ready'):
+			pilot.set_status('selected')
 
 func _get_pilot_selectors() -> Array:
 	var pilots := []
@@ -201,3 +206,4 @@ func _disconnect_pilot(pilot_selector: PilotSelector):
 	# also, controls are removed from the associated pilot
 	mapping_controls_pilot.erase(pilot_selector.get_controls())
 	pilot_selector.set_status('disabled')
+	reset_ready_pilots()

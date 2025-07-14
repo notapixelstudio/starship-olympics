@@ -6,6 +6,7 @@ var _selection_completed := false
 func enter():
 	super.enter()
 	_selection_completed = false
+	%SelectionPanel.reset_ready_pilots()
 	%SelectionPanel.enable()
 
 func exiting():

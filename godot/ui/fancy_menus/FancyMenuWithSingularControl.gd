@@ -14,15 +14,15 @@ func set_tint(value: Color) -> void:
 		child.self_modulate = tint
 
 var ignore := true
-var released_while_enabled := false
+var _enabled_while_pressed := false
 func _process(delta):
 	if controls == 'none' or not _enabled:
 		return
 		
 	# emulate button press
 	if Input.is_action_just_released(controls+"_fire"):
-		if not released_while_enabled:
-			released_while_enabled = true
+		if _enabled_while_pressed:
+			_enabled_while_pressed = false
 			return
 			
 		if current_focused_element != null:
@@ -54,5 +54,5 @@ func set_controls(v: String) -> void:
 
 func set_enabled(v: bool) -> void:
 	_enabled = v
-	if not _enabled:
-		released_while_enabled = false
+	if Input.is_action_pressed(controls+'_fire'):
+		_enabled_while_pressed = true
