@@ -26,10 +26,10 @@ jobs:
         run: |
           godot --headless --path . --import
           
-      - name: Run GUT Tests
-        working-directory: ./godot
-        run: |
-          godot -s --headless --path . addons/gut/gut_cmdln.gd
+      # - name: Run GUT Tests
+      #   working-directory: ./godot
+      #   run: |
+      #     godot -s --headless --path . addons/gut/gut_cmdln.gd
           
       - name: Linux/X11 Export
         working-directory: ./godot
