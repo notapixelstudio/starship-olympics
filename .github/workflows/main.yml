@@ -33,7 +33,7 @@ jobs:
       - name: Import Assets
         working-directory: ./godot
         run: |
-          godot --headless --path . --import
+          godot --headless --path . --export-release "Linux/X11" /dev/null --quit
           
       # - name: Run GUT Tests
       #   working-directory: ./godot
