@@ -1,13 +1,13 @@
-name: Godot CI
+name: Build and Test
 
 on:
-  push:
-    branches: [ fix/tidy-up-github ]
+  pull_request:
+    branches: [ main, develop ]
   workflow_dispatch:
 
 jobs:
-  test-and-export:
-    name: Test and Export
+  build-and-test:
+    name: Build and Test
     runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:4.4
@@ -30,15 +30,15 @@ jobs:
           rm -f Godot_v4.4-stable_export_templates.tpz
           rm -rf templates
 
-      - name: Import Assets
+      - name: Import Assets & Regenerate Class DB
         working-directory: ./godot
         run: |
-          godot --headless --path . --export-release "Linux/X11" /dev/null --quit
+          godot --headless --editor --quit
           
-      # - name: Run GUT Tests
-      #   working-directory: ./godot
-      #   run: |
-      #     godot -s --headless --path . addons/gut/gut_cmdln.gd
+      - name: Run GUT Tests
+        working-directory: ./godot
+        run: |
+          godot -s --headless --path . addons/gut/gut_cmdln.gd
           
       - name: Linux/X11 Export
         working-directory: ./godot
@@ -50,15 +50,15 @@ jobs:
         working-directory: ./godot
         run: |
           mkdir -v -p ../build/mac
-          godot --headless --export-release "Mac OSX" ../build/mac/starship-olympics
+          godot --headless --export-release "Mac OSX" ../build/mac/starship-olympics.zip
           
       - name: Windows Desktop Export
         working-directory: ./godot
         run: |
           mkdir -v -p ../build/windows
           godot --headless --export-release "Windows Desktop" ../build/windows/starship-olympics.exe
-          
-      - name: Upload Artifacts
+
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: starship-olympics-builds

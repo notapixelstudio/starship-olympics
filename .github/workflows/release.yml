@@ -1,0 +1,104 @@
+name: Release
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  GODOT_VERSION: 4.4
+  ITCH_USERNAME: 'notapixelstudio'
+  ITCH_GAME_ID: 'starship-olympics'
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: starship-olympics-builds
+          path: build
+
+      - name: Extract Version
+        id: extract_version
+        uses: anothrNick/github-tag-action@1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.extract_version.outputs.new_tag }}
+          release_name: "Release ${{ steps.extract_version.outputs.new_tag }}"
+          draft: false
+          prerelease: false
+
+      - name: Upload Linux Build
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/linux/starship-olympics
+          asset_name: starship-olympics-linux
+          asset_content_type: application/octet-stream
+
+      - name: Upload Mac OSX Build
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/mac/starship-olympics.zip
+          asset_name: starship-olympics-macos.zip
+          asset_content_type: application/zip
+
+      - name: Upload Windows Build
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/windows/starship-olympics.exe
+          asset_name: starship-olympics-windows.exe
+          asset_content_type: application/vnd.microsoft.portable-executable
+
+      - name: Deploy to Itch.io
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        with:
+          user: ${{ env.ITCH_USERNAME }}
+          game: ${{ env.ITCH_GAME_ID }}
+          channel: linux
+          path: ./build/linux
+          version: ${{ steps.extract_version.outputs.new_tag }}
+
+      - name: Deploy to Itch.io
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        with:
+          user: ${{ env.ITCH_USERNAME }}
+          game: ${{ env.ITCH_GAME_ID }}
+          channel: osx
+          path: ./build/mac
+          version: ${{ steps.extract_version.outputs.new_tag }}
+
+      - name: Deploy to Itch.io
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        with:
+          user: ${{ env.ITCH_USERNAME }}
+          game: ${{ env.ITCH_GAME_ID }}
+          channel: windows
+          path: ./build/windows
+          version: ${{ steps.extract_version.outputs.new_tag }} 
