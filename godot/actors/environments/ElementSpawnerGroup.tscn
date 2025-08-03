@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb7uagltp0r43"]
-
-[ext_resource type="Script" uid="uid://dnghf2tv4gu57" path="res://actors/environments/ElementSpawnerGroup.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://cmjhs38gid4sk" path="res://actors/environments/ElementSpawner.tscn" id="2"]
-
-[node name="ElementSpawnerGroup" type="Marker2D"]
-script = ExtResource("1")
-spawner_scene = ExtResource("2")

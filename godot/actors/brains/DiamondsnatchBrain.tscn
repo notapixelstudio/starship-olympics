@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc33kbqafn06s"]
-
-[ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://actors/brains/CPUBrain.tscn" id="1"]
-[ext_resource type="Script" uid="uid://n4jg3qkoqcjj" path="res://actors/brains/DiamondsnatchBrain.gd" id="2"]
-
-[node name="DiamondsnatchBrain" instance=ExtResource("1")]
-script = ExtResource("2")
-go_to_center_p = 0.1
-random_dash_p = 0.01
