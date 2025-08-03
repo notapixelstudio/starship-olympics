@@ -21,6 +21,14 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot
           
+      - name: Download and Install Export Templates
+        run: |
+          wget https://github.com/godotengine/godot/releases/download/4.4-stable/Godot_v4.4-stable_export_templates.tpz
+          unzip Godot_v4.4-stable_export_templates.tpz
+          mv templates/* ~/.local/share/godot/export_templates/4.4.stable/
+          rm -f Godot_v4.4-stable_export_templates.tpz
+          rm -rf templates
+
       - name: Import Assets
         working-directory: ./godot
         run: |
