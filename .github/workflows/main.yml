@@ -21,6 +21,11 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot
           
+      - name: Import Assets
+        working-directory: ./godot
+        run: |
+          godot --headless --path . --import
+          
       - name: Run GUT Tests
         working-directory: ./godot
         run: |
