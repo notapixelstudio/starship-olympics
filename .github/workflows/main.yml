@@ -1,0 +1,51 @@
+name: Godot CI
+
+on:
+  push:
+    branches: [ fix/tidy-up-github ]
+  workflow_dispatch:
+
+jobs:
+  test-and-export:
+    name: Test and Export
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Setup Godot
+        run: |
+          mkdir -v -p ~/.local/share/godot
+          
+      - name: Run GUT Tests
+        working-directory: ./godot
+        run: |
+          godot -s --headless --path . addons/gut/gut_cmdln.gd
+          
+      - name: Linux/X11 Export
+        working-directory: ./godot
+        run: |
+          mkdir -v -p ../build/linux
+          godot --headless --export-release "Linux/X11" ../build/linux/starship-olympics
+          
+      - name: Mac OSX Export
+        working-directory: ./godot
+        run: |
+          mkdir -v -p ../build/mac
+          godot --headless --export-release "Mac OSX" ../build/mac/starship-olympics
+          
+      - name: Windows Desktop Export
+        working-directory: ./godot
+        run: |
+          mkdir -v -p ../build/windows
+          godot --headless --export-release "Windows Desktop" ../build/windows/starship-olympics.exe
+          
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: starship-olympics-builds
+          path: build 
