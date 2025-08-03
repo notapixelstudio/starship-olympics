@@ -25,6 +25,7 @@ jobs:
         run: |
           wget https://github.com/godotengine/godot/releases/download/4.4-stable/Godot_v4.4-stable_export_templates.tpz
           unzip Godot_v4.4-stable_export_templates.tpz
+          mkdir -p ~/.local/share/godot/export_templates/4.4.stable
           mv templates/* ~/.local/share/godot/export_templates/4.4.stable/
           rm -f Godot_v4.4-stable_export_templates.tpz
           rm -rf templates
