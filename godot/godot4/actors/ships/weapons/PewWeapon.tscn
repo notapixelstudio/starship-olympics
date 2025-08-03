@@ -1,9 +1,0 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4anewnchp4ou"]
-
-[ext_resource type="PackedScene" uid="uid://q1o0cubu6i1c" path="res://godot4/actors/ships/weapons/Weapon.tscn" id="1_0u42t"]
-[ext_resource type="Script" uid="uid://b5x58y7vot0m" path="res://godot4/actors/ships/weapons/PewWeapon.gd" id="2_p34fo"]
-[ext_resource type="PackedScene" uid="uid://by5amjr0vhf4x" path="res://godot4/elements/projectiles/Pew.tscn" id="3_rluc2"]
-
-[node name="PewWeapon" instance=ExtResource("1_0u42t")]
-script = ExtResource("2_p34fo")
-pew_scene = ExtResource("3_rluc2")

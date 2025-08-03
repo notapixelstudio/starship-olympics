@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqjhpw5qoxlnc"]
-
-[ext_resource type="PackedScene" uid="uid://nlnnx1golw11" path="res://actors/environments/Ball.tscn" id="1"]
-[ext_resource type="Script" uid="uid://dvbrola342u5g" path="res://map_with_sets/MapManager.gd" id="2"]
-
-[node name="MapManager" type="Node"]
-script = ExtResource("2")
-BallScene = ExtResource("1")
