@@ -5,9 +5,15 @@ var _royal_players: Array[Player] = []
 func _ready():
 	Events.match_over.connect(_on_match_over)
 	Events.sth_loaded.connect(_on_sth_loaded)
+	Events.sth_unloaded.connect(_on_sth_unloaded)
 	
 func _on_sth_loaded(loader, loadee):
-	_royal_players.append(loader.get_player())
+	if loadee is Crown:
+		_royal_players.append(loader.get_player())
+	
+func _on_sth_unloaded(unloader, unloadee):
+	if unloadee is Crown:
+		_royal_players.erase(unloader.get_player())
 	
 func _physics_process(delta: float) -> void:
 	# assign points

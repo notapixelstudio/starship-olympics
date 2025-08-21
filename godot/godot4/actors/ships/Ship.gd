@@ -210,9 +210,13 @@ func has_cargo() -> bool:
 func rebound_cargo(collision_point: Vector2, collision_normal: Vector2) -> void:
 	%CargoManager.rebound_cargo.call_deferred(self, collision_point, collision_normal)
 
-func suffer_damage(amount: int) -> void:
+func suffer_damage(amount: int, damager) -> void:
+	if has_cargo():
+		%CargoManager.lose_cargo.call_deferred(self, damager)
+		return
+		
 	# TBD health system
-	die()
+	#die()
 	
 func die():
 	var death_feedback = death_feedback_scene.instantiate()

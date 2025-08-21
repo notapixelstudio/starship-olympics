@@ -66,6 +66,7 @@ signal match_over(data:Dictionary)
 
 signal sth_collected(collector, collectee)
 signal sth_loaded(loader, loadee)
+signal sth_unloaded(unloader, unloadee)
 signal sth_impacted(actor, environment:StaticBody2D)
 
 signal tap(tapper)

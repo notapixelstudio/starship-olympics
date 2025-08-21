@@ -105,8 +105,7 @@ hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 [node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource("6_1x60l")]
 hollow = true
 
-[node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("7_6xxad")]
-init_parametric_shape = NodePath("")
+[node name="Grid" parent="Battlefield" index="2" instance=ExtResource("7_6xxad")]
 
 [node name="Wall" parent="Battlefield" index="3" instance=ExtResource("6_1x60l")]
 position = Vector2(0, -950)
