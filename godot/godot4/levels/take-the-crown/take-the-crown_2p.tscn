@@ -143,7 +143,7 @@ hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 root_node = NodePath("../OutsideWall")
 callback_mode_process = 0
 libraries = {
-"": SubResource("AnimationLibrary_aclk8")
+&"": SubResource("AnimationLibrary_aclk8")
 }
 
 [node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource("5_q5cfv")]
@@ -169,7 +169,7 @@ sides = 4
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="6" groups=["animation_starts_with_battle"]]
 callback_mode_process = 0
 libraries = {
-"": SubResource("AnimationLibrary_kj0uy")
+&"": SubResource("AnimationLibrary_kj0uy")
 }
 
 [node name="ShieldWall" parent="Battlefield" index="7" instance=ExtResource("8_nyho4")]
