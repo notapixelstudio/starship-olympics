@@ -22,26 +22,9 @@ func _process(delta):
 func _update_rotation() -> void:
 	$Wrapper.rotation = linear_velocity.angle()
 
-func on_ship_near_area_hit(hit_ship: Ship) -> void:
-	# no friendly fire
-	if hit_ship.get_team() != team:
-		hit_ship.damage(self, ship, team)
-		destroy()
-	
 func _on_ForwardBullet_body_entered(body):
-	var is_mirror = body is Mirror #or body is MirrorWall
-	#var foe = not body.has_method('get_team') or body.get_team() != get_team()
-	if not is_mirror:# and foe:
-		destroy()
-		
-	if body.has_method('hit'):
-		body.hit()
-		
-	# TBD this was needed in GoalPortal
-	#if body is Ball and has_ownership_transfer() and ship != null and is_instance_valid(ship):
-		#body.set_player(ship.get_player())
-		#body.activate()
-		
+	Events.collision.emit(self, body)
+	
 func set_ship(v : Ship):
 	ship = v
 	$"%Sprite2D".modulate = ship.get_color()
@@ -79,3 +62,6 @@ func has_ownership_transfer() -> bool:
 	
 func get_team() -> String:
 	return team
+
+func get_damage_amount() -> int:
+	return 1

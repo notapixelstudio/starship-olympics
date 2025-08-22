@@ -1,14 +1,39 @@
 extends Node
 
 func _ready() -> void:
-	Events.ship_collision.connect(_on_ship_collision)
-	Events.other_collision.connect(_on_other_collision)
+	Events.collision.connect(_on_collision)
 	
-func _on_ship_collision(ship:Ship, collider:CollisionObject2D, area:String) -> void:
-	if collider is Pew and area == 'hurt':
-		ship.suffer_damage(1, collider)
-		collider.destroy()
+func _on_collision(actor:CollisionObject2D, collider:CollisionObject2D, tag:String='') -> void:
+	# actor should always be the object that detected the low-level collision
 	
-func _on_other_collision(actor:CollisionObject2D, collider:CollisionObject2D) -> void:
-	assert(not actor is Ship) # for collisions involving Ships, use the 'ship_collision' signal insetad
-	print('!')
+	# Ship
+	if actor is Ship:
+		# any touchable object by duck typing is touched
+		if collider.has_method('touched_by') and tag == 'touch':
+			collider.touched_by(actor)
+			return
+		
+		# Pews hurt Ships
+		if collider is Pew and tag == 'hurt':
+			# no friendly fire
+			if actor.get_team() == collider.get_team():
+				return
+				
+			actor.hit(collider)
+			collider.destroy()
+			return
+	
+	# Pews hit any sort of stuff, bounces off Mirrors
+	if actor is Pew:
+		var is_mirror = collider is Mirror #or collider is MirrorWall
+		if not is_mirror:
+			actor.destroy()
+			
+		if collider.has_method('hit'):
+			collider.hit()
+			
+		# TBD this was needed in GoalPortal
+		#if collider is Ball and actor.has_ownership_transfer() and actor.get_owner_ship() != null and is_instance_valid(actor.get_owner_ship()):
+			#collider.set_player(actor.get_owner_ship().get_player())
+			#collider.activate()
+		return

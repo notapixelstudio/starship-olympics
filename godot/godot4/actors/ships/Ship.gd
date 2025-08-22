@@ -55,9 +55,6 @@ const ON_ICE_CHARGE_BRAKE = 0.99
 const MIN_DRIFT := 400.0
 const MIN_DIVING_TIME := 0.05
 
-signal touch(sth: CollisionObject2D)
-signal hurt_by(sth: CollisionObject2D)
-
 ## constants for basic movement
 const THRUST := 6700 # 6500
 ## 9 because we enlarged the radius of the ship's collision shape by 3
@@ -178,13 +175,8 @@ func _on_touch_area_body_entered(body):
 	_on_touch_area_entered(body)
 	
 func _on_touch_area_entered(sth):
-	touch.emit(sth)
-	Events.ship_collision.emit(self, sth, 'touch')
+	Events.collision.emit(self, sth, 'touch')
 	
-	# FIXME to be removed
-	if sth.has_method('touched_by'):
-		sth.touched_by(self)
-		
 func _on_hurt_area_area_entered(area):
 	_on_hurt_area_entered(area)
 	
@@ -192,8 +184,7 @@ func _on_hurt_area_body_entered(body):
 	_on_hurt_area_entered(body)
 	
 func _on_hurt_area_entered(sth):
-	hurt_by.emit(sth)
-	Events.ship_collision.emit(self, sth, 'hurt')
+	Events.collision.emit(self, sth, 'hurt')
 	
 func get_color() -> Color:
 	return player.get_color() if player else Color.WHITE
@@ -207,9 +198,12 @@ func has_cargo() -> bool:
 func rebound_cargo(collision_point: Vector2, collision_normal: Vector2) -> void:
 	%CargoManager.rebound_cargo.call_deferred(self, collision_point, collision_normal)
 
-func suffer_damage(amount: int, damager) -> void:
+func show_hit() -> void:
 	%SpriteAnimation.stop()
 	%SpriteAnimation.play('Hit')
+
+func hit(damager) -> void:
+	show_hit()
 	
 	if has_cargo():
 		%CargoManager.lose_cargo.call_deferred(self, damager)

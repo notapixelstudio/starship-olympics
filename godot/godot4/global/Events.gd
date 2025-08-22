@@ -47,10 +47,8 @@ signal battle_start
 signal clock_ticked(t:float, t_secs:int)
 signal clock_expired
 
-signal ship_collision(ship:Ship, collider:CollisionObject2D, area:String)
-signal other_collision(actor:CollisionObject2D, collider:CollisionObject2D) # no Ships allowed as actor here!
-#signal ship_touch_sth(ship:Ship, sth:CollisionObject2D)
-#signal sth_hurt_ship(sth:CollisionObject2D, ship:Ship)
+signal collision(ship:Ship, collider:CollisionObject2D, tag:String)
+
 signal ship_captured(ship:Ship, trap)#, capturer) maybe?
 signal ship_released(ship:Ship, trap)#, capturer, saviour)
 

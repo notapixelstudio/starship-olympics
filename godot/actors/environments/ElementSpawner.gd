@@ -39,8 +39,9 @@ func spawn(parent_node = null):
 		
 	element.global_position = where_to_spawn
 	parent_node.add_child(element)
-	if appear.was_touched() and element.has_method('touched_by'): # WARNING duck typing
-		element.touched_by(appear.get_toucher())
+	if appear.was_touched():
+		# trigger a fake high-level collision
+		Events.collision.emit(appear.get_toucher(), element)
 	
 	if traits.has_trait(element, 'Waiter'):
 		element.start()
