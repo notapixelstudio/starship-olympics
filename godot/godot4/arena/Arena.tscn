@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=35 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="Script" uid="uid://cdwca4jvfkafg" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
 [ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="18_3l87r"]
 [ext_resource type="Texture2D" uid="uid://bvtwlkbaasdkr" path="res://combat/levels/background/menus.png" id="18_f7kik"]
 [ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="19_hnpxt"]
+[ext_resource type="PackedScene" uid="uid://c161j5oxkpgmm" path="res://godot4/arena/managers/CollisionManager.tscn" id="21_rittb"]
 [ext_resource type="PackedScene" uid="uid://baqs1sh3hug4e" path="res://godot4/arena/hud/Counter.tscn" id="26_picc7"]
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="27_8sctu"]
 [ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="28_fhoky"]
@@ -67,6 +68,8 @@ battlefield = NodePath("../../Battlefield")
 process_mode = 3
 script = ExtResource("16_uol0h")
 arena = NodePath("../..")
+
+[node name="CollisionManager" parent="Managers" instance=ExtResource("21_rittb")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true

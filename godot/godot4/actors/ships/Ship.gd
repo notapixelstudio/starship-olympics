@@ -179,8 +179,9 @@ func _on_touch_area_body_entered(body):
 	
 func _on_touch_area_entered(sth):
 	touch.emit(sth)
-	Events.ship_touch_sth.emit(self, sth)
+	Events.ship_collision.emit(self, sth, 'touch')
 	
+	# FIXME to be removed
 	if sth.has_method('touched_by'):
 		sth.touched_by(self)
 		
@@ -192,15 +193,7 @@ func _on_hurt_area_body_entered(body):
 	
 func _on_hurt_area_entered(sth):
 	hurt_by.emit(sth)
-	Events.sth_hurt_ship.emit(sth, self)
-	
-	# FIXME these pathways should be made more standard and centralized (mediator?)
-	%SpriteAnimation.stop()
-	%SpriteAnimation.play('Hit')
-	
-	if sth.has_method('hurt'):
-		sth.hurt(self)
-		
+	Events.ship_collision.emit(self, sth, 'hurt')
 	
 func get_color() -> Color:
 	return player.get_color() if player else Color.WHITE
@@ -215,6 +208,9 @@ func rebound_cargo(collision_point: Vector2, collision_normal: Vector2) -> void:
 	%CargoManager.rebound_cargo.call_deferred(self, collision_point, collision_normal)
 
 func suffer_damage(amount: int, damager) -> void:
+	%SpriteAnimation.stop()
+	%SpriteAnimation.play('Hit')
+	
 	if has_cargo():
 		%CargoManager.lose_cargo.call_deferred(self, damager)
 		return

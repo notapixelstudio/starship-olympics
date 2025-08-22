@@ -18,13 +18,13 @@ func _on_sth_collected(collector, collectee):
 
 [node name="TestChamber" instance=ExtResource("1_krlxa")]
 
-[node name="TestChamberLog" parent="." index="4"]
+[node name="TestChamberLog" parent="." index="3"]
 script = SubResource("GDScript_0rj7w")
 
-[node name="Ship" parent="." index="7" instance=ExtResource("2_e6hl1")]
+[node name="Ship" parent="." index="6" instance=ExtResource("2_e6hl1")]
 unique_name_in_owner = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="8"]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="7"]
 position = Vector2(700, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
@@ -33,7 +33,7 @@ polygon = PackedVector2Array(-50, -300, 0, -400, 50, -300, 50, 300, 0, 350, -50,
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" index="1"]
 polygon = PackedVector2Array(-50, -300, 0, -400, 50, -300, 50, 300, 0, 350, -50, 300)
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." index="9"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="8"]
 position = Vector2(-700, -200)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2" index="0"]
@@ -42,7 +42,7 @@ polygon = PackedVector2Array(0, -100, 50, -400, 50, 600, 0, 600)
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D2" index="1"]
 polygon = PackedVector2Array(0, -100, 50, -400, 50, 600, 0, 600)
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="." index="10"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="." index="9"]
 position = Vector2(-700, -200)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D3" index="0"]
@@ -51,9 +51,9 @@ polygon = PackedVector2Array(-550, 1450, -550, -1050, -600, -1100, -600, 1500, 2
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D3" index="1"]
 polygon = PackedVector2Array(-550, 1450, -550, -1050, -600, -1100, -600, 1500, 2000, 1500, 2000, -1100, -600, -1100, -550, -1050, 1950, -1050, 1950, 1450)
 
-[node name="Ship2" parent="." index="11" instance=ExtResource("2_e6hl1")]
+[node name="Ship2" parent="." index="10" instance=ExtResource("2_e6hl1")]
 position = Vector2(-550, 900)
 
-[node name="Diamond" parent="." index="12" instance=ExtResource("4_5wsu2")]
+[node name="Diamond" parent="." index="11" instance=ExtResource("4_5wsu2")]
 position = Vector2(0, -700)
 collectable = false

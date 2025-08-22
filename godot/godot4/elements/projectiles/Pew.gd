@@ -42,11 +42,6 @@ func _on_ForwardBullet_body_entered(body):
 		#body.set_player(ship.get_player())
 		#body.activate()
 		
-func hurt(hurted) -> void:
-	if hurted.has_method('suffer_damage'):
-		hurted.suffer_damage(1, self)
-	destroy()
-
 func set_ship(v : Ship):
 	ship = v
 	$"%Sprite2D".modulate = ship.get_color()

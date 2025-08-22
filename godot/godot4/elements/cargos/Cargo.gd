@@ -37,7 +37,7 @@ func _on_body_entered(body: Node) -> void:
 	#_reset_untouchable() # always reset untouchability on bouncing off sth
 	
 	if body is StaticBody2D:
-		Events.sth_impacted.emit(self, body)
+		Events.other_collision.emit(self, body)
 	
 func set_temp_untouchable_by(untoucher) -> void:
 	_untouchable_by = untoucher
