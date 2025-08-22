@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cesbcbw1r3bu4"]
+[gd_scene load_steps=17 format=3 uid="uid://cesbcbw1r3bu4"]
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_1x60l"]
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_6xxad"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="6_1x60l"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="7_6xxad"]
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="8_4csos"]
+[ext_resource type="PackedScene" uid="uid://tqe0qciw2df3" path="res://godot4/actors/enemies/AimTurret.tscn" id="9_hnyo5"]
 [ext_resource type="PackedScene" uid="uid://bia7yrbdvp8vw" path="res://godot4/elements/environments/ShieldWall.tscn" id="9_q32nv"]
 [ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="10_is7in"]
 [ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="11_p6a1c"]
@@ -105,7 +106,8 @@ hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 [node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource("6_1x60l")]
 hollow = true
 
-[node name="Grid" parent="Battlefield" index="2" instance=ExtResource("7_6xxad")]
+[node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("7_6xxad")]
+init_parametric_shape = NodePath("../VBeveledRect")
 
 [node name="Wall" parent="Battlefield" index="3" instance=ExtResource("6_1x60l")]
 position = Vector2(0, -950)
@@ -152,3 +154,6 @@ precision = 20
 rotation_degrees = 45.0
 
 [node name="Crown" parent="Battlefield" index="8" instance=ExtResource("11_p6a1c")]
+
+[node name="PewTurret" parent="Battlefield" index="9" instance=ExtResource("9_hnyo5")]
+position = Vector2(0, 950)

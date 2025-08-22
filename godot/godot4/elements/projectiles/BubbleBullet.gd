@@ -8,6 +8,9 @@ class_name BubbleBullet
 
 var _lifetime_left : float
 
+func set_lifetime(v: float):
+	lifetime = v
+
 func _ready() -> void:
 	_lifetime_left = lifetime
 	
