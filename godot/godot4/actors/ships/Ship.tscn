@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=35 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" uid="uid://57bbtul52rl7" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PhysicsMaterial" uid="uid://v8mu2p8ukj54" path="res://godot4/actors/ships/ShipPhysicsMaterial.tres" id="1_yr6p6"]
@@ -52,6 +52,84 @@ func _process(delta):
 	var weight = %ChargeManager.get_charge_normalized()
 	scale = Tween.interpolate_value(NORMAL, FAT_DELTA, weight, 1.0, Tween.TRANS_QUAD, Tween.EASE_OUT)
 "
+
+[sub_resource type="Animation" id="Animation_e7hm2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ijh7r"]
+resource_name = "Shine"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(1.4, 1.4, 1.4, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kthkp"]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(3, 3, 3, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lqqh5"]
+_data = {
+&"Hit": SubResource("Animation_kthkp"),
+&"RESET": SubResource("Animation_e7hm2"),
+&"Shine": SubResource("Animation_ijh7r")
+}
 
 [sub_resource type="GDScript" id="GDScript_ukxwp"]
 script/source = "extends Area2D
@@ -140,7 +218,7 @@ light_mask = 0
 position = Vector2(64, 0)
 scale = Vector2(0.77, 0.77)
 
-[node name="Sprite" type="Sprite2D" parent="Graphics"]
+[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
 light_mask = 0
 z_index = 20
@@ -150,7 +228,13 @@ script = SubResource("GDScript_jwr13")
 
 [node name="Shadow" parent="Graphics" node_paths=PackedStringArray("sprite") instance=ExtResource("15_s48iq")]
 scale = Vector2(0.8, 0.8)
-sprite = NodePath("../Sprite")
+sprite = NodePath("../Sprite2D")
+
+[node name="SpriteAnimation" type="AnimationPlayer" parent="Graphics"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_lqqh5")
+}
 
 [node name="TouchArea" type="Area2D" parent="." node_paths=PackedStringArray("host")]
 unique_name_in_owner = true
