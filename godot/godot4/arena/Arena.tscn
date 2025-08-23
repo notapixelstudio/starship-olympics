@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="18_3l87r"]
 [ext_resource type="Texture2D" uid="uid://bvtwlkbaasdkr" path="res://combat/levels/background/menus.png" id="18_f7kik"]
 [ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="19_hnpxt"]
-[ext_resource type="PackedScene" uid="uid://c161j5oxkpgmm" path="res://godot4/arena/managers/CollisionManager.tscn" id="21_rittb"]
+[ext_resource type="PackedScene" uid="uid://c161j5oxkpgmm" path="res://godot4/arena/managers/CollisionResponseManager.tscn" id="21_rittb"]
 [ext_resource type="PackedScene" uid="uid://baqs1sh3hug4e" path="res://godot4/arena/hud/Counter.tscn" id="26_picc7"]
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="27_8sctu"]
 [ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="28_fhoky"]
@@ -69,7 +69,7 @@ process_mode = 3
 script = ExtResource("16_uol0h")
 arena = NodePath("../..")
 
-[node name="CollisionManager" parent="Managers" instance=ExtResource("21_rittb")]
+[node name="CollisionResponseManager" parent="Managers" instance=ExtResource("21_rittb")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true

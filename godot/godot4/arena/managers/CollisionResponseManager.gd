@@ -5,23 +5,24 @@ func _ready() -> void:
 	
 func _on_collision(actor:CollisionObject2D, collider:CollisionObject2D, tag:String='') -> void:
 	# actor should always be the object that detected the low-level collision
+	# return as soon as a collision is handled
 	
 	# Ship
 	if actor is Ship:
 		# any touchable object by duck typing is touched
 		if collider.has_method('touched_by') and tag == 'touch':
 			collider.touched_by(actor)
-			return
+			return # collision handled
 		
 		# Pews hurt Ships
 		if collider is Pew and tag == 'hurt':
 			# no friendly fire
 			if actor.get_team() == collider.get_team():
-				return
+				return # collision handled
 				
 			actor.hit(collider)
 			collider.destroy()
-			return
+			return # collision handled
 	
 	# Pews hit any sort of stuff, bounces off Mirrors
 	if actor is Pew:
@@ -36,4 +37,4 @@ func _on_collision(actor:CollisionObject2D, collider:CollisionObject2D, tag:Stri
 		#if collider is Ball and actor.has_ownership_transfer() and actor.get_owner_ship() != null and is_instance_valid(actor.get_owner_ship()):
 			#collider.set_player(actor.get_owner_ship().get_player())
 			#collider.activate()
-		return
+		return # collision handled
