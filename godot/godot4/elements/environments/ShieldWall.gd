@@ -1,5 +1,6 @@
 @tool
 extends Area2D
+class_name ShieldWall
 
 @export_enum('shield', 'plate', 'skin') var type = 'skin'
 @export var starting_health := 3
@@ -87,7 +88,5 @@ func disable_collisions():
 		if type == 'skin': # shield type could have changed (e.g., if switched off)
 			up('skin')
 
-func _on_ShieldWall_body_entered(body):
-	if body.has_method('destroy'):
-		body.destroy()
-		self.down()
+func _on_body_entered(body: Node2D) -> void:
+	Events.collision.emit(self, body)

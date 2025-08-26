@@ -205,6 +205,7 @@ func show_hit() -> void:
 func hit(damager) -> void:
 	show_hit()
 	
+	# lose cargo if any instead of losing health
 	if has_cargo():
 		%CargoManager.lose_cargo.call_deferred(self, damager)
 		return

@@ -39,7 +39,7 @@ func spawn(parent_node = null):
 		
 	element.global_position = where_to_spawn
 	parent_node.add_child(element)
-	if appear.was_touched():
+	if appear and appear.was_touched():
 		# trigger a fake high-level touch collision
 		Events.collision.emit(appear.get_toucher(), element, 'touch')
 	
