@@ -33,9 +33,11 @@ func pop(author=null) -> void:
 func release_content(author) -> void:
 	_content.global_position = global_position
 	get_parent().add_child.call_deferred(_content)
-	if author and _content.has_method('touched_by'): # WARNING duck typing
-		_content.touched_by.call_deferred(author)
-
+	
+	# released content is always considered touched
+	# trigger a fake high-level touch collision
+	Events.collision.emit.call_deferred(author, _content, 'touch')
+	
 func _on_area_2d_body_entered(body):
 	if body is Ship:
 		if body.is_dashing():
