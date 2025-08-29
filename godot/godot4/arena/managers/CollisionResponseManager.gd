@@ -21,13 +21,13 @@ func _handle_ship_vs_other(ship:Ship, collider:CollisionObject2D, tag:String='')
 		collider.touched_by(ship)
 		return # collision handled
 	
-	# Pews hurt Ships
+	# Pews damage Ships
 	if collider is Pew and tag == 'hurt':
 		# no friendly fire
 		if ship.get_team() == collider.get_team():
 			return # collision handled
 			
-		ship.hit(collider)
+		ship.damage(collider)
 		collider.destroy()
 		return # collision handled
 		

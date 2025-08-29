@@ -202,7 +202,7 @@ func show_hit() -> void:
 	%SpriteAnimation.stop()
 	%SpriteAnimation.play('Hit')
 
-func hit(damager) -> void:
+func damage(damager) -> void:
 	show_hit()
 	
 	# lose cargo if any instead of losing health
