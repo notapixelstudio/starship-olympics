@@ -6,6 +6,7 @@ class_name Ship
 @export var player : Player : get = get_player, set = set_player
 @export var dash_ring_scene : PackedScene
 @export var death_feedback_scene : PackedScene
+@export var disabled_ship_scene : PackedScene
 
 func get_player() -> Player:
 	return player
