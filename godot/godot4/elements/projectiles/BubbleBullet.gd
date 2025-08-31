@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 
 func capture_ship(ship:Ship) -> void:
 	var bubble = ship_bubble_scene.instantiate()
-	bubble.set_player(ship.get_player())
+	bubble.set_ship(ship)
 	bubble.global_position = ship.global_position
 	ship.queue_free()
 	get_parent().add_child.call_deferred(bubble)

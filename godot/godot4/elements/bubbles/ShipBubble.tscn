@@ -1,15 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://damh5pf35vid8"]
+[gd_scene load_steps=5 format=3 uid="uid://damh5pf35vid8"]
 
 [ext_resource type="PackedScene" uid="uid://cfgy3ee8k825d" path="res://godot4/elements/bubbles/Bubble.tscn" id="1_iuhab"]
 [ext_resource type="Script" uid="uid://catw0kvop5kti" path="res://godot4/elements/bubbles/ShipBubble.gd" id="2_chsyf"]
-[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="3_amg0f"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="4_e1tme"]
 [ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://godot4/actors/brains/CPUBrain.tscn" id="5_ufxqr"]
 
 [node name="ShipBubble" instance=ExtResource("1_iuhab")]
 script = ExtResource("2_chsyf")
-ship_scene = ExtResource("3_amg0f")
-player = null
 player_brain_scene = ExtResource("4_e1tme")
 cpu_brain_scene = ExtResource("5_ufxqr")
 appear_scene = null

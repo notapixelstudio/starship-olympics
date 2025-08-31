@@ -6,6 +6,11 @@ class_name Ship
 static func create(player:Player, enabled:=true):
 	return Context.ship_factory.create(player, enabled)
 
+func clone() -> Ship:
+	var new_ship = Ship.create(get_player())
+	# TBD copy relevant parameters to the new ship
+	return new_ship
+	
 @export var player : Player : get = get_player, set = set_player
 @export var dash_ring_scene : PackedScene
 @export var death_feedback_scene : PackedScene
@@ -228,7 +233,7 @@ func die():
 	
 func disable():
 	var disabled_ship := disabled_ship_scene.instantiate()
-	disabled_ship.set_player(get_player())
+	disabled_ship.set_ship(self)
 	disabled_ship.global_position = global_position
 	disabled_ship.global_rotation = global_rotation
 	disabled_ship.linear_velocity = linear_velocity
