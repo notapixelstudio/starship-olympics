@@ -105,8 +105,8 @@ func _ready() -> void:
 	for brain in brains_to_enable:
 		brain.enabled = true
 	
-	for player in get_tree().get_nodes_in_group('animation_starts_with_battle'):
-		player.play('default')
+	for animation in get_tree().get_nodes_in_group('animation_starts_with_battle'):
+		animation.play('default')
 	
 func setup() -> void:
 	%TimeManager.set_time(_params.time)
