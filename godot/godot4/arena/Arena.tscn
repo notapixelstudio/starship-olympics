@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=33 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="Script" uid="uid://cdwca4jvfkafg" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
 [ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
@@ -9,10 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_jxfg0"]
 [ext_resource type="Resource" uid="uid://c2u64vntxjiy6" path="res://godot4/debug/default_data/default_players/p3.tres" id="4_c1158"]
 [ext_resource type="Resource" uid="uid://dxdsvkvidj80p" path="res://godot4/debug/default_data/default_players/p4.tres" id="5_ej3mp"]
-[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="6_p0dyi"]
-[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="7_o1qkg"]
 [ext_resource type="PackedScene" uid="uid://dnny8ekvjg4ck" path="res://godot4/debug/SOLog.tscn" id="7_tad78"]
-[ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://actors/brains/CPUBrain.tscn" id="8_segll"]
 [ext_resource type="PackedScene" uid="uid://dy7pqq7fivkj3" path="res://godot4/ui/overlays/StandaloneVersusMatchOverOverlay.tscn" id="9_kkxbo"]
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="9_nr0n0"]
 [ext_resource type="Resource" uid="uid://bpw2qo5744n7m" path="res://godot4/data/minigames/default.tres" id="9_vsuw2"]
@@ -27,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://bvtwlkbaasdkr" path="res://combat/levels/background/menus.png" id="18_f7kik"]
 [ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="19_hnpxt"]
 [ext_resource type="PackedScene" uid="uid://c161j5oxkpgmm" path="res://godot4/arena/managers/CollisionResponseManager.tscn" id="21_rittb"]
+[ext_resource type="PackedScene" uid="uid://bsglorws8xub7" path="res://godot4/arena/managers/ShipFactory.tscn" id="22_xop1g"]
 [ext_resource type="PackedScene" uid="uid://baqs1sh3hug4e" path="res://godot4/arena/hud/Counter.tscn" id="26_picc7"]
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="27_8sctu"]
 [ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="28_fhoky"]
@@ -38,9 +36,6 @@
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_avtyt")
 players = Array[ExtResource("2_wi08g")]([ExtResource("2_3p1dt"), ExtResource("3_jq12e"), ExtResource("4_c1158"), ExtResource("5_ej3mp")])
-ship_scene = ExtResource("6_p0dyi")
-player_brain_scene = ExtResource("7_o1qkg")
-cpu_brain_scene = ExtResource("8_segll")
 match_over_screen_scene = ExtResource("9_kkxbo")
 default_minigame = ExtResource("9_vsuw2")
 default_params = ExtResource("9_nr0n0")
@@ -70,6 +65,8 @@ script = ExtResource("16_uol0h")
 arena = NodePath("../..")
 
 [node name="CollisionResponseManager" parent="Managers" instance=ExtResource("21_rittb")]
+
+[node name="ShipFactory" parent="Managers" instance=ExtResource("22_xop1g")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true

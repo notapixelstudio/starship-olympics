@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://x751geeku5fx"]
+[gd_scene load_steps=18 format=3 uid="uid://x751geeku5fx"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_bvhdi"]
 [ext_resource type="PackedScene" uid="uid://chnvt4cxrqrcv" path="res://godot4/arena/managers/games/CrownGame.tscn" id="2_3q1vj"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="7_1nk4p"]
 [ext_resource type="PackedScene" uid="uid://bia7yrbdvp8vw" path="res://godot4/elements/environments/ShieldWall.tscn" id="8_nyho4"]
 [ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="9_f33xf"]
-[ext_resource type="PackedScene" uid="uid://chm0a8w56kiny" path="res://godot4/actors/ships/DisabledShip.tscn" id="12_hs8js"]
 
 [sub_resource type="Animation" id="Animation_vtipm"]
 length = 0.001
@@ -198,6 +197,3 @@ precision = 20
 rotation_degrees = 45.0
 
 [node name="Crown" parent="Battlefield" index="9" instance=ExtResource("6_h5akp")]
-
-[node name="DisabledShip" parent="." index="7" instance=ExtResource("12_hs8js")]
-position = Vector2(100, -350)

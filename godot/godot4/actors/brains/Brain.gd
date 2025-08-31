@@ -5,13 +5,16 @@ var target_velocity : Vector2
 var rotation_request : float
 
 var controllee
-var enabled := true
+@export var enabled := true
 
 func _enter_tree():
 	controllee = get_parent()
 	
 func set_controllee(v) -> void:
 	controllee = v
+	
+func set_enabled(v:bool) -> void:
+	enabled = v
 
 func get_target_velocity() -> Vector2:
 	return target_velocity
@@ -21,3 +24,6 @@ func get_rotation_request() -> float:
 	
 func tick() -> void:
 	pass
+
+func start() -> void:
+	enabled = true

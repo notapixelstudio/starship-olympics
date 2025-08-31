@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3hpkwrjby8mf"]
-
-[ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://actors/brains/CPUBrain.tscn" id="1"]
-[ext_resource type="Script" uid="uid://b26odrrdwke1x" path="res://actors/brains/SlamAGonBrain.gd" id="2"]
-
-[node name="SlamAGonBrain" instance=ExtResource("1")]
-script = ExtResource("2")
-random_dash_p = 0.008

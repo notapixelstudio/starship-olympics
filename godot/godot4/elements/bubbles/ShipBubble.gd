@@ -8,20 +8,14 @@ class_name ShipBubble
 
 func set_ship_scene(v:PackedScene) -> void:
 	ship_scene = v
-	_content = ship_scene.instantiate()
+	#_content = ship_scene.instantiate()
 
 func set_player(v:Player) -> void:
 	player = v
+	if player:
+		_content = Ship.create(player)
 
 func _ready() -> void:
-	_content.set_player(player)
-	var brain
-	if player.is_cpu():
-		brain = cpu_brain_scene.instantiate() # FIXME clearly wrong, we can't know which brain has to be instantiated
-	else:
-		brain = player_brain_scene.instantiate()
-		brain.set_controls(player.get_controls())
-	_content.add_child(brain)
 	%ContentSprite2D.texture = player.get_ship_image()
 
 func set_content_rotation(v:float) -> void:

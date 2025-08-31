@@ -3,6 +3,9 @@ extends RigidBody2D
 class_name Ship
 ## Ship base class
 
+static func create(player:Player, enabled:=true):
+	return Context.ship_factory.create(player, enabled)
+
 @export var player : Player : get = get_player, set = set_player
 @export var dash_ring_scene : PackedScene
 @export var death_feedback_scene : PackedScene
@@ -131,7 +134,8 @@ func _ready():
 	# see https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_dynamics.html
 	# and https://github.com/search?q=repo%3Aappsinacup%2Fgodot-box2d+body_set_ccd_enabled&type=code
 	PhysicsServer2D.body_set_continuous_collision_detection_mode(get_rid(), PhysicsServer2D.CCD_MODE_CAST_SHAPE)
-
+	print(get_scene_file_path())
+	
 #func _physics_process(delta: float) -> void:
 	#_continuous_collision_check()
 	
@@ -213,12 +217,23 @@ func damage(damager) -> void:
 		
 	# TBD health system
 	#die()
+	disable()
 	
 func die():
 	var death_feedback = death_feedback_scene.instantiate()
 	death_feedback.color = get_color()
 	death_feedback.global_position = global_position
 	get_parent().add_child(death_feedback)
+	queue_free()
+	
+func disable():
+	var disabled_ship := disabled_ship_scene.instantiate()
+	disabled_ship.set_player(get_player())
+	disabled_ship.global_position = global_position
+	disabled_ship.global_rotation = global_rotation
+	disabled_ship.linear_velocity = linear_velocity
+	disabled_ship.angular_velocity = angular_velocity
+	get_parent().add_child.call_deferred(disabled_ship)
 	queue_free()
 
 func get_speed_normalized() -> float:
