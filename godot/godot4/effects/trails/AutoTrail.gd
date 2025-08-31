@@ -44,7 +44,7 @@ func _will_next_segment_be_too_long() -> bool:
 # drop a duplicate of this trail
 func _drop_duplicate():
 	var dup = duplicate()
-	host.get_parent().add_child.call_deferred(dup)
+	Events.spawn_request.emit(dup)
 	dup._detached = true
 
 ## Cut this trail, leaving a disappearing copy behind.

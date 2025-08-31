@@ -48,6 +48,7 @@ signal clock_ticked(t:float, t_secs:int)
 signal clock_expired
 
 signal collision(ship:Ship, collider:CollisionObject2D, tag:String)
+signal spawn_request(object_to_spawn:Node)
 
 signal ship_captured(ship:Ship, trap)#, capturer) maybe?
 signal ship_released(ship:Ship, trap)#, capturer, saviour)

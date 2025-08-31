@@ -7,6 +7,7 @@ func set_ship(ship: Ship) -> void:
 	%Sprite2D.texture = ship.get_player().get_ship_image()
 	%UnderSprite.texture = ship.get_player().get_ship_image()
 	%UnderSprite.material.set_shader_parameter('color', ship.get_player().get_color())
+	%MotionAutoTrail.gradient = ship.get_player().get_gradient()
 	_cloned_ship = ship.clone()
 	
 func damage(hazard, damager) -> void:
@@ -23,6 +24,6 @@ func _restore_ship() -> void:
 	_cloned_ship.global_rotation = global_rotation
 	_cloned_ship.linear_velocity = linear_velocity
 	_cloned_ship.angular_velocity = angular_velocity
-	get_parent().add_child.call_deferred(_cloned_ship)
+	Events.spawn_request.emit(_cloned_ship)
 	queue_free()
 	

@@ -19,5 +19,6 @@ func fire(source):
 		var pew = pew_scene.instantiate()
 		pew.global_position = global_position + Vector2(120, 0).rotated(angle)
 		pew.linear_velocity = Vector2(2500, 0).rotated(angle)
-		source.get_parent().add_child(pew)
 		pew.set_ship(source)
+		Events.spawn_request.emit(pew)
+		

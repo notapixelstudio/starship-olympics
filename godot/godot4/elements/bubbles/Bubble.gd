@@ -27,12 +27,12 @@ func pop(author=null) -> void:
 	SoundEffects.play(%PopSFX)
 	var pop = bubble_popped_scene.instantiate()
 	pop.global_position = global_position
-	get_parent().add_child(pop)
+	Events.spawn_request.emit(pop)
 	queue_free()
 	
 func release_content(author) -> void:
 	_content.global_position = global_position
-	get_parent().add_child.call_deferred(_content)
+	Events.spawn_request.emit(_content)
 	
 	# released content is always considered touched
 	# trigger a fake high-level touch collision

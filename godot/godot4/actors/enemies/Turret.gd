@@ -25,4 +25,4 @@ func fire() -> void:
 	bullet.linear_velocity = (Vector2.RIGHT * bullet_speed).rotated(global_rotation)
 	bullet.global_position = global_position + distance*Vector2.RIGHT.rotated(global_rotation)
 	#bullet.global_rotation = global_rotation
-	get_parent().add_child(bullet)
+	Events.spawn_request.emit(bullet)

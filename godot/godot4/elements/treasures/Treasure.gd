@@ -44,7 +44,7 @@ func touched_by(toucher):
 	var picked_effect = treasure_picked_scene.instantiate()
 	picked_effect.set_texture(outline_texture)
 	picked_effect.global_position = global_position
-	get_parent().add_child(picked_effect)
+	Events.spawn_request.emit(picked_effect)
 	
 	queue_free()
 

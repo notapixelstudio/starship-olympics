@@ -25,7 +25,7 @@ func capture_ship(ship:Ship) -> void:
 	bubble.set_ship(ship)
 	bubble.global_position = ship.global_position
 	ship.queue_free()
-	get_parent().add_child.call_deferred(bubble)
+	Events.spawn_request.emit(bubble)
 	bubble.set_content_rotation(ship.global_rotation)
 	Events.ship_captured.emit.call_deferred(ship, bubble)
 	
@@ -35,14 +35,14 @@ func capture_treasure(treasure:Treasure) -> void:
 	bubble.add_to_group('Treasure')
 	bubble.global_position = treasure.global_position
 	get_parent().remove_child.call_deferred(treasure)
-	get_parent().add_child.call_deferred(bubble)
+	Events.spawn_request.emit(bubble)
 	bubble.set_content_rotation(treasure.global_rotation)
 	
 func destroy() -> void:
 	var effect = bubble_popped_scene.instantiate()
 	effect.global_position = global_position
 	effect.scale = 0.5*Vector2(1,1)
-	get_parent().add_child(effect)
+	Events.spawn_request.emit(effect)
 	queue_free()
 
 

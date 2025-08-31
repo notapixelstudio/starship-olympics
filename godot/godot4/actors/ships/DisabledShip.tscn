@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://chm0a8w56kiny"]
+[gd_scene load_steps=19 format=3 uid="uid://chm0a8w56kiny"]
 
 [ext_resource type="Script" uid="uid://b48us2j2d45hn" path="res://godot4/actors/ships/DisabledShip.gd" id="1_qvvl6"]
 [ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="4_4idgn"]
 [ext_resource type="PackedScene" uid="uid://clbsrjsidxhav" path="res://combat/traits/Tracked.tscn" id="4_jhun4"]
 [ext_resource type="Shader" uid="uid://ctwaq21cw4j8y" path="res://assets/shaders/outline.gdshader" id="7_2xosv"]
+[ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="8_yl4br"]
 [ext_resource type="Script" uid="uid://bpexb6wjfpakj" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="10_s5i80"]
 [ext_resource type="AudioStream" uid="uid://y066l7id4wb5" path="res://assets/audio/FX/sfx_sound_shutdown1.wav" id="11_nl2p4"]
 [ext_resource type="AudioStream" uid="uid://cnr33o7pkt1im" path="res://assets/audio/FX/sfx_sounds_interaction12.wav" id="12_sdkoe"]
@@ -111,6 +112,11 @@ _data = {
 &"hit": SubResource("7")
 }
 
+[sub_resource type="Gradient" id="Gradient_hr0tn"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.997561)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
+
 [node name="DisabledShip" type="RigidBody2D" groups=["Foreground", "in_camera"]]
 collision_layer = 8192
 collision_mask = 1168
@@ -160,10 +166,17 @@ libraries = {
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("12_sdkoe")
+volume_db = -5.0
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 3.0
 autostart = true
+
+[node name="MotionAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("8_yl4br")]
+unique_name_in_owner = true
+gradient = SubResource("Gradient_hr0tn")
+host = NodePath("..")
+max_age = 0.4
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

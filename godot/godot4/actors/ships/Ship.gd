@@ -22,10 +22,8 @@ func get_player() -> Player:
 func set_player(v: Player) -> void:
 	player = v
 	%Sprite2D.texture = player.get_ship_image()
-	var trail_gradient = Gradient.new()
-	trail_gradient.set_color(0, Color(player.get_species().get_color_secondary(), 0))
-	trail_gradient.set_color(1, Color(player.get_species().get_color(), 0.2))
-	%MotionAutoTrail.gradient = trail_gradient
+	
+	%MotionAutoTrail.gradient = player.get_gradient()
 	%FlameTrail.default_color = player.get_species().get_color_accent()
 	%BottomFlameTrail.default_color = player.get_species().get_color()
 	%PlayerID.text = player.get_id()
@@ -164,7 +162,7 @@ func graphics_enlarge():
 
 func _drop_dash_ring_effect() -> void:
 	var dash_ring = dash_ring_scene.instantiate()
-	get_parent().add_child(dash_ring)
+	Events.spawn_request.emit(dash_ring)
 	dash_ring.global_position = global_position
 	dash_ring.global_rotation = global_rotation
 	dash_ring.set_color(get_color())
@@ -228,7 +226,7 @@ func die():
 	var death_feedback = death_feedback_scene.instantiate()
 	death_feedback.color = get_color()
 	death_feedback.global_position = global_position
-	get_parent().add_child(death_feedback)
+	Events.spawn_request.emit(death_feedback)
 	queue_free()
 	
 func disable():
@@ -238,7 +236,7 @@ func disable():
 	disabled_ship.global_rotation = global_rotation
 	disabled_ship.linear_velocity = linear_velocity
 	disabled_ship.angular_velocity = angular_velocity
-	get_parent().add_child.call_deferred(disabled_ship)
+	Events.spawn_request.emit(disabled_ship)
 	queue_free()
 
 func get_speed_normalized() -> float:
