@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 class_name Turret
 
 @export var bullet_scene : PackedScene
@@ -26,3 +26,6 @@ func fire() -> void:
 	bullet.global_position = global_position + distance*Vector2.RIGHT.rotated(global_rotation)
 	#bullet.global_rotation = global_rotation
 	Events.spawn_request.emit(bullet)
+
+func get_team() -> String:
+	return 'rogue'

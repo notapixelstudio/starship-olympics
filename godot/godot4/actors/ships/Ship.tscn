@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=37 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" uid="uid://57bbtul52rl7" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PhysicsMaterial" uid="uid://v8mu2p8ukj54" path="res://godot4/actors/ships/ShipPhysicsMaterial.tres" id="1_yr6p6"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d1673ytdlyny4" path="res://godot4/debug/OnShipDebug.tscn" id="5_0tcqu"]
 [ext_resource type="PackedScene" uid="uid://chm0a8w56kiny" path="res://godot4/actors/ships/DisabledShip.tscn" id="5_jvf5m"]
 [ext_resource type="Script" uid="uid://csgls77y2kr7l" path="res://godot4/actors/managers/ChargeManager.gd" id="5_ostpb"]
+[ext_resource type="PackedScene" uid="uid://bhygc2xfw2jei" path="res://godot4/traits/Target.tscn" id="6_kqe5y"]
 [ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="8_11rou"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="8_yfcmx"]
 [ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://godot4/effects/trails/FlameTrail.tscn" id="10_4jj2i"]
@@ -189,6 +190,8 @@ script = ExtResource("1_cvjhk")
 dash_ring_scene = ExtResource("2_0puh8")
 death_feedback_scene = ExtResource("3_3e4pi")
 disabled_ship_scene = ExtResource("5_jvf5m")
+
+[node name="Target" parent="." instance=ExtResource("6_kqe5y")]
 
 [node name="Tracked" parent="." instance=ExtResource("3_h4ehe")]
 unique_name_in_owner = true

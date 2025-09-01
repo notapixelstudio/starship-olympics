@@ -32,7 +32,12 @@ func fire(source):
 		
 func get_aim_compensation_target():
 	for body in $"%AimCompensationZone".get_overlapping_bodies():
-		# FIXME this could be abstracted in some way, not sure about traits though
-		if body is Ship and get_host() is Ship and body.get_team() != get_host().get_team(): #traits.has_trait(body, 'Target'):
+		if is_valid_target(body, get_host()):
 			return body
+	for area in $"%AimCompensationZone".get_overlapping_areas():
+		if is_valid_target(area, get_host()):
+			return area
 	return null
+
+func is_valid_target(sth, actor) -> bool:
+	return traits.has_trait(sth, 'Target') and sth.get_team() != actor.get_team()

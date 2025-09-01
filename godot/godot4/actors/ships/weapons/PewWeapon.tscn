@@ -11,6 +11,7 @@ pew_scene = ExtResource("3_rluc2")
 [node name="AimCompensationZone" type="Area2D" parent="." index="0"]
 unique_name_in_owner = true
 collision_layer = 0
+collision_mask = 4097
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AimCompensationZone" index="0"]
 polygon = PackedVector2Array(1000, -300, 1000, 300, 0, 150, 0, -150)
