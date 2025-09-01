@@ -1,10 +1,13 @@
 extends Node2D
 class_name Weapon
 
-var _player : Player
+var _host
 
+func get_host() -> Node:
+	return _host
+	
 func get_player() -> Player:
-	return _player
+	return get_host().get_player()
 	
 func _enter_tree():
-	_player = get_parent().get_player()
+	_host = get_parent()
