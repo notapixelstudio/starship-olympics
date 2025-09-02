@@ -45,7 +45,7 @@ func set_polygon(v: PackedVector2Array) -> void:
 	%FeedbackLine2D.set_points(_polygon)
 
 func _ready() -> void:
-	Events.other_collision.connect(_on_other_collision)
+	Events.collision.connect(_on_collision)
 	
 	_refresh_shape()
 	
@@ -70,7 +70,7 @@ func _ready() -> void:
 func _refresh_shape() -> void:
 	%VRegularPolygon.radius = core_radius + ring_width * _current_ring
 	
-func _on_other_collision(actor, collider) -> void:
+func _on_collision(actor, collider) -> void:
 	if collider == %SolidCollider and actor is Ball:
 		pass
 
