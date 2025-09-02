@@ -101,13 +101,13 @@ func charge():
 	
 func release():
 	if %ChargeManager.can_tap():
-		tap()
+		do_tap()
 	if %ChargeManager.can_dash():
-		dash(%ChargeManager.get_charge())
+		do_dash(%ChargeManager.get_charge())
 	%ChargeManager.end_charging()
 	dash_graviton_field.disable()
 
-func dash(charge: float) -> void:
+func do_dash(charge: float) -> void:
 	var dash_strength = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(charge - MIN_CHARGE, 0, %ChargeManager.MAX_CHARGE)
 	var recoil = max(0,-DASH_HANDICAP+dash_strength*DASH_MULTIPLIER)
 	apply_central_impulse(Vector2(recoil, 0).rotated(global_rotation)) # recoil only if dashing
@@ -128,8 +128,9 @@ func end_dash():
 	set_collision_layer_value(31, false)
 	set_collision_layer_value(32, true)
 
-
-func tap():
+signal tap
+func do_tap():
+	tap.emit()
 	Events.tap.emit(self)
 	
 func _ready():

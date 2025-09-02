@@ -3,11 +3,10 @@ extends Weapon
 @export var pew_scene : PackedScene
 
 func _ready() -> void:
-	Events.tap.connect(_on_tap)
+	get_host().tap.connect(_on_tap)
 
-func _on_tap(tapper) -> void:
-	if get_player() == tapper.get_player():
-		fire(tapper)
+func _on_tap() -> void:
+	fire(get_host())
 	
 func fire(source):
 	var aperture = PI/4
