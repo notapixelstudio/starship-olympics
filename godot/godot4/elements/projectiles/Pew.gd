@@ -28,7 +28,8 @@ func _on_ForwardBullet_body_entered(body):
 func set_ship(v : Ship):
 	ship = v
 	$"%Sprite2D".modulate = ship.get_color()
-	$AutoTrail.starting_color = ship.get_color()
+	$AutoTrail.starting_color = Color(ship.get_color(), 0.2)
+	$AutoTrail.ending_color = Color(ship.get_color(), 0)
 	team = ship.get_team() # remember team to avoid friendly fire (or checking up a dead ship)
 	
 func dissolve() -> void:
