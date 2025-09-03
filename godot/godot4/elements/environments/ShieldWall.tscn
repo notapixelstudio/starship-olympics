@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bia7yrbdvp8vw"]
+[gd_scene load_steps=11 format=3 uid="uid://bia7yrbdvp8vw"]
 
 [ext_resource type="Script" uid="uid://bxnllekqfjvdf" path="res://godot4/elements/environments/ShieldWall.gd" id="1_vjsnw"]
 [ext_resource type="Texture2D" uid="uid://csxyu2y2crrca" path="res://assets/sprites/signs/shield.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="2_7vvls"]
 [ext_resource type="Script" uid="uid://bpexb6wjfpakj" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="4"]
 [ext_resource type="PackedScene" uid="uid://b3jyuprf7rhpo" path="res://godot4/effects/IsoPolygon.tscn" id="4_nffqm"]
 
@@ -45,10 +46,34 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.5, 2),
 "update": 0,
 "values": [Color(1.7, 1.7, 1.7, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IsoPolygon:fill")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.27451), Color(0.28, 0.568, 1, 0.0784314)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.439216, 0.670588, 1, 1)]
 }
 
 [sub_resource type="Animation" id="4"]
@@ -64,6 +89,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.0117647)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IsoPolygon:fill")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.28, 0.568, 1, 0.0784314)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.439216, 0.670588, 1, 1)]
 }
 
 [sub_resource type="Animation" id="3"]
@@ -94,6 +143,8 @@ modulate = Color(1, 1, 1, 0.0117647)
 collision_layer = 128
 collision_mask = 4
 script = ExtResource("1_vjsnw")
+
+[node name="Waiter" parent="." instance=ExtResource("2_7vvls")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 unique_name_in_owner = true

@@ -22,7 +22,7 @@ func set_show_edges(v: bool) -> void:
 	show_edges = v
 	%IsoPolygon.set_show_edges(show_edges)
 	
-func _ready():
+func start():
 	if starts_disabled:
 		disable_collisions()
 	else:

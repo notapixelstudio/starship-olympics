@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=38 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" uid="uid://57bbtul52rl7" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PhysicsMaterial" uid="uid://v8mu2p8ukj54" path="res://godot4/actors/ships/ShipPhysicsMaterial.tres" id="1_yr6p6"]
@@ -18,6 +18,7 @@
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="10_iega2"]
 [ext_resource type="PackedScene" uid="uid://cex35drwxeknp" path="res://godot4/effects/trails/FlamesManager.tscn" id="11_i3r85"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="11_tsmbp"]
+[ext_resource type="Material" uid="uid://3iver811v3un" path="res://godot4/shaders/cargo_outline.tres" id="12_ml8f4"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="15_s48iq"]
 [ext_resource type="PackedScene" uid="uid://cd12x0fubc17m" path="res://godot4/actors/ships/GravitonField.tscn" id="16_2i8oi"]
 [ext_resource type="AudioStream" uid="uid://dpgsvvngst2ut" path="res://assets/audio/gameplay/swoosh/Fast Swish.wav" id="19_8du2k"]
@@ -220,6 +221,7 @@ texture = ExtResource("8_11rou")
 [node name="BallSprite" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
 light_mask = 0
+material = ExtResource("12_ml8f4")
 position = Vector2(64, 0)
 scale = Vector2(0.77, 0.77)
 
@@ -312,6 +314,7 @@ vertical_alignment = 1
 
 [node name="HatSprite" type="Sprite2D" parent="Indicators/Wrapper"]
 unique_name_in_owner = true
+material = ExtResource("12_ml8f4")
 position = Vector2(0, -160)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Indicators"]
