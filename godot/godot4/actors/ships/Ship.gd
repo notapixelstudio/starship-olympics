@@ -207,6 +207,9 @@ func get_team() -> String:
 func get_cargo_manager():
 	return %CargoManager
 	
+func has_cargo() -> bool:
+	return %CargoManager.has_cargo()
+	
 func load_cargo(v: Cargo) -> void:
 	%CargoManager.load_cargo(v)
 	
@@ -222,7 +225,7 @@ func damage(damager) -> void:
 	
 	# lose cargo if any instead of losing health
 	if %CargoManager.has_cargo():
-		%CargoManager.lose_cargo.call_deferred(self, damager)
+		%CargoManager.shoot_cargo(damager)
 		return
 		
 	# TBD health system
