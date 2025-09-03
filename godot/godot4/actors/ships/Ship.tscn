@@ -20,8 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="11_tsmbp"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="15_s48iq"]
 [ext_resource type="PackedScene" uid="uid://cd12x0fubc17m" path="res://godot4/actors/ships/GravitonField.tscn" id="16_2i8oi"]
-[ext_resource type="Script" uid="uid://b7tqdyagdrwog" path="res://godot4/actors/managers/CargoManager.gd" id="16_m8m51"]
 [ext_resource type="AudioStream" uid="uid://dpgsvvngst2ut" path="res://assets/audio/gameplay/swoosh/Fast Swish.wav" id="19_8du2k"]
+[ext_resource type="PackedScene" uid="uid://criepafyhd33y" path="res://godot4/actors/ships/managers/CargoManager.tscn" id="21_kqe5y"]
 
 [sub_resource type="GDScript" id="GDScript_4hb7k"]
 script/source = "extends DebugNode
@@ -376,9 +376,8 @@ center = Vector3(0, 0, -100)
 source = NodePath("../ChargeManager")
 source_strength_method_name = "get_charge_normalized"
 
-[node name="CargoManager" type="Node" parent="."]
+[node name="CargoManager" parent="." instance=ExtResource("21_kqe5y")]
 unique_name_in_owner = true
-script = ExtResource("16_m8m51")
 
 [node name="DashFXPlayer" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
@@ -386,6 +385,7 @@ stream = SubResource("AudioStreamRandomizer_ntsfv")
 panning_strength = 10.0
 bus = &"SFX"
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]
 [connection signal="body_entered" from="TouchArea" to="." method="_on_touch_area_body_entered"]
 [connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]

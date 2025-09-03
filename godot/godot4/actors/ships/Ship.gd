@@ -177,22 +177,25 @@ func _drop_dash_ring_effect() -> void:
 	#for sth in overlappers:
 		#_on_touch_area_entered(sth)
 
-func _on_touch_area_area_entered(area):
+func _on_body_entered(body) -> void:
+	Events.collision.emit(self, body)
+
+func _on_touch_area_area_entered(area) -> void:
 	_on_touch_area_entered(area)
 
-func _on_touch_area_body_entered(body):
+func _on_touch_area_body_entered(body) -> void:
 	_on_touch_area_entered(body)
 	
-func _on_touch_area_entered(sth):
+func _on_touch_area_entered(sth) -> void:
 	Events.collision.emit(self, sth, 'touch')
 	
-func _on_hurt_area_area_entered(area):
+func _on_hurt_area_area_entered(area) -> void:
 	_on_hurt_area_entered(area)
 	
-func _on_hurt_area_body_entered(body):
+func _on_hurt_area_body_entered(body) -> void:
 	_on_hurt_area_entered(body)
 	
-func _on_hurt_area_entered(sth):
+func _on_hurt_area_entered(sth) -> void:
 	Events.collision.emit(self, sth, 'hurt')
 	
 func get_color() -> Color:
@@ -201,12 +204,15 @@ func get_color() -> Color:
 func get_team() -> String:
 	return player.get_team() if player else 'rogue'
 	
-func has_cargo() -> bool:
-	return %CargoManager.has_cargo()
+func get_cargo_manager():
+	return %CargoManager
 	
-func rebound_cargo(collision_point: Vector2, collision_normal: Vector2) -> void:
-	%CargoManager.rebound_cargo.call_deferred(self, collision_point, collision_normal)
-
+func load_cargo(v: Cargo) -> void:
+	%CargoManager.load_cargo(v)
+	
+func swap_cargo(other: Ship) -> void:
+	%CargoManager.swap_cargo(other.get_cargo_manager())
+	
 func show_hit() -> void:
 	%SpriteAnimation.stop()
 	%SpriteAnimation.play('Hit')
@@ -215,7 +221,7 @@ func damage(damager) -> void:
 	show_hit()
 	
 	# lose cargo if any instead of losing health
-	if has_cargo():
+	if %CargoManager.has_cargo():
 		%CargoManager.lose_cargo.call_deferred(self, damager)
 		return
 		

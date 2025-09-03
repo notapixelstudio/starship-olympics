@@ -7,7 +7,10 @@ func _on_collision(actor:CollisionObject2D, collider:CollisionObject2D, tag:Stri
 	# actor should always be the object that detected the low-level collision
 	
 	if actor is Ship:
-		_handle_ship_vs_other(actor, collider, tag)
+		if collider is Ship:
+			_handle_ship_vs_ship(actor, collider, tag)
+		else:
+			_handle_ship_vs_other(actor, collider, tag)
 	elif actor is Pew:
 		_handle_pew_vs_other(actor, collider, tag)
 	elif actor is BubbleBullet:
@@ -15,12 +18,19 @@ func _on_collision(actor:CollisionObject2D, collider:CollisionObject2D, tag:Stri
 	elif actor is ShieldWall:
 		_handle_shield_wall_vs_other(actor, collider, tag)
 
+func _handle_ship_vs_ship(ship1:Ship, ship2:Ship, tag:String='') -> void:
+	# avoid checking twice per collision
+	if ship1.get_instance_id() < ship2.get_instance_id():
+		return # collision handled
+		
+	ship1.swap_cargo(ship2)
+	
 func _handle_ship_vs_other(ship:Ship, collider:CollisionObject2D, tag:String='') -> void:
 	# any touchable object by duck typing is touched
 	if collider.has_method('touched_by') and tag == 'touch':
 		collider.touched_by(ship)
 		return # collision handled
-	
+		
 	# Pews damage Ships
 	if collider is Pew and tag == 'hurt':
 		# no friendly fire
