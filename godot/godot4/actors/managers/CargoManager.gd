@@ -36,18 +36,14 @@ func has_cargo() -> bool:
 	return _current_cargo != null
 
 func kick(source) -> void:
-	# TBD when https://github.com/godotengine/godot/pull/92218 will be merged, check if the first line
-	# needs to be done now, before place_and_push, to avoid seeing the Shadow node temporarily elsewhere
 	Events.spawn_request.emit(_current_cargo)
-	_current_cargo.set_temp_untouchable_by.call_deferred(source)
+	_current_cargo.set_temp_untouchable_by(source)
 	_current_cargo.place_and_push(source.global_position, source.linear_velocity + Vector2(3000,0).rotated(source.global_rotation), source.global_rotation)
 	_empty_cargo()
 
 func rebound_cargo(source, collision_point: Vector2, collision_normal: Vector2) -> void:
-	# TBD when https://github.com/godotengine/godot/pull/92218 will be merged, check if the first line
-	# needs to be done now, before place_and_push, to avoid seeing the Shadow node temporarily elsewhere
 	Events.spawn_request.emit(_current_cargo)
-	_current_cargo.set_temp_untouchable_by.call_deferred(source)
+	_current_cargo.set_temp_untouchable_by(source)
 	var alpha = source.linear_velocity.bounce(collision_normal).angle()
 	_current_cargo.place_and_push(collision_point, Vector2(source.linear_velocity.length()+500,0).rotated(alpha), alpha)
 	_empty_cargo()
