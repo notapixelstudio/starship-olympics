@@ -1,10 +1,10 @@
 extends Node
 
-var max_ammo = -1: set = set_max_ammo
-var infinite_ammo : bool
-var current_ammo = max_ammo
-var reload_time : set = set_reload_time
-var autoreload : bool
+@export var max_ammo := -1: set = set_max_ammo
+@export var infinite_ammo := true
+@export var current_ammo := max_ammo
+@export var reload_time := -1.0 : set = set_reload_time
+@export var autoreload := true
 
 func set_max_ammo(v):
 	max_ammo = v

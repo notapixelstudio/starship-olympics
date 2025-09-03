@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://ccf8lnnnpc7br"]
 
-[ext_resource type="Script" uid="uid://chv3banuajjwf" path="res://actors/battlers/Ammo.gd" id="1"]
+[ext_resource type="Script" uid="uid://chv3banuajjwf" path="res://godot4/actors/ships/weapons/managers/AmmoManager.gd" id="1_v8yo4"]
 
-[node name="Ammo" type="Node"]
-script = ExtResource("1")
+[node name="AmmoManager" type="Node"]
+script = ExtResource("1_v8yo4")
 
 [node name="ReplenishTimer" type="Timer" parent="."]
 wait_time = 1.5

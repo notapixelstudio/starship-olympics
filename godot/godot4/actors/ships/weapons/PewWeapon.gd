@@ -9,6 +9,11 @@ func _on_tap() -> void:
 	fire(get_host())
 	
 func fire(source):
+	if %AmmoManager.is_empty():
+		return
+		
+	%AmmoManager.shot()
+	
 	var aperture = PI/4
 	var amount = 1
 	var aim_correction = 0.65
