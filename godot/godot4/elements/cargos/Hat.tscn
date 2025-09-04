@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddtlawrotn0nb"]
+[gd_scene load_steps=4 format=3 uid="uid://ddtlawrotn0nb"]
 
 [ext_resource type="PackedScene" uid="uid://c8s08rc21o1ra" path="res://godot4/elements/cargos/Cargo.tscn" id="1_d13u4"]
 [ext_resource type="Script" uid="uid://bf1rd3g1xf0gr" path="res://godot4/elements/cargos/Hat.gd" id="2_yl5ru"]
 
+[sub_resource type="Gradient" id="Gradient_5cley"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.997561)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
+
 [node name="Hat" instance=ExtResource("1_d13u4")]
 script = ExtResource("2_yl5ru")
+
+[node name="MotionAutoTrail" parent="." index="2"]
+gradient = SubResource("Gradient_5cley")

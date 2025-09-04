@@ -22,42 +22,21 @@ func _process(delta):
 func _update_rotation() -> void:
 	$Wrapper.rotation = linear_velocity.angle()
 
-func on_ship_near_area_hit(hit_ship: Ship) -> void:
-	# no friendly fire
-	if hit_ship.get_team() != team:
-		hit_ship.damage(self, ship, team)
-		destroy()
-	
 func _on_ForwardBullet_body_entered(body):
-	var is_mirror = body is Mirror #or body is MirrorWall
-	#var foe = not body.has_method('get_team') or body.get_team() != get_team()
-	if not is_mirror:# and foe:
-		destroy()
-		
-	if body.has_method('hit'):
-		body.hit()
-		
-	# TBD this was needed in GoalPortal
-	#if body is Ball and has_ownership_transfer() and ship != null and is_instance_valid(ship):
-		#body.set_player(ship.get_player())
-		#body.activate()
-		
-func hurt(hurted) -> void:
-	if hurted.has_method('suffer_damage'):
-		hurted.suffer_damage(1)
-	destroy()
-
+	Events.collision.emit(self, body)
+	
 func set_ship(v : Ship):
 	ship = v
 	$"%Sprite2D".modulate = ship.get_color()
-	$AutoTrail.starting_color = ship.get_color()
+	$AutoTrail.starting_color = Color(ship.get_color(), 0.2)
+	$AutoTrail.ending_color = Color(ship.get_color(), 0)
 	team = ship.get_team() # remember team to avoid friendly fire (or checking up a dead ship)
 	
 func dissolve() -> void:
 	var pfft = PfftScene.instantiate()
 	if ship != null and is_instance_valid(ship):
 		pfft.set_color(ship.get_color())
-	get_parent().add_child(pfft)
+	Events.spawn_request.emit(pfft)
 	pfft.global_position = global_position
 
 func _on_VisibilityNotifier2D_screen_exited():
@@ -84,3 +63,6 @@ func has_ownership_transfer() -> bool:
 	
 func get_team() -> String:
 	return team
+
+func get_damage_amount() -> int:
+	return 1

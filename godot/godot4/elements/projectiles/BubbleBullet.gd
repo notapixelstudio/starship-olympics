@@ -8,6 +8,9 @@ class_name BubbleBullet
 
 var _lifetime_left : float
 
+func set_lifetime(v: float):
+	lifetime = v
+
 func _ready() -> void:
 	_lifetime_left = lifetime
 	
@@ -17,33 +20,32 @@ func _physics_process(delta: float) -> void:
 	if _lifetime_left <= 0:
 		destroy()
 
-func hurt(sth) -> void:
-	if sth is Ship:
-		if not sth.is_dashing():
-			var bubble = ship_bubble_scene.instantiate()
-			bubble.set_player(sth.get_player())
-			bubble.global_position = sth.global_position
-			sth.queue_free()
-			get_parent().add_child.call_deferred(bubble)
-			bubble.set_content_rotation(sth.global_rotation)
-			Events.ship_captured.emit.call_deferred(sth, bubble)
-		destroy()
-
+func capture_ship(ship:Ship) -> void:
+	var bubble = ship_bubble_scene.instantiate()
+	bubble.set_ship(ship)
+	bubble.global_position = ship.global_position
+	ship.queue_free()
+	Events.spawn_request.emit(bubble)
+	bubble.set_content_rotation(ship.global_rotation)
+	Events.ship_captured.emit.call_deferred(ship, bubble)
+	
+func capture_treasure(treasure:Treasure) -> void:
+	var bubble = bubble_scene.instantiate()
+	bubble.set_content(treasure)
+	bubble.add_to_group('Treasure')
+	bubble.global_position = treasure.global_position
+	get_parent().remove_child.call_deferred(treasure)
+	Events.spawn_request.emit(bubble)
+	bubble.set_content_rotation(treasure.global_rotation)
+	
 func destroy() -> void:
 	var effect = bubble_popped_scene.instantiate()
 	effect.global_position = global_position
 	effect.scale = 0.5*Vector2(1,1)
-	get_parent().add_child(effect)
+	Events.spawn_request.emit(effect)
 	queue_free()
 
 
 func _on_touch_area_2d_body_entered(sth: Node2D) -> void:
-	if sth is Treasure:
-		var bubble = bubble_scene.instantiate()
-		bubble.set_content(sth)
-		bubble.add_to_group('Treasure')
-		bubble.global_position = sth.global_position
-		get_parent().remove_child.call_deferred(sth)
-		get_parent().add_child.call_deferred(bubble)
-		bubble.set_content_rotation(sth.global_rotation)
-		destroy()
+	Events.collision.emit(self, sth, 'touch')
+	

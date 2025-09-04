@@ -88,10 +88,10 @@ shader_parameter/color_off = Color(0.1, 0.1, 0.1, 1)
 
 [node name="TestChamber" instance=ExtResource("1_sd71t")]
 
-[node name="FPSCounter" parent="." index="1"]
+[node name="FPSCounter" parent="." index="3"]
 modulate = Color(0.541176, 0.768627, 1, 1)
 
-[node name="TestChamberLog" parent="." index="3"]
+[node name="TestChamberLog" parent="." index="5"]
 script = SubResource("GDScript_0rj7w")
 
 [node name="ScoreManager" parent="." index="6" instance=ExtResource("2_7l1kw")]

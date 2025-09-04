@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://xlhbmhdglno5"]
+
+[ext_resource type="Script" uid="uid://0adqlxqyb4qj" path="res://godot4/actors/brains/DiamondMinefieldBrain.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://godot4/actors/brains/CPUBrain.tscn" id="2"]
+
+[node name="DiamondMinefieldBrain" instance=ExtResource("2")]
+script = ExtResource("1")
+random_dash_p = 0.005
+random_fire_p = 0.0
+
+[connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_target_reached"]

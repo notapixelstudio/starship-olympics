@@ -24,7 +24,7 @@ func spawn() -> void:
 	var element = element_scene.instantiate()
 	element.tree_exiting.connect(_on_element_tree_exiting)
 	element.global_position = global_position
-	get_parent().add_child.call_deferred(element)
+	Events.spawn_request.emit(element)
 	element_count += 1
 
 func _on_element_tree_exiting() -> void:

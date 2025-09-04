@@ -52,6 +52,12 @@ func get_team_color() -> Color:
 func get_ship_image() -> Texture:
 	return species.get_ship()
 	
+func get_gradient() -> Gradient:
+	var trail_gradient = Gradient.new()
+	trail_gradient.set_color(0, Color(get_species().get_color_secondary(), 0))
+	trail_gradient.set_color(1, Color(get_species().get_color(), 0.2))
+	return trail_gradient
+	
 func is_cpu() -> bool:
 	return cpu
 

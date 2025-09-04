@@ -47,8 +47,9 @@ signal battle_start
 signal clock_ticked(t:float, t_secs:int)
 signal clock_expired
 
-signal ship_touch_sth(ship:Ship, sth:CollisionObject2D)
-signal sth_hurt_ship(sth:CollisionObject2D, ship:Ship)
+signal collision(ship:Ship, collider:CollisionObject2D, tag:String)
+signal spawn_request(object_to_spawn:Node)
+
 signal ship_captured(ship:Ship, trap)#, capturer) maybe?
 signal ship_released(ship:Ship, trap)#, capturer, saviour)
 
@@ -65,8 +66,8 @@ signal message(message:Variant, color:Color, global_position:Vector2)
 signal match_over(data:Dictionary)
 
 signal sth_collected(collector, collectee)
-signal sth_loaded(loader, loadee)
-signal sth_impacted(actor, environment:StaticBody2D)
+#signal sth_impacted(actor, environment:StaticBody2D)
+
 
 signal tap(tapper)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://r1ikfhh5nbe8"]
+[gd_scene load_steps=20 format=3 uid="uid://r1ikfhh5nbe8"]
 
 [ext_resource type="PackedScene" uid="uid://gb4ik4ltjkc0" path="res://combat/levels/singles/homesick_invaders/variants/PlanetsA.tscn" id="2"]
 [ext_resource type="Resource" uid="uid://2hvhprwmd4h0" path="res://godot4/data/species/mantiacs_1.tres" id="3"]
@@ -20,10 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://c6d0n65lwniok" path="res://combat/levels/singles/homesick_invaders/variants/GlassA.tscn" id="20"]
 [ext_resource type="PackedScene" uid="uid://0h88agogfuyr" path="res://actors/environments/Alien.tscn" id="21"]
 
-
-[sub_resource type="Resource" id="Resource_p6h8a"]
-metadata/__load_path__ = "res://addons/geometry/GBeveledRect.gd"
-
 [node name="Arena" instance=ExtResource("4")]
 size_multiplier = 2.5
 game_mode = ExtResource("12")
@@ -43,14 +39,6 @@ solid_line_color = Color(1.12, 0.51, 1.12, 1)
 grid_color = Color(1, 1, 1, 0.329412)
 
 [node name="GBeveledRect" type="Node" parent="Battlefield/Background/OutsideWall" index="8"]
-script = SubResource("Resource_p6h8a")
-width = 6800
-height = 3900
-bevel = 50
-bevel_nw = 50
-bevel_ne = 50
-bevel_sw = 50
-bevel_se = 50
 
 [node name="GridWrapper" parent="Battlefield/Background" index="2"]
 modulate = Color(1, 1, 1, 0.392157)
@@ -74,6 +62,7 @@ polygon = PackedVector2Array(-1200, -2200, 1200, -2200, 1200, 2300, -1200, 2300)
 variant_scenes = [ExtResource("20"), ExtResource("19")]
 
 [node name="Parade" parent="Battlefield/Middleground" index="2" instance=ExtResource("15")]
+format = 2
 
 [node name="Alien" parent="Battlefield/Middleground" index="3" instance=ExtResource("21")]
 position = Vector2(-200, 1300)
@@ -114,12 +103,15 @@ controls = "kb2"
 species = ExtResource("3")
 cpu = true
 
+[node name="HUD" parent="CanvasLayer" index="0"]
+offset_bottom = 0.0
+grow_horizontal = 2
+
 [node name="Camera3D" parent="." index="6"]
-current = false
 zoom = Vector2(2.91038e+12, 2.91038e+12)
 position_smoothing_speed = 0.3
+current = false
 disabled_override = true
 
 [node name="Camera2D" type="Camera2D" parent="." index="9"]
-current = true
 zoom = Vector2(5.2, 5.2)

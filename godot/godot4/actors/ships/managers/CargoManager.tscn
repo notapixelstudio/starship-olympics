@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://criepafyhd33y"]
+
+[ext_resource type="Script" uid="uid://b7tqdyagdrwog" path="res://godot4/actors/managers/CargoManager.gd" id="1_3jl3k"]
+
+[node name="CargoManager" type="Node"]
+script = ExtResource("1_3jl3k")
+
+[node name="JustSwappedTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true

@@ -8,5 +8,10 @@ class_name Minigame
 @export var title : String = 'Title'
 @export var icon: Texture
 @export var description : String = 'Description'
-@export var starting_weapon : PackedScene
 @export var soundtrack : AudioStream
+
+# ship configuration
+@export var ship_scene : PackedScene = preload('res://godot4/actors/ships/Ship.tscn')
+@export var player_brain_scene : PackedScene = preload("res://godot4/actors/brains/PlayerBrain.tscn")
+@export var cpu_brain_scene : PackedScene = preload("res://godot4/actors/brains/CPUBrain.tscn")
+@export var starting_weapon_scene : PackedScene

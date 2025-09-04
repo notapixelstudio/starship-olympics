@@ -1,0 +1,206 @@
+[gd_scene load_steps=18 format=3 uid="uid://y0hgvq20457v"]
+
+[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_fulyf"]
+[ext_resource type="Resource" uid="uid://cxorooq22c83" path="res://godot4/data/styles/palace.tres" id="2_jmjm8"]
+[ext_resource type="PackedScene" uid="uid://chnvt4cxrqrcv" path="res://godot4/arena/managers/games/CrownGame.tscn" id="3_561tv"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_h00p3"]
+[ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="5_wyyrq"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="6_mri1f"]
+[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="7_q6edd"]
+[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="8_edvd2"]
+[ext_resource type="PackedScene" uid="uid://bia7yrbdvp8vw" path="res://godot4/elements/environments/ShieldWall.tscn" id="9_qbbkj"]
+[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="10_tdfqt"]
+[ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="11_cva3b"]
+
+[sub_resource type="Animation" id="Animation_vtipm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../VBeveledRect:bevel")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1185.0]
+}
+
+[sub_resource type="Animation" id="Animation_d4q4d"]
+resource_name = "default"
+length = 8.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../VBeveledRect:bevel")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [1185.0, 50.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aclk8"]
+_data = {
+&"RESET": SubResource("Animation_vtipm"),
+&"default": SubResource("Animation_d4q4d")
+}
+
+[sub_resource type="Animation" id="Animation_3nm4h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldWall/VRoundedRect:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [45.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShieldWall2/VRoundedRect:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [45.0]
+}
+
+[sub_resource type="Animation" id="Animation_xjb4e"]
+resource_name = "default"
+length = 50.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldWall/VRoundedRect:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 50),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [45.0, 405.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShieldWall2/VRoundedRect:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 50),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [45.0, 405.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kj0uy"]
+_data = {
+&"RESET": SubResource("Animation_3nm4h"),
+&"default": SubResource("Animation_xjb4e")
+}
+
+[node name="VersusArena" instance=ExtResource("1_fulyf")]
+
+[node name="Styleable" parent="." index="0"]
+style = ExtResource("2_jmjm8")
+
+[node name="CrownGame" parent="Managers" index="5" instance=ExtResource("3_561tv")]
+
+[node name="Camera2D" parent="." index="2"]
+zoom = Vector2(0.25, 0.25)
+
+[node name="P1" parent="Homes" index="0" instance=ExtResource("4_h00p3")]
+position = Vector2(-600, -600)
+rotation = 0.785398
+
+[node name="P2" parent="Homes" index="1" instance=ExtResource("4_h00p3")]
+position = Vector2(600, 600)
+rotation = -2.35619
+
+[node name="P3" parent="Homes" index="2" instance=ExtResource("4_h00p3")]
+position = Vector2(600, -600)
+rotation = -3.92699
+
+[node name="VBeveledRect" type="Node" parent="Battlefield" index="0" node_paths=PackedStringArray("hosts")]
+script = ExtResource("5_wyyrq")
+width = 3900.0
+height = 2400.0
+bevel = 1185.0
+hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield" index="1" groups=["animation_starts_with_battle"]]
+root_node = NodePath("../OutsideWall")
+callback_mode_process = 0
+libraries = {
+&"": SubResource("AnimationLibrary_aclk8")
+}
+
+[node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource("6_mri1f")]
+hollow = true
+
+[node name="Grid" parent="Battlefield" index="3" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("7_q6edd")]
+cell_size = Vector2(200, 200)
+init_parametric_shape = NodePath("../VBeveledRect")
+
+[node name="Wall" parent="Battlefield" index="4" instance=ExtResource("6_mri1f")]
+position = Vector2(0, -1200)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4"]
+script = ExtResource("8_edvd2")
+radius = 200.0
+sides = 4
+
+[node name="Wall2" parent="Battlefield" index="5" instance=ExtResource("6_mri1f")]
+position = Vector2(0, 1200)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4"]
+script = ExtResource("8_edvd2")
+radius = 200.0
+sides = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="6" groups=["animation_starts_with_battle"]]
+callback_mode_process = 0
+libraries = {
+&"": SubResource("AnimationLibrary_kj0uy")
+}
+
+[node name="ShieldWall" parent="Battlefield" index="7" instance=ExtResource("9_qbbkj")]
+position = Vector2(-800, 0)
+symbol_scale = 1.5
+show_edges = false
+
+[node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall" index="5"]
+script = ExtResource("10_tdfqt")
+width = 700.0
+height = 700.0
+precision = 20
+rotation_degrees = 45.0
+
+[node name="ShieldWall2" parent="Battlefield" index="8" instance=ExtResource("9_qbbkj")]
+position = Vector2(800, 0)
+symbol_scale = 1.5
+show_edges = false
+
+[node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall2" index="5"]
+script = ExtResource("10_tdfqt")
+width = 700.0
+height = 700.0
+precision = 20
+rotation_degrees = 45.0
+
+[node name="Crown" parent="Battlefield" index="9" instance=ExtResource("11_cva3b")]

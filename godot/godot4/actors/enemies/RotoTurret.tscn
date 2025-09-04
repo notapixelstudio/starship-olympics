@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6e28abusnqyt"]
+
+[ext_resource type="PackedScene" uid="uid://wwxav5fs1qt" path="res://godot4/actors/enemies/Turret.tscn" id="1_jjpo0"]
+[ext_resource type="Script" uid="uid://bt2ctw6sibmni" path="res://godot4/actors/enemies/RotoTurret.gd" id="2_0dr6t"]
+
+[node name="RotoTurret" instance=ExtResource("1_jjpo0")]
+script = ExtResource("2_0dr6t")
+rotation_speed = 0.392699
+starting_angles_degrees = [45, 135, 225, 315]

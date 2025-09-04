@@ -1,9 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4anewnchp4ou"]
+[gd_scene load_steps=5 format=3 uid="uid://b4anewnchp4ou"]
 
 [ext_resource type="PackedScene" uid="uid://q1o0cubu6i1c" path="res://godot4/actors/ships/weapons/Weapon.tscn" id="1_0u42t"]
 [ext_resource type="Script" uid="uid://b5x58y7vot0m" path="res://godot4/actors/ships/weapons/PewWeapon.gd" id="2_p34fo"]
 [ext_resource type="PackedScene" uid="uid://by5amjr0vhf4x" path="res://godot4/elements/projectiles/Pew.tscn" id="3_rluc2"]
+[ext_resource type="PackedScene" uid="uid://ccf8lnnnpc7br" path="res://godot4/actors/ships/weapons/managers/AmmoManager.tscn" id="4_qntoe"]
 
 [node name="PewWeapon" instance=ExtResource("1_0u42t")]
 script = ExtResource("2_p34fo")
 pew_scene = ExtResource("3_rluc2")
+
+[node name="AimCompensationZone" type="Area2D" parent="." index="0"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4097
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AimCompensationZone" index="0"]
+polygon = PackedVector2Array(1000, -300, 1000, 300, 0, 150, 0, -150)
+
+[node name="AmmoManager" parent="." index="1" instance=ExtResource("4_qntoe")]
+unique_name_in_owner = true
+max_ammo = 3
+infinite_ammo = false
+current_ammo = 3
+reload_time = 0.4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=38 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" uid="uid://57bbtul52rl7" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PhysicsMaterial" uid="uid://v8mu2p8ukj54" path="res://godot4/actors/ships/ShipPhysicsMaterial.tres" id="1_yr6p6"]
@@ -9,17 +9,20 @@
 [ext_resource type="Script" uid="uid://kdib40tvbvo8" path="res://actors/battlers/Node2D.gd" id="4_557ck"]
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="4_mpdfg"]
 [ext_resource type="PackedScene" uid="uid://d1673ytdlyny4" path="res://godot4/debug/OnShipDebug.tscn" id="5_0tcqu"]
+[ext_resource type="PackedScene" uid="uid://chm0a8w56kiny" path="res://godot4/actors/ships/DisabledShip.tscn" id="5_jvf5m"]
 [ext_resource type="Script" uid="uid://csgls77y2kr7l" path="res://godot4/actors/managers/ChargeManager.gd" id="5_ostpb"]
+[ext_resource type="PackedScene" uid="uid://bhygc2xfw2jei" path="res://godot4/traits/Target.tscn" id="6_kqe5y"]
 [ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="8_11rou"]
-[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://actors/brains/PlayerBrain.tscn" id="8_yfcmx"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="8_yfcmx"]
 [ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://godot4/effects/trails/FlameTrail.tscn" id="10_4jj2i"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="10_iega2"]
 [ext_resource type="PackedScene" uid="uid://cex35drwxeknp" path="res://godot4/effects/trails/FlamesManager.tscn" id="11_i3r85"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="11_tsmbp"]
+[ext_resource type="Material" uid="uid://3iver811v3un" path="res://godot4/shaders/cargo_outline.tres" id="12_ml8f4"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="15_s48iq"]
 [ext_resource type="PackedScene" uid="uid://cd12x0fubc17m" path="res://godot4/actors/ships/GravitonField.tscn" id="16_2i8oi"]
-[ext_resource type="Script" uid="uid://b7tqdyagdrwog" path="res://godot4/actors/managers/CargoManager.gd" id="16_m8m51"]
 [ext_resource type="AudioStream" uid="uid://dpgsvvngst2ut" path="res://assets/audio/gameplay/swoosh/Fast Swish.wav" id="19_8du2k"]
+[ext_resource type="PackedScene" uid="uid://criepafyhd33y" path="res://godot4/actors/ships/managers/CargoManager.tscn" id="21_kqe5y"]
 
 [sub_resource type="GDScript" id="GDScript_4hb7k"]
 script/source = "extends DebugNode
@@ -52,6 +55,84 @@ func _process(delta):
 	var weight = %ChargeManager.get_charge_normalized()
 	scale = Tween.interpolate_value(NORMAL, FAT_DELTA, weight, 1.0, Tween.TRANS_QUAD, Tween.EASE_OUT)
 "
+
+[sub_resource type="Animation" id="Animation_kthkp"]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(3, 3, 3, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e7hm2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ijh7r"]
+resource_name = "Shine"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(1.4, 1.4, 1.4, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lqqh5"]
+_data = {
+&"Hit": SubResource("Animation_kthkp"),
+&"RESET": SubResource("Animation_e7hm2"),
+&"Shine": SubResource("Animation_ijh7r")
+}
 
 [sub_resource type="GDScript" id="GDScript_ukxwp"]
 script/source = "extends Area2D
@@ -109,6 +190,9 @@ angular_damp = 40.0
 script = ExtResource("1_cvjhk")
 dash_ring_scene = ExtResource("2_0puh8")
 death_feedback_scene = ExtResource("3_3e4pi")
+disabled_ship_scene = ExtResource("5_jvf5m")
+
+[node name="Target" parent="." instance=ExtResource("6_kqe5y")]
 
 [node name="Tracked" parent="." instance=ExtResource("3_h4ehe")]
 unique_name_in_owner = true
@@ -137,10 +221,11 @@ texture = ExtResource("8_11rou")
 [node name="BallSprite" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
 light_mask = 0
+material = ExtResource("12_ml8f4")
 position = Vector2(64, 0)
 scale = Vector2(0.77, 0.77)
 
-[node name="Sprite" type="Sprite2D" parent="Graphics"]
+[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
 unique_name_in_owner = true
 light_mask = 0
 z_index = 20
@@ -150,7 +235,13 @@ script = SubResource("GDScript_jwr13")
 
 [node name="Shadow" parent="Graphics" node_paths=PackedStringArray("sprite") instance=ExtResource("15_s48iq")]
 scale = Vector2(0.8, 0.8)
-sprite = NodePath("../Sprite")
+sprite = NodePath("../Sprite2D")
+
+[node name="SpriteAnimation" type="AnimationPlayer" parent="Graphics"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_lqqh5")
+}
 
 [node name="TouchArea" type="Area2D" parent="." node_paths=PackedStringArray("host")]
 unique_name_in_owner = true
@@ -209,20 +300,37 @@ top_level = true
 position = Vector2(0, -160)
 script = SubResource("GDScript_j55tj")
 
-[node name="PlayerID" type="Label" parent="Indicators/Wrapper/Scaled"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Indicators/Wrapper/Scaled"]
+offset_left = -150.0
+offset_top = -95.0
+offset_right = 150.0
+offset_bottom = -18.0
+alignment = 2
+
+[node name="PlayerID" type="Label" parent="Indicators/Wrapper/Scaled/VBoxContainer"]
 unique_name_in_owner = true
 z_index = 10
-offset_left = -128.0
-offset_top = -48.0
-offset_right = 128.0
-offset_bottom = -11.0
+layout_mode = 2
 theme = ExtResource("10_iega2")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="Indicators/Wrapper/Scaled/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+z_index = 10
+layout_mode = 2
+theme = ExtResource("10_iega2")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 18
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HatSprite" type="Sprite2D" parent="Indicators/Wrapper"]
 unique_name_in_owner = true
+material = ExtResource("12_ml8f4")
 position = Vector2(0, -160)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Indicators"]
@@ -287,9 +395,8 @@ center = Vector3(0, 0, -100)
 source = NodePath("../ChargeManager")
 source_strength_method_name = "get_charge_normalized"
 
-[node name="CargoManager" type="Node" parent="."]
+[node name="CargoManager" parent="." instance=ExtResource("21_kqe5y")]
 unique_name_in_owner = true
-script = ExtResource("16_m8m51")
 
 [node name="DashFXPlayer" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
@@ -297,6 +404,7 @@ stream = SubResource("AudioStreamRandomizer_ntsfv")
 panning_strength = 10.0
 bus = &"SFX"
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]
 [connection signal="body_entered" from="TouchArea" to="." method="_on_touch_area_body_entered"]
 [connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]

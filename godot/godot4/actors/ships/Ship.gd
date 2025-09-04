@@ -3,20 +3,27 @@ extends RigidBody2D
 class_name Ship
 ## Ship base class
 
+static func create(player:Player, enabled:=true):
+	return Context.ship_factory.create(player, enabled)
+
+func clone() -> Ship:
+	var new_ship = Ship.create(get_player())
+	# TBD copy relevant parameters to the new ship
+	return new_ship
+	
 @export var player : Player : get = get_player, set = set_player
 @export var dash_ring_scene : PackedScene
 @export var death_feedback_scene : PackedScene
+@export var disabled_ship_scene : PackedScene
 
 func get_player() -> Player:
 	return player
 	
 func set_player(v: Player) -> void:
 	player = v
-	%Sprite.texture = player.get_ship_image()
-	var trail_gradient = Gradient.new()
-	trail_gradient.set_color(0, Color(player.get_species().get_color_secondary(), 0))
-	trail_gradient.set_color(1, Color(player.get_species().get_color(), 0.2))
-	%MotionAutoTrail.gradient = trail_gradient
+	%Sprite2D.texture = player.get_ship_image()
+	
+	%MotionAutoTrail.gradient = player.get_gradient()
 	%FlameTrail.default_color = player.get_species().get_color_accent()
 	%BottomFlameTrail.default_color = player.get_species().get_color()
 	%PlayerID.text = player.get_id()
@@ -54,9 +61,6 @@ const ON_ICE_MAX_DASH = 2500
 const ON_ICE_CHARGE_BRAKE = 0.99
 const MIN_DRIFT := 400.0
 const MIN_DIVING_TIME := 0.05
-
-signal touch(sth: CollisionObject2D)
-signal hurt_by(sth: CollisionObject2D)
 
 ## constants for basic movement
 const THRUST := 6700 # 6500
@@ -97,13 +101,13 @@ func charge():
 	
 func release():
 	if %ChargeManager.can_tap():
-		tap()
+		do_tap()
 	if %ChargeManager.can_dash():
-		dash(%ChargeManager.get_charge())
+		do_dash(%ChargeManager.get_charge())
 	%ChargeManager.end_charging()
 	dash_graviton_field.disable()
 
-func dash(charge: float) -> void:
+func do_dash(charge: float) -> void:
 	var dash_strength = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(charge - MIN_CHARGE, 0, %ChargeManager.MAX_CHARGE)
 	var recoil = max(0,-DASH_HANDICAP+dash_strength*DASH_MULTIPLIER)
 	apply_central_impulse(Vector2(recoil, 0).rotated(global_rotation)) # recoil only if dashing
@@ -124,8 +128,9 @@ func end_dash():
 	set_collision_layer_value(31, false)
 	set_collision_layer_value(32, true)
 
-
-func tap():
+signal tap
+func do_tap():
+	tap.emit()
 	Events.tap.emit(self)
 	
 func _ready():
@@ -133,7 +138,8 @@ func _ready():
 	# see https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_dynamics.html
 	# and https://github.com/search?q=repo%3Aappsinacup%2Fgodot-box2d+body_set_ccd_enabled&type=code
 	PhysicsServer2D.body_set_continuous_collision_detection_mode(get_rid(), PhysicsServer2D.CCD_MODE_CAST_SHAPE)
-
+	print(get_scene_file_path())
+	
 #func _physics_process(delta: float) -> void:
 	#_continuous_collision_check()
 	
@@ -157,7 +163,7 @@ func graphics_enlarge():
 
 func _drop_dash_ring_effect() -> void:
 	var dash_ring = dash_ring_scene.instantiate()
-	get_parent().add_child(dash_ring)
+	Events.spawn_request.emit(dash_ring)
 	dash_ring.global_position = global_position
 	dash_ring.global_rotation = global_rotation
 	dash_ring.set_color(get_color())
@@ -171,55 +177,82 @@ func _drop_dash_ring_effect() -> void:
 	#for sth in overlappers:
 		#_on_touch_area_entered(sth)
 
-func _on_touch_area_area_entered(area):
+func _on_body_entered(body) -> void:
+	Events.collision.emit(self, body)
+
+func _on_touch_area_area_entered(area) -> void:
 	_on_touch_area_entered(area)
 
-func _on_touch_area_body_entered(body):
+func _on_touch_area_body_entered(body) -> void:
 	_on_touch_area_entered(body)
 	
-func _on_touch_area_entered(sth):
-	touch.emit(sth)
-	Events.ship_touch_sth.emit(self, sth)
+func _on_touch_area_entered(sth) -> void:
+	Events.collision.emit(self, sth, 'touch')
 	
-	if sth.has_method('touched_by'):
-		sth.touched_by(self)
-		
-func _on_hurt_area_area_entered(area):
+func _on_hurt_area_area_entered(area) -> void:
 	_on_hurt_area_entered(area)
 	
-func _on_hurt_area_body_entered(body):
+func _on_hurt_area_body_entered(body) -> void:
 	_on_hurt_area_entered(body)
 	
-func _on_hurt_area_entered(sth):
-	hurt_by.emit(sth)
-	Events.sth_hurt_ship.emit(sth, self)
+func _on_hurt_area_entered(sth) -> void:
+	Events.collision.emit(self, sth, 'hurt')
 	
-	if sth.has_method('hurt'):
-		sth.hurt(self)
-		
-
 func get_color() -> Color:
 	return player.get_color() if player else Color.WHITE
 	
 func get_team() -> String:
 	return player.get_team() if player else 'rogue'
 	
+func get_cargo_manager():
+	return %CargoManager
+	
 func has_cargo() -> bool:
 	return %CargoManager.has_cargo()
 	
-func rebound_cargo(collision_point: Vector2, collision_normal: Vector2) -> void:
-	%CargoManager.rebound_cargo.call_deferred(self, collision_point, collision_normal)
+func load_cargo(v: Cargo) -> void:
+	%CargoManager.load_cargo(v)
+	
+func swap_cargo(other: Ship) -> void:
+	%CargoManager.swap_cargo(other.get_cargo_manager())
+	
+func show_hit() -> void:
+	%SpriteAnimation.stop()
+	%SpriteAnimation.play('Hit')
 
-func suffer_damage(amount: int) -> void:
+func damage(damager) -> void:
+	show_hit()
+	
+	# lose cargo if any instead of losing health
+	if %CargoManager.has_cargo():
+		%CargoManager.shoot_cargo(damager)
+		return
+		
 	# TBD health system
-	die()
+	#die()
+	disable()
 	
 func die():
 	var death_feedback = death_feedback_scene.instantiate()
 	death_feedback.color = get_color()
 	death_feedback.global_position = global_position
-	get_parent().add_child(death_feedback)
+	Events.spawn_request.emit(death_feedback)
+	queue_free()
+	
+func disable():
+	var disabled_ship := disabled_ship_scene.instantiate()
+	disabled_ship.set_ship(self)
+	disabled_ship.global_position = global_position
+	disabled_ship.global_rotation = global_rotation
+	disabled_ship.linear_velocity = linear_velocity
+	disabled_ship.angular_velocity = angular_velocity
+	Events.spawn_request.emit(disabled_ship)
 	queue_free()
 
 func get_speed_normalized() -> float:
 	return min(1.0, linear_velocity.length() / 100.0)
+
+func set_message(msg: String, color: Color = get_color()) -> void:
+	%Message.text = msg
+	%Message.modulate = color
+	%Message.visible = msg != '' # used for VBox alignment

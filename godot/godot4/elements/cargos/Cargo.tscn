@@ -10,7 +10,7 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ycic"]
 radius = 70.0
 
-[sub_resource type="Animation" id="Animation_5s86f"]
+[sub_resource type="Animation" id="Animation_kthkp"]
 resource_name = "Hit"
 length = 0.3
 tracks/0/type = "value"
@@ -83,7 +83,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lqqh5"]
 _data = {
-&"Hit": SubResource("Animation_5s86f"),
+&"Hit": SubResource("Animation_kthkp"),
 &"RESET": SubResource("Animation_e7hm2"),
 &"Shine": SubResource("Animation_ijh7r")
 }
@@ -114,7 +114,7 @@ unique_name_in_owner = true
 [node name="SpriteAnimation" type="AnimationPlayer" parent="Graphics"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_lqqh5")
+&"": SubResource("AnimationLibrary_lqqh5")
 }
 
 [node name="Shadow" parent="Graphics" node_paths=PackedStringArray("sprite") instance=ExtResource("2_siay3")]

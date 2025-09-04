@@ -3,24 +3,33 @@ extends Node
 var _current_cargo : Cargo
 
 func _ready():
-	Events.sth_loaded.connect(_on_sth_loaded)
-	Events.tap.connect(_on_tap)
+	get_host().tap.connect(_on_tap)
+	
+func get_host():
+	return get_parent()
 
-func _on_tap(tapper) -> void:
-	if has_cargo() and _current_cargo is Ball and get_parent() == tapper:
-		kick(tapper)
-
-func _on_sth_loaded(loader, loadee) -> void:
-	if get_parent() != loader:
+func _on_tap() -> void:
+	if has_cargo() and _current_cargo is Ball:
+		kick_cargo()
+	
+func load_cargo(v: Cargo) -> void:
+	# lose cargo first if something is already loaded
+	if has_cargo():
+		discard_cargo()
+		
+	_new_cargo(v)
+	
+func _new_cargo(v: Cargo) -> void:
+	if v == null:
+		_empty_cargo()
 		return
 		
-	_load_cargo(loadee)
-	
-func _load_cargo(v: Cargo) -> void:
 	_current_cargo = v.clone_as_new()
 	if _current_cargo is Hat:
 		%HatSprite.texture = _current_cargo.get_texture()
+		%BallSprite.texture = null
 	elif _current_cargo is Ball:
+		%HatSprite.texture = null
 		%BallSprite.texture = _current_cargo.get_texture()
 		
 func _empty_cargo() -> void:
@@ -30,20 +39,45 @@ func _empty_cargo() -> void:
 
 func has_cargo() -> bool:
 	return _current_cargo != null
-
-func kick(source) -> void:
-	# TBD when https://github.com/godotengine/godot/pull/92218 will be merged, check if the first line
-	# needs to be done now, before place_and_push, to avoid seeing the Shadow node temporarily elsewhere
-	source.get_parent().add_child(_current_cargo)
-	_current_cargo.set_temp_untouchable_by(source)
-	_current_cargo.place_and_push(source.global_position, source.linear_velocity + Vector2(3000,0).rotated(source.global_rotation), source.global_rotation)
+	
+func get_cargo() -> Cargo:
+	return _current_cargo
+	
+func _launch_cargo(global_pos: Vector2, vel: Vector2, rot: float) -> void:
+	Events.spawn_request.emit(_current_cargo, func(cargo):
+		cargo.set_temp_untouchable_by(get_host())
+		cargo.place_and_push(global_pos, vel, rot)
+	)
 	_empty_cargo()
+	
+func kick_cargo() -> void:
+	_launch_cargo(get_host().global_position, get_host().linear_velocity + Vector2(3000,0).rotated(get_host().global_rotation), get_host().global_rotation)
+
+func discard_cargo() -> void:
+	_launch_cargo(get_host().global_position, Vector2(200.0, 0).rotated(get_host().global_rotation), get_host().global_rotation)
+
+func shoot_cargo(cause: RigidBody2D) -> void:
+	_launch_cargo(get_host().global_position, cause.linear_velocity, get_host().global_rotation)
 
 func rebound_cargo(source, collision_point: Vector2, collision_normal: Vector2) -> void:
-	# TBD when https://github.com/godotengine/godot/pull/92218 will be merged, check if the first line
-	# needs to be done now, before place_and_push, to avoid seeing the Shadow node temporarily elsewhere
-	source.get_parent().add_child(_current_cargo)
-	_current_cargo.set_temp_untouchable_by(source)
+	Events.spawn_request.emit(_current_cargo)
+	_current_cargo.set_temp_untouchable_by.call_deferred(source)
 	var alpha = source.linear_velocity.bounce(collision_normal).angle()
 	_current_cargo.place_and_push(collision_point, Vector2(source.linear_velocity.length()+500,0).rotated(alpha), alpha)
 	_empty_cargo()
+
+
+func swap_cargo(other) -> void:
+	if not has_cargo() and not other.has_cargo():
+		# no actual swap has to occur, bail
+		return
+		
+	# ignore swapping if just swapped sth
+	if not %JustSwappedTimer.is_stopped():
+		return
+	%JustSwappedTimer.start()
+	
+	var swap = get_cargo()
+	_new_cargo(other.get_cargo())
+	other._new_cargo(swap)
+	

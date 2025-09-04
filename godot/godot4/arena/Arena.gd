@@ -10,9 +10,6 @@ class_name Arena
 ## Nodes under the HUD canvas layer are meant to be used for UI elements, such as the countdown timer, the match over screen, and the score bars.
 
 @export var players : Array[Player]
-@export var ship_scene : PackedScene
-@export var player_brain_scene : PackedScene
-@export var cpu_brain_scene : PackedScene
 @export var match_over_screen_scene : PackedScene
 @export var default_minigame : Minigame
 @export var default_params : MatchParams
@@ -35,6 +32,7 @@ func _ready() -> void:
 	%MinigameText.text = '[right][color=#ffde5e]%s[/color]\n%s[/right]' % [minigame.title.to_upper(), minigame.description.to_upper()]
 	%MinigameIcon.texture = minigame.icon
 	%PauseOverlay.set_minigame(minigame)
+	Context.ship_factory.set_minigame(minigame)
 	
 	setup()
 	
@@ -50,24 +48,9 @@ func _ready() -> void:
 		var player = players[i] as Player
 		_active_players.append(player)
 		
-		var ship = ship_scene.instantiate()
-		ship.set_player(player)
+		var ship = Ship.create(player, false) # create not enabled ships
 		ship.global_rotation = home.global_rotation
 		ship.global_position = home.global_position
-		
-		var brain
-		if player.is_cpu():
-			brain = cpu_brain_scene.instantiate()
-		else:
-			brain = player_brain_scene.instantiate()
-			brain.set_controls(player.get_controls())
-		brain.enabled = false
-		brains_to_enable.append(brain)
-		ship.add_child(brain)
-		
-		if minigame.starting_weapon:
-			var weapon = minigame.starting_weapon.instantiate()
-			ship.add_child(weapon)
 		
 		# add ship as soon as the player is ready
 		Events.player_ready.connect(func(p):
@@ -102,11 +85,8 @@ func _ready() -> void:
 	
 	DeeJay.play(minigame.soundtrack)
 	
-	for brain in brains_to_enable:
-		brain.enabled = true
-	
-	for player in get_tree().get_nodes_in_group('animation_starts_with_battle'):
-		player.play('default')
+	for animation in get_tree().get_nodes_in_group('animation_starts_with_battle'):
+		animation.play('default')
 	
 func setup() -> void:
 	%TimeManager.set_time(_params.time)

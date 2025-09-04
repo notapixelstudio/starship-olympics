@@ -1,5 +1,6 @@
 @tool
 extends Area2D
+class_name ShieldWall
 
 @export_enum('shield', 'plate', 'skin') var type = 'skin'
 @export var starting_health := 3
@@ -21,7 +22,7 @@ func set_show_edges(v: bool) -> void:
 	show_edges = v
 	%IsoPolygon.set_show_edges(show_edges)
 	
-func _ready():
+func start():
 	if starts_disabled:
 		disable_collisions()
 	else:
@@ -87,7 +88,5 @@ func disable_collisions():
 		if type == 'skin': # shield type could have changed (e.g., if switched off)
 			up('skin')
 
-func _on_ShieldWall_body_entered(body):
-	if body.has_method('destroy'):
-		body.destroy()
-		self.down()
+func _on_body_entered(body: Node2D) -> void:
+	Events.collision.emit(self, body)

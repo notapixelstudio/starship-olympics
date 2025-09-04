@@ -9,7 +9,7 @@ func spawn(instantly:bool) -> void:
 	var fruit = fruit_scene.instantiate()
 	fruit.collected.connect(_on_fruit_collected)
 	fruit.global_position = global_position
-	get_parent().add_child.call_deferred(fruit)
+	Events.spawn_request.emit(fruit)
 	if not instantly:
 		fruit.disable_collisions()
 		fruit.turn_small()
