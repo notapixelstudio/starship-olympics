@@ -1,15 +1,73 @@
-[gd_scene load_steps=5 format=3 uid="uid://5xq5tqpd4d3v"]
+[gd_scene load_steps=6 format=3 uid="uid://5xq5tqpd4d3v"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_xc11c"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_ulre0"]
 [ext_resource type="PackedScene" uid="uid://cc33kbqafn06s" path="res://godot4/actors/brains/DiamondsnatchBrain.tscn" id="3_ah1qd"]
-[ext_resource type="PackedScene" uid="uid://ckykuuqee1aml" path="res://combat/collectables/Diamond.tscn" id="4_ukl5v"]
+[ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="4_hvlnc"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hvlnc"]
+vertices = PackedVector2Array(2590, 1290, -2590, 1290, -2590, -1290, 2590, -1290)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2600, -1300, 2600, 1300, -2600, 1300, -2600, -1300)])
 
 [node name="TestChamber" instance=ExtResource("1_xc11c")]
 
 [node name="Ship" parent="." index="4" instance=ExtResource("2_ulre0")]
 
 [node name="DiamondsnatchBrain" parent="Ship" index="12" instance=ExtResource("3_ah1qd")]
+debug = true
 
-[node name="Diamond" parent="." index="5" instance=ExtResource("4_ukl5v")]
-position = Vector2(800, 600)
+[node name="TestGrid" parent="." index="5"]
+position = Vector2(-2600, -1300)
+columns = 104
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="9"]
+navigation_polygon = SubResource("NavigationPolygon_hvlnc")
+
+[node name="Diamond" parent="." index="10" instance=ExtResource("4_hvlnc")]
+position = Vector2(2000, 800)
+
+[node name="Diamond2" parent="." index="11" instance=ExtResource("4_hvlnc")]
+position = Vector2(0, 800)
+
+[node name="Diamond3" parent="." index="12" instance=ExtResource("4_hvlnc")]
+position = Vector2(-800, 800)
+
+[node name="Diamond4" parent="." index="13" instance=ExtResource("4_hvlnc")]
+position = Vector2(-800, 0)
+
+[node name="Diamond5" parent="." index="14" instance=ExtResource("4_hvlnc")]
+position = Vector2(-800, -800)
+
+[node name="Diamond8" parent="." index="15" instance=ExtResource("4_hvlnc")]
+position = Vector2(-400, 800)
+
+[node name="Diamond11" parent="." index="16" instance=ExtResource("4_hvlnc")]
+position = Vector2(0, 400)
+
+[node name="Diamond12" parent="." index="17" instance=ExtResource("4_hvlnc")]
+position = Vector2(-800, 400)
+
+[node name="Diamond13" parent="." index="18" instance=ExtResource("4_hvlnc")]
+position = Vector2(-400, 400)
+
+[node name="Diamond14" parent="." index="19" instance=ExtResource("4_hvlnc")]
+position = Vector2(0, -400)
+
+[node name="Diamond15" parent="." index="20" instance=ExtResource("4_hvlnc")]
+position = Vector2(-800, -400)
+
+[node name="Diamond16" parent="." index="21" instance=ExtResource("4_hvlnc")]
+position = Vector2(-400, -400)
+
+[node name="Diamond9" parent="." index="22" instance=ExtResource("4_hvlnc")]
+position = Vector2(-400, 0)
+
+[node name="Diamond10" parent="." index="23" instance=ExtResource("4_hvlnc")]
+position = Vector2(-400, -800)
+
+[node name="Diamond6" parent="." index="24" instance=ExtResource("4_hvlnc")]
+position = Vector2(0, -800)
+
+[node name="Diamond7" parent="." index="25" instance=ExtResource("4_hvlnc")]
+position = Vector2(2000, -800)

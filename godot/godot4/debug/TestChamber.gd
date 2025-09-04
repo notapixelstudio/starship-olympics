@@ -18,9 +18,9 @@ func _ready():
 		ships[0].set_player(test_player)
 		
 	for ship in ships:
-		var brain = player_brain_scene.instantiate()
-		brain.set_controls(ship.get_player().get_controls())
-		ship.add_child(brain)
+		#var brain = player_brain_scene.instantiate()
+		#brain.set_controls(ship.get_player().get_controls())
+		#ship.add_child(brain)
 		Events.team_ready.emit(ship.get_player().get_team(), [ship.get_player()])
 		
 func _process(delta):

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkvs83hnc26an"]
+[gd_scene load_steps=9 format=3 uid="uid://bkvs83hnc26an"]
 
 [ext_resource type="PackedScene" uid="uid://bd2hhntyqbksl" path="res://godot4/actors/brains/Brain.tscn" id="1"]
 [ext_resource type="Script" uid="uid://jok5x5yuea0r" path="res://godot4/actors/brains/CPUBrain.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bf2ddnyt7s7n5" path="res://assets/sprites/signs/X.png" id="3"]
 [ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="4"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="4_bqjdh"]
 
 [sub_resource type="GDScript" id="2"]
 script/source = "extends Node2D
@@ -23,6 +24,21 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
 
 [sub_resource type="CircleShape2D" id="3"]
 radius = 500.0
@@ -70,7 +86,9 @@ offset_left = -200.0
 offset_top = 100.0
 offset_right = 200.0
 offset_bottom = 200.0
+theme = ExtResource("4_bqjdh")
 theme_override_fonts/font = SubResource("1")
+theme_override_font_sizes/font_size = 40
 uppercase = true
 
 [node name="StrategyLabel" type="Label" parent="NoRotate" index="1"]
@@ -80,7 +98,8 @@ offset_left = -200.0
 offset_top = 200.0
 offset_right = 200.0
 offset_bottom = 300.0
-theme_override_fonts/font = SubResource("1")
+theme = ExtResource("4_bqjdh")
+theme_override_font_sizes/font_size = 40
 uppercase = true
 
 [node name="DangerArea2D" type="Area2D" parent="." index="6"]
