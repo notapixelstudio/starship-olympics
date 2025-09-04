@@ -1,6 +1,6 @@
 extends CPUBrain
 
-@export var go_to_center_p := 0.1
+@export var go_to_center_p := 0.4
 
 var random_preference : int
 

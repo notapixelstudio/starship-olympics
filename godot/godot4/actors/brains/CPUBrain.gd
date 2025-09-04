@@ -56,12 +56,6 @@ func tick():
 	target_velocity = relative_position.normalized()
 	rotation_request = front.angle_to(target_velocity)
 	
-	# FIXME ...maybee?
-	if controllee.has_method("set_target_velocity"):
-		controllee.set_target_velocity(target_velocity)
-	if controllee.has_method("set_rotation_request"):
-		controllee.set_rotation_request(rotation_request)
-	
 	# we are already arrived, attempt to stay where we are
 	if $NavigationAgent2D.is_navigation_finished():
 		return
@@ -113,16 +107,16 @@ func start_charging_to_dash(distance) -> void:
 	if not $ReleaseTimer.is_stopped() or not $DashCooldownTimer.is_stopped():
 		return
 		
-	emit_signal("charge")
+	controllee.charge()
 	$ReleaseTimer.wait_time = (min(distance/1000, 0.8))
 	$ReleaseTimer.start()
 	
 func request_fire():
-	emit_signal("charge")
-	emit_signal("release")
+	controllee.charge()
+	controllee.release()
 
 func _on_ReleaseTimer_timeout():
-	emit_signal("release")
+	controllee.release()
 	$DashCooldownTimer.start()
 	
 func set_navigation_layer(layer_name: String):
@@ -177,3 +171,8 @@ func compute_nearest(nodes: Array) -> Node2D:
 func _physics_process(delta: float) -> void:
 	tick()
 	
+	# FIXME ...maybee?
+	if controllee.has_method("set_target_velocity"):
+		controllee.set_target_velocity(target_velocity)
+	if controllee.has_method("set_rotation_request"):
+		controllee.set_rotation_request(rotation_request)
