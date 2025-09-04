@@ -21,7 +21,6 @@ script/source = "extends SOLog
 
 func _ready():
 	super._ready()
-	add_theme_font_size_override(\"normal_font_size\", 40)
 	Events.sth_collected.connect(_on_sth_collected)
 	
 func _on_sth_collected(collector, collectee):
@@ -46,7 +45,7 @@ func tick():
 
 [node name="TestChamber" instance=ExtResource("1_gfqil")]
 
-[node name="TestChamberLog" parent="." index="3"]
+[node name="TestChamberLog" parent="." index="5"]
 script = SubResource("GDScript_0rj7w")
 
 [node name="TestBeat" type="Timer" parent="." index="6"]
