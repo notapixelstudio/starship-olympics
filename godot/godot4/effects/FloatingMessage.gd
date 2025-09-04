@@ -14,7 +14,10 @@ func set_message(value):
 			sgn = "+"
 		else:
 			$Label.add_theme_color_override('font_outline_color', Color.RED)
-		msg = sgn+str(value)
+		if typeof(value) == TYPE_FLOAT:
+			msg = sgn + str("%0.2f" % value)
+		else:
+			msg = sgn + str(value)
 	else:
 		msg = value
 		

@@ -251,3 +251,8 @@ func disable():
 
 func get_speed_normalized() -> float:
 	return min(1.0, linear_velocity.length() / 100.0)
+
+func set_message(msg: String, color: Color = get_color()) -> void:
+	%Message.text = msg
+	%Message.modulate = color
+	%Message.visible = msg != '' # used for VBox alignment

@@ -300,14 +300,30 @@ top_level = true
 position = Vector2(0, -160)
 script = SubResource("GDScript_j55tj")
 
-[node name="PlayerID" type="Label" parent="Indicators/Wrapper/Scaled"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Indicators/Wrapper/Scaled"]
+offset_left = -150.0
+offset_top = -95.0
+offset_right = 150.0
+offset_bottom = -18.0
+alignment = 2
+
+[node name="PlayerID" type="Label" parent="Indicators/Wrapper/Scaled/VBoxContainer"]
 unique_name_in_owner = true
 z_index = 10
-offset_left = -128.0
-offset_top = -48.0
-offset_right = 128.0
-offset_bottom = -11.0
+layout_mode = 2
 theme = ExtResource("10_iega2")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="Indicators/Wrapper/Scaled/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+z_index = 10
+layout_mode = 2
+theme = ExtResource("10_iega2")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 18
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
