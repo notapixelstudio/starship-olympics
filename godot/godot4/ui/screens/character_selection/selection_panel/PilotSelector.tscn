@@ -7,11 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://oc1y1q60yyfr" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Settings.png" id="5_0wc3t"]
 [ext_resource type="BitMap" uid="uid://ul1j2ckg00cp" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Settings.png" id="6_v1h44"]
 [ext_resource type="Texture2D" uid="uid://d0nefr1aus26p" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Go.png" id="7_a2o8n"]
-[ext_resource type="Texture2D" uid="uid://dfy3prd18h4ji" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Ready.png" id="7_b7klw"]
-[ext_resource type="BitMap" uid="uid://7hiofadvtm5f" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Ready.png" id="8_jibk1"]
 [ext_resource type="BitMap" uid="uid://b43pi655spa51" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Go.png" id="8_s31hs"]
 [ext_resource type="Texture2D" uid="uid://cwegg5yu4of73" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Back.png" id="9_u4af2"]
-[ext_resource type="BitMap" uid="uid://c18xu8vi0yegj" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Back.png" id="10_oolja"]
+[ext_resource type="BitMap" uid="uid://dfypfdal3vb7y" path="res://godot4/ui/screens/back_screen/buttons/area_Back.png" id="10_0qq4x"]
+[ext_resource type="Texture2D" uid="uid://dmw1ljywi5qf" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/graphics_Disconnect.png" id="11_ohtdp"]
+[ext_resource type="BitMap" uid="uid://pm73sfd7crba" path="res://godot4/ui/screens/character_selection/selection_panel/buttons/area_Disconnect.png" id="12_84drq"]
 [ext_resource type="PackedScene" uid="uid://t6dfl0yckkei" path="res://godot4/ui/screens/character_selection/selection_panel/PilotCharacter.tscn" id="13_jibk1"]
 [ext_resource type="AudioStream" uid="uid://bi38pkb44oyyx" path="res://assets/audio/UI_effects/switch-selection.wav" id="14_0qq4x"]
 [ext_resource type="AudioStream" uid="uid://db7byxw1cn5kp" path="res://assets/audio/UI_effects/GUI_Select_02.wav" id="15_ohtdp"]
@@ -21,79 +21,107 @@
 [node name="PilotSelector" type="Node2D"]
 script = ExtResource("2")
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 14.0
+[node name="PPLabel" type="Label" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.49, 0.49, 0.49, 1)
+offset_left = -59.0
+offset_top = -296.0
+offset_right = 41.0
+offset_bottom = -244.0
 theme = ExtResource("1")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_font_sizes/font_size = 32
 text = "pp"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Label2" type="Label" parent="."]
-offset_top = 32.0
-offset_right = 119.0
-offset_bottom = 64.0
-theme = ExtResource("1")
-text = "CONTROLS"
-
-[node name="Label3" type="Label" parent="."]
-offset_top = 64.0
-offset_right = 119.0
-offset_bottom = 96.0
-theme = ExtResource("1")
-text = "DISABLED"
-
-[node name="Label4" type="Label" parent="."]
-modulate = Color(1, 0.996078, 0.658824, 1)
-offset_top = 104.0
-offset_right = 126.0
-offset_bottom = 136.0
-theme = ExtResource("1")
-text = "no species"
-
-[node name="ReadyMenu" parent="." instance=ExtResource("3_v4uwd")]
+[node name="ControlsLabel" type="Label" parent="."]
 unique_name_in_owner = true
 visible = false
-offset_top = -200.0
-offset_bottom = -200.0
-wrap = null
-default_focused_element = NodePath("Select")
-focus_default_element_on_ready = null
-controls = null
-tint = null
+offset_left = -118.0
+offset_top = -244.0
+offset_right = 101.0
+offset_bottom = -212.0
+theme = ExtResource("1")
+text = "CONTROLS"
+horizontal_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
 
-[node name="Select" parent="ReadyMenu" instance=ExtResource("4_y2plc")]
+[node name="StatusLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -100.0
+offset_top = 264.0
+offset_right = 119.0
+offset_bottom = 296.0
+theme = ExtResource("1")
+text = "disabled"
+horizontal_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeciesLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -150.0
+offset_top = -46.0
+offset_right = 150.0
+offset_bottom = 6.0
+theme = ExtResource("1")
+theme_override_font_sizes/font_size = 32
+text = "no species"
+horizontal_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="GoMenu" parent="." instance=ExtResource("3_v4uwd")]
+unique_name_in_owner = true
+visible = false
+offset_left = -1.0
+offset_top = -65.0
+offset_right = -1.0
+offset_bottom = -65.0
+default_focused_element = NodePath("Ready")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ready" parent="GoMenu" instance=ExtResource("4_y2plc")]
 layout_mode = 0
-offset_left = -84.0
-offset_top = 68.0
-offset_right = 133.0
-offset_bottom = 131.0
-texture_normal = ExtResource("7_b7klw")
-texture_click_mask = ExtResource("8_jibk1")
+offset_left = -96.0
+offset_top = 62.0
+offset_right = 134.0
+offset_bottom = 164.0
+texture_normal = ExtResource("7_a2o8n")
+texture_click_mask = ExtResource("8_s31hs")
 
-[node name="Label" type="Label" parent="ReadyMenu/Select"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -21.0
-offset_bottom = -5.0
+[node name="Label" type="Label" parent="GoMenu/Ready"]
+layout_mode = 2
+anchor_top = 0.0366355
+anchor_bottom = 0.0366355
+offset_left = -7.0
+offset_top = 26.0
+offset_right = 224.0
+offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 22
-text = "SELECT  "
+theme_override_font_sizes/font_size = 30
+text = "READY!"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Settings" parent="ReadyMenu" instance=ExtResource("4_y2plc")]
+[node name="Settings" parent="GoMenu" instance=ExtResource("4_y2plc")]
 layout_mode = 0
-offset_left = -101.0
-offset_top = 143.0
-offset_right = 97.0
-offset_bottom = 195.0
+offset_left = -99.0
+offset_top = 130.0
+offset_right = 142.0
+offset_bottom = 241.0
 texture_normal = ExtResource("5_0wc3t")
 texture_click_mask = ExtResource("6_v1h44")
 
-[node name="Label" type="Label" parent="ReadyMenu/Settings"]
+[node name="Label" type="Label" parent="GoMenu/Settings"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,60 +131,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 16
-text = "SETTINGS"
+text = "SETTINGS  "
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="GoMenu" parent="." instance=ExtResource("3_v4uwd")]
-unique_name_in_owner = true
-visible = false
-offset_top = -200.0
-offset_bottom = -200.0
-wrap = null
-default_focused_element = NodePath("Go")
-focus_default_element_on_ready = null
-controls = null
-tint = null
-
-[node name="Go" parent="GoMenu" instance=ExtResource("4_y2plc")]
-layout_mode = 0
-offset_left = -96.0
-offset_top = 68.0
-offset_right = 123.0
-offset_bottom = 131.0
-texture_normal = ExtResource("7_a2o8n")
-texture_click_mask = ExtResource("8_s31hs")
-
-[node name="Label" type="Label" parent="GoMenu/Go"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -21.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 35
-text = "GO!"
-horizontal_alignment = 1
-vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Back" parent="GoMenu" instance=ExtResource("4_y2plc")]
 layout_mode = 0
-offset_left = -101.0
-offset_top = 144.0
-offset_right = 98.0
-offset_bottom = 196.0
+offset_left = -88.0
+offset_top = 190.0
+offset_right = 153.0
+offset_bottom = 301.0
 texture_normal = ExtResource("9_u4af2")
-texture_click_mask = ExtResource("10_oolja")
+texture_click_mask = ExtResource("10_0qq4x")
 
 [node name="Label" type="Label" parent="GoMenu/Back"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
+offset_right = -23.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -165,12 +159,38 @@ text = "BACK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Disconnect" parent="GoMenu" instance=ExtResource("4_y2plc")]
+layout_mode = 0
+offset_left = -71.0
+offset_top = 251.0
+offset_right = 145.0
+offset_bottom = 356.0
+texture_normal = ExtResource("11_ohtdp")
+texture_click_mask = ExtResource("12_84drq")
+
+[node name="Label" type="Label" parent="GoMenu/Disconnect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.00952381
+anchor_right = 0.861111
+anchor_bottom = 0.990476
+offset_left = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "DISCONNECT "
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="PilotCharacter" parent="." instance=ExtResource("13_jibk1")]
 unique_name_in_owner = true
 visible = false
-position = Vector2(-70, -307)
+position = Vector2(-70, -207)
 
 [node name="SFX" type="Node2D" parent="."]
+position = Vector2(0, 100)
 
 [node name="switch-selection" type="AudioStreamPlayer2D" parent="SFX"]
 unique_name_in_owner = true
@@ -192,3 +212,8 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = ExtResource("17_ct6yd")
 bus = &"SFX"
+
+[connection signal="pressed" from="GoMenu/Ready" to="." method="_on_ready_pressed"]
+[connection signal="pressed" from="GoMenu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="GoMenu/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="GoMenu/Disconnect" to="." method="_on_disconnect_pressed"]

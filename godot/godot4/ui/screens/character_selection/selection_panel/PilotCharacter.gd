@@ -13,3 +13,15 @@ func set_species(species: Species):
 		$Line2D.visible = false
 		$Sprite2D.modulate = Color(1,1,1)
 		$Sprite2D.self_modulate = Color(1,1,1)
+
+func set_status(status: String):
+	%Left.visible = status == 'joined'
+	%Right.visible = status == 'joined'
+	
+	if status == 'ready':
+		$Line2D.width = 10
+		$Line2D.default_color = Color.WHITE
+	else:
+		$Line2D.width = 4
+		$Line2D.default_color = Color.BLACK
+		

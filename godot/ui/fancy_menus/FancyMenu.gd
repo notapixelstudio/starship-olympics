@@ -15,6 +15,10 @@ func _ready():
 	
 	var children : Array[FancyButton] = get_fancy_button_children()
 	
+	# do not set neighbours if there's only one child
+	if len(children) == 1:
+		return
+	
 	if auto_neighbours in ['horizontal','both']:
 		for i in range(len(children)):
 			if not children[i].focus_neighbor_left:
@@ -67,6 +71,11 @@ func restore_focused_element():
 			get_node(default_focused_element).grab_focus()
 		return
 	_saved_focused_element.grab_focus()
+	
+## Reset focused element to default, if any
+func reset_focused_element():
+	if get_node_or_null(default_focused_element):
+		give_focus_to(get_node(default_focused_element))
 	
 ## Isolate the given Control child, making other Controls unreachable from it.
 func isolate_child(child: Control):

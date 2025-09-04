@@ -14,12 +14,14 @@ func _ready():
 	
 func focus():
 	modulate = Color(1, 1, 1)
+	z_index = 10
 	$AnimationPlayer.play("Grow")
 	if not _silent:
 		%AudioStreamPlayer2D.play()
 	
 func blur():
-	modulate = Color(0.3, 0.3, 0.3)
+	modulate = Color(0.4, 0.4, 0.4)
+	z_index = 0
 	$AnimationPlayer.play("Shrink")
 	
 func _on_FancyButton_focus_entered():

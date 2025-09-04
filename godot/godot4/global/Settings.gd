@@ -40,8 +40,10 @@ func _set_language(value: String):
 
 func _set_fullscreen(value: bool):
 	fullscreen = value
-	get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (fullscreen) else Window.MODE_WINDOWED
-	get_window().move_to_foreground()
+	var mode_to_be = Window.MODE_EXCLUSIVE_FULLSCREEN if (fullscreen) else Window.MODE_WINDOWED
+	if get_window().mode != mode_to_be:
+		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (fullscreen) else Window.MODE_WINDOWED
+		get_window().move_to_foreground()
 	if fullscreen:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	else:
