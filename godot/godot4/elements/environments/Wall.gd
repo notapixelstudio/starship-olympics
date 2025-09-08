@@ -20,6 +20,9 @@ func set_style(style:Style) -> void:
 	%UnderLine2D.texture = style.underline_texture
 	%UnderLine2D.width = style.underline_width
 
+func get_polygon() -> PackedVector2Array:
+	return polygon
+	
 func set_polygon(v: PackedVector2Array) -> void:
 	polygon = v
 	%Polygon2D.set_polygon(polygon)

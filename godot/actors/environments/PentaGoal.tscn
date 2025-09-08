@@ -3,11 +3,12 @@
 [ext_resource type="Script" uid="uid://dnust1jwuyaw2" path="res://actors/environments/PentaGoal.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c1duhx14s1f2t" path="res://actors/environments/Field.tscn" id="2"]
 [ext_resource type="AudioStream" uid="uid://blq5qxfnplj2y" path="res://assets/audio/gameplay/nocrown.ogg" id="5"]
-[ext_resource type="PackedScene" path="res://combat/traits/Goal.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://combat/traits/Owned.tscn" id="7"]
-[ext_resource type="PackedScene" path="res://combat/traits/Dropper.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://ppcqhg17xkcm" path="res://combat/traits/Goal.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://dwt58kjdmk4vv" path="res://combat/traits/Owned.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://be7eudr28m1hq" path="res://combat/traits/Dropper.tscn" id="8"]
 [ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="9"]
-[ext_resource type="PackedScene" path="res://combat/traits/NavigationZone.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://6apgvyk1tkq" path="res://godot4/traits/NavigationZone.tscn" id="10"]
+
 
 [sub_resource type="ConvexPolygonShape2D" id="9"]
 points = PackedVector2Array(-80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44921e-14, 30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785)

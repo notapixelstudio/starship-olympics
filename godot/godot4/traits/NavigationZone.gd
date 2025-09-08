@@ -1,6 +1,6 @@
 extends Trait
 
-@export (String, 'none', 'inset', 'outset') var offset_type = 'none'
+@export_enum('none', 'inset', 'outset') var offset_type : String = 'none'
 @export var layers := ['default', 'holder'] # of Strings
 
 func validate():
@@ -10,7 +10,7 @@ func validate():
 func get_polygon():
 	return host.get_polygon()
 	
-func get_offset_type() -> float:
+func get_offset_type() -> String:
 	return offset_type
 
 func get_layers() -> Array:

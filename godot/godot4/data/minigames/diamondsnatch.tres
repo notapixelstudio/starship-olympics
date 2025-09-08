@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="Minigame" load_steps=4 format=3 uid="uid://dm65hdj8nci86"]
+[gd_resource type="Resource" script_class="Minigame" load_steps=7 format=3 uid="uid://dm65hdj8nci86"]
 
+[ext_resource type="PackedScene" uid="uid://cc33kbqafn06s" path="res://godot4/actors/brains/DiamondsnatchBrain.tscn" id="1_4ibr8"]
 [ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="1_u3wwv"]
 [ext_resource type="Script" uid="uid://tavpq5uhlyhr" path="res://godot4/data/minigames/Minigame.gd" id="2_f0evc"]
 [ext_resource type="AudioStream" uid="uid://p74taqcp8rsj" path="res://assets/audio/soundtracks/Bhangra_bass-PunchDeck.ogg" id="3_8v1dc"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="3_sqpwn"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="5_ot7ge"]
 
 [resource]
 script = ExtResource("2_f0evc")
@@ -10,3 +13,6 @@ title = "diamondsnatch"
 icon = ExtResource("1_u3wwv")
 description = "take the diamonds"
 soundtrack = ExtResource("3_8v1dc")
+ship_scene = ExtResource("5_ot7ge")
+player_brain_scene = ExtResource("3_sqpwn")
+cpu_brain_scene = ExtResource("1_4ibr8")
