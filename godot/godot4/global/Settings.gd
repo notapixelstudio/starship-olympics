@@ -49,6 +49,9 @@ func _set_fullscreen(value: bool):
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
+func toggle_fullscreen() -> void:
+	_set_fullscreen(not fullscreen)
+	
 func _set_master(value: int):
 	master = value
 	var db_volume = linear_to_db(float(value)/100)
