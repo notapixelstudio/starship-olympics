@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=34 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="Script" uid="uid://cdwca4jvfkafg" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
 [ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
@@ -25,7 +25,6 @@
 [ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="19_hnpxt"]
 [ext_resource type="PackedScene" uid="uid://b83y52mt43gah" path="res://godot4/arena/managers/SpawnManager.tscn" id="20_fhoky"]
 [ext_resource type="PackedScene" uid="uid://c161j5oxkpgmm" path="res://godot4/arena/managers/CollisionResponseManager.tscn" id="21_rittb"]
-[ext_resource type="PackedScene" uid="uid://db1ohckm54rrt" path="res://godot4/arena/managers/NavigationManager.tscn" id="21_xop1g"]
 [ext_resource type="PackedScene" uid="uid://bsglorws8xub7" path="res://godot4/arena/managers/ShipFactory.tscn" id="22_xop1g"]
 [ext_resource type="PackedScene" uid="uid://baqs1sh3hug4e" path="res://godot4/arena/hud/Counter.tscn" id="26_picc7"]
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="27_8sctu"]
@@ -72,9 +71,6 @@ arena = NodePath("../..")
 
 [node name="SpawnManager" parent="Managers" node_paths=PackedStringArray("battlefield") instance=ExtResource("20_fhoky")]
 battlefield = NodePath("../../Battlefield")
-
-[node name="NavigationManager" parent="Managers" node_paths=PackedStringArray("navigation_container") instance=ExtResource("21_xop1g")]
-navigation_container = NodePath("../../Navigation")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true

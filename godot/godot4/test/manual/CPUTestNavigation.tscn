@@ -1,11 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://be5u5pslhyrvd"]
+[gd_scene load_steps=6 format=3 uid="uid://be5u5pslhyrvd"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_tffft"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_i71nc"]
 [ext_resource type="PackedScene" uid="uid://cc33kbqafn06s" path="res://godot4/actors/brains/DiamondsnatchBrain.tscn" id="3_q8g2o"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="4_kgv3h"]
-[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="5_q8g2o"]
-[ext_resource type="Script" uid="uid://dwa5kst63hc3b" path="res://addons/vshapes/VRect.gd" id="6_kgv3h"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tffft"]
+vertices = PackedVector2Array(1600, 1150, 2500, 1200, -2500, 1200, 800, 1150, 2500, -1200, 1600, -550, -2500, -1200, 800, -550)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(2, 6, 7, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2600, -1300, 2600, 1300, -2600, 1300, -2600, -1300)])
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
 
 [node name="TestChamber" instance=ExtResource("1_tffft")]
 
@@ -27,11 +33,13 @@ position = Vector2(0, -1550)
 [node name="Diamond" parent="." index="9" instance=ExtResource("4_kgv3h")]
 position = Vector2(2000, 800)
 
-[node name="Wall" parent="." index="10" instance=ExtResource("5_q8g2o")]
-hollow = true
+[node name="Node2D" type="Node2D" parent="." index="10" groups=["obstacle"]]
+position = Vector2(-150, 0)
 
-[node name="VRect" type="Node" parent="Wall" index="6"]
-script = ExtResource("6_kgv3h")
-width = 5200.0
-height = 2600.0
-metadata/_custom_type_script = "uid://dwa5kst63hc3b"
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Node2D" index="0"]
+vertices = PackedVector2Array(1050, -450, 1650, -450, 1650, 1050, 1050, 1050)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="11"]
+navigation_polygon = SubResource("NavigationPolygon_tffft")

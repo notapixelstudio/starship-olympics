@@ -51,3 +51,11 @@ texture_repeat = 2
 position = Vector2(0, 32)
 texture = ExtResource("2_amyo3")
 polygon = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+unique_name_in_owner = true
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+unique_name_in_owner = true
+affect_navigation_mesh = true
+carve_navigation_mesh = true

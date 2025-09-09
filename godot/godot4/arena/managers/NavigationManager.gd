@@ -21,8 +21,8 @@ func _on_navigation_zone_changed(zone):
 	
 func update_navigation_zones():
 	# delete all navigation nodes already present, if any
-	for child in navigation_container.get_children():
-		child.free()
+	#for child in navigation_container.get_children():
+		#child.free()
 		
 	# prepare zone for each layer
 	var navigation_polygons = {
@@ -33,6 +33,11 @@ func update_navigation_zones():
 		var polygon = zone_t.get_polygon()
 		var layers = zone_t.get_layers()
 		var offset
+		print({
+			"polygon": polygon,
+			"layers": layers,
+			"offset": zone_t.get_offset_type()
+		})
 		match zone_t.get_offset_type():
 			'none':
 				offset = 0
@@ -45,20 +50,20 @@ func update_navigation_zones():
 			for layer in layers:
 				navigation_polygons[layer].add_outline(resulting_polygon)
 	
-	for layer in navigation_polygons.keys():
-		var navpoly = navigation_polygons[layer]
-		NavigationServer2D.parse_source_geometry_data(navpoly)
-		navpoly.make_polygons_from_outlines()
-		var navregion = NavigationRegion2D.new()
-		navregion.set_navigation_polygon(navpoly)
-		var bitmask
-		match(layer):
-			'default':
-				bitmask = 1
-			'holder':
-				bitmask = 2
-		navregion.set_navigation_layers(bitmask)
-		navigation_container.add_child(navregion)
+	#for layer in navigation_polygons.keys():
+		#var navpoly = navigation_polygons[layer]
+		#NavigationServer2D.parse_source_geometry_data(navpoly)
+		#navpoly.make_polygons_from_outlines()
+		#var navregion = NavigationRegion2D.new()
+		#navregion.set_navigation_polygon(navpoly)
+		#var bitmask
+		#match(layer):
+			#'default':
+				#bitmask = 1
+			#'holder':
+				#bitmask = 2
+		#navregion.set_navigation_layers(bitmask)
+		#navigation_container.add_child(navregion)
 	
 	_queued_update = false
 	

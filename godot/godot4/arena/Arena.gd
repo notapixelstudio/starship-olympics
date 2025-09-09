@@ -79,8 +79,6 @@ func _ready() -> void:
 	
 	%PlayersReadyWheels.set_players(_active_players)
 	
-	# Arena setup done
-	Events.arena_ready.emit()
 	# wait for players to be ready
 	await Events.battle_start
 	# BATTLE START
