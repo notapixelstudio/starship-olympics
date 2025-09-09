@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://be5u5pslhyrvd"]
+
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_tffft"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_i71nc"]
+[ext_resource type="PackedScene" uid="uid://cc33kbqafn06s" path="res://godot4/actors/brains/DiamondsnatchBrain.tscn" id="3_q8g2o"]
+[ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="4_kgv3h"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="5_q8g2o"]
+[ext_resource type="Script" uid="uid://dwa5kst63hc3b" path="res://addons/vshapes/VRect.gd" id="6_kgv3h"]
+
+[node name="TestChamber" instance=ExtResource("1_tffft")]
+
+[node name="Ship" parent="." index="4" instance=ExtResource("2_i71nc")]
+
+[node name="DiamondsnatchBrain" parent="Ship" index="12" instance=ExtResource("3_q8g2o")]
+debug = true
+
+[node name="TestGrid" parent="." index="5"]
+position = Vector2(-2600, -1300)
+columns = 104
+
+[node name="Diamond" parent="." index="9" instance=ExtResource("4_kgv3h")]
+position = Vector2(2000, 800)
+
+[node name="Wall" parent="." index="10" instance=ExtResource("5_q8g2o")]
+hollow = true
+
+[node name="VRect" type="Node" parent="Wall" index="6"]
+script = ExtResource("6_kgv3h")
+width = 5000.0
+height = 2500.0
+metadata/_custom_type_script = "uid://dwa5kst63hc3b"

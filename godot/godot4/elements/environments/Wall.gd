@@ -43,4 +43,6 @@ func update_collision_polygon() -> void:
 		%CollisionPolygon2D.set_polygon(polygon)
 
 func _ready():
-	set_style(%Styleable.get_style_from_ancestor_or_self())
+	var style = %Styleable.get_style_from_ancestor_or_self()
+	if style:
+		set_style(style)
