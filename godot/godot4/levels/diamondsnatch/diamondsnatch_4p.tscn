@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cvp2cu7cq2g7p"]
+[gd_scene load_steps=18 format=3 uid="uid://cvp2cu7cq2g7p"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_lvw7a"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_l6uvh"]
@@ -16,6 +16,14 @@
 [ext_resource type="PackedScene" uid="uid://dvjdmo8ceeh5b" path="res://godot4/elements/bubbles/DiamondBubble.tscn" id="11_6sc17"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="12_pcah0"]
 [ext_resource type="PackedScene" uid="uid://cie2xt6b1e8oy" path="res://godot4/elements/bubbles/BigDiamondBubble.tscn" id="13_t5n1a"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hjpn0"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
 
 [node name="VersusArena" instance=ExtResource("1_lvw7a")]
 
@@ -591,3 +599,6 @@ pattern = "gigarhombus"
 element_scene = ExtResource("8_ev06m")
 guest_star_scene = ExtResource("12_pcah0")
 guest_star_positioning = "random"
+
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_hjpn0")

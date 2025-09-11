@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://x751geeku5fx"]
+[gd_scene load_steps=19 format=3 uid="uid://x751geeku5fx"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_bvhdi"]
 [ext_resource type="PackedScene" uid="uid://chnvt4cxrqrcv" path="res://godot4/arena/managers/games/CrownGame.tscn" id="2_3q1vj"]
@@ -114,6 +114,14 @@ _data = {
 &"default": SubResource("Animation_xjb4e")
 }
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ffvyl"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
 [node name="VersusArena" instance=ExtResource("1_bvhdi")]
 
 [node name="Styleable" parent="." index="0"]
@@ -200,3 +208,6 @@ precision = 20
 rotation_degrees = 45.0
 
 [node name="Crown" parent="Battlefield" index="9" instance=ExtResource("6_h5akp")]
+
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_ffvyl")
