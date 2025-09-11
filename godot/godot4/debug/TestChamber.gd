@@ -18,9 +18,9 @@ func _ready():
 		ships[0].set_player(test_player)
 		
 	for ship in ships:
-		var brain = player_brain_scene.instantiate()
-		brain.set_controls(ship.get_player().get_controls())
-		ship.add_child(brain)
+		#var brain = player_brain_scene.instantiate()
+		#brain.set_controls(ship.get_player().get_controls())
+		#ship.add_child(brain)
 		Events.team_ready.emit(ship.get_player().get_team(), [ship.get_player()])
 		
 func _process(delta):
@@ -30,3 +30,7 @@ func _process(delta):
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_restart_scene"):
 		get_tree().reload_current_scene()
+	elif event.is_action_pressed("hard_quit"):
+		Utils.end_execution()
+	elif event.is_action_pressed("fullscreen"):
+		Settings.toggle_fullscreen()

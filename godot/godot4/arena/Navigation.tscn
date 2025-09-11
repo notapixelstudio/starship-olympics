@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnc1iumrpf838"]
+
+[ext_resource type="Script" uid="uid://mnollfyyy4bu" path="res://godot4/arena/Navigation.gd" id="1_h2wcs"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_h2wcs"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[node name="Navigation" type="NavigationRegion2D"]
+navigation_polygon = SubResource("NavigationPolygon_h2wcs")
+script = ExtResource("1_h2wcs")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

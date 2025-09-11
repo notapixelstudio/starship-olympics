@@ -203,7 +203,7 @@ _data = {
 &"Shine": SubResource("Animation_ijh7r")
 }
 
-[node name="Treasure" type="RigidBody2D" groups=["Treasure", "collectable"]]
+[node name="Treasure" type="RigidBody2D" groups=["collectable"]]
 collision_layer = 2048
 collision_mask = 3093
 physics_material_override = SubResource("PhysicsMaterial_ojvyv")
@@ -230,14 +230,14 @@ texture = ExtResource("4_qifm1")
 
 [node name="IntroAnimation" type="AnimationPlayer" parent="Graphics"]
 libraries = {
-"": SubResource("AnimationLibrary_g125i")
+&"": SubResource("AnimationLibrary_g125i")
 }
 autoplay = "default"
 
 [node name="SpriteAnimation" type="AnimationPlayer" parent="Graphics"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_lqqh5")
+&"": SubResource("AnimationLibrary_lqqh5")
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

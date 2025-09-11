@@ -79,7 +79,7 @@ func _ready() -> void:
 	
 	%PlayersReadyWheels.set_players(_active_players)
 	
-	
+	# wait for players to be ready
 	await Events.battle_start
 	# BATTLE START
 	

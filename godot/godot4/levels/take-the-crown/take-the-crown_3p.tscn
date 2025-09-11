@@ -141,7 +141,7 @@ script = ExtResource("5_wyyrq")
 width = 3900.0
 height = 2400.0
 bevel = 1185.0
-hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
+hosts = [NodePath("../OutsideWall"), NodePath("../Grid"), NodePath("../../Navigation")]
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield" index="1" groups=["animation_starts_with_battle"]]
 root_node = NodePath("../OutsideWall")

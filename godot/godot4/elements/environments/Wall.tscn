@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://yuay7lcg5j7l" path="res://assets/sprites/background/static.png" id="2_amyo3"]
 [ext_resource type="PackedScene" uid="uid://bbh6dfcfwh26k" path="res://godot4/traits/Styleable.tscn" id="2_p8qx8"]
 
-[node name="Wall" type="StaticBody2D"]
+[node name="Wall" type="StaticBody2D" groups=["obstacle"]]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_on1u7")

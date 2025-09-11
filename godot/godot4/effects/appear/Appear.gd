@@ -22,3 +22,7 @@ func was_touched() -> bool:
 	
 func get_toucher():
 	return _touched_by
+
+func _make_collectable() -> void:
+	add_to_group("collectable")
+	

@@ -1,6 +1,6 @@
 extends CPUBrain
 
-@export var go_to_center_p := 0.1
+@export var go_to_center_p := 0.2
 
 var random_preference : int
 
@@ -14,7 +14,7 @@ func think():
 	set_stance('quiet') # we can't shoot in this minigame
 	log_strategy('')
 	
-	targets = get_tree().get_nodes_in_group('Treasure')
+	targets = get_tree().get_nodes_in_group('collectable')
 	if len(targets) > 0:
 		go_to(targets[random_preference%len(targets)].global_position)
 		log_strategy('chase diamond')

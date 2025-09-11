@@ -9,6 +9,7 @@ func set_hollow(v: bool) -> void:
 	hollow = v
 	%Polygon2D.visible = not hollow
 	%UnderPolygon2D.visible = hollow
+	update_navigation()
 	
 func set_style(style:Style) -> void:
 	%Polygon2D.modulate = style.color
@@ -19,7 +20,7 @@ func set_style(style:Style) -> void:
 	%UnderLine2D.default_color = style.underline_color
 	%UnderLine2D.texture = style.underline_texture
 	%UnderLine2D.width = style.underline_width
-
+	
 func set_polygon(v: PackedVector2Array) -> void:
 	polygon = v
 	%Polygon2D.set_polygon(polygon)
@@ -39,5 +40,13 @@ func update_collision_polygon() -> void:
 	else:
 		%CollisionPolygon2D.set_polygon(polygon)
 
+func update_navigation() -> void:
+	if not hollow:
+		add_to_group("obstacle")
+	else:
+		remove_from_group("obstacle")
+		
 func _ready():
-	set_style(%Styleable.get_style_from_ancestor_or_self())
+	var style = %Styleable.get_style_from_ancestor_or_self()
+	if style:
+		set_style(style)

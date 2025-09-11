@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://be5u5pslhyrvd"]
+
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_tffft"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_i71nc"]
+[ext_resource type="PackedScene" uid="uid://cc33kbqafn06s" path="res://godot4/actors/brains/DiamondsnatchBrain.tscn" id="3_q8g2o"]
+[ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="4_kgv3h"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tffft"]
+vertices = PackedVector2Array(2098.85, -537.617, 2500, -1200, 2500, 1200, 1600, -288.188, 1600, 850, -2500, 1200, 800, 850, 1238.27, -850, 1271.61, -550, 800, -550, -2500, -1200, 1630.28, -850)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 0, 2, 4), PackedInt32Array(4, 2, 5, 6), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(6, 5, 10, 9), PackedInt32Array(1, 0, 11), PackedInt32Array(10, 1, 11, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2600, -1300, 2600, 1300, -2600, 1300, -2600, -1300)])
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[sub_resource type="GDScript" id="GDScript_tffft"]
+script/source = "extends NavigationRegion2D
+
+func _ready() -> void:
+	bake_navigation_polygon()
+"
+
+[node name="TestChamber" instance=ExtResource("1_tffft")]
+
+[node name="FPSCounter" parent="." index="3"]
+position = Vector2(2750, 1128)
+
+[node name="Ship" parent="." index="4" instance=ExtResource("2_i71nc")]
+
+[node name="DiamondsnatchBrain" parent="Ship" index="12" instance=ExtResource("3_q8g2o")]
+debug = true
+
+[node name="TestGrid" parent="." index="5"]
+position = Vector2(-2600, -1300)
+columns = 104
+
+[node name="SecsCounter" parent="." index="7"]
+position = Vector2(0, -1550)
+
+[node name="Diamond" parent="." index="9" instance=ExtResource("4_kgv3h")]
+position = Vector2(2000, 800)
+
+[node name="Node2D" type="Node2D" parent="." index="10" groups=["obstacle"]]
+position = Vector2(-150, 0)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Node2D" index="0"]
+vertices = PackedVector2Array(1050, -450, 1650, -450, 1650, 750, 1050, 750)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="11"]
+navigation_polygon = SubResource("NavigationPolygon_tffft")
+script = SubResource("GDScript_tffft")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="12" groups=["obstacle"]]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
+polygon = PackedVector2Array(1350, -750, 1600, -750, 1900, -550, 1400, -300)

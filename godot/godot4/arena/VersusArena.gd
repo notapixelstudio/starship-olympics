@@ -7,4 +7,3 @@ func setup() -> void:
 	
 func setup_team(team:String) -> void:
 	super(team)
-	
