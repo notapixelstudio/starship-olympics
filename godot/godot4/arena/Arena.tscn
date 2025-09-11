@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=35 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="Script" uid="uid://cdwca4jvfkafg" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
 [ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://b83y52mt43gah" path="res://godot4/arena/managers/SpawnManager.tscn" id="20_fhoky"]
 [ext_resource type="PackedScene" uid="uid://c161j5oxkpgmm" path="res://godot4/arena/managers/CollisionResponseManager.tscn" id="21_rittb"]
 [ext_resource type="PackedScene" uid="uid://bsglorws8xub7" path="res://godot4/arena/managers/ShipFactory.tscn" id="22_xop1g"]
+[ext_resource type="PackedScene" uid="uid://cnc1iumrpf838" path="res://godot4/arena/Navigation.tscn" id="23_rittb"]
 [ext_resource type="PackedScene" uid="uid://baqs1sh3hug4e" path="res://godot4/arena/hud/Counter.tscn" id="26_picc7"]
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="27_8sctu"]
 [ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="28_fhoky"]
@@ -94,7 +95,7 @@ unique_name_in_owner = true
 [node name="Battlefield" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="Navigation" type="Node2D" parent="."]
+[node name="Navigation" parent="." instance=ExtResource("23_rittb")]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

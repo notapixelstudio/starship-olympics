@@ -9,6 +9,7 @@ func set_hollow(v: bool) -> void:
 	hollow = v
 	%Polygon2D.visible = not hollow
 	%UnderPolygon2D.visible = hollow
+	update_navigation()
 	
 func set_style(style:Style) -> void:
 	%Polygon2D.modulate = style.color
@@ -27,7 +28,6 @@ func set_polygon(v: PackedVector2Array) -> void:
 	%UnderLine2D.set_points(polygon)
 	%UnderPolygon2D.set_polygon(polygon)
 	update_collision_polygon()
-	update_navigation_region()
 	
 func update_collision_polygon() -> void:
 	if hollow:
@@ -40,20 +40,12 @@ func update_collision_polygon() -> void:
 	else:
 		%CollisionPolygon2D.set_polygon(polygon)
 
-func update_navigation_region() -> void:
-	if hollow:
-	# this is a zone where agents can travel
-		var new_navigation_mesh = NavigationPolygon.new()
-		var source_geometry = NavigationMeshSourceGeometryData2D.new()
-		new_navigation_mesh.add_outline(polygon)
-		NavigationServer2D.bake_from_source_geometry_data(new_navigation_mesh, source_geometry)
-		%NavigationObstacle2D.queue_free()
-		%NavigationRegion2D.navigation_polygon = new_navigation_mesh
+func update_navigation() -> void:
+	if not hollow:
+		add_to_group("obstacle")
 	else:
-		%NavigationRegion2D.queue_free()
-		%NavigationObstacle2D.vertices = polygon
+		remove_from_group("obstacle")
 		
-	
 func _ready():
 	var style = %Styleable.get_style_from_ancestor_or_self()
 	if style:

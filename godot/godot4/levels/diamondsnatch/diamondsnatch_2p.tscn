@@ -46,7 +46,7 @@ script = ExtResource("5_n30yh")
 width = 3500.0
 height = 1800.0
 radius = 900.0
-hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
+hosts = [NodePath("../OutsideWall"), NodePath("../Grid"), NodePath("../../Navigation")]
 
 [node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource("4_pfuid")]
 hollow = true
