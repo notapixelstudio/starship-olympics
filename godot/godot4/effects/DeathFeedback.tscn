@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctqk6tu6rj77v"]
+[gd_scene load_steps=13 format=3 uid="uid://ctqk6tu6rj77v"]
 
 [ext_resource type="Script" uid="uid://b27vo4h2l4rm0" path="res://godot4/effects/DeathFeedback.gd" id="1_stgea"]
 [ext_resource type="Texture2D" uid="uid://bonj3coqe6d0i" path="res://assets/sprites/debris.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://cd12x0fubc17m" path="res://godot4/actors/ships/GravitonField.tscn" id="2_iea10"]
 
 [sub_resource type="CanvasItemMaterial" id="1"]
 
@@ -66,9 +67,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.5, 2),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"_disable_graviton_field"
+}, {
 "args": [],
 "method": &"queue_free"
 }]
@@ -98,8 +102,15 @@ _data = {
 [node name="DeathFeedback" type="Node2D"]
 script = ExtResource("1_stgea")
 
+[node name="GravitonField" parent="." instance=ExtResource("2_iea10")]
+unique_name_in_owner = true
+enabled = true
+gravity = -500.0
+center = Vector3(0, 0, 32)
+influence_radius = 700.0
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-modulate = Color(1.6, 1.6, 1.6, 1)
+modulate = Color(1.5, 1.5, 1.5, 1)
 self_modulate = Color(1.6, 1.6, 1.6, 1)
 material = SubResource("1")
 emitting = false
