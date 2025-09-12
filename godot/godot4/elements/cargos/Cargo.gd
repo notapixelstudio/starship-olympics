@@ -31,6 +31,10 @@ func _on_body_entered(body: Node) -> void:
 		Events.collision.emit(self, body)
 	
 func touched_by(actor) -> void:
+	# avoid loading a cargo twice, if we already have been loaded
+	if is_queued_for_deletion():
+		return
+	
 	if _is_untouchable_by(actor):
 		return
 		

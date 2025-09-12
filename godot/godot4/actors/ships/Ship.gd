@@ -236,6 +236,10 @@ func damage(damager) -> void:
 	disable()
 	
 func die():
+	# avoid creating a death feedback twice, if we already have been killed
+	if is_queued_for_deletion():
+		return
+		
 	var death_feedback = death_feedback_scene.instantiate()
 	death_feedback.color = get_color()
 	death_feedback.global_position = global_position
@@ -243,6 +247,10 @@ func die():
 	queue_free()
 	
 func disable():
+	# avoid creating a disabled ship twice, if we already have been disabled
+	if is_queued_for_deletion():
+		return
+		
 	var disabled_ship := disabled_ship_scene.instantiate()
 	disabled_ship.set_ship(self)
 	disabled_ship.global_position = global_position

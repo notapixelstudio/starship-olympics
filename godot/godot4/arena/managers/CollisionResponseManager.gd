@@ -19,6 +19,10 @@ func _on_collision(actor:CollisionObject2D, collider:CollisionObject2D, tag:Stri
 		_handle_shield_wall_vs_other(actor, collider, tag)
 
 func _handle_ship_vs_ship(ship1:Ship, ship2:Ship, tag:String='') -> void:
+	# avoid checking ships that are about to be deleted
+	if ship1.is_queued_for_deletion() or ship2.is_queued_for_deletion():
+		return # collision handled
+		
 	# avoid checking twice per collision
 	if ship1.get_instance_id() < ship2.get_instance_id():
 		return # collision handled
