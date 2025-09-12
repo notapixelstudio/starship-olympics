@@ -68,3 +68,9 @@ func is_action_strong(action:String) -> bool:
 
 func are_controls_at_rest(controls:String) -> bool:
 	return Input.get_action_strength(controls+"_down") < 0.1 and Input.get_action_strength(controls+"_up") < 0.1 and Input.get_action_strength(controls+"_left") < 0.1 and Input.get_action_strength(controls+"_right") < 0.1
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("hard_quit"):
+		Utils.end_execution()
+	elif event.is_action_pressed("fullscreen"):
+		Settings.toggle_fullscreen()

@@ -30,7 +30,3 @@ func _process(delta):
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_restart_scene"):
 		get_tree().reload_current_scene()
-	elif event.is_action_pressed("hard_quit"):
-		Utils.end_execution()
-	elif event.is_action_pressed("fullscreen"):
-		Settings.toggle_fullscreen()
