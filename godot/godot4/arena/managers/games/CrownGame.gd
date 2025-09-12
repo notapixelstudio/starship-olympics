@@ -18,6 +18,6 @@ func _physics_process(delta: float) -> void:
 			Events.message.emit(_royalnesses[ship], ship.get_color(), ship.global_position + Vector2(0,-150))
 			_royalnesses.erase(ship)
 			ship.set_message('')
-	
+			
 func _on_match_over(data:Dictionary) -> void:
 	set_physics_process(false)
