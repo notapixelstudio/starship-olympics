@@ -240,11 +240,14 @@ func die():
 	if is_queued_for_deletion():
 		return
 		
+	_show_death_feedback()
+	queue_free()
+	
+func _show_death_feedback() -> void:
 	var death_feedback = death_feedback_scene.instantiate()
 	death_feedback.color = get_color()
 	death_feedback.global_position = global_position
 	Events.spawn_request.emit(death_feedback)
-	queue_free()
 	
 func disable():
 	# avoid creating a disabled ship twice, if we already have been disabled
@@ -258,6 +261,9 @@ func disable():
 	disabled_ship.linear_velocity = linear_velocity
 	disabled_ship.angular_velocity = angular_velocity
 	Events.spawn_request.emit(disabled_ship)
+	
+	_show_death_feedback()
+	
 	queue_free()
 
 func get_speed_normalized() -> float:

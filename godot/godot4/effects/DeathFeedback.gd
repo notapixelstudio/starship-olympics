@@ -7,4 +7,3 @@ func _ready():
 	$GPUParticles2D.emitting = true
 	#SoundEffects.play($RandomAudioStreamPlayer2D)
 	$AnimationPlayer.play("Blink")
-	
