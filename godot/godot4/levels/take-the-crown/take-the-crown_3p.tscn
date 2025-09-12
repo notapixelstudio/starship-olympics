@@ -1,15 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://y0hgvq20457v"]
+[gd_scene load_steps=19 format=3 uid="uid://y0hgvq20457v"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_fulyf"]
 [ext_resource type="Resource" uid="uid://cxorooq22c83" path="res://godot4/data/styles/palace.tres" id="2_jmjm8"]
 [ext_resource type="PackedScene" uid="uid://chnvt4cxrqrcv" path="res://godot4/arena/managers/games/CrownGame.tscn" id="3_561tv"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_h00p3"]
-[ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="5_wyyrq"]
+[ext_resource type="Script" uid="uid://dl20csa03elny" path="res://addons/vshapes/VBeveledRect.gd" id="5_wyyrq"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="6_mri1f"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="7_q6edd"]
-[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="8_edvd2"]
+[ext_resource type="Script" uid="uid://b5x8tla76k8xp" path="res://addons/vshapes/VRegularPolygon.gd" id="8_edvd2"]
 [ext_resource type="PackedScene" uid="uid://bia7yrbdvp8vw" path="res://godot4/elements/environments/ShieldWall.tscn" id="9_qbbkj"]
-[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="10_tdfqt"]
+[ext_resource type="Script" uid="uid://dgwv8e6t4gtsn" path="res://addons/vshapes/VRoundedRect.gd" id="10_tdfqt"]
 [ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="11_cva3b"]
 
 [sub_resource type="Animation" id="Animation_vtipm"]
@@ -114,6 +114,14 @@ _data = {
 &"default": SubResource("Animation_xjb4e")
 }
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_fulyf"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
 [node name="VersusArena" instance=ExtResource("1_fulyf")]
 
 [node name="Styleable" parent="." index="0"]
@@ -204,3 +212,6 @@ precision = 20
 rotation_degrees = 45.0
 
 [node name="Crown" parent="Battlefield" index="9" instance=ExtResource("11_cva3b")]
+
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_fulyf")

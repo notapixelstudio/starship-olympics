@@ -210,6 +210,9 @@ func get_cargo_manager():
 func has_cargo() -> bool:
 	return %CargoManager.has_cargo()
 	
+func has_cargo_class(type) -> bool:
+	return %CargoManager.has_cargo_class(type)
+	
 func load_cargo(v: Cargo) -> void:
 	%CargoManager.load_cargo(v)
 	
@@ -256,3 +259,6 @@ func set_message(msg: String, color: Color = get_color()) -> void:
 	%Message.text = msg
 	%Message.modulate = color
 	%Message.visible = msg != '' # used for VBox alignment
+
+func get_target_destination() -> Vector2:
+	return global_position # FIXME we need to actually compute target dest

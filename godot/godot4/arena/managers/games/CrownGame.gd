@@ -5,7 +5,7 @@ var _royalnesses := {}
 func _physics_process(delta: float) -> void:
 	# assign points
 	for ship in get_tree().get_nodes_in_group('Ship'):
-		if ship.get_cargo_manager().get_cargo() is Crown:
+		if ship.has_cargo_class(Crown):
 			if not ship in _royalnesses:
 				_royalnesses[ship] = 0.0
 				
