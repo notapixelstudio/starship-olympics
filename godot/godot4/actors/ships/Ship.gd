@@ -75,6 +75,8 @@ var charging_started_since := 0.0 ## in seconds
 var target_velocity := Vector2(0, 0)
 var rotation_request := 0.0
 
+var _stunned := false
+
 func get_target_velocity() -> Vector2:
 	return target_velocity
 	
@@ -87,8 +89,14 @@ func set_rotation_request(v: float) -> void:
 	set_constant_torque(min(PI/2, rotation_request) * rotation_torque)
 	
 func are_controls_enabled():
-	# TODO: just yet
-	return true
+	return not _stunned
+	
+func stun(time:=0.1) -> void:
+	_stunned = true
+	%StunTimer.start(time)
+	
+func _on_stun_timer_timeout() -> void:
+	_stunned = false
 	
 ## returns whether the ship is using their thrusters, i.e., it's attempting to reach a nonzero
 ## target velocity and it's not charging enough to dash
@@ -216,6 +224,9 @@ func has_cargo_class(type) -> bool:
 func load_cargo(v: Cargo) -> void:
 	%CargoManager.load_cargo(v)
 	
+func discard_cargo() -> void:
+	%CargoManager.discard_cargo()
+	
 func swap_cargo(other: Ship) -> void:
 	%CargoManager.swap_cargo(other.get_cargo_manager())
 	
@@ -276,3 +287,8 @@ func set_message(msg: String, color: Color = get_color()) -> void:
 
 func get_target_destination() -> Vector2:
 	return global_position # FIXME we need to actually compute target dest
+
+func rebound(direction = null, strength := 2000.0):
+	if direction == null:
+		direction = Vector2(-1,0).rotated(rotation)
+	apply_central_impulse(strength*direction)

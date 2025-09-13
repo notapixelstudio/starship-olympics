@@ -404,6 +404,9 @@ stream = SubResource("AudioStreamRandomizer_ntsfv")
 panning_strength = 10.0
 bus = &"SFX"
 
+[node name="StunTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]
 [connection signal="body_entered" from="TouchArea" to="." method="_on_touch_area_body_entered"]
@@ -414,3 +417,4 @@ bus = &"SFX"
 [connection signal="timeout" from="ChargeManager/TapTimer" to="ChargeManager" method="_on_tap_timer_timeout"]
 [connection signal="timeout" from="ChargeManager/DashTimer" to="ChargeManager" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="DashDurationTimer" to="." method="_on_dash_duration_timer_timeout"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
