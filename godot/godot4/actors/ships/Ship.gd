@@ -75,6 +75,8 @@ var charging_started_since := 0.0 ## in seconds
 var target_velocity := Vector2(0, 0)
 var rotation_request := 0.0
 
+var _stunned := false
+
 func get_target_velocity() -> Vector2:
 	return target_velocity
 	
@@ -87,8 +89,14 @@ func set_rotation_request(v: float) -> void:
 	set_constant_torque(min(PI/2, rotation_request) * rotation_torque)
 	
 func are_controls_enabled():
-	# TODO: just yet
-	return true
+	return not _stunned
+	
+func stun(time:=0.1) -> void:
+	_stunned = true
+	%StunTimer.start(time)
+	
+func _on_stun_timer_timeout() -> void:
+	_stunned = false
 	
 ## returns whether the ship is using their thrusters, i.e., it's attempting to reach a nonzero
 ## target velocity and it's not charging enough to dash
@@ -216,6 +224,9 @@ func has_cargo_class(type) -> bool:
 func load_cargo(v: Cargo) -> void:
 	%CargoManager.load_cargo(v)
 	
+func discard_cargo() -> void:
+	%CargoManager.discard_cargo()
+	
 func swap_cargo(other: Ship) -> void:
 	%CargoManager.swap_cargo(other.get_cargo_manager())
 	
@@ -226,14 +237,23 @@ func show_hit() -> void:
 func damage(damager) -> void:
 	show_hit()
 	
+	# always rebound on hit
+	var vector = Vector2.ZERO
+	var strength_rebound = 2500.0
+	if(damager.get('linear_velocity') == null):
+		vector = (global_position-damager.global_position).normalized()
+	else:
+		vector = (Vector2(1,0).rotated(damager.linear_velocity.angle()))
+	
 	# lose cargo if any instead of losing health
+	var impulse_to_give = rebound(vector, strength_rebound)
 	if %CargoManager.has_cargo():
 		%CargoManager.shoot_cargo(damager)
 		return
 		
 	# TBD health system
 	#die()
-	disable()
+	disable(impulse_to_give)
 	
 func die():
 	# avoid creating a death feedback twice, if we already have been killed
@@ -249,7 +269,7 @@ func _show_death_feedback() -> void:
 	death_feedback.global_position = global_position
 	Events.spawn_request.emit(death_feedback)
 	
-func disable():
+func disable(impulse_to_give=Vector2.ZERO):
 	# avoid creating a disabled ship twice, if we already have been disabled
 	if is_queued_for_deletion():
 		return
@@ -260,7 +280,10 @@ func disable():
 	disabled_ship.global_rotation = global_rotation
 	disabled_ship.linear_velocity = linear_velocity
 	disabled_ship.angular_velocity = angular_velocity
-	Events.spawn_request.emit(disabled_ship)
+	Events.spawn_request.emit(disabled_ship, func(disabled_ship):
+		disabled_ship.apply_central_impulse(impulse_to_give)
+		disabled_ship.apply_torque_impulse((1000+linear_velocity.length())*2)
+	)
 	
 	_show_death_feedback()
 	
@@ -276,3 +299,9 @@ func set_message(msg: String, color: Color = get_color()) -> void:
 
 func get_target_destination() -> Vector2:
 	return global_position # FIXME we need to actually compute target dest
+
+func rebound(direction = null, strength := 2000.0) -> Vector2:
+	if direction == null:
+		direction = Vector2(-1,0).rotated(rotation)
+	apply_central_impulse(strength*direction)
+	return (strength*direction)
