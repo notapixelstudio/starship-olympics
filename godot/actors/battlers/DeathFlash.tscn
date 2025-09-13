@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bstkogr32lp02"]
+[gd_scene load_steps=12 format=3 uid="uid://bstkogr32lp02"]
 
 [ext_resource type="Script" uid="uid://cccibb2gpyv8p" path="res://actors/battlers/DeathFlash.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bonj3coqe6d0i" path="res://assets/sprites/debris.png" id="2"]
@@ -55,6 +55,12 @@ tracks/0/keys = {
 "values": [Color(1.6, 1.6, 1.6, 1)]
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ccrwy"]
+_data = {
+&"Blink": SubResource("5"),
+&"RESET": SubResource("6")
+}
+
 [node name="DeathFlash" type="Node2D"]
 script = ExtResource("1")
 
@@ -63,24 +69,22 @@ self_modulate = Color(1.6, 1.6, 1.6, 1)
 material = SubResource("1")
 emitting = false
 amount = 35
+texture = ExtResource("2")
 lifetime = 2.0
 one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
 process_material = SubResource("4")
-texture = ExtResource("2")
 
 [node name="RandomAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = 2.0
 script = ExtResource("3")
-streams = [ExtResource("4")]
-volume_min = 0
-volume_max = 0
+streams = Array[AudioStream]([ExtResource("4")])
 randomize_pitch = true
 pitch_min = 0.85
 pitch_max = 1.15
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 2.0
-anims/Blink = SubResource("5")
-anims/RESET = SubResource("6")
+libraries = {
+&"": SubResource("AnimationLibrary_ccrwy")
+}

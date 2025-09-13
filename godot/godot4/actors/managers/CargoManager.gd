@@ -40,6 +40,12 @@ func _empty_cargo() -> void:
 func has_cargo() -> bool:
 	return _current_cargo != null
 	
+func has_cargo_class(type) -> bool:
+	if not has_cargo():
+		return false
+		
+	return is_instance_of(_current_cargo, type)
+	
 func get_cargo() -> Cargo:
 	return _current_cargo
 	

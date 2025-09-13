@@ -93,7 +93,7 @@ resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
 
-[node name="Cargo" type="RigidBody2D"]
+[node name="Cargo" type="RigidBody2D" groups=["Cargo"]]
 collision_layer = 512
 collision_mask = 3606
 physics_material_override = SubResource("PhysicsMaterial_ribre")

@@ -7,4 +7,6 @@ func _ready():
 	$GPUParticles2D.emitting = true
 	#SoundEffects.play($RandomAudioStreamPlayer2D)
 	$AnimationPlayer.play("Blink")
-	
+
+func _disable_graviton_field() -> void:
+	%GravitonField.enabled = false

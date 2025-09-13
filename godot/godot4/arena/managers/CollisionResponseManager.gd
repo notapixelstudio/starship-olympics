@@ -6,6 +6,10 @@ func _ready() -> void:
 func _on_collision(actor:CollisionObject2D, collider:CollisionObject2D, tag:String='') -> void:
 	# actor should always be the object that detected the low-level collision
 	
+	# avoid checking collisions on objects that are about to be deleted
+	if actor.is_queued_for_deletion() or collider.is_queued_for_deletion():
+		return # collision handled
+	
 	if actor is Ship:
 		if collider is Ship:
 			_handle_ship_vs_ship(actor, collider, tag)

@@ -210,6 +210,9 @@ func get_cargo_manager():
 func has_cargo() -> bool:
 	return %CargoManager.has_cargo()
 	
+func has_cargo_class(type) -> bool:
+	return %CargoManager.has_cargo_class(type)
+	
 func load_cargo(v: Cargo) -> void:
 	%CargoManager.load_cargo(v)
 	
@@ -233,13 +236,24 @@ func damage(damager) -> void:
 	disable()
 	
 func die():
+	# avoid creating a death feedback twice, if we already have been killed
+	if is_queued_for_deletion():
+		return
+		
+	_show_death_feedback()
+	queue_free()
+	
+func _show_death_feedback() -> void:
 	var death_feedback = death_feedback_scene.instantiate()
 	death_feedback.color = get_color()
 	death_feedback.global_position = global_position
 	Events.spawn_request.emit(death_feedback)
-	queue_free()
 	
 func disable():
+	# avoid creating a disabled ship twice, if we already have been disabled
+	if is_queued_for_deletion():
+		return
+		
 	var disabled_ship := disabled_ship_scene.instantiate()
 	disabled_ship.set_ship(self)
 	disabled_ship.global_position = global_position
@@ -247,6 +261,9 @@ func disable():
 	disabled_ship.linear_velocity = linear_velocity
 	disabled_ship.angular_velocity = angular_velocity
 	Events.spawn_request.emit(disabled_ship)
+	
+	_show_death_feedback()
+	
 	queue_free()
 
 func get_speed_normalized() -> float:
@@ -256,3 +273,6 @@ func set_message(msg: String, color: Color = get_color()) -> void:
 	%Message.text = msg
 	%Message.modulate = color
 	%Message.visible = msg != '' # used for VBox alignment
+
+func get_target_destination() -> Vector2:
+	return global_position # FIXME we need to actually compute target dest

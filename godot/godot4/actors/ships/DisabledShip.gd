@@ -13,6 +13,9 @@ func set_ship(ship: Ship) -> void:
 func damage(hazard, damager) -> void:
 	$HitAnimationPlayer.play("hit")
 	
+func _ready() -> void:
+	SoundEffects.play(%AudioStreamPlayer2DBeginning)
+	
 func beep():
 	SoundEffects.play(%AudioStreamPlayer2D)
 	
