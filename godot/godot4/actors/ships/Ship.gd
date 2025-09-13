@@ -237,14 +237,23 @@ func show_hit() -> void:
 func damage(damager) -> void:
 	show_hit()
 	
+	# always rebound on hit
+	var vector = Vector2.ZERO
+	var strength_rebound = 2500.0
+	if(damager.get('linear_velocity') == null):
+		vector = (global_position-damager.global_position).normalized()
+	else:
+		vector = (Vector2(1,0).rotated(damager.linear_velocity.angle()))
+	
 	# lose cargo if any instead of losing health
+	var impulse_to_give = rebound(vector, strength_rebound)
 	if %CargoManager.has_cargo():
 		%CargoManager.shoot_cargo(damager)
 		return
 		
 	# TBD health system
 	#die()
-	disable()
+	disable(impulse_to_give)
 	
 func die():
 	# avoid creating a death feedback twice, if we already have been killed
@@ -260,7 +269,7 @@ func _show_death_feedback() -> void:
 	death_feedback.global_position = global_position
 	Events.spawn_request.emit(death_feedback)
 	
-func disable():
+func disable(impulse_to_give=Vector2.ZERO):
 	# avoid creating a disabled ship twice, if we already have been disabled
 	if is_queued_for_deletion():
 		return
@@ -271,7 +280,10 @@ func disable():
 	disabled_ship.global_rotation = global_rotation
 	disabled_ship.linear_velocity = linear_velocity
 	disabled_ship.angular_velocity = angular_velocity
-	Events.spawn_request.emit(disabled_ship)
+	Events.spawn_request.emit(disabled_ship, func(disabled_ship):
+		disabled_ship.apply_central_impulse(impulse_to_give)
+		disabled_ship.apply_torque_impulse((1000+linear_velocity.length())*2)
+	)
 	
 	_show_death_feedback()
 	
@@ -288,7 +300,8 @@ func set_message(msg: String, color: Color = get_color()) -> void:
 func get_target_destination() -> Vector2:
 	return global_position # FIXME we need to actually compute target dest
 
-func rebound(direction = null, strength := 2000.0):
+func rebound(direction = null, strength := 2000.0) -> Vector2:
 	if direction == null:
 		direction = Vector2(-1,0).rotated(rotation)
 	apply_central_impulse(strength*direction)
+	return (strength*direction)
