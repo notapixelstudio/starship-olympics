@@ -51,6 +51,13 @@ func _handle_ship_vs_other(ship:Ship, collider:CollisionObject2D, tag:String='')
 			collider.capture_ship(ship)
 		collider.destroy()
 		return # collision handled
+		
+	# Blocks are pushed if hit by ships
+	if collider is Block:
+		collider.push_by(ship)
+		ship.rebound()
+		ship.stun()
+		return # collision handled
 
 func _handle_pew_vs_other(pew:Pew, collider:CollisionObject2D, tag:String='') -> void:
 	var is_mirror = collider is Mirror #or collider is MirrorWall
