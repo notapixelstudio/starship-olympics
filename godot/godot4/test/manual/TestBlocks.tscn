@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_2u2gc"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_0wabn"]
 [ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_egrwn"]
-[ext_resource type="PackedScene" uid="uid://bl82ubt1dg33d" path="res://godot4/elements/blocks/Block.tscn" id="5_hmpgd"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="6_5mryg"]
 [ext_resource type="Texture2D" uid="uid://du67f23be8l8e" path="res://assets/tiles/blocks.png" id="6_ll5gd"]
 
@@ -30,6 +29,12 @@ texture_region_size = Vector2i(200, 200)
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
 3:0/0 = 0
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_t1641"]
 tile_size = Vector2i(200, 200)
@@ -37,18 +42,58 @@ physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 0
 sources/3 = SubResource("TileSetAtlasSource_t1641")
 
-[sub_resource type="GDScript" id="GDScript_ll5gd"]
+[sub_resource type="GDScript" id="GDScript_hmpgd"]
 script/source = "extends TileMapLayer
 
+func _on_timer_timeout() -> void:
+	tick()
+	
+func tick() -> void:
+	# move all falling blocks down one step
+	var falling_cells = get_used_cells_by_id(3, Vector2i(0,2))
+	falling_cells.sort_custom(func(a,b): return a.y > b.y )
+	for cell in falling_cells:
+		var next_cell = cell+Vector2i(0,1)
+		var source = get_cell_source_id(cell)
+		var atlas_coords = get_cell_atlas_coords(cell)
+		
+		# check if next cell is available
+		if get_cell_source_id(next_cell) != -1:
+			set_cell(cell, source, Vector2i(atlas_coords.x, 0))
+			continue
+			
+		set_cell(next_cell, source, atlas_coords)
+		erase_cell(cell)
+"
 
-func _on_fall_timer_timeout() -> void:
-	pass
+[sub_resource type="GDScript" id="GDScript_t1641"]
+script/source = "extends TileMapLayer
+
+@export var ship : Ship
+@export var board : TileMapLayer
+
+func _process(delta: float) -> void:
+	var ship_pos = to_local(ship.global_position + Vector2(150,0).rotated(ship.global_rotation))
+	var ship_ipos = local_to_map(ship_pos)
+	clear()
+	if board.get_cell_source_id(ship_ipos) == -1:
+		set_cell(ship_ipos, 3, Vector2i(0,1))
+	else:
+		set_cell(ship_ipos, 3, Vector2i(1,1))
 "
 
 [node name="TestChamber" instance=ExtResource("1_2u2gc")]
 
 [node name="FPSCounter" parent="." index="3"]
 modulate = Color(0.541176, 0.768627, 1, 1)
+
+[node name="TestGrid" parent="." index="4"]
+position = Vector2(-1000, -1000)
+rows = 10
+columns = 10
+dx = 200
+dy = 200
+major_line_every = 1
 
 [node name="TestChamberLog" parent="." index="5"]
 script = SubResource("GDScript_0rj7w")
@@ -63,22 +108,20 @@ battlefield = NodePath("..")
 unique_name_in_owner = true
 position = Vector2(-800, 0)
 
-[node name="Block" parent="." index="11" instance=ExtResource("5_hmpgd")]
-position = Vector2(0, -1200)
-
-[node name="Block2" parent="." index="12" instance=ExtResource("5_hmpgd")]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="." index="13"]
-tile_map_data = PackedByteArray("AAD//wUAAwABAAAAAAD+/wUAAwABAAAAAAD9/wUAAwAAAAAAAAD8/wUAAwAAAAAAAAD7/wUAAwACAAAAAAD6/wUAAwAAAAAAAAAAAAUAAwACAAAAAAABAAUAAwADAAAAAAACAAUAAwAAAAAAAAADAAUAAwADAAAAAAAEAAUAAwACAAAAAAAFAAUAAwABAAAAAAA=")
+[node name="TileMapLayer" type="TileMapLayer" parent="." index="11"]
+tile_map_data = PackedByteArray("AAD//wUAAwABAAAAAAD+/wUAAwABAAAAAAD9/wUAAwAAAAAAAAD8/wUAAwAAAAAAAAD7/wUAAwACAAAAAAAAAAUAAwACAAAAAAABAAUAAwADAAAAAAACAAUAAwAAAAAAAAADAAUAAwADAAAAAAAEAAUAAwACAAAAAAACAAEAAwAAAAIAAAACAAAAAwAAAAIAAAADAAAAAwAAAAIAAAA=")
 tile_set = SubResource("TileSet_t1641")
+script = SubResource("GDScript_hmpgd")
 
-[node name="BlockG1" type="TileMapLayer" parent="." index="14"]
-tile_map_data = PackedByteArray("AAADAAAAAwADAAAAAAADAP//AwADAAAAAAAEAP//AwADAAAAAAA=")
-tile_set = SubResource("TileSet_t1641")
-script = SubResource("GDScript_ll5gd")
-
-[node name="FallTimer" type="Timer" parent="BlockG1" index="0"]
-wait_time = 2.0
+[node name="Timer" type="Timer" parent="TileMapLayer" index="0"]
 autostart = true
 
-[connection signal="timeout" from="BlockG1/FallTimer" to="BlockG1" method="_on_fall_timer_timeout"]
+[node name="HeldBlockTileMap" type="TileMapLayer" parent="." index="12" node_paths=PackedStringArray("ship", "board")]
+modulate = Color(1, 1, 1, 0.384314)
+tile_set = SubResource("TileSet_t1641")
+collision_enabled = false
+script = SubResource("GDScript_t1641")
+ship = NodePath("../Ship")
+board = NodePath("../TileMapLayer")
+
+[connection signal="timeout" from="TileMapLayer/Timer" to="TileMapLayer" method="_on_timer_timeout"]
