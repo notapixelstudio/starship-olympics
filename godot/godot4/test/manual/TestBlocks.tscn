@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_2u2gc"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_0wabn"]
 [ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_egrwn"]
+[ext_resource type="PackedScene" uid="uid://dysjvql27gdup" path="res://godot4/elements/blocks/BlocksTileMap.tscn" id="5_ll5gd"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="6_5mryg"]
 [ext_resource type="Texture2D" uid="uid://du67f23be8l8e" path="res://assets/tiles/blocks.png" id="6_ll5gd"]
 
@@ -40,43 +41,21 @@ texture_region_size = Vector2i(200, 200)
 tile_size = Vector2i(200, 200)
 physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 0
+custom_data_layer_0/name = "piece_id"
+custom_data_layer_0/type = 2
 sources/3 = SubResource("TileSetAtlasSource_t1641")
-
-[sub_resource type="GDScript" id="GDScript_hmpgd"]
-script/source = "extends TileMapLayer
-
-func _on_timer_timeout() -> void:
-	tick()
-	
-func tick() -> void:
-	# move all falling blocks down one step
-	var falling_cells = get_used_cells_by_id(3, Vector2i(0,2))
-	falling_cells.sort_custom(func(a,b): return a.y > b.y )
-	for cell in falling_cells:
-		var next_cell = cell+Vector2i(0,1)
-		var source = get_cell_source_id(cell)
-		var atlas_coords = get_cell_atlas_coords(cell)
-		
-		# check if next cell is available
-		if get_cell_source_id(next_cell) != -1:
-			set_cell(cell, source, Vector2i(atlas_coords.x, 0))
-			continue
-			
-		set_cell(next_cell, source, atlas_coords)
-		erase_cell(cell)
-"
 
 [sub_resource type="GDScript" id="GDScript_t1641"]
 script/source = "extends TileMapLayer
 
 @export var ship : Ship
-@export var board : TileMapLayer
+@export var blocks_tile_map : BlocksTileMap
 
 func _process(delta: float) -> void:
 	var ship_pos = to_local(ship.global_position + Vector2(150,0).rotated(ship.global_rotation))
 	var ship_ipos = local_to_map(ship_pos)
 	clear()
-	if board.get_cell_source_id(ship_ipos) == -1:
+	if blocks_tile_map.get_cell_source_id(ship_ipos) == -1:
 		set_cell(ship_ipos, 3, Vector2i(0,1))
 	else:
 		set_cell(ship_ipos, 3, Vector2i(1,1))
@@ -108,20 +87,21 @@ battlefield = NodePath("..")
 unique_name_in_owner = true
 position = Vector2(-800, 0)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." index="11"]
-tile_map_data = PackedByteArray("AAD//wUAAwABAAAAAAD+/wUAAwABAAAAAAD9/wUAAwAAAAAAAAD8/wUAAwAAAAAAAAD7/wUAAwACAAAAAAAAAAUAAwACAAAAAAABAAUAAwADAAAAAAACAAUAAwAAAAAAAAADAAUAAwADAAAAAAAEAAUAAwACAAAAAAACAAEAAwAAAAIAAAACAAAAAwAAAAIAAAADAAAAAwAAAAIAAAA=")
-tile_set = SubResource("TileSet_t1641")
-script = SubResource("GDScript_hmpgd")
+[node name="BlockField" type="Node2D" parent="." index="11"]
 
-[node name="Timer" type="Timer" parent="TileMapLayer" index="0"]
+[node name="FallTimer" type="Timer" parent="BlockField" index="0"]
 autostart = true
 
-[node name="HeldBlockTileMap" type="TileMapLayer" parent="." index="12" node_paths=PackedStringArray("ship", "board")]
+[node name="BlocksTileMap" parent="BlockField" index="1" instance=ExtResource("5_ll5gd")]
+unique_name_in_owner = true
+tile_map_data = PackedByteArray("AAD7/wQAAQAAAAAAAAD8/wQAAQABAAAAAAD9/wQAAQAAAAAAAAD+/wQAAQACAAAAAAD//wQAAQADAAAAAAAAAAQAAQABAAAAAAABAAQAAQABAAAAAAACAAQAAQADAAAAAAADAAQAAQAAAAAAAAAEAAQAAQACAAAAAAA=")
+
+[node name="HeldBlockTileMap" type="TileMapLayer" parent="BlockField" index="2" node_paths=PackedStringArray("ship", "blocks_tile_map")]
 modulate = Color(1, 1, 1, 0.384314)
 tile_set = SubResource("TileSet_t1641")
 collision_enabled = false
 script = SubResource("GDScript_t1641")
-ship = NodePath("../Ship")
-board = NodePath("../TileMapLayer")
+ship = NodePath("../../Ship")
+blocks_tile_map = NodePath("../BlocksTileMap")
 
-[connection signal="timeout" from="TileMapLayer/Timer" to="TileMapLayer" method="_on_timer_timeout"]
+[connection signal="timeout" from="BlockField/FallTimer" to="BlockField/BlocksTileMap" method="tick"]
