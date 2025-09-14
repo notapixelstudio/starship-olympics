@@ -2,7 +2,7 @@ extends TileMapLayer
 class_name BlocksTileMap
 
 @export var spawn_every_ticks : int = 5
-@export var spawn_coords : Array[Vector2i] = [Vector2i(0,-5)]
+@export var spawn_coords : Array[Vector2i] = [Vector2i(0,-6)]
 
 const FALLING_BLOCKS_SOURCE_ID := 0
 const PLACED_BLOCKS_SOURCE_ID := 1
@@ -18,11 +18,16 @@ var _buffer : TileMapLayer
 
 var _tick := 0
 var _next_piece_id := 0
-var _piece_ids : Array[int] = []
 
 func _ready() -> void:
 	_buffer = TileMapLayer.new()
 	_buffer.tile_set = tile_set
+	
+	const C1 = [Vector2i(0,-2),Vector2i(0,-1),Vector2i(0,0),Vector2i(1,0),Vector2i(1,-2)]
+	const C2 = [Vector2i(1,-3),Vector2i(1,-1),Vector2i(2,-1),Vector2i(2,-2),Vector2i(2,-3)]
+	
+	spawn_piece(C2, Vector2i(1,1), 3)
+	spawn_piece(C1, Vector2i(1,1), 0)
 
 func get_all_falling_blocks_cells() -> Array[Vector2i]:
 	return get_used_cells_by_id(FALLING_BLOCKS_SOURCE_ID)
@@ -52,25 +57,27 @@ func tick() -> void:
 	# copy all placed blocks on the buffer
 	for cell in get_all_placed_blocks_cells():
 		_buffer.set_cell(cell, PLACED_BLOCKS_SOURCE_ID, get_cell_atlas_coords(cell))
-	
-	for piece in get_all_pieces():
-		var stop := false
+	var still_falling_pieces = get_all_pieces()
+	var newly_stopped_found = true
+	while newly_stopped_found:
+		newly_stopped_found = false
+		var pieces_to_recheck = still_falling_pieces.duplicate()
+		for piece in pieces_to_recheck:
+			var should_stop = false
+			for cell in piece['cells']:
+				var next_cell = cell + Vector2i(0,1)
+				if _buffer.get_cell_source_id(next_cell) == PLACED_BLOCKS_SOURCE_ID:
+					should_stop = true
+					break
+			if should_stop:
+				newly_stopped_found = true
+				still_falling_pieces.erase(piece)
+				for cell in piece['cells']:
+					var atlas_coords = get_cell_atlas_coords(cell)
+					_buffer.set_cell(cell, PLACED_BLOCKS_SOURCE_ID, atlas_coords + Vector2i(0, -2))
+	for piece in still_falling_pieces:
 		for cell in piece['cells']:
-			var next_cell = cell+Vector2i(0,1)
-			if get_cell_source_id(next_cell) == PLACED_BLOCKS_SOURCE_ID:
-				# the whole piece must stop
-				stop = true
-				break
-				
-		
-		if stop:
-			# actually stop the piece
-			for cell in piece['cells']:
-				_buffer.set_cell(cell, PLACED_BLOCKS_SOURCE_ID, get_cell_atlas_coords(cell)+Vector2i(0,-2)) # FIXME please
-		else:
-			# move the piece
-			for cell in piece['cells']:
-				_buffer.set_cell(cell+Vector2i(0,1), FALLING_BLOCKS_SOURCE_ID, get_cell_atlas_coords(cell))
+			_buffer.set_cell(cell+Vector2i(0,1), FALLING_BLOCKS_SOURCE_ID, get_cell_atlas_coords(cell))
 	
 	if _tick % spawn_every_ticks == 0:
 		spawn_new_piece()
@@ -85,12 +92,12 @@ func spawn_new_piece() -> void:
 	var random_piece_i = randi_range(0,len(PIECES)-1)
 	var piece_to_spawn = PIECES[random_piece_i]
 	var from_where = spawn_coords.pick_random()
+	spawn_piece(piece_to_spawn, from_where, random_piece_i)
 	
-	for cell in piece_to_spawn:
+func spawn_piece(cells, from_where, color_i) -> void:
+	for cell in cells:
 		# TBD check if space is available (game over?)
-		_buffer.set_cell(cell+from_where, FALLING_BLOCKS_SOURCE_ID, Vector2i(random_piece_i,2))
+		_buffer.set_cell(cell+from_where, FALLING_BLOCKS_SOURCE_ID, Vector2i(color_i,2))
 		_buffer.get_cell_tile_data(cell+from_where).set_custom_data('piece_id', _next_piece_id)
 		
-		
-	_piece_ids.append(_next_piece_id)
 	_next_piece_id += 1
