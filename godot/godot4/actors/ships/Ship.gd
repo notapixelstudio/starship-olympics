@@ -305,3 +305,22 @@ func rebound(direction = null, strength := 2000.0) -> Vector2:
 		direction = Vector2(-1,0).rotated(rotation)
 	apply_central_impulse(strength*direction)
 	return (strength*direction)
+
+# TODO: This is temporary, should not be here
+# This dictionary will store the data of the grabbed piece.
+# It's null when the ship is empty-handed.
+var grabbed_piece: Dictionary = {}
+
+func is_holding_piece() -> bool:
+	return not grabbed_piece.is_empty()
+
+func grab_piece(shape: Array[Vector2i], color_index: int) -> void:
+	grabbed_piece = {
+		'shape': shape,
+		'color_i': color_index
+	}
+
+# Call this to make the ship drop its piece.
+func release_piece() -> void:
+	grabbed_piece.clear()
+# TODO: END OF TEMPORARY

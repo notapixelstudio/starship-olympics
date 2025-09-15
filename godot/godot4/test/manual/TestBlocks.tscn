@@ -47,18 +47,62 @@ sources/3 = SubResource("TileSetAtlasSource_t1641")
 
 [sub_resource type="GDScript" id="GDScript_t1641"]
 script/source = "extends TileMapLayer
+class_name PreviewTileMap
 
 @export var ship : Ship
 @export var blocks_tile_map : BlocksTileMap
 
-func _process(delta: float) -> void:
-	var ship_pos = to_local(ship.global_position + Vector2(150,0).rotated(ship.global_rotation))
-	var ship_ipos = local_to_map(ship_pos)
+const VALID_PLACEMENT_TILE = Vector2i(0, 1)   # allowed placement tile
+const INVALID_PLACEMENT_TILE = Vector2i(1, 1) # blocked placement tile
+const SOURCE_ID_PREVIEW = 3
+
+var _current_preview_shape = []
+
+
+func show_preview_piece(piece_shape) -> void:
+	_current_preview_shape = piece_shape
+	_update_preview() 
+
+func hide_preview() -> void:
+	_current_preview_shape = []
 	clear()
-	if blocks_tile_map.get_cell_source_id(ship_ipos) == -1:
-		set_cell(ship_ipos, 3, Vector2i(0,1))
+
+func _process(delta: float) -> void:
+	_update_preview()
+
+var _is_currently_valid := true
+
+func is_current_placement_valid() -> bool:
+	return _is_currently_valid
+
+func _update_preview() -> void:
+	if _current_preview_shape.is_empty():
+		clear()
+		_is_currently_valid = false # Can't place it
+		return
+
+	var ship_anchor_pos = to_local(ship.global_position + Vector2(150, 0).rotated(ship.global_rotation))
+	var map_anchor_cell = local_to_map(ship_anchor_pos)
+
+	var is_placement_valid = true
+	for cell_offset in _current_preview_shape:
+		var target_cell = map_anchor_cell + cell_offset
+		if blocks_tile_map.get_cell_source_id(target_cell) != -1:
+			is_placement_valid = false
+			break
+	
+	_is_currently_valid = is_placement_valid 
+	
+	var tile_to_draw: Vector2i
+	if _is_currently_valid: 
+		tile_to_draw = VALID_PLACEMENT_TILE
 	else:
-		set_cell(ship_ipos, 3, Vector2i(1,1))
+		tile_to_draw = INVALID_PLACEMENT_TILE
+
+	clear()
+	for cell_offset in _current_preview_shape:
+		var target_cell = map_anchor_cell + cell_offset
+		set_cell(target_cell, SOURCE_ID_PREVIEW, tile_to_draw)
 "
 
 [node name="TestChamber" instance=ExtResource("1_2u2gc")]
@@ -97,6 +141,7 @@ unique_name_in_owner = true
 tile_map_data = PackedByteArray("AAD7/wQAAQAAAAAAAAD8/wQAAQABAAAAAAD9/wQAAQAAAAAAAAD+/wQAAQACAAAAAAD//wQAAQADAAAAAAAAAAQAAQABAAAAAAABAAQAAQABAAAAAAACAAQAAQADAAAAAAADAAQAAQAAAAAAAAAEAAQAAQACAAAAAAA=")
 
 [node name="HeldBlockTileMap" type="TileMapLayer" parent="BlockField" index="2" node_paths=PackedStringArray("ship", "blocks_tile_map")]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.384314)
 tile_set = SubResource("TileSet_t1641")
 collision_enabled = false
