@@ -1,6 +1,9 @@
 extends TileMapLayer
 class_name BlocksTileMap
 
+# Signal to notify the rest of the game that the game is over.
+signal game_over
+
 @export_group("Gameplay")
 @export var spawn_every_ticks : int = 10
 @export var spawn_coords : Array[Vector2i] = [Vector2i(0,-6)]
@@ -116,6 +119,45 @@ func _ready() -> void:
 func get_all_placed_blocks_cells() -> Array[Vector2i]:
 	return get_used_cells_by_id(PLACED_BLOCKS_SOURCE_ID)
 
+func _check_and_clear_lines():
+	# We iterate from the bottom row up to the top.
+	var y = get_bottom_y() - 1
+	while y >= get_min_y():
+		var is_line_full = true
+		# Check every cell in the current row.
+		for x in range(get_min_x(), get_max_x()):
+			# If even one cell is not a placed block, the line is not full.
+			if _buffer.get_cell_source_id(Vector2i(x, y)) != PLACED_BLOCKS_SOURCE_ID:
+				is_line_full = false
+				break
+		
+		if is_line_full:
+			# If the line is full, clear it.
+			for x in range(get_min_x(), get_max_x()):
+				_buffer.erase_cell(Vector2i(x, y))
+
+			# Then, shift every row above it down by one.
+			# We start from the row just above the cleared one and go up to the top.
+			for row_to_move_y in range(y - 1, get_min_y() - 1, -1):
+				for x in range(get_min_x(), get_max_x()):
+					var cell_above = Vector2i(x, row_to_move_y)
+					var source_id = _buffer.get_cell_source_id(cell_above)
+					
+					# Only move cells that are not empty
+					if source_id != -1:
+						var atlas_coords = _buffer.get_cell_atlas_coords(cell_above)
+						# Set the cell in the row below with the data from the cell above.
+						_buffer.set_cell(Vector2i(x, row_to_move_y + 1), source_id, atlas_coords)
+						# Erase the original cell from above.
+						_buffer.erase_cell(cell_above)
+			
+			# IMPORTANT: Since we shifted rows down, the current 'y' needs to be checked again
+			# in the next loop iteration, so we don't increment y.
+			# The 'else' block handles the increment for non-cleared lines.
+		else:
+			# If the line was not full, we move on to check the row above it.
+			y -= 1
+
 func tick() -> void:
 	# copy all placed blocks on the buffer
 	for cell in get_all_placed_blocks_cells():
@@ -132,8 +174,6 @@ func tick() -> void:
 			var should_stop = false
 			for cell in piece['cells']:
 				var next_cell = cell + Vector2i(0, 1)
-				# Check collision against the buffer, which contains all static obstacles.
-				# Check against our parameterized height
 				if next_cell.y >= get_bottom_y() or _buffer.get_cell_source_id(next_cell) == PLACED_BLOCKS_SOURCE_ID:
 					should_stop = true
 					break
@@ -142,32 +182,29 @@ func tick() -> void:
 				newly_stopped_found = true
 				pieces_to_remove.append(piece)
 				
-				# This piece has stopped.
-				# Immediately set cell as PLACED_BLOCK in order to recognize it in future ticks.
 				var atlas_coords = Vector2i(piece['color_i'], 0)
 				for cell in piece['cells']:
 					_buffer.set_cell(cell, PLACED_BLOCKS_SOURCE_ID, atlas_coords)
 		
-		# Remove the stopped pieces from our temporary list.
 		for piece in pieces_to_remove:
 			still_falling_pieces.erase(piece)
+
+	# This happens after blocks have landed but before we draw the next frame.
+	_check_and_clear_lines()
 
 	# Update the state of pieces that survived the fall check.
 	for piece in still_falling_pieces:
 		var new_cells : Array[Vector2i] = []
 		for cell in piece['cells']:
 			new_cells.append(cell + Vector2i(0, 1))
-		piece['cells'] = new_cells # Update the piece's position in our state.
+		piece['cells'] = new_cells
 		
-		# Now, draw the moved piece into the buffer as a FALLING_BLOCK.
 		var atlas_coords = Vector2i(piece['color_i'], 2)
 		for cell in piece['cells']:
 			_buffer.set_cell(cell, FALLING_BLOCKS_SOURCE_ID, atlas_coords)
 
-	# state variable _falling_pieces update with current_falling
 	_falling_pieces = still_falling_pieces
 	
-	# 
 	clear()
 	set_tile_map_data_from_array(_buffer.get_tile_map_data_as_array())
 	_buffer.clear()
@@ -178,7 +215,6 @@ func tick() -> void:
 	_tick += 1
 
 func _draw_falling_pieces() -> void:
-	# draw the current state of falling pieces onto the visible map.
 	for piece in _falling_pieces:
 		var atlas_coords = Vector2i(piece['color_i'], 2)
 		for cell in piece['cells']:
@@ -191,13 +227,18 @@ func spawn_new_piece() -> void:
 	spawn_piece(piece_to_spawn, from_where, random_piece_i)
 	
 func spawn_piece(cells, from_where: Vector2i, color_i: int) -> void:
-	# TBD: Check if space is available (game over?)
-	
+	# Before spawning, check if the target cells are already occupied by placed blocks.
+	for cell_offset in cells:
+		var target_cell = cell_offset + from_where
+		if get_cell_source_id(target_cell) == PLACED_BLOCKS_SOURCE_ID:
+			# If the space is blocked, emit the game_over signal and stop.
+			game_over.emit()
+			return
+			
 	var new_piece_cells: Array[Vector2i] = []
 	for cell_offset in cells:
 		new_piece_cells.append(cell_offset + from_where)
 		
-	# Create a new piece dictionary and add it to our state array.
 	_falling_pieces.append({
 		'id': _next_piece_id,
 		'cells': new_piece_cells,
@@ -206,5 +247,4 @@ func spawn_piece(cells, from_where: Vector2i, color_i: int) -> void:
 	
 	_next_piece_id += 1
 	
-	# Draw the newly spawned piece so it's visible before the next tick
 	_draw_falling_pieces()
