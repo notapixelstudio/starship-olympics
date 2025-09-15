@@ -1,8 +1,14 @@
 extends TileMapLayer
 class_name BlocksTileMap
 
+@export_group("Gameplay")
 @export var spawn_every_ticks : int = 10
 @export var spawn_coords : Array[Vector2i] = [Vector2i(0,-6)]
+
+@export_group("Play Area")
+@export var play_area_width : int = 10
+@export var play_area_height : int = 20
+@export var draw_debug_border : bool = true
 
 const FALLING_BLOCKS_SOURCE_ID := 0
 const PLACED_BLOCKS_SOURCE_ID := 1
@@ -18,6 +24,19 @@ var _buffer : TileMapLayer
 var _tick := 0
 var _next_piece_id := 0
 
+func get_min_x() -> int:
+	return 0 - (play_area_width / 2)
+
+func get_max_x() -> int:
+	return get_min_x() + play_area_width
+
+func get_min_y() -> int:
+	return -(play_area_height/2)
+
+func get_bottom_y() -> int:
+	# The bottom coordinate is exclusive (it's the coordinate of the floor)
+	return get_min_y() + play_area_height
+	
 var _falling_pieces : Array[Dictionary] = []
 func someone_tapped(tapper) -> void:
 	var preview_tile_map = %HeldBlockTileMap
@@ -114,7 +133,8 @@ func tick() -> void:
 			for cell in piece['cells']:
 				var next_cell = cell + Vector2i(0, 1)
 				# Check collision against the buffer, which contains all static obstacles.
-				if _buffer.get_cell_source_id(next_cell) == PLACED_BLOCKS_SOURCE_ID:
+				# Check against our parameterized height
+				if next_cell.y >= get_bottom_y() or _buffer.get_cell_source_id(next_cell) == PLACED_BLOCKS_SOURCE_ID:
 					should_stop = true
 					break
 			
