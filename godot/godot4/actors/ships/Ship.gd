@@ -316,8 +316,9 @@ func is_holding_piece() -> bool:
 
 func grab_piece(shape: Array[Vector2i], color_index: int) -> void:
 	grabbed_piece = {
-		'shape': shape,
-		'color_i': color_index
+		"shape": canonical_shape,
+		"color_i": color_i,
+		"offset": rotation_offset
 	}
 
 # Call this to make the ship drop its piece.
