@@ -233,6 +233,7 @@ func spawn_piece(cells, from_where: Vector2i, color_i: int) -> void:
 		if get_cell_source_id(target_cell) == PLACED_BLOCKS_SOURCE_ID:
 			# If the space is blocked, emit the game_over signal and stop.
 			game_over.emit()
+			print("GAME_OVER")
 			return
 			
 	var new_piece_cells: Array[Vector2i] = []
