@@ -147,25 +147,27 @@ width = 6600.0
 height = 3800.0
 hosts = [NodePath("../OutsideWall"), NodePath("../../Navigation")]
 
-[node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("6_kr54m")]
+[node name="Board" type="Node2D" parent="Battlefield" index="2"]
+
+[node name="Grid" parent="Battlefield/Board" index="0" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("6_kr54m")]
 cell_size = Vector2(200, 200)
 dy = 0.0
 outline = true
 init_parametric_shape = NodePath("VRect")
 
-[node name="VRect" type="Node" parent="Battlefield/Grid" index="2"]
+[node name="VRect" type="Node" parent="Battlefield/Board/Grid" index="2"]
 script = ExtResource("5_lw6ko")
 width = 2400.0
 height = 2400.0
 
-[node name="BlocksTileMap" parent="Battlefield" index="3" instance=ExtResource("7_27yyu")]
+[node name="BlocksTileMap" parent="Battlefield/Board" index="1" instance=ExtResource("7_27yyu")]
 play_area_width = 12
 play_area_height = 12
 
-[node name="FallTimer" type="Timer" parent="Battlefield/BlocksTileMap" index="0"]
+[node name="FallTimer" type="Timer" parent="Battlefield/Board/BlocksTileMap" index="0"]
 autostart = true
 
-[node name="HeldBlockTileMap" type="TileMapLayer" parent="Battlefield" index="4"]
+[node name="HeldBlockTileMap" type="TileMapLayer" parent="Battlefield/Board" index="2"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.384314)
 tile_set = SubResource("TileSet_l2hi7")
@@ -175,4 +177,4 @@ script = SubResource("GDScript_65jbk")
 [node name="Navigation" parent="." index="6"]
 navigation_polygon = SubResource("NavigationPolygon_rv2ie")
 
-[connection signal="timeout" from="Battlefield/BlocksTileMap/FallTimer" to="Battlefield/BlocksTileMap" method="tick"]
+[connection signal="timeout" from="Battlefield/Board/BlocksTileMap/FallTimer" to="Battlefield/Board/BlocksTileMap" method="tick"]
