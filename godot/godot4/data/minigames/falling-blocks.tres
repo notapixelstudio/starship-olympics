@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Minigame" load_steps=6 format=3 uid="uid://c8kb5e6ekf3af"]
+
+[ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://godot4/actors/brains/CPUBrain.tscn" id="1_7cpub"]
+[ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="2_xw5eb"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="3_21eyd"]
+[ext_resource type="Script" uid="uid://tavpq5uhlyhr" path="res://godot4/data/minigames/Minigame.gd" id="4_122kf"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="5_svmji"]
+
+[resource]
+script = ExtResource("4_122kf")
+title = "Title"
+icon = ExtResource("2_xw5eb")
+description = "Description"
+ship_scene = ExtResource("5_svmji")
+player_brain_scene = ExtResource("3_21eyd")
+cpu_brain_scene = ExtResource("1_7cpub")

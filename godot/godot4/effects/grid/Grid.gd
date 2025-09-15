@@ -1,6 +1,8 @@
 extends Node2D
 
 @export var cell_size := Vector2.ONE * 150
+@export var dy := 32.0 : set = set_dy
+@export var outline := false : set = set_outline
 #@export var frames_wait := 3
 #@export var enabled : bool = true
 @export var init_parametric_shape : VParametricShape
@@ -9,8 +11,17 @@ extends Node2D
 @onready var mask = %Mask
 @onready var grid = %GridLines
 
+func set_dy(v:float) -> void:
+	dy = v
+	%Mask.position.y = dy
+	
+func set_outline(v:float) -> void:
+	outline = v
+	%Outline.visible = outline
+	
 func set_style(style:Style) -> void:
 	%GridLines.grid_color = style.grid_color
+	%Outline.default_color = style.grid_color
 
 func _ready():
 	set_style(%Styleable.get_style_from_ancestor_or_self())
@@ -29,3 +40,4 @@ func _ready():
 	
 func set_points(points: PackedVector2Array) -> void:
 	mask.set_points(points)
+	%Outline.set_points(points)
