@@ -3,7 +3,7 @@ extends Node
 func _ready() -> void:
 	Events.collision.connect(_on_collision)
 	
-func _on_collision(actor:CollisionObject2D, collider:CollisionObject2D, tag:String='') -> void:
+func _on_collision(actor, collider, tag:String='') -> void:
 	# actor should always be the object that detected the low-level collision
 	
 	# avoid checking collisions on objects that are about to be deleted
@@ -29,7 +29,7 @@ func _handle_ship_vs_ship(ship1:Ship, ship2:Ship, tag:String='') -> void:
 		
 	ship1.swap_cargo(ship2)
 	
-func _handle_ship_vs_other(ship:Ship, collider:CollisionObject2D, tag:String='') -> void:
+func _handle_ship_vs_other(ship:Ship, collider, tag:String='') -> void:
 	# any touchable object by duck typing is touched
 	if collider.has_method('touched_by') and tag == 'touch':
 		collider.touched_by(ship)
@@ -59,7 +59,7 @@ func _handle_ship_vs_other(ship:Ship, collider:CollisionObject2D, tag:String='')
 		ship.stun()
 		return # collision handled
 
-func _handle_pew_vs_other(pew:Pew, collider:CollisionObject2D, tag:String='') -> void:
+func _handle_pew_vs_other(pew:Pew, collider, tag:String='') -> void:
 	var is_mirror = collider is Mirror #or collider is MirrorWall
 	if not is_mirror:
 		pew.destroy() # Mirrors reflect Pews without destroying them
@@ -72,12 +72,12 @@ func _handle_pew_vs_other(pew:Pew, collider:CollisionObject2D, tag:String='') ->
 		#collider.set_player(pew.get_owner_ship().get_player())
 		#collider.activate()
 
-func _hanlde_bubble_bullet_vs_other(bubble_bullet:BubbleBullet, collider:CollisionObject2D, tag:String='') -> void:
+func _hanlde_bubble_bullet_vs_other(bubble_bullet:BubbleBullet, collider, tag:String='') -> void:
 	if collider is Treasure:
 		bubble_bullet.capture_treasure(collider)
 		bubble_bullet.destroy()
 
-func _handle_shield_wall_vs_other(shield_wall:ShieldWall, collider:CollisionObject2D, tag:String='') -> void:
+func _handle_shield_wall_vs_other(shield_wall:ShieldWall, collider, tag:String='') -> void:
 	if collider is Pew:
 		shield_wall.down()
 		collider.destroy()

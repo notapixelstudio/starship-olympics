@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8u0ahaefij7v"]
+[gd_scene load_steps=9 format=3 uid="uid://b8u0ahaefij7v"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_2u2gc"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_0wabn"]
 [ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_egrwn"]
-[ext_resource type="PackedScene" uid="uid://dysjvql27gdup" path="res://godot4/elements/blocks/BlocksTileMap.tscn" id="5_ll5gd"]
+[ext_resource type="PackedScene" uid="uid://dysjvql27gdup" path="res://godot4/elements/blocks/BlocksField.tscn" id="5_ll5gd"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="6_5mryg"]
-[ext_resource type="Texture2D" uid="uid://du67f23be8l8e" path="res://assets/tiles/blocks.png" id="6_ll5gd"]
+[ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="7_t1641"]
 
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
 script/source = "extends SOLog
@@ -19,113 +19,8 @@ func _on_sth_collected(collector, collectee):
 	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
 "
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t1641"]
-texture = ExtResource("6_ll5gd")
-texture_region_size = Vector2i(200, 200)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
-0:1/0 = 0
-1:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_t1641"]
-tile_size = Vector2i(200, 200)
-physics_layer_0/collision_layer = 16
-physics_layer_0/collision_mask = 0
-custom_data_layer_0/name = "piece_id"
-custom_data_layer_0/type = 2
-sources/3 = SubResource("TileSetAtlasSource_t1641")
-
-[sub_resource type="GDScript" id="GDScript_t1641"]
-script/source = "extends TileMapLayer
-class_name PreviewTileMap
-
-@export var ship : Ship
-@export var blocks_tile_map : BlocksTileMap
-
-const VALID_PLACEMENT_TILE = Vector2i(0, 1)   # allowed placement tile
-const INVALID_PLACEMENT_TILE = Vector2i(1, 1) # blocked placement tile
-const SOURCE_ID_PREVIEW = 3
-
-var _current_preview_shape = []
-
-
-func show_preview_piece(piece_shape) -> void:
-	_current_preview_shape = piece_shape
-	_update_preview() 
-
-func hide_preview() -> void:
-	_current_preview_shape = []
-	clear()
-
-func _process(delta: float) -> void:
-	_update_preview()
-
-var _is_currently_valid := true
-
-func is_current_placement_valid() -> bool:
-	return _is_currently_valid
-
-func _update_preview() -> void:
-	if _current_preview_shape.is_empty():
-		clear()
-		_is_currently_valid = false
-		return
-
-	var ship_anchor_pos = to_local(ship.global_position + Vector2(150, 0).rotated(ship.global_rotation))
-	var map_anchor_cell = local_to_map(ship_anchor_pos)
-
-	var is_placement_valid = true
-	
-	var min_x = blocks_tile_map.get_min_x()
-	var max_x = blocks_tile_map.get_max_x()
-	var min_y = blocks_tile_map.get_min_y() # For checking if you're too high
-	var bottom_y = blocks_tile_map.get_bottom_y()
-	
-	for cell_offset in _current_preview_shape:
-		var target_cell = map_anchor_cell + cell_offset
-		
-		# Check if outside horizontal bounds
-		if target_cell.x < min_x or target_cell.x >= max_x:
-			is_placement_valid = false
-			break
-		
-		# Check if outside vertical bounds (can be above, but not below)
-		if target_cell.y >= bottom_y:
-			is_placement_valid = false
-			break
-		# not above
-		if target_cell.y < min_y:
-			is_placement_valid = false
-			break
-		
-		# collision check
-		if blocks_tile_map.get_cell_source_id(target_cell) != -1:
-			is_placement_valid = false
-			break
-	
-	_is_currently_valid = is_placement_valid
-	
-	var tile_to_draw: Vector2i
-	if _is_currently_valid:
-		tile_to_draw = VALID_PLACEMENT_TILE
-	else:
-		tile_to_draw = INVALID_PLACEMENT_TILE
-
-	clear()
-	for cell_offset in _current_preview_shape:
-		var target_cell = map_anchor_cell + cell_offset
-		set_cell(target_cell, SOURCE_ID_PREVIEW, tile_to_draw)
-"
+[sub_resource type="CircleShape2D" id="CircleShape2D_ll5gd"]
+radius = 726.79
 
 [node name="TestChamber" instance=ExtResource("1_2u2gc")]
 
@@ -133,7 +28,7 @@ func _update_preview() -> void:
 modulate = Color(0.541176, 0.768627, 1, 1)
 
 [node name="TestGrid" parent="." index="4"]
-position = Vector2(-1000, -1000)
+position = Vector2(-1200, -1200)
 rows = 12
 columns = 12
 dx = 200
@@ -153,23 +48,21 @@ battlefield = NodePath("..")
 unique_name_in_owner = true
 position = Vector2(-800, 0)
 
-[node name="BlockField" type="Node2D" parent="." index="11"]
-
-[node name="FallTimer" type="Timer" parent="BlockField" index="0"]
-autostart = true
-
-[node name="BlocksTileMap" parent="BlockField" index="1" instance=ExtResource("5_ll5gd")]
+[node name="BlocksField" parent="." index="11" instance=ExtResource("5_ll5gd")]
 unique_name_in_owner = true
 play_area_width = 12
 play_area_height = 12
 
-[node name="HeldBlockTileMap" type="TileMapLayer" parent="BlockField" index="2" node_paths=PackedStringArray("ship", "blocks_tile_map")]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.384314)
-tile_set = SubResource("TileSet_t1641")
-collision_enabled = false
-script = SubResource("GDScript_t1641")
-ship = NodePath("../../Ship")
-blocks_tile_map = NodePath("../BlocksTileMap")
+[node name="Area2D" type="Area2D" parent="." index="12"]
+position = Vector2(2249, -914)
 
-[connection signal="timeout" from="BlockField/FallTimer" to="BlockField/BlocksTileMap" method="tick"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_ll5gd")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" index="1"]
+modulate = Color(1, 0.685, 0.37, 0.0627451)
+scale = Vector2(10, 10)
+texture = ExtResource("7_t1641")
+
+[connection signal="body_entered" from="Area2D" to="Ship" method="_on_rotation_area_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Ship" method="_on_rotation_area_body_exited"]
