@@ -107,8 +107,15 @@ func someone_tapped(tapper) -> void:
 func _ready() -> void:
 	# let's connect the tap signal
 	Events.tap.connect(someone_tapped)
+	
+	# create a buffer for writing modifications to the tilemap without overwriting
 	_buffer = TileMapLayer.new()
 	_buffer.tile_set = tile_set
+	
+	# set up the grid
+	# WARNING cell size is set up on the Grid node's export vars
+	%VRect.width = tile_set.tile_size.x * play_area_width
+	%VRect.height = tile_set.tile_size.y * play_area_height
 	
 	const C1 = [Vector2i(0,-2),Vector2i(0,-1),Vector2i(0,0),Vector2i(1,0),Vector2i(1,-2)]
 	const C2 = [Vector2i(1,-3),Vector2i(1,-1),Vector2i(2,-1),Vector2i(2,-2),Vector2i(2,-3)]

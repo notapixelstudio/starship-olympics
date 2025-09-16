@@ -1,121 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpxum6ik3otsi"]
+[gd_scene load_steps=8 format=3 uid="uid://dpxum6ik3otsi"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_0olf1"]
 [ext_resource type="Resource" uid="uid://c3uv3coc421eh" path="res://godot4/data/styles/analog.tres" id="2_7vh1v"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="3_g305n"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="4_lxwqa"]
-[ext_resource type="Script" uid="uid://bqc6iekqxdv04" path="res://addons/vshapes/VRect.gd" id="5_lw6ko"]
-[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="6_kr54m"]
-[ext_resource type="PackedScene" uid="uid://dysjvql27gdup" path="res://godot4/elements/blocks/BlocksTileMap.tscn" id="7_27yyu"]
-[ext_resource type="Texture2D" uid="uid://du67f23be8l8e" path="res://assets/tiles/blocks.png" id="8_uknj3"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q48e6"]
-texture = ExtResource("8_uknj3")
-texture_region_size = Vector2i(200, 200)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
-0:1/0 = 0
-1:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_l2hi7"]
-tile_size = Vector2i(200, 200)
-physics_layer_0/collision_layer = 16
-physics_layer_0/collision_mask = 0
-custom_data_layer_0/name = "piece_id"
-custom_data_layer_0/type = 2
-sources/3 = SubResource("TileSetAtlasSource_q48e6")
-
-[sub_resource type="GDScript" id="GDScript_65jbk"]
-script/source = "extends TileMapLayer
-class_name PreviewTileMap
-
-@export var ship : Ship
-@export var blocks_tile_map : BlocksTileMap
-
-const VALID_PLACEMENT_TILE = Vector2i(0, 1)   # allowed placement tile
-const INVALID_PLACEMENT_TILE = Vector2i(1, 1) # blocked placement tile
-const SOURCE_ID_PREVIEW = 3
-
-var _current_preview_shape = []
-
-
-func show_preview_piece(piece_shape) -> void:
-	_current_preview_shape = piece_shape
-	_update_preview() 
-
-func hide_preview() -> void:
-	_current_preview_shape = []
-	clear()
-
-func _process(delta: float) -> void:
-	_update_preview()
-
-var _is_currently_valid := true
-
-func is_current_placement_valid() -> bool:
-	return _is_currently_valid
-
-func _update_preview() -> void:
-	if _current_preview_shape.is_empty():
-		clear()
-		_is_currently_valid = false
-		return
-
-	var ship_anchor_pos = to_local(ship.global_position + Vector2(150, 0).rotated(ship.global_rotation))
-	var map_anchor_cell = local_to_map(ship_anchor_pos)
-
-	var is_placement_valid = true
-	
-	var min_x = blocks_tile_map.get_min_x()
-	var max_x = blocks_tile_map.get_max_x()
-	var min_y = blocks_tile_map.get_min_y() # For checking if you're too high
-	var bottom_y = blocks_tile_map.get_bottom_y()
-	
-	for cell_offset in _current_preview_shape:
-		var target_cell = map_anchor_cell + cell_offset
-		
-		# Check if outside horizontal bounds
-		if target_cell.x < min_x or target_cell.x >= max_x:
-			is_placement_valid = false
-			break
-		
-		# Check if outside vertical bounds (can be above, but not below)
-		if target_cell.y >= bottom_y:
-			is_placement_valid = false
-			break
-		# not above
-		if target_cell.y < min_y:
-			is_placement_valid = false
-			break
-		
-		# collision check
-		if blocks_tile_map.get_cell_source_id(target_cell) != -1:
-			is_placement_valid = false
-			break
-	
-	_is_currently_valid = is_placement_valid
-	
-	var tile_to_draw: Vector2i
-	if _is_currently_valid:
-		tile_to_draw = VALID_PLACEMENT_TILE
-	else:
-		tile_to_draw = INVALID_PLACEMENT_TILE
-
-	clear()
-	for cell_offset in _current_preview_shape:
-		var target_cell = map_anchor_cell + cell_offset
-		set_cell(target_cell, SOURCE_ID_PREVIEW, tile_to_draw)
-"
+[ext_resource type="Script" uid="uid://dwa5kst63hc3b" path="res://addons/vshapes/VRect.gd" id="5_lw6ko"]
+[ext_resource type="PackedScene" uid="uid://dysjvql27gdup" path="res://godot4/elements/blocks/BlocksField.tscn" id="7_27yyu"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rv2ie"]
 resource_local_to_scene = true
@@ -131,12 +21,12 @@ agent_radius = 100.0
 style = ExtResource("2_7vh1v")
 
 [node name="P1" parent="Homes" index="0" instance=ExtResource("3_g305n")]
-position = Vector2(-600, 600)
-rotation = -0.785398
+position = Vector2(-1400, 1400)
+rotation = -1.5708
 
 [node name="P2" parent="Homes" index="1" instance=ExtResource("3_g305n")]
-position = Vector2(600, -600)
-rotation = 2.35619
+position = Vector2(1400, 1400)
+rotation = -1.5708
 
 [node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("4_lxwqa")]
 hollow = true
@@ -147,34 +37,15 @@ width = 6600.0
 height = 3800.0
 hosts = [NodePath("../OutsideWall"), NodePath("../../Navigation")]
 
-[node name="Board" type="Node2D" parent="Battlefield" index="2"]
-
-[node name="Grid" parent="Battlefield/Board" index="0" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("6_kr54m")]
-cell_size = Vector2(200, 200)
-dy = 0.0
-outline = true
-init_parametric_shape = NodePath("VRect")
-
-[node name="VRect" type="Node" parent="Battlefield/Board/Grid" index="2"]
-script = ExtResource("5_lw6ko")
-width = 2400.0
-height = 2400.0
-
-[node name="BlocksTileMap" parent="Battlefield/Board" index="1" instance=ExtResource("7_27yyu")]
-play_area_width = 12
+[node name="BlocksField" parent="Battlefield" index="2" instance=ExtResource("7_27yyu")]
+position = Vector2(-1400, 0)
+play_area_width = 8
 play_area_height = 12
 
-[node name="FallTimer" type="Timer" parent="Battlefield/Board/BlocksTileMap" index="0"]
-autostart = true
-
-[node name="HeldBlockTileMap" type="TileMapLayer" parent="Battlefield/Board" index="2"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.384314)
-tile_set = SubResource("TileSet_l2hi7")
-collision_enabled = false
-script = SubResource("GDScript_65jbk")
+[node name="BlocksField2" parent="Battlefield" index="3" instance=ExtResource("7_27yyu")]
+position = Vector2(1400, 0)
+play_area_width = 8
+play_area_height = 12
 
 [node name="Navigation" parent="." index="6"]
 navigation_polygon = SubResource("NavigationPolygon_rv2ie")
-
-[connection signal="timeout" from="Battlefield/Board/BlocksTileMap/FallTimer" to="Battlefield/Board/BlocksTileMap" method="tick"]

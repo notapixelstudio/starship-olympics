@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dysjvql27gdup"]
+[gd_scene load_steps=9 format=3 uid="uid://dysjvql27gdup"]
 
 [ext_resource type="TileSet" uid="uid://nmh2n1gge150" path="res://godot4/elements/blocks/blocks_tileset.tres" id="1_tmptw"]
 [ext_resource type="Script" uid="uid://beft1s7edbc2f" path="res://godot4/elements/blocks/BlocksField.gd" id="2_uuh06"]
 [ext_resource type="Texture2D" uid="uid://du67f23be8l8e" path="res://assets/tiles/blocks.png" id="3_8nh0f"]
+[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="4_pibdn"]
+[ext_resource type="Script" uid="uid://dwa5kst63hc3b" path="res://addons/vshapes/VRect.gd" id="5_4xf76"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_givw4"]
 texture = ExtResource("3_8nh0f")
@@ -129,5 +131,18 @@ blocks_tile_map = NodePath("..")
 
 [node name="FallTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="Grid" parent="." node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("4_pibdn")]
+unique_name_in_owner = true
+cell_size = Vector2(200, 200)
+dy = 0.0
+outline = true
+init_parametric_shape = NodePath("VRect")
+
+[node name="VRect" type="Node" parent="Grid"]
+unique_name_in_owner = true
+script = ExtResource("5_4xf76")
+width = 1600.0
+height = 2400.0
 
 [connection signal="timeout" from="FallTimer" to="." method="tick"]
