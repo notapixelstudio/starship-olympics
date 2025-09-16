@@ -5,6 +5,7 @@ class_name BlocksTileMap
 signal game_over
 
 @export_group("Gameplay")
+@export var tick_duration : = 1.0 : set = set_tick_duration
 @export var spawn_every_ticks : int = 10
 @export var spawn_coords : Array[Vector2i] = [Vector2i(0,-6)]
 
@@ -26,6 +27,10 @@ const PIECES := [
 var _buffer : TileMapLayer
 var _tick := 0
 var _next_piece_id := 0
+
+func set_tick_duration(v:float) -> void:
+	tick_duration = v
+	%FallTimer.wait_time = tick_duration
 
 func get_min_x() -> int:
 	return 0 - (play_area_width / 2)
@@ -103,6 +108,8 @@ func someone_tapped(tapper) -> void:
 		
 		preview_tile_map.show_preview_piece(piece_shape)
 
+func start() -> void:
+	%FallTimer.start()
 
 func _ready() -> void:
 	# let's connect the tap signal
