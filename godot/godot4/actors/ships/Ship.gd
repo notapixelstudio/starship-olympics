@@ -314,11 +314,11 @@ var grabbed_piece: Dictionary = {}
 func is_holding_piece() -> bool:
 	return not grabbed_piece.is_empty()
 
-func grab_piece(shape: Array[Vector2i], color_index: int) -> void:
+func grab_piece(relative_shape, color_i, grab_angle_rads):
 	grabbed_piece = {
-		"shape": canonical_shape,
+		"shape": relative_shape,
 		"color_i": color_i,
-		"offset": rotation_offset
+		"grab_angle": grab_angle_rads
 	}
 
 # Call this to make the ship drop its piece.

@@ -1,39 +1,51 @@
+# File: BlocksTileMap.gd
+# Attach this to your main game board TileMapLayer node.
+
 extends TileMapLayer
 class_name BlocksTileMap
 
-# Signal to notify the rest of the game that the game is over.
 signal game_over
 
 @export_group("Gameplay")
-@export var spawn_every_ticks : int = 10
-@export var spawn_coords : Array[Vector2i] = [Vector2i(0,-6)]
+@export var spawn_every_ticks = 10
+@export var spawn_coords = [Vector2i(0,-6)]
 
-@export_group("Play Area")
-@export var play_area_width : int = 10
-@export var play_area_height : int = 20
-@export var draw_debug_border : bool = true
-
-const FALLING_BLOCKS_SOURCE_ID := 0
-const PLACED_BLOCKS_SOURCE_ID := 1
-
-const PIECES = [
+## ADDED: We define some example shapes for spawning new pieces.
+## You can add any shape you want here.
+@export var SPAWNABLE_SHAPES = [
 	[Vector2i(0,0)], # .
 	[Vector2i(0,0),Vector2i(1,0)], # -
 	[Vector2i(-1,0),Vector2i(0,0),Vector2i(1,0)], # _
 	[Vector2i(0,-1),Vector2i(0,0),Vector2i(1,0)], # L
 ]
 
-var _buffer : TileMapLayer
-var _tick := 0
-var _next_piece_id := 0
+@export_group("Play Area")
+@export var play_area_width = 10
+@export var play_area_height = 20
+@export var draw_debug_border = true
+
+const FALLING_BLOCKS_SOURCE_ID = 0
+const PLACED_BLOCKS_SOURCE_ID = 1
+
+var _buffer
+var _tick = 0
+var _next_piece_id = 0
+var _falling_pieces = []
 
 func _ready():
 	Events.tap.connect(someone_tapped)
 	_buffer = TileMapLayer.new()
 	_buffer.tile_set = tile_set
 	
+	# Note: These initial pieces are now grabbable just like any other piece.
+	const C1 = [Vector2i(0,-2),Vector2i(0,-1),Vector2i(0,0),Vector2i(1,0),Vector2i(1,-2)]
+	const C2 = [Vector2i(1,-3),Vector2i(1,-1),Vector2i(2,-1),Vector2i(2,-2),Vector2i(2,-3)]
+	spawn_piece(C2, Vector2i(1,1), 3)
+	spawn_piece(C1, Vector2i(1,1), 0)
+	
 	_draw_falling_pieces()
 
+# --- Public Getters for boundaries ---
 func get_min_x(): return 0 - (play_area_width / 2)
 func get_max_x(): return get_min_x() + play_area_width
 func get_min_y(): return -(play_area_height/2)
@@ -41,6 +53,7 @@ func get_bottom_y(): return get_min_y() + play_area_height
 func get_all_placed_blocks_cells(): return get_used_cells_by_id(PLACED_BLOCKS_SOURCE_ID)
 
 
+# --- Core Interaction Logic ---
 func someone_tapped(tapper):
 	var preview_tile_map = %HeldBlockTileMap
 	if not tapper is Ship or preview_tile_map == null:
@@ -56,50 +69,52 @@ func someone_tapped(tapper):
 		var ship_anchor_pos = to_local(tapper.global_position + Vector2(150, 0).rotated(tapper.global_rotation))
 		var map_anchor_cell = local_to_map(ship_anchor_pos)
 		
-		# Spawn the piece using the final rotated shape. shape_index is irrelevant here.
 		spawn_piece(rotated_shape, map_anchor_cell, piece_color)
 		
 		tapper.release_piece()
 		preview_tile_map.hide_preview()
-
-	# Ship is empty-handed, so we try to GRAB a piece
+		
 	else:
 		var ship_cell = local_to_map(to_local(tapper.global_position))
 		if get_cell_source_id(ship_cell) != FALLING_BLOCKS_SOURCE_ID:
 			return
 
-		var grabbed_piece: Dictionary = {}
+		var grabbed_piece_data = {}
 		for piece in _falling_pieces:
 			if ship_cell in piece['cells']:
-				grabbed_piece = piece
+				grabbed_piece_data = piece
 				break
 		
-		if grabbed_piece.is_empty()
+		if grabbed_piece_data.is_empty():
 			return
 
-		_falling_pieces.erase(grabbed_piece)
-		for cell in grabbed_piece['cells']:
+		var anchor_cell = ship_cell
+		var relative_shape = []
+		for cell in grabbed_piece_data['cells']:
+			relative_shape.append(cell - anchor_cell)
+
+		_falling_pieces.erase(grabbed_piece_data)
+		for cell in grabbed_piece_data['cells']:
 			erase_cell(cell)
+		
+		var color = grabbed_piece_data['color_i']
 
-		# this won't allow us to have composite pieces
-		var canonical_shape = PIECES[grabbed_piece['shape_index']]
-		var color = grabbed_piece['color_i']
-
+		## ADDED: Get the ship's snapped rotation at the moment of the grab.
 		var ship_grab_angle_degrees = snapped(rad_to_deg(tapper.global_rotation), 90.0)
 		var ship_grab_angle_radians = deg_to_rad(ship_grab_angle_degrees)
 
-		#The falling piece's rotation is always 0. The offset is the difference.
-		var orientation_offset = 0.0 - ship_grab_angle_radians
+		## MODIFIED: Pass the grab angle to the ship.
+		tapper.grab_piece(relative_shape, color, ship_grab_angle_radians)
+		preview_tile_map.show_preview()
 
-		# Pass the CANONICAL shape and the calculated offset to the ship and preview.
-		tapper.grab_piece(canonical_shape, color, orientation_offset)
-		preview_tile_map.show_preview_piece(canonical_shape, orientation_offset)
 
+# --- Gameplay Tick Loop (Unchanged) ---
 func tick():
-	# Copy placed blocks to buffer
+	# 1. Copy placed blocks to buffer
 	for cell in get_all_placed_blocks_cells():
 		_buffer.set_cell(cell, PLACED_BLOCKS_SOURCE_ID, get_cell_atlas_coords(cell))
 
+	# 2. Process falling blocks
 	var still_falling_pieces = _falling_pieces.duplicate()
 	var newly_stopped_found = true
 	while newly_stopped_found:
@@ -124,14 +139,13 @@ func tick():
 		for piece in pieces_to_remove:
 			still_falling_pieces.erase(piece)
 
-	# This happens after blocks have landed but before we draw the next frame.
+	# 3. Check for and clear any completed lines
 	_check_and_clear_lines()
 
-	# Update the state of pieces that survived the fall check.
+	# 4. Update and draw pieces that are still falling
 	for piece in still_falling_pieces:
-		var new_cells : Array[Vector2i] = []
-		for cell in piece['cells']:
-			new_cells.append(cell + Vector2i(0, 1))
+		var new_cells = []
+		for cell in piece['cells']: new_cells.append(cell + Vector2i(0, 1))
 		piece['cells'] = new_cells
 		
 		var atlas_coords = Vector2i(piece['color_i'], 2) # Falling block tile
@@ -139,17 +153,19 @@ func tick():
 			_buffer.set_cell(cell, FALLING_BLOCKS_SOURCE_ID, atlas_coords)
 
 	_falling_pieces = still_falling_pieces
-
+	
+	# 5. Redraw the main tilemap from the buffer
 	clear()
 	set_tile_map_data_from_array(_buffer.get_tile_map_data_as_array())
 	_buffer.clear()
-
+	
+	# 6. Spawn a new piece if it's time
 	if _tick % spawn_every_ticks == 0:
 		spawn_new_piece() 
 	
 	_tick += 1
 
-
+# --- Line Clearing Logic (Unchanged) ---
 func _check_and_clear_lines():
 	var y = get_bottom_y() - 1
 	while y >= get_min_y():
@@ -174,14 +190,16 @@ func _check_and_clear_lines():
 		else:
 			y -= 1 # Only move to the next row if no line was cleared.
 
-
+# --- Piece Spawning (Modified) ---
 func spawn_new_piece():
-	var random_piece_i = randi_range(0, PIECES.size() - 1)
-	var piece_to_spawn = PIECES[random_piece_i]
+	## MODIFIED: Use the new SPAWNABLE_SHAPES array
+	var random_piece_i = randi_range(0, SPAWNABLE_SHAPES.size() - 1)
+	var piece_to_spawn = SPAWNABLE_SHAPES[random_piece_i]
 	var from_where = spawn_coords.pick_random()
-	spawn_piece(piece_to_spawn, from_where, random_piece_i, random_piece_i)
+	spawn_piece(piece_to_spawn, from_where, random_piece_i)
 	
-func spawn_piece(cells, from_where, color_i, shape_index = -1):
+## MODIFIED: Removed the 'shape_index' parameter as it's no longer needed.
+func spawn_piece(cells, from_where, color_i):
 	# Game Over check
 	for cell_offset in cells:
 		var target_cell = cell_offset + from_where
@@ -197,7 +215,6 @@ func spawn_piece(cells, from_where, color_i, shape_index = -1):
 		'id': _next_piece_id,
 		'cells': new_piece_cells,
 		'color_i': color_i,
-		'shape_index': shape_index # Store the original shape index
 	})
 	
 	_next_piece_id += 1

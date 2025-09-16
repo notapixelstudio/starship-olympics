@@ -46,63 +46,73 @@ custom_data_layer_0/type = 2
 sources/3 = SubResource("TileSetAtlasSource_t1641")
 
 [sub_resource type="GDScript" id="GDScript_t1641"]
-script/source = "
+script/source = "# File: PreviewTileMap.gd
+# Attach this to your preview TileMapLayer node.
+
 extends TileMapLayer
 class_name PreviewTileMap
 
-@export var ship : Ship
+@export var ship: Ship
 @export var blocks_tile_map : BlocksTileMap
 
-const VALID_PLACEMENT_TILE = Vector2i(0, 1)   # allowed placement tile
-const INVALID_PLACEMENT_TILE = Vector2i(1, 1) # blocked placement tile
-const SOURCE_ID_PREVIEW = 3
+const VALID_PLACEMENT_TILE = Vector2i(0, 1)   # Atlas coords for a valid placement tile
+const INVALID_PLACEMENT_TILE = Vector2i(1, 1) # Atlas coords for an invalid placement tile
+const SOURCE_ID_PREVIEW = 3                   # The source ID for your preview tileset
 
 var _current_preview_shape = []
 var _rotated_preview_shape = []
 var _is_currently_valid = true
 var _current_orientation_offset = 0.0 # Stores the offset from the ship
 
-func show_preview_piece(canonical_shape, orientation_offset):
-	_current_preview_shape = canonical_shape
-	_current_orientation_offset = orientation_offset
+func show_preview():
 	_update_preview()
-
-
+	
+# Hides the preview.
 func hide_preview():
-	_current_preview_shape = []
 	clear()
 
+# Allows BlocksTileMap to get the final rotated shape for placing the block.
 func get_current_rotated_shape():
 	return _rotated_preview_shape
 
 func _process(delta):
-	if not _current_preview_shape.is_empty():
+	if ship.is_holding_piece():
 		_update_preview()
+	else:
+		# Ensure the preview is cleared if the piece is released
+		if not _rotated_preview_shape.is_empty():
+			clear()
+			_rotated_preview_shape.clear()
+
+	
 
 func is_current_placement_valid():
 	return _is_currently_valid
 
-func _update_preview() -> void:
-	if _current_preview_shape.is_empty():
+func _update_preview():
+	if not ship.is_holding_piece():
 		clear()
 		_is_currently_valid = false
 		return
 
 	_rotated_preview_shape.clear()
 	
-
-	# snap it to 90-degree increments.
-	var snapped_ship_degrees = snapped(rad_to_deg(ship.global_rotation), 90.0)
-	var snapped_ship_radians = deg_to_rad(snapped_ship_degrees)
+	# Get the relative shape of the piece being held.
+	var relative_shape = ship.grabbed_piece[\"shape\"]
+	var grab_angle_rads = ship.grabbed_piece[\"grab_angle\"]
 	
-	var final_rotation = snapped_ship_radians + _current_orientation_offset
+	# --- The Core Rotation Logic (Now rotates the relative shape) ---
+	var current_ship_degrees = snapped(rad_to_deg(ship.global_rotation), 90.0)
+	var current_ship_rads = deg_to_rad(current_ship_degrees)
+	var delta_rotation = current_ship_rads - grab_angle_rads
 	
-	for offset in _current_preview_shape:
-		var rotated_offset_vector = (Vector2(offset)).rotated(final_rotation)
+	for offset in relative_shape:
+		var rotated_offset_vector = (Vector2(offset)).rotated(delta_rotation)
 		_rotated_preview_shape.append(Vector2i(roundi(rotated_offset_vector.x), roundi(rotated_offset_vector.y)))
 
 	var ship_anchor_pos = to_local(ship.global_position + Vector2(150, 0).rotated(ship.global_rotation))
 	var map_anchor_cell = local_to_map(ship_anchor_pos)
+
 
 	var is_placement_valid = true
 	var min_x = blocks_tile_map.get_min_x()
