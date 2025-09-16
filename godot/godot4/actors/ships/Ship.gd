@@ -307,6 +307,17 @@ func rebound(direction = null, strength := 2000.0) -> Vector2:
 	return (strength*direction)
 
 # TODO: This is temporary, should not be here
+var is_in_rotation_zone := false
+
+func _on_rotation_area_body_entered(body):
+	if body == self:
+		is_in_rotation_zone = true
+func _on_rotation_area_body_exited(body):
+	if body == self:
+		is_in_rotation_zone = false
+func update_grabbed_piece_shape(new_shape: Array[Vector2i]):
+	if is_holding_piece():
+		grabbed_piece['shape'] = new_shape
 # This dictionary will store the data of the grabbed piece.
 # It's null when the ship is empty-handed.
 var grabbed_piece: Dictionary = {}

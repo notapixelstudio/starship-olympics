@@ -48,6 +48,13 @@ func someone_tapped(tapper) -> void:
 
 	# Ship is holding a piece, so we try to RELEASE it
 	if tapper.is_holding_piece():
+		if tapper.is_in_rotation_zone:
+			var current_shape = tapper.grabbed_piece['shape']
+			var new_shape = _rotate_piece_shape(current_shape)
+			
+			tapper.update_grabbed_piece_shape(new_shape)
+			preview_tile_map.show_preview_piece(new_shape)
+			return 
 		if not preview_tile_map.is_current_placement_valid():
 			return # Do nothing if placement is invalid.
 
@@ -249,3 +256,10 @@ func spawn_piece(cells, from_where: Vector2i, color_i: int) -> void:
 	_next_piece_id += 1
 	
 	_draw_falling_pieces()
+
+func _rotate_piece_shape(shape) -> Array[Vector2i]:
+	var new_shape: Array[Vector2i] = []
+	# Rotate each Vector2i in the shape by 90 degrees clockwise
+	for cell_offset in shape:
+		new_shape.append(Vector2i(cell_offset.y, -cell_offset.x))
+	return new_shape

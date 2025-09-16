@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8u0ahaefij7v"]
+[gd_scene load_steps=12 format=3 uid="uid://b8u0ahaefij7v"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_2u2gc"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_0wabn"]
@@ -127,6 +127,9 @@ func _update_preview() -> void:
 		set_cell(target_cell, SOURCE_ID_PREVIEW, tile_to_draw)
 "
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ll5gd"]
+radius = 726.79
+
 [node name="TestChamber" instance=ExtResource("1_2u2gc")]
 
 [node name="FPSCounter" parent="." index="3"]
@@ -172,4 +175,13 @@ script = SubResource("GDScript_t1641")
 ship = NodePath("../../Ship")
 blocks_tile_map = NodePath("../BlocksTileMap")
 
+[node name="Area2D" type="Area2D" parent="." index="12"]
+position = Vector2(1949, -1164)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(243, 326)
+shape = SubResource("CircleShape2D_ll5gd")
+
 [connection signal="timeout" from="BlockField/FallTimer" to="BlockField/BlocksTileMap" method="tick"]
+[connection signal="body_entered" from="Area2D" to="Ship" method="_on_rotation_area_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Ship" method="_on_rotation_area_body_exited"]
