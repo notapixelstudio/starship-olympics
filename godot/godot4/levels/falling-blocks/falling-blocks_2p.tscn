@@ -21,11 +21,11 @@ agent_radius = 100.0
 style = ExtResource("2_7vh1v")
 
 [node name="P1" parent="Homes" index="0" instance=ExtResource("3_g305n")]
-position = Vector2(-1400, 1400)
+position = Vector2(-1200, 1400)
 rotation = -1.5708
 
 [node name="P2" parent="Homes" index="1" instance=ExtResource("3_g305n")]
-position = Vector2(1400, 1400)
+position = Vector2(1200, 1400)
 rotation = -1.5708
 
 [node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("4_lxwqa")]
@@ -40,11 +40,13 @@ hosts = [NodePath("../OutsideWall"), NodePath("../../Navigation")]
 [node name="BlocksField" parent="Battlefield" index="2" instance=ExtResource("7_27yyu")]
 position = Vector2(-1200, 0)
 spawn_every_ticks = 5
+play_area_width = 8
 play_area_height = 14
 
 [node name="BlocksField2" parent="Battlefield" index="3" instance=ExtResource("7_27yyu")]
 position = Vector2(1200, 0)
 tick_duration = 0.6
+play_area_width = 8
 play_area_height = 14
 
 [node name="Navigation" parent="." index="6"]
