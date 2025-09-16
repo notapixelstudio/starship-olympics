@@ -28,6 +28,7 @@ var _buffer : TileMapLayer
 var _tick := 0
 var _next_piece_id := 0
 
+
 func set_tick_duration(v:float) -> void:
 	tick_duration = v
 	%FallTimer.wait_time = tick_duration
@@ -120,22 +121,25 @@ func _ready() -> void:
 	_buffer.tile_set = tile_set
 	
 	# set up the grid
-	# WARNING cell size is set up on the Grid node's export vars
-	%VRect.width = tile_set.tile_size.x * play_area_width
-	%VRect.height = tile_set.tile_size.y * play_area_height
+	var style = %Styleable.get_style_from_ancestor_or_self()
+	%GridLines.color = style.grid_color
+	%GridLines.cell_size = tile_set.tile_size
+	%GridLines.size = Vector2i(tile_set.tile_size.x*play_area_width, tile_set.tile_size.y*play_area_height)
+	%GridLines.outline_thickness = 20.0
+	%GridLines.init_grid()
 	
-	const C1 = [Vector2i(0,-2),Vector2i(0,-1),Vector2i(0,0),Vector2i(1,0),Vector2i(1,-2)]
-	const C2 = [Vector2i(1,-3),Vector2i(1,-1),Vector2i(2,-1),Vector2i(2,-2),Vector2i(2,-3)]
-	const C3 = [Vector2i(-1,-3),Vector2i(-1,-1),Vector2i(-1,-2),Vector2i(0,-3)]
-	const C4 = [Vector2i(-1,-4),Vector2i(0,-4),Vector2i(-2,-4),Vector2i(-3,-4)]
-	
-	spawn_piece(C2, Vector2i(1,1), 3)
-	spawn_piece(C1, Vector2i(1,1), 0)
-	spawn_piece(C3, Vector2i(1,1), 1)
-	spawn_piece(C4, Vector2i(1,1), 2)
-	
-	# Initial draw of the spawned pieces onto the main map
-	_draw_falling_pieces()
+	#const C1 = [Vector2i(0,-2),Vector2i(0,-1),Vector2i(0,0),Vector2i(1,0),Vector2i(1,-2)]
+	#const C2 = [Vector2i(1,-3),Vector2i(1,-1),Vector2i(2,-1),Vector2i(2,-2),Vector2i(2,-3)]
+	#const C3 = [Vector2i(-1,-3),Vector2i(-1,-1),Vector2i(-1,-2),Vector2i(0,-3)]
+	#const C4 = [Vector2i(-1,-4),Vector2i(0,-4),Vector2i(-2,-4),Vector2i(-3,-4)]
+	#
+	#spawn_piece(C2, Vector2i(1,1), 3)
+	#spawn_piece(C1, Vector2i(1,1), 0)
+	#spawn_piece(C3, Vector2i(1,1), 1)
+	#spawn_piece(C4, Vector2i(1,1), 2)
+	#
+	## Initial draw of the spawned pieces onto the main map
+	#_draw_falling_pieces()
 
 func get_all_placed_blocks_cells() -> Array[Vector2i]:
 	return get_used_cells_by_id(PLACED_BLOCKS_SOURCE_ID)
