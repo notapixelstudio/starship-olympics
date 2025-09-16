@@ -46,6 +46,8 @@ var lines = []
 var v_cells : int
 var h_cells : int
 
+var offset : Vector2 # this acts like position, but without altering the node's transform
+
 var mesh : ImmediateMesh
 
 const max_velocity = 4000
@@ -58,7 +60,8 @@ func init_grid(arena_size: Vector2):
 	
 	v_cells = ceil(arena_size.y/cell_size.y) + 1
 	h_cells = ceil(arena_size.x/cell_size.x) + 1 
-	position = -cell_size * Vector2(h_cells-1, v_cells-1)/2.0
+	
+	offset = -cell_size * Vector2(h_cells-1, v_cells-1)/2.0
 	
 	var lines_amount # populate the array of lines according to tiling type
 	if type == 'square':
@@ -72,14 +75,14 @@ func init_grid(arena_size: Vector2):
 		grid[y] = []
 		grid[y].resize(h_cells)
 		for x in h_cells:
-			grid[y][x] = Point.new(cell_size * Vector2(x+(0 if type == 'square' else 0.5*(y%2)), y) + position, Vector2(x, y))
+			grid[y][x] = Point.new(cell_size * Vector2(x+(0 if type == 'square' else 0.5*(y%2)), y) + offset, Vector2(x, y))
 	lines.resize(lines_amount)
 	# Init grid lines
 	# Vertical Rows
 	for x in h_cells:
 		var line = Line2D.new()
 		line.light_mask = 3
-		line.position = -position
+		#line.position = offset
 		add_child(line)
 		line.width = grid_thickness
 		line.default_color = grid_color
@@ -91,7 +94,7 @@ func init_grid(arena_size: Vector2):
 		for x in range(1,h_cells):
 			var line = Line2D.new()
 			line.light_mask = 3
-			line.position = -position
+			#line.position = offset
 			add_child(line)
 			line.width = grid_thickness
 			line.default_color = grid_color
@@ -102,7 +105,7 @@ func init_grid(arena_size: Vector2):
 	for y in v_cells:
 		var line = Line2D.new()
 		line.light_mask = 3
-		line.position = -position
+		#line.position = offset
 		add_child(line)
 		line.width = grid_thickness
 		line.default_color = grid_color
@@ -120,18 +123,18 @@ func _process(delta):
 	var gravity_wells = get_tree().get_nodes_in_group(\"gravity_wells\")
 	for well in gravity_wells:
 		if abs(well.get_gravity() * MULTIPLIER) <= 1: continue
-		var index = (well.global_position - position).snapped(cell_size) / cell_size
+		var index = (to_local(well.global_position) - offset).snapped(cell_size) / cell_size
 		var radius = well.get_influence_radius() / cell_size.x + 1
 		for y in range(index.y - radius, index.y + radius):
 			for x in range(index.x - radius, index.x + radius):
 				if x <= 0 || x >= h_cells - 1 || y <= 0 || y >= v_cells - 1: continue
 				var point = grid[y][x]
 				if active_points.has(point): continue
-				var dist = (well.global_position - point.position).length()
+				var dist = 0#(well.global_position - point.position).length()
 				if dist < well.get_influence_radius():
 					active_points.append(point)
 	for point in active_points:
-		point.process(delta, gravity_wells)
+		point.process(delta, gravity_wells, global_transform)
 		if point.is_at_rest():
 			point.rest()
 			active_points.erase(point)
@@ -176,15 +179,19 @@ class Point:
 		anchor = Vector3(position.x, position.y, 0.0)
 		position_3d = anchor
 	
-	func process(delta, gravity_wells):
+	func process(delta, gravity_wells, global_transform):
 		# elastic velocity
 		var diff = anchor - position_3d
 		var desired_velocity = diff * 24
 		velocity = velocity.lerp(desired_velocity, 0.15)
 		
+		# prepare a position 3d in global coordinates
+		var global_position_2d = global_transform * Vector2(position_3d.x, position_3d.y)
+		var global_position_3d = Vector3(global_position_2d.x, global_position_2d.y, position_3d.z)
+		
 		# gravity velocity
 		for well in gravity_wells:
-			velocity += well.get_force(position_3d) * delta
+			velocity += well.get_force(global_position_3d) * delta
 			#var well_diff = well.global_position - surface_position
 			#if well_diff.length() < well.get_influence_radius():
 				#velocity += well_diff * global.sigmoid(well_diff.length(), well.get_influence_radius()) * well.get_gravity() * MULTIPLIER * delta
@@ -219,7 +226,7 @@ unique_name_in_owner = true
 
 [node name="Mask" type="Node2D" parent="."]
 unique_name_in_owner = true
-clip_children = 1
+self_modulate = Color(1, 1, 1, 0)
 position = Vector2(0, 32)
 script = SubResource("GDScript_3687u")
 
