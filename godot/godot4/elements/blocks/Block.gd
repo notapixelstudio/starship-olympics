@@ -1,19 +1,29 @@
 class_name Block
 
-var _tiles : Array[BlockTile]
-
-func _init() -> void:
-	_tiles = []
+var _position := Vector2i(0,0)
+var _tiles : Array[BlockTile] = []
+	
+func get_position() -> Vector2i:
+	return _position
+	
+func get_tiles() -> Array[BlockTile]:
+	return _tiles
 	
 func add_tile(tile:BlockTile) -> void:
 	_tiles.append(tile)
 	
 func _to_string() -> String:
-	return 'Block: ' + ','.join(_tiles)
+	return 'Block(' + str(get_position()) + '): ' + ','.join(_tiles)
 	
 func rotate() -> void:
 	for tile in _tiles:
 		tile.rotate()
+		
+func move_to(p:Vector2i) -> void:
+	_position = p
+	
+func move_by(delta:Vector2i) -> void:
+	move_to(get_position()+delta)
 	
 enum Name {Dot, Two, L, I}
 
@@ -59,6 +69,9 @@ class BlockTile:
 		_color = color
 		_liquid = liquid
 		
+	func get_cell() -> Vector2i:
+		return _cell
+		
 	func copy() -> BlockTile:
 		return BlockTile.new(_cell, _color, _liquid)
 		
@@ -69,7 +82,7 @@ class BlockTile:
 		return _liquid
 		
 	func get_atlas_coords(source: Source) -> Vector2i:
-		return Vector2i(TILEMAP_START_X + (COLORS if is_liquid() else 0), source)
+		return Vector2i(TILEMAP_START_X + (COLORS if is_liquid() else 0) + _color, 2 if source == 0 else 0)
 		
 	func rotated() -> BlockTile:
 		var new_tile = copy()

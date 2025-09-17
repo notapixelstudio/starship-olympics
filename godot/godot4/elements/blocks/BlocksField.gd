@@ -1,7 +1,7 @@
 extends TileMapLayer
-class_name BlocksTileMap
+class_name BlocksField
 
-# Signal to notify the rest of the game that the game is over.
+# Signal to notify the rest of the game that the game in this BlocksField is over.
 signal game_over
 
 @export_group("Gameplay")
@@ -12,21 +12,9 @@ signal game_over
 @export_group("Play Area")
 @export var play_area_width : int = 10
 @export var play_area_height : int = 20
-@export var draw_debug_border : bool = true
-
-const FALLING_BLOCKS_SOURCE_ID := 0
-const PLACED_BLOCKS_SOURCE_ID := 1
-
-const PIECES := [
-	[Vector2i(0,0)], # .
-	[Vector2i(0,0),Vector2i(1,0)], # -
-	[Vector2i(-1,0),Vector2i(0,0),Vector2i(1,0)], # _
-	[Vector2i(0,-1),Vector2i(0,0),Vector2i(1,0)], # L
-]
 
 var _buffer : TileMapLayer
 var _tick := 0
-var _next_piece_id := 0
 
 
 func set_tick_duration(v:float) -> void:
@@ -46,7 +34,7 @@ func get_bottom_y() -> int:
 	# The bottom coordinate is exclusive (it's the coordinate of the floor)
 	return get_min_y() + play_area_height
 	
-var _falling_pieces : Array[Dictionary] = []
+var _falling_blocks : Array[Block] = []
 func someone_tapped(tapper) -> void:
 	var preview_tile_map = %HeldBlockTileMap
 	if not tapper is Ship or preview_tile_map == null:
@@ -64,18 +52,12 @@ func someone_tapped(tapper) -> void:
 		if not preview_tile_map.is_current_placement_valid():
 			return # Do nothing if placement is invalid.
 
-		var piece_to_release = tapper.grabbed_piece
-		var piece_shape = piece_to_release['shape']
-		var piece_color = piece_to_release['color_i']
+		var block_to_release = tapper.grabbed_piece
 		
 		var ship_anchor_pos = to_local(tapper.global_position + Vector2(150, 0).rotated(tapper.global_rotation))
 		var map_anchor_cell = local_to_map(ship_anchor_pos)
 		
-		var absolute_cells: Array[Vector2i] = []
-		for cell_offset in piece_shape:
-			absolute_cells.append(map_anchor_cell + cell_offset)
-			
-		spawn_piece(absolute_cells, Vector2i(0,0), piece_color)
+		spawn_block(block_to_release, map_anchor_cell)
 		
 		tapper.release_piece()
 		
@@ -84,11 +66,11 @@ func someone_tapped(tapper) -> void:
 	# --- Ship is empty-handed, so we try to GRAB a piece
 	else:
 		var ship_cell = local_to_map(to_local(tapper.global_position))
-		if get_cell_source_id(ship_cell) != FALLING_BLOCKS_SOURCE_ID:
+		if get_cell_source_id(ship_cell) != Block.BlockTile.Source.FALLING:
 			return
 
-		var grabbed_piece: Dictionary = {}
-		for piece in _falling_pieces:
+		var grabbed_piece: Block
+		for piece in _falling_blocks:
 			if ship_cell in piece['cells']:
 				grabbed_piece = piece
 				break
@@ -96,7 +78,7 @@ func someone_tapped(tapper) -> void:
 		if grabbed_piece.is_empty():
 			return
 
-		_falling_pieces.erase(grabbed_piece)
+		_falling_blocks.erase(grabbed_piece)
 		for cell in grabbed_piece['cells']:
 			erase_cell(cell)
 		
@@ -113,20 +95,6 @@ func start() -> void:
 	%FallTimer.start()
 
 func _ready() -> void:
-	var bs = [
-		Block.create_random(),
-		Block.create_random(),
-		Block.create_random(),
-		Block.create_random(),
-		Block.create_random(),
-		Block.create_random(),
-		Block.create_random(),
-		Block.create_random(),
-		Block.create_random(),
-		Block.create_random(),
-	]
-	print(bs)
-	
 	# let's connect the tap signal
 	Events.tap.connect(someone_tapped)
 	
@@ -142,21 +110,9 @@ func _ready() -> void:
 	%GridLines.outline_thickness = 20.0
 	%GridLines.init_grid()
 	
-	#const C1 = [Vector2i(0,-2),Vector2i(0,-1),Vector2i(0,0),Vector2i(1,0),Vector2i(1,-2)]
-	#const C2 = [Vector2i(1,-3),Vector2i(1,-1),Vector2i(2,-1),Vector2i(2,-2),Vector2i(2,-3)]
-	#const C3 = [Vector2i(-1,-3),Vector2i(-1,-1),Vector2i(-1,-2),Vector2i(0,-3)]
-	#const C4 = [Vector2i(-1,-4),Vector2i(0,-4),Vector2i(-2,-4),Vector2i(-3,-4)]
-	#
-	#spawn_piece(C2, Vector2i(1,1), 3)
-	#spawn_piece(C1, Vector2i(1,1), 0)
-	#spawn_piece(C3, Vector2i(1,1), 1)
-	#spawn_piece(C4, Vector2i(1,1), 2)
-	#
-	## Initial draw of the spawned pieces onto the main map
-	#_draw_falling_pieces()
 
 func get_all_placed_blocks_cells() -> Array[Vector2i]:
-	return get_used_cells_by_id(PLACED_BLOCKS_SOURCE_ID)
+	return get_used_cells_by_id(Block.BlockTile.Source.PLACED)
 
 func _check_and_clear_lines():
 	# We iterate from the bottom row up to the top.
@@ -166,7 +122,7 @@ func _check_and_clear_lines():
 		# Check every cell in the current row.
 		for x in range(get_min_x(), get_max_x()):
 			# If even one cell is not a placed block, the line is not full.
-			if _buffer.get_cell_source_id(Vector2i(x, y)) != PLACED_BLOCKS_SOURCE_ID:
+			if _buffer.get_cell_source_id(Vector2i(x, y)) != Block.BlockTile.Source.PLACED:
 				is_line_full = false
 				break
 		
@@ -200,49 +156,44 @@ func _check_and_clear_lines():
 func tick() -> void:
 	# copy all placed blocks on the buffer
 	for cell in get_all_placed_blocks_cells():
-		_buffer.set_cell(cell, PLACED_BLOCKS_SOURCE_ID, get_cell_atlas_coords(cell))
+		_buffer.set_cell(cell, Block.BlockTile.Source.PLACED, get_cell_atlas_coords(cell))
 
-	var still_falling_pieces = _falling_pieces.duplicate() # Work on a copy.
+	var still_falling_blocks = _falling_blocks.duplicate() # Work on a copy.
 	var newly_stopped_found = true
 	
 	while newly_stopped_found:
 		newly_stopped_found = false
-		var pieces_to_remove : Array[Dictionary] = []
+		var blocks_to_remove : Array[Block] = []
 
-		for piece in still_falling_pieces:
+		for block in still_falling_blocks:
 			var should_stop = false
-			for cell in piece['cells']:
-				var next_cell = cell + Vector2i(0, 1)
-				if next_cell.y >= get_bottom_y() or _buffer.get_cell_source_id(next_cell) == PLACED_BLOCKS_SOURCE_ID:
+			for tile in block.get_tiles():
+				var next_cell = tile.get_cell() + block.get_position() + Vector2i(0, 1)
+				if next_cell.y >= get_bottom_y() or _buffer.get_cell_source_id(next_cell) == Block.BlockTile.Source.PLACED:
 					should_stop = true
 					break
 			
 			if should_stop:
 				newly_stopped_found = true
-				pieces_to_remove.append(piece)
+				blocks_to_remove.append(block)
 				
-				var atlas_coords = Vector2i(piece['color_i'], 0)
-				for cell in piece['cells']:
-					_buffer.set_cell(cell, PLACED_BLOCKS_SOURCE_ID, atlas_coords)
+				for tile in block.get_tiles():
+					_buffer.set_cell(tile.get_cell() + block.get_position(), Block.BlockTile.Source.PLACED, tile.get_atlas_coords(Block.BlockTile.Source.PLACED))
 		
-		for piece in pieces_to_remove:
-			still_falling_pieces.erase(piece)
+		for block in blocks_to_remove:
+			still_falling_blocks.erase(block)
 
 	# This happens after blocks have landed but before we draw the next frame.
-	_check_and_clear_lines()
+	#_check_and_clear_lines()
 
 	# Update the state of pieces that survived the fall check.
-	for piece in still_falling_pieces:
-		var new_cells : Array[Vector2i] = []
-		for cell in piece['cells']:
-			new_cells.append(cell + Vector2i(0, 1))
-		piece['cells'] = new_cells
+	for block in still_falling_blocks:
+		block.move_by(Vector2i(0, 1))
 		
-		var atlas_coords = Vector2i(piece['color_i'], 2)
-		for cell in piece['cells']:
-			_buffer.set_cell(cell, FALLING_BLOCKS_SOURCE_ID, atlas_coords)
+		for tile in block.get_tiles():
+			_buffer.set_cell(tile.get_cell() + block.get_position(), Block.BlockTile.Source.FALLING, tile.get_atlas_coords(Block.BlockTile.Source.FALLING))
 
-	_falling_pieces = still_falling_pieces
+	_falling_blocks = still_falling_blocks
 	
 	clear()
 	set_tile_map_data_from_array(_buffer.get_tile_map_data_as_array())
@@ -253,41 +204,30 @@ func tick() -> void:
 	
 	_tick += 1
 
-func _draw_falling_pieces() -> void:
-	for piece in _falling_pieces:
-		var atlas_coords = Vector2i(piece['color_i'], 2)
-		for cell in piece['cells']:
-			set_cell(cell, FALLING_BLOCKS_SOURCE_ID, atlas_coords)
+func _draw_falling_blocks() -> void:
+	for block in _falling_blocks:
+		for tile in block.get_tiles():
+			set_cell(block.get_position()+tile.get_cell(), Block.BlockTile.Source.FALLING, tile.get_atlas_coords(Block.BlockTile.Source.FALLING))
 
 func spawn_new_piece() -> void:
-	var random_piece_i = randi_range(0, PIECES.size() - 1)
-	var piece_to_spawn = PIECES[random_piece_i]
+	var new_block = Block.create_random()
 	var from_where = spawn_coords.pick_random()
-	spawn_piece(piece_to_spawn, from_where, random_piece_i)
 	
-func spawn_piece(cells, from_where: Vector2i, color_i: int) -> void:
 	# Before spawning, check if the target cells are already occupied by placed blocks.
-	for cell_offset in cells:
-		var target_cell = cell_offset + from_where
-		if get_cell_source_id(target_cell) == PLACED_BLOCKS_SOURCE_ID:
+	for tile in new_block.get_tiles():
+		if get_cell_source_id(tile.get_cell() + from_where) == Block.BlockTile.Source.PLACED:
 			# If the space is blocked, emit the game_over signal and stop.
 			game_over.emit()
 			print("GAME_OVER")
 			return
-			
-	var new_piece_cells: Array[Vector2i] = []
-	for cell_offset in cells:
-		new_piece_cells.append(cell_offset + from_where)
-		
-	_falling_pieces.append({
-		'id': _next_piece_id,
-		'cells': new_piece_cells,
-		'color_i': color_i
-	})
 	
-	_next_piece_id += 1
+	spawn_block(new_block, from_where)
 	
-	_draw_falling_pieces()
+func spawn_block(block:Block, from_where: Vector2i) -> void:
+	block.move_to(from_where)
+	_falling_blocks.append(block)
+	print(_falling_blocks)
+	_draw_falling_blocks()
 
 func _rotate_piece_shape(shape) -> Array[Vector2i]:
 	var new_shape: Array[Vector2i] = []
