@@ -40,56 +40,57 @@ func someone_tapped(tapper) -> void:
 	if not tapper is Ship or preview_tile_map == null:
 		return
 
-	# Ship is holding a piece, so we try to RELEASE it
-	if tapper.is_holding_piece():
+	# Ship is holding a block, so we try to RELEASE it
+	if tapper.is_holding_block():
 		if tapper.is_in_rotation_zone:
-			var current_shape = tapper.grabbed_piece['shape']
-			var new_shape = _rotate_piece_shape(current_shape)
+			var current_block = tapper.grabbed_block
+			var new_block = current_block.rotated()
 			
-			tapper.update_grabbed_piece_shape(new_shape)
-			preview_tile_map.show_preview_piece(new_shape)
+			tapper.update_grabbed_block(new_block)
+			preview_tile_map.show_preview_block(new_block)
 			return 
 		if not preview_tile_map.is_current_placement_valid():
 			return # Do nothing if placement is invalid.
 
-		var block_to_release = tapper.grabbed_piece
+		var block_to_release = tapper.grabbed_block
 		
 		var ship_anchor_pos = to_local(tapper.global_position + Vector2(150, 0).rotated(tapper.global_rotation))
 		var map_anchor_cell = local_to_map(ship_anchor_pos)
 		
 		spawn_block(block_to_release, map_anchor_cell)
 		
-		tapper.release_piece()
+		tapper.release_block()
 		
 		preview_tile_map.hide_preview()
 
-	# --- Ship is empty-handed, so we try to GRAB a piece
+	# --- Ship is empty-handed, so we try to GRAB a block
 	else:
 		var ship_cell = local_to_map(to_local(tapper.global_position))
 		if get_cell_source_id(ship_cell) != Block.BlockTile.Source.FALLING:
 			return
 
-		var grabbed_piece: Block
-		for piece in _falling_blocks:
-			if ship_cell in piece['cells']:
-				grabbed_piece = piece
+		var grabbed_block: Block = null
+		for block in _falling_blocks:
+			if block.has_cell(ship_cell):
+				grabbed_block = block
 				break
 		
-		if grabbed_piece.is_empty():
+		if grabbed_block == null:
 			return
 
-		_falling_blocks.erase(grabbed_piece)
-		for cell in grabbed_piece['cells']:
-			erase_cell(cell)
+		_falling_blocks.erase(grabbed_block)
+		for tile in grabbed_block.get_tiles():
+			erase_cell(tile.get_cell()+grabbed_block.get_position())
 		
-		var anchor_cell = grabbed_piece['cells'][0]
+		var anchor_cell = grabbed_block.get_tiles()[0].get_cell()
+		# SONO ARRIVATO QUI
 		var piece_shape: Array[Vector2i] = []
 		for cell in grabbed_piece['cells']:
 			piece_shape.append(cell - anchor_cell)
 		
-		tapper.grab_piece(piece_shape, grabbed_piece['color_i'])
+		tapper.grab_block(grabbed_block)
 		
-		preview_tile_map.show_preview_piece(piece_shape)
+		preview_tile_map.show_preview_block(grabbed_block)
 
 func start() -> void:
 	%FallTimer.start()
@@ -229,6 +230,7 @@ func spawn_block(block:Block, from_where: Vector2i) -> void:
 	_falling_blocks.append(block)
 	_draw_falling_blocks()
 
+# FIXME this should be deleted soon
 func _rotate_piece_shape(shape) -> Array[Vector2i]:
 	var new_shape: Array[Vector2i] = []
 	# Rotate each Vector2i in the shape by 90 degrees clockwise

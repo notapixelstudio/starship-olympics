@@ -315,23 +315,20 @@ func _on_rotation_area_body_entered(body):
 func _on_rotation_area_body_exited(body):
 	if body == self:
 		is_in_rotation_zone = false
-func update_grabbed_piece_shape(new_shape: Array[Vector2i]):
-	if is_holding_piece():
-		grabbed_piece['shape'] = new_shape
-# This dictionary will store the data of the grabbed piece.
+func update_grabbed_block(new_block: Block):
+	if is_holding_block():
+		grabbed_block = new_block
+# This will store the data of the grabbed block.
 # It's null when the ship is empty-handed.
-var grabbed_piece: Dictionary = {}
+var grabbed_block : Block
 
-func is_holding_piece() -> bool:
-	return not grabbed_piece.is_empty()
+func is_holding_block() -> bool:
+	return grabbed_block != null
 
-func grab_piece(shape: Array[Vector2i], color_index: int) -> void:
-	grabbed_piece = {
-		'shape': shape,
-		'color_i': color_index
-	}
+func grab_block(block:Block) -> void:
+	grabbed_block = block
 
-# Call this to make the ship drop its piece.
-func release_piece() -> void:
-	grabbed_piece.clear()
+# Call this to make the ship drop its block.
+func release_block() -> void:
+	grabbed_block = null
 # TODO: END OF TEMPORARY

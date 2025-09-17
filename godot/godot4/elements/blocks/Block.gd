@@ -25,6 +25,12 @@ func move_to(p:Vector2i) -> void:
 func move_by(delta:Vector2i) -> void:
 	move_to(get_position()+delta)
 	
+func has_cell(cell:Vector2i) -> bool:
+	for tile in get_tiles():
+		if tile.get_cell() + get_position() == cell:
+			return true
+	return false
+	
 enum Name {Dot, Two, L, I}#, Ooo}
 
 static func create(name:Name, liquid:=false) -> Block:

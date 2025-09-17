@@ -39,13 +39,17 @@ hosts = [NodePath("../OutsideWall"), NodePath("../../Navigation")]
 
 [node name="BlocksField" parent="Battlefield" index="2" instance=ExtResource("7_27yyu")]
 position = Vector2(-1200, 0)
+tick_duration = null
 spawn_every_ticks = 5
+spawn_coords = null
 play_area_width = 8
 play_area_height = 14
 
 [node name="BlocksField2" parent="Battlefield" index="3" instance=ExtResource("7_27yyu")]
 position = Vector2(1200, 0)
 tick_duration = 0.6
+spawn_every_ticks = null
+spawn_coords = null
 play_area_width = 8
 play_area_height = 14
 
