@@ -11,6 +11,10 @@ func add_tile(tile:BlockTile) -> void:
 func _to_string() -> String:
 	return 'Block: ' + ','.join(_tiles)
 	
+func rotate() -> void:
+	for tile in _tiles:
+		tile.rotate()
+	
 enum Name {Dot, Two, L, I}
 
 static func create(name:Name, liquid:=false) -> Block:
@@ -69,10 +73,13 @@ class BlockTile:
 		
 	func rotated() -> BlockTile:
 		var new_tile = copy()
-		var swap = new_tile._cell.x
-		new_tile._cell.x = new_tile._cell.y
-		new_tile._cell.y = -swap
+		new_tile.rotate()
 		return new_tile
+		
+	func rotate() -> void:
+		var swap = _cell.x
+		_cell.x = _cell.y
+		_cell.y = -swap
 		
 	static func get_random_color() -> int:
 		return randi() % COLORS
