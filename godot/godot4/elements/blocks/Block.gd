@@ -25,7 +25,7 @@ func move_to(p:Vector2i) -> void:
 func move_by(delta:Vector2i) -> void:
 	move_to(get_position()+delta)
 	
-enum Name {Dot, Two, L, I}
+enum Name {Dot, Two, L, I}#, Ooo}
 
 static func create(name:Name, liquid:=false) -> Block:
 	var b = Block.new()
@@ -41,6 +41,8 @@ static func create(name:Name, liquid:=false) -> Block:
 			cells = [Vector2i(0,-1),Vector2i(0,0),Vector2i(1,0)]
 		Name.I:
 			cells = [Vector2i(-1,0),Vector2i(0,0),Vector2i(1,0)]
+		#Name.Ooo:
+			#cells = [Vector2i(-4,0),Vector2i(-3,0),Vector2i(-2,0),Vector2i(-1,0),Vector2i(0,0),Vector2i(1,0),Vector2i(2,0),Vector2i(3,0)]
 		
 	for cell in cells:
 		b.add_tile(BlockTile.new(cell, (BlockTile.get_random_color() if liquid else single_color), liquid))

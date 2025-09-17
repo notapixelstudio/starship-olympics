@@ -184,7 +184,7 @@ func tick() -> void:
 			still_falling_blocks.erase(block)
 
 	# This happens after blocks have landed but before we draw the next frame.
-	#_check_and_clear_lines()
+	_check_and_clear_lines()
 
 	# Update the state of pieces that survived the fall check.
 	for block in still_falling_blocks:
@@ -210,6 +210,7 @@ func _draw_falling_blocks() -> void:
 			set_cell(block.get_position()+tile.get_cell(), Block.BlockTile.Source.FALLING, tile.get_atlas_coords(Block.BlockTile.Source.FALLING))
 
 func spawn_new_piece() -> void:
+	#var new_block = Block.create(Block.Name.Ooo, true)
 	var new_block = Block.create_random()
 	var from_where = spawn_coords.pick_random()
 	
@@ -226,7 +227,6 @@ func spawn_new_piece() -> void:
 func spawn_block(block:Block, from_where: Vector2i) -> void:
 	block.move_to(from_where)
 	_falling_blocks.append(block)
-	print(_falling_blocks)
 	_draw_falling_blocks()
 
 func _rotate_piece_shape(shape) -> Array[Vector2i]:
