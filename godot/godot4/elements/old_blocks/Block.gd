@@ -1,5 +1,5 @@
 extends StaticBody2D
-class_name Block
+class_name Blockz
 
 const ANGLE_TOLERANCE := PI/3
 const DIRS := [Vector2.DOWN,Vector2.LEFT,Vector2.UP,Vector2.RIGHT]

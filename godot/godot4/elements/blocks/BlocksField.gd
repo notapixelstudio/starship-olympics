@@ -113,6 +113,20 @@ func start() -> void:
 	%FallTimer.start()
 
 func _ready() -> void:
+	var bs = [
+		Block.create_random(),
+		Block.create_random(),
+		Block.create_random(),
+		Block.create_random(),
+		Block.create_random(),
+		Block.create_random(),
+		Block.create_random(),
+		Block.create_random(),
+		Block.create_random(),
+		Block.create_random(),
+	]
+	print(bs)
+	
 	# let's connect the tap signal
 	Events.tap.connect(someone_tapped)
 	
