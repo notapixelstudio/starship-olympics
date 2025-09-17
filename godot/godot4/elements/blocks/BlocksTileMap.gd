@@ -10,14 +10,14 @@ signal game_over
 @export var spawn_every_ticks = 10
 @export var spawn_coords = [Vector2i(0,-6)]
 
-## ADDED: We define some example shapes for spawning new pieces.
-## You can add any shape you want here.
-@export var SPAWNABLE_SHAPES = [
-	[Vector2i(0,0)], # .
-	[Vector2i(0,0),Vector2i(1,0)], # -
-	[Vector2i(-1,0),Vector2i(0,0),Vector2i(1,0)], # _
-	[Vector2i(0,-1),Vector2i(0,0),Vector2i(1,0)], # L
+@export var SPAWNABLE_PATTERNS = [
+	[{"pos": Vector2i(0,0), "color_i": 0}], # Single block
+	[{"pos": Vector2i(0,0), "color_i": 1}, {"pos": Vector2i(1,0), "color_i": 2}], # Two-tone bar
+	[{"pos": Vector2i(-1,0), "color_i": 3}, {"pos": Vector2i(0,0), "color_i": 0}, {"pos": Vector2i(1,0), "color_i": 3}], # Symmetrical 3-bar
+	[{"pos": Vector2i(0,-1), "color_i": 1}, {"pos": Vector2i(0,0), "color_i": 1}, {"pos": Vector2i(1,0), "color_i": 2}], # L-shape with two colors
+	[{"pos": Vector2i(0,0), "color_i": 0}, {"pos": Vector2i(1,0), "color_i": 1}, {"pos": Vector2i(0,1), "color_i": 2}, {"pos": Vector2i(1,1), "color_i": 3}], # 2x2 rainbow square
 ]
+
 
 @export_group("Play Area")
 @export var play_area_width = 10
@@ -27,7 +27,7 @@ signal game_over
 const FALLING_BLOCKS_SOURCE_ID = 0
 const PLACED_BLOCKS_SOURCE_ID = 1
 
-var _buffer
+var _buffer: TileMapLayer
 var _tick = 0
 var _next_piece_id = 0
 var _falling_pieces = []
@@ -37,11 +37,13 @@ func _ready():
 	_buffer = TileMapLayer.new()
 	_buffer.tile_set = tile_set
 	
-	# Note: These initial pieces are now grabbable just like any other piece.
-	const C1 = [Vector2i(0,-2),Vector2i(0,-1),Vector2i(0,0),Vector2i(1,0),Vector2i(1,-2)]
-	const C2 = [Vector2i(1,-3),Vector2i(1,-1),Vector2i(2,-1),Vector2i(2,-2),Vector2i(2,-3)]
-	spawn_piece(C2, Vector2i(1,1), 3)
-	spawn_piece(C1, Vector2i(1,1), 0)
+	# Manual
+	const C1 = [
+		{"pos": Vector2i(0,-2), "color_i": 0}, {"pos": Vector2i(0,-1), "color_i": 1},
+		{"pos": Vector2i(0,0), "color_i": 0}, {"pos": Vector2i(1,0), "color_i": 1},
+		{"pos": Vector2i(1,-2), "color_i": 0}
+	]
+	spawn_piece(C1, Vector2i(1,1))
 	
 	_draw_falling_pieces()
 
@@ -64,12 +66,21 @@ func someone_tapped(tapper):
 			return
 
 		var piece_to_release = tapper.grabbed_piece
-		var piece_color = piece_to_release['color_i']
-		var rotated_shape = preview_tile_map.get_current_rotated_shape()
+		
+		var pattern_to_spawn = piece_to_release["pattern"]
+		
+		var rotated_shape_positions = preview_tile_map.get_current_rotated_shape()
 		var ship_anchor_pos = to_local(tapper.global_position + Vector2(150, 0).rotated(tapper.global_rotation))
 		var map_anchor_cell = local_to_map(ship_anchor_pos)
 		
-		spawn_piece(rotated_shape, map_anchor_cell, piece_color)
+		var final_pattern = []
+		for i in range(pattern_to_spawn.size()):
+			final_pattern.append({
+				"pos": rotated_shape_positions[i],
+				"color_i": pattern_to_spawn[i]["color_i"]
+			})
+		
+		spawn_piece(final_pattern, map_anchor_cell) 
 		
 		tapper.release_piece()
 		preview_tile_map.hide_preview()
@@ -81,34 +92,38 @@ func someone_tapped(tapper):
 
 		var grabbed_piece_data = {}
 		for piece in _falling_pieces:
-			if ship_cell in piece['cells']:
-				grabbed_piece_data = piece
+			for cell_data in piece['cells']:
+				if cell_data["pos"] == ship_cell:
+					grabbed_piece_data = piece
+					break
+			if not grabbed_piece_data.is_empty():
 				break
 		
 		if grabbed_piece_data.is_empty():
 			return
 
 		var anchor_cell = ship_cell
-		var relative_shape = []
-		for cell in grabbed_piece_data['cells']:
-			relative_shape.append(cell - anchor_cell)
+		
+		var relative_pattern = []
+		for cell_data in grabbed_piece_data['cells']:
+			relative_pattern.append({
+				"pos": cell_data["pos"] - anchor_cell,
+				"color_i": cell_data["color_i"]
+			})
 
 		_falling_pieces.erase(grabbed_piece_data)
-		for cell in grabbed_piece_data['cells']:
-			erase_cell(cell)
+		for cell_data in grabbed_piece_data['cells']:
+			erase_cell(cell_data["pos"])
 		
-		var color = grabbed_piece_data['color_i']
-
-		## ADDED: Get the ship's snapped rotation at the moment of the grab.
 		var ship_grab_angle_degrees = snapped(rad_to_deg(tapper.global_rotation), 90.0)
 		var ship_grab_angle_radians = deg_to_rad(ship_grab_angle_degrees)
 
-		## MODIFIED: Pass the grab angle to the ship.
-		tapper.grab_piece(relative_shape, color, ship_grab_angle_radians)
+		# MODIFIED: Pass the whole pattern to the ship, not just shape and color
+		tapper.grab_piece(relative_pattern, ship_grab_angle_radians)
 		preview_tile_map.show_preview()
 
 
-# --- Gameplay Tick Loop (Unchanged) ---
+
 func tick():
 	# 1. Copy placed blocks to buffer
 	for cell in get_all_placed_blocks_cells():
@@ -123,8 +138,9 @@ func tick():
 
 		for piece in still_falling_pieces:
 			var should_stop = false
-			for cell in piece['cells']:
-				var next_cell = cell + Vector2i(0, 1)
+			
+			for cell_data in piece['cells']:
+				var next_cell = cell_data["pos"] + Vector2i(0, 1)
 				if next_cell.y >= get_bottom_y() or _buffer.get_cell_source_id(next_cell) == PLACED_BLOCKS_SOURCE_ID:
 					should_stop = true
 					break
@@ -132,25 +148,25 @@ func tick():
 			if should_stop:
 				newly_stopped_found = true
 				pieces_to_remove.append(piece)
-				var atlas_coords = Vector2i(piece['color_i'], 0) # Placed block tile
-				for cell in piece['cells']:
-					_buffer.set_cell(cell, PLACED_BLOCKS_SOURCE_ID, atlas_coords)
+				
+				for cell_data in piece['cells']:
+					var atlas_coords = Vector2i(cell_data['color_i'], 0) # Placed block tile
+					_buffer.set_cell(cell_data["pos"], PLACED_BLOCKS_SOURCE_ID, atlas_coords)
 		
 		for piece in pieces_to_remove:
 			still_falling_pieces.erase(piece)
 
-	# 3. Check for and clear any completed lines
-	_check_and_clear_lines()
+	# Check for and clear any completed color groups
+	_check_and_clear_color_groups()
 
 	# 4. Update and draw pieces that are still falling
 	for piece in still_falling_pieces:
-		var new_cells = []
-		for cell in piece['cells']: new_cells.append(cell + Vector2i(0, 1))
-		piece['cells'] = new_cells
+		for cell_data in piece['cells']:
+			cell_data["pos"] += Vector2i(0, 1)
 		
-		var atlas_coords = Vector2i(piece['color_i'], 2) # Falling block tile
-		for cell in piece['cells']:
-			_buffer.set_cell(cell, FALLING_BLOCKS_SOURCE_ID, atlas_coords)
+		for cell_data in piece['cells']:
+			var atlas_coords = Vector2i(cell_data['color_i'], 2) # Falling block tile
+			_buffer.set_cell(cell_data["pos"], FALLING_BLOCKS_SOURCE_ID, atlas_coords)
 
 	_falling_pieces = still_falling_pieces
 	
@@ -165,63 +181,97 @@ func tick():
 	
 	_tick += 1
 
-# --- Line Clearing Logic (Unchanged) ---
-func _check_and_clear_lines():
-	var y = get_bottom_y() - 1
-	while y >= get_min_y():
-		var is_line_full = true
-		for x in range(get_min_x(), get_max_x()):
-			if _buffer.get_cell_source_id(Vector2i(x, y)) != PLACED_BLOCKS_SOURCE_ID:
-				is_line_full = false
-				break
+# --- Color Group Clearing Logic ---
+func _check_and_clear_color_groups():
+	var all_placed_blocks = _buffer.get_used_cells_by_id(PLACED_BLOCKS_SOURCE_ID) # Check the buffer
+	var visited_cells = []
+	var groups_to_clear = []
+
+	for block in all_placed_blocks:
+		if block in visited_cells:
+			continue
+
+		var color = _buffer.get_cell_atlas_coords(block).x
+		var group = _find_color_group(block, color)
 		
-		if is_line_full:
-			for x in range(get_min_x(), get_max_x()):
-				_buffer.erase_cell(Vector2i(x, y))
-
-			for row_to_move_y in range(y - 1, get_min_y() - 1, -1):
-				for x in range(get_min_x(), get_max_x()):
-					var cell_above = Vector2i(x, row_to_move_y)
-					var source_id = _buffer.get_cell_source_id(cell_above)
-					if source_id != -1:
-						var atlas = _buffer.get_cell_atlas_coords(cell_above)
-						_buffer.set_cell(Vector2i(x, row_to_move_y + 1), source_id, atlas)
-						_buffer.erase_cell(cell_above)
-		else:
-			y -= 1 # Only move to the next row if no line was cleared.
-
-# --- Piece Spawning (Modified) ---
-func spawn_new_piece():
-	## MODIFIED: Use the new SPAWNABLE_SHAPES array
-	var random_piece_i = randi_range(0, SPAWNABLE_SHAPES.size() - 1)
-	var piece_to_spawn = SPAWNABLE_SHAPES[random_piece_i]
-	var from_where = spawn_coords.pick_random()
-	spawn_piece(piece_to_spawn, from_where, random_piece_i)
+		for cell in group:
+			visited_cells.append(cell)
+			
+		if group.size() >= 4:
+			groups_to_clear.append_array(group)
 	
-## MODIFIED: Removed the 'shape_index' parameter as it's no longer needed.
-func spawn_piece(cells, from_where, color_i):
+	if not groups_to_clear.is_empty():
+		for cell in groups_to_clear:
+			_buffer.erase_cell(cell)
+		
+		_apply_gravity_after_clear()
+
+func _find_color_group(start_cell, color_index):
+	var group = []
+	var to_visit = [start_cell]
+	var visited = [start_cell]
+
+	while not to_visit.is_empty():
+		var current_cell = to_visit.pop_front()
+		group.append(current_cell)
+
+		const NEIGHBORS = [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]
+		for offset in NEIGHBORS:
+			var neighbor_cell = current_cell + offset
+			if not neighbor_cell in visited:
+				visited.append(neighbor_cell)
+				if _buffer.get_cell_source_id(neighbor_cell) == PLACED_BLOCKS_SOURCE_ID and \
+				   _buffer.get_cell_atlas_coords(neighbor_cell).x == color_index:
+					to_visit.append(neighbor_cell)
+	
+	return group
+
+func _apply_gravity_after_clear():
+	for x in range(get_min_x(), get_max_x()):
+		var empty_count = 0
+		for y in range(get_bottom_y() - 1, get_min_y() - 1, -1):
+			var current_cell = Vector2i(x, y)
+			if _buffer.get_cell_source_id(current_cell) == -1:
+				empty_count += 1
+			elif empty_count > 0:
+				var source_id = _buffer.get_cell_source_id(current_cell)
+				var atlas = _buffer.get_cell_atlas_coords(current_cell)
+				_buffer.set_cell(current_cell + Vector2i(0, empty_count), source_id, atlas)
+				_buffer.erase_cell(current_cell)
+
+
+func spawn_new_piece():
+	var random_pattern_i = randi_range(0, SPAWNABLE_PATTERNS.size() - 1)
+	var pattern_to_spawn = SPAWNABLE_PATTERNS[random_pattern_i]
+	var from_where = spawn_coords.pick_random()
+	spawn_piece(pattern_to_spawn, from_where)
+	
+func spawn_piece(pattern, from_where):
 	# Game Over check
-	for cell_offset in cells:
-		var target_cell = cell_offset + from_where
+	for cell_data in pattern:
+		var target_cell = cell_data["pos"] + from_where
 		if get_cell_source_id(target_cell) == PLACED_BLOCKS_SOURCE_ID:
 			game_over.emit()
 			return
 			
 	var new_piece_cells = []
-	for cell_offset in cells:
-		new_piece_cells.append(cell_offset + from_where)
+	for cell_data in pattern:
+		new_piece_cells.append({
+			"pos": cell_data["pos"] + from_where,
+			"color_i": cell_data["color_i"]
+		})
 		
 	_falling_pieces.append({
 		'id': _next_piece_id,
 		'cells': new_piece_cells,
-		'color_i': color_i,
 	})
 	
 	_next_piece_id += 1
 	_draw_falling_pieces()
 
 func _draw_falling_pieces():
+	
 	for piece in _falling_pieces:
-		var atlas_coords = Vector2i(piece['color_i'], 2) # Falling block tile
-		for cell in piece['cells']:
-			set_cell(cell, FALLING_BLOCKS_SOURCE_ID, atlas_coords)
+		for cell_data in piece['cells']:
+			var atlas_coords = Vector2i(cell_data['color_i'], 2) # Falling block tile
+			set_cell(cell_data["pos"], FALLING_BLOCKS_SOURCE_ID, atlas_coords)

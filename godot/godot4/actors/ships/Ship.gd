@@ -314,10 +314,9 @@ var grabbed_piece: Dictionary = {}
 func is_holding_piece() -> bool:
 	return not grabbed_piece.is_empty()
 
-func grab_piece(relative_shape, color_i, grab_angle_rads):
+func grab_piece(relative_pattern, grab_angle_rads):
 	grabbed_piece = {
-		"shape": relative_shape,
-		"color_i": color_i,
+		"pattern": relative_pattern, # The whole pattern (positions + colors)
 		"grab_angle": grab_angle_rads
 	}
 
