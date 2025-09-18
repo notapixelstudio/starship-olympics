@@ -59,19 +59,20 @@ unique_name_in_owner = true
 play_area_width = 12
 play_area_height = 12
 
-[node name="Area2D" type="Area2D" parent="." index="13"]
+[node name="BlockRotationArea" type="Area2D" parent="." index="13"]
 position = Vector2(2249, -914)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockRotationArea" index="0"]
 shape = SubResource("CircleShape2D_ll5gd")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D" index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="BlockRotationArea" index="1"]
 modulate = Color(1, 0.685, 0.37, 0.0627451)
 scale = Vector2(10, 10)
 texture = ExtResource("7_t1641")
 
-[node name="BlockPreviewTileMap" parent="." index="14" instance=ExtResource("9_2u2gc")]
+[node name="BlockPreviewTileMap" parent="." index="14" node_paths=PackedStringArray("blocks_field") instance=ExtResource("9_2u2gc")]
 unique_name_in_owner = true
+blocks_field = NodePath("../BlocksField")
 
-[connection signal="body_entered" from="Area2D" to="Ship" method="_on_rotation_area_body_entered"]
-[connection signal="body_exited" from="Area2D" to="Ship" method="_on_rotation_area_body_exited"]
+[connection signal="body_entered" from="BlockRotationArea" to="Ship" method="_on_rotation_area_body_entered"]
+[connection signal="body_exited" from="BlockRotationArea" to="Ship" method="_on_rotation_area_body_exited"]
