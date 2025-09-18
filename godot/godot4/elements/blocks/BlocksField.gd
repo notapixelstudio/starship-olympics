@@ -36,7 +36,7 @@ func get_bottom_y() -> int:
 	
 var _falling_blocks : Array[Block] = []
 func someone_tapped(tapper) -> void:
-	var preview_tile_map = %HeldBlockTileMap
+	var preview_tile_map = %BlockPreviewTileMap
 	if not tapper is Ship or preview_tile_map == null:
 		return
 

@@ -4,9 +4,7 @@ class_name PreviewTileMap
 @export var ship : Ship
 @export var blocks_tile_map : BlocksField
 
-const VALID_PLACEMENT_TILE = Vector2i(0, 1)   # allowed placement tile
-const INVALID_PLACEMENT_TILE = Vector2i(1, 1) # blocked placement tile
-const SOURCE_ID_PREVIEW = 0
+const INVALID_PLACEMENT_TILE_DELTA = Vector2i(0, 1) # blocked placement tile
 
 var _current_preview_block : Block = null
 
@@ -48,7 +46,7 @@ func _update_preview() -> void:
 	
 	# check if placement would be valid here
 	for tile in _current_preview_block.get_tiles():
-		var target_cell = map_anchor_cell + tile.get_cell() + _current_preview_block.get_position()
+		var target_cell = map_anchor_cell + tile.get_cell()
 		
 		# Check if outside horizontal bounds
 		if target_cell.x < min_x or target_cell.x >= max_x:
@@ -71,13 +69,7 @@ func _update_preview() -> void:
 	
 	_is_currently_valid = is_placement_valid
 	
-	var tile_to_draw: Vector2i
-	if _is_currently_valid:
-		tile_to_draw = VALID_PLACEMENT_TILE
-	else:
-		tile_to_draw = INVALID_PLACEMENT_TILE
-
 	clear()
 	for tile in _current_preview_block.get_tiles():
-		var target_cell = map_anchor_cell + tile.get_cell() + _current_preview_block.get_position()
-		set_cell(target_cell, SOURCE_ID_PREVIEW, tile_to_draw)
+		var target_cell = map_anchor_cell + tile.get_cell()
+		set_cell(target_cell, Block.BlockTile.Source.FALLING, tile.get_atlas_coords(Block.BlockTile.Source.FALLING) + (INVALID_PLACEMENT_TILE_DELTA if not is_placement_valid else Vector2i(0,0)))
