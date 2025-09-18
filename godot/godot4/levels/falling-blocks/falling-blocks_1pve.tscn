@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjcqdsq1bypuu"]
+
+[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_f75wb"]
+[ext_resource type="Resource" uid="uid://c3uv3coc421eh" path="res://godot4/data/styles/analog.tres" id="2_pvfyo"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="3_72v3b"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="4_t7yxv"]
+[ext_resource type="Script" uid="uid://dwa5kst63hc3b" path="res://addons/vshapes/VRect.gd" id="5_qqa7m"]
+[ext_resource type="PackedScene" uid="uid://dysjvql27gdup" path="res://godot4/elements/blocks/BlocksField.tscn" id="6_evml6"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rv2ie"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[node name="VersusArena" instance=ExtResource("1_f75wb")]
+
+[node name="Styleable" parent="." index="0"]
+style = ExtResource("2_pvfyo")
+
+[node name="P1" parent="Homes" index="0" instance=ExtResource("3_72v3b")]
+position = Vector2(0, 1400)
+rotation = -1.5708
+
+[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("4_t7yxv")]
+hollow = true
+
+[node name="VRect" type="Node" parent="Battlefield" index="1" node_paths=PackedStringArray("hosts")]
+script = ExtResource("5_qqa7m")
+width = 6600.0
+height = 3800.0
+hosts = [NodePath("../OutsideWall"), NodePath("../../Navigation")]
+
+[node name="BlocksField" parent="Battlefield" index="2" instance=ExtResource("6_evml6")]
+spawn_every_ticks = 5
+play_area_width = 7
+play_area_height = 14
+
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_rv2ie")
