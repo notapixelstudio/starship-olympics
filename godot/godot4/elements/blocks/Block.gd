@@ -121,3 +121,17 @@ class BlockTile:
 		
 	static func get_random_color() -> int:
 		return randi() % COLORS
+	
+	static func get_color_from_atlas_coords(atlas_coords: Vector2i) -> int:
+		"Returns the color index (0 to COLORS-1) from the atlas coordinates."
+		var x_coord = atlas_coords.x
+		
+		# The atlas is structured with solid blocks first, then liquid blocks.
+		# We check if the x-coordinate is in the range of liquid blocks.
+		var liquid_offset = TILEMAP_START_X + COLORS
+		if x_coord >= liquid_offset:
+			# If it is, we subtract the starting offset for liquid blocks to get the color.
+			return x_coord - liquid_offset
+		else:
+			# Otherwise, it's a solid block. We subtract the starting offset for solid blocks.
+			return x_coord - TILEMAP_START_X

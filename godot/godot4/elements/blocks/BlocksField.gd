@@ -116,6 +116,67 @@ func _check_and_clear_lines():
 			# If the line was not full, we move on to check the row above it.
 			y -= 1
 
+func _check_and_clear_color_groups():
+	var cells_to_clear: Array[Vector2i] = []
+	var visited_cells: Dictionary = {}
+
+	for y in range(get_min_y(), get_bottom_y()):
+		for x in range(get_min_x(), get_max_x()):
+			var current_cell = Vector2i(x, y)
+
+			if visited_cells.has(current_cell) or _buffer.get_cell_source_id(current_cell) != Block.BlockTile.Source.PLACED:
+				continue
+
+			# Get the atlas coords and try to find the specific color integer.
+			var atlas_coords = _buffer.get_cell_atlas_coords(current_cell)
+			var current_color = Block.BlockTile.get_color_from_atlas_coords(atlas_coords)
+			
+			var group: Array[Vector2i] = []
+			var queue: Array[Vector2i] = [current_cell]
+			visited_cells[current_cell] = true
+
+			while not queue.is_empty():
+				var cell = queue.pop_front()
+				group.append(cell)
+				
+				# we could use, .get_neighbor_cell(cell, TileSet.CellNeighbor.BOTTOM_SIDE) Worth it? I don't know
+				var neighbors = [
+					cell + Vector2i(0, 1), cell + Vector2i(0, -1),
+					cell + Vector2i(1, 0), cell + Vector2i(-1, 0)
+				]
+				
+				for neighbor in neighbors:
+					if not visited_cells.has(neighbor) and _buffer.get_cell_source_id(neighbor) == Block.BlockTile.Source.PLACED:
+						
+						# get the color of neighbor
+						var neighbor_atlas_coords = _buffer.get_cell_atlas_coords(neighbor)
+						var neighbor_color = Block.BlockTile.get_color_from_atlas_coords(neighbor_atlas_coords)
+
+						if neighbor_color == current_color:
+							visited_cells[neighbor] = true
+							queue.append(neighbor)
+			
+			if group.size() >= 4:
+				cells_to_clear.append_array(group)
+
+	if cells_to_clear.is_empty():
+		return
+
+	for cell in cells_to_clear:
+		_buffer.erase_cell(cell)
+	
+	for x in range(get_min_x(), get_max_x()):
+		var empty_space_count = 0
+		for y in range(get_bottom_y() - 1, get_min_y() - 1, -1):
+			var current_cell = Vector2i(x, y)
+			if _buffer.get_cell_source_id(current_cell) == -1:
+				empty_space_count += 1
+			elif empty_space_count > 0:
+				var source_id = _buffer.get_cell_source_id(current_cell)
+				var cell_atlas_coords = _buffer.get_cell_atlas_coords(current_cell)
+				_buffer.set_cell(current_cell + Vector2i(0, empty_space_count), source_id, cell_atlas_coords)
+				_buffer.erase_cell(current_cell)
+
 func tick() -> void:
 	# copy all placed blocks on the buffer
 	for cell in get_all_placed_blocks_cells():
@@ -148,6 +209,8 @@ func tick() -> void:
 
 	# This happens after blocks have landed but before we draw the next frame.
 	_check_and_clear_lines()
+	_check_and_clear_color_groups()
+
 
 	# Update the state of pieces that survived the fall check.
 	for block in still_falling_blocks:
