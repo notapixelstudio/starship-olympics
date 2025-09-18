@@ -28,12 +28,26 @@ func _ready() -> void:
 		position.y -= tile_set.tile_size.y/2.0
 
 func _process(delta: float) -> void:
+	_attempt_grabbing()
 	_update_preview()
+	#_update_feedback()
 
 var _is_currently_valid := true
 
 func is_current_placement_valid() -> bool:
 	return _is_currently_valid
+	
+func _get_ship_anchor_cell(ship:Ship) -> Vector2i:
+	var ship_anchor_pos = to_local(ship.global_position + Vector2(50, 0).rotated(ship.global_rotation))
+	return local_to_map(ship_anchor_pos)
+	
+func _get_polygon_surrounding_cell(cell:Vector2i) -> PackedVector2Array:
+	return PackedVector2Array([
+		Vector2(cell.x*tile_set.tile_size.x,cell.y*tile_set.tile_size.y),
+		Vector2((cell.x+1)*tile_set.tile_size.x,cell.y*tile_set.tile_size.y),
+		Vector2((cell.x+1)*tile_set.tile_size.x,(cell.y+1)*tile_set.tile_size.y),
+		Vector2(cell.x*tile_set.tile_size.x,(cell.y+1)*tile_set.tile_size.y),
+	])
 	
 func someone_tapped(tapper) -> void:
 	if not tapper is Ship:
@@ -47,38 +61,42 @@ func someone_tapped(tapper) -> void:
 			
 			tapper.update_grabbed_block(new_block)
 			show_preview_block(new_block)
-			return 
+			return
 		if not is_current_placement_valid():
 			return # Do nothing if placement is invalid.
 
 		var block_to_release = tapper.grabbed_block
 		
-		var ship_anchor_pos = to_local(tapper.global_position + Vector2(150, 0).rotated(tapper.global_rotation))
-		var map_anchor_cell = local_to_map(ship_anchor_pos)
-		
-		blocks_field.spawn_block(block_to_release, map_anchor_cell)
+		blocks_field.spawn_block(block_to_release, _get_ship_anchor_cell(tapper))
 		
 		tapper.release_block()
+		%Timer.start()
 		
 		hide_preview()
 
-	# --- Ship is empty-handed, so we try to GRAB a block
-	else:
-		var ship_cell = local_to_map(to_local(tapper.global_position))
+func _attempt_grabbing() -> void:
+	if not %Timer.is_stopped():
+		return
+		
+	for ship in get_tree().get_nodes_in_group('Ship'):
+		if ship.is_holding_block():
+			continue
+			
+		var ship_cell = _get_ship_anchor_cell(ship)
 		if blocks_field.get_cell_source_id(ship_cell) != Block.BlockTile.Source.FALLING:
-			return
+			continue
 
 		var grabbed_block: Block = blocks_field.get_falling_block_or_null_from_cell(ship_cell)
 		
 		if grabbed_block == null:
-			return
+			continue
 
 		blocks_field.erase_block(grabbed_block)
 		for tile in grabbed_block.get_tiles():
 			blocks_field.erase_cell(tile.get_cell()+grabbed_block.get_position())
 		
 		var anchor_cell = grabbed_block.get_tiles()[0].get_cell()
-		tapper.grab_block(grabbed_block)
+		ship.grab_block(grabbed_block)
 		
 		show_preview_block(grabbed_block)
 
@@ -92,8 +110,7 @@ func _update_preview() -> void:
 		if not ship:
 			return
 
-		var ship_anchor_pos = to_local(ship.global_position + Vector2(150, 0).rotated(ship.global_rotation))
-		var map_anchor_cell = local_to_map(ship_anchor_pos)
+		var map_anchor_cell = _get_ship_anchor_cell(ship)
 
 		var is_placement_valid = true
 		
@@ -131,3 +148,15 @@ func _update_preview() -> void:
 		for tile in _current_preview_block.get_tiles():
 			var target_cell = map_anchor_cell + tile.get_cell()
 			set_cell(target_cell, Block.BlockTile.Source.FALLING, tile.get_atlas_coords(Block.BlockTile.Source.FALLING) + (INVALID_PLACEMENT_TILE_DELTA if not is_placement_valid else Vector2i(0,0)))
+
+func _update_feedback():
+	for child in %Feedback.get_children():
+		child.queue_free()
+		
+	for ship in get_tree().get_nodes_in_group('Ship'):
+		var line = Line2D.new()
+		line.closed = true
+		line.width = 20.0
+		line.points = _get_polygon_surrounding_cell(_get_ship_anchor_cell(ship))
+		%Feedback.add_child(line)
+	

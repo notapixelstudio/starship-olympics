@@ -8,3 +8,10 @@ modulate = Color(1, 1, 1, 0.384314)
 tile_set = ExtResource("1_mqxr3")
 collision_enabled = false
 script = ExtResource("2_mqxr3")
+
+[node name="Feedback" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
