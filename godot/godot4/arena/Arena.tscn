@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene load_steps=36 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="Script" uid="uid://cdwca4jvfkafg" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
 [ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
@@ -34,6 +34,14 @@
 [ext_resource type="PackedScene" uid="uid://dt8lwx0muu10p" path="res://godot4/arena/hud/ScoreBar.tscn" id="29_infxo"]
 [ext_resource type="PackedScene" uid="uid://cy5pkamh8gihg" path="res://ui/common_elements/PlayersReady/PlayersReadyWheels.tscn" id="30_um0tc"]
 [ext_resource type="PackedScene" uid="uid://bdnijlionsghd" path="res://godot4/ui/overlays/PauseOverlay.tscn" id="32_ri8rg"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rittb"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_avtyt")
@@ -96,6 +104,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Navigation" parent="." instance=ExtResource("23_rittb")]
+navigation_polygon = SubResource("NavigationPolygon_rittb")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

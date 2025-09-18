@@ -88,10 +88,12 @@ func _check_and_clear_lines():
 				break
 		
 		if is_line_full:
+			Events.blocks_cleared.emit(self)
+			
 			# If the line is full, clear it.
 			for x in range(get_min_x(), get_max_x()):
 				_buffer.erase_cell(Vector2i(x, y))
-
+				
 			# Then, shift every row above it down by one.
 			# We start from the row just above the cleared one and go up to the top.
 			for row_to_move_y in range(y - 1, get_min_y() - 1, -1):

@@ -70,10 +70,8 @@ modulate = Color(1, 0.685, 0.37, 0.0627451)
 scale = Vector2(10, 10)
 texture = ExtResource("7_t1641")
 
-[node name="BlockPreviewTileMap" parent="." index="14" node_paths=PackedStringArray("ship", "blocks_tile_map") instance=ExtResource("9_2u2gc")]
+[node name="BlockPreviewTileMap" parent="." index="14" instance=ExtResource("9_2u2gc")]
 unique_name_in_owner = true
-ship = NodePath("../Ship")
-blocks_tile_map = NodePath("../BlocksField")
 
 [connection signal="body_entered" from="Area2D" to="Ship" method="_on_rotation_area_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Ship" method="_on_rotation_area_body_exited"]

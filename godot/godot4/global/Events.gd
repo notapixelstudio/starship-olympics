@@ -68,6 +68,7 @@ signal match_over(data:Dictionary)
 signal sth_collected(collector, collectee)
 #signal sth_impacted(actor, environment:StaticBody2D)
 
+signal blocks_cleared(blocks_field)
 
 signal tap(tapper)
 
