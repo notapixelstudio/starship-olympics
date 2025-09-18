@@ -8,12 +8,12 @@ func _init(position:=Vector2i(0,0), tiles:Array[BlockTile]=[]) -> void:
 	_tiles = tiles
 
 func copy() -> Block:
-	# deep copy the Block as well as its BlockTiles
-	var new_block = Block.new(_position, _tiles)
-	var new_tiles : Array[BlockTile] = []
-	for tile in get_tiles():
-		new_tiles.append(tile.copy())
-	return new_block
+    # deep copy the Block as well as its BlockTiles
+    var new_tiles_array: Array[BlockTile] = []
+	
+	for tile in _tiles:
+		new_tiles_array.append(tile.copy())
+	return Block.new(_position, new_tiles_array)
 	
 func get_position() -> Vector2i:
 	return _position
@@ -99,6 +99,9 @@ class BlockTile:
 		
 	func get_cell() -> Vector2i:
 		return _cell
+	
+	func set_cell(new_cell: Vector2i) -> void:
+		_cell = new_cell
 		
 	func _to_string() -> String:
 		return ('(' if is_liquid() else '[') + str(_color) + '@' + str(_cell.x) + ',' + str(_cell.y) + (')' if is_liquid() else ']')

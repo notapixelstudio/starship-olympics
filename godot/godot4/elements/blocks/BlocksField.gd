@@ -116,7 +116,7 @@ func _check_and_clear_lines():
 			# If the line was not full, we move on to check the row above it.
 			y -= 1
 
-func _check_and_clear_color_groups():
+func _check_and_clear_colors():
 	var cells_to_clear: Array[Vector2i] = []
 	var visited_cells: Dictionary = {}
 
@@ -178,58 +178,69 @@ func _check_and_clear_color_groups():
 				_buffer.erase_cell(current_cell)
 
 func tick() -> void:
-	# copy all placed blocks on the buffer
 	for cell in get_all_placed_blocks_cells():
 		_buffer.set_cell(cell, Block.BlockTile.Source.PLACED, get_cell_atlas_coords(cell))
 
-	var still_falling_blocks = _falling_blocks.duplicate() # Work on a copy.
-	var newly_stopped_found = true
-	
-	while newly_stopped_found:
-		newly_stopped_found = false
-		var blocks_to_remove : Array[Block] = []
+	var next_tick_falling_blocks: Array[Block] = []
 
-		for block in still_falling_blocks:
-			var should_stop = false
-			for tile in block.get_tiles():
-				var next_cell = tile.get_cell() + block.get_position() + Vector2i(0, 1)
-				if next_cell.y >= get_bottom_y() or _buffer.get_cell_source_id(next_cell) == Block.BlockTile.Source.PLACED:
-					should_stop = true
-					break
-			
-			if should_stop:
-				newly_stopped_found = true
-				blocks_to_remove.append(block)
-				
-				for tile in block.get_tiles():
-					_buffer.set_cell(tile.get_cell() + block.get_position(), Block.BlockTile.Source.PLACED, tile.get_atlas_coords(Block.BlockTile.Source.PLACED))
-		
-		for block in blocks_to_remove:
-			still_falling_blocks.erase(block)
-
-	# This happens after blocks have landed but before we draw the next frame.
-	_check_and_clear_lines()
-	_check_and_clear_color_groups()
-
-
-	# Update the state of pieces that survived the fall check.
-	for block in still_falling_blocks:
-		block.move_by(Vector2i(0, 1))
-		
+	for block in _falling_blocks:
+		# First, check the block as a whole
+		var can_block_fall = true
 		for tile in block.get_tiles():
-			_buffer.set_cell(tile.get_cell() + block.get_position(), Block.BlockTile.Source.FALLING, tile.get_atlas_coords(Block.BlockTile.Source.FALLING))
+			var next_cell = block.get_position() + tile.get_cell() + Vector2i(0, 1)
+			if next_cell.y >= get_bottom_y() or \
+			   _buffer.get_cell_source_id(next_cell) == Block.BlockTile.Source.PLACED:
+				can_block_fall = false
+				break
+				
+		if can_block_fall:
+			# The block is in mid-air and continues to fall as a single, solid unit.
+			block.move_by(Vector2i(0, 1))
+			next_tick_falling_blocks.append(block)
+		else:
+			# The block is halting. Now we process each tile based on its type.
+			for tile in block.get_tiles():
+				var current_cell = block.get_position() + tile.get_cell()
+				
+				if tile.is_liquid():
+					# LIQUID TILE: continue to fall
+					var next_cell = current_cell + Vector2i(0, 1)
+					var is_liquid_tile_blocked = next_cell.y >= get_bottom_y() or _buffer.get_cell_source_id(next_cell) == Block.BlockTile.Source.PLACED
+					
+					if is_liquid_tile_blocked:
+						# This liquid tile is blocked, so it stops and becomes solid ground.
+						_buffer.set_cell(current_cell, Block.BlockTile.Source.PLACED, tile.get_atlas_coords(Block.BlockTile.Source.PLACED))
+					else:
+						# This liquid tile has open space below, so it detaches and keeps falling.
+						var new_tile = tile.copy()
+						new_tile.set_cell(Vector2i.ZERO)
+						var new_liquid_block = Block.new(current_cell, [new_tile])
+						new_liquid_block.move_by(Vector2i(0, 1)) # Apply this tick's gravity.
+						next_tick_falling_blocks.append(new_liquid_block)
+				else:
+					# SOLID TILE: It ALWAYS stops when the block halts.
+					# It does not get its own check. It is part of the rigid structure.
+					_buffer.set_cell(current_cell, Block.BlockTile.Source.PLACED, tile.get_atlas_coords(Block.BlockTile.Source.PLACED))
 
-	_falling_blocks = still_falling_blocks
-	
+	# first colors then lines
+	_check_and_clear_colors()
+	_check_and_clear_lines()
+
+	_falling_blocks = next_tick_falling_blocks
+
+	# double buffering
 	clear()
 	set_tile_map_data_from_array(_buffer.get_tile_map_data_as_array())
+	for block in _falling_blocks:
+		for tile in block.get_tiles():
+			set_cell(block.get_position() + tile.get_cell(), Block.BlockTile.Source.FALLING, tile.get_atlas_coords(Block.BlockTile.Source.FALLING))
 	_buffer.clear()
 	
 	if _tick % spawn_every_ticks == 0:
 		spawn_new_piece() 
 	
 	_tick += 1
-
+	
 func _draw_falling_blocks() -> void:
 	for block in _falling_blocks:
 		for tile in block.get_tiles():
