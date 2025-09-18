@@ -8,8 +8,8 @@ func _init(position:=Vector2i(0,0), tiles:Array[BlockTile]=[]) -> void:
 	_tiles = tiles
 
 func copy() -> Block:
-    # deep copy the Block as well as its BlockTiles
-    var new_tiles_array: Array[BlockTile] = []
+	# deep copy the Block as well as its BlockTiles
+	var new_tiles_array: Array[BlockTile] = []
 	
 	for tile in _tiles:
 		new_tiles_array.append(tile.copy())
