@@ -3,6 +3,8 @@ class_name PreviewTileMap
 
 @export var blocks_field : BlocksField
 
+@export var block_outline_scene : PackedScene
+
 const INVALID_PLACEMENT_TILE_DELTA = Vector2i(0, 1) # blocked placement tile
 
 var _current_preview_block : Block = null
@@ -30,7 +32,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_attempt_grabbing()
 	_update_preview()
-	#_update_feedback()
+	_update_feedback()
 
 var _is_currently_valid := true
 
@@ -154,9 +156,16 @@ func _update_feedback():
 		child.queue_free()
 		
 	for ship in get_tree().get_nodes_in_group('Ship'):
-		var line = Line2D.new()
-		line.closed = true
-		line.width = 20.0
-		line.points = _get_polygon_surrounding_cell(_get_ship_anchor_cell(ship))
-		%Feedback.add_child(line)
+		if ship.is_holding_block():
+			var ship_cell = _get_ship_anchor_cell(ship)
+			
+			var outline = ship.grabbed_block.get_outline(tile_set.tile_size)
+			outline = Geometry2D.offset_polygon(outline, 30, Geometry2D.JOIN_ROUND)[0]
+			
+			var line = block_outline_scene.instantiate()
+			line.points = outline
+			line.position.x = ship_cell.x * tile_set.tile_size.x
+			line.position.y = ship_cell.y * tile_set.tile_size.y
+			
+			%Feedback.add_child(line)
 	

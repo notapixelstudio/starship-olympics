@@ -48,6 +48,15 @@ func has_cell(cell:Vector2i) -> bool:
 			return true
 	return false
 	
+func get_outline(cell_size:=Vector2(1,1)) -> PackedVector2Array:
+	var outline = []
+	for tile in get_tiles():
+		outline += Array(tile.get_outline(cell_size))
+		
+	outline = Geometry2D.convex_hull(outline) # until we manage to use merge_polygons
+	
+	return outline
+	
 enum Name {Dot, Two, L, I}#, Ooo}
 
 static func create(name:Name, liquid:=false) -> Block:
@@ -121,6 +130,14 @@ class BlockTile:
 		var swap = _cell.x
 		_cell.x = _cell.y
 		_cell.y = -swap
+		
+	func get_outline(cell_size:=Vector2(1,1)) -> PackedVector2Array:
+		return PackedVector2Array([
+			Vector2(_cell.x*cell_size.x,_cell.y*cell_size.y),
+			Vector2((_cell.x+1)*cell_size.x,_cell.y*cell_size.y),
+			Vector2((_cell.x+1)*cell_size.x,(_cell.y+1)*cell_size.y),
+			Vector2(_cell.x*cell_size.x,(_cell.y+1)*cell_size.y),
+		])
 		
 	static func get_random_color() -> int:
 		return randi() % COLORS
