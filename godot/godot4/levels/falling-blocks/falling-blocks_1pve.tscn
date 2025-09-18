@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjcqdsq1bypuu"]
+[gd_scene load_steps=9 format=3 uid="uid://bjcqdsq1bypuu"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_f75wb"]
 [ext_resource type="Resource" uid="uid://c3uv3coc421eh" path="res://godot4/data/styles/analog.tres" id="2_pvfyo"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="4_t7yxv"]
 [ext_resource type="Script" uid="uid://dwa5kst63hc3b" path="res://addons/vshapes/VRect.gd" id="5_qqa7m"]
 [ext_resource type="PackedScene" uid="uid://dysjvql27gdup" path="res://godot4/elements/blocks/BlocksField.tscn" id="6_evml6"]
+[ext_resource type="PackedScene" uid="uid://dei1nchvkk3mm" path="res://godot4/elements/blocks/BlockPreviewTileMap.tscn" id="7_pvfyo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rv2ie"]
 resource_local_to_scene = true
@@ -37,6 +38,9 @@ hosts = [NodePath("../OutsideWall"), NodePath("../../Navigation")]
 spawn_every_ticks = 5
 play_area_width = 7
 play_area_height = 14
+
+[node name="BlockPreviewTileMap" parent="Battlefield" index="3" node_paths=PackedStringArray("blocks_field") instance=ExtResource("7_pvfyo")]
+blocks_field = NodePath("../BlocksField")
 
 [node name="Navigation" parent="." index="6"]
 navigation_polygon = SubResource("NavigationPolygon_rv2ie")

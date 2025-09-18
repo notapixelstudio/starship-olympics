@@ -35,57 +35,6 @@ func get_bottom_y() -> int:
 	return get_min_y() + play_area_height
 	
 var _falling_blocks : Array[Block] = []
-func someone_tapped(tapper) -> void:
-	var preview_tile_map = %BlockPreviewTileMap
-	if not tapper is Ship or preview_tile_map == null:
-		return
-
-	# Ship is holding a block, so we try to RELEASE it
-	if tapper.is_holding_block():
-		if tapper.is_in_rotation_zone:
-			var current_block = tapper.grabbed_block
-			var new_block = current_block.rotated()
-			
-			tapper.update_grabbed_block(new_block)
-			preview_tile_map.show_preview_block(new_block)
-			return 
-		if not preview_tile_map.is_current_placement_valid():
-			return # Do nothing if placement is invalid.
-
-		var block_to_release = tapper.grabbed_block
-		
-		var ship_anchor_pos = to_local(tapper.global_position + Vector2(150, 0).rotated(tapper.global_rotation))
-		var map_anchor_cell = local_to_map(ship_anchor_pos)
-		
-		spawn_block(block_to_release, map_anchor_cell)
-		
-		tapper.release_block()
-		
-		preview_tile_map.hide_preview()
-
-	# --- Ship is empty-handed, so we try to GRAB a block
-	else:
-		var ship_cell = local_to_map(to_local(tapper.global_position))
-		if get_cell_source_id(ship_cell) != Block.BlockTile.Source.FALLING:
-			return
-
-		var grabbed_block: Block = null
-		for block in _falling_blocks:
-			if block.has_cell(ship_cell):
-				grabbed_block = block
-				break
-		
-		if grabbed_block == null:
-			return
-
-		_falling_blocks.erase(grabbed_block)
-		for tile in grabbed_block.get_tiles():
-			erase_cell(tile.get_cell()+grabbed_block.get_position())
-		
-		var anchor_cell = grabbed_block.get_tiles()[0].get_cell()
-		tapper.grab_block(grabbed_block)
-		
-		preview_tile_map.show_preview_block(grabbed_block)
 
 func start() -> void:
 	%FallTimer.start()
@@ -101,9 +50,6 @@ func _ready() -> void:
 		position.y -= tile_set.tile_size.y/2.0
 		%GridLines.position.y += tile_set.tile_size.y/2.0
 		
-	# let's connect the tap signal
-	Events.tap.connect(someone_tapped)
-	
 	# create a buffer for writing modifications to the tilemap without overwriting
 	_buffer = TileMapLayer.new()
 	_buffer.tile_set = tile_set
@@ -119,6 +65,15 @@ func _ready() -> void:
 
 func get_all_placed_blocks_cells() -> Array[Vector2i]:
 	return get_used_cells_by_id(Block.BlockTile.Source.PLACED)
+	
+func get_falling_block_or_null_from_cell(cell:Vector2i):
+	for block in _falling_blocks:
+		if block.has_cell(cell):
+			return block
+	return null
+	
+func erase_block(block:Block) -> void:
+	_falling_blocks.erase(block)
 
 func _check_and_clear_lines():
 	# We iterate from the bottom row up to the top.
