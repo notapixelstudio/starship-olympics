@@ -1,7 +1,19 @@
 class_name Block
 
-var _position := Vector2i(0,0)
-var _tiles : Array[BlockTile] = []
+var _position : Vector2i
+var _tiles : Array[BlockTile]
+
+func _init(position:=Vector2i(0,0), tiles:Array[BlockTile]=[]) -> void:
+	_position = position
+	_tiles = tiles
+
+func copy() -> Block:
+	# deep copy the Block as well as its BlockTiles
+	var new_block = Block.new(_position, _tiles)
+	var new_tiles : Array[BlockTile] = []
+	for tile in get_tiles():
+		new_tiles.append(tile.copy())
+	return new_block
 	
 func get_position() -> Vector2i:
 	return _position
@@ -19,6 +31,11 @@ func rotate() -> void:
 	for tile in _tiles:
 		tile.rotate()
 		
+func rotated() -> Block:
+	var new_block = copy()
+	new_block.rotate()
+	return new_block
+	
 func move_to(p:Vector2i) -> void:
 	_position = p
 	
@@ -77,11 +94,11 @@ class BlockTile:
 		_color = color
 		_liquid = liquid
 		
-	func get_cell() -> Vector2i:
-		return _cell
-		
 	func copy() -> BlockTile:
 		return BlockTile.new(_cell, _color, _liquid)
+		
+	func get_cell() -> Vector2i:
+		return _cell
 		
 	func _to_string() -> String:
 		return ('(' if is_liquid() else '[') + str(_color) + '@' + str(_cell.x) + ',' + str(_cell.y) + (')' if is_liquid() else ']')

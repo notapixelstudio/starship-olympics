@@ -24,6 +24,8 @@ func _ready():
 		Events.team_ready.emit(ship.get_player().get_team(), [ship.get_player()])
 		break
 		
+	Events.battle_start.emit()
+	
 func _process(delta):
 	if not test_subject:
 		return

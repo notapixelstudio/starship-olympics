@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dei1nchvkk3mm"]
+
+[ext_resource type="Texture2D" uid="uid://du67f23be8l8e" path="res://assets/tiles/blocks.png" id="1_6iyfi"]
+[ext_resource type="Script" uid="uid://benpnpxnthv64" path="res://godot4/elements/blocks/BlockPreviewTileMap.gd" id="2_mqxr3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2u2gc"]
+texture = ExtResource("1_6iyfi")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0wabn"]
+tile_size = Vector2i(200, 200)
+physics_layer_0/collision_layer = 16
+physics_layer_0/collision_mask = 0
+custom_data_layer_0/name = "piece_id"
+custom_data_layer_0/type = 2
+sources/0 = SubResource("TileSetAtlasSource_2u2gc")
+
+[node name="BlockPreviewTileMap" type="TileMapLayer"]
+modulate = Color(1, 1, 1, 0.384314)
+tile_set = SubResource("TileSet_0wabn")
+collision_enabled = false
+script = ExtResource("2_mqxr3")

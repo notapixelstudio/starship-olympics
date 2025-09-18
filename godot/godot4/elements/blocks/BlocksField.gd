@@ -83,11 +83,6 @@ func someone_tapped(tapper) -> void:
 			erase_cell(tile.get_cell()+grabbed_block.get_position())
 		
 		var anchor_cell = grabbed_block.get_tiles()[0].get_cell()
-		# SONO ARRIVATO QUI
-		var piece_shape: Array[Vector2i] = []
-		for cell in grabbed_piece['cells']:
-			piece_shape.append(cell - anchor_cell)
-		
 		tapper.grab_block(grabbed_block)
 		
 		preview_tile_map.show_preview_block(grabbed_block)
