@@ -46,7 +46,7 @@ func _update_preview() -> void:
 	
 	# check if placement would be valid here
 	for tile in _current_preview_block.get_tiles():
-		var target_cell = map_anchor_cell + tile.get_cell()
+		var target_cell = map_anchor_cell + tile.get_cell() + _current_preview_block.get_position()
 		
 		# Check if outside horizontal bounds
 		if target_cell.x < min_x or target_cell.x >= max_x:
