@@ -409,6 +409,7 @@ unique_name_in_owner = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]
+[connection signal="area_exited" from="TouchArea" to="." method="_on_touch_area_area_exited"]
 [connection signal="body_entered" from="TouchArea" to="." method="_on_touch_area_body_entered"]
 [connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]
 [connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]

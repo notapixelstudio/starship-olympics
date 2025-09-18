@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjcqdsq1bypuu"]
+[gd_scene load_steps=12 format=3 uid="uid://bjcqdsq1bypuu"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_f75wb"]
 [ext_resource type="Resource" uid="uid://c3uv3coc421eh" path="res://godot4/data/styles/analog.tres" id="2_pvfyo"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dysjvql27gdup" path="res://godot4/elements/blocks/BlocksField.tscn" id="6_evml6"]
 [ext_resource type="PackedScene" uid="uid://dei1nchvkk3mm" path="res://godot4/elements/blocks/BlockPreviewTileMap.tscn" id="7_pvfyo"]
 [ext_resource type="PackedScene" uid="uid://cjchstsbsbb0w" path="res://godot4/traits/Ownership.tscn" id="8_t7yxv"]
+[ext_resource type="PackedScene" uid="uid://cxkldgko8orxv" path="res://godot4/elements/blocks/BlockRotationArea.tscn" id="10_qqa7m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rv2ie"]
 resource_local_to_scene = true
@@ -48,6 +49,9 @@ player_homes = [NodePath("../../../Homes/P1")]
 
 [node name="BlockPreviewTileMap" parent="Battlefield" index="3" node_paths=PackedStringArray("blocks_field") instance=ExtResource("7_pvfyo")]
 blocks_field = NodePath("../BlocksField")
+
+[node name="BlockRotationArea" parent="Battlefield" index="4" instance=ExtResource("10_qqa7m")]
+position = Vector2(2200, -1000)
 
 [node name="Navigation" parent="." index="6"]
 navigation_polygon = SubResource("NavigationPolygon_rv2ie")

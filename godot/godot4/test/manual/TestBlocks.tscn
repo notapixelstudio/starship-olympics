@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8u0ahaefij7v"]
+[gd_scene load_steps=11 format=3 uid="uid://b8u0ahaefij7v"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_2u2gc"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_0wabn"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_egrwn"]
 [ext_resource type="PackedScene" uid="uid://dysjvql27gdup" path="res://godot4/elements/blocks/BlocksField.tscn" id="5_ll5gd"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="6_5mryg"]
-[ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="7_t1641"]
+[ext_resource type="PackedScene" uid="uid://cxkldgko8orxv" path="res://godot4/elements/blocks/BlockRotationArea.tscn" id="8_2u2gc"]
 [ext_resource type="PackedScene" uid="uid://dei1nchvkk3mm" path="res://godot4/elements/blocks/BlockPreviewTileMap.tscn" id="9_2u2gc"]
 
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
@@ -21,9 +21,6 @@ func _ready():
 func _on_sth_collected(collector, collectee):
 	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
 "
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ll5gd"]
-radius = 726.79
 
 [node name="TestChamber" instance=ExtResource("1_2u2gc")]
 
@@ -59,20 +56,9 @@ unique_name_in_owner = true
 play_area_width = 12
 play_area_height = 12
 
-[node name="BlockRotationArea" type="Area2D" parent="." index="13"]
+[node name="BlockRotationArea" parent="." index="13" instance=ExtResource("8_2u2gc")]
 position = Vector2(2249, -914)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockRotationArea" index="0"]
-shape = SubResource("CircleShape2D_ll5gd")
-
-[node name="Sprite2D" type="Sprite2D" parent="BlockRotationArea" index="1"]
-modulate = Color(1, 0.685, 0.37, 0.0627451)
-scale = Vector2(10, 10)
-texture = ExtResource("7_t1641")
 
 [node name="BlockPreviewTileMap" parent="." index="14" node_paths=PackedStringArray("blocks_field") instance=ExtResource("9_2u2gc")]
 unique_name_in_owner = true
 blocks_field = NodePath("../BlocksField")
-
-[connection signal="body_entered" from="BlockRotationArea" to="Ship" method="_on_rotation_area_body_entered"]
-[connection signal="body_exited" from="BlockRotationArea" to="Ship" method="_on_rotation_area_body_exited"]
