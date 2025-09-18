@@ -9,11 +9,11 @@ func _init(position:=Vector2i(0,0), tiles:Array[BlockTile]=[]) -> void:
 
 func copy() -> Block:
 	# deep copy the Block as well as its BlockTiles
-	var new_block = Block.new(_position, _tiles)
-	var new_tiles : Array[BlockTile] = []
-	for tile in get_tiles():
-		new_tiles.append(tile.copy())
-	return new_block
+	var new_tiles_array: Array[BlockTile] = []
+	
+	for tile in _tiles:
+		new_tiles_array.append(tile.copy())
+	return Block.new(_position, new_tiles_array)
 	
 func get_position() -> Vector2i:
 	return _position
@@ -99,6 +99,9 @@ class BlockTile:
 		
 	func get_cell() -> Vector2i:
 		return _cell
+	
+	func set_cell(new_cell: Vector2i) -> void:
+		_cell = new_cell
 		
 	func _to_string() -> String:
 		return ('(' if is_liquid() else '[') + str(_color) + '@' + str(_cell.x) + ',' + str(_cell.y) + (')' if is_liquid() else ']')
@@ -121,3 +124,17 @@ class BlockTile:
 		
 	static func get_random_color() -> int:
 		return randi() % COLORS
+	
+	static func get_color_from_atlas_coords(atlas_coords: Vector2i) -> int:
+		"Returns the color index (0 to COLORS-1) from the atlas coordinates."
+		var x_coord = atlas_coords.x
+		
+		# The atlas is structured with solid blocks first, then liquid blocks.
+		# We check if the x-coordinate is in the range of liquid blocks.
+		var liquid_offset = TILEMAP_START_X + COLORS
+		if x_coord >= liquid_offset:
+			# If it is, we subtract the starting offset for liquid blocks to get the color.
+			return x_coord - liquid_offset
+		else:
+			# Otherwise, it's a solid block. We subtract the starting offset for solid blocks.
+			return x_coord - TILEMAP_START_X

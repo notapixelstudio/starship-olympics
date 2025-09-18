@@ -116,57 +116,153 @@ func _check_and_clear_lines():
 			# If the line was not full, we move on to check the row above it.
 			y -= 1
 
+func _check_and_clear_colors():
+	var cells_to_clear: Array[Vector2i] = []
+	var visited_cells: Dictionary = {}
+
+	for y in range(get_min_y(), get_bottom_y()):
+		for x in range(get_min_x(), get_max_x()):
+			var current_cell = Vector2i(x, y)
+
+			if visited_cells.has(current_cell) or _buffer.get_cell_source_id(current_cell) != Block.BlockTile.Source.PLACED:
+				continue
+
+			# Get the atlas coords and try to find the specific color integer.
+			var atlas_coords = _buffer.get_cell_atlas_coords(current_cell)
+			var current_color = Block.BlockTile.get_color_from_atlas_coords(atlas_coords)
+			
+			var group: Array[Vector2i] = []
+			var queue: Array[Vector2i] = [current_cell]
+			visited_cells[current_cell] = true
+
+			while not queue.is_empty():
+				var cell = queue.pop_front()
+				group.append(cell)
+				
+				# we could use, .get_neighbor_cell(cell, TileSet.CellNeighbor.BOTTOM_SIDE) Worth it? I don't know
+				var neighbors = [
+					cell + Vector2i(0, 1), cell + Vector2i(0, -1),
+					cell + Vector2i(1, 0), cell + Vector2i(-1, 0)
+				]
+				
+				for neighbor in neighbors:
+					if not visited_cells.has(neighbor) and _buffer.get_cell_source_id(neighbor) == Block.BlockTile.Source.PLACED:
+						
+						# get the color of neighbor
+						var neighbor_atlas_coords = _buffer.get_cell_atlas_coords(neighbor)
+						var neighbor_color = Block.BlockTile.get_color_from_atlas_coords(neighbor_atlas_coords)
+
+						if neighbor_color == current_color:
+							visited_cells[neighbor] = true
+							queue.append(neighbor)
+			
+			if group.size() >= 4:
+				cells_to_clear.append_array(group)
+
+	if cells_to_clear.is_empty():
+		return
+
+	for cell in cells_to_clear:
+		_buffer.erase_cell(cell)
+	
+	for x in range(get_min_x(), get_max_x()):
+		var empty_space_count = 0
+		for y in range(get_bottom_y() - 1, get_min_y() - 1, -1):
+			var current_cell = Vector2i(x, y)
+			if _buffer.get_cell_source_id(current_cell) == -1:
+				empty_space_count += 1
+			elif empty_space_count > 0:
+				var source_id = _buffer.get_cell_source_id(current_cell)
+				var cell_atlas_coords = _buffer.get_cell_atlas_coords(current_cell)
+				_buffer.set_cell(current_cell + Vector2i(0, empty_space_count), source_id, cell_atlas_coords)
+				_buffer.erase_cell(current_cell)
+
 func tick() -> void:
-	# copy all placed blocks on the buffer
 	for cell in get_all_placed_blocks_cells():
 		_buffer.set_cell(cell, Block.BlockTile.Source.PLACED, get_cell_atlas_coords(cell))
 
-	var still_falling_blocks = _falling_blocks.duplicate() # Work on a copy.
-	var newly_stopped_found = true
-	
-	while newly_stopped_found:
-		newly_stopped_found = false
-		var blocks_to_remove : Array[Block] = []
 
-		for block in still_falling_blocks:
-			var should_stop = false
-			for tile in block.get_tiles():
-				var next_cell = tile.get_cell() + block.get_position() + Vector2i(0, 1)
-				if next_cell.y >= get_bottom_y() or _buffer.get_cell_source_id(next_cell) == Block.BlockTile.Source.PLACED:
-					should_stop = true
-					break
-			
-			if should_stop:
-				newly_stopped_found = true
-				blocks_to_remove.append(block)
-				
-				for tile in block.get_tiles():
-					_buffer.set_cell(tile.get_cell() + block.get_position(), Block.BlockTile.Source.PLACED, tile.get_atlas_coords(Block.BlockTile.Source.PLACED))
-		
-		for block in blocks_to_remove:
-			still_falling_blocks.erase(block)
-
-	# This happens after blocks have landed but before we draw the next frame.
-	_check_and_clear_lines()
-
-	# Update the state of pieces that survived the fall check.
-	for block in still_falling_blocks:
-		block.move_by(Vector2i(0, 1))
-		
+	# This makes falling blocks aware of each other for the first time.
+	var halting_cells_map: Dictionary = {}
+	for block in _falling_blocks:
+		var will_block_halt = false
 		for tile in block.get_tiles():
-			_buffer.set_cell(tile.get_cell() + block.get_position(), Block.BlockTile.Source.FALLING, tile.get_atlas_coords(Block.BlockTile.Source.FALLING))
+			var next_cell = block.get_position() + tile.get_cell() + Vector2i(0, 1)
+			if next_cell.y >= get_bottom_y() or _buffer.get_cell_source_id(next_cell) != -1:
+				will_block_halt = true
+				break
+		if will_block_halt:
+			for tile in block.get_tiles():
+				var current_cell = block.get_position() + tile.get_cell()
+				halting_cells_map[current_cell] = true
 
-	_falling_blocks = still_falling_blocks
+	var next_tick_falling_blocks: Array[Block] = []
+
+	for block in _falling_blocks:
+		var can_block_fall = true
+		for tile in block.get_tiles():
+			var next_cell = block.get_position() + tile.get_cell() + Vector2i(0, 1)
+			if next_cell.y >= get_bottom_y() or _buffer.get_cell_source_id(next_cell) != -1 or halting_cells_map.has(next_cell):
+				can_block_fall = false
+				break
+
+		if can_block_fall:
+			block.move_by(Vector2i(0, 1))
+			next_tick_falling_blocks.append(block)
+		else:
+						# The block is halting. Now we process each tile based on its type.
+			var stopping_cells: Dictionary = {}
+			for tile in block.get_tiles():
+				var current_cell = block.get_position() + tile.get_cell()
+				if not tile.is_liquid():
+					stopping_cells[current_cell] = true
+				else:
+					var next_cell = current_cell + Vector2i(0, 1)
+					if next_cell.y >= get_bottom_y() or _buffer.get_cell_source_id(next_cell) != -1 or halting_cells_map.has(next_cell):
+						stopping_cells[current_cell] = true
+
+			var newly_stopped_found = true
+			while newly_stopped_found:
+				newly_stopped_found = false
+				for tile in block.get_tiles():
+					if not tile.is_liquid(): continue
+					var current_cell = block.get_position() + tile.get_cell()
+					if not stopping_cells.has(current_cell):
+						var cell_below = current_cell + Vector2i(0, 1)
+						if stopping_cells.has(cell_below):
+							stopping_cells[current_cell] = true
+							newly_stopped_found = true
+
+			for tile in block.get_tiles():
+				var current_cell = block.get_position() + tile.get_cell()
+				if stopping_cells.has(current_cell):
+					_buffer.set_cell(current_cell, Block.BlockTile.Source.PLACED, tile.get_atlas_coords(Block.BlockTile.Source.PLACED))
+				else:
+					var new_tile = tile.copy()
+					new_tile.set_cell(Vector2i.ZERO)
+					var new_liquid_block = Block.new(current_cell, [new_tile])
+					new_liquid_block.move_by(Vector2i(0, 1))
+					next_tick_falling_blocks.append(new_liquid_block)
+
+	# First colors then lines
+	_check_and_clear_colors()
+	_check_and_clear_lines()
 	
+	_falling_blocks = next_tick_falling_blocks
+
+	# Double buffering
 	clear()
 	set_tile_map_data_from_array(_buffer.get_tile_map_data_as_array())
+	for block in _falling_blocks:
+		for tile in block.get_tiles():
+			set_cell(block.get_position() + tile.get_cell(), Block.BlockTile.Source.FALLING, tile.get_atlas_coords(Block.BlockTile.Source.FALLING))
 	_buffer.clear()
-	
+
 	if _tick % spawn_every_ticks == 0:
 		spawn_new_piece() 
 	
 	_tick += 1
-
+	
 func _draw_falling_blocks() -> void:
 	for block in _falling_blocks:
 		for tile in block.get_tiles():
