@@ -30,7 +30,7 @@ func _ready() -> void:
 		position.y -= tile_set.tile_size.y/2.0
 
 func _process(delta: float) -> void:
-	_attempt_grabbing()
+	#_attempt_grabbing()
 	_update_preview()
 	_update_feedback()
 
@@ -40,7 +40,7 @@ func is_current_placement_valid() -> bool:
 	return _is_currently_valid
 	
 func _get_ship_anchor_cell(ship:Ship) -> Vector2i:
-	var ship_anchor_pos = to_local(ship.global_position + Vector2(50, 0).rotated(ship.global_rotation))
+	var ship_anchor_pos = to_local(ship.global_position + Vector2(200, 0).rotated(ship.global_rotation))
 	return local_to_map(ship_anchor_pos)
 	
 func _get_polygon_surrounding_cell(cell:Vector2i) -> PackedVector2Array:
@@ -72,13 +72,15 @@ func someone_tapped(tapper) -> void:
 		blocks_field.spawn_block(block_to_release, _get_ship_anchor_cell(tapper))
 		
 		tapper.release_block()
-		%Timer.start()
+		#%Timer.start()
 		
 		hide_preview()
+	else:
+		_attempt_grabbing()
 
 func _attempt_grabbing() -> void:
-	if not %Timer.is_stopped():
-		return
+	#if not %Timer.is_stopped():
+		#return
 		
 	for ship in get_tree().get_nodes_in_group('Ship'):
 		if ship.is_holding_block():
@@ -156,9 +158,9 @@ func _update_feedback():
 		child.queue_free()
 		
 	for ship in get_tree().get_nodes_in_group('Ship'):
+		var ship_cell = _get_ship_anchor_cell(ship)
+		
 		if ship.is_holding_block():
-			var ship_cell = _get_ship_anchor_cell(ship)
-			
 			var outline = ship.grabbed_block.get_outline(tile_set.tile_size)
 			outline = Geometry2D.offset_polygon(outline, 30, Geometry2D.JOIN_ROUND)[0]
 			
@@ -166,6 +168,14 @@ func _update_feedback():
 			line.points = outline
 			line.position.x = ship_cell.x * tile_set.tile_size.x
 			line.position.y = ship_cell.y * tile_set.tile_size.y
+			
+			%Feedback.add_child(line)
+		else:
+			var outline = _get_polygon_surrounding_cell(ship_cell)
+			outline = Geometry2D.offset_polygon(outline, 30, Geometry2D.JOIN_ROUND)[0]
+			
+			var line = block_outline_scene.instantiate()
+			line.points = outline
 			
 			%Feedback.add_child(line)
 	
