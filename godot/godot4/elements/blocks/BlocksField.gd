@@ -88,7 +88,7 @@ func _check_and_clear_lines():
 				break
 		
 		if is_line_full:
-			Events.blocks_cleared.emit(self)
+			Events.blocks_cleared.emit(self, play_area_width, global_position +  Vector2(0.5, (y+0.5)*tile_set.tile_size.y))
 			
 			# If the line is full, clear it.
 			for x in range(get_min_x(), get_max_x()):
@@ -161,9 +161,16 @@ func _check_and_clear_colors():
 
 	if cells_to_clear.is_empty():
 		return
-
+	
 	for cell in cells_to_clear:
 		_buffer.erase_cell(cell)
+		
+	var centroid = Vector2(cells_to_clear[0].x*tile_set.tile_size.x, cells_to_clear[0].y*tile_set.tile_size.y)
+	for i in range(1,len(cells_to_clear)):
+		centroid += Vector2(cells_to_clear[i].x*tile_set.tile_size.x, cells_to_clear[i].y*tile_set.tile_size.y)
+	centroid /= len(cells_to_clear)
+	
+	Events.blocks_cleared.emit(self, len(cells_to_clear), centroid+Vector2(0.5,0.5))
 	
 	for x in range(get_min_x(), get_max_x()):
 		var empty_space_count = 0
