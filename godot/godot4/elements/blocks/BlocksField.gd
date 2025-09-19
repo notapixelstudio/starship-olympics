@@ -185,76 +185,93 @@ func _check_and_clear_colors():
 				_buffer.erase_cell(current_cell)
 
 func tick() -> void:
+	if _falling_blocks.is_empty() and get_used_cells_by_id(Block.BlockTile.Source.PLACED).is_empty():
+		# Optimization: If nothing is happening, just handle spawning and exit.
+		if _tick % spawn_every_ticks == 0:
+			spawn_new_piece()
+		_tick += 1
+		return
+
 	for cell in get_all_placed_blocks_cells():
 		_buffer.set_cell(cell, Block.BlockTile.Source.PLACED, get_cell_atlas_coords(cell))
 
-
-	# This makes falling blocks aware of each other for the first time.
-	var halting_cells_map: Dictionary = {}
-	for block in _falling_blocks:
-		var will_block_halt = false
-		for tile in block.get_tiles():
-			var next_cell = block.get_position() + tile.get_cell() + Vector2i(0, 1)
-			if next_cell.y >= get_bottom_y() or _buffer.get_cell_source_id(next_cell) != -1:
-				will_block_halt = true
-				break
-		if will_block_halt:
-			for tile in block.get_tiles():
-				var current_cell = block.get_position() + tile.get_cell()
-				halting_cells_map[current_cell] = true
-
+	var current_falling_blocks = _falling_blocks.duplicate()
 	var next_tick_falling_blocks: Array[Block] = []
+	# This tracks cells that become solid during this tick, for other blocks to land on.
+	var halting_cells_this_tick: Dictionary = {}
 
-	for block in _falling_blocks:
-		var can_block_fall = true
+	# Sort all blocks from bottom-to-top to resolve chain reactions between separate blocks.
+	current_falling_blocks.sort_custom(func(a, b):
+		var a_max_y = -INF
+		for tile in a.get_tiles(): a_max_y = max(a_max_y, a.get_position().y + tile.get_cell().y)
+		var b_max_y = -INF
+		for tile in b.get_tiles(): b_max_y = max(b_max_y, b.get_position().y + tile.get_cell().y)
+		return a_max_y > b_max_y
+	)
+
+	for block in current_falling_blocks:
+		if block.get_tiles().is_empty(): continue
+
+		# Check if the block as a whole is supported by anything solid below.
+		var is_block_supported = false
 		for tile in block.get_tiles():
-			var next_cell = block.get_position() + tile.get_cell() + Vector2i(0, 1)
-			if next_cell.y >= get_bottom_y() or _buffer.get_cell_source_id(next_cell) != -1 or halting_cells_map.has(next_cell):
-				can_block_fall = false
+			var cell_below = block.get_position() + tile.get_cell() + Vector2i(0, 1)
+			if cell_below.y >= get_bottom_y() or \
+			   _buffer.get_cell_source_id(cell_below) != -1 or \
+			   halting_cells_this_tick.has(cell_below):
+				is_block_supported = true
 				break
 
-		if can_block_fall:
+		if not is_block_supported:
+			# Block is in free-fall. Move it and keep it for the next tick.
 			block.move_by(Vector2i(0, 1))
 			next_tick_falling_blocks.append(block)
 		else:
-						# The block is halting. Now we process each tile based on its type.
-			var stopping_cells: Dictionary = {}
-			for tile in block.get_tiles():
-				var current_cell = block.get_position() + tile.get_cell()
-				if not tile.is_liquid():
-					stopping_cells[current_cell] = true
-				else:
-					var next_cell = current_cell + Vector2i(0, 1)
-					if next_cell.y >= get_bottom_y() or _buffer.get_cell_source_id(next_cell) != -1 or halting_cells_map.has(next_cell):
-						stopping_cells[current_cell] = true
-
-			var newly_stopped_found = true
-			while newly_stopped_found:
-				newly_stopped_found = false
+			# Block has collided. Process based on type.
+			if not block.get_tiles()[0].is_liquid():
+				# SOLID BLOCK: Halts as a single rigid unit.
 				for tile in block.get_tiles():
-					if not tile.is_liquid(): continue
 					var current_cell = block.get_position() + tile.get_cell()
-					if not stopping_cells.has(current_cell):
-						var cell_below = current_cell + Vector2i(0, 1)
-						if stopping_cells.has(cell_below):
-							stopping_cells[current_cell] = true
-							newly_stopped_found = true
-
-			for tile in block.get_tiles():
-				var current_cell = block.get_position() + tile.get_cell()
-				if stopping_cells.has(current_cell):
 					_buffer.set_cell(current_cell, Block.BlockTile.Source.PLACED, tile.get_atlas_coords(Block.BlockTile.Source.PLACED))
-				else:
-					var new_tile = tile.copy()
-					new_tile.set_cell(Vector2i.ZERO)
-					var new_liquid_block = Block.new(current_cell, [new_tile])
-					new_liquid_block.move_by(Vector2i(0, 1))
-					next_tick_falling_blocks.append(new_liquid_block)
+					halting_cells_this_tick[current_cell] = true
+			else:
+				# LIQUID BLOCK: It breaks apart and settles
+				
+				# Deconstruct the block into a list of its individual tiles with absolute positions.
+				var tiles_to_process: Array[Dictionary] = []
+				for tile in block.get_tiles():
+					tiles_to_process.append({"pos": block.get_position() + tile.get_cell(), "tile": tile})
+				
+				# Sort from bottom-to-top
+				tiles_to_process.sort_custom(func(a, b): return a.pos.y > b.pos.y)
+				
+				# Process the tiles sequentially
+				for item in tiles_to_process:
+					var current_pos: Vector2i = item.pos
+					var tile: Block.BlockTile = item.tile
+					var cell_below = current_pos + Vector2i(0, 1)
 
-	# First colors then lines
+					# A tile is supported if the cell below is the floor, a pre-existing block, OR
+					# another tile (from any block, including its own) that has already halted in this tick.
+					var is_tile_supported = cell_below.y >= get_bottom_y() or \
+										   _buffer.get_cell_source_id(cell_below) != -1 or \
+										   halting_cells_this_tick.has(cell_below)
+					
+					if is_tile_supported:
+						# This tile halts. Solidify it and add it to the list of halted cells
+						_buffer.set_cell(current_pos, Block.BlockTile.Source.PLACED, tile.get_atlas_coords(Block.BlockTile.Source.PLACED))
+						halting_cells_this_tick[current_pos] = true
+					else:
+						# Nothing beneath, free fall
+						var new_tile = tile.copy()
+						new_tile.set_cell(Vector2i.ZERO)
+						var new_falling_block = Block.new(current_pos + Vector2i(0, 1), [new_tile])
+						next_tick_falling_blocks.append(new_falling_block)
+
+	# First colors and then lines, so lines get priority in case of overlap
 	_check_and_clear_colors()
 	_check_and_clear_lines()
-	
+
 	_falling_blocks = next_tick_falling_blocks
 
 	# Double buffering
@@ -266,8 +283,8 @@ func tick() -> void:
 	_buffer.clear()
 
 	if _tick % spawn_every_ticks == 0:
-		spawn_new_piece() 
-	
+		spawn_new_piece()
+
 	_tick += 1
 	
 func _draw_falling_blocks() -> void:
