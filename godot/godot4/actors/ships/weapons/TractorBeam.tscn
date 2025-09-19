@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcs0r4rb0oydr"]
+
+[ext_resource type="PackedScene" uid="uid://q1o0cubu6i1c" path="res://godot4/actors/ships/weapons/Weapon.tscn" id="1_sn1xv"]
+[ext_resource type="Script" uid="uid://q02mnqepuxql" path="res://godot4/actors/ships/weapons/TractorBeam.gd" id="2_idhha"]
+
+[node name="TractorBeam" instance=ExtResource("1_sn1xv")]
+script = ExtResource("2_idhha")
+
+[node name="Polygon2D" type="Polygon2D" parent="." index="0"]
+position = Vector2(100, 0)
+polygon = PackedVector2Array(-50, 0, 100, -50, 100, 50)

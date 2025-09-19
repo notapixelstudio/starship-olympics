@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8u0ahaefij7v"]
+[gd_scene load_steps=12 format=3 uid="uid://b8u0ahaefij7v"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_2u2gc"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_0wabn"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_egrwn"]
 [ext_resource type="PackedScene" uid="uid://dysjvql27gdup" path="res://godot4/elements/blocks/BlocksField.tscn" id="5_ll5gd"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="6_5mryg"]
+[ext_resource type="PackedScene" uid="uid://dcs0r4rb0oydr" path="res://godot4/actors/ships/weapons/TractorBeam.tscn" id="7_0wabn"]
 [ext_resource type="PackedScene" uid="uid://cxkldgko8orxv" path="res://godot4/elements/blocks/BlockRotationArea.tscn" id="8_2u2gc"]
 [ext_resource type="PackedScene" uid="uid://dei1nchvkk3mm" path="res://godot4/elements/blocks/BlockPreviewTileMap.tscn" id="9_2u2gc"]
 
@@ -50,6 +51,8 @@ battlefield = NodePath("..")
 [node name="Ship" parent="." index="9" instance=ExtResource("6_5mryg")]
 unique_name_in_owner = true
 position = Vector2(-800, 0)
+
+[node name="TractorBeam" parent="Ship" index="20" instance=ExtResource("7_0wabn")]
 
 [node name="BlocksField" parent="." index="12" instance=ExtResource("5_ll5gd")]
 unique_name_in_owner = true

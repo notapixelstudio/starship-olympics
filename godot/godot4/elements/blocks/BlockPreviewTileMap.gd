@@ -172,19 +172,23 @@ func _update_feedback():
 		
 		if ship.is_holding_block():
 			var outline = ship.grabbed_block.get_outline(tile_set.tile_size)
-			outline = Geometry2D.offset_polygon(outline, 30, Geometry2D.JOIN_ROUND)[0]
 			
 			var line = _feedback_lines[ship.get_player()]
-			line.points = outline
+			line.set_points(_get_wobbly_outline(outline))
 			line.position.x = ship_cell.x * tile_set.tile_size.x
 			line.position.y = ship_cell.y * tile_set.tile_size.y
-			line.set_full()
+			line.activate()
 		else:
 			var outline = _get_polygon_surrounding_cell(ship_cell)
-			outline = Geometry2D.offset_polygon(outline, 30, Geometry2D.JOIN_ROUND)[0]
 			
 			var line = _feedback_lines[ship.get_player()]
 			line.position = Vector2(0,0)
-			line.points = outline
-			line.set_empty()
-	
+			line.set_points(_get_wobbly_outline(outline))
+			line.deactivate()
+
+func _get_wobbly_outline(straight_outline) -> PackedVector2Array:
+	var points = Geometry2D.offset_polygon(straight_outline, 30, Geometry2D.JOIN_ROUND)[0]
+	var curve = Curve2D.new()
+	for p in points:
+		curve.add_point(p)
+	return curve.tessellate_even_length()

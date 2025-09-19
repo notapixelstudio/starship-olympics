@@ -49,13 +49,13 @@ func has_cell(cell:Vector2i) -> bool:
 	return false
 	
 func get_outline(cell_size:=Vector2(1,1)) -> PackedVector2Array:
-	var outline = []
+	var points = []
 	for tile in get_tiles():
-		outline += Array(tile.get_outline(cell_size))
+		points += Array(tile.get_outline(cell_size))
 		
-	outline = Geometry2D.convex_hull(outline) # until we manage to use merge_polygons
-	
-	return outline
+	# TODO: merge_polygons
+	points = Geometry2D.convex_hull(points)
+	return points
 	
 enum Name {Dot, Two, L, I}#, Ooo}
 
