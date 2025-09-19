@@ -2,6 +2,21 @@
 
 [ext_resource type="Script" uid="uid://u0bx8p4t533g" path="res://godot4/elements/blocks/BlockOutline.gd" id="1_7l4pv"]
 
+[sub_resource type="Animation" id="Animation_7l4pv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15.0]
+}
+
 [sub_resource type="Animation" id="Animation_ci8ho"]
 resource_name = "blink"
 length = 0.6
@@ -18,21 +33,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [30.0, 8.0]
-}
-
-[sub_resource type="Animation" id="Animation_7l4pv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:width")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [15.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tbnk5"]

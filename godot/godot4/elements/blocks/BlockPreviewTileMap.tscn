@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://dei1nchvkk3mm"]
+[gd_scene load_steps=6 format=3 uid="uid://dei1nchvkk3mm"]
 
 [ext_resource type="TileSet" uid="uid://nmh2n1gge150" path="res://godot4/elements/blocks/blocks_tileset.tres" id="1_mqxr3"]
+[ext_resource type="Shader" uid="uid://bm6o1gfum0g04" path="res://godot4/shaders/float.gdshader" id="1_o0efe"]
 [ext_resource type="Script" uid="uid://benpnpxnthv64" path="res://godot4/elements/blocks/BlockPreviewTileMap.gd" id="2_mqxr3"]
 [ext_resource type="PackedScene" uid="uid://do1vp1imu8e1y" path="res://godot4/elements/blocks/BlockOutline.tscn" id="3_yon1d"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2jj8v"]
+shader = ExtResource("1_o0efe")
+shader_parameter/amplitude = 10.0
+shader_parameter/frequency = 10.0
+
 [node name="BlockPreviewTileMap" type="TileMapLayer"]
+material = SubResource("ShaderMaterial_2jj8v")
 tile_set = ExtResource("1_mqxr3")
 collision_enabled = false
 script = ExtResource("2_mqxr3")
