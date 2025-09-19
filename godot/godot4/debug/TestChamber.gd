@@ -21,6 +21,7 @@ func _ready():
 		var brain = player_brain_scene.instantiate()
 		brain.set_controls(ship.get_player().get_controls())
 		ship.add_child(brain)
+		Events.player_ready.emit(ship.get_player())
 		Events.team_ready.emit(ship.get_player().get_team(), [ship.get_player()])
 		break
 		

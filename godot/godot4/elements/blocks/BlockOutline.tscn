@@ -1,6 +1,54 @@
-[gd_scene format=3 uid="uid://do1vp1imu8e1y"]
+[gd_scene load_steps=5 format=3 uid="uid://do1vp1imu8e1y"]
+
+[ext_resource type="Script" uid="uid://u0bx8p4t533g" path="res://godot4/elements/blocks/BlockOutline.gd" id="1_7l4pv"]
+
+[sub_resource type="Animation" id="Animation_ci8ho"]
+resource_name = "blink"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [30.0, 8.0]
+}
+
+[sub_resource type="Animation" id="Animation_7l4pv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tbnk5"]
+_data = {
+&"RESET": SubResource("Animation_7l4pv"),
+&"blink": SubResource("Animation_ci8ho")
+}
 
 [node name="BlockOutline" type="Line2D"]
 closed = true
 width = 15.0
 joint_mode = 2
+script = ExtResource("1_7l4pv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_tbnk5")
+}

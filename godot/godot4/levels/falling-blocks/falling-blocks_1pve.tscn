@@ -40,7 +40,9 @@ height = 3800.0
 hosts = [NodePath("../OutsideWall"), NodePath("../../Navigation")]
 
 [node name="BlocksField" parent="Battlefield" index="2" instance=ExtResource("6_evml6")]
-spawn_every_ticks = 5
+tick_duration = 2.0
+spawn_every_ticks = 3
+spawn_coords = Array[Vector2i]([Vector2i(0, -7), Vector2i(-2, -7), Vector2i(2, -7)])
 play_area_width = 7
 play_area_height = 14
 

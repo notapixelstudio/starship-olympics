@@ -19,7 +19,8 @@ func hide_preview() -> void:
 	clear()
 	
 func _ready() -> void:
-	Events.tap.connect(someone_tapped)
+	Events.tap.connect(_on_someone_tapped)
+	Events.player_ready.connect(_on_player_ready)
 	
 	# shift half a cell for odd number of columns
 	if blocks_field.play_area_width % 2 != 0:
@@ -51,7 +52,7 @@ func _get_polygon_surrounding_cell(cell:Vector2i) -> PackedVector2Array:
 		Vector2(cell.x*tile_set.tile_size.x,(cell.y+1)*tile_set.tile_size.y),
 	])
 	
-func someone_tapped(tapper) -> void:
+func _on_someone_tapped(tapper) -> void:
 	if not tapper is Ship:
 		return
 
@@ -153,29 +154,37 @@ func _update_preview() -> void:
 			var target_cell = map_anchor_cell + tile.get_cell()
 			set_cell(target_cell, Block.BlockTile.Source.FALLING, tile.get_atlas_coords(Block.BlockTile.Source.FALLING) + (INVALID_PLACEMENT_TILE_DELTA if not is_placement_valid else Vector2i(0,0)))
 
+var _feedback_lines : Dictionary[Player, Line2D] = {}
+
+func _on_player_ready(player:Player) -> void:
+	_feedback_lines[player] = block_outline_scene.instantiate()
+	%Feedback.add_child(_feedback_lines[player])
+
 func _update_feedback():
 	for child in %Feedback.get_children():
-		child.queue_free()
+		child.points = PackedVector2Array()
 		
 	for ship in get_tree().get_nodes_in_group('Ship'):
+		if not _feedback_lines.has(ship.get_player()):
+			continue
+			
 		var ship_cell = _get_ship_anchor_cell(ship)
 		
 		if ship.is_holding_block():
 			var outline = ship.grabbed_block.get_outline(tile_set.tile_size)
 			outline = Geometry2D.offset_polygon(outline, 30, Geometry2D.JOIN_ROUND)[0]
 			
-			var line = block_outline_scene.instantiate()
+			var line = _feedback_lines[ship.get_player()]
 			line.points = outline
 			line.position.x = ship_cell.x * tile_set.tile_size.x
 			line.position.y = ship_cell.y * tile_set.tile_size.y
-			
-			%Feedback.add_child(line)
+			line.set_full()
 		else:
 			var outline = _get_polygon_surrounding_cell(ship_cell)
 			outline = Geometry2D.offset_polygon(outline, 30, Geometry2D.JOIN_ROUND)[0]
 			
-			var line = block_outline_scene.instantiate()
+			var line = _feedback_lines[ship.get_player()]
+			line.position = Vector2(0,0)
 			line.points = outline
-			
-			%Feedback.add_child(line)
+			line.set_empty()
 	
