@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="MatchParams" load_steps=2 format=3 uid="uid://cbg4e0rmlw0qt"]
+[gd_resource type="Resource" script_class="PveMatchParams" load_steps=2 format=3 uid="uid://pa4kaoimvq88"]
 
-[ext_resource type="Script" uid="uid://b7xtw8uq3uf5f" path="res://godot4/data/match_params/MatchParams.gd" id="1_g17y0"]
+[ext_resource type="Script" uid="uid://frm2jtw1lh4h" path="res://godot4/data/match_params/PveMatchParams.gd" id="1_g17y0"]
 
 [resource]
 script = ExtResource("1_g17y0")
-time = 120
+bronze = 15
+silver = 20
+gold = 25
+time = 90
 score = 30
 starting_score = 0
