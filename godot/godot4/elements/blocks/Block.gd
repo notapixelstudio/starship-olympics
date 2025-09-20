@@ -27,13 +27,13 @@ func add_tile(tile:BlockTile) -> void:
 func _to_string() -> String:
 	return 'Block(' + str(get_position()) + '): ' + ','.join(_tiles)
 	
-func rotate() -> void:
+func rotate(cw) -> void:
 	for tile in _tiles:
-		tile.rotate()
+		tile.rotate(cw)
 		
-func rotated() -> Block:
+func rotated(cw) -> Block:
 	var new_block = copy()
-	new_block.rotate()
+	new_block.rotate(cw)
 	return new_block
 	
 func move_to(p:Vector2i) -> void:
@@ -121,15 +121,20 @@ class BlockTile:
 	func get_atlas_coords(source: Source) -> Vector2i:
 		return Vector2i(TILEMAP_START_X + (COLORS if is_liquid() else 0) + _color, 2 if source == 0 else 0)
 		
-	func rotated() -> BlockTile:
+	func rotated(cw) -> BlockTile:
 		var new_tile = copy()
-		new_tile.rotate()
+		new_tile.rotate(cw)
 		return new_tile
 		
-	func rotate() -> void:
-		var swap = _cell.x
-		_cell.x = _cell.y
-		_cell.y = -swap
+	func rotate(cw) -> void:
+		if cw:
+			var swap = _cell.x
+			_cell.x = -_cell.y
+			_cell.y = swap
+		else:
+			var swap = _cell.x
+			_cell.x = _cell.y
+			_cell.y = -swap
 		
 	func get_outline(cell_size:=Vector2(1,1)) -> PackedVector2Array:
 		return PackedVector2Array([

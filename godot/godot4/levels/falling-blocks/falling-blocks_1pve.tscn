@@ -60,5 +60,9 @@ blocks_field = NodePath("../BlocksField")
 [node name="BlockRotationArea" parent="Battlefield" index="4" instance=ExtResource("10_qqa7m")]
 position = Vector2(1650, 0)
 
+[node name="BlockRotationArea2" parent="Battlefield" index="5" instance=ExtResource("10_qqa7m")]
+position = Vector2(-1650, 0)
+cw = false
+
 [node name="Navigation" parent="." index="6"]
 navigation_polygon = SubResource("NavigationPolygon_rittb")

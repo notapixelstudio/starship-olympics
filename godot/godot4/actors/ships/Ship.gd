@@ -193,7 +193,7 @@ func _on_touch_area_area_entered(area) -> void:
 	
 	# FIXME this is temporary
 	if area is BlockRotationArea:
-		_on_rotation_area_body_entered()
+		_on_rotation_area_body_entered(area.is_cw())
 
 func _on_touch_area_body_entered(body) -> void:
 	_on_touch_area_entered(body)
@@ -316,12 +316,12 @@ func rebound(direction = null, strength := 2000.0) -> Vector2:
 	return (strength*direction)
 
 # TODO: This is temporary, should not be here
-var is_in_rotation_zone := false
+var is_in_rotation_zone = null
 
-func _on_rotation_area_body_entered():
-	is_in_rotation_zone = true
+func _on_rotation_area_body_entered(cw):
+	is_in_rotation_zone = cw
 func _on_rotation_area_body_exited():
-	is_in_rotation_zone = false
+	is_in_rotation_zone = null
 func update_grabbed_block(new_block: Block):
 	if is_holding_block():
 		grabbed_block = new_block

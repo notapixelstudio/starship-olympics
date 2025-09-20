@@ -58,9 +58,9 @@ func _on_someone_tapped(tapper) -> void:
 
 	# Ship is holding a block, so we try to RELEASE it
 	if tapper.is_holding_block():
-		if tapper.is_in_rotation_zone:
+		if tapper.is_in_rotation_zone != null:
 			var current_block = tapper.grabbed_block
-			var new_block = current_block.rotated()
+			var new_block = current_block.rotated(tapper.is_in_rotation_zone) # cw
 			
 			tapper.update_grabbed_block(new_block)
 			show_preview_block(new_block)
