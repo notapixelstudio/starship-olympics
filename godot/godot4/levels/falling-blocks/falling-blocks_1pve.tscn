@@ -24,6 +24,9 @@ agent_radius = 100.0
 [node name="Styleable" parent="." index="0"]
 style = ExtResource("2_pvfyo")
 
+[node name="MessageManager" parent="Managers" index="4"]
+magnify = 2.0
+
 [node name="BlockClearingGame" parent="Managers" index="9" instance=ExtResource("3_t7yxv")]
 
 [node name="P1" parent="Homes" index="0" instance=ExtResource("3_72v3b")]

@@ -13,6 +13,9 @@ signal game_over
 @export var play_area_width : int = 10
 @export var play_area_height : int = 20
 
+@export_group("Graphics")
+@export var block_cleared_scene : PackedScene
+
 var _buffer : TileMapLayer
 var _tick := 0
 
@@ -88,12 +91,27 @@ func _check_and_clear_lines():
 				break
 		
 		if is_line_full:
+			%FallTimer.paused = true
+
 			Events.blocks_cleared.emit(self, play_area_width, global_position +  Vector2(0.5, (y+0.5)*tile_set.tile_size.y))
 			
 			# If the line is full, clear it.
+			var block_cleared_effect
 			for x in range(get_min_x(), get_max_x()):
-				_buffer.erase_cell(Vector2i(x, y))
+				# spawn the block cleared effect
+				var cell = Vector2i(x, y)
+				block_cleared_effect = block_cleared_scene.instantiate()
+				block_cleared_effect.set_color(_get_cell_color(_buffer, cell))
+				block_cleared_effect.set_liquid(_is_cell_liquid(_buffer, cell))
+				block_cleared_effect.global_position = Vector2(cell.x*tile_set.tile_size.x, cell.y*tile_set.tile_size.y)
+				add_child(block_cleared_effect)
+
+				_buffer.erase_cell(cell)
 				
+			# wait for the last block cleared effect to finish
+			await block_cleared_effect.done
+			%FallTimer.paused = false
+			
 			# Then, shift every row above it down by one.
 			# We start from the row just above the cleared one and go up to the top.
 			for row_to_move_y in range(y - 1, get_min_y() - 1, -1):
@@ -162,16 +180,31 @@ func _check_and_clear_colors():
 	if cells_to_clear.is_empty():
 		return
 	
-	for cell in cells_to_clear:
-		_buffer.erase_cell(cell)
-		
+	%FallTimer.paused = true
+
 	var centroid = Vector2(cells_to_clear[0].x*tile_set.tile_size.x, cells_to_clear[0].y*tile_set.tile_size.y)
 	for i in range(1,len(cells_to_clear)):
 		centroid += Vector2(cells_to_clear[i].x*tile_set.tile_size.x, cells_to_clear[i].y*tile_set.tile_size.y)
 	centroid /= len(cells_to_clear)
 	
 	Events.blocks_cleared.emit(self, len(cells_to_clear), centroid+Vector2(0.5,0.5))
-	
+
+	var block_cleared_effect
+	for cell in cells_to_clear:
+		# spawn the block cleared effect
+		block_cleared_effect = block_cleared_scene.instantiate()
+		block_cleared_effect.set_color(_get_cell_color(_buffer, cell))
+		block_cleared_effect.set_liquid(_is_cell_liquid(_buffer, cell))
+		block_cleared_effect.global_position = Vector2(cell.x*tile_set.tile_size.x, cell.y*tile_set.tile_size.y)
+		add_child(block_cleared_effect)
+
+		# clear the cell
+		_buffer.erase_cell(cell)
+
+	# wait for the last block cleared effect to finish
+	await block_cleared_effect.done
+	%FallTimer.paused = false
+
 	for x in range(get_min_x(), get_max_x()):
 		var empty_space_count = 0
 		for y in range(get_bottom_y() - 1, get_min_y() - 1, -1):
@@ -311,6 +344,15 @@ func spawn_block(block:Block, from_where: Vector2i) -> void:
 	block.move_to(from_where)
 	_falling_blocks.append(block)
 	_draw_falling_blocks()
+
+func _get_cell_color(tilemap: TileMapLayer, cell: Vector2i) -> int:
+	var atlas_x = tilemap.get_cell_atlas_coords(cell).x - Block.BlockTile.TILEMAP_START_X
+	var liquid = _is_cell_liquid(tilemap, cell)
+	return atlas_x if not liquid else atlas_x - Block.BlockTile.COLORS
+
+func _is_cell_liquid(tilemap: TileMapLayer, cell: Vector2i) -> bool:
+	var atlas_x = tilemap.get_cell_atlas_coords(cell).x - Block.BlockTile.TILEMAP_START_X
+	return atlas_x >= Block.BlockTile.COLORS
 
 # FIXME this should be deleted soon
 func _rotate_piece_shape(shape) -> Array[Vector2i]:
