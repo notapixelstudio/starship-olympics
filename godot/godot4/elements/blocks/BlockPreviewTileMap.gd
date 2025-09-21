@@ -7,16 +7,11 @@ class_name PreviewTileMap
 
 const INVALID_PLACEMENT_TILE_DELTA = Vector2i(0, 1) # blocked placement tile
 
-var _current_preview_block : Block = null
+var _current_preview_blocks : Dictionary[Player, Block] = {}
 
 
-func show_preview_block(block) -> void:
-	_current_preview_block = block
-	_update_preview()
-
-func hide_preview() -> void:
-	_current_preview_block = null
-	clear()
+func show_preview_block(player:Player, block) -> void:
+	_current_preview_blocks[player] = block
 	
 func _ready() -> void:
 	Events.tap.connect(_on_someone_tapped)
@@ -35,10 +30,10 @@ func _process(delta: float) -> void:
 	_update_preview()
 	_update_feedback()
 
-var _is_currently_valid := true
+var _is_currently_valid : Dictionary[Player,bool] = {}
 
-func is_current_placement_valid() -> bool:
-	return _is_currently_valid
+func is_current_placement_valid(player:Player) -> bool:
+	return _is_currently_valid[player]
 	
 func _get_ship_anchor_cell(ship:Ship) -> Vector2i:
 	var ship_anchor_pos = to_local(ship.global_position + Vector2(200, 0).rotated(ship.global_rotation))
@@ -63,9 +58,9 @@ func _on_someone_tapped(tapper) -> void:
 			var new_block = current_block.rotated(tapper.is_in_rotation_zone) # cw
 			
 			tapper.update_grabbed_block(new_block)
-			show_preview_block(new_block)
+			show_preview_block(tapper.get_player(), new_block)
 			return
-		if not is_current_placement_valid():
+		if not is_current_placement_valid(tapper.get_player()):
 			return # Do nothing if placement is invalid.
 
 		var block_to_release = tapper.grabbed_block
@@ -73,9 +68,8 @@ func _on_someone_tapped(tapper) -> void:
 		blocks_field.spawn_block(block_to_release, _get_ship_anchor_cell(tapper))
 		
 		tapper.release_block()
+		_current_preview_blocks[tapper.get_player()] = null
 		#%Timer.start()
-		
-		hide_preview()
 	else:
 		_attempt_grabbing()
 
@@ -103,18 +97,15 @@ func _attempt_grabbing() -> void:
 		var anchor_cell = grabbed_block.get_tiles()[0].get_cell()
 		ship.grab_block(grabbed_block)
 		
-		show_preview_block(grabbed_block)
+		show_preview_block(ship.get_player(), grabbed_block)
 
 func _update_preview() -> void:
-	for ship in get_tree().get_nodes_in_group('Ship'): # FIXME this supports either 0 or 1 ship - not 2 or more
-		if _current_preview_block == null:
-			clear()
-			_is_currently_valid = false
-			return
+	clear()
+	for ship in get_tree().get_nodes_in_group('Ship'):
+		if _current_preview_blocks[ship.get_player()] == null:
+			_is_currently_valid[ship.get_player()] = false
+			continue
 			
-		if not ship:
-			return
-
 		var map_anchor_cell = _get_ship_anchor_cell(ship)
 
 		var is_placement_valid = true
@@ -125,7 +116,7 @@ func _update_preview() -> void:
 		var bottom_y = blocks_field.get_bottom_y()
 		
 		# check if placement would be valid here
-		for tile in _current_preview_block.get_tiles():
+		for tile in _current_preview_blocks[ship.get_player()].get_tiles():
 			var target_cell = map_anchor_cell + tile.get_cell()
 			
 			# Check if outside horizontal bounds
@@ -147,16 +138,17 @@ func _update_preview() -> void:
 				is_placement_valid = false
 				break
 		
-		_is_currently_valid = is_placement_valid
+		_is_currently_valid[ship.get_player()] = is_placement_valid
 		
-		clear()
-		for tile in _current_preview_block.get_tiles():
+		for tile in _current_preview_blocks[ship.get_player()].get_tiles():
 			var target_cell = map_anchor_cell + tile.get_cell()
 			set_cell(target_cell, Block.BlockTile.Source.FALLING, tile.get_atlas_coords(Block.BlockTile.Source.FALLING) + (INVALID_PLACEMENT_TILE_DELTA if not is_placement_valid else Vector2i(0,0)))
 
 var _feedback_lines : Dictionary[Player, Line2D] = {}
 
 func _on_player_ready(player:Player) -> void:
+	_current_preview_blocks[player] = null
+	_is_currently_valid[player] = true
 	_feedback_lines[player] = block_outline_scene.instantiate()
 	%Feedback.add_child(_feedback_lines[player])
 
