@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://hwf7tcforry2"]
+[gd_scene load_steps=9 format=3 uid="uid://viydlf37rjap"]
 
-[ext_resource type="PackedScene" uid="uid://d3abq633jh74a" path="res://godot4/ui/screens/Screen.tscn" id="1_3ws7c"]
-[ext_resource type="Script" uid="uid://4v2jduc3xq3t" path="res://godot4/ui/screens/title_screen/TitleScreen.gd" id="2_x0td4"]
-[ext_resource type="PackedScene" uid="uid://dhn4hc2tmwqkk" path="res://godot4/ui/screens/main_menu/MainMenuScreen.tscn" id="3_ebbj7"]
-[ext_resource type="AudioStream" uid="uid://dvyudxmqjls3a" path="res://assets/audio/soundtracks/PM_ATG_120_3_3+PM_NIGHTPULSE_120BPM_06.ogg" id="4_4ji6u"]
-[ext_resource type="Texture2D" uid="uid://cv1lpjudl08v5" path="res://logo.png" id="5_q8ea5"]
-[ext_resource type="PackedScene" uid="uid://37vcan82kgvg" path="res://godot4/ui/utils/PressAnyKey.tscn" id="6_e6nyr"]
+[ext_resource type="PackedScene" uid="uid://d3abq633jh74a" path="res://godot4/ui/screens/Screen.tscn" id="1_tqidi"]
+[ext_resource type="Script" uid="uid://5c55yu5bl5" path="res://godot4/ui/screens/title_screen/TitleScreen.gd" id="2_injki"]
+[ext_resource type="PackedScene" uid="uid://dhn4hc2tmwqkk" path="res://godot4/ui/screens/main_menu/MainMenuScreen.tscn" id="3_8x0ck"]
+[ext_resource type="AudioStream" uid="uid://dvyudxmqjls3a" path="res://assets/audio/soundtracks/PM_ATG_120_3_3+PM_NIGHTPULSE_120BPM_06.ogg" id="4_tp64u"]
+[ext_resource type="Texture2D" uid="uid://cv1lpjudl08v5" path="res://logo.png" id="5_fs1i8"]
+[ext_resource type="PackedScene" uid="uid://37vcan82kgvg" path="res://godot4/ui/utils/PressAnyKey.tscn" id="6_mh7yf"]
 
 [sub_resource type="Animation" id="Animation_c1xai"]
 resource_name = "fade_in"
@@ -54,10 +54,10 @@ _data = {
 &"fade_in": SubResource("Animation_c1xai")
 }
 
-[node name="TitleScreen" instance=ExtResource("1_3ws7c")]
-script = ExtResource("2_x0td4")
-next_screen_scene = ExtResource("3_ebbj7")
-bgm = ExtResource("4_4ji6u")
+[node name="TitleScreen" instance=ExtResource("1_tqidi")]
+script = ExtResource("2_injki")
+next_screen_scene = ExtResource("3_8x0ck")
+bgm = ExtResource("4_tp64u")
 
 [node name="Offset" type="Node2D" parent="." index="0"]
 position = Vector2(0, 100)
@@ -65,7 +65,24 @@ position = Vector2(0, 100)
 [node name="Logo" type="Sprite2D" parent="Offset" index="0"]
 position = Vector2(640, 206)
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("5_q8ea5")
+texture = ExtResource("5_fs1i8")
+
+[node name="Label" type="Label" parent="Offset/Logo" index="0"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -357.286
+offset_top = -470.0
+offset_right = -327.286
+offset_bottom = -385.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 8
+theme_override_font_sizes/font_size = 42
+text = "FALLING BLOCK JAM EDITION"
+horizontal_alignment = 1
 
 [node name="Animator" type="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -73,7 +90,7 @@ libraries = {
 }
 autoplay = "fade_in"
 
-[node name="PressAnyKey" parent="." index="2" instance=ExtResource("6_e6nyr")]
+[node name="PressAnyKey" parent="." index="2" instance=ExtResource("6_mh7yf")]
 layout_mode = 0
 offset_top = 600.0
 offset_right = 1280.0

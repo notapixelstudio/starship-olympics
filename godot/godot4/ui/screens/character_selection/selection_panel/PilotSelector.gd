@@ -24,9 +24,11 @@ func set_status(status: String):
 	%StatusLabel.text = _status
 	%GoMenu.visible = _status == 'selected'
 	%GoMenu.set_enabled(_status == 'selected')
+	%PressToJoin.visible = status == 'disabled'
 	%PilotCharacter.visible = _status != 'disabled'
 	%ControlsLabel.visible = _status != 'disabled'
 	%SpeciesLabel.visible = _status != 'disabled'
+	%Ready.visible = _status == 'ready'
 	match status:
 		'selected':
 			%GoMenu.reset_focused_element()

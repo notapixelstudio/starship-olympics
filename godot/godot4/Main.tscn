@@ -1,20 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://bn7bm1m238rpp"]
+[gd_scene load_steps=8 format=3 uid="uid://bn7bm1m238rpp"]
 
 [ext_resource type="PackedScene" uid="uid://dxftfjyem72k6" path="res://godot4/ui/screens/ScreenController.tscn" id="1"]
 [ext_resource type="Script" uid="uid://dd6qk4byqtqvp" path="res://godot4/Main.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://wsqsmayqd7e" path="res://godot4/levels/falling-blocks/falling-blocks_3pve.tscn" id="4_iq0iw"]
 [ext_resource type="Texture2D" uid="uid://yuay7lcg5j7l" path="res://assets/sprites/background/static.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://voe3u3ju5lnw" path="res://godot4/levels/falling-blocks/falling-blocks_1pve.tscn" id="5_yeq5a"]
+[ext_resource type="PackedScene" uid="uid://viydlf37rjap" path="res://godot4/ui/screens/title_screen/TitleScreenFallingBlockJam.tscn" id="6_iq0iw"]
 [ext_resource type="PackedScene" uid="uid://dfb6aubabsf35" path="res://godot4/levels/falling-blocks/falling-blocks_2pve.tscn" id="6_qah4k"]
-[ext_resource type="PackedScene" uid="uid://etaj5hcgxhr2" path="res://godot4/ui/screens/title_screen/TitleScreenFallingBlocks.tscn" id="9_towb4"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("2")
 game_scene_1pve = ExtResource("5_yeq5a")
 game_scene_2pve = ExtResource("6_qah4k")
+game_scene_3pve = ExtResource("4_iq0iw")
+game_scene_4pve = ExtResource("4_iq0iw")
 
 [node name="ScreenController" parent="." instance=ExtResource("1")]
 unique_name_in_owner = true
-starting_screen_scene = ExtResource("9_towb4")
+starting_screen_scene = ExtResource("6_iq0iw")
 
 [node name="ScreenPostProcessing" type="CanvasLayer" parent="."]
 layer = 119
@@ -26,19 +29,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource("5")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -24.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 21
-text = "FALLING BLOCKS JAM EDITION"
-horizontal_alignment = 1
 
 [connection signal="transition_started" from="ScreenController" to="." method="_on_ScreenController_transition_started"]

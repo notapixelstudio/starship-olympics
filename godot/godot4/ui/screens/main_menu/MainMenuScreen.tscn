@@ -56,13 +56,13 @@ default_focused_element = NodePath("Campaign")
 focus_default_element_on_ready = false
 
 [node name="Versus" parent="FancyMenu" index="0" instance=ExtResource("11_ydftu")]
+visible = false
 self_modulate = Color(0.984314, 0.858824, 1, 1)
 layout_mode = 0
 offset_left = 117.0
 offset_top = 57.0
 offset_right = 480.0
 offset_bottom = 585.0
-disabled = true
 texture_normal = ExtResource("12_7gffd")
 texture_disabled = SubResource("CanvasTexture_um2gw")
 texture_click_mask = ExtResource("13_vkwtr")
@@ -101,12 +101,12 @@ scale = Vector2(1.5, 1.5)
 text = "1 2 3 4"
 
 [node name="HallOfFame" parent="FancyMenu" index="2" instance=ExtResource("11_ydftu")]
+visible = false
 layout_mode = 0
 offset_left = 725.0
 offset_top = 46.0
 offset_right = 910.0
 offset_bottom = 192.0
-disabled = true
 texture_normal = ExtResource("15_v45ox")
 texture_disabled = SubResource("CanvasTexture_om3hj")
 texture_click_mask = ExtResource("16_ru06s")

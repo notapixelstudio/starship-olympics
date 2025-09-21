@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://did82plnurmh1"]
 
-[ext_resource type="Script" uid="uid://dkao8sj3g3wsy" path="res://ui/menu_scenes/credits_screen/Credits.gd" id="1"]
+[ext_resource type="Script" uid="uid://dwu8mqpyo2cq2" path="res://ui/menu_scenes/credits_screen/Credits.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bqc6w4rhnysjp" path="res://combat/levels/background/robolords_background.png" id="2"]
 [ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="7"]
 
@@ -24,6 +24,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 1.0
 offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1")
 
 [node name="TextureRect" type="TextureRect" parent="."]
