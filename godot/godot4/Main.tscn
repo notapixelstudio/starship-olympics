@@ -6,19 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://vci7uxcbok6b" path="res://godot4/levels/diamondsnatch/diamondsnatch_3p.tscn" id="3_qah4k"]
 [ext_resource type="PackedScene" uid="uid://cvp2cu7cq2g7p" path="res://godot4/levels/diamondsnatch/diamondsnatch_4p.tscn" id="4_ll0pi"]
 [ext_resource type="Texture2D" uid="uid://yuay7lcg5j7l" path="res://assets/sprites/background/static.png" id="5"]
-[ext_resource type="PackedScene" uid="uid://41vn2qw4djss" path="res://godot4/levels/diamondsnatch/diamondsnatch_1pve.tscn" id="5_kl13l"]
-[ext_resource type="PackedScene" uid="uid://c7uihxmdaadhj" path="res://godot4/levels/diamondsnatch/diamondsnatch_2pve.tscn" id="6_dmfy3"]
+[ext_resource type="PackedScene" uid="uid://voe3u3ju5lnw" path="res://godot4/levels/falling-blocks/falling-blocks_1pve.tscn" id="5_yeq5a"]
+[ext_resource type="PackedScene" uid="uid://dfb6aubabsf35" path="res://godot4/levels/falling-blocks/falling-blocks_2pve.tscn" id="6_qah4k"]
 [ext_resource type="PackedScene" uid="uid://br2xue6kgmc5f" path="res://godot4/levels/diamondsnatch/diamondsnatch_3pve.tscn" id="7_m66ln"]
 [ext_resource type="PackedScene" uid="uid://bh8hbiur3qgf6" path="res://godot4/levels/diamondsnatch/diamondsnatch_4pve.tscn" id="8_yeq5a"]
-[ext_resource type="PackedScene" uid="uid://etaj5hcgxhr2" path="res://godot4/ui/screens/title_screen/TitleScreen.tscn" id="9_towb4"]
+[ext_resource type="PackedScene" uid="uid://etaj5hcgxhr2" path="res://godot4/ui/screens/title_screen/TitleScreenFallingBlocks.tscn" id="9_towb4"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("2")
 game_scene_2p = ExtResource("2_yeq5a")
 game_scene_3p = ExtResource("3_qah4k")
 game_scene_4p = ExtResource("4_ll0pi")
-game_scene_1pve = ExtResource("5_kl13l")
-game_scene_2pve = ExtResource("6_dmfy3")
+game_scene_1pve = ExtResource("5_yeq5a")
+game_scene_2pve = ExtResource("6_qah4k")
 game_scene_3pve = ExtResource("7_m66ln")
 game_scene_4pve = ExtResource("8_yeq5a")
 
@@ -36,5 +36,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource("5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "FALLING BLOCKS JAM EDITION"
+horizontal_alignment = 1
 
 [connection signal="transition_started" from="ScreenController" to="." method="_on_ScreenController_transition_started"]
