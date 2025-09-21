@@ -43,6 +43,9 @@ func start() -> void:
 	%FallTimer.start()
 
 func _ready() -> void:
+	# stop the fall of the blocks after match is over
+	Events.match_over.connect(func(match_data): %FallTimer.stop())
+	
 	# shift half a cell for odd number of columns
 	if play_area_width % 2 != 0:
 		position.x -= tile_set.tile_size.x/2.0
