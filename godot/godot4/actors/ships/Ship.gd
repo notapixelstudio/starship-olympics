@@ -325,6 +325,7 @@ func _on_rotation_area_body_exited():
 func update_grabbed_block(new_block: Block):
 	if is_holding_block():
 		grabbed_block = new_block
+		
 # This will store the data of the grabbed block.
 # It's null when the ship is empty-handed.
 var grabbed_block : Block
@@ -334,8 +335,11 @@ func is_holding_block() -> bool:
 
 func grab_block(block:Block) -> void:
 	grabbed_block = block
+	SoundEffects.play(%TractorBeamGrabSFX)
 
 # Call this to make the ship drop its block.
 func release_block() -> void:
 	grabbed_block = null
+	SoundEffects.play(%TractorBeamReleaseSFX)
+	
 # TODO: END OF TEMPORARY

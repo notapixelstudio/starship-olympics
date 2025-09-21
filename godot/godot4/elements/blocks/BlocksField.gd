@@ -94,6 +94,7 @@ func _check_and_clear_lines():
 			%FallTimer.paused = true
 
 			Events.blocks_cleared.emit(self, play_area_width, global_position +  Vector2(0.5, (y+0.5)*tile_set.tile_size.y))
+			SoundEffects.play(%ClearedSFX)
 			
 			# If the line is full, clear it.
 			var block_cleared_effect
@@ -188,7 +189,8 @@ func _check_and_clear_colors():
 	centroid /= len(cells_to_clear)
 	
 	Events.blocks_cleared.emit(self, len(cells_to_clear), centroid+Vector2(0.5,0.5))
-
+	SoundEffects.play(%ClearedSFX)
+	
 	var block_cleared_effect
 	for cell in cells_to_clear:
 		# spawn the block cleared effect

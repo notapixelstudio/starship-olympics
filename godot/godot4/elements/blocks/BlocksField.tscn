@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dysjvql27gdup"]
+[gd_scene load_steps=9 format=3 uid="uid://dysjvql27gdup"]
 
 [ext_resource type="TileSet" uid="uid://nmh2n1gge150" path="res://godot4/elements/blocks/blocks_tileset.tres" id="1_tmptw"]
 [ext_resource type="Script" uid="uid://beft1s7edbc2f" path="res://godot4/elements/blocks/BlocksField.gd" id="2_uuh06"]
@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dl5ahwdgq8cdg" path="res://godot4/effects/BlockCleared.tscn" id="3_137ia"]
 [ext_resource type="PackedScene" uid="uid://bbh6dfcfwh26k" path="res://godot4/traits/Styleable.tscn" id="3_y41sf"]
 [ext_resource type="PackedScene" uid="uid://cors4pgqhn0ig" path="res://godot4/effects/grid/GridLines.tscn" id="5_pibdn"]
+[ext_resource type="AudioStream" uid="uid://dhtshubrcru4n" path="res://assets/audio/FX/sfx_exp_medium1.wav" id="7_y41sf"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_137ia"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("7_y41sf")
 
 [node name="BlocksField" type="TileMapLayer"]
 tile_set = ExtResource("1_tmptw")
@@ -24,5 +30,10 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 z_index = -7
 z_as_relative = false
+
+[node name="ClearedSFX" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_137ia")
+volume_db = 1.0
 
 [connection signal="timeout" from="FallTimer" to="." method="tick"]

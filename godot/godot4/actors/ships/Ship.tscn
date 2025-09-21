@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=42 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" uid="uid://57bbtul52rl7" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PhysicsMaterial" uid="uid://v8mu2p8ukj54" path="res://godot4/actors/ships/ShipPhysicsMaterial.tres" id="1_yr6p6"]
@@ -23,6 +23,8 @@
 [ext_resource type="PackedScene" uid="uid://cd12x0fubc17m" path="res://godot4/actors/ships/GravitonField.tscn" id="16_2i8oi"]
 [ext_resource type="AudioStream" uid="uid://dpgsvvngst2ut" path="res://assets/audio/gameplay/swoosh/Fast Swish.wav" id="19_8du2k"]
 [ext_resource type="PackedScene" uid="uid://criepafyhd33y" path="res://godot4/actors/ships/managers/CargoManager.tscn" id="21_kqe5y"]
+[ext_resource type="AudioStream" uid="uid://dcts5b2ldeeav" path="res://assets/audio/gameplay/struggle.wav" id="24_0funj"]
+[ext_resource type="AudioStream" uid="uid://cifoe1viahak1" path="res://assets/audio/FX/270315__littlerobotsoundfactory__menu-navigate-03.wav" id="25_2p6s4"]
 
 [sub_resource type="GDScript" id="GDScript_4hb7k"]
 script/source = "extends DebugNode
@@ -177,6 +179,16 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
 random_pitch = 1.5
 streams_count = 1
 stream_0/stream = ExtResource("19_8du2k")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1ggq0"]
+random_pitch = 1.4
+streams_count = 1
+stream_0/stream = ExtResource("24_0funj")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ml8f4"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("25_2p6s4")
 
 [node name="Ship" type="RigidBody2D" groups=["Ship"]]
 collision_layer = 2151677953
@@ -406,6 +418,16 @@ bus = &"SFX"
 
 [node name="StunTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+
+[node name="TractorBeamGrabSFX" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_1ggq0")
+volume_db = -10.0
+
+[node name="TractorBeamReleaseSFX" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_ml8f4")
+volume_db = 2.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]
