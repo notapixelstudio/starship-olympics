@@ -329,17 +329,20 @@ func update_grabbed_block(new_block: Block):
 # This will store the data of the grabbed block.
 # It's null when the ship is empty-handed.
 var grabbed_block : Block
+var anchor
 
 func is_holding_block() -> bool:
 	return grabbed_block != null
 
-func grab_block(block:Block) -> void:
+func grab_block(block:Block, offset:Vector2i) -> void:
 	grabbed_block = block
+	anchor = offset
 	SoundEffects.play(%TractorBeamGrabSFX)
 
 # Call this to make the ship drop its block.
 func release_block() -> void:
 	grabbed_block = null
+	anchor = null
 	SoundEffects.play(%TractorBeamReleaseSFX)
 	
 # TODO: END OF TEMPORARY

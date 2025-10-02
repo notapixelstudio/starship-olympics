@@ -35,8 +35,8 @@ var _is_currently_valid : Dictionary[Player,bool] = {}
 func is_current_placement_valid(player:Player) -> bool:
 	return _is_currently_valid[player]
 	
-func _get_ship_anchor_cell(ship:Ship) -> Vector2i:
-	var ship_anchor_pos = to_local(ship.global_position + Vector2(200, 0).rotated(ship.global_rotation))
+func _get_ship_anchor_cell(ship:Ship, offset:float) -> Vector2i:
+	var ship_anchor_pos = to_local(ship.global_position + Vector2(offset, 0).rotated(ship.global_rotation))
 	return local_to_map(ship_anchor_pos)
 	
 func _get_polygon_surrounding_cell(cell:Vector2i) -> PackedVector2Array:
@@ -65,7 +65,7 @@ func _on_someone_tapped(tapper) -> void:
 
 		var block_to_release = tapper.grabbed_block
 		
-		blocks_field.spawn_block(block_to_release, _get_ship_anchor_cell(tapper))
+		blocks_field.spawn_block(block_to_release, _get_ship_anchor_cell(tapper, 0) + tapper.anchor)
 		
 		tapper.release_block()
 		_current_preview_blocks[tapper.get_player()] = null
@@ -81,21 +81,21 @@ func _attempt_grabbing() -> void:
 		if ship.is_holding_block():
 			continue
 			
-		var ship_cell = _get_ship_anchor_cell(ship)
-		if blocks_field.get_cell_source_id(ship_cell) != Block.BlockTile.Source.FALLING:
-			continue
-
-		var grabbed_block: Block = blocks_field.get_falling_block_or_null_from_cell(ship_cell)
+		var anchor_cell = _get_nearest_valid_anchor_cell(ship)
+		var grabbed_block: Block = blocks_field.get_falling_block_or_null_from_cell(anchor_cell)
 		
 		if grabbed_block == null:
 			continue
-
+			
+		# from which tile did we grab the block?
+		var offset = grabbed_block.get_position() - anchor_cell
+		
 		blocks_field.erase_block(grabbed_block)
 		for tile in grabbed_block.get_tiles():
 			blocks_field.erase_cell(tile.get_cell()+grabbed_block.get_position())
 		
-		var anchor_cell = grabbed_block.get_tiles()[0].get_cell()
-		ship.grab_block(grabbed_block)
+		# offset the block to grab it from the anchor tile
+		ship.grab_block(grabbed_block, offset)
 		
 		show_preview_block(ship.get_player(), grabbed_block)
 
@@ -106,7 +106,7 @@ func _update_preview() -> void:
 			_is_currently_valid[ship.get_player()] = false
 			continue
 			
-		var map_anchor_cell = _get_ship_anchor_cell(ship)
+		var map_anchor_cell = _get_ship_anchor_cell(ship, 0)
 
 		var is_placement_valid = true
 		
@@ -116,8 +116,9 @@ func _update_preview() -> void:
 		var bottom_y = blocks_field.get_bottom_y()
 		
 		# check if placement would be valid here
-		for tile in _current_preview_blocks[ship.get_player()].get_tiles():
-			var target_cell = map_anchor_cell + tile.get_cell()
+		var block = _current_preview_blocks[ship.get_player()]
+		for tile in block.get_tiles():
+			var target_cell = map_anchor_cell + tile.get_cell() + ship.anchor
 			
 			# Check if outside horizontal bounds
 			if target_cell.x < min_x or target_cell.x >= max_x:
@@ -140,8 +141,8 @@ func _update_preview() -> void:
 		
 		_is_currently_valid[ship.get_player()] = is_placement_valid
 		
-		for tile in _current_preview_blocks[ship.get_player()].get_tiles():
-			var target_cell = map_anchor_cell + tile.get_cell()
+		for tile in block.get_tiles():
+			var target_cell = map_anchor_cell + tile.get_cell() + ship.anchor
 			set_cell(target_cell, Block.BlockTile.Source.FALLING, tile.get_atlas_coords(Block.BlockTile.Source.FALLING) + (INVALID_PLACEMENT_TILE_DELTA if not is_placement_valid else Vector2i(0,0)))
 
 var _feedback_lines : Dictionary[Player, Line2D] = {}
@@ -160,9 +161,8 @@ func _update_feedback():
 		if not _feedback_lines.has(ship.get_player()):
 			continue
 			
-		var ship_cell = _get_ship_anchor_cell(ship)
-		
 		if ship.is_holding_block():
+			var ship_cell = _get_ship_anchor_cell(ship, 0) + ship.anchor
 			var outline = ship.grabbed_block.get_outline(tile_set.tile_size)
 			
 			var line = _feedback_lines[ship.get_player()]
@@ -171,6 +171,7 @@ func _update_feedback():
 			line.position.y = ship_cell.y * tile_set.tile_size.y
 			line.activate()
 		else:
+			var ship_cell = _get_nearest_valid_anchor_cell(ship)
 			var outline = _get_polygon_surrounding_cell(ship_cell)
 			
 			var line = _feedback_lines[ship.get_player()]
@@ -184,3 +185,17 @@ func _get_wobbly_outline(straight_outline) -> PackedVector2Array:
 	for p in points:
 		curve.add_point(p)
 	return curve.tessellate_even_length()
+
+func _get_nearest_valid_anchor_cell(ship:Ship) -> Vector2i:
+	var found = false
+	var ship_cell
+	for offset in [0,50,100,150,200,250,300,350,400]:
+		ship_cell = _get_ship_anchor_cell(ship, offset)
+		if blocks_field.get_cell_source_id(ship_cell) == Block.BlockTile.Source.FALLING:
+			found = true
+			break
+			
+	if not found:
+		ship_cell = _get_ship_anchor_cell(ship, 0)
+		
+	return ship_cell
