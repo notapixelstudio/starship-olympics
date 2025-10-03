@@ -65,7 +65,7 @@ func _on_someone_tapped(tapper) -> void:
 
 		var block_to_release = tapper.grabbed_block
 		
-		blocks_field.spawn_block(block_to_release, _get_ship_anchor_cell(tapper, 0) + tapper.anchor)
+		blocks_field.spawn_block(block_to_release, _get_ship_anchor_cell(tapper, 50) + tapper.anchor)
 		
 		tapper.release_block()
 		_current_preview_blocks[tapper.get_player()] = null
@@ -106,7 +106,7 @@ func _update_preview() -> void:
 			_is_currently_valid[ship.get_player()] = false
 			continue
 			
-		var map_anchor_cell = _get_ship_anchor_cell(ship, 0)
+		var map_anchor_cell = _get_ship_anchor_cell(ship, 50)
 
 		var is_placement_valid = true
 		
@@ -162,7 +162,7 @@ func _update_feedback():
 			continue
 			
 		if ship.is_holding_block():
-			var ship_cell = _get_ship_anchor_cell(ship, 0) + ship.anchor
+			var ship_cell = _get_ship_anchor_cell(ship, 50) + ship.anchor
 			var outline = ship.grabbed_block.get_outline(tile_set.tile_size)
 			
 			var line = _feedback_lines[ship.get_player()]
@@ -196,6 +196,6 @@ func _get_nearest_valid_anchor_cell(ship:Ship) -> Vector2i:
 			break
 			
 	if not found:
-		ship_cell = _get_ship_anchor_cell(ship, 0)
+		ship_cell = _get_ship_anchor_cell(ship, 50)
 		
 	return ship_cell
