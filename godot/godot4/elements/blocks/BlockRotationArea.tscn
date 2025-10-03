@@ -8,6 +8,8 @@
 radius = 726.79
 
 [node name="BlockRotationArea" type="Area2D"]
+z_index = -5
+z_as_relative = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_71s0c")
@@ -15,7 +17,8 @@ script = ExtResource("1_71s0c")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ll5gd")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 modulate = Color(1, 0.685, 0.37, 0.0627451)
 scale = Vector2(10, 10)
 texture = ExtResource("1_6jqoj")

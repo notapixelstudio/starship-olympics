@@ -31,6 +31,9 @@ magnify = 2.0
 
 [node name="BlockClearingGame" parent="Managers" index="9" instance=ExtResource("3_t7yxv")]
 
+[node name="Background" parent="BackgroundLayer" index="0"]
+modulate = Color(1, 0.686275, 0.368627, 0.0627451)
+
 [node name="P1" parent="Homes" index="0" instance=ExtResource("7_20cv6")]
 position = Vector2(0, 1400)
 rotation = -1.5708
