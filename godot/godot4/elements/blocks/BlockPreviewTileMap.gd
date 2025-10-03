@@ -58,11 +58,16 @@ func _on_someone_tapped(tapper) -> void:
 	# Ship is holding a block, so we try to RELEASE it
 	if tapper.is_holding_block():
 		var anchor_cell
-		if tapper.is_in_rotation_zone != null:
+		if tapper.rotation_zone_type != null:
+			# rotate the block
 			var current_block = tapper.grabbed_block
-			var new_block = current_block.rotated(tapper.is_in_rotation_zone) # cw
+			var new_block = current_block.rotated(tapper.rotation_zone_type) # cw/ccw
 			
 			tapper.update_grabbed_block(new_block)
+			
+			# also rotate the anchor
+			tapper.anchor = Block.BlockTile.get_rotated_cell(tapper.anchor, tapper.rotation_zone_type) # cw/ccw
+			
 			show_preview_block(tapper.get_player(), new_block)
 			return
 		if is_current_placement_valid(tapper.get_player()):

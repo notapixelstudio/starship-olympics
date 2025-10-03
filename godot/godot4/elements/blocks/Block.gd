@@ -127,14 +127,7 @@ class BlockTile:
 		return new_tile
 		
 	func rotate(cw) -> void:
-		if cw:
-			var swap = _cell.x
-			_cell.x = -_cell.y
-			_cell.y = swap
-		else:
-			var swap = _cell.x
-			_cell.x = _cell.y
-			_cell.y = -swap
+		_cell = get_rotated_cell(_cell, cw)
 		
 	func get_outline(cell_size:=Vector2(1,1)) -> PackedVector2Array:
 		return PackedVector2Array([
@@ -160,3 +153,9 @@ class BlockTile:
 		else:
 			# Otherwise, it's a solid block. We subtract the starting offset for solid blocks.
 			return x_coord - TILEMAP_START_X
+	
+	static func get_rotated_cell(cell:Vector2i, cw) -> Vector2i:
+		if cw:
+			return Vector2i(-cell.y, cell.x)
+		else:
+			return Vector2i(cell.y, -cell.x)

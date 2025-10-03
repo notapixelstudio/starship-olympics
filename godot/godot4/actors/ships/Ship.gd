@@ -317,12 +317,12 @@ func rebound(direction = null, strength := 2000.0) -> Vector2:
 	return (strength*direction)
 
 # TODO: This is temporary, should not be here
-var is_in_rotation_zone = null
+var rotation_zone_type = null
 
 func _on_rotation_area_body_entered(cw):
-	is_in_rotation_zone = cw
+	rotation_zone_type = cw
 func _on_rotation_area_body_exited():
-	is_in_rotation_zone = null
+	rotation_zone_type = null
 func update_grabbed_block(new_block: Block):
 	if is_holding_block():
 		grabbed_block = new_block
