@@ -57,6 +57,7 @@ func _on_someone_tapped(tapper) -> void:
 
 	# Ship is holding a block, so we try to RELEASE it
 	if tapper.is_holding_block():
+		var anchor_cell
 		if tapper.is_in_rotation_zone != null:
 			var current_block = tapper.grabbed_block
 			var new_block = current_block.rotated(tapper.is_in_rotation_zone) # cw
@@ -64,12 +65,14 @@ func _on_someone_tapped(tapper) -> void:
 			tapper.update_grabbed_block(new_block)
 			show_preview_block(tapper.get_player(), new_block)
 			return
-		if not is_current_placement_valid(tapper.get_player()):
+		if is_current_placement_valid(tapper.get_player()):
+			anchor_cell = _get_ship_anchor_cell(tapper, DEFAULT_TRACTOR_BEAM_OFFSET) + tapper.anchor
+		else:
 			return # Do nothing if placement is invalid.
 
 		var block_to_release = tapper.grabbed_block
 		
-		blocks_field.spawn_block(block_to_release, _get_ship_anchor_cell(tapper, DEFAULT_TRACTOR_BEAM_OFFSET) + tapper.anchor)
+		blocks_field.spawn_block(block_to_release, anchor_cell)
 		
 		tapper.release_block()
 		_current_preview_blocks[tapper.get_player()] = null

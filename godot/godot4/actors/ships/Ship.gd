@@ -106,6 +106,7 @@ func is_thrusting() -> bool:
 func charge():
 	%ChargeManager.start_charging()
 	dash_graviton_field.enable()
+	Events.start_charging.emit(self)
 	
 func release():
 	if %ChargeManager.can_tap():

@@ -70,6 +70,7 @@ signal sth_collected(collector, collectee)
 
 signal blocks_cleared(blocks_field, amount, global_position)
 
+signal start_charging(charger)
 signal tap(tapper)
 
 signal camera_updated(camera_state:Dictionary)
