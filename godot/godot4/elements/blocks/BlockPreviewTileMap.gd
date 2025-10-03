@@ -6,6 +6,7 @@ class_name PreviewTileMap
 @export var block_outline_scene : PackedScene
 
 const INVALID_PLACEMENT_TILE_DELTA = Vector2i(0, 1) # blocked placement tile
+const DEFAULT_TRACTOR_BEAM_OFFSET := 50.0
 
 var _current_preview_blocks : Dictionary[Player, Block] = {}
 
@@ -14,6 +15,7 @@ func show_preview_block(player:Player, block) -> void:
 	_current_preview_blocks[player] = block
 	
 func _ready() -> void:
+	Events.start_charging.connect(_on_someone_started_charging)
 	Events.tap.connect(_on_someone_tapped)
 	Events.player_ready.connect(_on_player_ready)
 	
@@ -26,7 +28,6 @@ func _ready() -> void:
 		position.y -= tile_set.tile_size.y/2.0
 
 func _process(delta: float) -> void:
-	#_attempt_grabbing()
 	_update_preview()
 	_update_feedback()
 
@@ -47,6 +48,9 @@ func _get_polygon_surrounding_cell(cell:Vector2i) -> PackedVector2Array:
 		Vector2(cell.x*tile_set.tile_size.x,(cell.y+1)*tile_set.tile_size.y),
 	])
 	
+func _on_someone_started_charging(charger) -> void:
+	pass
+	
 func _on_someone_tapped(tapper) -> void:
 	if not tapper is Ship:
 		return
@@ -65,39 +69,38 @@ func _on_someone_tapped(tapper) -> void:
 
 		var block_to_release = tapper.grabbed_block
 		
-		blocks_field.spawn_block(block_to_release, _get_ship_anchor_cell(tapper, 50) + tapper.anchor)
+		blocks_field.spawn_block(block_to_release, _get_ship_anchor_cell(tapper, DEFAULT_TRACTOR_BEAM_OFFSET) + tapper.anchor)
 		
 		tapper.release_block()
 		_current_preview_blocks[tapper.get_player()] = null
 		#%Timer.start()
 	else:
-		_attempt_grabbing()
+		_attempt_grabbing(tapper)
 
-func _attempt_grabbing() -> void:
+func _attempt_grabbing(ship) -> void:
 	#if not %Timer.is_stopped():
 		#return
 		
-	for ship in get_tree().get_nodes_in_group('Ship'):
-		if ship.is_holding_block():
-			continue
-			
-		var anchor_cell = _get_nearest_valid_anchor_cell(ship)
-		var grabbed_block: Block = blocks_field.get_falling_block_or_null_from_cell(anchor_cell)
+	if ship.is_holding_block():
+		return
 		
-		if grabbed_block == null:
-			continue
-			
-		# from which tile did we grab the block?
-		var offset = grabbed_block.get_position() - anchor_cell
+	var anchor_cell = _get_nearest_valid_anchor_cell(ship)
+	var grabbed_block: Block = blocks_field.get_falling_block_or_null_from_cell(anchor_cell)
+	
+	if grabbed_block == null:
+		return
 		
-		blocks_field.erase_block(grabbed_block)
-		for tile in grabbed_block.get_tiles():
-			blocks_field.erase_cell(tile.get_cell()+grabbed_block.get_position())
-		
-		# offset the block to grab it from the anchor tile
-		ship.grab_block(grabbed_block, offset)
-		
-		show_preview_block(ship.get_player(), grabbed_block)
+	# from which tile did we grab the block?
+	var offset = grabbed_block.get_position() - anchor_cell
+	
+	blocks_field.erase_block(grabbed_block)
+	for tile in grabbed_block.get_tiles():
+		blocks_field.erase_cell(tile.get_cell()+grabbed_block.get_position())
+	
+	# offset the block to grab it from the anchor tile
+	ship.grab_block(grabbed_block, offset)
+	
+	show_preview_block(ship.get_player(), grabbed_block)
 
 func _update_preview() -> void:
 	clear()
@@ -106,7 +109,7 @@ func _update_preview() -> void:
 			_is_currently_valid[ship.get_player()] = false
 			continue
 			
-		var map_anchor_cell = _get_ship_anchor_cell(ship, 50)
+		var map_anchor_cell = _get_ship_anchor_cell(ship, DEFAULT_TRACTOR_BEAM_OFFSET)
 
 		var is_placement_valid = true
 		
@@ -162,7 +165,7 @@ func _update_feedback():
 			continue
 			
 		if ship.is_holding_block():
-			var ship_cell = _get_ship_anchor_cell(ship, 50) + ship.anchor
+			var ship_cell = _get_ship_anchor_cell(ship, DEFAULT_TRACTOR_BEAM_OFFSET) + ship.anchor
 			var outline = ship.grabbed_block.get_outline(tile_set.tile_size)
 			
 			var line = _feedback_lines[ship.get_player()]
@@ -196,6 +199,6 @@ func _get_nearest_valid_anchor_cell(ship:Ship) -> Vector2i:
 			break
 			
 	if not found:
-		ship_cell = _get_ship_anchor_cell(ship, 50)
+		ship_cell = _get_ship_anchor_cell(ship, DEFAULT_TRACTOR_BEAM_OFFSET)
 		
 	return ship_cell
