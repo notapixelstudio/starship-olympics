@@ -154,7 +154,7 @@ func _update_preview() -> void:
 		
 		for tile in block.get_tiles():
 			var target_cell = map_anchor_cell + tile.get_cell() + ship.anchor
-			set_cell(target_cell, Block.BlockTile.Source.FALLING, tile.get_atlas_coords(Block.BlockTile.Source.FALLING) + (INVALID_PLACEMENT_TILE_DELTA if not is_placement_valid else Vector2i(0,0)))
+			set_cell(target_cell, Block.BlockTile.Source.FALLING, tile.get_atlas_coords(Block.BlockTile.Source.FALLING) + (INVALID_PLACEMENT_TILE_DELTA if not is_placement_valid and ship.rotation_zone_type == null else Vector2i(0,0)))
 
 var _feedback_lines : Dictionary[Player, Line2D] = {}
 
