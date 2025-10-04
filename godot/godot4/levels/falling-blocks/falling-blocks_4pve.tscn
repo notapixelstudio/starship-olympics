@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ctcg838flr24s" path="res://godot4/arena/managers/games/BlockClearingGame.tscn" id="4_8ttwx"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="5_n7b36"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="6_vns4n"]
-[ext_resource type="Script" uid="uid://bqc6iekqxdv04" path="res://addons/vshapes/VRect.gd" id="7_jaamw"]
+[ext_resource type="Script" uid="uid://dwa5kst63hc3b" path="res://addons/vshapes/VRect.gd" id="7_jaamw"]
 [ext_resource type="PackedScene" uid="uid://dysjvql27gdup" path="res://godot4/elements/blocks/BlocksField.tscn" id="8_bfsxb"]
 [ext_resource type="PackedScene" uid="uid://cjchstsbsbb0w" path="res://godot4/traits/Ownership.tscn" id="9_4vu5s"]
 [ext_resource type="PackedScene" uid="uid://dei1nchvkk3mm" path="res://godot4/elements/blocks/BlockPreviewTileMap.tscn" id="10_jkojw"]
@@ -32,19 +32,19 @@ magnify = 2.0
 [node name="BlockClearingGame" parent="Managers" index="9" instance=ExtResource("4_8ttwx")]
 
 [node name="P1" parent="Homes" index="0" instance=ExtResource("5_n7b36")]
-position = Vector2(-1200, 1400)
+position = Vector2(-1800, 1400)
 rotation = -1.5708
 
 [node name="P2" parent="Homes" index="1" instance=ExtResource("5_n7b36")]
-position = Vector2(-400, 1400)
+position = Vector2(-600, 1400)
 rotation = -1.5708
 
 [node name="P3" parent="Homes" index="2" instance=ExtResource("5_n7b36")]
-position = Vector2(400, 1400)
+position = Vector2(600, 1400)
 rotation = -1.5708
 
 [node name="P4" parent="Homes" index="3" instance=ExtResource("5_n7b36")]
-position = Vector2(1200, 1400)
+position = Vector2(1800, 1400)
 rotation = -1.5708
 
 [node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("6_vns4n")]
@@ -57,23 +57,25 @@ height = 3800.0
 hosts = [NodePath("../OutsideWall"), NodePath("../../Navigation")]
 
 [node name="BlocksField" parent="Battlefield" index="2" instance=ExtResource("8_bfsxb")]
+scale = Vector2(1.5, 1.5)
 tick_duration = 1.5
 spawn_every_ticks = 2
-spawn_coords = Array[Vector2i]([Vector2i(0, -7), Vector2i(-3, -7), Vector2i(3, -7), Vector2i(-5, -7), Vector2i(5, -7)])
+spawn_coords = Array[Vector2i]([Vector2i(0, -5), Vector2i(-3, -5), Vector2i(3, -5), Vector2i(-5, -5), Vector2i(5, -5)])
 play_area_width = 13
-play_area_height = 14
+play_area_height = 10
 
 [node name="Ownership" parent="Battlefield/BlocksField" index="4" node_paths=PackedStringArray("player_homes") instance=ExtResource("9_4vu5s")]
 player_homes = [NodePath("../../../Homes/P1")]
 
 [node name="BlockPreviewTileMap" parent="Battlefield" index="3" node_paths=PackedStringArray("blocks_field") instance=ExtResource("10_jkojw")]
+scale = Vector2(1.5, 1.5)
 blocks_field = NodePath("../BlocksField")
 
 [node name="BlockRotationArea" parent="Battlefield" index="4" instance=ExtResource("11_lymfu")]
-position = Vector2(2100, 0)
+position = Vector2(2550, 0)
 
 [node name="BlockRotationArea2" parent="Battlefield" index="5" instance=ExtResource("11_lymfu")]
-position = Vector2(-2100, 0)
+position = Vector2(-2550, 0)
 cw = false
 
 [node name="Navigation" parent="." index="6"]

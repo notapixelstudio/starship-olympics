@@ -32,11 +32,11 @@ magnify = 2.0
 [node name="BlockClearingGame" parent="Managers" index="9" instance=ExtResource("4_2vtgy")]
 
 [node name="P1" parent="Homes" index="0" instance=ExtResource("5_ru1yy")]
-position = Vector2(-400, 1400)
+position = Vector2(-600, 1400)
 rotation = -1.5708
 
 [node name="P2" parent="Homes" index="1" instance=ExtResource("5_ru1yy")]
-position = Vector2(400, 1400)
+position = Vector2(600, 1400)
 rotation = -1.5708
 
 [node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("6_76qhc")]
@@ -49,23 +49,25 @@ height = 3800.0
 hosts = [NodePath("../OutsideWall"), NodePath("../../Navigation")]
 
 [node name="BlocksField" parent="Battlefield" index="2" instance=ExtResource("8_67yby")]
+scale = Vector2(1.5, 1.5)
 tick_duration = 1.5
 spawn_every_ticks = 2
-spawn_coords = Array[Vector2i]([Vector2i(0, -7), Vector2i(-3, -7), Vector2i(3, -7)])
+spawn_coords = Array[Vector2i]([Vector2i(0, -5), Vector2i(-3, -5), Vector2i(3, -5)])
 play_area_width = 9
-play_area_height = 14
+play_area_height = 10
 
 [node name="Ownership" parent="Battlefield/BlocksField" index="4" node_paths=PackedStringArray("player_homes") instance=ExtResource("9_aow0n")]
 player_homes = [NodePath("../../../Homes/P1")]
 
 [node name="BlockPreviewTileMap" parent="Battlefield" index="3" node_paths=PackedStringArray("blocks_field") instance=ExtResource("10_25cna")]
+scale = Vector2(1.5, 1.5)
 blocks_field = NodePath("../BlocksField")
 
 [node name="BlockRotationArea" parent="Battlefield" index="4" instance=ExtResource("11_nww50")]
-position = Vector2(1800, 0)
+position = Vector2(2100, 0)
 
 [node name="BlockRotationArea2" parent="Battlefield" index="5" instance=ExtResource("11_nww50")]
-position = Vector2(-1800, 0)
+position = Vector2(-2100, 0)
 cw = false
 
 [node name="Navigation" parent="." index="6"]

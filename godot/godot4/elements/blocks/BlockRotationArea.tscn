@@ -5,11 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://c6e1tdqnf16ku" path="res://assets/sprites/curve_arrow.png" id="3_8xfrc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ll5gd"]
-radius = 726.79
+radius = 550.0
 
 [node name="BlockRotationArea" type="Area2D"]
 z_index = -5
 z_as_relative = false
+scale = Vector2(0.8, 0.8)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_71s0c")
@@ -19,13 +20,13 @@ shape = SubResource("CircleShape2D_ll5gd")
 
 [node name="Background" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(1, 0.685, 0.37, 0.0627451)
+modulate = Color(1, 0.686275, 0.368627, 0.0627451)
 scale = Vector2(10, 10)
 texture = ExtResource("1_6jqoj")
 
 [node name="Arrow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0, 0, 0, 0.352941)
+modulate = Color(0, 0, 0, 0.3)
 position = Vector2(0, -300)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_8xfrc")
