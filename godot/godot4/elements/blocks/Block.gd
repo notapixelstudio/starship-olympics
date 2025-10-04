@@ -57,7 +57,7 @@ func get_outline(cell_size:=Vector2(1,1)) -> PackedVector2Array:
 	points = Geometry2D.convex_hull(points)
 	return points
 	
-enum Name {Dot, Two, L, I}#, Ooo}
+enum Name {Two, L, I}#, Ooo, Dot}
 
 static func create(name:Name, liquid:=false) -> Block:
 	var b = Block.new()
@@ -65,8 +65,8 @@ static func create(name:Name, liquid:=false) -> Block:
 	
 	var cells : Array[Vector2i]
 	match name:
-		Name.Dot:
-			cells = [Vector2i(0,0)]
+		#Name.Dot:
+			#cells = [Vector2i(0,0)]
 		Name.Two:
 			cells = [Vector2i(0,0),Vector2i(1,0)]
 		Name.L:
