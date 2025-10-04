@@ -21,11 +21,11 @@ func _ready() -> void:
 	
 	# shift half a cell for odd number of columns
 	if blocks_field.play_area_width % 2 != 0:
-		position.x -= tile_set.tile_size.x/2.0
+		position.x -= tile_set.tile_size.x*scale.x/2.0
 		
 	# shift half a cell for odd number of rows
 	if blocks_field.play_area_height % 2 != 0:
-		position.y -= tile_set.tile_size.y/2.0
+		position.y -= tile_set.tile_size.y*scale.y/2.0
 
 func _process(delta: float) -> void:
 	_update_preview()
@@ -36,8 +36,8 @@ var _is_currently_valid : Dictionary[Player,bool] = {}
 func is_current_placement_valid(player:Player) -> bool:
 	return _is_currently_valid[player]
 	
-func _get_ship_anchor_cell(ship:Ship, offset:float) -> Vector2i:
-	var ship_anchor_pos = to_local(ship.global_position + Vector2(offset, 0).rotated(ship.global_rotation))
+func _get_ship_anchor_cell(ship:Ship, offset:float, angle:=0.0) -> Vector2i:
+	var ship_anchor_pos = to_local(ship.global_position + Vector2(offset, 0).rotated(ship.global_rotation+angle))
 	return local_to_map(ship_anchor_pos)
 	
 func _get_polygon_surrounding_cell(cell:Vector2i) -> PackedVector2Array:
@@ -200,12 +200,15 @@ func _get_wobbly_outline(straight_outline) -> PackedVector2Array:
 func _get_nearest_valid_anchor_cell(ship:Ship) -> Vector2i:
 	var found = false
 	var ship_cell
-	for offset in [0,50,100,150,200,250,300,350,400]:
-		ship_cell = _get_ship_anchor_cell(ship, offset)
-		if blocks_field.get_cell_source_id(ship_cell) == Block.BlockTile.Source.FALLING:
-			found = true
+	for sweep_angle in [0.0,-PI/8,PI/8]:
+		for offset in [0,50,100,150,200,250,300,350,400]:
+			ship_cell = _get_ship_anchor_cell(ship, offset*sqrt(scale.x*scale.y), sweep_angle)
+			if blocks_field.get_cell_source_id(ship_cell) == Block.BlockTile.Source.FALLING:
+				found = true
+				break
+		if found:
 			break
-			
+		
 	if not found:
 		ship_cell = _get_ship_anchor_cell(ship, DEFAULT_TRACTOR_BEAM_OFFSET)
 		

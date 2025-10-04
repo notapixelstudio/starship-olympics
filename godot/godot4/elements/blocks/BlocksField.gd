@@ -48,12 +48,12 @@ func _ready() -> void:
 	
 	# shift half a cell for odd number of columns
 	if play_area_width % 2 != 0:
-		position.x -= tile_set.tile_size.x/2.0
+		position.x -= tile_set.tile_size.x*scale.x/2.0
 		%GridLines.position.x += tile_set.tile_size.x/2.0
 		
 	# shift half a cell for odd number of rows
 	if play_area_height % 2 != 0:
-		position.y -= tile_set.tile_size.y/2.0
+		position.y -= tile_set.tile_size.y*scale.y/2.0
 		%GridLines.position.y += tile_set.tile_size.y/2.0
 		
 	# create a buffer for writing modifications to the tilemap without overwriting

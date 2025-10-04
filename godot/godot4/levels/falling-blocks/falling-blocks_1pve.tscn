@@ -48,23 +48,25 @@ height = 3800.0
 hosts = [NodePath("../OutsideWall"), NodePath("../../Navigation")]
 
 [node name="BlocksField" parent="Battlefield" index="2" instance=ExtResource("6_evml6")]
+scale = Vector2(1.5, 1.5)
 tick_duration = 1.5
 spawn_every_ticks = 3
-spawn_coords = Array[Vector2i]([Vector2i(0, -7), Vector2i(-2, -7), Vector2i(2, -7)])
+spawn_coords = Array[Vector2i]([Vector2i(0, -5), Vector2i(-2, -5), Vector2i(2, -5)])
 play_area_width = 7
-play_area_height = 14
+play_area_height = 10
 
 [node name="Ownership" parent="Battlefield/BlocksField" index="4" node_paths=PackedStringArray("player_homes") instance=ExtResource("8_t7yxv")]
 player_homes = [NodePath("../../../Homes/P1")]
 
 [node name="BlockPreviewTileMap" parent="Battlefield" index="3" node_paths=PackedStringArray("blocks_field") instance=ExtResource("7_pvfyo")]
+scale = Vector2(1.5, 1.5)
 blocks_field = NodePath("../BlocksField")
 
 [node name="BlockRotationArea" parent="Battlefield" index="4" instance=ExtResource("10_qqa7m")]
-position = Vector2(1650, 0)
+position = Vector2(1800, 0)
 
 [node name="BlockRotationArea2" parent="Battlefield" index="5" instance=ExtResource("10_qqa7m")]
-position = Vector2(-1650, 0)
+position = Vector2(-1800, 0)
 cw = false
 
 [node name="Navigation" parent="." index="6"]
