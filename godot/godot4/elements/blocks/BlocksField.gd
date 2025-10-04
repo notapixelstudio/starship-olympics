@@ -93,7 +93,7 @@ func _check_and_clear_lines() -> bool:
 		
 		if is_line_full:
 			cleared_anything = true
-			Events.blocks_cleared.emit(self, play_area_width, global_position + Vector2(0.5, (y + 0.5) * tile_set.tile_size.y))
+			Events.blocks_cleared.emit(self, play_area_width, global_position + Vector2((0.5 if play_area_width % 2 != 0 else 0.0)*tile_set.tile_size.x*scale.x, (y + 0.5) * tile_set.tile_size.y*scale.y))
 			SoundEffects.play(%ClearedSFX)
 			
 			for x in range(get_min_x(), get_max_x()):
@@ -140,10 +140,10 @@ func _check_and_clear_colors() -> bool:
 	# Erase cells and create effects, but NO GRAVITY
 	var centroid = Vector2.ZERO
 	for cell in cells_to_clear:
-		centroid += Vector2(cell.x * tile_set.tile_size.x, cell.y * tile_set.tile_size.y)
+		centroid += Vector2(cell.x * tile_set.tile_size.x*scale.x, cell.y * tile_set.tile_size.y*scale.y)
 	centroid /= len(cells_to_clear)
 	
-	Events.blocks_cleared.emit(self, len(cells_to_clear), centroid + Vector2(0.5, 0.5))
+	Events.blocks_cleared.emit(self, len(cells_to_clear), centroid + Vector2((0.0 if play_area_width % 2 != 0 else 0.5)*tile_set.tile_size.x*scale.x, 0.5*tile_set.tile_size.y*scale.y))
 	SoundEffects.play(%ClearedSFX)
 	
 	for cell in cells_to_clear:
