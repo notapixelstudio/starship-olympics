@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx0la0ettvetp"]
+
+[ext_resource type="Texture2D" uid="uid://bf2brbwuvcl7m" path="res://assets/UI/keys_and_buttons/joypad/PS4_Circle.png" id="1_q371p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gs5n2"]
+radius = 50.0
+
+[node name="GridPoint" type="RigidBody2D"]
+collision_layer = 16777216
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_q371p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gs5n2")

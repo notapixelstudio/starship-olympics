@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1rrfe2ax5iwn"]
+
+[ext_resource type="Script" uid="uid://df3qfd671io27" path="res://godot4/effects/grid/physics_grid/GridSegment.gd" id="1_euhbj"]
+
+[node name="GridSegment" type="DampedSpringJoint2D"]
+disable_collision = false
+script = ExtResource("1_euhbj")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 100, 0)

@@ -1,0 +1,103 @@
+[gd_scene load_steps=11 format=3 uid="uid://gvl2rkd1pn01"]
+
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_6bvjq"]
+[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="2_gs5n2"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="3_gn3vt"]
+[ext_resource type="PackedScene" uid="uid://bkkhbg8ip7mcl" path="res://godot4/effects/grid/physics_grid/PhysicsGrid.tscn" id="5_6bvjq"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="5_jggx8"]
+
+[sub_resource type="GDScript" id="GDScript_0rj7w"]
+script/source = "extends SOLog
+
+
+func _ready():
+	super._ready()
+	add_theme_font_size_override(\"normal_font_size\", 40)
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_sth_collected(collector, collectee):
+	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6bvjq"]
+radius = 600.0
+
+[sub_resource type="Animation" id="Animation_6bvjq"]
+resource_name = "new_animation"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:gravity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2000.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gs5n2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:gravity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [200.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gn3vt"]
+_data = {
+&"RESET": SubResource("Animation_gs5n2"),
+&"new_animation": SubResource("Animation_6bvjq")
+}
+
+[node name="TestChamber" instance=ExtResource("1_6bvjq")]
+
+[node name="TestGrid" parent="." index="5"]
+visible = false
+
+[node name="VRoundedRect" type="Node" parent="." index="6" node_paths=PackedStringArray("hosts")]
+script = ExtResource("2_gs5n2")
+width = 3600.0
+height = 1800.0
+radius = 900.0
+hosts = [NodePath("../Wall")]
+
+[node name="Wall" parent="." index="7" instance=ExtResource("3_gn3vt")]
+hollow = true
+
+[node name="Ship" parent="." index="8" instance=ExtResource("5_jggx8")]
+unique_name_in_owner = true
+
+[node name="TestChamberLog" parent="." index="9"]
+script = SubResource("GDScript_0rj7w")
+
+[node name="PhysicsGrid" parent="." index="12" instance=ExtResource("5_6bvjq")]
+size = Vector2(2000, 2000)
+cell_size = Vector2(200, 200)
+
+[node name="Area2D" type="Area2D" parent="." index="13"]
+collision_layer = 0
+collision_mask = 16777216
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+gravity = 200.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_6bvjq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D" index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_gn3vt")
+}
+autoplay = "new_animation"

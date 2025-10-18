@@ -33,7 +33,7 @@ func init_grid():
 		return
 	
 	v_cells = ceil(size.y/cell_size.y) + 1
-	h_cells = ceil(size.x/cell_size.x) + 1 
+	h_cells = ceil(size.x/cell_size.x) + 1
 	
 	var size = cell_size * Vector2(h_cells-1, v_cells-1)
 	offset = -size/2.0

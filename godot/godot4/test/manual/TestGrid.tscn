@@ -21,11 +21,8 @@ func _on_sth_collected(collector, collectee):
 
 [node name="TestChamber" instance=ExtResource("1_xt7aj")]
 
-[node name="TestGrid" parent="." index="2"]
+[node name="TestGrid" parent="." index="5"]
 visible = false
-
-[node name="TestChamberLog" parent="." index="3"]
-script = SubResource("GDScript_0rj7w")
 
 [node name="VRoundedRect" type="Node" parent="." index="6" node_paths=PackedStringArray("hosts")]
 script = ExtResource("7_nrao4")
@@ -42,3 +39,6 @@ init_parametric_shape = NodePath("../VRoundedRect")
 
 [node name="Ship" parent="." index="9" instance=ExtResource("6_m6ivx")]
 unique_name_in_owner = true
+
+[node name="TestChamberLog" parent="." index="10"]
+script = SubResource("GDScript_0rj7w")
