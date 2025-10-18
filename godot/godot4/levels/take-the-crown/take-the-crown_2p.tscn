@@ -158,7 +158,7 @@ libraries = {
 hollow = true
 
 [node name="Grid" parent="Battlefield" index="3" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("5_e3rpg")]
-cell_size = Vector2(200, 200)
+cell_size = Vector2(50, 50)
 init_parametric_shape = NodePath("../VBeveledRect")
 
 [node name="Wall" parent="Battlefield" index="4" instance=ExtResource("5_q5cfv")]

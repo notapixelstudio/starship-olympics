@@ -13,6 +13,7 @@ script/source = "extends Node2D
 @export_enum('square', 'triangular') var type = \"square\"
 
 
+var all_points = []
 var active_points = []
 var grid = []
 var lines = []
@@ -50,6 +51,7 @@ func init_grid():
 		grid[y].resize(h_cells)
 		for x in h_cells:
 			grid[y][x] = Point.new(cell_size * Vector2(x+(0 if type == 'square' else 0.5*(y%2)), y) + offset, Vector2(x, y))
+			all_points.append(grid[y][x])
 	lines.resize(lines_amount)
 	# Init grid lines
 	# Vertical Rows
@@ -119,11 +121,11 @@ func _process(delta):
 				var dist = 0#(well.global_position - point.position).length()
 				if dist < well.get_influence_radius():
 					active_points.append(point)
-	for point in active_points:
-		point.process(delta, gravity_wells, global_transform)
-		if point.is_at_rest():
-			point.rest()
-			active_points.erase(point)
+	for point in all_points:
+		point.process(delta, grid, gravity_wells, global_transform)
+		#if point.is_at_rest():
+			#point.rest()
+			#active_points.erase(point)
 		# Update lines
 		lines[point.index.x].set_point_position(point.index.y, point.position)
 		if type == 'square':
@@ -165,11 +167,38 @@ class Point:
 		anchor = Vector3(position.x, position.y, 0.0)
 		position_3d = anchor
 	
-	func process(delta, gravity_wells, global_transform):
+	func process(delta, grid, gravity_wells, global_transform):
 		# elastic velocity
 		var diff = anchor - position_3d
+
+		# get neighbors
+		var neighbors = []
+		#if type == 'square':
+		if index.x > 0:
+			neighbors.append(grid[index.y][index.x-1])
+		if index.x < len(grid[0]) - 1:
+			neighbors.append(grid[index.y][index.x+1])
+		if index.y > 0:
+			neighbors.append(grid[index.y-1][index.x])
+		if index.y < len(grid) - 1:
+			neighbors.append(grid[index.y+1][index.x])
+		#elif type == 'triangular':
+			#neighbors.append(grid[index.y][index.x-1])
+			#neighbors.append(grid[index.y][index.x+1])
+			#neighbors.append(grid[index.y-1][index.x])
+			#neighbors.append(grid[index.y-1][index.x-1])
+			#neighbors.append(grid[index.y-1][index.x+1])
+			#neighbors.append(grid[index.y+1][index.x])
+			#neighbors.append(grid[index.y+1][index.x-1])
+			#neighbors.append(grid[index.y+1][index.x+1])
+
+		# add a bit of force from neighbors
+		var multiplier = 0.8
+		for neighbor in neighbors:
+			diff += (neighbor.position_3d - position_3d) * multiplier
+
 		var desired_velocity = diff * 24
-		velocity = velocity.lerp(desired_velocity, 0.15)
+		velocity = velocity.lerp(desired_velocity, 0.05)
 		
 		# prepare a position 3d in global coordinates
 		var global_position_2d = global_transform * Vector2(position_3d.x, position_3d.y)
