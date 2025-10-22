@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7uihxmdaadhj"]
+[gd_scene load_steps=22 format=3 uid="uid://c7uihxmdaadhj"]
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_jsab4"]
 [ext_resource type="Resource" uid="uid://qv7ahl4mb6vo" path="res://godot4/data/styles/cyber.tres" id="2_xkjhl"]
@@ -6,16 +6,28 @@
 [ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="4_l2iqi"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="5_hnp1y"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="6_ip82o"]
-[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="7_md3ay"]
+[ext_resource type="Script" uid="uid://dgwv8e6t4gtsn" path="res://addons/vshapes/VRoundedRect.gd" id="7_md3ay"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="8_gvfad"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="9_2extf"]
-[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="10_mr7ed"]
+[ext_resource type="Script" uid="uid://b5x8tla76k8xp" path="res://addons/vshapes/VRegularPolygon.gd" id="10_mr7ed"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="11_3gire"]
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="11_4ft3g"]
 [ext_resource type="PackedScene" uid="uid://bkt23g8b1tl77" path="res://godot4/actors/enemies/BubbleTurret.tscn" id="12_72cmw"]
-[ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="13_rlskn"]
+[ext_resource type="Script" uid="uid://v6o74glngsfj" path="res://actors/environments/WaveGroupSpawner.gd" id="13_rlskn"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="14_5b2yd"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="15_s487o"]
+
+[sub_resource type="GDScript" id="GDScript_2yg2a"]
+script/source = "extends Orchestrator
+
+func _ready():
+	await super()
+	await Events.score_threshold_passed
+	pass
+	await Events.score_threshold_passed
+	pass
+	
+"
 
 [sub_resource type="Animation" id="Animation_68mb6"]
 length = 0.001
@@ -79,11 +91,22 @@ _data = {
 &"default": SubResource("Animation_kdc2i")
 }
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_pvgs7"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
 [node name="PveArena" instance=ExtResource("1_jsab4")]
 default_params = ExtResource("11_4ft3g")
 
 [node name="Styleable" parent="." index="0"]
 style = ExtResource("2_xkjhl")
+
+[node name="Orchestrator" parent="Managers" index="0"]
+script = SubResource("GDScript_2yg2a")
 
 [node name="SpawnerWaveManager" parent="Managers" index="6" node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("3_knfq2")]
 spawn_on_all_collected = true
@@ -685,3 +708,6 @@ guest_star_scene = ExtResource("15_s487o")
 libraries = {
 &"": SubResource("AnimationLibrary_g6aeh")
 }
+
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_pvgs7")

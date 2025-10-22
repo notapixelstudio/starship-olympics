@@ -59,6 +59,7 @@ signal new_objective(objective:Variant)
 
 signal points_scored(amount:float, team:String)
 signal score_updated(new_value:float, team:String, new_standings:Array)
+signal score_threshold_passed(team:String) # maybe add threshold metadata?
 
 signal log(message:String)
 signal message(message:Variant, color:Color, global_position:Vector2)

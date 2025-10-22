@@ -15,6 +15,7 @@ func setup() -> void:
 		{'value': _params.silver, 'image': medals.silver},
 		{'value': _params.gold, 'image': medals.gold},
 	])
+	%ScoreManager.set_thresholds([_params.bronze, _params.silver, _params.gold])
 	
 func setup_team(team:String) -> void:
 	super(team)

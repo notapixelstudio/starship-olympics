@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="Script" uid="uid://cdwca4jvfkafg" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
-[ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
+[ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/Orchestrator.tscn" id="1_m2x2u"]
 [ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="2_3p1dt"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_fyulk"]
 [ext_resource type="Script" uid="uid://ctf1rg3hqs2hh" path="res://godot4/data/Player.gd" id="2_wi08g"]
@@ -17,8 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://bbh6dfcfwh26k" path="res://godot4/traits/Styleable.tscn" id="12_g1af4"]
 [ext_resource type="Resource" uid="uid://dk1wwbut07grf" path="res://godot4/data/styles/default.tres" id="13_n4nm8"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="16_64a4r"]
-[ext_resource type="Script" uid="uid://tvmm4mdwnb4y" path="res://godot4/arena/ArenaCamera2D.gd" id="16_ad0xh"]
-[ext_resource type="Script" uid="uid://rnvhumm1cowb" path="res://godot4/debug/DebugActionsManager.gd" id="16_uol0h"]
+[ext_resource type="Script" uid="uid://cberpc25ult52" path="res://godot4/arena/ArenaCamera2D.gd" id="16_ad0xh"]
+[ext_resource type="Script" uid="uid://y6qs6wdh0iln" path="res://godot4/debug/DebugActionsManager.gd" id="16_uol0h"]
 [ext_resource type="PackedScene" uid="uid://7l4wbr8f06he" path="res://godot4/arena/managers/GameOverManager.tscn" id="17_u22a8"]
 [ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="18_3l87r"]
 [ext_resource type="Texture2D" uid="uid://bvtwlkbaasdkr" path="res://combat/levels/background/menus.png" id="18_f7kik"]
@@ -55,7 +55,7 @@ style = ExtResource("13_n4nm8")
 
 [node name="Managers" type="Node" parent="."]
 
-[node name="IntroManager" parent="Managers" instance=ExtResource("1_m2x2u")]
+[node name="Orchestrator" parent="Managers" instance=ExtResource("1_m2x2u")]
 
 [node name="TimeManager" parent="Managers" instance=ExtResource("10_mhlox")]
 unique_name_in_owner = true

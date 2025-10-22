@@ -6,6 +6,8 @@ class_name ScoreManager
 
 var _scores := {}
 var _standings := []
+var _thresholds := []
+var _next_threshold_index := 0
 
 func _set_teams(v: Array[String]) -> void:
 	teams = v
@@ -15,6 +17,9 @@ func _set_teams(v: Array[String]) -> void:
 func add_team(name:String) -> void:
 	_scores[name] = starting_score
 
+func set_thresholds(values:Array) -> void:
+	_thresholds = values
+	
 func _ready() -> void:
 	reset_scores()
 	Events.points_scored.connect(_on_points_scored)
@@ -38,3 +43,8 @@ func _on_points_scored(amount: float, team: String) -> void:
 	
 	Events.score_updated.emit(_scores[team], team, _standings)
 	Events.log.emit('Team [b]%s[/b] scored %d points, and is now at %d points.' % [team, amount, _scores[team]])
+	
+	# signal if a team passed a score threshold
+	if _next_threshold_index < len(_thresholds) and _scores[team] >= _thresholds[_next_threshold_index]:
+		Events.score_threshold_passed.emit(team)
+		_next_threshold_index += 1
