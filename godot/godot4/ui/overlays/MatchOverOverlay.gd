@@ -2,6 +2,7 @@ extends ColorRect
 
 @export var players : Array[Player] : set = set_players
 @export var session : Session : set = set_session
+@export var hall_of_fame_scene: PackedScene
 
 func hide() -> void:
 	modulate = Color(0,0,0,0)
@@ -36,5 +37,8 @@ func enable_continue() -> void:
 	
 
 func _on_press_any_key_any_key_pressed() -> void:
-	get_tree().paused = false
-	Events.continue_after_match_over.emit()
+	var s = hall_of_fame_scene.instantiate()
+	add_child(s)
+	# get_tree().paused = false
+	# Events.continue_after_match_over.emit()
+	

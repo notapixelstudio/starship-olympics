@@ -10,6 +10,7 @@ func set_max_score(value: float) -> void:
 func _ready() -> void:
 	Events.score_updated.connect(_on_score_updated)
 	Events.clock_expired.connect(_on_clock_expired)
+	Events.force_match_over.connect(_on_forced_match_over)
 	
 func _on_score_updated(score: float, team: String, new_standings: Array) -> void:
 	_latest_standings = new_standings
@@ -41,3 +42,6 @@ func _end_the_match() -> void:
 			break # standings are sorted
 	Events.match_over.emit({'winners': winners, 'standings': _latest_standings}) # no winners if score is zero
 	
+func _on_forced_match_over(reason: String) -> void:
+	Events.log.emit('Match ended for '+ reason)
+	_end_the_match()

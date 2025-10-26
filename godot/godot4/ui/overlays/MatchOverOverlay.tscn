@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dhgfc2vafre2d"]
+[gd_scene load_steps=15 format=3 uid="uid://dhgfc2vafre2d"]
 
 [ext_resource type="Script" uid="uid://dh41l07yl0hda" path="res://godot4/ui/overlays/MatchOverOverlay.gd" id="1_6bfhl"]
 [ext_resource type="Script" uid="uid://ctf1rg3hqs2hh" path="res://godot4/data/Player.gd" id="2_llkrh"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://dxdsvkvidj80p" path="res://godot4/debug/default_data/default_players/p4.tres" id="6_6ggcd"]
 [ext_resource type="Resource" uid="uid://dlut230hy2j3m" path="res://godot4/debug/default_data/single_match_example_session.tres" id="7_30v0d"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="8_jh136"]
+[ext_resource type="PackedScene" uid="uid://b0q4ekrko18wp" path="res://special_scenes/combat_UI/gameover/HallOfFame.tscn" id="8_o20gy"]
 [ext_resource type="PackedScene" uid="uid://00s3ufothoqf" path="res://special_scenes/combat_UI/session_points/Leaderboard.tscn" id="9_ukike"]
 [ext_resource type="PackedScene" uid="uid://37vcan82kgvg" path="res://godot4/ui/utils/PressAnyKey.tscn" id="10_llkrh"]
 
@@ -75,6 +76,7 @@ color = Color(0, 0, 0, 0.54902)
 script = ExtResource("1_6bfhl")
 players = Array[ExtResource("2_llkrh")]([ExtResource("3_uc5by"), ExtResource("4_sb85t"), ExtResource("5_mo614"), ExtResource("6_6ggcd")])
 session = ExtResource("7_30v0d")
+hall_of_fame_scene = ExtResource("8_o20gy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
