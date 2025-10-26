@@ -47,6 +47,10 @@ func start():
 		%Timer.start()
 	if spawn_on_all_collected:
 		%CheckEmptyTimer.start(_spawn_time_on_all_collected)
+		
+func stop():
+	%Timer.stop()
+	%CheckEmptyTimer.stop()
 	
 func spawned(element_spawned: ElementSpawnerGroup):
 	print("This just spawned {spawned_element}".format({"spawned_element": element_spawned}))
