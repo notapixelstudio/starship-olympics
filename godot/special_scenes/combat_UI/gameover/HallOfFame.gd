@@ -19,14 +19,13 @@ func _ready():
 		# var fake_session = TheSession.new()
 		for i in range(3):
 			var champ_scene = champion_scene.instantiate()
-			var player = Player.new()
-			player.species = Settings.get_species('mantiacs_1')
-			# var info_player := InfoPlayer.new()
-			# var champ = InfoChampion.new()
-			# info_player.set_species(global.get_species(TheUnlocker.unlocked_elements["species"].keys()[randi()%4]))
-			# champ.player = info_player.to_dict()
-			# champ.session_info = fake_session.to_dict()
-			# champ_scene.set_player(champ)
+			var players = []
+			for n in range(4):
+				var player = Player.new()
+				player.species = Settings.get_species('mantiacs_1')
+				players.append(player)
+			
+			champ_scene.set_banner({"team": {"name": "Goologollo", "players": players}, "score": 250.20})
 			$"%SessionWon".add_child(champ_scene)
 	
 	data.reverse()
@@ -92,7 +91,7 @@ func add_champion_to_scene():
 	if champion_info==null:
 		champion_info = fake_champion()
 	await get_tree().process_frame
-	champ_scene.set_player(champion_info)
+	champ_scene.set_banner(champion_info)
 	$"%SessionWon".add_child(champ_scene)
 	$"%SessionWon".move_child(champ_scene, 0)
 	# you can write your name now

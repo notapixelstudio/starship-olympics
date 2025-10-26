@@ -15,18 +15,27 @@ func set_player_name(player_name: String):
 
 const CARD_POOL_PATH = "res://map/draft/pool"
 
-func set_player(champion: Dictionary):
+func set_banner(champion: Dictionary):
 	this_champion = champion
-	return 
-	$"%PlayerName".text = champion.player.username if champion.player.username else champion.player.id
-	var info_player := Player.new() #InfoPlayer.new()
-	# info_player.set_from_dictionary(champion.player)
-	$"%Headshot".set_player(info_player)
 	
-	$"%DateSession".text = cleanup_datetime_str(this_champion.session_info.get("timestamp_local", this_champion.session_info.get("timestamp_local", this_champion.session_info.timestamp)))
+	$"%PlayerName".text = champion.get("team", {}).get("username", "GITTIZIO0")
+	var players = champion.get("team", {}).get("players", [])
+	var i = 0
+	# FIXME, please do better
+	for headshot in $"%Container".get_children():
+		if i > len(players)-1:
+			break
+		var player = players[i]
+		headshot.set_player(player)
+		headshot.visible = true
+		i+=1
+	
+	$"%DateSession".text = cleanup_datetime_str(Time.get_datetime_string_from_system(false, true))
+	"""
 	$"%Background".modulate = Settings.get_species(champion.player.species).get_color()
 	$"%PlayerName".modulate = Settings.get_species(champion.player.species).get_color()
 	$"%InsertName".modulate = Settings.get_species(champion.player.species).get_color()
+	"""
 	$"%InsertName".placeholder_text = $"%PlayerName".text
 	
 func insert_name():
