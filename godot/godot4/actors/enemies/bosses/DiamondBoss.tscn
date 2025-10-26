@@ -1,8 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://b4hvn1qr85dr0"]
+[gd_scene load_steps=17 format=3 uid="uid://b4hvn1qr85dr0"]
 
-[ext_resource type="Texture2D" uid="uid://bghfna6tc5y5i" path="res://assets/sprites/bosses/diamond_boss.png" id="1_o1p0t"]
+[ext_resource type="Script" uid="uid://cq5judgvign2h" path="res://godot4/actors/enemies/bosses/DiamondBoss.gd" id="1_r4sec"]
 [ext_resource type="Texture2D" uid="uid://c3nlwqq6tdcvp" path="res://assets/sprites/bosses/diamond_boss_tentacles_1.png" id="2_8hekf"]
 [ext_resource type="Texture2D" uid="uid://di87cmfvrfgx0" path="res://assets/sprites/bosses/diamond_boss_tentacles_2.png" id="3_r4sec"]
+[ext_resource type="Texture2D" uid="uid://cwk01dqqkfylb" path="res://assets/sprites/bosses/diamond_boss_phase_0.png" id="4_hygu1"]
+[ext_resource type="Texture2D" uid="uid://hqe8ngr3tjgj" path="res://assets/sprites/bosses/diamond_boss_phase_1.png" id="4_r4sec"]
+[ext_resource type="Texture2D" uid="uid://dmnhwyh8ntnye" path="res://assets/sprites/bosses/diamond_boss_phase_2.png" id="4_x2twg"]
+[ext_resource type="Texture2D" uid="uid://dy5mv7hx5xyj8" path="res://assets/sprites/bosses/diamond_boss_phase_3.png" id="5_4xbgt"]
 
 [sub_resource type="Animation" id="Animation_inngl"]
 resource_name = "Float"
@@ -49,7 +53,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Tentacles:scale")
+tracks/0/path = NodePath("Tentacles/Tentacles1:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -64,7 +68,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Tentacles2:scale")
+tracks/0/path = NodePath("Tentacles/Tentacles2:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -87,7 +91,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Tentacles2:scale")
+tracks/0/path = NodePath("Tentacles/Tentacles2:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -102,7 +106,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Tentacles2:scale")
+tracks/0/path = NodePath("Tentacles/Tentacles2:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -121,21 +125,27 @@ _data = {
 [node name="DiamondBoss" type="StaticBody2D"]
 collision_layer = 16
 collision_mask = 0
+script = ExtResource("1_r4sec")
+textures = Array[Texture]([ExtResource("4_hygu1"), ExtResource("4_r4sec"), ExtResource("4_x2twg"), ExtResource("5_4xbgt")])
 
-[node name="Tentacles" type="Sprite2D" parent="."]
+[node name="Tentacles" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Tentacles1" type="Sprite2D" parent="Tentacles"]
 modulate = Color(0, 0, 0, 0.784314)
 position = Vector2(0, 519)
 scale = Vector2(1.05, 0.95)
 texture = ExtResource("2_8hekf")
 
-[node name="Tentacles2" type="Sprite2D" parent="."]
+[node name="Tentacles2" type="Sprite2D" parent="Tentacles"]
 modulate = Color(0, 0, 0, 0.784314)
 position = Vector2(0, 819)
 scale = Vector2(0.95, 1.05)
 texture = ExtResource("3_r4sec")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_o1p0t")
+unique_name_in_owner = true
+texture = ExtResource("4_r4sec")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-450, 400, 0, -800, 450, 400, 50, 850, -50, 850)
