@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://41vn2qw4djss"]
+[gd_scene load_steps=22 format=3 uid="uid://41vn2qw4djss"]
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_g2yuu"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_xgn0o"]
 [ext_resource type="Resource" uid="uid://qv7ahl4mb6vo" path="res://godot4/data/styles/cyber.tres" id="2_yhuwo"]
 [ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="3_bj3ek"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="4_5inup"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="5_jxy6k"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="9_tb6i2"]
 [ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="10_a43nh"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="11_m6wto"]
@@ -79,6 +80,14 @@ _data = {
 &"default": SubResource("Animation_kdc2i")
 }
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_o1mro"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
 [node name="PveArena" instance=ExtResource("1_g2yuu")]
 default_params = ExtResource("11_xd7ch")
 
@@ -90,6 +99,8 @@ spawn_on_all_collected = true
 spawn_on_timeout = false
 waves_container = NodePath("../../Battlefield/Waves")
 battlefield = NodePath("../../Battlefield")
+
+[node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" instance=ExtResource("5_jxy6k")]
 
 [node name="CollectGame" parent="Managers" index="7" instance=ExtResource("3_bj3ek")]
 
@@ -617,3 +628,6 @@ guest_star_scene = ExtResource("18_w2bk3")
 libraries = {
 &"": SubResource("AnimationLibrary_g6aeh")
 }
+
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_o1mro")
