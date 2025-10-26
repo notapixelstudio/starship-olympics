@@ -1,6 +1,6 @@
 extends Node
 
-const SPECIES_PATH = "res://selection/characters"
+const SPECIES_PATH = "res://godot4/data/species/"
 # playtest mode, fixed selection player
 var demo_playtest : bool = false
 
