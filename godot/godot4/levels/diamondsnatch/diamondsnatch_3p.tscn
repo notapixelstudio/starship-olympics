@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://vci7uxcbok6b"]
+[gd_scene load_steps=19 format=3 uid="uid://vci7uxcbok6b"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_2t2ka"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_ak7cm"]
 [ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="3_dg11o"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_bva5u"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="4_dp213"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="4_n77t6"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="5_1pfq3"]
 [ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="6_vibcf"]
@@ -17,6 +18,14 @@
 [ext_resource type="PackedScene" uid="uid://dvjdmo8ceeh5b" path="res://godot4/elements/bubbles/DiamondBubble.tscn" id="11_w5u2t"]
 [ext_resource type="PackedScene" uid="uid://cie2xt6b1e8oy" path="res://godot4/elements/bubbles/BigDiamondBubble.tscn" id="13_laavj"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_y2quy"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
 [node name="VersusArena" instance=ExtResource("1_2t2ka")]
 
 [node name="Styleable" parent="." index="0"]
@@ -25,6 +34,8 @@ style = ExtResource("8_uaq3n")
 [node name="SpawnerWaveManager" parent="Managers" index="3" node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("2_ak7cm")]
 waves_container = NodePath("../../Battlefield/Waves")
 battlefield = NodePath("../../Battlefield")
+
+[node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" instance=ExtResource("4_dp213")]
 
 [node name="CollectGame" parent="Managers" index="4" instance=ExtResource("3_dg11o")]
 
@@ -561,3 +572,6 @@ element_scene = ExtResource("8_ri0vu")
 [node name="ElementSpawnerGroup45" parent="Battlefield/Waves/Wave6" index="42" instance=ExtResource("10_nrilq")]
 position = Vector2(-900, 450)
 element_scene = ExtResource("8_ri0vu")
+
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_y2quy")
