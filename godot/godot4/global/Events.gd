@@ -65,6 +65,7 @@ signal log(message:String)
 signal message(message:Variant, color:Color, global_position:Vector2)
 
 signal match_over(data:Dictionary)
+signal force_match_over(reason:String)
 
 signal sth_collected(collector, collectee)
 #signal sth_impacted(actor, environment:StaticBody2D)

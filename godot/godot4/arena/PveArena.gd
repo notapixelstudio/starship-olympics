@@ -42,4 +42,4 @@ func _on_ship_captured(ship:Ship, trap) -> void:
 			await get_tree().process_frame
 			if get_tree().get_node_count_in_group('Ship') == 0:
 				await get_tree().create_timer(1).timeout
-				Events.clock_expired.emit()
+				Events.force_match_over.emit("No players left")

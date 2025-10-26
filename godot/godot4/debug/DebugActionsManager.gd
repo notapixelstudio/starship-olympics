@@ -12,7 +12,7 @@ func _unhandled_key_input(event) -> void:
 	if OS.is_debug_build():
 		# cause the clock to expire for testing
 		if event.is_action_pressed("debug_action"):
-			Events.clock_expired.emit()
+			Events.force_match_over.emit("Match ended by user debug action key")
 			
 		# reset the current level
 		if event.is_action_pressed("debug_restart_scene"):
