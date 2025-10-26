@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://dl6asedphskbl"]
+[gd_scene load_steps=19 format=3 uid="uid://dl6asedphskbl"]
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_rkqem"]
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_inngl"]
 [ext_resource type="Resource" uid="uid://qv7ahl4mb6vo" path="res://godot4/data/styles/cyber.tres" id="3_0kx5a"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="4_4lya8"]
+[ext_resource type="PackedScene" uid="uid://b4hvn1qr85dr0" path="res://godot4/actors/enemies/bosses/DiamondBoss.tscn" id="4_rkqem"]
 [ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="5_f7dml"]
 [ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="5_rkqem"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="6_j10s1"]
@@ -15,10 +16,11 @@
 [ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="14_x8lnh"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="15_fau3f"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="16_g2rr7"]
-[ext_resource type="Texture2D" uid="uid://bghfna6tc5y5i" path="res://assets/sprites/bosses/diamond_boss.png" id="17_inngl"]
 
 [sub_resource type="GDScript" id="GDScript_2yg2a"]
 script/source = "extends Orchestrator
+
+@export var boss_scene : PackedScene
 
 func _ready():
 	await super()
@@ -27,6 +29,9 @@ func _ready():
 	%TimeManager.stop()
 	%SpawnerWaveManager.stop()
 	await get_tree().create_timer(5).timeout
+	var boss = boss_scene.instantiate()
+	Events.spawn_request.emit(boss)
+	
 	%TimeManager.start()
 	%SpawnerWaveManagerBoss.start()
 	
@@ -35,58 +40,6 @@ func _ready():
 	await get_tree().create_timer(5).timeout
 	%TimeManager.start()
 "
-
-[sub_resource type="Animation" id="Animation_68mb6"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_kdc2i"]
-resource_name = "default"
-length = 60.0
-step = 1.0
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6aeh"]
-_data = {
-&"RESET": SubResource("Animation_68mb6"),
-&"default": SubResource("Animation_kdc2i")
-}
-
-[sub_resource type="Animation" id="Animation_inngl"]
-resource_name = "Float"
-length = 10.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(2.5, 7.5),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector2(0, -150), Vector2(0, 150)]
-}
-
-[sub_resource type="Animation" id="Animation_0kx5a"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4lya8"]
-_data = {
-&"Float": SubResource("Animation_inngl"),
-&"RESET": SubResource("Animation_0kx5a")
-}
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_pvgs7"]
 resource_local_to_scene = true
@@ -104,6 +57,7 @@ style = ExtResource("3_0kx5a")
 
 [node name="Orchestrator" parent="Managers" index="0"]
 script = SubResource("GDScript_2yg2a")
+boss_scene = ExtResource("4_rkqem")
 
 [node name="SpawnerWaveManager" parent="Managers" index="6" node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("4_4lya8")]
 unique_name_in_owner = true
@@ -1191,27 +1145,6 @@ position = Vector2(1500, 0)
 pattern = "vline"
 element_scene = ExtResource("12_wfl0q")
 guest_star_scene = ExtResource("16_g2rr7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="7" groups=["animation_starts_with_battle"]]
-libraries = {
-&"": SubResource("AnimationLibrary_g6aeh")
-}
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Battlefield" index="8"]
-collision_layer = 16
-collision_mask = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="Battlefield/StaticBody2D" index="0"]
-texture = ExtResource("17_inngl")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/StaticBody2D" index="1"]
-polygon = PackedVector2Array(-450, 0, 0, -900, 450, 0, 0, 900)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/StaticBody2D" index="2"]
-libraries = {
-&"": SubResource("AnimationLibrary_4lya8")
-}
-autoplay = "Float"
 
 [node name="Navigation" parent="." index="6"]
 navigation_polygon = SubResource("NavigationPolygon_pvgs7")

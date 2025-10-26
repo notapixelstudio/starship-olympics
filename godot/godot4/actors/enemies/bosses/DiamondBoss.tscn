@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4hvn1qr85dr0"]
+
+[ext_resource type="Texture2D" uid="uid://bghfna6tc5y5i" path="res://assets/sprites/bosses/diamond_boss.png" id="1_o1p0t"]
+
+[sub_resource type="Animation" id="Animation_inngl"]
+resource_name = "Float"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.5, 7.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, -150), Vector2(0, 150)]
+}
+
+[sub_resource type="Animation" id="Animation_0kx5a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4lya8"]
+_data = {
+&"Float": SubResource("Animation_inngl"),
+&"RESET": SubResource("Animation_0kx5a")
+}
+
+[node name="DiamondBoss" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_o1p0t")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-450, 0, 0, -900, 450, 0, 0, 900)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4lya8")
+}
+autoplay = "Float"
