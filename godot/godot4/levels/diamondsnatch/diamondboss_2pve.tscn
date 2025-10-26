@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dl6asedphskbl"]
+[gd_scene load_steps=24 format=3 uid="uid://dl6asedphskbl"]
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_rkqem"]
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_inngl"]
@@ -12,7 +12,9 @@
 [ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="8_q8h85"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="9_bia0f"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="10_qx2lk"]
+[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="11_tembs"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="12_wfl0q"]
+[ext_resource type="PackedScene" uid="uid://bkt23g8b1tl77" path="res://godot4/actors/enemies/BubbleTurret.tscn" id="13_u3hon"]
 [ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="14_x8lnh"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="15_fau3f"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="16_g2rr7"]
@@ -28,6 +30,7 @@ func _ready():
 	await Events.score_threshold_passed
 	%TimeManager.stop()
 	%SpawnerWaveManager.stop()
+	%Turrets.queue_free()
 	await get_tree().create_timer(5).timeout
 	var boss = boss_scene.instantiate()
 	Events.spawn_request.emit(boss)
@@ -40,6 +43,68 @@ func _ready():
 	await get_tree().create_timer(5).timeout
 	%TimeManager.start()
 "
+
+[sub_resource type="Animation" id="Animation_68mb6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall2/BubbleTurret:wait_time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [8.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wall2/BubbleTurret:rotation_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.392699]
+}
+
+[sub_resource type="Animation" id="Animation_kdc2i"]
+resource_name = "default"
+length = 60.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall2/BubbleTurret:wait_time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 16, 36, 52),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8.0, 4.0, 2.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wall2/BubbleTurret:rotation_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 52),
+"transitions": PackedFloat32Array(0, 0),
+"update": 1,
+"values": [0.392699, 0.786]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6aeh"]
+_data = {
+&"RESET": SubResource("Animation_68mb6"),
+&"default": SubResource("Animation_kdc2i")
+}
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_pvgs7"]
 resource_local_to_scene = true
@@ -283,11 +348,11 @@ position = Vector2(0, 750)
 element_scene = ExtResource("12_wfl0q")
 
 [node name="ElementSpawnerGroup2" parent="Battlefield/Waves/MultiDiamondWave2" index="1" instance=ExtResource("15_fau3f")]
-position = Vector2(0, -900)
+position = Vector2(0, -600)
 element_scene = ExtResource("12_wfl0q")
 
 [node name="ElementSpawnerGroup8" parent="Battlefield/Waves/MultiDiamondWave2" index="2" instance=ExtResource("15_fau3f")]
-position = Vector2(0, 900)
+position = Vector2(0, 600)
 element_scene = ExtResource("12_wfl0q")
 
 [node name="ElementSpawnerGroup7" parent="Battlefield/Waves/MultiDiamondWave2" index="3" instance=ExtResource("15_fau3f")]
@@ -357,12 +422,12 @@ max_repeats = 2
 extra_delay = 1.0
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Waves/MultiDiamondWave3" index="0" instance=ExtResource("15_fau3f")]
-position = Vector2(0, 900)
+position = Vector2(0, 750)
 pattern = "bigline"
 element_scene = ExtResource("12_wfl0q")
 
 [node name="ElementSpawnerGroup2" parent="Battlefield/Waves/MultiDiamondWave3" index="1" instance=ExtResource("15_fau3f")]
-position = Vector2(0, -900)
+position = Vector2(0, -750)
 pattern = "bigline"
 element_scene = ExtResource("12_wfl0q")
 
@@ -452,6 +517,7 @@ pattern = "single"
 element_scene = ExtResource("12_wfl0q")
 
 [node name="EverythingMixedWave" type="Node2D" parent="Battlefield/Waves" index="8" groups=["spawn_waves"]]
+visible = false
 script = ExtResource("14_x8lnh")
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Waves/EverythingMixedWave" index="0" instance=ExtResource("15_fau3f")]
@@ -473,19 +539,19 @@ position = Vector2(0, 600)
 element_scene = ExtResource("12_wfl0q")
 
 [node name="ElementSpawnerGroup5" parent="Battlefield/Waves/EverythingMixedWave" index="4" instance=ExtResource("15_fau3f")]
-position = Vector2(450, 900)
+position = Vector2(450, 750)
 element_scene = ExtResource("12_wfl0q")
 
 [node name="ElementSpawnerGroup6" parent="Battlefield/Waves/EverythingMixedWave" index="5" instance=ExtResource("15_fau3f")]
-position = Vector2(450, -900)
+position = Vector2(450, -750)
 element_scene = ExtResource("12_wfl0q")
 
 [node name="ElementSpawnerGroup7" parent="Battlefield/Waves/EverythingMixedWave" index="6" instance=ExtResource("15_fau3f")]
-position = Vector2(-450, -900)
+position = Vector2(-450, -750)
 element_scene = ExtResource("12_wfl0q")
 
 [node name="ElementSpawnerGroup8" parent="Battlefield/Waves/EverythingMixedWave" index="7" instance=ExtResource("15_fau3f")]
-position = Vector2(-450, 900)
+position = Vector2(-450, 750)
 element_scene = ExtResource("12_wfl0q")
 
 [node name="ElementSpawnerGroup9" parent="Battlefield/Waves/EverythingMixedWave" index="8" instance=ExtResource("15_fau3f")]
@@ -659,6 +725,7 @@ guest_star_scene = ExtResource("16_g2rr7")
 [node name="WavesBoss" type="Node2D" parent="Battlefield" index="6"]
 
 [node name="SingleDiamondWave" type="Node2D" parent="Battlefield/WavesBoss" index="0" groups=["spawn_waves"]]
+visible = false
 script = ExtResource("14_x8lnh")
 max_repeats = 3
 extra_delay = 1.0
@@ -1145,6 +1212,26 @@ position = Vector2(1500, 0)
 pattern = "vline"
 element_scene = ExtResource("12_wfl0q")
 guest_star_scene = ExtResource("16_g2rr7")
+
+[node name="Turrets" type="Node2D" parent="Battlefield" index="7"]
+unique_name_in_owner = true
+
+[node name="Wall2" parent="Battlefield/Turrets" index="0" instance=ExtResource("9_bia0f")]
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Turrets/Wall2" index="4"]
+script = ExtResource("11_tembs")
+sides = 4
+
+[node name="BubbleTurret" parent="Battlefield/Turrets/Wall2" index="7" instance=ExtResource("13_u3hon")]
+position = Vector2(6.10352e-05, 0)
+bullet_lifetime = 30.0
+wait_time = 8.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Turrets/Wall2" index="8" groups=["animation_starts_with_battle"]]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_g6aeh")
+}
 
 [node name="Navigation" parent="." index="6"]
 navigation_polygon = SubResource("NavigationPolygon_pvgs7")
