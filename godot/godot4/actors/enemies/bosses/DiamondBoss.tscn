@@ -46,6 +46,21 @@ _data = {
 &"RESET": SubResource("Animation_0kx5a")
 }
 
+[sub_resource type="Animation" id="Animation_r4sec"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tentacles/Tentacles2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.95, 1.05)]
+}
+
 [sub_resource type="Animation" id="Animation_8hekf"]
 resource_name = "wobble"
 length = 4.0
@@ -63,7 +78,13 @@ tracks/0/keys = {
 "values": [Vector2(1.05, 0.95), Vector2(0.95, 1.05)]
 }
 
-[sub_resource type="Animation" id="Animation_r4sec"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hygu1"]
+_data = {
+&"RESET": SubResource("Animation_r4sec"),
+&"wobble": SubResource("Animation_8hekf")
+}
+
+[sub_resource type="Animation" id="Animation_x2twg"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -76,12 +97,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.95, 1.05)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hygu1"]
-_data = {
-&"RESET": SubResource("Animation_r4sec"),
-&"wobble": SubResource("Animation_8hekf")
 }
 
 [sub_resource type="Animation" id="Animation_s7h11"]
@@ -99,21 +114,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
 "values": [Vector2(0.95, 1.05), Vector2(1.05, 0.95)]
-}
-
-[sub_resource type="Animation" id="Animation_x2twg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Tentacles/Tentacles2:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.95, 1.05)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4xbgt"]
@@ -147,8 +147,19 @@ texture = ExtResource("3_r4sec")
 unique_name_in_owner = true
 texture = ExtResource("4_r4sec")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2DPhase1" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
 polygon = PackedVector2Array(-450, 400, 0, -800, 450, 400, 50, 850, -50, 850)
+
+[node name="CollisionPolygon2DPhase2" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
+polygon = PackedVector2Array(-250, 250, 0, -500, 250, 250, 50, 550, -50, 550)
+disabled = true
+
+[node name="CollisionPolygon2DPhase3" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
+polygon = PackedVector2Array(-100, 100, 0, -200, 100, 100, 0, 250)
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
