@@ -4,6 +4,8 @@ extends StaticBody2D
 
 var _phase := 1
 
+signal ready_for_next_phase
+
 func next_phase() -> void:
 	_phase += 1
 	%Sprite2D.texture = textures[_phase]
@@ -18,3 +20,5 @@ func next_phase() -> void:
 			else:
 				node.disabled = true
 			
+func _notify_ready_for_next_phase() -> void:
+	ready_for_next_phase.emit()

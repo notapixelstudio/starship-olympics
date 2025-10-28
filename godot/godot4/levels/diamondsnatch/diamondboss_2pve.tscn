@@ -40,13 +40,13 @@ func _ready():
 	
 	await Events.score_threshold_passed
 	%TimeManager.stop()
-	await get_tree().create_timer(5).timeout
+	await boss.ready_for_next_phase
 	boss.next_phase()
 	%TimeManager.start()
 	
 	await Events.score_threshold_passed
 	%TimeManager.stop()
-	await get_tree().create_timer(5).timeout
+	await boss.ready_for_next_phase
 	boss.next_phase()
 	%TimeManager.start()
 "
