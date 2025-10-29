@@ -74,3 +74,25 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		Utils.end_execution()
 	elif event.is_action_pressed("fullscreen"):
 		Settings.toggle_fullscreen()
+
+func read_file_by_line(path: String) -> Array:
+	# When we load a file, we must check that it exists before we try to open it or it'll crash the game
+	if not FileAccess.file_exists(path):
+		print("The file does not exist.")
+		return []
+	var file = FileAccess.open(path, FileAccess.READ)
+	print("We are going to load from this JSON: ", file.get_path_absolute())
+	# parse file data - convert the JSON back to a dictionary
+	var data = []
+	var num_lines = 1
+	while not file.eof_reached(): # iterate through all lines until the end of file is reached
+		var content = file.get_line()
+		if content == "":
+			continue
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(content)
+		data.append(test_json_conv.get_data())
+		num_lines += 1
+	print("Read {lines}".format({"lines":num_lines}))
+	file.close()
+	return data

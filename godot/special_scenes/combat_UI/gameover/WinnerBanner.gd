@@ -1,9 +1,10 @@
 extends Control
 
-signal champion_has_a_name 
+class_name WinnerBanner
 
 var this_champion : Dictionary # InfoChampion
 @export var minigame_logo : PackedScene
+@export var headshot_scene: PackedScene
 
 func _ready():
 	$"%PlayerName".visible = true
@@ -13,20 +14,22 @@ func _ready():
 func set_player_name(player_name: String):
 	$"%PlayerName".text = player_name
 
-const CARD_POOL_PATH = "res://map/draft/pool"
 
 func set_banner(champion: Dictionary):
 	this_champion = champion
 	
-	$"%PlayerName".text = champion.get("team", {}).get("username", "GITTIZIO0")
-	var players = champion.get("team", {}).get("players", [])
+	$"%PlayerName".text = champion.get("nickname", "GITTIZIO0")
+	var players = champion.get("players", {})
 	var i = 0
-	# FIXME, please do better
-	for headshot in $"%Container".get_children():
-		if i > len(players)-1:
-			break
-		var player = players[i]
-		headshot.set_player(player)
+	
+	for player in players:
+		var p_info = Player.new(player)
+		var headshot = headshot_scene.instantiate()
+		headshot.set_player(p_info)
+		
+		$"%Container".add_child(headshot)
+		$"%Container".move_child(headshot, i)
+		
 		headshot.visible = true
 		i+=1
 	
@@ -51,15 +54,10 @@ func _on_InsertName_name_inserted(player_name: String):
 	$"%PlayerName".visible = true
 	$"%HBoxContainer".queue_free()
 	$"%PlayerName".text = player_name
-	this_champion.get("player", {}).set("username", player_name)
-	"""
-	if this_game:
-		var players = this_game.get_players()
-		for player in players:
-			if player.id == this_champion.player.id:
-				player.username = player_name
-	emit_signal("champion_has_a_name")
-	"""
+	this_champion.set("nickname", player_name)
+	
+	Events.new_entry_hall_of_fame.emit(this_champion)
+	
 
 func cleanup_datetime_str(datetime_str: String):
 	return datetime_str.replace("T", " ")

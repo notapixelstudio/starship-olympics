@@ -156,8 +156,13 @@ func _on_match_over(data:Dictionary) -> void:
 		_match_over_screen.show()
 	)
 
-func _update_session(data:Dictionary) -> void:
+func _update_session(data:Dictionary) -> void:       
+	data["players"] = get_active_players()
+	data["remaining_time"] = %TimeManager.get_remaining_time()
+	data["time"] = _params.time
+	data["minigame"] = get_minigame().title
 	session.add_match_results(data)
+	
 	
 func get_active_players() -> Array[Player]:
 	return _active_players
