@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://etaj5hcgxhr2"]
+[gd_scene load_steps=9 format=3 uid="uid://hwf7tcforry2"]
 
-[ext_resource type="PackedScene" uid="uid://d3abq633jh74a" path="res://godot4/ui/screens/Screen.tscn" id="1_w3al4"]
-[ext_resource type="Script" uid="uid://4v2jduc3xq3t" path="res://godot4/ui/screens/title_screen/TitleScreen.gd" id="2_c1xai"]
-[ext_resource type="Texture2D" uid="uid://cv1lpjudl08v5" path="res://logo.png" id="2_ny7i1"]
-[ext_resource type="PackedScene" uid="uid://dhn4hc2tmwqkk" path="res://godot4/ui/screens/main_menu/MainMenuScreen.tscn" id="3_k6b6q"]
-[ext_resource type="PackedScene" uid="uid://37vcan82kgvg" path="res://godot4/ui/utils/PressAnyKey.tscn" id="3_pk3si"]
-[ext_resource type="AudioStream" uid="uid://dvyudxmqjls3a" path="res://assets/audio/soundtracks/PM_ATG_120_3_3+PM_NIGHTPULSE_120BPM_06.ogg" id="4_i5sfy"]
+[ext_resource type="PackedScene" uid="uid://d3abq633jh74a" path="res://godot4/ui/screens/Screen.tscn" id="1_3ws7c"]
+[ext_resource type="Script" uid="uid://5c55yu5bl5" path="res://godot4/ui/screens/title_screen/TitleScreen.gd" id="2_x0td4"]
+[ext_resource type="PackedScene" uid="uid://dhn4hc2tmwqkk" path="res://godot4/ui/screens/main_menu/MainMenuScreen.tscn" id="3_ebbj7"]
+[ext_resource type="AudioStream" uid="uid://dvyudxmqjls3a" path="res://assets/audio/soundtracks/PM_ATG_120_3_3+PM_NIGHTPULSE_120BPM_06.ogg" id="4_4ji6u"]
+[ext_resource type="Texture2D" uid="uid://cv1lpjudl08v5" path="res://logo.png" id="5_q8ea5"]
+[ext_resource type="PackedScene" uid="uid://37vcan82kgvg" path="res://godot4/ui/utils/PressAnyKey.tscn" id="6_e6nyr"]
 
 [sub_resource type="Animation" id="Animation_c1xai"]
 resource_name = "fade_in"
@@ -54,18 +54,19 @@ _data = {
 &"fade_in": SubResource("Animation_c1xai")
 }
 
-[node name="TitleScreen" instance=ExtResource("1_w3al4")]
-script = ExtResource("2_c1xai")
-next_screen_scene = ExtResource("3_k6b6q")
-bgm = ExtResource("4_i5sfy")
+[node name="TitleScreen" instance=ExtResource("1_3ws7c")]
+script = ExtResource("2_x0td4")
+next_screen_scene = ExtResource("3_ebbj7")
+bgm = ExtResource("4_4ji6u")
 
 [node name="Offset" type="Node2D" parent="." index="0"]
 position = Vector2(0, 100)
 
 [node name="Logo" type="Sprite2D" parent="Offset" index="0"]
-position = Vector2(640, 206)
+modulate = Color(1, 1, 1, 0)
+position = Vector2(640, 295)
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("2_ny7i1")
+texture = ExtResource("5_q8ea5")
 
 [node name="Animator" type="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -73,7 +74,7 @@ libraries = {
 }
 autoplay = "fade_in"
 
-[node name="PressAnyKey" parent="." index="2" instance=ExtResource("3_pk3si")]
+[node name="PressAnyKey" parent="." index="2" instance=ExtResource("6_e6nyr")]
 layout_mode = 0
 offset_top = 600.0
 offset_right = 1280.0

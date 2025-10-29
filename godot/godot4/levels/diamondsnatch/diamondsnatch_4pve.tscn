@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://bh8hbiur3qgf6"]
+[gd_scene load_steps=21 format=3 uid="uid://bh8hbiur3qgf6"]
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_j1qfo"]
 [ext_resource type="Resource" uid="uid://qv7ahl4mb6vo" path="res://godot4/data/styles/cyber.tres" id="2_e8kk0"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="3_bypd7"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="4_e8kk0"]
 [ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="4_f8610"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="5_4h8ud"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="6_ij57h"]
@@ -126,6 +127,14 @@ _data = {
 &"default": SubResource("Animation_kdc2i")
 }
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_bypd7"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
 [node name="PveArena" instance=ExtResource("1_j1qfo")]
 
 [node name="Styleable" parent="." index="0"]
@@ -137,6 +146,8 @@ spawn_count_on_all_collected = 5
 spawn_on_timeout = false
 waves_container = NodePath("../../Battlefield/Waves")
 battlefield = NodePath("../../Battlefield")
+
+[node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" instance=ExtResource("4_e8kk0")]
 
 [node name="CollectGame" parent="Managers" index="7" instance=ExtResource("4_f8610")]
 
@@ -954,6 +965,9 @@ wait_time = 8.0
 
 [node name="BubbleTurret2" parent="Battlefield" index="12" instance=ExtResource("15_tmtv2")]
 position = Vector2(900, 0)
+rotation_speed = -0.392699
 bullet_lifetime = 20.0
 wait_time = 8.0
-rotation_speed = -0.392699
+
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_bypd7")

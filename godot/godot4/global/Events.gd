@@ -59,16 +59,20 @@ signal new_objective(objective:Variant)
 
 signal points_scored(amount:float, team:String)
 signal score_updated(new_value:float, team:String, new_standings:Array)
+signal score_threshold_passed(team:String) # maybe add threshold metadata?
 
 signal log(message:String)
 signal message(message:Variant, color:Color, global_position:Vector2)
 
 signal match_over(data:Dictionary)
+signal force_match_over(reason:String)
 
 signal sth_collected(collector, collectee)
 #signal sth_impacted(actor, environment:StaticBody2D)
 
+signal blocks_cleared(blocks_field, amount, global_position)
 
+signal start_charging(charger)
 signal tap(tapper)
 
 signal camera_updated(camera_state:Dictionary)

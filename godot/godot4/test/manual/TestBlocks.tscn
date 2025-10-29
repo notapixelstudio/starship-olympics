@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://b8u0ahaefij7v"]
+
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_2u2gc"]
+[ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_0wabn"]
+[ext_resource type="PackedScene" uid="uid://bbh6dfcfwh26k" path="res://godot4/traits/Styleable.tscn" id="2_2u2gc"]
+[ext_resource type="Resource" uid="uid://c3uv3coc421eh" path="res://godot4/data/styles/analog.tres" id="3_0wabn"]
+[ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_egrwn"]
+[ext_resource type="PackedScene" uid="uid://dysjvql27gdup" path="res://godot4/elements/blocks/BlocksField.tscn" id="5_ll5gd"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="6_5mryg"]
+[ext_resource type="PackedScene" uid="uid://dcs0r4rb0oydr" path="res://godot4/actors/ships/weapons/TractorBeam.tscn" id="7_0wabn"]
+[ext_resource type="PackedScene" uid="uid://cxkldgko8orxv" path="res://godot4/elements/blocks/BlockRotationArea.tscn" id="8_2u2gc"]
+[ext_resource type="PackedScene" uid="uid://dei1nchvkk3mm" path="res://godot4/elements/blocks/BlockPreviewTileMap.tscn" id="9_2u2gc"]
+
+[sub_resource type="GDScript" id="GDScript_0rj7w"]
+script/source = "extends SOLog
+
+
+func _ready():
+	super._ready()
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_sth_collected(collector, collectee):
+	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
+"
+
+[node name="TestChamber" instance=ExtResource("1_2u2gc")]
+
+[node name="Styleable" parent="." index="0" instance=ExtResource("2_2u2gc")]
+style = ExtResource("3_0wabn")
+
+[node name="FPSCounter" parent="." index="4"]
+modulate = Color(0.541176, 0.768627, 1, 1)
+
+[node name="TestGrid" parent="." index="5"]
+position = Vector2(-1200, -1200)
+rows = 12
+columns = 12
+dx = 200
+dy = 200
+major_line_every = 1
+
+[node name="TestChamberLog" parent="." index="6"]
+script = SubResource("GDScript_0rj7w")
+
+[node name="ScoreManager" parent="." index="7" instance=ExtResource("2_0wabn")]
+teams = Array[String](["P1"])
+
+[node name="MessageManager" parent="." index="8" node_paths=PackedStringArray("battlefield") instance=ExtResource("3_egrwn")]
+battlefield = NodePath("..")
+
+[node name="Ship" parent="." index="9" instance=ExtResource("6_5mryg")]
+unique_name_in_owner = true
+position = Vector2(-800, 0)
+
+[node name="TractorBeam" parent="Ship" index="20" instance=ExtResource("7_0wabn")]
+
+[node name="BlocksField" parent="." index="12" instance=ExtResource("5_ll5gd")]
+unique_name_in_owner = true
+tick_duration = 2.0
+spawn_every_ticks = 2
+play_area_width = 12
+play_area_height = 12
+
+[node name="BlockRotationArea" parent="." index="13" instance=ExtResource("8_2u2gc")]
+position = Vector2(2249, -914)
+
+[node name="BlockPreviewTileMap" parent="." index="14" node_paths=PackedStringArray("blocks_field") instance=ExtResource("9_2u2gc")]
+unique_name_in_owner = true
+blocks_field = NodePath("../BlocksField")

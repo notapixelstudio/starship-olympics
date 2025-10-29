@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl82ubt1dg33d"]
+
+[ext_resource type="Script" uid="uid://ht2a3njtuhiv" path="res://godot4/elements/old_blocks/Block.gd" id="1_w55hd"]
+
+[node name="Block" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_w55hd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
+polygon = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.489728, 0.494558, 0.728088, 1)
+polygon = PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.3
+one_shot = true
+
+[node name="FallTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="FallTimer" to="." method="_on_fall_timer_timeout"]

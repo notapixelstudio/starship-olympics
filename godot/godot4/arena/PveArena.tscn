@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ca36e5ga36lv0"]
+[gd_scene load_steps=13 format=3 uid="uid://ca36e5ga36lv0"]
 
 [ext_resource type="PackedScene" uid="uid://ctk8t0ohpljms" path="res://godot4/arena/Arena.tscn" id="1_q7r6t"]
 [ext_resource type="Script" uid="uid://coliggrdrfuqa" path="res://godot4/arena/PveArena.gd" id="2_7y33o"]
@@ -12,6 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://jutuv5k67s36" path="res://godot4/ui/overlays/StandalonePveMatchOverOverlay.tscn" id="10_4a0po"]
 [ext_resource type="Resource" uid="uid://ptbxs4niqmpf" path="res://godot4/debug/default_data/single_pve_match_empty_session.tres" id="10_uratn"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rittb"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
 [node name="PveArena" instance=ExtResource("1_q7r6t")]
 script = ExtResource("2_7y33o")
 medals = ExtResource("3_frhf1")
@@ -19,3 +27,6 @@ players = Array[ExtResource("4_fpbde")]([ExtResource("3_8cyur"), ExtResource("4_
 match_over_screen_scene = ExtResource("10_4a0po")
 default_params = ExtResource("7_colel")
 session = ExtResource("10_uratn")
+
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_rittb")

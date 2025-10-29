@@ -15,6 +15,7 @@ func setup() -> void:
 		{'value': _params.silver, 'image': medals.silver},
 		{'value': _params.gold, 'image': medals.gold},
 	])
+	%ScoreManager.set_thresholds([_params.bronze, _params.silver, _params.gold])
 	
 func setup_team(team:String) -> void:
 	super(team)
@@ -34,11 +35,11 @@ func _update_session(data:Dictionary) -> void:
 func _on_ship_captured(ship:Ship, trap) -> void:
 	if trap is ShipBubble:
 		if len(get_active_players()) > 1:
-			# if we are not playing solo, teammates have to pop your bubble by dashing
-			trap.disable_auto_popping()
-			
-			# also, end the game if all ships have been captured
+			# end the game if all ships have been captured
 			await get_tree().process_frame
 			if get_tree().get_node_count_in_group('Ship') == 0:
 				await get_tree().create_timer(1).timeout
-				Events.clock_expired.emit()
+				Events.force_match_over.emit("No players left")
+		else:
+			# if we are playing solo, automatically pop the bubble after a while
+			trap.set_auto_popping(true)

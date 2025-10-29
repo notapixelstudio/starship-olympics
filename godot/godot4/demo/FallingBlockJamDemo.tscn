@@ -1,0 +1,20 @@
+[gd_scene load_steps=12 format=3 uid="uid://biedcf3qfhlqs"]
+
+[ext_resource type="Script" uid="uid://d36lp685byh2u" path="res://godot4/demo/FallingBlockJamDemo.gd" id="1_igmlk"]
+[ext_resource type="PackedScene" uid="uid://voe3u3ju5lnw" path="res://godot4/levels/falling-blocks/falling-blocks_1pve.tscn" id="2_ug8pg"]
+[ext_resource type="Script" uid="uid://ctf1rg3hqs2hh" path="res://godot4/data/Player.gd" id="2_xj1tr"]
+[ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="3_qwqrg"]
+[ext_resource type="Resource" uid="uid://fc2yg6p4flm5" path="res://godot4/debug/default_data/default_players/p2.tres" id="4_qyf7e"]
+[ext_resource type="Resource" uid="uid://c2u64vntxjiy6" path="res://godot4/debug/default_data/default_players/p3.tres" id="5_7sdkj"]
+[ext_resource type="Resource" uid="uid://dxdsvkvidj80p" path="res://godot4/debug/default_data/default_players/p4.tres" id="6_y2j3o"]
+[ext_resource type="Resource" uid="uid://b753hvihacdku" path="res://godot4/debug/default_data/default_players/p1ve.tres" id="7_8kef6"]
+[ext_resource type="Resource" uid="uid://cm52kie76ynwm" path="res://godot4/debug/default_data/default_players/p2ve.tres" id="8_t1b1c"]
+[ext_resource type="Resource" uid="uid://cp7olne2sr3dk" path="res://godot4/debug/default_data/default_players/p3ve.tres" id="9_b3nx5"]
+[ext_resource type="Resource" uid="uid://dqdydntuyp5y2" path="res://godot4/debug/default_data/default_players/p4ve.tres" id="10_2kisq"]
+
+[node name="FallingBlockJamDemo" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_igmlk")
+players_vs = Array[ExtResource("2_xj1tr")]([ExtResource("3_qwqrg"), ExtResource("4_qyf7e"), ExtResource("5_7sdkj"), ExtResource("6_y2j3o")])
+players_coop = Array[ExtResource("2_xj1tr")]([ExtResource("7_8kef6"), ExtResource("8_t1b1c"), ExtResource("9_b3nx5"), ExtResource("10_2kisq")])
+game_scene_1pve = ExtResource("2_ug8pg")

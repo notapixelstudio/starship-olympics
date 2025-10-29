@@ -106,6 +106,7 @@ func is_thrusting() -> bool:
 func charge():
 	%ChargeManager.start_charging()
 	dash_graviton_field.enable()
+	Events.start_charging.emit(self)
 	
 func release():
 	if %ChargeManager.can_tap():
@@ -190,6 +191,10 @@ func _on_body_entered(body) -> void:
 
 func _on_touch_area_area_entered(area) -> void:
 	_on_touch_area_entered(area)
+	
+	# FIXME this is temporary
+	if area is BlockRotationArea:
+		_on_rotation_area_body_entered(area.is_cw())
 
 func _on_touch_area_body_entered(body) -> void:
 	_on_touch_area_entered(body)
@@ -205,6 +210,11 @@ func _on_hurt_area_body_entered(body) -> void:
 	
 func _on_hurt_area_entered(sth) -> void:
 	Events.collision.emit(self, sth, 'hurt')
+	
+func _on_touch_area_area_exited(area: Area2D) -> void:
+	# FIXME this is temporary
+	if area is BlockRotationArea:
+		_on_rotation_area_body_exited()
 	
 func get_color() -> Color:
 	return player.get_color() if player else Color.WHITE
@@ -305,3 +315,35 @@ func rebound(direction = null, strength := 2000.0) -> Vector2:
 		direction = Vector2(-1,0).rotated(rotation)
 	apply_central_impulse(strength*direction)
 	return (strength*direction)
+
+# TODO: This is temporary, should not be here
+var rotation_zone_type = null
+
+func _on_rotation_area_body_entered(cw):
+	rotation_zone_type = cw
+func _on_rotation_area_body_exited():
+	rotation_zone_type = null
+func update_grabbed_block(new_block: Block):
+	if is_holding_block():
+		grabbed_block = new_block
+		
+# This will store the data of the grabbed block.
+# It's null when the ship is empty-handed.
+var grabbed_block : Block
+var anchor
+
+func is_holding_block() -> bool:
+	return grabbed_block != null
+
+func grab_block(block:Block, offset:Vector2i) -> void:
+	grabbed_block = block
+	anchor = offset
+	SoundEffects.play(%TractorBeamGrabSFX)
+
+# Call this to make the ship drop its block.
+func release_block() -> void:
+	grabbed_block = null
+	anchor = null
+	SoundEffects.play(%TractorBeamReleaseSFX)
+	
+# TODO: END OF TEMPORARY

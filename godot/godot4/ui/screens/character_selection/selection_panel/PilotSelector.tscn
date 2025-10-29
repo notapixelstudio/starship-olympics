@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cgu7lwmnkg60h"]
+[gd_scene load_steps=21 format=3 uid="uid://cgu7lwmnkg60h"]
 
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1"]
 [ext_resource type="Script" uid="uid://dyw5oprdnddvj" path="res://godot4/ui/screens/character_selection/selection_panel/PilotSelector.gd" id="2"]
@@ -18,8 +18,82 @@
 [ext_resource type="AudioStream" uid="uid://dpmqmovj7kg0s" path="res://assets/audio/UI_effects/PM_BlurryDreams_33.wav" id="16_84drq"]
 [ext_resource type="AudioStream" uid="uid://iudauhck757d" path="res://assets/audio/UI_effects/GUI_Notification 16.wav" id="17_ct6yd"]
 
+[sub_resource type="Animation" id="Animation_llkrh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6bfhl"]
+resource_name = "blink"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uc5by"]
+_data = {
+&"RESET": SubResource("Animation_llkrh"),
+&"blink": SubResource("Animation_6bfhl")
+}
+
 [node name="PilotSelector" type="Node2D"]
 script = ExtResource("2")
+
+[node name="PressToJoin" type="Label" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+offset_left = -153.0
+offset_top = -122.0
+offset_right = 144.0
+offset_bottom = 64.0
+theme = ExtResource("1")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_font_sizes/font_size = 27
+text = "PRESS
+ANY BUTTON
+TO JOIN"
+horizontal_alignment = 1
+
+[node name="ContinueAnimationPlayer" type="AnimationPlayer" parent="PressToJoin"]
+libraries = {
+&"": SubResource("AnimationLibrary_uc5by")
+}
+autoplay = "blink"
+
+[node name="Ready" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -134.0
+offset_top = -1.0
+offset_right = 139.0
+offset_bottom = 80.0
+theme = ExtResource("1")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_font_sizes/font_size = 46
+text = "READY"
+horizontal_alignment = 1
 
 [node name="PPLabel" type="Label" parent="."]
 unique_name_in_owner = true
@@ -118,6 +192,7 @@ offset_left = -99.0
 offset_top = 130.0
 offset_right = 142.0
 offset_bottom = 241.0
+disabled = true
 texture_normal = ExtResource("5_0wc3t")
 texture_click_mask = ExtResource("6_v1h44")
 

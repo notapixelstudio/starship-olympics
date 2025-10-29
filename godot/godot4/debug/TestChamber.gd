@@ -3,6 +3,8 @@ extends Node2D
 
 @export var test_player : Player
 @export var player_brain_scene : PackedScene
+@export var minigame : Minigame
+
 var test_subject : Node2D : set = set_test_subject
 
 func set_test_subject(v : Node2D) -> void:
@@ -18,11 +20,17 @@ func _ready():
 		ships[0].set_player(test_player)
 		
 	for ship in ships:
-		#var brain = player_brain_scene.instantiate()
-		#brain.set_controls(ship.get_player().get_controls())
-		#ship.add_child(brain)
+		var brain = player_brain_scene.instantiate()
+		brain.set_controls(ship.get_player().get_controls())
+		ship.add_child(brain)
+		Events.player_ready.emit(ship.get_player())
 		Events.team_ready.emit(ship.get_player().get_team(), [ship.get_player()])
+		break
 		
+	%ShipFactory.set_minigame(minigame)
+	
+	Events.battle_start.emit()
+	
 func _process(delta):
 	if not test_subject:
 		return

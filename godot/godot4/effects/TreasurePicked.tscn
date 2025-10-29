@@ -114,7 +114,7 @@ modulate = Color(1.2, 1.2, 1.2, 1)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_uanx4")
+&"": SubResource("AnimationLibrary_uanx4")
 }
 autoplay = "Fade"
 
@@ -125,7 +125,7 @@ z_index = 1
 position = Vector2(0, -10)
 emitting = false
 amount = 6
-process_material = SubResource("5")
 lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("5")

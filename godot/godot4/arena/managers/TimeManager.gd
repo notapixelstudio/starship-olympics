@@ -9,6 +9,9 @@ func _ready():
 	
 func start():
 	set_physics_process(true)
+	
+func stop():
+	set_physics_process(false)
 
 func set_time(v: float) -> void:
 	_time = v

@@ -62,6 +62,10 @@ func _ready() -> void:
 			_teams[player.get_team()] = []
 		_teams[player.get_team()].append(player.get_id())
 		
+		for ownership in traits.get_all('Ownership'):
+			if ownership.has_home(home):
+				ownership.add_player(player)
+		
 		i += 1
 		
 	for team in _teams.keys():

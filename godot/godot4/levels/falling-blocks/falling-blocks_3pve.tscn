@@ -1,0 +1,78 @@
+[gd_scene load_steps=13 format=3 uid="uid://wsqsmayqd7e"]
+
+[ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_fb713"]
+[ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_l0l64"]
+[ext_resource type="Resource" uid="uid://c3uv3coc421eh" path="res://godot4/data/styles/analog.tres" id="3_stfwp"]
+[ext_resource type="PackedScene" uid="uid://ctcg838flr24s" path="res://godot4/arena/managers/games/BlockClearingGame.tscn" id="4_pqyag"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="5_fm3xn"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="6_uq7hb"]
+[ext_resource type="Script" uid="uid://dwa5kst63hc3b" path="res://addons/vshapes/VRect.gd" id="7_inu68"]
+[ext_resource type="PackedScene" uid="uid://dysjvql27gdup" path="res://godot4/elements/blocks/BlocksField.tscn" id="8_dj0h3"]
+[ext_resource type="PackedScene" uid="uid://cjchstsbsbb0w" path="res://godot4/traits/Ownership.tscn" id="9_veic5"]
+[ext_resource type="PackedScene" uid="uid://dei1nchvkk3mm" path="res://godot4/elements/blocks/BlockPreviewTileMap.tscn" id="10_e04fu"]
+[ext_resource type="PackedScene" uid="uid://cxkldgko8orxv" path="res://godot4/elements/blocks/BlockRotationArea.tscn" id="11_nfojx"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rittb"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[node name="PveArena" instance=ExtResource("1_fb713")]
+default_params = ExtResource("2_l0l64")
+
+[node name="Styleable" parent="." index="0"]
+style = ExtResource("3_stfwp")
+
+[node name="MessageManager" parent="Managers" index="4"]
+magnify = 2.0
+
+[node name="BlockClearingGame" parent="Managers" index="9" instance=ExtResource("4_pqyag")]
+
+[node name="P1" parent="Homes" index="0" instance=ExtResource("5_fm3xn")]
+position = Vector2(-900, 1400)
+rotation = -1.5708
+
+[node name="P2" parent="Homes" index="1" instance=ExtResource("5_fm3xn")]
+position = Vector2(0, 1400)
+rotation = -1.5708
+
+[node name="P3" parent="Homes" index="2" instance=ExtResource("5_fm3xn")]
+position = Vector2(900, 1400)
+rotation = -1.5708
+
+[node name="OutsideWall" parent="Battlefield" index="0" instance=ExtResource("6_uq7hb")]
+hollow = true
+
+[node name="VRect" type="Node" parent="Battlefield" index="1" node_paths=PackedStringArray("hosts")]
+script = ExtResource("7_inu68")
+width = 6600.0
+height = 3800.0
+hosts = [NodePath("../OutsideWall"), NodePath("../../Navigation")]
+
+[node name="BlocksField" parent="Battlefield" index="2" instance=ExtResource("8_dj0h3")]
+scale = Vector2(1.5, 1.5)
+tick_duration = 1.5
+spawn_every_ticks = 2
+spawn_coords = Array[Vector2i]([Vector2i(0, -5), Vector2i(-2, -5), Vector2i(2, -5), Vector2i(-4, -5), Vector2i(4, -5)])
+play_area_width = 11
+play_area_height = 10
+
+[node name="Ownership" parent="Battlefield/BlocksField" index="4" node_paths=PackedStringArray("player_homes") instance=ExtResource("9_veic5")]
+player_homes = [NodePath("../../../Homes/P1")]
+
+[node name="BlockPreviewTileMap" parent="Battlefield" index="3" node_paths=PackedStringArray("blocks_field") instance=ExtResource("10_e04fu")]
+scale = Vector2(1.5, 1.5)
+blocks_field = NodePath("../BlocksField")
+
+[node name="BlockRotationArea" parent="Battlefield" index="4" instance=ExtResource("11_nfojx")]
+position = Vector2(2250, 0)
+
+[node name="BlockRotationArea2" parent="Battlefield" index="5" instance=ExtResource("11_nfojx")]
+position = Vector2(-2250, 0)
+cw = false
+
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_rittb")
