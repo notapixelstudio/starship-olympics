@@ -13,6 +13,9 @@ func _on_tap() -> void:
 	fire(get_host())
 	
 func fire(source):
+	if not enabled:
+		return
+		
 	var bullet_forming = bullet_forming_scene.instantiate()
 	# TODO configure bullet size
 	bullet_forming.position = offset*Vector2.RIGHT

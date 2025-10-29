@@ -100,7 +100,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(2.5, 7.5),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(0, -150), Vector2(0, 150)]
+"values": [Vector2(0, -750), Vector2(0, 150)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -320,6 +320,8 @@ min_rotation = 0.349066
 max_rotation = 2.79253
 
 [node name="BubbleBulletWeapon" parent="Phase2/RotoTurretPhase2" instance=ExtResource("9_ko8q8")]
+bullet_speed = 350.0
+bullet_lifetime = 5.0
 offset = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Phase2"]
@@ -333,7 +335,7 @@ autoplay = "Phase2"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Phase2"]
 position = Vector2(0, 200)
-polygon = PackedVector2Array(-250, 50, 0, -650, 250, 50, 50, 350, -50, 350)
+polygon = PackedVector2Array(-250, 50, 0, -600, 250, 50, 50, 350, -50, 350)
 disabled = true
 
 [node name="Phase3" type="StaticBody2D" parent="."]
@@ -400,7 +402,7 @@ autoplay = "Phase3"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Phase3"]
 position = Vector2(0, 200)
-polygon = PackedVector2Array(-100, -200, 0, -500, 100, -200, 0, -100)
+polygon = PackedVector2Array(-49.9991, -199.691, -1.23454, -399.996, 49.9991, -200.309, 0.308635, -150.001)
 disabled = true
 
 [node name="Path2D" type="Path2D" parent="."]

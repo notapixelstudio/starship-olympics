@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dl6asedphskbl"]
+[gd_scene load_steps=24 format=3 uid="uid://dl6asedphskbl"]
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_rkqem"]
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_inngl"]
@@ -10,15 +10,16 @@
 [ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="5_rkqem"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="6_j10s1"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="7_yaaqd"]
-[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="8_q8h85"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="9_bia0f"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="10_qx2lk"]
+[ext_resource type="Script" uid="uid://dpekcskbmlpy3" path="res://addons/vshapes/VCustomShape.gd" id="11_f7dml"]
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="11_tembs"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="12_wfl0q"]
-[ext_resource type="PackedScene" uid="uid://bkt23g8b1tl77" path="res://godot4/actors/enemies/BubbleTurret.tscn" id="13_u3hon"]
 [ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="14_x8lnh"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="15_fau3f"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="16_g2rr7"]
+[ext_resource type="PackedScene" uid="uid://c6e28abusnqyt" path="res://godot4/actors/enemies/RotoTurret.tscn" id="19_f7dml"]
+[ext_resource type="PackedScene" uid="uid://d36soeoj2g3ly" path="res://godot4/actors/ships/weapons/BubbleBulletWeapon.tscn" id="20_j10s1"]
 
 [sub_resource type="GDScript" id="GDScript_2yg2a"]
 script/source = "extends Orchestrator
@@ -28,6 +29,17 @@ script/source = "extends Orchestrator
 
 func _ready():
 	await super()
+	
+	# FIXME implement more score threshold besides medals
+	Events.score_updated.connect(_maybe_new_turret_phase)
+	
+func _maybe_new_turret_phase(score, team, standings):
+	if score < 40:
+		return
+		
+	Events.log.emit(\"Turret phase 2\")
+	Events.score_updated.disconnect(_maybe_new_turret_phase)
+	%BubbleBulletWeaponBack.enabled = true
 	
 	await Events.score_threshold_passed
 	%TimeManager.stop()
@@ -54,67 +66,11 @@ func _ready():
 	%TimeManager.start()
 "
 
-[sub_resource type="Animation" id="Animation_68mb6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Wall2/BubbleTurret:wait_time")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [8.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Wall2/BubbleTurret:rotation_speed")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.392699]
-}
-
-[sub_resource type="Animation" id="Animation_kdc2i"]
-resource_name = "default"
-length = 60.0
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Wall2/BubbleTurret:wait_time")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 16, 36, 52),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [8.0, 4.0, 2.0, 1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Wall2/BubbleTurret:rotation_speed")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 52),
-"transitions": PackedFloat32Array(0, 0),
-"update": 1,
-"values": [0.392699, 0.786]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6aeh"]
+[sub_resource type="Curve2D" id="Curve2D_f7dml"]
 _data = {
-&"RESET": SubResource("Animation_68mb6"),
-&"default": SubResource("Animation_kdc2i")
+"points": PackedVector2Array(-0.0535278, -149.927, 0.0535278, 149.927, 0, -1050, 0, 0, 0, 0, 300, -900, 0, 0, 0, 0, 750, -900, 0.0418043, -900.042, -0.0418043, 900.042, 1650, 0, 0, 0, 0, 0, 750, 900, 0, 0, 0, 0, 300, 900, -0.0573626, -149.976, -0.00905585, -149.931, 0, 1050, 0, 0, 0, 0, -300, 900, 0, 0, 0, 0, -750, 900, 0.0257485, 900.103, -0.0257485, -900.103, -1650, 0, 0, 0, 0, 0, -750, -900, 0, 0, 0, 0, -300, -900, 0.0312805, 149.961, -0.0312805, -149.961, 0, -1050)
 }
+point_count = 13
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_pvgs7"]
 resource_local_to_scene = true
@@ -168,19 +124,18 @@ rotation = -1.5708
 position = Vector2(900, 450)
 rotation = -1.5708
 
-[node name="VRoundedRect" type="Node" parent="Battlefield" index="0" node_paths=PackedStringArray("hosts")]
-script = ExtResource("8_q8h85")
-width = 3300.0
-height = 1800.0
-radius = 900.0
-hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
+[node name="VCustomShape" type="Path2D" parent="Battlefield" index="0" node_paths=PackedStringArray("hosts")]
+curve = SubResource("Curve2D_f7dml")
+script = ExtResource("11_f7dml")
+hosts = [NodePath("../OutsideWall")]
+metadata/_custom_type_script = "uid://dpekcskbmlpy3"
 
 [node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource("9_bia0f")]
 hollow = true
 metadata/_edit_lock_ = true
 
-[node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("10_qx2lk")]
-init_parametric_shape = NodePath("../VRoundedRect")
+[node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_custom_shape") instance=ExtResource("10_qx2lk")]
+init_custom_shape = NodePath("../VCustomShape")
 
 [node name="Diamond" parent="Battlefield" index="3" instance=ExtResource("12_wfl0q")]
 position = Vector2(900, -450)
@@ -1233,15 +1188,11 @@ unique_name_in_owner = true
 script = ExtResource("11_tembs")
 sides = 4
 
-[node name="BubbleTurret" parent="Battlefield/Turrets/Wall2" index="7" instance=ExtResource("13_u3hon")]
-position = Vector2(6.10352e-05, 0)
+[node name="RotoTurret" parent="Battlefield/Turrets/Wall2" index="7" instance=ExtResource("19_f7dml")]
 wait_time = 8.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Turrets/Wall2" index="8" groups=["animation_starts_with_battle"]]
-root_node = NodePath("../../..")
-libraries = {
-&"": SubResource("AnimationLibrary_g6aeh")
-}
+[node name="BubbleBulletWeapon" parent="Battlefield/Turrets/Wall2/RotoTurret" index="6" instance=ExtResource("20_j10s1")]
+offset = 200.0
 
 [node name="Navigation" parent="." index="6"]
 navigation_polygon = SubResource("NavigationPolygon_pvgs7")

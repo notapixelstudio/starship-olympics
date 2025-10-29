@@ -10,6 +10,9 @@ func _on_tap() -> void:
 	fire(get_host())
 	
 func fire(source):
+	if not enabled:
+		return
+		
 	if %AmmoManager.is_empty():
 		return
 		

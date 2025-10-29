@@ -4,7 +4,6 @@ class_name Turret
 @export var enabled := true
 @export var wait_time := 2.0 : set = set_time
 
-
 # Ship-like "interface"
 signal tap
 
@@ -25,7 +24,6 @@ func stop() -> void:
 
 func _on_timer_timeout() -> void:
 	if enabled:
-		#fire()
 		tap.emit()
 	%Timer.start(wait_time)
 	
