@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://brjd4es6k62qd"]
+
+[ext_resource type="Script" uid="uid://corxhnlgcdndf" path="res://addons/debugToolbox/FPSCounter.gd" id="1_8hyjv"]
+[ext_resource type="Script" uid="uid://rtljg4uyk60w" path="res://godot4/global/DebugOverlay.gd" id="1_goa2s"]
+[ext_resource type="Script" uid="uid://ba6h70eocaj3g" path="res://godot4/debug/SOLog.gd" id="2_xkoi0"]
+
+[node name="DebugOverlay" type="CanvasLayer"]
+layer = 100
+visible = false
+script = ExtResource("1_goa2s")
+
+[node name="FPSCounter" type="Node2D" parent="."]
+position = Vector2(19, 4)
+script = ExtResource("1_8hyjv")
+metadata/_custom_type_script = "uid://corxhnlgcdndf"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+clip_contents = true
+offset_left = 55.0
+offset_top = 8.0
+offset_right = 411.0
+offset_bottom = 74.0
+color = Color(0, 0, 0, 0.27451)
+metadata/_custom_type_script = "uid://ba6h70eocaj3g"
+
+[node name="SOLog" type="RichTextLabel" parent="."]
+offset_left = 55.0
+offset_top = 8.0
+offset_right = 411.0
+offset_bottom = 74.0
+script = ExtResource("2_xkoi0")
+metadata/_custom_type_script = "uid://ba6h70eocaj3g"

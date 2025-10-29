@@ -47,4 +47,5 @@ func _on_points_scored(amount: float, team: String) -> void:
 	# signal if a team passed a score threshold
 	if _next_threshold_index < len(_thresholds) and _scores[team] >= _thresholds[_next_threshold_index]:
 		Events.score_threshold_passed.emit(team)
+		Events.log.emit('Team [b]%s[/b] passed a score threshold.' % [team])
 		_next_threshold_index += 1
