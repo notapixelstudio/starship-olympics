@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://dl6asedphskbl"]
+[gd_scene load_steps=25 format=3 uid="uid://dl6asedphskbl"]
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_rkqem"]
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_inngl"]
 [ext_resource type="Resource" uid="uid://qv7ahl4mb6vo" path="res://godot4/data/styles/cyber.tres" id="3_0kx5a"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="4_4lya8"]
 [ext_resource type="PackedScene" uid="uid://b4hvn1qr85dr0" path="res://godot4/actors/enemies/bosses/DiamondBoss.tscn" id="4_rkqem"]
+[ext_resource type="AudioStream" uid="uid://ceul1r3xuqvet" path="res://assets/audio/soundtracks/Aim To Head - Strain.ogg" id="5_4lya8"]
 [ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="5_f7dml"]
 [ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="5_rkqem"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="6_j10s1"]
@@ -23,6 +24,7 @@
 script/source = "extends Orchestrator
 
 @export var boss_scene : PackedScene
+@export var boss_music : AudioStream
 
 func _ready():
 	await super()
@@ -31,6 +33,7 @@ func _ready():
 	%TimeManager.stop()
 	%SpawnerWaveManager.stop()
 	%Turrets.queue_free()
+	DeeJay.play(boss_music)
 	await get_tree().create_timer(5).timeout
 	var boss = boss_scene.instantiate()
 	Events.spawn_request.emit(boss)
@@ -40,14 +43,14 @@ func _ready():
 	
 	await Events.score_threshold_passed
 	%TimeManager.stop()
-	await boss.ready_for_next_phase
 	boss.next_phase()
+	await boss.next_phase_ready
 	%TimeManager.start()
 	
 	await Events.score_threshold_passed
 	%TimeManager.stop()
-	await boss.ready_for_next_phase
 	boss.next_phase()
+	await boss.next_phase_ready
 	%TimeManager.start()
 "
 
@@ -130,6 +133,7 @@ style = ExtResource("3_0kx5a")
 [node name="Orchestrator" parent="Managers" index="0"]
 script = SubResource("GDScript_2yg2a")
 boss_scene = ExtResource("4_rkqem")
+boss_music = ExtResource("5_4lya8")
 
 [node name="SpawnerWaveManager" parent="Managers" index="6" node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("4_4lya8")]
 unique_name_in_owner = true

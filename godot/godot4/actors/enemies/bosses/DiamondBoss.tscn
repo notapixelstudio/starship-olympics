@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b4hvn1qr85dr0"]
+[gd_scene load_steps=20 format=3 uid="uid://b4hvn1qr85dr0"]
 
 [ext_resource type="Script" uid="uid://cq5judgvign2h" path="res://godot4/actors/enemies/bosses/DiamondBoss.gd" id="1_r4sec"]
 [ext_resource type="Texture2D" uid="uid://c3nlwqq6tdcvp" path="res://assets/sprites/bosses/diamond_boss_tentacles_1.png" id="2_8hekf"]
@@ -27,6 +27,7 @@ tracks/0/keys = {
 resource_name = "Phase1"
 length = 10.0
 loop_mode = 1
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -34,7 +35,7 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(2.5, 7.5),
+"times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
 "values": [Vector2(0, -200), Vector2(0, 100)]
@@ -46,7 +47,77 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(5, 10),
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_notify_ready_for_next_phase"
+}, {
+"args": [],
+"method": &"_notify_ready_for_next_phase"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_4xbgt"]
+resource_name = "Phase2"
+length = 10.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, -400), Vector2(0, 200)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_notify_ready_for_next_phase"
+}, {
+"args": [],
+"method": &"_notify_ready_for_next_phase"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_alvgf"]
+resource_name = "Phase3"
+length = 10.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, -400), Vector2(0, 300)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -60,6 +131,8 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4lya8"]
 _data = {
 &"Phase1": SubResource("Animation_inngl"),
+&"Phase2": SubResource("Animation_4xbgt"),
+&"Phase3": SubResource("Animation_alvgf"),
 &"RESET": SubResource("Animation_0kx5a")
 }
 
@@ -139,6 +212,12 @@ _data = {
 &"wobble": SubResource("Animation_s7h11")
 }
 
+[sub_resource type="Curve2D" id="Curve2D_x2twg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -400, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, -500, -100, 0, 0, 0, 0, 0, -400)
+}
+point_count = 4
+
 [node name="DiamondBoss" type="StaticBody2D"]
 collision_layer = 16
 collision_mask = 0
@@ -179,6 +258,7 @@ polygon = PackedVector2Array(-100, 100, 0, -200, 100, 100, 0, 250)
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_4lya8")
 }
@@ -195,3 +275,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_4xbgt")
 }
 autoplay = "wobble"
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_x2twg")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(0, -400)
+rotation = 1.5708
