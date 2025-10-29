@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcpxly7gf4hxf"]
+
+[ext_resource type="PackedScene" uid="uid://q1o0cubu6i1c" path="res://godot4/actors/ships/weapons/Weapon.tscn" id="1_vmnh6"]
+[ext_resource type="Script" uid="uid://db0xqmm1o2447" path="res://godot4/actors/ships/weapons/BulletWeapon.gd" id="2_c1jip"]
+
+[node name="BulletWeapon" instance=ExtResource("1_vmnh6")]
+script = ExtResource("2_c1jip")
+bullet_scene = null
+bullet_speed = 250.0
+bullet_lifetime = 10.0
+offset = 120.0
