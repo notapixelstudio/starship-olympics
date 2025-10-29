@@ -29,5 +29,8 @@ func next_phase() -> void:
 				
 	%AnimationPlayer.play("Phase"+str(_phase))
 	
+	if _phase == 2:
+		%RotoTurret.start()
+	
 func _notify_ready_for_next_phase() -> void:
 	_ready_for_next_phase.emit()
