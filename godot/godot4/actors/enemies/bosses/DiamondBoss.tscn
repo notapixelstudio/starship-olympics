@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b4hvn1qr85dr0"]
+[gd_scene load_steps=21 format=3 uid="uid://b4hvn1qr85dr0"]
 
 [ext_resource type="Script" uid="uid://cq5judgvign2h" path="res://godot4/actors/enemies/bosses/DiamondBoss.gd" id="1_r4sec"]
 [ext_resource type="Texture2D" uid="uid://c3nlwqq6tdcvp" path="res://assets/sprites/bosses/diamond_boss_tentacles_1.png" id="2_8hekf"]
@@ -38,7 +38,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2.5),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(0.95, 1.05), Vector2(1.05, 0.95)]
+"values": [Vector2(0.9, 1.1), Vector2(1.1, 0.9)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4xbgt"]
@@ -76,7 +76,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(1.05, 0.95), Vector2(0.95, 1.05)]
+"values": [Vector2(1.1, 0.9), Vector2(0.9, 1.1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hygu1"]
@@ -119,7 +119,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_4xbgt"]
 resource_name = "Phase2"
-length = 10.0
+length = 15.0
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -129,10 +129,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.5, 5, 7.5),
-"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"times": PackedFloat32Array(0, 7.5),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(-100, 0), Vector2(0, -400), Vector2(100, 0), Vector2(0, 400)]
+"values": [Vector2(0, 0), Vector2(0, -900)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -154,25 +154,13 @@ resource_name = "Phase3"
 length = 10.0
 loop_mode = 1
 step = 0.05
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("..")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.25, 2.5, 3.75, 5, 6.25, 7.5, 8.75),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-300, -300), Vector2(-600, 0), Vector2(-300, 300), Vector2(0, 0), Vector2(300, -300), Vector2(600, 0), Vector2(300, 300)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(2.5, 7.5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -183,17 +171,17 @@ tracks/1/keys = {
 "method": &"_notify_ready_for_next_phase"
 }]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath(".:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.25, 2.5, 3.75, 5, 6.25, 7.5, 8.75, 10),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Path2D/PathFollow2D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2, 2.5, 3.75, 5, 6.25, 7.5, 8.75, 10),
 "transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, -2),
 "update": 0,
-"values": [0.0, -1.5708, -3.14159, -4.71239, -6.28319, -4.71239, -3.14159, -1.5708, 0.0]
+"values": [0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_0kx5a"]
@@ -213,34 +201,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:position.x")
+tracks/1/path = NodePath("../Path2D/PathFollow2D:progress_ratio")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [null]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:position:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -254,6 +218,12 @@ _data = {
 &"Phase3": SubResource("Animation_alvgf"),
 &"RESET": SubResource("Animation_0kx5a")
 }
+
+[sub_resource type="Curve2D" id="Curve2D_4xbgt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, -440.936, 0, 440.936, 0, 450, -450, 2.35795, -205.142, -2.35795, 205.142, 900, 0, 445.652, -4.7159, -445.652, 4.7159, 450, 450, 452.726, 0, -452.726, 0, -450, -450, -2.35795, -198.068, 2.35795, 198.068, -900, 0, -450.368, -4.7159, 450.368, 4.7159, -450, 450, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
 
 [node name="DiamondBoss" type="Node2D" node_paths=PackedStringArray("collision_polygons")]
 script = ExtResource("1_r4sec")
@@ -317,7 +287,7 @@ scale = Vector2(0.7, 0.7)
 [node name="Tentacles1" type="Sprite2D" parent="Phase2/Tentacles"]
 modulate = Color(0, 0, 0, 0.784314)
 position = Vector2(0, 519)
-scale = Vector2(1.05, 0.95)
+scale = Vector2(1.1, 0.9)
 texture = ExtResource("2_8hekf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Phase2/Tentacles/Tentacles1"]
@@ -326,6 +296,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_4xbgt")
 }
 autoplay = "wobble"
+speed_scale = 2.0
 
 [node name="Tentacles2" type="Sprite2D" parent="Phase2/Tentacles"]
 modulate = Color(0, 0, 0, 0.784314)
@@ -339,6 +310,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_hygu1")
 }
 autoplay = "wobble"
+speed_scale = 2.0
 
 [node name="RotoTurretPhase2" parent="Phase2" instance=ExtResource("8_alvgf")]
 unique_name_in_owner = true
@@ -346,9 +318,9 @@ position = Vector2(0, 550)
 pingpong = true
 min_rotation = 0.349066
 max_rotation = 2.79253
-wait_time = 3.0
 
 [node name="BubbleBulletWeapon" parent="Phase2/RotoTurretPhase2" instance=ExtResource("9_ko8q8")]
+offset = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Phase2"]
 texture = ExtResource("4_x2twg")
@@ -366,15 +338,20 @@ disabled = true
 
 [node name="Phase3" type="StaticBody2D" parent="."]
 visible = false
+rotation = 0.00617274
+scale = Vector2(1, 1)
 collision_layer = 16
 collision_mask = 0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Tentacles" type="Node2D" parent="Phase3"]
-scale = Vector2(0.4, 0.4)
+position = Vector2(0, 80)
+scale = Vector2(0.2, 0.2)
 
 [node name="Tentacles1" type="Sprite2D" parent="Phase3/Tentacles"]
 modulate = Color(0, 0, 0, 0.784314)
-scale = Vector2(1.05, 0.95)
+scale = Vector2(1.1, 0.9)
 texture = ExtResource("2_8hekf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Phase3/Tentacles/Tentacles1"]
@@ -383,6 +360,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_4xbgt")
 }
 autoplay = "wobble"
+speed_scale = 4.0
 
 [node name="Tentacles2" type="Sprite2D" parent="Phase3/Tentacles"]
 modulate = Color(0, 0, 0, 0.784314)
@@ -396,16 +374,19 @@ libraries = {
 &"": SubResource("AnimationLibrary_hygu1")
 }
 autoplay = "wobble"
+speed_scale = 4.0
 
 [node name="RotoTurretPhase3" parent="Phase3" instance=ExtResource("8_alvgf")]
 unique_name_in_owner = true
 position = Vector2(0, 100)
 pingpong = true
-min_rotation = 0.349066
-max_rotation = 2.79253
-wait_time = 3.0
+min_rotation = -0.349066
+max_rotation = 3.49066
+wait_time = 1.0
 
 [node name="BubbleBulletWeapon" parent="Phase3/RotoTurretPhase3" instance=ExtResource("9_ko8q8")]
+bullet_lifetime = 5.0
+offset = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Phase3"]
 position = Vector2(0, -100)
@@ -421,3 +402,16 @@ autoplay = "Phase3"
 position = Vector2(0, 200)
 polygon = PackedVector2Array(-100, -200, 0, -500, 100, -200, 0, -100)
 disabled = true
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_4xbgt")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = 0.00617274
+scale = Vector2(1, 1)
+rotates = false
+metadata/_edit_lock_ = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+remote_path = NodePath("../../../Phase3")
+metadata/_edit_lock_ = true

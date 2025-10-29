@@ -1,6 +1,7 @@
 extends Area2D
 class_name Turret
 
+@export var enabled := true
 @export var wait_time := 2.0 : set = set_time
 
 
@@ -23,8 +24,9 @@ func stop() -> void:
 	%Timer.stop()
 
 func _on_timer_timeout() -> void:
-	#fire()
-	tap.emit()
+	if enabled:
+		#fire()
+		tap.emit()
 	%Timer.start(wait_time)
 	
 # TODO design how to handle color for rogue team
