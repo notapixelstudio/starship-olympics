@@ -8,8 +8,8 @@ var action_buffer : Dictionary = {}
 func set_controls(v: String) -> void:
 	_controls = v.split('+')
 	
-func _ready():
-	controllee.connect('dive_out', Callable(self, '_on_controllee_dive_out'))
+#func _ready():
+	#controllee.connect('dive_out', Callable(self, '_on_controllee_dive_out'))
 	
 func local_handling() -> Vector2:
 	var target = Vector2()
