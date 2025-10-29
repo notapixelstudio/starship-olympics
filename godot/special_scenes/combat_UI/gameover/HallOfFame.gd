@@ -20,7 +20,8 @@ func _ready():
 	set_process_input(false)
 	var data = get_hall_of_fame(session.get_last_score())
 	
-	data.reverse()
+	data.sort_custom(func(a,b): return a["score"] < b["score"])
+	
 	for champion in data:
 		var champ_scene: WinnerBanner = champion_scene.instantiate()
 		await get_tree().process_frame
@@ -29,7 +30,7 @@ func _ready():
 		$"%SessionWon".move_child(champ_scene, 0)
 		# you can write your name now
 		var this_champion = $"%SessionWon".get_child(0)
-		this_champion.insert_name()
+		# this_champion.insert_name()
 		
 	# yield(get_tree(), "idle_frame")
 	

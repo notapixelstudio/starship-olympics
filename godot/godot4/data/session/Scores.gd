@@ -12,6 +12,7 @@ var winners: Array[String] # team name
 var remaining_time: float
 var time: float
 var minigame_name: String
+var score: float
 
 
 class Standing:
@@ -40,6 +41,7 @@ func _init(data: Dictionary):
 	remaining_time = data["remaining_time"]
 	time = data["time"]
 	minigame_name = data["minigame"]
+	score = data.get("standings")[-1].get("score")
 	# standings
 	for stand in data.get("standings"):
 		standings.append(Standing.new(stand))
@@ -63,5 +65,6 @@ func to_dictionary():
 		"standings": standings_dictionary,
 		"remaining_time": remaining_time,
 		"time": time,
-		"minigame": minigame_name
+		"minigame": minigame_name,
+		"score": score
 	}
