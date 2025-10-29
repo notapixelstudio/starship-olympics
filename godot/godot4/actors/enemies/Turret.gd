@@ -18,6 +18,9 @@ func set_time(v:float) -> void:
 	
 func start() -> void:
 	%Timer.start(wait_time)
+	
+func stop() -> void:
+	%Timer.stop()
 
 func _on_timer_timeout() -> void:
 	#fire()

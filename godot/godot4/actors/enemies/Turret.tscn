@@ -27,9 +27,11 @@ process_callback = 0
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_q1wp5")
 
 [node name="10x10Square" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(100, -4.76837e-07)
 scale = Vector2(3.3, 2.3)
 texture = ExtResource("4_a0ooa")

@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://bxkqttxi5fag5"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_26dvx"]
+[ext_resource type="PackedScene" uid="uid://c6e28abusnqyt" path="res://godot4/actors/enemies/RotoTurret.tscn" id="5_qoo7t"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="6_lxn0p"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="6_p82g0"]
-[ext_resource type="PackedScene" uid="uid://wwxav5fs1qt" path="res://godot4/actors/enemies/Turret.tscn" id="7_eijt8"]
+[ext_resource type="PackedScene" uid="uid://d36soeoj2g3ly" path="res://godot4/actors/ships/weapons/BubbleBulletWeapon.tscn" id="6_v3dlf"]
 [ext_resource type="Resource" uid="uid://fc2yg6p4flm5" path="res://godot4/debug/default_data/default_players/p2.tres" id="7_ggur8"]
-[ext_resource type="PackedScene" uid="uid://bb4kd7ebpdm2x" path="res://godot4/elements/projectiles/BubbleBullet.tscn" id="8_ydpfc"]
 
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
 script/source = "extends SOLog
@@ -21,9 +21,6 @@ func _on_sth_collected(collector, collectee):
 
 [node name="TestChamber" instance=ExtResource("1_26dvx")]
 
-[node name="TestChamberLog" parent="." index="5"]
-script = SubResource("GDScript_0rj7w")
-
 [node name="Ship" parent="." index="6" instance=ExtResource("6_p82g0")]
 unique_name_in_owner = true
 
@@ -33,9 +30,22 @@ position = Vector2(800, -700)
 rotation = 3.14159
 player = ExtResource("7_ggur8")
 
-[node name="Turret" parent="." index="8" instance=ExtResource("7_eijt8")]
-position = Vector2(900, 0)
-bullet_scene = ExtResource("8_ydpfc")
-
-[node name="Diamond" parent="." index="9" instance=ExtResource("6_lxn0p")]
+[node name="Diamond" parent="." index="8" instance=ExtResource("6_lxn0p")]
 position = Vector2(1100, 400)
+
+[node name="TestChamberLog" parent="." index="9"]
+script = SubResource("GDScript_0rj7w")
+
+[node name="RotoTurret" parent="." index="12" instance=ExtResource("5_qoo7t")]
+position = Vector2(800, 0)
+
+[node name="BubbleBulletWeapon" parent="RotoTurret" index="6" instance=ExtResource("6_v3dlf")]
+
+[node name="RotoTurret2" parent="." index="13" instance=ExtResource("5_qoo7t")]
+position = Vector2(0, -1200)
+starting_angles_degrees = [45, 135]
+pingpong = true
+max_rotation = 3.14159
+wait_time = 8.0
+
+[node name="BubbleBulletWeapon" parent="RotoTurret2" index="6" instance=ExtResource("6_v3dlf")]

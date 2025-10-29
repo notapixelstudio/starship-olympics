@@ -1,6 +1,6 @@
-extends StaticBody2D
+extends Node2D
 
-@export var textures : Array[Texture]
+@export var collision_polygons : Array[CollisionPolygon2D]
 
 var _phase := 1
 
@@ -12,25 +12,30 @@ func next_phase() -> void:
 	
 	# create tween and use it to move the boss at the center of the arena
 	# wait for the tween to finish
-	await get_tree().create_tween().tween_property(self, "position", Vector2(0,0), 0.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE).finished
+	await get_tree().create_tween().tween_property(self, "position", Vector2(0,0), 2.0).set_ease(Tween.EASE_IN_OUT).finished
 	
 	_phase += 1
-	%Sprite2D.texture = textures[_phase]
-	%Tentacles.position.y -= 60
-	%Tentacles.scale = 0.65**(_phase-1)*Vector2(1,1)
+	Events.log.emit('Boss phase %d' % [_phase])
 	
 	# enable just the collision polygon for the current phase
-	for node in get_children():
-		if node is CollisionPolygon2D:
-			if node.name.ends_with(str(_phase)):
-				node.disabled = false
-			else:
-				node.disabled = true
-				
-	%AnimationPlayer.play("Phase"+str(_phase))
+	for i in len(collision_polygons):
+		if _phase-1 == i:
+			collision_polygons[i].disabled = false
+		else:
+			collision_polygons[i].disabled = true
+			
+			
+	# show just the current phase node
+	for child in get_children():
+		child.visible = child.name.ends_with(str(_phase))
 	
 	if _phase == 2:
-		%RotoTurret.start()
+		%RotoTurretPhase2.start()
+	elif _phase == 3:
+		%RotoTurretPhase2.stop()
+		%RotoTurretPhase3.start()
+		
+	next_phase_ready.emit()
 	
 func _notify_ready_for_next_phase() -> void:
 	_ready_for_next_phase.emit()
