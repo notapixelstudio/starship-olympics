@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://41vn2qw4djss"]
+[gd_scene load_steps=23 format=3 uid="uid://41vn2qw4djss"]
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_g2yuu"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_xgn0o"]
@@ -16,9 +16,8 @@
 [ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="16_1ohm1"]
 [ext_resource type="PackedScene" uid="uid://c6e28abusnqyt" path="res://godot4/actors/enemies/RotoTurret.tscn" id="17_1jf11"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="17_ax7k0"]
-[ext_resource type="PackedScene" uid="uid://bcpxly7gf4hxf" path="res://godot4/actors/ships/weapons/BulletWeapon.tscn" id="18_edpyx"]
+[ext_resource type="PackedScene" uid="uid://d36soeoj2g3ly" path="res://godot4/actors/ships/weapons/BubbleBulletWeapon.tscn" id="18_o1mro"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="18_w2bk3"]
-[ext_resource type="PackedScene" uid="uid://bb4kd7ebpdm2x" path="res://godot4/elements/projectiles/BubbleBullet.tscn" id="19_ueg15"]
 
 [sub_resource type="Animation" id="Animation_68mb6"]
 length = 0.001
@@ -631,8 +630,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_g6aeh")
 }
 
-[node name="BulletWeapon" parent="Battlefield/RotoTurret" index="7" instance=ExtResource("18_edpyx")]
-bullet_scene = ExtResource("19_ueg15")
+[node name="BubbleBulletWeapon" parent="Battlefield/RotoTurret" index="7" instance=ExtResource("18_o1mro")]
 offset = 200.0
 
 [node name="Navigation" parent="." index="6"]
