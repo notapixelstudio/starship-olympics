@@ -7,6 +7,16 @@ class_name Turret
 @export var wait_time := 2.0 : set = set_time
 @export var distance := 200.0
 
+
+# Ship-like "interface"
+signal tap
+
+func get_target_velocity() -> Vector2:
+	return Vector2.ZERO
+	
+# end
+
+
 func set_time(v:float) -> void:
 	wait_time = v
 	
@@ -14,7 +24,8 @@ func start() -> void:
 	%Timer.start(wait_time)
 
 func _on_timer_timeout() -> void:
-	fire()
+	#fire()
+	tap.emit()
 	%Timer.start(wait_time)
 	
 func fire() -> void:
@@ -27,5 +38,9 @@ func fire() -> void:
 	#bullet.global_rotation = global_rotation
 	Events.spawn_request.emit(bullet)
 
+# TODO design how to handle color for rogue team
+func get_color() -> Color:
+	return Color.WHITE
+	
 func get_team() -> String:
 	return 'rogue'

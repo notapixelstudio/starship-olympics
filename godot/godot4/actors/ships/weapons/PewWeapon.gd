@@ -1,6 +1,7 @@
 extends Weapon
 
 @export var pew_scene : PackedScene
+@export var offset := 120.0
 
 func _ready() -> void:
 	get_host().tap.connect(_on_tap)
@@ -29,7 +30,7 @@ func fire(source):
 			
 		var angle = aim_angle + ( -aperture/2 + i*aperture/(amount-1) if amount > 1 else 0)
 		var pew : Pew = pew_scene.instantiate()
-		pew.global_position = global_position + Vector2(120, 0).rotated(angle)
+		pew.global_position = global_position + Vector2(offset, 0).rotated(angle)
 		pew.linear_velocity = Vector2(2500, 0).rotated(angle)
 		pew.set_color(source.get_color())
 		pew.set_team(source.get_team())
