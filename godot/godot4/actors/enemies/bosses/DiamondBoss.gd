@@ -13,7 +13,7 @@ func next_phase() -> void:
 	# create tween and use it to move the boss at the center of the arena
 	# wait for the tween to finish
 	await get_tree().create_tween().tween_property(self, "position", Vector2(0,0), 0.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE).finished
-
+	
 	_phase += 1
 	%Sprite2D.texture = textures[_phase]
 	%Tentacles.position.y -= 60
@@ -28,6 +28,9 @@ func next_phase() -> void:
 				node.disabled = true
 				
 	%AnimationPlayer.play("Phase"+str(_phase))
+	
+	if _phase == 2:
+		%RotoTurret.start()
 	
 func _notify_ready_for_next_phase() -> void:
 	_ready_for_next_phase.emit()

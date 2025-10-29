@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b4hvn1qr85dr0"]
+[gd_scene load_steps=21 format=3 uid="uid://b4hvn1qr85dr0"]
 
 [ext_resource type="Script" uid="uid://cq5judgvign2h" path="res://godot4/actors/enemies/bosses/DiamondBoss.gd" id="1_r4sec"]
 [ext_resource type="Texture2D" uid="uid://c3nlwqq6tdcvp" path="res://assets/sprites/bosses/diamond_boss_tentacles_1.png" id="2_8hekf"]
@@ -7,21 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://hqe8ngr3tjgj" path="res://assets/sprites/bosses/diamond_boss_phase_1.png" id="4_r4sec"]
 [ext_resource type="Texture2D" uid="uid://dmnhwyh8ntnye" path="res://assets/sprites/bosses/diamond_boss_phase_2.png" id="4_x2twg"]
 [ext_resource type="Texture2D" uid="uid://dy5mv7hx5xyj8" path="res://assets/sprites/bosses/diamond_boss_phase_3.png" id="5_4xbgt"]
-
-[sub_resource type="Animation" id="Animation_0kx5a"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
+[ext_resource type="PackedScene" uid="uid://c6e28abusnqyt" path="res://godot4/actors/enemies/RotoTurret.tscn" id="8_alvgf"]
+[ext_resource type="PackedScene" uid="uid://d36soeoj2g3ly" path="res://godot4/actors/ships/weapons/BubbleBulletWeapon.tscn" id="9_ko8q8"]
 
 [sub_resource type="Animation" id="Animation_inngl"]
 resource_name = "Phase1"
@@ -128,6 +115,21 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_0kx5a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4lya8"]
 _data = {
 &"Phase1": SubResource("Animation_inngl"),
@@ -212,12 +214,6 @@ _data = {
 &"wobble": SubResource("Animation_s7h11")
 }
 
-[sub_resource type="Curve2D" id="Curve2D_x2twg"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -400, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, -500, -100, 0, 0, 0, 0, 0, -400)
-}
-point_count = 4
-
 [node name="DiamondBoss" type="StaticBody2D"]
 collision_layer = 16
 collision_mask = 0
@@ -276,9 +272,9 @@ libraries = {
 }
 autoplay = "wobble"
 
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_x2twg")
+[node name="RotoTurret" parent="." instance=ExtResource("8_alvgf")]
+unique_name_in_owner = true
+position = Vector2(0, 650)
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(0, -400)
-rotation = 1.5708
+[node name="BubbleBulletWeapon" parent="RotoTurret" instance=ExtResource("9_ko8q8")]
+offset = 50.0

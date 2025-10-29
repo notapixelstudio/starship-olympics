@@ -4,6 +4,3 @@ class_name Weapon
 func get_host() -> Node:
 	return get_parent()
 	
-func get_player() -> Player:
-	return get_host().get_player()
-	

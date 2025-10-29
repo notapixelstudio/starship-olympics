@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cesbcbw1r3bu4"]
+[gd_scene load_steps=18 format=3 uid="uid://cesbcbw1r3bu4"]
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_1x60l"]
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_6xxad"]
@@ -76,6 +76,14 @@ _data = {
 &"RESET": SubResource("Animation_3nm4h"),
 &"default": SubResource("Animation_xjb4e")
 }
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hnyo5"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
 
 [node name="PveArena" instance=ExtResource("1_1x60l")]
 default_params = ExtResource("2_6xxad")
@@ -157,3 +165,6 @@ rotation_degrees = 45.0
 
 [node name="PewTurret" parent="Battlefield" index="9" instance=ExtResource("13_hnyo5")]
 position = Vector2(0, 950)
+
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_hnyo5")

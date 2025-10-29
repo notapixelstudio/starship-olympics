@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://d36soeoj2g3ly"]
+
+[ext_resource type="PackedScene" uid="uid://bcpxly7gf4hxf" path="res://godot4/actors/ships/weapons/BulletWeapon.tscn" id="1_npdob"]
+[ext_resource type="PackedScene" uid="uid://c42c77okq6jd6" path="res://godot4/effects/appear/BubbleForming.tscn" id="2_3cjyj"]
+[ext_resource type="PackedScene" uid="uid://bb4kd7ebpdm2x" path="res://godot4/elements/projectiles/BubbleBullet.tscn" id="2_wurpi"]
+
+[node name="BubbleBulletWeapon" instance=ExtResource("1_npdob")]
+bullet_forming_scene = ExtResource("2_3cjyj")
+bullet_scene = ExtResource("2_wurpi")

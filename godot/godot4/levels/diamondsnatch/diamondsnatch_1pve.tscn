@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://41vn2qw4djss"]
+[gd_scene load_steps=23 format=3 uid="uid://41vn2qw4djss"]
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_g2yuu"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_xgn0o"]
@@ -13,9 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="12_pdbnl"]
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="13_plvei"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="14_xeixg"]
-[ext_resource type="PackedScene" uid="uid://bkt23g8b1tl77" path="res://godot4/actors/enemies/BubbleTurret.tscn" id="15_ieca3"]
 [ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="16_1ohm1"]
+[ext_resource type="PackedScene" uid="uid://c6e28abusnqyt" path="res://godot4/actors/enemies/RotoTurret.tscn" id="17_1jf11"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="17_ax7k0"]
+[ext_resource type="PackedScene" uid="uid://d36soeoj2g3ly" path="res://godot4/actors/ships/weapons/BubbleBulletWeapon.tscn" id="18_o1mro"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="18_w2bk3"]
 
 [sub_resource type="Animation" id="Animation_68mb6"]
@@ -23,7 +24,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleTurret:wait_time")
+tracks/0/path = NodePath("RotoTurret:wait_time")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -35,7 +36,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BubbleTurret:rotation_speed")
+tracks/1/path = NodePath("RotoTurret:rotation_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -52,7 +53,7 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleTurret:wait_time")
+tracks/0/path = NodePath("RotoTurret:wait_time")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -64,7 +65,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BubbleTurret:rotation_speed")
+tracks/1/path = NodePath("RotoTurret:rotation_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -136,11 +137,7 @@ position = Vector2(900, 0)
 physics_material_override = null
 appear_scene = null
 
-[node name="BubbleTurret" parent="Battlefield" index="5" instance=ExtResource("15_ieca3")]
-position = Vector2(6.10352e-05, 0)
-wait_time = 8.0
-
-[node name="Waves" type="Node2D" parent="Battlefield" index="6"]
+[node name="Waves" type="Node2D" parent="Battlefield" index="5"]
 
 [node name="SingleDiamondWave" type="Node2D" parent="Battlefield/Waves" index="0" groups=["spawn_waves"]]
 visible = false
@@ -624,10 +621,17 @@ pattern = "vline"
 element_scene = ExtResource("14_xeixg")
 guest_star_scene = ExtResource("18_w2bk3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="7" groups=["animation_starts_with_battle"]]
+[node name="RotoTurret" parent="Battlefield" index="6" instance=ExtResource("17_1jf11")]
+wait_time = 8.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/RotoTurret" index="6" groups=["animation_starts_with_battle"]]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_g6aeh")
 }
+
+[node name="BubbleBulletWeapon" parent="Battlefield/RotoTurret" index="7" instance=ExtResource("18_o1mro")]
+offset = 200.0
 
 [node name="Navigation" parent="." index="6"]
 navigation_polygon = SubResource("NavigationPolygon_o1mro")
