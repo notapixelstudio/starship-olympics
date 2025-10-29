@@ -157,7 +157,7 @@ streams_count = 2
 stream_0/stream = ExtResource("7_jon51")
 stream_1/stream = ExtResource("8_luvl1")
 
-[node name="Bubble" type="RigidBody2D" groups=["collectable"]]
+[node name="Bubble" type="RigidBody2D" groups=["Treasure"]]
 collision_layer = 64
 collision_mask = 2147486292
 physics_material_override = SubResource("PhysicsMaterial_2pppl")
@@ -208,10 +208,11 @@ visible = false
 z_index = 100
 z_as_relative = false
 offset_left = -300.0
-offset_top = -373.0
+offset_top = 139.0
 offset_right = 300.0
-offset_bottom = -150.0
+offset_bottom = 362.0
 theme = ExtResource("4_1ymov")
+theme_override_constants/paragraph_spacing = -40
 theme_override_font_sizes/font_size = 80
 text = "HOLD BUTTON
 TO DASH!"

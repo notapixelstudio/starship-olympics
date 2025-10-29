@@ -8,32 +8,37 @@ const menu_scene = "res://ui/menu_scenes/title_screen/MainScreen.tscn"
 @export var add_champion := false
 @export var auto_quit := true
 
-var champion_info : InfoChampion
+var champion_info : Dictionary
 
 func _ready():
 	$"%WinnerBanner".queue_free()
 	set_process_input(false)
-	var data = global.read_file_by_line(InfoChampion.PATH_FILE_CHAMPIONS)
+	# var data = global.read_file_by_line(InfoChampion.PATH_FILE_CHAMPIONS)
+	var data := []
 	if data.is_empty():
-		var fake_session = TheSession.new()
+		# var fake_session = TheSession.new()
 		for i in range(3):
 			var champ_scene = champion_scene.instantiate()
-			var info_player := InfoPlayer.new()
-			var champ = InfoChampion.new()
-			info_player.set_species(global.get_species(TheUnlocker.unlocked_elements["species"].keys()[randi()%4]))
-			champ.player = info_player.to_dict()
-			champ.session_info = fake_session.to_dict()
-			champ_scene.set_player(champ)
+			var players = []
+			for n in range(4):
+				var player = Player.new()
+				player.species = Settings.get_species('mantiacs_1')
+				players.append(player)
+			
+			champ_scene.set_banner({"team": {"name": "Goologollo", "players": players}, "score": 250.20})
 			$"%SessionWon".add_child(champ_scene)
 	
 	data.reverse()
 	for champion in data:
+		pass
+		"""
 		var champ_info := InfoChampion.new()
 		champ_info.session_info = champion.session_info
 		champ_info.player = champion.player
 		var champ_scene = champion_scene.instantiate()
 		champ_scene.set_player(champ_info)
 		$"%SessionWon".add_child(champ_scene)
+		"""
 	
 	"""
 	# fakely add a new champion, for debug
@@ -78,15 +83,15 @@ func _input(event):
 	if event.is_action_pressed("ui_up"):
 		$"%ScrollContainer".scroll_vertical -= 30 
 		
-func set_champion(champion: InfoChampion):
+func set_champion(champion: Dictionary):
 	champion_info = champion
 	
 func add_champion_to_scene():
 	var champ_scene = champion_scene.instantiate()
 	if champion_info==null:
 		champion_info = fake_champion()
-	await get_tree().idle_frame
-	champ_scene.set_player(champion_info)
+	await get_tree().process_frame
+	champ_scene.set_banner(champion_info)
 	$"%SessionWon".add_child(champ_scene)
 	$"%SessionWon".move_child(champ_scene, 0)
 	# you can write your name now
@@ -94,7 +99,9 @@ func add_champion_to_scene():
 	this_champion.insert_name()
 	this_champion.connect("champion_has_a_name", Callable(self, "naming_champions"))
 
-func fake_champion() -> InfoChampion:
+func fake_champion() -> Dictionary:
+	return {"player": {}}
+	"""
 	var info_player := InfoPlayer.new()
 	var champ = InfoChampion.new()
 	info_player.set_species(global.get_species(TheUnlocker.unlocked_elements["species"].keys()[randi()%4]))
@@ -102,4 +109,5 @@ func fake_champion() -> InfoChampion:
 	var fake_session = TheSession.new()
 	champ.session_info = fake_session.to_dict()
 	return champ
+	"""
 	

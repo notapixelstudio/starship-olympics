@@ -1,0 +1,284 @@
+[gd_scene load_steps=20 format=3 uid="uid://b4hvn1qr85dr0"]
+
+[ext_resource type="Script" uid="uid://cq5judgvign2h" path="res://godot4/actors/enemies/bosses/DiamondBoss.gd" id="1_r4sec"]
+[ext_resource type="Texture2D" uid="uid://c3nlwqq6tdcvp" path="res://assets/sprites/bosses/diamond_boss_tentacles_1.png" id="2_8hekf"]
+[ext_resource type="Texture2D" uid="uid://di87cmfvrfgx0" path="res://assets/sprites/bosses/diamond_boss_tentacles_2.png" id="3_r4sec"]
+[ext_resource type="Texture2D" uid="uid://cwk01dqqkfylb" path="res://assets/sprites/bosses/diamond_boss_phase_0.png" id="4_hygu1"]
+[ext_resource type="Texture2D" uid="uid://hqe8ngr3tjgj" path="res://assets/sprites/bosses/diamond_boss_phase_1.png" id="4_r4sec"]
+[ext_resource type="Texture2D" uid="uid://dmnhwyh8ntnye" path="res://assets/sprites/bosses/diamond_boss_phase_2.png" id="4_x2twg"]
+[ext_resource type="Texture2D" uid="uid://dy5mv7hx5xyj8" path="res://assets/sprites/bosses/diamond_boss_phase_3.png" id="5_4xbgt"]
+
+[sub_resource type="Animation" id="Animation_0kx5a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_inngl"]
+resource_name = "Phase1"
+length = 10.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, -200), Vector2(0, 100)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_notify_ready_for_next_phase"
+}, {
+"args": [],
+"method": &"_notify_ready_for_next_phase"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_4xbgt"]
+resource_name = "Phase2"
+length = 10.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, -400), Vector2(0, 200)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_notify_ready_for_next_phase"
+}, {
+"args": [],
+"method": &"_notify_ready_for_next_phase"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_alvgf"]
+resource_name = "Phase3"
+length = 10.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0, -400), Vector2(0, 300)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_notify_ready_for_next_phase"
+}, {
+"args": [],
+"method": &"_notify_ready_for_next_phase"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4lya8"]
+_data = {
+&"Phase1": SubResource("Animation_inngl"),
+&"Phase2": SubResource("Animation_4xbgt"),
+&"Phase3": SubResource("Animation_alvgf"),
+&"RESET": SubResource("Animation_0kx5a")
+}
+
+[sub_resource type="Animation" id="Animation_r4sec"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tentacles/Tentacles2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.95, 1.05)]
+}
+
+[sub_resource type="Animation" id="Animation_8hekf"]
+resource_name = "wobble"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tentacles/Tentacles1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1.05, 0.95), Vector2(0.95, 1.05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hygu1"]
+_data = {
+&"RESET": SubResource("Animation_r4sec"),
+&"wobble": SubResource("Animation_8hekf")
+}
+
+[sub_resource type="Animation" id="Animation_x2twg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tentacles/Tentacles2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.95, 1.05)]
+}
+
+[sub_resource type="Animation" id="Animation_s7h11"]
+resource_name = "wobble"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tentacles/Tentacles2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0.95, 1.05), Vector2(1.05, 0.95)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4xbgt"]
+_data = {
+&"RESET": SubResource("Animation_x2twg"),
+&"wobble": SubResource("Animation_s7h11")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_x2twg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -400, 0, 0, 0, 0, 0, 200, 0, 0, 0, 0, -500, -100, 0, 0, 0, 0, 0, -400)
+}
+point_count = 4
+
+[node name="DiamondBoss" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_r4sec")
+textures = Array[Texture]([ExtResource("4_hygu1"), ExtResource("4_r4sec"), ExtResource("4_x2twg"), ExtResource("5_4xbgt")])
+
+[node name="Tentacles" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Tentacles1" type="Sprite2D" parent="Tentacles"]
+modulate = Color(0, 0, 0, 0.784314)
+position = Vector2(0, 519)
+scale = Vector2(1.05, 0.95)
+texture = ExtResource("2_8hekf")
+
+[node name="Tentacles2" type="Sprite2D" parent="Tentacles"]
+modulate = Color(0, 0, 0, 0.784314)
+position = Vector2(0, 819)
+scale = Vector2(0.95, 1.05)
+texture = ExtResource("3_r4sec")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("4_r4sec")
+
+[node name="CollisionPolygon2DPhase1" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
+polygon = PackedVector2Array(-450, 400, 0, -800, 450, 400, 50, 850, -50, 850)
+
+[node name="CollisionPolygon2DPhase2" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
+polygon = PackedVector2Array(-250, 250, 0, -500, 250, 250, 50, 550, -50, 550)
+disabled = true
+
+[node name="CollisionPolygon2DPhase3" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
+polygon = PackedVector2Array(-100, 100, 0, -200, 100, 100, 0, 250)
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_4lya8")
+}
+autoplay = "Phase1"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hygu1")
+}
+autoplay = "wobble"
+
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4xbgt")
+}
+autoplay = "wobble"
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_x2twg")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(0, -400)
+rotation = 1.5708

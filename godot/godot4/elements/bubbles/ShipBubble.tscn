@@ -1,9 +1,71 @@
-[gd_scene load_steps=5 format=3 uid="uid://damh5pf35vid8"]
+[gd_scene load_steps=9 format=3 uid="uid://damh5pf35vid8"]
 
 [ext_resource type="PackedScene" uid="uid://cfgy3ee8k825d" path="res://godot4/elements/bubbles/Bubble.tscn" id="1_iuhab"]
 [ext_resource type="Script" uid="uid://catw0kvop5kti" path="res://godot4/elements/bubbles/ShipBubble.gd" id="2_chsyf"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="4_e1tme"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="5_dwesu"]
 [ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://godot4/actors/brains/CPUBrain.tscn" id="5_ufxqr"]
+
+[sub_resource type="Animation" id="Animation_dwesu"]
+resource_name = "default"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HelpLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Line2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_73ix4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Line2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cxvy0"]
+_data = {
+&"RESET": SubResource("Animation_73ix4"),
+&"default": SubResource("Animation_dwesu")
+}
 
 [node name="ShipBubble" instance=ExtResource("1_iuhab")]
 script = ExtResource("2_chsyf")
@@ -11,10 +73,44 @@ player_brain_scene = ExtResource("4_e1tme")
 cpu_brain_scene = ExtResource("5_ufxqr")
 appear_scene = null
 
-[node name="Timer" type="Timer" parent="." index="7"]
+[node name="HelpCallout" type="Polygon2D" parent="." index="5"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(11, -23)
+scale = Vector2(1.5, 1.5)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, -100, 0, -200, 300, -200, 300, -100, 100, -100, 50, -50, 50, -100)
+
+[node name="Line2D" type="Line2D" parent="HelpCallout" index="0"]
+points = PackedVector2Array(0, -100, 0, -200, 300, -200, 300, -100, 100, -100, 50, -50, 50, -100)
+closed = true
+width = 8.0
+sharp_limit = 40.0
+
+[node name="HelpLabel" type="Label" parent="HelpCallout" index="1"]
+unique_name_in_owner = true
+z_index = 100
+z_as_relative = false
+offset_left = -150.0
+offset_top = -211.0
+offset_right = 450.0
+offset_bottom = -88.0
+theme = ExtResource("5_dwesu")
+theme_override_constants/paragraph_spacing = -40
+theme_override_font_sizes/font_size = 52
+text = "HELP!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HelpCallout" index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_cxvy0")
+}
+autoplay = "default"
+
+[node name="Timer" type="Timer" parent="." index="8"]
 unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
-autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

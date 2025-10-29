@@ -1,9 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuafr3l7073mo"]
+[gd_scene load_steps=5 format=3 uid="uid://cuafr3l7073mo"]
 
 [ext_resource type="PackedScene" uid="uid://ctk8t0ohpljms" path="res://godot4/arena/Arena.tscn" id="1_bkayc"]
 [ext_resource type="Script" uid="uid://cq1h8bushmf6l" path="res://godot4/arena/VersusArena.gd" id="2_hv47u"]
 [ext_resource type="Resource" uid="uid://dkvwr4voy6m3i" path="res://godot4/debug/default_data/single_match_empty_session.tres" id="3_aoafu"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rittb"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
 [node name="VersusArena" instance=ExtResource("1_bkayc")]
 script = ExtResource("2_hv47u")
 session = ExtResource("3_aoafu")
+
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_rittb")

@@ -1,12 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://viihbln4han2"]
+[gd_scene load_steps=2 format=3 uid="uid://viihbln4han2"]
 
-[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="1"]
 [ext_resource type="Script" uid="uid://befo2jwxhmip2" path="res://godot4/arena/managers/SpawnerWaveManager.gd" id="2"]
 
 [node name="SpawnerWaveManager" type="Node"]
 script = ExtResource("2")
-
-[node name="Waiter" parent="." instance=ExtResource("1")]
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true

@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7uihxmdaadhj"]
+[gd_scene load_steps=23 format=3 uid="uid://c7uihxmdaadhj"]
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_jsab4"]
 [ext_resource type="Resource" uid="uid://qv7ahl4mb6vo" path="res://godot4/data/styles/cyber.tres" id="2_xkjhl"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="3_knfq2"]
 [ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="4_l2iqi"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="5_hnp1y"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="5_pvgs7"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="6_ip82o"]
 [ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="7_md3ay"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="8_gvfad"]
@@ -17,12 +18,29 @@
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="14_5b2yd"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="15_s487o"]
 
+[sub_resource type="GDScript" id="GDScript_2yg2a"]
+script/source = "extends Orchestrator
+
+func _ready():
+	await super()
+	
+	await Events.score_threshold_passed
+	%TimeManager.stop()
+	await get_tree().create_timer(5).timeout
+	%TimeManager.start()
+	
+	await Events.score_threshold_passed
+	%TimeManager.stop()
+	await get_tree().create_timer(5).timeout
+	%TimeManager.start()
+"
+
 [sub_resource type="Animation" id="Animation_68mb6"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleTurret:wait_time")
+tracks/0/path = NodePath("Wall2/BubbleTurret:wait_time")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -34,7 +52,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BubbleTurret:rotation_speed")
+tracks/1/path = NodePath("Wall2/BubbleTurret:rotation_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -51,7 +69,7 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BubbleTurret:wait_time")
+tracks/0/path = NodePath("Wall2/BubbleTurret:wait_time")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -63,7 +81,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BubbleTurret:rotation_speed")
+tracks/1/path = NodePath("Wall2/BubbleTurret:rotation_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -79,11 +97,22 @@ _data = {
 &"default": SubResource("Animation_kdc2i")
 }
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_pvgs7"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
 [node name="PveArena" instance=ExtResource("1_jsab4")]
 default_params = ExtResource("11_4ft3g")
 
 [node name="Styleable" parent="." index="0"]
 style = ExtResource("2_xkjhl")
+
+[node name="Orchestrator" parent="Managers" index="0"]
+script = SubResource("GDScript_2yg2a")
 
 [node name="SpawnerWaveManager" parent="Managers" index="6" node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("3_knfq2")]
 spawn_on_all_collected = true
@@ -91,6 +120,8 @@ spawn_count_on_all_collected = 3
 spawn_on_timeout = false
 waves_container = NodePath("../../Battlefield/Waves")
 battlefield = NodePath("../../Battlefield")
+
+[node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" instance=ExtResource("5_pvgs7")]
 
 [node name="CollectGame" parent="Managers" index="7" instance=ExtResource("4_l2iqi")]
 
@@ -126,6 +157,17 @@ init_parametric_shape = NodePath("../VRoundedRect")
 script = ExtResource("10_mr7ed")
 sides = 4
 
+[node name="BubbleTurret" parent="Battlefield/Wall2" index="7" instance=ExtResource("12_72cmw")]
+position = Vector2(6.10352e-05, 0)
+bullet_lifetime = 30.0
+wait_time = 8.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Wall2" index="8" groups=["animation_starts_with_battle"]]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_g6aeh")
+}
+
 [node name="Diamond" parent="Battlefield" index="4" instance=ExtResource("11_3gire")]
 position = Vector2(900, -450)
 physics_material_override = null
@@ -136,12 +178,7 @@ position = Vector2(-900, -450)
 physics_material_override = null
 appear_scene = null
 
-[node name="BubbleTurret" parent="Battlefield" index="6" instance=ExtResource("12_72cmw")]
-position = Vector2(6.10352e-05, 0)
-bullet_lifetime = 30.0
-wait_time = 8.0
-
-[node name="Waves" type="Node2D" parent="Battlefield" index="7"]
+[node name="Waves" type="Node2D" parent="Battlefield" index="6"]
 
 [node name="SingleDiamondWave" type="Node2D" parent="Battlefield/Waves" index="0" groups=["spawn_waves"]]
 visible = false
@@ -681,7 +718,5 @@ pattern = "vline"
 element_scene = ExtResource("11_3gire")
 guest_star_scene = ExtResource("15_s487o")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="8" groups=["animation_starts_with_battle"]]
-libraries = {
-&"": SubResource("AnimationLibrary_g6aeh")
-}
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_pvgs7")

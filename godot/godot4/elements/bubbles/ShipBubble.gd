@@ -4,6 +4,9 @@ class_name ShipBubble
 @export var player_brain_scene : PackedScene
 @export var cpu_brain_scene : PackedScene
 
+var _auto_popping := false
+
+
 func set_ship(v:Ship) -> void:
 	if not v:
 		return
@@ -12,6 +15,19 @@ func set_ship(v:Ship) -> void:
 
 func _ready() -> void:
 	%ContentSprite2D.texture = _content.get_player().get_ship_image()
+	_refresh_auto_popping()
+	
+func set_auto_popping(v:bool) -> void:
+	_auto_popping = v
+	_refresh_auto_popping()
+	
+func _refresh_auto_popping():
+	if _auto_popping:
+		%Timer.start()
+		%HelpCallout.visible = false
+	else:
+		%Timer.stop()
+		%HelpCallout.visible = true
 
 func set_content_rotation(v:float) -> void:
 	super(v)
@@ -23,6 +39,3 @@ func release_content(author) -> void:
 	
 func _on_timer_timeout():
 	pop()
-
-func disable_auto_popping():
-	%Timer.stop()

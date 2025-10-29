@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="Script" uid="uid://cdwca4jvfkafg" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
-[ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/IntroManager.tscn" id="1_m2x2u"]
+[ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/Orchestrator.tscn" id="1_m2x2u"]
 [ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="2_3p1dt"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_fyulk"]
 [ext_resource type="Script" uid="uid://ctf1rg3hqs2hh" path="res://godot4/data/Player.gd" id="2_wi08g"]
@@ -55,7 +55,7 @@ style = ExtResource("13_n4nm8")
 
 [node name="Managers" type="Node" parent="."]
 
-[node name="IntroManager" parent="Managers" instance=ExtResource("1_m2x2u")]
+[node name="Orchestrator" parent="Managers" instance=ExtResource("1_m2x2u")]
 
 [node name="TimeManager" parent="Managers" instance=ExtResource("10_mhlox")]
 unique_name_in_owner = true
