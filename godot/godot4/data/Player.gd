@@ -9,7 +9,10 @@ class_name Player
 @export var team : String = id
 @export var cpu : bool = false
 
-
+func _init(data:Dictionary = {}):
+	species = Species.get_from_id(data.get("species_id", "mantiacs_1"))
+	team = data.get("team", "")
+	
 func get_id() -> String:
 	return id
 	
@@ -66,3 +69,10 @@ func get_controls() -> String:
 	
 func set_controls(v:String) -> void:
 	controls = v
+
+func to_dictionary()-> Dictionary:
+	return {
+		"id": id,
+		"team": team,
+		"species_id": species.get_id()
+	}

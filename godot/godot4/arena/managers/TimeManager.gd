@@ -16,6 +16,9 @@ func stop():
 func set_time(v: float) -> void:
 	_time = v
 
+func get_remaining_time() -> float:
+	return _time
+
 func _physics_process(delta: float) -> void:
 	_time -= delta
 	var new_time_secs = ceil(_time)

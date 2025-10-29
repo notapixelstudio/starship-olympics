@@ -24,6 +24,7 @@ func set_max_points(v) -> void:
 func set_session(v:Session) -> void:
 	session = v
 	
+
 func _ready() -> void:
 	redraw()
 	

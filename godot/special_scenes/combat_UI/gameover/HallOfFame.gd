@@ -7,51 +7,30 @@ const menu_scene = "res://ui/menu_scenes/title_screen/MainScreen.tscn"
 @export var champion_scene : PackedScene
 @export var add_champion := false
 @export var auto_quit := true
+@export var session : Session : set = set_session
 
-var champion_info : Dictionary
+func set_session(v:Session) -> void:
+	session = v
+
+var new_score : Scores
 
 func _ready():
+	Events.new_entry_hall_of_fame.connect(store_new_entry)
 	$"%WinnerBanner".queue_free()
 	set_process_input(false)
-	# var data = global.read_file_by_line(InfoChampion.PATH_FILE_CHAMPIONS)
-	var data := []
-	if data.is_empty():
-		# var fake_session = TheSession.new()
-		for i in range(3):
-			var champ_scene = champion_scene.instantiate()
-			var players = []
-			for n in range(4):
-				var player = Player.new()
-				player.species = Settings.get_species('mantiacs_1')
-				players.append(player)
-			
-			champ_scene.set_banner({"team": {"name": "Goologollo", "players": players}, "score": 250.20})
-			$"%SessionWon".add_child(champ_scene)
+	var data = get_hall_of_fame(session.get_last_score())
 	
 	data.reverse()
 	for champion in data:
-		pass
-		"""
-		var champ_info := InfoChampion.new()
-		champ_info.session_info = champion.session_info
-		champ_info.player = champion.player
-		var champ_scene = champion_scene.instantiate()
-		champ_scene.set_player(champ_info)
+		var champ_scene: WinnerBanner = champion_scene.instantiate()
+		await get_tree().process_frame
+		champ_scene.set_banner(champion)
 		$"%SessionWon".add_child(champ_scene)
-		"""
-	
-	"""
-	# fakely add a new champion, for debug
-	if self.get_parent() == get_tree().get_root() and add_champion:
-		var info_player := InfoPlayer.new()
-		var champ = InfoChampion.new()
-		info_player.set_species(global.get_species(TheUnlocker.unlocked_elements["species"].keys()[randi()%4]))
-		champ.player = info_player.to_dict()
-		var fake_session = TheSession.new()
-		champ.session_info = fake_session.to_dict()
-		self.set_champion(champ)
-	"""
-	
+		$"%SessionWon".move_child(champ_scene, 0)
+		# you can write your name now
+		var this_champion = $"%SessionWon".get_child(0)
+		this_champion.insert_name()
+		
 	# yield(get_tree(), "idle_frame")
 	
 	if add_champion:
@@ -83,24 +62,23 @@ func _input(event):
 	if event.is_action_pressed("ui_up"):
 		$"%ScrollContainer".scroll_vertical -= 30 
 		
-func set_champion(champion: Dictionary):
-	champion_info = champion
+func set_new_scores(score: Scores):
+	new_score = score
 	
 func add_champion_to_scene():
-	var champ_scene = champion_scene.instantiate()
-	if champion_info==null:
-		champion_info = fake_champion()
+	var champ_scene: WinnerBanner = champion_scene.instantiate()
+	if new_score==null:
+		new_score = fake_new_score()
 	await get_tree().process_frame
-	champ_scene.set_banner(champion_info)
+	champ_scene.set_banner(new_score.to_dictionary())
 	$"%SessionWon".add_child(champ_scene)
 	$"%SessionWon".move_child(champ_scene, 0)
 	# you can write your name now
 	var this_champion = $"%SessionWon".get_child(0)
 	this_champion.insert_name()
-	this_champion.connect("champion_has_a_name", Callable(self, "naming_champions"))
 
-func fake_champion() -> Dictionary:
-	return {"player": {}}
+func fake_new_score() -> Scores:
+	return Scores.new({"player": {}})
 	"""
 	var info_player := InfoPlayer.new()
 	var champ = InfoChampion.new()
@@ -110,4 +88,25 @@ func fake_champion() -> Dictionary:
 	champ.session_info = fake_session.to_dict()
 	return champ
 	"""
+
+const FILEPATH ="user://hall_of_fame-%s-%s.json"
+
+func store_new_entry(new_champion: Dictionary) -> void: 
+	var minigame = new_champion["minigame"]
+	var number_players = str(len(new_champion["players"]))
+	var complete_filepath = FILEPATH % [minigame, number_players]
+	var save_file = FileAccess.open(complete_filepath, FileAccess.READ_WRITE)
+	if not save_file:
+		save_file = FileAccess.open(complete_filepath, FileAccess.WRITE)
+	# Serialize the data dictionary to JSON
+	save_file.seek_end()
+	save_file.store_line(JSON.new().stringify(new_champion))
+	# Write the JSON to the file and save to disk
+	save_file.close()
+
+func get_hall_of_fame(last_score:Scores) -> Array:
+	var minigame = last_score.minigame_name
+	var number_players = str(len(last_score.players))
+	var complete_filepath = FILEPATH % [minigame, number_players]
+	return Utils.read_file_by_line(complete_filepath)
 	

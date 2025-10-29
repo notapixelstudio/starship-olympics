@@ -63,3 +63,8 @@ static func get_all_unlocked() -> Array[Species]:
 
 static func compare(a:Species, b:Species):
 	return a.get_progressive() < b.get_progressive()
+
+func to_dictionary()->Dictionary:
+	return {
+		"id": id,
+		"species_id": species_id}

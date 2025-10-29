@@ -1,6 +1,5 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2g1x0qdp7hul"]
+[gd_scene load_steps=12 format=3 uid="uid://d2g1x0qdp7hul"]
 
-[ext_resource type="PackedScene" uid="uid://b8llrhhkcnyfh" path="res://special_scenes/combat_UI/session_points/Headshot.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bsdasajr1cjh8" path="res://special_scenes/combat_UI/session_points/Stat.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://ccvffra4l23u7" path="res://assets/patterns/stripes_duotone_lighter.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://dhxy8aoqproo8" path="res://assets/map/winner.png" id="4"]
@@ -88,25 +87,6 @@ offset_left = 8.0
 offset_top = 32.0
 offset_right = 858.0
 offset_bottom = 182.0
-
-[node name="Headshot0" parent="Container" instance=ExtResource("1")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Headshot1" parent="Container" instance=ExtResource("1")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-
-[node name="Headshot2" parent="Container" instance=ExtResource("1")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-
-[node name="Headshot3" parent="Container" instance=ExtResource("1")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
 
 [node name="StatsContainer" type="GridContainer" parent="Container"]
 visible = false

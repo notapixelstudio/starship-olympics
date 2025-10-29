@@ -37,8 +37,12 @@ func enable_continue() -> void:
 	
 
 func _on_press_any_key_any_key_pressed() -> void:
-	var s = hall_of_fame_scene.instantiate()
+	%Leaderboard.visible = false
+	var s: HallOfFame = hall_of_fame_scene.instantiate()
+	s.session=session
+	s.set_new_scores(session.scores[-1])
 	add_child(s)
+	
 	# get_tree().paused = false
 	# Events.continue_after_match_over.emit()
 	

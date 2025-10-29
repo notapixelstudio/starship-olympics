@@ -145,3 +145,6 @@ signal analytics_event(event_dictionary, event_name)
 
 # persistence
 signal store_settings
+
+# Hall Of Fame
+signal new_entry_hall_of_fame(new_champion)
