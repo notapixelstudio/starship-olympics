@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://b4hvn1qr85dr0"]
+[gd_scene load_steps=49 format=3 uid="uid://b4hvn1qr85dr0"]
 
 [ext_resource type="Script" uid="uid://cq5judgvign2h" path="res://godot4/actors/enemies/bosses/DiamondBoss.gd" id="1_r4sec"]
 [ext_resource type="Texture2D" uid="uid://c3nlwqq6tdcvp" path="res://assets/sprites/bosses/diamond_boss_tentacles_1.png" id="2_8hekf"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dy5mv7hx5xyj8" path="res://assets/sprites/bosses/diamond_boss_phase_3.png" id="5_4xbgt"]
 [ext_resource type="PackedScene" uid="uid://c6e28abusnqyt" path="res://godot4/actors/enemies/RotoTurret.tscn" id="8_alvgf"]
 [ext_resource type="PackedScene" uid="uid://d36soeoj2g3ly" path="res://godot4/actors/ships/weapons/BubbleBulletWeapon.tscn" id="9_ko8q8"]
+[ext_resource type="PackedScene" uid="uid://wwxav5fs1qt" path="res://godot4/actors/enemies/Turret.tscn" id="10_j6iil"]
 
 [sub_resource type="Animation" id="Animation_x2twg"]
 length = 0.001
@@ -277,7 +278,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_alvgf"]
 resource_name = "Phase3"
-length = 10.0
+length = 8.0
 loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
@@ -287,7 +288,7 @@ tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.2, 2.5, 3.75, 5, 6.25, 7.5, 8.75, 10),
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8),
 "transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, -2),
 "update": 0,
 "values": [0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0]
@@ -319,7 +320,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Phase3/RotoTurretPhase3:enabled")
+tracks/3/path = NodePath("Phase3/Turret:enabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -466,19 +467,19 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Phase3/RotoTurretPhase3:enabled")
+tracks/11/path = NodePath("Phase2:modulate")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Phase2:modulate")
+tracks/12/path = NodePath("Phase3:modulate")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -490,14 +491,14 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Phase3:modulate")
+tracks/13/path = NodePath("Phase3/Turret:enabled")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_hnxan"]
@@ -928,7 +929,6 @@ autoplay = "wobble"
 speed_scale = 2.0
 
 [node name="RotoTurretPhase2" parent="Phase2" instance=ExtResource("8_alvgf")]
-unique_name_in_owner = true
 position = Vector2(0, 200)
 rotation_speed = 0.837758
 pingpong = true
@@ -991,17 +991,25 @@ libraries = {
 autoplay = "wobble"
 speed_scale = 4.0
 
-[node name="RotoTurretPhase3" parent="Phase3" instance=ExtResource("8_alvgf")]
-unique_name_in_owner = true
-position = Vector2(0, 100)
-pingpong = true
-min_rotation = -0.349066
-max_rotation = 3.49066
+[node name="Turret" parent="Phase3" instance=ExtResource("10_j6iil")]
+position = Vector2(0.61727, 99.9981)
+scale = Vector2(1, 1)
 enabled = false
 wait_time = 1.0
 
-[node name="BubbleBulletWeapon" parent="Phase3/RotoTurretPhase3" instance=ExtResource("9_ko8q8")]
-bullet_lifetime = 5.0
+[node name="BubbleBulletWeapon" parent="Phase3/Turret" instance=ExtResource("9_ko8q8")]
+position = Vector2(5.96046e-08, 100)
+scale = Vector2(1, 1)
+bullet_speed = 500.0
+bullet_lifetime = 3.0
+offset = 50.0
+
+[node name="BubbleBulletWeapon2" parent="Phase3/Turret" instance=ExtResource("9_ko8q8")]
+position = Vector2(5.96046e-08, 100)
+rotation = 3.14159
+scale = Vector2(1, 1)
+bullet_speed = 500.0
+bullet_lifetime = 3.0
 offset = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Phase3"]

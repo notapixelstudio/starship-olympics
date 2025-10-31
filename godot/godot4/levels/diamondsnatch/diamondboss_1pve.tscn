@@ -29,16 +29,11 @@ script/source = "extends Orchestrator
 func _ready():
 	await super()
 	
-	var boss = %DiamondBoss
-	
-	
-	
-	
 	# FIXME implement more score threshold besides medals
 	Events.score_updated.connect(_maybe_new_turret_phase)
 	
 func _maybe_new_turret_phase(score, team, standings):
-	if score < 3:
+	if score < 30:
 		return
 		
 	Events.log.emit(\"Turret phase 2\")
