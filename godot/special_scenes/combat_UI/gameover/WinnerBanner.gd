@@ -27,8 +27,8 @@ func set_banner(champion: Dictionary):
 		var headshot = headshot_scene.instantiate()
 		headshot.set_player(p_info)
 		
-		$"%Container".add_child(headshot)
-		$"%Container".move_child(headshot, i)
+		$"%HeadshotContainer".add_child(headshot)
+		#$"%HeadshotContainer".move_child(headshot, i)
 		
 		headshot.visible = true
 		i+=1
@@ -40,6 +40,13 @@ func set_banner(champion: Dictionary):
 	$"%InsertName".modulate = Settings.get_species(champion.player.species).get_color()
 	"""
 	$"%InsertName".placeholder_text = $"%PlayerName".text
+	
+	%Score.text = str(int(champion.get('score', 0)))
+	if champion.get('achievement') != null:
+		%Medal.texture = load("res://assets/sprites/medals/"+champion.get('achievement')+'.png')
+	else:
+		%Medal.texture = null
+		
 	
 func insert_name():
 	$"%InsertName".connect("name_inserted", Callable(self, "_on_InsertName_name_inserted"))

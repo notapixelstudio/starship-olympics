@@ -1,14 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2g1x0qdp7hul"]
+[gd_scene load_steps=15 format=3 uid="uid://d2g1x0qdp7hul"]
 
 [ext_resource type="PackedScene" uid="uid://bsdasajr1cjh8" path="res://special_scenes/combat_UI/session_points/Stat.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://ccvffra4l23u7" path="res://assets/patterns/stripes_duotone_lighter.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://b8llrhhkcnyfh" path="res://special_scenes/combat_UI/session_points/Headshot.tscn" id="3_d6jt3"]
-[ext_resource type="Texture2D" uid="uid://dhxy8aoqproo8" path="res://assets/map/winner.png" id="4"]
 [ext_resource type="Script" uid="uid://cya06sa82qft3" path="res://special_scenes/combat_UI/gameover/WinnerBanner.gd" id="5"]
 [ext_resource type="Script" uid="uid://dau5ixccdil25" path="res://special_scenes/combat_UI/gameover/InsertName.gd" id="6"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="7"]
 [ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="8"]
 [ext_resource type="PackedScene" uid="uid://chegk33457388" path="res://special_scenes/combat_UI/gameover/LogoMinigame.tscn" id="9"]
+[ext_resource type="Texture2D" uid="uid://26nw5l0mmexe" path="res://assets/sprites/medals/bronze.png" id="9_d6jt3"]
+
+[sub_resource type="Gradient" id="Gradient_d6jt3"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.186837, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q8d3u"]
+gradient = SubResource("Gradient_d6jt3")
 
 [sub_resource type="FontFile" id="5"]
 fallbacks = Array[Font]([ExtResource("8")])
@@ -25,6 +33,31 @@ cache/0/14/0/descent = 0.0
 cache/0/14/0/underline_position = 0.0
 cache/0/14/0/underline_thickness = 0.0
 cache/0/14/0/scale = 1.0
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/52/0/ascent = 0.0
+cache/0/52/0/descent = 0.0
+cache/0/52/0/underline_position = 0.0
+cache/0/52/0/underline_thickness = 0.0
+cache/0/52/0/scale = 1.0
+cache/0/78/0/ascent = 0.0
+cache/0/78/0/descent = 0.0
+cache/0/78/0/underline_position = 0.0
+cache/0/78/0/underline_thickness = 0.0
+cache/0/78/0/scale = 1.0
 
 [sub_resource type="FontFile" id="4"]
 fallbacks = Array[Font]([ExtResource("8")])
@@ -41,6 +74,11 @@ cache/0/14/0/descent = 0.0
 cache/0/14/0/underline_position = 0.0
 cache/0/14/0/underline_thickness = 0.0
 cache/0/14/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
 
 [sub_resource type="FontFile" id="7"]
 fallbacks = Array[Font]([ExtResource("8")])
@@ -73,7 +111,7 @@ unique_name_in_owner = true
 position = Vector2(8, 32)
 color = Color(0.219608, 0.219608, 0.219608, 0.901961)
 texture = ExtResource("3")
-polygon = PackedVector2Array(12.5, 162.5, 12.5, 12.5, 1062.5, 12.5, 1012.5, 162.5)
+polygon = PackedVector2Array(12.5, 162.5, 12.5, 12.5, 1047, 12.5, 1047, 162.5)
 
 [node name="Shadow" type="Polygon2D" parent="."]
 position = Vector2(8, 32)
@@ -89,6 +127,23 @@ offset_left = 8.0
 offset_top = 32.0
 offset_right = 858.0
 offset_bottom = 182.0
+theme_override_constants/separation = 20
+
+[node name="HeadshotContainer" type="HBoxContainer" parent="Container"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Wrapper" type="Node2D" parent="Container"]
+
+[node name="HeadshotsShadow" type="TextureRect" parent="Container/Wrapper"]
+unique_name_in_owner = true
+offset_left = 13.0
+offset_top = 162.0
+offset_right = 269.0
+offset_bottom = 1197.0
+rotation = -1.5708
+scale = Vector2(0.5, 1)
+texture = SubResource("GradientTexture1D_q8d3u")
 
 [node name="StatsContainer" type="GridContainer" parent="Container"]
 visible = false
@@ -128,43 +183,66 @@ unique_name_in_owner = true
 layout_mode = 2
 expand_mode = 1
 
-[node name="PlayerName" type="Label" parent="Container"]
+[node name="NameWrapper" type="Node2D" parent="Container"]
+position = Vector2(160, 84)
+
+[node name="PlayerName" type="Label" parent="Container/NameWrapper"]
 unique_name_in_owner = true
+offset_left = -140.0
+offset_top = 35.0
+offset_right = -76.0
+offset_bottom = 74.0
+theme = ExtResource("7")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = SubResource("5")
+theme_override_font_sizes/font_size = 32
+text = "SAX"
+uppercase = true
+
+[node name="InputWrapper" type="Node2D" parent="Container"]
+position = Vector2(160, 84)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/InputWrapper"]
+unique_name_in_owner = true
+offset_left = -140.0
+offset_top = -20.0
+offset_right = 4.0
+offset_bottom = 130.0
+
+[node name="InsertName" type="LineEdit" parent="Container/InputWrapper/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("7")
+theme_override_fonts/font = SubResource("4")
+theme_override_font_sizes/font_size = 32
+placeholder_text = "P1 "
+max_length = 10
+flat = true
+caret_blink = true
+script = ExtResource("6")
+
+[node name="Score" type="Label" parent="Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme = ExtResource("7")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 4
 theme_override_fonts/font = SubResource("5")
-text = "SAX"
+theme_override_font_sizes/font_size = 78
+text = "999"
+horizontal_alignment = 2
 uppercase = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Container"]
+[node name="Medal" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
-
-[node name="InsertName" type="LineEdit" parent="Container/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("7")
-theme_override_fonts/font = SubResource("4")
-placeholder_text = "P1 "
-max_length = 10
-script = ExtResource("6")
-
-[node name="NameWrapper" type="Node2D" parent="Container"]
-position = Vector2(160, 20)
-
-[node name="InputWrapper" type="Node2D" parent="Container"]
-position = Vector2(160, 20)
-
-[node name="Champion" type="Sprite2D" parent="."]
-visible = false
 z_index = 200
 z_as_relative = false
-position = Vector2(68.75, 110)
-scale = Vector2(1.4, 1.4)
-texture = ExtResource("4")
+position = Vector2(779.75, 117)
+texture = ExtResource("9_d6jt3")
 
 [node name="WinnerOutline" type="Line2D" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -178,12 +256,14 @@ position = Vector2(170, 150)
 
 [node name="DateSession" type="Label" parent="DateWrapper"]
 unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 14.0
+offset_left = 701.0
+offset_top = 18.0
+offset_right = 826.0
+offset_bottom = 35.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 4
 theme_override_fonts/font = SubResource("7")
 text = "2022-10-23 15:00"
 
-[connection signal="name_inserted" from="Container/HBoxContainer/InsertName" to="." method="_on_InsertName_name_inserted"]
+[connection signal="name_inserted" from="Container/InputWrapper/HBoxContainer/InsertName" to="." method="_on_InsertName_name_inserted"]
