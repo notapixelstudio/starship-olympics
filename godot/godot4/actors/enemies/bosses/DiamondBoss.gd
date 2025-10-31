@@ -5,6 +5,15 @@ extends Node2D
 var _phase := 0
 var _defeated := false
 
+func _ready() -> void:
+	Events.sth_collected.connect(_on_sth_collected)
+
+func _on_sth_collected(collector, collectee):
+	hit()
+	
+func hit():
+	%HitAnimationPlayer.stop()
+	%HitAnimationPlayer.play("hit")
 
 func next_phase() -> void:
 	_phase += 1

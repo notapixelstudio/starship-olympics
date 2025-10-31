@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://b4hvn1qr85dr0"]
+[gd_scene load_steps=52 format=3 uid="uid://b4hvn1qr85dr0"]
 
 [ext_resource type="Script" uid="uid://cq5judgvign2h" path="res://godot4/actors/enemies/bosses/DiamondBoss.gd" id="1_r4sec"]
 [ext_resource type="Texture2D" uid="uid://c3nlwqq6tdcvp" path="res://assets/sprites/bosses/diamond_boss_tentacles_1.png" id="2_8hekf"]
@@ -195,7 +195,7 @@ graph_offset = Vector2(-173, -56)
 
 [sub_resource type="Animation" id="Animation_j6iil"]
 resource_name = "Intro"
-length = 3.0
+length = 5.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -204,7 +204,7 @@ tracks/0/path = NodePath("Phase1:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -216,10 +216,10 @@ tracks/1/path = NodePath("Phase1:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.4),
-"transitions": PackedFloat32Array(0.406126, 0.406126),
+"times": PackedFloat32Array(2, 3.9, 4.4),
+"transitions": PackedFloat32Array(0.5, -2, 0.406126),
 "update": 0,
-"values": [Vector2(0, -2500), Vector2(0, 0)]
+"values": [Vector2(0, -5000), Vector2(0, 50), Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -228,10 +228,46 @@ tracks/2/path = NodePath("Phase1/CollisionPolygon2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Appear/GravitonField:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Appear/PointLight2D:energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3.4, 5),
+"transitions": PackedFloat32Array(2, 0.5, 1),
+"update": 0,
+"values": [0.0, 100.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Appear/GravitonField:gravity")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3.4),
+"transitions": PackedFloat32Array(3.36358, 1),
+"update": 0,
+"values": [1.0, 600.0]
 }
 
 [sub_resource type="Animation" id="Animation_inngl"]
@@ -500,6 +536,42 @@ tracks/13/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Appear/PointLight2D:energy")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Appear/GravitonField:enabled")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Appear/GravitonField:gravity")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="Animation" id="Animation_hnxan"]
 resource_name = "Trans1-2"
@@ -539,7 +611,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1.2),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(10, 10, 10, 1)]
+"values": [Color(1, 1, 1, 1), Color(6, 6, 6, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -616,7 +688,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1.2),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(10, 10, 10, 1)]
+"values": [Color(1, 1, 1, 1), Color(6, 6, 6, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -829,6 +901,43 @@ _data = {
 &"Trans2-3": SubResource("Animation_4egb8")
 }
 
+[sub_resource type="Animation" id="Animation_u67jn"]
+resource_name = "hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(4, 4, 4, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kx4lp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fiuy8"]
+_data = {
+&"RESET": SubResource("Animation_kx4lp"),
+&"hit": SubResource("Animation_u67jn")
+}
+
 [node name="DiamondBoss" type="Node2D" node_paths=PackedStringArray("collision_polygons")]
 script = ExtResource("1_r4sec")
 collision_polygons = [NodePath("Phase1/CollisionPolygon2D"), NodePath("Phase2/CollisionPolygon2D"), NodePath("Phase3/CollisionPolygon2D")]
@@ -836,16 +945,15 @@ collision_polygons = [NodePath("Phase1/CollisionPolygon2D"), NodePath("Phase2/Co
 [node name="Appear" type="Node2D" parent="."]
 
 [node name="PointLight2D" type="PointLight2D" parent="Appear"]
-energy = 3.0
+energy = 0.0
 range_item_cull_mask = 2
 texture = ExtResource("2_ko8q8")
-texture_scale = 2.0
+texture_scale = 4.0
 
 [node name="GravitonField" parent="Appear" instance=ExtResource("3_j6iil")]
-enabled = true
 gravity = 1.0
 center = Vector3(0, 0, -500)
-influence_radius = 250.0
+influence_radius = 1000.0
 
 [node name="Phase1" type="StaticBody2D" parent="."]
 visible = false
@@ -857,7 +965,7 @@ collision_mask = 0
 position = Vector2(0, -450)
 
 [node name="Tentacles1" type="Sprite2D" parent="Phase1/Tentacles"]
-modulate = Color(0, 0, 0, 0.784314)
+modulate = Color(0.02, 0.02, 0.02, 0.784314)
 position = Vector2(0, 519)
 scale = Vector2(1.05, 0.95)
 texture = ExtResource("2_8hekf")
@@ -870,7 +978,7 @@ libraries = {
 autoplay = "wobble"
 
 [node name="Tentacles2" type="Sprite2D" parent="Phase1/Tentacles"]
-modulate = Color(0, 0, 0, 0.784314)
+modulate = Color(0.02, 0.02, 0.02, 0.784314)
 position = Vector2(0, 819)
 scale = Vector2(0.95, 1.05)
 texture = ExtResource("3_r4sec")
@@ -897,11 +1005,11 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="Tentacles" type="Node2D" parent="Phase2"]
-position = Vector2(0, -368)
+position = Vector2(0, -268)
 scale = Vector2(0.7, 0.7)
 
 [node name="Tentacles1" type="Sprite2D" parent="Phase2/Tentacles"]
-modulate = Color(0, 0, 0, 0.784314)
+modulate = Color(0.02, 0.02, 0.02, 0.784314)
 position = Vector2(0, 519)
 scale = Vector2(1.1, 0.9)
 texture = ExtResource("2_8hekf")
@@ -915,7 +1023,7 @@ autoplay = "wobble"
 speed_scale = 2.0
 
 [node name="Tentacles2" type="Sprite2D" parent="Phase2/Tentacles"]
-modulate = Color(0, 0, 0, 0.784314)
+modulate = Color(0.02, 0.02, 0.02, 0.784314)
 position = Vector2(0, 819)
 scale = Vector2(0.95, 1.05)
 texture = ExtResource("3_r4sec")
@@ -929,7 +1037,7 @@ autoplay = "wobble"
 speed_scale = 2.0
 
 [node name="RotoTurretPhase2" parent="Phase2" instance=ExtResource("8_alvgf")]
-position = Vector2(0, 200)
+position = Vector2(0, 300)
 rotation_speed = 0.837758
 pingpong = true
 min_rotation = 0.523599
@@ -943,11 +1051,11 @@ bullet_lifetime = 5.0
 offset = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Phase2"]
-position = Vector2(0, -350)
+position = Vector2(0, -250)
 texture = ExtResource("4_x2twg")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Phase2"]
-position = Vector2(0, -150)
+position = Vector2(0, -50)
 polygon = PackedVector2Array(-250, 50, 0, -600, 250, 50, 50, 350, -50, 350)
 disabled = true
 
@@ -965,7 +1073,7 @@ position = Vector2(0, 80)
 scale = Vector2(0.2, 0.2)
 
 [node name="Tentacles1" type="Sprite2D" parent="Phase3/Tentacles"]
-modulate = Color(0, 0, 0, 0.784314)
+modulate = Color(0.02, 0.02, 0.02, 0.784314)
 scale = Vector2(1.1, 0.9)
 texture = ExtResource("2_8hekf")
 
@@ -978,7 +1086,7 @@ autoplay = "wobble"
 speed_scale = 4.0
 
 [node name="Tentacles2" type="Sprite2D" parent="Phase3/Tentacles"]
-modulate = Color(0, 0, 0, 0.784314)
+modulate = Color(0.02, 0.02, 0.02, 0.784314)
 position = Vector2(0, 300)
 scale = Vector2(0.95, 1.05)
 texture = ExtResource("3_r4sec")
@@ -1041,4 +1149,10 @@ anim_player = NodePath("../AnimationPlayer")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_4lya8")
+}
+
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_fiuy8")
 }

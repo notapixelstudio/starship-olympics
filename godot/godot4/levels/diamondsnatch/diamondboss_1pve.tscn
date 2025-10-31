@@ -44,8 +44,12 @@ func _maybe_new_turret_phase(score, team, standings):
 	%TimeManager.stop()
 	%SpawnerWaveManager.stop()
 	%Turrets.queue_free()
+	DeeJay.fade_out()
+	await DeeJay.effect_done
+	await get_tree().create_timer(1).timeout
 	DeeJay.play(boss_music)
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(1).timeout
+	
 	var boss = %DiamondBoss
 	boss.next_phase()
 	
