@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://c84o5fdbasq1d"]
+[gd_scene load_steps=23 format=3 uid="uid://c84o5fdbasq1d"]
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_h2b6t"]
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_wwbvh"]
 [ext_resource type="Resource" uid="uid://qv7ahl4mb6vo" path="res://godot4/data/styles/cyber.tres" id="3_3wc0b"]
 [ext_resource type="Script" uid="uid://cjbvp4i20sjyf" path="res://godot4/levels/diamondsnatch/DiamondbossOrchestrator.gd" id="4_jpfcw"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="5_ra0jy"]
+[ext_resource type="AudioStream" uid="uid://ceul1r3xuqvet" path="res://assets/audio/soundtracks/Aim To Head - Strain.ogg" id="5_wwbvh"]
 [ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="6_3ieyr"]
 [ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="7_1qj20"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="8_wsyjl"]
@@ -38,7 +39,7 @@ style = ExtResource("3_3wc0b")
 [node name="Orchestrator" parent="Managers" index="0"]
 script = ExtResource("4_jpfcw")
 turret_threshold = 90
-boss_music = null
+boss_music = ExtResource("5_wwbvh")
 
 [node name="SpawnerWaveManager" parent="Managers" index="6" node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("5_ra0jy")]
 unique_name_in_owner = true
