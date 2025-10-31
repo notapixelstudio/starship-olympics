@@ -108,12 +108,14 @@ headshot_scene = ExtResource("3_d6jt3")
 
 [node name="Background" type="Polygon2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(8, 32)
+position = Vector2(-12.7477, 32)
+scale = Vector2(1.01982, 1)
 color = Color(0.219608, 0.219608, 0.219608, 0.901961)
 texture = ExtResource("3")
 polygon = PackedVector2Array(12.5, 162.5, 12.5, 12.5, 1047, 12.5, 1047, 162.5)
 
 [node name="Shadow" type="Polygon2D" parent="."]
+visible = false
 position = Vector2(8, 32)
 color = Color(0, 0, 0, 0.313726)
 polygon = PackedVector2Array(6.25, 156.25, 6.25, 6.25, 125, 6.25, 150, 156.25)
@@ -137,10 +139,10 @@ layout_mode = 2
 
 [node name="HeadshotsShadow" type="TextureRect" parent="Container/Wrapper"]
 unique_name_in_owner = true
-offset_left = 13.0
+offset_left = -8.0
 offset_top = 162.0
-offset_right = 269.0
-offset_bottom = 1197.0
+offset_right = 248.0
+offset_bottom = 1218.0
 rotation = -1.5708
 scale = Vector2(0.5, 1)
 texture = SubResource("GradientTexture1D_q8d3u")
@@ -213,20 +215,24 @@ offset_bottom = 130.0
 
 [node name="InsertName" type="LineEdit" parent="Container/InputWrapper/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme = ExtResource("7")
 theme_override_fonts/font = SubResource("4")
 theme_override_font_sizes/font_size = 32
 placeholder_text = "P1 "
-max_length = 10
 flat = true
 caret_blink = true
 script = ExtResource("6")
 
-[node name="Score" type="Label" parent="Container"]
+[node name="ScoreWrapper" type="Node2D" parent="Container"]
+position = Vector2(353, 27)
+
+[node name="Score" type="Label" parent="Container/ScoreWrapper"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
+offset_right = 300.0
+offset_bottom = 93.0
 theme = ExtResource("7")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
@@ -241,7 +247,7 @@ uppercase = true
 unique_name_in_owner = true
 z_index = 200
 z_as_relative = false
-position = Vector2(779.75, 117)
+position = Vector2(775.75, 117)
 texture = ExtResource("9_d6jt3")
 
 [node name="WinnerOutline" type="Line2D" parent="."]
@@ -256,9 +262,9 @@ position = Vector2(170, 150)
 
 [node name="DateSession" type="Label" parent="DateWrapper"]
 unique_name_in_owner = true
-offset_left = 701.0
+offset_left = 740.0
 offset_top = 18.0
-offset_right = 826.0
+offset_right = 865.0
 offset_bottom = 35.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
