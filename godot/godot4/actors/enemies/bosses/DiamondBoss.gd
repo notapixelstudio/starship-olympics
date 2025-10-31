@@ -2,20 +2,24 @@ extends Node2D
 
 @export var collision_polygons : Array[CollisionPolygon2D]
 
-var _phase := 1
+var _phase := 0
 
 signal _ready_for_next_phase
 signal next_phase_ready
 
 func next_phase() -> void:
+	_phase += 1
+	Events.log.emit('Boss phase %d' % [_phase])
+	
+	
+	return
 	await _ready_for_next_phase
 	
 	# create tween and use it to move the boss at the center of the arena
 	# wait for the tween to finish
 	await get_tree().create_tween().tween_property(self, "position", Vector2(0,0), 2.0).set_ease(Tween.EASE_IN_OUT).finished
 	
-	_phase += 1
-	Events.log.emit('Boss phase %d' % [_phase])
+	
 	
 	# enable just the collision polygon for the current phase
 	for i in len(collision_polygons):

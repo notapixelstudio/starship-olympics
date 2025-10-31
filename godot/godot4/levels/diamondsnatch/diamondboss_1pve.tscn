@@ -24,17 +24,21 @@
 [sub_resource type="GDScript" id="GDScript_2yg2a"]
 script/source = "extends Orchestrator
 
-@export var boss_scene : PackedScene
 @export var boss_music : AudioStream
 
 func _ready():
 	await super()
 	
+	var boss = %DiamondBoss
+	
+	
+	
+	
 	# FIXME implement more score threshold besides medals
 	Events.score_updated.connect(_maybe_new_turret_phase)
 	
 func _maybe_new_turret_phase(score, team, standings):
-	if score < 20:
+	if score < 3:
 		return
 		
 	Events.log.emit(\"Turret phase 2\")
@@ -47,8 +51,8 @@ func _maybe_new_turret_phase(score, team, standings):
 	%Turrets.queue_free()
 	DeeJay.play(boss_music)
 	await get_tree().create_timer(5).timeout
-	var boss = boss_scene.instantiate()
-	Events.spawn_request.emit(boss)
+	var boss = %DiamondBoss
+	boss.next_phase()
 	
 	%TimeManager.start()
 	%SpawnerWaveManagerBoss.start()
@@ -82,7 +86,6 @@ style = ExtResource("3_tk1gu")
 
 [node name="Orchestrator" parent="Managers" index="0"]
 script = SubResource("GDScript_2yg2a")
-boss_scene = ExtResource("4_cmggr")
 boss_music = ExtResource("5_csq50")
 
 [node name="SpawnerWaveManager" parent="Managers" index="6" node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("6_b5fst")]
@@ -1184,6 +1187,9 @@ unique_name_in_owner = true
 rotation = 3.14159
 offset = 200.0
 enabled = false
+
+[node name="DiamondBoss" parent="Battlefield" index="7" instance=ExtResource("4_cmggr")]
+unique_name_in_owner = true
 
 [node name="Navigation" parent="." index="6"]
 navigation_polygon = SubResource("NavigationPolygon_pvgs7")
