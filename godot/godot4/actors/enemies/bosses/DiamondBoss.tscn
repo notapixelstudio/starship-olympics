@@ -169,6 +169,7 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yjeqf"]
+break_loop_at_end = true
 switch_mode = 2
 advance_mode = 2
 advance_expression = "_phase >= 3"
@@ -812,6 +813,42 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Appear/GravitonField:enabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Appear/GravitonField:gravity")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(3.36, 1),
+"update": 0,
+"values": [1.0, 300.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Appear/PointLight2D:energy")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.2, 2),
+"transitions": PackedFloat32Array(2, 1, 0.5),
+"update": 0,
+"values": [0.0, 100.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_4egb8"]
 resource_name = "Trans2-3"
@@ -889,6 +926,42 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Appear/GravitonField:enabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Appear/GravitonField:gravity")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(3.36, 1),
+"update": 0,
+"values": [1.0, 300.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Appear/PointLight2D:energy")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.2, 2),
+"transitions": PackedFloat32Array(2, 1, 0.5),
+"update": 0,
+"values": [0.0, 100.0, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4lya8"]
 _data = {
@@ -941,7 +1014,7 @@ _data = {
 }
 
 [node name="DiamondBoss" type="Node2D" node_paths=PackedStringArray("collision_polygons")]
-position = Vector2(-994.227, -795.382)
+position = Vector2(713.923, -571.138)
 script = ExtResource("1_r4sec")
 collision_polygons = [NodePath("Phase1/CollisionPolygon2D"), NodePath("Phase2/CollisionPolygon2D"), NodePath("Phase3/CollisionPolygon2D")]
 
