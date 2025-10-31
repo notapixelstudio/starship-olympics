@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://b4hvn1qr85dr0"]
+[gd_scene load_steps=48 format=3 uid="uid://b4hvn1qr85dr0"]
 
 [ext_resource type="Script" uid="uid://cq5judgvign2h" path="res://godot4/actors/enemies/bosses/DiamondBoss.gd" id="1_r4sec"]
 [ext_resource type="Texture2D" uid="uid://c3nlwqq6tdcvp" path="res://assets/sprites/bosses/diamond_boss_tentacles_1.png" id="2_8hekf"]
@@ -103,7 +103,10 @@ animation = &"Outro"
 animation = &"Phase1"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u67jn"]
-animation = &"Phase2"
+animation = &"Phase2A"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_17se1"]
+animation = &"Phase2B"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kx4lp"]
 animation = &"Phase3"
@@ -152,24 +155,41 @@ advance_expression = "_defeated"
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4egb8"]
+priority = 2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ckikj"]
+priority = 2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yjeqf"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "_phase >= 3"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ko8q8"]
 states/End/position = Vector2(1376.67, 93.36)
 states/Intro/node = SubResource("AnimationNodeAnimation_4xbgt")
-states/Intro/position = Vector2(310.333, 93.4074)
+states/Intro/position = Vector2(135, 94.3251)
 states/Outro/node = SubResource("AnimationNodeAnimation_hnxan")
 states/Outro/position = Vector2(1210.33, 93.3971)
 states/Phase1/node = SubResource("AnimationNodeAnimation_ko8q8")
-states/Phase1/position = Vector2(455.667, 93.9753)
-states/Phase2/node = SubResource("AnimationNodeAnimation_u67jn")
-states/Phase2/position = Vector2(777, 92.7695)
+states/Phase1/position = Vector2(280.334, 94.893)
+states/Phase2A/node = SubResource("AnimationNodeAnimation_u67jn")
+states/Phase2A/position = Vector2(663.667, 30.3539)
+states/Phase2B/node = SubResource("AnimationNodeAnimation_17se1")
+states/Phase2B/position = Vector2(663.222, 176)
 states/Phase3/node = SubResource("AnimationNodeAnimation_kx4lp")
 states/Phase3/position = Vector2(1051.67, 93.959)
-states/Start/position = Vector2(141.333, 92.8889)
+states/Start/position = Vector2(-34.0003, 93.8066)
 states/Trans1-2/node = SubResource("AnimationNodeAnimation_j6iil")
-states/Trans1-2/position = Vector2(611.667, 93.9753)
+states/Trans1-2/position = Vector2(436.334, 94.893)
 states/Trans2-3/node = SubResource("AnimationNodeAnimation_fiuy8")
 states/Trans2-3/position = Vector2(911, 94.8397)
-transitions = ["Start", "Intro", SubResource("AnimationNodeStateMachineTransition_alvgf"), "Intro", "Phase1", SubResource("AnimationNodeStateMachineTransition_j6iil"), "Phase1", "Trans1-2", SubResource("AnimationNodeStateMachineTransition_u67jn"), "Trans1-2", "Phase2", SubResource("AnimationNodeStateMachineTransition_hnxan"), "Phase2", "Trans2-3", SubResource("AnimationNodeStateMachineTransition_17se1"), "Trans2-3", "Phase3", SubResource("AnimationNodeStateMachineTransition_185bo"), "Phase3", "Outro", SubResource("AnimationNodeStateMachineTransition_st51a"), "Outro", "End", SubResource("AnimationNodeStateMachineTransition_ltahh")]
+transitions = ["Start", "Intro", SubResource("AnimationNodeStateMachineTransition_alvgf"), "Intro", "Phase1", SubResource("AnimationNodeStateMachineTransition_j6iil"), "Phase1", "Trans1-2", SubResource("AnimationNodeStateMachineTransition_u67jn"), "Trans1-2", "Phase2A", SubResource("AnimationNodeStateMachineTransition_hnxan"), "Phase2A", "Trans2-3", SubResource("AnimationNodeStateMachineTransition_17se1"), "Trans2-3", "Phase3", SubResource("AnimationNodeStateMachineTransition_185bo"), "Phase3", "Outro", SubResource("AnimationNodeStateMachineTransition_st51a"), "Outro", "End", SubResource("AnimationNodeStateMachineTransition_ltahh"), "Phase2A", "Phase2B", SubResource("AnimationNodeStateMachineTransition_4egb8"), "Phase2B", "Phase2A", SubResource("AnimationNodeStateMachineTransition_ckikj"), "Phase2B", "Trans2-3", SubResource("AnimationNodeStateMachineTransition_yjeqf")]
 graph_offset = Vector2(-173, -56)
 
 [sub_resource type="Animation" id="Animation_j6iil"]
@@ -249,60 +269,6 @@ tracks/2/path = NodePath("Phase1/CollisionPolygon2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_4xbgt"]
-resource_name = "Phase2"
-length = 22.0
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3, 8, 11, 14, 19),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-1000, -800), Vector2(1000, -800), Vector2(0, 0), Vector2(1000, -800), Vector2(-1000, -800)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Phase2:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Phase2/RotoTurretPhase2:enabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(3, 8, 14, 19),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [true, false, true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Phase2/CollisionPolygon2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -741,12 +707,121 @@ tracks/3/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_ko8q8"]
+resource_name = "Phase2B"
+length = 11.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 8),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1000, -800), Vector2(-1000, -800)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Phase2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Phase2/RotoTurretPhase2:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Phase2/CollisionPolygon2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_4xbgt"]
+resource_name = "Phase2A"
+length = 11.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 8),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1000, -800), Vector2(1000, -800)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Phase2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Phase2/RotoTurretPhase2:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Phase2/CollisionPolygon2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4lya8"]
 _data = {
 &"Intro": SubResource("Animation_j6iil"),
 &"Outro": SubResource("Animation_ckikj"),
 &"Phase1": SubResource("Animation_inngl"),
-&"Phase2": SubResource("Animation_4xbgt"),
+&"Phase2A": SubResource("Animation_4xbgt"),
+&"Phase2B": SubResource("Animation_ko8q8"),
 &"Phase3": SubResource("Animation_alvgf"),
 &"RESET": SubResource("Animation_0kx5a"),
 &"Trans1-2": SubResource("Animation_hnxan"),
