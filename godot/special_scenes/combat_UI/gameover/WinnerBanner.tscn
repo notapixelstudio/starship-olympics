@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2g1x0qdp7hul"]
+[gd_scene load_steps=13 format=3 uid="uid://d2g1x0qdp7hul"]
 
 [ext_resource type="PackedScene" uid="uid://bsdasajr1cjh8" path="res://special_scenes/combat_UI/session_points/Stat.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://ccvffra4l23u7" path="res://assets/patterns/stripes_duotone_lighter.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://b8llrhhkcnyfh" path="res://special_scenes/combat_UI/session_points/Headshot.tscn" id="3_d6jt3"]
 [ext_resource type="Texture2D" uid="uid://dhxy8aoqproo8" path="res://assets/map/winner.png" id="4"]
 [ext_resource type="Script" uid="uid://cya06sa82qft3" path="res://special_scenes/combat_UI/gameover/WinnerBanner.gd" id="5"]
 [ext_resource type="Script" uid="uid://dau5ixccdil25" path="res://special_scenes/combat_UI/gameover/InsertName.gd" id="6"]
@@ -65,6 +66,7 @@ offset_right = 361.0
 offset_bottom = 180.0
 script = ExtResource("5")
 minigame_logo = ExtResource("9")
+headshot_scene = ExtResource("3_d6jt3")
 
 [node name="Background" type="Polygon2D" parent="."]
 unique_name_in_owner = true
