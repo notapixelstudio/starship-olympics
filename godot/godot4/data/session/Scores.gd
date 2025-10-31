@@ -14,7 +14,7 @@ var time: float
 var minigame_name: String
 var score: float
 var achievement: String
-var new_score: bool = false
+
 
 
 class Standing:
@@ -71,5 +71,4 @@ func to_dictionary():
 		"minigame": minigame_name,
 		"score": score,
 		"achievement": achievement,
-		"new_score": new_score
 	}

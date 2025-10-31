@@ -19,8 +19,9 @@ func _ready():
 	$"%WinnerBanner".queue_free()
 	set_process_input(false)
 	var data = get_hall_of_fame(session.get_last_score())
-	
-	data.append(new_score.to_dictionary())
+	var new_score_dict = new_score.to_dictionary()
+	new_score_dict["new_score"] = true
+	data.append(new_score_dict)
 	
 	data.sort_custom(func(a,b): return a["score"] < b["score"])
 	var i = 0
@@ -43,6 +44,7 @@ func _ready():
 	
 	$"%ScrollContainer".scroll_vertical = pow(10, 4)
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+	# TODO: if we know how many element in the scroll, we can scroll to it
 	tween.chain().tween_property($"%ScrollContainer", 'scroll_vertical', new_one, 1 + $"%SessionWon".get_child_count()%3)
 	await tween.finished
 	if not add_champion:
@@ -68,7 +70,6 @@ func _input(event):
 		
 func set_new_scores(score: Scores):
 	new_score = score
-	new_score.new_score = true
 	
 func add_champion_to_scene():
 	var champ_scene: WinnerBanner = champion_scene.instantiate()
