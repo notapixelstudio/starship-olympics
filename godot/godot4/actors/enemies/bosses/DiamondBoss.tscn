@@ -157,11 +157,13 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4egb8"]
+break_loop_at_end = true
 priority = 2
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ckikj"]
+break_loop_at_end = true
 priority = 2
 switch_mode = 2
 advance_mode = 2
@@ -191,7 +193,7 @@ states/Trans1-2/position = Vector2(436.334, 94.893)
 states/Trans2-3/node = SubResource("AnimationNodeAnimation_fiuy8")
 states/Trans2-3/position = Vector2(911, 94.8397)
 transitions = ["Start", "Intro", SubResource("AnimationNodeStateMachineTransition_alvgf"), "Intro", "Phase1", SubResource("AnimationNodeStateMachineTransition_j6iil"), "Phase1", "Trans1-2", SubResource("AnimationNodeStateMachineTransition_u67jn"), "Trans1-2", "Phase2A", SubResource("AnimationNodeStateMachineTransition_hnxan"), "Phase2A", "Trans2-3", SubResource("AnimationNodeStateMachineTransition_17se1"), "Trans2-3", "Phase3", SubResource("AnimationNodeStateMachineTransition_185bo"), "Phase3", "Outro", SubResource("AnimationNodeStateMachineTransition_st51a"), "Outro", "End", SubResource("AnimationNodeStateMachineTransition_ltahh"), "Phase2A", "Phase2B", SubResource("AnimationNodeStateMachineTransition_4egb8"), "Phase2B", "Phase2A", SubResource("AnimationNodeStateMachineTransition_ckikj"), "Phase2B", "Trans2-3", SubResource("AnimationNodeStateMachineTransition_yjeqf")]
-graph_offset = Vector2(-173, -56)
+graph_offset = Vector2(248.751, -56)
 
 [sub_resource type="Animation" id="Animation_j6iil"]
 resource_name = "Intro"
@@ -270,6 +272,59 @@ tracks/5/keys = {
 "values": [1.0, 600.0]
 }
 
+[sub_resource type="Animation" id="Animation_ckikj"]
+resource_name = "Outro"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phase3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Phase3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(10, 10, 10, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Phase3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(30, 0), Vector2(-30, 0), Vector2(40, 0), Vector2(-40, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Phase3/CollisionPolygon2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
 [sub_resource type="Animation" id="Animation_inngl"]
 resource_name = "Phase1"
 length = 10.0
@@ -306,6 +361,114 @@ tracks/2/path = NodePath("Phase1/CollisionPolygon2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4xbgt"]
+resource_name = "Phase2A"
+length = 11.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 8),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1000, -800), Vector2(1000, -800)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Phase2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Phase2/RotoTurretPhase2:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Phase2/CollisionPolygon2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ko8q8"]
+resource_name = "Phase2B"
+length = 11.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 8),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1000, -800), Vector2(-1000, -800)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Phase2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Phase2/RotoTurretPhase2:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Phase2/CollisionPolygon2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -727,167 +890,6 @@ tracks/5/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_ckikj"]
-resource_name = "Outro"
-length = 2.0
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Phase3:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Phase3:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.2),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(10, 10, 10, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Phase3:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
-"transitions": PackedFloat32Array(1, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5, -0.5),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(30, 0), Vector2(-30, 0), Vector2(40, 0), Vector2(-40, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Phase3/CollisionPolygon2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_ko8q8"]
-resource_name = "Phase2B"
-length = 11.0
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3, 8),
-"transitions": PackedFloat32Array(-2, -2, -2),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1000, -800), Vector2(-1000, -800)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Phase2:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Phase2/RotoTurretPhase2:enabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(3, 8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Phase2/CollisionPolygon2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-
-[sub_resource type="Animation" id="Animation_4xbgt"]
-resource_name = "Phase2A"
-length = 11.0
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3, 8),
-"transitions": PackedFloat32Array(-2, -2, -2),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-1000, -800), Vector2(1000, -800)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Phase2:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Phase2/RotoTurretPhase2:enabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(3, 8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Phase2/CollisionPolygon2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4lya8"]
 _data = {
 &"Intro": SubResource("Animation_j6iil"),
@@ -899,6 +901,21 @@ _data = {
 &"RESET": SubResource("Animation_0kx5a"),
 &"Trans1-2": SubResource("Animation_hnxan"),
 &"Trans2-3": SubResource("Animation_4egb8")
+}
+
+[sub_resource type="Animation" id="Animation_kx4lp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_u67jn"]
@@ -917,21 +934,6 @@ tracks/0/keys = {
 "values": [Color(4, 4, 4, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_kx4lp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fiuy8"]
 _data = {
 &"RESET": SubResource("Animation_kx4lp"),
@@ -939,6 +941,7 @@ _data = {
 }
 
 [node name="DiamondBoss" type="Node2D" node_paths=PackedStringArray("collision_polygons")]
+position = Vector2(-994.227, -795.382)
 script = ExtResource("1_r4sec")
 collision_polygons = [NodePath("Phase1/CollisionPolygon2D"), NodePath("Phase2/CollisionPolygon2D"), NodePath("Phase3/CollisionPolygon2D")]
 
@@ -1101,13 +1104,11 @@ speed_scale = 4.0
 
 [node name="Turret" parent="Phase3" instance=ExtResource("10_j6iil")]
 position = Vector2(0.61727, 99.9981)
-scale = Vector2(1, 1)
 enabled = false
 wait_time = 1.0
 
 [node name="BubbleBulletWeapon" parent="Phase3/Turret" instance=ExtResource("9_ko8q8")]
 position = Vector2(5.96046e-08, 100)
-scale = Vector2(1, 1)
 bullet_speed = 500.0
 bullet_lifetime = 3.0
 offset = 50.0
@@ -1115,7 +1116,6 @@ offset = 50.0
 [node name="BubbleBulletWeapon2" parent="Phase3/Turret" instance=ExtResource("9_ko8q8")]
 position = Vector2(5.96046e-08, 100)
 rotation = 3.14159
-scale = Vector2(1, 1)
 bullet_speed = 500.0
 bullet_lifetime = 3.0
 offset = 50.0
