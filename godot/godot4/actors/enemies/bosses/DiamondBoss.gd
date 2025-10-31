@@ -3,9 +3,8 @@ extends Node2D
 @export var collision_polygons : Array[CollisionPolygon2D]
 
 var _phase := 0
+var _defeated := false
 
-signal _ready_for_next_phase
-signal next_phase_ready
 
 func next_phase() -> void:
 	_phase += 1
@@ -13,7 +12,7 @@ func next_phase() -> void:
 	
 	
 	return
-	await _ready_for_next_phase
+	#await _ready_for_next_phase
 	
 	# create tween and use it to move the boss at the center of the arena
 	# wait for the tween to finish
@@ -39,7 +38,5 @@ func next_phase() -> void:
 		%RotoTurretPhase2.stop()
 		%RotoTurretPhase3.start()
 		
-	next_phase_ready.emit()
+	#next_phase_ready.emit()
 	
-func _notify_ready_for_next_phase() -> void:
-	_ready_for_next_phase.emit()

@@ -60,13 +60,11 @@ func _maybe_new_turret_phase(score, team, standings):
 	await Events.score_threshold_passed
 	%TimeManager.stop()
 	boss.next_phase()
-	await boss.next_phase_ready
 	%TimeManager.start()
 	
 	await Events.score_threshold_passed
 	%TimeManager.stop()
 	boss.next_phase()
-	await boss.next_phase_ready
 	%TimeManager.start()
 "
 
