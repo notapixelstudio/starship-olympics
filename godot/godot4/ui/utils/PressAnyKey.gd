@@ -5,6 +5,10 @@ signal any_key_pressed
 func _ready() -> void:
 	set_process_unhandled_input(false)
 
+func disable():
+	set_process_unhandled_input(false)
+	self.visible = false
+	
 func enable():
 	set_process_unhandled_input(true)
 	%ContinueAnimationPlayer.play("blink")

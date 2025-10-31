@@ -20,8 +20,11 @@ func _ready():
 	set_process_input(false)
 	var data = get_hall_of_fame(session.get_last_score())
 	
-	data.sort_custom(func(a,b): return a["score"] < b["score"])
+	data.append(new_score.to_dictionary())
 	
+	data.sort_custom(func(a,b): return a["score"] < b["score"])
+	var i = 0
+	var new_one = 0
 	for champion in data:
 		var champ_scene: WinnerBanner = champion_scene.instantiate()
 		await get_tree().process_frame
@@ -29,18 +32,18 @@ func _ready():
 		$"%SessionWon".add_child(champ_scene)
 		$"%SessionWon".move_child(champ_scene, 0)
 		# you can write your name now
-		var this_champion = $"%SessionWon".get_child(0)
-		# this_champion.insert_name()
+		if champion.get("new_score"):
+			var this_champion = $"%SessionWon".get_child(0)
+			this_champion.insert_name()
+			new_one = i
+		i+=1
 		
 	# yield(get_tree(), "idle_frame")
-	
-	if add_champion:
-		add_champion_to_scene()
 	
 	
 	$"%ScrollContainer".scroll_vertical = pow(10, 4)
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
-	tween.chain().tween_property($"%ScrollContainer", 'scroll_vertical', 0, 1 + $"%SessionWon".get_child_count()%3)
+	tween.chain().tween_property($"%ScrollContainer", 'scroll_vertical', new_one, 1 + $"%SessionWon".get_child_count()%3)
 	await tween.finished
 	if not add_champion:
 		$ScrollContainer.get_child(0).grab_focus()
@@ -65,6 +68,7 @@ func _input(event):
 		
 func set_new_scores(score: Scores):
 	new_score = score
+	new_score.new_score = true
 	
 func add_champion_to_scene():
 	var champ_scene: WinnerBanner = champion_scene.instantiate()
@@ -93,6 +97,7 @@ func fake_new_score() -> Scores:
 const FILEPATH ="user://hall_of_fame-%s-%s.json"
 
 func store_new_entry(new_champion: Dictionary) -> void: 
+	new_champion.new_score = false
 	var minigame = new_champion["minigame"]
 	var number_players = str(len(new_champion["players"]))
 	var complete_filepath = FILEPATH % [minigame, number_players]
