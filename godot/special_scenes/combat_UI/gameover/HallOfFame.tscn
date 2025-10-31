@@ -4,13 +4,13 @@
 [ext_resource type="Script" uid="uid://csye6cocso6hk" path="res://special_scenes/combat_UI/gameover/HallOfFame.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://bfjk2jikcv4ub" path="res://utils/ShearLabel.tscn" id="3"]
 
-[node name="HallOfFame" type="Control"]
-layout_mode = 3
+[node name="HallOfFame" type="ColorRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 0.972549)
 script = ExtResource("2")
 champion_scene = ExtResource("1")
 add_champion = true

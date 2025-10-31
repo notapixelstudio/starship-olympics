@@ -1,4 +1,4 @@
-extends Control
+extends ColorRect
 
 class_name HallOfFame
 
