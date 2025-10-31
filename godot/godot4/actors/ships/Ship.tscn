@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene load_steps=38 format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" uid="uid://57bbtul52rl7" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PhysicsMaterial" uid="uid://v8mu2p8ukj54" path="res://godot4/actors/ships/ShipPhysicsMaterial.tres" id="1_yr6p6"]
@@ -7,13 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="3_gbkft"]
 [ext_resource type="PackedScene" uid="uid://clbsrjsidxhav" path="res://combat/traits/Tracked.tscn" id="3_h4ehe"]
 [ext_resource type="Script" uid="uid://kdib40tvbvo8" path="res://actors/battlers/Node2D.gd" id="4_557ck"]
-[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="4_mpdfg"]
-[ext_resource type="PackedScene" uid="uid://d1673ytdlyny4" path="res://godot4/debug/OnShipDebug.tscn" id="5_0tcqu"]
 [ext_resource type="PackedScene" uid="uid://chm0a8w56kiny" path="res://godot4/actors/ships/DisabledShip.tscn" id="5_jvf5m"]
 [ext_resource type="Script" uid="uid://csgls77y2kr7l" path="res://godot4/actors/managers/ChargeManager.gd" id="5_ostpb"]
 [ext_resource type="PackedScene" uid="uid://bhygc2xfw2jei" path="res://godot4/traits/Target.tscn" id="6_kqe5y"]
 [ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="8_11rou"]
-[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="8_yfcmx"]
 [ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://godot4/effects/trails/FlameTrail.tscn" id="10_4jj2i"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="10_iega2"]
 [ext_resource type="PackedScene" uid="uid://cex35drwxeknp" path="res://godot4/effects/trails/FlamesManager.tscn" id="11_i3r85"]
@@ -25,27 +22,6 @@
 [ext_resource type="PackedScene" uid="uid://criepafyhd33y" path="res://godot4/actors/ships/managers/CargoManager.tscn" id="21_kqe5y"]
 [ext_resource type="AudioStream" uid="uid://dcts5b2ldeeav" path="res://assets/audio/gameplay/struggle.wav" id="24_0funj"]
 [ext_resource type="AudioStream" uid="uid://cifoe1viahak1" path="res://assets/audio/FX/270315__littlerobotsoundfactory__menu-navigate-03.wav" id="25_2p6s4"]
-
-[sub_resource type="GDScript" id="GDScript_4hb7k"]
-script/source = "extends DebugNode
-
-@export var test_default_brain : PackedScene
-@export var test_chamber : PackedScene
-
-func _ready():
-	super._ready()
-	if self.is_host_standalone():
-		await host.ready
-		
-		# set a default brain for the ship
-		host.add_child.call_deferred(test_default_brain.instantiate())
-		
-		# place the ship inside the test chamber
-		var test_chamber_instance = test_chamber.instantiate()
-		test_chamber_instance.set_test_subject(host)
-		self.place_host_in_test_chamber(test_chamber_instance)
-		
-"
 
 [sub_resource type="GDScript" id="GDScript_jwr13"]
 script/source = "extends Sprite2D
@@ -208,16 +184,6 @@ disabled_ship_scene = ExtResource("5_jvf5m")
 
 [node name="Tracked" parent="." instance=ExtResource("3_h4ehe")]
 unique_name_in_owner = true
-
-[node name="DebugNode2D" type="Node2D" parent="." node_paths=PackedStringArray("host")]
-script = SubResource("GDScript_4hb7k")
-test_default_brain = ExtResource("8_yfcmx")
-test_chamber = ExtResource("4_mpdfg")
-host = NodePath("..")
-
-[node name="OnShipDebug" parent="DebugNode2D" node_paths=PackedStringArray("host") instance=ExtResource("5_0tcqu")]
-visible = false
-host = NodePath("../..")
 
 [node name="Graphics" type="Node2D" parent="."]
 unique_name_in_owner = true
