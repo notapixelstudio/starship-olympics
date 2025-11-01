@@ -15,7 +15,7 @@ func set_session(v:Session) -> void:
 var new_score : Scores
 
 func _ready():
-	Events.new_entry_hall_of_fame.connect(store_new_entry)
+	Events.new_entry_hall_of_fame.connect(_on_new_entry_hall_of_fame)
 	$"%WinnerBanner".queue_free()
 	set_process_input(false)
 	var data = get_hall_of_fame(session.get_last_score())
@@ -28,7 +28,7 @@ func _ready():
 	var new_one = 0
 	for champion in data:
 		var champ_scene: WinnerBanner = champion_scene.instantiate()
-		await get_tree().process_frame
+		
 		champ_scene.set_banner(champion)
 		$"%SessionWon".add_child(champ_scene)
 		$"%SessionWon".move_child(champ_scene, 0)
@@ -41,11 +41,15 @@ func _ready():
 		
 	# yield(get_tree(), "idle_frame")
 	
+	await get_tree().process_frame
 	
-	$"%ScrollContainer".scroll_vertical = pow(10, 4)
+	%ScrollContainer.scroll_vertical = 0#pow(10, 4)
+	
+	await get_tree().create_timer(1.0).timeout
+	
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
 	# TODO: if we know how many element in the scroll, we can scroll to it
-	tween.chain().tween_property($"%ScrollContainer", 'scroll_vertical', (len(data)-new_one)*130, 1 + $"%SessionWon".get_child_count()%3)
+	tween.chain().tween_property($"%ScrollContainer", 'scroll_vertical', (len(data)-new_one-1)*180, 1 + $"%SessionWon".get_child_count()%3)
 	await tween.finished
 	if not add_champion:
 		$ScrollContainer.get_child(0).grab_focus()
@@ -57,17 +61,25 @@ func naming_champions():
 	$VBoxContainer/Label3.visible=true
 	
 func _input(event):
-	if auto_quit and event.is_action_pressed("ui_accept"):
-		Events.emit_signal("continue_after_session_ended")
-		set_process_input(false)
-		if self.get_parent() == get_tree().get_root():
-			get_tree().change_scene_to_file(menu_scene)
-		queue_free()
-	if event.is_action_pressed("ui_down"):
-		$"%ScrollContainer".scroll_vertical += 30 
-	if event.is_action_pressed("ui_up"):
-		$"%ScrollContainer".scroll_vertical -= 30 
+	#if auto_quit and event.is_action_pressed("ui_accept"):
+		#Events.emit_signal("continue_after_session_ended")
+		#set_process_input(false)
+		#if self.get_parent() == get_tree().get_root():
+			#get_tree().change_scene_to_file(menu_scene)
+		#queue_free()
 		
+	pass
+	
+func _process(delta: float) -> void:
+	if is_processing_input():
+		var step = 0
+		if Input.is_action_pressed("ui_down"):
+			step = 1
+		if Input.is_action_pressed("ui_up"):
+			step = -1
+		
+		%ScrollContainer.scroll_vertical += int(step*500*delta)
+	
 func set_new_scores(score: Scores):
 	new_score = score
 	
@@ -82,6 +94,10 @@ func add_champion_to_scene():
 	# you can write your name now
 	var this_champion = $"%SessionWon".get_child(0)
 	this_champion.insert_name()
+	
+func _on_new_entry_hall_of_fame(new_champion: Dictionary) -> void:
+	store_new_entry(new_champion)
+	set_process_input(true)
 
 func fake_new_score() -> Scores:
 	return Scores.new({"player": {}})
@@ -97,7 +113,7 @@ func fake_new_score() -> Scores:
 
 const FILEPATH ="user://hall_of_fame-%s-%s.json"
 
-func store_new_entry(new_champion: Dictionary) -> void: 
+func store_new_entry(new_champion: Dictionary) -> void:
 	new_champion.new_score = false
 	var minigame = new_champion["minigame"]
 	var number_players = str(len(new_champion["players"]))

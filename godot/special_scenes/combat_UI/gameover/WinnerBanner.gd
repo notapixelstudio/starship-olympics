@@ -65,7 +65,10 @@ func set_banner(champion: Dictionary):
 		%Background.modulate = Color('#777777')
 		%WinnerOutline.modulate = Color('#DDDDDD')
 		
-	%WinnerOutline.visible = champion.get('new_score')
+	var new_score = champion.get('new_score')
+	%WinnerOutline.visible = new_score
+	if not new_score:
+		modulate = Color(0.5,0.5,0.5)
 	
 func insert_name():
 	$"%InsertName".connect("name_inserted", Callable(self, "_on_InsertName_name_inserted"))
