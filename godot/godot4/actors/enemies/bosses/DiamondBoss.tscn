@@ -1014,7 +1014,6 @@ _data = {
 }
 
 [node name="DiamondBoss" type="Node2D" node_paths=PackedStringArray("collision_polygons")]
-position = Vector2(713.923, -571.138)
 script = ExtResource("1_r4sec")
 collision_polygons = [NodePath("Phase1/CollisionPolygon2D"), NodePath("Phase2/CollisionPolygon2D"), NodePath("Phase3/CollisionPolygon2D")]
 
@@ -1138,6 +1137,7 @@ disabled = true
 [node name="Phase3" type="StaticBody2D" parent="."]
 visible = false
 rotation = 0.00617274
+scale = Vector2(1, 1)
 collision_layer = 16
 collision_mask = 0
 metadata/_edit_lock_ = true
