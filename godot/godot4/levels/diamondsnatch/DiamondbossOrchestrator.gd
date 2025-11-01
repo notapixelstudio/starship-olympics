@@ -16,6 +16,7 @@ func _maybe_new_turret_phase(score, team, standings):
 	Events.log.emit("Turret phase 2")
 	Events.score_updated.disconnect(_maybe_new_turret_phase)
 	%BubbleBulletWeaponBack.enabled = true
+	%BubbleBulletWeaponBack.visible = true
 	
 	await Events.score_threshold_passed
 	%TimeManager.stop()

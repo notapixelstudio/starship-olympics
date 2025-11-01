@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dl6asedphskbl"]
+[gd_scene load_steps=25 format=3 uid="uid://dl6asedphskbl"]
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_f7dml"]
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_j10s1"]
@@ -21,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://c6e28abusnqyt" path="res://godot4/actors/enemies/RotoTurret.tscn" id="18_q3o0g"]
 [ext_resource type="PackedScene" uid="uid://d36soeoj2g3ly" path="res://godot4/actors/ships/weapons/BubbleBulletWeapon.tscn" id="19_kb6cb"]
 [ext_resource type="PackedScene" uid="uid://b4hvn1qr85dr0" path="res://godot4/actors/enemies/bosses/DiamondBoss.tscn" id="20_vrehj"]
+[ext_resource type="Texture2D" uid="uid://bj4s2pqxiqh6h" path="res://assets/sprites/bosses/turret_under.png" id="21_q8h85"]
+[ext_resource type="Texture2D" uid="uid://dd6gr3ghofbwj" path="res://assets/sprites/bosses/turret_top.png" id="22_bia0f"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_pvgs7"]
 resource_local_to_scene = true
@@ -1146,15 +1148,28 @@ wait_time = 4.0
 [node name="BubbleBulletWeapon" parent="Battlefield/Turrets/Wall2/RotoTurret" index="6" instance=ExtResource("19_kb6cb")]
 offset = 200.0
 
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/Turrets/Wall2/RotoTurret/BubbleBulletWeapon" index="0"]
+position = Vector2(74, 0)
+texture = ExtResource("21_q8h85")
+
 [node name="BubbleBulletWeaponBack" parent="Battlefield/Turrets/Wall2/RotoTurret" index="7" instance=ExtResource("19_kb6cb")]
 unique_name_in_owner = true
+visible = false
 rotation = 3.14159
 offset = 200.0
 enabled = false
 
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/Turrets/Wall2/RotoTurret/BubbleBulletWeaponBack" index="0"]
+position = Vector2(74, 0.000187603)
+rotation = -3.14159
+texture = ExtResource("21_q8h85")
+
+[node name="TopSprite2D" type="Sprite2D" parent="Battlefield/Turrets/Wall2/RotoTurret" index="8"]
+top_level = true
+texture = ExtResource("22_bia0f")
+
 [node name="DiamondBoss" parent="Battlefield" index="8" instance=ExtResource("20_vrehj")]
 unique_name_in_owner = true
-position = Vector2(0, 0)
 
 [node name="Navigation" parent="." index="6"]
 navigation_polygon = SubResource("NavigationPolygon_pvgs7")
