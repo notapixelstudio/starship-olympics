@@ -45,7 +45,7 @@ func _ready():
 	$"%ScrollContainer".scroll_vertical = pow(10, 4)
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
 	# TODO: if we know how many element in the scroll, we can scroll to it
-	tween.chain().tween_property($"%ScrollContainer", 'scroll_vertical', new_one, 1 + $"%SessionWon".get_child_count()%3)
+	tween.chain().tween_property($"%ScrollContainer", 'scroll_vertical', (len(data)-new_one)*130, 1 + $"%SessionWon".get_child_count()%3)
 	await tween.finished
 	if not add_champion:
 		$ScrollContainer.get_child(0).grab_focus()
