@@ -27,8 +27,8 @@ func set_banner(champion: Dictionary):
 		var headshot = headshot_scene.instantiate()
 		headshot.set_player(p_info)
 		
-		$"%HeadshotContainer".add_child(headshot)
-		#$"%HeadshotContainer".move_child(headshot, i)
+		%HeadshotContainer.add_child(headshot)
+		headshot.z_index = len(players) - i
 		
 		headshot.visible = true
 		i+=1
@@ -42,11 +42,30 @@ func set_banner(champion: Dictionary):
 	$"%InsertName".placeholder_text = $"%PlayerName".text
 	
 	%Score.text = str(int(champion.get('score', 0)))
-	if champion.get('achievement') != null:
-		%Medal.texture = load("res://assets/sprites/medals/"+champion.get('achievement')+'.png')
+	%ScoreMax.text = "/" + str(int(champion.get('max_score', 0)))
+	var medal = champion.get('achievement')
+	if medal != null and medal != '':
+		var medal_texture = load("res://assets/sprites/medals/"+medal+'.png')
+		%Medal.texture = medal_texture
+		%MedalShadow.texture = medal_texture
+		match medal:
+			'bronze':
+				%Background.modulate = Color.SADDLE_BROWN
+				%WinnerOutline.modulate = Color.SADDLE_BROWN
+			'silver':
+				%Background.modulate = Color.LIGHT_BLUE
+				%WinnerOutline.modulate = Color.LIGHT_BLUE
+			'gold':
+				%Background.modulate = Color.GOLDENROD
+				%WinnerOutline.modulate = Color.GOLDENROD
+			
 	else:
 		%Medal.texture = null
+		%MedalShadow.texture = null
+		%Background.modulate = Color('#777777')
+		%WinnerOutline.modulate = Color('#DDDDDD')
 		
+	%WinnerOutline.visible = champion.get('new_score')
 	
 func insert_name():
 	$"%InsertName".connect("name_inserted", Callable(self, "_on_InsertName_name_inserted"))

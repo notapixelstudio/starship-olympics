@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=53 format=3 uid="uid://dui8cebqku8x5"]
+[gd_resource type="Theme" load_steps=54 format=3 uid="uid://dui8cebqku8x5"]
 
 [ext_resource type="StyleBox" path="res://interface/themes/olympic/scroll.tres" id="1"]
 [ext_resource type="StyleBox" uid="uid://xf61ll1ebsbs" path="res://interface/themes/olympic/panel.tres" id="2"]
@@ -25,8 +25,6 @@
 [ext_resource type="StyleBox" path="res://interface/themes/olympic/hover.tres" id="20"]
 [ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="21"]
 [ext_resource type="StyleBox" path="res://interface/themes/olympic/hover_pressed.tres" id="22"]
-[ext_resource type="StyleBox" path="res://interface/themes/olympic/focus_line_eidt.tres" id="23"]
-[ext_resource type="StyleBox" path="res://interface/themes/olympic/normal_line_edit.tres" id="24"]
 [ext_resource type="FontFile" path="res://assets/fonts/DefaultFont26.tres" id="26"]
 
 [sub_resource type="Image" id="Image_cuoh0"]
@@ -118,6 +116,12 @@ cache/0/14/0/descent = 0.0
 cache/0/14/0/underline_position = 0.0
 cache/0/14/0/underline_thickness = 0.0
 cache/0/14/0/scale = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g7m5v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gbqai"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t4kbx"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_t4kbx"]
 
@@ -875,10 +879,11 @@ LineEdit/colors/cursor_color = Color(1, 1, 1, 1)
 LineEdit/colors/font_color = Color(1, 1, 1, 1)
 LineEdit/colors/read_only = Color(1, 1, 1, 1)
 LineEdit/colors/selection_color = Color(1, 1, 1, 1)
+LineEdit/constants/caret_width = 2
 LineEdit/fonts/font = SubResource("18")
-LineEdit/styles/focus = ExtResource("23")
-LineEdit/styles/normal = ExtResource("24")
-LineEdit/styles/read_only = null
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_g7m5v")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_gbqai")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_t4kbx")
 LinkButton/colors/font_color = Color(1, 1, 1, 1)
 LinkButton/styles/focus = ExtResource("5")
 MarginContainer/constants/margin_bottom = 0

@@ -11,6 +11,7 @@ var standings: Array[Standing]
 var winners: Array[String] # team name
 var remaining_time: float
 var time: float
+var max_score: int
 var minigame_name: String
 var score: float
 var achievement: String
@@ -42,6 +43,7 @@ func _init(data: Dictionary):
 	players = data["players"]
 	remaining_time = data["remaining_time"]
 	time = data["time"]
+	max_score = data["max_score"]
 	minigame_name = data["minigame"]
 	score = data.get("standings")[-1].get("score")
 	achievement = data.get("medal")
@@ -68,6 +70,7 @@ func to_dictionary():
 		"standings": standings_dictionary,
 		"remaining_time": remaining_time,
 		"time": time,
+		"max_score": max_score,
 		"minigame": minigame_name,
 		"score": score,
 		"achievement": achievement,

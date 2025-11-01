@@ -161,6 +161,7 @@ func _update_session(data:Dictionary) -> void:
 	data["remaining_time"] = %TimeManager.get_remaining_time()
 	data["time"] = _params.time
 	data["minigame"] = get_minigame().title
+	data["max_score"] = _params.score
 	session.add_match_results(data)
 	
 	
