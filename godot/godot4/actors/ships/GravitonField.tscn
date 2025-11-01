@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://cd12x0fubc17m"]
+[gd_scene load_steps=3 format=3 uid="uid://cd12x0fubc17m"]
 
 [ext_resource type="Script" uid="uid://w65iy52pl7hp" path="res://godot4/actors/ships/GravitonField.gd" id="1"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wgenc"]
+resource_local_to_scene = true
+
 [node name="GravitonField" type="Node2D"]
 script = ExtResource("1")
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2048
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_wgenc")
+disabled = true

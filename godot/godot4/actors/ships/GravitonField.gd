@@ -1,18 +1,40 @@
 extends Node2D
 
 @export var enabled : bool = false : set = set_enabled, get = get_enabled
-@export var gravity : float = 1024.0
-@export var center := Vector3(0,0,0)
-@export var influence_radius : float = 500.0
+@export var attract_bodies : bool = false : set = set_attract_bodies
+@export var gravity : float = 1024.0 : set = set_gravity
+@export var center := Vector3(0,0,0) : set = set_center
+@export var influence_radius : float = 500.0 : set = set_influence_radius
 @export var source : Node
 @export var source_strength_method_name : String = 'get_strength'
 
 func set_enabled(v):
 	enabled = v
+	refresh()
+	
+func refresh():
 	if enabled:
 		add_to_group("gravity_wells")
+		%CollisionShape2D.disabled = not attract_bodies
 	else:
 		remove_from_group("gravity_wells")
+		%CollisionShape2D.disabled = false
+		
+func set_attract_bodies(v):
+	attract_bodies = v
+	refresh()
+	
+func set_gravity(v: float) -> void:
+	gravity = v
+	%Area2D.gravity = v*2.0
+	
+func set_center(v: Vector3) -> void:
+	center = v
+	%Area2D.gravity_point_center = Vector2(v.x, v.y)
+	
+func set_influence_radius(v: float) -> void:
+	influence_radius = v
+	%CollisionShape2D.shape.radius = v
 	
 func enable():
 	set_enabled(true)

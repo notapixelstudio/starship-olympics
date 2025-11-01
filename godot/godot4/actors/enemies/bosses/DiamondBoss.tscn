@@ -1026,6 +1026,7 @@ texture = ExtResource("2_ko8q8")
 texture_scale = 4.0
 
 [node name="GravitonField" parent="Appear" instance=ExtResource("3_j6iil")]
+attract_bodies = true
 gravity = 1.0
 center = Vector3(0, 0, -500)
 influence_radius = 1000.0
