@@ -40,7 +40,7 @@ func set_banner(champion: Dictionary):
 	$"%InsertName".modulate = Settings.get_species(champion.player.species).get_color()
 	"""
 	$"%InsertName".placeholder_text = $"%PlayerName".text
-	
+	%DateSession.text = str(champion.get("timestamp_local"))
 	%Score.text = str(int(champion.get('score', 0)))
 	%ScoreMax.text = "/" + str(int(champion.get('max_score', 0)))
 	var medal = champion.get('achievement')
@@ -65,7 +65,7 @@ func set_banner(champion: Dictionary):
 		%Background.modulate = Color('#777777')
 		%WinnerOutline.modulate = Color('#DDDDDD')
 		
-	var new_score = champion.get('new_score')
+	var new_score = champion.get('new_score', false)
 	%WinnerOutline.visible = new_score
 	if not new_score:
 		modulate = Color(0.5,0.5,0.5)
