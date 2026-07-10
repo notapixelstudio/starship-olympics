@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bn7bm1m238rpp"]
+[gd_scene format=3 uid="uid://bn7bm1m238rpp"]
 
 [ext_resource type="PackedScene" uid="uid://dxftfjyem72k6" path="res://godot4/ui/screens/ScreenController.tscn" id="1"]
 [ext_resource type="Script" uid="uid://dd6qk4byqtqvp" path="res://godot4/Main.gd" id="2"]
@@ -8,22 +8,22 @@
 [ext_resource type="PackedScene" uid="uid://viydlf37rjap" path="res://godot4/ui/screens/title_screen/TitleScreenFallingBlockJam.tscn" id="6_iq0iw"]
 [ext_resource type="PackedScene" uid="uid://dfb6aubabsf35" path="res://godot4/levels/falling-blocks/falling-blocks_2pve.tscn" id="6_qah4k"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=2038588314]
 script = ExtResource("2")
 game_scene_1pve = ExtResource("5_yeq5a")
 game_scene_2pve = ExtResource("6_qah4k")
 game_scene_3pve = ExtResource("4_iq0iw")
 game_scene_4pve = ExtResource("4_iq0iw")
 
-[node name="ScreenController" parent="." instance=ExtResource("1")]
+[node name="ScreenController" parent="." unique_id=1671382562 instance=ExtResource("1")]
 unique_name_in_owner = true
 starting_screen_scene = ExtResource("6_iq0iw")
 
-[node name="ScreenPostProcessing" type="CanvasLayer" parent="."]
+[node name="ScreenPostProcessing" type="CanvasLayer" parent="." unique_id=682227070]
 layer = 119
 visible = false
 
-[node name="TextureRect" type="TextureRect" parent="ScreenPostProcessing"]
+[node name="TextureRect" type="TextureRect" parent="ScreenPostProcessing" unique_id=160174161]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
