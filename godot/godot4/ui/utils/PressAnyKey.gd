@@ -1,20 +1,32 @@
-extends Label
+extends CanvasLayer
 
 signal any_key_pressed
 
-func _ready() -> void:
-	set_process_unhandled_input(false)
+var _active := false
 
-func disable():
-	set_process_unhandled_input(false)
-	self.visible = false
-	
-func enable():
-	set_process_unhandled_input(true)
+func _ready() -> void:
+	visible = false
+	layer = 5
+	%Catcher.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+func disable() -> void:
+	_active = false
+	Utils.unregister_press_any()
+	visible = false
+	%Catcher.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+func enable() -> void:
+	_active = true
+	visible = true
+	%Catcher.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	Utils.register_press_any(_accept)
 	%ContinueAnimationPlayer.play("blink")
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventJoypadButton or event is InputEventKey:
-		any_key_pressed.emit()
-		set_process_unhandled_input(false)
- 
+func is_active() -> bool:
+	return _active
+
+func _accept() -> void:
+	if not _active:
+		return
+	any_key_pressed.emit()
+	disable()
