@@ -96,9 +96,12 @@ func inject_input_fire(cmd: String, action: String) -> void:
 
 signal touch_fire(controls: String, pressed: bool)
 
+func is_mobile_touch_device() -> bool:
+	return DisplayServer.is_touchscreen_available() or OS.has_feature("mobile")
+
 func notify_touch_fire(controls: String, pressed: bool) -> void:
 	touch_fire.emit(controls, pressed)
-	if pressed and _press_any_callback.is_valid():
+	if pressed and _press_any_callback.is_valid() and not is_mobile_touch_device():
 		_press_any_callback.call()
 
 func notify_screen_touch() -> void:
@@ -146,7 +149,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_press_any_callback.call()
 
 func _process(_delta: float) -> void:
-	if not _press_any_callback.is_valid():
+	if not _press_any_callback.is_valid() or is_mobile_touch_device():
 		return
 
 	var mouse_down := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
@@ -165,6 +168,8 @@ func _process(_delta: float) -> void:
 var _fire_edge_state := {}
 
 func _is_press_any_event(event: InputEvent) -> bool:
+	if is_mobile_touch_device():
+		return event is InputEventScreenTouch and event.pressed
 	if event is InputEventScreenTouch:
 		return event.pressed
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:

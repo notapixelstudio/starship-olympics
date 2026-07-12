@@ -123,7 +123,7 @@ func _update_touch_ui() -> void:
 		return
 	var pilot: PilotSelector = mapping_controls_pilot[TOUCH_CONTROLS]
 	if pilot.is_status("selected") or pilot.is_status("ready"):
-		touch_ui.set_mode("selected")
+		touch_ui.set_mode("hidden")
 	else:
 		touch_ui.set_mode("browse")
 				
