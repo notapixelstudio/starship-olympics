@@ -10,6 +10,8 @@ var mapping_controls_pilot := {}
 var mapping_pilot_displayed_species := {}
 var mapping_pilot_claimed := {}
 var available_species : Array[Species] = []
+var _touch_fire_down := {}
+const TOUCH_CONTROLS := "rm1"
 
 func _ready():
 	available_species = Species.get_all_unlocked()
@@ -17,8 +19,14 @@ func _ready():
 		for action_name in ["_fire", "_left", "_right", "_up", "_down"]:
 			if action_name in action and not "ui" in action: 
 				relevant_actions[action] = (InputMap.action_get_events(action))
+
+	Utils.touch_fire.connect(_on_touch_fire)
+
+	if has_node("TouchUI"):
+		$TouchUI.prev_pressed.connect(_on_touch_prev)
+		$TouchUI.next_pressed.connect(_on_touch_next)
+		$TouchUI.action_pressed.connect(_on_touch_action)
 				
-	# hook up all pilot selector events
 	for child in get_children():
 		if child is not PilotSelector:
 			continue
@@ -27,13 +35,29 @@ func _ready():
 		child.ready_selected.connect(_on_pilot_ready_selected)
 		child.back_selected.connect(_on_pilot_back_selected)
 		child.disconnect_selected.connect(_on_pilot_disconnect_selected)
+
+	_update_touch_ui()
 		
-## return the first relevant action matching the given InputEvent, or null if it was not found
 func _get_action_from_event(event: InputEvent):
+	if event is InputEventAction and (event.action as String) in relevant_actions:
+		return event.action
 	for action in relevant_actions:
 		if InputMap.event_is_action(event, action):
 			return action
 	return null
+
+func _on_touch_fire(controls: String, pressed: bool) -> void:
+	if pressed:
+		_handle_control_action(controls, "fire")
+
+func _on_touch_prev() -> void:
+	_browse_touch_pilot(-1)
+
+func _on_touch_next() -> void:
+	_browse_touch_pilot(1)
+
+func _on_touch_action() -> void:
+	_handle_control_action(TOUCH_CONTROLS, "fire")
 	
 func _input(event: InputEvent):
 	if not event.is_pressed():
@@ -43,9 +67,32 @@ func _input(event: InputEvent):
 	if action == null:
 		return
 	
-	var controls = (action as String).split("_")[0] # kb1, joy1, etc.
-	var action_suffix = (action as String).split("_")[1] # fire, left, etc.
-	
+	var controls = (action as String).split("_")[0]
+	var action_suffix = (action as String).split("_")[1]
+	_handle_control_action(controls, action_suffix)
+
+func _process(_delta: float) -> void:
+	if not is_processing_input():
+		return
+	for prefix in ["rm1", "rm2", "rm3", "rm4"]:
+		var action: String = prefix + "_fire"
+		if not InputMap.has_action(action):
+			continue
+		var down := Input.is_action_pressed(action)
+		if down and not _touch_fire_down.get(prefix, false):
+			_handle_control_action(prefix, "fire")
+		_touch_fire_down[prefix] = down
+
+func _browse_touch_pilot(direction: int) -> void:
+	if not TOUCH_CONTROLS in mapping_controls_pilot:
+		return
+	var pilot_selector: PilotSelector = mapping_controls_pilot[TOUCH_CONTROLS]
+	if direction > 0:
+		_on_pilot_selector_next(pilot_selector)
+	else:
+		_on_pilot_selector_previous(pilot_selector)
+
+func _handle_control_action(controls: String, action_suffix: String) -> void:
 	if controls in mapping_controls_pilot:
 		var pilot_selector : PilotSelector = mapping_controls_pilot[controls]
 		match action_suffix:
@@ -57,58 +104,41 @@ func _input(event: InputEvent):
 						%Label.text = "{players} READY".format({"players":len(mapping_pilot_claimed)})
 					else: 
 						%Label.text = "Not enough players. {players} needed".format({"players":min_players})
-				
-			#'left':
-				#if %Label.visible:
-					#%Label.visible = false
-				#_unclaim_displayed_species(pilot_selector)
-				#_display_adjacent_species(-1, pilot_selector)
-			#'right':
-				#if %Label.visible:
-					#%Label.visible = false
-				#_unclaim_displayed_species(pilot_selector)
-				#_display_adjacent_species(+1, pilot_selector)
 	else:
-		# join
 		for pilot_selector in _get_pilot_selectors():
 			if not pilot_selector in mapping_controls_pilot.values():
 				mapping_controls_pilot[controls] = pilot_selector
 				(pilot_selector as PilotSelector).set_controls(controls)
-				
 				_display_species(_get_first_undisplayed_species(), pilot_selector)
-				
 				(pilot_selector as PilotSelector).set_status('joined')
-				# FIXME - NOT RELEVANT ANYMORE?
-				# if in demo playtest, also select the pre-assigned character
-				#if global.demo_playtest:
-					#var mapping = {
-						#'joy1': 'trixens_1',
-						#'joy2': 'umidorians_1',
-						#'joy3': 'robolords_1',
-						#'joy4': 'mantiacs_1',
-						#'kb1': 'pentagonions_1',
-						#'kb2': 'auriels_1'
-					#}
-					#(pilot_selector as PilotSelector).set_species(global.get_species(mapping[controls]))
-				return
+				break
+	_update_touch_ui()
+
+func _update_touch_ui() -> void:
+	if not has_node("TouchUI"):
+		return
+	var touch_ui = $TouchUI
+	if TOUCH_CONTROLS not in mapping_controls_pilot:
+		touch_ui.set_mode("join")
+		return
+	var pilot: PilotSelector = mapping_controls_pilot[TOUCH_CONTROLS]
+	if pilot.is_status("selected") or pilot.is_status("ready"):
+		touch_ui.set_mode("selected")
+	else:
+		touch_ui.set_mode("browse")
 				
-## called whenever a pilot selector asks for the next character
 func _on_pilot_selector_next(pilot_selector: PilotSelector) -> void:
 	_unclaim_displayed_species(pilot_selector)
 	_display_adjacent_species(1, pilot_selector)
 	
-## called whenever a pilot selector asks for the previous character
 func _on_pilot_selector_previous(pilot_selector: PilotSelector) -> void:
 	_unclaim_displayed_species(pilot_selector)
 	_display_adjacent_species(-1, pilot_selector)
 	
-## display the given Species in the given PilotSelector
 func _display_species(species: Species, pilot_selector: PilotSelector):
 	mapping_pilot_displayed_species[pilot_selector] = species
 	pilot_selector.set_species(species)
 	
-## change the displayed Species in the given PilotSelector with the next one (if operator == +1)
-## or the previous one (if operator == -1)
 func _display_adjacent_species(operator: int, pilot_selector: PilotSelector):
 	var current_species = mapping_pilot_displayed_species[pilot_selector]
 	var current_index = available_species.find(current_species)
@@ -121,47 +151,44 @@ func _display_adjacent_species(operator: int, pilot_selector: PilotSelector):
 		current_index = Utils.mod(current_index + operator,len(available_species))
 	_display_species(available_species[current_index], pilot_selector)
 	
-## claim the currently displayed species in the given PilotSelector for the corresponding player
 func _claim_displayed_species(pilot_selector: PilotSelector):
 	var species = mapping_pilot_displayed_species[pilot_selector]
-	var index = available_species.find(species)
 	mapping_pilot_claimed[pilot_selector] = species
 	
-	# if a species is claimed, no pilot selectors can display it anymore
-	# so each displayed species should be checked then changed if needed
 	for any_pilot_selector in mapping_pilot_displayed_species:
 		if any_pilot_selector != pilot_selector and mapping_pilot_displayed_species[any_pilot_selector] == species:
 			_display_adjacent_species(+1, any_pilot_selector)
 	
-## remove the claim for the species currently displayed on the given PilotSelector (if actually
-## claimed) - this also causes the selector to lose its selected status and revert back to joined
 func _unclaim_displayed_species(pilot_selector: PilotSelector):
 	if not pilot_selector in mapping_pilot_claimed:
 		return
-	var species = mapping_pilot_claimed[pilot_selector]
 	mapping_pilot_claimed.erase(pilot_selector)
 	pilot_selector.set_status('joined')
+	_update_touch_ui()
 	
-## return the first Species that is currently not displayed by any PilotSelector
 func _get_first_undisplayed_species():
 	for species in available_species:
 		if not species in mapping_pilot_displayed_species.values():
 			return species
 
-## disables all inputs to this panel
 func disable():
 	set_process(false)
 	set_process_input(false)
+	_touch_fire_down.clear()
+	if has_node("TouchUI"):
+		$TouchUI.set_mode("hidden")
 	
-## enables inputs to this panel
 func enable():
 	set_process(true)
 	set_process_input(true)
+	_touch_fire_down.clear()
+	_update_touch_ui()
 	
 func reset_ready_pilots():
 	for pilot in _get_pilot_selectors():
 		if pilot.is_status('ready'):
 			pilot.set_status('selected')
+	_update_touch_ui()
 
 func _get_pilot_selectors() -> Array:
 	var pilots := []
@@ -180,6 +207,7 @@ func get_players_data() -> Array[Player]:
 func _on_pilot_ready_selected(pilot_selector: PilotSelector):
 	pilot_selector.set_status('ready')
 	_check_all_ready()
+	_update_touch_ui()
 	
 func _on_pilot_back_selected(pilot_selector: PilotSelector):
 	_unclaim_displayed_species(pilot_selector)
@@ -188,22 +216,17 @@ func _on_pilot_disconnect_selected(pilot_selector: PilotSelector):
 	_disconnect_pilot(pilot_selector)
 
 func _check_all_ready():
-	# we need to wait for all joined or selected players
 	for pilot in _get_pilot_selectors():
 		if pilot.is_status('joined') or pilot.is_status('selected'):
 			return
 	
-	# we also need to check of there are enough players
 	if len(mapping_pilot_claimed) >= min_players:
-		print("we can go to next scene")
 		emit_signal("selection_completed")
 		set_process_input(false)
 		
 func _disconnect_pilot(pilot_selector: PilotSelector):
 	_unclaim_displayed_species(pilot_selector)
-	# also, no species is displayed anymore when we disconnect
 	mapping_pilot_displayed_species.erase(pilot_selector) 
-	# also, controls are removed from the associated pilot
 	mapping_controls_pilot.erase(pilot_selector.get_controls())
 	pilot_selector.set_status('disabled')
 	reset_ready_pilots()

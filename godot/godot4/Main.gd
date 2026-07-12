@@ -13,11 +13,16 @@ var _current_game
 
 func _ready() -> void:
 	_screen_controller = %ScreenController
+	%TouchControls.hide_controls()
 	
 	Events.versus_game_start.connect(begin_versus_game)
 	Events.campaign_game_start.connect(begin_campaign_game)
 	Events.continue_after_match_over.connect(_on_continue_after_match_over_event)
 	Events.nav_to_character_selection.connect(_on_nav_to_character_selection_event)
+	_screen_controller.transition_ended.connect(_on_screen_transition_ended)
+
+func _on_screen_transition_ended(_action: String, _from_id: String, _to_id: String) -> void:
+	%TouchControls.hide_controls()
 
 func _on_ScreenController_transition_started(action:String, from_id:String, to_id:String):
 	Events.emit_signal("analytics_event", {"id": UUID.v4(), "action": action, "from": from_id, "to": to_id}, "navigation")
@@ -58,6 +63,7 @@ func new_game(session:Session, players:Array[Player], game_scene:PackedScene):
 	_current_game.players = players
 	_current_game.session = session
 	add_child(_current_game)
+	%TouchControls.show_controls()
 	
 func _remove_screens():
 	remove_child(_screen_controller)
@@ -73,5 +79,6 @@ func reset():
 		remove_child(_current_game)
 		_current_game.queue_free()
 		
+	%TouchControls.hide_controls()
 	add_child(_screen_controller)
 	_screen_controller.get_current_screen().back.emit()

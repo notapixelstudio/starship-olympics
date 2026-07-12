@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://37vcan82kgvg"]
 
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1_5x78t"]
-[ext_resource type="Script" uid="uid://cts5lgafcwgqk" path="res://godot4/ui/utils/PressAnyKey.gd" id="2_cut0p"]
+[ext_resource type="Script" path="res://godot4/ui/utils/PressAnyKey.gd" id="2_cut0p"]
 
 [sub_resource type="Animation" id="Animation_llkrh"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("Catcher/Label:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -25,7 +25,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("Catcher/Label:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -41,16 +41,37 @@ _data = {
 &"blink": SubResource("Animation_6bfhl")
 }
 
-[node name="PressAnyKey" type="Label"]
-modulate = Color(1, 1, 1, 0)
-size_flags_vertical = 0
+[node name="PressAnyKey" type="CanvasLayer"]
+visible = false
+layer = 5
+script = ExtResource("2_cut0p")
+
+[node name="Catcher" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Catcher"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
 theme = ExtResource("1_5x78t")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 6
 theme_override_font_sizes/font_size = 40
 text = "PRESS ANY BUTTON"
 horizontal_alignment = 1
-script = ExtResource("2_cut0p")
 
 [node name="ContinueAnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://voe3u3ju5lnw" path="res://godot4/levels/falling-blocks/falling-blocks_1pve.tscn" id="5_yeq5a"]
 [ext_resource type="PackedScene" uid="uid://viydlf37rjap" path="res://godot4/ui/screens/title_screen/TitleScreenFallingBlockJam.tscn" id="6_iq0iw"]
 [ext_resource type="PackedScene" uid="uid://dfb6aubabsf35" path="res://godot4/levels/falling-blocks/falling-blocks_2pve.tscn" id="6_qah4k"]
+[ext_resource type="PackedScene" uid="uid://gvjq5iyxk81y" path="res://godot4/ui/touch_controls/TouchControls.tscn" id="7_touch"]
 
 [node name="Main" type="Node2D" unique_id=2038588314]
 script = ExtResource("2")
@@ -29,5 +30,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource("5")
+
+[node name="TouchControls" parent="." unique_id=730429144 instance=ExtResource("7_touch")]
+unique_name_in_owner = true
 
 [connection signal="transition_started" from="ScreenController" to="." method="_on_ScreenController_transition_started"]
