@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqx7touchctrl01"]
+[gd_scene load_steps=5 format=3 uid="uid://bqx7touchctrl01"]
 
 [ext_resource type="Script" path="res://godot4/ui/touch_controls/TouchControls.gd" id="1"]
 [ext_resource type="Script" path="res://godot4/ui/touch_controls/VirtualJoystick.gd" id="2"]
 [ext_resource type="Script" path="res://godot4/ui/touch_controls/FireButton.gd" id="3"]
+[ext_resource type="Script" path="res://godot4/ui/touch_controls/PauseGearButton.gd" id="4"]
 
 [node name="TouchControls" type="CanvasLayer"]
 layer = 15
@@ -18,29 +19,29 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="PauseGear" type="Button" parent="Controls"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 1180.0
+offset_top = 16.0
+offset_right = 1264.0
+offset_bottom = 100.0
+focus_mode = 0
+flat = true
+text = ""
+script = ExtResource("4")
+
 [node name="Joystick" type="Control" parent="Controls"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -220.0
-offset_right = 220.0
-offset_bottom = -20.0
-grow_vertical = 0
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+mouse_filter = 2
 script = ExtResource("2")
 
 [node name="FireButton" type="Control" parent="Controls"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -200.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 0
-grow_vertical = 0
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+mouse_filter = 2
 script = ExtResource("3")

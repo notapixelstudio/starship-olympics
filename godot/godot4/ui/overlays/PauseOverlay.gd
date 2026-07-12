@@ -17,6 +17,7 @@ func _ready():
 	if not _minigame:
 		%Minigame.modulate = Color(0,0,0,0)
 		%Description.modulate = Color(0,0,0,0)
+	add_to_group("pause_overlay")
 	
 	# hide buttons that are relevant only during matches
 	if not in_match:

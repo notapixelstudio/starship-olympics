@@ -29,11 +29,5 @@ func set_mode(mode: String) -> void:
 			%ActionButton.disabled = false
 			%PrevButton.disabled = false
 			%NextButton.disabled = false
-		"selected":
-			%HintLabel.text = "TAP READY ON YOUR PILOT"
-			%ActionButton.text = "SELECT"
-			%ActionButton.disabled = true
-			%PrevButton.disabled = true
-			%NextButton.disabled = true
 		"hidden", _:
 			visible = false

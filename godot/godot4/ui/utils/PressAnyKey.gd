@@ -19,6 +19,7 @@ func enable() -> void:
 	_active = true
 	visible = true
 	%Catcher.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	%Label.text = tr("tap on the screen") if Utils.is_mobile_touch_device() else tr("press any button")
 	Utils.register_press_any(_accept)
 	%ContinueAnimationPlayer.play("blink")
 
