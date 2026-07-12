@@ -91,9 +91,5 @@ libraries = {
 autoplay = "fade_in"
 
 [node name="PressAnyKey" parent="." index="2" instance=ExtResource("6_mh7yf")]
-layout_mode = 0
-offset_top = 600.0
-offset_right = 1280.0
-offset_bottom = 700.0
 
 [connection signal="any_key_pressed" from="PressAnyKey" to="." method="_on_press_any_key_any_key_pressed"]

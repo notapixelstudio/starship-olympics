@@ -69,6 +69,124 @@ func is_action_strong(action:String) -> bool:
 func are_controls_at_rest(controls:String) -> bool:
 	return Input.get_action_strength(controls+"_down") < 0.1 and Input.get_action_strength(controls+"_up") < 0.1 and Input.get_action_strength(controls+"_left") < 0.1 and Input.get_action_strength(controls+"_right") < 0.1
 
+func inject_input_action(pressed: bool, strength: float, action: String) -> void:
+	var s := absf(strength)
+	var active := pressed and s > 0.0
+	var ev := InputEventAction.new()
+	ev.action = action
+	ev.pressed = active
+	ev.strength = s
+	Input.parse_input_event(ev)
+	if active:
+		Input.action_press(action, s)
+	else:
+		Input.action_release(action)
+
+func inject_input_fire(cmd: String, action: String) -> void:
+	var pressed := cmd == "1" or cmd == "2"
+	var ev := InputEventAction.new()
+	ev.action = action
+	ev.pressed = pressed
+	ev.strength = 1.0 if pressed else 0.0
+	Input.parse_input_event(ev)
+	if pressed:
+		Input.action_press(action)
+	else:
+		Input.action_release(action)
+
+signal touch_fire(controls: String, pressed: bool)
+
+func is_mobile_touch_device() -> bool:
+	return DisplayServer.is_touchscreen_available() or OS.has_feature("mobile")
+
+func notify_touch_fire(controls: String, pressed: bool) -> void:
+	touch_fire.emit(controls, pressed)
+	if pressed and _press_any_callback.is_valid() and not is_mobile_touch_device():
+		_press_any_callback.call()
+
+func notify_screen_touch() -> void:
+	if _press_any_callback.is_valid():
+		_press_any_callback.call()
+
+var _press_any_callback := Callable()
+var _character_select_callback := Callable()
+var _mouse_was_down := false
+
+func register_press_any(callback: Callable) -> void:
+	_press_any_callback = callback
+	_mouse_was_down = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	_fire_edge_state.clear()
+	_update_input_processing()
+
+func unregister_press_any() -> void:
+	_press_any_callback = Callable()
+	_fire_edge_state.clear()
+	_update_input_processing()
+
+func register_character_select(callback: Callable) -> void:
+	_character_select_callback = callback
+	_update_input_processing()
+
+func unregister_character_select() -> void:
+	_character_select_callback = Callable()
+	_update_input_processing()
+
+func _update_input_processing() -> void:
+	var listening := _press_any_callback.is_valid() or _character_select_callback.is_valid()
+	set_process_input(listening)
+	set_process_unhandled_input(_press_any_callback.is_valid())
+	set_process(_press_any_callback.is_valid())
+
+func _input(event: InputEvent) -> void:
+	if _press_any_callback.is_valid() and _is_press_any_event(event):
+		_press_any_callback.call()
+		return
+	if _character_select_callback.is_valid():
+		_character_select_callback.call(event)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _press_any_callback.is_valid() and _is_press_any_event(event):
+		_press_any_callback.call()
+
+func _process(_delta: float) -> void:
+	if not _press_any_callback.is_valid() or is_mobile_touch_device():
+		return
+
+	var mouse_down := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	if mouse_down and not _mouse_was_down:
+		_press_any_callback.call()
+	_mouse_was_down = mouse_down
+
+	for action in InputMap.get_actions():
+		if not (action.ends_with("_fire") or action.begins_with("ui_")):
+			continue
+		var down := Input.is_action_pressed(action)
+		if down and not _fire_edge_state.get(action, false):
+			_press_any_callback.call()
+		_fire_edge_state[action] = down
+
+var _fire_edge_state := {}
+
+func _is_press_any_event(event: InputEvent) -> bool:
+	if is_mobile_touch_device():
+		return event is InputEventScreenTouch and event.pressed
+	if event is InputEventScreenTouch:
+		return event.pressed
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		return event.pressed
+	if not event.is_pressed():
+		return false
+	if event is InputEventJoypadButton or event is InputEventKey:
+		return true
+
+	for action in InputMap.get_actions():
+		if not (action.ends_with("_fire") or action.begins_with("ui_")):
+			continue
+		if event.is_action_pressed(action):
+			return true
+
+	return false
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("hard_quit"):
 		Utils.end_execution()
