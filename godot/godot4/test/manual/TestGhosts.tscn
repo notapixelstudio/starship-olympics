@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://c16r0anlahr4m"]
+
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_l1dc7"]
+[ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="3_67ep3"]
+[ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="4_vhkw8"]
+[ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="5_021i7"]
+[ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="6_c7smw"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="7_anq07"]
+[ext_resource type="PackedScene" uid="uid://c7pjpdq7cccl" path="res://godot4/actors/friendly/ghosts/EyeGhost.tscn" id="7_ng8ke"]
+[ext_resource type="PackedScene" uid="uid://bodn1qpv8ad8t" path="res://godot4/actors/friendly/ghosts/BunnyGhost.tscn" id="8_l1dc7"]
+[ext_resource type="PackedScene" uid="uid://cq2w1ln2bq0ko" path="res://godot4/actors/friendly/ghosts/PacmanGhost.tscn" id="9_gln83"]
+[ext_resource type="PackedScene" uid="uid://dpq7ub76065vq" path="res://godot4/actors/friendly/ghosts/WedgeGhost.tscn" id="10_67ep3"]
+[ext_resource type="PackedScene" uid="uid://db58o7vr8jiaf" path="res://godot4/actors/friendly/ghosts/RainbowGhost.tscn" id="11_vhkw8"]
+
+[sub_resource type="GDScript" id="GDScript_dqhjw"]
+script/source = "extends Timer
+
+@export var period := 4
+
+func _ready():
+	tick.call_deferred()
+
+func _on_timeout():
+	tick()
+
+func tick():
+	Events.beat.emit(period, wait_time)
+	wait_time *= 0.99
+"
+
+[sub_resource type="GDScript" id="GDScript_0rj7w"]
+script/source = "extends SOLog
+
+
+func _ready():
+	super._ready()
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_sth_collected(collector, collectee):
+	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
+"
+
+[node name="TestChamber" unique_id=362063698 instance=ExtResource("1_l1dc7")]
+
+[node name="TestBeat" type="Timer" parent="." index="6" unique_id=1546085012]
+autostart = true
+script = SubResource("GDScript_dqhjw")
+
+[node name="ScoreManager" parent="." index="7" unique_id=1475511591 instance=ExtResource("3_67ep3")]
+teams = Array[String](["P1"])
+
+[node name="MessageManager" parent="." index="8" unique_id=1515237623 node_paths=PackedStringArray("battlefield") instance=ExtResource("4_vhkw8")]
+battlefield = NodePath("..")
+
+[node name="CollectGame" parent="." index="9" unique_id=1913343354 instance=ExtResource("5_021i7")]
+
+[node name="TreasureSFXManager" parent="." index="10" unique_id=324257026 instance=ExtResource("6_c7smw")]
+
+[node name="Ship" parent="." index="11" unique_id=179408848 instance=ExtResource("7_anq07")]
+unique_name_in_owner = true
+
+[node name="TestChamberLog" parent="." index="12"]
+script = SubResource("GDScript_0rj7w")
+
+[node name="Ghost" parent="." index="15" unique_id=227459632 instance=ExtResource("7_ng8ke")]
+position = Vector2(-600, -600)
+
+[node name="Ghost2" parent="." index="16" unique_id=150527060 instance=ExtResource("8_l1dc7")]
+position = Vector2(350, -500)
+
+[node name="Ghost3" parent="." index="17" unique_id=1948635446 instance=ExtResource("9_gln83")]
+position = Vector2(550, 0)
+
+[node name="Ghost4" parent="." index="18" unique_id=1704405711 instance=ExtResource("10_67ep3")]
+position = Vector2(-900, 150)
+
+[node name="Ghost5" parent="." index="19" unique_id=2047141072 instance=ExtResource("11_vhkw8")]
+position = Vector2(300, 650)
+
+[node name="Ghost6" parent="." index="20" unique_id=364975612 instance=ExtResource("7_ng8ke")]
+position = Vector2(-750, 700)
+scale = Vector2(-1, 1)
+
+[node name="Ghost7" parent="." index="21" unique_id=1596988440 instance=ExtResource("8_l1dc7")]
+position = Vector2(0, 550)
+scale = Vector2(-1, 1)
+
+[node name="Ghost8" parent="." index="22" unique_id=1790706481 instance=ExtResource("9_gln83")]
+position = Vector2(-250, -300)
+scale = Vector2(-1, 1)
+
+[node name="Ghost9" parent="." index="23" unique_id=432204291 instance=ExtResource("10_67ep3")]
+position = Vector2(750, 500)
+scale = Vector2(-1, 1)
+
+[node name="Ghost10" parent="." index="24" unique_id=1108350461 instance=ExtResource("11_vhkw8")]
+position = Vector2(200, -950)
+scale = Vector2(-1, 1)
+
+[connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]

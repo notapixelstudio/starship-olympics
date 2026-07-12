@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://ctjqsqliwexo6"]
+
+[ext_resource type="Shader" uid="uid://cqxhbqcpdq24y" path="res://godot4/actors/friendly/ghosts/ghost_wobbliness.gdshader" id="1_l6aeq"]
+[ext_resource type="Script" uid="uid://d2oq5nrav6qm7" path="res://godot4/actors/friendly/ghosts/Ghost.gd" id="1_t6157"]
+[ext_resource type="Texture2D" uid="uid://dxlk2i2jlbg3y" path="res://assets/sprites/ghosts/ghost__g11.png" id="2_t6157"]
+[ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="4_tgr8u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssc0f"]
+resource_local_to_scene = true
+shader = ExtResource("1_l6aeq")
+shader_parameter/direction = 1.0
+shader_parameter/speed = 8.0
+shader_parameter/frequency = 15.0
+shader_parameter/amplitude = 0.15
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ssc0f"]
+resource_local_to_scene = true
+radius = 75.0
+
+[sub_resource type="Animation" id="Animation_l6aeq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -20)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.7058824)]
+}
+
+[sub_resource type="Animation" id="Animation_t6157"]
+resource_name = "default"
+length = 4.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 0), Vector2(0, -20)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.627451)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tgr8u"]
+_data = {
+&"RESET": SubResource("Animation_l6aeq"),
+&"default": SubResource("Animation_t6157")
+}
+
+[node name="Ghost" type="Area2D" unique_id=227459632]
+script = ExtResource("1_t6157")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=483835839]
+modulate = Color(1, 1, 1, 0.7058824)
+material = SubResource("ShaderMaterial_ssc0f")
+position = Vector2(0, -20)
+texture = ExtResource("2_t6157")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1454785852]
+shape = SubResource("CircleShape2D_ssc0f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2126494377]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_tgr8u")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=71789440]
+self_modulate = Color(0, 0, 0, 0.39215687)
+z_index = -6
+z_as_relative = false
+position = Vector2(0, 150)
+scale = Vector2(1.6666667, 1)
+texture = ExtResource("4_tgr8u")

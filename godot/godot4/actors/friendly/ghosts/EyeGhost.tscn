@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c7pjpdq7cccl"]
+
+[ext_resource type="PackedScene" uid="uid://ctjqsqliwexo6" path="res://godot4/actors/friendly/ghosts/Ghost.tscn" id="1_3xa75"]
+[ext_resource type="Shader" uid="uid://cqxhbqcpdq24y" path="res://godot4/actors/friendly/ghosts/ghost_wobbliness.gdshader" id="2_eqlxe"]
+[ext_resource type="Texture2D" uid="uid://b1pcv80opcj5t" path="res://assets/sprites/ghosts/ghost__g7.png" id="3_r4cdg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xa75"]
+resource_local_to_scene = true
+shader = ExtResource("2_eqlxe")
+shader_parameter/direction = 1.0
+shader_parameter/speed = 8.0
+shader_parameter/frequency = 22.000001045
+shader_parameter/amplitude = 0.130000006175
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eqlxe"]
+resource_local_to_scene = true
+radius = 100.0
+
+[node name="Ghost" unique_id=227459632 instance=ExtResource("1_3xa75")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=483835839]
+material = SubResource("ShaderMaterial_3xa75")
+texture = ExtResource("3_r4cdg")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1454785852]
+shape = SubResource("CircleShape2D_eqlxe")
+
+[node name="Shadow" parent="." index="3" unique_id=71789440]
+position = Vector2(-1.9073486e-06, 150)
+scale = Vector2(2.5, 1)
