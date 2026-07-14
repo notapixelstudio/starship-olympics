@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cgjeqx4n1ot0e"]
+[gd_scene format=3 uid="uid://cgjeqx4n1ot0e"]
 
 [ext_resource type="Script" uid="uid://57bbtul52rl7" path="res://godot4/actors/ships/Ship.gd" id="1_cvjhk"]
 [ext_resource type="PhysicsMaterial" uid="uid://v8mu2p8ukj54" path="res://godot4/actors/ships/ShipPhysicsMaterial.tres" id="1_yr6p6"]
@@ -146,7 +146,7 @@ func _on_camera_updated(camera_state:Dictionary) -> void:
 	scale = Vector2(1,1)/camera_state['zoom']
 "
 
-[sub_resource type="Gradient" id="Gradient_tmbes"]
+[sub_resource type="Gradient" id="Gradient_kqe5y"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
@@ -166,7 +166,7 @@ random_pitch = 1.3
 streams_count = 1
 stream_0/stream = ExtResource("25_2p6s4")
 
-[node name="Ship" type="RigidBody2D" groups=["Ship"]]
+[node name="Ship" type="RigidBody2D" unique_id=2017191326 groups=["Ship"]]
 collision_layer = 2151677953
 collision_mask = 1169
 physics_material_override = ExtResource("1_yr6p6")
@@ -180,30 +180,30 @@ dash_ring_scene = ExtResource("2_0puh8")
 death_feedback_scene = ExtResource("3_3e4pi")
 disabled_ship_scene = ExtResource("5_jvf5m")
 
-[node name="Target" parent="." instance=ExtResource("6_kqe5y")]
+[node name="Target" parent="." unique_id=1503176415 instance=ExtResource("6_kqe5y")]
 
-[node name="Tracked" parent="." instance=ExtResource("3_h4ehe")]
+[node name="Tracked" parent="." unique_id=1995699695 instance=ExtResource("3_h4ehe")]
 unique_name_in_owner = true
 
-[node name="Graphics" type="Node2D" parent="."]
+[node name="Graphics" type="Node2D" parent="." unique_id=156712813]
 unique_name_in_owner = true
 scale = Vector2(1.25, 1.25)
 
-[node name="Glow" type="PointLight2D" parent="Graphics"]
+[node name="Glow" type="PointLight2D" parent="Graphics" unique_id=1092668339]
 unique_name_in_owner = true
 energy = 20.0
 blend_mode = 2
 range_item_cull_mask = 2
 texture = ExtResource("8_11rou")
 
-[node name="BallSprite" type="Sprite2D" parent="Graphics"]
+[node name="BallSprite" type="Sprite2D" parent="Graphics" unique_id=1170454869]
 unique_name_in_owner = true
 light_mask = 0
 material = ExtResource("12_ml8f4")
 position = Vector2(64, 0)
 scale = Vector2(0.77, 0.77)
 
-[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
+[node name="Sprite2D" type="Sprite2D" parent="Graphics" unique_id=800378651]
 unique_name_in_owner = true
 light_mask = 0
 z_index = 20
@@ -211,59 +211,57 @@ z_as_relative = false
 texture = ExtResource("3_gbkft")
 script = SubResource("GDScript_jwr13")
 
-[node name="Shadow" parent="Graphics" node_paths=PackedStringArray("sprite") instance=ExtResource("15_s48iq")]
+[node name="Shadow" parent="Graphics" unique_id=662519182 node_paths=PackedStringArray("sprite") instance=ExtResource("15_s48iq")]
 scale = Vector2(0.8, 0.8)
 sprite = NodePath("../Sprite2D")
 
-[node name="SpriteAnimation" type="AnimationPlayer" parent="Graphics"]
+[node name="SpriteAnimation" type="AnimationPlayer" parent="Graphics" unique_id=1409754915]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_lqqh5")
-}
+libraries/ = SubResource("AnimationLibrary_lqqh5")
 
-[node name="TouchArea" type="Area2D" parent="." node_paths=PackedStringArray("host")]
+[node name="TouchArea" type="Area2D" parent="." unique_id=69761054 node_paths=PackedStringArray("host")]
 unique_name_in_owner = true
 collision_layer = 2
-collision_mask = 6784
+collision_mask = 16784000
 script = SubResource("GDScript_ukxwp")
 host = NodePath("..")
 
-[node name="TouchShape2D" type="CollisionShape2D" parent="TouchArea"]
+[node name="TouchShape2D" type="CollisionShape2D" parent="TouchArea" unique_id=620320361]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_oi8fb")
 debug_color = Color(0, 0.635294, 0.4, 0.419608)
 
-[node name="HurtArea" type="Area2D" parent="."]
+[node name="HurtArea" type="Area2D" parent="." unique_id=1776266578]
 collision_layer = 0
 collision_mask = 528284
 
-[node name="HurtShape2D" type="CollisionShape2D" parent="HurtArea"]
+[node name="HurtShape2D" type="CollisionShape2D" parent="HurtArea" unique_id=261632613]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_kepy8")
 debug_color = Color(0.996078, 0, 0.235294, 0.235294)
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1802156702]
 collision_layer = 0
 collision_mask = 4101
 input_pickable = false
 
-[node name="DetectionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+[node name="DetectionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=903938255]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_t1b3t")
 debug_color = Color(0.639216, 0.337255, 1, 0.0509804)
 
-[node name="ShipShape2D" type="CollisionShape2D" parent="."]
+[node name="ShipShape2D" type="CollisionShape2D" parent="." unique_id=1906756774]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_tm340")
 debug_color = Color(1, 1, 1, 0.419608)
 
-[node name="Indicators" type="Node2D" parent="."]
+[node name="Indicators" type="Node2D" parent="." unique_id=307655017]
 unique_name_in_owner = true
 
-[node name="Node2D" type="Node2D" parent="Indicators"]
+[node name="Node2D" type="Node2D" parent="Indicators" unique_id=2088243587]
 script = ExtResource("4_557ck")
 
-[node name="ChargeBar" type="Line2D" parent="Indicators/Node2D"]
+[node name="ChargeBar" type="Line2D" parent="Indicators/Node2D" unique_id=123431021]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 0, 1)
 position = Vector2(-55, 0)
@@ -271,21 +269,21 @@ points = PackedVector2Array(0, 0, 0, 0)
 width = 25.0
 texture_mode = 221806672
 
-[node name="Wrapper" type="Node2D" parent="Indicators"]
+[node name="Wrapper" type="Node2D" parent="Indicators" unique_id=932123771]
 top_level = true
 
-[node name="Scaled" type="Node2D" parent="Indicators/Wrapper"]
+[node name="Scaled" type="Node2D" parent="Indicators/Wrapper" unique_id=1271826872]
 position = Vector2(0, -160)
 script = SubResource("GDScript_j55tj")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Indicators/Wrapper/Scaled"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Indicators/Wrapper/Scaled" unique_id=812922035]
 offset_left = -150.0
 offset_top = -95.0
 offset_right = 150.0
 offset_bottom = -18.0
 alignment = 2
 
-[node name="PlayerID" type="Label" parent="Indicators/Wrapper/Scaled/VBoxContainer"]
+[node name="PlayerID" type="Label" parent="Indicators/Wrapper/Scaled/VBoxContainer" unique_id=112364508]
 unique_name_in_owner = true
 z_index = 10
 layout_mode = 2
@@ -294,7 +292,7 @@ theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Message" type="Label" parent="Indicators/Wrapper/Scaled/VBoxContainer"]
+[node name="Message" type="Label" parent="Indicators/Wrapper/Scaled/VBoxContainer" unique_id=697578995]
 unique_name_in_owner = true
 visible = false
 z_index = 10
@@ -306,35 +304,35 @@ theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HatSprite" type="Sprite2D" parent="Indicators/Wrapper"]
+[node name="HatSprite" type="Sprite2D" parent="Indicators/Wrapper" unique_id=313333817]
 unique_name_in_owner = true
 material = ExtResource("12_ml8f4")
 position = Vector2(0, -160)
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Indicators"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Indicators" unique_id=1607638318]
 remote_path = NodePath("../Wrapper")
 update_rotation = false
 
-[node name="ChargeManager" type="Node" parent="."]
+[node name="ChargeManager" type="Node" parent="." unique_id=1431404859]
 unique_name_in_owner = true
 script = ExtResource("5_ostpb")
 
-[node name="TapTimer" type="Timer" parent="ChargeManager"]
+[node name="TapTimer" type="Timer" parent="ChargeManager" unique_id=2056938454]
 one_shot = true
 
-[node name="DashTimer" type="Timer" parent="ChargeManager"]
+[node name="DashTimer" type="Timer" parent="ChargeManager" unique_id=1905162038]
 one_shot = true
 
-[node name="DashDurationTimer" type="Timer" parent="."]
+[node name="DashDurationTimer" type="Timer" parent="." unique_id=137581940]
 unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
 
-[node name="FlamesManager" parent="." node_paths=PackedStringArray("host", "flames") instance=ExtResource("11_i3r85")]
+[node name="FlamesManager" parent="." unique_id=506427748 node_paths=PackedStringArray("host", "flames") instance=ExtResource("11_i3r85")]
 host = NodePath("..")
 flames = [NodePath("../BottomFlameTrail"), NodePath("../FlameTrail")]
 
-[node name="BottomFlameTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("10_4jj2i")]
+[node name="BottomFlameTrail" parent="." unique_id=263945554 node_paths=PackedStringArray("host") instance=ExtResource("10_4jj2i")]
 unique_name_in_owner = true
 modulate = Color(1.6, 1.6, 1.6, 1)
 width = 120.0
@@ -343,7 +341,7 @@ host = NodePath("..")
 offset = Vector2(-80, 0)
 max_length = 200
 
-[node name="FlameTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("10_4jj2i")]
+[node name="FlameTrail" parent="." unique_id=1413652048 node_paths=PackedStringArray("host") instance=ExtResource("10_4jj2i")]
 unique_name_in_owner = true
 modulate = Color(1.2, 1.2, 1.2, 1)
 width = 50.0
@@ -351,13 +349,13 @@ host = NodePath("..")
 offset = Vector2(-95, 0)
 max_length = 100
 
-[node name="MotionAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("11_tsmbp")]
+[node name="MotionAutoTrail" parent="." unique_id=1178586549 node_paths=PackedStringArray("host") instance=ExtResource("11_tsmbp")]
 unique_name_in_owner = true
-gradient = SubResource("Gradient_tmbes")
+gradient = SubResource("Gradient_kqe5y")
 host = NodePath("..")
 max_age = 0.4
 
-[node name="MovementGravitonField" parent="." node_paths=PackedStringArray("source") instance=ExtResource("16_2i8oi")]
+[node name="MovementGravitonField" parent="." unique_id=634165238 node_paths=PackedStringArray("source") instance=ExtResource("16_2i8oi")]
 unique_name_in_owner = true
 gravity = 64.0
 center = Vector3(0, 0, -500)
@@ -365,7 +363,7 @@ influence_radius = 250.0
 source = NodePath("..")
 source_strength_method_name = "get_speed_normalized"
 
-[node name="DashGravitonField" parent="." node_paths=PackedStringArray("source") instance=ExtResource("16_2i8oi")]
+[node name="DashGravitonField" parent="." unique_id=1963905504 node_paths=PackedStringArray("source") instance=ExtResource("16_2i8oi")]
 unique_name_in_owner = true
 position = Vector2(-150, 0)
 gravity = 200.0
@@ -373,24 +371,24 @@ center = Vector3(0, 0, -100)
 source = NodePath("../ChargeManager")
 source_strength_method_name = "get_charge_normalized"
 
-[node name="CargoManager" parent="." instance=ExtResource("21_kqe5y")]
+[node name="CargoManager" parent="." unique_id=387905572 instance=ExtResource("21_kqe5y")]
 unique_name_in_owner = true
 
-[node name="DashFXPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="DashFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1132847254]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_ntsfv")
 panning_strength = 10.0
 bus = &"SFX"
 
-[node name="StunTimer" type="Timer" parent="."]
+[node name="StunTimer" type="Timer" parent="." unique_id=135832548]
 unique_name_in_owner = true
 
-[node name="TractorBeamGrabSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="TractorBeamGrabSFX" type="AudioStreamPlayer2D" parent="." unique_id=2116870964]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_1ggq0")
 volume_db = -5.0
 
-[node name="TractorBeamReleaseSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="TractorBeamReleaseSFX" type="AudioStreamPlayer2D" parent="." unique_id=1043052618]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_ml8f4")
 volume_db = 2.0

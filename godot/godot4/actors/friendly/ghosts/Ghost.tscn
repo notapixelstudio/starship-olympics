@@ -81,9 +81,12 @@ _data = {
 }
 
 [node name="Ghost" type="Area2D" unique_id=227459632]
+collision_layer = 16777216
+collision_mask = 16777216
 script = ExtResource("1_t6157")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=483835839]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.7058824)
 material = SubResource("ShaderMaterial_ssc0f")
 position = Vector2(0, -20)
@@ -103,3 +106,5 @@ z_as_relative = false
 position = Vector2(0, 150)
 scale = Vector2(1.6666667, 1)
 texture = ExtResource("4_tgr8u")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

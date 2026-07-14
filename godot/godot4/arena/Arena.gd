@@ -62,6 +62,8 @@ func _ready() -> void:
 			_teams[player.get_team()] = []
 		_teams[player.get_team()].append(player.get_id())
 		
+		# initialize all nodes that have the Ownership trait linked to this home to the corresponding player
+		# this is useful when designing a level - ships and players are not there yet, but player homes are
 		for ownership in traits.get_all('Ownership'):
 			if ownership.has_home(home):
 				ownership.add_player(player)

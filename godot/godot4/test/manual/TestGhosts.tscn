@@ -2,14 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_l1dc7"]
 [ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="3_67ep3"]
+[ext_resource type="PackedScene" uid="uid://d0qcvpyeiqtn2" path="res://godot4/arena/managers/games/GhostMatingGame.tscn" id="4_bgv85"]
 [ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="4_vhkw8"]
-[ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="5_021i7"]
-[ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="6_c7smw"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="7_anq07"]
 [ext_resource type="PackedScene" uid="uid://c7pjpdq7cccl" path="res://godot4/actors/friendly/ghosts/EyeGhost.tscn" id="7_ng8ke"]
 [ext_resource type="PackedScene" uid="uid://bodn1qpv8ad8t" path="res://godot4/actors/friendly/ghosts/BunnyGhost.tscn" id="8_l1dc7"]
 [ext_resource type="PackedScene" uid="uid://cq2w1ln2bq0ko" path="res://godot4/actors/friendly/ghosts/PacmanGhost.tscn" id="9_gln83"]
 [ext_resource type="PackedScene" uid="uid://dpq7ub76065vq" path="res://godot4/actors/friendly/ghosts/WedgeGhost.tscn" id="10_67ep3"]
+[ext_resource type="Resource" uid="uid://fc2yg6p4flm5" path="res://godot4/debug/default_data/default_players/p2.tres" id="11_ng8ke"]
 [ext_resource type="PackedScene" uid="uid://db58o7vr8jiaf" path="res://godot4/actors/friendly/ghosts/RainbowGhost.tscn" id="11_vhkw8"]
 
 [sub_resource type="GDScript" id="GDScript_dqhjw"]
@@ -52,14 +52,16 @@ teams = Array[String](["P1"])
 [node name="MessageManager" parent="." index="8" unique_id=1515237623 node_paths=PackedStringArray("battlefield") instance=ExtResource("4_vhkw8")]
 battlefield = NodePath("..")
 
-[node name="CollectGame" parent="." index="9" unique_id=1913343354 instance=ExtResource("5_021i7")]
+[node name="GhostMatingGame" parent="." index="9" unique_id=1594642609 instance=ExtResource("4_bgv85")]
 
-[node name="TreasureSFXManager" parent="." index="10" unique_id=324257026 instance=ExtResource("6_c7smw")]
-
-[node name="Ship" parent="." index="11" unique_id=179408848 instance=ExtResource("7_anq07")]
+[node name="Ship" parent="." index="10" unique_id=179408848 instance=ExtResource("7_anq07")]
 unique_name_in_owner = true
 
-[node name="TestChamberLog" parent="." index="12"]
+[node name="Ship2" parent="." index="11" unique_id=2017191326 instance=ExtResource("7_anq07")]
+position = Vector2(800, 800)
+player = ExtResource("11_ng8ke")
+
+[node name="TestChamberLog" parent="." index="12" unique_id=750176929]
 script = SubResource("GDScript_0rj7w")
 
 [node name="Ghost" parent="." index="15" unique_id=227459632 instance=ExtResource("7_ng8ke")]

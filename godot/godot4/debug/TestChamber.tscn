@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmlwbymobhm0b"]
+[gd_scene format=3 uid="uid://dmlwbymobhm0b"]
 
 [ext_resource type="Script" uid="uid://dw2od40imwath" path="res://godot4/debug/TestChamber.gd" id="1_lsfmj"]
 [ext_resource type="Resource" uid="uid://cmmvbrr51qwj1" path="res://godot4/debug/default_data/default_players/p1.tres" id="2_wo8qe"]
@@ -13,48 +13,49 @@
 [ext_resource type="PackedScene" uid="uid://bsglorws8xub7" path="res://godot4/arena/managers/ShipFactory.tscn" id="6_fl7s2"]
 [ext_resource type="Script" uid="uid://bgk1mknwdxwdr" path="res://addons/debugToolbox/SecsCounter.gd" id="7_kveyl"]
 
-[node name="TestChamber" type="Node2D"]
+[node name="TestChamber" type="Node2D" unique_id=1476912701]
 script = ExtResource("1_lsfmj")
 test_player = ExtResource("2_wo8qe")
 player_brain_scene = ExtResource("3_giljv")
 minigame = ExtResource("4_n50wa")
 
-[node name="CollisionResponseManager" parent="." instance=ExtResource("4_4o8dx")]
+[node name="CollisionResponseManager" parent="." unique_id=1116773026 instance=ExtResource("4_4o8dx")]
 
-[node name="SpawnManager" parent="." node_paths=PackedStringArray("battlefield") instance=ExtResource("4_3foey")]
+[node name="SpawnManager" parent="." unique_id=1742437410 node_paths=PackedStringArray("battlefield") instance=ExtResource("4_3foey")]
 battlefield = NodePath("..")
 
-[node name="ShipFactory" parent="." instance=ExtResource("6_fl7s2")]
+[node name="ShipFactory" parent="." unique_id=2008499363 instance=ExtResource("6_fl7s2")]
 unique_name_in_owner = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1364619520]
 zoom = Vector2(0.2, 0.2)
 
-[node name="FPSCounter" type="Node2D" parent="."]
+[node name="FPSCounter" type="Node2D" parent="." unique_id=1439099248]
 position = Vector2(1400, 1128)
 script = ExtResource("3_2gjjm")
 metadata/_edit_lock_ = true
 
-[node name="TestGrid" type="Node2D" parent="."]
+[node name="TestGrid" type="Node2D" parent="." unique_id=1510579380]
 position = Vector2(-1300, -1300)
 script = ExtResource("3_dshuw")
 metadata/_edit_lock_ = true
 
-[node name="TestChamberLog" type="RichTextLabel" parent="."]
+[node name="TestChamberLog" type="RichTextLabel" parent="." unique_id=750176929]
 offset_left = 1350.0
 offset_top = -1250.0
 offset_right = 3150.0
 offset_bottom = 1100.0
+scale = Vector2(4, 4)
 script = ExtResource("5_upb84")
 metadata/_edit_lock_ = true
 
-[node name="SecsCounter" type="Node2D" parent="."]
+[node name="SecsCounter" type="Node2D" parent="." unique_id=1774195335]
 position = Vector2(0, -1500)
 scale = Vector2(1.5, 1.5)
 script = ExtResource("7_kveyl")
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=515218658]
 modulate = Color(0.235294, 0.545098, 0.780392, 1)
 offset_left = -1300.0
 offset_top = 1350.0
