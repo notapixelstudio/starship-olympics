@@ -11,6 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://dpq7ub76065vq" path="res://godot4/actors/friendly/ghosts/WedgeGhost.tscn" id="10_67ep3"]
 [ext_resource type="Resource" uid="uid://fc2yg6p4flm5" path="res://godot4/debug/default_data/default_players/p2.tres" id="11_ng8ke"]
 [ext_resource type="PackedScene" uid="uid://db58o7vr8jiaf" path="res://godot4/actors/friendly/ghosts/RainbowGhost.tscn" id="11_vhkw8"]
+[ext_resource type="PackedScene" uid="uid://c7mgcttxabtiu" path="res://godot4/actors/friendly/ghosts/BullGhost.tscn" id="12_l1dc7"]
+[ext_resource type="PackedScene" uid="uid://8400bfq2b6la" path="res://godot4/actors/friendly/ghosts/RhombusGhost.tscn" id="13_gln83"]
+[ext_resource type="PackedScene" uid="uid://cqxkcin784x3y" path="res://godot4/actors/friendly/ghosts/ArrowGhost.tscn" id="14_67ep3"]
+[ext_resource type="PackedScene" uid="uid://bi6mno31vhupd" path="res://godot4/actors/friendly/ghosts/CarGhost.tscn" id="15_vhkw8"]
+[ext_resource type="PackedScene" uid="uid://bq5032c5pjb64" path="res://godot4/actors/friendly/ghosts/StarGhost.tscn" id="16_021i7"]
+[ext_resource type="PackedScene" uid="uid://drjyebncdqoy8" path="res://godot4/actors/friendly/ghosts/SquareGhost.tscn" id="17_anq07"]
+[ext_resource type="PackedScene" uid="uid://e46vj7n0pnw7" path="res://godot4/actors/friendly/ghosts/MouseGhost.tscn" id="18_5wxm5"]
+[ext_resource type="PackedScene" uid="uid://c15r0r77h6sy" path="res://godot4/actors/friendly/ghosts/CatGhost.tscn" id="19_5wxm5"]
 
 [sub_resource type="GDScript" id="GDScript_dqhjw"]
 script/source = "extends Timer
@@ -58,7 +66,7 @@ battlefield = NodePath("..")
 unique_name_in_owner = true
 
 [node name="Ship2" parent="." index="11" unique_id=2017191326 instance=ExtResource("7_anq07")]
-position = Vector2(800, 800)
+position = Vector2(800, 850)
 player = ExtResource("11_ng8ke")
 
 [node name="TestChamberLog" parent="." index="12" unique_id=750176929]
@@ -98,5 +106,55 @@ scale = Vector2(-1, 1)
 [node name="Ghost10" parent="." index="24" unique_id=1108350461 instance=ExtResource("11_vhkw8")]
 position = Vector2(200, -950)
 scale = Vector2(-1, 1)
+
+[node name="Ghost11" parent="." index="25" unique_id=618167352 instance=ExtResource("12_l1dc7")]
+position = Vector2(-1150, 0)
+
+[node name="Ghost12" parent="." index="26" unique_id=1781429928 instance=ExtResource("12_l1dc7")]
+position = Vector2(-999, -550)
+
+[node name="Ghost13" parent="." index="27" unique_id=1628384998 instance=ExtResource("13_gln83")]
+position = Vector2(250, -900)
+
+[node name="Ghost14" parent="." index="28" unique_id=1982632608 instance=ExtResource("13_gln83")]
+position = Vector2(-850, -400)
+
+[node name="Ghost15" parent="." index="29" unique_id=1611105751 instance=ExtResource("14_67ep3")]
+position = Vector2(900, 0)
+
+[node name="Ghost16" parent="." index="30" unique_id=247436977 instance=ExtResource("14_67ep3")]
+position = Vector2(-400, 900)
+scale = Vector2(-1, 1)
+
+[node name="Ghost17" parent="." index="31" unique_id=1486958019 instance=ExtResource("15_vhkw8")]
+position = Vector2(950, -1050)
+
+[node name="Ghost18" parent="." index="32" unique_id=779557803 instance=ExtResource("15_vhkw8")]
+position = Vector2(950, 1100)
+scale = Vector2(-1, 1)
+
+[node name="Ghost19" parent="." index="33" unique_id=1473792392 instance=ExtResource("16_021i7")]
+position = Vector2(-400, 200)
+
+[node name="Ghost20" parent="." index="34" unique_id=838869509 instance=ExtResource("16_021i7")]
+position = Vector2(1150, -850)
+
+[node name="Ghost21" parent="." index="35" unique_id=1728750440 instance=ExtResource("17_anq07")]
+position = Vector2(250, 200)
+
+[node name="Ghost22" parent="." index="36" unique_id=2015986468 instance=ExtResource("17_anq07")]
+position = Vector2(850, -450)
+
+[node name="Ghost23" parent="." index="37" unique_id=619358618 instance=ExtResource("18_5wxm5")]
+position = Vector2(-500, -950)
+
+[node name="Ghost24" parent="." index="38" unique_id=690760051 instance=ExtResource("18_5wxm5")]
+position = Vector2(-1000, -1050)
+
+[node name="Ghost25" parent="." index="39" unique_id=2058345338 instance=ExtResource("19_5wxm5")]
+position = Vector2(-1150, 850)
+
+[node name="Ghost26" parent="." index="40" unique_id=1844274152 instance=ExtResource("19_5wxm5")]
+position = Vector2(1150, 450)
 
 [connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]
