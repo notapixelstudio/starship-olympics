@@ -1,0 +1,40 @@
+name: Release
+
+# Builds and publishes Linux/Windows/macOS binaries whenever a version tag is
+# pushed, using the export presets in godot/export_presets.cfg. Unsigned and
+# non-notarized (no Apple/Windows signing certs configured) — Godot's own
+# export templates are code-signed for macOS, so Gatekeeper won't outright
+# refuse to run it, but it isn't notarized.
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch: {}
+
+jobs:
+  export_game:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    name: Export and release
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+
+      - name: export game
+        id: export
+        uses: firebelley/[email protected]
+        with:
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.7-stable/Godot_v4.7-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.7-stable/Godot_v4.7-stable_export_templates.tpz
+          relative_project_path: godot
+          archive_output: true
+          cache: true
+
+      - name: create release
+        uses: ncipollo/release-action@v1.18.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generateReleaseNotes: true
+          tag: ${{ github.ref_name }}
+          artifacts: ${{ steps.export.outputs.archive_directory }}/*
