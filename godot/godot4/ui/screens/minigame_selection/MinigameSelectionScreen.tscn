@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://druc45wf3k3t2"]
+
+[ext_resource type="PackedScene" uid="uid://bhq3klwabv0i8" path="res://godot4/ui/screens/back_screen/BackScreen.tscn" id="1_i4s6e"]
+[ext_resource type="Script" uid="uid://brwu354u5hqsb" path="res://godot4/ui/screens/minigame_selection/MinigameSelectionScreen.gd" id="2_yrjt2"]
+[ext_resource type="PackedScene" uid="uid://dg3l8eepsajhj" path="res://godot4/ui/screens/loading_screen/LoadingScreen.tscn" id="3_grij4"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="3_vpn53"]
+
+[node name="MinigameSelectionScreen" unique_id=3683569 instance=ExtResource("1_i4s6e")]
+script = ExtResource("2_yrjt2")
+next_scene = ExtResource("3_grij4")
+
+[node name="FancyMenu" parent="." index="1"]
+layout_mode = 0
+
+[node name="StartButton" type="Button" parent="." index="2" unique_id=309966607]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 450.0
+offset_right = 800.0
+offset_bottom = 550.0
+theme = ExtResource("3_vpn53")
+theme_override_font_sizes/font_size = 32
+text = "START"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
