@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dm1jotcraodpl"]
+[gd_scene format=3 uid="uid://dm1jotcraodpl"]
 
 [ext_resource type="PackedScene" uid="uid://tqe0qciw2df3" path="res://godot4/actors/enemies/AimTurret.tscn" id="1_b1txy"]
 
-[node name="PewTurret" instance=ExtResource("1_b1txy")]
+[node name="PewTurret" unique_id=718930390 instance=ExtResource("1_b1txy")]
+burst_shots = 3

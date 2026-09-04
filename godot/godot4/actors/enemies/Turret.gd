@@ -4,6 +4,10 @@ class_name Turret
 @export var enabled := true
 @export var wait_time := 2.0 : set = set_time
 
+@export_group("Burst")
+@export var burst_shots := 1
+@export var burst_time := 0.2
+
 # Ship-like "interface"
 signal tap
 
@@ -12,6 +16,7 @@ func get_target_velocity() -> Vector2:
 	
 # end
 
+var _burst_count := 0
 
 func set_time(v:float) -> void:
 	wait_time = v
@@ -25,7 +30,13 @@ func stop() -> void:
 func _on_timer_timeout() -> void:
 	if enabled:
 		tap.emit()
-	%Timer.start(wait_time)
+		_burst_count += 1
+		
+	if _burst_count >= burst_shots:
+		%Timer.start(wait_time)
+		_burst_count = 0
+	else:
+		%Timer.start(burst_time)
 	
 # TODO design how to handle color for rogue team
 func get_color() -> Color:

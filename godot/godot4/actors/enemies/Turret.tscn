@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://wwxav5fs1qt"]
+[gd_scene format=3 uid="uid://wwxav5fs1qt"]
 
 [ext_resource type="Script" uid="uid://bl27ag67y755j" path="res://godot4/actors/enemies/Turret.gd" id="1_nwro1"]
 [ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="2_58wa3"]
@@ -9,28 +9,28 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_atihj"]
 radius = 100.0
 
-[node name="Turret" type="Area2D"]
+[node name="Turret" type="Area2D" unique_id=2040906107]
 collision_layer = 4096
 collision_mask = 0
 script = ExtResource("1_nwro1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1850805375]
 shape = SubResource("CircleShape2D_atihj")
 
-[node name="Target" parent="." instance=ExtResource("2_atihj")]
+[node name="Target" parent="." unique_id=2093900206 instance=ExtResource("2_atihj")]
 
-[node name="Waiter" parent="." instance=ExtResource("2_58wa3")]
+[node name="Waiter" parent="." unique_id=640072869 instance=ExtResource("2_58wa3")]
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1231913852]
 unique_name_in_owner = true
 process_callback = 0
 one_shot = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2110570448]
 visible = false
 texture = ExtResource("2_q1wp5")
 
-[node name="10x10Square" type="Sprite2D" parent="."]
+[node name="10x10Square" type="Sprite2D" parent="." unique_id=1108764937]
 visible = false
 position = Vector2(100, -4.76837e-07)
 scale = Vector2(3.3, 2.3)

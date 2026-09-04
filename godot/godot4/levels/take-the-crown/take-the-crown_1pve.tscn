@@ -8,11 +8,13 @@
 [ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="6_8v2lo"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="7_7t7xj"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="8_kylh8"]
-[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="9_8emr8"]
 [ext_resource type="PackedScene" uid="uid://bia7yrbdvp8vw" path="res://godot4/elements/environments/ShieldWall.tscn" id="10_xbdea"]
 [ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="11_2u8dg"]
 [ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="12_dmvik"]
 [ext_resource type="PackedScene" uid="uid://dm1jotcraodpl" path="res://godot4/actors/enemies/PewTurret.tscn" id="13_cxhnb"]
+[ext_resource type="Texture2D" uid="uid://dd6gr3ghofbwj" path="res://assets/sprites/enemies/bubble_turret_top.png" id="14_totb7"]
+[ext_resource type="PackedScene" uid="uid://b4anewnchp4ou" path="res://godot4/actors/ships/weapons/PewWeapon.tscn" id="15_a7tir"]
+[ext_resource type="Texture2D" uid="uid://bj4s2pqxiqh6h" path="res://assets/sprites/enemies/bubble_turret_under.png" id="16_8v2lo"]
 
 [sub_resource type="Animation" id="Animation_3nm4h"]
 length = 0.001
@@ -77,7 +79,7 @@ _data = {
 &"default": SubResource("Animation_xjb4e")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_wse8s"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8vmn0"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -113,25 +115,11 @@ hollow = true
 [node name="Grid" parent="Battlefield" index="2" unique_id=1223387629 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("8_kylh8")]
 init_parametric_shape = NodePath("../VBeveledRect")
 
-[node name="Wall" parent="Battlefield" index="3" unique_id=1300125381 instance=ExtResource("7_7t7xj")]
-position = Vector2(0, -950)
-
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4" unique_id=1999570661]
-script = ExtResource("9_8emr8")
-sides = 4
-
-[node name="Wall2" parent="Battlefield" index="4" unique_id=1003541432 instance=ExtResource("7_7t7xj")]
-position = Vector2(0, 950)
-
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4" unique_id=788343216]
-script = ExtResource("9_8emr8")
-sides = 4
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="5" unique_id=691123203 groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="3" unique_id=691123203 groups=["animation_starts_with_battle"]]
 callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_kj0uy")
 
-[node name="ShieldWall" parent="Battlefield" index="6" unique_id=345547671 instance=ExtResource("10_xbdea")]
+[node name="ShieldWall" parent="Battlefield" index="4" unique_id=345547671 instance=ExtResource("10_xbdea")]
 position = Vector2(-800, 0)
 symbol_scale = 1.5
 show_edges = false
@@ -143,7 +131,7 @@ height = 400.0
 precision = 20
 rotation_degrees = 45.0
 
-[node name="ShieldWall2" parent="Battlefield" index="7" unique_id=2062167704 instance=ExtResource("10_xbdea")]
+[node name="ShieldWall2" parent="Battlefield" index="5" unique_id=2062167704 instance=ExtResource("10_xbdea")]
 position = Vector2(800, 0)
 symbol_scale = 1.5
 show_edges = false
@@ -155,10 +143,37 @@ height = 400.0
 precision = 20
 rotation_degrees = 45.0
 
-[node name="Crown" parent="Battlefield" index="8" unique_id=798619167 instance=ExtResource("12_dmvik")]
+[node name="Crown" parent="Battlefield" index="6" unique_id=798619167 instance=ExtResource("12_dmvik")]
 
-[node name="PewTurret" parent="Battlefield" index="9" unique_id=474966121 instance=ExtResource("13_cxhnb")]
+[node name="PewTurret" parent="Battlefield" index="7" unique_id=474966121 instance=ExtResource("13_cxhnb")]
 position = Vector2(0, -950)
 
+[node name="TopSprite2D" type="Sprite2D" parent="Battlefield/PewTurret" index="6" unique_id=1788088250]
+top_level = true
+position = Vector2(0, -950)
+texture = ExtResource("14_totb7")
+
+[node name="PewWeapon" parent="Battlefield/PewTurret" index="7" unique_id=1373124266 instance=ExtResource("15_a7tir")]
+
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/PewTurret/PewWeapon" index="2" unique_id=1371482313]
+position = Vector2(74, 0.000187603)
+rotation = -3.14159
+texture = ExtResource("16_8v2lo")
+
+[node name="PewTurret2" parent="Battlefield" index="8" unique_id=2071592657 instance=ExtResource("13_cxhnb")]
+position = Vector2(0, 950)
+
+[node name="TopSprite2D" type="Sprite2D" parent="Battlefield/PewTurret2" index="6" unique_id=411491598]
+top_level = true
+position = Vector2(0, 950)
+texture = ExtResource("14_totb7")
+
+[node name="PewWeapon" parent="Battlefield/PewTurret2" index="7" unique_id=150328852 instance=ExtResource("15_a7tir")]
+
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/PewTurret2/PewWeapon" index="2" unique_id=1273715536]
+position = Vector2(74, 0.000187603)
+rotation = -3.14159
+texture = ExtResource("16_8v2lo")
+
 [node name="Navigation" parent="." index="6"]
-navigation_polygon = SubResource("NavigationPolygon_wse8s")
+navigation_polygon = SubResource("NavigationPolygon_8vmn0")
