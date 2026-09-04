@@ -1,0 +1,164 @@
+[gd_scene format=3 uid="uid://d3sldi6ikmy1h"]
+
+[ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_wse8s"]
+[ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_30cgq"]
+[ext_resource type="Resource" uid="uid://cxorooq22c83" path="res://godot4/data/styles/palace.tres" id="3_8vmn0"]
+[ext_resource type="PackedScene" uid="uid://chnvt4cxrqrcv" path="res://godot4/arena/managers/games/CrownGame.tscn" id="4_totb7"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="5_a7tir"]
+[ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="6_8v2lo"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="7_7t7xj"]
+[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="8_kylh8"]
+[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="9_8emr8"]
+[ext_resource type="PackedScene" uid="uid://bia7yrbdvp8vw" path="res://godot4/elements/environments/ShieldWall.tscn" id="10_xbdea"]
+[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="11_2u8dg"]
+[ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="12_dmvik"]
+[ext_resource type="PackedScene" uid="uid://dm1jotcraodpl" path="res://godot4/actors/enemies/PewTurret.tscn" id="13_cxhnb"]
+
+[sub_resource type="Animation" id="Animation_3nm4h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldWall/VRoundedRect:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [45.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShieldWall2/VRoundedRect:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [45.0]
+}
+
+[sub_resource type="Animation" id="Animation_xjb4e"]
+resource_name = "default"
+length = 50.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldWall/VRoundedRect:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 50),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [45.0, 405.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShieldWall2/VRoundedRect:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 50),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [45.0, 405.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kj0uy"]
+_data = {
+&"RESET": SubResource("Animation_3nm4h"),
+&"default": SubResource("Animation_xjb4e")
+}
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_wse8s"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[node name="PveArena" unique_id=1481253217 instance=ExtResource("1_wse8s")]
+default_params = ExtResource("2_30cgq")
+
+[node name="Styleable" parent="." index="0"]
+style = ExtResource("3_8vmn0")
+
+[node name="CrownGame" parent="Managers" index="6" unique_id=1247272435 instance=ExtResource("4_totb7")]
+
+[node name="Camera2D" parent="." index="2"]
+zoom = Vector2(0.32, 0.32)
+
+[node name="P1" parent="Homes" index="0" unique_id=743158187 instance=ExtResource("5_a7tir")]
+position = Vector2(0, 600)
+rotation = -1.5707964
+
+[node name="VBeveledRect" type="Node" parent="Battlefield" index="0" unique_id=45990805 node_paths=PackedStringArray("hosts")]
+script = ExtResource("6_8v2lo")
+width = 3500.0
+height = 1900.0
+bevel = 935.0
+hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
+
+[node name="OutsideWall" parent="Battlefield" index="1" unique_id=480981193 instance=ExtResource("7_7t7xj")]
+hollow = true
+
+[node name="Grid" parent="Battlefield" index="2" unique_id=1223387629 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("8_kylh8")]
+init_parametric_shape = NodePath("../VBeveledRect")
+
+[node name="Wall" parent="Battlefield" index="3" unique_id=1300125381 instance=ExtResource("7_7t7xj")]
+position = Vector2(0, -950)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4" unique_id=1999570661]
+script = ExtResource("9_8emr8")
+sides = 4
+
+[node name="Wall2" parent="Battlefield" index="4" unique_id=1003541432 instance=ExtResource("7_7t7xj")]
+position = Vector2(0, 950)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4" unique_id=788343216]
+script = ExtResource("9_8emr8")
+sides = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="5" unique_id=691123203 groups=["animation_starts_with_battle"]]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_kj0uy")
+
+[node name="ShieldWall" parent="Battlefield" index="6" unique_id=345547671 instance=ExtResource("10_xbdea")]
+position = Vector2(-800, 0)
+symbol_scale = 1.5
+show_edges = false
+
+[node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall" index="5" unique_id=1167775027]
+script = ExtResource("11_2u8dg")
+width = 400.0
+height = 400.0
+precision = 20
+rotation_degrees = 45.0
+
+[node name="ShieldWall2" parent="Battlefield" index="7" unique_id=2062167704 instance=ExtResource("10_xbdea")]
+position = Vector2(800, 0)
+symbol_scale = 1.5
+show_edges = false
+
+[node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall2" index="5" unique_id=1814222701]
+script = ExtResource("11_2u8dg")
+width = 400.0
+height = 400.0
+precision = 20
+rotation_degrees = 45.0
+
+[node name="Crown" parent="Battlefield" index="8" unique_id=798619167 instance=ExtResource("12_dmvik")]
+
+[node name="PewTurret" parent="Battlefield" index="9" unique_id=474966121 instance=ExtResource("13_cxhnb")]
+position = Vector2(0, -950)
+
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_wse8s")
