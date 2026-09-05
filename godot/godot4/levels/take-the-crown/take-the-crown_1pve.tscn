@@ -29,11 +29,11 @@ func _ready():
 func _on_crown_loaded_by(actor: Ship) -> void:
 	_begin_phases()
 
-# TODO: change system to danger level
-# level 1: 1 turret at random, starting from the one above
-# after the first threshold, or after two turrets have been hit, go to level 2
-# level 2: left and right turrets (start with these) or up and down if both have been disabled
-# after the second threshold, or after three turrets have been hit, go to level 3
+# TODO: change system to danger level - each time a turret is hit another one is activated after a while
+# level 1: 1 turret at random, starting from the top one
+# after the first threshold, go to level 2
+# level 2: left and right turrets (start with these)
+# after the second threshold, go to level 3
 # level 3: all turrets are active
 func _begin_phases():
 	print('phase 1')
@@ -308,36 +308,14 @@ position = Vector2(74, 0.000187603)
 rotation = -3.14159
 texture = ExtResource("16_8v2lo")
 
-[node name="PewTurretRight" parent="Battlefield" index="11" unique_id=283365344 instance=ExtResource("13_cxhnb")]
-unique_name_in_owner = true
-position = Vector2(1700, 0)
-enabled = false
-wait_time = 1.0
-time_jitter = 1.0
-burst_shots = 4
-burst_time = 0.1
-burst_time_jitter = 0.2
-
-[node name="TopSprite2D" type="Sprite2D" parent="Battlefield/PewTurretRight" index="6" unique_id=46499906]
-top_level = true
-position = Vector2(1700, 0)
-texture = ExtResource("14_totb7")
-
-[node name="PewWeapon" parent="Battlefield/PewTurretRight" index="7" unique_id=986032657 instance=ExtResource("15_a7tir")]
-
-[node name="Sprite2D" type="Sprite2D" parent="Battlefield/PewTurretRight/PewWeapon" index="2" unique_id=475720293]
-position = Vector2(74, 0.000187603)
-rotation = -3.14159
-texture = ExtResource("16_8v2lo")
-
-[node name="Wall" parent="Battlefield" index="12" unique_id=1414986310 instance=ExtResource("7_7t7xj")]
+[node name="Wall" parent="Battlefield" index="11" unique_id=1414986310 instance=ExtResource("7_7t7xj")]
 position = Vector2(0, -950)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4" unique_id=985859702]
 script = ExtResource("9_8emr8")
 sides = 4
 
-[node name="Wall2" parent="Battlefield" index="13" unique_id=1473063777 instance=ExtResource("7_7t7xj")]
+[node name="Wall2" parent="Battlefield" index="12" unique_id=1473063777 instance=ExtResource("7_7t7xj")]
 position = Vector2(0, 950)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4" unique_id=87831691]
