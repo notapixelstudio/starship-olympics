@@ -3,6 +3,8 @@ class_name Cargo
 
 @export var drop_distance := 64.0
 
+signal loaded_by(actor: Ship)
+
 var _self_scene : PackedScene
 var _untouchable_by = null
 
@@ -40,6 +42,7 @@ func touched_by(actor) -> void:
 		
 	if actor.has_method('load_cargo'): # WARNING duck typing
 		actor.load_cargo(self)
+		loaded_by.emit(actor)
 		queue_free()
 	
 func _is_untouchable_by(sth) -> bool:

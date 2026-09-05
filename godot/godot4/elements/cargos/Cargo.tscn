@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8s08rc21o1ra"]
+[gd_scene format=3 uid="uid://c8s08rc21o1ra"]
 
 [ext_resource type="Script" uid="uid://djawiwgh6pg6c" path="res://godot4/elements/cargos/Cargo.gd" id="1_mtln1"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="2_siay3"]
@@ -88,12 +88,12 @@ _data = {
 &"Shine": SubResource("Animation_ijh7r")
 }
 
-[sub_resource type="Gradient" id="Gradient_5cley"]
+[sub_resource type="Gradient" id="Gradient_6i4t7"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
 
-[node name="Cargo" type="RigidBody2D" groups=["Cargo"]]
+[node name="Cargo" type="RigidBody2D" unique_id=2081582486 groups=["Cargo"]]
 collision_layer = 512
 collision_mask = 3606
 physics_material_override = SubResource("PhysicsMaterial_ribre")
@@ -102,31 +102,29 @@ max_contacts_reported = 10
 linear_damp = 1.0
 script = ExtResource("1_mtln1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1244359233]
 visible = false
 shape = SubResource("CircleShape2D_0ycic")
 
-[node name="Graphics" type="Node2D" parent="."]
+[node name="Graphics" type="Node2D" parent="." unique_id=1232204582]
 
-[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
+[node name="Sprite2D" type="Sprite2D" parent="Graphics" unique_id=686837574]
 unique_name_in_owner = true
 
-[node name="SpriteAnimation" type="AnimationPlayer" parent="Graphics"]
+[node name="SpriteAnimation" type="AnimationPlayer" parent="Graphics" unique_id=1309096494]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_lqqh5")
-}
+libraries/ = SubResource("AnimationLibrary_lqqh5")
 
-[node name="Shadow" parent="Graphics" node_paths=PackedStringArray("sprite") instance=ExtResource("2_siay3")]
+[node name="Shadow" parent="Graphics" unique_id=1801094075 node_paths=PackedStringArray("sprite") instance=ExtResource("2_siay3")]
 sprite = NodePath("../Sprite2D")
 
-[node name="MotionAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("3_x7m7y")]
-gradient = SubResource("Gradient_5cley")
+[node name="MotionAutoTrail" parent="." unique_id=1467177572 node_paths=PackedStringArray("host") instance=ExtResource("3_x7m7y")]
+gradient = SubResource("Gradient_6i4t7")
 disappear_speed = 1000.0
 host = NodePath("..")
 max_age = 0.6
 
-[node name="UntouchableTimer" type="Timer" parent="."]
+[node name="UntouchableTimer" type="Timer" parent="." unique_id=2144104372]
 unique_name_in_owner = true
 process_callback = 0
 wait_time = 0.3
