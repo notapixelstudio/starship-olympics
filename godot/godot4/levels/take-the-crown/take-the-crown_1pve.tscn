@@ -29,13 +29,24 @@ func _ready():
 func _on_crown_loaded_by(actor: Ship) -> void:
 	_begin_phases()
 
+# TODO: change system to danger level
+# level 1: 1 turret at random, starting from the one above
+# after the first threshold, or after two turrets have been hit, go to level 2
+# level 2: left and right turrets (start with these) or up and down if both have been disabled
+# after the second threshold, or after three turrets have been hit, go to level 3
+# level 3: all turrets are active
 func _begin_phases():
 	print('phase 1')
+	%PewTurretTop.alert()
+	await %PewTurretTop.alert_ended
 	%PewTurretTop.enabled = true
 	
 	await Events.score_threshold_passed
 	print('phase 2')
 	%PewTurretTop.enabled = false
+	%PewTurretLeft.alert()
+	%PewTurretRight.alert()
+	await %PewTurretLeft.alert_ended
 	%PewTurretLeft.enabled = true
 	%PewTurretRight.enabled = true
 	
@@ -43,11 +54,19 @@ func _begin_phases():
 	print('phase 3')
 	%PewTurretLeft.enabled = false
 	%PewTurretRight.enabled = false
+	%PewTurretTop.alert()
+	%PewTurretBottom.alert()
+	await %PewTurretTop.alert_ended
 	%PewTurretTop.enabled = true
 	%PewTurretBottom.enabled = true
 	
 	await Events.score_threshold_passed
 	print('phase 3b')
+	%PewTurretLeft.alert()
+	%PewTurretRight.alert()
+	%PewTurretTop.alert()
+	%PewTurretBottom.alert()
+	await %PewTurretLeft.alert_ended
 	%PewTurretLeft.enabled = true
 	%PewTurretRight.enabled = true
 "
@@ -232,6 +251,8 @@ rotation_degrees = 45.0
 unique_name_in_owner = true
 position = Vector2(0, -900)
 enabled = false
+wait_time = 1.5
+time_jitter = 1.5
 
 [node name="TopSprite2D" type="Sprite2D" parent="Battlefield/PewTurretTop" index="6" unique_id=1788088250]
 top_level = true
@@ -249,6 +270,9 @@ texture = ExtResource("16_8v2lo")
 unique_name_in_owner = true
 position = Vector2(0, 900)
 enabled = false
+wait_time = 1.5
+time_jitter = 1.5
+burst_time_jitter = 0.1
 
 [node name="TopSprite2D" type="Sprite2D" parent="Battlefield/PewTurretBottom" index="6" unique_id=411491598]
 top_level = true
@@ -266,6 +290,11 @@ texture = ExtResource("16_8v2lo")
 unique_name_in_owner = true
 position = Vector2(-1700, 0)
 enabled = false
+wait_time = 1.0
+time_jitter = 1.0
+burst_shots = 4
+burst_time = 0.1
+burst_time_jitter = 0.2
 
 [node name="TopSprite2D" type="Sprite2D" parent="Battlefield/PewTurretLeft" index="6" unique_id=1100387610]
 top_level = true
@@ -283,6 +312,11 @@ texture = ExtResource("16_8v2lo")
 unique_name_in_owner = true
 position = Vector2(1700, 0)
 enabled = false
+wait_time = 1.0
+time_jitter = 1.0
+burst_shots = 4
+burst_time = 0.1
+burst_time_jitter = 0.2
 
 [node name="TopSprite2D" type="Sprite2D" parent="Battlefield/PewTurretRight" index="6" unique_id=46499906]
 top_level = true
