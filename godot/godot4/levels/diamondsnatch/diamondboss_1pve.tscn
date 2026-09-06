@@ -19,12 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="16_xhdkv"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="17_1rowd"]
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="18_uyt5g"]
-[ext_resource type="PackedScene" uid="uid://c6e28abusnqyt" path="res://godot4/actors/enemies/RotoTurret.tscn" id="19_ihsbo"]
 [ext_resource type="PackedScene" uid="uid://d36soeoj2g3ly" path="res://godot4/actors/ships/weapons/BubbleBulletWeapon.tscn" id="20_y7ftb"]
 [ext_resource type="Texture2D" uid="uid://bj4s2pqxiqh6h" path="res://assets/sprites/enemies/bubble_turret_under.png" id="21_tk1gu"]
-[ext_resource type="Texture2D" uid="uid://dd6gr3ghofbwj" path="res://assets/sprites/enemies/bubble_turret_top.png" id="22_cmggr"]
+[ext_resource type="PackedScene" uid="uid://bkt23g8b1tl77" path="res://godot4/actors/enemies/BubbleTurret.tscn" id="23_csq50"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_cmggr"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tk1gu"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -1130,34 +1129,26 @@ unique_name_in_owner = true
 script = ExtResource("18_uyt5g")
 sides = 4
 
-[node name="RotoTurret" parent="Battlefield/Turrets/Wall2" index="7" unique_id=505715077 instance=ExtResource("19_ihsbo")]
+[node name="BubbleTurret" parent="Battlefield/Turrets" index="1" unique_id=1278026538 instance=ExtResource("23_csq50")]
 wait_time = 4.0
 
-[node name="BubbleBulletWeapon" parent="Battlefield/Turrets/Wall2/RotoTurret" index="6" unique_id=1585714383 instance=ExtResource("20_y7ftb")]
-offset = 200.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Battlefield/Turrets/Wall2/RotoTurret/BubbleBulletWeapon" index="0" unique_id=1799449095]
-position = Vector2(74, 0)
-texture = ExtResource("21_tk1gu")
-
-[node name="BubbleBulletWeaponBack" parent="Battlefield/Turrets/Wall2/RotoTurret" index="7" unique_id=28167451 instance=ExtResource("20_y7ftb")]
+[node name="BubbleBulletWeaponBack" parent="Battlefield/Turrets/BubbleTurret/Weapons" parent_id_path=PackedInt32Array(1278026538, 1434707921) index="1" unique_id=28167451 node_paths=PackedStringArray("host") instance=ExtResource("20_y7ftb")]
 unique_name_in_owner = true
 visible = false
 rotation = 3.14159
 offset = 200.0
 enabled = false
+host = NodePath("../..")
 
-[node name="Sprite2D" type="Sprite2D" parent="Battlefield/Turrets/Wall2/RotoTurret/BubbleBulletWeaponBack" index="0" unique_id=718596234]
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/Turrets/BubbleTurret/Weapons/BubbleBulletWeaponBack" index="0" unique_id=718596234]
 position = Vector2(74, 0.000187603)
 rotation = -3.14159
 texture = ExtResource("21_tk1gu")
-
-[node name="TopSprite2D" type="Sprite2D" parent="Battlefield/Turrets/Wall2/RotoTurret" index="8" unique_id=1501185989]
-top_level = true
-texture = ExtResource("22_cmggr")
 
 [node name="DiamondBoss" parent="Battlefield" index="7" unique_id=34786208 instance=ExtResource("4_cmggr")]
 unique_name_in_owner = true
 
 [node name="Navigation" parent="." index="6"]
-navigation_polygon = SubResource("NavigationPolygon_cmggr")
+navigation_polygon = SubResource("NavigationPolygon_tk1gu")
+
+[editable path="Battlefield/Turrets/BubbleTurret"]

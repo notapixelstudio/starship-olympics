@@ -8,7 +8,7 @@ func _physics_process(delta: float) -> void:
 	for target in targets:
 		if target.has_cargo():
 			# aim to first available target with cargo
-			global_rotation = global_position.angle_to_point(target.global_position)
+			%Weapons.global_rotation = global_position.angle_to_point(target.global_position)
 			return
 	
 	# shoot cargos if nothing was found
@@ -16,4 +16,4 @@ func _physics_process(delta: float) -> void:
 	if len(targets) <= 0:
 		return
 		
-	global_rotation = global_position.angle_to_point(targets[0].global_position)
+	%Weapons.global_rotation = global_position.angle_to_point(targets[0].global_position)

@@ -8,14 +8,10 @@
 [ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="6_8v2lo"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="7_7t7xj"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="8_kylh8"]
-[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="9_8emr8"]
 [ext_resource type="PackedScene" uid="uid://bia7yrbdvp8vw" path="res://godot4/elements/environments/ShieldWall.tscn" id="10_xbdea"]
 [ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="11_2u8dg"]
 [ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="12_dmvik"]
 [ext_resource type="PackedScene" uid="uid://dm1jotcraodpl" path="res://godot4/actors/enemies/PewTurret.tscn" id="13_cxhnb"]
-[ext_resource type="Texture2D" uid="uid://dd6gr3ghofbwj" path="res://assets/sprites/enemies/bubble_turret_top.png" id="14_totb7"]
-[ext_resource type="PackedScene" uid="uid://b4anewnchp4ou" path="res://godot4/actors/ships/weapons/PewWeapon.tscn" id="15_a7tir"]
-[ext_resource type="Texture2D" uid="uid://bj4s2pqxiqh6h" path="res://assets/sprites/enemies/bubble_turret_under.png" id="16_8v2lo"]
 
 [sub_resource type="GDScript" id="GDScript_gbqai"]
 script/source = "extends Orchestrator
@@ -173,7 +169,7 @@ _data = {
 &"default": SubResource("Animation_xjb4e")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_totb7"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_gi85r"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -254,18 +250,6 @@ enabled = false
 wait_time = 1.5
 time_jitter = 1.5
 
-[node name="TopSprite2D" type="Sprite2D" parent="Battlefield/PewTurretTop" index="6" unique_id=1788088250]
-top_level = true
-position = Vector2(0, -900)
-texture = ExtResource("14_totb7")
-
-[node name="PewWeapon" parent="Battlefield/PewTurretTop" index="7" unique_id=1373124266 instance=ExtResource("15_a7tir")]
-
-[node name="Sprite2D" type="Sprite2D" parent="Battlefield/PewTurretTop/PewWeapon" index="2" unique_id=1371482313]
-position = Vector2(74, 0.000187603)
-rotation = -3.14159
-texture = ExtResource("16_8v2lo")
-
 [node name="PewTurretBottom" parent="Battlefield" index="9" unique_id=2071592657 instance=ExtResource("13_cxhnb")]
 unique_name_in_owner = true
 position = Vector2(0, 900)
@@ -273,18 +257,6 @@ enabled = false
 wait_time = 1.5
 time_jitter = 1.5
 burst_time_jitter = 0.1
-
-[node name="TopSprite2D" type="Sprite2D" parent="Battlefield/PewTurretBottom" index="6" unique_id=411491598]
-top_level = true
-position = Vector2(0, 900)
-texture = ExtResource("14_totb7")
-
-[node name="PewWeapon" parent="Battlefield/PewTurretBottom" index="7" unique_id=150328852 instance=ExtResource("15_a7tir")]
-
-[node name="Sprite2D" type="Sprite2D" parent="Battlefield/PewTurretBottom/PewWeapon" index="2" unique_id=1273715536]
-position = Vector2(74, 0.000187603)
-rotation = -3.14159
-texture = ExtResource("16_8v2lo")
 
 [node name="PewTurretLeft" parent="Battlefield" index="10" unique_id=718930390 instance=ExtResource("13_cxhnb")]
 unique_name_in_owner = true
@@ -296,33 +268,17 @@ burst_shots = 4
 burst_time = 0.1
 burst_time_jitter = 0.2
 
-[node name="TopSprite2D" type="Sprite2D" parent="Battlefield/PewTurretLeft" index="6" unique_id=1100387610]
-top_level = true
-position = Vector2(-1700, 0)
-texture = ExtResource("14_totb7")
-
-[node name="PewWeapon" parent="Battlefield/PewTurretLeft" index="7" unique_id=182850978 instance=ExtResource("15_a7tir")]
-
-[node name="Sprite2D" type="Sprite2D" parent="Battlefield/PewTurretLeft/PewWeapon" index="2" unique_id=122588685]
-position = Vector2(74, 0.000187603)
-rotation = -3.14159
-texture = ExtResource("16_8v2lo")
-
-[node name="Wall" parent="Battlefield" index="11" unique_id=1414986310 instance=ExtResource("7_7t7xj")]
-position = Vector2(0, -950)
-
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4" unique_id=985859702]
-script = ExtResource("9_8emr8")
-sides = 4
-
-[node name="Wall2" parent="Battlefield" index="12" unique_id=1473063777 instance=ExtResource("7_7t7xj")]
-position = Vector2(0, 950)
-
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4" unique_id=87831691]
-script = ExtResource("9_8emr8")
-sides = 4
+[node name="PewTurretRight" parent="Battlefield" index="11" unique_id=89141337 instance=ExtResource("13_cxhnb")]
+unique_name_in_owner = true
+position = Vector2(1700, 0)
+enabled = false
+wait_time = 1.0
+time_jitter = 1.0
+burst_shots = 4
+burst_time = 0.1
+burst_time_jitter = 0.2
 
 [node name="Navigation" parent="." index="6"]
-navigation_polygon = SubResource("NavigationPolygon_totb7")
+navigation_polygon = SubResource("NavigationPolygon_gi85r")
 
 [connection signal="loaded_by" from="Battlefield/Crown" to="Managers/Orchestrator" method="_on_crown_loaded_by"]

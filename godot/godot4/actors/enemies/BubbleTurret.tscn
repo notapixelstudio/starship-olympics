@@ -1,5 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkt23g8b1tl77"]
+[gd_scene format=3 uid="uid://bkt23g8b1tl77"]
 
 [ext_resource type="PackedScene" uid="uid://c6e28abusnqyt" path="res://godot4/actors/enemies/RotoTurret.tscn" id="1_prxic"]
+[ext_resource type="PackedScene" uid="uid://d36soeoj2g3ly" path="res://godot4/actors/ships/weapons/BubbleBulletWeapon.tscn" id="2_2rcam"]
+[ext_resource type="Texture2D" uid="uid://bj4s2pqxiqh6h" path="res://assets/sprites/enemies/bubble_turret_under.png" id="3_0svs5"]
+[ext_resource type="Texture2D" uid="uid://dd6gr3ghofbwj" path="res://assets/sprites/enemies/bubble_turret_top.png" id="4_moain"]
 
-[node name="BubbleTurret" instance=ExtResource("1_prxic")]
+[node name="BubbleTurret" unique_id=1278026538 instance=ExtResource("1_prxic")]
+
+[node name="BubbleBulletWeapon" parent="Weapons" parent_id_path=PackedInt32Array(1434707921) index="0" unique_id=44775477 node_paths=PackedStringArray("host") instance=ExtResource("2_2rcam")]
+offset = 200.0
+host = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapons/BubbleBulletWeapon" index="0" unique_id=1563250512]
+position = Vector2(74, 0)
+texture = ExtResource("3_0svs5")
+
+[node name="TopSprite2D" type="Sprite2D" parent="." index="6" unique_id=1661257813]
+texture = ExtResource("4_moain")

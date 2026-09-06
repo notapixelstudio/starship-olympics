@@ -1,6 +1,30 @@
 [gd_scene format=3 uid="uid://dm1jotcraodpl"]
 
 [ext_resource type="PackedScene" uid="uid://tqe0qciw2df3" path="res://godot4/actors/enemies/AimTurret.tscn" id="1_b1txy"]
+[ext_resource type="PackedScene" uid="uid://b4anewnchp4ou" path="res://godot4/actors/ships/weapons/PewWeapon.tscn" id="2_0kuul"]
+[ext_resource type="Texture2D" uid="uid://bj4s2pqxiqh6h" path="res://assets/sprites/enemies/bubble_turret_under.png" id="3_2po1y"]
+[ext_resource type="Texture2D" uid="uid://dd6gr3ghofbwj" path="res://assets/sprites/enemies/bubble_turret_top.png" id="4_lsyrl"]
+
+[sub_resource type="GDScript" id="GDScript_n6qrj"]
+script/source = "extends Node2D
+
+func _process(delta: float) -> void:
+	global_position = get_parent().global_position
+"
 
 [node name="PewTurret" unique_id=718930390 instance=ExtResource("1_b1txy")]
 burst_shots = 3
+
+[node name="PewWeapon" parent="Weapons" parent_id_path=PackedInt32Array(1434707921) index="0" unique_id=440950547 node_paths=PackedStringArray("host") instance=ExtResource("2_0kuul")]
+host = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapons/PewWeapon" index="2" unique_id=467975014]
+position = Vector2(74, 0.000187603)
+rotation = -3.14159
+texture = ExtResource("3_2po1y")
+
+[node name="TopSprite2D" type="Sprite2D" parent="." index="6" unique_id=1525776993]
+texture = ExtResource("4_lsyrl")
+
+[node name="AlertBalloon" parent="." index="7" unique_id=1534237853]
+script = SubResource("GDScript_n6qrj")

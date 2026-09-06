@@ -3,8 +3,6 @@
 [ext_resource type="Script" uid="uid://bl27ag67y755j" path="res://godot4/actors/enemies/Turret.gd" id="1_nwro1"]
 [ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="2_58wa3"]
 [ext_resource type="PackedScene" uid="uid://bhygc2xfw2jei" path="res://godot4/traits/Target.tscn" id="2_atihj"]
-[ext_resource type="Texture2D" uid="uid://mmwysrspo8he" path="res://assets/sprites/alchemy/circle.png" id="2_q1wp5"]
-[ext_resource type="Texture2D" uid="uid://c1veqj7sis6ax" path="res://assets/sprites/10x10_square.png" id="4_a0ooa"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="6_n6qrj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_atihj"]
@@ -48,13 +46,6 @@ _data = {
 &"RESET": SubResource("Animation_aqrra")
 }
 
-[sub_resource type="GDScript" id="GDScript_n6qrj"]
-script/source = "extends Node2D
-
-func _process(delta: float) -> void:
-	global_position = get_parent().global_position
-"
-
 [node name="Turret" type="Area2D" unique_id=2040906107]
 collision_layer = 4096
 collision_mask = 0
@@ -72,14 +63,8 @@ unique_name_in_owner = true
 process_callback = 0
 one_shot = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2110570448]
-texture = ExtResource("2_q1wp5")
-
-[node name="10x10Square" type="Sprite2D" parent="." unique_id=1108764937]
-visible = false
-position = Vector2(100, -4.76837e-07)
-scale = Vector2(3.3, 2.3)
-texture = ExtResource("4_a0ooa")
+[node name="Weapons" type="Node2D" parent="." unique_id=1434707921]
+unique_name_in_owner = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=976611620]
 unique_name_in_owner = true
@@ -89,7 +74,6 @@ libraries/ = SubResource("AnimationLibrary_d0kwv")
 [node name="AlertBalloon" type="Node2D" parent="." unique_id=1534237853]
 visible = false
 top_level = true
-script = SubResource("GDScript_n6qrj")
 
 [node name="Polygon2D" type="Polygon2D" parent="AlertBalloon" unique_id=650932705]
 position = Vector2(0, 50)

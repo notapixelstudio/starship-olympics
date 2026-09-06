@@ -8,9 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://hqe8ngr3tjgj" path="res://assets/sprites/enemies/bosses/diamond_boss_phase_1.png" id="4_r4sec"]
 [ext_resource type="Texture2D" uid="uid://dmnhwyh8ntnye" path="res://assets/sprites/enemies/bosses/diamond_boss_phase_2.png" id="4_x2twg"]
 [ext_resource type="Texture2D" uid="uid://dy5mv7hx5xyj8" path="res://assets/sprites/enemies/bosses/diamond_boss_phase_3.png" id="5_4xbgt"]
-[ext_resource type="PackedScene" uid="uid://c6e28abusnqyt" path="res://godot4/actors/enemies/RotoTurret.tscn" id="8_alvgf"]
+[ext_resource type="PackedScene" uid="uid://bkt23g8b1tl77" path="res://godot4/actors/enemies/BubbleTurret.tscn" id="7_ko8q8"]
 [ext_resource type="PackedScene" uid="uid://d36soeoj2g3ly" path="res://godot4/actors/ships/weapons/BubbleBulletWeapon.tscn" id="9_ko8q8"]
-[ext_resource type="PackedScene" uid="uid://wwxav5fs1qt" path="res://godot4/actors/enemies/Turret.tscn" id="10_j6iil"]
 
 [sub_resource type="Animation" id="Animation_x2twg"]
 length = 0.001
@@ -400,7 +399,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Phase2/RotoTurretPhase2:enabled")
+tracks/2/path = NodePath("Phase2/BubbleTurretPhase2:enabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -454,7 +453,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Phase2/RotoTurretPhase2:enabled")
+tracks/2/path = NodePath("Phase2/BubbleTurretPhase2:enabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -520,7 +519,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Phase3/Turret:enabled")
+tracks/3/path = NodePath("Phase3/BubbleTurretPhase3:enabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -655,7 +654,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Phase2/RotoTurretPhase2:enabled")
+tracks/10/path = NodePath("Phase2/BubbleTurretPhase2:enabled")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -691,7 +690,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Phase3/Turret:enabled")
+tracks/13/path = NodePath("Phase3/BubbleTurretPhase3:enabled")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -1013,106 +1012,99 @@ _data = {
 &"hit": SubResource("Animation_u67jn")
 }
 
-[node name="DiamondBoss" type="Node2D" node_paths=PackedStringArray("collision_polygons")]
+[node name="DiamondBoss" type="Node2D" unique_id=830063001 node_paths=PackedStringArray("collision_polygons")]
 script = ExtResource("1_r4sec")
 collision_polygons = [NodePath("Phase1/CollisionPolygon2D"), NodePath("Phase2/CollisionPolygon2D"), NodePath("Phase3/CollisionPolygon2D")]
 
-[node name="Appear" type="Node2D" parent="."]
+[node name="Appear" type="Node2D" parent="." unique_id=1409124417]
 
-[node name="PointLight2D" type="PointLight2D" parent="Appear"]
+[node name="PointLight2D" type="PointLight2D" parent="Appear" unique_id=162173746]
 energy = 0.0
 range_item_cull_mask = 2
 texture = ExtResource("2_ko8q8")
 texture_scale = 4.0
 
-[node name="GravitonField" parent="Appear" instance=ExtResource("3_j6iil")]
+[node name="GravitonField" parent="Appear" unique_id=1688658139 instance=ExtResource("3_j6iil")]
 attract_bodies = true
 gravity = 1.0
 center = Vector3(0, 0, -500)
 influence_radius = 1000.0
 
-[node name="Phase1" type="StaticBody2D" parent="."]
+[node name="Phase1" type="StaticBody2D" parent="." unique_id=452664809]
 visible = false
 position = Vector2(0, -2500)
 collision_layer = 16
 collision_mask = 0
 
-[node name="Tentacles" type="Node2D" parent="Phase1"]
+[node name="Tentacles" type="Node2D" parent="Phase1" unique_id=301461108]
 position = Vector2(0, -450)
 
-[node name="Tentacles1" type="Sprite2D" parent="Phase1/Tentacles"]
+[node name="Tentacles1" type="Sprite2D" parent="Phase1/Tentacles" unique_id=342239386]
 modulate = Color(0.02, 0.02, 0.02, 0.784314)
 position = Vector2(0, 519)
 scale = Vector2(1.05, 0.95)
 texture = ExtResource("2_8hekf")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Phase1/Tentacles/Tentacles1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Phase1/Tentacles/Tentacles1" unique_id=1053692982]
 root_node = NodePath("../../..")
-libraries = {
-&"": SubResource("AnimationLibrary_4xbgt")
-}
-autoplay = "wobble"
+libraries/ = SubResource("AnimationLibrary_4xbgt")
+autoplay = &"wobble"
 
-[node name="Tentacles2" type="Sprite2D" parent="Phase1/Tentacles"]
+[node name="Tentacles2" type="Sprite2D" parent="Phase1/Tentacles" unique_id=161922594]
 modulate = Color(0.02, 0.02, 0.02, 0.784314)
 position = Vector2(0, 819)
 scale = Vector2(0.95, 1.05)
 texture = ExtResource("3_r4sec")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Phase1/Tentacles/Tentacles2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Phase1/Tentacles/Tentacles2" unique_id=1909593026]
 root_node = NodePath("../../..")
-libraries = {
-&"": SubResource("AnimationLibrary_hygu1")
-}
-autoplay = "wobble"
+libraries/ = SubResource("AnimationLibrary_hygu1")
+autoplay = &"wobble"
 
-[node name="Sprite2D" type="Sprite2D" parent="Phase1"]
+[node name="Sprite2D" type="Sprite2D" parent="Phase1" unique_id=237361903]
 position = Vector2(0, -450)
 texture = ExtResource("4_r4sec")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Phase1"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Phase1" unique_id=2119115561]
 position = Vector2(0, -400)
 polygon = PackedVector2Array(-450, 300, 0, -800, 450, 300, 50, 800, -50, 800)
 disabled = true
 
-[node name="Phase2" type="StaticBody2D" parent="."]
+[node name="Phase2" type="StaticBody2D" parent="." unique_id=785034451]
 visible = false
 collision_layer = 16
 collision_mask = 0
 
-[node name="Tentacles" type="Node2D" parent="Phase2"]
+[node name="Tentacles" type="Node2D" parent="Phase2" unique_id=1772137810]
 position = Vector2(0, -268)
 scale = Vector2(0.7, 0.7)
 
-[node name="Tentacles1" type="Sprite2D" parent="Phase2/Tentacles"]
+[node name="Tentacles1" type="Sprite2D" parent="Phase2/Tentacles" unique_id=18649169]
 modulate = Color(0.02, 0.02, 0.02, 0.784314)
 position = Vector2(0, 519)
 scale = Vector2(1.1, 0.9)
 texture = ExtResource("2_8hekf")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Phase2/Tentacles/Tentacles1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Phase2/Tentacles/Tentacles1" unique_id=1041892569]
 root_node = NodePath("../../..")
-libraries = {
-&"": SubResource("AnimationLibrary_4xbgt")
-}
-autoplay = "wobble"
+libraries/ = SubResource("AnimationLibrary_4xbgt")
+autoplay = &"wobble"
 speed_scale = 2.0
 
-[node name="Tentacles2" type="Sprite2D" parent="Phase2/Tentacles"]
+[node name="Tentacles2" type="Sprite2D" parent="Phase2/Tentacles" unique_id=779037155]
 modulate = Color(0.02, 0.02, 0.02, 0.784314)
 position = Vector2(0, 819)
 scale = Vector2(0.95, 1.05)
 texture = ExtResource("3_r4sec")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Phase2/Tentacles/Tentacles2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Phase2/Tentacles/Tentacles2" unique_id=1776367113]
 root_node = NodePath("../../..")
-libraries = {
-&"": SubResource("AnimationLibrary_hygu1")
-}
-autoplay = "wobble"
+libraries/ = SubResource("AnimationLibrary_hygu1")
+autoplay = &"wobble"
 speed_scale = 2.0
 
-[node name="RotoTurretPhase2" parent="Phase2" instance=ExtResource("8_alvgf")]
+[node name="BubbleTurretPhase2" parent="Phase2" unique_id=1278026538 instance=ExtResource("7_ko8q8")]
+unique_name_in_owner = true
 position = Vector2(0, 300)
 rotation_speed = 0.837758
 pingpong = true
@@ -1121,111 +1113,120 @@ max_rotation = 2.61799
 enabled = false
 wait_time = 0.5
 
-[node name="BubbleBulletWeapon" parent="Phase2/RotoTurretPhase2" instance=ExtResource("9_ko8q8")]
+[node name="BubbleBulletWeapon" parent="Phase2/BubbleTurretPhase2/Weapons" parent_id_path=PackedInt32Array(1278026538, 1434707921) index="0" unique_id=44775477]
 bullet_speed = 400.0
 bullet_lifetime = 5.0
 offset = 50.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Phase2"]
+[node name="Sprite2D" parent="Phase2/BubbleTurretPhase2/Weapons/BubbleBulletWeapon" index="0" unique_id=1563250512]
+visible = false
+
+[node name="TopSprite2D" parent="Phase2/BubbleTurretPhase2" index="6" unique_id=1661257813]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Phase2" unique_id=1952817687]
 position = Vector2(0, -250)
 texture = ExtResource("4_x2twg")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Phase2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Phase2" unique_id=1719486059]
 position = Vector2(0, -50)
 polygon = PackedVector2Array(-250, 50, 0, -600, 250, 50, 50, 350, -50, 350)
 disabled = true
 
-[node name="Phase3" type="StaticBody2D" parent="."]
+[node name="Phase3" type="StaticBody2D" parent="." unique_id=453642782]
 visible = false
-rotation = 0.00617274
-scale = Vector2(1, 1)
+rotation = 0.0061727404
+scale = Vector2(0.99999994, 0.99999994)
 collision_layer = 16
 collision_mask = 0
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Tentacles" type="Node2D" parent="Phase3"]
+[node name="Tentacles" type="Node2D" parent="Phase3" unique_id=1259950443]
 position = Vector2(0, 80)
 scale = Vector2(0.2, 0.2)
 
-[node name="Tentacles1" type="Sprite2D" parent="Phase3/Tentacles"]
+[node name="Tentacles1" type="Sprite2D" parent="Phase3/Tentacles" unique_id=572874296]
 modulate = Color(0.02, 0.02, 0.02, 0.784314)
 scale = Vector2(1.1, 0.9)
 texture = ExtResource("2_8hekf")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Phase3/Tentacles/Tentacles1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Phase3/Tentacles/Tentacles1" unique_id=253142354]
 root_node = NodePath("../../..")
-libraries = {
-&"": SubResource("AnimationLibrary_4xbgt")
-}
-autoplay = "wobble"
+libraries/ = SubResource("AnimationLibrary_4xbgt")
+autoplay = &"wobble"
 speed_scale = 4.0
 
-[node name="Tentacles2" type="Sprite2D" parent="Phase3/Tentacles"]
+[node name="Tentacles2" type="Sprite2D" parent="Phase3/Tentacles" unique_id=91509131]
 modulate = Color(0.02, 0.02, 0.02, 0.784314)
 position = Vector2(0, 300)
 scale = Vector2(0.95, 1.05)
 texture = ExtResource("3_r4sec")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Phase3/Tentacles/Tentacles2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Phase3/Tentacles/Tentacles2" unique_id=1076938352]
 root_node = NodePath("../../..")
-libraries = {
-&"": SubResource("AnimationLibrary_hygu1")
-}
-autoplay = "wobble"
+libraries/ = SubResource("AnimationLibrary_hygu1")
+autoplay = &"wobble"
 speed_scale = 4.0
 
-[node name="Turret" parent="Phase3" instance=ExtResource("10_j6iil")]
+[node name="BubbleTurretPhase3" parent="Phase3" unique_id=1533781549 instance=ExtResource("7_ko8q8")]
+unique_name_in_owner = true
 position = Vector2(0.61727, 99.9981)
 enabled = false
 wait_time = 1.0
 
-[node name="BubbleBulletWeapon" parent="Phase3/Turret" instance=ExtResource("9_ko8q8")]
+[node name="BubbleBulletWeapon" parent="Phase3/BubbleTurretPhase3/Weapons" parent_id_path=PackedInt32Array(1533781549, 1434707921) index="0" unique_id=44775477]
 position = Vector2(5.96046e-08, 100)
 bullet_speed = 500.0
 bullet_lifetime = 3.0
 offset = 50.0
 
-[node name="BubbleBulletWeapon2" parent="Phase3/Turret" instance=ExtResource("9_ko8q8")]
-position = Vector2(5.96046e-08, 100)
+[node name="Sprite2D" parent="Phase3/BubbleTurretPhase3/Weapons/BubbleBulletWeapon" index="0" unique_id=1563250512]
+visible = false
+
+[node name="BubbleBulletWeapon2" parent="Phase3/BubbleTurretPhase3/Weapons" parent_id_path=PackedInt32Array(1533781549, 1434707921) index="1" unique_id=1885728490 node_paths=PackedStringArray("host") instance=ExtResource("9_ko8q8")]
+position = Vector2(5.9604645e-08, 100.00001)
 rotation = 3.14159
 bullet_speed = 500.0
 bullet_lifetime = 3.0
 offset = 50.0
+host = NodePath("../..")
 
-[node name="Sprite2D" type="Sprite2D" parent="Phase3"]
+[node name="TopSprite2D" parent="Phase3/BubbleTurretPhase3" index="6" unique_id=1661257813]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Phase3" unique_id=432565901]
 position = Vector2(0, -100)
 texture = ExtResource("5_4xbgt")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Phase3"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Phase3" unique_id=1333382158]
 position = Vector2(0, 200)
 polygon = PackedVector2Array(-49.9991, -199.691, -1.23454, -399.996, 49.9991, -200.309, 0.308635, -150.001)
 disabled = true
 
-[node name="Path2D" type="Path2D" parent="."]
+[node name="Path2D" type="Path2D" parent="." unique_id=1905240243]
 curve = SubResource("Curve2D_4xbgt")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=71170795]
 rotation = 0.00617274
 rotates = false
 metadata/_edit_lock_ = true
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D" unique_id=91785277]
 remote_path = NodePath("../../../Phase3")
 metadata/_edit_lock_ = true
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1262816244]
 tree_root = SubResource("AnimationNodeStateMachine_ko8q8")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_4lya8")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1475801557]
+libraries/ = SubResource("AnimationLibrary_4lya8")
 
-[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="." unique_id=870270979]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_fiuy8")
-}
+libraries/ = SubResource("AnimationLibrary_fiuy8")
+
+[editable path="Phase2/BubbleTurretPhase2"]
+[editable path="Phase3/BubbleTurretPhase3"]

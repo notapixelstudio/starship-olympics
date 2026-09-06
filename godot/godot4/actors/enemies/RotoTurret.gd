@@ -15,22 +15,22 @@ class_name RotoTurret
 
 func _ready() -> void:
 	set_process(false)
-	rotation_degrees = starting_angles_degrees.pick_random()
+	%Weapons.rotation_degrees = starting_angles_degrees.pick_random()
 	
 	# start slightly back to allow for animation timing compensation
-	rotation += rotation_speed * time_offset * (1.0 if clockwise else -1.0)
+	%Weapons.rotation += rotation_speed * time_offset * (1.0 if clockwise else -1.0)
 	
 func start() -> void:
 	super.start()
 	set_process(true)
 	
 func _process(delta: float) -> void:
-	rotation += delta * rotation_speed * (1.0 if clockwise else -1.0)
+	%Weapons.rotation += delta * rotation_speed * (1.0 if clockwise else -1.0)
 	
 	if pingpong:
-		if clockwise and rotation >= max_rotation:
+		if clockwise and %Weapons.rotation >= max_rotation:
 			clockwise = false
-			rotation -= rotation - max_rotation # wind a bit back
-		elif not clockwise and rotation <= min_rotation:
+			%Weapons.rotation -= %Weapons.rotation - max_rotation # wind a bit back
+		elif not clockwise and %Weapons.rotation <= min_rotation:
 			clockwise = true
-			rotation += min_rotation - rotation # wind a bit forward
+			%Weapons.rotation += min_rotation - %Weapons.rotation # wind a bit forward
