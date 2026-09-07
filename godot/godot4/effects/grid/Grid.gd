@@ -25,6 +25,7 @@ func _ready():
 	if init_parametric_shape:
 		grid.size = init_parametric_shape.get_extents()
 	elif init_custom_shape:
+		await init_custom_shape.updated
 		grid.size = init_custom_shape.get_extents()
 	grid.init_grid()
 	

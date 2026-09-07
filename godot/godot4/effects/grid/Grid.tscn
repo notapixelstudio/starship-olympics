@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://hqu0sjhj021n"]
+[gd_scene format=3 uid="uid://hqu0sjhj021n"]
 
 [ext_resource type="Script" uid="uid://ckdgqsbiy8uk7" path="res://godot4/effects/grid/Grid.gd" id="1_tx3yk"]
 [ext_resource type="PackedScene" uid="uid://bbh6dfcfwh26k" path="res://godot4/traits/Styleable.tscn" id="3_j3xxa"]
@@ -30,25 +30,25 @@ func _draw():
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_ta8v7"]
 
-[node name="Grid" type="Node2D"]
+[node name="Grid" type="Node2D" unique_id=127410278]
 z_index = -7
 z_as_relative = false
 script = ExtResource("1_tx3yk")
 
-[node name="Styleable" parent="." instance=ExtResource("3_j3xxa")]
+[node name="Styleable" parent="." unique_id=626471080 instance=ExtResource("3_j3xxa")]
 unique_name_in_owner = true
 
-[node name="Mask" type="Node2D" parent="."]
+[node name="Mask" type="Node2D" parent="." unique_id=1717446674]
 unique_name_in_owner = true
 clip_children = 1
 position = Vector2(0, 32)
 script = SubResource("GDScript_3687u")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Mask"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Mask" unique_id=1304163268]
 unique_name_in_owner = true
 visible = false
 modulate = Color(0, 0, 0, 0.509804)
 mesh = SubResource("ImmediateMesh_ta8v7")
 
-[node name="GridLines" parent="Mask" instance=ExtResource("3_t333u")]
+[node name="GridLines" parent="Mask" unique_id=737403817 instance=ExtResource("3_t333u")]
 unique_name_in_owner = true
