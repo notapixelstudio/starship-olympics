@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bybjdb2lji0hp"]
+[gd_scene format=3 uid="uid://bybjdb2lji0hp"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_p501y"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="2_w3bco"]
@@ -13,7 +13,15 @@
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="9_q6fwx"]
 [ext_resource type="Texture2D" uid="uid://btr2iabavi15p" path="res://assets/sprites/environments/bones_deco.png" id="10_peao6"]
 
-[node name="VersusArena" instance=ExtResource("1_p501y")]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5irue"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[node name="VersusArena" unique_id=1933146447 instance=ExtResource("1_p501y")]
 
 [node name="Styleable" parent="." index="0"]
 style = ExtResource("6_ffldp")
@@ -21,177 +29,180 @@ style = ExtResource("6_ffldp")
 [node name="Camera2D" parent="." index="2"]
 zoom = Vector2(0.25, 0.25)
 
-[node name="P1" parent="Homes" index="0" instance=ExtResource("2_w3bco")]
+[node name="P1" parent="Homes" index="0" unique_id=775116436 instance=ExtResource("2_w3bco")]
 position = Vector2(-1200, 800)
 
-[node name="P2" parent="Homes" index="1" instance=ExtResource("2_w3bco")]
+[node name="P2" parent="Homes" index="1" unique_id=2052543353 instance=ExtResource("2_w3bco")]
 position = Vector2(1200, -800)
 rotation = 3.14159
 
-[node name="VBeveledRect" type="Node" parent="Battlefield" index="0" node_paths=PackedStringArray("hosts")]
+[node name="VBeveledRect" type="Node" parent="Battlefield" index="0" unique_id=60210003 node_paths=PackedStringArray("hosts")]
 script = ExtResource("4_7vi0o")
 width = 3200.0
 height = 2400.0
 bevel = 360.0
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
-[node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource("3_kwgf4")]
+[node name="OutsideWall" parent="Battlefield" index="1" unique_id=1626168514 instance=ExtResource("3_kwgf4")]
 hollow = true
 
-[node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("5_mqwfg")]
+[node name="Grid" parent="Battlefield" index="2" unique_id=871463570 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("5_mqwfg")]
 init_parametric_shape = NodePath("../VBeveledRect")
 
-[node name="Decoration" type="Node2D" parent="Battlefield" index="3"]
+[node name="Decoration" type="Node2D" parent="Battlefield" index="3" unique_id=1652476236]
 z_index = -100
 z_as_relative = false
 
-[node name="Polygon2D" type="Polygon2D" parent="Battlefield/Decoration" index="0"]
+[node name="Polygon2D" type="Polygon2D" parent="Battlefield/Decoration" index="0" unique_id=988075533]
 modulate = Color(0.729412, 0.729412, 0.729412, 1)
 color = Color(0.627451, 0.564706, 0.47451, 1)
 polygon = PackedVector2Array(-1600, 1000, -1600, 850, -1250, 1200, -1250, 1350)
 
-[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Decoration" index="1"]
+[node name="Polygon2D2" type="Polygon2D" parent="Battlefield/Decoration" index="1" unique_id=164878721]
 modulate = Color(0.729412, 0.729412, 0.729412, 1)
 color = Color(0.435294, 0.396078, 0.313726, 1)
 polygon = PackedVector2Array(-1250, 1200, -1250, 1350, 1250, 1350, 1250, 1200)
 
-[node name="Polygon2D6" type="Polygon2D" parent="Battlefield/Decoration" index="2"]
+[node name="Polygon2D6" type="Polygon2D" parent="Battlefield/Decoration" index="2" unique_id=396304863]
 modulate = Color(0.729412, 0.729412, 0.729412, 1)
 color = Color(0.262745, 0.239216, 0.196078, 1)
 polygon = PackedVector2Array(1250, 1200, 1250, 1350, 1600, 1000, 1600, 850)
 
-[node name="Sprite2" type="Sprite2D" parent="Battlefield/Decoration" index="3"]
+[node name="Sprite2" type="Sprite2D" parent="Battlefield/Decoration" index="3" unique_id=585534894]
 modulate = Color(0.568627, 0.568627, 0.568627, 1)
 position = Vector2(1600, 1289)
 scale = Vector2(1, -1)
 texture = ExtResource("5_tgj1y")
 
-[node name="Sprite4" type="Sprite2D" parent="Battlefield/Decoration" index="4"]
+[node name="Sprite4" type="Sprite2D" parent="Battlefield/Decoration" index="4" unique_id=1612926764]
 modulate = Color(0.568627, 0.568627, 0.568627, 1)
 position = Vector2(400, 1289)
 scale = Vector2(1, -1)
 texture = ExtResource("6_6u68n")
 
-[node name="Sprite5" type="Sprite2D" parent="Battlefield/Decoration" index="5"]
+[node name="Sprite5" type="Sprite2D" parent="Battlefield/Decoration" index="5" unique_id=1673548634]
 modulate = Color(0.568627, 0.568627, 0.568627, 1)
 position = Vector2(-1600, 89)
 scale = Vector2(1, -1)
 texture = ExtResource("7_oyreg")
 
-[node name="Sprite6" type="Sprite2D" parent="Battlefield/Decoration" index="6"]
+[node name="Sprite6" type="Sprite2D" parent="Battlefield/Decoration" index="6" unique_id=1643954200]
 modulate = Color(0.568627, 0.568627, 0.568627, 1)
 position = Vector2(1600, 89)
 scale = Vector2(1, -1)
 texture = ExtResource("6_6u68n")
 
-[node name="Sprite3" type="Sprite2D" parent="Battlefield/Decoration" index="7"]
+[node name="Sprite3" type="Sprite2D" parent="Battlefield/Decoration" index="7" unique_id=778556481]
 modulate = Color(0.568627, 0.568627, 0.568627, 1)
 position = Vector2(-1600, -1111)
 scale = Vector2(1, -1)
 texture = ExtResource("5_tgj1y")
 
-[node name="DecorationOverlay" type="Node2D" parent="Battlefield" index="4"]
+[node name="DecorationOverlay" type="Node2D" parent="Battlefield" index="4" unique_id=1138373381]
 z_index = 18
 z_as_relative = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Battlefield/DecorationOverlay" index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="Battlefield/DecorationOverlay" index="0" unique_id=345582287]
 position = Vector2(-400, -1226)
 texture = ExtResource("6_6u68n")
 
-[node name="Sprite2" type="Sprite2D" parent="Battlefield/DecorationOverlay" index="1"]
+[node name="Sprite2" type="Sprite2D" parent="Battlefield/DecorationOverlay" index="1" unique_id=636687828]
 position = Vector2(-1600, -1262)
 texture = ExtResource("5_tgj1y")
 
-[node name="Sprite3" type="Sprite2D" parent="Battlefield/DecorationOverlay" index="2"]
+[node name="Sprite3" type="Sprite2D" parent="Battlefield/DecorationOverlay" index="2" unique_id=818956885]
 position = Vector2(-1600, -26)
 texture = ExtResource("7_oyreg")
 
-[node name="Sprite4" type="Sprite2D" parent="Battlefield/DecorationOverlay" index="3"]
+[node name="Sprite4" type="Sprite2D" parent="Battlefield/DecorationOverlay" index="3" unique_id=1348209849]
 position = Vector2(1600, -26)
 texture = ExtResource("6_6u68n")
 
-[node name="Sprite5" type="Sprite2D" parent="Battlefield/DecorationOverlay" index="4"]
+[node name="Sprite5" type="Sprite2D" parent="Battlefield/DecorationOverlay" index="4" unique_id=1480413030]
 position = Vector2(1600, 1140)
 texture = ExtResource("8_mbbak")
 
-[node name="Sprite6" type="Sprite2D" parent="Battlefield/DecorationOverlay" index="5"]
+[node name="Sprite6" type="Sprite2D" parent="Battlefield/DecorationOverlay" index="5" unique_id=385940063]
 position = Vector2(400, 1174)
 texture = ExtResource("7_oyreg")
 
-[node name="Wall" parent="Battlefield" index="5" instance=ExtResource("3_kwgf4")]
+[node name="Wall" parent="Battlefield" index="5" unique_id=352792922 instance=ExtResource("3_kwgf4")]
 position = Vector2(-1000, -600)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="5"]
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="5" unique_id=671211067]
 script = ExtResource("9_q6fwx")
 sides = 4
 
-[node name="Wall3" parent="Battlefield" index="6" instance=ExtResource("3_kwgf4")]
+[node name="Wall3" parent="Battlefield" index="6" unique_id=2121035695 instance=ExtResource("3_kwgf4")]
 position = Vector2(1000, 600)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall3" index="5"]
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall3" index="5" unique_id=1010411366]
 script = ExtResource("9_q6fwx")
 sides = 4
 
-[node name="Wall4" parent="Battlefield" index="7" instance=ExtResource("3_kwgf4")]
+[node name="Wall4" parent="Battlefield" index="7" unique_id=1604990700 instance=ExtResource("3_kwgf4")]
 position = Vector2(-1600, -1200)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall4" index="5"]
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall4" index="5" unique_id=530488402]
 script = ExtResource("9_q6fwx")
 sides = 4
 
-[node name="Wall6" parent="Battlefield" index="8" instance=ExtResource("3_kwgf4")]
+[node name="Wall6" parent="Battlefield" index="8" unique_id=2024289682 instance=ExtResource("3_kwgf4")]
 position = Vector2(-400, -1200)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall6" index="5"]
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall6" index="5" unique_id=289000047]
 script = ExtResource("9_q6fwx")
 sides = 4
 
-[node name="Wall7" parent="Battlefield" index="9" instance=ExtResource("3_kwgf4")]
+[node name="Wall7" parent="Battlefield" index="9" unique_id=1803667357 instance=ExtResource("3_kwgf4")]
 position = Vector2(-1600, 0)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall7" index="5"]
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall7" index="5" unique_id=520649265]
 script = ExtResource("9_q6fwx")
 sides = 4
 
-[node name="Wall10" parent="Battlefield" index="10" instance=ExtResource("3_kwgf4")]
+[node name="Wall10" parent="Battlefield" index="10" unique_id=1289789502 instance=ExtResource("3_kwgf4")]
 position = Vector2(400, 1200)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall10" index="5"]
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall10" index="5" unique_id=44735005]
 script = ExtResource("9_q6fwx")
 sides = 4
 
-[node name="Wall11" parent="Battlefield" index="11" instance=ExtResource("3_kwgf4")]
+[node name="Wall11" parent="Battlefield" index="11" unique_id=1362379933 instance=ExtResource("3_kwgf4")]
 position = Vector2(1600, 1200)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall11" index="5"]
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall11" index="5" unique_id=761721059]
 script = ExtResource("9_q6fwx")
 sides = 4
 
-[node name="Wall14" parent="Battlefield" index="12" instance=ExtResource("3_kwgf4")]
+[node name="Wall14" parent="Battlefield" index="12" unique_id=1454554797 instance=ExtResource("3_kwgf4")]
 position = Vector2(1600, 0)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall14" index="5"]
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall14" index="5" unique_id=579174210]
 script = ExtResource("9_q6fwx")
 sides = 4
 
-[node name="Wall16" parent="Battlefield" index="13" instance=ExtResource("3_kwgf4")]
+[node name="Wall16" parent="Battlefield" index="13" unique_id=1784964015 instance=ExtResource("3_kwgf4")]
 position = Vector2(-800, 400)
 
-[node name="VBeveledRect" type="Node" parent="Battlefield/Wall16" index="5"]
+[node name="VBeveledRect" type="Node" parent="Battlefield/Wall16" index="5" unique_id=416905669]
 script = ExtResource("4_7vi0o")
 height = 700.0
 rotation_degrees = -45.0
 
-[node name="Wall15" parent="Battlefield" index="14" instance=ExtResource("3_kwgf4")]
+[node name="Wall15" parent="Battlefield" index="14" unique_id=17889406 instance=ExtResource("3_kwgf4")]
 position = Vector2(800, -400)
 
-[node name="VBeveledRect" type="Node" parent="Battlefield/Wall15" index="5"]
+[node name="VBeveledRect" type="Node" parent="Battlefield/Wall15" index="5" unique_id=724816048]
 script = ExtResource("4_7vi0o")
 height = 700.0
 rotation_degrees = -45.0
 
-[node name="Bones" type="Sprite2D" parent="Battlefield" index="15"]
+[node name="Bones" type="Sprite2D" parent="Battlefield" index="15" unique_id=1890714155]
 modulate = Color(0.0546, 0.91, 0.43953, 0.0196078)
 position = Vector2(0, 32)
 scale = Vector2(5, 5)
 texture = ExtResource("10_peao6")
+
+[node name="Navigation" parent="." index="6"]
+navigation_polygon = SubResource("NavigationPolygon_5irue")

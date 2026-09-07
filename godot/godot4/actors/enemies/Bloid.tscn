@@ -1,42 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4acrm6aqiv1g"]
+[gd_scene format=3 uid="uid://buaj7gsl2nn8y"]
 
-[ext_resource type="Script" uid="uid://dfpbnwprwrm7y" path="res://godot4/actors/enemies/Bloid.gd" id="2_63srp"]
-[ext_resource type="Texture2D" uid="uid://mmwysrspo8he" path="res://assets/sprites/alchemy/circle.png" id="3_qtr2k"]
-[ext_resource type="PackedScene" uid="uid://qyk6yqeg3vet" path="res://godot4/actors/brains/enemies/BloidBrain.tscn" id="3_vglww"]
+[ext_resource type="PackedScene" uid="uid://b4acrm6aqiv1g" path="res://godot4/actors/enemies/Shapeoid.tscn" id="1_8o46o"]
+[ext_resource type="Script" uid="uid://brwfmw0p21a1" path="res://godot4/actors/enemies/Bloid.gd" id="2_63srp"]
+[ext_resource type="Texture2D" uid="uid://ds1faooeg1sx" path="res://assets/sprites/enemies/bloid.png" id="3_gdux4"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dks07"]
-bounce = 1.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_03e7b"]
-radius = 80.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_gs0y2"]
-radius = 40.0
-
-[node name="Bloid" type="RigidBody2D"]
-collision_layer = 4096
-collision_mask = 4176
-physics_material_override = SubResource("PhysicsMaterial_dks07")
-can_sleep = false
-linear_damp = 1.0
-angular_damp = 40.0
+[node name="Bloid" unique_id=1630210331 instance=ExtResource("1_8o46o")]
 script = ExtResource("2_63srp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_03e7b")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.15, 0.49, 1, 1)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("3_qtr2k")
-
-[node name="BloidBrain" parent="." instance=ExtResource("3_vglww")]
-
-[node name="TouchArea2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2048
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea2D"]
-shape = SubResource("CircleShape2D_gs0y2")
-
-[connection signal="body_entered" from="TouchArea2D" to="." method="_on_touch_area_2d_body_entered"]
+[node name="Sprite2D" parent="." index="1" unique_id=587249607]
+unique_name_in_owner = true
+texture = ExtResource("3_gdux4")

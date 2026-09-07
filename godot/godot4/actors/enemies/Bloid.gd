@@ -1,32 +1,17 @@
-extends RigidBody2D
+extends Shapeoid
+class_name Bloid
 
-## constants for basic movement
-const THRUST := 400
-## 9 because we enlarged the radius of the ship's collision shape by 3
-var rotation_torque := 380000 # 130000 # 49000*9 
+func _ready() -> void:
+	%Sprite2D.rotation = randf()*2*PI
 
-var target_velocity := Vector2(0, 0)
-var rotation_request := 0.0
+func _process(delta: float) -> void:
+	%Sprite2D.rotation += delta
 
-func get_target_velocity() -> Vector2:
-	return target_velocity
-	
-func set_target_velocity(v: Vector2) -> void:
-	target_velocity = v
-	set_constant_force(target_velocity * THRUST)
-	
-func set_rotation_request(v: float) -> void:
-	rotation_request = v
-	set_constant_torque(min(PI/2, rotation_request) * rotation_torque)
-	
-
-func _on_touch_area_2d_body_entered(body: Node2D) -> void:
-	if body is Treasure:
-		body.touched_by(self)
-
-func touched_by(sth) -> void:
-	if sth.has_method('is_dashing') and sth.is_dashing():
-		queue_free()
-	elif sth is Ship:
-		sth.die()
-		queue_free()
+func _physics_process(delta: float) -> void:
+	# follow a ship at random
+	var targets = get_tree().get_nodes_in_group('Ship')
+	if len(targets) <= 0:
+		return
+		
+	_direction = global_position.angle_to_point(targets[0].global_position)
+	_move()

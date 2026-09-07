@@ -52,6 +52,11 @@ func _handle_ship_vs_other(ship:Ship, collider, tag:String='') -> void:
 		collider.destroy()
 		return # collision handled
 		
+	# Shapeoids kill Ships on touch
+	if collider is Shapeoid and tag == 'hurt':
+		ship.damage(collider)
+		return # collision handled
+		
 	# Blocks are pushed if hit by ships
 	if collider is Block:
 		collider.push_by(ship)
