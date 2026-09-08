@@ -13,15 +13,16 @@
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="12_t2pn6"]
 [ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="14_8smqk"]
 [ext_resource type="PackedScene" uid="uid://buaj7gsl2nn8y" path="res://godot4/actors/enemies/Bloid.tscn" id="14_tpiis"]
+[ext_resource type="PackedScene" uid="uid://c4wlcrypdn2um" path="res://godot4/elements/treasures/MultiplierDiamond.tscn" id="15_jtmvm"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="15_t4qwi"]
 
-[sub_resource type="Curve2D" id="Curve2D_ml6ye"]
+[sub_resource type="Curve2D" id="Curve2D_jtmvm"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -1650, -1350, 0, 0, 0, 0, -250, -1350, 0, 0, 0, 0, -150, -1250, 0, 0, 0, 0, -50, -1350, 0, 0, 0, 0, 1650, -1350, 0, 0, 0, 0, 1650, -300, 0, 0, 0, 0, 2100, 150, 0, 0, 0, 0, 1650, 600, 0, 0, 0, 0, 1650, 1350, 0, 0, 0, 0, 250, 1350, 0, 0, 0, 0, 150, 1250, 0, 0, 0, 0, 50, 1350, 0, 0, 0, 0, -1650, 1350, 0, 0, 0, 0, -1650, 300, 0, 0, 0, 0, -2100, -150, 0, 0, 0, 0, -1650, -600)
 }
 point_count = 16
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_jtmvm"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_whem5"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -51,7 +52,7 @@ position = Vector2(0, 1050)
 rotation = -1.5707964
 
 [node name="VCustomShape" type="Path2D" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="0" unique_id=1727617156 node_paths=PackedStringArray("hosts")]
-curve = SubResource("Curve2D_ml6ye")
+curve = SubResource("Curve2D_jtmvm")
 script = ExtResource("7_nm0c8")
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 metadata/_custom_type_script = "uid://dpekcskbmlpy3"
@@ -139,5 +140,8 @@ position = Vector2(1200, 900)
 pattern = "single"
 element_scene = ExtResource("14_tpiis")
 
+[node name="Diamond" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="10" unique_id=366155577 instance=ExtResource("15_jtmvm")]
+position = Vector2(0, 750)
+
 [node name="Navigation" parent="." index="6" unique_id=1517722862]
-navigation_polygon = SubResource("NavigationPolygon_jtmvm")
+navigation_polygon = SubResource("NavigationPolygon_whem5")

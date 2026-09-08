@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var still : bool = false
+var special := false
 
 func _ready():
 	if not still:
@@ -35,6 +36,9 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	emit_signal('end')
 	
 func appear():
-	$AnimationPlayer.play("Appear")
+	if special:
+		$AnimationPlayer.play("AppearSpecial")
+	else:
+		$AnimationPlayer.play("Appear")
 	
 	
