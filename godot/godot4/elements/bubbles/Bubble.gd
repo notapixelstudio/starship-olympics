@@ -31,6 +31,11 @@ func pop(author=null) -> void:
 	queue_free()
 	
 func release_content(author) -> void:
+	# exception: shapeoids can be killed by popping them while inside a bubble
+	if _content is Shapeoid:
+		_content.die(author)
+		return
+		
 	_content.global_position = global_position
 	Events.spawn_request.emit(_content)
 	

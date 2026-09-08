@@ -1,18 +1,19 @@
-[gd_scene format=3 uid="uid://dyks4clkx7v8"]
+[gd_scene format=3 uid="uid://bxu0f11inxva7"]
 
-[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_6nmnj"]
+[ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_2fymr"]
+[ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_0cmkh"]
 [ext_resource type="Resource" uid="uid://c3djyj66hypnr" path="res://godot4/data/styles/cartesian.tres" id="2_jx2vd"]
-[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="3_j1hi3"]
-[ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="3_oxmds"]
-[ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="4_7r1bt"]
-[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="4_83y8t"]
-[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="5_spfj5"]
-[ext_resource type="Script" uid="uid://dpekcskbmlpy3" path="res://addons/vshapes/VCustomShape.gd" id="6_ml6ye"]
-[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="6_qqo3c"]
-[ext_resource type="PackedScene" uid="uid://buaj7gsl2nn8y" path="res://godot4/actors/enemies/Bloid.tscn" id="8_gupd7"]
-[ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="10_ml6ye"]
-[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="11_3k8qf"]
-[ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="11_jtmvm"]
+[ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="4_ku04e"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="5_kwye1"]
+[ext_resource type="Script" uid="uid://dpekcskbmlpy3" path="res://addons/vshapes/VCustomShape.gd" id="7_nm0c8"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="8_vk5lb"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="10_tn533"]
+[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="11_bq481"]
+[ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="11_txp22"]
+[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="12_t2pn6"]
+[ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="14_8smqk"]
+[ext_resource type="PackedScene" uid="uid://buaj7gsl2nn8y" path="res://godot4/actors/enemies/Bloid.tscn" id="14_tpiis"]
+[ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="15_t4qwi"]
 
 [sub_resource type="Curve2D" id="Curve2D_ml6ye"]
 _data = {
@@ -28,116 +29,115 @@ source_geometry_mode = 1
 source_geometry_group_name = &"obstacle"
 agent_radius = 100.0
 
-[node name="VersusArena" unique_id=1933146447 instance=ExtResource("1_6nmnj")]
+[node name="PveArena" unique_id=1218906820 instance=ExtResource("1_2fymr")]
+default_params = ExtResource("2_0cmkh")
 
-[node name="Styleable" parent="." index="0"]
+[node name="Styleable" parent="." index="0" unique_id=1073040491]
 style = ExtResource("2_jx2vd")
 
-[node name="SpawnerWaveManager" parent="Managers" index="9" unique_id=916173366 node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("3_oxmds")]
+[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1777668264) index="9" unique_id=698513598 node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("4_ku04e")]
 spawn_on_all_collected = true
 spawn_on_timeout = false
 waves_container = NodePath("../../Battlefield/Waves")
 battlefield = NodePath("../../Battlefield")
 
-[node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" unique_id=1914335854 instance=ExtResource("4_83y8t")]
+[node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" unique_id=1936746454 instance=ExtResource("5_kwye1")]
 
-[node name="Camera2D" parent="." index="2"]
+[node name="Camera2D" parent="." index="2" unique_id=2033964444]
 zoom = Vector2(0.25, 0.25)
 
-[node name="P1" parent="Homes" index="0" unique_id=775116436 instance=ExtResource("3_j1hi3")]
+[node name="P1" parent="Homes" parent_id_path=PackedInt32Array(617743064) index="0" unique_id=1170858522 instance=ExtResource("8_vk5lb")]
 position = Vector2(0, 1050)
 rotation = -1.5707964
 
-[node name="VCustomShape" type="Path2D" parent="Battlefield" index="0" unique_id=1131944898 node_paths=PackedStringArray("hosts")]
+[node name="VCustomShape" type="Path2D" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="0" unique_id=1727617156 node_paths=PackedStringArray("hosts")]
 curve = SubResource("Curve2D_ml6ye")
-script = ExtResource("6_ml6ye")
+script = ExtResource("7_nm0c8")
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 metadata/_custom_type_script = "uid://dpekcskbmlpy3"
 
-[node name="OutsideWall" parent="Battlefield" index="1" unique_id=1626168514 instance=ExtResource("5_spfj5")]
+[node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="1" unique_id=981968531 instance=ExtResource("10_tn533")]
 hollow = true
 
-[node name="Grid" parent="Battlefield" index="2" unique_id=871463570 node_paths=PackedStringArray("init_custom_shape") instance=ExtResource("6_qqo3c")]
+[node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="2" unique_id=130985248 node_paths=PackedStringArray("init_custom_shape") instance=ExtResource("11_bq481")]
 init_custom_shape = NodePath("../VCustomShape")
 
-[node name="Wall4" parent="Battlefield" index="3" unique_id=1610759347 instance=ExtResource("5_spfj5")]
+[node name="Wall4" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="3" unique_id=338942049 instance=ExtResource("10_tn533")]
 position = Vector2(-750, -750)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall4" index="5" unique_id=903528473]
-script = ExtResource("11_3k8qf")
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall4" index="5" unique_id=626581694]
+script = ExtResource("12_t2pn6")
 sides = 4
 
-[node name="Wall2" parent="Battlefield" index="4" unique_id=212639233 instance=ExtResource("5_spfj5")]
+[node name="Wall2" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="4" unique_id=145047858 instance=ExtResource("10_tn533")]
 position = Vector2(-450, 750)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="5" unique_id=2106443768]
-script = ExtResource("11_3k8qf")
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="5" unique_id=1759920415]
+script = ExtResource("12_t2pn6")
 sides = 4
 
-[node name="Wall5" parent="Battlefield" index="5" unique_id=212622526 instance=ExtResource("5_spfj5")]
+[node name="Wall5" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="5" unique_id=2100351001 instance=ExtResource("10_tn533")]
 position = Vector2(450, -750)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall5" index="5" unique_id=1674564946]
-script = ExtResource("11_3k8qf")
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall5" index="5" unique_id=180546969]
+script = ExtResource("12_t2pn6")
 sides = 4
 
-[node name="Wall6" parent="Battlefield" index="6" unique_id=1091030238 instance=ExtResource("5_spfj5")]
+[node name="Wall6" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="6" unique_id=684950412 instance=ExtResource("10_tn533")]
 position = Vector2(750, 750)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall6" index="5" unique_id=809151536]
-script = ExtResource("11_3k8qf")
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall6" index="5" unique_id=1111758550]
+script = ExtResource("12_t2pn6")
 sides = 4
 
-[node name="Wall16" parent="Battlefield" index="7" unique_id=1784964015 instance=ExtResource("5_spfj5")]
+[node name="Wall16" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="7" unique_id=249885871 instance=ExtResource("10_tn533")]
 position = Vector2(-1200, 0)
 
-[node name="VBeveledRect" type="Node" parent="Battlefield/Wall16" index="5" unique_id=416905669]
-script = ExtResource("4_7r1bt")
+[node name="VBeveledRect" type="Node" parent="Battlefield/Wall16" index="5" unique_id=1359795219]
+script = ExtResource("11_txp22")
 width = 150.0
 height = 570.0
 bevel = 0.0
 rotation_degrees = -45.0
 
-[node name="Wall15" parent="Battlefield" index="8" unique_id=17889406 instance=ExtResource("5_spfj5")]
+[node name="Wall15" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="8" unique_id=1347274745 instance=ExtResource("10_tn533")]
 position = Vector2(1200, 0)
 
-[node name="VBeveledRect" type="Node" parent="Battlefield/Wall15" index="5" unique_id=724816048]
-script = ExtResource("4_7r1bt")
+[node name="VBeveledRect" type="Node" parent="Battlefield/Wall15" index="5" unique_id=1964132417]
+script = ExtResource("11_txp22")
 width = 150.0
 height = 570.0
 bevel = 0.0
 rotation_degrees = -45.0
 
-[node name="Waves" type="Node2D" parent="Battlefield" index="9" unique_id=1803065378]
+[node name="Waves" type="Node2D" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="9" unique_id=1407698040]
 
-[node name="SingleBloidWave" type="Node2D" parent="Battlefield/Waves" index="0" unique_id=1904750341 groups=["spawn_waves"]]
-script = ExtResource("10_ml6ye")
+[node name="SingleBloidWave" type="Node2D" parent="Battlefield/Waves" index="0" unique_id=1622032603 groups=["spawn_waves"]]
+script = ExtResource("14_8smqk")
 max_repeats = 1
 extra_delay = 4.0
 
-[node name="ElementSpawnerGroup" parent="Battlefield/Waves/SingleBloidWave" index="0" unique_id=1641127759 instance=ExtResource("11_jtmvm")]
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/SingleBloidWave" index="0" unique_id=32827641 instance=ExtResource("15_t4qwi")]
 pattern = "single"
-element_scene = ExtResource("8_gupd7")
+element_scene = ExtResource("14_tpiis")
 
-[node name="SingleBloidWave2" type="Node2D" parent="Battlefield/Waves" index="1" unique_id=984467523 groups=["spawn_waves"]]
-script = ExtResource("10_ml6ye")
+[node name="SingleBloidWave2" type="Node2D" parent="Battlefield/Waves" index="1" unique_id=568185997 groups=["spawn_waves"]]
+script = ExtResource("14_8smqk")
 extra_delay = 4.0
 
-[node name="ElementSpawnerGroup" parent="Battlefield/Waves/SingleBloidWave2" index="0" unique_id=87126335 instance=ExtResource("11_jtmvm")]
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/SingleBloidWave2" index="0" unique_id=1400742070 instance=ExtResource("15_t4qwi")]
 pattern = "single"
-element_scene = ExtResource("8_gupd7")
+element_scene = ExtResource("14_tpiis")
 
-[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/SingleBloidWave2" index="1" unique_id=903332008 instance=ExtResource("11_jtmvm")]
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/SingleBloidWave2" index="1" unique_id=207721437 instance=ExtResource("15_t4qwi")]
 position = Vector2(-1200, -900)
 pattern = "single"
-element_scene = ExtResource("8_gupd7")
+element_scene = ExtResource("14_tpiis")
 
-[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/SingleBloidWave2" index="2" unique_id=1234956949 instance=ExtResource("11_jtmvm")]
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/SingleBloidWave2" index="2" unique_id=1741519751 instance=ExtResource("15_t4qwi")]
 position = Vector2(1200, 900)
 pattern = "single"
-element_scene = ExtResource("8_gupd7")
+element_scene = ExtResource("14_tpiis")
 
-[node name="Line2D" type="Line2D" parent="Battlefield" index="10" unique_id=949424228]
-
-[node name="Navigation" parent="." index="6"]
+[node name="Navigation" parent="." index="6" unique_id=1517722862]
 navigation_polygon = SubResource("NavigationPolygon_jtmvm")

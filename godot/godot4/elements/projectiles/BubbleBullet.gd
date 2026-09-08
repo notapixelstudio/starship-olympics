@@ -38,6 +38,15 @@ func capture_treasure(treasure:Treasure) -> void:
 	Events.spawn_request.emit(bubble)
 	bubble.set_content_rotation(treasure.global_rotation)
 	
+func capture_shapeoid(shapeoid:Shapeoid) -> void:
+	var bubble = bubble_scene.instantiate()
+	bubble.set_content(shapeoid)
+	bubble.add_to_group('Shapeoid')
+	bubble.global_position = shapeoid.global_position
+	get_parent().remove_child.call_deferred(shapeoid)
+	Events.spawn_request.emit(bubble)
+	bubble.set_content_rotation(shapeoid.global_rotation)
+	
 func destroy() -> void:
 	var effect = bubble_popped_scene.instantiate()
 	effect.global_position = global_position

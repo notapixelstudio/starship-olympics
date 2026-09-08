@@ -57,6 +57,7 @@ signal sth_crossed_gate(sth, gate:Gate)
 signal beat(period:int)
 signal new_objective(objective:Variant)
 
+signal score(amount, author:Ship, global_position:Vector2)
 signal points_scored(amount:float, team:String)
 signal score_updated(new_value:float, team:String, new_standings:Array)
 signal score_threshold_passed(team:String) # maybe add threshold metadata?

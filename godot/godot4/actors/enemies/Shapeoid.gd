@@ -16,5 +16,18 @@ func create_appear_effect() -> Node2D:
 	appear.set_texture(get_appear_texture())
 	return appear
 	
-func get_appear_texture() -> Texture:
+func get_texture() -> Texture:
 	return %Sprite2D.texture
+	
+func get_appear_texture() -> Texture:
+	return get_texture()
+
+func _on_touch_area_2d_body_entered(sth: Node2D) -> void:
+	if sth is BubbleBullet: # FIXME Bullet abstract superclass?
+		Events.collision.emit(sth, self)
+	# what about treasures?
+	# ...
+
+func die(killer):
+	if killer is Ship:
+		Events.score.emit(1, killer, global_position) # FIXME choose if this is actually the default scoring, or if killing does not generally score points

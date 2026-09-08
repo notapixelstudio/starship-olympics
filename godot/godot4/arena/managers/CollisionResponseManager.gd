@@ -82,6 +82,9 @@ func _hanlde_bubble_bullet_vs_other(bubble_bullet:BubbleBullet, collider, tag:St
 	if collider is Treasure:
 		bubble_bullet.capture_treasure(collider)
 		bubble_bullet.destroy()
+	elif collider is Shapeoid:
+		bubble_bullet.capture_shapeoid(collider)
+		bubble_bullet.destroy()
 
 func _handle_shield_wall_vs_other(shield_wall:ShieldWall, collider, tag:String='') -> void:
 	if collider is Pew:

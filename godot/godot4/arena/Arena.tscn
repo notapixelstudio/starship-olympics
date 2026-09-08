@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ctk8t0ohpljms"]
+[gd_scene format=3 uid="uid://ctk8t0ohpljms"]
 
 [ext_resource type="Script" uid="uid://cdwca4jvfkafg" path="res://godot4/arena/Arena.gd" id="1_avtyt"]
 [ext_resource type="PackedScene" uid="uid://jhsh150wnrbw" path="res://godot4/arena/managers/Orchestrator.tscn" id="1_m2x2u"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ctdiyn70rdfsq" path="res://godot4/arena/managers/TimeManager.tscn" id="10_mhlox"]
 [ext_resource type="PackedScene" uid="uid://bbh6dfcfwh26k" path="res://godot4/traits/Styleable.tscn" id="12_g1af4"]
 [ext_resource type="Resource" uid="uid://dk1wwbut07grf" path="res://godot4/data/styles/default.tres" id="13_n4nm8"]
+[ext_resource type="PackedScene" uid="uid://dilai3ixse7ph" path="res://godot4/arena/managers/ScoreResolver.tscn" id="15_xop1g"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="16_64a4r"]
 [ext_resource type="Script" uid="uid://tvmm4mdwnb4y" path="res://godot4/arena/ArenaCamera2D.gd" id="16_ad0xh"]
 [ext_resource type="Script" uid="uid://rnvhumm1cowb" path="res://godot4/debug/DebugActionsManager.gd" id="16_uol0h"]
@@ -43,53 +44,55 @@ source_geometry_mode = 1
 source_geometry_group_name = &"obstacle"
 agent_radius = 100.0
 
-[node name="Arena" type="Node2D"]
+[node name="Arena" type="Node2D" unique_id=1813654458]
 script = ExtResource("1_avtyt")
 players = Array[ExtResource("2_wi08g")]([ExtResource("2_3p1dt"), ExtResource("3_jq12e"), ExtResource("4_c1158"), ExtResource("5_ej3mp")])
 match_over_screen_scene = ExtResource("9_kkxbo")
 default_minigame = ExtResource("9_vsuw2")
 default_params = ExtResource("9_nr0n0")
 
-[node name="Styleable" parent="." instance=ExtResource("12_g1af4")]
+[node name="Styleable" parent="." unique_id=1073040491 instance=ExtResource("12_g1af4")]
 style = ExtResource("13_n4nm8")
 
-[node name="Managers" type="Node" parent="."]
+[node name="Managers" type="Node" parent="." unique_id=1777668264]
 
-[node name="Orchestrator" parent="Managers" instance=ExtResource("1_m2x2u")]
+[node name="Orchestrator" parent="Managers" unique_id=1734604 instance=ExtResource("1_m2x2u")]
 
-[node name="TimeManager" parent="Managers" instance=ExtResource("10_mhlox")]
+[node name="TimeManager" parent="Managers" unique_id=774745098 instance=ExtResource("10_mhlox")]
 unique_name_in_owner = true
 
-[node name="ScoreManager" parent="Managers" instance=ExtResource("2_fyulk")]
+[node name="ScoreManager" parent="Managers" unique_id=2093324166 instance=ExtResource("2_fyulk")]
 unique_name_in_owner = true
 
-[node name="GameOverManager" parent="Managers" instance=ExtResource("17_u22a8")]
+[node name="ScoreResolver" parent="Managers" unique_id=513211864 instance=ExtResource("15_xop1g")]
+
+[node name="GameOverManager" parent="Managers" unique_id=290042574 instance=ExtResource("17_u22a8")]
 unique_name_in_owner = true
 
-[node name="MessageManager" parent="Managers" node_paths=PackedStringArray("battlefield") instance=ExtResource("3_jxfg0")]
+[node name="MessageManager" parent="Managers" unique_id=1934983813 node_paths=PackedStringArray("battlefield") instance=ExtResource("3_jxfg0")]
 battlefield = NodePath("../../Battlefield")
 
-[node name="DebugActionsManager" type="Node" parent="Managers" node_paths=PackedStringArray("arena")]
+[node name="DebugActionsManager" type="Node" parent="Managers" unique_id=1257335642 node_paths=PackedStringArray("arena")]
 process_mode = 3
 script = ExtResource("16_uol0h")
 arena = NodePath("../..")
 
-[node name="CollisionResponseManager" parent="Managers" instance=ExtResource("21_rittb")]
+[node name="CollisionResponseManager" parent="Managers" unique_id=847490396 instance=ExtResource("21_rittb")]
 
-[node name="ShipFactory" parent="Managers" instance=ExtResource("22_xop1g")]
+[node name="ShipFactory" parent="Managers" unique_id=1983576294 instance=ExtResource("22_xop1g")]
 
-[node name="SpawnManager" parent="Managers" node_paths=PackedStringArray("battlefield") instance=ExtResource("20_fhoky")]
+[node name="SpawnManager" parent="Managers" unique_id=1119972062 node_paths=PackedStringArray("battlefield") instance=ExtResource("20_fhoky")]
 battlefield = NodePath("../../Battlefield")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2033964444]
 unique_name_in_owner = true
 zoom = Vector2(0.2, 0.2)
 script = ExtResource("16_ad0xh")
 
-[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=691678301]
 layer = -5
 
-[node name="Background" type="TextureRect" parent="BackgroundLayer"]
+[node name="Background" type="TextureRect" parent="BackgroundLayer" unique_id=1981133805]
 unique_name_in_owner = true
 z_index = -500
 z_as_relative = false
@@ -97,27 +100,27 @@ offset_right = 1280.0
 offset_bottom = 724.0
 texture = ExtResource("18_f7kik")
 
-[node name="Homes" type="Node2D" parent="."]
+[node name="Homes" type="Node2D" parent="." unique_id=617743064]
 unique_name_in_owner = true
 
-[node name="Battlefield" type="Node2D" parent="."]
+[node name="Battlefield" type="Node2D" parent="." unique_id=455320663]
 unique_name_in_owner = true
 
-[node name="Navigation" parent="." instance=ExtResource("23_rittb")]
+[node name="Navigation" parent="." unique_id=1517722862 instance=ExtResource("23_rittb")]
 navigation_polygon = SubResource("NavigationPolygon_rittb")
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=609277927]
 unique_name_in_owner = true
 process_mode = 3
 layer = 10
 
-[node name="Vignette" type="Sprite2D" parent="HUD"]
+[node name="Vignette" type="Sprite2D" parent="HUD" unique_id=2076316425]
 scale = Vector2(0.667, 0.667)
 texture = ExtResource("19_hnpxt")
 centered = false
 flip_h = true
 
-[node name="SOLog" parent="HUD" instance=ExtResource("7_tad78")]
+[node name="SOLog" parent="HUD" unique_id=888938363 instance=ExtResource("7_tad78")]
 visible = false
 offset_left = 950.0
 offset_top = 150.0
@@ -125,12 +128,12 @@ offset_right = 1275.0
 offset_bottom = 550.0
 metadata/_edit_lock_ = true
 
-[node name="CanvasGroup" type="CanvasGroup" parent="HUD"]
+[node name="CanvasGroup" type="CanvasGroup" parent="HUD" unique_id=577420347]
 z_index = 200
 fit_margin = 50.0
 clear_margin = 50.0
 
-[node name="MinigameText" type="RichTextLabel" parent="HUD/CanvasGroup"]
+[node name="MinigameText" type="RichTextLabel" parent="HUD/CanvasGroup" unique_id=2102517673]
 unique_name_in_owner = true
 anchors_preset = 12
 anchor_top = 1.0
@@ -147,13 +150,13 @@ text = "[right][color=#ffde5e]TITLE[/color]
 DESCRIPTION[/right]"
 fit_content = true
 
-[node name="MinigameIcon" type="Sprite2D" parent="HUD/CanvasGroup"]
+[node name="MinigameIcon" type="Sprite2D" parent="HUD/CanvasGroup" unique_id=1825870595]
 unique_name_in_owner = true
 position = Vector2(1222, 633)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("18_3l87r")
 
-[node name="Clock" parent="HUD" instance=ExtResource("26_picc7")]
+[node name="Clock" parent="HUD" unique_id=1394735722 instance=ExtResource("26_picc7")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_bottom = 0.0
@@ -166,7 +169,7 @@ grow_vertical = 1
 horizontal_alignment = 2
 vertical_alignment = 0
 
-[node name="Countdown" parent="HUD" instance=ExtResource("26_picc7")]
+[node name="Countdown" parent="HUD" unique_id=269018326 instance=ExtResource("26_picc7")]
 visible = false
 modulate = Color(1, 1, 1, 0.0313726)
 offset_right = 0.0
@@ -175,20 +178,20 @@ theme_override_fonts/font = ExtResource("28_fhoky")
 theme_override_font_sizes/font_size = 400
 text = "00"
 
-[node name="TimeBar" parent="HUD" instance=ExtResource("27_8sctu")]
+[node name="TimeBar" parent="HUD" unique_id=736572473 instance=ExtResource("27_8sctu")]
 unique_name_in_owner = true
 offset_left = 1251.0
 offset_top = 80.0
 offset_right = 1271.0
 offset_bottom = 594.0
 
-[node name="ScoreHUD" type="Node2D" parent="HUD"]
+[node name="ScoreHUD" type="Node2D" parent="HUD" unique_id=625950532]
 unique_name_in_owner = true
 script = ExtResource("28_mtqpa")
 score_bar_scene = ExtResource("29_infxo")
 metadata/_edit_lock_ = true
 
-[node name="ScoreBars" type="HBoxContainer" parent="HUD/ScoreHUD"]
+[node name="ScoreBars" type="HBoxContainer" parent="HUD/ScoreHUD" unique_id=1087842372]
 unique_name_in_owner = true
 offset_left = 8.0
 offset_top = 46.0
@@ -196,9 +199,9 @@ offset_right = 160.0
 offset_bottom = 716.0
 theme_override_constants/separation = 8
 
-[node name="PlayersReadyWheels" parent="HUD/ScoreHUD" instance=ExtResource("30_um0tc")]
+[node name="PlayersReadyWheels" parent="HUD/ScoreHUD" unique_id=1822551159 instance=ExtResource("30_um0tc")]
 unique_name_in_owner = true
 
-[node name="PauseOverlay" parent="HUD" instance=ExtResource("32_ri8rg")]
+[node name="PauseOverlay" parent="HUD" unique_id=1174244322 instance=ExtResource("32_ri8rg")]
 unique_name_in_owner = true
 visible = false
