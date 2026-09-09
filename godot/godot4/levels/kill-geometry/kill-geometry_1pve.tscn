@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="12_t2pn6"]
 [ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="14_8smqk"]
 [ext_resource type="PackedScene" uid="uid://buaj7gsl2nn8y" path="res://godot4/actors/enemies/Bloid.tscn" id="14_tpiis"]
-[ext_resource type="PackedScene" uid="uid://c4wlcrypdn2um" path="res://godot4/elements/treasures/MultiplierDiamond.tscn" id="15_jtmvm"]
+[ext_resource type="PackedScene" uid="uid://c107dwhlumi1g" path="res://godot4/actors/enemies/Deployd.tscn" id="15_jtmvm"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="15_t4qwi"]
 
 [sub_resource type="Curve2D" id="Curve2D_jtmvm"]
@@ -140,8 +140,9 @@ position = Vector2(1200, 900)
 pattern = "single"
 element_scene = ExtResource("14_tpiis")
 
-[node name="Diamond" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="10" unique_id=366155577 instance=ExtResource("15_jtmvm")]
-position = Vector2(0, 750)
+[node name="Deployd" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="10" unique_id=1630210331 instance=ExtResource("15_jtmvm")]
+position = Vector2(-300, -200)
+speed = 30000.0
 
 [node name="Navigation" parent="." index="6" unique_id=1517722862]
 navigation_polygon = SubResource("NavigationPolygon_whem5")
