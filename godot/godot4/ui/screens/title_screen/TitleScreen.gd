@@ -5,6 +5,7 @@ extends Screen
 @export var bgm : AudioStream
 
 func _ready():
+	%Offset.position.x = ProjectSettings.get_setting('display/window/size/viewport_width') / 2
 	DeeJay.play(bgm)
 
 func _on_press_any_key_any_key_pressed() -> void:

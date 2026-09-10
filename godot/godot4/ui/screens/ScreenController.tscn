@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxftfjyem72k6"]
+[gd_scene format=3 uid="uid://dxftfjyem72k6"]
 
 [ext_resource type="Script" uid="uid://0q4ui223grni" path="res://godot4/ui/screens/ScreenController.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://cy0hpemosmd3a" path="res://local_multiplayer/UI/ParallaxBackground.tscn" id="2"]
 
-[node name="ScreenController" type="Node2D"]
+[node name="ScreenController" type="HBoxContainer" unique_id=975314391]
 script = ExtResource("1")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=672157943]
 anchor_mode = 0
 
-[node name="ParallaxBackground" parent="." instance=ExtResource("2")]
+[node name="ParallaxBackground" parent="." unique_id=597645373 instance=ExtResource("2")]
 layer = -2
 
 [node name="TextureRect" parent="ParallaxBackground" index="0"]
