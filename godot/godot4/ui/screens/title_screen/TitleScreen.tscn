@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://hwf7tcforry2"]
+[gd_scene format=3 uid="uid://hwf7tcforry2"]
 
 [ext_resource type="PackedScene" uid="uid://d3abq633jh74a" path="res://godot4/ui/screens/Screen.tscn" id="1_3ws7c"]
-[ext_resource type="Script" uid="uid://5c55yu5bl5" path="res://godot4/ui/screens/title_screen/TitleScreen.gd" id="2_x0td4"]
+[ext_resource type="Script" uid="uid://4v2jduc3xq3t" path="res://godot4/ui/screens/title_screen/TitleScreen.gd" id="2_x0td4"]
 [ext_resource type="PackedScene" uid="uid://dhn4hc2tmwqkk" path="res://godot4/ui/screens/main_menu/MainMenuScreen.tscn" id="3_ebbj7"]
 [ext_resource type="AudioStream" uid="uid://dvyudxmqjls3a" path="res://assets/audio/soundtracks/PM_ATG_120_3_3+PM_NIGHTPULSE_120BPM_06.ogg" id="4_4ji6u"]
 [ext_resource type="Texture2D" uid="uid://cv1lpjudl08v5" path="res://logo.png" id="5_q8ea5"]
@@ -32,7 +32,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.6, 1),
 "transitions": PackedFloat32Array(1, 0.615572, 1),
 "update": 0,
-"values": [Vector2(640, 295), Vector2(640, 295), Vector2(640, 206)]
+"values": [Vector2(0, 295), Vector2(0, 295), Vector2(0, 206)]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -54,26 +54,34 @@ _data = {
 &"fade_in": SubResource("Animation_c1xai")
 }
 
-[node name="TitleScreen" instance=ExtResource("1_3ws7c")]
+[node name="TitleScreen" unique_id=1039519426 instance=ExtResource("1_3ws7c")]
 script = ExtResource("2_x0td4")
 next_screen_scene = ExtResource("3_ebbj7")
 bgm = ExtResource("4_4ji6u")
 
-[node name="Offset" type="Node2D" parent="." index="0"]
-position = Vector2(0, 100)
+[node name="Offset" type="Node2D" parent="." index="0" unique_id=1325449490]
+unique_name_in_owner = true
+position = Vector2(640, 100)
 
-[node name="Logo" type="Sprite2D" parent="Offset" index="0"]
+[node name="Logo" type="Sprite2D" parent="Offset" index="0" unique_id=1590996630]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(640, 295)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("5_q8ea5")
 
-[node name="Animator" type="AnimationPlayer" parent="." index="1"]
-libraries = {
-&"": SubResource("AnimationLibrary_k6b6q")
-}
-autoplay = "fade_in"
+[node name="Animator" type="AnimationPlayer" parent="." index="1" unique_id=1381337792]
+libraries/ = SubResource("AnimationLibrary_k6b6q")
+autoplay = &"fade_in"
 
-[node name="PressAnyKey" parent="." index="2" instance=ExtResource("6_e6nyr")]
+[node name="PressAnyKey" parent="." index="2" unique_id=1530921932 instance=ExtResource("6_e6nyr")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [connection signal="any_key_pressed" from="PressAnyKey" to="." method="_on_press_any_key_any_key_pressed"]

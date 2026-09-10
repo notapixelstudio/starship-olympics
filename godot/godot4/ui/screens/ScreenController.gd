@@ -1,6 +1,9 @@
-extends Node2D
+extends HBoxContainer
 
 @export var starting_screen_scene : PackedScene
+
+@onready var screen_width = ProjectSettings.get('display/window/size/viewport_width')
+@onready var screen_height = ProjectSettings.get('display/window/size/viewport_height')
 
 var screens_stack := []  # Array of ScreenScene to navigate back
 
@@ -19,12 +22,15 @@ func navigate_to(new_screen: Screen):
 		old_screen.exiting()
 		from_screen_id = old_screen.get_id()
 	
+	new_screen.custom_minimum_size.x = screen_width
+	new_screen.custom_minimum_size.y = screen_height
 	add_child(new_screen)
-	new_screen.position.x = 1280 * len(screens_stack)
+	size.x = screen_width * len(screens_stack)+1
+	#new_screen.position.x = screen_width * len(screens_stack)
 	screens_stack.append(new_screen)
 	var to_screen_id = new_screen.get_id()
 	transition_started.emit('navigate_to', from_screen_id, to_screen_id)
-	var new_camera_position_x = 1280 * (len(screens_stack)-1)
+	var new_camera_position_x = screen_width * (len(screens_stack)-1)
 	print(screens_stack)
 	if new_camera_position_x != $Camera2D.position.x: # move camera if needed
 		var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
@@ -50,7 +56,7 @@ func back():
 	
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	var cam = $Camera2D
-	tween.tween_property($Camera2D, 'position:x', 1280 * (len(screens_stack)-1), 1)
+	tween.tween_property($Camera2D, 'position:x', screen_width * (len(screens_stack)-1), 1)
 	await tween.finished
 	
 	old_screen.exited()

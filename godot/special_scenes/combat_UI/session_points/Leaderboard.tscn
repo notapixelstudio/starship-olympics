@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://00s3ufothoqf"]
+[gd_scene format=3 uid="uid://00s3ufothoqf"]
 
 [ext_resource type="Script" uid="uid://dain4a2dkxi8q" path="res://special_scenes/combat_UI/session_points/Leaderboard.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c4wnumyysruol" path="res://special_scenes/combat_UI/session_points/PilotStats.tscn" id="2"]
@@ -31,7 +31,7 @@ _data = {
 &"entrance": SubResource("1")
 }
 
-[node name="Leaderboard" type="MarginContainer"]
+[node name="Leaderboard" type="MarginContainer" unique_id=1209906462]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -40,13 +40,11 @@ pilot_stats_scene = ExtResource("2")
 players = Array[ExtResource("3_t5h2s")]([ExtResource("3_0uub2"), ExtResource("4_hibp6"), ExtResource("5_5cgsl"), ExtResource("6_8vyt0")])
 session = ExtResource("8_1n8qs")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=573513041]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_yl108")
-}
-autoplay = "entrance"
+libraries/ = SubResource("AnimationLibrary_yl108")
+autoplay = &"entrance"
 
-[node name="Container" type="Control" parent="."]
+[node name="Container" type="Control" parent="." unique_id=1270600723]
 unique_name_in_owner = true
 layout_mode = 2
