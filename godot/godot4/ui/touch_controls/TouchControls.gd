@@ -2,7 +2,6 @@ extends CanvasLayer
 
 @export var controls_prefix := "rm1"
 @export var edge_margin := Vector2(72, 72)
-@export var fire_hit_padding := 28.0
 @export var gear_hit_padding := 10.0
 
 var _joy_touch_index := -1
@@ -38,7 +37,7 @@ func _place_hints() -> void:
 	var gear := %PauseGear
 	joy.place_at_center(Vector2(edge_margin.x + joy.size.x * 0.5, vp.y - edge_margin.y - joy.size.y * 0.5))
 	joy.set_home_center(Vector2(edge_margin.x + joy.size.x * 0.5, vp.y - edge_margin.y - joy.size.y * 0.5))
-	fire.place_at_center(Vector2(vp.x - edge_margin.x - fire.size.x * 0.5, vp.y - edge_margin.y - fire.size.y * 0.5))
+	fire.set_home_center(Vector2(vp.x - edge_margin.x - fire.size.x * 0.5, vp.y - edge_margin.y - fire.size.y * 0.5))
 	var gear_size: Vector2 = gear.size
 	gear.position = Vector2(vp.x - gear_size.x - 16.0, 16.0)
 	joy.show_hint()
@@ -47,6 +46,12 @@ func _place_hints() -> void:
 
 func _input(event: InputEvent) -> void:
 	if not visible:
+		return
+	if get_tree().paused:
+		# fire injects ui_accept, and the fire zone is half the screen:
+		# without this, any tap would press the focused pause-menu button
+		_stop_joystick()
+		_stop_fire()
 		return
 
 	if event is InputEventScreenTouch:
@@ -66,7 +71,7 @@ func _handle_screen_touch(event: InputEventScreenTouch) -> void:
 		if _is_joy_zone(event.position):
 			_start_joystick(event.index, event.position)
 		elif _is_on_fire_zone(event.position):
-			_start_fire(event.index)
+			_start_fire(event.index, event.position)
 	else:
 		if event.index == _joy_touch_index:
 			_stop_joystick()
@@ -85,7 +90,7 @@ func _handle_mouse_button(event: InputEventMouseButton) -> void:
 		if _is_joy_zone(event.position):
 			_start_joystick(0, event.position)
 		elif _is_on_fire_zone(event.position):
-			_start_fire(0)
+			_start_fire(0, event.position)
 	elif _joy_touch_index == 0:
 		_stop_joystick()
 	elif _fire_touch_index == 0:
@@ -94,14 +99,11 @@ func _handle_mouse_button(event: InputEventMouseButton) -> void:
 func _gear_rect() -> Rect2:
 	return %PauseGear.get_global_rect().grow(gear_hit_padding)
 
-func _fire_rect() -> Rect2:
-	return %FireButton.get_global_rect().grow(fire_hit_padding)
-
 func _is_on_gear(screen_pos: Vector2) -> bool:
 	return %PauseGear.visible and _gear_rect().has_point(screen_pos)
 
 func _is_on_fire_zone(screen_pos: Vector2) -> bool:
-	return _fire_rect().has_point(screen_pos)
+	return screen_pos.x >= get_viewport().get_visible_rect().size.x * 0.5
 
 func _is_joy_zone(screen_pos: Vector2) -> bool:
 	return screen_pos.x < get_viewport().get_visible_rect().size.x * 0.5
@@ -121,15 +123,15 @@ func _stop_joystick() -> void:
 	_joy_touch_index = -1
 	%Joystick.deactivate_to_home()
 
-func _start_fire(index: int) -> void:
+func _start_fire(index: int, screen_pos: Vector2) -> void:
 	if _fire_touch_index != -1:
 		return
 	_fire_touch_index = index
-	%FireButton.set_held(true)
+	%FireButton.activate_at(screen_pos)
 
 func _stop_fire() -> void:
 	_fire_touch_index = -1
-	%FireButton.set_held(false)
+	%FireButton.deactivate_to_home()
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PAUSED:

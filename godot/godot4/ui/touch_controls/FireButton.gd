@@ -5,6 +5,7 @@ extends Control
 
 var _pressed := false
 var _shown := false
+var _home_center := Vector2.ZERO
 
 func _ready() -> void:
 	visible = false
@@ -12,12 +13,18 @@ func _ready() -> void:
 	custom_minimum_size = Vector2(button_radius * 2.0 + 16.0, button_radius * 2.0 + 16.0)
 	size = custom_minimum_size
 
+func set_home_center(center: Vector2) -> void:
+	_home_center = center
+	if not _pressed:
+		place_at_center(center)
+
 func place_at_center(center: Vector2) -> void:
 	position = center - size * 0.5
 
 func show_hint() -> void:
 	_shown = true
 	_pressed = false
+	place_at_center(_home_center)
 	visible = true
 	queue_redraw()
 
@@ -28,8 +35,17 @@ func hide_hint() -> void:
 	visible = false
 	queue_redraw()
 
-func set_held(held: bool) -> void:
-	_set_pressed(held)
+func activate_at(screen_pos: Vector2) -> void:
+	if not _shown:
+		return
+	place_at_center(screen_pos)
+	_set_pressed(true)
+
+func deactivate_to_home() -> void:
+	if not _pressed:
+		return
+	_set_pressed(false)
+	place_at_center(_home_center)
 
 func _set_pressed(value: bool) -> void:
 	if _pressed == value:
