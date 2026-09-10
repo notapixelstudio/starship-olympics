@@ -58,6 +58,7 @@ func _handle_ship_vs_other(ship:Ship, collider, tag:String='') -> void:
 		ship.rebound()
 		ship.stun()
 		return # collision handled
+		
 
 func _handle_pew_vs_other(pew:Pew, collider, tag:String='') -> void:
 	var is_mirror = collider is Mirror #or collider is MirrorWall

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c15r0r77h6sy"]
+
+[ext_resource type="PackedScene" uid="uid://ctjqsqliwexo6" path="res://godot4/actors/friendly/ghosts/Ghost.tscn" id="1_3gbkn"]
+[ext_resource type="Shader" uid="uid://cqxhbqcpdq24y" path="res://godot4/actors/friendly/ghosts/ghost_wobbliness.gdshader" id="2_ouvgv"]
+[ext_resource type="Texture2D" uid="uid://d2s26s6apfybu" path="res://assets/sprites/ghosts/ghost__g12.png" id="3_bnsjp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sfbh3"]
+resource_local_to_scene = true
+shader = ExtResource("2_ouvgv")
+shader_parameter/direction = 1.0
+shader_parameter/speed = 8.0
+shader_parameter/frequency = 10.000000475
+shader_parameter/amplitude = 0.10000000475
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t4a0g"]
+size = Vector2(100, 300)
+
+[node name="Ghost" unique_id=227459632 instance=ExtResource("1_3gbkn")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=483835839]
+material = SubResource("ShaderMaterial_sfbh3")
+texture = ExtResource("3_bnsjp")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1454785852]
+shape = SubResource("RectangleShape2D_t4a0g")

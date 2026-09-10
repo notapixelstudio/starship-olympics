@@ -71,6 +71,8 @@ signal sth_collected(collector, collectee)
 #signal sth_impacted(actor, environment:StaticBody2D)
 
 signal blocks_cleared(blocks_field, amount, global_position)
+signal ghost_touched(ghost:Ghost, ship:Ship)
+signal ghosts_matched(ghost_1:Ghost, ghost_2:Ghost)
 
 signal start_charging(charger)
 signal tap(tapper)
