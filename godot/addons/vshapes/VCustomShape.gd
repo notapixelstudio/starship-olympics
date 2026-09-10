@@ -4,20 +4,34 @@ class_name VCustomShape
 
 @export var hosts : Array[Node] : set = set_hosts
 
+signal updated
+
 func set_hosts(v: Array[Node]) -> void:
 	hosts = v
-	update_hosts()
+	taint()
 
 var points : PackedVector2Array
 
+var _dirty := true
+func taint() -> void:
+	_dirty = true
+	
+func is_dirty() -> bool:
+	return _dirty
+	
+func _physics_process(delta):
+	if _dirty:
+		update()
+		_dirty = false
+		
 
 func _ready():
 	curve = curve.duplicate() # necessary for duplicating nodes correctly
-	curve.changed.connect(update)
-	update()
+	curve.changed.connect(taint)
 
 func update() -> void:
 	points = curve.tessellate()
+	updated.emit()
 	update_hosts()
 
 func update_hosts() -> void:
@@ -40,5 +54,5 @@ func get_points() -> PackedVector2Array:
 	return points
 	
 func get_extents() -> Vector2:
-	return Vector2()
+	return Utils.packed_vector2_array_extents(points)
 	

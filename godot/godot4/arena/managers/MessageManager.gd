@@ -7,10 +7,11 @@ extends Node
 func _ready():
 	Events.message.connect(_on_message)
 	
-func _on_message(message:Variant, color:Color, global_position:Vector2) -> void:
+func _on_message(message:Variant, color:Color, global_position:Vector2, special:=false) -> void:
 	var floating_message = floating_message_scene.instantiate()
 	floating_message.set_message(message)
 	floating_message.set_color(color)
 	floating_message.scale *= magnify
+	floating_message.special = special
 	floating_message.global_position = global_position
 	battlefield.add_child(floating_message)

@@ -1,43 +1,46 @@
-[gd_scene load_steps=7 format=3 uid="uid://2cynjxryqe8t"]
+[gd_scene format=3 uid="uid://2cynjxryqe8t"]
 
 [ext_resource type="Script" uid="uid://cnl03ub1u8y7t" path="res://godot4/ui/screens/character_selection/CampaignSelectionScreen.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bhq3klwabv0i8" path="res://godot4/ui/screens/back_screen/BackScreen.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://bfjk2jikcv4ub" path="res://utils/ShearLabel.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://dg3l8eepsajhj" path="res://godot4/ui/screens/loading_screen/LoadingScreen.tscn" id="3_3lw7o"]
+[ext_resource type="PackedScene" uid="uid://druc45wf3k3t2" path="res://godot4/ui/screens/minigame_selection/MinigameSelectionScreen.tscn" id="3_3lw7o"]
 [ext_resource type="PackedScene" uid="uid://6j8veiwxchng" path="res://godot4/ui/screens/character_selection/selection_panel/SelectionPanel.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://cgu7lwmnkg60h" path="res://godot4/ui/screens/character_selection/selection_panel/PilotSelector.tscn" id="6"]
 
-[node name="CampaignSelectionScreen" instance=ExtResource("2")]
+[node name="CampaignSelectionScreen" unique_id=365766603 instance=ExtResource("2")]
 script = ExtResource("1")
 next_scene = ExtResource("3_3lw7o")
 
-[node name="MenuLabel" parent="." index="2" instance=ExtResource("3")]
+[node name="FancyMenu" parent="." index="1"]
+layout_mode = 0
+
+[node name="MenuLabel" parent="." index="2" unique_id=232109214 instance=ExtResource("3")]
 modulate = Color(1, 0.827451, 0.396078, 1)
 position = Vector2(650, 50)
 scale = Vector2(2.5, 2.5)
 text = "CO-OP"
 
-[node name="Node2D" type="Node2D" parent="." index="3"]
+[node name="Node2D" type="Node2D" parent="." index="3" unique_id=159940377]
 
-[node name="SelectionPanel" parent="Node2D" index="0" instance=ExtResource("5")]
+[node name="SelectionPanel" parent="Node2D" index="0" unique_id=1410110085 instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_right = 1280.0
 offset_bottom = 720.0
 min_players = 1
 
-[node name="Pilot" parent="Node2D/SelectionPanel" index="0" instance=ExtResource("6")]
+[node name="Pilot" parent="Node2D/SelectionPanel" index="0" unique_id=964313627 instance=ExtResource("6")]
 position = Vector2(180, 422)
 player_id = "P1"
 
-[node name="Pilot2" parent="Node2D/SelectionPanel" index="1" instance=ExtResource("6")]
+[node name="Pilot2" parent="Node2D/SelectionPanel" index="1" unique_id=900699557 instance=ExtResource("6")]
 position = Vector2(487, 422)
 player_id = "P2"
 
-[node name="Pilot3" parent="Node2D/SelectionPanel" index="2" instance=ExtResource("6")]
+[node name="Pilot3" parent="Node2D/SelectionPanel" index="2" unique_id=991937292 instance=ExtResource("6")]
 position = Vector2(794, 422)
 player_id = "P3"
 
-[node name="Pilot4" parent="Node2D/SelectionPanel" index="3" instance=ExtResource("6")]
+[node name="Pilot4" parent="Node2D/SelectionPanel" index="3" unique_id=57038317 instance=ExtResource("6")]
 position = Vector2(1101, 422)
 player_id = "P4"
 

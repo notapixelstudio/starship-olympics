@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cfgy3ee8k825d"]
+[gd_scene format=3 uid="uid://cfgy3ee8k825d"]
 
 [ext_resource type="Script" uid="uid://bwo1rikoxc8ox" path="res://godot4/elements/bubbles/Bubble.gd" id="1_ebahq"]
 [ext_resource type="PackedScene" uid="uid://c5mydm0dx5rd5" path="res://godot4/effects/BubblePopped.tscn" id="2_ijaql"]
@@ -157,7 +157,7 @@ streams_count = 2
 stream_0/stream = ExtResource("7_jon51")
 stream_1/stream = ExtResource("8_luvl1")
 
-[node name="Bubble" type="RigidBody2D"]
+[node name="Bubble" type="RigidBody2D" unique_id=1823237054]
 collision_layer = 64
 collision_mask = 2147486292
 physics_material_override = SubResource("PhysicsMaterial_2pppl")
@@ -169,40 +169,36 @@ script = ExtResource("1_ebahq")
 bubble_popped_scene = ExtResource("2_ijaql")
 appear_scene = ExtResource("3_h12s8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=350821877]
 visible = false
 shape = SubResource("CircleShape2D_o63h2")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1286760094]
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1274531002]
 visible = false
 shape = SubResource("CircleShape2D_tn7bv")
 
-[node name="Graphics" type="Node2D" parent="."]
+[node name="Graphics" type="Node2D" parent="." unique_id=2014122771]
 
-[node name="ContentSprite2D" type="Sprite2D" parent="Graphics"]
+[node name="ContentSprite2D" type="Sprite2D" parent="Graphics" unique_id=1678968707]
 unique_name_in_owner = true
 position = Vector2(0, 6)
 
-[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
+[node name="Sprite2D" type="Sprite2D" parent="Graphics" unique_id=938378018]
 modulate = Color(1, 1, 1, 0.901961)
 texture = ExtResource("4_f5sj8")
 
-[node name="IntroAnimation" type="AnimationPlayer" parent="Graphics"]
-libraries = {
-&"": SubResource("AnimationLibrary_g125i")
-}
-autoplay = "default"
+[node name="IntroAnimation" type="AnimationPlayer" parent="Graphics" unique_id=1742368881]
+libraries/ = SubResource("AnimationLibrary_g125i")
+autoplay = &"default"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_14ggj")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=828707824]
+libraries/ = SubResource("AnimationLibrary_14ggj")
+autoplay = &"default"
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=435782881]
 unique_name_in_owner = true
 visible = false
 z_index = 100
@@ -218,13 +214,13 @@ text = "HOLD BUTTON
 TO DASH!"
 horizontal_alignment = 1
 
-[node name="PopSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="PopSFX" type="AudioStreamPlayer2D" parent="." unique_id=810506042]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_lb1fb")
 volume_db = 10.0
 bus = &"SFX"
 
-[node name="BounceSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="BounceSFX" type="AudioStreamPlayer2D" parent="." unique_id=1854595034]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_epica")
 volume_db = 10.0

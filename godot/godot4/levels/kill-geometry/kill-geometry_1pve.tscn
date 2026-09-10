@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://bxu0f11inxva7"]
+
+[ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_2fymr"]
+[ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_0cmkh"]
+[ext_resource type="Resource" uid="uid://c3djyj66hypnr" path="res://godot4/data/styles/cartesian.tres" id="2_jx2vd"]
+[ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="4_ku04e"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="5_kwye1"]
+[ext_resource type="Script" uid="uid://dpekcskbmlpy3" path="res://addons/vshapes/VCustomShape.gd" id="7_nm0c8"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="8_vk5lb"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="10_tn533"]
+[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="11_bq481"]
+[ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="11_txp22"]
+[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="12_t2pn6"]
+[ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="14_8smqk"]
+[ext_resource type="PackedScene" uid="uid://buaj7gsl2nn8y" path="res://godot4/actors/enemies/Bloid.tscn" id="14_tpiis"]
+[ext_resource type="PackedScene" uid="uid://c107dwhlumi1g" path="res://godot4/actors/enemies/Deployd.tscn" id="15_jtmvm"]
+[ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="15_t4qwi"]
+
+[sub_resource type="Curve2D" id="Curve2D_jtmvm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1650, -1350, 0, 0, 0, 0, -250, -1350, 0, 0, 0, 0, -150, -1250, 0, 0, 0, 0, -50, -1350, 0, 0, 0, 0, 1650, -1350, 0, 0, 0, 0, 1650, -300, 0, 0, 0, 0, 2100, 150, 0, 0, 0, 0, 1650, 600, 0, 0, 0, 0, 1650, 1350, 0, 0, 0, 0, 250, 1350, 0, 0, 0, 0, 150, 1250, 0, 0, 0, 0, 50, 1350, 0, 0, 0, 0, -1650, 1350, 0, 0, 0, 0, -1650, 300, 0, 0, 0, 0, -2100, -150, 0, 0, 0, 0, -1650, -600)
+}
+point_count = 16
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_whem5"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[node name="PveArena" unique_id=1218906820 instance=ExtResource("1_2fymr")]
+default_params = ExtResource("2_0cmkh")
+
+[node name="Styleable" parent="." index="0" unique_id=1073040491]
+style = ExtResource("2_jx2vd")
+
+[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1777668264) index="9" unique_id=698513598 node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("4_ku04e")]
+spawn_on_all_collected = true
+spawn_on_timeout = false
+waves_container = NodePath("../../Battlefield/Waves")
+battlefield = NodePath("../../Battlefield")
+
+[node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" unique_id=1936746454 instance=ExtResource("5_kwye1")]
+
+[node name="Camera2D" parent="." index="2" unique_id=2033964444]
+zoom = Vector2(0.25, 0.25)
+
+[node name="P1" parent="Homes" parent_id_path=PackedInt32Array(617743064) index="0" unique_id=1170858522 instance=ExtResource("8_vk5lb")]
+position = Vector2(0, 1050)
+rotation = -1.5707964
+
+[node name="VCustomShape" type="Path2D" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="0" unique_id=1727617156 node_paths=PackedStringArray("hosts")]
+curve = SubResource("Curve2D_jtmvm")
+script = ExtResource("7_nm0c8")
+hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
+metadata/_custom_type_script = "uid://dpekcskbmlpy3"
+
+[node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="1" unique_id=981968531 instance=ExtResource("10_tn533")]
+hollow = true
+
+[node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="2" unique_id=130985248 node_paths=PackedStringArray("init_custom_shape") instance=ExtResource("11_bq481")]
+init_custom_shape = NodePath("../VCustomShape")
+
+[node name="Wall4" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="3" unique_id=338942049 instance=ExtResource("10_tn533")]
+position = Vector2(-750, -750)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall4" index="5" unique_id=626581694]
+script = ExtResource("12_t2pn6")
+sides = 4
+
+[node name="Wall2" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="4" unique_id=145047858 instance=ExtResource("10_tn533")]
+position = Vector2(-450, 750)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="5" unique_id=1759920415]
+script = ExtResource("12_t2pn6")
+sides = 4
+
+[node name="Wall5" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="5" unique_id=2100351001 instance=ExtResource("10_tn533")]
+position = Vector2(450, -750)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall5" index="5" unique_id=180546969]
+script = ExtResource("12_t2pn6")
+sides = 4
+
+[node name="Wall6" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="6" unique_id=684950412 instance=ExtResource("10_tn533")]
+position = Vector2(750, 750)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall6" index="5" unique_id=1111758550]
+script = ExtResource("12_t2pn6")
+sides = 4
+
+[node name="Wall16" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="7" unique_id=249885871 instance=ExtResource("10_tn533")]
+position = Vector2(-1200, 0)
+
+[node name="VBeveledRect" type="Node" parent="Battlefield/Wall16" index="5" unique_id=1359795219]
+script = ExtResource("11_txp22")
+width = 150.0
+height = 570.0
+bevel = 0.0
+rotation_degrees = -45.0
+
+[node name="Wall15" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="8" unique_id=1347274745 instance=ExtResource("10_tn533")]
+position = Vector2(1200, 0)
+
+[node name="VBeveledRect" type="Node" parent="Battlefield/Wall15" index="5" unique_id=1964132417]
+script = ExtResource("11_txp22")
+width = 150.0
+height = 570.0
+bevel = 0.0
+rotation_degrees = -45.0
+
+[node name="Waves" type="Node2D" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="9" unique_id=1407698040]
+
+[node name="SingleBloidWave" type="Node2D" parent="Battlefield/Waves" index="0" unique_id=1622032603 groups=["spawn_waves"]]
+script = ExtResource("14_8smqk")
+max_repeats = 1
+extra_delay = 4.0
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/SingleBloidWave" index="0" unique_id=32827641 instance=ExtResource("15_t4qwi")]
+pattern = "single"
+element_scene = ExtResource("14_tpiis")
+
+[node name="SingleBloidWave2" type="Node2D" parent="Battlefield/Waves" index="1" unique_id=568185997 groups=["spawn_waves"]]
+script = ExtResource("14_8smqk")
+extra_delay = 4.0
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/SingleBloidWave2" index="0" unique_id=1400742070 instance=ExtResource("15_t4qwi")]
+pattern = "single"
+element_scene = ExtResource("14_tpiis")
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/SingleBloidWave2" index="1" unique_id=207721437 instance=ExtResource("15_t4qwi")]
+position = Vector2(-1200, -900)
+pattern = "single"
+element_scene = ExtResource("14_tpiis")
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/SingleBloidWave2" index="2" unique_id=1741519751 instance=ExtResource("15_t4qwi")]
+position = Vector2(1200, 900)
+pattern = "single"
+element_scene = ExtResource("14_tpiis")
+
+[node name="Deployd" parent="Battlefield" parent_id_path=PackedInt32Array(455320663) index="10" unique_id=1630210331 instance=ExtResource("15_jtmvm")]
+position = Vector2(-300, -200)
+speed = 30000.0
+
+[node name="Navigation" parent="." index="6" unique_id=1517722862]
+navigation_polygon = SubResource("NavigationPolygon_whem5")

@@ -37,8 +37,11 @@ func touched_by(toucher):
 	if not collectable:
 		return
 		
-	collected.emit(toucher, self)
-	Events.sth_collected.emit(toucher, self)
+	collect(toucher)
+	
+func collect(collector):
+	collected.emit(collector, self)
+	Events.sth_collected.emit(collector, self)
 	
 	# drop a treasure picked effect on parent
 	var picked_effect = treasure_picked_scene.instantiate()

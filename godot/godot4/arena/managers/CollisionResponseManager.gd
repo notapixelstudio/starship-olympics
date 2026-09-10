@@ -52,6 +52,11 @@ func _handle_ship_vs_other(ship:Ship, collider, tag:String='') -> void:
 		collider.destroy()
 		return # collision handled
 		
+	# Shapeoids kill Ships on touch
+	if collider is Shapeoid and tag == 'hurt':
+		ship.damage(collider)
+		return # collision handled
+		
 	# Blocks are pushed if hit by ships
 	if collider is Block:
 		collider.push_by(ship)
@@ -76,6 +81,9 @@ func _handle_pew_vs_other(pew:Pew, collider, tag:String='') -> void:
 func _hanlde_bubble_bullet_vs_other(bubble_bullet:BubbleBullet, collider, tag:String='') -> void:
 	if collider is Treasure:
 		bubble_bullet.capture_treasure(collider)
+		bubble_bullet.destroy()
+	elif collider is Shapeoid:
+		bubble_bullet.capture_shapeoid(collider)
 		bubble_bullet.destroy()
 
 func _handle_shield_wall_vs_other(shield_wall:ShieldWall, collider, tag:String='') -> void:

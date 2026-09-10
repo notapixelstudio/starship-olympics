@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c107dwhlumi1g"]
+
+[ext_resource type="PackedScene" uid="uid://b4acrm6aqiv1g" path="res://godot4/actors/enemies/Shapeoid.tscn" id="1_jo38g"]
+[ext_resource type="Script" uid="uid://ca6ba2y4mg51g" path="res://godot4/actors/enemies/Deployd.gd" id="2_jo38g"]
+[ext_resource type="Texture2D" uid="uid://cqf6bqbtgvx2p" path="res://assets/sprites/enemies/deployd.png" id="3_jo38g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u63hn"]
+resource_local_to_scene = true
+radius = 120.0
+
+[node name="Deployd" unique_id=1630210331 instance=ExtResource("1_jo38g")]
+mass = 250.0
+script = ExtResource("2_jo38g")
+speed = 10000.0
+appear_scene = null
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=825157555]
+shape = SubResource("CircleShape2D_u63hn")
+
+[node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1974345998) index="0" unique_id=587249607]
+texture = ExtResource("3_jo38g")

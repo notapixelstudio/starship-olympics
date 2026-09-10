@@ -42,10 +42,10 @@ func next_phase() -> void:
 		child.visible = child.name.ends_with(str(_phase))
 	
 	if _phase == 2:
-		%RotoTurretPhase2.start()
+		%BubbleTurretPhase2.start()
 	elif _phase == 3:
-		%RotoTurretPhase2.stop()
-		%RotoTurretPhase3.start()
+		%BubbleTurretPhase2.stop()
+		%BubbleTurretPhase3.start()
 		
 	#next_phase_ready.emit()
 	

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://rbk7xvalpnch"]
+
+[ext_resource type="PackedScene" uid="uid://c4yru00x07tyi" path="res://godot4/effects/TreasurePicked.tscn" id="1_aan4x"]
+
+[node name="TreasureSpecialPicked" unique_id=2118242330 instance=ExtResource("1_aan4x")]
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=742353223]
+autoplay = &"FadeSpecial"
