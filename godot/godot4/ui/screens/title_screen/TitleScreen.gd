@@ -5,7 +5,8 @@ extends Screen
 @export var bgm : AudioStream
 
 func _ready():
-	%Offset.position.x = ProjectSettings.get_setting('display/window/size/viewport_width') / 2
+	var screen_width = ProjectSettings.get('display/window/size/viewport_width.mobile') if Utils.is_mobile_touch_device() else ProjectSettings.get('display/window/size/viewport_width')
+	%Offset.position.x = screen_width / 2
 	DeeJay.play(bgm)
 	await get_tree().process_frame
 	var press_any = find_child("PressAnyKey", true, false)
