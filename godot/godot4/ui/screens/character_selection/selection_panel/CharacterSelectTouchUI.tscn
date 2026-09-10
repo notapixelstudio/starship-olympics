@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bbryh7xrslrb5"]
+
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1"]
+[ext_resource type="Script" path="res://godot4/ui/screens/character_selection/selection_panel/CharacterSelectTouchUI.gd" id="2"]
+
+[node name="TouchUI" type="CanvasLayer"]
+layer = 12
+script = ExtResource("2")
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HintLabel" type="Label" parent="Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_font_sizes/font_size = 28
+text = "TAP JOIN TO PLAY"
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="PrevButton" type="Button" parent="Margin/VBox/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 72)
+layout_mode = 2
+theme = ExtResource("1")
+theme_override_font_sizes/font_size = 36
+text = "◀"
+
+[node name="ActionButton" type="Button" parent="Margin/VBox/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 72)
+layout_mode = 2
+theme = ExtResource("1")
+theme_override_font_sizes/font_size = 32
+text = "JOIN"
+
+[node name="NextButton" type="Button" parent="Margin/VBox/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 72)
+layout_mode = 2
+theme = ExtResource("1")
+theme_override_font_sizes/font_size = 36
+text = "▶"
