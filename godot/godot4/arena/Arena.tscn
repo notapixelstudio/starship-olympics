@@ -36,7 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://cy5pkamh8gihg" path="res://ui/common_elements/PlayersReady/PlayersReadyWheels.tscn" id="30_um0tc"]
 [ext_resource type="PackedScene" uid="uid://bdnijlionsghd" path="res://godot4/ui/overlays/PauseOverlay.tscn" id="32_ri8rg"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_rittb"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xop1g"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -63,6 +63,8 @@ unique_name_in_owner = true
 
 [node name="ScoreManager" parent="Managers" unique_id=2047688796 instance=ExtResource("2_fyulk")]
 unique_name_in_owner = true
+
+[node name="ScoreResolver" parent="Managers" unique_id=513211864 instance=ExtResource("15_xop1g")]
 
 [node name="GameOverManager" parent="Managers" unique_id=1090334202 instance=ExtResource("17_u22a8")]
 unique_name_in_owner = true
@@ -110,7 +112,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Navigation" parent="." unique_id=332973589 instance=ExtResource("23_rittb")]
-navigation_polygon = SubResource("NavigationPolygon_rittb")
+navigation_polygon = SubResource("NavigationPolygon_xop1g")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=737164047]
 unique_name_in_owner = true
