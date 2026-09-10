@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dhgfc2vafre2d"]
+[gd_scene format=3 uid="uid://dhgfc2vafre2d"]
 
 [ext_resource type="Script" uid="uid://dh41l07yl0hda" path="res://godot4/ui/overlays/MatchOverOverlay.gd" id="1_6bfhl"]
 [ext_resource type="Script" uid="uid://ctf1rg3hqs2hh" path="res://godot4/data/Player.gd" id="2_llkrh"]
@@ -66,7 +66,7 @@ _data = {
 &"appear": SubResource("Animation_jyscu")
 }
 
-[node name="MatchOverOverlay" type="ColorRect"]
+[node name="MatchOverOverlay" type="ColorRect" unique_id=810582179]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -78,7 +78,7 @@ players = Array[ExtResource("2_llkrh")]([ExtResource("3_uc5by"), ExtResource("4_
 session = ExtResource("7_30v0d")
 hall_of_fame_scene = ExtResource("8_o20gy")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=975597677]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,7 +86,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=2051249790]
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("8_jh136")
@@ -96,20 +96,17 @@ theme_override_font_sizes/font_size = 60
 text = "GAME OVER"
 horizontal_alignment = 1
 
-[node name="Leaderboard" parent="VBoxContainer" instance=ExtResource("9_ukike")]
+[node name="Leaderboard" parent="VBoxContainer" unique_id=2055306450 instance=ExtResource("9_ukike")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/margin_left = 200
 
-[node name="PressAnyKey" parent="VBoxContainer" instance=ExtResource("10_llkrh")]
+[node name="PressAnyKey" parent="VBoxContainer" unique_id=1992558038 instance=ExtResource("10_llkrh")]
 unique_name_in_owner = true
-layout_mode = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1983214651]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_4qdce")
-}
+libraries/ = SubResource("AnimationLibrary_4qdce")
 
 [connection signal="any_key_pressed" from="VBoxContainer/PressAnyKey" to="." method="_on_press_any_key_any_key_pressed"]

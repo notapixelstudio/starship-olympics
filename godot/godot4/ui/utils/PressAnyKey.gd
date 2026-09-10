@@ -11,7 +11,6 @@ func _ready() -> void:
 
 func disable() -> void:
 	_active = false
-	Utils.unregister_press_any()
 	visible = false
 	%Catcher.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
@@ -20,7 +19,6 @@ func enable() -> void:
 	visible = true
 	%Catcher.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	%Label.text = tr("tap on the screen") if Utils.is_mobile_touch_device() else tr("press any button")
-	Utils.register_press_any(_accept)
 	%ContinueAnimationPlayer.play("blink")
 
 func is_active() -> bool:
@@ -31,3 +29,7 @@ func _accept() -> void:
 		return
 	any_key_pressed.emit()
 	disable()
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton or event is InputEventKey or event is InputEventJoypadButton:
+		_accept()
