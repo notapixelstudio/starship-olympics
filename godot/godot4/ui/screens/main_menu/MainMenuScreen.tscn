@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dhn4hc2tmwqkk"]
+[gd_scene format=3 uid="uid://dhn4hc2tmwqkk"]
 
 [ext_resource type="PackedScene" uid="uid://d3abq633jh74a" path="res://godot4/ui/screens/Screen.tscn" id="1_vrbqb"]
 [ext_resource type="Script" uid="uid://bkbxh63c01eee" path="res://godot4/ui/screens/main_menu/MainMenuScreen.gd" id="2_k7fo1"]
@@ -28,7 +28,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_br3wu"]
 
-[node name="MainMenuScreen" instance=ExtResource("1_vrbqb")]
+[node name="MainMenuScreen" unique_id=832603931 instance=ExtResource("1_vrbqb")]
 script = ExtResource("2_k7fo1")
 versus_character_selection_scene = ExtResource("3_wna5r")
 campaign_character_selection_scene = ExtResource("4_vwu28")
@@ -36,27 +36,58 @@ hall_of_fame_scene = null
 settings_scene = ExtResource("6_rh0f1")
 credits_scene = ExtResource("7_f8uos")
 
-[node name="Reference" type="TextureRect" parent="." index="0"]
+[node name="Reference" type="TextureRect" parent="." index="0" unique_id=27852085]
 visible = false
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("8_hk5oe")
 
-[node name="Background" type="TextureRect" parent="." index="1"]
+[node name="Background" type="TextureRect" parent="." index="1" unique_id=1088356673]
 modulate = Color(0.207843, 0.294118, 0.388235, 1)
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("9_ottn0")
 
-[node name="FancyMenu" parent="." index="2" instance=ExtResource("10_sdory")]
+[node name="FancyMenu" parent="." index="2" unique_id=612401213 instance=ExtResource("10_sdory")]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
 auto_neighbours = "both"
 default_focused_element = NodePath("Campaign")
 focus_default_element_on_ready = false
 
-[node name="Versus" parent="FancyMenu" index="0" instance=ExtResource("11_ydftu")]
-visible = false
+[node name="Versus" parent="FancyMenu" index="0" unique_id=342442288 instance=ExtResource("11_ydftu")]
 self_modulate = Color(0.984314, 0.858824, 1, 1)
 layout_mode = 0
 offset_left = 117.0
@@ -67,7 +98,7 @@ texture_normal = ExtResource("12_7gffd")
 texture_disabled = SubResource("CanvasTexture_um2gw")
 texture_click_mask = ExtResource("13_vkwtr")
 
-[node name="MenuLabel" parent="FancyMenu/Versus" index="1" instance=ExtResource("14_q1uha")]
+[node name="MenuLabel" parent="FancyMenu/Versus" index="1" unique_id=72282840 instance=ExtResource("14_q1uha")]
 modulate = Color(0.831373, 0.396078, 1, 1)
 position = Vector2(148.349, 487.427)
 rotation = 0.10472
@@ -75,32 +106,32 @@ scale = Vector2(2.5, 2.5)
 text = "VERSUS"
 shear = Vector2(-0.1, -0.26)
 
-[node name="PlayerCountLabel" parent="FancyMenu/Versus" index="2" instance=ExtResource("14_q1uha")]
+[node name="PlayerCountLabel" parent="FancyMenu/Versus" index="2" unique_id=543556464 instance=ExtResource("14_q1uha")]
 position = Vector2(139, 562)
 rotation = 0.10472
 scale = Vector2(1.5, 1.5)
 text = "2 3 4"
 shear = Vector2(-0.1, -0.26)
 
-[node name="Campaign" parent="FancyMenu" index="1" instance=ExtResource("11_ydftu")]
+[node name="Campaign" parent="FancyMenu" index="1" unique_id=1907021622 instance=ExtResource("11_ydftu")]
 layout_mode = 0
 offset_left = 477.0
 offset_top = 47.0
 offset_right = 757.0
 offset_bottom = 541.0
 
-[node name="MenuLabel" parent="FancyMenu/Campaign" index="1" instance=ExtResource("14_q1uha")]
+[node name="MenuLabel" parent="FancyMenu/Campaign" index="1" unique_id=14645928 instance=ExtResource("14_q1uha")]
 modulate = Color(0.396078, 0.964706, 1, 1)
 position = Vector2(129.349, 481.427)
 scale = Vector2(2.5, 2.5)
 text = "CO-OP"
 
-[node name="PlayerCountLabel" parent="FancyMenu/Campaign" index="2" instance=ExtResource("14_q1uha")]
+[node name="PlayerCountLabel" parent="FancyMenu/Campaign" index="2" unique_id=1679263015 instance=ExtResource("14_q1uha")]
 position = Vector2(125, 556)
 scale = Vector2(1.5, 1.5)
 text = "1 2 3 4"
 
-[node name="HallOfFame" parent="FancyMenu" index="2" instance=ExtResource("11_ydftu")]
+[node name="HallOfFame" parent="FancyMenu" index="2" unique_id=1820015423 instance=ExtResource("11_ydftu")]
 visible = false
 layout_mode = 0
 offset_left = 725.0
@@ -111,14 +142,14 @@ texture_normal = ExtResource("15_v45ox")
 texture_disabled = SubResource("CanvasTexture_om3hj")
 texture_click_mask = ExtResource("16_ru06s")
 
-[node name="MenuLabel" parent="FancyMenu/HallOfFame" index="1" instance=ExtResource("14_q1uha")]
+[node name="MenuLabel" parent="FancyMenu/HallOfFame" index="1" unique_id=545235869 instance=ExtResource("14_q1uha")]
 position = Vector2(110.333, 78.6667)
 scale = Vector2(1.5, 1.5)
 text = "HALL OF FAME"
 shear = Vector2(0.25, 0.1)
 align = "left"
 
-[node name="Settings" parent="FancyMenu" index="3" instance=ExtResource("11_ydftu")]
+[node name="Settings" parent="FancyMenu" index="3" unique_id=1139286242 instance=ExtResource("11_ydftu")]
 layout_mode = 0
 offset_left = 778.0
 offset_top = 184.0
@@ -128,14 +159,14 @@ texture_normal = ExtResource("17_oiyfm")
 texture_disabled = SubResource("CanvasTexture_br3wu")
 texture_click_mask = ExtResource("18_38wqh")
 
-[node name="MenuLabel" parent="FancyMenu/Settings" index="1" instance=ExtResource("14_q1uha")]
+[node name="MenuLabel" parent="FancyMenu/Settings" index="1" unique_id=764458138 instance=ExtResource("14_q1uha")]
 position = Vector2(135.333, 67.6667)
 scale = Vector2(1.5, 1.5)
 text = "SETTINGS"
 shear = Vector2(0.25, 0.1)
 align = "left"
 
-[node name="Credits" parent="FancyMenu" index="4" instance=ExtResource("11_ydftu")]
+[node name="Credits" parent="FancyMenu" index="4" unique_id=877269234 instance=ExtResource("11_ydftu")]
 layout_mode = 0
 offset_left = 834.0
 offset_top = 314.0
@@ -144,14 +175,14 @@ offset_bottom = 443.0
 texture_normal = ExtResource("19_ktikj")
 texture_click_mask = ExtResource("20_1fdvi")
 
-[node name="MenuLabel" parent="FancyMenu/Credits" index="1" instance=ExtResource("14_q1uha")]
+[node name="MenuLabel" parent="FancyMenu/Credits" index="1" unique_id=1891909681 instance=ExtResource("14_q1uha")]
 position = Vector2(109.455, 51.4919)
 scale = Vector2(1.5, 1.5)
 text = "CREDITS"
 shear = Vector2(0.25, 0.1)
 align = "left"
 
-[node name="Quit" parent="FancyMenu" index="5" instance=ExtResource("11_ydftu")]
+[node name="Quit" parent="FancyMenu" index="5" unique_id=1251833406 instance=ExtResource("11_ydftu")]
 layout_mode = 0
 offset_left = 884.0
 offset_top = 438.0
@@ -160,7 +191,7 @@ offset_bottom = 580.0
 texture_normal = ExtResource("21_b74ih")
 texture_click_mask = ExtResource("22_6ve22")
 
-[node name="MenuLabel" parent="FancyMenu/Quit" index="1" instance=ExtResource("14_q1uha")]
+[node name="MenuLabel" parent="FancyMenu/Quit" index="1" unique_id=924450940 instance=ExtResource("14_q1uha")]
 position = Vector2(134.455, 59.4919)
 scale = Vector2(1.5, 1.5)
 text = "QUIT"

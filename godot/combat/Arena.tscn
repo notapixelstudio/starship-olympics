@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cbr8of5l0au68"]
+[gd_scene format=3 uid="uid://cbr8of5l0au68"]
 
 [ext_resource type="Script" uid="uid://dxvyl6xgrjes3" path="res://combat/Arena.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://brh61gpsh17s3" path="res://special_scenes/combat_UI/gameover/GameOver.tscn" id="2"]
@@ -38,7 +38,6 @@
 [ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://godot4/actors/brains/CPUBrain.tscn" id="41"]
 [ext_resource type="PackedScene" uid="uid://6apgvyk1tkq" path="res://combat/traits/NavigationZone.tscn" id="42"]
 
-
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(10000, 10000)
 
@@ -65,6 +64,15 @@ _data = {
 
 [sub_resource type="FontFile" id="6"]
 fallbacks = Array[Font]([ExtResource("35")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -120,7 +128,7 @@ _data = {
 &"Game Over": SubResource("5")
 }
 
-[node name="Arena" type="Node"]
+[node name="Arena" type="Node" unique_id=1436992909]
 script = ExtResource("1")
 __meta__ = {
 "_editor_description_": ""
@@ -132,175 +140,175 @@ cpu_brain_scene = ExtResource("41")
 NavigationZone_scene = ExtResource("42")
 diamond_scene = ExtResource("20")
 
-[node name="Managers" type="Node" parent="."]
+[node name="Managers" type="Node" parent="." unique_id=738357147]
 
-[node name="BumpManager" parent="Managers" instance=ExtResource("15")]
+[node name="BumpManager" parent="Managers" unique_id=64988580 instance=ExtResource("15")]
 
-[node name="TappablesManager" parent="Managers" instance=ExtResource("37")]
+[node name="TappablesManager" parent="Managers" unique_id=1586422630 instance=ExtResource("37")]
 
-[node name="HoldablesManager" parent="Managers" instance=ExtResource("34")]
+[node name="HoldablesManager" parent="Managers" unique_id=2099585670 instance=ExtResource("34")]
 
-[node name="CombatManager" type="Node" parent="Managers"]
+[node name="CombatManager" type="Node" parent="Managers" unique_id=1559084487]
 script = ExtResource("3")
 __meta__ = {
 "_editor_icon": ExtResource("4")
 }
 
-[node name="PursueManager" type="Node" parent="Managers"]
+[node name="PursueManager" type="Node" parent="Managers" unique_id=2076650831]
 script = ExtResource("6")
 __meta__ = {
 "_editor_icon": ExtResource("4")
 }
 
-[node name="TargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
+[node name="TargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager" unique_id=672416213]
 stream = ExtResource("7")
 volume_db = -10.0
 bus = &"SFX"
 
-[node name="BullTargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager"]
+[node name="BullTargetLocked" type="AudioStreamPlayer2D" parent="Managers/PursueManager" unique_id=1091288702]
 stream = ExtResource("7")
 pitch_scale = 0.5
 bus = &"SFX"
 
-[node name="CollectManager" type="Node" parent="Managers"]
+[node name="CollectManager" type="Node" parent="Managers" unique_id=174850631]
 script = ExtResource("8")
 __meta__ = {
 "_editor_icon": ExtResource("4")
 }
 
-[node name="EnvironmentsManager" type="Node" parent="Managers"]
+[node name="EnvironmentsManager" type="Node" parent="Managers" unique_id=694588684]
 script = ExtResource("9")
 __meta__ = {
 "_editor_icon": ExtResource("4")
 }
 
-[node name="SlomoEffect" type="AudioStreamPlayer" parent="Managers/EnvironmentsManager"]
+[node name="SlomoEffect" type="AudioStreamPlayer" parent="Managers/EnvironmentsManager" unique_id=1852300568]
 stream = ExtResource("10")
 
-[node name="UnSlomoEffect" type="AudioStreamPlayer" parent="Managers/EnvironmentsManager"]
+[node name="UnSlomoEffect" type="AudioStreamPlayer" parent="Managers/EnvironmentsManager" unique_id=324150546]
 stream = ExtResource("11")
 
-[node name="CrownModeManager" type="Node" parent="Managers"]
+[node name="CrownModeManager" type="Node" parent="Managers" unique_id=911880665]
 script = ExtResource("12")
 __meta__ = {
 "_editor_icon": ExtResource("4")
 }
 enabled = false
 
-[node name="GrabAction" type="AudioStreamPlayer2D" parent="Managers/CrownModeManager"]
+[node name="GrabAction" type="AudioStreamPlayer2D" parent="Managers/CrownModeManager" unique_id=1619999622]
 stream = ExtResource("13")
 pitch_scale = 4.0
 
-[node name="KillModeManager" type="Node" parent="Managers"]
+[node name="KillModeManager" type="Node" parent="Managers" unique_id=2020767318]
 script = ExtResource("14")
 __meta__ = {
 "_editor_icon": ExtResource("4")
 }
 enabled = false
 
-[node name="LastManModeManager" type="Node" parent="Managers"]
+[node name="LastManModeManager" type="Node" parent="Managers" unique_id=2051083562]
 script = ExtResource("36")
 __meta__ = {
 "_editor_icon": ExtResource("4")
 }
 enabled = false
 
-[node name="ConquestModeManager" type="Node" parent="Managers"]
+[node name="ConquestModeManager" type="Node" parent="Managers" unique_id=170398756]
 script = ExtResource("16")
 enabled = false
 
-[node name="ConquestManager" type="Node" parent="Managers"]
+[node name="ConquestManager" type="Node" parent="Managers" unique_id=416465472]
 script = ExtResource("18")
 __meta__ = {
 "_editor_icon": ExtResource("4")
 }
 
-[node name="CollectModeManager" type="Node" parent="Managers"]
+[node name="CollectModeManager" type="Node" parent="Managers" unique_id=22194697]
 script = ExtResource("19")
 __meta__ = {
 "_editor_icon": ExtResource("4")
 }
 enabled = false
 
-[node name="TrailManager" type="Node" parent="Managers"]
+[node name="TrailManager" type="Node" parent="Managers" unique_id=764157745]
 script = ExtResource("21")
 
-[node name="SurvivalModeManager" parent="Managers" instance=ExtResource("17")]
+[node name="SurvivalModeManager" parent="Managers" unique_id=999334762 instance=ExtResource("17")]
 
-[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=1922391951]
 layer = -1
 
-[node name="BackgroundImage" type="Sprite2D" parent="BackgroundLayer"]
+[node name="BackgroundImage" type="Sprite2D" parent="BackgroundLayer" unique_id=110906802]
 unique_name_in_owner = true
 texture = ExtResource("39")
 centered = false
 
-[node name="Battlefield" type="Node2D" parent="."]
+[node name="Battlefield" type="Node2D" parent="." unique_id=237260107]
 script = ExtResource("22")
 
-[node name="Navigation" type="Node2D" parent="Battlefield"]
+[node name="Navigation" type="Node2D" parent="Battlefield" unique_id=1303040639]
 unique_name_in_owner = true
 
-[node name="Background" type="Node2D" parent="Battlefield"]
+[node name="Background" type="Node2D" parent="Battlefield" unique_id=421221710]
 
-[node name="MegaSpace" type="Area2D" parent="Battlefield/Background"]
+[node name="MegaSpace" type="Area2D" parent="Battlefield/Background" unique_id=286055057]
 collision_layer = 0
 collision_mask = 8193
 gravity = 0.0
 linear_damp = 9.0
 angular_damp = 25.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Background/MegaSpace"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Background/MegaSpace" unique_id=1436033704]
 visible = false
 shape = SubResource("1")
 
-[node name="GridWrapper" type="Node2D" parent="Battlefield/Background"]
+[node name="GridWrapper" type="Node2D" parent="Battlefield/Background" unique_id=1992052348]
 
-[node name="Grid" parent="Battlefield/Background/GridWrapper" instance=ExtResource("23")]
+[node name="Grid" parent="Battlefield/Background/GridWrapper" unique_id=275539926 instance=ExtResource("23")]
 
-[node name="FloodWater" parent="Battlefield/Background" instance=ExtResource("25")]
+[node name="FloodWater" parent="Battlefield/Background" unique_id=429046457 instance=ExtResource("25")]
 z_index = 50
 z_as_relative = false
 position = Vector2(0, 20000)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/Background/FloodWater" unique_id=1881156548 groups=["animation_starts_with_battle"]]
 callback_mode_process = 0
-libraries = {
-&"": SubResource("AnimationLibrary_xvsuu")
-}
+libraries/ = SubResource("AnimationLibrary_xvsuu")
 
-[node name="GRect" type="Node" parent="Battlefield/Background/FloodWater"]
+[node name="GRect" type="Node" parent="Battlefield/Background/FloodWater" unique_id=500831255]
 
-[node name="TrailLayer" type="Node2D" parent="Battlefield"]
+[node name="TrailLayer" type="Node2D" parent="Battlefield" unique_id=655149837]
 
-[node name="Middleground" type="Node2D" parent="Battlefield"]
+[node name="Middleground" type="Node2D" parent="Battlefield" unique_id=1011638174]
 
-[node name="Foreground" type="Node2D" parent="Battlefield"]
+[node name="Foreground" type="Node2D" parent="Battlefield" unique_id=2089980253]
 
-[node name="Overlay" type="Node2D" parent="Battlefield"]
+[node name="Overlay" type="Node2D" parent="Battlefield" unique_id=589475998]
 
-[node name="ElementInCamera" parent="Battlefield/Overlay" instance=ExtResource("26")]
+[node name="ElementInCamera" parent="Battlefield/Overlay" unique_id=489995757 instance=ExtResource("26")]
 
-[node name="AudioListener2D" type="AudioListener2D" parent="Battlefield"]
+[node name="AudioListener2D" type="AudioListener2D" parent="Battlefield" unique_id=598547938]
 current = true
 
-[node name="SpawnPositions" type="Node" parent="."]
+[node name="SpawnPositions" type="Node" parent="." unique_id=433515270]
 
-[node name="Players" type="Node2D" parent="SpawnPositions"]
+[node name="Players" type="Node2D" parent="SpawnPositions" unique_id=1254461759]
 
-[node name="Environments" type="Node2D" parent="SpawnPositions"]
+[node name="Environments" type="Node2D" parent="SpawnPositions" unique_id=1252422027]
 
-[node name="Enemies" type="Node2D" parent="SpawnPositions"]
+[node name="Enemies" type="Node2D" parent="SpawnPositions" unique_id=1397652367]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2264656]
 layer = 50
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("27")]
+[node name="HUD" parent="CanvasLayer" unique_id=101607374 instance=ExtResource("27")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 10
+offset_bottom = 0.0
+grow_horizontal = 2
 
-[node name="Countdown" type="Label" parent="CanvasLayer"]
+[node name="Countdown" type="Label" parent="CanvasLayer" unique_id=499913903]
 modulate = Color(1, 1, 1, 0.156863)
 anchors_preset = 15
 anchor_right = 1.0
@@ -312,28 +320,26 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Countdown"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Countdown" unique_id=1658436993]
 stream = ExtResource("30")
 
-[node name="DemoLabel" parent="CanvasLayer" instance=ExtResource("31")]
+[node name="DemoLabel" parent="CanvasLayer" unique_id=1126727521 instance=ExtResource("31")]
 visible = false
 anchors_preset = 12
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1378100693]
 layer = 100
 
-[node name="Camera3D" type="Camera2D" parent="."]
+[node name="Camera3D" type="Camera2D" parent="." unique_id=378471212]
 process_mode = 3
 zoom = Vector2(8192, 8192)
 script = ExtResource("33")
 zoomMin = 3.0
 debug_mode = false
 
-[node name="CenterCamera" type="Marker2D" parent="."]
+[node name="CenterCamera" type="Marker2D" parent="." unique_id=1059218396]
 
-[node name="GameOverAnim" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_xlpnw")
-}
+[node name="GameOverAnim" type="AnimationPlayer" parent="." unique_id=697827442]
+libraries/ = SubResource("AnimationLibrary_xlpnw")

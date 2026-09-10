@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dg3l8eepsajhj"]
+[gd_scene format=3 uid="uid://dg3l8eepsajhj"]
 
 [ext_resource type="PackedScene" uid="uid://d3abq633jh74a" path="res://godot4/ui/screens/Screen.tscn" id="1_8fy5b"]
 [ext_resource type="Script" uid="uid://cvgoca6fnkdmu" path="res://godot4/ui/screens/loading_screen/LoadingScreen.gd" id="2_14q0g"]
@@ -29,38 +29,41 @@ _data = {
 &"loading": SubResource("Animation_qf15v")
 }
 
-[node name="LoadingScreen" instance=ExtResource("1_8fy5b")]
+[node name="LoadingScreen" unique_id=1988929105 instance=ExtResource("1_8fy5b")]
 script = ExtResource("2_14q0g")
 
-[node name="Bar" parent="." index="0" instance=ExtResource("3_s4bnf")]
+[node name="Bar" parent="." index="0" unique_id=1346969522 instance=ExtResource("3_s4bnf")]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 826.0
-offset_top = 589.0
-offset_right = 866.0
-offset_bottom = 1001.0
-rotation = 1.5708
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 402.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_rotation = 1.5707964
 
-[node name="Timer" type="Timer" parent="." index="1"]
+[node name="Timer" type="Timer" parent="." index="1" unique_id=1872619362]
 wait_time = 0.1
 autostart = true
 
-[node name="MoveTutorial" parent="." index="2" instance=ExtResource("4_y2kcu")]
+[node name="MoveTutorial" parent="." index="2" unique_id=905052049 instance=ExtResource("4_y2kcu")]
 layout_mode = 1
 offset_top = -100.0
 offset_bottom = -100.0
 
-[node name="PressAnyKey" parent="." index="3" instance=ExtResource("5_qf15v")]
-layout_mode = 0
-offset_top = 655.0
-offset_right = 1280.0
-offset_bottom = 721.0
+[node name="PressAnyKey" parent="." index="3" unique_id=1569499928 instance=ExtResource("5_qf15v")]
+layout_mode = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
-libraries = {
-&"": SubResource("AnimationLibrary_eait8")
-}
-autoplay = "loading"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=502731636]
+libraries/ = SubResource("AnimationLibrary_eait8")
+autoplay = &"loading"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="any_key_pressed" from="PressAnyKey" to="." method="_on_press_any_key_any_key_pressed"]

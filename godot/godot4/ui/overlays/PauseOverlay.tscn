@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdnijlionsghd"]
+[gd_scene format=3 uid="uid://bdnijlionsghd"]
 
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1_bnhne"]
 [ext_resource type="Script" uid="uid://h3goxkvpd4sv" path="res://godot4/ui/overlays/PauseOverlay.gd" id="2_22hpj"]
@@ -8,11 +8,28 @@
 
 [sub_resource type="FontFile" id="4"]
 fallbacks = Array[Font]([ExtResource("3_g01oh")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
 cache/0/14/0/ascent = 0.0
 cache/0/14/0/descent = 0.0
 cache/0/14/0/underline_position = 0.0
@@ -23,19 +40,31 @@ cache/0/18/0/descent = 0.0
 cache/0/18/0/underline_position = 0.0
 cache/0/18/0/underline_thickness = 0.0
 cache/0/18/0/scale = 1.0
-cache/0/22/0/ascent = 0.0
-cache/0/22/0/descent = 0.0
-cache/0/22/0/underline_position = 0.0
-cache/0/22/0/underline_thickness = 0.0
-cache/0/22/0/scale = 1.0
 
 [sub_resource type="FontFile" id="2"]
 fallbacks = Array[Font]([ExtResource("4_2ooet")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/52/0/ascent = 0.0
+cache/0/52/0/descent = 0.0
+cache/0/52/0/underline_position = 0.0
+cache/0/52/0/underline_thickness = 0.0
+cache/0/52/0/scale = 1.0
 cache/0/14/0/ascent = 0.0
 cache/0/14/0/descent = 0.0
 cache/0/14/0/underline_position = 0.0
@@ -56,29 +85,36 @@ cache/0/48/0/descent = 0.0
 cache/0/48/0/underline_position = 0.0
 cache/0/48/0/underline_thickness = 0.0
 cache/0/48/0/scale = 1.0
-cache/0/52/0/ascent = 0.0
-cache/0/52/0/descent = 0.0
-cache/0/52/0/underline_position = 0.0
-cache/0/52/0/underline_thickness = 0.0
-cache/0/52/0/scale = 1.0
 
 [sub_resource type="FontFile" id="3"]
 fallbacks = Array[Font]([ExtResource("3_g01oh")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
-cache/0/14/0/ascent = 0.0
-cache/0/14/0/descent = 0.0
-cache/0/14/0/underline_position = 0.0
-cache/0/14/0/underline_thickness = 0.0
-cache/0/14/0/scale = 1.0
 cache/0/22/0/ascent = 0.0
 cache/0/22/0/descent = 0.0
 cache/0/22/0/underline_position = 0.0
 cache/0/22/0/underline_thickness = 0.0
 cache/0/22/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
 
 [sub_resource type="GDScript" id="GDScript_oi8t0"]
 script/source = "extends VBoxContainer
@@ -98,7 +134,7 @@ func enable():
 	get_child(0).grab_focus()
 "
 
-[node name="PauseOverlay" type="Control"]
+[node name="PauseOverlay" type="Control" unique_id=27701454]
 process_mode = 3
 custom_minimum_size = Vector2(834, 635)
 layout_mode = 3
@@ -110,20 +146,29 @@ grow_vertical = 2
 theme = ExtResource("1_bnhne")
 script = ExtResource("2_22hpj")
 
-[node name="BlackOverlay" type="ColorRect" parent="."]
+[node name="BlackOverlay" type="ColorRect" parent="." unique_id=1858882716]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 0.588235)
 
-[node name="Window" type="Sprite2D" parent="."]
+[node name="Window" type="TextureRect" parent="." unique_id=263726384]
 modulate = Color(1.2, 1.2, 1.2, 1)
 self_modulate = Color(0, 0.556863, 1, 1)
-position = Vector2(651.635, 357.94)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.745386, 0.745386)
 texture = ExtResource("2_hxyup")
+expand_mode = 1
+stretch_mode = 3
 
-[node name="GuiElements" type="Control" parent="."]
+[node name="GuiElements" type="Control" parent="." unique_id=421800139]
 anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -134,7 +179,7 @@ offset_top = -274.0
 offset_right = 349.0
 offset_bottom = 263.0
 
-[node name="Title" type="Label" parent="GuiElements"]
+[node name="Title" type="Label" parent="GuiElements" unique_id=1308561405]
 modulate = Color(1.15, 1.15, 1.15, 1)
 self_modulate = Color(0, 0.556863, 1, 1)
 layout_mode = 0
@@ -154,7 +199,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GuiElements"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GuiElements" unique_id=1644880927]
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 1.0
@@ -165,7 +210,7 @@ offset_top = -456.0
 offset_right = 339.5
 offset_bottom = -21.0
 
-[node name="Minigame" type="Label" parent="GuiElements/VBoxContainer"]
+[node name="Minigame" type="Label" parent="GuiElements/VBoxContainer" unique_id=29921124]
 unique_name_in_owner = true
 self_modulate = Color(1, 0.870588, 0.372549, 1)
 layout_mode = 2
@@ -179,7 +224,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Description" type="Label" parent="GuiElements/VBoxContainer"]
+[node name="Description" type="Label" parent="GuiElements/VBoxContainer" unique_id=693969068]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -192,48 +237,48 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Control" type="Control" parent="GuiElements/VBoxContainer"]
+[node name="Control" type="Control" parent="GuiElements/VBoxContainer" unique_id=1137387489]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="Buttons" type="VBoxContainer" parent="GuiElements/VBoxContainer"]
+[node name="Buttons" type="VBoxContainer" parent="GuiElements/VBoxContainer" unique_id=603837685]
 layout_mode = 2
 alignment = 2
 script = SubResource("GDScript_oi8t0")
 
-[node name="Continue" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+[node name="Continue" type="Button" parent="GuiElements/VBoxContainer/Buttons" unique_id=2000091394]
 layout_mode = 2
 text = "CONTINUE"
 
-[node name="Restart" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+[node name="Restart" type="Button" parent="GuiElements/VBoxContainer/Buttons" unique_id=900171114]
 visible = false
 layout_mode = 2
 text = "RESTART"
 
-[node name="SkipLevel" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+[node name="SkipLevel" type="Button" parent="GuiElements/VBoxContainer/Buttons" unique_id=634090753]
 visible = false
 layout_mode = 2
 text = "SKIP THIS MATCH"
 
-[node name="Options" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+[node name="Options" type="Button" parent="GuiElements/VBoxContainer/Buttons" unique_id=1288858415]
 visible = false
 layout_mode = 2
 text = "OPTIONS"
 
-[node name="Control" type="Control" parent="GuiElements/VBoxContainer/Buttons"]
+[node name="Control" type="Control" parent="GuiElements/VBoxContainer/Buttons" unique_id=611942010]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="Quit1" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+[node name="Quit1" type="Button" parent="GuiElements/VBoxContainer/Buttons" unique_id=1738107178]
 visible = false
 layout_mode = 2
 text = "QUIT TO CARDS"
 
-[node name="Quit2" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+[node name="Quit2" type="Button" parent="GuiElements/VBoxContainer/Buttons" unique_id=1086997557]
 layout_mode = 2
 text = "QUIT TO CHARACTER SELECTION"
 
-[node name="Quit3" type="Button" parent="GuiElements/VBoxContainer/Buttons"]
+[node name="Quit3" type="Button" parent="GuiElements/VBoxContainer/Buttons" unique_id=731995971]
 visible = false
 layout_mode = 2
 text = "QUIT TO MAIN MENU"

@@ -6,7 +6,7 @@ class_name Player
 @export var username : String = ""
 @export var controls : String = "kb1"
 @export var species : Species = preload("res://godot4/data/species/mantiacs_1.tres")
-@export var team : String = id
+@export var team : String = ""
 @export var cpu : bool = false
 
 func _init(data:Dictionary = {}):
@@ -17,8 +17,6 @@ func get_id() -> String:
 	return id
 	
 func set_id(name: String) -> void:
-	if team == id:
-		team = name
 	id = name
 	
 func get_username() -> String:
