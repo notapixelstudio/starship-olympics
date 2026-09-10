@@ -2,7 +2,7 @@ extends HBoxContainer
 
 @export var starting_screen_scene : PackedScene
 
-@onready var screen_width = ProjectSettings.get('display/window/size/viewport_width')
+@onready var screen_width = ProjectSettings.get('display/window/size/viewport_width.mobile') if Utils.is_mobile_touch_device() else ProjectSettings.get('display/window/size/viewport_width')
 @onready var screen_height = ProjectSettings.get('display/window/size/viewport_height')
 
 var screens_stack := []  # Array of ScreenScene to navigate back
