@@ -3,6 +3,9 @@ extends BackScreen
 @export var next_scene : PackedScene
 var _selection_completed := false
 
+func _ready() -> void:
+	print(Utils.list_levels(2, 'pve'))
+
 #func enter():
 	#super.enter()
 	#_selection_completed = false

@@ -101,6 +101,34 @@ func read_file_by_line(path: String) -> Array:
 ##### EXECUTION
 #####
 
+func list_levels(player_count:int, mode:String) -> Array[Dictionary]:
+	const BASE_PATH = 'res://godot4/minigames'
+	var results : Array[Dictionary] = []
+	var dir = DirAccess.open(BASE_PATH)
+	if dir:
+		dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
+		var file_name = dir.get_next()
+		while (file_name != ""):
+			if dir.current_is_dir():
+				var minigame_path = BASE_PATH+'/'+file_name+'/minigame.tres'
+				var level_path = BASE_PATH+'/'+file_name+'/'+str(player_count)+mode+'.tscn'
+				var minigame_defined := FileAccess.file_exists(minigame_path)
+				var level_defined := FileAccess.file_exists(level_path)
+				
+				if minigame_defined and level_defined:
+					results.append({
+						'minigame': load(minigame_path),
+						'level': load(level_path)
+					})
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
+	return results
+
+#####
+##### EXECUTION
+#####
+
 func end_execution():
 	# trigger quit
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
