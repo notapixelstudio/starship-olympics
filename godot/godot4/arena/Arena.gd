@@ -113,25 +113,25 @@ func setup_team(team:String) -> void:
 	
 ## Returns a [String] identifier for the [Arena] (defaults to the file name of the scene file).
 func get_id() -> String:
-	return scene_file_path.get_file().split('.')[0]
+	return scene_file_path.get_base_dir().get_slice('/',scene_file_path.get_base_dir().get_slice_count('/')-1) + '_' + scene_file_path.get_file().split('.')[0]
 	
 ## Returns the identifier of the [Minigame] associated with this [Arena], which is the first part of the Arena's identifier (split by underscore).
-## For example, if the Arena's identifier is [code]diamondsnatch_2p.tscn[/code], then the Minigame's identifier is [code]diamondsnatch[/code].
+## For example, if the Arena's identifier is [code]diamondsnatch_2p[/code], then the Minigame's identifier is [code]diamondsnatch[/code].
 func get_minigame_id() -> String:
 	return get_id().split('_')[0]
 	
 ## Returns the [Minigame] associated with this [Arena].
-## It does this by looking for a resource file named according to [method get_minigame_id] in the [code]res://godot4/data/minigames/[/code] directory.
-## For example, if the [Minigame] identifier is [code]diamondsnatch[/code], then the method looks for [code]res://godot4/data/minigames/diamondsnatch.tres[/code].
+## It does this by looking for a resource file named according to [method get_minigame_id] in subfolders of the [code]res://godot4/minigames/[/code] directory.
+## For example, if the [Minigame] identifier is [code]diamondsnatch[/code], then the method looks for [code]res://godot4/minigames/diamondsnatch/minigame.tres[/code].
 ## If the file is not found, it returns [code]default_minigame[/code] (see [member default_minigame]).
 func get_minigame() -> Minigame:
-	var minigame_resource_path = 'res://godot4/data/minigames/'+get_minigame_id()+'.tres'
+	var minigame_resource_path = 'res://godot4/minigames/'+get_minigame_id()+'/minigame.tres'
 	if not ResourceLoader.exists(minigame_resource_path):
 		return default_minigame
 	return load(minigame_resource_path)
 	
 func get_match_params() -> MatchParams:
-	var params_resource_path = 'res://godot4/data/match_params/'+get_id()+'.tres'
+	var params_resource_path = get_scene_file_path().get_basename()+'.tres'
 	if not ResourceLoader.exists(params_resource_path):
 		return default_params
 	return load(params_resource_path)

@@ -1,0 +1,162 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqt3d2a2exd2f"]
+
+[ext_resource type="Script" uid="uid://bg3lfbc87nwi1" path="res://addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.gd" id="1_2j2pv"]
+[ext_resource type="Script" uid="uid://b4hvdt62s4fy8" path="res://addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_tab_inputs/scan_inputs_tab_container.gd" id="2_moyid"]
+[ext_resource type="PackedScene" uid="uid://ue3y11qye0nl" path="res://addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_tab_inputs/class_restriction_input.tscn" id="3_cl5ex"]
+[ext_resource type="PackedScene" uid="uid://2npm30era2em" path="res://addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_tab_inputs/scan_directory_input.tscn" id="4_uf0vx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cl5ex"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nldj0"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_okdmp"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="ScanRulesetEditor" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 66.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+script = ExtResource("1_2j2pv")
+
+[node name="RulesetPropertiesGridContainer" type="GridContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 12
+columns = 2
+
+[node name="ClassRestrictionsLabel" type="Label" parent="RulesetPropertiesGridContainer"]
+layout_mode = 2
+tooltip_text = "Only resources of this class (or subclasses) will be accepted."
+mouse_filter = 1
+text = "Class Restriction:"
+
+[node name="ClassRestrictionsTabContainer" type="TabContainer" parent="RulesetPropertiesGridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl5ex")
+current_tab = 0
+tabs_visible = false
+script = ExtResource("2_moyid")
+tab_display_title = "Class"
+scan_tab_input_scene = ExtResource("3_cl5ex")
+
+[node name="ScanDirectoryLabel" type="Label" parent="RulesetPropertiesGridContainer"]
+layout_mode = 2
+tooltip_text = "Directory to watch for matching resource files."
+mouse_filter = 1
+text = "Scan Directory:"
+
+[node name="ScanDirectoriesTabContainer" type="TabContainer" parent="RulesetPropertiesGridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_cl5ex")
+current_tab = 0
+tabs_visible = false
+script = ExtResource("2_moyid")
+tab_display_title = "Dir"
+scan_tab_input_scene = ExtResource("4_uf0vx")
+
+[node name="RecursiveScanLabel" type="Label" parent="RulesetPropertiesGridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Also scan subdirectories."
+mouse_filter = 1
+text = "Recursive:"
+
+[node name="RecursiveScanCheckBox" type="CheckBox" parent="RulesetPropertiesGridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_nldj0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nldj0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nldj0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_nldj0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_okdmp")
+text = "On"
+
+[node name="AllowedFileExtensionsLabel" type="Label" parent="RulesetPropertiesGridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Restrict scan to these file extensions. Separate with commas."
+mouse_filter = 1
+text = "File Extensions:"
+
+[node name="AllowedFileExtensionsLineEdit" type="LineEdit" parent="RulesetPropertiesGridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "e.g. `.tres, .res`"
+
+[node name="ScanRegexIncludeLabel" type="Label" parent="RulesetPropertiesGridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Only paths matching this pattern will be scanned. Applied to the relative path from the scan directory."
+mouse_filter = 1
+text = "RegEx Include:"
+
+[node name="ScanRegexIncludeLineEdit" type="LineEdit" parent="RulesetPropertiesGridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "e.g. `\\.tres$|\\.res$`"
+
+[node name="ScanRegexExcludeLabel" type="Label" parent="RulesetPropertiesGridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Paths matching this pattern will be skipped. Applied to the relative path from the scan directory."
+mouse_filter = 1
+text = "RegEx Exclude:"
+
+[node name="ScanRegexExcludeLineEdit" type="LineEdit" parent="RulesetPropertiesGridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "e.g. `\\.tscn$|\\.scn$`"
+
+[connection signal="inputs_changed" from="RulesetPropertiesGridContainer/ClassRestrictionsTabContainer" to="." method="_on_class_restrictions_tab_container_inputs_changed"]
+[connection signal="request_action" from="RulesetPropertiesGridContainer/ClassRestrictionsTabContainer" to="." method="_on_class_restrictions_tab_container_request_action"]
+[connection signal="inputs_changed" from="RulesetPropertiesGridContainer/ScanDirectoriesTabContainer" to="." method="_on_scan_directories_tab_container_inputs_changed"]
+[connection signal="request_action" from="RulesetPropertiesGridContainer/ScanDirectoriesTabContainer" to="." method="_on_scan_directories_tab_container_request_action"]
+[connection signal="toggled" from="RulesetPropertiesGridContainer/RecursiveScanCheckBox" to="." method="_on_recursive_scan_check_box_toggled"]
+[connection signal="text_changed" from="RulesetPropertiesGridContainer/AllowedFileExtensionsLineEdit" to="." method="_on_allowed_file_extensions_line_edit_text_changed"]
+[connection signal="text_changed" from="RulesetPropertiesGridContainer/ScanRegexIncludeLineEdit" to="." method="_on_scan_regex_include_line_edit_text_changed"]
+[connection signal="text_changed" from="RulesetPropertiesGridContainer/ScanRegexExcludeLineEdit" to="." method="_on_scan_regex_exclude_line_edit_text_changed"]

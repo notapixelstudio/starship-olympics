@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://2npm30era2em"]
+
+[ext_resource type="Script" uid="uid://djrr6b7fc76rw" path="res://addons/yard/editor_only/classes/editor_icon_button.gd" id="1_4tx3o"]
+[ext_resource type="Script" uid="uid://8buq5amsfce3" path="res://addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_tab_inputs/scan_directory_input.gd" id="1_7ps06"]
+
+[node name="ScanDirectoryInput" type="HBoxContainer"]
+offset_right = 104.0
+offset_bottom = 31.0
+script = ExtResource("1_7ps06")
+
+[node name="ScanDirectoryLineEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScanDirectoryFilesystemButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("1_4tx3o")
+icon_name = "Folder"

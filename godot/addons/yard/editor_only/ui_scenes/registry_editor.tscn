@@ -1,0 +1,295 @@
+[gd_scene load_steps=14 format=3 uid="uid://dsg55mejcqgyb"]
+
+[ext_resource type="Script" uid="uid://pbm1netkyiqy" path="res://addons/yard/editor_only/ui_scenes/registry_editor.gd" id="1_tv1od"]
+[ext_resource type="Script" uid="uid://caby6h435lr2g" path="res://addons/yard/editor_only/classes/editor_icon_menu_button.gd" id="3_m1qax"]
+[ext_resource type="Texture2D" uid="uid://73a38p2r8hos" path="res://addons/yard/editor_only/assets/github_icon.svg" id="4_6e4lp"]
+[ext_resource type="Script" uid="uid://djrr6b7fc76rw" path="res://addons/yard/editor_only/classes/editor_icon_button.gd" id="4_dd5h4"]
+[ext_resource type="Script" uid="uid://bk8fqxqrmwbc0" path="res://addons/yard/editor_only/classes/editor_icon_line_edit.gd" id="5_g1ejb"]
+[ext_resource type="Script" uid="uid://cfbh7d7n20geh" path="res://addons/yard/editor_only/ui_scenes/components/registries_itemlist.gd" id="6_gl5oh"]
+[ext_resource type="PackedScene" uid="uid://crnac01bnyk3" path="res://addons/yard/editor_only/ui_scenes/registry_table_view.tscn" id="7_w3c1k"]
+[ext_resource type="PackedScene" uid="uid://b3g3e36v7g6kr" path="res://addons/yard/editor_only/ui_scenes/components/new_registry_dialog.tscn" id="8_drmf8"]
+[ext_resource type="PackedScene" uid="uid://woa50nl7s75b" path="res://addons/yard/editor_only/ui_scenes/components/readme_window.tscn" id="9_6e4lp"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_6e4lp"]
+command_or_control_autoremap = true
+shift_pressed = true
+keycode = 83
+
+[sub_resource type="Shortcut" id="Shortcut_g1ejb"]
+events = [SubResource("InputEventKey_6e4lp")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_g1ejb"]
+device = -1
+command_or_control_autoremap = true
+shift_pressed = true
+keycode = 82
+
+[sub_resource type="Shortcut" id="Shortcut_gl5oh"]
+events = [SubResource("InputEventKey_g1ejb")]
+
+[node name="RegistryEditor" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+script = ExtResource("1_tv1od")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="FileMenuButton" type="MenuButton" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"FlatMenuButton"
+text = "File"
+flat = false
+switch_on_hover = true
+item_count = 13
+popup/item_0/text = "New Registry..."
+popup/item_0/id = 0
+popup/item_1/text = "Open..."
+popup/item_1/id = 1
+popup/item_2/text = "Reopen Closed Registry"
+popup/item_2/id = 2
+popup/item_3/text = "Open Recent"
+popup/item_3/id = 3
+popup/item_4/id = 9
+popup/item_4/separator = true
+popup/item_5/text = "Copy Registry Path"
+popup/item_5/id = 20
+popup/item_6/text = "Copy Registry UID"
+popup/item_6/id = 21
+popup/item_7/text = "Show in FileSystem"
+popup/item_7/id = 22
+popup/item_8/id = 23
+popup/item_8/separator = true
+popup/item_9/text = "Close"
+popup/item_9/id = 13
+popup/item_10/text = "Close All"
+popup/item_10/id = 16
+popup/item_11/text = "Close Other Tabs"
+popup/item_11/id = 14
+popup/item_12/text = "Close Tabs Below"
+popup/item_12/id = 15
+
+[node name="EditMenuButton" type="MenuButton" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"FlatMenuButton"
+text = "Edit"
+flat = false
+switch_on_hover = true
+item_count = 12
+popup/item_0/text = "Delete Entry"
+popup/item_0/id = 0
+popup/item_1/text = "Copy String ID"
+popup/item_1/id = 1
+popup/item_1/disabled = true
+popup/item_2/text = "Copy UID"
+popup/item_2/id = 2
+popup/item_3/text = "Show in FileSystem"
+popup/item_3/id = 3
+popup/item_4/id = 100
+popup/item_4/separator = true
+popup/item_5/text = "Cut Cell Value"
+popup/item_5/id = 5
+popup/item_6/text = "Copy Cell Value"
+popup/item_6/id = 6
+popup/item_7/text = "Paste to Cell"
+popup/item_7/id = 7
+popup/item_8/id = 100
+popup/item_8/separator = true
+popup/item_9/text = "Select All"
+popup/item_9/id = 9
+popup/item_10/text = "Invert Selection"
+popup/item_10/id = 10
+popup/item_11/text = "Unselect"
+popup/item_11/id = 11
+
+[node name="RegistryButtonsVSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RegistrySettingsButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Edit Registry Settings"
+focus_mode = 3
+theme_type_variation = &"FlatButton"
+shortcut = SubResource("Shortcut_g1ejb")
+text = "Registry Settings"
+script = ExtResource("4_dd5h4")
+icon_name = "GDScript"
+
+[node name="ColumnsMenuButton" type="MenuButton" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Select shown columns."
+theme_type_variation = &"FlatMenuButton"
+text = "Columns"
+flat = false
+switch_on_hover = true
+script = ExtResource("3_m1qax")
+icon_name = "Panels2Alt"
+
+[node name="RefreshViewButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+tooltip_text = "Refresh table view from the underlying registry."
+focus_mode = 3
+theme_type_variation = &"FlatButton"
+text = "Refresh"
+script = ExtResource("4_dd5h4")
+icon_name = "Loop"
+
+[node name="RescanButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+tooltip_text = "Scan FileSystem for matching resources."
+focus_mode = 3
+theme_type_variation = &"FlatButton"
+text = "Rescan"
+script = ExtResource("4_dd5h4")
+icon_name = "FilenameFilter"
+
+[node name="ReindexButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+tooltip_text = "Rebuild Property Index"
+focus_mode = 3
+theme_type_variation = &"FlatButton"
+shortcut = SubResource("Shortcut_gl5oh")
+text = "Reindex"
+script = ExtResource("4_dd5h4")
+icon_name = "Loop"
+
+[node name="ReportIssueButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+tooltip_text = "Open project's issues in your browser."
+focus_mode = 3
+theme_type_variation = &"FlatButton"
+text = "Report Issue"
+icon = ExtResource("4_6e4lp")
+
+[node name="OpenDocumentationButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Open the Registry class documentation."
+focus_mode = 3
+theme_type_variation = &"FlatButton"
+text = "Open Docs"
+script = ExtResource("4_dd5h4")
+icon_name = "Help"
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ReadMeButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Open the README.md popup."
+focus_mode = 3
+theme_type_variation = &"FlatButton"
+script = ExtResource("4_dd5h4")
+icon_name = "Info"
+
+[node name="MakeFloatingButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+tooltip_text = "Make the registry editor floating."
+focus_mode = 3
+theme_type_variation = &"FlatButton"
+script = ExtResource("4_dd5h4")
+icon_name = "MakeFloating"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+split_offset = 230
+
+[node name="RegistriesContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RegistriesFilter" type="LineEdit" parent="VBoxContainer/HSplitContainer/RegistriesContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Filter Registries"
+script = ExtResource("5_g1ejb")
+icon_name = "Search"
+
+[node name="RegistriesItemList" type="ItemList" parent="VBoxContainer/HSplitContainer/RegistriesContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"ItemListSecondary"
+allow_reselect = true
+script = ExtResource("6_gl5oh")
+
+[node name="RegistryTableView" parent="VBoxContainer/HSplitContainer" instance=ExtResource("7_w3c1k")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RegistryContextMenu" type="PopupMenu" parent="."]
+unique_name_in_owner = true
+item_count = 12
+item_0/text = "Close"
+item_0/id = 13
+item_1/text = "Close Other Tabs"
+item_1/id = 14
+item_2/text = "Close Tabs Below"
+item_2/id = 15
+item_3/text = "Close All"
+item_3/id = 16
+item_4/id = -1
+item_4/separator = true
+item_5/text = "Copy Registry Path"
+item_5/id = 20
+item_6/text = "Copy Registry UID"
+item_6/id = 21
+item_7/text = "Show in FileSystem"
+item_7/id = 22
+item_8/id = -1
+item_8/separator = true
+item_9/text = "Move Up"
+item_9/id = 30
+item_10/text = "Move Down"
+item_10/id = 31
+item_11/text = "Sort"
+item_11/id = 32
+
+[node name="NewRegistryDialog" parent="." instance=ExtResource("8_drmf8")]
+unique_name_in_owner = true
+size = Vector2i(674, 754)
+visible = false
+
+[node name="ReadMeWindow" parent="." instance=ExtResource("9_6e4lp")]
+
+[connection signal="about_to_popup" from="VBoxContainer/HBoxContainer/FileMenuButton" to="." method="_on_file_menu_button_about_to_popup"]
+[connection signal="about_to_popup" from="VBoxContainer/HBoxContainer/EditMenuButton" to="." method="_on_edit_menu_button_about_to_popup"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RegistrySettingsButton" to="." method="_on_registry_settings_button_pressed"]
+[connection signal="about_to_popup" from="VBoxContainer/HBoxContainer/ColumnsMenuButton" to="." method="_on_columns_menu_button_about_to_popup"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RefreshViewButton" to="." method="_on_refresh_view_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RescanButton" to="." method="_on_rescan_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ReindexButton" to="." method="_on_reindex_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ReportIssueButton" to="." method="_on_report_issue_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/OpenDocumentationButton" to="." method="_on_open_documentation_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ReadMeButton" to="." method="_on_read_me_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/MakeFloatingButton" to="." method="_on_make_floating_button_pressed"]
+[connection signal="text_changed" from="VBoxContainer/HSplitContainer/RegistriesContainer/RegistriesFilter" to="." method="_on_registries_filter_text_changed"]
+[connection signal="item_clicked" from="VBoxContainer/HSplitContainer/RegistriesContainer/RegistriesItemList" to="." method="_on_registries_list_item_clicked"]
+[connection signal="item_selected" from="VBoxContainer/HSplitContainer/RegistriesContainer/RegistriesItemList" to="." method="_on_registries_list_item_selected"]
+[connection signal="about_to_popup" from="RegistryContextMenu" to="." method="_on_registry_context_menu_about_to_popup"]
+[connection signal="id_pressed" from="RegistryContextMenu" to="." method="_on_registry_context_menu_id_pressed"]

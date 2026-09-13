@@ -1,0 +1,444 @@
+# Elliot Fontaine <yard-godot@elliotfontaine.anonaddy.com>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Yet Another Resource Database\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+
+#: addons/yard/editor_only/ui_scenes/registry_table_view.gd
+#: addons/yard/editor_only/ui_scenes/registry_table_view.tscn
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Delete Entry"
+msgstr "删除条目"
+
+#: addons/yard/editor_only/ui_scenes/registry_table_view.tscn
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Copy String ID"
+msgstr "复制字符串 ID"
+
+#: addons/yard/editor_only/ui_scenes/registry_table_view.tscn
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Copy UID"
+msgstr "复制 UID"
+
+#: addons/yard/editor_only/ui_scenes/registry_table_view.tscn
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Cut Cell Value"
+msgstr "剪切值"
+
+#: addons/yard/editor_only/ui_scenes/registry_table_view.tscn
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Copy Cell Value"
+msgstr "复制值"
+
+#: addons/yard/editor_only/ui_scenes/registry_table_view.tscn
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Paste to Cell"
+msgstr "粘贴到单元格"
+
+#: addons/yard/editor_only/ui_scenes/registry_table_view.tscn
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Invert Selection"
+msgstr "反选"
+
+#: addons/yard/editor_only/ui_scenes/registry_table_view.tscn
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Unselect"
+msgstr "取消选择"
+
+#: addons/yard/editor_only/ui_scenes/registry_table_view.tscn
+msgid "Drop resource files here to add them to the registry."
+msgstr "将资源文件拖放到此处以添加至注册表。"
+
+#: addons/yard/editor_only/ui_scenes/registry_table_view.tscn
+msgid "Toggle Files Panel"
+msgstr "显示/隐藏文件面板"
+
+#: addons/yard/editor_only/ui_scenes/registry_table_view.tscn
+msgid "String ID"
+msgstr "字符串 ID"
+
+#: addons/yard/editor_only/ui_scenes/registry_table_view.tscn
+msgid "Add Entry"
+msgstr "添加条目"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Class/script is a Resource subclass."
+msgstr "类/脚本是 Resource 的子类。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid ""
+"Invalid class/script. Expected a Resource subclass (built-in, class_name, or "
+"[u]quoted[/u] script path)."
+msgstr ""
+"无效的类/脚本。需要 Resource 的子类（内置类、class_name 或[u]带引号的[/u]脚本"
+"路径）。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "No class filter, all Resource files will be accepted to the registry."
+msgstr "无类过滤器，所有 Resource 文件都将被接受到注册表中。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Scan directory valid. Will watch for new Resources…"
+msgstr "目录有效。将自动检测新资源…"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Scan directory is set to the project root ([code]res://[/code]). This will scan the entire project on every file save, which may cause significant editor lag."
+msgstr "扫描目录已设置为项目根目录（[code]res://[/code]）。每次保存文件时将扫描整个项目，可能导致编辑器明显卡顿。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Scan directory invalid. Pick an existing directory."
+msgstr "目录无效。请选择一个已存在的目录。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "No scan directory, resources auto-discovery is disabled."
+msgstr "未定义目录，自动检测已禁用。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid ""
+"File extension restrictions are optional. Separate multiple extensions with "
+"commas."
+msgstr "文件扩展名限制为可选项。多个扩展名之间用逗号分隔。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid ""
+"File extension filter active. Scan will be limited to matching extensions."
+msgstr "扩展名过滤器已启用。扫描将仅限于匹配的扩展名。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Empty file extension detected. Remove extra commas."
+msgstr "检测到空文件扩展名。请删除多余的逗号。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Invalid file extension detected. Remove disallowed characters."
+msgstr "检测到无效的文件扩展名。请删除不允许的字符。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Include filter active. Only matching paths will be scanned."
+msgstr "包含过滤器已启用。仅扫描匹配的路径。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Invalid include regex pattern."
+msgstr "无效的包含正则表达式。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Exclude filter active. Matching paths will be skipped."
+msgstr "排除过滤器已启用。匹配的路径将被跳过。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Invalid exclude regex pattern."
+msgstr "无效的排除正则表达式。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid ""
+"Indexed properties are optional. Separate multiple properties with commas."
+msgstr "索引属性是可选的。多个属性之间用逗号分隔。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "All properties found on the specified resource class."
+msgstr "已找到该资源类的所有属性。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Empty property name detected. Remove extra commas."
+msgstr "检测到空属性名。请删除多余的逗号。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Property '{prop}' is declared on multiple classes with different types."
+msgstr "属性\"{prop}\"在多个类中以不同类型声明。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Property '{prop}' may not exist on class {class_n}."
+msgstr "属性\"{prop}\"可能不存在于类 {class_n} 中。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Will create a new registry file."
+msgstr "将创建一个新的注册表文件。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Filename is invalid."
+msgstr "文件名无效。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Invalid extension."
+msgstr "扩展名无效。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Filename is empty."
+msgstr "文件名为空。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Registry file already exists."
+msgstr "该位置已存在注册表文件。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Default Ruleset"
+msgstr "默认规则"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Choose Custom Resource Script"
+msgstr "选择自定义资源脚本"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Choose Directory to Scan"
+msgstr "选择扫描目录"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Choose Registry Location"
+msgstr "选择注册表位置"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Choose Class Restriction"
+msgstr "选择类限制"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd
+msgid "Ruleset %d"
+msgstr "规则 %d"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.tscn
+msgid "Create Registry"
+msgstr "创建注册表"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.tscn
+msgid ""
+"Some of the entries in the registry do not match the\n"
+"new class restriction and would be removed.\n"
+"\n"
+"Do you want to proceed ?"
+msgstr ""
+"注册表中部分条目不符合\n"
+"新的类限制，将被移除。\n"
+"\n"
+"是否继续？"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.tscn
+msgid ""
+"Properties baked into the registry index for zero-cost runtime queries. "
+"Separate with commas."
+msgstr "已烘焙到注册表索引中的属性，用于零开销运行时查询。用逗号分隔。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.tscn
+msgid "Indexed Properties:"
+msgstr "索引属性："
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.tscn
+msgid "Automatically sync the registry entries when the filesystem changes."
+msgstr "文件系统变更时自动同步注册表条目。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.tscn
+msgid "Auto Rescan:"
+msgstr "自动重新扫描："
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.tscn
+msgid ""
+"Remove entries whose file no longer exists in the scan directory, or no "
+"longer matches any scan ruleset."
+msgstr "删除文件已不存在于扫描目录、或不再匹配任何规则的条目。"
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.tscn
+msgid "Remove Unlisted:"
+msgstr "移除未列出项："
+
+#: addons/yard/editor_only/ui_scenes/components/new_registry_dialog.tscn
+msgid "Path to the registry file."
+msgstr "注册表文件路径。"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.gd
+msgid "Open Registry"
+msgstr "打开注册表"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.gd
+msgid "Clear Recent Registries"
+msgstr "清空最近注册表列表"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.gd
+msgid "None of the closed resources exist anymore"
+msgstr "最近关闭的注册表均已不存在"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.gd
+msgid "Select a registry first"
+msgstr "请先选择一个注册表"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.gd
+msgid "Freeze ID Columns"
+msgstr "固定 ID 列"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.gd
+msgid "Keep the UID and string ID columns visible while scrolling horizontally."
+msgstr "在水平滚动时保持 UID 和字符串 ID 列可见。"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.gd
+msgid "Show Parent Properties First"
+msgstr "优先显示父类属性"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.gd
+msgid ""
+"Reorder columns so parent class properties appear before subclass ones.\n"
+"By default, columns follow the inspector order (subclass properties first)."
+msgstr ""
+"重新排列列，使父类属性显示在子类属性之前。\n"
+"默认情况下，列遵循检查器顺序（子类属性优先）。"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "New Registry..."
+msgstr "新建注册表…"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Reopen Closed Registry"
+msgstr "重新打开已关闭的注册表"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Copy Registry Path"
+msgstr "复制注册表路径"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Copy Registry UID"
+msgstr "复制注册表 UID"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Edit Registry Settings"
+msgstr "编辑注册表设置"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Registry Settings"
+msgstr "注册表设置"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Select shown columns."
+msgstr "选择显示的列。"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Columns"
+msgstr "列"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Refresh table view from the underlying registry."
+msgstr "从注册表刷新视图。"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Refresh"
+msgstr "刷新"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Scan FileSystem for matching resources."
+msgstr "扫描文件系统以查找匹配的资源。"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Rescan"
+msgstr "重新扫描"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Rebuild Property Index"
+msgstr "重建属性索引"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Reindex"
+msgstr "重新索引"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Open project's issues in your browser."
+msgstr "在浏览器中打开项目问题追踪器。"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Report Issue"
+msgstr "报告问题"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Open the Registry class documentation."
+msgstr "打开 Registry 类文档。"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Open Docs"
+msgstr "打开文档"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Open the README.md popup."
+msgstr "显示帮助。"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Make the registry editor floating."
+msgstr "将注册表编辑器设为浮动窗口。"
+
+#: addons/yard/editor_only/ui_scenes/registry_editor.tscn
+msgid "Filter Registries"
+msgstr "筛选注册表"
+
+#: addons/yard/plugin.gd
+msgid "Registry"
+msgstr "注册表"
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid "Only resources of this class (or subclasses) will be accepted."
+msgstr "仅接受此类（或其子类）的资源。"
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid "Class Restriction:"
+msgstr "类限制："
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid "Directory to watch for matching resource files."
+msgstr "监视匹配资源文件的目录。"
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid "Dir"
+msgstr "目录"
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid "Scan Directory:"
+msgstr "扫描目录："
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid "Also scan subdirectories."
+msgstr "同时扫描子目录。"
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid "Recursive:"
+msgstr "递归："
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid "Restrict scan to these file extensions. Separate with commas."
+msgstr "将扫描限制为这些文件扩展名。用逗号分隔。"
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid "File Extensions:"
+msgstr "文件扩展名："
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid "e.g. `.tres, .res`"
+msgstr "例如 `.tres, .res`"
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid ""
+"Only paths matching this pattern will be scanned. Applied to the relative "
+"path from the scan directory."
+msgstr "仅扫描与此模式匹配的路径。应用于相对于扫描目录的路径。"
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid "RegEx Include:"
+msgstr "RegEx 包含："
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid "e.g. `\\.tres$|\\.res$`"
+msgstr "例如 `\\.tres$|\\.res$`"
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid ""
+"Paths matching this pattern will be skipped. Applied to the relative path "
+"from the scan directory."
+msgstr "与此模式匹配的路径将被跳过。应用于相对于扫描目录的路径。"
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid "RegEx Exclude:"
+msgstr "RegEx 排除："
+
+#: addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn
+msgid "e.g. `\\.tscn$|\\.scn$`"
+msgstr "例如 `\\.tscn$|\\.scn$`"

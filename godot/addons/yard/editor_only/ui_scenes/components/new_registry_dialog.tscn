@@ -1,0 +1,191 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3g3e36v7g6kr"]
+
+[ext_resource type="Script" uid="uid://ci6vvg34c6b6o" path="res://addons/yard/editor_only/ui_scenes/components/new_registry_dialog.gd" id="1_uots1"]
+[ext_resource type="Script" uid="uid://djrr6b7fc76rw" path="res://addons/yard/editor_only/classes/editor_icon_button.gd" id="2_8x47h"]
+[ext_resource type="PackedScene" uid="uid://cqt3d2a2exd2f" path="res://addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_ruleset_editor.tscn" id="3_srqmm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khhqm"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_srqmm"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="NewRegistryDialog" type="ConfirmationDialog"]
+oversampling_override = 1.0
+title = "Create Registry"
+initial_position = 1
+size = Vector2i(666, 754)
+visible = true
+ok_button_text = "Create"
+dialog_hide_on_ok = false
+script = ExtResource("1_uots1")
+
+[node name="NewRestrictionConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(416, 158)
+ok_button_text = "Remove"
+dialog_text = "Some of the entries in the registry do not match the
+new class restriction and would be removed.
+
+Do you want to proceed ?"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ScanRulesetsTabContainer" type="TabContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+current_tab = 0
+
+[node name="DefaultRulesetEditor" parent="VBoxContainer/ScanRulesetsTabContainer" instance=ExtResource("3_srqmm")]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="GlobalSettingsContainer" type="PanelContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/GlobalSettingsContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/GlobalSettingsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+columns = 2
+
+[node name="IndexedPropertiesLabel" type="Label" parent="VBoxContainer/GlobalSettingsContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+tooltip_text = "Properties baked into the registry index for zero-cost runtime queries. Separate with commas."
+mouse_filter = 1
+text = "Indexed Properties:"
+
+[node name="IndexedPropertiesLineEdit" type="LineEdit" parent="VBoxContainer/GlobalSettingsContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AutoRescanLabel" type="Label" parent="VBoxContainer/GlobalSettingsContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Automatically sync the registry entries when the filesystem changes."
+mouse_filter = 1
+text = "Auto Rescan:"
+
+[node name="AutoRescanCheckBox" type="CheckBox" parent="VBoxContainer/GlobalSettingsContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_khhqm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_khhqm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_khhqm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_khhqm")
+theme_override_styles/focus = SubResource("StyleBoxFlat_srqmm")
+text = "On"
+
+[node name="ScanRemoveUnlistedLabel" type="Label" parent="VBoxContainer/GlobalSettingsContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Remove entries whose file no longer exists in the scan directory, or no longer matches any scan ruleset."
+mouse_filter = 1
+text = "Remove Unlisted:"
+
+[node name="ScanRemoveUnlistedCheckBox" type="CheckBox" parent="VBoxContainer/GlobalSettingsContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_khhqm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_khhqm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_khhqm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_khhqm")
+theme_override_styles/focus = SubResource("StyleBoxFlat_srqmm")
+text = "On"
+
+[node name="PathLabel" type="Label" parent="VBoxContainer/GlobalSettingsContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+tooltip_text = "Path to the registry file."
+mouse_filter = 1
+text = "Path:"
+
+[node name="RegistryPath" type="HBoxContainer" parent="VBoxContainer/GlobalSettingsContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RegistryPathLineEdit" type="LineEdit" parent="VBoxContainer/GlobalSettingsContainer/VBoxContainer/GridContainer/RegistryPath"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "new_registry.tres"
+
+[node name="RegistryPathFilesystemButton" type="Button" parent="VBoxContainer/GlobalSettingsContainer/VBoxContainer/GridContainer/RegistryPath"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("2_8x47h")
+icon_name = "Folder"
+
+[node name="InfoLabel" type="RichTextLabel" parent="VBoxContainer/GlobalSettingsContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(650, 0)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="AdvancedSettingsCheckButton" type="CheckButton" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Advanced Settings"
+alignment = 2
+
+[connection signal="canceled" from="." to="." method="_on_canceled"]
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="confirmed" from="." to="." method="_on_confirmed"]
+[connection signal="confirmed" from="NewRestrictionConfirmationDialog" to="." method="_on_new_restriction_confirmation_dialog_confirmed"]
+[connection signal="tab_clicked" from="VBoxContainer/ScanRulesetsTabContainer" to="." method="_on_scan_rulesets_tab_container_tab_clicked"]
+[connection signal="tab_selected" from="VBoxContainer/ScanRulesetsTabContainer" to="." method="_on_scan_rulesets_tab_container_tab_selected"]
+[connection signal="text_changed" from="VBoxContainer/GlobalSettingsContainer/VBoxContainer/GridContainer/IndexedPropertiesLineEdit" to="." method="_on_indexed_properties_line_edit_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/GlobalSettingsContainer/VBoxContainer/GridContainer/RegistryPath/RegistryPathLineEdit" to="." method="_on_registry_path_line_edit_text_changed"]
+[connection signal="pressed" from="VBoxContainer/GlobalSettingsContainer/VBoxContainer/GridContainer/RegistryPath/RegistryPathFilesystemButton" to="." method="_on_registry_path_filesystem_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/AdvancedSettingsCheckButton" to="." method="_on_advanced_settings_check_button_toggled"]

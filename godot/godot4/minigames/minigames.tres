@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://cqu12qbb2bs3u"]
+
+[ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_l7idg"]
+
+[resource]
+script = ExtResource("1_l7idg")
+_version = 2
+_scan_rulesets = Array[Dictionary]([{
+&"allowed_file_extensions": Array[String]([".tres"]),
+&"class_restrictions": Array[StringName]([&"Minigame"]),
+&"recursive_scan": true,
+&"scan_directories": Array[String](["res://godot4/minigames"]),
+&"scan_regex_exclude": "",
+&"scan_regex_include": ""
+}])
+_uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://bjaxvyj7espuw": &"take-the-crown_minigame",
+&"uid://cqdft3xwftxpu": &"shape-hunt_minigame",
+&"uid://dm65hdj8nci86": &"diamondsnatch_minigame"
+})
+_string_ids_to_uids = Dictionary[StringName, StringName]({
+&"diamondsnatch_minigame": &"uid://dm65hdj8nci86",
+&"shape-hunt_minigame": &"uid://cqdft3xwftxpu",
+&"take-the-crown_minigame": &"uid://bjaxvyj7espuw"
+})

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://ue3y11qye0nl"]
+
+[ext_resource type="Script" uid="uid://b5nmkchpunj21" path="res://addons/yard/editor_only/ui_scenes/components/scan_ruleset_editor/scan_tab_inputs/class_restriction_input.gd" id="1_1y6ln"]
+[ext_resource type="Script" uid="uid://djrr6b7fc76rw" path="res://addons/yard/editor_only/classes/editor_icon_button.gd" id="1_43t7j"]
+
+[node name="ClassRestrictionInput" type="HBoxContainer"]
+offset_right = 116.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+script = ExtResource("1_1y6ln")
+
+[node name="ClassRestrictionLineEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Resource"
+
+[node name="ClassListDialogButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("1_43t7j")
+icon_name = "ClassList"
+
+[node name="ClassFilesystemButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("1_43t7j")
+icon_name = "Folder"

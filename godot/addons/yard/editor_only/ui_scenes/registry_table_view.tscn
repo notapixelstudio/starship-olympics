@@ -1,0 +1,231 @@
+[gd_scene load_steps=14 format=3 uid="uid://crnac01bnyk3"]
+
+[ext_resource type="Script" uid="uid://tahli441tq7q" path="res://addons/yard/editor_only/ui_scenes/registry_table_view.gd" id="1_isv8r"]
+[ext_resource type="Script" uid="uid://0fmlvbrxn2lf" path="res://addons/yard/editor_only/classes/editor_icon_popup_menu.gd" id="2_8g0vx"]
+[ext_resource type="Script" uid="uid://d25c0lxjdxouk" path="res://addons/yard/editor_only/ui_scenes/components/dynamic_table.gd" id="2_wsykm"]
+[ext_resource type="Script" uid="uid://djrr6b7fc76rw" path="res://addons/yard/editor_only/classes/editor_icon_button.gd" id="3_5vsn3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5vsn3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8g0vx"]
+draw_center = false
+border_color = Color(0.14117648, 0.16078432, 0.21568628, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vsn3"]
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gq3u"]
+bg_color = Color(0.164, 0.1886, 0.2542, 0.8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6h1j"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.365, 0.365, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_detail = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p6h1j"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ae6j4"]
+command_or_control_autoremap = true
+keycode = 92
+unicode = 92
+
+[sub_resource type="Shortcut" id="Shortcut_8bvbn"]
+resource_name = "Toggle Files Panel"
+events = [SubResource("InputEventKey_ae6j4")]
+metadata/original = [SubResource("InputEventKey_ae6j4")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3v8u8"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="RegistryTableView" type="PanelContainer"]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5vsn3")
+script = ExtResource("1_isv8r")
+
+[node name="EditContextMenu" type="PopupMenu" parent="."]
+unique_name_in_owner = true
+size = Vector2i(130, 65)
+item_count = 12
+item_0/text = "Delete Entry"
+item_0/id = 0
+item_1/text = "Copy String ID"
+item_1/id = 1
+item_2/text = "Copy UID"
+item_2/id = 2
+item_3/text = "Show in FileSystem"
+item_3/id = 3
+item_4/id = 100
+item_4/separator = true
+item_5/text = "Cut Cell Value"
+item_5/id = 5
+item_6/text = "Copy Cell Value"
+item_6/id = 6
+item_7/text = "Paste to Cell"
+item_7/id = 7
+item_8/id = 8
+item_8/separator = true
+item_9/text = "Select All"
+item_9/id = 9
+item_10/text = "Invert Selection"
+item_10/id = 10
+item_11/text = "Unselect"
+item_11/id = 11
+script = ExtResource("2_8g0vx")
+icon_names = Dictionary[int, String]({
+0: "Remove",
+1: "ActionCopy",
+2: "Instance",
+3: "ShowInFileSystem",
+5: "ActionCut",
+6: "ActionCopy",
+7: "ActionPaste"
+})
+
+[node name="DeleteEntriesConfirmationDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "Please Confirm"
+initial_position = 1
+size = Vector2i(400, 100)
+ok_button_text = "Yes"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 2
+
+[node name="Border" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_8g0vx")
+
+[node name="ClipChildren" type="PanelContainer" parent="VBoxContainer/Border"]
+clip_children = 1
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_5vsn3")
+
+[node name="DynamicTable" type="Control" parent="VBoxContainer/Border/ClipChildren"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+mouse_filter = 1
+script = ExtResource("2_wsykm")
+default_font_color = Color(0.8, 0.8075, 0.8275, 1)
+header_height = 42.0
+header_color = Color(0.14, 0.161, 0.21700001, 1)
+header_filter_active_font_color = Color(0.3372549, 0.61960787, 1, 1)
+row_height = 42.0
+n_frozen_columns = 2
+grid_color = Color(0.14, 0.161, 0.217, 1)
+selected_row_back_color = Color(1, 1, 1, 0.2)
+selected_cell_back_color = Color(0.3372549, 0.61960787, 1, 1)
+row_color = Color(0.2, 0.23, 0.31, 1)
+alternate_row_color = Color(0.164, 0.1886, 0.2542, 1)
+invalid_cell_color = Color(0.146, 0.1679, 0.2263, 1)
+
+[node name="DragAndDropInfoPanel" type="PanelContainer" parent="VBoxContainer/Border"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1gq3u")
+
+[node name="FocusPanel" type="PanelContainer" parent="VBoxContainer/Border/DragAndDropInfoPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p6h1j")
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/Border/DragAndDropInfoPanel"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Border/DragAndDropInfoPanel/CenterContainer"]
+layout_mode = 2
+text = "Drop resource files here to add them to the registry."
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_p6h1j")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="ToggleRegistryPanelButton" type="Button" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Toggle Files Panel"
+theme_type_variation = &"FlatButton"
+shortcut = SubResource("Shortcut_8bvbn")
+script = ExtResource("3_5vsn3")
+icon_name = "Back"
+
+[node name="AddEntryContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="ResourcePickerContainer" type="PanelContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/AddEntryContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3v8u8")
+
+[node name="EntryNameLineEdit" type="LineEdit" parent="VBoxContainer/PanelContainer/HBoxContainer/AddEntryContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "String ID"
+keep_editing_on_text_submit = true
+
+[node name="AddEntryButton" type="Button" parent="VBoxContainer/PanelContainer/HBoxContainer/AddEntryContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add Entry"
+icon_alignment = 2
+script = ExtResource("3_5vsn3")
+icon_name = "Add"
+
+[connection signal="about_to_popup" from="EditContextMenu" to="." method="_on_edit_context_menu_about_to_popup"]
+[connection signal="id_pressed" from="EditContextMenu" to="." method="_on_edit_context_menu_id_pressed"]
+[connection signal="confirmed" from="DeleteEntriesConfirmationDialog" to="." method="_on_delete_entries_confirmation_dialog_confirmed"]
+[connection signal="text_changed" from="VBoxContainer/PanelContainer/HBoxContainer/AddEntryContainer/EntryNameLineEdit" to="." method="_on_entry_name_line_edit_text_changed"]
+[connection signal="pressed" from="VBoxContainer/PanelContainer/HBoxContainer/AddEntryContainer/AddEntryButton" to="." method="_on_add_entry_button_pressed"]

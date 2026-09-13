@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsuxhje1x1yyv"]
+
+[ext_resource type="Script" uid="uid://b5fgx626r2cuh" path="res://addons/yard/editor_only/classes/editor_icon_texture_button.gd" id="1_s3ar5"]
+
+[node name="OverrideDefaultSettingsToggleButton" type="TextureButton"]
+tooltip_text = "Override this setting with a different value"
+toggle_mode = true
+stretch_mode = 3
+script = ExtResource("1_s3ar5")
+normal_icon_name = "Instance"
+pressed_icon_name = "Unlinked"
