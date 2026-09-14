@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://cwn7s08isixrh"]
+
+[ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_k16k6"]
+[ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_j3pkt"]
+[ext_resource type="Resource" uid="uid://cxorooq22c83" path="res://godot4/data/styles/palace.tres" id="3_48uj1"]
+[ext_resource type="Script" uid="uid://6qs2wtuee7bs" path="res://addons/vshapes/VCircle.gd" id="5_xhyc3"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="5_xpj10"]
+[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="5_y10ir"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="7_o8tdb"]
+[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="8_rbbmi"]
+[ext_resource type="PackedScene" uid="uid://djakv8k7yhih5" path="res://godot4/elements/cargos/BasketBall.tscn" id="9_esla5"]
+[ext_resource type="PackedScene" uid="uid://cjtl150i6hy4c" path="res://godot4/elements/environments/GlassWall.tscn" id="10_amvmx"]
+[ext_resource type="PackedScene" uid="uid://t5a5e0jwto56" path="res://godot4/elements/gates/HoopGate.tscn" id="10_y10ir"]
+
+[sub_resource type="GDScript" id="GDScript_gbqai"]
+script/source = "extends Orchestrator
+
+func _ready():
+	await super()
+	# do nothing at start
+	print('phase 0')
+	
+# start as soon as the crown is loaded by someone
+func _on_crown_loaded_by(actor: Ship) -> void:
+	_begin_phases()
+
+# TODO: change system to danger level - each time a turret is hit another one is activated after a while
+# level 1: 1 turret at random, starting from the top one
+# after the first threshold, go to level 2
+# level 2: left and right turrets (start with these)
+# after the second threshold, go to level 3
+# level 3: all turrets are active
+func _begin_phases():
+	print('phase 1')
+	%PewTurretTop.alert()
+	await %PewTurretTop.alert_ended
+	%PewTurretTop.enabled = true
+	
+	await Events.score_threshold_passed
+	print('phase 2')
+	%PewTurretTop.enabled = false
+	%PewTurretLeft.alert()
+	%PewTurretRight.alert()
+	await %PewTurretLeft.alert_ended
+	%PewTurretLeft.enabled = true
+	%PewTurretRight.enabled = true
+	
+	await Events.score_threshold_passed
+	print('phase 3')
+	%PewTurretLeft.enabled = false
+	%PewTurretRight.enabled = false
+	%PewTurretTop.alert()
+	%PewTurretBottom.alert()
+	await %PewTurretTop.alert_ended
+	%PewTurretTop.enabled = true
+	%PewTurretBottom.enabled = true
+	
+	await Events.score_threshold_passed
+	print('phase 3b')
+	%PewTurretLeft.alert()
+	%PewTurretRight.alert()
+	%PewTurretTop.alert()
+	%PewTurretBottom.alert()
+	await %PewTurretLeft.alert_ended
+	%PewTurretLeft.enabled = true
+	%PewTurretRight.enabled = true
+"
+
+[sub_resource type="Animation" id="Animation_amvmx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_y10ir"]
+resource_name = "default"
+length = 12.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k16k6"]
+_data = {
+&"RESET": SubResource("Animation_amvmx"),
+&"default": SubResource("Animation_y10ir")
+}
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_amvmx"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[node name="PveArena" unique_id=1481253217 instance=ExtResource("1_k16k6")]
+default_params = ExtResource("2_j3pkt")
+
+[node name="Styleable" parent="." index="0" unique_id=999924478]
+style = ExtResource("3_48uj1")
+
+[node name="Orchestrator" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="0" unique_id=1592803965]
+script = SubResource("GDScript_gbqai")
+
+[node name="Camera2D" parent="." index="2" unique_id=956979488]
+zoom = Vector2(0.22, 0.22)
+
+[node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=743158187 instance=ExtResource("5_xpj10")]
+position = Vector2(0, 900)
+rotation = -1.5707964
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=564178919 node_paths=PackedStringArray("hosts")]
+script = ExtResource("5_y10ir")
+radius = 1500.0
+sides = 4
+hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
+rotation_degrees = 45.0
+metadata/_custom_type_script = "uid://dsmmew7kmas6i"
+
+[node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=480981193 instance=ExtResource("7_o8tdb")]
+hollow = true
+
+[node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=1223387629 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("8_rbbmi")]
+init_parametric_shape = NodePath("../VRegularPolygon")
+
+[node name="GlassWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=450569283 instance=ExtResource("10_amvmx")]
+
+[node name="VCircle" type="Node" parent="Battlefield/GlassWall" index="6" unique_id=526050524]
+script = ExtResource("5_xhyc3")
+radius = 350.0
+metadata/_custom_type_script = "uid://6qs2wtuee7bs"
+
+[node name="BasketBall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=163691522 instance=ExtResource("9_esla5")]
+position = Vector2(0, 600)
+impulse_unrest = 10.0
+
+[node name="HoopGate" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=1789077729 instance=ExtResource("10_y10ir")]
+width = 700.0
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/HoopGate" index="7" unique_id=1973574263 groups=["animation_starts_with_battle"]]
+libraries/ = SubResource("AnimationLibrary_k16k6")
+
+[node name="Navigation" parent="." index="6" unique_id=332973589]
+navigation_polygon = SubResource("NavigationPolygon_amvmx")

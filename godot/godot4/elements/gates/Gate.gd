@@ -17,7 +17,7 @@ var previous_global_transforms : Array
 
 var enabled := true
 
-signal crossed
+signal crossed(by_what, gate:Gate, trigger:bool)
 
 func set_width(v: float) -> void:
 	width = v
@@ -74,7 +74,7 @@ func _physics_process(delta):
 		
 func _crossed_by(sth, trigger=true):
 	if enabled:
-		emit_signal("crossed", sth, self, trigger)
+		crossed.emit(sth, self, trigger)
 		if trigger:
 			Events.sth_crossed_gate.emit(sth, self)
 	if auto_feedback:

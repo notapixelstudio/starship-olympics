@@ -57,6 +57,9 @@ func _launch_cargo(global_pos: Vector2, vel: Vector2, rot: float) -> void:
 	_empty_cargo()
 	
 func kick_cargo() -> void:
+	if _current_cargo is Ball:
+		_current_cargo.take_ownership(get_host())
+		_current_cargo.unrest()
 	_launch_cargo(get_host().global_position, get_host().linear_velocity + Vector2(3000,0).rotated(get_host().global_rotation), get_host().global_rotation)
 
 func discard_cargo() -> void:

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://t5a5e0jwto56"]
+
+[ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://godot4/elements/gates/Gate.tscn" id="1_eq7gj"]
+[ext_resource type="Script" uid="uid://betnfopttf7q3" path="res://godot4/elements/gates/HoopGate.gd" id="2_pogpe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1huiy"]
+resource_local_to_scene = true
+size = Vector2(250, 500)
+
+[node name="HoopGate" unique_id=1789077729 instance=ExtResource("1_eq7gj")]
+script = ExtResource("2_pogpe")
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1602993135]
+shape = SubResource("RectangleShape2D_1huiy")
+
+[connection signal="crossed" from="." to="." method="_on_crossed"]

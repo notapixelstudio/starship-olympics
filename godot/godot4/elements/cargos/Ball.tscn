@@ -1,16 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2sxcvq53b3m7"]
+[gd_scene format=3 uid="uid://b2sxcvq53b3m7"]
 
 [ext_resource type="PackedScene" uid="uid://c8s08rc21o1ra" path="res://godot4/elements/cargos/Cargo.tscn" id="1_cnkt6"]
 [ext_resource type="Script" uid="uid://dbh52tgum7iuy" path="res://godot4/elements/cargos/Ball.gd" id="2_lcckc"]
+[ext_resource type="PackedScene" uid="uid://clbsrjsidxhav" path="res://combat/traits/Tracked.tscn" id="3_cdkl3"]
 
-[sub_resource type="Gradient" id="Gradient_5cley"]
+[sub_resource type="Gradient" id="Gradient_khrlj"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
 
-[node name="Ball" instance=ExtResource("1_cnkt6")]
+[node name="Ball" unique_id=288005582 instance=ExtResource("1_cnkt6")]
 script = ExtResource("2_lcckc")
+impulse_unrest = 80.0
 
-[node name="MotionAutoTrail" parent="." index="2"]
+[node name="Tracked" parent="." index="0" unique_id=38458236 instance=ExtResource("3_cdkl3")]
+unique_name_in_owner = true
+
+[node name="MotionAutoTrail" parent="." index="3" unique_id=1467177572]
 width = 160.0
-gradient = SubResource("Gradient_5cley")
+gradient = SubResource("Gradient_khrlj")

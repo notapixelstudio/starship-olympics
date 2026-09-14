@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://tytfenscfyp0"]
+[gd_scene format=3 uid="uid://tytfenscfyp0"]
 
 [ext_resource type="Script" uid="uid://dem1yvo86rb2v" path="res://godot4/elements/gates/Gate.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://baclyt1ayjb0e" path="res://assets/sprites/signs/arrow.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bcoonsxenm7eg" path="res://assets/sprites/environments/ring_part.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://cgbfpreevxmtx" path="res://assets/sprites/environments/ring_full.png" id="5"]
 [ext_resource type="AudioStream" uid="uid://cny4ebaabn7u4" path="res://assets/audio/FX/392693__screamstudio__sci-fi-sfx.wav" id="6"]
 [ext_resource type="Script" uid="uid://ddxaklng2222g" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" id="8"]
 
@@ -49,16 +48,16 @@ _data = {
 &"RESET": SubResource("3")
 }
 
-[node name="Gate" type="Area2D" groups=["gates"]]
+[node name="Gate" type="Area2D" unique_id=363910291 groups=["gates"]]
 collision_layer = 0
 collision_mask = 513
 script = ExtResource("1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1602993135]
 visible = false
 shape = SubResource("1")
 
-[node name="BottomRingPart" type="Sprite2D" parent="."]
+[node name="BottomRingPart" type="Sprite2D" parent="." unique_id=529398136]
 modulate = Color(0.388235, 0.388235, 0.388235, 1)
 self_modulate = Color(0.521569, 0.701961, 1, 1)
 z_index = -5
@@ -67,7 +66,7 @@ position = Vector2(27, 0)
 texture = ExtResource("4")
 flip_h = true
 
-[node name="Arrow" type="Sprite2D" parent="."]
+[node name="Arrow" type="Sprite2D" parent="." unique_id=128062440]
 modulate = Color(0.133333, 0.666667, 1, 0.313726)
 z_index = -2
 z_as_relative = false
@@ -76,7 +75,7 @@ scale = Vector2(1.3, 1.3)
 texture = ExtResource("3")
 flip_h = true
 
-[node name="RingPart" type="Sprite2D" parent="."]
+[node name="RingPart" type="Sprite2D" parent="." unique_id=831170452]
 modulate = Color(1.2, 1.2, 1.2, 1)
 self_modulate = Color(0.521569, 0.701961, 1, 1)
 z_index = 12
@@ -84,15 +83,12 @@ z_as_relative = false
 position = Vector2(-28, 0)
 texture = ExtResource("4")
 
-[node name="Shadow" parent="." instance=ExtResource("2")]
-texture = ExtResource("5")
+[node name="Shadow" parent="." unique_id=232188950 instance=ExtResource("2")]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_bcjds")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1608677693]
+libraries/ = SubResource("AnimationLibrary_bcjds")
 
-[node name="RandomAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="RandomAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1488943637]
 script = ExtResource("8")
 streams = Array[AudioStream]([ExtResource("6")])
 randomize_pitch = true

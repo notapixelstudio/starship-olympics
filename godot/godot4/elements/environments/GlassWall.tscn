@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cjtl150i6hy4c"]
+
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="1_ailjw"]
+[ext_resource type="Resource" uid="uid://b06y5gpgvclp1" path="res://combat/styles/vetro.tres" id="2_ifsjq"]
+
+[node name="GlassWall" unique_id=450569283 instance=ExtResource("1_ailjw")]
+collision_layer = 0
+collision_mask = 1
+
+[node name="Styleable" parent="." index="0"]
+style = ExtResource("2_ifsjq")
