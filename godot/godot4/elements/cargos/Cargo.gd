@@ -15,9 +15,10 @@ func _ready():
 	_self_scene = PackedScene.new()
 	_self_scene.pack(self)
 	
-func place_and_push(global_pos: Vector2, vel: Vector2, rot: float) -> void:
+func place_and_push(global_pos: Vector2, vel: Vector2, rot: float, spin: float = 0.0) -> void:
 	global_position = global_pos + Vector2(drop_distance,0).rotated(rot)
 	linear_velocity = vel
+	apply_torque_impulse(400000*spin)
 	reset_physics_interpolation() # TBD check if this suffices when https://github.com/godotengine/godot/pull/92218 is merged
 	# if it suffices, re-enable physics interpolation in Shadow.tscn
 	

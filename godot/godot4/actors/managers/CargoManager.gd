@@ -49,10 +49,10 @@ func has_cargo_class(type) -> bool:
 func get_cargo() -> Cargo:
 	return _current_cargo
 	
-func _launch_cargo(global_pos: Vector2, vel: Vector2, rot: float) -> void:
+func _launch_cargo(global_pos: Vector2, vel: Vector2, rot: float, spin: float = 0.0) -> void:
 	Events.spawn_request.emit(_current_cargo, func(cargo):
 		cargo.set_temp_untouchable_by(get_host())
-		cargo.place_and_push(global_pos, vel, rot)
+		cargo.place_and_push(global_pos, vel, rot, spin)
 	)
 	_empty_cargo()
 	
@@ -60,7 +60,19 @@ func kick_cargo() -> void:
 	if _current_cargo is Ball:
 		_current_cargo.take_ownership(get_host())
 		_current_cargo.unrest()
-	_launch_cargo(get_host().global_position, get_host().linear_velocity + Vector2(3000,0).rotated(get_host().global_rotation), get_host().global_rotation)
+		
+	# use intended direction in addition to actual direction
+	const COMPENSATION = 0.9
+	var host_forward = Vector2.RIGHT.rotated(get_host().global_rotation)
+	var host_intended_forward = get_host().get_target_velocity().normalized()
+	# no compensation if host is not moving
+	if get_host().get_target_velocity().length_squared() < 1.0:
+		host_intended_forward = host_forward
+		
+	var compensated_angle = (host_forward*(1.0-COMPENSATION)+host_intended_forward*COMPENSATION).angle()
+	var spin = -(host_intended_forward.cross(host_forward))
+	
+	_launch_cargo(get_host().global_position, get_host().linear_velocity + Vector2(4000,0).rotated(compensated_angle), compensated_angle, spin)
 
 func discard_cargo() -> void:
 	_launch_cargo(get_host().global_position, Vector2(200.0, 0).rotated(get_host().global_rotation), get_host().global_rotation)

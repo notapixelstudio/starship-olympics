@@ -5,11 +5,11 @@
 [ext_resource type="Resource" uid="uid://cxorooq22c83" path="res://godot4/data/styles/palace.tres" id="3_48uj1"]
 [ext_resource type="Script" uid="uid://6qs2wtuee7bs" path="res://addons/vshapes/VCircle.gd" id="5_xhyc3"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="5_xpj10"]
-[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="5_y10ir"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="7_o8tdb"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="8_rbbmi"]
 [ext_resource type="PackedScene" uid="uid://djakv8k7yhih5" path="res://godot4/elements/cargos/BasketBall.tscn" id="9_esla5"]
 [ext_resource type="PackedScene" uid="uid://cjtl150i6hy4c" path="res://godot4/elements/environments/GlassWall.tscn" id="10_amvmx"]
+[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="10_dchng"]
 [ext_resource type="PackedScene" uid="uid://t5a5e0jwto56" path="res://godot4/elements/gates/HoopGate.tscn" id="10_y10ir"]
 
 [sub_resource type="GDScript" id="GDScript_gbqai"]
@@ -66,45 +66,7 @@ func _begin_phases():
 	%PewTurretRight.enabled = true
 "
 
-[sub_resource type="Animation" id="Animation_amvmx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_y10ir"]
-resource_name = "default"
-length = 12.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 12),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 6.283185307179586]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_k16k6"]
-_data = {
-&"RESET": SubResource("Animation_amvmx"),
-&"default": SubResource("Animation_y10ir")
-}
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_amvmx"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_y10ir"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -125,39 +87,37 @@ script = SubResource("GDScript_gbqai")
 zoom = Vector2(0.22, 0.22)
 
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=743158187 instance=ExtResource("5_xpj10")]
-position = Vector2(0, 900)
-rotation = -1.5707964
+position = Vector2(-1200, 0)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=564178919 node_paths=PackedStringArray("hosts")]
-script = ExtResource("5_y10ir")
-radius = 1500.0
-sides = 4
+[node name="VRoundedRect" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=19312972 node_paths=PackedStringArray("hosts")]
+script = ExtResource("10_dchng")
+width = 3500.0
+height = 2000.0
+radius = 100.0
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
-rotation_degrees = 45.0
-metadata/_custom_type_script = "uid://dsmmew7kmas6i"
+metadata/_custom_type_script = "uid://dd5es67ha55ia"
 
 [node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=480981193 instance=ExtResource("7_o8tdb")]
 hollow = true
 
 [node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=1223387629 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("8_rbbmi")]
-init_parametric_shape = NodePath("../VRegularPolygon")
+init_parametric_shape = NodePath("../VRoundedRect")
 
 [node name="GlassWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=450569283 instance=ExtResource("10_amvmx")]
+position = Vector2(2100, 0)
 
 [node name="VCircle" type="Node" parent="Battlefield/GlassWall" index="6" unique_id=526050524]
 script = ExtResource("5_xhyc3")
-radius = 350.0
 metadata/_custom_type_script = "uid://6qs2wtuee7bs"
 
 [node name="BasketBall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=163691522 instance=ExtResource("9_esla5")]
-position = Vector2(0, 600)
+position = Vector2(-600, 0)
 impulse_unrest = 10.0
 
 [node name="HoopGate" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=1789077729 instance=ExtResource("10_y10ir")]
+position = Vector2(1200, 0)
+rotation = 3.1415927
 width = 700.0
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/HoopGate" index="7" unique_id=1973574263 groups=["animation_starts_with_battle"]]
-libraries/ = SubResource("AnimationLibrary_k16k6")
-
 [node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_amvmx")
+navigation_polygon = SubResource("NavigationPolygon_y10ir")
