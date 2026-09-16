@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bia7yrbdvp8vw"]
+[gd_scene format=3 uid="uid://bia7yrbdvp8vw"]
 
 [ext_resource type="Script" uid="uid://bxnllekqfjvdf" path="res://godot4/elements/environments/ShieldWall.gd" id="1_vjsnw"]
 [ext_resource type="Texture2D" uid="uid://csxyu2y2crrca" path="res://assets/sprites/signs/shield.png" id="2"]
@@ -138,28 +138,26 @@ _data = {
 &"reset": SubResource("3")
 }
 
-[node name="ShieldWall" type="Area2D"]
+[node name="ShieldWall" type="Area2D" unique_id=142814434]
 modulate = Color(1, 1, 1, 0.0117647)
 collision_layer = 128
-collision_mask = 4
+collision_mask = 516
 script = ExtResource("1_vjsnw")
 
-[node name="Waiter" parent="." instance=ExtResource("2_7vvls")]
+[node name="Waiter" parent="." unique_id=1454246444 instance=ExtResource("2_7vvls")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2091237767]
 unique_name_in_owner = true
 
-[node name="IsoPolygon" parent="." instance=ExtResource("4_nffqm")]
+[node name="IsoPolygon" parent="." unique_id=1545317896 instance=ExtResource("4_nffqm")]
 unique_name_in_owner = true
 height = 48.0
 fill = Color(0.28, 0.568, 1, 0.0784314)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_667pc")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1359880426]
+libraries/ = SubResource("AnimationLibrary_667pc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=278815622]
 modulate = Color(0.439216, 0.670588, 1, 1)
 self_modulate = Color(1, 1, 1, 0.27451)
 z_index = 8
@@ -167,7 +165,7 @@ z_as_relative = false
 position = Vector2(0, -48)
 texture = ExtResource("2")
 
-[node name="DamageSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="DamageSFX" type="AudioStreamPlayer2D" parent="." unique_id=1460104342]
 bus = &"SFX_effect"
 script = ExtResource("4")
 randomize_pitch = true

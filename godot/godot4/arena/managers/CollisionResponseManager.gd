@@ -90,3 +90,5 @@ func _handle_shield_wall_vs_other(shield_wall:ShieldWall, collider, tag:String='
 	if collider is Pew:
 		shield_wall.down()
 		collider.destroy()
+	elif collider is Ball:
+		shield_wall.down()

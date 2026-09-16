@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="9_amvmx"]
 [ext_resource type="PackedScene" uid="uid://djakv8k7yhih5" path="res://godot4/elements/cargos/BasketBall.tscn" id="9_esla5"]
 [ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="10_dchng"]
+[ext_resource type="PackedScene" uid="uid://dkobwffaq7irc" path="res://godot4/elements/environments/GoalWall.tscn" id="10_y10ir"]
+[ext_resource type="Script" uid="uid://dwa5kst63hc3b" path="res://addons/vshapes/VRect.gd" id="11_k16k6"]
 
 [sub_resource type="GDScript" id="GDScript_gbqai"]
 script/source = "extends Orchestrator
@@ -64,7 +66,7 @@ func _begin_phases():
 	%PewTurretRight.enabled = true
 "
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_esla5"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_y10ir"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -116,5 +118,14 @@ radius = 1000.0
 sides = 4
 metadata/_custom_type_script = "uid://dsmmew7kmas6i"
 
+[node name="GoalWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=198580177 instance=ExtResource("10_y10ir")]
+position = Vector2(0, -900)
+
+[node name="VRect" type="Node" parent="Battlefield/GoalWall" index="6" unique_id=379283235]
+script = ExtResource("11_k16k6")
+width = 1800.0
+height = 100.0
+metadata/_custom_type_script = "uid://dwa5kst63hc3b"
+
 [node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_esla5")
+navigation_polygon = SubResource("NavigationPolygon_y10ir")
