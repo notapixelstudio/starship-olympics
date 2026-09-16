@@ -15,11 +15,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(0.3, 0.3, 0.3, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_dxveg"]
 resource_name = "hit"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -27,21 +28,46 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.19999999),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(3.2944162, 3.2944162, 3.2944162, 1), Color(1, 1, 1, 1)]
+"values": [Color(1.5720325, 1.5720325, 1.5720325, 1), Color(0.3, 0.3, 0.3, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m8jsl"]
+resource_name = "up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(0.3, 0.3, 0.3, 1), Color(1.5720325, 1.5720325, 1.5720325, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m8jsl"]
 _data = {
 &"RESET": SubResource("Animation_0msid"),
-&"hit": SubResource("Animation_dxveg")
+&"hit": SubResource("Animation_dxveg"),
+&"up": SubResource("Animation_m8jsl")
 }
 
 [node name="GoalWall" unique_id=1309650842 instance=ExtResource("1_fgbhx")]
+modulate = Color(0.3, 0.3, 0.3, 1)
 script = ExtResource("2_0msid")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=156946802]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_m8jsl")
+
+[node name="Timer" type="Timer" parent="." index="7" unique_id=1606532974]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
