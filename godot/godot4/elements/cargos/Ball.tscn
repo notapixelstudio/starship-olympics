@@ -40,4 +40,6 @@ script = SubResource("GDScript_cdkl3")
 shape = SubResource("CircleShape2D_khrlj")
 debug_color = Color(0.639216, 0.337255, 1, 0.0509804)
 
+[connection signal="area_entered" from="TapArea" to="." method="_on_tap_area_area_entered"]
+[connection signal="area_exited" from="TapArea" to="." method="_on_tap_area_area_exited"]
 [connection signal="tap" from="TapArea" to="." method="_on_tap_area_tap"]

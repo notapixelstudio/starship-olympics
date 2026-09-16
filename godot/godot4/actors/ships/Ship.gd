@@ -149,7 +149,7 @@ func do_tap(charge: float) -> void:
 			
 			# show feedback
 			var bump = bump_effect_scene.instantiate()
-			bump.global_position = 0.8*area.global_position+0.2*global_position
+			bump.global_position = 0.7*area.global_position+0.3*global_position
 			Events.spawn_request.emit(bump)
 			
 			# eat up the tap event

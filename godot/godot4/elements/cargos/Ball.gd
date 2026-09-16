@@ -37,9 +37,9 @@ func _on_tap_area_tap(author: Variant, strength: float) -> void:
 		host_intended_forward = distance_vector
 		
 	var compensated_angle = (distance_vector*(1.0-COMPENSATION)+host_intended_forward*COMPENSATION).angle()
-	var spin = -(host_intended_forward.cross(distance_vector))
-	# put a limit on spin
-	if abs(spin) > 0.7:
-		spin = sign(spin)*0.7
-	place_and_push(global_position, Vector2(linear_velocity.length()+5500*strength,0).rotated(compensated_angle), compensated_angle, spin)
+	#var spin = 0.01*host_intended_forward.cross(distance_vector)
+	## put a limit on spin
+	#if abs(spin) > 0.7:
+		#spin = sign(spin)*0.7
+	place_and_push(global_position, Vector2(linear_velocity.length()+5500*strength,0).rotated(compensated_angle), compensated_angle, 0)#spin)
 	
