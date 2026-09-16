@@ -14,7 +14,20 @@ func unrest() -> void:
 func take_ownership(ship: Ship) -> void:
 	_owner_ship = ship
 	
-func receive_tap(author, strength:float) -> void:
+func get_owner_ship() -> Ship:
+	if not _owner_ship or not is_instance_valid(_owner_ship) or _owner_ship.is_queued_for_deletion():
+		return null
+		
+	return _owner_ship
+
+func _physics_process(delta):
+	if not rest:
+		apply_central_impulse(impulse_unrest*Vector2(1,0).rotated(linear_velocity.angle()))
+
+func _integrate_forces(state):
+	tracked.tick()
+
+func _on_tap_area_tap(author: Variant, strength: float) -> void:
 	# use intended direction in addition to actual direction
 	const COMPENSATION = 0.8
 	var distance_vector = global_position - author.global_position
@@ -30,15 +43,3 @@ func receive_tap(author, strength:float) -> void:
 		spin = sign(spin)*0.7
 	place_and_push(global_position, Vector2(linear_velocity.length()+5500*strength,0).rotated(compensated_angle), compensated_angle, spin)
 	
-func get_owner_ship() -> Ship:
-	if not _owner_ship or not is_instance_valid(_owner_ship) or _owner_ship.is_queued_for_deletion():
-		return null
-		
-	return _owner_ship
-
-func _physics_process(delta):
-	if not rest:
-		apply_central_impulse(impulse_unrest*Vector2(1,0).rotated(linear_velocity.angle()))
-
-func _integrate_forces(state):
-	tracked.tick()

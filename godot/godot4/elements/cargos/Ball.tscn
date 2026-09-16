@@ -9,6 +9,15 @@ resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
 
+[sub_resource type="GDScript" id="GDScript_cdkl3"]
+script/source = "extends Area2D
+
+signal tap(author, strength:float)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_khrlj"]
+radius = 400.0
+
 [node name="Ball" unique_id=288005582 instance=ExtResource("1_cnkt6")]
 script = ExtResource("2_lcckc")
 impulse_unrest = 10.0
@@ -19,3 +28,16 @@ unique_name_in_owner = true
 [node name="MotionAutoTrail" parent="." index="3" unique_id=1467177572]
 width = 160.0
 gradient = SubResource("Gradient_cdkl3")
+
+[node name="TapArea" type="Area2D" parent="." index="5" unique_id=2111933727]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+input_pickable = false
+script = SubResource("GDScript_cdkl3")
+
+[node name="DetectionShape2D" type="CollisionShape2D" parent="TapArea" index="0" unique_id=1083176534]
+shape = SubResource("CircleShape2D_khrlj")
+debug_color = Color(0.639216, 0.337255, 1, 0.0509804)
+
+[connection signal="tap" from="TapArea" to="." method="_on_tap_area_tap"]

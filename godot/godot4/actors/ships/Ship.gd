@@ -143,13 +143,13 @@ func do_tap(charge: float) -> void:
 	var normalized_charge = charge/%ChargeManager.max_tap_charge
 	
 	# check whether there's an object receiving the tap action nearby
-	for body in %TapArea.get_overlapping_bodies():
-		if body.has_method('receive_tap'):
-			body.receive_tap(self, normalized_charge)
+	for area in %TouchArea.get_overlapping_areas():
+		if area.has_signal('tap'):
+			area.tap.emit(self, normalized_charge)
 			
 			# show feedback
 			var bump = bump_effect_scene.instantiate()
-			bump.global_position = 0.8*body.global_position+0.2*global_position
+			bump.global_position = 0.8*area.global_position+0.2*global_position
 			Events.spawn_request.emit(bump)
 			
 			# eat up the tap event

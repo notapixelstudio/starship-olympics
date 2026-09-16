@@ -130,9 +130,6 @@ radius = 70.0
 resource_local_to_scene = true
 radius = 40.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kqe5y"]
-radius = 400.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_t1b3t"]
 radius = 700.0
 
@@ -244,18 +241,6 @@ collision_mask = 532380
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_kepy8")
 debug_color = Color(0.996078, 0, 0.235294, 0.235294)
-
-[node name="TapArea" type="Area2D" parent="." unique_id=1425287675]
-unique_name_in_owner = true
-position = Vector2(100, 0)
-collision_layer = 0
-collision_mask = 512
-input_pickable = false
-
-[node name="DetectionShape2D" type="CollisionShape2D" parent="TapArea" unique_id=1088785459]
-position = Vector2(-100, 0)
-shape = SubResource("CircleShape2D_kqe5y")
-debug_color = Color(0.639216, 0.337255, 1, 0.0509804)
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1802156702]
 collision_layer = 0
