@@ -19,6 +19,8 @@ func _on_collision(actor, collider, tag:String='') -> void:
 		_handle_pew_vs_other(actor, collider, tag)
 	elif actor is BubbleBullet:
 		_hanlde_bubble_bullet_vs_other(actor, collider, tag)
+	elif actor is Ball:
+		_handle_ball_vs_other(actor, collider, tag)
 	elif actor is ShieldWall:
 		_handle_shield_wall_vs_other(actor, collider, tag)
 
@@ -77,7 +79,11 @@ func _handle_pew_vs_other(pew:Pew, collider, tag:String='') -> void:
 	#if collider is Ball and pew.has_ownership_transfer() and pew.get_owner_ship() != null and is_instance_valid(pew.get_owner_ship()):
 		#collider.set_player(pew.get_owner_ship().get_player())
 		#collider.activate()
-
+		
+func _handle_ball_vs_other(ball:Ball, collider, tag:String='') -> void:
+	if collider.has_method('hit'):
+		collider.hit(ball) # Balls hit all sorts of stuff
+		
 func _hanlde_bubble_bullet_vs_other(bubble_bullet:BubbleBullet, collider, tag:String='') -> void:
 	if collider is Treasure:
 		bubble_bullet.capture_treasure(collider)

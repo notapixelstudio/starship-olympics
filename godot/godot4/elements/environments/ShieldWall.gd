@@ -32,6 +32,7 @@ func set_polygon(v: PackedVector2Array) -> void:
 	polygon = v
 	%CollisionPolygon2D.set_polygon(polygon)
 	%IsoPolygon.set_polygon(polygon)
+	%SolidCollisionPolygon2D.set_polygon(polygon)
 
 func up(new_type):
 	health = starting_health

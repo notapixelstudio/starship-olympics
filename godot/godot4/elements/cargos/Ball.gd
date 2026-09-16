@@ -27,7 +27,11 @@ func _physics_process(delta):
 func _integrate_forces(state):
 	tracked.tick()
 
-func _on_tap_area_tap(author: Variant, strength: float) -> void:
+func _on_tap_area_tap(author: Ship, strength: float) -> void:
+	# kick the ball without catching it
+	
+	take_ownership(author)
+	
 	# use intended direction in addition to actual direction
 	const COMPENSATION = 0.8
 	var distance_vector = global_position - author.global_position

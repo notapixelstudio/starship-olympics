@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b2sxcvq53b3m7" path="res://godot4/elements/cargos/Ball.tscn" id="1_36xml"]
 [ext_resource type="Texture2D" uid="uid://d2ij5aoi4mvw6" path="res://assets/sprites/balls/basket.png" id="2_v3w73"]
 
-[sub_resource type="Gradient" id="Gradient_fdg6p"]
+[sub_resource type="Gradient" id="Gradient_v3w73"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
@@ -16,4 +16,4 @@ texture = ExtResource("2_v3w73")
 
 [node name="MotionAutoTrail" parent="." index="3" unique_id=1467177572]
 modulate = Color(1, 0.211765, 0, 1)
-gradient = SubResource("Gradient_fdg6p")
+gradient = SubResource("Gradient_v3w73")

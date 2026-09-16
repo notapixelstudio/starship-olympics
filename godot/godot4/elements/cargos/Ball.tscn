@@ -19,6 +19,8 @@ signal tap(author, strength:float)
 radius = 400.0
 
 [node name="Ball" unique_id=288005582 instance=ExtResource("1_cnkt6")]
+contact_monitor = true
+max_contacts_reported = 3
 script = ExtResource("2_lcckc")
 impulse_unrest = 10.0
 

@@ -1,8 +1,47 @@
 [gd_scene format=3 uid="uid://dkobwffaq7irc"]
 
-[ext_resource type="PackedScene" uid="uid://bia7yrbdvp8vw" path="res://godot4/elements/environments/ShieldWall.tscn" id="1_fgbhx"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/environments/Wall.tscn" id="1_fgbhx"]
+[ext_resource type="Script" uid="uid://dcdt0pws5l0o2" path="res://godot4/elements/environments/GoalWall.gd" id="2_0msid"]
 
-[node name="GoalWall" unique_id=198580177 instance=ExtResource("1_fgbhx")]
-starting_health = 1
-starts_disabled = false
-respawn_time = 5
+[sub_resource type="Animation" id="Animation_0msid"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dxveg"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(3.2944162, 3.2944162, 3.2944162, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m8jsl"]
+_data = {
+&"RESET": SubResource("Animation_0msid"),
+&"hit": SubResource("Animation_dxveg")
+}
+
+[node name="GoalWall" unique_id=1309650842 instance=ExtResource("1_fgbhx")]
+script = ExtResource("2_0msid")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6" unique_id=156946802]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_m8jsl")
