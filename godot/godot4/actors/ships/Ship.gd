@@ -15,6 +15,7 @@ func clone() -> Ship:
 @export var dash_ring_scene : PackedScene
 @export var death_feedback_scene : PackedScene
 @export var disabled_ship_scene : PackedScene
+@export var bump_effect_scene : PackedScene
 
 func get_player() -> Player:
 	return player
@@ -140,6 +141,20 @@ func end_dash():
 signal tap(charge: float)
 func do_tap(charge: float) -> void:
 	var normalized_charge = charge/%ChargeManager.max_tap_charge
+	
+	# check whether there's an object receiving the tap action nearby
+	for body in %TapArea.get_overlapping_bodies():
+		if body.has_method('receive_tap'):
+			body.receive_tap(self, normalized_charge)
+			
+			# show feedback
+			var bump = bump_effect_scene.instantiate()
+			bump.global_position = 0.8*body.global_position+0.2*global_position
+			Events.spawn_request.emit(bump)
+			
+			# eat up the tap event
+			return
+	
 	tap.emit(normalized_charge)
 	Events.tap.emit(self, normalized_charge)
 	
