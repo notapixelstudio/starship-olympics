@@ -11,7 +11,7 @@ class_name Turret
 @export var burst_time_jitter := 0.0
 
 # Ship-like "interface"
-signal tap
+signal tap(charge:float)
 
 func get_target_velocity() -> Vector2:
 	return Vector2.ZERO
@@ -33,7 +33,7 @@ func stop() -> void:
 
 func _on_timer_timeout() -> void:
 	if enabled:
-		tap.emit()
+		tap.emit(0)
 		_burst_count += 1
 		
 	if _burst_count >= burst_shots:

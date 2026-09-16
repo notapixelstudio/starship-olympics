@@ -4,18 +4,18 @@
 [ext_resource type="Script" uid="uid://dbh52tgum7iuy" path="res://godot4/elements/cargos/Ball.gd" id="2_lcckc"]
 [ext_resource type="PackedScene" uid="uid://clbsrjsidxhav" path="res://combat/traits/Tracked.tscn" id="3_cdkl3"]
 
-[sub_resource type="Gradient" id="Gradient_khrlj"]
+[sub_resource type="Gradient" id="Gradient_cdkl3"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
 
 [node name="Ball" unique_id=288005582 instance=ExtResource("1_cnkt6")]
 script = ExtResource("2_lcckc")
-impulse_unrest = 80.0
+impulse_unrest = 10.0
 
 [node name="Tracked" parent="." index="0" unique_id=38458236 instance=ExtResource("3_cdkl3")]
 unique_name_in_owner = true
 
 [node name="MotionAutoTrail" parent="." index="3" unique_id=1467177572]
 width = 160.0
-gradient = SubResource("Gradient_khrlj")
+gradient = SubResource("Gradient_cdkl3")

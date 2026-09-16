@@ -76,7 +76,7 @@ signal ghost_touched(ghost:Ghost, ship:Ship)
 signal ghosts_matched(ghost_1:Ghost, ghost_2:Ghost)
 
 signal start_charging(charger)
-signal tap(tapper)
+signal tap(tapper, charge:float)
 
 signal camera_updated(camera_state:Dictionary)
 

@@ -8,9 +8,9 @@ func _ready():
 func get_host():
 	return get_parent()
 
-func _on_tap() -> void:
+func _on_tap(charge:float) -> void:
 	if has_cargo() and _current_cargo is Ball:
-		kick_cargo()
+		kick_cargo(charge)
 	
 func load_cargo(v: Cargo) -> void:
 	# lose cargo first if something is already loaded
@@ -56,7 +56,7 @@ func _launch_cargo(global_pos: Vector2, vel: Vector2, rot: float, spin: float = 
 	)
 	_empty_cargo()
 	
-func kick_cargo() -> void:
+func kick_cargo(charge:float) -> void:
 	if _current_cargo is Ball:
 		_current_cargo.take_ownership(get_host())
 		_current_cargo.unrest()
@@ -72,7 +72,7 @@ func kick_cargo() -> void:
 	var compensated_angle = (host_forward*(1.0-COMPENSATION)+host_intended_forward*COMPENSATION).angle()
 	var spin = -(host_intended_forward.cross(host_forward))
 	
-	_launch_cargo(get_host().global_position, get_host().linear_velocity + Vector2(4000,0).rotated(compensated_angle), compensated_angle, spin)
+	_launch_cargo(get_host().global_position, get_host().linear_velocity + Vector2(max(0,6000*(charge-0.05)),0).rotated(compensated_angle), compensated_angle, spin)
 
 func discard_cargo() -> void:
 	_launch_cargo(get_host().global_position, Vector2(200.0, 0).rotated(get_host().global_rotation), get_host().global_rotation)

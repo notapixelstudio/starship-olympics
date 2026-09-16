@@ -1,18 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://djakv8k7yhih5"]
+[gd_scene format=3 uid="uid://djakv8k7yhih5"]
 
 [ext_resource type="PackedScene" uid="uid://b2sxcvq53b3m7" path="res://godot4/elements/cargos/Ball.tscn" id="1_36xml"]
 [ext_resource type="Texture2D" uid="uid://dfs08lowdsdbq" path="res://assets/sprites/environments/ball.png" id="2_ob53f"]
 
-[sub_resource type="Gradient" id="Gradient_5cley"]
+[sub_resource type="Gradient" id="Gradient_v3w73"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
 
-[node name="BasketBall" instance=ExtResource("1_36xml")]
+[node name="BasketBall" unique_id=1878555385 instance=ExtResource("1_36xml")]
+impulse_unrest = 0.0
 
-[node name="Sprite2D" parent="Graphics" index="0"]
+[node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1232204582) index="0" unique_id=686837574]
 texture = ExtResource("2_ob53f")
 
-[node name="MotionAutoTrail" parent="." index="2"]
+[node name="MotionAutoTrail" parent="." index="3" unique_id=1467177572]
 modulate = Color(1, 0.211765, 0, 1)
-gradient = SubResource("Gradient_5cley")
+gradient = SubResource("Gradient_v3w73")

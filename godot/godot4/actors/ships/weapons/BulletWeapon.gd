@@ -9,7 +9,7 @@ extends Weapon
 func _ready() -> void:
 	get_host().tap.connect(_on_tap)
 
-func _on_tap() -> void:
+func _on_tap(charge:float) -> void:
 	fire(get_host())
 	
 func fire(source):

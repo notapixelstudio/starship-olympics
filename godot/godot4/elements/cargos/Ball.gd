@@ -1,7 +1,7 @@
 extends Cargo
 class_name Ball
 
-@export var impulse_unrest : float = 10
+@export var impulse_unrest : float = 0.0
 var rest : bool = true
 
 var _owner_ship : Ship = null

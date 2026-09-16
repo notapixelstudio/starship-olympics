@@ -110,7 +110,7 @@ func charge():
 	
 func release():
 	if %ChargeManager.can_tap():
-		do_tap()
+		do_tap(%ChargeManager.get_charge())
 	if %ChargeManager.can_dash():
 		do_dash(%ChargeManager.get_charge())
 	%ChargeManager.end_charging()
@@ -137,10 +137,11 @@ func end_dash():
 	set_collision_layer_value(31, false)
 	set_collision_layer_value(32, true)
 
-signal tap
-func do_tap():
-	tap.emit()
-	Events.tap.emit(self)
+signal tap(charge: float)
+func do_tap(charge: float) -> void:
+	var normalized_charge = charge/%ChargeManager.max_tap_charge
+	tap.emit(normalized_charge)
+	Events.tap.emit(self, normalized_charge)
 	
 func _ready():
 	# apparently, setting this from code is necessary in order for box2d to correctly perform "bullet"-style collisions

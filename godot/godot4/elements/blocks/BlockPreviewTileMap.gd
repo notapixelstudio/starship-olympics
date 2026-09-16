@@ -51,7 +51,7 @@ func _get_polygon_surrounding_cell(cell:Vector2i) -> PackedVector2Array:
 func _on_someone_started_charging(charger) -> void:
 	pass
 	
-func _on_someone_tapped(tapper) -> void:
+func _on_someone_tapped(tapper, charge:float) -> void:
 	if not tapper is Ship:
 		return
 
