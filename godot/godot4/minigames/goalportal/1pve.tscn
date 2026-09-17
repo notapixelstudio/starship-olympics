@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://canmuh8m24hhh"]
+
+[ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_823ju"]
+[ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_htple"]
+[ext_resource type="Resource" uid="uid://b5foul3oyd4dd" path="res://godot4/data/styles/soccer.tres" id="3_fd8hp"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_cvoso"]
+[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="5_s7seg"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/walls/Wall.tscn" id="6_jgnvr"]
+[ext_resource type="PackedScene" uid="uid://xoqhtny3wi7s" path="res://godot4/elements/gates/PortalGate.tscn" id="8_823ju"]
+[ext_resource type="PackedScene" uid="uid://cjtl150i6hy4c" path="res://godot4/elements/walls/GlassWall.tscn" id="9_fd8hp"]
+[ext_resource type="Script" uid="uid://6qs2wtuee7bs" path="res://addons/vshapes/VCircle.gd" id="10_cvoso"]
+[ext_resource type="PackedScene" uid="uid://bwq1u3ii8jr07" path="res://godot4/elements/cargos/SoccerBall.tscn" id="10_fd8hp"]
+
+[sub_resource type="GDScript" id="GDScript_gbqai"]
+script/source = "extends Orchestrator
+
+func _ready():
+	await super()
+	# do nothing at start
+	print('phase 0')
+	
+# start as soon as the crown is loaded by someone
+func _on_crown_loaded_by(actor: Ship) -> void:
+	_begin_phases()
+
+# TODO: change system to danger level - each time a turret is hit another one is activated after a while
+# level 1: 1 turret at random, starting from the top one
+# after the first threshold, go to level 2
+# level 2: left and right turrets (start with these)
+# after the second threshold, go to level 3
+# level 3: all turrets are active
+func _begin_phases():
+	print('phase 1')
+	%PewTurretTop.alert()
+	await %PewTurretTop.alert_ended
+	%PewTurretTop.enabled = true
+	
+	await Events.score_threshold_passed
+	print('phase 2')
+	%PewTurretTop.enabled = false
+	%PewTurretLeft.alert()
+	%PewTurretRight.alert()
+	await %PewTurretLeft.alert_ended
+	%PewTurretLeft.enabled = true
+	%PewTurretRight.enabled = true
+	
+	await Events.score_threshold_passed
+	print('phase 3')
+	%PewTurretLeft.enabled = false
+	%PewTurretRight.enabled = false
+	%PewTurretTop.alert()
+	%PewTurretBottom.alert()
+	await %PewTurretTop.alert_ended
+	%PewTurretTop.enabled = true
+	%PewTurretBottom.enabled = true
+	
+	await Events.score_threshold_passed
+	print('phase 3b')
+	%PewTurretLeft.alert()
+	%PewTurretRight.alert()
+	%PewTurretTop.alert()
+	%PewTurretBottom.alert()
+	await %PewTurretLeft.alert_ended
+	%PewTurretLeft.enabled = true
+	%PewTurretRight.enabled = true
+"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_fd8hp"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[node name="PveArena" unique_id=1481253217 instance=ExtResource("1_823ju")]
+default_params = ExtResource("2_htple")
+
+[node name="Styleable" parent="." index="0" unique_id=999924478]
+style = ExtResource("3_fd8hp")
+
+[node name="Orchestrator" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="0" unique_id=1592803965]
+script = SubResource("GDScript_gbqai")
+
+[node name="Camera2D" parent="." index="2" unique_id=956979488]
+zoom = Vector2(0.22, 0.22)
+
+[node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=743158187 instance=ExtResource("4_cvoso")]
+position = Vector2(-600, 0)
+
+[node name="P2" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="1" unique_id=2091164463 instance=ExtResource("4_cvoso")]
+position = Vector2(600, 0)
+rotation = 3.1415927
+
+[node name="VRoundedRect" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=19312972 node_paths=PackedStringArray("hosts")]
+script = ExtResource("5_s7seg")
+width = 5000.0
+height = 3000.0
+radius = 600.0
+hosts = [NodePath("../OutsideWall")]
+metadata/_custom_type_script = "uid://dd5es67ha55ia"
+
+[node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=480981193 instance=ExtResource("6_jgnvr")]
+hollow = true
+
+[node name="GlassWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=450569283 instance=ExtResource("9_fd8hp")]
+position = Vector2(-2150, 0)
+
+[node name="VCircle" type="Node" parent="Battlefield/GlassWall" index="6" unique_id=978024087]
+script = ExtResource("10_cvoso")
+radius = 650.0
+metadata/_custom_type_script = "uid://6qs2wtuee7bs"
+
+[node name="GlassWall2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1826085519 instance=ExtResource("9_fd8hp")]
+position = Vector2(2150, 0)
+
+[node name="VCircle" type="Node" parent="Battlefield/GlassWall2" index="6" unique_id=1506069558]
+script = ExtResource("10_cvoso")
+radius = 650.0
+metadata/_custom_type_script = "uid://6qs2wtuee7bs"
+
+[node name="PortalGate" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=402512641 node_paths=PackedStringArray("linked_to") instance=ExtResource("8_823ju")]
+position = Vector2(-2150, 0)
+linked_to = NodePath("../PortalGate2")
+inverted = true
+width = 950.0
+
+[node name="PortalGate2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=1812592091 node_paths=PackedStringArray("linked_to") instance=ExtResource("8_823ju")]
+position = Vector2(2150, 0)
+rotation = -3.1415925
+linked_to = NodePath("../PortalGate")
+tint = Color(0.2976, 0.50736004, 0.96, 1)
+inverted = true
+width = 950.0
+
+[node name="SoccerBall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=1878555385 instance=ExtResource("10_fd8hp")]
+
+[node name="Navigation" parent="." index="6" unique_id=332973589]
+navigation_polygon = SubResource("NavigationPolygon_fd8hp")

@@ -80,11 +80,12 @@ func discard_cargo() -> void:
 func shoot_cargo(cause: RigidBody2D) -> void:
 	_launch_cargo(get_host().global_position, cause.linear_velocity, get_host().global_rotation)
 
-func rebound_cargo(source, collision_point: Vector2, collision_normal: Vector2) -> void:
+func rebound_cargo(collision_point: Vector2, collision_normal: Vector2) -> void:
+	var source = get_host()
 	Events.spawn_request.emit(_current_cargo)
 	_current_cargo.set_temp_untouchable_by.call_deferred(source)
 	var alpha = source.linear_velocity.bounce(collision_normal).angle()
-	_current_cargo.place_and_push(collision_point, Vector2(source.linear_velocity.length()+500,0).rotated(alpha), alpha)
+	_current_cargo.place_and_push(collision_point, Vector2(source.linear_velocity.length(),0).rotated(alpha), alpha)
 	_empty_cargo()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccigjuln5qq4b"]
+[gd_scene format=3 uid="uid://ccigjuln5qq4b"]
 
 [ext_resource type="Script" uid="uid://ddv1q23rekiug" path="res://godot4/elements/goals/PentaGoal.gd" id="1_efvqh"]
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="2_d2f78"]
@@ -66,22 +66,23 @@ _data = {
 &"feedback": SubResource("Animation_baae3")
 }
 
-[node name="PentaGoal" type="Area2D"]
+[node name="PentaGoal" type="Area2D" unique_id=1144014073]
 collision_layer = 128
 collision_mask = 513
 script = ExtResource("1_efvqh")
 
-[node name="VRegularPolygon" type="Node" parent="." node_paths=PackedStringArray("hosts")]
+[node name="VRegularPolygon" type="Node" parent="." unique_id=1079068937 node_paths=PackedStringArray("hosts")]
 unique_name_in_owner = true
 script = ExtResource("2_d2f78")
+radius = 550.0
 sides = 5
-hosts = [NodePath(".."), NodePath("../SolidCollider/CollisionPolygon2D")]
+hosts = [NodePath(".."), NodePath("../SolidCollider/SolidCollisionPolygon2D")]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1891957482]
 unique_name_in_owner = true
-polygon = PackedVector2Array(30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14)
+polygon = PackedVector2Array(169.95935, 523.08105, -444.95935, 323.2819, -444.95935, -323.2819, 169.95935, -523.08105, 550, -1.3471114e-13)
 
-[node name="IsoPolygon" parent="." instance=ExtResource("2_k6hee")]
+[node name="IsoPolygon" parent="." unique_id=1231414115 instance=ExtResource("2_k6hee")]
 unique_name_in_owner = true
 height = 64.0
 stroke_width = 10.0
@@ -89,32 +90,31 @@ stroke = Color(0.916667, 0, 1, 1)
 fill = Color(0.51, 0, 0.85, 0.392157)
 underline_alpha = 0.1
 
-[node name="Rings" type="Node2D" parent="."]
+[node name="Rings" type="Node2D" parent="." unique_id=1363792759]
 unique_name_in_owner = true
-modulate = Color(0.85, 0, 1, 1)
+modulate = Color(0.8499999, 0, 1, 0.36862746)
 position = Vector2(0, -64)
 
-[node name="SolidCollider" type="StaticBody2D" parent="."]
+[node name="SolidCollider" type="StaticBody2D" parent="." unique_id=1095976406]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 512
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SolidCollider"]
-polygon = PackedVector2Array(30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14)
+[node name="SolidCollisionPolygon2D" type="CollisionPolygon2D" parent="SolidCollider" unique_id=1329901877]
+unique_name_in_owner = true
+polygon = PackedVector2Array(169.95935, 523.08105, -444.95935, 323.2819, -444.95935, -323.2819, 169.95935, -523.08105, 550, -1.3471114e-13)
 
-[node name="FeedbackLine2D" type="Line2D" parent="."]
+[node name="FeedbackLine2D" type="Line2D" parent="." unique_id=895674613]
 unique_name_in_owner = true
 visible = false
 z_index = -5
 z_as_relative = false
-points = PackedVector2Array(30.9017, 95.1057, -80.9017, 58.7785, -80.9017, -58.7785, 30.9017, -95.1057, 100, -2.44929e-14)
+points = PackedVector2Array(169.95935, 523.08105, -444.95935, 323.2819, -444.95935, -323.2819, 169.95935, -523.08105, 550, -1.3471114e-13)
 closed = true
 width = 20.0
 default_color = Color(2, 2, 2, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FeedbackLine2D"]
-libraries = {
-"": SubResource("AnimationLibrary_ido2i")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FeedbackLine2D" unique_id=1201643495]
+libraries/ = SubResource("AnimationLibrary_ido2i")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,5 +1,5 @@
 @tool
-extends "res://godot4/elements/environments/Wall.gd"
+extends "res://godot4/elements/walls/Wall.gd"
 
 var _on := false
 

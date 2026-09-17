@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bwq1u3ii8jr07"]
+
+[ext_resource type="PackedScene" uid="uid://b2sxcvq53b3m7" path="res://godot4/elements/cargos/Ball.tscn" id="1_tqqeo"]
+[ext_resource type="Texture2D" uid="uid://c4i8b2uvnplve" path="res://assets/sprites/environments/soccer_ball.png" id="2_tqqeo"]
+
+[sub_resource type="Gradient" id="Gradient_tqqeo"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.997561)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
+
+[node name="SoccerBall" unique_id=1878555385 instance=ExtResource("1_tqqeo")]
+impulse_unrest = 15.0
+
+[node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1232204582) index="0" unique_id=686837574]
+texture = ExtResource("2_tqqeo")
+
+[node name="MotionAutoTrail" parent="." index="3" unique_id=1467177572]
+modulate = Color(1, 0.87733334, 0.77, 1)
+gradient = SubResource("Gradient_tqqeo")

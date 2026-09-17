@@ -31,6 +31,7 @@ func _on_tap_area_tap(author: Ship, strength: float) -> void:
 	# kick the ball without catching it
 	
 	take_ownership(author)
+	unrest()
 	
 	# use intended direction in addition to actual direction
 	const COMPENSATION = 0.8

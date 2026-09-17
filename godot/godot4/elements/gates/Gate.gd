@@ -3,7 +3,7 @@ extends Area2D
 class_name Gate
 
 @export var width := 550.0: set = set_width
-@export var aperture := PI*0.9
+@export var aperture := PI*0.99
 #export var crossing_while_still_tolerance := 0.3
 @export var show_arrow := true: set = set_show_arrow
 @export var auto_feedback := true
@@ -26,6 +26,7 @@ func set_width(v: float) -> void:
 	$RingPart.scale.y = width/550.0
 	$BottomRingPart.scale.y = width/550.0
 	$Shadow.scale.y = width/550.0
+	%CollisionShape2D.shape.size.y = width
 	
 func set_show_arrow(v: bool) -> void:
 	show_arrow = v

@@ -253,6 +253,9 @@ func load_cargo(v: Cargo) -> void:
 func discard_cargo() -> void:
 	%CargoManager.discard_cargo()
 	
+func rebound_cargo(collision_point: Vector2, collision_normal: Vector2) -> void:
+	%CargoManager.rebound_cargo(collision_point, collision_normal)
+	
 func swap_cargo(other: Ship) -> void:
 	%CargoManager.swap_cargo(other.get_cargo_manager())
 	
