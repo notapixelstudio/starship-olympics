@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d2g1x0qdp7hul"]
+[gd_scene format=3 uid="uid://d2g1x0qdp7hul"]
 
 [ext_resource type="PackedScene" uid="uid://bsdasajr1cjh8" path="res://special_scenes/combat_UI/session_points/Stat.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://ccvffra4l23u7" path="res://assets/patterns/stripes_duotone_lighter.png" id="3"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="8"]
 [ext_resource type="PackedScene" uid="uid://chegk33457388" path="res://special_scenes/combat_UI/gameover/LogoMinigame.tscn" id="9"]
 [ext_resource type="Texture2D" uid="uid://26nw5l0mmexe" path="res://assets/sprites/medals/bronze.png" id="9_d6jt3"]
+[ext_resource type="PackedScene" uid="uid://ceaj5ikcc83he" path="res://godot4/ui/arcade/arcade_wheel.tscn" id="9_gh7wt"]
 [ext_resource type="Texture2D" uid="uid://yrbuuts5qyl5" path="res://assets/sprites/environments/wall.png" id="10_q8d3u"]
 
 [sub_resource type="Gradient" id="Gradient_d6jt3"]
@@ -24,26 +25,40 @@ fallbacks = Array[Font]([ExtResource("8")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
-cache/0/14/0/ascent = 0.0
-cache/0/14/0/descent = 0.0
-cache/0/14/0/underline_position = 0.0
-cache/0/14/0/underline_thickness = 0.0
-cache/0/14/0/scale = 1.0
-cache/0/22/0/ascent = 0.0
-cache/0/22/0/descent = 0.0
-cache/0/22/0/underline_position = 0.0
-cache/0/22/0/underline_thickness = 0.0
-cache/0/22/0/scale = 1.0
 cache/0/32/0/ascent = 0.0
 cache/0/32/0/descent = 0.0
 cache/0/32/0/underline_position = 0.0
 cache/0/32/0/underline_thickness = 0.0
 cache/0/32/0/scale = 1.0
+cache/0/78/0/ascent = 0.0
+cache/0/78/0/descent = 0.0
+cache/0/78/0/underline_position = 0.0
+cache/0/78/0/underline_thickness = 0.0
+cache/0/78/0/scale = 1.0
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
 cache/0/48/0/ascent = 0.0
 cache/0/48/0/descent = 0.0
 cache/0/48/0/underline_position = 0.0
@@ -54,38 +69,51 @@ cache/0/52/0/descent = 0.0
 cache/0/52/0/underline_position = 0.0
 cache/0/52/0/underline_thickness = 0.0
 cache/0/52/0/scale = 1.0
-cache/0/78/0/ascent = 0.0
-cache/0/78/0/descent = 0.0
-cache/0/78/0/underline_position = 0.0
-cache/0/78/0/underline_thickness = 0.0
-cache/0/78/0/scale = 1.0
 
 [sub_resource type="FontFile" id="4"]
 fallbacks = Array[Font]([ExtResource("8")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
-cache/0/14/0/ascent = 0.0
-cache/0/14/0/descent = 0.0
-cache/0/14/0/underline_position = 0.0
-cache/0/14/0/underline_thickness = 0.0
-cache/0/14/0/scale = 1.0
 cache/0/32/0/ascent = 0.0
 cache/0/32/0/descent = 0.0
 cache/0/32/0/underline_position = 0.0
 cache/0/32/0/underline_thickness = 0.0
 cache/0/32/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
 
 [sub_resource type="FontFile" id="7"]
 fallbacks = Array[Font]([ExtResource("8")])
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -97,7 +125,7 @@ cache/0/14/0/underline_position = 0.0
 cache/0/14/0/underline_thickness = 0.0
 cache/0/14/0/scale = 1.0
 
-[node name="WinnerBanner" type="Control"]
+[node name="WinnerBanner" type="Control" unique_id=838907090]
 custom_minimum_size = Vector2(360, 180)
 layout_mode = 3
 anchors_preset = 0
@@ -107,7 +135,7 @@ script = ExtResource("5")
 minigame_logo = ExtResource("9")
 headshot_scene = ExtResource("3_d6jt3")
 
-[node name="Background" type="Polygon2D" parent="."]
+[node name="Background" type="Polygon2D" parent="." unique_id=12231408]
 unique_name_in_owner = true
 texture_repeat = 2
 position = Vector2(-2.7477, 32)
@@ -116,7 +144,7 @@ color = Color(0.78, 0.78, 0.78, 0.901961)
 texture = ExtResource("3")
 polygon = PackedVector2Array(12.5, 168, 12.5, 18, 1091.12, 18, 1042.09, 168)
 
-[node name="Container" type="HBoxContainer" parent="."]
+[node name="Container" type="HBoxContainer" parent="." unique_id=216648872]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
@@ -129,18 +157,18 @@ offset_bottom = 182.0
 grow_horizontal = 2
 theme_override_constants/separation = 20
 
-[node name="Node2D" type="Node2D" parent="Container"]
+[node name="Node2D" type="Node2D" parent="Container" unique_id=279364077]
 
-[node name="HeadshotContainer" type="HBoxContainer" parent="Container/Node2D"]
+[node name="HeadshotContainer" type="HBoxContainer" parent="Container/Node2D" unique_id=1500244768]
 unique_name_in_owner = true
 offset_left = 9.0
 offset_right = 9.0
 offset_bottom = 150.0
 theme_override_constants/separation = -40
 
-[node name="Wrapper" type="Node2D" parent="Container"]
+[node name="Wrapper" type="Node2D" parent="Container" unique_id=305388288]
 
-[node name="Shadow" type="TextureRect" parent="Container/Wrapper"]
+[node name="Shadow" type="TextureRect" parent="Container/Wrapper" unique_id=1776533432]
 z_index = 7
 offset_left = -8.0
 offset_top = 170.0
@@ -150,49 +178,49 @@ rotation = -1.5708
 scale = Vector2(0.5, 1)
 texture = SubResource("GradientTexture1D_q8d3u")
 
-[node name="StatsContainer" type="GridContainer" parent="Container"]
+[node name="StatsContainer" type="GridContainer" parent="Container" unique_id=177547107]
 visible = false
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 26
 columns = 2
 
-[node name="Stat2" parent="Container/StatsContainer" instance=ExtResource("2")]
+[node name="Stat2" parent="Container/StatsContainer" unique_id=668948609 instance=ExtResource("2")]
 layout_mode = 2
 key = "kills"
 stats_value = "0"
 
-[node name="Stat3" parent="Container/StatsContainer" instance=ExtResource("2")]
+[node name="Stat3" parent="Container/StatsContainer" unique_id=256939596 instance=ExtResource("2")]
 layout_mode = 2
 key = "deaths"
 stats_value = "0"
 
-[node name="Stat4" parent="Container/StatsContainer" instance=ExtResource("2")]
+[node name="Stat4" parent="Container/StatsContainer" unique_id=1498351656 instance=ExtResource("2")]
 layout_mode = 2
 key = "selfkills"
 stats_value = "0"
 
-[node name="Stat5" parent="Container/StatsContainer" instance=ExtResource("2")]
+[node name="Stat5" parent="Container/StatsContainer" unique_id=365992215 instance=ExtResource("2")]
 layout_mode = 2
 key = "bombs"
 stats_value = "0"
 
-[node name="StarsContainer" type="GridContainer" parent="Container"]
+[node name="StarsContainer" type="GridContainer" parent="Container" unique_id=1138658592]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 columns = 3
 
-[node name="LogoMinigame" parent="Container/StarsContainer" instance=ExtResource("9")]
+[node name="LogoMinigame" parent="Container/StarsContainer" unique_id=1950670406 instance=ExtResource("9")]
 unique_name_in_owner = true
 layout_mode = 2
 expand_mode = 1
 
-[node name="NameWrapper" type="Node2D" parent="Container"]
+[node name="NameWrapper" type="Node2D" parent="Container" unique_id=513842964]
 z_index = 10
 position = Vector2(160, 84)
 
-[node name="PlayerName" type="Label" parent="Container/NameWrapper"]
+[node name="PlayerName" type="Label" parent="Container/NameWrapper" unique_id=1556493184]
 unique_name_in_owner = true
 offset_left = -140.0
 offset_top = 35.0
@@ -207,18 +235,18 @@ theme_override_font_sizes/font_size = 32
 text = "SAX"
 uppercase = true
 
-[node name="InputWrapper" type="Node2D" parent="Container"]
+[node name="InputWrapper" type="Node2D" parent="Container" unique_id=1169847973]
 z_index = 10
 position = Vector2(160, 84)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Container/InputWrapper"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/InputWrapper" unique_id=260852048]
 unique_name_in_owner = true
 offset_left = -140.0
 offset_top = -20.0
 offset_right = 4.0
 offset_bottom = 130.0
 
-[node name="InsertName" type="LineEdit" parent="Container/InputWrapper/HBoxContainer"]
+[node name="InsertName" type="LineEdit" parent="Container/InputWrapper/HBoxContainer" unique_id=617169649]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
@@ -230,11 +258,15 @@ flat = true
 caret_blink = true
 script = ExtResource("6")
 
-[node name="ScoreWrapper" type="Node2D" parent="Container"]
+[node name="ArcadeWheel" parent="Container/InputWrapper/HBoxContainer" unique_id=1732697280 instance=ExtResource("9_gh7wt")]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ScoreWrapper" type="Node2D" parent="Container" unique_id=1208794439]
 z_index = 10
 position = Vector2(353, 27)
 
-[node name="Score" type="Label" parent="Container/ScoreWrapper"]
+[node name="Score" type="Label" parent="Container/ScoreWrapper" unique_id=1916388756]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 offset_left = 10.0
@@ -251,7 +283,7 @@ text = "999"
 horizontal_alignment = 2
 uppercase = true
 
-[node name="ScoreMax" type="Label" parent="Container/ScoreWrapper"]
+[node name="ScoreMax" type="Label" parent="Container/ScoreWrapper" unique_id=1844040521]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 offset_left = 10.0
@@ -269,7 +301,7 @@ text = "/999"
 horizontal_alignment = 2
 uppercase = true
 
-[node name="MedalShadow" type="Sprite2D" parent="."]
+[node name="MedalShadow" type="Sprite2D" parent="." unique_id=2019292959]
 unique_name_in_owner = true
 modulate = Color(0, 0, 0, 0.705882)
 z_index = 10
@@ -277,35 +309,35 @@ z_as_relative = false
 position = Vector2(796.75, 124)
 texture = ExtResource("9_d6jt3")
 
-[node name="WinnerOutline" type="Node2D" parent="."]
+[node name="WinnerOutline" type="Node2D" parent="." unique_id=13777819]
 unique_name_in_owner = true
 position = Vector2(60, 50)
 
-[node name="Line2Dbelow" type="Line2D" parent="WinnerOutline"]
+[node name="Line2Dbelow" type="Line2D" parent="WinnerOutline" unique_id=757722129]
 points = PackedVector2Array(-35, 0, 500, 0)
 width = 30.0
 texture = ExtResource("10_q8d3u")
 texture_mode = 1
 
-[node name="Line2Dabove" type="Line2D" parent="WinnerOutline"]
+[node name="Line2Dabove" type="Line2D" parent="WinnerOutline" unique_id=690225682]
 z_index = 10
 points = PackedVector2Array(500, 0, 1050, 0, 1000, 150, -50, 150, -50, 0, -35, 0)
 width = 30.0
 texture = ExtResource("10_q8d3u")
 texture_mode = 1
 
-[node name="Medal" type="Sprite2D" parent="."]
+[node name="Medal" type="Sprite2D" parent="." unique_id=1153035233]
 unique_name_in_owner = true
 z_index = 10
 z_as_relative = false
 position = Vector2(796.75, 111)
 texture = ExtResource("9_d6jt3")
 
-[node name="DateWrapper" type="Node2D" parent="."]
+[node name="DateWrapper" type="Node2D" parent="." unique_id=2102082311]
 z_index = 10
 position = Vector2(180, 150)
 
-[node name="DateSession" type="Label" parent="DateWrapper"]
+[node name="DateSession" type="Label" parent="DateWrapper" unique_id=1933570637]
 unique_name_in_owner = true
 offset_left = 725.0
 offset_top = 18.0
