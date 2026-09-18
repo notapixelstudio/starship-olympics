@@ -10,6 +10,7 @@ func _on_sth_collected(collector, collectee):
 		return
 		
 	# assign points
+	# assert traits.has_trait(collector, 'InTeam')
 	Events.points_scored.emit(float(collectee.get_points()), collector.get_team())
 	# show feedback
 	Events.message.emit(collectee.get_points(), collector.get_color(), collectee.global_position)

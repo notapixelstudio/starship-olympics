@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://csgls77y2kr7l" path="res://godot4/actors/managers/ChargeManager.gd" id="5_ostpb"]
 [ext_resource type="PackedScene" uid="uid://bhygc2xfw2jei" path="res://godot4/traits/Target.tscn" id="6_kqe5y"]
 [ext_resource type="PackedScene" uid="uid://c05x0gnt2dob5" path="res://godot4/effects/Bump.tscn" id="6_ml8f4"]
+[ext_resource type="PackedScene" uid="uid://bc0dlgwynswo2" path="res://godot4/traits/OwnedByPlayer.tscn" id="7_is2l4"]
 [ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="8_11rou"]
 [ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://godot4/effects/trails/FlameTrail.tscn" id="10_4jj2i"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="10_iega2"]
@@ -147,7 +148,7 @@ func _on_camera_updated(camera_state:Dictionary) -> void:
 	scale = Vector2(1,1)/camera_state['zoom']
 "
 
-[sub_resource type="Gradient" id="Gradient_ml8f4"]
+[sub_resource type="Gradient" id="Gradient_0funj"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
@@ -181,6 +182,8 @@ dash_ring_scene = ExtResource("2_0puh8")
 death_feedback_scene = ExtResource("3_3e4pi")
 disabled_ship_scene = ExtResource("5_jvf5m")
 bump_effect_scene = ExtResource("6_ml8f4")
+
+[node name="OwnedByPlayer" parent="." unique_id=399587407 instance=ExtResource("7_is2l4")]
 
 [node name="Target" parent="." unique_id=1503176415 instance=ExtResource("6_kqe5y")]
 
@@ -353,7 +356,7 @@ max_length = 100
 
 [node name="MotionAutoTrail" parent="." unique_id=1178586549 node_paths=PackedStringArray("host") instance=ExtResource("11_tsmbp")]
 unique_name_in_owner = true
-gradient = SubResource("Gradient_ml8f4")
+gradient = SubResource("Gradient_0funj")
 host = NodePath("..")
 max_age = 0.4
 

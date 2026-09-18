@@ -40,6 +40,7 @@ func _handle_ship_vs_other(ship:Ship, collider, tag:String='') -> void:
 	# Pews damage Ships
 	if collider is Pew and tag == 'hurt':
 		# no friendly fire
+		# assert traits.has_trait(collider, 'OwnedByPlayer')
 		if ship.get_team() == collider.get_team():
 			return # collision handled
 			
