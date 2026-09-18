@@ -15,3 +15,19 @@ func _physics_process(delta: float) -> void:
 		
 	_direction = global_position.angle_to_point(targets[0].global_position)
 	_move()
+
+func hit(hitter=null):
+	if hitter == null:
+		die()
+		return
+		
+	if hitter is Ship:
+		die(hitter)
+		return
+		
+	if hitter.has_method('get_owner_ship'):
+		die(hitter.get_owner_ship())
+		return
+		
+	die()
+	

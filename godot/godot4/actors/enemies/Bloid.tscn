@@ -4,9 +4,15 @@
 [ext_resource type="Script" uid="uid://brwfmw0p21a1" path="res://godot4/actors/enemies/Bloid.gd" id="2_63srp"]
 [ext_resource type="Texture2D" uid="uid://ds1faooeg1sx" path="res://assets/sprites/enemies/bloid.png" id="3_gdux4"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_gdux4"]
+resource_local_to_scene = true
+radius = 70.0
+
 [node name="Bloid" unique_id=1630210331 instance=ExtResource("1_8o46o")]
 script = ExtResource("2_63srp")
 
-[node name="Sprite2D" parent="." index="1" unique_id=587249607]
-unique_name_in_owner = true
+[node name="CollisionShape2D" parent="." index="1" unique_id=825157555]
+shape = SubResource("CircleShape2D_gdux4")
+
+[node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1974345998) index="0" unique_id=587249607]
 texture = ExtResource("3_gdux4")

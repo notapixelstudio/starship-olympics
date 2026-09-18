@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dfpbnwprwrm7y" path="res://godot4/actors/enemies/Shapeoid.gd" id="1_175e5"]
 [ext_resource type="Texture2D" uid="uid://mmwysrspo8he" path="res://assets/sprites/alchemy/circle.png" id="2_7g54s"]
 [ext_resource type="PackedScene" uid="uid://bkt3uw0ui0kxk" path="res://godot4/effects/appear/AppearDefault.tscn" id="2_co256"]
+[ext_resource type="PackedScene" uid="uid://bhygc2xfw2jei" path="res://godot4/traits/Target.tscn" id="3_co256"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_03e7b"]
 resource_local_to_scene = true
@@ -10,6 +11,9 @@ radius = 70.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gs0y2"]
 radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7g54s"]
+radius = 100.0
 
 [node name="Shapeoid" type="RigidBody2D" unique_id=1630210331 groups=["Shapeoid"]]
 collision_layer = 4096
@@ -20,6 +24,8 @@ linear_damp = 1.0
 angular_damp = 40.0
 script = ExtResource("1_175e5")
 appear_scene = ExtResource("2_co256")
+
+[node name="Target" parent="." unique_id=1351776284 instance=ExtResource("3_co256")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=825157555]
 shape = SubResource("CircleShape2D_03e7b")
@@ -32,9 +38,17 @@ texture = ExtResource("2_7g54s")
 
 [node name="TouchArea2D" type="Area2D" parent="." unique_id=1934388793]
 collision_layer = 0
-collision_mask = 2052
+collision_mask = 2048
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea2D" unique_id=255280539]
 shape = SubResource("CircleShape2D_gs0y2")
 
+[node name="HurtArea2D" type="Area2D" parent="." unique_id=1313724599]
+collision_layer = 0
+collision_mask = 516
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea2D" unique_id=567708755]
+shape = SubResource("CircleShape2D_7g54s")
+
 [connection signal="body_entered" from="TouchArea2D" to="." method="_on_touch_area_2d_body_entered"]
+[connection signal="body_entered" from="HurtArea2D" to="." method="_on_hurt_area_2d_body_entered"]

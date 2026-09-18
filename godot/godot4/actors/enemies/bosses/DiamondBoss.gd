@@ -11,7 +11,7 @@ func _ready() -> void:
 func _on_sth_collected(collector, collectee):
 	hit()
 	
-func hit():
+func hit(hitter=null):
 	%HitAnimationPlayer.stop()
 	%HitAnimationPlayer.play("hit")
 

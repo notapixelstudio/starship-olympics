@@ -73,7 +73,7 @@ func _handle_pew_vs_other(pew:Pew, collider, tag:String='') -> void:
 		pew.destroy() # Mirrors reflect Pews without destroying them
 		
 	if collider.has_method('hit'):
-		collider.hit() # Pews hit all sorts of stuff
+		collider.hit(pew) # Pews hit all sorts of stuff
 		
 	# TBD this was needed in GoalPortal
 	#if collider is Ball and pew.has_ownership_transfer() and pew.get_owner_ship() != null and is_instance_valid(pew.get_owner_ship()):

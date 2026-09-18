@@ -51,7 +51,7 @@ func collect(collector):
 	
 	queue_free()
 
-func hit():
+func hit(hitter=null):
 	%SpriteAnimation.stop()
 	%SpriteAnimation.play('Hit')
 	

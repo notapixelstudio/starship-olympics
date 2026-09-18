@@ -1,6 +1,4 @@
-extends RigidBody2D
-class_name Shapeoid
-
+class_name Shapeoid extends RigidBody2D
 
 @export var speed := 500.0
 @export var appear_scene : PackedScene
@@ -21,13 +19,23 @@ func get_texture() -> Texture:
 	
 func get_appear_texture() -> Texture:
 	return get_texture()
+	
+func get_team() -> String:
+	return 'rogue'
 
-func _on_touch_area_2d_body_entered(sth: Node2D) -> void:
-	if sth is BubbleBullet: # FIXME Bullet abstract superclass?
-		Events.collision.emit(sth, self)
+func _on_touch_area_2d_body_entered(body: Node2D) -> void:
+	pass
 	# what about treasures?
 	# ...
 
-func die(killer):
+func _on_hurt_area_2d_body_entered(body: Node2D) -> void:
+	if body is BubbleBullet or body is Pew or body is Ball: # FIXME Bullet abstract superclass?
+		Events.collision.emit(body, self)
+	
+func hit(hitter=null) -> void:
+	pass
+
+func die(killer=null):
 	if killer is Ship:
 		Events.score.emit(1, killer, global_position) # FIXME choose if this is actually the default scoring, or if killing does not generally score points
+	queue_free()

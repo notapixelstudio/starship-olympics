@@ -59,6 +59,6 @@ func _on_untouchable_timer_timeout() -> void:
 func _reset_untouchable() -> void:
 	_untouchable_by = null
 	
-func hit():
+func hit(hitter=null):
 	%SpriteAnimation.stop()
 	%SpriteAnimation.play('Hit')
