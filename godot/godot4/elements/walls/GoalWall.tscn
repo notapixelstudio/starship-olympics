@@ -20,7 +20,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_dxveg"]
 resource_name = "hit"
-length = 2.0
+length = 0.19999999999999998
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -32,6 +32,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1.5720325, 1.5720325, 1.5720325, 1), Color(0.3, 0.3, 0.3, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ptbjn"]
+resource_name = "hit_bad"
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1.5720325, 0, 0, 1), Color(0.3, 0.3, 0.3, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_m8jsl"]
@@ -54,6 +70,7 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_0msid"),
 &"hit": SubResource("Animation_dxveg"),
+&"hit_bad": SubResource("Animation_ptbjn"),
 &"up": SubResource("Animation_m8jsl")
 }
 
@@ -67,7 +84,7 @@ libraries/ = SubResource("AnimationLibrary_m8jsl")
 
 [node name="Timer" type="Timer" parent="." index="7" unique_id=1606532974]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 9.0
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

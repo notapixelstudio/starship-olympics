@@ -12,14 +12,19 @@ func _turn_on() -> void:
 	%AnimationPlayer.stop(true)
 	%AnimationPlayer.play("up")
 
-func hit(sth:Ball) -> void:
+func hit(sth:TennisBall) -> void:
 	if _on:
 		_on = false
-		Events.score.emit(1, sth.get_owner_ship(), sth.global_position)
+		sth.decrease()
 		%AnimationPlayer.stop(true)
 		%AnimationPlayer.play("hit")
-		sth.apply_central_impulse(1000*sth.linear_velocity.normalized())
-		%Timer.start()
-		
+	else:
+		sth.reset()
+		%AnimationPlayer.stop(true)
+		%AnimationPlayer.play("hit_bad")
+	
+	sth.push(1000)
+	%Timer.start()
+	
 func _on_timer_timeout() -> void:
 	_turn_on()

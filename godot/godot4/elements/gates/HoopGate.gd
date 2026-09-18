@@ -1,3 +1,4 @@
+@tool
 extends Gate
 class_name HoopGate
 

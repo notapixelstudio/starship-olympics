@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c8s08rc21o1ra"]
 
 [ext_resource type="Script" uid="uid://djawiwgh6pg6c" path="res://godot4/elements/cargos/Cargo.gd" id="1_mtln1"]
+[ext_resource type="PackedScene" uid="uid://clbsrjsidxhav" path="res://godot4/traits/Tracked.tscn" id="2_s6d8j"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="2_siay3"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="3_x7m7y"]
 
@@ -88,7 +89,7 @@ _data = {
 &"Shine": SubResource("Animation_ijh7r")
 }
 
-[sub_resource type="Gradient" id="Gradient_6i4t7"]
+[sub_resource type="Gradient" id="Gradient_s6d8j"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
@@ -101,6 +102,9 @@ can_sleep = false
 max_contacts_reported = 10
 linear_damp = 1.0
 script = ExtResource("1_mtln1")
+
+[node name="Tracked" parent="." unique_id=576189435 instance=ExtResource("2_s6d8j")]
+unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1244359233]
 visible = false
@@ -119,7 +123,7 @@ libraries/ = SubResource("AnimationLibrary_lqqh5")
 sprite = NodePath("../Sprite2D")
 
 [node name="MotionAutoTrail" parent="." unique_id=1467177572 node_paths=PackedStringArray("host") instance=ExtResource("3_x7m7y")]
-gradient = SubResource("Gradient_6i4t7")
+gradient = SubResource("Gradient_s6d8j")
 disappear_speed = 1000.0
 host = NodePath("..")
 max_age = 0.6

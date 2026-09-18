@@ -2,8 +2,11 @@ extends RigidBody2D
 class_name Cargo
 
 @export var drop_distance := 64.0
+@export var loadable := true
 
 signal loaded_by(actor: Ship)
+
+@onready var tracked = %Tracked
 
 var _self_scene : PackedScene
 var _untouchable_by = null
@@ -34,6 +37,9 @@ func _on_body_entered(body: Node) -> void:
 		Events.collision.emit(self, body)
 	
 func touched_by(actor) -> void:
+	if not loadable:
+		return
+		
 	# avoid loading a cargo twice, if we already have been loaded
 	if is_queued_for_deletion():
 		return

@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_cvoso"]
 [ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="5_s7seg"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/walls/Wall.tscn" id="6_jgnvr"]
-[ext_resource type="PackedScene" uid="uid://xoqhtny3wi7s" path="res://godot4/elements/gates/PortalGate.tscn" id="8_823ju"]
 [ext_resource type="PackedScene" uid="uid://cjtl150i6hy4c" path="res://godot4/elements/walls/GlassWall.tscn" id="9_fd8hp"]
+[ext_resource type="PackedScene" uid="uid://t5a5e0jwto56" path="res://godot4/elements/gates/HoopGate.tscn" id="9_htple"]
 [ext_resource type="Script" uid="uid://6qs2wtuee7bs" path="res://addons/vshapes/VCircle.gd" id="10_cvoso"]
 [ext_resource type="PackedScene" uid="uid://bwq1u3ii8jr07" path="res://godot4/elements/cargos/SoccerBall.tscn" id="10_fd8hp"]
 
@@ -65,7 +65,45 @@ func _begin_phases():
 	%PewTurretRight.enabled = true
 "
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_fd8hp"]
+[sub_resource type="Animation" id="Animation_fd8hp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HoopGate:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.1415927]
+}
+
+[sub_resource type="Animation" id="Animation_cvoso"]
+resource_name = "default"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HoopGate:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-3.141592653589793, 3.141592653589793]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s7seg"]
+_data = {
+&"RESET": SubResource("Animation_fd8hp"),
+&"default": SubResource("Animation_cvoso")
+}
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jgnvr"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -86,17 +124,16 @@ script = SubResource("GDScript_gbqai")
 zoom = Vector2(0.22, 0.22)
 
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=743158187 instance=ExtResource("4_cvoso")]
-position = Vector2(-600, 0)
+position = Vector2(-1800, -450)
 
 [node name="P2" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="1" unique_id=2091164463 instance=ExtResource("4_cvoso")]
-position = Vector2(600, 0)
-rotation = 3.1415927
+position = Vector2(-1800, 450)
 
 [node name="VRoundedRect" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=19312972 node_paths=PackedStringArray("hosts")]
 script = ExtResource("5_s7seg")
 width = 5000.0
 height = 3000.0
-radius = 600.0
+radius = 900.0
 hosts = [NodePath("../OutsideWall")]
 metadata/_custom_type_script = "uid://dd5es67ha55ia"
 
@@ -104,36 +141,24 @@ metadata/_custom_type_script = "uid://dd5es67ha55ia"
 hollow = true
 
 [node name="GlassWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=450569283 instance=ExtResource("9_fd8hp")]
-position = Vector2(-2150, 0)
 
-[node name="VCircle" type="Node" parent="Battlefield/GlassWall" index="6" unique_id=978024087]
+[node name="VCircle" type="Node" parent="Battlefield/GlassWall" index="6" unique_id=1339558149]
 script = ExtResource("10_cvoso")
-radius = 650.0
+radius = 500.0
 metadata/_custom_type_script = "uid://6qs2wtuee7bs"
 
-[node name="GlassWall2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1826085519 instance=ExtResource("9_fd8hp")]
-position = Vector2(2150, 0)
+[node name="SoccerBall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1878555385 instance=ExtResource("10_fd8hp")]
+position = Vector2(-1050, 0)
+drop_distance = null
+kick_impulse_base = null
+kick_impulse_strength_multiplier = null
 
-[node name="VCircle" type="Node" parent="Battlefield/GlassWall2" index="6" unique_id=1506069558]
-script = ExtResource("10_cvoso")
-radius = 650.0
-metadata/_custom_type_script = "uid://6qs2wtuee7bs"
+[node name="HoopGate" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1789077729 instance=ExtResource("9_htple")]
+rotation = 3.1415927
+width = 700.0
 
-[node name="PortalGate" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=402512641 node_paths=PackedStringArray("linked_to") instance=ExtResource("8_823ju")]
-position = Vector2(-2150, 0)
-linked_to = NodePath("../PortalGate2")
-inverted = true
-width = 950.0
-
-[node name="PortalGate2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=1812592091 node_paths=PackedStringArray("linked_to") instance=ExtResource("8_823ju")]
-position = Vector2(2150, 0)
-rotation = -3.1415925
-linked_to = NodePath("../PortalGate")
-tint = Color(0.2976, 0.50736004, 0.96, 1)
-inverted = true
-width = 950.0
-
-[node name="SoccerBall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=1878555385 instance=ExtResource("10_fd8hp")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=230624970 groups=["animation_starts_with_battle"]]
+libraries/ = SubResource("AnimationLibrary_s7seg")
 
 [node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_fd8hp")
+navigation_polygon = SubResource("NavigationPolygon_jgnvr")

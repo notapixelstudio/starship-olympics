@@ -1,19 +1,48 @@
 [gd_scene format=3 uid="uid://0f7jkcchu81o"]
 
 [ext_resource type="PackedScene" uid="uid://b2sxcvq53b3m7" path="res://godot4/elements/cargos/Ball.tscn" id="1_l0dlv"]
+[ext_resource type="Script" uid="uid://bwcad8c1bptdq" path="res://godot4/elements/cargos/TennisBall.gd" id="2_8nj3x"]
 [ext_resource type="Texture2D" uid="uid://ci0t6deoiprme" path="res://assets/sprites/balls/tennis.png" id="2_ihtfo"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="4_ktla7"]
 
-[sub_resource type="Gradient" id="Gradient_4dube"]
+[sub_resource type="Gradient" id="Gradient_nbrsf"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
 
+[sub_resource type="GDScript" id="GDScript_vtgxc"]
+script/source = "extends Node2D
+
+func _process(delta: float) -> void:
+	global_rotation = 0.0
+"
+
 [node name="TennisBall" unique_id=1878555385 instance=ExtResource("1_l0dlv")]
-impulse_unrest = 0.0
+script = ExtResource("2_8nj3x")
+starting_count = 5
+impulse_unrest = 20.0
+loadable = false
 
 [node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1232204582) index="0" unique_id=686837574]
 texture = ExtResource("2_ihtfo")
 
 [node name="MotionAutoTrail" parent="." index="3" unique_id=1467177572]
 modulate = Color(0.71825707, 0.94538075, 3.85046e-07, 1)
-gradient = SubResource("Gradient_4dube")
+gradient = SubResource("Gradient_nbrsf")
+
+[node name="NoRotate" type="Node2D" parent="." index="6" unique_id=727785383]
+script = SubResource("GDScript_vtgxc")
+
+[node name="Counter" type="Label" parent="NoRotate" index="0" unique_id=2049140518]
+unique_name_in_owner = true
+offset_left = -150.0
+offset_top = -300.0
+offset_right = 150.0
+offset_bottom = -52.0
+theme = ExtResource("4_ktla7")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 60
+theme_override_font_sizes/font_size = 120
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
