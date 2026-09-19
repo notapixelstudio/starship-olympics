@@ -13,7 +13,7 @@ func _turn_on() -> void:
 	%AnimationPlayer.stop(true)
 	%AnimationPlayer.play("up")
 
-func hit(sth:TennisBall) -> void:
+func hit(sth:Ball) -> void:
 	if _on:
 		_on = false
 		sth.decrease()

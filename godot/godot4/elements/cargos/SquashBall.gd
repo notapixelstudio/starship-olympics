@@ -1,5 +1,5 @@
 extends Ball
-class_name TennisBall
+class_name SquashBall
 
 @export var starting_count := 5
 var _count := starting_count
