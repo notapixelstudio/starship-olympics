@@ -1,11 +1,10 @@
-[gd_scene format=3 uid="uid://0f7jkcchu81o"]
+[gd_scene format=3 uid="uid://dikmtm6l8ygkr"]
 
-[ext_resource type="PackedScene" uid="uid://b2sxcvq53b3m7" path="res://godot4/elements/cargos/Ball.tscn" id="1_l0dlv"]
-[ext_resource type="Script" uid="uid://bwcad8c1bptdq" path="res://godot4/elements/cargos/TennisBall.gd" id="2_8nj3x"]
-[ext_resource type="Texture2D" uid="uid://ci0t6deoiprme" path="res://assets/sprites/balls/tennis.png" id="2_ihtfo"]
-[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="4_ktla7"]
+[ext_resource type="PackedScene" uid="uid://b2sxcvq53b3m7" path="res://godot4/elements/cargos/Ball.tscn" id="1_4tt84"]
+[ext_resource type="Texture2D" uid="uid://ci0t6deoiprme" path="res://assets/sprites/balls/tennis.png" id="3_j3qjb"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="4_44p6k"]
 
-[sub_resource type="Gradient" id="Gradient_nbrsf"]
+[sub_resource type="Gradient" id="Gradient_4dube"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
@@ -17,18 +16,15 @@ func _process(delta: float) -> void:
 	global_rotation = 0.0
 "
 
-[node name="TennisBall" unique_id=1878555385 instance=ExtResource("1_l0dlv")]
-script = ExtResource("2_8nj3x")
-starting_count = 5
-impulse_unrest = 20.0
-loadable = false
+[node name="TennisBall" unique_id=1878555385 instance=ExtResource("1_4tt84")]
+impulse_unrest = 0.0
 
 [node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1232204582) index="0" unique_id=686837574]
-texture = ExtResource("2_ihtfo")
+texture = ExtResource("3_j3qjb")
 
 [node name="MotionAutoTrail" parent="." index="3" unique_id=1467177572]
 modulate = Color(0.71825707, 0.94538075, 3.85046e-07, 1)
-gradient = SubResource("Gradient_nbrsf")
+gradient = SubResource("Gradient_4dube")
 
 [node name="NoRotate" type="Node2D" parent="." index="6" unique_id=727785383]
 script = SubResource("GDScript_vtgxc")
@@ -39,7 +35,7 @@ offset_left = -150.0
 offset_top = -300.0
 offset_right = 150.0
 offset_bottom = -52.0
-theme = ExtResource("4_ktla7")
+theme = ExtResource("4_44p6k")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 60
 theme_override_font_sizes/font_size = 120

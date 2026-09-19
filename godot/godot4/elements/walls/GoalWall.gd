@@ -1,6 +1,7 @@
 @tool
 extends "res://godot4/elements/walls/Wall.gd"
 
+@export var reset_time := 5.0
 var _on := false
 
 func _ready():
@@ -24,7 +25,7 @@ func hit(sth:TennisBall) -> void:
 		%AnimationPlayer.play("hit_bad")
 	
 	sth.push(1000)
-	%Timer.start()
+	%Timer.start(reset_time)
 	
 func _on_timer_timeout() -> void:
 	_turn_on()
