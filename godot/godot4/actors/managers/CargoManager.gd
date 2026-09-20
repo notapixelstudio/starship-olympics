@@ -70,7 +70,7 @@ func kick_cargo(charge:float) -> void:
 		host_intended_forward = host_forward
 		
 	var compensated_angle = (host_forward*(1.0-COMPENSATION)+host_intended_forward*COMPENSATION).angle()
-	var spin = -(host_intended_forward.cross(host_forward))
+	var spin = -0.1*(host_intended_forward.cross(host_forward))
 	
 	_launch_cargo(get_host().global_position, get_host().linear_velocity + Vector2(500+5500*charge,0).rotated(compensated_angle), compensated_angle, spin)
 

@@ -1,6 +1,7 @@
 @tool
 extends "res://godot4/elements/walls/Wall.gd"
 
+@export var reset_time := 5.0
 var _on := false
 
 func _ready():
@@ -15,11 +16,16 @@ func _turn_on() -> void:
 func hit(sth:Ball) -> void:
 	if _on:
 		_on = false
-		Events.score.emit(1, sth.get_owner_ship(), sth.global_position)
+		sth.decrease()
 		%AnimationPlayer.stop(true)
 		%AnimationPlayer.play("hit")
-		sth.apply_central_impulse(1000*sth.linear_velocity.normalized())
-		%Timer.start()
-		
+	else:
+		sth.reset()
+		%AnimationPlayer.stop(true)
+		%AnimationPlayer.play("hit_bad")
+	
+	sth.push(1000)
+	%Timer.start(reset_time)
+	
 func _on_timer_timeout() -> void:
 	_turn_on()

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bs56ac47s81wd"]
+
+[sub_resource type="GDScript" id="GDScript_vtgxc"]
+script/source = "extends Node2D
+
+func _process(delta: float) -> void:
+	global_rotation = 0.0
+"
+
+[node name="NoRotate" type="Node2D" unique_id=617035115]
+script = SubResource("GDScript_vtgxc")

@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://0f7jkcchu81o"]
+
+[ext_resource type="PackedScene" uid="uid://b2sxcvq53b3m7" path="res://godot4/elements/cargos/Ball.tscn" id="1_l0dlv"]
+[ext_resource type="Script" uid="uid://bwcad8c1bptdq" path="res://godot4/elements/cargos/SquashBall.gd" id="2_8nj3x"]
+[ext_resource type="Texture2D" uid="uid://cdn74l45p0b0x" path="res://assets/sprites/balls/squash.png" id="3_6r7pm"]
+[ext_resource type="PackedScene" uid="uid://bs56ac47s81wd" path="res://godot4/utils/NoRotate.tscn" id="4_6sxsb"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="4_ktla7"]
+
+[sub_resource type="Gradient" id="Gradient_6r7pm"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.997561)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
+
+[node name="SquashBall" unique_id=1878555385 instance=ExtResource("1_l0dlv")]
+script = ExtResource("2_8nj3x")
+starting_count = 5
+impulse_unrest = 20.0
+kick_impulse_base = 150.0
+loadable = false
+
+[node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1232204582) index="0" unique_id=686837574]
+texture = ExtResource("3_6r7pm")
+
+[node name="MotionAutoTrail" parent="." index="3" unique_id=1467177572]
+modulate = Color(0.9490196, 0.6745098, 0, 1)
+gradient = SubResource("Gradient_6r7pm")
+
+[node name="NoRotate" parent="." index="6" unique_id=617035115 instance=ExtResource("4_6sxsb")]
+
+[node name="Counter" type="Label" parent="NoRotate" index="0" unique_id=2049140518]
+unique_name_in_owner = true
+offset_left = -150.0
+offset_top = -300.0
+offset_right = 150.0
+offset_bottom = -52.0
+theme = ExtResource("4_ktla7")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.9490196, 0.6745098, 0, 1)
+theme_override_constants/outline_size = 60
+theme_override_font_sizes/font_size = 120
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1

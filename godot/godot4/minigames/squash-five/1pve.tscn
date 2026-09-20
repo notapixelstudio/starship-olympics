@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://cwn7s08isixrh"]
+
+[ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_k16k6"]
+[ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_j3pkt"]
+[ext_resource type="Resource" uid="uid://dtnwwsygwm7wy" path="res://godot4/data/styles/tennis.tres" id="3_y10ir"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="5_xpj10"]
+[ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="5_y10ir"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/walls/Wall.tscn" id="7_o8tdb"]
+[ext_resource type="PackedScene" uid="uid://dkobwffaq7irc" path="res://godot4/elements/walls/GoalWall.tscn" id="10_y10ir"]
+[ext_resource type="Script" uid="uid://dwa5kst63hc3b" path="res://addons/vshapes/VRect.gd" id="11_k16k6"]
+[ext_resource type="PackedScene" uid="uid://0f7jkcchu81o" path="res://godot4/elements/cargos/SquashBall.tscn" id="11_y10ir"]
+
+[sub_resource type="GDScript" id="GDScript_42dwm"]
+script/source = "extends Orchestrator
+
+func _ready():
+	await super()
+	# do nothing at start
+"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3m4om"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[node name="PveArena" unique_id=1481253217 instance=ExtResource("1_k16k6")]
+default_params = ExtResource("2_j3pkt")
+
+[node name="Styleable" parent="." index="0" unique_id=999924478]
+style = ExtResource("3_y10ir")
+
+[node name="Orchestrator" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="0" unique_id=1592803965]
+script = SubResource("GDScript_42dwm")
+
+[node name="Camera2D" parent="." index="2" unique_id=956979488]
+zoom = Vector2(0.23, 0.23)
+
+[node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=743158187 instance=ExtResource("5_xpj10")]
+position = Vector2(0, 750)
+rotation = -1.5707964
+
+[node name="VBeveledRect" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=1203639568 node_paths=PackedStringArray("hosts")]
+script = ExtResource("5_y10ir")
+width = 2800.0
+height = 2800.0
+bevel = 550.0
+hosts = [NodePath("../OutsideWall")]
+metadata/_custom_type_script = "uid://dcjvxjj0myiia"
+
+[node name="SquashBall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=1878555385 instance=ExtResource("11_y10ir")]
+unique_name_in_owner = true
+
+[node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=480981193 instance=ExtResource("7_o8tdb")]
+hollow = true
+
+[node name="GoalWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1309650842 instance=ExtResource("10_y10ir")]
+position = Vector2(0, -1400)
+
+[node name="VRect" type="Node" parent="Battlefield/GoalWall" index="6" unique_id=1241665718]
+script = ExtResource("11_k16k6")
+width = 1500.0
+height = 50.0
+metadata/_custom_type_script = "uid://dwa5kst63hc3b"
+
+[node name="GoalWall2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1898710476 instance=ExtResource("10_y10ir")]
+position = Vector2(0, 1400)
+
+[node name="VRect" type="Node" parent="Battlefield/GoalWall2" index="6" unique_id=1549525075]
+script = ExtResource("11_k16k6")
+width = 1500.0
+height = 50.0
+metadata/_custom_type_script = "uid://dwa5kst63hc3b"
+
+[node name="GoalWall3" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=871790856 instance=ExtResource("10_y10ir")]
+position = Vector2(1400, 0)
+
+[node name="VRect" type="Node" parent="Battlefield/GoalWall3" index="6" unique_id=274496931]
+script = ExtResource("11_k16k6")
+width = 50.0
+height = 1500.0
+metadata/_custom_type_script = "uid://dwa5kst63hc3b"
+
+[node name="GoalWall4" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=1763046155 instance=ExtResource("10_y10ir")]
+position = Vector2(-1400, 0)
+
+[node name="VRect" type="Node" parent="Battlefield/GoalWall4" index="6" unique_id=176178716]
+script = ExtResource("11_k16k6")
+width = 50.0
+height = 1500.0
+metadata/_custom_type_script = "uid://dwa5kst63hc3b"
+
+[node name="Navigation" parent="." index="6" unique_id=332973589]
+navigation_polygon = SubResource("NavigationPolygon_3m4om")
