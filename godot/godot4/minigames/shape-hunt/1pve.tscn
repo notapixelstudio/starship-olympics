@@ -17,13 +17,13 @@
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="15_t4qwi"]
 [ext_resource type="PackedScene" uid="uid://0f7jkcchu81o" path="res://godot4/elements/cargos/SquashBall.tscn" id="16_0243w"]
 
-[sub_resource type="Curve2D" id="Curve2D_kajsn"]
+[sub_resource type="Curve2D" id="Curve2D_0243w"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -1650, -1350, 0, 0, 0, 0, -250, -1350, 0, 0, 0, 0, -150, -1250, 0, 0, 0, 0, -50, -1350, 0, 0, 0, 0, 1650, -1350, 0, 0, 0, 0, 1650, -300, 0, 0, 0, 0, 2100, 150, 0, 0, 0, 0, 1650, 600, 0, 0, 0, 0, 1650, 1350, 0, 0, 0, 0, 250, 1350, 0, 0, 0, 0, 150, 1250, 0, 0, 0, 0, 50, 1350, 0, 0, 0, 0, -1650, 1350, 0, 0, 0, 0, -1650, 300, 0, 0, 0, 0, -2100, -150, 0, 0, 0, 0, -1650, -600)
 }
 point_count = 16
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_2o5c6"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_kajsn"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -53,7 +53,7 @@ position = Vector2(0, 1050)
 rotation = -1.5707964
 
 [node name="VCustomShape" type="Path2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=1727617156 node_paths=PackedStringArray("hosts")]
-curve = SubResource("Curve2D_kajsn")
+curve = SubResource("Curve2D_0243w")
 script = ExtResource("7_nm0c8")
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 metadata/_custom_type_script = "uid://dpekcskbmlpy3"
@@ -149,4 +149,7 @@ speed = 30000.0
 position = Vector2(0, 750)
 
 [node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_2o5c6")
+navigation_polygon = SubResource("NavigationPolygon_kajsn")
+
+[node name="NoisePostProcessing" parent="HUD" parent_id_path=PackedInt32Array(737164047) index="10" unique_id=603741564]
+top_level = true

@@ -20,12 +20,15 @@ func set_style(style:Style) -> void:
 	%UnderLine2D.default_color = style.underline_color
 	%UnderLine2D.texture = style.underline_texture
 	%UnderLine2D.width = style.underline_width
+	%GlowLine2D.default_color = style.glow_line_color
+	%GlowLine2D.width = style.glow_line_width
 	
 func set_polygon(v: PackedVector2Array) -> void:
 	polygon = v
 	%Polygon2D.set_polygon(polygon)
 	%Line2D.set_points(polygon)
 	%UnderLine2D.set_points(polygon)
+	%GlowLine2D.set_points(polygon)
 	%UnderPolygon2D.set_polygon(polygon)
 	update_collision_polygon()
 	

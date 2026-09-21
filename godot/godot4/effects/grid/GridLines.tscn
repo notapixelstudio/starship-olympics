@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cors4pgqhn0ig"]
+[gd_scene format=3 uid="uid://cors4pgqhn0ig"]
 
 [sub_resource type="GDScript" id="GDScript_1vrqt"]
 script/source = "extends Node2D
@@ -6,9 +6,10 @@ script/source = "extends Node2D
 @export var size := Vector2(200, 200)
 @export var cell_size := Vector2.ONE * 100
 @export var color : Color = Color.GRAY
-@export var grid_thickness := 4.0
+@export var grid_thickness := 8.0
 @export var outline_thickness := 0.0
 @export var enabled : bool = true
+@export var checkered := false
 
 @export_enum('square', 'triangular') var type = \"square\"
 
@@ -135,20 +136,29 @@ func _process(delta):
 			lines[h_cells + h_cells + point.index.y].set_point_position(point.index.x, point.position)
 			
 	# MESH SUPPORT
-	#mesh.clear_surfaces()
-	#mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
-	#for x in range(h_cells-1):
-		#for y in range(v_cells-1):
-			##if (x+y) % 2:
-			##	continue
-			#mesh.surface_add_vertex(Vector3(grid[y][x].x(), grid[y][x].y(), 0))
-			#mesh.surface_add_vertex(Vector3(grid[y][x+1].x(), grid[y][x+1].y(), 0))
-			#mesh.surface_add_vertex(Vector3(grid[y+1][x].x(), grid[y+1][x].y(), 0))
-			#
-			##mesh.surface_add_vertex(Vector3(grid[y+1][x+1].x(), grid[y+1][x+1].y(), 0))
-			##mesh.surface_add_vertex(Vector3(grid[y][x+1].x(), grid[y][x+1].y(), 0))
-			##mesh.surface_add_vertex(Vector3(grid[y+1][x].x(), grid[y+1][x].y(), 0))
-	#mesh.surface_end()
+	mesh.clear_surfaces()
+	mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
+	for x in range(h_cells-1):
+		for y in range(v_cells-1):
+			if checkered and (x+y) % 2:
+				continue
+			
+			# top-left triangle
+			mesh.surface_set_uv(Vector2(0, 0))
+			mesh.surface_add_vertex_2d(Vector2(grid[y][x].x(), grid[y][x].y()))
+			mesh.surface_set_uv(Vector2(1, 0))
+			mesh.surface_add_vertex_2d(Vector2(grid[y][x+1].x(), grid[y][x+1].y()))
+			mesh.surface_set_uv(Vector2(0, 1))
+			mesh.surface_add_vertex_2d(Vector2(grid[y+1][x].x(), grid[y+1][x].y()))
+			
+			# bottom-right triangle
+			mesh.surface_set_uv(Vector2(1, 1))
+			mesh.surface_add_vertex_2d(Vector2(grid[y+1][x+1].x(), grid[y+1][x+1].y()))
+			mesh.surface_set_uv(Vector2(1, 0))
+			mesh.surface_add_vertex_2d(Vector2(grid[y][x+1].x(), grid[y][x+1].y()))
+			mesh.surface_set_uv(Vector2(0, 1))
+			mesh.surface_add_vertex_2d(Vector2(grid[y+1][x].x(), grid[y+1][x].y()))
+	mesh.surface_end()
 
 
 class Point:
@@ -202,11 +212,11 @@ class Point:
 		return position.y
 "
 
-[node name="GridLines" type="Node2D"]
+[node name="GridLines" type="Node2D" unique_id=179699439]
 light_mask = 3
 script = SubResource("GDScript_1vrqt")
 
-[node name="Outline" type="Line2D" parent="."]
+[node name="Outline" type="Line2D" parent="." unique_id=528552870]
 unique_name_in_owner = true
 light_mask = 3
 closed = true
