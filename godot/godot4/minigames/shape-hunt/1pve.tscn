@@ -13,17 +13,15 @@
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="12_t2pn6"]
 [ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="14_8smqk"]
 [ext_resource type="PackedScene" uid="uid://buaj7gsl2nn8y" path="res://godot4/actors/enemies/Bloid.tscn" id="14_tpiis"]
-[ext_resource type="PackedScene" uid="uid://c107dwhlumi1g" path="res://godot4/actors/enemies/Deployd.tscn" id="15_jtmvm"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="15_t4qwi"]
-[ext_resource type="PackedScene" uid="uid://0f7jkcchu81o" path="res://godot4/elements/cargos/SquashBall.tscn" id="16_0243w"]
 
-[sub_resource type="Curve2D" id="Curve2D_0243w"]
+[sub_resource type="Curve2D" id="Curve2D_juwns"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -1650, -1350, 0, 0, 0, 0, -250, -1350, 0, 0, 0, 0, -150, -1250, 0, 0, 0, 0, -50, -1350, 0, 0, 0, 0, 1650, -1350, 0, 0, 0, 0, 1650, -300, 0, 0, 0, 0, 2100, 150, 0, 0, 0, 0, 1650, 600, 0, 0, 0, 0, 1650, 1350, 0, 0, 0, 0, 250, 1350, 0, 0, 0, 0, 150, 1250, 0, 0, 0, 0, 50, 1350, 0, 0, 0, 0, -1650, 1350, 0, 0, 0, 0, -1650, 300, 0, 0, 0, 0, -2100, -150, 0, 0, 0, 0, -1650, -600)
 }
 point_count = 16
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_kajsn"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_h67u1"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -53,7 +51,7 @@ position = Vector2(0, 1050)
 rotation = -1.5707964
 
 [node name="VCustomShape" type="Path2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=1727617156 node_paths=PackedStringArray("hosts")]
-curve = SubResource("Curve2D_0243w")
+curve = SubResource("Curve2D_juwns")
 script = ExtResource("7_nm0c8")
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 metadata/_custom_type_script = "uid://dpekcskbmlpy3"
@@ -141,15 +139,5 @@ position = Vector2(1200, 900)
 pattern = "single"
 element_scene = ExtResource("14_tpiis")
 
-[node name="Deployd" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="10" unique_id=1630210331 instance=ExtResource("15_jtmvm")]
-position = Vector2(-300, -200)
-speed = 30000.0
-
-[node name="TennisBall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="11" unique_id=1878555385 instance=ExtResource("16_0243w")]
-position = Vector2(0, 750)
-
 [node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_kajsn")
-
-[node name="NoisePostProcessing" parent="HUD" parent_id_path=PackedInt32Array(737164047) index="10" unique_id=603741564]
-top_level = true
+navigation_polygon = SubResource("NavigationPolygon_h67u1")
