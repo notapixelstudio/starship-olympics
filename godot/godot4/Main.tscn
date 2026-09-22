@@ -11,20 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://gvjq5iyxk81y" path="res://godot4/ui/touch_controls/TouchControls.tscn" id="7_touch"]
 [ext_resource type="PackedScene" uid="uid://br2xue6kgmc5f" path="res://godot4/minigames/diamondsnatch/3pve.tscn" id="7_utmud"]
 [ext_resource type="PackedScene" uid="uid://bh8hbiur3qgf6" path="res://godot4/minigames/diamondsnatch/4pve.tscn" id="8_o8020"]
-
-[sub_resource type="Shader" id="Shader_firiq"]
-code = "shader_type canvas_item;
-
-uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
-
-void fragment() {
-	vec4 screen_sample = texture(screen_texture, SCREEN_UV);
-	
-	COLOR.rgb = screen_sample.rgb*3.0*COLOR.rgb;
-}"
+[ext_resource type="Shader" uid="uid://qj4beet66b8h" path="res://godot4/shaders/custom_multiply_screen_blend.gdshader" id="11_qah4k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kkkyo"]
-shader = SubResource("Shader_firiq")
+shader = ExtResource("11_qah4k")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ll0pi"]
 frequency = 1.0
