@@ -1,24 +1,22 @@
 extends Node2D
 
-@export var game_scene_2p : PackedScene
-@export var game_scene_3p: PackedScene
-@export var game_scene_4p: PackedScene
-@export var game_scene_1pve: PackedScene
-@export var game_scene_2pve: PackedScene
-@export var game_scene_3pve: PackedScene
-@export var game_scene_4pve: PackedScene
+
+var _current_session : Session
+var _current_match
 
 var _screen_controller
-var _current_game
 
 func _ready() -> void:
 	_screen_controller = %ScreenController
 	%TouchControls.hide_controls()
 	
-	Events.versus_game_start.connect(begin_versus_game)
-	Events.campaign_game_start.connect(begin_campaign_game)
-	Events.continue_after_match_over.connect(_on_continue_after_match_over_event)
-	Events.nav_to_character_selection.connect(_on_nav_to_character_selection_event)
+	Events.pvp_characters_selected.connect(_on_pvp_characters_selected)
+	Events.pve_characters_selected.connect(_on_pve_characters_selected)
+	Events.level_selection_screen_ready.connect(_on_level_selection_screen_ready)
+	Events.level_selected.connect(_on_level_selected)
+	
+	Events.continue_after_match_over.connect(_on_continue_after_match_over)
+	Events.nav_to_level_selection.connect(_on_nav_to_level_selection)
 	_screen_controller.transition_ended.connect(_on_screen_transition_ended)
 
 func _on_screen_transition_ended(_action: String, _from_id: String, _to_id: String) -> void:
@@ -27,57 +25,44 @@ func _on_screen_transition_ended(_action: String, _from_id: String, _to_id: Stri
 func _on_ScreenController_transition_started(action:String, from_id:String, to_id:String):
 	Events.emit_signal("analytics_event", {"id": UUID.v4(), "action": action, "from": from_id, "to": to_id}, "navigation")
 	
-func begin_versus_game(players:Array[Player]) -> void:
-	var session = SingleMatchSession.new()
-	var player_count = len(players)
+func _on_pvp_characters_selected(players:Array[Player]) -> void:
+	_current_session = SinglePvpMatchSession.new()
+	_current_session.players = players
 	
-	if player_count == 2:
-		new_game(session, players, game_scene_2p)
-	elif player_count == 3:
-		new_game(session, players, game_scene_3p)
-	elif player_count == 4:
-		new_game(session, players, game_scene_4p)
-		
-func begin_campaign_game(players:Array[Player]) -> void:
-	var session = SinglePveMatchSession.new()
-	var player_count = len(players)
+func _on_pve_characters_selected(players:Array[Player]) -> void:
+	_current_session = SinglePveMatchSession.new()
+	_current_session.players = players
 	
-	if player_count == 1:
-		new_game(session, players, game_scene_1pve)
-	elif player_count == 2:
-		new_game(session, players, game_scene_2pve)
-	elif player_count == 3:
-		new_game(session, players, game_scene_3pve)
-	elif player_count == 4:
-		new_game(session, players, game_scene_4pve)
+func _on_level_selection_screen_ready(level_selection_screen:Screen) -> void:
+	level_selection_screen.list_levels_for_session(_current_session)
 	
-func new_game(session:Session, players:Array[Player], game_scene:PackedScene):
-	if _current_game:
-		remove_child(_current_game)
-		_current_game.queue_free()
+func _on_level_selected(level_scene:PackedScene):
+	if _current_match:
+		remove_child(_current_match)
+		_current_match.queue_free()
 		
 	await Events.loading_screen_done
 	_remove_screens()
 	
-	_current_game = game_scene.instantiate()
-	_current_game.players = players
-	_current_game.session = session
-	add_child(_current_game)
+	_current_match = level_scene.instantiate()
+	_current_match.players = _current_session.players
+	_current_match.session = _current_session
+	add_child(_current_match)
 	%TouchControls.show_controls()
 	
 func _remove_screens():
 	remove_child(_screen_controller)
 	
-func _on_continue_after_match_over_event():
+func _on_continue_after_match_over():
 	reset()
 	
-func _on_nav_to_character_selection_event():
+func _on_nav_to_level_selection():
 	reset()
 	
 func reset():
-	if _current_game:
-		remove_child(_current_game)
-		_current_game.queue_free()
+	if _current_match:
+		remove_child(_current_match)
+		_current_match.queue_free()
 		
 	%TouchControls.hide_controls()
 	add_child(_screen_controller)

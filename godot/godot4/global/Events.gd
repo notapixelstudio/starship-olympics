@@ -35,8 +35,10 @@ signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no d
 # BEGIN 4.x events
 
 # after character selection
-signal versus_game_start(players_data:Array[Player])
-signal campaign_game_start(players_data:Array[Player])
+signal pvp_characters_selected(players_data:Array[Player])
+signal pve_characters_selected(players_data:Array[Player])
+signal level_selection_screen_ready(level_selection_screen:Screen)
+signal level_selected(level:PackedScene)
 
 # players ready
 signal player_ready(player)
@@ -114,7 +116,7 @@ signal continue_after_game_over(session_ended)
 signal continue_after_session_ended
 
 signal nav_to_menu
-signal nav_to_map
+signal nav_to_level_selection
 signal nav_to_character_selection
 signal nav_to_scene(scene)
 

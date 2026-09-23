@@ -8,7 +8,6 @@ var players : Array
 var timestamp_local : String
 var timestamp : String
 
-
 func get_last_score()->Scores:
 	return scores[-1]
 	
