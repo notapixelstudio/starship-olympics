@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Minigame" format=3 uid="uid://cqdft3xwftxpu"]
 
 [ext_resource type="PackedScene" uid="uid://cc33kbqafn06s" path="res://godot4/actors/brains/DiamondsnatchBrain.tscn" id="1_nksr0"]
-[ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="2_lm1x5"]
+[ext_resource type="Texture2D" uid="uid://blxpmy8hagjsh" path="res://assets/icon/minigames/shape-hunt.png" id="2_d6xu2"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="3_sfamp"]
 [ext_resource type="Script" uid="uid://tavpq5uhlyhr" path="res://godot4/data/minigames/Minigame.gd" id="4_xlwpi"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="5_po76h"]
@@ -11,7 +11,7 @@
 [resource]
 script = ExtResource("4_xlwpi")
 title = "shape hunt!"
-icon = ExtResource("2_lm1x5")
+icon = ExtResource("2_d6xu2")
 description = "kill the shapes"
 soundtrack = ExtResource("6_1dqau")
 cpu_brain_scene = ExtResource("1_nksr0")

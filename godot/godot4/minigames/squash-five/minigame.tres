@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Minigame" format=3 uid="uid://dtsqb0j6pvbnm"]
 
 [ext_resource type="PackedScene" uid="uid://cc33kbqafn06s" path="res://godot4/actors/brains/DiamondsnatchBrain.tscn" id="1_i2bvr"]
-[ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minicards/sets/diamondsnatch.png" id="2_ec5ci"]
+[ext_resource type="Texture2D" uid="uid://ddoec0h4uj82b" path="res://assets/icon/minigames/squash-five.png" id="2_i2bvr"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="3_rjqf3"]
 [ext_resource type="Script" uid="uid://tavpq5uhlyhr" path="res://godot4/data/minigames/Minigame.gd" id="4_4u75p"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="5_oq0el"]
@@ -10,7 +10,7 @@
 [resource]
 script = ExtResource("4_4u75p")
 title = "squash five"
-icon = ExtResource("2_ec5ci")
+icon = ExtResource("2_i2bvr")
 description = "hit the ball against the walls"
 soundtrack = ExtResource("6_8483e")
 cpu_brain_scene = ExtResource("1_i2bvr")
