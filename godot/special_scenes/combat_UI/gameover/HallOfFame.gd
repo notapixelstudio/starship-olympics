@@ -68,7 +68,10 @@ func _input(event):
 			#get_tree().change_scene_to_file(menu_scene)
 		#queue_free()
 		
-	pass
+	await get_tree().create_timer(1.0).timeout
+	
+	get_tree().paused = false
+	Events.continue_after_match_over.emit()
 	
 func _process(delta: float) -> void:
 	if is_processing_input():

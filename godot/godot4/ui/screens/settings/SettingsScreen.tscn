@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c50sd4reltwxp"]
+[gd_scene format=3 uid="uid://c50sd4reltwxp"]
 
 [ext_resource type="PackedScene" uid="uid://bhq3klwabv0i8" path="res://godot4/ui/screens/back_screen/BackScreen.tscn" id="1"]
 [ext_resource type="Script" uid="uid://dy1lwfh72rk3a" path="res://godot4/ui/screens/settings/SettingsScreen.gd" id="2"]
@@ -17,19 +17,22 @@ func _on_focus_entered():
 	find_next_valid_focus().grab_focus()
 "
 
-[node name="SettingsScreen" instance=ExtResource("1")]
+[node name="SettingsScreen" unique_id=1421266882 instance=ExtResource("1")]
 script = ExtResource("2")
+
+[node name="FancyMenu" parent="." index="1"]
+layout_mode = 0
 
 [node name="Back" parent="FancyMenu" index="0"]
 focus_neighbor_bottom = NodePath("../../SettingsContainer")
 
-[node name="MenuLabel" parent="." index="2" instance=ExtResource("4")]
+[node name="MenuLabel" parent="." index="2" unique_id=2104358231 instance=ExtResource("4")]
 modulate = Color(1, 0.827451, 0.396078, 1)
 position = Vector2(650, 50)
 scale = Vector2(2.5, 2.5)
 text = "SETTINGS"
 
-[node name="SettingsContainer" type="VBoxContainer" parent="." index="3"]
+[node name="SettingsContainer" type="VBoxContainer" parent="." index="3" unique_id=543123393]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 340.0
@@ -39,15 +42,15 @@ offset_bottom = 700.0
 focus_mode = 2
 script = SubResource("GDScript_hktjs")
 
-[node name="Language" parent="SettingsContainer" index="0" instance=ExtResource("5_hktjs")]
+[node name="Language" parent="SettingsContainer" index="0" unique_id=2139660049 instance=ExtResource("5_hktjs")]
 layout_mode = 2
 setting_name = "language"
 
-[node name="Fullscreen" parent="SettingsContainer" index="1" instance=ExtResource("4_7shd3")]
+[node name="Fullscreen" parent="SettingsContainer" index="1" unique_id=330461038 instance=ExtResource("4_7shd3")]
 layout_mode = 2
 setting_name = "fullscreen"
 
-[node name="Sound" type="Label" parent="SettingsContainer" index="2"]
+[node name="Sound" type="Label" parent="SettingsContainer" index="2" unique_id=1018707616]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
@@ -55,14 +58,14 @@ text = "SOUND VOLUME"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Master" parent="SettingsContainer" index="3" instance=ExtResource("6_m0wfn")]
+[node name="Master" parent="SettingsContainer" index="3" unique_id=1486430124 instance=ExtResource("6_m0wfn")]
 layout_mode = 2
 setting_name = "master"
 
-[node name="Music" parent="SettingsContainer" index="4" instance=ExtResource("6_m0wfn")]
+[node name="Music" parent="SettingsContainer" index="4" unique_id=1314830274 instance=ExtResource("6_m0wfn")]
 layout_mode = 2
 setting_name = "music"
 
-[node name="SFX" parent="SettingsContainer" index="5" instance=ExtResource("6_m0wfn")]
+[node name="SFX" parent="SettingsContainer" index="5" unique_id=560336102 instance=ExtResource("6_m0wfn")]
 layout_mode = 2
 setting_name = "sfx"

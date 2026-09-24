@@ -44,6 +44,3 @@ func _on_press_any_key_any_key_pressed() -> void:
 	add_child(s)
 	%PressAnyKey.disable()
 	
-	# get_tree().paused = false
-	# Events.continue_after_match_over.emit()
-	

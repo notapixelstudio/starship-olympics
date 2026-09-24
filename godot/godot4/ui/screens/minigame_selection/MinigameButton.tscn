@@ -1,16 +1,30 @@
 [gd_scene format=3 uid="uid://yjwrsy1iwniu"]
 
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1_gd6mr"]
-[ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minigames/diamondsnatch.png" id="2_a8uc5"]
+[ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minigames/diamondsnatch.png" id="3_2mvoh"]
 [ext_resource type="Script" uid="uid://btsgtplre5vec" path="res://godot4/ui/screens/minigame_selection/MinigameButton.gd" id="3_a8uc5"]
 
 [node name="MinigameButton" type="Button" unique_id=440342315]
+custom_minimum_size = Vector2(550, 100)
 theme = ExtResource("1_gd6mr")
-theme_override_constants/h_separation = 10
-theme_override_constants/icon_max_width = 160
-theme_override_font_sizes/font_size = 28
-text = "DIAMONDSNATCH"
-icon = ExtResource("2_a8uc5")
+theme_override_font_sizes/font_size = 32
+text = "DIAMONDSNATCH  "
+alignment = 2
 script = ExtResource("3_a8uc5")
 
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1716468699]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.78431374)
+position = Vector2(100, 47)
+scale = Vector2(0.43, 0.43)
+texture = ExtResource("3_2mvoh")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1862105466]
+unique_name_in_owner = true
+position = Vector2(100.00001, 39.999996)
+scale = Vector2(0.43, 0.43)
+texture = ExtResource("3_2mvoh")
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]
