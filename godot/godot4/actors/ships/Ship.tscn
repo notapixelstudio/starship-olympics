@@ -148,7 +148,7 @@ func _on_camera_updated(camera_state:Dictionary) -> void:
 	scale = Vector2(1,1)/camera_state['zoom']
 "
 
-[sub_resource type="Gradient" id="Gradient_0funj"]
+[sub_resource type="Gradient" id="Gradient_is2l4"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
@@ -196,10 +196,11 @@ scale = Vector2(1.25, 1.25)
 
 [node name="Glow" type="PointLight2D" parent="Graphics" unique_id=1092668339]
 unique_name_in_owner = true
-energy = 20.0
+energy = 30.0
 blend_mode = 2
 range_item_cull_mask = 2
 texture = ExtResource("8_11rou")
+texture_scale = 1.5
 
 [node name="BallSprite" type="Sprite2D" parent="Graphics" unique_id=1170454869]
 unique_name_in_owner = true
@@ -356,7 +357,7 @@ max_length = 100
 
 [node name="MotionAutoTrail" parent="." unique_id=1178586549 node_paths=PackedStringArray("host") instance=ExtResource("11_tsmbp")]
 unique_name_in_owner = true
-gradient = SubResource("Gradient_0funj")
+gradient = SubResource("Gradient_is2l4")
 host = NodePath("..")
 max_age = 0.4
 

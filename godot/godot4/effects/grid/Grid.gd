@@ -16,6 +16,13 @@ func set_dy(v:float) -> void:
 	
 func set_style(style:Style) -> void:
 	%GridLines.color = style.grid_color
+	%GridLines.visible = style.grid_visible
+	%GridLines.grid_thickness = style.grid_thickness
+	%MeshInstance2D.texture = style.mesh_texture
+	%MeshInstance2D.visible = style.mesh_visible
+	%MeshInstance2D.modulate = style.mesh_color
+	%GridLines.checkered = style.mesh_checkered
+	%GridLines.enabled = %GridLines.visible or %MeshInstance2D.visible
 
 func _ready():
 	set_style(%Styleable.get_style_from_ancestor_or_self())
@@ -33,7 +40,7 @@ func _ready():
 	#grid.set_process(enabled)
 	
 	# MESH SUPPORT
-	#%GridLines.mesh = %MeshInstance2D.mesh # FIXME please
+	%GridLines.mesh = %MeshInstance2D.mesh # FIXME please
 	
 func set_points(points: PackedVector2Array) -> void:
 	mask.set_points(points)

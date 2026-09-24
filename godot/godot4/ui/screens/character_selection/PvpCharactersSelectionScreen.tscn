@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://tt4ep0tngmth"]
+
+[ext_resource type="Script" uid="uid://2g1w5g0yde5u" path="res://godot4/ui/screens/character_selection/PvpCharactersSelectionScreen.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://bhq3klwabv0i8" path="res://godot4/ui/screens/back_screen/BackScreen.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bfjk2jikcv4ub" path="res://utils/ShearLabel.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://druc45wf3k3t2" path="res://godot4/ui/screens/minigame_selection/MinigameSelectionScreen.tscn" id="3_7p2o5"]
+[ext_resource type="PackedScene" uid="uid://6j8veiwxchng" path="res://godot4/ui/screens/character_selection/selection_panel/SelectionPanel.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://cgu7lwmnkg60h" path="res://godot4/ui/screens/character_selection/selection_panel/PilotSelector.tscn" id="6"]
+
+[node name="PvpCharactersSelectionScreen" unique_id=603894642 instance=ExtResource("2")]
+script = ExtResource("1")
+next_scene = ExtResource("3_7p2o5")
+
+[node name="FancyMenu" parent="." index="1"]
+layout_mode = 0
+
+[node name="MenuLabel" parent="." index="2" unique_id=463468265 instance=ExtResource("3")]
+modulate = Color(1, 0.827451, 0.396078, 1)
+position = Vector2(650, 50)
+scale = Vector2(2.5, 2.5)
+text = "VERSUS"
+
+[node name="Node2D" type="Node2D" parent="." index="3" unique_id=831353107]
+
+[node name="SelectionPanel" parent="Node2D" index="0" unique_id=1790638632 instance=ExtResource("5")]
+unique_name_in_owner = true
+
+[node name="PilotSelector" parent="Node2D/SelectionPanel" index="0" unique_id=381335289 instance=ExtResource("6")]
+position = Vector2(224, 200)
+player_id = "P1"
+
+[node name="PilotSelector2" parent="Node2D/SelectionPanel" index="1" unique_id=1044733119 instance=ExtResource("6")]
+position = Vector2(824, 488)
+player_id = "P2"
+
+[node name="PilotSelector3" parent="Node2D/SelectionPanel" index="2" unique_id=1388754747 instance=ExtResource("6")]
+position = Vector2(224, 488)
+player_id = "P3"
+
+[node name="PilotSelector4" parent="Node2D/SelectionPanel" index="3" unique_id=1724276264 instance=ExtResource("6")]
+position = Vector2(824, 200)
+player_id = "P4"
+
+[connection signal="selection_completed" from="Node2D/SelectionPanel" to="." method="_on_SelectionPanel_selection_completed"]

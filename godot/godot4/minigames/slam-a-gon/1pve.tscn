@@ -63,6 +63,45 @@ func _begin_phases():
 	%PewTurretRight.enabled = true
 "
 
+[sub_resource type="Animation" id="Animation_b1864"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:shape_rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_q1cu7"]
+resource_name = "default"
+length = 20.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:shape_rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 360.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gb5uu"]
+_data = {
+&"RESET": SubResource("Animation_b1864"),
+&"default": SubResource("Animation_q1cu7")
+}
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b1864"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
@@ -84,11 +123,8 @@ script = SubResource("GDScript_gbqai")
 zoom = Vector2(0.22, 0.22)
 
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=743158187 instance=ExtResource("4_i3pn6")]
-position = Vector2(-600, 0)
-
-[node name="P2" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="1" unique_id=1234297198 instance=ExtResource("4_i3pn6")]
-position = Vector2(600, 0)
-rotation = 3.1415927
+position = Vector2(0, 1350)
+rotation = -1.5707964
 
 [node name="VRoundedRect" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=19312972 node_paths=PackedStringArray("hosts")]
 script = ExtResource("5_uf8pi")
@@ -102,13 +138,15 @@ metadata/_custom_type_script = "uid://dd5es67ha55ia"
 hollow = true
 
 [node name="PentaGoal" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=1144014073 instance=ExtResource("9_q1cu7")]
-position = Vector2(1050, 0)
+rings = 10
+ring_width = 50.0
 
-[node name="PentaGoal2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1652877490 instance=ExtResource("9_q1cu7")]
-position = Vector2(-1200, 0)
-shape_rotation_degrees = 180.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield/PentaGoal" index="6" unique_id=1921632976 groups=["animation_starts_with_battle"]]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_gb5uu")
 
-[node name="BasketBall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1878555385 instance=ExtResource("8_b1864")]
+[node name="BasketBall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1878555385 instance=ExtResource("8_b1864")]
+position = Vector2(0, 1050)
 
 [node name="Navigation" parent="." index="6" unique_id=332973589]
 navigation_polygon = SubResource("NavigationPolygon_b1864")

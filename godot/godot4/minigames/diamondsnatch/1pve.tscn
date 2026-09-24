@@ -80,7 +80,7 @@ _data = {
 &"default": SubResource("Animation_kdc2i")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_5uu8y"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4dmtx"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -91,10 +91,10 @@ agent_radius = 100.0
 [node name="PveArena" unique_id=1218906820 instance=ExtResource("1_g2yuu")]
 default_params = ExtResource("11_xd7ch")
 
-[node name="Styleable" parent="." index="0"]
+[node name="Styleable" parent="." index="0" unique_id=999924478]
 style = ExtResource("2_yhuwo")
 
-[node name="SpawnerWaveManager" parent="Managers" index="6" unique_id=92266089 node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("2_xgn0o")]
+[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="6" unique_id=92266089 node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("2_xgn0o")]
 spawn_on_all_collected = true
 spawn_on_timeout = false
 waves_container = NodePath("../../Battlefield/Waves")
@@ -102,41 +102,41 @@ battlefield = NodePath("../../Battlefield")
 
 [node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" unique_id=175651912 instance=ExtResource("5_jxy6k")]
 
-[node name="CollectGame" parent="Managers" index="7" unique_id=1361528314 instance=ExtResource("3_bj3ek")]
+[node name="CollectGame" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="7" unique_id=1361528314 instance=ExtResource("3_bj3ek")]
 
-[node name="TreasureSFXManager" parent="Managers" index="8" unique_id=584668461 instance=ExtResource("4_5inup")]
+[node name="TreasureSFXManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="8" unique_id=584668461 instance=ExtResource("4_5inup")]
 
-[node name="Camera2D" parent="." index="2"]
+[node name="Camera2D" parent="." index="2" unique_id=956979488]
 zoom = Vector2(0.32, 0.32)
 
-[node name="P1" parent="Homes" index="0" unique_id=1170858522 instance=ExtResource("9_tb6i2")]
+[node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=1170858522 instance=ExtResource("9_tb6i2")]
 position = Vector2(-900, 0)
 
-[node name="VRoundedRect" type="Node" parent="Battlefield" index="0" unique_id=1453955765 node_paths=PackedStringArray("hosts")]
+[node name="VRoundedRect" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=1453955765 node_paths=PackedStringArray("hosts")]
 script = ExtResource("10_a43nh")
 width = 3300.0
 height = 2000.0
 radius = 1000.0
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
-[node name="OutsideWall" parent="Battlefield" index="1" unique_id=981968531 instance=ExtResource("11_m6wto")]
+[node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=981968531 instance=ExtResource("11_m6wto")]
 hollow = true
 
-[node name="Grid" parent="Battlefield" index="2" unique_id=130985248 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("12_pdbnl")]
+[node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=130985248 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("12_pdbnl")]
 init_parametric_shape = NodePath("../VRoundedRect")
 
-[node name="Wall2" parent="Battlefield" index="3" unique_id=1179600758 instance=ExtResource("11_m6wto")]
+[node name="Wall2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1179600758 instance=ExtResource("11_m6wto")]
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4" unique_id=980434128]
 script = ExtResource("13_plvei")
 sides = 4
 
-[node name="Diamond" parent="Battlefield" index="4" unique_id=1319655844 instance=ExtResource("14_xeixg")]
+[node name="Diamond" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1319655844 instance=ExtResource("14_xeixg")]
 position = Vector2(900, 0)
 physics_material_override = null
 appear_scene = null
 
-[node name="Waves" type="Node2D" parent="Battlefield" index="5" unique_id=463913823]
+[node name="Waves" type="Node2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=463913823]
 
 [node name="SingleDiamondWave" type="Node2D" parent="Battlefield/Waves" index="0" unique_id=238719983 groups=["spawn_waves"]]
 visible = false
@@ -620,11 +620,11 @@ pattern = "vline"
 element_scene = ExtResource("14_xeixg")
 guest_star_scene = ExtResource("18_w2bk3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="6" unique_id=566220233 groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=566220233 groups=["animation_starts_with_battle"]]
 libraries/ = SubResource("AnimationLibrary_g6aeh")
 
-[node name="BubbleTurret" parent="Battlefield" index="7" unique_id=1442108864 instance=ExtResource("21_ueg15")]
+[node name="BubbleTurret" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=1442108864 instance=ExtResource("21_ueg15")]
 wait_time = 8.0
 
-[node name="Navigation" parent="." index="6"]
-navigation_polygon = SubResource("NavigationPolygon_5uu8y")
+[node name="Navigation" parent="." index="6" unique_id=332973589]
+navigation_polygon = SubResource("NavigationPolygon_4dmtx")

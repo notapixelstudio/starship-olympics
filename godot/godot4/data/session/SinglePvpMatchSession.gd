@@ -1,5 +1,5 @@
 extends Session
-class_name SingleMatchSession
+class_name SinglePvpMatchSession
 ## A Session comprising of a one-off match. Can have multiple winners if the match was tied.
 
 @export var _winning_teams : Array[String] = []

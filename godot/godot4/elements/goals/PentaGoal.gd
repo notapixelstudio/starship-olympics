@@ -4,34 +4,33 @@ class_name PentaGoal
 @export var rings : int = 5
 @export var ring_width : float = 100
 @export var core_radius : float = 150
-@export var shape_rotation_degrees : float = 0
+@export var shape_rotation_degrees : float = 0 : set = set_shape_rotation_degrees
 @export var height := 64.0
 @export var debug := false
 
 var _current_ring : int = 0
 
-var _polygon : PackedVector2Array
-var _curve_global := Curve2D.new()
 
-func set_polygon(v: PackedVector2Array) -> void:
-	_polygon = v
-	_curve_global.clear_points()
-	for p in _polygon:
-		_curve_global.add_point(to_global(p))
-	%CollisionPolygon2D.set_polygon(_polygon)
-	%IsoPolygon.set_polygon(_polygon)
-	%FeedbackLine2D.set_points(_polygon)
+func set_polygon(polygon: PackedVector2Array) -> void:
+	%CollisionPolygon2D.set_polygon(polygon)
+	%IsoPolygon.set_polygon(polygon)
+	%FeedbackLine2D.set_points(polygon)
+	
+func set_shape_rotation_degrees(v: float) -> void:
+	shape_rotation_degrees = v
+	%VRegularPolygon.set_rotation_degrees(shape_rotation_degrees)
+	_redraw_rings()
 
 func _ready() -> void:
 	_current_ring = rings
-	
-	%VRegularPolygon.set_rotation_degrees(shape_rotation_degrees)
 	
 	%IsoPolygon.set_height(height)
 	%Rings.position.y = -height
 	
 	_refresh_shape()
+	_redraw_rings()
 	
+func _redraw_rings() -> void:
 	for ring in %Rings.get_children():
 		ring.queue_free()
 		
@@ -48,6 +47,9 @@ func _ready() -> void:
 		ring.z_as_relative = false
 		shape.update()
 		ring.points = shape.get_points()
+		if i >= _current_ring:
+			ring.position.y = 64
+			
 		%Rings.add_child(ring)
 
 func _refresh_shape() -> void:

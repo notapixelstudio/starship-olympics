@@ -73,7 +73,7 @@ func _on_SkipLevel_pressed():
 	
 func _on_Quit1_pressed():
 	get_tree().paused = false
-	Events.emit_signal("nav_to_map")
+	Events.emit_signal("nav_to_level_selection")
 	
 func _on_Quit2_pressed():
 	get_tree().paused = false

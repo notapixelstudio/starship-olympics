@@ -1,15 +1,17 @@
-[gd_resource type="Resource" script_class="Style" load_steps=3 format=3 uid="uid://qv7ahl4mb6vo"]
+[gd_resource type="Resource" script_class="Style" format=3 uid="uid://qv7ahl4mb6vo"]
 
 [ext_resource type="Texture2D" uid="uid://b02owwc2lsn8q" path="res://assets/patterns/wall/clear.png" id="1_q5kgv"]
 [ext_resource type="Script" uid="uid://bjgty1ww5ajsk" path="res://godot4/data/styles/Style.gd" id="2_o37qc"]
+[ext_resource type="Texture2D" uid="uid://cp7cbjvi1b73q" path="res://assets/patterns/tris.png" id="2_v8mdn"]
 
 [resource]
 script = ExtResource("2_o37qc")
 color = Color(0.32, 0.1536, 0.275627, 1)
 background_color = Color(0.0776667, 0.03, 0.25, 1)
-line_color = Color(0.44, 0.2112, 0.378987, 1)
+line_color = Color(0.72, 0.42480004, 0.6412801, 1)
 line_texture = ExtResource("1_q5kgv")
-line_width = 48.0
 underline_color = Color(0.32, 0.1536, 0.275627, 1)
-underline_width = 48.0
-grid_color = Color(0.168667, 0, 0.23, 1)
+glow_line_color = Color(0.8333335, 0, 1, 0.078431375)
+grid_color = Color(0.078431375, 0.03137255, 0.2509804, 1)
+mesh_texture = ExtResource("2_v8mdn")
+mesh_color = Color(0, 0, 0, 0.3529412)

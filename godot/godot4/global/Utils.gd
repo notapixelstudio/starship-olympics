@@ -118,7 +118,7 @@ func list_levels(player_count:int, mode:String) -> Array[Dictionary]:
 				if minigame_defined and level_defined:
 					results.append({
 						'minigame': load(minigame_path),
-						'level': load(level_path)
+						'scene': load(level_path)
 					})
 			file_name = dir.get_next()
 	else:

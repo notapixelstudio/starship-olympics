@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://c161j5oxkpgmm" path="res://godot4/arena/managers/CollisionResponseManager.tscn" id="21_rittb"]
 [ext_resource type="PackedScene" uid="uid://bsglorws8xub7" path="res://godot4/arena/managers/ShipFactory.tscn" id="22_xop1g"]
 [ext_resource type="PackedScene" uid="uid://cnc1iumrpf838" path="res://godot4/arena/Navigation.tscn" id="23_rittb"]
+[ext_resource type="Shader" uid="uid://qj4beet66b8h" path="res://godot4/shaders/custom_multiply_screen_blend.gdshader" id="25_ygwob"]
 [ext_resource type="PackedScene" uid="uid://baqs1sh3hug4e" path="res://godot4/arena/hud/Counter.tscn" id="26_picc7"]
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="27_8sctu"]
 [ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="28_fhoky"]
@@ -36,13 +37,17 @@
 [ext_resource type="PackedScene" uid="uid://cy5pkamh8gihg" path="res://ui/common_elements/PlayersReady/PlayersReadyWheels.tscn" id="30_um0tc"]
 [ext_resource type="PackedScene" uid="uid://bdnijlionsghd" path="res://godot4/ui/overlays/PauseOverlay.tscn" id="32_ri8rg"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_xop1g"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8qh8v"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
 source_geometry_mode = 1
 source_geometry_group_name = &"obstacle"
 agent_radius = 100.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbqai"]
+shader = ExtResource("25_ygwob")
+shader_parameter/brightness = 2.0
 
 [node name="Arena" type="Node2D" unique_id=2082662255]
 script = ExtResource("1_avtyt")
@@ -112,7 +117,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Navigation" parent="." unique_id=332973589 instance=ExtResource("23_rittb")]
-navigation_polygon = SubResource("NavigationPolygon_xop1g")
+navigation_polygon = SubResource("NavigationPolygon_8qh8v")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=737164047]
 unique_name_in_owner = true
@@ -120,6 +125,7 @@ process_mode = 3
 layer = 10
 
 [node name="Vignette" type="TextureRect" parent="HUD" unique_id=138350419]
+material = SubResource("ShaderMaterial_gbqai")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

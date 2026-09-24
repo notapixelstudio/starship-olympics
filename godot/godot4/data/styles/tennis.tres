@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="Style" format=3 uid="uid://dtnwwsygwm7wy"]
 
 [ext_resource type="Script" uid="uid://bjgty1ww5ajsk" path="res://godot4/data/styles/Style.gd" id="1_gw0kx"]
+[ext_resource type="Texture2D" uid="uid://2hshh63fabyh" path="res://assets/patterns/stripes.png" id="1_hf3dk"]
 
 [resource]
 script = ExtResource("1_gw0kx")
@@ -8,4 +9,9 @@ color = Color(0.2959817, 0.15115345, 0.30049103, 1)
 background_color = Color(0.22, 0.13859999, 0.15080996, 1)
 line_color = Color(0.7066958, 0.58877814, 0.7678488, 1)
 underline_color = Color(0.37878639, 0.3111005, 0.5432316, 1)
+glow_line_color = Color(0.9000001, 0, 1, 0.078431375)
+grid_visible = false
 grid_color = Color(0.25387487, 0.09920772, 0.0828568, 1)
+mesh_texture = ExtResource("1_hf3dk")
+mesh_color = Color(0, 0, 0, 0.23529412)
+mesh_checkered = true
