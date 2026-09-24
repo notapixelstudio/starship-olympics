@@ -1,106 +1,93 @@
-extends Control
+extends VBoxContainer
 
-# based on this post and adapted to gdscript : https://www.reddit.com/r/gamemaker/comments/18isrdj/entering_initials_for_high_score_list_arcade_style/
-# pixel font found here : https://frostyfreeze.itch.io/pixel-bitmap-fonts-png-xml
+signal name_inserted(player_name: String)
 
-@onready var blink_anim: AnimationPlayer = $BlinkAnim
-@onready var alphabet_letter_1: Sprite2D = $AlphabetLetter1
-@onready var alphabet_letter_2: Sprite2D = $AlphabetLetter2
-@onready var alphabet_letter_3: Sprite2D = $AlphabetLetter3
-@onready var alphabet_letter_end: Sprite2D = $AlphabetLetterEnd
-
-# REPLACE THIS WITH YOUR OWN INPUTS
-var input_event_next_letter:= "ui_down"
-var input_event_previous_letter:= "ui_up"
-var input_event_accept:= "ui_accept"
-var input_event_delete:= "ui_cancel"
-var input_event_reset:= "ui_select"
-
-# REMEMBERING WHAT YOU SELECTED
-var input_name_array: Array
-# STORING THE SELECTION INTO A SINGLE NAME
-var input_name: String
-
-# THE CURRENTLY SELECTED CHARACTER
-var current_letter_selected: int = 0
-# THE FRAME OF THE "END" SPRITE ON THE SPRITE SHEET
-var end_sprite_index: int = 37
-
-# EACH CHARACTER INDEX IN THE ARRAY CORRESP0NDS TO THE FRAME NUMBER OF THAT CHARACTER ON THE SPRITE SHEET
-var letter_index_array:= ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9", " "]
-
+const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 "
+var current_letter_selected := 0
+var cursor := 0
+var name_input: LineEdit
+var updating := false
+var held_stick_actions := {}
 
 func _ready() -> void:
-	alphabet_letter_end.visible = false
+	set_process_input(false)
 
+func setup(input: LineEdit) -> void:
+	name_input = input
+	name_input.gui_input.connect(func(_event): _sync_cursor.call_deferred())
+	name_input.text_changed.connect(func(_text): _sync_cursor())
+	_sync_cursor()
 
-func _process(_delta: float) -> void:
-	# MOVE TO NEXT CHARACTER
-	if input_name_array.size() == 0:
-		show_letter_on_screen(alphabet_letter_1, current_letter_selected)
-		show_letter_on_screen(alphabet_letter_2, 0)
-		show_letter_on_screen(alphabet_letter_3, 0)
-		blink_anim.play("letter1_blink")
-	if input_name_array.size() == 1:
-		show_letter_on_screen(alphabet_letter_1, input_name_array[0])
-		show_letter_on_screen(alphabet_letter_2, current_letter_selected)
-		show_letter_on_screen(alphabet_letter_3, 0)
-		blink_anim.play("letter2_blink")
-	if input_name_array.size() == 2:
-		show_letter_on_screen(alphabet_letter_1, input_name_array[0])
-		show_letter_on_screen(alphabet_letter_2, input_name_array[1])
-		show_letter_on_screen(alphabet_letter_3, current_letter_selected)
-		blink_anim.play("letter3_blink")
-	if input_name_array.size() == 3:
-		show_letter_on_screen(alphabet_letter_1, input_name_array[0])
-		show_letter_on_screen(alphabet_letter_2, input_name_array[1])
-		show_letter_on_screen(alphabet_letter_3, input_name_array[2])
-		alphabet_letter_end.visible = true
-		blink_anim.play("letterend_blink")
+func _sync_cursor() -> void:
+	if not updating:
+		_move_cursor(name_input.caret_column)
+		_update_label()
 
+func _input(event: InputEvent) -> void:
+	if name_input == null or not is_processing_input() or not is_visible_in_tree():
+		return
+	# Keep printable keys (including the WASD menu bindings) for normal typing.
+	if event is InputEventKey and event.unicode >= 32:
+		return
+	var action := ""
+	for candidate in ["ui_up", "ui_down", "ui_left", "ui_right", "name_add", "name_delete", "name_clear"]:
+		if not event.is_action(candidate):
+			continue
+		var pressed := event.is_action_pressed(candidate)
+		if event is InputEventJoypadMotion:
+			var stick_action := "%d:%s" % [event.device, candidate]
+			var was_pressed: bool = held_stick_actions.get(stick_action, false)
+			held_stick_actions[stick_action] = pressed
+			pressed = pressed and not was_pressed
+		if pressed:
+			action = candidate
+	if action.is_empty():
+		return
+	if cursor != name_input.caret_column:
+		_sync_cursor()
+	updating = true
+	get_viewport().set_input_as_handled()
+	match action:
+		"ui_up", "ui_down":
+			var step := -1 if action == "ui_up" else 1
+			# END is only available after the last character.
+			var choices := LETTERS.length() + (1 if cursor == name_input.text.length() else 0)
+			current_letter_selected = wrapi(current_letter_selected + step, 0, choices)
+			if cursor < name_input.text.length():
+				name_input.text = name_input.text.substr(0, cursor) + LETTERS[current_letter_selected] + name_input.text.substr(cursor + 1)
+		"ui_left":
+			_move_cursor(maxi(0, cursor - 1))
+		"name_add", "ui_right":
+			if cursor < name_input.text.length():
+				_move_cursor(cursor + 1)
+			elif current_letter_selected == LETTERS.length():
+				set_process_input(false)
+				name_inserted.emit(name_input.text)
+			else:
+				name_input.text += LETTERS[current_letter_selected]
+				_move_cursor(cursor + 1)
+		"name_delete":
+			if cursor > 0:
+				name_input.text = name_input.text.erase(cursor - 1, 1)
+				_move_cursor(cursor - 1)
+		"name_clear":
+			name_input.clear()
+			_move_cursor(0)
+	_update_selection()
+	updating = false
 
-	if Input.is_action_just_pressed(input_event_previous_letter):
-		if current_letter_selected == 0:
-			current_letter_selected = letter_index_array.size() - 1
-		elif current_letter_selected > 0 && current_letter_selected < letter_index_array.size():
-			current_letter_selected -= 1
-		blink_anim.play("RESET")
+func _move_cursor(position: int) -> void:
+	cursor = position
+	current_letter_selected = maxi(0, LETTERS.find(name_input.text[cursor].to_upper())) if cursor < name_input.text.length() else 0
 
+func _update_selection() -> void:
+	name_input.caret_column = cursor
+	if cursor < name_input.text.length():
+		name_input.select(cursor, cursor + 1)
+	else:
+		name_input.deselect()
+	_update_label()
 
-	if Input.is_action_just_pressed(input_event_next_letter):
-		if current_letter_selected < letter_index_array.size() - 1:
-			current_letter_selected += 1
-		elif current_letter_selected == letter_index_array.size() - 1:
-			current_letter_selected = 0
-		blink_anim.play("RESET")
-
-
-	if Input.is_action_just_pressed(input_event_accept):
-		if input_name_array.size() <= 3:
-			input_name_array.append(current_letter_selected)
-			current_letter_selected = 0
-			blink_anim.play("RESET")
-		if alphabet_letter_end.visible == true:
-			input_name = get_input_name()
-			print("NAME: ", input_name)
-			alphabet_letter_end.visible = false
-
-	if Input.is_action_just_pressed(input_event_delete):
-		if input_name_array.size() <= 3:
-			input_name_array.remove_at(input_name_array.size() - 1)
-			current_letter_selected = 0
-			blink_anim.play("RESET")
-		if alphabet_letter_end.visible == true:
-			alphabet_letter_end.visible = false
-	
-	if Input.is_action_just_pressed(input_event_reset):
-		clear_name()
-
-func clear_name() -> void:
-	input_name_array.clear()
-
-func show_letter_on_screen(alphabet_letter: Sprite2D, index: int) -> void:
-	alphabet_letter.set_frame(index)
-
-func get_input_name() -> String:
-	return letter_index_array[input_name_array[0]] + letter_index_array[input_name_array[1]] + letter_index_array[input_name_array[2]]
+func _update_label() -> void:
+	var letter := "END" if current_letter_selected == LETTERS.length() else ("SPACE" if LETTERS[current_letter_selected] == " " else LETTERS[current_letter_selected])
+	$Selection.text = "[%s] · %d" % [letter, cursor + 1]

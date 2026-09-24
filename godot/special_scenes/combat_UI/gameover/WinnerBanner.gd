@@ -3,13 +3,15 @@ extends Control
 class_name WinnerBanner
 
 var this_champion : Dictionary # InfoChampion
+var name_submitted := false
 @export var minigame_logo : PackedScene
 @export var headshot_scene: PackedScene
 
 func _ready():
 	$"%PlayerName".visible = true
-	$"%HBoxContainer".visible = false
+	$"%NameInputs".visible = false
 	$"%LogoMinigame".queue_free()
+	%ArcadeWheel.setup(%InsertName)
 	
 func set_player_name(player_name: String):
 	$"%PlayerName".text = player_name
@@ -71,17 +73,25 @@ func set_banner(champion: Dictionary):
 		modulate = Color(0.5,0.5,0.5)
 	
 func insert_name():
-	$"%InsertName".connect("name_inserted", Callable(self, "_on_InsertName_name_inserted"))
+	%ArcadeWheel.set_process_input(true)
 	$"%PlayerName".visible = false
-	$"%HBoxContainer".visible = true
+	$"%NameInputs".visible = true
 	$"%InsertName".grab_focus()
 	$"%InsertName".set_process_input(true)
 
 
 func _on_InsertName_name_inserted(player_name: String):
+	if name_submitted:
+		return
+	name_submitted = true
+	%InsertName.set_process_input(false)
+	%ArcadeWheel.set_process_input(false)
+	if player_name.strip_edges().is_empty():
+		player_name = %InsertName.placeholder_text
+	player_name = player_name.to_upper()
 	set_player_name(player_name)
 	$"%PlayerName".visible = true
-	$"%HBoxContainer".queue_free()
+	$"%NameInputs".queue_free()
 	$"%PlayerName".text = player_name
 	this_champion.set("nickname", player_name)
 	

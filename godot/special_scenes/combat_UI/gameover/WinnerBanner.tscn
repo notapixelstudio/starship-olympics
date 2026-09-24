@@ -235,20 +235,25 @@ theme_override_font_sizes/font_size = 32
 text = "SAX"
 uppercase = true
 
-[node name="InputWrapper" type="Node2D" parent="Container" unique_id=1169847973]
+[node name="InputWrapper" type="MarginContainer" parent="Container" unique_id=1169847973]
 z_index = 10
-position = Vector2(160, 84)
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Container/InputWrapper" unique_id=260852048]
+[node name="NameInputs" type="VBoxContainer" parent="Container/InputWrapper" unique_id=260852048]
 unique_name_in_owner = true
-offset_left = -140.0
-offset_top = -20.0
-offset_right = 4.0
-offset_bottom = 130.0
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 4
 
-[node name="InsertName" type="LineEdit" parent="Container/InputWrapper/HBoxContainer" unique_id=617169649]
+[node name="ArcadeWheel" parent="Container/InputWrapper/NameInputs" unique_id=1732697280 instance=ExtResource("9_gh7wt")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="InsertName" type="LineEdit" parent="Container/InputWrapper/NameInputs" unique_id=617169649]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("7")
 theme_override_fonts/font = SubResource("4")
@@ -257,10 +262,6 @@ placeholder_text = "P1 "
 flat = true
 caret_blink = true
 script = ExtResource("6")
-
-[node name="ArcadeWheel" parent="Container/InputWrapper/HBoxContainer" unique_id=1732697280 instance=ExtResource("9_gh7wt")]
-layout_mode = 2
-size_flags_horizontal = 0
 
 [node name="ScoreWrapper" type="Node2D" parent="Container" unique_id=1208794439]
 z_index = 10
@@ -349,4 +350,6 @@ theme_override_constants/shadow_offset_y = 4
 theme_override_fonts/font = SubResource("7")
 text = "2022-10-23 15:00"
 
-[connection signal="name_inserted" from="Container/InputWrapper/HBoxContainer/InsertName" to="." method="_on_InsertName_name_inserted"]
+[connection signal="name_inserted" from="Container/InputWrapper/NameInputs/InsertName" to="." method="_on_InsertName_name_inserted"]
+
+[connection signal="name_inserted" from="Container/InputWrapper/NameInputs/ArcadeWheel" to="." method="_on_InsertName_name_inserted"]
