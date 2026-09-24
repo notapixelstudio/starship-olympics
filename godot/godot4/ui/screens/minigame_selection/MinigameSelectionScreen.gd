@@ -24,6 +24,7 @@ func enter():
 	%MinigamesList.get_child(0).grab_focus()
 
 func _on_minigame_button_selected(level) -> void:
+	SoundEffects.play(%AudioStreamPlayer)
 	Events.level_selected.emit(level['scene'])
 	
 	next.emit(next_scene.instantiate())

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dg3l8eepsajhj" path="res://godot4/ui/screens/loading_screen/LoadingScreen.tscn" id="3_grij4"]
 [ext_resource type="PackedScene" uid="uid://yjwrsy1iwniu" path="res://godot4/ui/screens/minigame_selection/MinigameButton.tscn" id="4_grij4"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="5_grij4"]
+[ext_resource type="AudioStream" uid="uid://dxr8q5jchhlr6" path="res://assets/audio/UI_effects/pmsfx_UIAlert_UI_Notification_Message_PopUP_8_PMSFXZAPSPLAT_ZSUIEX.mp3" id="6_dlbeg"]
 
 [node name="MinigameSelectionScreen" unique_id=3683569 instance=ExtResource("1_i4s6e")]
 script = ExtResource("2_yrjt2")
@@ -46,3 +47,8 @@ theme_override_font_sizes/font_size = 60
 text = "SELECT A MINIGAME"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4" unique_id=1337764384]
+unique_name_in_owner = true
+stream = ExtResource("6_dlbeg")
+volume_db = -8.0
