@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bs56ac47s81wd" path="res://godot4/utils/NoRotate.tscn" id="4_6sxsb"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="4_ktla7"]
 
-[sub_resource type="Gradient" id="Gradient_6r7pm"]
+[sub_resource type="Gradient" id="Gradient_6sxsb"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
@@ -15,7 +15,8 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
 script = ExtResource("2_8nj3x")
 starting_count = 5
 impulse_unrest = 20.0
-kick_impulse_base = 150.0
+kick_impulse_base = 0.0
+kick_impulse_strength_multiplier = 4500.0
 loadable = false
 
 [node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1232204582) index="0" unique_id=686837574]
@@ -23,7 +24,7 @@ texture = ExtResource("3_6r7pm")
 
 [node name="MotionAutoTrail" parent="." index="3" unique_id=1467177572]
 modulate = Color(0.9490196, 0.6745098, 0, 1)
-gradient = SubResource("Gradient_6r7pm")
+gradient = SubResource("Gradient_6sxsb")
 
 [node name="NoRotate" parent="." index="6" unique_id=617035115 instance=ExtResource("4_6sxsb")]
 

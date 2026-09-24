@@ -4,19 +4,129 @@
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_s4j2o"]
 [ext_resource type="Resource" uid="uid://dtnwwsygwm7wy" path="res://godot4/data/styles/tennis.tres" id="3_pr0om"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_ktbkk"]
+[ext_resource type="Script" uid="uid://c7htd21orbbha" path="res://godot4/arena/managers/SimpleAnimationOrchestrator.gd" id="4_pnwr7"]
 [ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="5_jj52e"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/walls/Wall.tscn" id="6_qxm8n"]
 [ext_resource type="PackedScene" uid="uid://dkobwffaq7irc" path="res://godot4/elements/walls/GoalWall.tscn" id="7_rb8hp"]
+[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="7_s4j2o"]
 [ext_resource type="Script" uid="uid://dwa5kst63hc3b" path="res://addons/vshapes/VRect.gd" id="8_hm4vo"]
 [ext_resource type="PackedScene" uid="uid://0f7jkcchu81o" path="res://godot4/elements/cargos/SquashBall.tscn" id="10_ldefg"]
 
-[sub_resource type="GDScript" id="GDScript_0aaol"]
-script/source = "extends Orchestrator
+[sub_resource type="Animation" id="Animation_42dwm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Battlefield/GoalWallTopLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-900, -1700)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Battlefield/GoalWallBottomRight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(900, 1700)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Battlefield/GoalWallBottomLeft:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-900, 1700)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Battlefield/GoalWallTopRight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(900, -1700)]
+}
 
-func _ready():
-	await super()
-	# do nothing at start
-"
+[sub_resource type="Animation" id="Animation_pnwr7"]
+resource_name = "phase_2"
+length = 3.0000000000000004
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Battlefield/GoalWallTopLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-900, -1700), Vector2(-900, -1400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Battlefield/GoalWallBottomRight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(900, 1700), Vector2(900, 1400)]
+}
+
+[sub_resource type="Animation" id="Animation_s4j2o"]
+resource_name = "phase_3"
+length = 3.0000000000000004
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Battlefield/GoalWallBottomLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-900, 1700), Vector2(-900, 1400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Battlefield/GoalWallTopRight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(900, -1700), Vector2(900, -1400)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pr0om"]
+_data = {
+&"RESET": SubResource("Animation_42dwm"),
+&"phase_2": SubResource("Animation_pnwr7"),
+&"phase_3": SubResource("Animation_s4j2o")
+}
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_42dwm"]
 resource_local_to_scene = true
@@ -33,7 +143,10 @@ default_params = ExtResource("2_s4j2o")
 style = ExtResource("3_pr0om")
 
 [node name="Orchestrator" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="0" unique_id=1592803965]
-script = SubResource("GDScript_0aaol")
+script = ExtResource("4_pnwr7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Managers/Orchestrator" index="0" unique_id=1427741846]
+libraries/ = SubResource("AnimationLibrary_pr0om")
 
 [node name="Camera2D" parent="." index="2" unique_id=956979488]
 zoom = Vector2(0.23, 0.23)
@@ -50,72 +163,75 @@ script = ExtResource("5_jj52e")
 width = 4400.0
 height = 2800.0
 bevel = 500.0
-hosts = [NodePath("../OutsideWall")]
+hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 metadata/_custom_type_script = "uid://dcjvxjj0myiia"
 
-[node name="SquashBall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=1878555385 instance=ExtResource("10_ldefg")]
-unique_name_in_owner = true
-
-[node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=480981193 instance=ExtResource("6_qxm8n")]
+[node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=480981193 instance=ExtResource("6_qxm8n")]
 hollow = true
 
-[node name="GoalWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1309650842 instance=ExtResource("7_rb8hp")]
-position = Vector2(-900, -1400)
+[node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=127410278 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("7_s4j2o")]
+init_parametric_shape = NodePath("../VBeveledRect")
+
+[node name="SquashBall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1878555385 instance=ExtResource("10_ldefg")]
+unique_name_in_owner = true
+
+[node name="GoalWallTopLeft" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1309650842 instance=ExtResource("7_rb8hp")]
+position = Vector2(-900, -1700)
 reset_time = 9.0
 
-[node name="VRect" type="Node" parent="Battlefield/GoalWall" index="6" unique_id=1241665718]
+[node name="VRect" type="Node" parent="Battlefield/GoalWallTopLeft" index="6" unique_id=1241665718]
 script = ExtResource("8_hm4vo")
 width = 1400.0
-height = 50.0
+height = 100.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
-[node name="GoalWall2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1898710476 instance=ExtResource("7_rb8hp")]
-position = Vector2(-900, 1400)
+[node name="GoalWallBottomLeft" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=1898710476 instance=ExtResource("7_rb8hp")]
+position = Vector2(-900, 1700)
 reset_time = 10.0
 
-[node name="VRect" type="Node" parent="Battlefield/GoalWall2" index="6" unique_id=1549525075]
+[node name="VRect" type="Node" parent="Battlefield/GoalWallBottomLeft" index="6" unique_id=1549525075]
 script = ExtResource("8_hm4vo")
 width = 1400.0
-height = 50.0
+height = 100.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
-[node name="GoalWall5" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=2125180392 instance=ExtResource("7_rb8hp")]
-position = Vector2(900, -1400)
+[node name="GoalWallTopRight" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=2125180392 instance=ExtResource("7_rb8hp")]
+position = Vector2(900, -1700)
 reset_time = 10.0
 
-[node name="VRect" type="Node" parent="Battlefield/GoalWall5" index="6" unique_id=193503332]
+[node name="VRect" type="Node" parent="Battlefield/GoalWallTopRight" index="6" unique_id=193503332]
 script = ExtResource("8_hm4vo")
 width = 1400.0
-height = 50.0
+height = 100.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
-[node name="GoalWall6" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=1077777430 instance=ExtResource("7_rb8hp")]
-position = Vector2(900, 1400)
+[node name="GoalWallBottomRight" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=1077777430 instance=ExtResource("7_rb8hp")]
+position = Vector2(900, 1700)
 reset_time = 10.0
 
-[node name="VRect" type="Node" parent="Battlefield/GoalWall6" index="6" unique_id=2127668372]
+[node name="VRect" type="Node" parent="Battlefield/GoalWallBottomRight" index="6" unique_id=2127668372]
 script = ExtResource("8_hm4vo")
 width = 1400.0
-height = 50.0
+height = 100.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
-[node name="GoalWall3" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=871790856 instance=ExtResource("7_rb8hp")]
+[node name="GoalWallRight" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=871790856 instance=ExtResource("7_rb8hp")]
 position = Vector2(2200, 0)
 reset_time = 10.0
 
-[node name="VRect" type="Node" parent="Battlefield/GoalWall3" index="6" unique_id=274496931]
+[node name="VRect" type="Node" parent="Battlefield/GoalWallRight" index="6" unique_id=274496931]
 script = ExtResource("8_hm4vo")
-width = 50.0
+width = 100.0
 height = 1600.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
-[node name="GoalWall4" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=1763046155 instance=ExtResource("7_rb8hp")]
+[node name="GoalWallLeft" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=1763046155 instance=ExtResource("7_rb8hp")]
 position = Vector2(-2200, 0)
 reset_time = 10.0
 
-[node name="VRect" type="Node" parent="Battlefield/GoalWall4" index="6" unique_id=176178716]
+[node name="VRect" type="Node" parent="Battlefield/GoalWallLeft" index="6" unique_id=176178716]
 script = ExtResource("8_hm4vo")
-width = 50.0
+width = 100.0
 height = 1600.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
