@@ -12,16 +12,16 @@ signal charged_too_much_for_tap
 signal reset_done
 
 var _charge := 0.0
-var _is_charging := false
+var _charging := false
 
 func _physics_process(delta):
-	if _is_charging:
+	if _charging:
 		_charge += delta
 
 func start_charging() -> void:
-	if _is_charging:
+	if _charging:
 		return 
-	_is_charging = true
+	_charging = true
 	$TapTimer.wait_time = max_tap_charge
 	$DashTimer.wait_time = min_dash_charge
 	$TapTimer.start()
@@ -29,10 +29,13 @@ func start_charging() -> void:
 	
 func end_charging() -> void:
 	_charge = 0.0
-	_is_charging = false
+	_charging = false
 	$TapTimer.stop()
 	$DashTimer.stop()
 	emit_signal("reset_done")
+	
+func is_charging() -> bool:
+	return _charging
 	
 func get_charge() -> float:
 	return _charge

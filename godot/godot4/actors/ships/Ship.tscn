@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://dpgsvvngst2ut" path="res://assets/audio/gameplay/swoosh/Fast Swish.wav" id="19_8du2k"]
 [ext_resource type="PackedScene" uid="uid://criepafyhd33y" path="res://godot4/actors/ships/managers/CargoManager.tscn" id="21_kqe5y"]
 [ext_resource type="AudioStream" uid="uid://dcts5b2ldeeav" path="res://assets/audio/gameplay/struggle.wav" id="24_0funj"]
+[ext_resource type="PackedScene" uid="uid://e82iscfc88y3" path="res://godot4/actors/ships/managers/TerrainManager.tscn" id="25_0funj"]
 [ext_resource type="AudioStream" uid="uid://cifoe1viahak1" path="res://assets/audio/FX/270315__littlerobotsoundfactory__menu-navigate-03.wav" id="25_2p6s4"]
 
 [sub_resource type="GDScript" id="GDScript_jwr13"]
@@ -148,7 +149,7 @@ func _on_camera_updated(camera_state:Dictionary) -> void:
 	scale = Vector2(1,1)/camera_state['zoom']
 "
 
-[sub_resource type="Gradient" id="Gradient_is2l4"]
+[sub_resource type="Gradient" id="Gradient_2p6s4"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
@@ -357,7 +358,7 @@ max_length = 100
 
 [node name="MotionAutoTrail" parent="." unique_id=1178586549 node_paths=PackedStringArray("host") instance=ExtResource("11_tsmbp")]
 unique_name_in_owner = true
-gradient = SubResource("Gradient_is2l4")
+gradient = SubResource("Gradient_2p6s4")
 host = NodePath("..")
 max_age = 0.4
 
@@ -398,6 +399,9 @@ volume_db = -5.0
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_ml8f4")
 volume_db = 2.0
+
+[node name="TerrainManager" parent="." unique_id=168371240 instance=ExtResource("25_0funj")]
+unique_name_in_owner = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]

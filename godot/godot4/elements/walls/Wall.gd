@@ -1,9 +1,9 @@
 @tool
-extends StaticBody2D
+class_name Wall extends StaticBody2D
 
 @export var hollow := false : set = set_hollow
 
-var polygon : PackedVector2Array
+var _polygon : PackedVector2Array
 
 func set_hollow(v: bool) -> void:
 	hollow = v
@@ -24,24 +24,24 @@ func set_style(style:Style) -> void:
 	%GlowLine2D.width = style.glow_line_width
 	
 func set_polygon(v: PackedVector2Array) -> void:
-	polygon = v
-	%Polygon2D.set_polygon(polygon)
-	%Line2D.set_points(polygon)
-	%UnderLine2D.set_points(polygon)
-	%GlowLine2D.set_points(polygon)
-	%UnderPolygon2D.set_polygon(polygon)
+	_polygon = v
+	%Polygon2D.set_polygon(_polygon)
+	%Line2D.set_points(_polygon)
+	%UnderLine2D.set_points(_polygon)
+	%GlowLine2D.set_points(_polygon)
+	%UnderPolygon2D.set_polygon(_polygon)
 	update_collision_polygon()
 	
 func update_collision_polygon() -> void:
 	if hollow:
-		var offset_results = Geometry2D.offset_polygon(polygon, 100.0)
+		var offset_results = Geometry2D.offset_polygon(_polygon, 100.0)
 		if len(offset_results) > 0:
-			var clipped = Geometry2D.clip_polygons(offset_results[0], polygon)
+			var clipped = Geometry2D.clip_polygons(offset_results[0], _polygon)
 			if len(clipped) > 0:
 				var internal = clipped[0] + PackedVector2Array([clipped[1][-1]]) + clipped[1] + PackedVector2Array([clipped[0][-1]])
 				%CollisionPolygon2D.set_polygon(internal)
 	else:
-		%CollisionPolygon2D.set_polygon(polygon)
+		%CollisionPolygon2D.set_polygon(_polygon)
 
 func update_navigation() -> void:
 	if not hollow:

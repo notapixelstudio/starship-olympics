@@ -42,7 +42,8 @@ const MAX_TAP_CHARGE = 0.3
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 7000
 const DASH_HANDICAP = 400
-const DASH_MULTIPLIER = 3.0 # was 2.7, then 2.6 decreased to lessen the chance of tunneling
+var dash_multiplier : float # handled by TerrainManager
+
 const BOMB_OFFSET = 50
 const BOMB_BOOST = 1600
 const BALL_BOOST = 2300
@@ -57,16 +58,15 @@ const ARKABALL_OFFSET = 200
 const ARKABALL_MULTIPLIER = 1.5
 const MAGNETIC_OFFSET = 200
 const MAGNETIC_MULTIPLIER = 1.5
-const ON_ICE_MAX_THRUST = 2200
-const ON_ICE_MAX_DASH = 2500
-const ON_ICE_CHARGE_BRAKE = 0.99
 const MIN_DRIFT := 400.0
 const MIN_DIVING_TIME := 0.05
 
 ## constants for basic movement
-const THRUST := 6700 # 6500
+var thrust : float # handled by TerrainManager
 ## 9 because we enlarged the radius of the ship's collision shape by 3
 var rotation_torque := 380000 # 130000 # 49000*9 
+var charge_brake : float # handled by TerrainManager
+var max_dash : float # handled by TerrainManager
 
 # check variables for actions (e.g. dash, etc.)
 var charging := true
@@ -83,7 +83,7 @@ func get_target_velocity() -> Vector2:
 	
 func set_target_velocity(v: Vector2) -> void:
 	target_velocity = v
-	set_constant_force(target_velocity * THRUST*int(is_thrusting()))
+	set_constant_force(target_velocity * thrust*int(is_thrusting()))
 	
 func set_rotation_request(v: float) -> void:
 	rotation_request = v
@@ -119,7 +119,7 @@ func release():
 
 func do_dash(charge: float) -> void:
 	var dash_strength = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(charge - MIN_CHARGE, 0, %ChargeManager.MAX_CHARGE)
-	var recoil = max(0,-DASH_HANDICAP+dash_strength*DASH_MULTIPLIER)
+	var recoil = min(max_dash, max(0,-DASH_HANDICAP+dash_strength*dash_multiplier))
 	apply_central_impulse(Vector2(recoil, 0).rotated(global_rotation)) # recoil only if dashing
 	
 	set_collision_layer_value(31, true)
@@ -165,10 +165,13 @@ func _ready():
 	PhysicsServer2D.body_set_continuous_collision_detection_mode(get_rid(), PhysicsServer2D.CCD_MODE_CAST_SHAPE)
 	print(get_scene_file_path())
 	
-#func _physics_process(delta: float) -> void:
-	#_continuous_collision_check()
+func _physics_process(delta: float) -> void:
+	_continuous_collision_check()
 	
 func _integrate_forces(state):
+	if %ChargeManager.is_charging():
+		state.linear_velocity *= (1.0-charge_brake)
+		
 	tracked.tick()
 
 
@@ -197,10 +200,9 @@ func _drop_dash_ring_effect() -> void:
 # some collisions must be checked every frame
 # WARNING collisions picked by this must be distinct from those picked by signals
 # otherwise there will be duplicates
-#func _continuous_collision_check():
-	#var overlappers = %TouchArea.get_overlapping_bodies() + %TouchArea.get_overlapping_areas()
-	#for sth in overlappers:
-		#_on_touch_area_entered(sth)
+func _continuous_collision_check():
+	var overlappers = %TouchArea.get_overlapping_bodies() + %TouchArea.get_overlapping_areas()
+	%TerrainManager.process_overlappers(overlappers)
 
 func _on_body_entered(body) -> void:
 	Events.collision.emit(self, body)

@@ -1,7 +1,7 @@
 @tool
 
 extends StaticBody2D
-class_name Wall
+class_name Wallz
 
 @export (bool) var hollow : set = set_hollow
 
