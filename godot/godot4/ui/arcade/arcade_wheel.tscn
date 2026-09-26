@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ceaj5ikcc83he"]
+
+[ext_resource type="Script" uid="uid://8yla2gyasoi3" path="res://godot4/ui/arcade/arcade_wheel.gd" id="1_55244"]
+[ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="2_font"]
+[ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="3_theme"]
+
+[node name="ArcadeWheel" type="VBoxContainer" unique_id=94338236]
+theme = ExtResource("3_theme")
+theme_override_constants/separation = 0
+script = ExtResource("1_55244")
+
+[node name="Selection" type="Label" parent="." unique_id=134066642]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+text = "[A]"
