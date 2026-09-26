@@ -27,6 +27,8 @@ polygon = PackedVector2Array(-1500, -1000, 1500, -1000, 1500, 1000, -1500, 1000)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=178035344]
 modulate = Color(1, 1, 1, 0.192157)
+z_index = -7
+z_as_relative = false
 position = Vector2(0, 32)
 scale = Vector2(5, 5)
 texture = ExtResource("3")

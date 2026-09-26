@@ -72,7 +72,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../VBeveledRect:bevel")
+tracks/0/path = NodePath("../OutsideWallShape:bevel")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -90,7 +90,7 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../VBeveledRect:bevel")
+tracks/0/path = NodePath("../OutsideWallShape:bevel")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -195,7 +195,8 @@ zoom = Vector2(0.32, 0.32)
 position = Vector2(0, 600)
 rotation = -1.5707964
 
-[node name="VBeveledRect" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=45990805 node_paths=PackedStringArray("hosts")]
+[node name="OutsideWallShape" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=45990805 node_paths=PackedStringArray("hosts")]
+unique_name_in_owner = true
 script = ExtResource("6_oabxt")
 width = 3500.0
 height = 1900.0
@@ -208,10 +209,12 @@ callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_totb7")
 
 [node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=480981193 instance=ExtResource("7_3wrn0")]
+unique_name_in_owner = true
 hollow = true
 
 [node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1223387629 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("8_o2mie")]
-init_parametric_shape = NodePath("../VBeveledRect")
+unique_name_in_owner = true
+init_parametric_shape = NodePath("../OutsideWallShape")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=691123203 groups=["animation_starts_with_battle"]]
 callback_mode_process = 0

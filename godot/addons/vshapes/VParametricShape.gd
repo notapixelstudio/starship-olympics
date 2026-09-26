@@ -9,6 +9,10 @@ func set_hosts(v: Array[Node]) -> void:
 	hosts = v
 	taint()
 	
+func add_host(v: Node) -> void:
+	hosts.append(v)
+	taint()
+	
 func set_rotation_degrees(v: float) -> void:
 	rotation_degrees = v
 	taint()

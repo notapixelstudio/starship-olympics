@@ -127,7 +127,7 @@ _data = {
 &"default": SubResource("Animation_kdc2i")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_bypd7"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_uskda"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -135,839 +135,838 @@ source_geometry_mode = 1
 source_geometry_group_name = &"obstacle"
 agent_radius = 100.0
 
-[node name="PveArena" instance=ExtResource("1_j1qfo")]
+[node name="PveArena" unique_id=1098962222 instance=ExtResource("1_j1qfo")]
 
-[node name="Styleable" parent="." index="0"]
+[node name="Styleable" parent="." index="0" unique_id=999924478]
 style = ExtResource("2_e8kk0")
 
-[node name="SpawnerWaveManager" parent="Managers" index="6" node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("3_bypd7")]
+[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="6" unique_id=861462779 node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("3_bypd7")]
 spawn_on_all_collected = true
 spawn_count_on_all_collected = 5
 spawn_on_timeout = false
 waves_container = NodePath("../../Battlefield/Waves")
 battlefield = NodePath("../../Battlefield")
 
-[node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" instance=ExtResource("4_e8kk0")]
+[node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" unique_id=2046775732 instance=ExtResource("4_e8kk0")]
 
-[node name="CollectGame" parent="Managers" index="7" instance=ExtResource("4_f8610")]
+[node name="CollectGame" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="7" unique_id=617500416 instance=ExtResource("4_f8610")]
 
-[node name="TreasureSFXManager" parent="Managers" index="8" instance=ExtResource("5_4h8ud")]
+[node name="TreasureSFXManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="8" unique_id=969825270 instance=ExtResource("5_4h8ud")]
 
-[node name="Camera2D" parent="." index="2"]
+[node name="Camera2D" parent="." index="2" unique_id=956979488]
 zoom = Vector2(0.29, 0.29)
 
-[node name="P1" parent="Homes" index="0" instance=ExtResource("6_ij57h")]
+[node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=1013388614 instance=ExtResource("6_ij57h")]
 position = Vector2(-1350, 450)
 rotation = -1.5708
 
-[node name="P2" parent="Homes" index="1" instance=ExtResource("6_ij57h")]
+[node name="P2" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="1" unique_id=1692724160 instance=ExtResource("6_ij57h")]
 position = Vector2(-450, 450)
 rotation = -1.5708
 
-[node name="P3" parent="Homes" index="2" instance=ExtResource("6_ij57h")]
+[node name="P3" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="2" unique_id=647048406 instance=ExtResource("6_ij57h")]
 position = Vector2(450, 450)
 rotation = -1.5708
 
-[node name="P4" parent="Homes" index="3" instance=ExtResource("6_ij57h")]
+[node name="P4" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="3" unique_id=949226224 instance=ExtResource("6_ij57h")]
 position = Vector2(1350, 450)
 rotation = -1.5708
 
-[node name="VRoundedRect" type="Node" parent="Battlefield" index="0" node_paths=PackedStringArray("hosts")]
+[node name="OutsideWallShape" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=230181849 node_paths=PackedStringArray("hosts")]
+unique_name_in_owner = true
 script = ExtResource("7_jita0")
 width = 3800.0
 height = 2300.0
 radius = 1100.0
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
-[node name="OutsideWall" parent="Battlefield" index="1" instance=ExtResource("8_rokc6")]
+[node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=1822170889 instance=ExtResource("8_rokc6")]
+unique_name_in_owner = true
 hollow = true
 
-[node name="Grid" parent="Battlefield" index="2" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("9_w3q14")]
-init_parametric_shape = NodePath("../VRoundedRect")
+[node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=76316912 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("9_w3q14")]
+unique_name_in_owner = true
+init_parametric_shape = NodePath("../OutsideWallShape")
 
-[node name="Diamond" parent="Battlefield" index="3" instance=ExtResource("10_aga28")]
+[node name="Diamond" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1724450433 instance=ExtResource("10_aga28")]
 position = Vector2(1350, -450)
 physics_material_override = null
 appear_scene = null
 
-[node name="Diamond2" parent="Battlefield" index="4" instance=ExtResource("10_aga28")]
+[node name="Diamond2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1989419844 instance=ExtResource("10_aga28")]
 position = Vector2(-1350, -450)
 physics_material_override = null
 appear_scene = null
 
-[node name="Diamond3" parent="Battlefield" index="5" instance=ExtResource("10_aga28")]
+[node name="Diamond3" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=176966715 instance=ExtResource("10_aga28")]
 position = Vector2(-450, -450)
 physics_material_override = null
 appear_scene = null
 
-[node name="Diamond4" parent="Battlefield" index="6" instance=ExtResource("10_aga28")]
+[node name="Diamond4" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=1200478820 instance=ExtResource("10_aga28")]
 position = Vector2(450, -450)
 physics_material_override = null
 appear_scene = null
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="7" groups=["animation_starts_with_battle"]]
-libraries = {
-&"": SubResource("AnimationLibrary_g6aeh")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=922112080 groups=["animation_starts_with_battle"]]
+libraries/ = SubResource("AnimationLibrary_g6aeh")
 
-[node name="Waves" type="Node2D" parent="Battlefield" index="8"]
+[node name="Waves" type="Node2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=710235483]
 
-[node name="Single" type="Node2D" parent="Battlefield/Waves" index="0" groups=["spawn_waves"]]
+[node name="Single" type="Node2D" parent="Battlefield/Waves" index="0" unique_id=1756594714 groups=["spawn_waves"]]
 visible = false
 script = ExtResource("11_2bwlo")
 max_repeats = 2
 extra_delay = 0.75
 
-[node name="ElementSpawnerGroup" parent="Battlefield/Waves/Single" index="0" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/Single" index="0" unique_id=1708130925 instance=ExtResource("12_vtrku")]
 position = Vector2(450, 450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/Single" index="1" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/Single" index="1" unique_id=146906901 instance=ExtResource("12_vtrku")]
 position = Vector2(450, -450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/Single" index="2" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/Single" index="2" unique_id=424706980 instance=ExtResource("12_vtrku")]
 position = Vector2(-450, -450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/Single" index="3" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/Single" index="3" unique_id=788417861 instance=ExtResource("12_vtrku")]
 position = Vector2(-450, 450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/Single" index="4" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/Single" index="4" unique_id=342015914 instance=ExtResource("12_vtrku")]
 position = Vector2(-1350, 450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/Single" index="5" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/Single" index="5" unique_id=1542156659 instance=ExtResource("12_vtrku")]
 position = Vector2(-1350, -450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/Single" index="6" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/Single" index="6" unique_id=1683899468 instance=ExtResource("12_vtrku")]
 position = Vector2(1350, -450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/Single" index="7" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/Single" index="7" unique_id=625379738 instance=ExtResource("12_vtrku")]
 position = Vector2(1350, 450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="Double" type="Node2D" parent="Battlefield/Waves" index="1" groups=["spawn_waves"]]
+[node name="Double" type="Node2D" parent="Battlefield/Waves" index="1" unique_id=182349351 groups=["spawn_waves"]]
 visible = false
 script = ExtResource("11_2bwlo")
 max_repeats = 2
 extra_delay = 0.75
 
-[node name="ElementSpawnerGroup14" parent="Battlefield/Waves/Double" index="0" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup14" parent="Battlefield/Waves/Double" index="0" unique_id=2014121357 instance=ExtResource("12_vtrku")]
 pattern = "farapart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup16" parent="Battlefield/Waves/Double" index="1" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup16" parent="Battlefield/Waves/Double" index="1" unique_id=301370900 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -450)
 pattern = "farapart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup17" parent="Battlefield/Waves/Double" index="2" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup17" parent="Battlefield/Waves/Double" index="2" unique_id=389373451 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 450)
 pattern = "farapart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup15" parent="Battlefield/Waves/Double" index="3" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup15" parent="Battlefield/Waves/Double" index="3" unique_id=1211450054 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 450)
 pattern = "apart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup18" parent="Battlefield/Waves/Double" index="4" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup18" parent="Battlefield/Waves/Double" index="4" unique_id=449788890 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -450)
 pattern = "apart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup20" parent="Battlefield/Waves/Double" index="5" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup20" parent="Battlefield/Waves/Double" index="5" unique_id=1674307613 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -900)
 pattern = "apart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup21" parent="Battlefield/Waves/Double" index="6" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup21" parent="Battlefield/Waves/Double" index="6" unique_id=851814312 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 900)
 pattern = "apart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup22" parent="Battlefield/Waves/Double" index="7" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup22" parent="Battlefield/Waves/Double" index="7" unique_id=361724889 instance=ExtResource("12_vtrku")]
 pattern = "vapart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup23" parent="Battlefield/Waves/Double" index="8" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup23" parent="Battlefield/Waves/Double" index="8" unique_id=1143794864 instance=ExtResource("12_vtrku")]
 position = Vector2(-450, 0)
 pattern = "vapart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup24" parent="Battlefield/Waves/Double" index="9" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup24" parent="Battlefield/Waves/Double" index="9" unique_id=574334984 instance=ExtResource("12_vtrku")]
 position = Vector2(450, 0)
 pattern = "vapart"
 element_scene = ExtResource("10_aga28")
 
-[node name="Single2" type="Node2D" parent="Battlefield/Waves" index="2" groups=["spawn_waves"]]
+[node name="Single2" type="Node2D" parent="Battlefield/Waves" index="2" unique_id=240358044 groups=["spawn_waves"]]
 visible = false
 script = ExtResource("11_2bwlo")
 max_repeats = 1
 extra_delay = 2.0
 
-[node name="ElementSpawnerGroup" parent="Battlefield/Waves/Single2" index="0" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/Single2" index="0" unique_id=2062171299 instance=ExtResource("12_vtrku")]
 position = Vector2(450, 450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/Single2" index="1" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/Single2" index="1" unique_id=1922985164 instance=ExtResource("12_vtrku")]
 position = Vector2(450, -450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/Single2" index="2" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/Single2" index="2" unique_id=285790279 instance=ExtResource("12_vtrku")]
 position = Vector2(-450, -450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/Single2" index="3" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/Single2" index="3" unique_id=1041501132 instance=ExtResource("12_vtrku")]
 position = Vector2(-450, 450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/Single2" index="4" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/Single2" index="4" unique_id=1698747049 instance=ExtResource("12_vtrku")]
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/Single2" index="5" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/Single2" index="5" unique_id=1366787966 instance=ExtResource("12_vtrku")]
 position = Vector2(-1200, 0)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup10" parent="Battlefield/Waves/Single2" index="6" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup10" parent="Battlefield/Waves/Single2" index="6" unique_id=2124388758 instance=ExtResource("12_vtrku")]
 position = Vector2(-1650, 0)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup11" parent="Battlefield/Waves/Single2" index="7" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup11" parent="Battlefield/Waves/Single2" index="7" unique_id=2045373662 instance=ExtResource("12_vtrku")]
 position = Vector2(1650, 0)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup12" parent="Battlefield/Waves/Single2" index="8" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup12" parent="Battlefield/Waves/Single2" index="8" unique_id=1985449360 instance=ExtResource("12_vtrku")]
 position = Vector2(1200, 450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup13" parent="Battlefield/Waves/Single2" index="9" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup13" parent="Battlefield/Waves/Single2" index="9" unique_id=718242546 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup19" parent="Battlefield/Waves/Single2" index="10" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup19" parent="Battlefield/Waves/Single2" index="10" unique_id=1341882477 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup14" parent="Battlefield/Waves/Single2" index="11" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup14" parent="Battlefield/Waves/Single2" index="11" unique_id=1989685147 instance=ExtResource("12_vtrku")]
 position = Vector2(-1200, 450)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup15" parent="Battlefield/Waves/Single2" index="12" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup15" parent="Battlefield/Waves/Single2" index="12" unique_id=852255357 instance=ExtResource("12_vtrku")]
 position = Vector2(-600, 900)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup16" parent="Battlefield/Waves/Single2" index="13" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup16" parent="Battlefield/Waves/Single2" index="13" unique_id=2039311520 instance=ExtResource("12_vtrku")]
 position = Vector2(-600, -900)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup17" parent="Battlefield/Waves/Single2" index="14" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup17" parent="Battlefield/Waves/Single2" index="14" unique_id=1743797584 instance=ExtResource("12_vtrku")]
 position = Vector2(600, -900)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup18" parent="Battlefield/Waves/Single2" index="15" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup18" parent="Battlefield/Waves/Single2" index="15" unique_id=820949240 instance=ExtResource("12_vtrku")]
 position = Vector2(600, 900)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/Single2" index="16" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/Single2" index="16" unique_id=1306279682 instance=ExtResource("12_vtrku")]
 position = Vector2(1200, 0)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/Single2" index="17" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/Single2" index="17" unique_id=676606015 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 900)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup9" parent="Battlefield/Waves/Single2" index="18" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup9" parent="Battlefield/Waves/Single2" index="18" unique_id=507742934 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -900)
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="Five" type="Node2D" parent="Battlefield/Waves" index="3" groups=["spawn_waves"]]
+[node name="Five" type="Node2D" parent="Battlefield/Waves" index="3" unique_id=1192037732 groups=["spawn_waves"]]
 visible = false
 script = ExtResource("11_2bwlo")
 max_repeats = 1
 extra_delay = 2.0
 
-[node name="ElementSpawnerGroup" parent="Battlefield/Waves/Five" index="0" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/Five" index="0" unique_id=430572780 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 450)
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/Five" index="1" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/Five" index="1" unique_id=579246006 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -450)
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/Five" index="2" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/Five" index="2" unique_id=740726873 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -1050)
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/Five" index="3" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/Five" index="3" unique_id=1494287927 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 1050)
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup10" parent="Battlefield/Waves/Five" index="4" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup10" parent="Battlefield/Waves/Five" index="4" unique_id=1766538165 instance=ExtResource("12_vtrku")]
 position = Vector2(-750, 1050)
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup11" parent="Battlefield/Waves/Five" index="5" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup11" parent="Battlefield/Waves/Five" index="5" unique_id=1269427269 instance=ExtResource("12_vtrku")]
 position = Vector2(750, 1050)
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup12" parent="Battlefield/Waves/Five" index="6" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup12" parent="Battlefield/Waves/Five" index="6" unique_id=1451588343 instance=ExtResource("12_vtrku")]
 position = Vector2(750, -1050)
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup13" parent="Battlefield/Waves/Five" index="7" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup13" parent="Battlefield/Waves/Five" index="7" unique_id=336892922 instance=ExtResource("12_vtrku")]
 position = Vector2(-750, -1050)
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/Five" index="8" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/Five" index="8" unique_id=1648652038 instance=ExtResource("12_vtrku")]
 position = Vector2(1050, 300)
 pattern = "slash"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/Five" index="9" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/Five" index="9" unique_id=1367908055 instance=ExtResource("12_vtrku")]
 position = Vector2(-1050, -300)
 pattern = "slash"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/Five" index="10" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/Five" index="10" unique_id=1773706408 instance=ExtResource("12_vtrku")]
 position = Vector2(-1050, 300)
 pattern = "backslash"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup9" parent="Battlefield/Waves/Five" index="11" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup9" parent="Battlefield/Waves/Five" index="11" unique_id=2098431304 instance=ExtResource("12_vtrku")]
 position = Vector2(1050, -300)
 pattern = "backslash"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/Five" index="12" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/Five" index="12" unique_id=1211181710 instance=ExtResource("12_vtrku")]
 pattern = "single"
 element_scene = ExtResource("10_aga28")
 
-[node name="Four" type="Node2D" parent="Battlefield/Waves" index="4" groups=["spawn_waves"]]
+[node name="Four" type="Node2D" parent="Battlefield/Waves" index="4" unique_id=22033078 groups=["spawn_waves"]]
 visible = false
 script = ExtResource("11_2bwlo")
 max_repeats = 2
 extra_delay = 0.25
 
-[node name="ElementSpawnerGroup" parent="Battlefield/Waves/Four" index="0" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/Four" index="0" unique_id=169804508 instance=ExtResource("12_vtrku")]
 position = Vector2(900, 0)
 pattern = "rhombus"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup9" parent="Battlefield/Waves/Four" index="1" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup9" parent="Battlefield/Waves/Four" index="1" unique_id=764368625 instance=ExtResource("12_vtrku")]
 position = Vector2(1500, 0)
 pattern = "rhombus"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/Four" index="2" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/Four" index="2" unique_id=1998497717 instance=ExtResource("12_vtrku")]
 position = Vector2(-900, 0)
 pattern = "rhombus"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/Four" index="3" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/Four" index="3" unique_id=213741704 instance=ExtResource("12_vtrku")]
 position = Vector2(-1500, 0)
 pattern = "rhombus"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/Four" index="4" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/Four" index="4" unique_id=33595594 instance=ExtResource("12_vtrku")]
 position = Vector2(-600, -600)
 pattern = "rhombus"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/Four" index="5" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/Four" index="5" unique_id=1143247471 instance=ExtResource("12_vtrku")]
 position = Vector2(-600, 600)
 pattern = "rhombus"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup10" parent="Battlefield/Waves/Four" index="6" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup10" parent="Battlefield/Waves/Four" index="6" unique_id=1732982576 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 900)
 pattern = "rhombus"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup11" parent="Battlefield/Waves/Four" index="7" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup11" parent="Battlefield/Waves/Four" index="7" unique_id=677836906 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -900)
 pattern = "rhombus"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/Four" index="8" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/Four" index="8" unique_id=683732638 instance=ExtResource("12_vtrku")]
 position = Vector2(600, 600)
 pattern = "rhombus"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/Four" index="9" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/Four" index="9" unique_id=221326067 instance=ExtResource("12_vtrku")]
 position = Vector2(600, -600)
 pattern = "rhombus"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/Four" index="10" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/Four" index="10" unique_id=370114235 instance=ExtResource("12_vtrku")]
 pattern = "rhombus"
 element_scene = ExtResource("10_aga28")
 
-[node name="FirstBigDiamondWave" type="Node2D" parent="Battlefield/Waves" index="5" groups=["spawn_waves"]]
+[node name="FirstBigDiamondWave" type="Node2D" parent="Battlefield/Waves" index="5" unique_id=976885092 groups=["spawn_waves"]]
 visible = false
 script = ExtResource("11_2bwlo")
 max_repeats = 1
 extra_delay = 2.0
 
-[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/FirstBigDiamondWave" index="0" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/FirstBigDiamondWave" index="0" unique_id=1120259025 instance=ExtResource("12_vtrku")]
 position = Vector2(-1200, 0)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup17" parent="Battlefield/Waves/FirstBigDiamondWave" index="1" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup17" parent="Battlefield/Waves/FirstBigDiamondWave" index="1" unique_id=1188621415 instance=ExtResource("12_vtrku")]
 position = Vector2(-1650, 0)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup18" parent="Battlefield/Waves/FirstBigDiamondWave" index="2" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup18" parent="Battlefield/Waves/FirstBigDiamondWave" index="2" unique_id=1452067833 instance=ExtResource("12_vtrku")]
 position = Vector2(1650, 0)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup11" parent="Battlefield/Waves/FirstBigDiamondWave" index="3" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup11" parent="Battlefield/Waves/FirstBigDiamondWave" index="3" unique_id=1675937999 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -900)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup12" parent="Battlefield/Waves/FirstBigDiamondWave" index="4" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup12" parent="Battlefield/Waves/FirstBigDiamondWave" index="4" unique_id=1233856995 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 900)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup13" parent="Battlefield/Waves/FirstBigDiamondWave" index="5" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup13" parent="Battlefield/Waves/FirstBigDiamondWave" index="5" unique_id=1786128848 instance=ExtResource("12_vtrku")]
 position = Vector2(-600, 900)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup14" parent="Battlefield/Waves/FirstBigDiamondWave" index="6" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup14" parent="Battlefield/Waves/FirstBigDiamondWave" index="6" unique_id=1023685476 instance=ExtResource("12_vtrku")]
 position = Vector2(-600, -900)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup15" parent="Battlefield/Waves/FirstBigDiamondWave" index="7" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup15" parent="Battlefield/Waves/FirstBigDiamondWave" index="7" unique_id=840491184 instance=ExtResource("12_vtrku")]
 position = Vector2(600, -900)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup16" parent="Battlefield/Waves/FirstBigDiamondWave" index="8" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup16" parent="Battlefield/Waves/FirstBigDiamondWave" index="8" unique_id=1752361323 instance=ExtResource("12_vtrku")]
 position = Vector2(600, 900)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/FirstBigDiamondWave" index="9" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/FirstBigDiamondWave" index="9" unique_id=654572556 instance=ExtResource("12_vtrku")]
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/FirstBigDiamondWave" index="10" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/FirstBigDiamondWave" index="10" unique_id=372500005 instance=ExtResource("12_vtrku")]
 position = Vector2(1200, 0)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/FirstBigDiamondWave" index="11" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/FirstBigDiamondWave" index="11" unique_id=929240118 instance=ExtResource("12_vtrku")]
 position = Vector2(-1200, -450)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/FirstBigDiamondWave" index="12" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/FirstBigDiamondWave" index="12" unique_id=37958921 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -450)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/FirstBigDiamondWave" index="13" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/FirstBigDiamondWave" index="13" unique_id=641831592 instance=ExtResource("12_vtrku")]
 position = Vector2(1200, -450)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/FirstBigDiamondWave" index="14" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/FirstBigDiamondWave" index="14" unique_id=1596125581 instance=ExtResource("12_vtrku")]
 position = Vector2(-1200, 450)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup9" parent="Battlefield/Waves/FirstBigDiamondWave" index="15" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup9" parent="Battlefield/Waves/FirstBigDiamondWave" index="15" unique_id=2019831118 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 450)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup10" parent="Battlefield/Waves/FirstBigDiamondWave" index="16" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup10" parent="Battlefield/Waves/FirstBigDiamondWave" index="16" unique_id=1129595348 instance=ExtResource("12_vtrku")]
 position = Vector2(1200, 450)
 pattern = "single"
 element_scene = ExtResource("13_u14s3")
 
-[node name="Double2" type="Node2D" parent="Battlefield/Waves" index="6" groups=["spawn_waves"]]
+[node name="Double2" type="Node2D" parent="Battlefield/Waves" index="6" unique_id=292464206 groups=["spawn_waves"]]
 visible = false
 script = ExtResource("11_2bwlo")
 max_repeats = 2
 extra_delay = 0.75
 
-[node name="ElementSpawnerGroup14" parent="Battlefield/Waves/Double2" index="0" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup14" parent="Battlefield/Waves/Double2" index="0" unique_id=994908280 instance=ExtResource("12_vtrku")]
 pattern = "farapart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup16" parent="Battlefield/Waves/Double2" index="1" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup16" parent="Battlefield/Waves/Double2" index="1" unique_id=351961568 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -450)
 pattern = "farapart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup17" parent="Battlefield/Waves/Double2" index="2" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup17" parent="Battlefield/Waves/Double2" index="2" unique_id=1291103166 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 450)
 pattern = "farapart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup15" parent="Battlefield/Waves/Double2" index="3" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup15" parent="Battlefield/Waves/Double2" index="3" unique_id=1581378997 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 450)
 pattern = "apart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup18" parent="Battlefield/Waves/Double2" index="4" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup18" parent="Battlefield/Waves/Double2" index="4" unique_id=1306161775 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -450)
 pattern = "apart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup20" parent="Battlefield/Waves/Double2" index="5" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup20" parent="Battlefield/Waves/Double2" index="5" unique_id=1585234315 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -900)
 pattern = "apart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup21" parent="Battlefield/Waves/Double2" index="6" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup21" parent="Battlefield/Waves/Double2" index="6" unique_id=1836253056 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 900)
 pattern = "apart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup22" parent="Battlefield/Waves/Double2" index="7" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup22" parent="Battlefield/Waves/Double2" index="7" unique_id=548466788 instance=ExtResource("12_vtrku")]
 pattern = "vapart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup23" parent="Battlefield/Waves/Double2" index="8" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup23" parent="Battlefield/Waves/Double2" index="8" unique_id=2134217959 instance=ExtResource("12_vtrku")]
 position = Vector2(-450, 0)
 pattern = "vapart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup24" parent="Battlefield/Waves/Double2" index="9" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup24" parent="Battlefield/Waves/Double2" index="9" unique_id=1274846161 instance=ExtResource("12_vtrku")]
 position = Vector2(450, 0)
 pattern = "vapart"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup25" parent="Battlefield/Waves/Double2" index="10" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup25" parent="Battlefield/Waves/Double2" index="10" unique_id=1513261330 instance=ExtResource("12_vtrku")]
 pattern = "farapart"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup26" parent="Battlefield/Waves/Double2" index="11" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup26" parent="Battlefield/Waves/Double2" index="11" unique_id=216544976 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -450)
 pattern = "farapart"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup27" parent="Battlefield/Waves/Double2" index="12" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup27" parent="Battlefield/Waves/Double2" index="12" unique_id=1681482631 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 450)
 pattern = "farapart"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup28" parent="Battlefield/Waves/Double2" index="13" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup28" parent="Battlefield/Waves/Double2" index="13" unique_id=862653050 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 450)
 pattern = "apart"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup29" parent="Battlefield/Waves/Double2" index="14" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup29" parent="Battlefield/Waves/Double2" index="14" unique_id=853799989 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -450)
 pattern = "apart"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup31" parent="Battlefield/Waves/Double2" index="15" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup31" parent="Battlefield/Waves/Double2" index="15" unique_id=781646194 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -900)
 pattern = "apart"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup32" parent="Battlefield/Waves/Double2" index="16" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup32" parent="Battlefield/Waves/Double2" index="16" unique_id=307907018 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 900)
 pattern = "apart"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup33" parent="Battlefield/Waves/Double2" index="17" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup33" parent="Battlefield/Waves/Double2" index="17" unique_id=1651107691 instance=ExtResource("12_vtrku")]
 pattern = "vapart"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup34" parent="Battlefield/Waves/Double2" index="18" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup34" parent="Battlefield/Waves/Double2" index="18" unique_id=853874942 instance=ExtResource("12_vtrku")]
 position = Vector2(-450, 0)
 pattern = "vapart"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup35" parent="Battlefield/Waves/Double2" index="19" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup35" parent="Battlefield/Waves/Double2" index="19" unique_id=923113544 instance=ExtResource("12_vtrku")]
 position = Vector2(450, 0)
 pattern = "vapart"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="Mix" type="Node2D" parent="Battlefield/Waves" index="7" groups=["spawn_waves"]]
+[node name="Mix" type="Node2D" parent="Battlefield/Waves" index="7" unique_id=949167474 groups=["spawn_waves"]]
 visible = false
 script = ExtResource("11_2bwlo")
 extra_delay = 0.25
 
-[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/Mix" index="0" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/Mix" index="0" unique_id=309841393 instance=ExtResource("12_vtrku")]
 position = Vector2(1200, 0)
 pattern = "rhombus"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/Mix" index="1" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/Mix" index="1" unique_id=1110741791 instance=ExtResource("12_vtrku")]
 position = Vector2(-1200, 0)
 pattern = "rhombus"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/Mix" index="2" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/Mix" index="2" unique_id=125468051 instance=ExtResource("12_vtrku")]
 pattern = "rhombus"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup10" parent="Battlefield/Waves/Mix" index="3" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup10" parent="Battlefield/Waves/Mix" index="3" unique_id=1068376169 instance=ExtResource("12_vtrku")]
 pattern = "plus"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup11" parent="Battlefield/Waves/Mix" index="4" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup11" parent="Battlefield/Waves/Mix" index="4" unique_id=1705093682 instance=ExtResource("12_vtrku")]
 position = Vector2(-1350, 0)
 pattern = "plus"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup12" parent="Battlefield/Waves/Mix" index="5" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup12" parent="Battlefield/Waves/Mix" index="5" unique_id=287822448 instance=ExtResource("12_vtrku")]
 position = Vector2(1350, 0)
 pattern = "plus"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup13" parent="Battlefield/Waves/Mix" index="6" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup13" parent="Battlefield/Waves/Mix" index="6" unique_id=1977280833 instance=ExtResource("12_vtrku")]
 pattern = "plus"
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup22" parent="Battlefield/Waves/Mix" index="7" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup22" parent="Battlefield/Waves/Mix" index="7" unique_id=1181062167 instance=ExtResource("12_vtrku")]
 pattern = "gigarhombus"
 element_scene = ExtResource("10_aga28")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup23" parent="Battlefield/Waves/Mix" index="8" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup23" parent="Battlefield/Waves/Mix" index="8" unique_id=617046367 instance=ExtResource("12_vtrku")]
 position = Vector2(-750, 750)
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup24" parent="Battlefield/Waves/Mix" index="9" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup24" parent="Battlefield/Waves/Mix" index="9" unique_id=1671677169 instance=ExtResource("12_vtrku")]
 position = Vector2(750, 750)
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup25" parent="Battlefield/Waves/Mix" index="10" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup25" parent="Battlefield/Waves/Mix" index="10" unique_id=1194475040 instance=ExtResource("12_vtrku")]
 position = Vector2(750, -750)
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup26" parent="Battlefield/Waves/Mix" index="11" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup26" parent="Battlefield/Waves/Mix" index="11" unique_id=418967501 instance=ExtResource("12_vtrku")]
 position = Vector2(-750, -750)
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup35" parent="Battlefield/Waves/Mix" index="12" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup35" parent="Battlefield/Waves/Mix" index="12" unique_id=792455286 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -900)
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup36" parent="Battlefield/Waves/Mix" index="13" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup36" parent="Battlefield/Waves/Mix" index="13" unique_id=690822378 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 900)
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup27" parent="Battlefield/Waves/Mix" index="14" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup27" parent="Battlefield/Waves/Mix" index="14" unique_id=160174663 instance=ExtResource("12_vtrku")]
 position = Vector2(-1050, 450)
 pattern = "backslash"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup28" parent="Battlefield/Waves/Mix" index="15" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup28" parent="Battlefield/Waves/Mix" index="15" unique_id=2086532907 instance=ExtResource("12_vtrku")]
 position = Vector2(1050, -450)
 pattern = "backslash"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup29" parent="Battlefield/Waves/Mix" index="16" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup29" parent="Battlefield/Waves/Mix" index="16" unique_id=472983907 instance=ExtResource("12_vtrku")]
 position = Vector2(1050, 450)
 pattern = "slash"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup30" parent="Battlefield/Waves/Mix" index="17" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup30" parent="Battlefield/Waves/Mix" index="17" unique_id=348623306 instance=ExtResource("12_vtrku")]
 position = Vector2(-1050, -450)
 pattern = "slash"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup31" parent="Battlefield/Waves/Mix" index="18" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup31" parent="Battlefield/Waves/Mix" index="18" unique_id=1867024817 instance=ExtResource("12_vtrku")]
 position = Vector2(-600, 300)
 pattern = "slash"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup32" parent="Battlefield/Waves/Mix" index="19" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup32" parent="Battlefield/Waves/Mix" index="19" unique_id=283923024 instance=ExtResource("12_vtrku")]
 position = Vector2(600, -300)
 pattern = "slash"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup33" parent="Battlefield/Waves/Mix" index="20" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup33" parent="Battlefield/Waves/Mix" index="20" unique_id=527318913 instance=ExtResource("12_vtrku")]
 position = Vector2(600, 300)
 pattern = "backslash"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup34" parent="Battlefield/Waves/Mix" index="21" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup34" parent="Battlefield/Waves/Mix" index="21" unique_id=1079739536 instance=ExtResource("12_vtrku")]
 position = Vector2(-600, -300)
 pattern = "backslash"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup37" parent="Battlefield/Waves/Mix" index="22" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup37" parent="Battlefield/Waves/Mix" index="22" unique_id=1318266699 instance=ExtResource("12_vtrku")]
 pattern = "gigarhombus"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 guest_star_positioning = "random"
 
-[node name="ElementSpawnerGroup19" parent="Battlefield/Waves/Mix" index="23" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup19" parent="Battlefield/Waves/Mix" index="23" unique_id=96934642 instance=ExtResource("12_vtrku")]
 pattern = "farapart"
 element_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup42" parent="Battlefield/Waves/Mix" index="24" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup42" parent="Battlefield/Waves/Mix" index="24" unique_id=230277372 instance=ExtResource("12_vtrku")]
 position = Vector2(900, 450)
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup46" parent="Battlefield/Waves/Mix" index="25" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup46" parent="Battlefield/Waves/Mix" index="25" unique_id=1876374066 instance=ExtResource("12_vtrku")]
 position = Vector2(0, 1050)
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup47" parent="Battlefield/Waves/Mix" index="26" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup47" parent="Battlefield/Waves/Mix" index="26" unique_id=1913872698 instance=ExtResource("12_vtrku")]
 position = Vector2(0, -1050)
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup48" parent="Battlefield/Waves/Mix" index="27" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup48" parent="Battlefield/Waves/Mix" index="27" unique_id=630719001 instance=ExtResource("12_vtrku")]
 pattern = "vline"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup49" parent="Battlefield/Waves/Mix" index="28" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup49" parent="Battlefield/Waves/Mix" index="28" unique_id=449693126 instance=ExtResource("12_vtrku")]
 position = Vector2(-1350, 0)
 pattern = "vline"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup50" parent="Battlefield/Waves/Mix" index="29" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup50" parent="Battlefield/Waves/Mix" index="29" unique_id=1720791009 instance=ExtResource("12_vtrku")]
 position = Vector2(1350, 0)
 pattern = "vline"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup51" parent="Battlefield/Waves/Mix" index="30" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup51" parent="Battlefield/Waves/Mix" index="30" unique_id=1474301872 instance=ExtResource("12_vtrku")]
 position = Vector2(1650, 0)
 pattern = "vline"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup52" parent="Battlefield/Waves/Mix" index="31" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup52" parent="Battlefield/Waves/Mix" index="31" unique_id=1204523375 instance=ExtResource("12_vtrku")]
 position = Vector2(-1650, 0)
 pattern = "vline"
 element_scene = ExtResource("10_aga28")
 guest_star_scene = ExtResource("13_u14s3")
 
-[node name="ElementSpawnerGroup43" parent="Battlefield/Waves/Mix" index="32" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup43" parent="Battlefield/Waves/Mix" index="32" unique_id=540197940 instance=ExtResource("12_vtrku")]
 position = Vector2(900, -450)
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup44" parent="Battlefield/Waves/Mix" index="33" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup44" parent="Battlefield/Waves/Mix" index="33" unique_id=1205200395 instance=ExtResource("12_vtrku")]
 position = Vector2(-900, -450)
 element_scene = ExtResource("10_aga28")
 
-[node name="ElementSpawnerGroup45" parent="Battlefield/Waves/Mix" index="34" instance=ExtResource("12_vtrku")]
+[node name="ElementSpawnerGroup45" parent="Battlefield/Waves/Mix" index="34" unique_id=1700103150 instance=ExtResource("12_vtrku")]
 position = Vector2(-900, 450)
 element_scene = ExtResource("10_aga28")
 
-[node name="Wall" parent="Battlefield" index="9" instance=ExtResource("8_rokc6")]
+[node name="Wall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=56143749 instance=ExtResource("8_rokc6")]
 position = Vector2(-900, 0)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4"]
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4" unique_id=377469890]
 script = ExtResource("14_nw3vy")
 sides = 4
 
-[node name="Wall3" parent="Battlefield" index="10" instance=ExtResource("8_rokc6")]
+[node name="Wall3" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="10" unique_id=1940479026 instance=ExtResource("8_rokc6")]
 position = Vector2(900, 0)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall3" index="4"]
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall3" index="4" unique_id=1641641534]
 script = ExtResource("14_nw3vy")
 sides = 4
 
-[node name="BubbleTurret" parent="Battlefield" index="11" instance=ExtResource("15_tmtv2")]
+[node name="BubbleTurret" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="11" unique_id=1873412691 instance=ExtResource("15_tmtv2")]
 position = Vector2(-900, 0)
-bullet_lifetime = 20.0
 wait_time = 8.0
 
-[node name="BubbleTurret2" parent="Battlefield" index="12" instance=ExtResource("15_tmtv2")]
+[node name="BubbleTurret2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="12" unique_id=1858896342 instance=ExtResource("15_tmtv2")]
 position = Vector2(900, 0)
 rotation_speed = -0.392699
-bullet_lifetime = 20.0
 wait_time = 8.0
 
-[node name="Navigation" parent="." index="6"]
-navigation_polygon = SubResource("NavigationPolygon_bypd7")
+[node name="Navigation" parent="." index="6" unique_id=332973589]
+navigation_polygon = SubResource("NavigationPolygon_uskda")

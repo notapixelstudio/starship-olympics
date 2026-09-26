@@ -112,7 +112,8 @@ zoom = Vector2(0.32, 0.32)
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=1170858522 instance=ExtResource("9_tb6i2")]
 position = Vector2(-900, 0)
 
-[node name="VRoundedRect" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=1453955765 node_paths=PackedStringArray("hosts")]
+[node name="OutsideWallShape" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=1453955765 node_paths=PackedStringArray("hosts")]
+unique_name_in_owner = true
 script = ExtResource("10_a43nh")
 width = 3300.0
 height = 2000.0
@@ -120,10 +121,12 @@ radius = 1000.0
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
 [node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=981968531 instance=ExtResource("11_m6wto")]
+unique_name_in_owner = true
 hollow = true
 
 [node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=130985248 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("12_pdbnl")]
-init_parametric_shape = NodePath("../VRoundedRect")
+unique_name_in_owner = true
+init_parametric_shape = NodePath("../OutsideWallShape")
 
 [node name="Wall2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1179600758 instance=ExtResource("11_m6wto")]
 

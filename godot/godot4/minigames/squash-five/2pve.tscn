@@ -128,7 +128,7 @@ _data = {
 &"phase_3": SubResource("Animation_s4j2o")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_42dwm"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_s4j2o"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -158,7 +158,8 @@ rotation = 3.1415927
 [node name="P2" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="1" unique_id=1286433590 instance=ExtResource("4_ktbkk")]
 position = Vector2(-900, 0)
 
-[node name="VBeveledRect" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=1203639568 node_paths=PackedStringArray("hosts")]
+[node name="OutsideWallShape" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=1203639568 node_paths=PackedStringArray("hosts")]
+unique_name_in_owner = true
 script = ExtResource("5_jj52e")
 width = 4400.0
 height = 2800.0
@@ -167,10 +168,12 @@ hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 metadata/_custom_type_script = "uid://dcjvxjj0myiia"
 
 [node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=480981193 instance=ExtResource("6_qxm8n")]
+unique_name_in_owner = true
 hollow = true
 
 [node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=127410278 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("7_s4j2o")]
-init_parametric_shape = NodePath("../VBeveledRect")
+unique_name_in_owner = true
+init_parametric_shape = NodePath("../OutsideWallShape")
 
 [node name="SquashBall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1878555385 instance=ExtResource("10_ldefg")]
 unique_name_in_owner = true
@@ -236,4 +239,4 @@ height = 1600.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
 [node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_42dwm")
+navigation_polygon = SubResource("NavigationPolygon_s4j2o")

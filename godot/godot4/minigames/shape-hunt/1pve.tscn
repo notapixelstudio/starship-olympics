@@ -50,17 +50,20 @@ zoom = Vector2(0.25, 0.25)
 position = Vector2(0, 1050)
 rotation = -1.5707964
 
-[node name="VCustomShape" type="Path2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=1727617156 node_paths=PackedStringArray("hosts")]
+[node name="OutsideWallShape" type="Path2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=1727617156 node_paths=PackedStringArray("hosts")]
+unique_name_in_owner = true
 curve = SubResource("Curve2D_juwns")
 script = ExtResource("7_nm0c8")
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 metadata/_custom_type_script = "uid://dpekcskbmlpy3"
 
 [node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=981968531 instance=ExtResource("10_tn533")]
+unique_name_in_owner = true
 hollow = true
 
 [node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=130985248 node_paths=PackedStringArray("init_custom_shape") instance=ExtResource("11_bq481")]
-init_custom_shape = NodePath("../VCustomShape")
+unique_name_in_owner = true
+init_custom_shape = NodePath("../OutsideWallShape")
 
 [node name="Wall4" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=338942049 instance=ExtResource("10_tn533")]
 position = Vector2(-750, -750)

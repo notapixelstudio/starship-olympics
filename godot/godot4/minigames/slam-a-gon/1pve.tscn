@@ -126,7 +126,8 @@ zoom = Vector2(0.22, 0.22)
 position = Vector2(0, 1350)
 rotation = -1.5707964
 
-[node name="VRoundedRect" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=19312972 node_paths=PackedStringArray("hosts")]
+[node name="OutsideWallShape" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=19312972 node_paths=PackedStringArray("hosts")]
+unique_name_in_owner = true
 script = ExtResource("5_uf8pi")
 width = 4000.0
 height = 3000.0
@@ -135,6 +136,7 @@ hosts = [NodePath("../OutsideWall")]
 metadata/_custom_type_script = "uid://dd5es67ha55ia"
 
 [node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=480981193 instance=ExtResource("6_wvyr4")]
+unique_name_in_owner = true
 hollow = true
 
 [node name="PentaGoal" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=1144014073 instance=ExtResource("9_q1cu7")]

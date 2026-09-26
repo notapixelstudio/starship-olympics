@@ -15,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://bpw2qo5744n7m" path="res://godot4/data/minigames/default.tres" id="9_vsuw2"]
 [ext_resource type="PackedScene" uid="uid://ctdiyn70rdfsq" path="res://godot4/arena/managers/TimeManager.tscn" id="10_mhlox"]
 [ext_resource type="PackedScene" uid="uid://bbh6dfcfwh26k" path="res://godot4/traits/Styleable.tscn" id="12_g1af4"]
+[ext_resource type="PackedScene" uid="uid://cwhsg865kyuy5" path="res://godot4/arena/managers/ModifierManager.tscn" id="13_8qh8v"]
 [ext_resource type="Resource" uid="uid://dk1wwbut07grf" path="res://godot4/data/styles/default.tres" id="13_n4nm8"]
 [ext_resource type="PackedScene" uid="uid://dilai3ixse7ph" path="res://godot4/arena/managers/ScoreResolver.tscn" id="15_xop1g"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="16_64a4r"]
@@ -62,6 +63,9 @@ style = ExtResource("13_n4nm8")
 [node name="Managers" type="Node" parent="." unique_id=1385946608]
 
 [node name="Orchestrator" parent="Managers" unique_id=1592803965 instance=ExtResource("1_m2x2u")]
+
+[node name="ModifierManager" parent="Managers" unique_id=1330404860 instance=ExtResource("13_8qh8v")]
+unique_name_in_owner = true
 
 [node name="TimeManager" parent="Managers" unique_id=1090876110 instance=ExtResource("10_mhlox")]
 unique_name_in_owner = true
