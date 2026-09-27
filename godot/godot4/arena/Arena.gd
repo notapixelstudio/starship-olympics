@@ -117,6 +117,9 @@ func setup_team(team:String) -> void:
 		species_list.append( _players_by_id[player_id].get_species() )
 	%ScoreHUD.add_team(team, species_list)
 	
+func set_active_modifiers(modifiers: Array[String]) -> void:
+	%ModifierManager.active_modifiers = modifiers
+	
 ## Returns a [String] identifier for the [Arena] (defaults to the file name of the scene file).
 func get_id() -> String:
 	return scene_file_path.get_base_dir().get_slice('/',scene_file_path.get_base_dir().get_slice_count('/')-1) + '_' + scene_file_path.get_file().split('.')[0]

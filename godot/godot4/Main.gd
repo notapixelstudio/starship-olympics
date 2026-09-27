@@ -36,7 +36,7 @@ func _on_pve_characters_selected(players:Array[Player]) -> void:
 func _on_level_selection_screen_ready(level_selection_screen:Screen) -> void:
 	level_selection_screen.list_levels_for_session(_current_session)
 	
-func _on_level_selected(level_scene:PackedScene):
+func _on_level_selected(level_scene:PackedScene, modifiers:Array[String]):
 	if _current_match:
 		remove_child(_current_match)
 		_current_match.queue_free()
@@ -47,6 +47,7 @@ func _on_level_selected(level_scene:PackedScene):
 	_current_match = level_scene.instantiate()
 	_current_match.players = _current_session.players
 	_current_match.session = _current_session
+	_current_match.set_active_modifiers(modifiers)
 	add_child(_current_match)
 	%TouchControls.show_controls()
 	

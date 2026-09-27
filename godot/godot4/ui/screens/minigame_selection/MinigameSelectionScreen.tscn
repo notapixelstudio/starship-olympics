@@ -18,14 +18,28 @@ layout_mode = 0
 [node name="MinigamesList" type="VBoxContainer" parent="." index="2" unique_id=598626032]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
+offset_left = -107.0
+offset_top = -60.0
+offset_right = 107.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -40)
 theme_override_constants/separation = 10
+
+[node name="CheckBoxWinter" type="CheckBox" parent="MinigamesList" index="0" unique_id=142147340]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("5_grij4")
+theme_override_font_sizes/font_size = 32
+text = "WINTER  "
+alignment = 2
 
 [node name="Title" type="Label" parent="." index="3" unique_id=417756594]
 unique_name_in_owner = true

@@ -9,6 +9,10 @@ signal updated
 func set_hosts(v: Array[Node]) -> void:
 	hosts = v
 	taint()
+	
+func add_host(v: Node) -> void:
+	hosts.append(v)
+	taint()
 
 var points : PackedVector2Array
 

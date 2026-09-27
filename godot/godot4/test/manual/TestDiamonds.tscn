@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ovcqd8vqj5i1"]
+[gd_scene format=3 uid="uid://ovcqd8vqj5i1"]
 
 [ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_gfqil"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="2_bhfha"]
@@ -14,18 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://drkgrqkia3jg3" path="res://godot4/elements/treasures/MusicGhostDiamond.tscn" id="12_5belf"]
 [ext_resource type="PackedScene" uid="uid://yvv4j28ojh12" path="res://godot4/elements/treasures/GodDiamond.tscn" id="12_us4ci"]
 [ext_resource type="PackedScene" uid="uid://bodwipc6waars" path="res://godot4/elements/treasures/MusicGodDiamond.tscn" id="13_oaefj"]
-
-[sub_resource type="GDScript" id="GDScript_0rj7w"]
-script/source = "extends SOLog
-
-
-func _ready():
-	super._ready()
-	Events.sth_collected.connect(_on_sth_collected)
-	
-func _on_sth_collected(collector, collectee):
-	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
-"
 
 [sub_resource type="GDScript" id="GDScript_dqhjw"]
 script/source = "extends Timer
@@ -43,194 +31,206 @@ func tick():
 	wait_time *= 0.99
 "
 
-[node name="TestChamber" instance=ExtResource("1_gfqil")]
+[sub_resource type="GDScript" id="GDScript_0rj7w"]
+script/source = "extends SOLog
 
-[node name="TestChamberLog" parent="." index="5"]
-script = SubResource("GDScript_0rj7w")
 
-[node name="TestBeat" type="Timer" parent="." index="6"]
+func _ready():
+	super._ready()
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_sth_collected(collector, collectee):
+	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
+"
+
+[node name="TestChamber" unique_id=1410827206 instance=ExtResource("1_gfqil")]
+
+[node name="TestBeat" type="Timer" parent="." index="6" unique_id=2007071446]
 autostart = true
 script = SubResource("GDScript_dqhjw")
 
-[node name="ScoreManager" parent="." index="7" instance=ExtResource("2_pdmw8")]
+[node name="ScoreManager" parent="." index="7" unique_id=1854392240 instance=ExtResource("2_pdmw8")]
 teams = Array[String](["P1"])
 
-[node name="MessageManager" parent="." index="8" node_paths=PackedStringArray("battlefield") instance=ExtResource("2_uu5ph")]
+[node name="MessageManager" parent="." index="8" unique_id=1920322541 node_paths=PackedStringArray("battlefield") instance=ExtResource("2_uu5ph")]
 battlefield = NodePath("..")
 
-[node name="CollectGame" parent="." index="9" instance=ExtResource("4_8xaxc")]
+[node name="CollectGame" parent="." index="9" unique_id=469226898 instance=ExtResource("4_8xaxc")]
 
-[node name="TreasureSFXManager" parent="." index="10" instance=ExtResource("5_eqstp")]
+[node name="TreasureSFXManager" parent="." index="10" unique_id=769411053 instance=ExtResource("5_eqstp")]
 
-[node name="Ship" parent="." index="11" instance=ExtResource("2_bhfha")]
+[node name="Ship" parent="." index="11" unique_id=83249433 instance=ExtResource("2_bhfha")]
 unique_name_in_owner = true
 
-[node name="Diamond" parent="." index="12" instance=ExtResource("5_wkp48")]
+[node name="Diamond" parent="." index="12" unique_id=1000947341 instance=ExtResource("5_wkp48")]
 position = Vector2(1100, -200)
 
-[node name="Diamond2" parent="." index="13" instance=ExtResource("5_wkp48")]
+[node name="Diamond2" parent="." index="13" unique_id=1774456924 instance=ExtResource("5_wkp48")]
 position = Vector2(1100, 0)
 
-[node name="Diamond3" parent="." index="14" instance=ExtResource("5_wkp48")]
+[node name="Diamond3" parent="." index="14" unique_id=677298239 instance=ExtResource("5_wkp48")]
 position = Vector2(1300, -400)
 
-[node name="Diamond7" parent="." index="15" instance=ExtResource("5_wkp48")]
+[node name="Diamond7" parent="." index="15" unique_id=701015135 instance=ExtResource("5_wkp48")]
 position = Vector2(900, -400)
 
-[node name="Diamond8" parent="." index="16" instance=ExtResource("5_wkp48")]
+[node name="Diamond8" parent="." index="16" unique_id=1600525932 instance=ExtResource("5_wkp48")]
 position = Vector2(700, -400)
 
-[node name="Diamond9" parent="." index="17" instance=ExtResource("5_wkp48")]
+[node name="Diamond9" parent="." index="17" unique_id=2030684970 instance=ExtResource("5_wkp48")]
 position = Vector2(500, -400)
 
-[node name="Diamond21" parent="." index="18" instance=ExtResource("5_wkp48")]
+[node name="Diamond21" parent="." index="18" unique_id=417461078 instance=ExtResource("5_wkp48")]
 position = Vector2(700, 0)
 
-[node name="Diamond22" parent="." index="19" instance=ExtResource("5_wkp48")]
+[node name="Diamond22" parent="." index="19" unique_id=466294729 instance=ExtResource("5_wkp48")]
 position = Vector2(500, 0)
 
-[node name="Diamond10" parent="." index="20" instance=ExtResource("5_wkp48")]
+[node name="Diamond10" parent="." index="20" unique_id=34025353 instance=ExtResource("5_wkp48")]
 position = Vector2(900, -200)
 
-[node name="Diamond11" parent="." index="21" instance=ExtResource("5_wkp48")]
+[node name="Diamond11" parent="." index="21" unique_id=1982292353 instance=ExtResource("5_wkp48")]
 position = Vector2(700, -200)
 
-[node name="Diamond12" parent="." index="22" instance=ExtResource("5_wkp48")]
+[node name="Diamond12" parent="." index="22" unique_id=836391697 instance=ExtResource("5_wkp48")]
 position = Vector2(500, -200)
 
-[node name="Diamond4" parent="." index="23" instance=ExtResource("5_wkp48")]
+[node name="Diamond4" parent="." index="23" unique_id=902239467 instance=ExtResource("5_wkp48")]
 position = Vector2(1300, -200)
 
-[node name="Diamond5" parent="." index="24" instance=ExtResource("5_wkp48")]
+[node name="Diamond5" parent="." index="24" unique_id=1372752490 instance=ExtResource("5_wkp48")]
 position = Vector2(1300, 0)
 
-[node name="Diamond13" parent="." index="25" instance=ExtResource("5_wkp48")]
+[node name="Diamond13" parent="." index="25" unique_id=1588384822 instance=ExtResource("5_wkp48")]
 position = Vector2(1100, 200)
 
-[node name="Diamond14" parent="." index="26" instance=ExtResource("5_wkp48")]
+[node name="Diamond14" parent="." index="26" unique_id=70075539 instance=ExtResource("5_wkp48")]
 position = Vector2(1100, 400)
 
-[node name="Diamond15" parent="." index="27" instance=ExtResource("5_wkp48")]
+[node name="Diamond15" parent="." index="27" unique_id=308160530 instance=ExtResource("5_wkp48")]
 position = Vector2(1300, 200)
 
-[node name="Diamond16" parent="." index="28" instance=ExtResource("5_wkp48")]
+[node name="Diamond16" parent="." index="28" unique_id=1148265166 instance=ExtResource("5_wkp48")]
 position = Vector2(1300, 400)
 
-[node name="Diamond23" parent="." index="29" instance=ExtResource("5_wkp48")]
+[node name="Diamond23" parent="." index="29" unique_id=1643134466 instance=ExtResource("5_wkp48")]
 position = Vector2(500, 200)
 
-[node name="Diamond24" parent="." index="30" instance=ExtResource("5_wkp48")]
+[node name="Diamond24" parent="." index="30" unique_id=1826145580 instance=ExtResource("5_wkp48")]
 position = Vector2(500, 400)
 
-[node name="Diamond17" parent="." index="31" instance=ExtResource("5_wkp48")]
+[node name="Diamond17" parent="." index="31" unique_id=1112363973 instance=ExtResource("5_wkp48")]
 position = Vector2(700, 200)
 
-[node name="Diamond18" parent="." index="32" instance=ExtResource("5_wkp48")]
+[node name="Diamond18" parent="." index="32" unique_id=1385771787 instance=ExtResource("5_wkp48")]
 position = Vector2(700, 400)
 
-[node name="Diamond19" parent="." index="33" instance=ExtResource("5_wkp48")]
+[node name="Diamond19" parent="." index="33" unique_id=1458732934 instance=ExtResource("5_wkp48")]
 position = Vector2(900, 200)
 
-[node name="Diamond20" parent="." index="34" instance=ExtResource("5_wkp48")]
+[node name="Diamond20" parent="." index="34" unique_id=488460443 instance=ExtResource("5_wkp48")]
 position = Vector2(900, 400)
 
-[node name="BigDiamond" parent="." index="35" instance=ExtResource("6_xtpgn")]
+[node name="BigDiamond" parent="." index="35" unique_id=598266624 instance=ExtResource("6_xtpgn")]
 position = Vector2(900, 0)
 
-[node name="BadDiamond" parent="." index="36" instance=ExtResource("8_nqrgq")]
+[node name="BadDiamond" parent="." index="36" unique_id=1255389414 instance=ExtResource("8_nqrgq")]
 position = Vector2(1100, -400)
 
-[node name="SpikeDiamond" parent="." index="37" instance=ExtResource("9_8qih7")]
+[node name="SpikeDiamond" parent="." index="37" unique_id=685495180 instance=ExtResource("9_8qih7")]
 position = Vector2(1100, -1100)
 
-[node name="MusicSpikeDiamond" parent="." index="38" instance=ExtResource("10_bquyw")]
+[node name="MusicSpikeDiamond" parent="." index="38" unique_id=1332978726 instance=ExtResource("10_bquyw")]
 position = Vector2(0, 900)
 
-[node name="MusicSpikeDiamond2" parent="." index="39" instance=ExtResource("10_bquyw")]
+[node name="MusicSpikeDiamond2" parent="." index="39" unique_id=355675728 instance=ExtResource("10_bquyw")]
 position = Vector2(200, 900)
 
-[node name="MusicSpikeDiamond3" parent="." index="40" instance=ExtResource("10_bquyw")]
+[node name="MusicSpikeDiamond3" parent="." index="40" unique_id=918004479 instance=ExtResource("10_bquyw")]
 position = Vector2(400, 900)
 
-[node name="MusicSpikeDiamond4" parent="." index="41" instance=ExtResource("10_bquyw")]
+[node name="MusicSpikeDiamond4" parent="." index="41" unique_id=1305482314 instance=ExtResource("10_bquyw")]
 position = Vector2(-200, 900)
 
-[node name="MusicSpikeDiamond5" parent="." index="42" instance=ExtResource("10_bquyw")]
+[node name="MusicSpikeDiamond5" parent="." index="42" unique_id=335005225 instance=ExtResource("10_bquyw")]
 position = Vector2(-400, 900)
 
-[node name="GodDiamond" parent="." index="43" instance=ExtResource("12_us4ci")]
+[node name="GodDiamond" parent="." index="43" unique_id=859640134 instance=ExtResource("12_us4ci")]
 position = Vector2(1300, 700)
 
-[node name="MusicGhostDiamond" parent="." index="44" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond" parent="." index="44" unique_id=1149398914 instance=ExtResource("12_5belf")]
 position = Vector2(0, -900)
 
-[node name="MusicGhostDiamond2" parent="." index="45" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond2" parent="." index="45" unique_id=27571601 instance=ExtResource("12_5belf")]
 position = Vector2(200, -900)
 
-[node name="MusicGhostDiamond3" parent="." index="46" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond3" parent="." index="46" unique_id=1831623774 instance=ExtResource("12_5belf")]
 position = Vector2(400, -900)
 
-[node name="MusicGhostDiamond4" parent="." index="47" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond4" parent="." index="47" unique_id=1229274102 instance=ExtResource("12_5belf")]
 position = Vector2(-200, -900)
 
-[node name="MusicGhostDiamond5" parent="." index="48" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond5" parent="." index="48" unique_id=1444973128 instance=ExtResource("12_5belf")]
 position = Vector2(-400, -900)
 
-[node name="MusicGhostDiamond6" parent="." index="49" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond6" parent="." index="49" unique_id=1332234578 instance=ExtResource("12_5belf")]
 position = Vector2(0, -1100)
 collectable = false
 
-[node name="MusicGhostDiamond7" parent="." index="50" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond7" parent="." index="50" unique_id=975725962 instance=ExtResource("12_5belf")]
 position = Vector2(200, -1100)
 collectable = false
 
-[node name="MusicGhostDiamond8" parent="." index="51" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond8" parent="." index="51" unique_id=1210395804 instance=ExtResource("12_5belf")]
 position = Vector2(400, -1100)
 collectable = false
 
-[node name="MusicGhostDiamond9" parent="." index="52" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond9" parent="." index="52" unique_id=992772710 instance=ExtResource("12_5belf")]
 position = Vector2(-200, -1100)
 collectable = false
 
-[node name="MusicGhostDiamond10" parent="." index="53" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond10" parent="." index="53" unique_id=166754350 instance=ExtResource("12_5belf")]
 position = Vector2(-400, -1100)
 collectable = false
 
-[node name="MusicGhostDiamond11" parent="." index="54" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond11" parent="." index="54" unique_id=1998995329 instance=ExtResource("12_5belf")]
 position = Vector2(900, -1100)
 starting_beats = 2
 
-[node name="MusicGhostDiamond12" parent="." index="55" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond12" parent="." index="55" unique_id=503082031 instance=ExtResource("12_5belf")]
 position = Vector2(900, -1300)
 starting_beats = 1
 
-[node name="MusicGhostDiamond13" parent="." index="56" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond13" parent="." index="56" unique_id=1107680483 instance=ExtResource("12_5belf")]
 position = Vector2(1100, -1300)
 
-[node name="MusicGhostDiamond14" parent="." index="57" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond14" parent="." index="57" unique_id=1636702038 instance=ExtResource("12_5belf")]
 position = Vector2(1300, -1300)
 starting_beats = 3
 collectable = false
 
-[node name="MusicGhostDiamond15" parent="." index="58" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond15" parent="." index="58" unique_id=2077712996 instance=ExtResource("12_5belf")]
 position = Vector2(1300, -1100)
 starting_beats = 2
 collectable = false
 
-[node name="MusicGhostDiamond16" parent="." index="59" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond16" parent="." index="59" unique_id=1001033405 instance=ExtResource("12_5belf")]
 position = Vector2(1300, -900)
 starting_beats = 1
 collectable = false
 
-[node name="MusicGhostDiamond17" parent="." index="60" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond17" parent="." index="60" unique_id=713874689 instance=ExtResource("12_5belf")]
 position = Vector2(1100, -900)
 collectable = false
 
-[node name="MusicGhostDiamond18" parent="." index="61" instance=ExtResource("12_5belf")]
+[node name="MusicGhostDiamond18" parent="." index="61" unique_id=2113034075 instance=ExtResource("12_5belf")]
 position = Vector2(900, -900)
 starting_beats = 3
 
-[node name="MusicGodDiamond" parent="." index="62" instance=ExtResource("13_oaefj")]
+[node name="MusicGodDiamond" parent="." index="62" unique_id=1478630421 instance=ExtResource("13_oaefj")]
 position = Vector2(900, 700)
+
+[node name="TestChamberLog" parent="." index="63" unique_id=750176929]
+script = SubResource("GDScript_0rj7w")
 
 [connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]

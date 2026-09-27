@@ -38,7 +38,7 @@ signal sth_is_overlapping_with_ship(sth, ship) # continuous check (opt-in), no d
 signal pvp_characters_selected(players_data:Array[Player])
 signal pve_characters_selected(players_data:Array[Player])
 signal level_selection_screen_ready(level_selection_screen:Screen)
-signal level_selected(level:PackedScene)
+signal level_selected(level:PackedScene, modifiers:Array[String])
 
 # players ready
 signal player_ready(player)

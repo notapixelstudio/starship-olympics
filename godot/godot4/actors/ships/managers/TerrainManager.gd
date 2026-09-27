@@ -25,19 +25,27 @@ var _current_terrain := &"none"
 
 func get_host():
 	return get_parent()
-
-func process_overlappers(overlappers: Array) -> void:
-	var _found_terrain := &"default"
-	for sth in overlappers:
-		if sth is Ice:
-			_found_terrain = &"ice"
-	_switch_terrain(_found_terrain)
+	
+func _ready() -> void:
+	await get_host().ready
+	_switch_terrain(&"default")
+	
+func enter_area(area: Area2D) -> void:
+	if is_instance_valid(area):
+		if area is Ice:
+			_switch_terrain(&"ice")
+			
+# WARNING exits are unreliable with animated shapes
+# use enter in a complementary area if needed
+#func exit_area(area: Area2D) -> void:
+	#pass
 	
 func _switch_terrain(type) -> void:
 	if _current_terrain == type:
 		return
 	
 	_current_terrain = type
+	Events.log.emit('Terrain switched to: %s' % _current_terrain)
 	
 	# apply new terrain's parameters
 	get_host().thrust = thrust[_current_terrain]

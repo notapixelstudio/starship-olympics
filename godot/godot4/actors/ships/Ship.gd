@@ -165,8 +165,9 @@ func _ready():
 	PhysicsServer2D.body_set_continuous_collision_detection_mode(get_rid(), PhysicsServer2D.CCD_MODE_CAST_SHAPE)
 	print(get_scene_file_path())
 	
-func _physics_process(delta: float) -> void:
-	_continuous_collision_check()
+# WARNING this does not work with Area2Ds with animated shapes
+#func _physics_process(delta: float) -> void:
+	#_continuous_collision_check()
 	
 func _integrate_forces(state):
 	if %ChargeManager.is_charging():
@@ -200,15 +201,17 @@ func _drop_dash_ring_effect() -> void:
 # some collisions must be checked every frame
 # WARNING collisions picked by this must be distinct from those picked by signals
 # otherwise there will be duplicates
-func _continuous_collision_check():
-	var overlappers = %TouchArea.get_overlapping_bodies() + %TouchArea.get_overlapping_areas()
-	%TerrainManager.process_overlappers(overlappers)
+# WARNING this does not work with Area2Ds with animated shapes
+#func _continuous_collision_check():
+	#var overlappers = %TouchArea.get_overlapping_bodies() + %TouchArea.get_overlapping_areas()
+	#%TerrainManager.process_overlappers(overlappers)
 
 func _on_body_entered(body) -> void:
 	Events.collision.emit(self, body)
 
 func _on_touch_area_area_entered(area) -> void:
 	_on_touch_area_entered(area)
+	%TerrainManager.enter_area(area)
 	
 	# FIXME this is temporary
 	if area is BlockRotationArea:

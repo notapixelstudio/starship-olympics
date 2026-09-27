@@ -205,7 +205,6 @@ hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=1888015466 groups=["animation_starts_with_battle"]]
 root_node = NodePath("../OutsideWall")
-callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_totb7")
 
 [node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=480981193 instance=ExtResource("7_3wrn0")]
@@ -280,6 +279,13 @@ time_jitter = 1.0
 burst_shots = 4
 burst_time = 0.1
 burst_time_jitter = 0.2
+
+[node name="TheVoid" type="Area2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="12" unique_id=120478716]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/TheVoid" index="0" unique_id=2137283425]
+polygon = PackedVector2Array(-1950, -1350, 2250, -1350, 2500, 1250, -2350, 1250)
 
 [node name="Navigation" parent="." index="6" unique_id=332973589]
 navigation_polygon = SubResource("NavigationPolygon_sdmjk")

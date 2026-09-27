@@ -149,7 +149,7 @@ func _on_camera_updated(camera_state:Dictionary) -> void:
 	scale = Vector2(1,1)/camera_state['zoom']
 "
 
-[sub_resource type="Gradient" id="Gradient_2p6s4"]
+[sub_resource type="Gradient" id="Gradient_0funj"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
@@ -358,7 +358,7 @@ max_length = 100
 
 [node name="MotionAutoTrail" parent="." unique_id=1178586549 node_paths=PackedStringArray("host") instance=ExtResource("11_tsmbp")]
 unique_name_in_owner = true
-gradient = SubResource("Gradient_2p6s4")
+gradient = SubResource("Gradient_0funj")
 host = NodePath("..")
 max_age = 0.4
 

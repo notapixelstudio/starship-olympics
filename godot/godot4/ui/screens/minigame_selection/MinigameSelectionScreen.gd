@@ -18,13 +18,18 @@ func _populate_list(levels) -> void:
 		minigame_button.set_data(level)
 		minigame_button.selected.connect(_on_minigame_button_selected)
 		%MinigamesList.add_child(minigame_button)
+		%MinigamesList.move_child(minigame_button, 0)
 		
 func enter():
 	super.enter()
 	%MinigamesList.get_child(0).grab_focus()
 
 func _on_minigame_button_selected(level) -> void:
+	var modifiers : Array[String] = []
+	if %CheckBoxWinter.is_pressed():
+		modifiers.append(&'winter')
+		
 	SoundEffects.play(%AudioStreamPlayer)
-	Events.level_selected.emit(level['scene'])
+	Events.level_selected.emit(level['scene'], modifiers)
 	
 	next.emit(next_scene.instantiate())
