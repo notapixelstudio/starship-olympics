@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 
 var _current_session : Session

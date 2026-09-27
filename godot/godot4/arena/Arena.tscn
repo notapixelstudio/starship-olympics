@@ -24,12 +24,10 @@
 [ext_resource type="PackedScene" uid="uid://7l4wbr8f06he" path="res://godot4/arena/managers/GameOverManager.tscn" id="17_u22a8"]
 [ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minigames/diamondsnatch.png" id="18_3l87r"]
 [ext_resource type="Texture2D" uid="uid://bvtwlkbaasdkr" path="res://combat/levels/background/menus.png" id="18_f7kik"]
-[ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="19_hnpxt"]
 [ext_resource type="PackedScene" uid="uid://b83y52mt43gah" path="res://godot4/arena/managers/SpawnManager.tscn" id="20_fhoky"]
 [ext_resource type="PackedScene" uid="uid://c161j5oxkpgmm" path="res://godot4/arena/managers/CollisionResponseManager.tscn" id="21_rittb"]
 [ext_resource type="PackedScene" uid="uid://bsglorws8xub7" path="res://godot4/arena/managers/ShipFactory.tscn" id="22_xop1g"]
 [ext_resource type="PackedScene" uid="uid://cnc1iumrpf838" path="res://godot4/arena/Navigation.tscn" id="23_rittb"]
-[ext_resource type="Shader" uid="uid://qj4beet66b8h" path="res://godot4/shaders/custom_multiply_screen_blend.gdshader" id="25_ygwob"]
 [ext_resource type="PackedScene" uid="uid://baqs1sh3hug4e" path="res://godot4/arena/hud/Counter.tscn" id="26_picc7"]
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="27_8sctu"]
 [ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="28_fhoky"]
@@ -45,10 +43,6 @@ parsed_collision_mask = 16
 source_geometry_mode = 1
 source_geometry_group_name = &"obstacle"
 agent_radius = 100.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbqai"]
-shader = ExtResource("25_ygwob")
-shader_parameter/brightness = 2.0
 
 [node name="Arena" type="Node2D" unique_id=2082662255]
 script = ExtResource("1_avtyt")
@@ -127,18 +121,6 @@ navigation_polygon = SubResource("NavigationPolygon_8qh8v")
 unique_name_in_owner = true
 process_mode = 3
 layer = 10
-
-[node name="Vignette" type="TextureRect" parent="HUD" unique_id=138350419]
-material = SubResource("ShaderMaterial_gbqai")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("19_hnpxt")
-expand_mode = 5
-stretch_mode = 5
-flip_h = true
 
 [node name="SOLog" parent="HUD" unique_id=1688534412 instance=ExtResource("7_tad78")]
 visible = false

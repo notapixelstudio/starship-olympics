@@ -2,15 +2,42 @@
 
 [ext_resource type="PackedScene" uid="uid://dxftfjyem72k6" path="res://godot4/ui/screens/ScreenController.tscn" id="1"]
 [ext_resource type="Script" uid="uid://dd6qk4byqtqvp" path="res://godot4/Main.gd" id="2"]
+[ext_resource type="Shader" uid="uid://qj4beet66b8h" path="res://godot4/shaders/custom_multiply_screen_blend.gdshader" id="4_anbdq"]
+[ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="5_iq0iw"]
 [ext_resource type="PackedScene" uid="uid://hwf7tcforry2" path="res://godot4/ui/screens/title_screen/TitleScreen.tscn" id="6_iq0iw"]
 [ext_resource type="PackedScene" uid="uid://gvjq5iyxk81y" path="res://godot4/ui/touch_controls/TouchControls.tscn" id="7_touch"]
 
-[node name="Main" type="Node2D" unique_id=2038588314]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w772f"]
+shader = ExtResource("4_anbdq")
+shader_parameter/brightness = 2.0
+
+[node name="Main" type="Control" unique_id=1551248445]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2")
 
 [node name="ScreenController" parent="." unique_id=1671382562 instance=ExtResource("1")]
 unique_name_in_owner = true
+layout_mode = 0
 starting_screen_scene = ExtResource("6_iq0iw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1296658037]
+
+[node name="Vignette" type="TextureRect" parent="CanvasLayer" unique_id=764603126]
+material = SubResource("ShaderMaterial_w772f")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_iq0iw")
+expand_mode = 5
+stretch_mode = 5
+flip_h = true
 
 [node name="TouchControls" parent="." unique_id=730429144 instance=ExtResource("7_touch")]
 unique_name_in_owner = true
