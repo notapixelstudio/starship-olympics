@@ -1,27 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsnpuv1ss4bxe"]
+[gd_scene format=3 uid="uid://bsnpuv1ss4bxe"]
 
-[ext_resource type="Shader" uid="uid://d2qbwcjlqoech" path="res://assets/shaders/crt_local.gdshader" id="1_jw7r8"]
+[ext_resource type="Material" uid="uid://dtmcghi5hruku" path="res://godot4/shaders/hologram.tres" id="1_jw7r8"]
 [ext_resource type="BitMap" uid="uid://b8klkndbgm8ya" path="res://godot4/ui/screens/main_menu/buttons/area_Campaign.png" id="2"]
 [ext_resource type="Script" uid="uid://b18t4o8grk0q7" path="res://ui/fancy_menus/FancyButton.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://bdx58bmvismid" path="res://godot4/ui/screens/main_menu/buttons/graphics_Campaign.png" id="4"]
 [ext_resource type="AudioStream" uid="uid://dvn3ibmeai2po" path="res://assets/audio/UI_effects/zapsplat_multimedia_button_click_005_53866.mp3" id="5_jw7r8"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xr73u"]
-shader = ExtResource("1_jw7r8")
-shader_parameter/boost = 1.55
-shader_parameter/grille_opacity = 0.85
-shader_parameter/scanlines_opacity = 0.75
-shader_parameter/vignette_opacity = 0.2
-shader_parameter/scanlines_speed = 2.0
-shader_parameter/show_grille = false
-shader_parameter/show_scanlines = true
-shader_parameter/show_vignette = false
-shader_parameter/show_curvature = false
-shader_parameter/screen_size = Vector2(160, 90)
-shader_parameter/aberration_amount = 0.7
-shader_parameter/move_aberration = false
-shader_parameter/aberration_speed = 1.0
-shader_parameter/pincushion = 1.0
 
 [sub_resource type="Animation" id="3"]
 resource_name = "Grow"
@@ -84,20 +67,18 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("5_jw7r8")
 
-[node name="FancyButton" type="TextureButton"]
-material = SubResource("ShaderMaterial_xr73u")
+[node name="FancyButton" type="TextureButton" unique_id=2031190971]
+material = ExtResource("1_jw7r8")
 offset_right = 279.0
 offset_bottom = 503.0
 texture_normal = ExtResource("4")
 texture_click_mask = ExtResource("2")
 script = ExtResource("3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ajxy4")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1261316895]
+libraries/ = SubResource("AnimationLibrary_ajxy4")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1043653852]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_jw7r8")
 volume_db = 5.0

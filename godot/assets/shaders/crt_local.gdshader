@@ -6,11 +6,11 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 varying flat vec4 modulate;
 
 //
-uniform float boost : hint_range(1.0, 2.0, 0.01) = float(1.2);
+uniform float boost : hint_range(1.0, 10.0, 0.01) = float(1.2);
 uniform float grille_opacity : hint_range(0.0, 1.0, 0.01) = float(0.85);
 uniform float scanlines_opacity : hint_range(0.0, 1.0, 0.01) = float(0.95);
 uniform float vignette_opacity : hint_range(0.1, 0.5, 0.01) = float(0.2);
-uniform float scanlines_speed : hint_range(0.0, 5.0, 0.1) = float(1.0);
+uniform float scanlines_speed : hint_range(-5.0, 5.0, 0.1) = float(1.0);
 uniform bool show_grille = true;
 uniform bool show_scanlines = true;
 uniform bool show_vignette = true;

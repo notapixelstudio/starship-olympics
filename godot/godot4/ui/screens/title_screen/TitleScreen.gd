@@ -15,3 +15,8 @@ func _ready():
 
 func _on_press_any_key_any_key_pressed() -> void:
 	next.emit(next_screen_scene.instantiate())
+
+
+func _on_animaton_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == 'fade_in':
+		%AnimationPlayer.play('wobble')
