@@ -73,12 +73,19 @@ func _input(event: InputEvent) -> void:
 		"name_clear":
 			name_input.clear()
 			_move_cursor(0)
+			current_letter_selected = 0
 	_update_selection()
 	updating = false
 
 func _move_cursor(position: int) -> void:
+	var previous := cursor
 	cursor = position
-	current_letter_selected = maxi(0, LETTERS.find(name_input.text[cursor].to_upper())) if cursor < name_input.text.length() else 0
+	if cursor < name_input.text.length():
+		current_letter_selected = maxi(0, LETTERS.find(name_input.text[cursor].to_upper()))
+	elif previous != cursor:
+		# New append slot starts at A. Spurious syncs while already appending must
+		# not reset the letter (LineEdit gui_input on stick/button release).
+		current_letter_selected = 0
 
 func _update_selection() -> void:
 	name_input.caret_column = cursor
