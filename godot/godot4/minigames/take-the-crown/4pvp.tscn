@@ -17,7 +17,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../VBeveledRect:bevel")
+tracks/0/path = NodePath("../OutsideWallShape:bevel")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -35,7 +35,7 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../VBeveledRect:bevel")
+tracks/0/path = NodePath("../OutsideWallShape:bevel")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -114,7 +114,7 @@ _data = {
 &"default": SubResource("Animation_xjb4e")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_rnymh"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0db52"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -122,100 +122,99 @@ source_geometry_mode = 1
 source_geometry_group_name = &"obstacle"
 agent_radius = 100.0
 
-[node name="VersusArena" instance=ExtResource("1_rnymh")]
+[node name="VersusArena" unique_id=1703143659 instance=ExtResource("1_rnymh")]
 
-[node name="Styleable" parent="." index="0"]
+[node name="Styleable" parent="." index="0" unique_id=999924478]
 style = ExtResource("2_h38vl")
 
-[node name="CrownGame" parent="Managers" index="5" instance=ExtResource("3_g6fsk")]
+[node name="CrownGame" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="5" unique_id=673390144 instance=ExtResource("3_g6fsk")]
 
-[node name="Camera2D" parent="." index="2"]
+[node name="Camera2D" parent="." index="2" unique_id=956979488]
 zoom = Vector2(0.22, 0.22)
 
-[node name="P1" parent="Homes" index="0" instance=ExtResource("4_iix26")]
+[node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=507108587 instance=ExtResource("4_iix26")]
 position = Vector2(-600, -600)
 rotation = 0.785398
 
-[node name="P2" parent="Homes" index="1" instance=ExtResource("4_iix26")]
+[node name="P2" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="1" unique_id=1711798124 instance=ExtResource("4_iix26")]
 position = Vector2(600, 600)
 rotation = -2.35619
 
-[node name="P3" parent="Homes" index="2" instance=ExtResource("4_iix26")]
+[node name="P3" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="2" unique_id=1613765165 instance=ExtResource("4_iix26")]
 position = Vector2(600, -600)
 rotation = -3.92699
 
-[node name="P4" parent="Homes" index="3" instance=ExtResource("4_iix26")]
+[node name="P4" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="3" unique_id=965369834 instance=ExtResource("4_iix26")]
 position = Vector2(-600, 600)
 rotation = -0.785398
 
-[node name="VBeveledRect" type="Node" parent="Battlefield" index="0" node_paths=PackedStringArray("hosts")]
+[node name="OutsideWallShape" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=688348906 node_paths=PackedStringArray("hosts")]
+unique_name_in_owner = true
 script = ExtResource("5_56pwj")
 width = 4300.0
 height = 2700.0
 bevel = 1335.0
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid"), NodePath("../../Navigation")]
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield" index="1" groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=631738933 groups=["animation_starts_with_battle"]]
 root_node = NodePath("../OutsideWall")
 callback_mode_process = 0
-libraries = {
-&"": SubResource("AnimationLibrary_aclk8")
-}
+libraries/ = SubResource("AnimationLibrary_aclk8")
 
-[node name="OutsideWall" parent="Battlefield" index="2" instance=ExtResource("6_pgknn")]
+[node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=1636491009 instance=ExtResource("6_pgknn")]
+unique_name_in_owner = true
 hollow = true
 
-[node name="Grid" parent="Battlefield" index="3" node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("7_q7aj1")]
+[node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1100119522 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("7_q7aj1")]
+unique_name_in_owner = true
 cell_size = Vector2(200, 200)
-init_parametric_shape = NodePath("../VBeveledRect")
+init_parametric_shape = NodePath("../OutsideWallShape")
 
-[node name="Wall" parent="Battlefield" index="4" instance=ExtResource("6_pgknn")]
+[node name="Wall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1276262316 instance=ExtResource("6_pgknn")]
 position = Vector2(0, -1350)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4"]
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="4" unique_id=151460683]
 script = ExtResource("8_u10yr")
 radius = 225.0
 sides = 4
 
-[node name="Wall2" parent="Battlefield" index="5" instance=ExtResource("6_pgknn")]
+[node name="Wall2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=932350833 instance=ExtResource("6_pgknn")]
 position = Vector2(0, 1350)
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4"]
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4" unique_id=720893493]
 script = ExtResource("8_u10yr")
 radius = 225.0
 sides = 4
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" index="6" groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=254146251 groups=["animation_starts_with_battle"]]
 callback_mode_process = 0
-libraries = {
-&"": SubResource("AnimationLibrary_kj0uy")
-}
+libraries/ = SubResource("AnimationLibrary_kj0uy")
 
-[node name="ShieldWall" parent="Battlefield" index="7" instance=ExtResource("9_xninv")]
+[node name="ShieldWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=1296551104 instance=ExtResource("9_xninv")]
 position = Vector2(-800, 0)
 symbol_scale = 1.5
 show_edges = false
 
-[node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall" index="5"]
+[node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall" index="5" unique_id=1563248242]
 script = ExtResource("10_fg54n")
 width = 800.0
 height = 800.0
 precision = 20
 rotation_degrees = 45.0
 
-[node name="ShieldWall2" parent="Battlefield" index="8" instance=ExtResource("9_xninv")]
+[node name="ShieldWall2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=2099847059 instance=ExtResource("9_xninv")]
 position = Vector2(800, 0)
 symbol_scale = 1.5
 show_edges = false
 
-[node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall2" index="5"]
+[node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall2" index="5" unique_id=995118031]
 script = ExtResource("10_fg54n")
 width = 800.0
 height = 800.0
 precision = 20
 rotation_degrees = 45.0
 
-[node name="Crown" parent="Battlefield" index="9" instance=ExtResource("11_oimt8")]
+[node name="Crown" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=1471244090 instance=ExtResource("11_oimt8")]
 
-[node name="Navigation" parent="." index="6"]
-navigation_polygon = SubResource("NavigationPolygon_rnymh")
+[node name="Navigation" parent="." index="6" unique_id=332973589]
+navigation_polygon = SubResource("NavigationPolygon_0db52")
