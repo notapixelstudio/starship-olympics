@@ -14,7 +14,7 @@ var time: float
 var max_score: int
 var minigame_name: String
 var score: float
-var achievement: String
+var achievement # String or null
 
 
 
