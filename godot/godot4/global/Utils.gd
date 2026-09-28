@@ -111,7 +111,7 @@ func list_levels(player_count:int, mode:String) -> Array[Dictionary]:
 		while (file_name != ""):
 			if dir.current_is_dir():
 				var minigame_path = BASE_PATH+'/'+file_name+'/minigame.tres'
-				var level_path = BASE_PATH+'/'+file_name+'/'+str(player_count)+mode+'.tscn'
+				var level_path = BASE_PATH+'/'+file_name+'/'+mode+'/'+str(player_count)+'p.tscn'
 				var minigame_defined := ResourceLoader.exists(minigame_path)
 				var level_defined := ResourceLoader.exists(level_path)
 				
