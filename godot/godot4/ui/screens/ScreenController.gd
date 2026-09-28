@@ -1,6 +1,7 @@
 extends HBoxContainer
 
 @export var starting_screen_scene : PackedScene
+@export var autostart := true
 
 @onready var screen_width = ProjectSettings.get('display/window/size/viewport_width.mobile') if Utils.is_mobile_touch_device() else ProjectSettings.get('display/window/size/viewport_width')
 @onready var screen_height = ProjectSettings.get('display/window/size/viewport_height')
@@ -11,8 +12,12 @@ signal transition_started(action:String, from:String, to:String)
 signal transition_ended(action:String, from:String, to:String)
 
 func _ready():
-	navigate_to(starting_screen_scene.instantiate())
+	if autostart:
+		start()
 
+func start() -> void:
+	navigate_to(starting_screen_scene.instantiate())
+	
 func navigate_to(new_screen: Screen):
 	var from_screen_id = 'start'
 	var old_screen = null
@@ -21,6 +26,7 @@ func navigate_to(new_screen: Screen):
 		disconnect_nav_signals(old_screen)
 		old_screen.exiting()
 		from_screen_id = old_screen.get_id()
+	
 	
 	new_screen.custom_minimum_size.x = screen_width
 	new_screen.custom_minimum_size.y = screen_height
@@ -32,9 +38,9 @@ func navigate_to(new_screen: Screen):
 	transition_started.emit('navigate_to', from_screen_id, to_screen_id)
 	var new_camera_position_x = screen_width * (len(screens_stack)-1)
 	print(screens_stack)
-	if new_camera_position_x != $Camera2D.position.x: # move camera if needed
+	if new_camera_position_x != %Camera2D.position.x: # move camera if needed
 		var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-		tween.tween_property($Camera2D, 'position:x', new_camera_position_x, 1)
+		tween.tween_property(%Camera2D, 'position:x', new_camera_position_x, 1)
 		await tween.finished
 	
 	if old_screen != null:
@@ -55,8 +61,7 @@ func back():
 	transition_started.emit('back', from_screen_id, active_screen.get_id())
 	
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-	var cam = $Camera2D
-	tween.tween_property($Camera2D, 'position:x', screen_width * (len(screens_stack)-1), 1)
+	tween.tween_property(%Camera2D, 'position:x', screen_width * (len(screens_stack)-1), 1)
 	await tween.finished
 	
 	old_screen.exited()

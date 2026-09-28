@@ -1,5 +1,6 @@
 extends Control
 
+@export var intro_bgm : AudioStream
 
 var _current_session : Session
 var _current_match
@@ -8,6 +9,7 @@ var _current_match
 @onready var _background = %ParallaxBackground
 
 func _ready() -> void:
+	DeeJay.play(intro_bgm)
 	%TouchControls.hide_controls()
 	
 	Events.pvp_characters_selected.connect(_on_pvp_characters_selected)
@@ -18,6 +20,10 @@ func _ready() -> void:
 	Events.continue_after_match_over.connect(_on_continue_after_match_over)
 	Events.nav_to_level_selection.connect(_on_nav_to_level_selection)
 	_screen_controller.transition_ended.connect(_on_screen_transition_ended)
+	
+	await %AnimationPlayer.animation_finished
+	
+	_screen_controller.start()
 
 func _on_screen_transition_ended(_action: String, _from_id: String, _to_id: String) -> void:
 	%TouchControls.hide_controls()

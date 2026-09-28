@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c50sd4reltwxp" path="res://godot4/ui/screens/settings/SettingsScreen.tscn" id="6_rh0f1"]
 [ext_resource type="PackedScene" uid="uid://biutbjggs5j80" path="res://godot4/ui/screens/credits/CreditsScreen.tscn" id="7_f8uos"]
 [ext_resource type="Texture2D" uid="uid://bjcmvo37vp1sw" path="res://godot4/ui/screens/main_menu/main_menu.svg" id="8_hk5oe"]
+[ext_resource type="Texture2D" uid="uid://cf5yis6ffe81s" path="res://assets/UI/holo_beam.png" id="9_br3wu"]
 [ext_resource type="Texture2D" uid="uid://dur6k2gx10cim" path="res://godot4/ui/screens/main_menu/background.png" id="9_ottn0"]
 [ext_resource type="PackedScene" uid="uid://cklefvrbsam55" path="res://ui/fancy_menus/FancyMenu.tscn" id="10_sdory"]
 [ext_resource type="Shader" uid="uid://d2qbwcjlqoech" path="res://assets/shaders/crt_local.gdshader" id="11_om3hj"]
@@ -22,26 +23,6 @@
 [ext_resource type="BitMap" uid="uid://c7s1sa31yto7h" path="res://godot4/ui/screens/main_menu/buttons/area_Credits.png" id="20_1fdvi"]
 [ext_resource type="Texture2D" uid="uid://b88llv5k6scle" path="res://godot4/ui/screens/main_menu/buttons/graphics_Quit.png" id="21_b74ih"]
 [ext_resource type="BitMap" uid="uid://cvyfx63uo1ksg" path="res://godot4/ui/screens/main_menu/buttons/area_Quit.png" id="22_6ve22"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_br3wu"]
-resource_local_to_scene = true
-shader = ExtResource("11_om3hj")
-shader_parameter/boost = 3.999999932944
-shader_parameter/grille_opacity = 0.85
-shader_parameter/scanlines_opacity = 0.31999999284736
-shader_parameter/vignette_opacity = 0.2
-shader_parameter/scanlines_speed = -2.9999999701976
-shader_parameter/show_grille = false
-shader_parameter/show_scanlines = true
-shader_parameter/show_vignette = false
-shader_parameter/show_curvature = false
-shader_parameter/screen_size = Vector2(160, 300)
-shader_parameter/aberration_amount = 0.7
-shader_parameter/move_aberration = true
-shader_parameter/aberration_speed = 4.99999988824
-shader_parameter/pincushion = 1.0
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_um2gw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_svyif"]
 resource_local_to_scene = true
@@ -61,6 +42,8 @@ shader_parameter/move_aberration = true
 shader_parameter/aberration_speed = 4.99999988824
 shader_parameter/pincushion = 1.0
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_um2gw"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7w4he"]
 resource_local_to_scene = true
 shader = ExtResource("11_om3hj")
@@ -78,8 +61,6 @@ shader_parameter/aberration_amount = 0.7
 shader_parameter/move_aberration = true
 shader_parameter/aberration_speed = 4.99999988824
 shader_parameter/pincushion = 1.0
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_om3hj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oo3y0"]
 resource_local_to_scene = true
@@ -99,7 +80,7 @@ shader_parameter/move_aberration = true
 shader_parameter/aberration_speed = 4.99999988824
 shader_parameter/pincushion = 1.0
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_br3wu"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_om3hj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d4sav"]
 resource_local_to_scene = true
@@ -119,7 +100,27 @@ shader_parameter/move_aberration = true
 shader_parameter/aberration_speed = 4.99999988824
 shader_parameter/pincushion = 1.0
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_br3wu"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_35cti"]
+resource_local_to_scene = true
+shader = ExtResource("11_om3hj")
+shader_parameter/boost = 3.999999932944
+shader_parameter/grille_opacity = 0.85
+shader_parameter/scanlines_opacity = 0.31999999284736
+shader_parameter/vignette_opacity = 0.2
+shader_parameter/scanlines_speed = -2.9999999701976
+shader_parameter/show_grille = false
+shader_parameter/show_scanlines = true
+shader_parameter/show_vignette = false
+shader_parameter/show_curvature = false
+shader_parameter/screen_size = Vector2(160, 300)
+shader_parameter/aberration_amount = 0.7
+shader_parameter/move_aberration = true
+shader_parameter/aberration_speed = 4.99999988824
+shader_parameter/pincushion = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m2vqt"]
 resource_local_to_scene = true
 shader = ExtResource("11_om3hj")
 shader_parameter/boost = 3.999999932944
@@ -163,8 +164,7 @@ grow_vertical = 2
 texture = ExtResource("8_hk5oe")
 
 [node name="Background" type="TextureRect" parent="." index="1" unique_id=1088356673]
-visible = false
-modulate = Color(0.207843, 0.294118, 0.388235, 1)
+modulate = Color(0.19979998, 0.2820633, 0.37, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -177,9 +177,19 @@ offset_right = 640.0
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 10)
+offset_transform_scale = Vector2(0.95, 0.95)
 texture = ExtResource("9_ottn0")
 
-[node name="FancyMenu" parent="." index="2" unique_id=612401213 instance=ExtResource("10_sdory")]
+[node name="Beam" type="Sprite2D" parent="." index="2" unique_id=924693103]
+self_modulate = Color(0, 1, 1, 0.05882353)
+position = Vector2(-54.0001, -24.000006)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("9_br3wu")
+centered = false
+
+[node name="FancyMenu" parent="." index="3" unique_id=612401213 instance=ExtResource("10_sdory")]
 custom_minimum_size = Vector2(1280, 720)
 layout_mode = 1
 anchors_preset = 8
@@ -199,7 +209,7 @@ focus_default_element_on_ready = false
 
 [node name="Versus" parent="FancyMenu" index="0" unique_id=342442288 instance=ExtResource("11_ydftu")]
 self_modulate = Color(0.984314, 0.858824, 1, 1)
-material = SubResource("ShaderMaterial_br3wu")
+material = SubResource("ShaderMaterial_svyif")
 layout_mode = 0
 offset_left = 117.0
 offset_top = 57.0
@@ -225,7 +235,7 @@ text = "2 3 4"
 shear = Vector2(-0.1, -0.26)
 
 [node name="Campaign" parent="FancyMenu" index="1" unique_id=1907021622 instance=ExtResource("11_ydftu")]
-material = SubResource("ShaderMaterial_svyif")
+material = SubResource("ShaderMaterial_7w4he")
 layout_mode = 0
 offset_left = 477.0
 offset_top = 47.0
@@ -245,7 +255,7 @@ text = "1 2 3 4"
 
 [node name="HallOfFame" parent="FancyMenu" index="2" unique_id=1820015423 instance=ExtResource("11_ydftu")]
 visible = false
-material = SubResource("ShaderMaterial_7w4he")
+material = SubResource("ShaderMaterial_oo3y0")
 layout_mode = 0
 offset_left = 725.0
 offset_top = 46.0
@@ -263,7 +273,7 @@ shear = Vector2(0.25, 0.1)
 align = "left"
 
 [node name="Settings" parent="FancyMenu" index="3" unique_id=1139286242 instance=ExtResource("11_ydftu")]
-material = SubResource("ShaderMaterial_oo3y0")
+material = SubResource("ShaderMaterial_d4sav")
 layout_mode = 0
 offset_left = 778.0
 offset_top = 184.0
@@ -281,7 +291,7 @@ shear = Vector2(0.25, 0.1)
 align = "left"
 
 [node name="Credits" parent="FancyMenu" index="4" unique_id=877269234 instance=ExtResource("11_ydftu")]
-material = SubResource("ShaderMaterial_d4sav")
+material = SubResource("ShaderMaterial_35cti")
 layout_mode = 0
 offset_left = 834.0
 offset_top = 314.0
@@ -298,7 +308,7 @@ shear = Vector2(0.25, 0.1)
 align = "left"
 
 [node name="Quit" parent="FancyMenu" index="5" unique_id=1251833406 instance=ExtResource("11_ydftu")]
-material = SubResource("ShaderMaterial_35cti")
+material = SubResource("ShaderMaterial_m2vqt")
 layout_mode = 0
 offset_left = 884.0
 offset_top = 438.0
