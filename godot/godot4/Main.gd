@@ -4,10 +4,10 @@ extends Control
 var _current_session : Session
 var _current_match
 
-var _screen_controller
+@onready var _screen_controller = %ScreenController
+@onready var _background = %ParallaxBackground
 
 func _ready() -> void:
-	_screen_controller = %ScreenController
 	%TouchControls.hide_controls()
 	
 	Events.pvp_characters_selected.connect(_on_pvp_characters_selected)
@@ -53,6 +53,7 @@ func _on_level_selected(level_scene:PackedScene, modifiers:Array[String]):
 	
 func _remove_screens():
 	remove_child(_screen_controller)
+	remove_child(_background)
 	
 func _on_continue_after_match_over():
 	reset()
@@ -66,5 +67,6 @@ func reset():
 		_current_match.queue_free()
 		
 	%TouchControls.hide_controls()
+	add_child(_background)
 	add_child(_screen_controller)
 	_screen_controller.get_current_screen().back.emit()

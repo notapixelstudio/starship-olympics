@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://qj4beet66b8h" path="res://godot4/shaders/custom_multiply_screen_blend.gdshader" id="4_anbdq"]
 [ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="5_iq0iw"]
 [ext_resource type="PackedScene" uid="uid://hwf7tcforry2" path="res://godot4/ui/screens/title_screen/TitleScreen.tscn" id="6_iq0iw"]
+[ext_resource type="PackedScene" uid="uid://cy0hpemosmd3a" path="res://godot4/ui/ParallaxBackground.tscn" id="7_iq0iw"]
 [ext_resource type="PackedScene" uid="uid://gvjq5iyxk81y" path="res://godot4/ui/touch_controls/TouchControls.tscn" id="7_touch"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w772f"]
@@ -19,6 +20,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2")
+
+[node name="ParallaxBackground" parent="." unique_id=78334479 instance=ExtResource("7_iq0iw")]
+unique_name_in_owner = true
 
 [node name="ScreenController" parent="." unique_id=1671382562 instance=ExtResource("1")]
 unique_name_in_owner = true
