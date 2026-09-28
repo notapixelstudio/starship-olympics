@@ -3,6 +3,7 @@ extends Area2D
 class_name Gate
 
 @export var width := 550.0: set = set_width
+@export var width_animatable := 550.0: set = set_width_animatable
 @export var aperture := PI*0.99
 #export var crossing_while_still_tolerance := 0.3
 @export var show_arrow := true: set = set_show_arrow
@@ -19,14 +20,20 @@ var enabled := true
 
 signal crossed(by_what, gate:Gate, trigger:bool)
 
+## WARNING do not animate this, keep it at max
 func set_width(v: float) -> void:
 	width = v
-	top_end = Vector2(0, -width/2)
-	bottom_end = Vector2(0, width/2)
-	$RingPart.scale.y = width/550.0
-	$BottomRingPart.scale.y = width/550.0
-	$Shadow.scale.y = width/550.0
 	%CollisionShape2D.shape.size.y = width
+	set_width_animatable(width)
+	
+## this does not change the collision shape, use set_width once to set it at max, then animate this
+func set_width_animatable(v: float) -> void:
+	width_animatable = v
+	top_end = Vector2(0, -width_animatable/2)
+	bottom_end = Vector2(0, width_animatable/2)
+	$RingPart.scale.y = width_animatable/550.0
+	$BottomRingPart.scale.y = width_animatable/550.0
+	$Shadow.scale.y = width_animatable/550.0
 	
 func set_show_arrow(v: bool) -> void:
 	show_arrow = v

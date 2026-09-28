@@ -1,0 +1,466 @@
+[gd_scene format=3 uid="uid://craiyqeft81p6"]
+
+[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_fgmxl"]
+[ext_resource type="Resource" uid="uid://23f18svlsbrv" path="res://godot4/data/styles/asphalt.tres" id="2_pyunu"]
+[ext_resource type="PackedScene" uid="uid://dd655lcbsc8y4" path="res://godot4/arena/managers/games/RacingGame.tscn" id="2_s86nv"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="3_pyunu"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/walls/Wall.tscn" id="4_j3sdn"]
+[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="5_efrhg"]
+[ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://godot4/elements/gates/Gate.tscn" id="6_1xbxr"]
+[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="6_s86nv"]
+[ext_resource type="PackedScene" uid="uid://xoqhtny3wi7s" path="res://godot4/elements/gates/PortalGate.tscn" id="7_ods0h"]
+[ext_resource type="Texture2D" uid="uid://baclyt1ayjb0e" path="res://assets/sprites/signs/arrow.png" id="8_xqxhu"]
+
+[sub_resource type="Animation" id="12"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2200, -6.10352e-05)]
+}
+
+[sub_resource type="Animation" id="11"]
+resource_name = "default"
+length = 12.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 9),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(2200, -600), Vector2(2200, 600)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_48p16"]
+_data = {
+&"RESET": SubResource("12"),
+&"default": SubResource("11")
+}
+
+[sub_resource type="Animation" id="15"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-900.0]
+}
+
+[sub_resource type="Animation" id="16"]
+resource_name = "default"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 6),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [-1150.0, -650.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yp778"]
+_data = {
+&"RESET": SubResource("15"),
+&"default": SubResource("16")
+}
+
+[sub_resource type="Animation" id="14"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1150, -900)]
+}
+
+[sub_resource type="Animation" id="13"]
+resource_name = "default"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 6),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1150, -650), Vector2(1150, -1150)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4q3dy"]
+_data = {
+&"RESET": SubResource("14"),
+&"default": SubResource("13")
+}
+
+[sub_resource type="Animation" id="17"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-900.0]
+}
+
+[sub_resource type="Animation" id="18"]
+resource_name = "default"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 6),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [-1150.0, -650.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jccpk"]
+_data = {
+&"RESET": SubResource("17"),
+&"default": SubResource("18")
+}
+
+[sub_resource type="Animation" id="9"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1300, 900)]
+}
+
+[sub_resource type="Animation" id="10"]
+resource_name = "default"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 6),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(-1300, 1250), Vector2(-1300, 550)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v85iv"]
+_data = {
+&"RESET": SubResource("9"),
+&"default": SubResource("10")
+}
+
+[sub_resource type="Animation" id="3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [90.0]
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "default"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 6),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [160.0, 20.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_07ajn"]
+_data = {
+&"RESET": SubResource("3"),
+&"default": SubResource("4")
+}
+
+[sub_resource type="Animation" id="5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:width_animatable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [700.0]
+}
+
+[sub_resource type="Animation" id="6"]
+resource_name = "default"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:width_animatable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [700.0, 250.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_djol6"]
+_data = {
+&"RESET": SubResource("5"),
+&"default": SubResource("6")
+}
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_j3sdn"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[node name="VersusArena" unique_id=1270197430 instance=ExtResource("1_fgmxl")]
+
+[node name="Styleable" parent="." index="0" unique_id=999924478]
+style = ExtResource("2_pyunu")
+
+[node name="RacingGame" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="11" unique_id=1345514493 instance=ExtResource("2_s86nv")]
+
+[node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=834268958 instance=ExtResource("3_pyunu")]
+position = Vector2(-1600, -1050)
+
+[node name="P2" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="1" unique_id=105047255 instance=ExtResource("3_pyunu")]
+position = Vector2(-1600, -750)
+
+[node name="OutsideWallShape" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=475353757 node_paths=PackedStringArray("hosts")]
+unique_name_in_owner = true
+script = ExtResource("5_efrhg")
+width = 5600.0
+height = 3100.0
+radius = 900.0
+hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
+
+[node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=1558179421 instance=ExtResource("4_j3sdn")]
+unique_name_in_owner = true
+hollow = true
+
+[node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=127410278 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("6_s86nv")]
+unique_name_in_owner = true
+init_parametric_shape = NodePath("../OutsideWallShape")
+
+[node name="Course" type="Node2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=444846408]
+unique_name_in_owner = true
+
+[node name="Gate10" parent="Battlefield/Course" index="0" unique_id=342903297 instance=ExtResource("6_1xbxr")]
+position = Vector2(-1100, -900)
+rotation = 3.14159
+width = 700.0
+width_animatable = 700.0
+show_arrow = false
+
+[node name="Gate" parent="Battlefield/Course" index="1" unique_id=1813294797 instance=ExtResource("6_1xbxr")]
+position = Vector2(500, 500)
+rotation = -2.3562
+width = 700.0
+width_animatable = 700.0
+show_arrow = false
+
+[node name="Gate13" parent="Battlefield/Course" index="2" unique_id=355149583 instance=ExtResource("6_1xbxr")]
+position = Vector2(1150, 900)
+rotation = 3.14159
+width = 500.0
+width_animatable = 500.0
+show_arrow = false
+
+[node name="Gate12" parent="Battlefield/Course" index="3" unique_id=1824765485 instance=ExtResource("6_1xbxr")]
+position = Vector2(1450, 900)
+rotation = 3.14159
+width = 500.0
+width_animatable = 500.0
+show_arrow = false
+
+[node name="Gate2" parent="Battlefield/Course" index="4" unique_id=1866007075 instance=ExtResource("6_1xbxr")]
+position = Vector2(2200, -6.10352e-05)
+rotation = 1.5708
+width = 700.0
+width_animatable = 700.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate2" index="7" unique_id=541384190 groups=["animation_starts_with_battle"]]
+libraries/ = SubResource("AnimationLibrary_48p16")
+
+[node name="Gate4" parent="Battlefield/Course" index="5" unique_id=212321874 instance=ExtResource("6_1xbxr")]
+position = Vector2(1450, -900)
+width = 700.0
+width_animatable = 700.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate4" index="7" unique_id=148012484 groups=["animation_starts_with_battle"]]
+libraries/ = SubResource("AnimationLibrary_yp778")
+
+[node name="Gate9" parent="Battlefield/Course" index="6" unique_id=1242655691 instance=ExtResource("6_1xbxr")]
+position = Vector2(1150, -900)
+width = 700.0
+width_animatable = 700.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate9" index="7" unique_id=1175905313 groups=["animation_starts_with_battle"]]
+libraries/ = SubResource("AnimationLibrary_4q3dy")
+
+[node name="Gate15" parent="Battlefield/Course" index="7" unique_id=2062277187 instance=ExtResource("6_1xbxr")]
+position = Vector2(850, -900)
+width = 700.0
+width_animatable = 700.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate15" index="7" unique_id=995274028 groups=["animation_starts_with_battle"]]
+libraries/ = SubResource("AnimationLibrary_jccpk")
+
+[node name="PortalGate" parent="Battlefield/Course" index="8" unique_id=1942225382 node_paths=PackedStringArray("linked_to") instance=ExtResource("7_ods0h")]
+position = Vector2(0, -900)
+linked_to = NodePath("../../PortalGate2")
+width_animatable = null
+show_arrow = 3.1101767270538954
+
+[node name="Gate14" parent="Battlefield/Course" index="9" unique_id=1333872964 instance=ExtResource("6_1xbxr")]
+position = Vector2(-700, 900)
+width = 500.0
+width_animatable = 500.0
+show_arrow = false
+
+[node name="Gate8" parent="Battlefield/Course" index="10" unique_id=380961330 instance=ExtResource("6_1xbxr")]
+position = Vector2(-1000, 900)
+width = 500.0
+width_animatable = 500.0
+show_arrow = false
+
+[node name="Gate5" parent="Battlefield/Course" index="11" unique_id=1719552330 instance=ExtResource("6_1xbxr")]
+position = Vector2(-1300, 900)
+width = 500.0
+width_animatable = 500.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate5" index="7" unique_id=603534532 groups=["animation_starts_with_battle"]]
+libraries/ = SubResource("AnimationLibrary_v85iv")
+
+[node name="Gate6" parent="Battlefield/Course" index="12" unique_id=13787414 instance=ExtResource("6_1xbxr")]
+position = Vector2(-1800, 800)
+rotation = 0.785398
+width = 500.0
+width_animatable = 500.0
+show_arrow = false
+
+[node name="Gate7" parent="Battlefield/Course" index="13" unique_id=1570954878 instance=ExtResource("6_1xbxr")]
+position = Vector2(-2200, 0)
+rotation = 1.5707964
+width = 700.0
+width_animatable = 700.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate7" index="7" unique_id=804985357 groups=["animation_starts_with_battle"]]
+libraries/ = SubResource("AnimationLibrary_07ajn")
+
+[node name="Gate11" parent="Battlefield/Course" index="14" unique_id=1851731655 instance=ExtResource("6_1xbxr")]
+position = Vector2(-1950, -649.99994)
+rotation = 2.35619
+width = 700.0
+width_animatable = 700.0
+show_arrow = false
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate11" index="7" unique_id=11018192 groups=["animation_starts_with_battle"]]
+libraries/ = SubResource("AnimationLibrary_djol6")
+
+[node name="PortalGate2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1347139689 node_paths=PackedStringArray("linked_to") instance=ExtResource("7_ods0h")]
+position = Vector2(0, 900)
+linked_to = NodePath("../Course/PortalGate")
+tint = Color(0, 0.368627, 1, 1)
+inverted = true
+width_animatable = null
+show_arrow = 3.1101767270538954
+
+[node name="Line2D" type="Line2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=1273868310]
+points = PackedVector2Array(-300, 900, -1700, 900, -2200, 400, -2200, -400, -1700, -900, -1650, -900)
+width = 130.0
+default_color = Color(0.133333, 0.666667, 1, 0.313726)
+
+[node name="Line2D2" type="Line2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=1023786436]
+points = PackedVector2Array(-1150, -900, -900, -900, 900, 900, 1700, 900, 2200, 400, 2200, -400, 1700, -900, 200, -900)
+width = 130.0
+default_color = Color(0.133333, 0.666667, 1, 0.313726)
+
+[node name="Arrow" type="Sprite2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=1401671239]
+modulate = Color(0.133333, 0.666667, 1, 0.313726)
+position = Vector2(-1400, -900)
+rotation = 3.14159
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("8_xqxhu")
+flip_h = true
+
+[node name="Navigation" parent="." index="6" unique_id=332973589]
+navigation_polygon = SubResource("NavigationPolygon_j3sdn")
