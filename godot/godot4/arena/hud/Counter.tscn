@@ -1,16 +1,11 @@
 [gd_scene format=3 uid="uid://baqs1sh3hug4e"]
 
 [ext_resource type="Script" uid="uid://qvws7vknh7in" path="res://godot4/arena/hud/Counter.gd" id="1_hxy3i"]
-[ext_resource type="Shader" uid="uid://djc0pux62ui7h" path="res://godot4/shaders/text_glow.gdshader" id="1_n164n"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="1_qd8n5"]
 [ext_resource type="FontFile" uid="uid://dsdt5srqcm6rp" path="res://assets/fonts/04b_19_monospaced_one.ttf" id="2_mqpf4"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h67u1"]
-shader = ExtResource("1_n164n")
-
 [node name="Counter" type="Label" unique_id=2030890753]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_h67u1")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

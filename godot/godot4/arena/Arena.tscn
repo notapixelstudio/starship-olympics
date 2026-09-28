@@ -34,6 +34,8 @@
 [ext_resource type="Script" uid="uid://ba4f506maocjs" path="res://godot4/arena/hud/ScoreHUD.gd" id="28_mtqpa"]
 [ext_resource type="PackedScene" uid="uid://dt8lwx0muu10p" path="res://godot4/arena/hud/ScoreBar.tscn" id="29_infxo"]
 [ext_resource type="PackedScene" uid="uid://cy5pkamh8gihg" path="res://ui/common_elements/PlayersReady/PlayersReadyWheels.tscn" id="30_um0tc"]
+[ext_resource type="Shader" uid="uid://djc0pux62ui7h" path="res://godot4/shaders/text_glow.gdshader" id="30_ygwob"]
+[ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="31_8qh8v"]
 [ext_resource type="PackedScene" uid="uid://bdnijlionsghd" path="res://godot4/ui/overlays/PauseOverlay.tscn" id="32_ri8rg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8qh8v"]
@@ -43,6 +45,13 @@ parsed_collision_mask = 16
 source_geometry_mode = 1
 source_geometry_group_name = &"obstacle"
 agent_radius = 100.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cuoh0"]
+shader = ExtResource("30_ygwob")
+shader_parameter/glow_color = Color(0.502, 0.749, 1, 0.059)
+shader_parameter/glow_inner_edge = 0.70000003325
+shader_parameter/glow_softness = 0.5
+shader_parameter/grille_alpha = 0.8
 
 [node name="Arena" type="Node2D" unique_id=2082662255]
 script = ExtResource("1_avtyt")
@@ -167,6 +176,7 @@ expand_mode = 1
 stretch_mode = 3
 
 [node name="Clock" parent="HUD" unique_id=635070369 instance=ExtResource("26_picc7")]
+material = SubResource("ShaderMaterial_cuoh0")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_bottom = 0.0
@@ -176,6 +186,10 @@ offset_right = -5.0
 offset_bottom = 73.0
 grow_horizontal = 0
 grow_vertical = 1
+offset_transform_enabled = true
+offset_transform_position = Vector2(-8, 0)
+theme_override_colors/font_color = Color(0.86, 0.9766666, 1, 1)
+theme_override_fonts/font = ExtResource("31_8qh8v")
 horizontal_alignment = 2
 vertical_alignment = 0
 
