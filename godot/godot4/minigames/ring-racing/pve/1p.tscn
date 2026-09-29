@@ -278,7 +278,7 @@ _data = {
 &"default": SubResource("6")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_1yq27"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_agqh3"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -291,6 +291,9 @@ default_params = ExtResource("2_k0d6h")
 
 [node name="Styleable" parent="." index="0" unique_id=999924478]
 style = ExtResource("3_khsdr")
+
+[node name="ModifierManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="1" unique_id=1330404860]
+active_modifiers = Array[String](["winter"])
 
 [node name="RacingGame" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="11" unique_id=1345514493 instance=ExtResource("4_agqh3")]
 
@@ -384,8 +387,6 @@ libraries/ = SubResource("AnimationLibrary_vs2oc")
 [node name="PortalGate" parent="Battlefield/Course" index="8" unique_id=47480532 node_paths=PackedStringArray("linked_to") instance=ExtResource("9_qshpv")]
 position = Vector2(0, -900)
 linked_to = NodePath("../../PortalGate2")
-width_animatable = null
-show_arrow = 3.1101767270538954
 
 [node name="Gate14" parent="Battlefield/Course" index="9" unique_id=2052298941 instance=ExtResource("8_agqh3")]
 position = Vector2(-700, 900)
@@ -435,31 +436,49 @@ show_arrow = false
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate11" index="7" unique_id=1503391943 groups=["animation_starts_with_battle"]]
 libraries/ = SubResource("AnimationLibrary_6r7a3")
 
-[node name="PortalGate2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=461429305 node_paths=PackedStringArray("linked_to") instance=ExtResource("9_qshpv")]
+[node name="PortalGate2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=461429305 instance=ExtResource("9_qshpv")]
 position = Vector2(0, 900)
-linked_to = NodePath("")
 tint = Color(0, 0.368627, 1, 1)
 inverted = true
-width_animatable = null
-show_arrow = 3.1101767270538954
 
 [node name="Line2D" type="Line2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=1446173328]
 points = PackedVector2Array(-300, 900, -1700, 900, -2200, 400, -2200, -400, -1700, -900, -1650, -900)
 width = 130.0
-default_color = Color(0.133333, 0.666667, 1, 0.313726)
+default_color = Color(0.091, 0.46654993, 0.7, 0.78431374)
 
 [node name="Line2D2" type="Line2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=1010341386]
-points = PackedVector2Array(-1150, -900, -900, -900, 900, 900, 1700, 900, 2200, 400, 2200, -400, 1700, -900, 200, -900)
+z_index = -2
+z_as_relative = false
+points = PackedVector2Array(50, 50, 900, 900, 1700, 900, 2200, 400, 2200, -400, 1700, -900, 200, -900)
 width = 130.0
-default_color = Color(0.133333, 0.666667, 1, 0.313726)
+default_color = Color(0.091, 0.46654993, 0.7, 0.78431374)
 
-[node name="Arrow" type="Sprite2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=605369466]
+[node name="Line2D3" type="Line2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=1849089219]
+z_index = -2
+z_as_relative = false
+points = PackedVector2Array(-1150, -900, -900, -900, -300, -300)
+width = 130.0
+default_color = Color(0.091, 0.46654993, 0.7, 0.78431374)
+
+[node name="Arrow" type="Sprite2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=605369466]
 modulate = Color(0.133333, 0.666667, 1, 0.313726)
+z_index = -2
+z_as_relative = false
 position = Vector2(-1400, -900)
 rotation = 3.14159
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("10_v3nut")
 flip_h = true
 
+[node name="Arrow2" type="Sprite2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=1173361894]
+modulate = Color(0.133333, 0.666667, 1, 0.313726)
+z_index = -2
+z_as_relative = false
+position = Vector2(-115.99986, -115.999985)
+rotation = 3.9269907
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("10_v3nut")
+flip_h = true
+
 [node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_1yq27")
+navigation_polygon = SubResource("NavigationPolygon_agqh3")

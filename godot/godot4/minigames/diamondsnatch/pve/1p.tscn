@@ -2,10 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_g2yuu"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_xgn0o"]
-[ext_resource type="Resource" uid="uid://qv7ahl4mb6vo" path="res://godot4/data/styles/cyber.tres" id="2_yhuwo"]
 [ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="3_bj3ek"]
+[ext_resource type="Texture2D" uid="uid://b02owwc2lsn8q" path="res://assets/patterns/wall/clear.png" id="3_fq0xa"]
 [ext_resource type="PackedScene" uid="uid://srwfp3p3qeof" path="res://godot4/arena/managers/TreasureSFXManager.tscn" id="4_5inup"]
+[ext_resource type="Texture2D" uid="uid://cp7cbjvi1b73q" path="res://assets/patterns/tris.png" id="4_176vd"]
+[ext_resource type="Texture2D" uid="uid://ccvffra4l23u7" path="res://assets/patterns/stripes_duotone_lighter.png" id="4_fq0xa"]
 [ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="5_jxy6k"]
+[ext_resource type="Script" uid="uid://bjgty1ww5ajsk" path="res://godot4/data/styles/Style.gd" id="5_vgnxl"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="9_tb6i2"]
 [ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="10_a43nh"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/walls/Wall.tscn" id="11_m6wto"]
@@ -17,6 +20,21 @@
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="17_ax7k0"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/treasures/BigDiamond.tscn" id="18_w2bk3"]
 [ext_resource type="PackedScene" uid="uid://bkt23g8b1tl77" path="res://godot4/actors/enemies/BubbleTurret.tscn" id="21_ueg15"]
+
+[sub_resource type="Resource" id="Resource_8f0na"]
+script = ExtResource("5_vgnxl")
+color = Color(0.2574, 0.51909006, 0.66, 0.39215687)
+background_color = Color(0, 0.5519998, 0.69, 0.27450982)
+background_texture = ExtResource("4_fq0xa")
+line_color = Color(0.65882355, 0.74509805, 0.76862746, 1)
+line_texture = ExtResource("3_fq0xa")
+underline_color = Color(0.25490198, 0.5176471, 0.65882355, 1)
+glow_line_color = Color(0, 0.36862746, 1, 0.23529412)
+grid_visible = false
+grid_color = Color(0.25, 0.38750005, 0.5, 1)
+mesh_visible = false
+mesh_texture = ExtResource("4_176vd")
+mesh_color = Color(0.7058824, 1, 1, 0.039215688)
 
 [sub_resource type="Animation" id="Animation_68mb6"]
 length = 0.001
@@ -80,7 +98,7 @@ _data = {
 &"default": SubResource("Animation_kdc2i")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_4dmtx"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_176vd"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -92,7 +110,7 @@ agent_radius = 100.0
 default_params = ExtResource("11_xd7ch")
 
 [node name="Styleable" parent="." index="0" unique_id=999924478]
-style = ExtResource("2_yhuwo")
+style = SubResource("Resource_8f0na")
 
 [node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="6" unique_id=92266089 node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("2_xgn0o")]
 spawn_on_all_collected = true
@@ -630,4 +648,4 @@ libraries/ = SubResource("AnimationLibrary_g6aeh")
 wait_time = 8.0
 
 [node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_4dmtx")
+navigation_polygon = SubResource("NavigationPolygon_176vd")

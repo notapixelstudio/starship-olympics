@@ -14,6 +14,7 @@ func set_hollow(v: bool) -> void:
 func set_style(style:Style) -> void:
 	%Polygon2D.modulate = style.color
 	%UnderPolygon2D.modulate = style.background_color
+	%UnderPolygon2D.texture = style.background_texture
 	%Line2D.default_color = style.line_color
 	%Line2D.texture = style.line_texture
 	%Line2D.width = style.line_width

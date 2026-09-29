@@ -16,19 +16,21 @@ polygon = PackedVector2Array(-1500, -1000, 1500, -1000, 1500, 1000, -1500, 1000)
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=54512126]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.43137255)
+light_mask = 3
 z_index = -7
 z_as_relative = false
 texture_repeat = 2
 position = Vector2(0, 32)
-color = Color(0, 0.454902, 0.572549, 1)
+color = Color(0, 0.5519998, 0.69, 1)
 texture = ExtResource("2")
 texture_scale = Vector2(0.2, 0.2)
 polygon = PackedVector2Array(-1500, -1000, 1500, -1000, 1500, 1000, -1500, 1000)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=178035344]
-modulate = Color(1, 1, 1, 0.192157)
+modulate = Color(0.53999996, 0.8466666, 1, 0.05882353)
 z_index = -7
 z_as_relative = false
 position = Vector2(0, 32)
-scale = Vector2(5, 5)
+scale = Vector2(6, 6)
 texture = ExtResource("3")

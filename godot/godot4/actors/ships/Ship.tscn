@@ -278,6 +278,8 @@ texture_mode = 221806672
 
 [node name="Wrapper" type="Node2D" parent="Indicators" unique_id=932123771]
 top_level = true
+z_index = 30
+z_as_relative = false
 
 [node name="Scaled" type="Node2D" parent="Indicators/Wrapper" unique_id=1271826872]
 position = Vector2(0, -160)
@@ -292,7 +294,6 @@ alignment = 2
 
 [node name="PlayerID" type="Label" parent="Indicators/Wrapper/Scaled/VBoxContainer" unique_id=112364508]
 unique_name_in_owner = true
-z_index = 10
 layout_mode = 2
 theme = ExtResource("10_iega2")
 theme_override_font_sizes/font_size = 24
@@ -302,7 +303,6 @@ vertical_alignment = 1
 [node name="Message" type="Label" parent="Indicators/Wrapper/Scaled/VBoxContainer" unique_id=697578995]
 unique_name_in_owner = true
 visible = false
-z_index = 10
 layout_mode = 2
 theme = ExtResource("10_iega2")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

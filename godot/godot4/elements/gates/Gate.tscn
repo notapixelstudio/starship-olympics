@@ -24,7 +24,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [Color(1.6, 1.6, 1.6, 1), Color(1.2, 1.2, 1.2, 1)]
+"values": [Color(2.454227, 2.454227, 2.454227, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BottomRingPart:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.75, 0.75, 0.75, 1), Color(0.388235, 0.388235, 0.388235, 1)]
 }
 
 [sub_resource type="Animation" id="3"]
@@ -39,7 +51,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1.2, 1.2, 1.2, 1)]
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BottomRingPart:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.388235, 0.388235, 0.388235, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bcjds"]
@@ -76,9 +100,8 @@ texture = ExtResource("3")
 flip_h = true
 
 [node name="RingPart" type="Sprite2D" parent="." unique_id=831170452]
-modulate = Color(1.2, 1.2, 1.2, 1)
-self_modulate = Color(0.521569, 0.701961, 1, 1)
-z_index = 12
+self_modulate = Color(0.54901963, 0.83137256, 1, 1)
+z_index = 25
 z_as_relative = false
 position = Vector2(-28, 0)
 texture = ExtResource("4")
