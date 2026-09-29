@@ -24,7 +24,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-900, -1700)]
+"values": [Vector2(-900, -1800)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -36,7 +36,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(900, 1700)]
+"values": [Vector2(900, 1800)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -48,7 +48,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-900, 1700)]
+"values": [Vector2(-900, 1800)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -60,7 +60,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(900, -1700)]
+"values": [Vector2(900, -1800)]
 }
 
 [sub_resource type="Animation" id="Animation_pnwr7"]
@@ -77,7 +77,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(-900, -1700), Vector2(-900, -1400)]
+"values": [Vector2(-900, -1800), Vector2(-900, -1400)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -89,7 +89,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(900, 1700), Vector2(900, 1400)]
+"values": [Vector2(900, 1800), Vector2(900, 1400)]
 }
 
 [sub_resource type="Animation" id="Animation_s4j2o"]
@@ -106,7 +106,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(-900, 1700), Vector2(-900, 1400)]
+"values": [Vector2(-900, 1800), Vector2(-900, 1400)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -118,7 +118,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(900, -1700), Vector2(900, -1400)]
+"values": [Vector2(900, -1800), Vector2(900, -1400)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pr0om"]
@@ -128,7 +128,7 @@ _data = {
 &"phase_3": SubResource("Animation_s4j2o")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_s4j2o"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_o5gw8"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -179,7 +179,7 @@ init_parametric_shape = NodePath("../OutsideWallShape")
 unique_name_in_owner = true
 
 [node name="GoalWallTopLeft" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1309650842 instance=ExtResource("7_rb8hp")]
-position = Vector2(-900, -1700)
+position = Vector2(-900, -1800)
 reset_time = 9.0
 
 [node name="VRect" type="Node" parent="Battlefield/GoalWallTopLeft" index="6" unique_id=1241665718]
@@ -189,7 +189,7 @@ height = 100.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
 [node name="GoalWallBottomLeft" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=1898710476 instance=ExtResource("7_rb8hp")]
-position = Vector2(-900, 1700)
+position = Vector2(-900, 1800)
 reset_time = 10.0
 
 [node name="VRect" type="Node" parent="Battlefield/GoalWallBottomLeft" index="6" unique_id=1549525075]
@@ -199,7 +199,7 @@ height = 100.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
 [node name="GoalWallTopRight" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=2125180392 instance=ExtResource("7_rb8hp")]
-position = Vector2(900, -1700)
+position = Vector2(900, -1800)
 reset_time = 10.0
 
 [node name="VRect" type="Node" parent="Battlefield/GoalWallTopRight" index="6" unique_id=193503332]
@@ -209,7 +209,7 @@ height = 100.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
 [node name="GoalWallBottomRight" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=1077777430 instance=ExtResource("7_rb8hp")]
-position = Vector2(900, 1700)
+position = Vector2(900, 1800)
 reset_time = 10.0
 
 [node name="VRect" type="Node" parent="Battlefield/GoalWallBottomRight" index="6" unique_id=2127668372]
@@ -239,4 +239,4 @@ height = 1600.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
 [node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_s4j2o")
+navigation_polygon = SubResource("NavigationPolygon_o5gw8")

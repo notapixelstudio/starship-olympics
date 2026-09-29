@@ -46,10 +46,11 @@ joint_mode = 1
 unique_name_in_owner = true
 visible = false
 modulate = Color(0.2, 0.2, 0.2, 1)
+light_mask = 5
 z_index = -7
 texture_repeat = 2
 position = Vector2(0, 32)
-texture_scale = Vector2(0.5, 0.5)
+texture_scale = Vector2(0.25, 0.25)
 polygon = PackedVector2Array(-100, -50, -50, -100, 50, -100, 100, -50, 100, 50, 50, 100, -50, 100, -100, 50)
 
 [node name="GlowLine2D" type="Line2D" parent="." unique_id=571876536]

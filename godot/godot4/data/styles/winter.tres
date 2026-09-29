@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Style" format=3 uid="uid://dymlds3e8ueki"]
+
+[ext_resource type="Texture2D" uid="uid://ccvffra4l23u7" path="res://assets/patterns/stripes_duotone_lighter.png" id="1_b5ygx"]
+[ext_resource type="Texture2D" uid="uid://b02owwc2lsn8q" path="res://assets/patterns/wall/clear.png" id="2_lqg2e"]
+[ext_resource type="Texture2D" uid="uid://cp7cbjvi1b73q" path="res://assets/patterns/tris.png" id="3_0gb6b"]
+[ext_resource type="Script" uid="uid://bjgty1ww5ajsk" path="res://godot4/data/styles/Style.gd" id="4_hv2xg"]
+
+[resource]
+script = ExtResource("4_hv2xg")
+color = Color(0.2574, 0.51909006, 0.66, 0.39215687)
+background_color = Color(0, 0.5519998, 0.69, 0.27450982)
+background_texture = ExtResource("1_b5ygx")
+line_color = Color(0.65882355, 0.74509805, 0.76862746, 1)
+line_texture = ExtResource("2_lqg2e")
+underline_color = Color(0.25490198, 0.5176471, 0.65882355, 1)
+glow_line_color = Color(0, 0.36862746, 1, 0.23529412)
+grid_visible = false
+grid_color = Color(0.25, 0.38750005, 0.5, 1)
+mesh_visible = false
+mesh_texture = ExtResource("3_0gb6b")
+mesh_color = Color(0.7058824, 1, 1, 0.039215688)

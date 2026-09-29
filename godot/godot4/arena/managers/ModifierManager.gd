@@ -1,6 +1,7 @@
 extends Node
 
 @export_enum(&'winter') var active_modifiers : Array[String]
+@export var winter_style : Style
 @export var ice_scene : PackedScene
 
 func apply_all() -> void:
@@ -9,6 +10,9 @@ func apply_all() -> void:
 			apply_winter()
 
 func apply_winter(shapes=null) -> void:
+	%Styleable.style = winter_style
+	Styleable.reapply_all_styles()
+	
 	if shapes == null:
 		# default
 		shapes = [%OutsideWallShape]

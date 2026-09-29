@@ -61,6 +61,7 @@ default_minigame = ExtResource("9_vsuw2")
 default_params = ExtResource("9_nr0n0")
 
 [node name="Styleable" parent="." unique_id=999924478 instance=ExtResource("12_g1af4")]
+unique_name_in_owner = true
 style = ExtResource("13_n4nm8")
 
 [node name="Managers" type="Node" parent="." unique_id=1385946608]
@@ -69,6 +70,7 @@ style = ExtResource("13_n4nm8")
 
 [node name="ModifierManager" parent="Managers" unique_id=1330404860 instance=ExtResource("13_8qh8v")]
 unique_name_in_owner = true
+active_modifiers = null
 
 [node name="TimeManager" parent="Managers" unique_id=1090876110 instance=ExtResource("10_mhlox")]
 unique_name_in_owner = true

@@ -25,7 +25,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -1700)]
+"values": [Vector2(0, -1800)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -37,7 +37,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 1700)]
+"values": [Vector2(0, 1800)]
 }
 
 [sub_resource type="Animation" id="Animation_yyumb"]
@@ -53,7 +53,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(0, -1700), Vector2(0, -1400)]
+"values": [Vector2(0, -1800), Vector2(0, -1400)]
 }
 
 [sub_resource type="Animation" id="Animation_0e6di"]
@@ -69,7 +69,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(0, 1700), Vector2(0, 1400)]
+"values": [Vector2(0, 1800), Vector2(0, 1400)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bko3l"]
@@ -79,7 +79,7 @@ _data = {
 &"phase_3": SubResource("Animation_0e6di")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_yyumb"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_g8ula"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -126,7 +126,7 @@ init_parametric_shape = NodePath("../OutsideWallShape")
 unique_name_in_owner = true
 
 [node name="GoalWallTop" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1309650842 instance=ExtResource("10_y10ir")]
-position = Vector2(0, -1700)
+position = Vector2(0, -1800)
 
 [node name="VRect" type="Node" parent="Battlefield/GoalWallTop" index="6" unique_id=1241665718]
 script = ExtResource("11_k16k6")
@@ -135,7 +135,7 @@ height = 100.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
 [node name="GoalWallBottom" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=1898710476 instance=ExtResource("10_y10ir")]
-position = Vector2(0, 1700)
+position = Vector2(0, 1800)
 
 [node name="VRect" type="Node" parent="Battlefield/GoalWallBottom" index="6" unique_id=1549525075]
 script = ExtResource("11_k16k6")
@@ -162,4 +162,4 @@ height = 1200.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
 [node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_yyumb")
+navigation_polygon = SubResource("NavigationPolygon_g8ula")

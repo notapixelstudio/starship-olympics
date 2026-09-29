@@ -51,6 +51,4 @@ func update_navigation() -> void:
 		remove_from_group("obstacle")
 		
 func _ready():
-	var style = %Styleable.get_style_from_ancestor_or_self()
-	if style:
-		set_style(style)
+	%Styleable.apply_current_style()

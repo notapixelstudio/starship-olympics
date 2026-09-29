@@ -25,7 +25,7 @@ func set_style(style:Style) -> void:
 	%GridLines.enabled = %GridLines.visible or %MeshInstance2D.visible
 
 func _ready():
-	set_style(%Styleable.get_style_from_ancestor_or_self())
+	%Styleable.apply_current_style()
 	
 	#mask.frames_wait = frames_wait
 	grid.cell_size = cell_size

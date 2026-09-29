@@ -174,6 +174,11 @@ range_item_cull_mask = 2
 texture = ExtResource("3_wmwm5")
 texture_scale = 2.0
 
+[node name="SoftPointLight2D" type="PointLight2D" parent="Sprite2D" index="1" unique_id=35395461]
+range_item_cull_mask = 4
+texture = ExtResource("3_wmwm5")
+texture_scale = 2.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1700791179]
 libraries/ = SubResource("AnimationLibrary_byjas")
 autoplay = &"default"
