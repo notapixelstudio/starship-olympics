@@ -6,7 +6,9 @@ class_name AutoTrail
 ## AutoTrails are also automatically cut when there's a sudden jump (configured via [member
 ## long_segment_min_length]) or the AutoTrail exits the tree.
 
-## When the trail is cut, the copy that's leaft behind will disappear by shrinking at this rate (px/s).
+@export var active := true
+
+## When the trail is cut, the copy that's left behind will disappear by shrinking at this rate (px/s).
 @export_range (0.0, 100000.0, 1.0, 'suffix:px/s') var disappear_speed := 100.0
 ## The trail is automatically cut when there's a sudden jump that's longer than this value (px).
 @export_range(0, 100000, 1, 'suffix:px') var long_segment_min_length := 1000
@@ -14,6 +16,9 @@ class_name AutoTrail
 var _detached := false
 
 func _process(delta):
+	if not active:
+		return
+		
 	# cut the trail if there's a sudden jump (e.g., portals)
 	if not _detached and _will_next_segment_be_too_long():
 		cut()
@@ -51,3 +56,10 @@ func _drop_duplicate():
 func cut() -> void:
 	_drop_duplicate()
 	clear()
+
+func start():
+	active = true
+	
+func stop():
+	cut()
+	active = false

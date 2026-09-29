@@ -53,3 +53,6 @@ func _switch_terrain(type) -> void:
 	get_host().charge_brake = charge_brake[_current_terrain]
 	get_host().dash_multiplier = dash_multiplier[_current_terrain]
 	get_host().max_dash = max_dash[_current_terrain]
+
+func current_terrain_equals(terrain:String) -> bool:
+	return _current_terrain == terrain

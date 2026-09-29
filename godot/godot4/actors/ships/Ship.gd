@@ -58,6 +58,7 @@ const ARKABALL_OFFSET = 200
 const ARKABALL_MULTIPLIER = 1.5
 const MAGNETIC_OFFSET = 200
 const MAGNETIC_MULTIPLIER = 1.5
+
 const MIN_DRIFT := 400.0
 const MIN_DIVING_TIME := 0.05
 
@@ -75,6 +76,9 @@ var charging_started_since := 0.0 ## in seconds
 
 var target_velocity := Vector2(0, 0)
 var rotation_request := 0.0
+
+var drift := Vector2(0,0)
+var drifting := false
 
 var _stunned := false
 
@@ -137,6 +141,18 @@ func _on_dash_duration_timer_timeout():
 func end_dash():
 	set_collision_layer_value(31, false)
 	set_collision_layer_value(32, true)
+	
+func start_drift() -> void:
+	drifting = true
+	Events.log.emit('> Drift started.')
+	if %TerrainManager.current_terrain_equals(&'ice'):
+		%IceAutoTrail.start()
+	
+func end_drift() -> void:
+	drifting = false
+	Events.log.emit('< Drift ended.')
+	if %TerrainManager.current_terrain_equals(&'ice'):
+		%IceAutoTrail.stop()
 
 signal tap(charge: float)
 func do_tap(charge: float) -> void:
@@ -172,6 +188,18 @@ func _ready():
 func _integrate_forces(state):
 	if %ChargeManager.is_charging():
 		state.linear_velocity *= (1.0-charge_brake)
+		
+	# compute drift velocity (only when piloting)
+	if get_target_velocity().length() > 1.0:
+		drift = state.linear_velocity.project(Vector2.DOWN.rotated(global_rotation))
+	else:
+		drift = Vector2(0,0)
+		
+	if not drifting and drift.length() > MIN_DRIFT:
+		start_drift()
+		
+	if drifting and drift.length() <= MIN_DRIFT:
+		end_drift()
 		
 	tracked.tick()
 

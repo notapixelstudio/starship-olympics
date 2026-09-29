@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://csgls77y2kr7l" path="res://godot4/actors/managers/ChargeManager.gd" id="5_ostpb"]
 [ext_resource type="PackedScene" uid="uid://bhygc2xfw2jei" path="res://godot4/traits/Target.tscn" id="6_kqe5y"]
 [ext_resource type="PackedScene" uid="uid://c05x0gnt2dob5" path="res://godot4/effects/Bump.tscn" id="6_ml8f4"]
+[ext_resource type="PackedScene" uid="uid://b40ln0us7b0jy" path="res://godot4/effects/trails/IceAutoTrail.tscn" id="7_2p6s4"]
 [ext_resource type="PackedScene" uid="uid://bc0dlgwynswo2" path="res://godot4/traits/OwnedByPlayer.tscn" id="7_is2l4"]
 [ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="8_11rou"]
 [ext_resource type="PackedScene" uid="uid://47up8eff7e01" path="res://godot4/effects/trails/FlameTrail.tscn" id="10_4jj2i"]
@@ -149,7 +150,7 @@ func _on_camera_updated(camera_state:Dictionary) -> void:
 	scale = Vector2(1,1)/camera_state['zoom']
 "
 
-[sub_resource type="Gradient" id="Gradient_0funj"]
+[sub_resource type="Gradient" id="Gradient_2p6s4"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
@@ -364,7 +365,8 @@ max_length = 100
 
 [node name="MotionAutoTrail" parent="." unique_id=1178586549 node_paths=PackedStringArray("host") instance=ExtResource("11_tsmbp")]
 unique_name_in_owner = true
-gradient = SubResource("Gradient_0funj")
+gradient = SubResource("Gradient_2p6s4")
+active = true
 host = NodePath("..")
 max_age = 0.4
 
@@ -408,6 +410,10 @@ volume_db = 2.0
 
 [node name="TerrainManager" parent="." unique_id=168371240 instance=ExtResource("25_0funj")]
 unique_name_in_owner = true
+
+[node name="IceAutoTrail" parent="." unique_id=1742106483 node_paths=PackedStringArray("host") instance=ExtResource("7_2p6s4")]
+unique_name_in_owner = true
+host = NodePath("..")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]
