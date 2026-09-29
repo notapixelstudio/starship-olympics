@@ -130,11 +130,9 @@ func get_minigame_id() -> String:
 	return get_id().split('_')[0]
 	
 ## Returns the [Minigame] associated with this [Arena].
-## It does this by looking for a resource file named according to [method get_minigame_id] in subfolders of the [code]res://godot4/minigames/[/code] directory.
-## For example, if the [Minigame] identifier is [code]diamondsnatch[/code], then the method looks for [code]res://godot4/minigames/diamondsnatch/minigame.tres[/code].
 ## If the file is not found, it returns [code]default_minigame[/code] (see [member default_minigame]).
 func get_minigame() -> Minigame:
-	var minigame_resource_path = 'res://godot4/minigames/'+get_minigame_id()+'/minigame.tres'
+	var minigame_resource_path = get_scene_file_path().get_base_dir()+'/../minigame.tres'
 	if not ResourceLoader.exists(minigame_resource_path):
 		return default_minigame
 	return load(minigame_resource_path)
