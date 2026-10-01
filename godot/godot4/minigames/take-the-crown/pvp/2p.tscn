@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://x751geeku5fx"]
 
-[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_bvhdi"]
+[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/PvpArena.tscn" id="1_bvhdi"]
 [ext_resource type="PackedScene" uid="uid://chnvt4cxrqrcv" path="res://godot4/arena/managers/games/CrownGame.tscn" id="2_3q1vj"]
 [ext_resource type="Resource" uid="uid://cxorooq22c83" path="res://godot4/data/styles/palace.tres" id="2_6lcix"]
 [ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="4_ij1ca"]
@@ -114,7 +114,7 @@ _data = {
 &"default": SubResource("Animation_xjb4e")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ke0qy"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_q477r"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -122,7 +122,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"obstacle"
 agent_radius = 100.0
 
-[node name="VersusArena" unique_id=1402352753 instance=ExtResource("1_bvhdi")]
+[node name="PvpArena" unique_id=1402352753 instance=ExtResource("1_bvhdi")]
 
 [node name="Styleable" parent="." index="0" unique_id=999924478]
 style = ExtResource("2_6lcix")
@@ -209,4 +209,4 @@ rotation_degrees = 45.0
 [node name="Crown" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=338107464 instance=ExtResource("6_h5akp")]
 
 [node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_ke0qy")
+navigation_polygon = SubResource("NavigationPolygon_q477r")

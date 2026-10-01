@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c1l3lu1qyupad"]
 
-[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_hdhns"]
+[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/PvpArena.tscn" id="1_hdhns"]
 [ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="2_4vl7f"]
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/treasures/Diamond.tscn" id="2_aq6w1"]
 [ext_resource type="PackedScene" uid="uid://b3ujmd4xwgw6c" path="res://godot4/arena/managers/games/CollectGame.tscn" id="3_6wfi0"]
@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dvjdmo8ceeh5b" path="res://godot4/elements/bubbles/DiamondBubble.tscn" id="12_g0rc5"]
 [ext_resource type="PackedScene" uid="uid://cie2xt6b1e8oy" path="res://godot4/elements/bubbles/BigDiamondBubble.tscn" id="13_mcimn"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_tkoq5"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_snont"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -26,7 +26,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"obstacle"
 agent_radius = 100.0
 
-[node name="VersusArena" unique_id=2138963054 instance=ExtResource("1_hdhns")]
+[node name="PvpArena" unique_id=2138963054 instance=ExtResource("1_hdhns")]
 
 [node name="Styleable" parent="." index="0" unique_id=999924478]
 style = ExtResource("8_gbm1w")
@@ -611,4 +611,4 @@ guest_star_scene = ExtResource("13_mcimn")
 guest_star_positioning = "random"
 
 [node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_tkoq5")
+navigation_polygon = SubResource("NavigationPolygon_snont")

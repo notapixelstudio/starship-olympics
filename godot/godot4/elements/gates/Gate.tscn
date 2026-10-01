@@ -36,7 +36,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.75, 0.75, 0.75, 1), Color(0.388235, 0.388235, 0.388235, 1)]
+"values": [Color(0.75, 0.75, 0.75, 1), Color(0.101960786, 0.101960786, 0.101960786, 1)]
 }
 
 [sub_resource type="Animation" id="3"]
@@ -63,7 +63,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.388235, 0.388235, 0.388235, 1)]
+"values": [Color(0.1, 0.1, 0.1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bcjds"]
@@ -82,7 +82,7 @@ unique_name_in_owner = true
 shape = SubResource("1")
 
 [node name="BottomRingPart" type="Sprite2D" parent="." unique_id=529398136]
-modulate = Color(0.388235, 0.388235, 0.388235, 1)
+modulate = Color(0.1, 0.1, 0.1, 1)
 self_modulate = Color(0.521569, 0.701961, 1, 1)
 z_index = -5
 z_as_relative = false
@@ -91,7 +91,7 @@ texture = ExtResource("4")
 flip_h = true
 
 [node name="Arrow" type="Sprite2D" parent="." unique_id=128062440]
-modulate = Color(0.133333, 0.666667, 1, 0.313726)
+modulate = Color(0.13, 0.768, 1, 0.1764706)
 z_index = -2
 z_as_relative = false
 position = Vector2(-61, 0)

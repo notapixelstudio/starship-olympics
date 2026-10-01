@@ -15,11 +15,12 @@ func _ready() -> void:
 		_progress[ship] = 0
 	
 func _on_gate_crossed(by_what, gate:Gate, trigger:bool) -> void:
-	Events.log.emit('Gate crossed')
 	if not (by_what is Ship):
 		return
-		
+	
+	Events.log.emit('Gate crossed')
 	if gate == _ordered_gates[_progress[by_what]]:
 		_progress[by_what] = (_progress[by_what] + 1) % len(_ordered_gates)
 		Events.score.emit(1, by_what, by_what.global_position)
 		Events.log.emit('Gate %s passed: next is %s (number %d)' % [gate.name, _ordered_gates[_progress[by_what]].name, _progress[by_what]])
+		gate.show_feedback()

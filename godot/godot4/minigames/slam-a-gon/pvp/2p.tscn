@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bqruidxbhxmqw"]
 
-[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/VersusArena.tscn" id="1_xo2hy"]
+[ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/PvpArena.tscn" id="1_xo2hy"]
 [ext_resource type="Resource" uid="uid://dmpnjfry6ht4u" path="res://godot4/data/styles/parquet.tres" id="2_qkhlm"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_dnkun"]
 [ext_resource type="Script" uid="uid://6qs2wtuee7bs" path="res://addons/vshapes/VCircle.gd" id="4_kul8a"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ccigjuln5qq4b" path="res://godot4/elements/goals/PentaGoal.tscn" id="6_8mx1o"]
 [ext_resource type="PackedScene" uid="uid://djakv8k7yhih5" path="res://godot4/elements/cargos/BasketBall.tscn" id="7_ph1kh"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_f51w7"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tk0pf"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -17,7 +17,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"obstacle"
 agent_radius = 100.0
 
-[node name="VersusArena" unique_id=1988644597 instance=ExtResource("1_xo2hy")]
+[node name="PvpArena" unique_id=1988644597 instance=ExtResource("1_xo2hy")]
 
 [node name="Styleable" parent="." index="0" unique_id=999924478]
 style = ExtResource("2_qkhlm")
@@ -96,4 +96,4 @@ ring_width = 80.0
 [node name="BasketBall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=1658887907 instance=ExtResource("7_ph1kh")]
 
 [node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_f51w7")
+navigation_polygon = SubResource("NavigationPolygon_tk0pf")
