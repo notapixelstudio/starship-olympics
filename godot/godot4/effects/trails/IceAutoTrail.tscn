@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://b40ln0us7b0jy"]
 
 [ext_resource type="PackedScene" uid="uid://d3qdjjh7pbm6k" path="res://godot4/effects/trails/AutoTrail.tscn" id="1_8p6tm"]
+[ext_resource type="Texture2D" uid="uid://c7ujt02j3vnt7" path="res://assets/patterns/triangle.png" id="2_7rieg"]
 
 [node name="IceAutoTrail" unique_id=1742106483 instance=ExtResource("1_8p6tm")]
 width = 6.0
 default_color = Color(0.35000002, 0.89166665, 1, 0.35686275)
+texture = ExtResource("2_7rieg")
+texture_mode = 2
 active = false
-disappear_speed = 10.0
+disappear_speed = 5.0

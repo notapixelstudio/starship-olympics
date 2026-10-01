@@ -69,11 +69,6 @@ var rotation_torque := 380000 # 130000 # 49000*9
 var charge_brake : float # handled by TerrainManager
 var max_dash : float # handled by TerrainManager
 
-# check variables for actions (e.g. dash, etc.)
-var charging := true
-var charging_enough := true
-var charging_started_since := 0.0 ## in seconds
-
 var target_velocity := Vector2(0, 0)
 var rotation_request := 0.0
 
@@ -113,6 +108,7 @@ func charge():
 	dash_graviton_field.enable()
 	Events.start_charging.emit(self)
 	
+	
 func release():
 	if %ChargeManager.can_tap():
 		do_tap(%ChargeManager.get_charge())
@@ -144,15 +140,9 @@ func end_dash():
 	
 func start_drift() -> void:
 	drifting = true
-	Events.log.emit('> Drift started.')
-	if %TerrainManager.current_terrain_equals(&'ice'):
-		%IceAutoTrail.start()
 	
 func end_drift() -> void:
 	drifting = false
-	Events.log.emit('< Drift ended.')
-	if %TerrainManager.current_terrain_equals(&'ice'):
-		%IceAutoTrail.stop()
 
 signal tap(charge: float)
 func do_tap(charge: float) -> void:
@@ -184,6 +174,18 @@ func _ready():
 # WARNING this does not work with Area2Ds with animated shapes
 #func _physics_process(delta: float) -> void:
 	#_continuous_collision_check()
+	
+func _process(delta: float) -> void:
+	# Ice trail while charging or drifting
+	if not %IceAutoTrail.active and (%TerrainManager.get_current_terrain() == &'ice') and (drifting or %ChargeManager.is_charging()):
+		Events.log.emit('> Ice trail started')
+		%IceAutoTrail.start()
+		%IceAutoTrail2.start()
+	
+	if %IceAutoTrail.active and ((%TerrainManager.get_current_terrain() != &'ice') or not (drifting or %ChargeManager.is_charging())):
+		Events.log.emit('> Ice trail stopped')
+		%IceAutoTrail.stop()
+		%IceAutoTrail2.stop()
 	
 func _integrate_forces(state):
 	if %ChargeManager.is_charging():

@@ -414,6 +414,12 @@ unique_name_in_owner = true
 [node name="IceAutoTrail" parent="." unique_id=1742106483 node_paths=PackedStringArray("host") instance=ExtResource("7_2p6s4")]
 unique_name_in_owner = true
 host = NodePath("..")
+offset = Vector2(0, 30)
+
+[node name="IceAutoTrail2" parent="." unique_id=517271942 node_paths=PackedStringArray("host") instance=ExtResource("7_2p6s4")]
+unique_name_in_owner = true
+host = NodePath("..")
+offset = Vector2(0, -30)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="TouchArea" to="." method="_on_touch_area_area_entered"]

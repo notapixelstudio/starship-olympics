@@ -14,7 +14,7 @@ extends Node
 }
 @export var dash_multiplier := {
 	&'default': 3.0, # was 2.7, then 2.6 decreased to lessen the chance of tunneling
-	&'ice': 2.0
+	&'ice': 1.8
 }
 @export var max_dash := {
 	&'default': 10000, # virtually unbounded, standard max value should be under 5000
@@ -54,5 +54,6 @@ func _switch_terrain(type) -> void:
 	get_host().dash_multiplier = dash_multiplier[_current_terrain]
 	get_host().max_dash = max_dash[_current_terrain]
 
-func current_terrain_equals(terrain:String) -> bool:
-	return _current_terrain == terrain
+func get_current_terrain() -> String:
+	return _current_terrain
+	
