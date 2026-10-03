@@ -82,7 +82,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1.5, 1.5)]
+"values": [Vector2(1.3, 1.3)]
 }
 
 [sub_resource type="Animation" id="Animation_51et7"]
@@ -172,5 +172,6 @@ vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1942266868]
 libraries/ = SubResource("AnimationLibrary_py11i")
+speed_scale = 0.7
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

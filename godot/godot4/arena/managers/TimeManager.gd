@@ -1,17 +1,24 @@
 extends Node
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 var _time := 0.0
 var _time_secs := 0
 
 func _ready():
 	set_physics_process(false)
-	Events.match_over.connect(_on_match_over)
+	%AutoSignals \
+		.bind(Events.match_over, _on_match_over) \
+		.bind(_ctx.time_gained, _on_time_gained)
 	
 func start():
 	set_physics_process(true)
 	
 func stop():
 	set_physics_process(false)
+
+func _on_time_gained(seconds: int) -> void:
+	set_time(_time + seconds)
 
 func set_time(v: float) -> void:
 	_time = v

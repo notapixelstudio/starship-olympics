@@ -9,3 +9,5 @@ func get_ship_factory() -> ShipFactory:
 
 signal spawn_request(object_to_spawn:Node)
 signal collision(ship:Ship, collider:CollisionObject2D, tag:String)
+
+signal time_gained(seconds:int)

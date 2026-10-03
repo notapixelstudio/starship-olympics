@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctdiyn70rdfsq"]
+[gd_scene format=3 uid="uid://ctdiyn70rdfsq"]
 
 [ext_resource type="Script" uid="uid://ed1m5aucpusq" path="res://godot4/arena/managers/TimeManager.gd" id="1_nhqk1"]
 [ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="2_33q6j"]
+[ext_resource type="Script" uid="uid://dfwlu4ppe4snj" path="res://addons/AutoSignals/AutoSignals.gd" id="2_folh3"]
 
-[node name="TimeManager" type="Node"]
+[node name="TimeManager" type="Node" unique_id=1201725503]
 script = ExtResource("1_nhqk1")
 
-[node name="Waiter" parent="." instance=ExtResource("2_33q6j")]
+[node name="AutoSignals" type="Node" parent="." unique_id=714767910]
+unique_name_in_owner = true
+script = ExtResource("2_folh3")
+metadata/_custom_type_script = "uid://dfwlu4ppe4snj"
+
+[node name="Waiter" parent="." unique_id=1308269749 instance=ExtResource("2_33q6j")]

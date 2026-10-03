@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bd4aie7a6dj50"]
+
+[ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/treasures/Treasure.tscn" id="1_p3iw2"]
+[ext_resource type="Texture2D" uid="uid://104prnu006u5" path="res://assets/sprites/environments/clock.png" id="2_k4apu"]
+[ext_resource type="Script" uid="uid://biwo2xelnv37x" path="res://godot4/elements/treasures/Clock.gd" id="2_nytjg"]
+[ext_resource type="Texture2D" uid="uid://c5c2xhdbxvwgy" path="res://assets/sprites/environments/clock_outline.png" id="2_u5dfp"]
+
+[node name="Clock" unique_id=1368291184 instance=ExtResource("1_p3iw2")]
+script = ExtResource("2_nytjg")
+points = 0
+outline_texture = ExtResource("2_u5dfp")
+
+[node name="Glow" parent="Graphics" index="0"]
+self_modulate = Color(0.6166668, 0, 1, 0.24313726)
+
+[node name="Sprite2D" parent="Graphics" index="1"]
+texture = ExtResource("2_k4apu")
+
+[node name="IntroAnimation" parent="Graphics" index="2"]
+autoplay = &"default"
