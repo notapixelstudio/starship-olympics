@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dy7pqq7fivkj3" path="res://godot4/ui/overlays/StandaloneVersusMatchOverOverlay.tscn" id="9_kkxbo"]
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="9_nr0n0"]
 [ext_resource type="Resource" uid="uid://bpw2qo5744n7m" path="res://godot4/data/minigames/default.tres" id="9_vsuw2"]
+[ext_resource type="PackedScene" uid="uid://cphkdfew8xuc5" path="res://godot4/arena/ArenaScope.tscn" id="10_2gr0p"]
 [ext_resource type="PackedScene" uid="uid://ctdiyn70rdfsq" path="res://godot4/arena/managers/TimeManager.tscn" id="10_mhlox"]
 [ext_resource type="PackedScene" uid="uid://bbh6dfcfwh26k" path="res://godot4/traits/Styleable.tscn" id="12_g1af4"]
 [ext_resource type="PackedScene" uid="uid://cwhsg865kyuy5" path="res://godot4/arena/managers/ModifierManager.tscn" id="13_8qh8v"]
@@ -38,7 +39,7 @@
 [ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="31_8qh8v"]
 [ext_resource type="PackedScene" uid="uid://bdnijlionsghd" path="res://godot4/ui/overlays/PauseOverlay.tscn" id="32_ri8rg"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_8qh8v"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_2gr0p"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -59,6 +60,8 @@ players = Array[ExtResource("2_wi08g")]([ExtResource("2_3p1dt"), ExtResource("3_
 match_over_screen_scene = ExtResource("9_kkxbo")
 default_minigame = ExtResource("9_vsuw2")
 default_params = ExtResource("9_nr0n0")
+
+[node name="ArenaScope" parent="." unique_id=124878104 instance=ExtResource("10_2gr0p")]
 
 [node name="Styleable" parent="." unique_id=999924478 instance=ExtResource("12_g1af4")]
 unique_name_in_owner = true
@@ -127,7 +130,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Navigation" parent="." unique_id=332973589 instance=ExtResource("23_rittb")]
-navigation_polygon = SubResource("NavigationPolygon_8qh8v")
+navigation_polygon = SubResource("NavigationPolygon_2gr0p")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=737164047]
 unique_name_in_owner = true

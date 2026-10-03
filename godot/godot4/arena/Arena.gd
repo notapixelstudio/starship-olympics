@@ -32,7 +32,7 @@ func _ready() -> void:
 	%MinigameText.text = '[right][color=#ffde5e]%s[/color]\n%s[/right]' % [minigame.title.to_upper(), minigame.description.to_upper()]
 	%MinigameIcon.texture = minigame.icon
 	%PauseOverlay.set_minigame(minigame)
-	Context.ship_factory.set_minigame(minigame)
+	ArenaScope.get_scope(self).get_ship_factory().set_minigame(minigame)
 	
 	setup()
 	
@@ -48,7 +48,7 @@ func _ready() -> void:
 		var player = players[i] as Player
 		_active_players.append(player)
 		
-		var ship = Ship.create(player, false) # create not enabled ships
+		var ship = %ShipFactory.create(player, false) # create not enabled ships
 		ship.global_rotation = home.global_rotation
 		ship.global_position = home.global_position
 		

@@ -91,7 +91,7 @@ agent_radius = 100.0
 [node name="PveArena" unique_id=1218906820 instance=ExtResource("1_g2yuu")]
 default_params = ExtResource("11_xd7ch")
 
-[node name="Styleable" parent="." index="0" unique_id=999924478]
+[node name="Styleable" parent="." index="1" unique_id=999924478]
 style = ExtResource("3_6hvk3")
 
 [node name="ModifierManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="1" unique_id=1330404860]
@@ -109,7 +109,7 @@ battlefield = NodePath("../../Battlefield")
 
 [node name="TreasureSFXManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="8" unique_id=584668461 instance=ExtResource("4_5inup")]
 
-[node name="Camera2D" parent="." index="2" unique_id=956979488]
+[node name="Camera2D" parent="." index="3" unique_id=956979488]
 zoom = Vector2(0.32, 0.32)
 
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=1170858522 instance=ExtResource("9_tb6i2")]
@@ -632,5 +632,5 @@ libraries/ = SubResource("AnimationLibrary_g6aeh")
 [node name="BubbleTurret" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=1442108864 instance=ExtResource("21_ueg15")]
 wait_time = 8.0
 
-[node name="Navigation" parent="." index="6" unique_id=332973589]
+[node name="Navigation" parent="." index="7" unique_id=332973589]
 navigation_polygon = SubResource("NavigationPolygon_6hvk3")

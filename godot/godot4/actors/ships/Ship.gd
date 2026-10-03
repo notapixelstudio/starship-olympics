@@ -3,11 +3,8 @@ extends RigidBody2D
 class_name Ship
 ## Ship base class
 
-static func create(player:Player, enabled:=true):
-	return Context.ship_factory.create(player, enabled)
-
 func clone() -> Ship:
-	var new_ship = Ship.create(get_player())
+	var new_ship = ArenaScope.get_scope(self).get_ship_factory().create(get_player(), true)
 	# TBD copy relevant parameters to the new ship
 	return new_ship
 	

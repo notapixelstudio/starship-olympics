@@ -3,9 +3,6 @@ class_name ShipFactory
 
 var _current_minigame : Minigame
 
-func _ready() -> void:
-	Context.ship_factory = self
-	
 func set_minigame(v:Minigame) -> void:
 	_current_minigame = v
 	
