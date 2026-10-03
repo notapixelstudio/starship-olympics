@@ -1,4 +1,4 @@
-extends BackScreen
+extends Screen
 
 @export var next_scene : PackedScene
 
@@ -11,7 +11,7 @@ func exiting():
 	%SelectionPanel.disable()
 	super.exiting()
 	
-func _on_SelectionPanel_selection_completed():
+func _on_selection_panel_selection_completed() -> void:
 	var players = %SelectionPanel.get_players_data()
 	# put all players into the same team
 	for player in players:
@@ -20,3 +20,5 @@ func _on_SelectionPanel_selection_completed():
 	
 	next.emit(next_scene.instantiate())
 	
+func _on_selection_panel_back_requested() -> void:
+	back.emit()

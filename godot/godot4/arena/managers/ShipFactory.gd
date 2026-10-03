@@ -3,10 +3,6 @@ class_name ShipFactory
 
 var _current_minigame : Minigame
 
-func _ready() -> void:
-	# make this available in the global context
-	Context.ship_factory = self
-	
 func set_minigame(v:Minigame) -> void:
 	_current_minigame = v
 	

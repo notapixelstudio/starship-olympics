@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://hwf7tcforry2" path="res://godot4/ui/screens/title_screen/TitleScreen.tscn" id="6_iq0iw"]
 [ext_resource type="PackedScene" uid="uid://cy0hpemosmd3a" path="res://godot4/ui/ParallaxBackground.tscn" id="7_iq0iw"]
 [ext_resource type="PackedScene" uid="uid://gvjq5iyxk81y" path="res://godot4/ui/touch_controls/TouchControls.tscn" id="7_touch"]
+[ext_resource type="PackedScene" uid="uid://37vcan82kgvg" path="res://godot4/ui/utils/PressAnyKey.tscn" id="9_bew5b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w772f"]
 shader = ExtResource("4_anbdq")
@@ -96,6 +97,11 @@ unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_bew5b")
 autoplay = &"intro"
 
+[node name="PressAnyKey" parent="." unique_id=1991279651 instance=ExtResource("9_bew5b")]
+unique_name_in_owner = true
+visible = true
+
 [connection signal="transition_started" from="ScreenController" to="." method="_on_ScreenController_transition_started"]
+[connection signal="any_key_pressed" from="PressAnyKey" to="." method="_on_press_any_key_any_key_pressed"]
 
 [editable path="ScreenController"]

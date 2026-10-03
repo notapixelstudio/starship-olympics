@@ -36,8 +36,8 @@ func navigate_to(new_screen: Screen):
 	screens_stack.append(new_screen)
 	var to_screen_id = new_screen.get_id()
 	transition_started.emit('navigate_to', from_screen_id, to_screen_id)
+	new_screen.entering()
 	var new_camera_position_x = screen_width * (len(screens_stack)-1)
-	print(screens_stack)
 	if new_camera_position_x != %Camera2D.position.x: # move camera if needed
 		var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		tween.tween_property(%Camera2D, 'position:x', new_camera_position_x, 1)
@@ -45,6 +45,7 @@ func navigate_to(new_screen: Screen):
 	
 	if old_screen != null:
 		old_screen.exited()
+		
 	transition_ended.emit('navigate_to', from_screen_id, to_screen_id)
 	
 	connect_nav_signals(new_screen)
@@ -59,6 +60,7 @@ func back():
 	var active_screen = screens_stack[-1]
 	connect_nav_signals(active_screen)
 	transition_started.emit('back', from_screen_id, active_screen.get_id())
+	active_screen.entering()
 	
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.tween_property(%Camera2D, 'position:x', screen_width * (len(screens_stack)-1), 1)

@@ -12,6 +12,8 @@ func _ready() -> void:
 	DeeJay.play(intro_bgm)
 	%TouchControls.hide_controls()
 	
+	%PressAnyKey.enable()
+	
 	Events.pvp_characters_selected.connect(_on_pvp_characters_selected)
 	Events.pve_characters_selected.connect(_on_pve_characters_selected)
 	Events.level_selection_screen_ready.connect(_on_level_selection_screen_ready)
@@ -76,3 +78,7 @@ func reset():
 	add_child(_background)
 	add_child(_screen_controller)
 	_screen_controller.get_current_screen().back.emit()
+
+
+func _on_press_any_key_any_key_pressed() -> void:
+	%AnimationPlayer.seek(16.5, true)

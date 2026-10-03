@@ -1,6 +1,7 @@
 extends Control
 
 signal selection_completed
+signal back_requested
 
 @export var min_players := 2
 @export var ready_to_fight: PackedScene
@@ -210,7 +211,8 @@ func _on_pilot_ready_selected(pilot_selector: PilotSelector):
 	_update_touch_ui()
 	
 func _on_pilot_back_selected(pilot_selector: PilotSelector):
-	_unclaim_displayed_species(pilot_selector)
+	back_requested.emit()
+	#_unclaim_displayed_species(pilot_selector)
 	
 func _on_pilot_disconnect_selected(pilot_selector: PilotSelector):
 	_disconnect_pilot(pilot_selector)

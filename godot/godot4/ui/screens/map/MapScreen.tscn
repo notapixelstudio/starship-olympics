@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bw04w86b4dr5t"]
+
+[ext_resource type="PackedScene" uid="uid://bhq3klwabv0i8" path="res://godot4/ui/screens/back_screen/BackScreen.tscn" id="1_qfgs8"]
+[ext_resource type="Shader" uid="uid://d2qbwcjlqoech" path="res://assets/shaders/crt_local.gdshader" id="2_1g7je"]
+[ext_resource type="Script" uid="uid://6a0l8pg1jgov" path="res://godot4/ui/screens/map/MapScreen.gd" id="2_e813h"]
+[ext_resource type="PackedScene" uid="uid://2ewe4ebdwmm8" path="res://godot4/arena/MapArena.tscn" id="3_1g7je"]
+[ext_resource type="PackedScene" uid="uid://dg3l8eepsajhj" path="res://godot4/ui/screens/loading_screen/LoadingScreen.tscn" id="3_5mvqx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5mvqx"]
+resource_local_to_scene = true
+shader = ExtResource("2_1g7je")
+shader_parameter/boost = 4.459136885571995
+shader_parameter/grille_opacity = 0.85
+shader_parameter/scanlines_opacity = 0.31999999284736
+shader_parameter/vignette_opacity = 0.2
+shader_parameter/scanlines_speed = -2.9999999701976
+shader_parameter/show_grille = false
+shader_parameter/show_scanlines = true
+shader_parameter/show_vignette = false
+shader_parameter/show_curvature = false
+shader_parameter/screen_size = Vector2(160, 300)
+shader_parameter/aberration_amount = 0.7
+shader_parameter/move_aberration = true
+shader_parameter/aberration_speed = 4.99999988824
+shader_parameter/pincushion = 1.0
+
+[node name="MapScreen" unique_id=1607767775 instance=ExtResource("1_qfgs8")]
+script = ExtResource("2_e813h")
+next_screen = ExtResource("3_5mvqx")
+
+[node name="FancyMenu" parent="." index="1"]
+layout_mode = 0
+
+[node name="Back" parent="FancyMenu" index="0"]
+material = SubResource("ShaderMaterial_5mvqx")
+
+[node name="MapArena" parent="." index="2" unique_id=2082662255 instance=ExtResource("3_1g7je")]
+
+[connection signal="done" from="MapArena" to="." method="_on_map_arena_done"]

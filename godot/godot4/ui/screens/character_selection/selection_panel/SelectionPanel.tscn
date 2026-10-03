@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://6j8veiwxchng"]
+[gd_scene format=3 uid="uid://6j8veiwxchng"]
 
 [ext_resource type="Script" uid="uid://5p281bf2avw7" path="res://godot4/ui/screens/character_selection/selection_panel/SelectionPanel.gd" id="1"]
 [ext_resource type="FontFile" path="res://assets/fonts/DefaultFont40.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://dhwmg2rg40f8q" path="res://godot4/ui/screens/character_selection/ReadyToFight.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://c8seltouchui01" path="res://godot4/ui/screens/character_selection/selection_panel/CharacterSelectTouchUI.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bbryh7xrslrb5" path="res://godot4/ui/screens/character_selection/selection_panel/CharacterSelectTouchUI.tscn" id="4"]
 
 [node name="SelectionPanel" type="Control" unique_id=308935352]
 layout_mode = 3
@@ -33,4 +33,4 @@ text = "SADDSADSAD"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TouchUI" parent="." instance=ExtResource("4")]
+[node name="TouchUI" parent="." unique_id=1020265789 instance=ExtResource("4")]

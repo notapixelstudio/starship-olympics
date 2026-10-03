@@ -94,6 +94,7 @@ arena = NodePath("../..")
 [node name="CollisionResponseManager" parent="Managers" unique_id=1337316555 instance=ExtResource("21_rittb")]
 
 [node name="ShipFactory" parent="Managers" unique_id=221211639 instance=ExtResource("22_xop1g")]
+unique_name_in_owner = true
 
 [node name="SpawnManager" parent="Managers" unique_id=1642956781 node_paths=PackedStringArray("battlefield") instance=ExtResource("20_fhoky")]
 battlefield = NodePath("../../Battlefield")
