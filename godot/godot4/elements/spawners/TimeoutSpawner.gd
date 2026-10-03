@@ -10,6 +10,8 @@ extends Node2D
 
 var element_count := 0
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 func _ready() -> void:
 	timer.wait_time = wait_time + starting_delay
 
@@ -24,7 +26,7 @@ func spawn() -> void:
 	var element = element_scene.instantiate()
 	element.tree_exiting.connect(_on_element_tree_exiting)
 	element.global_position = global_position
-	Events.spawn_request.emit(element)
+	_ctx.spawn_request.emit(element)
 	element_count += 1
 
 func _on_element_tree_exiting() -> void:

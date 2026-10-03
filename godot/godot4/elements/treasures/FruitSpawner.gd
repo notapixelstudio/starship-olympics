@@ -2,6 +2,8 @@ extends Node2D
 
 @export var fruit_scene : PackedScene
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 func _ready():
 	spawn(true)
 
@@ -9,7 +11,7 @@ func spawn(instantly:bool) -> void:
 	var fruit = fruit_scene.instantiate()
 	fruit.collected.connect(_on_fruit_collected)
 	fruit.global_position = global_position
-	Events.spawn_request.emit(fruit)
+	_ctx.spawn_request.emit(fruit)
 	if not instantly:
 		fruit.disable_collisions()
 		fruit.turn_small()

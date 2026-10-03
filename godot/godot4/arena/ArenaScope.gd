@@ -6,3 +6,5 @@ static func get_scope(node: Node, scope_name: String = 'ArenaScope') -> ArenaSco
 
 func get_ship_factory() -> ShipFactory:
 	return %ShipFactory
+
+signal spawn_request(object_to_spawn:Node)

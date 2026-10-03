@@ -3,6 +3,8 @@ extends Weapon
 @export var pew_scene : PackedScene
 @export var offset := 120.0
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 func _ready() -> void:
 	get_host().tap.connect(_on_tap)
 
@@ -37,7 +39,7 @@ func fire(source):
 		pew.linear_velocity = Vector2(2500, 0).rotated(angle)
 		pew.set_color(source.get_color())
 		pew.set_team(source.get_team())
-		Events.spawn_request.emit(pew)
+		_ctx.spawn_request.emit(pew)
 		
 func get_aim_compensation_target():
 	for body in $"%AimCompensationZone".get_overlapping_bodies():

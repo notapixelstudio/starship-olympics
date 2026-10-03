@@ -1,6 +1,8 @@
 extends RigidBody2D
 class_name DisabledShip
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 var _cloned_ship : Ship
 
 func set_ship(ship: Ship) -> void:
@@ -27,6 +29,6 @@ func _restore_ship() -> void:
 	_cloned_ship.global_rotation = global_rotation
 	_cloned_ship.linear_velocity = linear_velocity
 	_cloned_ship.angular_velocity = angular_velocity
-	Events.spawn_request.emit(_cloned_ship)
+	_ctx.spawn_request.emit(_cloned_ship)
 	queue_free()
 	

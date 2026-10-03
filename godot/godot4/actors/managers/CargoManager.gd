@@ -1,5 +1,7 @@
 extends Node
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 var _current_cargo : Cargo
 
 func _ready():
@@ -50,7 +52,7 @@ func get_cargo() -> Cargo:
 	return _current_cargo
 	
 func _launch_cargo(global_pos: Vector2, vel: Vector2, rot: float, spin: float = 0.0) -> void:
-	Events.spawn_request.emit(_current_cargo, func(cargo):
+	_ctx.spawn_request.emit(_current_cargo, func(cargo):
 		cargo.set_temp_untouchable_by(get_host())
 		cargo.place_and_push(global_pos, vel, rot, spin)
 	)
@@ -82,7 +84,7 @@ func shoot_cargo(cause: RigidBody2D) -> void:
 
 func rebound_cargo(collision_point: Vector2, collision_normal: Vector2) -> void:
 	var source = get_host()
-	Events.spawn_request.emit(_current_cargo)
+	_ctx.spawn_request.emit(_current_cargo)
 	_current_cargo.set_temp_untouchable_by.call_deferred(source)
 	var alpha = source.linear_velocity.bounce(collision_normal).angle()
 	_current_cargo.place_and_push(collision_point, Vector2(source.linear_velocity.length(),0).rotated(alpha), alpha)

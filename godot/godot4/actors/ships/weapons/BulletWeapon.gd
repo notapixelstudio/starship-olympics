@@ -6,6 +6,8 @@ extends Weapon
 @export var bullet_lifetime := 10.0
 @export var offset := 120.0
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 func _ready() -> void:
 	get_host().tap.connect(_on_tap)
 
@@ -32,4 +34,4 @@ func fire(source):
 	bullet.linear_velocity = (Vector2.RIGHT * bullet_speed).rotated(global_rotation)
 	bullet.global_position = global_position + offset*Vector2.RIGHT.rotated(global_rotation)
 	#bullet.global_rotation = global_rotation
-	Events.spawn_request.emit(bullet)
+	_ctx.spawn_request.emit(bullet)

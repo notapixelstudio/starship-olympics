@@ -7,6 +7,8 @@ var ownership_transfer := true
 
 var previous_velocity := Vector2.LEFT
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 var _team : String
 var _color : Color
 
@@ -39,7 +41,7 @@ func set_color(v:Color) -> void:
 func dissolve() -> void:
 	var pfft = PfftScene.instantiate()
 	pfft.set_color(_color)
-	Events.spawn_request.emit(pfft)
+	_ctx.spawn_request.emit(pfft)
 	pfft.global_position = global_position
 
 func _on_VisibilityNotifier2D_screen_exited():

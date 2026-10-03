@@ -31,6 +31,8 @@ func set_player(v: Player) -> void:
 @onready var tracked = %Tracked
 @onready var dash_graviton_field = %DashGravitonField
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 const max_steer_force = 2500
 const MIN_CHARGE = 0.2
 const MAX_OVERCHARGE = 1.8
@@ -153,7 +155,7 @@ func do_tap(charge: float) -> void:
 			# show feedback
 			var bump = bump_effect_scene.instantiate()
 			bump.global_position = 0.7*area.global_position+0.3*global_position
-			Events.spawn_request.emit(bump)
+			_ctx.spawn_request.emit(bump)
 			
 			# eat up the tap event
 			return
@@ -219,7 +221,7 @@ func graphics_enlarge():
 
 func _drop_dash_ring_effect() -> void:
 	var dash_ring = dash_ring_scene.instantiate()
-	Events.spawn_request.emit(dash_ring)
+	_ctx.spawn_request.emit(dash_ring)
 	dash_ring.global_position = global_position
 	dash_ring.global_rotation = global_rotation
 	dash_ring.set_color(get_color())
@@ -328,7 +330,7 @@ func _show_death_feedback() -> void:
 	var death_feedback = death_feedback_scene.instantiate()
 	death_feedback.color = get_color()
 	death_feedback.global_position = global_position
-	Events.spawn_request.emit(death_feedback)
+	_ctx.spawn_request.emit(death_feedback)
 	
 func disable(impulse_to_give=Vector2.ZERO):
 	# avoid creating a disabled ship twice, if we already have been disabled
@@ -341,7 +343,7 @@ func disable(impulse_to_give=Vector2.ZERO):
 	disabled_ship.global_rotation = global_rotation
 	disabled_ship.linear_velocity = linear_velocity
 	disabled_ship.angular_velocity = angular_velocity
-	Events.spawn_request.emit(disabled_ship, func(disabled_ship):
+	_ctx.spawn_request.emit(disabled_ship, func(disabled_ship):
 		disabled_ship.apply_central_impulse(impulse_to_give)
 		disabled_ship.apply_torque_impulse((1000+linear_velocity.length())*2)
 	)

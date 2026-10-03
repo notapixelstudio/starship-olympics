@@ -5,6 +5,8 @@ class_name Bubble
 @export var bubble_popped_scene : PackedScene
 @export var appear_scene : PackedScene
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 var _content
 var _bumps := 0
 
@@ -27,7 +29,7 @@ func pop(author=null) -> void:
 	SoundEffects.play(%PopSFX)
 	var pop = bubble_popped_scene.instantiate()
 	pop.global_position = global_position
-	Events.spawn_request.emit(pop)
+	_ctx.spawn_request.emit(pop)
 	queue_free()
 	
 func release_content(author) -> void:
@@ -37,7 +39,7 @@ func release_content(author) -> void:
 		return
 		
 	_content.global_position = global_position
-	Events.spawn_request.emit(_content)
+	_ctx.spawn_request.emit(_content)
 	
 	# released content is always considered touched by the author, if any
 	if author != null:

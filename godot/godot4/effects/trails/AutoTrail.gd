@@ -13,6 +13,8 @@ class_name AutoTrail
 ## The trail is automatically cut when there's a sudden jump that's longer than this value (px).
 @export_range(0, 100000, 1, 'suffix:px') var long_segment_min_length := 1000
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 var _detached := false
 
 func _process(delta):
@@ -49,7 +51,7 @@ func _will_next_segment_be_too_long() -> bool:
 # drop a duplicate of this trail
 func _drop_duplicate():
 	var dup = duplicate()
-	Events.spawn_request.emit(dup)
+	_ctx.spawn_request.emit(dup)
 	dup._detached = true
 
 ## Cut this trail, leaving a disappearing copy behind.

@@ -10,6 +10,8 @@ extends RigidBody2D
 
 signal collected(PhysicsBody2D, Treasure)
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 func set_collectable(v: bool) -> void:
 	collectable = v
 	update_solid()
@@ -47,7 +49,7 @@ func collect(collector):
 	var picked_effect = treasure_picked_scene.instantiate()
 	picked_effect.set_texture(outline_texture)
 	picked_effect.global_position = global_position
-	Events.spawn_request.emit(picked_effect)
+	_ctx.spawn_request.emit(picked_effect)
 	
 	queue_free()
 

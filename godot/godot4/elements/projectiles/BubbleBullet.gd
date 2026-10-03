@@ -6,6 +6,8 @@ class_name BubbleBullet
 @export var bubble_popped_scene : PackedScene
 @export var lifetime := 10.0 # seconds
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 var _lifetime_left : float
 
 func set_lifetime(v: float):
@@ -25,7 +27,7 @@ func capture_ship(ship:Ship) -> void:
 	bubble.set_ship(ship)
 	bubble.global_position = ship.global_position
 	ship.queue_free()
-	Events.spawn_request.emit(bubble)
+	_ctx.spawn_request.emit(bubble)
 	bubble.set_content_rotation(ship.global_rotation)
 	Events.ship_captured.emit.call_deferred(ship, bubble)
 	
@@ -35,7 +37,7 @@ func capture_treasure(treasure:Treasure) -> void:
 	bubble.add_to_group('Treasure')
 	bubble.global_position = treasure.global_position
 	get_parent().remove_child.call_deferred(treasure)
-	Events.spawn_request.emit(bubble)
+	_ctx.spawn_request.emit(bubble)
 	bubble.set_content_rotation(treasure.global_rotation)
 	
 func capture_shapeoid(shapeoid:Shapeoid) -> void:
@@ -44,14 +46,14 @@ func capture_shapeoid(shapeoid:Shapeoid) -> void:
 	bubble.add_to_group('Shapeoid')
 	bubble.global_position = shapeoid.global_position
 	get_parent().remove_child.call_deferred(shapeoid)
-	Events.spawn_request.emit(bubble)
+	_ctx.spawn_request.emit(bubble)
 	bubble.set_content_rotation(shapeoid.global_rotation)
 	
 func destroy() -> void:
 	var effect = bubble_popped_scene.instantiate()
 	effect.global_position = global_position
 	effect.scale = 0.5*Vector2(1,1)
-	Events.spawn_request.emit(effect)
+	_ctx.spawn_request.emit(effect)
 	queue_free()
 
 
