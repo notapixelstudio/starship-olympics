@@ -1,0 +1,185 @@
+[gd_scene format=3 uid="uid://cnmri3birbm3w"]
+
+[ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_a0bc6"]
+[ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_iyvuj"]
+[ext_resource type="Resource" uid="uid://dtnwwsygwm7wy" path="res://godot4/data/styles/tennis.tres" id="3_u2ifh"]
+[ext_resource type="Script" uid="uid://dpekcskbmlpy3" path="res://addons/vshapes/VCustomShape.gd" id="5_iyvuj"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="5_yinpo"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/walls/Wall.tscn" id="7_ugj1m"]
+[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="8_fgs26"]
+[ext_resource type="PackedScene" uid="uid://b3pkwdrik4ybm" path="res://actors/environments/PlayerBricks.tscn" id="9_f6w22"]
+[ext_resource type="PackedScene" uid="uid://cvdbvykm2f8aq" path="res://actors/environments/Brick.tscn" id="10_a0bc6"]
+[ext_resource type="PackedScene" uid="uid://dikmtm6l8ygkr" path="res://godot4/elements/cargos/TennisBall.tscn" id="10_f6w22"]
+[ext_resource type="PackedScene" uid="uid://cjtl150i6hy4c" path="res://godot4/elements/walls/GlassWall.tscn" id="11_u2ifh"]
+[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="12_ysgve"]
+
+[sub_resource type="GDScript" id="GDScript_g2653"]
+script/source = "extends Orchestrator
+"
+
+[sub_resource type="Curve2D" id="Curve2D_iyvuj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1500, -1050, 0, 0, 0, 0, 1800, -750, 0, 0, 0, 0, 1800, 750, 0, 0, 0, 0, 1500, 1050, 0, 0, 0, 0, -2100, 1200, 0, 0, 0, 0, -2100, -1200)
+}
+point_count = 6
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_u2ifh"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[node name="PveArena" unique_id=1481253217 instance=ExtResource("1_a0bc6")]
+default_params = ExtResource("2_iyvuj")
+
+[node name="Styleable" parent="." index="1" unique_id=999924478]
+style = ExtResource("3_u2ifh")
+
+[node name="Orchestrator" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="0" unique_id=1592803965]
+script = SubResource("GDScript_g2653")
+
+[node name="Camera2D" parent="." index="3" unique_id=956979488]
+zoom = Vector2(0.23, 0.23)
+
+[node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=743158187 instance=ExtResource("5_yinpo")]
+position = Vector2(-1500, 0)
+
+[node name="OutsideWallShape" type="Path2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=570432136 node_paths=PackedStringArray("hosts")]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_iyvuj")
+script = ExtResource("5_iyvuj")
+hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
+metadata/_custom_type_script = "uid://dpekcskbmlpy3"
+
+[node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=480981193 instance=ExtResource("7_ugj1m")]
+unique_name_in_owner = true
+hollow = true
+
+[node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=127410278 node_paths=PackedStringArray("init_custom_shape") instance=ExtResource("8_fgs26")]
+unique_name_in_owner = true
+init_custom_shape = NodePath("../OutsideWallShape")
+
+[node name="RightBricks" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=284497117 instance=ExtResource("9_f6w22")]
+position = Vector2(1050, 0)
+goal_owner = NodePath("../../../SpawnPositions/Players/p2")
+
+[node name="Brick28" parent="Battlefield/RightBricks" index="0" unique_id=1044147684 instance=ExtResource("10_a0bc6")]
+position = Vector2(0, 200)
+points = 5
+colorize = true
+
+[node name="Brick32" parent="Battlefield/RightBricks" index="1" unique_id=1035036854 instance=ExtResource("10_a0bc6")]
+position = Vector2(0, 400)
+points = 5
+colorize = true
+
+[node name="Brick30" parent="Battlefield/RightBricks" index="2" unique_id=738194788 instance=ExtResource("10_a0bc6")]
+position = Vector2(0, -400)
+points = 10
+colorize = true
+
+[node name="Brick31" parent="Battlefield/RightBricks" index="3" unique_id=1726339476 instance=ExtResource("10_a0bc6")]
+position = Vector2(0, -200)
+points = 10
+colorize = true
+
+[node name="Brick34" parent="Battlefield/RightBricks" index="4" unique_id=1541174764 instance=ExtResource("10_a0bc6")]
+points = 10
+colorize = true
+
+[node name="Brick35" parent="Battlefield/RightBricks" index="5" unique_id=699017162 instance=ExtResource("10_a0bc6")]
+position = Vector2(200, 200)
+points = 5
+colorize = true
+
+[node name="Brick40" parent="Battlefield/RightBricks" index="6" unique_id=2103753851 instance=ExtResource("10_a0bc6")]
+position = Vector2(200, -200)
+points = 10
+colorize = true
+
+[node name="Brick41" parent="Battlefield/RightBricks" index="7" unique_id=1193623700 instance=ExtResource("10_a0bc6")]
+position = Vector2(200, 0)
+points = 10
+colorize = true
+
+[node name="Brick42" parent="Battlefield/RightBricks" index="8" unique_id=935939165 instance=ExtResource("10_a0bc6")]
+position = Vector2(-200, 200)
+points = 5
+colorize = true
+
+[node name="Brick43" parent="Battlefield/RightBricks" index="9" unique_id=450626632 instance=ExtResource("10_a0bc6")]
+position = Vector2(-200, 400)
+points = 5
+colorize = true
+
+[node name="Brick44" parent="Battlefield/RightBricks" index="10" unique_id=1166907026 instance=ExtResource("10_a0bc6")]
+position = Vector2(-200, 600)
+points = 5
+colorize = true
+
+[node name="Brick50" parent="Battlefield/RightBricks" index="11" unique_id=1908155271 instance=ExtResource("10_a0bc6")]
+position = Vector2(0, 600)
+points = 5
+colorize = true
+
+[node name="Brick51" parent="Battlefield/RightBricks" index="12" unique_id=615462798 instance=ExtResource("10_a0bc6")]
+position = Vector2(200, 600)
+points = 5
+colorize = true
+
+[node name="Brick52" parent="Battlefield/RightBricks" index="13" unique_id=1971906658 instance=ExtResource("10_a0bc6")]
+position = Vector2(200, 400)
+points = 5
+colorize = true
+
+[node name="Brick53" parent="Battlefield/RightBricks" index="14" unique_id=257434398 instance=ExtResource("10_a0bc6")]
+position = Vector2(200, -400)
+points = 5
+colorize = true
+
+[node name="Brick54" parent="Battlefield/RightBricks" index="15" unique_id=1578938794 instance=ExtResource("10_a0bc6")]
+position = Vector2(200, -600)
+points = 5
+colorize = true
+
+[node name="Brick55" parent="Battlefield/RightBricks" index="16" unique_id=668873720 instance=ExtResource("10_a0bc6")]
+position = Vector2(0, -600)
+points = 5
+colorize = true
+
+[node name="Brick45" parent="Battlefield/RightBricks" index="17" unique_id=447601011 instance=ExtResource("10_a0bc6")]
+position = Vector2(-200, -600)
+points = 10
+colorize = true
+
+[node name="Brick46" parent="Battlefield/RightBricks" index="18" unique_id=634297611 instance=ExtResource("10_a0bc6")]
+position = Vector2(-200, -400)
+points = 10
+colorize = true
+
+[node name="Brick47" parent="Battlefield/RightBricks" index="19" unique_id=294851840 instance=ExtResource("10_a0bc6")]
+position = Vector2(-200, -200)
+points = 10
+colorize = true
+
+[node name="Brick48" parent="Battlefield/RightBricks" index="20" unique_id=1154292514 instance=ExtResource("10_a0bc6")]
+position = Vector2(-200, 0)
+points = 10
+colorize = true
+
+[node name="TennisBall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1878555385 instance=ExtResource("10_f6w22")]
+position = Vector2(-1050, 0)
+
+[node name="GlassWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=450569283 instance=ExtResource("11_u2ifh")]
+
+[node name="VRoundedRect" type="Node" parent="Battlefield/GlassWall" index="7" unique_id=1497018554]
+script = ExtResource("12_ysgve")
+width = 600.0
+height = 2800.0
+radius = 200.0
+metadata/_custom_type_script = "uid://dd5es67ha55ia"
+
+[node name="Navigation" parent="." index="7" unique_id=332973589]
+navigation_polygon = SubResource("NavigationPolygon_u2ifh")

@@ -18,15 +18,9 @@ func _ready():
 	var player_spawner = get_node(goal_owner)
 	if player_spawner:
 		await player_spawner.player_assigned
-		set_player(player_spawner.get_player())
+		#set_player(player_spawner.get_player())
 		for brick in bricks:
 			brick.set_color(player.species.color)
 		
 func _on_brick_destroyed(brick, breaker):
-	emit_signal("goal_done", get_player(), self, brick.global_position, -brick.get_points())
-
-func set_player(v : InfoPlayer):
-	player = v
-	
-func get_player():
-	return player
+	pass#emit_signal("goal_done", get_player(), self, brick.global_position, -brick.get_points())
