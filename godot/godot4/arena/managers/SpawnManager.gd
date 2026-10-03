@@ -2,12 +2,9 @@ extends Node
 
 @export var battlefield: Node2D
 
-func _enter_tree() -> void:
-	Events.spawn_request.connect(_on_spawn_request)
+func _ready() -> void:
+	%AutoSignals.bind(Events.spawn_request, _on_spawn_request)
 	
-func _exit_tree() -> void:
-	Events.spawn_request.disconnect(_on_spawn_request)
-
 func _on_spawn_request(object:Node, callback:Callable=func(o):return) -> void:
 	var spawn = func():
 		battlefield.add_child(object)
