@@ -2,9 +2,11 @@ extends Node
 
 @export var battlefield: Node2D
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 func _ready() -> void:
 	%AutoSignals \
-		.bind(ArenaScope.get_scope(self).spawn_request, _on_spawn_request)
+		.bind(_ctx.spawn_request, _on_spawn_request)
 	
 func _on_spawn_request(object:Node, callback:Callable=func(o):return) -> void:
 	var spawn = func():

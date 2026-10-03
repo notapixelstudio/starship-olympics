@@ -58,5 +58,5 @@ func destroy() -> void:
 
 
 func _on_touch_area_2d_body_entered(sth: Node2D) -> void:
-	Events.collision.emit(self, sth, 'touch')
+	_ctx.collision.emit(self, sth, 'touch')
 	

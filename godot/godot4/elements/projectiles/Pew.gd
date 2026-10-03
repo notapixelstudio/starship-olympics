@@ -26,7 +26,7 @@ func _update_rotation() -> void:
 	$Wrapper.rotation = linear_velocity.angle()
 
 func _on_ForwardBullet_body_entered(body):
-	Events.collision.emit(self, body)
+	_ctx.collision.emit(self, body)
 	
 func set_team(v:String) -> void:
 	_team = v # remember team to avoid friendly fire (or checking up a dead ship)
@@ -34,7 +34,7 @@ func set_team(v:String) -> void:
 func set_color(v:Color) -> void:
 	_color = v
 	
-	$"%Sprite2D".modulate = _color
+	%Sprite2D.modulate = _color
 	$AutoTrail.starting_color = Color(_color, 0.1)
 	$AutoTrail.ending_color = Color(Color.WHITE, 0)
 	

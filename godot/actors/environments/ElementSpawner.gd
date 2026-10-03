@@ -8,6 +8,8 @@ class_name ElementSpawner
 
 const JITTER = 0.1
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 func set_element_scene(v: PackedScene):
 	element_scene = v
 	if not is_inside_tree():
@@ -41,7 +43,7 @@ func spawn(parent_node = null):
 	parent_node.add_child(element)
 	if appear and appear.was_touched():
 		# trigger a fake high-level touch collision
-		Events.collision.emit(appear.get_toucher(), element, 'touch')
+		_ctx.collision.emit(appear.get_toucher(), element, 'touch')
 	
 	if traits.has_trait(element, 'Waiter'):
 		element.start()

@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://c161j5oxkpgmm"]
+[gd_scene format=3 uid="uid://c161j5oxkpgmm"]
 
 [ext_resource type="Script" uid="uid://c2kyffi8y1rkv" path="res://godot4/arena/managers/CollisionResponseManager.gd" id="1_l27fl"]
+[ext_resource type="Script" uid="uid://dfwlu4ppe4snj" path="res://addons/AutoSignals/AutoSignals.gd" id="2_s1k1o"]
 
-[node name="CollisionResponseManager" type="Node"]
+[node name="CollisionResponseManager" type="Node" unique_id=1836655992]
 script = ExtResource("1_l27fl")
+
+[node name="AutoSignals" type="Node" parent="." unique_id=1669688638]
+unique_name_in_owner = true
+script = ExtResource("2_s1k1o")
+metadata/_custom_type_script = "uid://dfwlu4ppe4snj"

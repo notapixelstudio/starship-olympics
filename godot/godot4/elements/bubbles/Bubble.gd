@@ -44,7 +44,7 @@ func release_content(author) -> void:
 	# released content is always considered touched by the author, if any
 	if author != null:
 		# trigger a fake high-level touch collision
-		Events.collision.emit.call_deferred(author, _content, 'touch')
+		_ctx.collision.emit.call_deferred(author, _content, 'touch')
 	
 func _on_area_2d_body_entered(body):
 	if body is Ship:

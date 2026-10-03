@@ -236,7 +236,7 @@ func _drop_dash_ring_effect() -> void:
 	#%TerrainManager.process_overlappers(overlappers)
 
 func _on_body_entered(body) -> void:
-	Events.collision.emit(self, body)
+	_ctx.collision.emit(self, body)
 
 func _on_touch_area_area_entered(area) -> void:
 	_on_touch_area_entered(area)
@@ -250,7 +250,7 @@ func _on_touch_area_body_entered(body) -> void:
 	_on_touch_area_entered(body)
 	
 func _on_touch_area_entered(sth) -> void:
-	Events.collision.emit(self, sth, 'touch')
+	_ctx.collision.emit(self, sth, 'touch')
 	
 func _on_hurt_area_area_entered(area) -> void:
 	_on_hurt_area_entered(area)
@@ -259,7 +259,7 @@ func _on_hurt_area_body_entered(body) -> void:
 	_on_hurt_area_entered(body)
 	
 func _on_hurt_area_entered(sth) -> void:
-	Events.collision.emit(self, sth, 'hurt')
+	_ctx.collision.emit(self, sth, 'hurt')
 	
 func _on_touch_area_area_exited(area: Area2D) -> void:
 	# FIXME this is temporary

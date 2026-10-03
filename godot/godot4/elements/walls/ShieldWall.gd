@@ -12,6 +12,8 @@ class_name ShieldWall
 var polygon : PackedVector2Array
 var health = starting_health
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 func set_symbol_scale(v: float) -> void:
 	symbol_scale = v
 	if not is_inside_tree():
@@ -90,4 +92,4 @@ func disable_collisions():
 			up('skin')
 
 func _on_body_entered(body: Node2D) -> void:
-	Events.collision.emit(self, body)
+	_ctx.collision.emit(self, body)

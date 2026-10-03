@@ -8,6 +8,8 @@ signal loaded_by(actor: Ship)
 
 @onready var tracked = %Tracked
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 var _self_scene : PackedScene
 var _untouchable_by = null
 
@@ -34,7 +36,7 @@ func _on_body_entered(body: Node) -> void:
 	#_reset_untouchable() # always reset untouchability on bouncing off sth
 	
 	if body is StaticBody2D:
-		Events.collision.emit(self, body)
+		_ctx.collision.emit(self, body)
 	
 func touched_by(actor) -> void:
 	if not loadable:

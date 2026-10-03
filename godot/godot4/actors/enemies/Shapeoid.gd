@@ -3,6 +3,8 @@ class_name Shapeoid extends RigidBody2D
 @export var speed := 500.0
 @export var appear_scene : PackedScene
 
+@onready var _ctx := ArenaScope.get_scope(self)
+
 var _direction := 0.0
 
 func _move() -> void:
@@ -30,7 +32,7 @@ func _on_touch_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_hurt_area_2d_body_entered(body: Node2D) -> void:
 	if body is BubbleBullet or body is Pew or body is Ball: # FIXME Bullet abstract superclass?
-		Events.collision.emit(body, self)
+		_ctx.collision.emit(body, self)
 	
 func hit(hitter=null) -> void:
 	pass
