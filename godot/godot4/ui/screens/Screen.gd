@@ -8,10 +8,10 @@ class_name Screen
 signal next(next_screen: Screen) ## Emit this signal to request a transition to the given Screen.
 signal back ## Emit this signal to request a transition back to the previous screen.
 
-var _stash := []
+var _old_focus_modes := {}
 
 func entering() -> void:
-	_unstash_all_content()
+	_enable_all_focusables()
 
 ## Executed right after a transition to this Screen has ended. Override it in your inherited scenes
 ## to customize its behavior. Remember to either call [code]super.enter()[/code] in your override method if
@@ -31,7 +31,7 @@ func exiting() -> void:
 ## Executed right after a transition from this Screen has ended. Override it in your inherited scenes
 ## to customize its behavior.
 func exited() -> void:
-	_stash_all_content()
+	_disable_all_focusables()
 
 ## Call this method to recursively cause this Screen and all of its Control descendants to lose focus.
 func recursive_release_focus() -> void:
@@ -44,12 +44,16 @@ func recursive_release_focus() -> void:
 func get_id() -> String:
 	return name
 	
-func _stash_all_content():
-	for child in get_children():
-		remove_child(child)
-		_stash.append(child)
+## FIXME these are made to support Control nodes out of the box as well as custom nodes having a set_focus_mode method
+## is there a cleaner way to have an off-screen disable of the whole content?
+func _disable_all_focusables():
+	for descendant in find_children("*"):
+		if descendant.has_method('set_focus_mode'):
+			_old_focus_modes[descendant] = descendant.focus_mode
+			descendant.set_focus_mode(Control.FOCUS_NONE)
 		
-func _unstash_all_content():
-	for child in _stash:
-		add_child(child)
-	_stash.clear()
+func _enable_all_focusables():
+	for descendant in find_children("*"):
+		if descendant.has_method('set_focus_mode') and _old_focus_modes.has(descendant):
+			descendant.set_focus_mode(_old_focus_modes[descendant])
+			_old_focus_modes.erase(descendant)

@@ -15,6 +15,11 @@ var _controls : String = 'none'
 var _species : Species
 var _status : String
 
+## 'focusable' like a Control
+var focus_mode = Control.FOCUS_ALL
+func set_focus_mode(mode) -> void:
+	set_process(mode != Control.FOCUS_NONE)
+
 func set_player_id(v: String) -> void:
 	player_id = v
 	%PPLabel.text = player_id
