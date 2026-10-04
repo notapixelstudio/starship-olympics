@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://def8gegesl10e"]
+[gd_scene format=3 uid="uid://dsmqaj240piab"]
 
-[ext_resource type="Script" uid="uid://cpxvapwxmi5c7" path="res://godot4/elements/treasures/Treasure.gd" id="1_q6gx3"]
+[ext_resource type="Script" uid="uid://cpxvapwxmi5c7" path="res://godot4/elements/collectables/Collectable.gd" id="1_q6gx3"]
 [ext_resource type="PackedScene" uid="uid://c4yru00x07tyi" path="res://godot4/effects/TreasurePicked.tscn" id="2_lfwwo"]
 [ext_resource type="PackedScene" uid="uid://bkt3uw0ui0kxk" path="res://godot4/effects/appear/AppearDefault.tscn" id="3_ufj5w"]
 [ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="4_qifm1"]
@@ -107,7 +107,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%Sprite2D:modulate")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -134,7 +134,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%Sprite2D:modulate")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -146,7 +146,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%Sprite2D:scale")
+tracks/1/path = NodePath("Sprite2D:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -174,7 +174,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%Sprite2D:modulate")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -203,7 +203,7 @@ _data = {
 &"Shine": SubResource("Animation_ijh7r")
 }
 
-[node name="Treasure" type="RigidBody2D" groups=["Treasure"]]
+[node name="Collectable" type="RigidBody2D" unique_id=1679659046]
 collision_layer = 2048
 collision_mask = 3093
 physics_material_override = SubResource("PhysicsMaterial_ojvyv")
@@ -213,33 +213,29 @@ script = ExtResource("1_q6gx3")
 treasure_picked_scene = ExtResource("2_lfwwo")
 appear_scene = ExtResource("3_ufj5w")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=954651107]
 visible = false
 shape = SubResource("CircleShape2D_0ycic")
 
-[node name="Graphics" type="Node2D" parent="."]
+[node name="Graphics" type="Node2D" parent="." unique_id=737340649]
 
-[node name="Glow" type="Sprite2D" parent="Graphics"]
+[node name="Glow" type="Sprite2D" parent="Graphics" unique_id=746027440]
 material = SubResource("CanvasItemMaterial_q3g5c")
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_sn586")
 
-[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
+[node name="Sprite2D" type="Sprite2D" parent="Graphics" unique_id=417684581]
 unique_name_in_owner = true
 texture = ExtResource("4_qifm1")
 
-[node name="IntroAnimation" type="AnimationPlayer" parent="Graphics"]
-libraries = {
-&"": SubResource("AnimationLibrary_g125i")
-}
-autoplay = "default"
+[node name="IntroAnimation" type="AnimationPlayer" parent="Graphics" unique_id=719273552]
+libraries/ = SubResource("AnimationLibrary_g125i")
+autoplay = &"default"
 
-[node name="SpriteAnimation" type="AnimationPlayer" parent="Graphics"]
+[node name="SpriteAnimation" type="AnimationPlayer" parent="Graphics" unique_id=1189733209]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_lqqh5")
-}
+libraries/ = SubResource("AnimationLibrary_lqqh5")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=754110405]
 unique_name_in_owner = true
 bus = &"SFX"

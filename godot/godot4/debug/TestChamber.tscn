@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b83y52mt43gah" path="res://godot4/arena/managers/SpawnManager.tscn" id="4_3foey"]
 [ext_resource type="PackedScene" uid="uid://c161j5oxkpgmm" path="res://godot4/arena/managers/CollisionResponseManager.tscn" id="4_4o8dx"]
 [ext_resource type="Resource" uid="uid://bpw2qo5744n7m" path="res://godot4/data/minigames/default.tres" id="4_n50wa"]
+[ext_resource type="PackedScene" uid="uid://cphkdfew8xuc5" path="res://godot4/arena/ArenaScope.tscn" id="5_nd7cw"]
 [ext_resource type="Script" uid="uid://ba6h70eocaj3g" path="res://godot4/debug/SOLog.gd" id="5_upb84"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="6_4tylc"]
 [ext_resource type="PackedScene" uid="uid://bsglorws8xub7" path="res://godot4/arena/managers/ShipFactory.tscn" id="6_fl7s2"]
@@ -18,6 +19,8 @@ script = ExtResource("1_lsfmj")
 test_player = ExtResource("2_wo8qe")
 player_brain_scene = ExtResource("3_giljv")
 minigame = ExtResource("4_n50wa")
+
+[node name="ArenaScope" parent="." unique_id=124878104 instance=ExtResource("5_nd7cw")]
 
 [node name="CollisionResponseManager" parent="." unique_id=1116773026 instance=ExtResource("4_4o8dx")]
 

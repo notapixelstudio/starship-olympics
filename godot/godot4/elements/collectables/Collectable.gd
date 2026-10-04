@@ -1,14 +1,13 @@
-class_name Treasure
+class_name Collectable
 extends RigidBody2D
 
 @export var collectable := true : set = set_collectable
 @export var solid := true
-@export var points := 1
 @export var treasure_picked_scene : PackedScene
 @export var appear_scene : PackedScene
 @export var outline_texture : Texture
 
-signal collected(PhysicsBody2D, Treasure)
+signal collected(PhysicsBody2D, Collectable)
 
 @onready var _ctx := ArenaScope.get_scope(self)
 
@@ -19,9 +18,6 @@ func set_collectable(v: bool) -> void:
 func is_collectable() -> bool:
 	return collectable
 	
-func get_points() -> int:
-	return points
-
 func set_texture(v: Texture) -> void:
 	%Sprite2D.texture = v
 	

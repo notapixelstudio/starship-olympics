@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://g2t7ocoioic1"]
+
+[ext_resource type="PackedScene" uid="uid://def8gegesl10e" path="res://godot4/elements/collectables/Treasure.tscn" id="1_h5g4u"]
+[ext_resource type="Texture2D" uid="uid://cg0bpplguwras" path="res://assets/sprites/environments/diamond_big_outline.png" id="1_clhpm"]
+[ext_resource type="Texture2D" uid="uid://ccqmaf544acjy" path="res://assets/sprites/environments/diamond_big_glow.png" id="2_r7pto"]
+[ext_resource type="Material" uid="uid://neusshjl7tyt" path="res://godot4/shaders/outline_big_diamond.tres" id="3_jwfe5"]
+[ext_resource type="Texture2D" uid="uid://dldq7fl7u4nom" path="res://assets/sprites/environments/diamond_big.png" id="4_s6v7e"]
+[ext_resource type="AudioStream" uid="uid://c5pidqn68fd5j" path="res://assets/audio/FX/sfx_coin_cluster3.wav" id="5_y3txy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qj0q4"]
+radius = 100.0
+
+[node name="BigDiamond" unique_id=1353016097 instance=ExtResource("1_h5g4u")]
+points = 3
+outline_texture = ExtResource("1_clhpm")
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=954651107]
+shape = SubResource("CircleShape2D_qj0q4")
+
+[node name="Glow" parent="Graphics" parent_id_path=PackedInt32Array(737340649) index="0" unique_id=746027440]
+self_modulate = Color(1, 0.713726, 0.184314, 1)
+texture = ExtResource("2_r7pto")
+
+[node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(737340649) index="1" unique_id=417684581]
+material = ExtResource("3_jwfe5")
+texture = ExtResource("4_s6v7e")
+
+[node name="AudioStreamPlayer2D" parent="." index="2" unique_id=754110405]
+stream = ExtResource("5_y3txy")

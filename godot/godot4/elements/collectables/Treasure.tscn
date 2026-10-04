@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://def8gegesl10e"]
+
+[ext_resource type="PackedScene" path="res://godot4/elements/collectables/Collectable.tscn" id="1_h5g4u"]
+[ext_resource type="Script" uid="uid://b0cxdkno4uxtw" path="res://godot4/elements/collectables/Treasure.gd" id="2_2baod"]
+
+
+[node name="Treasure" unique_id=2001836896 groups=["Treasure"] instance=ExtResource("1_h5g4u")]
+script = ExtResource("2_2baod")
+points = 1
