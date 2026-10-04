@@ -31,14 +31,15 @@ func capture_ship(ship:Ship) -> void:
 	bubble.set_content_rotation(ship.global_rotation)
 	Events.ship_captured.emit.call_deferred(ship, bubble)
 	
-func capture_treasure(treasure:Treasure) -> void:
+func capture_collectable(collectable:Collectable) -> void:
 	var bubble = bubble_scene.instantiate()
-	bubble.set_content(treasure)
-	bubble.add_to_group('Treasure')
-	bubble.global_position = treasure.global_position
-	get_parent().remove_child.call_deferred(treasure)
+	bubble.set_content(collectable)
+	if collectable is Treasure:
+		bubble.add_to_group('Treasure')
+	bubble.global_position = collectable.global_position
+	get_parent().remove_child.call_deferred(collectable)
 	_ctx.spawn_request.emit(bubble)
-	bubble.set_content_rotation(treasure.global_rotation)
+	bubble.set_content_rotation(collectable.global_rotation)
 	
 func capture_shapeoid(shapeoid:Shapeoid) -> void:
 	var bubble = bubble_scene.instantiate()

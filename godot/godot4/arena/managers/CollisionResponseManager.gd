@@ -89,8 +89,8 @@ func _handle_ball_vs_other(ball:Ball, collider, tag:String='') -> void:
 		collider.hit(ball) # Balls hit all sorts of stuff
 		
 func _hanlde_bubble_bullet_vs_other(bubble_bullet:BubbleBullet, collider, tag:String='') -> void:
-	if collider is Treasure:
-		bubble_bullet.capture_treasure(collider)
+	if collider is Collectable:
+		bubble_bullet.capture_collectable(collider)
 		bubble_bullet.destroy()
 	elif collider is Shapeoid:
 		bubble_bullet.capture_shapeoid(collider)

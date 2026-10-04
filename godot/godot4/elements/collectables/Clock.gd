@@ -1,4 +1,4 @@
-extends Treasure
+extends Collectable
 
 func collect(collector):
 	super(collector)
