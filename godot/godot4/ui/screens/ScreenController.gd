@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends Control
 
 @export var starting_screen_scene : PackedScene
 @export var autostart := true
@@ -31,8 +31,7 @@ func navigate_to(new_screen: Screen):
 	new_screen.custom_minimum_size.x = screen_width
 	new_screen.custom_minimum_size.y = screen_height
 	add_child(new_screen)
-	size.x = screen_width * len(screens_stack)+1
-	#new_screen.position.x = screen_width * len(screens_stack)
+	new_screen.position.x = screen_width * len(screens_stack)
 	screens_stack.append(new_screen)
 	var to_screen_id = new_screen.get_id()
 	transition_started.emit('navigate_to', from_screen_id, to_screen_id)
@@ -45,6 +44,7 @@ func navigate_to(new_screen: Screen):
 	
 	if old_screen != null:
 		old_screen.exited()
+		remove_child(old_screen)
 		
 	transition_ended.emit('navigate_to', from_screen_id, to_screen_id)
 	
@@ -58,6 +58,7 @@ func back():
 	var from_screen_id = old_screen.get_id()
 	old_screen.exiting()
 	var active_screen = screens_stack[-1]
+	add_child(active_screen)
 	connect_nav_signals(active_screen)
 	transition_started.emit('back', from_screen_id, active_screen.get_id())
 	active_screen.entering()
