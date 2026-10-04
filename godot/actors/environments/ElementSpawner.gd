@@ -6,7 +6,7 @@ class_name ElementSpawner
 @export var element_scene: PackedScene: set = set_element_scene
 @export var preview_sprite_name := "Graphics/Sprite2D"
 
-const JITTER = 0.1
+const JITTER = 1.0
 
 @onready var _ctx := ArenaScope.get_scope(self)
 
