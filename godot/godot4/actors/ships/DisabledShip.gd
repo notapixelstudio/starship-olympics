@@ -6,8 +6,13 @@ class_name DisabledShip
 var _cloned_ship : Ship
 
 func set_ship(ship: Ship) -> void:
-	%Sprite2D.texture = ship.get_player().get_ship_image()
-	%UnderSprite.texture = ship.get_player().get_ship_image()
+	if ship.get_player().is_cpu():
+		%Sprite2D.texture = ship.cpu_ship_image
+		%UnderSprite.texture = ship.cpu_ship_image
+		%Sprite2D.modulate = ship.get_player().get_color()
+	else:
+		%Sprite2D.texture = ship.get_player().get_ship_image()
+		%UnderSprite.texture = ship.get_player().get_ship_image()
 	%UnderSprite.material.set_shader_parameter('color', ship.get_player().get_color())
 	%MotionAutoTrail.gradient = ship.get_player().get_gradient()
 	_cloned_ship = ship.clone()

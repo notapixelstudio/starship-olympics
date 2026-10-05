@@ -87,7 +87,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.101961, 0.101961, 0.101961, 1)]
+"values": [Color(0.25, 0.25, 0.25, 1)]
 }
 
 [sub_resource type="Animation" id="7"]
@@ -103,7 +103,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [Color(3, 3, 3, 1), Color(0.101961, 0.101961, 0.101961, 1)]
+"values": [Color(3, 3, 3, 1), Color(0.25, 0.25, 0.25, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dese6"]
@@ -117,12 +117,12 @@ random_pitch = 2.5
 streams_count = 1
 stream_0/stream = ExtResource("11_nl2p4")
 
-[sub_resource type="Gradient" id="Gradient_hr0tn"]
+[sub_resource type="Gradient" id="Gradient_4idgn"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
 
-[node name="DisabledShip" type="RigidBody2D" groups=["Foreground", "in_camera"]]
+[node name="DisabledShip" type="RigidBody2D" unique_id=49070422 groups=["Foreground", "in_camera"]]
 collision_layer = 8192
 collision_mask = 1168
 physics_material_override = SubResource("1")
@@ -131,54 +131,51 @@ max_contacts_reported = 10
 linear_damp = 1.0
 script = ExtResource("1_qvvl6")
 
-[node name="Tracked" parent="." instance=ExtResource("4_jhun4")]
+[node name="Tracked" parent="." unique_id=2145624493 instance=ExtResource("4_jhun4")]
 unique_name_in_owner = true
 
-[node name="UnderSprite" type="Sprite2D" parent="."]
+[node name="UnderSprite" type="Sprite2D" parent="." unique_id=2102537656]
 unique_name_in_owner = true
 material = SubResource("3")
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("4_4idgn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=333309822]
 unique_name_in_owner = true
-self_modulate = Color(0.101961, 0.101961, 0.101961, 1)
+self_modulate = Color(0.25, 0.25, 0.25, 1)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("4_4idgn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=986349921]
 shape = SubResource("2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_0bjvr")
-}
-autoplay = "Blink"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1472925290]
+libraries/ = SubResource("AnimationLibrary_0bjvr")
+autoplay = &"Blink"
 
-[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_dese6")
-}
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="." unique_id=976193602]
+libraries/ = SubResource("AnimationLibrary_dese6")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1229722390]
 unique_name_in_owner = true
 stream = ExtResource("12_sdkoe")
-volume_db = -15.0
+volume_db = -8.0
 pitch_scale = 0.9
 
-[node name="AudioStreamPlayer2DBeginning" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2DBeginning" type="AudioStreamPlayer2D" parent="." unique_id=316010484]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_4idgn")
 volume_db = -7.0
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1370031414]
 unique_name_in_owner = true
 wait_time = 3.0
 autostart = true
 
-[node name="MotionAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("8_yl4br")]
+[node name="MotionAutoTrail" parent="." unique_id=1618703367 node_paths=PackedStringArray("host") instance=ExtResource("8_yl4br")]
 unique_name_in_owner = true
-gradient = SubResource("Gradient_hr0tn")
+gradient = SubResource("Gradient_4idgn")
+active = true
 host = NodePath("..")
 max_age = 0.4
 
