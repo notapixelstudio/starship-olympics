@@ -1,21 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt8lwx0muu10p"]
+[gd_scene format=3 uid="uid://dt8lwx0muu10p"]
 
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="1_4ev1s"]
 [ext_resource type="Script" uid="uid://b1o0qfmugu6t5" path="res://godot4/arena/hud/ScoreBar.gd" id="2_11j5v"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="3_vxowj"]
 [ext_resource type="Material" uid="uid://78ncnjfs8b5h" path="res://godot4/arena/hud/ScoreBarMaterial.tres" id="4_5b4au"]
 
-[node name="ScoreBar" instance=ExtResource("1_4ev1s")]
-custom_minimum_size = Vector2(26, 0)
+[node name="ScoreBar" unique_id=2055379297 instance=ExtResource("1_4ev1s")]
+custom_minimum_size = Vector2(24, 0)
 script = ExtResource("2_11j5v")
 
 [node name="Background" parent="." index="0"]
 material = ExtResource("4_5b4au")
 color = Color(1, 1, 1, 1)
 
-[node name="MaxScore" type="Label" parent="Background" index="0"]
+[node name="MaxScore" type="Label" parent="Background" index="0" unique_id=1548147697]
 unique_name_in_owner = true
 self_modulate = Color(0.6, 0.6, 0.6, 1)
+z_index = 10
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -31,23 +32,23 @@ horizontal_alignment = 1
 [node name="Fill" parent="Background" index="1"]
 material = ExtResource("4_5b4au")
 
-[node name="Indicator" type="Node2D" parent="." index="1"]
+[node name="Indicator" type="Node2D" parent="." index="1" unique_id=1616402594]
 unique_name_in_owner = true
-position = Vector2(-2, 0)
+position = Vector2(-3, 0)
 
-[node name="MiniShip" type="Sprite2D" parent="Indicator" index="0"]
+[node name="MiniShip" type="Sprite2D" parent="Indicator" index="0" unique_id=1657745275]
 unique_name_in_owner = true
 position = Vector2(13, 0)
 rotation = -1.5708
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.16, 0.16)
 
-[node name="Timer" type="Timer" parent="Indicator/MiniShip" index="0"]
+[node name="Timer" type="Timer" parent="Indicator/MiniShip" index="0" unique_id=1143529497]
 unique_name_in_owner = true
 wait_time = 0.5
 autostart = true
 ignore_time_scale = true
 
-[node name="Value" type="Label" parent="Indicator" index="1"]
+[node name="Value" type="Label" parent="Indicator" index="1" unique_id=41855779]
 unique_name_in_owner = true
 offset_top = -40.0
 offset_right = 26.0
@@ -58,7 +59,7 @@ text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="." index="2"]
+[node name="Label" type="Label" parent="." index="2" unique_id=1844393817]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2

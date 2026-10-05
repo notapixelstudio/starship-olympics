@@ -4,9 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://baclyt1ayjb0e" path="res://assets/sprites/signs/arrow.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bcoonsxenm7eg" path="res://assets/sprites/environments/ring_part.png" id="4"]
-[ext_resource type="AudioStream" uid="uid://cny4ebaabn7u4" path="res://assets/audio/FX/392693__screamstudio__sci-fi-sfx.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://du1o16vb5f1mw" path="res://assets/audio/UI_effects/lesser_vibes_HTIS_Beeps_Simple_03_003.mp3" id="5_g3nn3"]
 [ext_resource type="PackedScene" uid="uid://wlk2x2n5vsn0" path="res://godot4/elements/gates/TargetGate.tscn" id="7_r4t8c"]
-[ext_resource type="Script" uid="uid://ddxaklng2222g" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" id="8"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 resource_local_to_scene = true
@@ -73,6 +72,11 @@ _data = {
 &"RESET": SubResource("3")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g2653"]
+random_pitch = 1.0293022
+streams_count = 1
+stream_0/stream = ExtResource("5_g3nn3")
+
 [node name="Gate" type="Area2D" unique_id=363910291 groups=["gates"]]
 collision_layer = 0
 collision_mask = 513
@@ -112,11 +116,10 @@ texture = ExtResource("4")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1608677693]
 libraries/ = SubResource("AnimationLibrary_bcjds")
 
-[node name="RandomAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1488943637]
-script = ExtResource("8")
-streams = Array[AudioStream]([ExtResource("6")])
-randomize_pitch = true
-pitch_max = 1.4
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=729749775]
+stream = SubResource("AudioStreamRandomizer_g2653")
+volume_db = 4.0
+max_polyphony = 4
 
 [node name="TargetGateTop" parent="." unique_id=1620734782 instance=ExtResource("7_r4t8c")]
 unique_name_in_owner = true
@@ -124,6 +127,6 @@ unique_name_in_owner = true
 [node name="TargetGateBottom" parent="." unique_id=1490491737 instance=ExtResource("7_r4t8c")]
 unique_name_in_owner = true
 offset_top = 300.0
-offset_bottom = 450.0
+offset_bottom = 900.0
 offset_transform_enabled = true
 offset_transform_scale = Vector2(1, -1)

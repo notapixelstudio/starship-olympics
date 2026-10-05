@@ -1,10 +1,15 @@
 [gd_resource type="Resource" script_class="Minigame" format=3 uid="uid://8scjgeixod4k"]
 
+[ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://godot4/actors/brains/CPUBrain.tscn" id="1_8nocx"]
 [ext_resource type="Texture2D" uid="uid://drj24nhdnma8w" path="res://assets/icon/minigames/ring_racing.png" id="1_nd6xs"]
 [ext_resource type="Script" uid="uid://tavpq5uhlyhr" path="res://godot4/data/minigames/Minigame.gd" id="2_4qiad"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="3_xelk5"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="5_mab3k"]
+[ext_resource type="AudioStream" uid="uid://dn5fwqihuchk0" path="res://assets/audio/soundtracks/level5.ogg" id="6_m87mx"]
 
 [resource]
 script = ExtResource("2_4qiad")
 title = "ring racing"
 icon = ExtResource("1_nd6xs")
 description = "race through the rings"
+soundtrack = ExtResource("6_m87mx")

@@ -3,14 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://baclyt1ayjb0e" path="res://assets/sprites/signs/arrow.png" id="1_tsklc"]
 
 [node name="TargetGateArrow" type="Control" unique_id=901184511]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(100, 80)
 layout_mode = 3
 anchors_preset = 0
+offset_left = -50.0
+offset_right = 50.0
+offset_bottom = 80.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1073782195]
-position = Vector2(50, 100)
+position = Vector2(50, 42.000015)
 rotation = 1.5707964
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_tsklc")
 region_enabled = true
-region_rect = Rect2(165.5, 0, 159.5, 200)
+region_rect = Rect2(201, 0, 124, 200)

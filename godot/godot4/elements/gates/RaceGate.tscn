@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://lxq3r1f5yjkm"]
+
+[ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://godot4/elements/gates/Gate.tscn" id="1_85k6c"]
+[ext_resource type="Texture2D" uid="uid://be65w3p2jk38h" path="res://assets/sprites/environments/ring_part_race.png" id="2_lw38p"]
+[ext_resource type="AudioStream" uid="uid://qkox1n31ws5g" path="res://assets/audio/UI_effects/GUI_Notification 07.wav" id="3_lw38p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvsii"]
+resource_local_to_scene = true
+size = Vector2(250, 500)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5s74c"]
+streams_count = 1
+stream_0/stream = ExtResource("3_lw38p")
+
+[node name="RaceGate" unique_id=363910291 instance=ExtResource("1_85k6c")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1602993135]
+shape = SubResource("RectangleShape2D_uvsii")
+
+[node name="BottomRingPart" parent="." index="1" unique_id=529398136]
+self_modulate = Color(0.65, 0.65, 0.65, 1)
+
+[node name="Arrow" parent="." index="2" unique_id=128062440]
+modulate = Color(1, 1, 1, 0.15686275)
+
+[node name="RingPart" parent="." index="3" unique_id=831170452]
+self_modulate = Color(0.95, 0.95, 0.95, 1)
+texture = ExtResource("2_lw38p")
+
+[node name="AudioStreamPlayer2D" parent="." index="6" unique_id=729749775]
+stream = SubResource("AudioStreamRandomizer_5s74c")
+volume_db = -6.0

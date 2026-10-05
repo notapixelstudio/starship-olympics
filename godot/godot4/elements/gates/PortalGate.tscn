@@ -3,9 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://godot4/elements/gates/Gate.tscn" id="1"]
 [ext_resource type="Script" uid="uid://45d0yxfr7op3" path="res://godot4/elements/gates/PortalGate.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="3"]
+[ext_resource type="AudioStream" uid="uid://cny4ebaabn7u4" path="res://assets/audio/FX/392693__screamstudio__sci-fi-sfx.wav" id="3_gbsv1"]
 [ext_resource type="Texture2D" uid="uid://6oqvsnv2v2s4" path="res://assets/sprites/environments/portal_spike.png" id="4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qdvip"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smbgg"]
 resource_local_to_scene = true
 size = Vector2(250, 500)
 
@@ -45,6 +46,11 @@ _data = {
 &"Blink": SubResource("2"),
 &"RESET": SubResource("3")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_puepk"]
+random_pitch = 1.1542188
+streams_count = 1
+stream_0/stream = ExtResource("3_gbsv1")
 
 [sub_resource type="Animation" id="12"]
 resource_name = "Idle"
@@ -119,17 +125,21 @@ tint = Color(1, 0.4, 0, 1)
 inverted = false
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=1602993135]
-shape = SubResource("RectangleShape2D_qdvip")
+shape = SubResource("RectangleShape2D_smbgg")
 
 [node name="BottomRingPart" parent="." index="1" unique_id=529398136]
 unique_name_in_owner = true
 self_modulate = Color(1, 0.4, 0, 1)
 
 [node name="RingPart" parent="." index="3" unique_id=831170452]
+modulate = Color(1.2, 1.2, 1.2, 1)
 self_modulate = Color(1, 0.58000004, 0.3, 1)
 
 [node name="AnimationPlayer" parent="." index="5" unique_id=1608677693]
 libraries/ = SubResource("AnimationLibrary_caihj")
+
+[node name="AudioStreamPlayer2D" parent="." index="6" unique_id=729749775]
+stream = SubResource("AudioStreamRandomizer_puepk")
 
 [node name="PortalEffect" type="Node2D" parent="." index="7" unique_id=1875012042]
 rotation = 3.14159
@@ -167,5 +177,13 @@ self_modulate = Color(1.5, 1.5, 1.5, 1)
 position = Vector2(-102, -4.19629e-06)
 lifetime = 2.0
 process_material = SubResource("11")
+
+[node name="TargetGateTop" parent="." index="8" unique_id=1620734782]
+offset_top = -925.0
+offset_bottom = -325.0
+
+[node name="TargetGateBottom" parent="." index="9" unique_id=1490491737]
+offset_top = 325.0
+offset_bottom = 925.0
 
 [connection signal="crossed" from="." to="." method="_on_PortalGate_crossed"]

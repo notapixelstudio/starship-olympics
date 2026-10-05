@@ -34,7 +34,7 @@ func set_width_animatable(v: float) -> void:
 	$RingPart.scale.y = width_animatable/550.0
 	$BottomRingPart.scale.y = width_animatable/550.0
 	$Shadow.scale.y = width_animatable/550.0
-	%TargetGateTop.position.y = -width_animatable/2 - 200.0
+	%TargetGateTop.position.y = -width_animatable/2 - 650.0
 	%TargetGateBottom.position.y = width_animatable/2 + 50.0
 	
 func set_show_arrow(v: bool) -> void:
@@ -94,7 +94,7 @@ func show_feedback(trigger=true):
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("Blink")
 	if trigger and enabled:
-		$RandomAudioStreamPlayer.play()
+		SoundEffects.play($AudioStreamPlayer2D)
 	
 func act_as_if_crossed_by(sth):
 	_crossed_by(sth, false) # don't trigger

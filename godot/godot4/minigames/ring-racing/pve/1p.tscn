@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://tytfenscfyp0" path="res://godot4/elements/gates/Gate.tscn" id="8_agqh3"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="9_7faa3"]
 [ext_resource type="PackedScene" uid="uid://xoqhtny3wi7s" path="res://godot4/elements/gates/PortalGate.tscn" id="9_qshpv"]
+[ext_resource type="PackedScene" uid="uid://lxq3r1f5yjkm" path="res://godot4/elements/gates/RaceGate.tscn" id="9_v3nut"]
 [ext_resource type="Texture2D" uid="uid://baclyt1ayjb0e" path="res://assets/sprites/signs/arrow.png" id="10_v3nut"]
 
 [sub_resource type="Animation" id="12"]
@@ -278,7 +279,7 @@ _data = {
 &"default": SubResource("6")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_agqh3"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_qshpv"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -289,13 +290,16 @@ agent_radius = 100.0
 [node name="PveArena" unique_id=1218906820 instance=ExtResource("1_b84un")]
 default_params = ExtResource("2_k0d6h")
 
-[node name="Styleable" parent="." index="0" unique_id=999924478]
+[node name="Styleable" parent="." index="1" unique_id=999924478]
 style = ExtResource("3_khsdr")
 
 [node name="ModifierManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="1" unique_id=1330404860]
 active_modifiers = Array[String]([])
 
 [node name="RacingGame" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="11" unique_id=1345514493 instance=ExtResource("4_agqh3")]
+
+[node name="Camera2D" parent="." index="3" unique_id=956979488]
+zoom = Vector2(0.19, 0.19)
 
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=1028430150 instance=ExtResource("6_riyqv")]
 position = Vector2(-1600, -900)
@@ -304,7 +308,7 @@ position = Vector2(-1600, -900)
 unique_name_in_owner = true
 script = ExtResource("5_khsdr")
 width = 5600.0
-height = 3100.0
+height = 3500.0
 radius = 900.0
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
@@ -316,18 +320,16 @@ hollow = true
 unique_name_in_owner = true
 init_parametric_shape = NodePath("../OutsideWallShape")
 
-[node name="Course" type="Node2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=773806472]
+[node name="Course" type="Node2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1264874386]
 unique_name_in_owner = true
 
-[node name="Gate10" parent="Battlefield/Course" index="0" unique_id=363910291 instance=ExtResource("8_agqh3")]
-position = Vector2(-1100, -900)
-rotation = 3.14159
-width = 700.0
-width_animatable = 700.0
-show_arrow = false
-auto_feedback = false
+[node name="RaceGate" parent="Battlefield/Course" index="0" unique_id=363910291 instance=ExtResource("9_v3nut")]
+position = Vector2(-1300, -900)
+rotation = -3.1415925
+width = 900.0
+width_animatable = 900.0
 
-[node name="Gate" parent="Battlefield/Course" index="1" unique_id=995545535 instance=ExtResource("8_agqh3")]
+[node name="Gate" parent="Battlefield/Course" index="1" unique_id=921574219 instance=ExtResource("8_agqh3")]
 position = Vector2(500, 500)
 rotation = -2.3562
 width = 700.0
@@ -335,7 +337,7 @@ width_animatable = 700.0
 show_arrow = false
 auto_feedback = false
 
-[node name="Gate13" parent="Battlefield/Course" index="2" unique_id=1503377956 instance=ExtResource("8_agqh3")]
+[node name="Gate13" parent="Battlefield/Course" index="2" unique_id=2034058198 instance=ExtResource("8_agqh3")]
 position = Vector2(1150, 900)
 rotation = 3.14159
 width = 500.0
@@ -343,7 +345,7 @@ width_animatable = 500.0
 show_arrow = false
 auto_feedback = false
 
-[node name="Gate12" parent="Battlefield/Course" index="3" unique_id=1492010822 instance=ExtResource("8_agqh3")]
+[node name="Gate12" parent="Battlefield/Course" index="3" unique_id=504112974 instance=ExtResource("8_agqh3")]
 position = Vector2(1450, 900)
 rotation = 3.14159
 width = 500.0
@@ -351,7 +353,7 @@ width_animatable = 500.0
 show_arrow = false
 auto_feedback = false
 
-[node name="Gate2" parent="Battlefield/Course" index="4" unique_id=1560734824 instance=ExtResource("8_agqh3")]
+[node name="Gate2" parent="Battlefield/Course" index="4" unique_id=2095342518 instance=ExtResource("8_agqh3")]
 position = Vector2(2200, -6.10352e-05)
 rotation = 1.5708
 width = 700.0
@@ -359,69 +361,70 @@ width_animatable = 700.0
 show_arrow = false
 auto_feedback = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate2" index="7" unique_id=641403920 groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate2" index="7" unique_id=1299624585 groups=["animation_starts_with_battle"]]
 libraries/ = SubResource("AnimationLibrary_b84un")
 
-[node name="Gate4" parent="Battlefield/Course" index="5" unique_id=77356694 instance=ExtResource("8_agqh3")]
+[node name="Gate4" parent="Battlefield/Course" index="5" unique_id=272129168 instance=ExtResource("8_agqh3")]
 position = Vector2(1450, -900)
 width = 700.0
 width_animatable = 700.0
 show_arrow = false
 auto_feedback = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate4" index="7" unique_id=1532809644 groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate4" index="7" unique_id=1938017707 groups=["animation_starts_with_battle"]]
 libraries/ = SubResource("AnimationLibrary_k0d6h")
 
-[node name="Gate9" parent="Battlefield/Course" index="6" unique_id=437567243 instance=ExtResource("8_agqh3")]
+[node name="Gate9" parent="Battlefield/Course" index="6" unique_id=155492129 instance=ExtResource("8_agqh3")]
 position = Vector2(1150, -900)
 width = 700.0
 width_animatable = 700.0
 show_arrow = false
 auto_feedback = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate9" index="7" unique_id=606084639 groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate9" index="7" unique_id=108106068 groups=["animation_starts_with_battle"]]
 libraries/ = SubResource("AnimationLibrary_7vl7g")
 
-[node name="Gate15" parent="Battlefield/Course" index="7" unique_id=197371861 instance=ExtResource("8_agqh3")]
+[node name="Gate15" parent="Battlefield/Course" index="7" unique_id=245303022 instance=ExtResource("8_agqh3")]
 position = Vector2(850, -900)
 width = 700.0
 width_animatable = 700.0
 show_arrow = false
 auto_feedback = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate15" index="7" unique_id=44728037 groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate15" index="7" unique_id=252335246 groups=["animation_starts_with_battle"]]
 libraries/ = SubResource("AnimationLibrary_vs2oc")
 
 [node name="PortalGate" parent="Battlefield/Course" index="8" unique_id=47480532 node_paths=PackedStringArray("linked_to") instance=ExtResource("9_qshpv")]
 position = Vector2(0, -900)
 linked_to = NodePath("../../PortalGate2")
+show_arrow = false
 auto_feedback = false
 
-[node name="Gate14" parent="Battlefield/Course" index="9" unique_id=2052298941 instance=ExtResource("8_agqh3")]
+[node name="Gate14" parent="Battlefield/Course" index="9" unique_id=1854781903 instance=ExtResource("8_agqh3")]
 position = Vector2(-700, 900)
 width = 500.0
 width_animatable = 500.0
 show_arrow = false
 auto_feedback = false
 
-[node name="Gate8" parent="Battlefield/Course" index="10" unique_id=1287232136 instance=ExtResource("8_agqh3")]
+[node name="Gate8" parent="Battlefield/Course" index="10" unique_id=2006368361 instance=ExtResource("8_agqh3")]
 position = Vector2(-1000, 900)
 width = 500.0
 width_animatable = 500.0
 show_arrow = false
 auto_feedback = false
 
-[node name="Gate5" parent="Battlefield/Course" index="11" unique_id=1629595558 instance=ExtResource("8_agqh3")]
+[node name="Gate5" parent="Battlefield/Course" index="11" unique_id=1463064173 instance=ExtResource("8_agqh3")]
 position = Vector2(-1300, 900)
 width = 500.0
 width_animatable = 500.0
 show_arrow = false
 auto_feedback = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate5" index="7" unique_id=841165586 groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate5" index="7" unique_id=778255499 groups=["animation_starts_with_battle"]]
 libraries/ = SubResource("AnimationLibrary_7t3u4")
 
-[node name="Gate6" parent="Battlefield/Course" index="12" unique_id=518652089 instance=ExtResource("8_agqh3")]
+[node name="Gate6" parent="Battlefield/Course" index="12" unique_id=1847848666 instance=ExtResource("8_agqh3")]
 position = Vector2(-1800, 800)
 rotation = 0.785398
 width = 500.0
@@ -429,7 +432,7 @@ width_animatable = 500.0
 show_arrow = false
 auto_feedback = false
 
-[node name="Gate7" parent="Battlefield/Course" index="13" unique_id=911302569 instance=ExtResource("8_agqh3")]
+[node name="Gate7" parent="Battlefield/Course" index="13" unique_id=67041525 instance=ExtResource("8_agqh3")]
 position = Vector2(-2200, 0)
 rotation = 1.5707964
 width = 700.0
@@ -437,10 +440,10 @@ width_animatable = 700.0
 show_arrow = false
 auto_feedback = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate7" index="7" unique_id=1841040186 groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate7" index="7" unique_id=1839710307 groups=["animation_starts_with_battle"]]
 libraries/ = SubResource("AnimationLibrary_riyqv")
 
-[node name="Gate11" parent="Battlefield/Course" index="14" unique_id=1773812787 instance=ExtResource("8_agqh3")]
+[node name="Gate11" parent="Battlefield/Course" index="14" unique_id=1754819203 instance=ExtResource("8_agqh3")]
 position = Vector2(-1950, -649.99994)
 rotation = 2.35619
 width = 700.0
@@ -448,52 +451,35 @@ width_animatable = 700.0
 show_arrow = false
 auto_feedback = false
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate11" index="7" unique_id=1503391943 groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield/Course/Gate11" index="7" unique_id=578439001 groups=["animation_starts_with_battle"]]
 libraries/ = SubResource("AnimationLibrary_6r7a3")
 
 [node name="PortalGate2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=461429305 instance=ExtResource("9_qshpv")]
 position = Vector2(0, 900)
 tint = Color(0, 0.368627, 1, 1)
 inverted = true
+show_arrow = false
 
 [node name="Line2D" type="Line2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=1446173328]
-points = PackedVector2Array(-300, 900, -1700, 900, -2200, 400, -2200, -400, -1700, -900, -1650, -900)
+points = PackedVector2Array(0, 900, -1700, 900, -2200, 400, -2200, -400, -1700, -900, -1500, -900)
 width = 130.0
 default_color = Color(0.13, 0.768, 1, 0.1764706)
 
 [node name="Line2D2" type="Line2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=1010341386]
 z_index = -2
 z_as_relative = false
-points = PackedVector2Array(100, 100, 900, 900, 1700, 900, 2200, 400, 2200, -400, 1700, -900, 200, -900)
+points = PackedVector2Array(-1000, -900, -900, -900, 900, 900, 1700, 900, 2200, 400, 2200, -400, 1700, -900, 450, -900)
 width = 130.0
 default_color = Color(0.13, 0.768, 1, 0.1764706)
 
-[node name="Line2D3" type="Line2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=1849089219]
-z_index = -2
-z_as_relative = false
-points = PackedVector2Array(-1150, -900, -900, -900, -250, -250)
-width = 130.0
-default_color = Color(0.13, 0.768, 1, 0.1764706)
-
-[node name="Arrow" type="Sprite2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=605369466]
+[node name="Arrow" type="Sprite2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=102343238]
 modulate = Color(0.13, 0.768, 1, 0.1764706)
 z_index = -2
 z_as_relative = false
-position = Vector2(-1400, -900)
-rotation = 3.14159
+position = Vector2(199.99988, -900)
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("10_v3nut")
 flip_h = true
 
-[node name="Arrow2" type="Sprite2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=1173361894]
-modulate = Color(0.13, 0.768, 1, 0.1764706)
-z_index = -2
-z_as_relative = false
-position = Vector2(-65.99986, -65.99998)
-rotation = 3.9269907
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("10_v3nut")
-flip_h = true
-
-[node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_agqh3")
+[node name="Navigation" parent="." index="7" unique_id=332973589]
+navigation_polygon = SubResource("NavigationPolygon_qshpv")

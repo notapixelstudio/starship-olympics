@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends VBoxContainer
 
 @export var arrow_scene : PackedScene
 
