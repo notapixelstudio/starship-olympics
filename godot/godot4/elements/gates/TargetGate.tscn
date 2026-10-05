@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://wlk2x2n5vsn0"]
+
+[ext_resource type="Script" uid="uid://boujqcxei58hg" path="res://godot4/elements/gates/TargetGate.gd" id="1_exoue"]
+[ext_resource type="PackedScene" uid="uid://cr1oop1gu05f1" path="res://godot4/elements/gates/TargetGateArrow.tscn" id="2_h4emi"]
+
+[node name="TargetGate" type="HBoxContainer" unique_id=1620734782]
+offset_left = -200.0
+offset_top = -450.0
+offset_right = 200.0
+offset_bottom = -300.0
+alignment = 1
+script = ExtResource("1_exoue")
+arrow_scene = ExtResource("2_h4emi")

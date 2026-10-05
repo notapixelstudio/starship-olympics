@@ -34,6 +34,8 @@ func set_width_animatable(v: float) -> void:
 	$RingPart.scale.y = width_animatable/550.0
 	$BottomRingPart.scale.y = width_animatable/550.0
 	$Shadow.scale.y = width_animatable/550.0
+	%TargetGateTop.position.y = -width_animatable/2 - 200.0
+	%TargetGateBottom.position.y = width_animatable/2 + 50.0
 	
 func set_show_arrow(v: bool) -> void:
 	show_arrow = v
@@ -107,6 +109,14 @@ func disable() -> void:
 	
 func is_enabled() -> bool:
 	return enabled
+
+func add_target(player:Player) -> void:
+	%TargetGateTop.add_target(player)
+	%TargetGateBottom.add_target(player)
+	
+func remove_target(player:Player) -> void:
+	%TargetGateTop.remove_target(player)
+	%TargetGateBottom.remove_target(player)
 
 #func _draw():
 #	if relative_position:

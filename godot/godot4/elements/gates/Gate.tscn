@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://baclyt1ayjb0e" path="res://assets/sprites/signs/arrow.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bcoonsxenm7eg" path="res://assets/sprites/environments/ring_part.png" id="4"]
 [ext_resource type="AudioStream" uid="uid://cny4ebaabn7u4" path="res://assets/audio/FX/392693__screamstudio__sci-fi-sfx.wav" id="6"]
+[ext_resource type="PackedScene" uid="uid://wlk2x2n5vsn0" path="res://godot4/elements/gates/TargetGate.tscn" id="7_r4t8c"]
 [ext_resource type="Script" uid="uid://ddxaklng2222g" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" id="8"]
 
 [sub_resource type="RectangleShape2D" id="1"]
@@ -116,3 +117,13 @@ script = ExtResource("8")
 streams = Array[AudioStream]([ExtResource("6")])
 randomize_pitch = true
 pitch_max = 1.4
+
+[node name="TargetGateTop" parent="." unique_id=1620734782 instance=ExtResource("7_r4t8c")]
+unique_name_in_owner = true
+
+[node name="TargetGateBottom" parent="." unique_id=1490491737 instance=ExtResource("7_r4t8c")]
+unique_name_in_owner = true
+offset_top = 300.0
+offset_bottom = 450.0
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1, -1)

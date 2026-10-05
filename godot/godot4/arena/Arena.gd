@@ -17,7 +17,7 @@ class_name Arena
 
 var _params : MatchParams
 var _active_players : Array[Player] = []
-var _teams := {}
+var _teams : Dictionary[String,Array] = {}
 var _players_by_id : Dictionary[String,Player] = {}
 
 var _match_over_screen
@@ -32,7 +32,7 @@ func _ready() -> void:
 	%MinigameText.text = '[right][color=#ffde5e]%s[/color]\n%s[/right]' % [minigame.title.to_upper(), minigame.description.to_upper()]
 	%MinigameIcon.texture = minigame.icon
 	%PauseOverlay.set_minigame(minigame)
-	ArenaScope.get_scope(self).get_ship_factory().set_minigame(minigame)
+	%ShipFactory.set_minigame(minigame)
 	
 	setup()
 	
@@ -89,6 +89,8 @@ func _ready() -> void:
 	_match_over_screen.hide()
 	%HUD.add_child(_match_over_screen)
 	
+	%ArenaScope.battlefield_ready.emit()
+	
 	%PlayersReadyWheels.set_players(_active_players)
 	
 	# wait for players to be ready
@@ -143,7 +145,6 @@ func get_match_params() -> MatchParams:
 		return default_params
 	return load(params_resource_path)
 	
-	
 func _on_clock_ticked(t:float, t_secs:int) -> void:
 	%Clock.set_value(t_secs)
 	%Countdown.set_value(t_secs)
@@ -176,3 +177,7 @@ func _update_session(data:Dictionary) -> void:
 	
 func get_active_players() -> Array[Player]:
 	return _active_players
+
+## Returns a Dictionary having the team ids as keys and an array of player ids as items
+func get_teams() -> Dictionary[String,Array]:
+	return _teams
