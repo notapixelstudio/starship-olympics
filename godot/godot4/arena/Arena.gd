@@ -101,7 +101,7 @@ func _ready() -> void:
 		if player.is_cpu():
 			Events.player_ready.emit(player)
 	
-	# wait for players to be ready
+	# wait for human players to be ready
 	await Events.battle_start
 	# BATTLE START
 	

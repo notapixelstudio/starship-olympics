@@ -10,6 +10,10 @@ var _players_ready := {}
 func set_players(v:Array[Player]) -> void:
 	players = v
 	
+	# cpu-only game, zero human players triggers all ready next frame
+	if len(players) <= 0:
+		all_players_ready.emit.call_deferred()
+	
 	_players_ready = {}
 	for player in players:
 		_players_ready[player.get_id()] = false

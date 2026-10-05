@@ -124,12 +124,12 @@ agent_radius = 100.0
 
 [node name="PvpArena" unique_id=1703143659 instance=ExtResource("1_rnymh")]
 
-[node name="Styleable" parent="." index="0" unique_id=999924478]
+[node name="Styleable" parent="." index="1" unique_id=999924478]
 style = ExtResource("2_h38vl")
 
 [node name="CrownGame" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="5" unique_id=673390144 instance=ExtResource("3_g6fsk")]
 
-[node name="Camera2D" parent="." index="2" unique_id=956979488]
+[node name="Camera2D" parent="." index="3" unique_id=956979488]
 zoom = Vector2(0.22, 0.22)
 
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=507108587 instance=ExtResource("4_iix26")]
@@ -216,5 +216,5 @@ rotation_degrees = 45.0
 
 [node name="Crown" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=1471244090 instance=ExtResource("11_oimt8")]
 
-[node name="Navigation" parent="." index="6" unique_id=332973589]
+[node name="Navigation" parent="." index="7" unique_id=332973589]
 navigation_polygon = SubResource("NavigationPolygon_fsrje")
