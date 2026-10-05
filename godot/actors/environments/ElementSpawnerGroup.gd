@@ -83,8 +83,6 @@ func _ready():
 	# ignore instance if custom
 	set_spawners()
 
-func spawn(parent_node = null):
-	if parent_node == null:
-		parent_node = get_parent()
+func spawn():
 	for n in get_children():
-		n.spawn(parent_node)
+		n.spawn()

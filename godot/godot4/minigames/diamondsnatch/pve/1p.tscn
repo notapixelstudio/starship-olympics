@@ -80,7 +80,7 @@ _data = {
 &"default": SubResource("Animation_kdc2i")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_fq0xa"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6hvk3"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -97,11 +97,10 @@ style = ExtResource("3_6hvk3")
 [node name="ModifierManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="1" unique_id=1330404860]
 active_modifiers = Array[String]([])
 
-[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="6" unique_id=92266089 node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("2_xgn0o")]
+[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="6" unique_id=92266089 node_paths=PackedStringArray("waves_container") instance=ExtResource("2_xgn0o")]
 spawn_on_all_collected = true
 spawn_on_timeout = false
 waves_container = NodePath("../../Battlefield/Waves")
-battlefield = NodePath("../../Battlefield")
 
 [node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" unique_id=175651912 instance=ExtResource("5_jxy6k")]
 
@@ -633,4 +632,4 @@ libraries/ = SubResource("AnimationLibrary_g6aeh")
 wait_time = 8.0
 
 [node name="Navigation" parent="." index="7" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_fq0xa")
+navigation_polygon = SubResource("NavigationPolygon_6hvk3")

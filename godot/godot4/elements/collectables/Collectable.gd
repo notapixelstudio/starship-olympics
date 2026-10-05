@@ -1,3 +1,4 @@
+@tool
 class_name Collectable
 extends RigidBody2D
 
@@ -45,6 +46,7 @@ func collect(collector):
 	var picked_effect = treasure_picked_scene.instantiate()
 	picked_effect.set_texture(outline_texture)
 	picked_effect.global_position = global_position
+	
 	_ctx.spawn_request.emit(picked_effect)
 	
 	queue_free()

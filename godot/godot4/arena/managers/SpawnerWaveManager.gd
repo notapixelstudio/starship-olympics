@@ -1,14 +1,13 @@
 extends Node
 
 @export var base_time := 2.0
+@export var collectable_group := 'Treasure'
 @export var spawn_on_all_collected := false
 @export var spawn_count_on_all_collected := 2 : set = set_spawn_count_on_all_collected
 @export var spawn_on_timeout := true
 @export var waves_container : Node2D
-@export var battlefield: Node2D
 
 const WAVES_GROUP = "spawn_waves"
-const COLLECTABLE_GROUP = "Treasure"
 const WAVE_DELAY = 0.0
 var to_next_wave = 2
 var current_wave = 0
@@ -83,7 +82,7 @@ func _handle_waves():
 	var spawner: ElementSpawnerGroup = spawners_per_wave[current_wave].pop_back()
 	print('spawning from ', waves[current_wave].name)
 	#Events.emit_signal("ask_to_spawn", spawner, WAVE_DELAY + waves[current_wave].extra_delay)
-	spawner.spawn(battlefield)
+	spawner.spawn()
 	waves[current_wave].times_spawned += 1
 	print('times spawned: ', waves[current_wave].times_spawned)
 	
@@ -108,7 +107,7 @@ func _on_check_empty_timer_timeout() -> void:
 		return
 		
 	# if there are no collectables to be collected anymore. We can move on with spawning
-	var all = len(get_tree().get_nodes_in_group(COLLECTABLE_GROUP))
+	var all = len(get_tree().get_nodes_in_group(collectable_group))
 	if all <= 0:
-		print("asking to spawn because there are no collectable anymore")
+		print("asking to spawn because there are no collectables anymore")
 		_handle_waves()
