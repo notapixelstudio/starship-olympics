@@ -28,12 +28,11 @@ agent_radius = 100.0
 
 [node name="PvpArena" unique_id=221348071 instance=ExtResource("1_lvw7a")]
 
-[node name="Styleable" parent="." index="0" unique_id=999924478]
+[node name="Styleable" parent="." index="1" unique_id=999924478]
 style = ExtResource("8_b661y")
 
-[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="3" unique_id=1475926569 node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("2_l6uvh")]
+[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="3" unique_id=1475926569 node_paths=PackedStringArray("waves_container") instance=ExtResource("2_l6uvh")]
 waves_container = NodePath("../../Battlefield/Waves")
-battlefield = NodePath("../../Battlefield")
 
 [node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" unique_id=1687723767 instance=ExtResource("4_ve7oa")]
 
@@ -41,7 +40,7 @@ battlefield = NodePath("../../Battlefield")
 
 [node name="TreasureSFXManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="8" unique_id=406868832 instance=ExtResource("4_qhki4")]
 
-[node name="Camera2D" parent="." index="2" unique_id=956979488]
+[node name="Camera2D" parent="." index="3" unique_id=956979488]
 zoom = Vector2(0.27, 0.27)
 
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=1390414799 instance=ExtResource("4_68kfs")]
@@ -606,5 +605,5 @@ element_scene = ExtResource("8_ev06m")
 guest_star_scene = ExtResource("12_pcah0")
 guest_star_positioning = "random"
 
-[node name="Navigation" parent="." index="6" unique_id=332973589]
+[node name="Navigation" parent="." index="7" unique_id=332973589]
 navigation_polygon = SubResource("NavigationPolygon_mxfia")

@@ -17,6 +17,7 @@ class_name Arena
 
 var _params : MatchParams
 var _active_players : Array[Player] = []
+var _active_human_players : Array[Player] = []
 var _teams : Dictionary[String,Array] = {}
 var _players_by_id : Dictionary[String,Player] = {}
 
@@ -47,6 +48,8 @@ func _ready() -> void:
 		
 		var player = players[i] as Player
 		_active_players.append(player)
+		if not player.is_cpu():
+			_active_human_players.append(player)
 		
 		var ship = %ShipFactory.create(player, false) # create not enabled ships
 		ship.global_rotation = home.global_rotation
@@ -91,7 +94,12 @@ func _ready() -> void:
 	
 	%ArenaScope.battlefield_ready.emit()
 	
-	%PlayersReadyWheels.set_players(_active_players)
+	%PlayersReadyWheels.set_players(_active_human_players)
+	
+	# ready all non-human players
+	for player in _active_players:
+		if player.is_cpu():
+			Events.player_ready.emit(player)
 	
 	# wait for players to be ready
 	await Events.battle_start
@@ -114,10 +122,10 @@ func setup() -> void:
 	
 func setup_team(team:String) -> void:
 	%ScoreManager.add_team(team)
-	var species_list : Array[Species] = []
+	var players_list : Array[Player] = []
 	for player_id in _teams[team]:
-		species_list.append( _players_by_id[player_id].get_species() )
-	%ScoreHUD.add_team(team, species_list)
+		players_list.append( _players_by_id[player_id] )
+	%ScoreHUD.add_team(team, players_list)
 	
 func set_active_modifiers(modifiers: Array[String]) -> void:
 	%ModifierManager.active_modifiers = modifiers
@@ -177,6 +185,9 @@ func _update_session(data:Dictionary) -> void:
 	
 func get_active_players() -> Array[Player]:
 	return _active_players
+	
+func get_active_human_players() -> Array[Player]:
+	return _active_human_players
 
 ## Returns a Dictionary having the team ids as keys and an array of player ids as items
 func get_teams() -> Dictionary[String,Array]:

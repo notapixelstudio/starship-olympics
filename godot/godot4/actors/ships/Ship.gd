@@ -9,6 +9,7 @@ func clone() -> Ship:
 	return new_ship
 	
 @export var player : Player : get = get_player, set = set_player
+@export var cpu_ship_image : Texture
 @export var dash_ring_scene : PackedScene
 @export var death_feedback_scene : PackedScene
 @export var disabled_ship_scene : PackedScene
@@ -27,6 +28,10 @@ func set_player(v: Player) -> void:
 	%PlayerID.text = player.get_id()
 	%PlayerID.modulate = player.get_species().get_color()
 	#%Glow.color = player.get_species().get_color()
+	
+	if player.is_cpu():
+		%Sprite2D.self_modulate = player.get_species().get_color()
+		%Sprite2D.texture = cpu_ship_image
 
 @onready var tracked = %Tracked
 @onready var dash_graviton_field = %DashGravitonField

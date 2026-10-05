@@ -2,12 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="1_4ev1s"]
 [ext_resource type="Script" uid="uid://b1o0qfmugu6t5" path="res://godot4/arena/hud/ScoreBar.gd" id="2_11j5v"]
+[ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="3_6ukq0"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="3_vxowj"]
 [ext_resource type="Material" uid="uid://78ncnjfs8b5h" path="res://godot4/arena/hud/ScoreBarMaterial.tres" id="4_5b4au"]
 
 [node name="ScoreBar" unique_id=2055379297 instance=ExtResource("1_4ev1s")]
 custom_minimum_size = Vector2(24, 0)
 script = ExtResource("2_11j5v")
+cpu_ship_image = ExtResource("3_6ukq0")
 
 [node name="Background" parent="." index="0"]
 material = ExtResource("4_5b4au")
