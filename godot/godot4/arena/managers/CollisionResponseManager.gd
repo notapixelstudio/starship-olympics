@@ -1,10 +1,8 @@
 extends Node
 
-@onready var _ctx := ArenaScope.get_scope(self)
-
 func _ready() -> void:
 	%AutoSignals \
-		.bind(_ctx.collision, _on_collision)
+		.bind(%ArenaScope.collision, _on_collision)
 	
 func _on_collision(actor, collider, tag:String='') -> void:
 	# actor should always be the object that detected the low-level collision
