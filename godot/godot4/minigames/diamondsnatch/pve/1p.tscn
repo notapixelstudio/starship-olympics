@@ -139,6 +139,7 @@ sides = 4
 
 [node name="Diamond" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1319655844 instance=ExtResource("14_xeixg")]
 position = Vector2(900, 0)
+collision_mask = 3093
 physics_material_override = null
 appear_scene = null
 
@@ -633,7 +634,7 @@ libraries/ = SubResource("AnimationLibrary_g6aeh")
 wait_time = 8.0
 
 [node name="TimeGear" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=1679659046 instance=ExtResource("18_iew0i")]
-position = Vector2(500, 0)
+position = Vector2(450, -450)
 
 [node name="Navigation" parent="." index="7" unique_id=332973589]
 navigation_polygon = SubResource("NavigationPolygon_iew0i")
