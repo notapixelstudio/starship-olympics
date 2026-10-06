@@ -3,6 +3,12 @@ extends Resource
 class_name Session
 var scores: Array[Scores] = []
 
+## Dictionary that have for each player the list of items owned by them
+var items: Dictionary = {}
+
+## As items but for the overall generic team
+var general_items: Dictionary = {}
+
 var uuid : String
 var players : Array
 var timestamp_local : String
