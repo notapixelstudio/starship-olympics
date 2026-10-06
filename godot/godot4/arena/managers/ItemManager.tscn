@@ -1,3 +1,12 @@
 [gd_scene format=3 uid="uid://cyolmy8p6kegy"]
 
+[ext_resource type="Script" uid="uid://cnchw225keyib" path="res://godot4/arena/managers/ItemManager.gd" id="1_docuk"]
+[ext_resource type="Script" uid="uid://dfwlu4ppe4snj" path="res://addons/AutoSignals/AutoSignals.gd" id="1_kf3ef"]
+
 [node name="ItemManager" type="Node" unique_id=1350742641]
+script = ExtResource("1_docuk")
+
+[node name="AutoSignals" type="Node" parent="." unique_id=1537349635]
+unique_name_in_owner = true
+script = ExtResource("1_kf3ef")
+metadata/_custom_type_script = "uid://dfwlu4ppe4snj"

@@ -7,6 +7,7 @@ extends RigidBody2D
 @export var treasure_picked_scene : PackedScene
 @export var appear_scene : PackedScene
 @export var outline_texture : Texture
+@export var item : Item
 
 signal collected(PhysicsBody2D, Collectable)
 
@@ -41,6 +42,9 @@ func touched_by(toucher):
 func collect(collector):
 	collected.emit(collector, self)
 	Events.sth_collected.emit(collector, self)
+	if item:
+		assert(collector is Ship)
+		_ctx.item_obtained.emit(item, collector.get_player())
 	
 	# drop a treasure picked effect on parent
 	var picked_effect = treasure_picked_scene.instantiate()
