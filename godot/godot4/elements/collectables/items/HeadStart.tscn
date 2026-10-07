@@ -1,12 +1,16 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://dvw1n5e404k8v"]
 
 [ext_resource type="PackedScene" uid="uid://dsmqaj240piab" path="res://godot4/elements/collectables/Collectable.tscn" id="1_coll"]
 [ext_resource type="Texture2D" uid="uid://c15twfdbmm5oh" path="res://assets/arrow.png" id="2_arrow"]
 [ext_resource type="Resource" path="res://godot4/data/items/starting_points.tres" id="3_item"]
 
-[node name="HeadStart" instance=ExtResource("1_coll")]
+[node name="HeadStart" unique_id=1291161206 instance=ExtResource("1_coll")]
 outline_texture = ExtResource("2_arrow")
 item = ExtResource("3_item")
 
-[node name="Sprite2D" parent="Graphics" index="1"]
+[node name="Graphics" parent="." index="1" unique_id=737340649]
+rotation = -1.5707964
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="Graphics" index="1" unique_id=417684581]
 texture = ExtResource("2_arrow")
