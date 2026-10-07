@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="Item" format=3 uid="uid://335ssfwjpj13"]
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://335ssfwjpj13"]
 
-[ext_resource type="Script" uid="uid://d0bqe8srkhk6e" path="res://godot4/data/items/Item.gd" id="1_5v8u4"]
+[ext_resource type="Script" uid="uid://d0bqe8srkhk6e" path="res://godot4/data/items/Item.gd" id="1_item"]
 
 [resource]
-script = ExtResource("1_5v8u4")
+script = ExtResource("1_item")
 name = "time circuits"
+description = "Adds 15 seconds at the start of each match."
 id = &"time-circuits"
 slot = "general"
 duration = "run"

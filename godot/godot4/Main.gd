@@ -29,6 +29,13 @@ func _ready() -> void:
 
 func _on_screen_transition_ended(_action: String, _from_id: String, _to_id: String) -> void:
 	%TouchControls.hide_controls()
+	var screen: Screen = _screen_controller.get_current_screen()
+	if screen == null:
+		return
+	var map: Node = screen.find_child("MapArena", true, false)
+	if map and _current_session and map.has_method("set_session"):
+		map.set_session(_current_session)
+		%TouchControls.show_controls()
 
 func _on_ScreenController_transition_started(action:String, from_id:String, to_id:String):
 	Events.emit_signal("analytics_event", {"id": UUID.v4(), "action": action, "from": from_id, "to": to_id}, "navigation")

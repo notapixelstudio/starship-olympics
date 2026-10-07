@@ -22,6 +22,7 @@ var _teams : Dictionary[String,Array] = {}
 var _players_by_id : Dictionary[String,Player] = {}
 
 var _match_over_screen
+var _clock_start := 0
 
 func _ready() -> void:
 	for player in players:
@@ -84,6 +85,13 @@ func _ready() -> void:
 		# FIXME this could be moved to a team manager
 		# FIXME this could use signals for everything, since not all managers or huds are necessarily there
 		setup_team(team)
+	
+	# carried items act now: teams are set up, so they can score and add time
+	%ItemManager.on_match_start()
+	_clock_start = ceili(%TimeManager.get_remaining_time())
+	%Clock.set_value(_clock_start)
+	%Countdown.set_value(_clock_start)
+	%TimeBar.set_max_value(_clock_start)
 		
 	# create the match over screen
 	_match_over_screen = match_over_screen_scene.instantiate()
@@ -112,9 +120,6 @@ func _ready() -> void:
 	
 func setup() -> void:
 	%TimeManager.set_time(_params.time)
-	%Clock.set_value(_params.time)
-	%Countdown.set_value(_params.time)
-	%TimeBar.set_max_value(_params.time)
 	%TimeBar.set_value(0.0) # time always starts from 0
 	%GameOverManager.set_max_score(_params.score)
 	%ScoreHUD.set_max_score(_params.score)
@@ -157,7 +162,7 @@ func _on_clock_ticked(t:float, t_secs:int) -> void:
 	%Clock.set_value(t_secs)
 	%Countdown.set_value(t_secs)
 	%Countdown.visible = t_secs <= 5
-	%TimeBar.set_value(_params.time - t)
+	%TimeBar.set_value(_clock_start - t)
 
 func _on_match_over(data:Dictionary) -> void:
 	_update_session(data)
