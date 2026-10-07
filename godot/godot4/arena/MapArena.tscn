@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://tvmm4mdwnb4y" path="res://godot4/arena/ArenaCamera2D.gd" id="7_ulhii"]
 [ext_resource type="PackedScene" uid="uid://cnc1iumrpf838" path="res://godot4/arena/Navigation.tscn" id="9_c6ehg"]
 [ext_resource type="PackedScene" uid="uid://dnny8ekvjg4ck" path="res://godot4/debug/SOLog.tscn" id="10_gps85"]
+[ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minigames/diamondsnatch.png" id="13_ore4y"]
 [ext_resource type="PackedScene" uid="uid://bdnijlionsghd" path="res://godot4/ui/overlays/PauseOverlay.tscn" id="21_yl2ae"]
 [ext_resource type="PackedScene" uid="uid://cphkdfew8xuc5" path="res://godot4/arena/ArenaScope.tscn" id="22_scope"]
 [ext_resource type="PackedScene" uid="uid://cyolmy8p6kegy" path="res://godot4/arena/managers/ItemManager.tscn" id="23_items"]
@@ -17,9 +18,9 @@
 [ext_resource type="PackedScene" path="res://godot4/elements/collectables/items/HeadStart.tscn" id="25_head"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qu4h1"]
-radius = 50.0
+radius = 118.27
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ore4y"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_30wth"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -67,7 +68,7 @@ unique_name_in_owner = true
 [node name="Battlefield" type="Node2D" parent="." unique_id=584753717]
 unique_name_in_owner = true
 
-[node name="HeadStart" parent="Battlefield" instance=ExtResource("25_head")]
+[node name="HeadStart" parent="Battlefield" unique_id=1520846278 instance=ExtResource("25_head")]
 position = Vector2(196, 331)
 
 [node name="TimeCircuits" parent="Battlefield" unique_id=599719810 instance=ExtResource("24_time")]
@@ -77,10 +78,18 @@ position = Vector2(280, 40)
 position = Vector2(600, 200)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/Area2D" unique_id=65416048]
+position = Vector2(184, 31)
 shape = SubResource("CircleShape2D_qu4h1")
 
+[node name="TextureRect" type="TextureRect" parent="Battlefield/Area2D" unique_id=978578807]
+offset_left = 19.0
+offset_top = -50.0
+offset_right = 343.0
+offset_bottom = 118.0
+texture = ExtResource("13_ore4y")
+
 [node name="Navigation" parent="." unique_id=332973589 instance=ExtResource("9_c6ehg")]
-navigation_polygon = SubResource("NavigationPolygon_ore4y")
+navigation_polygon = SubResource("NavigationPolygon_30wth")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=737164047]
 unique_name_in_owner = true

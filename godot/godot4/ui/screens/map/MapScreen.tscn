@@ -34,6 +34,21 @@ layout_mode = 0
 [node name="Back" parent="FancyMenu" index="0"]
 material = SubResource("ShaderMaterial_5mvqx")
 
-[node name="MapArena" parent="." index="2" unique_id=2082662255 instance=ExtResource("3_1g7je")]
+[node name="MapView" type="SubViewportContainer" parent="." index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
 
-[connection signal="done" from="MapArena" to="." method="_on_map_arena_done"]
+[node name="SubViewport" type="SubViewport" parent="MapView"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="MapArena" parent="MapView/SubViewport" unique_id=2082662255 instance=ExtResource("3_1g7je")]
+
+[connection signal="done" from="MapView/SubViewport/MapArena" to="." method="_on_map_arena_done"]

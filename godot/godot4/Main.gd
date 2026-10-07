@@ -32,7 +32,7 @@ func _on_screen_transition_ended(_action: String, _from_id: String, _to_id: Stri
 	var screen: Screen = _screen_controller.get_current_screen()
 	if screen == null:
 		return
-	var map: Node = screen.get_node_or_null("MapArena")
+	var map: Node = screen.find_child("MapArena", true, false)
 	if map and _current_session and map.has_method("set_session"):
 		map.set_session(_current_session)
 		%TouchControls.show_controls()

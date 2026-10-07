@@ -37,11 +37,6 @@ func _spawn_ships() -> void:
 		var ship: Ship = %ShipFactory.create(session.players[i], true)
 		%Battlefield.add_child(ship)
 		ship.global_position = home.global_position
-	var label := "time circuits"
-	var circuits := %Battlefield.get_node_or_null("TimeCircuits") as Collectable
-	if circuits != null and circuits.item != null and circuits.item.description != "":
-		label = circuits.item.description
-	Events.message.emit(label, Color(0.75, 0, 1), Vector2(280, -30), true)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if _level_started or not body is Ship:
