@@ -15,12 +15,13 @@
 [ext_resource type="PackedScene" uid="uid://cphkdfew8xuc5" path="res://godot4/arena/ArenaScope.tscn" id="22_scope"]
 [ext_resource type="PackedScene" uid="uid://cyolmy8p6kegy" path="res://godot4/arena/managers/ItemManager.tscn" id="23_items"]
 [ext_resource type="PackedScene" uid="uid://cxbwrq30cu378" path="res://godot4/elements/collectables/items/TimeCircuits.tscn" id="24_time"]
-[ext_resource type="PackedScene" path="res://godot4/elements/collectables/items/HeadStart.tscn" id="25_head"]
+[ext_resource type="PackedScene" uid="uid://dvw1n5e404k8v" path="res://godot4/elements/collectables/items/HeadStart.tscn" id="25_head"]
+[ext_resource type="PackedScene" path="res://godot4/elements/collectables/items/BasketBallItem.tscn" id="26_ball"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qu4h1"]
 radius = 118.27
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_30wth"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_nuum1"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -71,6 +72,9 @@ unique_name_in_owner = true
 [node name="HeadStart" parent="Battlefield" unique_id=1520846278 instance=ExtResource("25_head")]
 position = Vector2(196, 331)
 
+[node name="BasketBallItem" parent="Battlefield" unique_id=1316265900 instance=ExtResource("26_ball")]
+position = Vector2(625, 665)
+
 [node name="TimeCircuits" parent="Battlefield" unique_id=599719810 instance=ExtResource("24_time")]
 position = Vector2(280, 40)
 
@@ -89,7 +93,7 @@ offset_bottom = 118.0
 texture = ExtResource("13_ore4y")
 
 [node name="Navigation" parent="." unique_id=332973589 instance=ExtResource("9_c6ehg")]
-navigation_polygon = SubResource("NavigationPolygon_30wth")
+navigation_polygon = SubResource("NavigationPolygon_nuum1")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=737164047]
 unique_name_in_owner = true

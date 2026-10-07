@@ -10,18 +10,26 @@ extends Node
 const TIME_CIRCUITS := &"time-circuits"
 const CLOCK_EXTENDER := &"clock_extender"
 const HEAD_START := &"starting_points"
+const BASKET_BALL := &"basket_ball"
+
+const BASKET_BALL_SCENE := preload("res://godot4/elements/cargos/BasketBall.tscn")
 
 ## What each item does, by id. One line per item: its id and its whole effect.
 var effects := {
 	TIME_CIRCUITS: func(_holder): _add_time(15),
 	CLOCK_EXTENDER: func(_holder): _add_time(5),
 	HEAD_START: func(holder): _add_points(5, holder),
+	BASKET_BALL: func(holder): _give_ball(holder),
 }
+
+## Player ids whose ship gets a ball as soon as it enters the battlefield (at match start ships are not there yet).
+var _waiting_for_ball: Array[String] = []
 
 func _ready() -> void:
 	%AutoSignals \
 		.bind(%ArenaScope.item_obtained, _on_item_obtained) \
-		.bind(%ArenaScope.battlefield_ready, _print_carried)
+		.bind(%ArenaScope.battlefield_ready, _print_carried) \
+		.bind(%Battlefield.child_entered_tree, _on_battlefield_child_entered)
 
 func _on_item_obtained(item:Item, by_player:Player) -> void:
 	var session := _session()
@@ -55,6 +63,25 @@ func _add_points(points: int, holder: String) -> void:
 	for team in teams:
 		if holder == "" or holder in teams[team]:
 			Events.points_scored.emit(float(points), team)
+
+## The holder's ship carries a ball, ready to be kicked.
+func _give_ball(holder: String) -> void:
+	for node in %Battlefield.get_children():
+		if node is Ship and node.get_player().get_id() == holder:
+			_load_ball(node)
+			return
+	_waiting_for_ball.append(holder)
+
+func _on_battlefield_child_entered(node: Node) -> void:
+	if node is Ship and node.get_player().get_id() in _waiting_for_ball:
+		_waiting_for_ball.erase(node.get_player().get_id())
+		_load_ball(node)
+
+func _load_ball(ship: Ship) -> void:
+	var ball := BASKET_BALL_SCENE.instantiate() as Cargo
+	ball._self_scene = BASKET_BALL_SCENE # a Cargo packs itself in _ready, but this one never enters the tree
+	ship.load_cargo(ball) # the ship keeps a clone
+	ball.free()
 
 func _print_carried() -> void:
 	var session := _session()
