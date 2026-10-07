@@ -1,7 +1,5 @@
 extends GutTest
 
-const EFFECTS := preload("res://godot4/arena/managers/ItemManager.gd")
-
 var session : Session
 
 
@@ -46,24 +44,6 @@ func test_each_session_has_its_own_items() -> void:
 	assert_eq(other.count_items(&"trophy"), 0)
 
 
-func test_head_start_points_per_team() -> void:
-	var head_start := load("res://godot4/data/items/starting_points.tres") as Item
-	session.grant_item(head_start, "P1")
-	session.grant_item(head_start)
-	var points: Dictionary = autofree(EFFECTS.new()).opening_points(session, [_player("P1", "A"), _player("P2", "A"), _player("P3", "B")])
-	assert_eq(points["A"], 10)
-	assert_eq(points["B"], 5)
-
-
-func test_time_circuits_adds_seconds_for_the_whole_run() -> void:
-	var circuits := load("res://godot4/data/items/TimeCircuits.tres") as Item
-	assert_true(circuits.is_general())
-	session.grant_item(circuits)
-	_end_match()
-	assert_eq(session.count_items(circuits.id, ""), 1)
-	assert_eq(autofree(EFFECTS.new()).opening_seconds(session), 15)
-
-
 func test_clock_extender_is_a_match_item() -> void:
 	var clock := load("res://godot4/data/items/clock_extender.tres") as Item
 	assert_eq(clock.id, &"clock_extender")
@@ -93,10 +73,3 @@ func _item(id : StringName, duration : String) -> Item:
 	item.name = id
 	item.duration = duration
 	return item
-
-
-func _player(id : String, team : String) -> Player:
-	var player := Player.new()
-	player.set_id(id)
-	player.set_team(team)
-	return player

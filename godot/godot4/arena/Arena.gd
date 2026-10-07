@@ -86,7 +86,12 @@ func _ready() -> void:
 		# FIXME this could use signals for everything, since not all managers or huds are necessarily there
 		setup_team(team)
 	
-	%ItemManager.apply_opening_scores(_active_players)
+	# carried items act now: teams are set up, so they can score and add time
+	%ItemManager.on_match_start()
+	_clock_start = ceili(%TimeManager.get_remaining_time())
+	%Clock.set_value(_clock_start)
+	%Countdown.set_value(_clock_start)
+	%TimeBar.set_max_value(_clock_start)
 		
 	# create the match over screen
 	_match_over_screen = match_over_screen_scene.instantiate()
@@ -115,11 +120,6 @@ func _ready() -> void:
 	
 func setup() -> void:
 	%TimeManager.set_time(_params.time)
-	var extra_time: int = %ItemManager.apply_opening_time()
-	_clock_start = _params.time + extra_time
-	%Clock.set_value(_clock_start)
-	%Countdown.set_value(_clock_start)
-	%TimeBar.set_max_value(_clock_start)
 	%TimeBar.set_value(0.0) # time always starts from 0
 	%GameOverManager.set_max_score(_params.score)
 	%ScoreHUD.set_max_score(_params.score)

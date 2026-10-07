@@ -41,7 +41,7 @@ func _spawn_ships() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if _level_started or not body is Ship:
 		return
-	var levels = Utils.list_levels(1, 'pve')
+	var levels = Utils.list_levels(session.players.size(), 'pve') # the scene made for this many players
 	if levels.is_empty():
 		return
 	_level_started = true

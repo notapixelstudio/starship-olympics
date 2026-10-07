@@ -7,8 +7,8 @@ class_name Item extends Resource
 @export var name: String
 @export_multiline var description: String = ""
 
-@export_enum(&'general', &'player', &'ship', &'hat', &'ball', &'weapon', &'weapon-back') var slot: String # FIXME would be StringName in Godot 4.8
-@export_enum(&'match', &'run') var duration: String = "run" # FIXME would be StringName in Godot 4.8
+@export_enum(&'general', &'player', &'ship', &'hat', &'ball', &'weapon', &'weapon-back') var slot: String 
+@export_enum(&'match', &'run') var duration: String = "run" 
 
 
 func is_general() -> bool:
