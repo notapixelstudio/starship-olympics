@@ -25,7 +25,7 @@ func _process(delta):
 func _update_rotation() -> void:
 	$Wrapper.rotation = linear_velocity.angle()
 
-func _on_ForwardBullet_body_entered(body):
+func _on_body_entered(body):
 	_ctx.collision.emit(self, body)
 	
 func set_team(v:String) -> void:

@@ -107,16 +107,16 @@ func start_charging_to_dash(distance) -> void:
 	if not $ReleaseTimer.is_stopped() or not $DashCooldownTimer.is_stopped():
 		return
 		
-	controllee.charge()
+	controllee.do_charge()
 	$ReleaseTimer.wait_time = (min(distance/1000, 0.8))
 	$ReleaseTimer.start()
 	
 func request_fire():
-	controllee.charge()
-	controllee.release()
+	controllee.do_charge()
+	controllee.do_release()
 
 func _on_ReleaseTimer_timeout():
-	controllee.release()
+	controllee.do_release()
 	$DashCooldownTimer.start()
 	
 func set_navigation_layer(layer_name: String):
