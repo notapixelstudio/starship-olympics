@@ -27,7 +27,7 @@ func set_color(v:Color) -> void:
 	_color = v
 	
 	%Sprite2D.modulate = _color
-	%AutoTrail.modulate = _color
+	#%AutoTrail.modulate = _color
 	
 func dissolve() -> void:
 	var pfft = PfftScene.instantiate()
@@ -45,3 +45,7 @@ func destroy() -> void:
 
 func _on_life_timer_timeout():
 	destroy()
+
+
+func _on_timer_timeout():
+	Events.log.emit('Current speed: %d' % linear_velocity.length())

@@ -13,7 +13,7 @@ bounce = 1.0
 resource_local_to_scene = true
 radius = 22.0
 
-[sub_resource type="Gradient" id="Gradient_5wjcj"]
+[sub_resource type="Gradient" id="Gradient_eiubv"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
@@ -42,9 +42,9 @@ texture = ExtResource("1_r412f")
 
 [node name="AutoTrail" parent="." unique_id=659823465 instance=ExtResource("3_5wjcj")]
 unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 0.47058824)
+self_modulate = Color(1, 1, 1, 0.23529412)
 width = 30.0
-gradient = SubResource("Gradient_5wjcj")
+gradient = SubResource("Gradient_eiubv")
 active = true
 count_criterion = false
 age_criterion = true
@@ -58,6 +58,11 @@ wait_time = 0.6
 one_shot = true
 autostart = true
 
+[node name="Timer" type="Timer" parent="." unique_id=329473736]
+wait_time = 0.1
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
