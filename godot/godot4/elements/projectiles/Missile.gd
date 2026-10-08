@@ -1,0 +1,1 @@
+class_name Missile extends RigidBody2D

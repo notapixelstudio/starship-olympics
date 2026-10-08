@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://cg2pd6iioab68"]
+
+[ext_resource type="Script" uid="uid://b0t61vcgvak2y" path="res://godot4/elements/projectiles/Missile.gd" id="1_b4nlt"]
+[ext_resource type="Texture2D" uid="uid://3joodndawyaj" path="res://assets/sprites/weapons/rocket.png" id="1_r412f"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g2653"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b4nlt"]
+resource_local_to_scene = true
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_5wjcj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.2, 1.6)]
+}
+
+[sub_resource type="Animation" id="Animation_eiubv"]
+resource_name = "wobble"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1.2, 1.6), Vector2(1.6, 1.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ulf3"]
+_data = {
+&"RESET": SubResource("Animation_5wjcj"),
+&"wobble": SubResource("Animation_eiubv")
+}
+
+[node name="Missile" type="RigidBody2D" unique_id=130950509]
+physics_material_override = SubResource("PhysicsMaterial_g2653")
+gravity_scale = 2.0
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp = 2.0
+script = ExtResource("1_b4nlt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1268365031]
+shape = SubResource("CircleShape2D_b4nlt")
+
+[node name="Graphics" type="Node2D" parent="." unique_id=336927321]
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphics" unique_id=618460686]
+scale = Vector2(1.2, 1.6)
+texture = ExtResource("1_r412f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics/Sprite2D" unique_id=1288445571]
+libraries/ = SubResource("AnimationLibrary_7ulf3")
+autoplay = &"wobble"
