@@ -1,6 +1,6 @@
 extends Area2D
 
-class_name Explosion
+class_name Explosionz
 
 @export var kilotons := 30
 @onready var repeal_field_width = $RepealField/CollisionShape2D.get_shape().radius

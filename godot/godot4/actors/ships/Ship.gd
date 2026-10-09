@@ -324,6 +324,16 @@ func damage(damager) -> void:
 	#die()
 	disable(impulse_to_give)
 	
+func kill(killer):
+	var player = killer.get_player()
+	var team = player.get_team()
+	var team2 = get_team()
+	if killer.get_player().get_team() != get_team():
+		# WARNING this is intrinsic scoring for deathmatch-like games
+		# maybe it has to be moved out if we have both intrinsic and non-intrinsic scoring
+		Events.score.emit(1, killer.get_player(), global_position)
+	die()
+	
 func die():
 	# avoid creating a death feedback twice, if we already have been killed
 	if is_queued_for_deletion():
@@ -331,6 +341,7 @@ func die():
 		
 	_show_death_feedback()
 	queue_free()
+	_ctx.ship_died.emit(player)
 	
 func _show_death_feedback() -> void:
 	var death_feedback = death_feedback_scene.instantiate()

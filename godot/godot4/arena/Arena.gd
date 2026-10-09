@@ -51,6 +51,7 @@ func _ready() -> void:
 		_active_players.append(player)
 		if not player.is_cpu():
 			_active_human_players.append(player)
+		%DeathManager.set_player_home(player, home)
 		
 		var ship = %ShipFactory.create(player, false) # create not enabled ships
 		ship.global_rotation = home.global_rotation
@@ -92,7 +93,7 @@ func _ready() -> void:
 	%Clock.set_value(_clock_start)
 	%Countdown.set_value(_clock_start)
 	%TimeBar.set_max_value(_clock_start)
-		
+	
 	# create the match over screen
 	_match_over_screen = match_over_screen_scene.instantiate()
 	_match_over_screen.set_players(_active_players)
@@ -134,6 +135,7 @@ func setup_team(team:String) -> void:
 	
 func set_active_modifiers(modifiers: Array[String]) -> void:
 	%ModifierManager.active_modifiers = modifiers
+	
 	
 ## Returns a [String] identifier for the [Arena] (defaults to the file name of the scene file).
 func get_id() -> String:

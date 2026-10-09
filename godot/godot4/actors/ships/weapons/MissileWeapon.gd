@@ -27,7 +27,6 @@ func fire(source, charge:float):
 	var impulse := charge * charge_multiplier + boost
 	missile.global_position = global_position + Vector2(offset, 0).rotated(global_rotation + PI)
 	missile.apply_central_impulse(Vector2(impulse, 0).rotated(global_rotation + PI))
-	missile.set_color(source.get_color())
-	missile.set_team(source.get_team())
+	missile.set_player(source.get_player())
 	_ctx.spawn_request.emit(missile)
 	

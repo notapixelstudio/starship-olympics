@@ -1,0 +1,153 @@
+[gd_scene format=3 uid="uid://cq3h3ir2veqao"]
+
+[ext_resource type="Script" uid="uid://b2agl7t5spgep" path="res://godot4/effects/Explosion.gd" id="1_5avkm"]
+[ext_resource type="Texture2D" uid="uid://c4dqed4qk351s" path="res://assets/sprites/environments/explosion_halo.png" id="8_bap5n"]
+[ext_resource type="Texture2D" uid="uid://c7jdg3umgc6mk" path="res://assets/sprites/weapons/explosion.png" id="9_t8iec"]
+[ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="10_u3d3l"]
+[ext_resource type="Texture2D" uid="uid://c44lusmm6vmy7" path="res://assets/sprites/weapons/explosion_spikes.png" id="11_a0lw1"]
+[ext_resource type="PackedScene" uid="uid://cd12x0fubc17m" path="res://godot4/actors/ships/GravitonField.tscn" id="12_lhu6q"]
+
+[sub_resource type="CanvasItemMaterial" id="1"]
+
+[sub_resource type="Animation" id="2"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:shape:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, -2, 1),
+"update": 0,
+"values": [20.0, 80.0, 80.0, 40.0, 0.01]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Image:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, -2, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(1.2, 1.2), Vector2(1.2, 1.2), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spikes:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(2, 2), Vector2(1.2, 1.2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spikes:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(0.5, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Halo/explosion_halo:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(5, 5)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Halo/explosion_halo:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1.5, 0.35, 0.61, 1), Color(1, 0.352941, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iq653"]
+_data = {
+&"Wow": SubResource("2")
+}
+
+[sub_resource type="CircleShape2D" id="3"]
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id="4"]
+radius = 240.0
+
+[node name="Explosion" type="Area2D" unique_id=1400613066]
+collision_layer = 8
+collision_mask = 11847
+input_pickable = false
+script = ExtResource("1_5avkm")
+
+[node name="Halo" type="Node2D" parent="." unique_id=2124250129]
+
+[node name="explosion_halo" type="Sprite2D" parent="Halo" unique_id=167903541]
+modulate = Color(1.5, 0.35, 0.61, 1)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("8_bap5n")
+
+[node name="Image" type="Node2D" parent="." unique_id=684274776]
+scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="Image" unique_id=1662575589]
+modulate = Color(1.6, 1, 1.1, 1)
+material = SubResource("1")
+texture = ExtResource("9_t8iec")
+
+[node name="circle_glow" type="Sprite2D" parent="Image" unique_id=482128616]
+visible = false
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("10_u3d3l")
+
+[node name="Spikes" type="Node2D" parent="." unique_id=131348713]
+visible = false
+scale = Vector2(0.9, 0.9)
+
+[node name="Sprite2D" type="Sprite2D" parent="Spikes" unique_id=1413469581]
+position = Vector2(1, 20)
+texture = ExtResource("11_a0lw1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2111215069]
+libraries/ = SubResource("AnimationLibrary_iq653")
+autoplay = &"Wow"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=677856518]
+shape = SubResource("3")
+
+[node name="GravitonField" parent="." unique_id=1227795617 instance=ExtResource("12_lhu6q")]
+visible = false
+enabled = true
+gravity = -1024.0
+
+[node name="RepealField" type="Area2D" parent="." unique_id=1419671507]
+collision_layer = 65536
+collision_mask = 10757
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RepealField" unique_id=1717515942]
+shape = SubResource("4")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="RepealField" to="." method="_on_RepealField_body_entered"]

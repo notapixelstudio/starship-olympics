@@ -18,6 +18,8 @@ signal battlefield_ready
 signal spawn_request(object_to_spawn:Node, callback:Callable)
 signal collision(ship:Ship, collider:CollisionObject2D, tag:String)
 
+signal ship_died(player:Player)
+
 signal time_gained(seconds:int)
 
 signal item_obtained(item:Item, by_player:Player)

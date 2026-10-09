@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3joodndawyaj" path="res://assets/sprites/weapons/rocket.png" id="1_r412f"]
 [ext_resource type="PackedScene" uid="uid://by6bftkr7vi7p" path="res://godot4/effects/Pfft.tscn" id="2_eiubv"]
 [ext_resource type="PackedScene" uid="uid://d3qdjjh7pbm6k" path="res://godot4/effects/trails/AutoTrail.tscn" id="3_5wjcj"]
+[ext_resource type="PackedScene" uid="uid://cq3h3ir2veqao" path="res://godot4/effects/Explosion.tscn" id="3_7ulf3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g2653"]
 friction = 0.0
@@ -11,6 +12,9 @@ bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b4nlt"]
 resource_local_to_scene = true
+radius = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vtgxc"]
 radius = 22.0
 
 [sub_resource type="Gradient" id="Gradient_eiubv"]
@@ -24,13 +28,23 @@ collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_g2653")
 gravity_scale = 2.0
 lock_rotation = true
+continuous_cd = 1
 max_contacts_reported = 1
 linear_damp = 2.0
 script = ExtResource("1_b4nlt")
 PfftScene = ExtResource("2_eiubv")
+explosion_scene = ExtResource("3_7ulf3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1268365031]
 shape = SubResource("CircleShape2D_b4nlt")
+
+[node name="HurtArea" type="Area2D" parent="." unique_id=202429132]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" unique_id=1159542492]
+shape = SubResource("CircleShape2D_vtgxc")
 
 [node name="Graphics" type="Node2D" parent="." unique_id=336927321]
 unique_name_in_owner = true
@@ -58,11 +72,7 @@ wait_time = 0.6
 one_shot = true
 autostart = true
 
-[node name="Timer" type="Timer" parent="." unique_id=329473736]
-wait_time = 0.1
-autostart = true
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cviwmjm73uof5"]
+
+[ext_resource type="Script" uid="uid://4wc0ukhmdm1r" path="res://godot4/arena/managers/DeathManager.gd" id="1_tcrf3"]
+[ext_resource type="Script" uid="uid://dfwlu4ppe4snj" path="res://addons/AutoSignals/AutoSignals.gd" id="2_r3qk3"]
+
+[node name="DeathManager" type="Node" unique_id=1273068367]
+script = ExtResource("1_tcrf3")
+
+[node name="AutoSignals" type="Node" parent="." unique_id=1887834867]
+unique_name_in_owner = true
+script = ExtResource("2_r3qk3")
+metadata/_custom_type_script = "uid://dfwlu4ppe4snj"
