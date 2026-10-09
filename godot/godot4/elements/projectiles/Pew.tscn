@@ -17,7 +17,7 @@ radius = 35.0
 
 [node name="Pew" type="RigidBody2D" unique_id=356402105]
 collision_layer = 4
-collision_mask = 8850
+collision_mask = 16
 physics_material_override = SubResource("1")
 contact_monitor = true
 max_contacts_reported = 1
@@ -52,5 +52,5 @@ volume_max = -20.0
 randomize_pitch = true
 pitch_max = 4.0
 
-[connection signal="body_entered" from="." to="." method="_on_ForwardBullet_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

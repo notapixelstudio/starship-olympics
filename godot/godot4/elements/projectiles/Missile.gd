@@ -1,11 +1,6 @@
-extends RigidBody2D
-class_name Pew
+class_name Missile extends RigidBody2D
 
 @export var PfftScene : PackedScene
-
-var ownership_transfer := true
-
-var previous_velocity := Vector2.LEFT
 
 @onready var _ctx := ArenaScope.get_scope(self)
 
@@ -14,16 +9,13 @@ var _color : Color
 
 func _ready():
 	_update_rotation()
-	SoundEffects.play($RandomAudioStreamPlayer)
-
-func _physics_process(delta):
-	previous_velocity = linear_velocity
+	#SoundEffects.play($RandomAudioStreamPlayer)
 
 func _process(delta):
 	_update_rotation()
 	
 func _update_rotation() -> void:
-	$Wrapper.rotation = linear_velocity.angle()
+	%Graphics.rotation = linear_velocity.angle()
 
 func _on_body_entered(body):
 	_ctx.collision.emit(self, body)
@@ -35,8 +27,7 @@ func set_color(v:Color) -> void:
 	_color = v
 	
 	%Sprite2D.modulate = _color
-	$AutoTrail.starting_color = Color(_color, 0.1)
-	$AutoTrail.ending_color = Color(Color.WHITE, 0)
+	#%AutoTrail.modulate = _color
 	
 func dissolve() -> void:
 	var pfft = PfftScene.instantiate()
@@ -44,24 +35,17 @@ func dissolve() -> void:
 	_ctx.spawn_request.emit(pfft)
 	pfft.global_position = global_position
 
-func _on_VisibilityNotifier2D_screen_exited():
+func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 func destroy() -> void:
 	dissolve()
 	queue_free()
-	
-func get_previous_velocity() -> Vector2:
-	return previous_velocity
 
-func disable_ownership_transfer() -> void:
-	ownership_transfer = false
 
-func has_ownership_transfer() -> bool:
-	return ownership_transfer
-	
-func get_team() -> String:
-	return _team
+func _on_life_timer_timeout():
+	destroy()
 
-func get_damage_amount() -> int:
-	return 1
+
+func _on_timer_timeout():
+	Events.log.emit('Current speed: %d' % linear_velocity.length())

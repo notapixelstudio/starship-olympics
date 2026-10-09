@@ -31,7 +31,7 @@ func _on_touch_area_2d_body_entered(body: Node2D) -> void:
 	# ...
 
 func _on_hurt_area_2d_body_entered(body: Node2D) -> void:
-	if body is BubbleBullet or body is Pew or body is Ball: # FIXME Bullet abstract superclass?
+	if body is BubbleBullet or body is Pew or body is Missile or body is Ball: # FIXME Bullet abstract superclass?
 		_ctx.collision.emit(body, self)
 	
 func hit(hitter=null) -> void:

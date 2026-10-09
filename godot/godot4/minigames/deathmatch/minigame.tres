@@ -1,8 +1,12 @@
 [gd_resource type="Resource" script_class="Minigame" format=3 uid="uid://b1yggrwrq2khi"]
 
+[ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://godot4/actors/brains/CPUBrain.tscn" id="1_s6nge"]
 [ext_resource type="Texture2D" uid="uid://dgkukutasl81m" path="res://assets/icon/minigames/death.png" id="1_x7l2v"]
 [ext_resource type="Script" uid="uid://tavpq5uhlyhr" path="res://godot4/data/minigames/Minigame.gd" id="2_2g7o2"]
 [ext_resource type="AudioStream" uid="uid://bs0cwegilmecx" path="res://assets/audio/soundtracks/paradoxal_activity-mattek.ogg" id="3_ecfx1"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="3_xsfmj"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="5_bbud7"]
+[ext_resource type="PackedScene" uid="uid://c2eu65jxxa0aa" path="res://godot4/actors/ships/weapons/MissileWeapon.tscn" id="7_c8rt1"]
 
 [resource]
 script = ExtResource("2_2g7o2")
@@ -10,3 +14,4 @@ title = "deathmatch"
 icon = ExtResource("1_x7l2v")
 description = "kill the other players"
 soundtrack = ExtResource("3_ecfx1")
+starting_weapon_scene = ExtResource("7_c8rt1")

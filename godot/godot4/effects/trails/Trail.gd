@@ -39,6 +39,8 @@ func _ready():
 	_curve = Curve2D.new()
 	_timestamps = []
 	_length = max_length
+	if not host:
+		host = get_parent()
 	
 func _process(delta):
 	assert(_curve.get_point_count() == _timestamps.size())

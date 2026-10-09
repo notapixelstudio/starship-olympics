@@ -51,10 +51,8 @@ const CHARGE_MULTIPLIER = 7000
 const DASH_HANDICAP = 400
 var dash_multiplier : float # handled by TerrainManager
 
-const BOMB_OFFSET = 50
-const BOMB_BOOST = 1600
+
 const BALL_BOOST = 2300
-const BOMB_CHARGE_MULTIPLIER = 1.65
 const BALL_CHARGE_MULTIPLIER = 2.2
 const BULLET_BOOST = 1600
 const BULLET_CHARGE_MULTIPLIER = 1.65
@@ -110,19 +108,22 @@ func _on_stun_timer_timeout() -> void:
 func is_thrusting() -> bool:
 	return not %ChargeManager.can_dash() and target_velocity.length() > 0.1
 
-func charge():
+func do_charge():
 	%ChargeManager.start_charging()
 	dash_graviton_field.enable()
 	Events.start_charging.emit(self)
 	
 	
-func release():
+signal release
+func do_release():
 	if %ChargeManager.can_tap():
-		do_tap(%ChargeManager.get_charge())
+		do_tap(%ChargeManager.get_charge()) # FIXME these use weird, unbounded numbers
 	if %ChargeManager.can_dash():
-		do_dash(%ChargeManager.get_charge())
+		do_dash(%ChargeManager.get_charge()) # FIXME these use weird, unbounded numbers
+	release.emit(%ChargeManager.get_charge_normalized())
 	%ChargeManager.end_charging()
 	dash_graviton_field.disable()
+	
 
 func do_dash(charge: float) -> void:
 	var dash_strength = CHARGE_BASE + CHARGE_MULTIPLIER * clamp(charge - MIN_CHARGE, 0, %ChargeManager.MAX_CHARGE)
