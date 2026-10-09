@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="Item" format=3]
+[gd_resource type="Resource" script_class="ItemType" format=3]
 
-[ext_resource type="Script" uid="uid://d0bqe8srkhk6e" path="res://godot4/data/items/Item.gd" id="1_item"]
+[ext_resource type="Script" path="res://godot4/data/items/ItemType.gd" id="1_type"]
+[ext_resource type="Texture2D" uid="uid://d2ij5aoi4mvw6" path="res://assets/sprites/balls/basket.png" id="2_tex"]
 
 [resource]
-script = ExtResource("1_item")
+script = ExtResource("1_type")
 id = &"basket_ball"
 name = "Basket Ball"
 description = "Start the next match carrying the Slam-a-gon ball."
 slot = "ball"
-duration = "match"
-metadata/_custom_type_script = "uid://d0bqe8srkhk6e"
+texture = ExtResource("2_tex")
+outline_texture = ExtResource("2_tex")

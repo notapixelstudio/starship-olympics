@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemType" format=3]
+
+[ext_resource type="Script" path="res://godot4/data/items/ItemType.gd" id="1_type"]
+[ext_resource type="Texture2D" uid="uid://7h3flt1bkxqx" path="res://assets/sprites/environments/coin.png" id="2_tex"]
+[ext_resource type="Texture2D" path="res://assets/map/cards/ceasefire.png" id="3_badge"]
+
+[resource]
+script = ExtResource("1_type")
+id = &"bounty"
+name = "Bounty"
+description = "Ceasefire: +1 point every 10 seconds, until your ship is disabled."
+slot = "player"
+texture = ExtResource("2_tex")
+outline_texture = ExtResource("2_tex")
+glow = Color(1, 0.8, 0, 0.3)
+badge = ExtResource("3_badge")

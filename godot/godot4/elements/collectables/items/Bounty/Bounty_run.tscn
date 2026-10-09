@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://chcm4ndymet0r"]
+
+[ext_resource type="PackedScene" uid="uid://dsmqaj240piab" path="res://godot4/elements/collectables/Collectable.tscn" id="1_coll"]
+[ext_resource type="Resource" uid="uid://o6y5ba71ypaj" path="res://godot4/data/items/Bounty/Bounty_run.tres" id="2_item"]
+[ext_resource type="Texture2D" uid="uid://7h3flt1bkxqx" path="res://assets/sprites/environments/coin.png" id="2_leuol"]
+
+[node name="BountyRun" unique_id=2141311120 instance=ExtResource("1_coll")]
+outline_texture = ExtResource("2_leuol")
+item = ExtResource("2_item")
+
+[node name="Glow" parent="Graphics" parent_id_path=PackedInt32Array(737340649) index="0" unique_id=746027440]
+visible = false
+self_modulate = Color(1, 0.8, 0, 0.3)
+
+[node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(737340649) index="1" unique_id=417684581]
+texture = ExtResource("2_leuol")

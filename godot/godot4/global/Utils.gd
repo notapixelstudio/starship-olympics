@@ -101,24 +101,29 @@ func read_file_by_line(path: String) -> Array:
 ##### EXECUTION
 #####
 
+const MINIGAMES_DIR = 'res://godot4/minigames'
+
+## Where a minigame's level for this mode and player count lives.
+func level_path(minigame:String, mode:String, player_count:int) -> String:
+	return "%s/%s/%s/%dp.tscn" % [MINIGAMES_DIR, minigame, mode, player_count]
+
 func list_levels(player_count:int, mode:String) -> Array[Dictionary]:
-	const BASE_PATH = 'res://godot4/minigames'
 	var results : Array[Dictionary] = []
-	var dir = DirAccess.open(BASE_PATH)
+	var dir = DirAccess.open(MINIGAMES_DIR)
 	if dir:
 		dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		var file_name = dir.get_next()
 		while (file_name != ""):
 			if dir.current_is_dir():
-				var minigame_path = BASE_PATH+'/'+file_name+'/minigame.tres'
-				var level_path = BASE_PATH+'/'+file_name+'/'+mode+'/'+str(player_count)+'p.tscn'
+				var minigame_path = MINIGAMES_DIR+'/'+file_name+'/minigame.tres'
+				var level := level_path(file_name, mode, player_count)
 				var minigame_defined := ResourceLoader.exists(minigame_path)
-				var level_defined := ResourceLoader.exists(level_path)
+				var level_defined := ResourceLoader.exists(level)
 				
 				if minigame_defined and level_defined:
 					results.append({
 						'minigame': load(minigame_path),
-						'scene': load(level_path)
+						'scene': load(level)
 					})
 			file_name = dir.get_next()
 	else:

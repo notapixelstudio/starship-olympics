@@ -38,12 +38,14 @@ func _spawn_ships() -> void:
 		%Battlefield.add_child(ship)
 		ship.global_position = home.global_position
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+## [param minigame] is its folder under minigames/, bound on each start area's connection.
+func _on_area_2d_body_entered(body: Node2D, minigame: String) -> void:
 	if _level_started or not body is Ship:
 		return
-	var levels = Utils.list_levels(session.players.size(), 'pve') # the scene made for this many players
-	if levels.is_empty():
+	var level := Utils.level_path(minigame, 'pve', session.players.size()) # the scene made for this many players
+	if not ResourceLoader.exists(level):
+		push_warning("no %s level for %d players" % [minigame, session.players.size()])
 		return
 	_level_started = true
-	Events.level_selected.emit(levels[0]['scene'], [] as Array[String])
+	Events.level_selected.emit(load(level), [] as Array[String])
 	done.emit()

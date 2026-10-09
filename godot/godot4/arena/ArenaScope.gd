@@ -21,3 +21,4 @@ signal collision(ship:Ship, collider:CollisionObject2D, tag:String)
 signal time_gained(seconds:int)
 
 signal item_obtained(item:Item, by_player:Player)
+signal ship_disabled(ship:Ship)
