@@ -24,6 +24,8 @@
 [ext_resource type="Resource" uid="uid://335ssfwjpj13" path="res://godot4/data/items/TimeCircuits.tres" id="26_tc"]
 [ext_resource type="Resource" path="res://godot4/data/items/starting_points.tres" id="27_hs"]
 [ext_resource type="Resource" path="res://godot4/data/items/basket_ball.tres" id="28_bb"]
+[ext_resource type="Texture2D" uid="uid://blxpmy8hagjsh" path="res://assets/icon/minigames/shape-hunt.png" id="29_sh"]
+[ext_resource type="Texture2D" uid="uid://dgkukutasl81m" path="res://assets/icon/minigames/death.png" id="30_dm"]
 
 [sub_resource type="Resource" id="Item_hs"]
 script = ExtResource("25_item")
@@ -41,7 +43,7 @@ duration = 0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qu4h1"]
 radius = 118.27
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_sxr4j"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ulhii"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -59,7 +61,8 @@ unique_name_in_owner = true
 
 [node name="MessageManager" parent="Managers" unique_id=435259635 node_paths=PackedStringArray("battlefield") instance=ExtResource("2_aavx8")]
 battlefield = NodePath("../../Battlefield")
-magnify = 4.0
+magnify = 0.3
+follow_zoom = true
 
 [node name="ItemManager" parent="Managers" unique_id=1029304198 instance=ExtResource("23_items")]
 
@@ -98,7 +101,7 @@ outline_texture = ExtResource("14_ulhii")
 item = SubResource("Item_hs")
 
 [node name="BasketBallItem" parent="Battlefield" unique_id=1316265900 instance=ExtResource("24_coll")]
-position = Vector2(625, 665)
+position = Vector2(153, 809)
 outline_texture = ExtResource("17_c6ehg")
 item = SubResource("Item_bb")
 
@@ -135,8 +138,36 @@ offset_right = 343.0
 offset_bottom = 118.0
 texture = ExtResource("13_ore4y")
 
+[node name="ShapeHuntStart" type="Area2D" parent="Battlefield" unique_id=1604412871]
+position = Vector2(304, 408)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/ShapeHuntStart" unique_id=1604412872]
+position = Vector2(184, 31)
+shape = SubResource("CircleShape2D_qu4h1")
+
+[node name="TextureRect" type="TextureRect" parent="Battlefield/ShapeHuntStart" unique_id=1604412873]
+offset_left = 79.0
+offset_top = -84.0
+offset_right = 294.0
+offset_bottom = 124.0
+texture = ExtResource("29_sh")
+
+[node name="DeathmatchStart" type="Area2D" parent="Battlefield" unique_id=1604412874]
+position = Vector2(1297, 706)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/DeathmatchStart" unique_id=1604412875]
+position = Vector2(232, 11)
+shape = SubResource("CircleShape2D_qu4h1")
+
+[node name="TextureRect" type="TextureRect" parent="Battlefield/DeathmatchStart" unique_id=1604412876]
+offset_left = 79.0
+offset_top = -84.0
+offset_right = 294.0
+offset_bottom = 124.0
+texture = ExtResource("30_dm")
+
 [node name="Navigation" parent="." unique_id=332973589 instance=ExtResource("9_c6ehg")]
-navigation_polygon = SubResource("NavigationPolygon_sxr4j")
+navigation_polygon = SubResource("NavigationPolygon_ulhii")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=737164047]
 unique_name_in_owner = true
@@ -158,3 +189,5 @@ visible = false
 
 [connection signal="body_entered" from="Battlefield/SquashfiveStart" to="." method="_on_area_2d_body_entered" binds= ["squash-five"]]
 [connection signal="body_entered" from="Battlefield/DiamondsnatchStart" to="." method="_on_area_2d_body_entered" binds= ["diamondsnatch"]]
+[connection signal="body_entered" from="Battlefield/ShapeHuntStart" to="." method="_on_area_2d_body_entered" binds= ["shape-hunt"]]
+[connection signal="body_entered" from="Battlefield/DeathmatchStart" to="." method="_on_area_2d_body_entered" binds= ["deathmatch", "pvp"]]

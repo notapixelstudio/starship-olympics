@@ -15,7 +15,7 @@ func clone() -> Ship:
 @export var disabled_ship_scene : PackedScene
 @export var bump_effect_scene : PackedScene
 
-## False for a ship that is gone for good once disabled (e.g. a cherry twin).
+## False for a ship that is gone for good once down (e.g. a cherry twin).
 var respawns := true
 
 func get_player() -> Player:
@@ -335,6 +335,8 @@ func kill(killer):
 		# WARNING this is intrinsic scoring for deathmatch-like games
 		# maybe it has to be moved out if we have both intrinsic and non-intrinsic scoring
 		Events.score.emit(1, killer.get_player(), global_position)
+	if not is_queued_for_deletion():
+		_ctx.ship_down.emit(self)
 	die()
 	
 func die():
@@ -344,7 +346,8 @@ func die():
 		
 	_show_death_feedback()
 	queue_free()
-	_ctx.ship_died.emit(player)
+	if respawns:
+		_ctx.ship_died.emit(player)
 	
 func _show_death_feedback() -> void:
 	var death_feedback = death_feedback_scene.instantiate()
@@ -357,7 +360,7 @@ func disable(impulse_to_give=Vector2.ZERO):
 	if is_queued_for_deletion():
 		return
 		
-	_ctx.ship_disabled.emit(self)
+	_ctx.ship_down.emit(self)
 	if not respawns:
 		die()
 		return

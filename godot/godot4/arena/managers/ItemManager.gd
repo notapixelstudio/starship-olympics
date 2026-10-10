@@ -27,7 +27,7 @@ var effects := {
 	BASKET_BALL: func(holder): _with_ship(holder, _load_ball),
 	BOUNTY: func(holder): # ceasefire: paid while at peace, the first hit ends it for this match
 		var pay := _every(10.0, func(): if _holds(BOUNTY, holder): _add_points(1, holder))
-		_when_disabled(holder, pay.stop),
+		_when_down(holder, pay.stop),
 	CHERRY: func(holder): _with_ship(holder, _duplicate),
 }
 
@@ -42,7 +42,7 @@ var _waiting_for_ship := {}
 func _ready() -> void:
 	%AutoSignals \
 		.bind(%ArenaScope.item_obtained, _on_item_obtained) \
-		.bind(%ArenaScope.ship_disabled, _on_ship_disabled) \
+		.bind(%ArenaScope.ship_down, _on_ship_down) \
 		.bind(%ArenaScope.battlefield_ready, _print_carried) \
 		.bind(%Battlefield.child_entered_tree, _on_battlefield_child_entered)
 
@@ -56,7 +56,7 @@ func _on_item_obtained(item:Item, by_player:Player) -> void:
 	if _in_match():
 		_start(_in_play(holder), before, holder)
 
-func _on_ship_disabled(ship: Ship) -> void:
+func _on_ship_down(ship: Ship) -> void:
 	var session := _session()
 	if session == null:
 		return
@@ -110,9 +110,9 @@ func _every(seconds: float, tick: Callable) -> Timer:
 	timer.start()
 	return timer
 
-## Runs [param reaction] each time [param holder]'s ship is disabled, until the match ends.
-func _when_disabled(holder: String, reaction: Callable) -> void:
-	%ArenaScope.ship_disabled.connect(func(ship: Ship): if ship.get_player().get_id() == holder: reaction.call())
+## Runs [param reaction] each time [param holder]'s ship goes down (disabled or killed), until the match ends.
+func _when_down(holder: String, reaction: Callable) -> void:
+	%ArenaScope.ship_down.connect(func(ship: Ship): if ship.get_player().get_id() == holder: reaction.call())
 
 func _add_time(seconds: int) -> void:
 	%ArenaScope.time_gained.emit(seconds)
