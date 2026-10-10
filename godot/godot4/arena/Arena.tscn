@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://cwhsg865kyuy5" path="res://godot4/arena/managers/ModifierManager.tscn" id="13_8qh8v"]
 [ext_resource type="Resource" uid="uid://dk1wwbut07grf" path="res://godot4/data/styles/default.tres" id="13_n4nm8"]
 [ext_resource type="PackedScene" uid="uid://cyolmy8p6kegy" path="res://godot4/arena/managers/ItemManager.tscn" id="14_hdsqy"]
-[ext_resource type="Script" uid="uid://cnchw225keyib" path="res://godot4/arena/managers/ItemManager.gd" id="15_p7fhl"]
 [ext_resource type="PackedScene" uid="uid://dilai3ixse7ph" path="res://godot4/arena/managers/ScoreResolver.tscn" id="15_xop1g"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="16_64a4r"]
 [ext_resource type="Script" uid="uid://tvmm4mdwnb4y" path="res://godot4/arena/ArenaCamera2D.gd" id="16_ad0xh"]
@@ -31,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://c161j5oxkpgmm" path="res://godot4/arena/managers/CollisionResponseManager.tscn" id="21_rittb"]
 [ext_resource type="PackedScene" uid="uid://bsglorws8xub7" path="res://godot4/arena/managers/ShipFactory.tscn" id="22_xop1g"]
 [ext_resource type="PackedScene" uid="uid://cnc1iumrpf838" path="res://godot4/arena/Navigation.tscn" id="23_rittb"]
+[ext_resource type="PackedScene" uid="uid://cviwmjm73uof5" path="res://godot4/arena/managers/DeathManager.tscn" id="25_hdsqy"]
 [ext_resource type="PackedScene" uid="uid://baqs1sh3hug4e" path="res://godot4/arena/hud/Counter.tscn" id="26_picc7"]
 [ext_resource type="PackedScene" uid="uid://di86kl3ihl8op" path="res://godot4/arena/hud/Bar.tscn" id="27_8sctu"]
 [ext_resource type="FontFile" uid="uid://cr1ufi8wpbpqp" path="res://assets/fonts/04b_19.ttf" id="28_fhoky"]
@@ -41,7 +41,7 @@
 [ext_resource type="FontFile" uid="uid://dprehv4eo4p4u" path="res://assets/fonts/Pixel-Powerline-440555/Pixel Powerline.otf" id="31_8qh8v"]
 [ext_resource type="PackedScene" uid="uid://bdnijlionsghd" path="res://godot4/ui/overlays/PauseOverlay.tscn" id="32_ri8rg"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_7ptth"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hdsqy"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -76,7 +76,6 @@ style = ExtResource("13_n4nm8")
 
 [node name="ItemManager" parent="Managers" unique_id=1350742641 instance=ExtResource("14_hdsqy")]
 unique_name_in_owner = true
-script = ExtResource("15_p7fhl")
 
 [node name="ModifierManager" parent="Managers" unique_id=1330404860 instance=ExtResource("13_8qh8v")]
 unique_name_in_owner = true
@@ -109,6 +108,9 @@ unique_name_in_owner = true
 [node name="SpawnManager" parent="Managers" unique_id=1642956781 node_paths=PackedStringArray("battlefield") instance=ExtResource("20_fhoky")]
 battlefield = NodePath("../../Battlefield")
 
+[node name="DeathManager" parent="Managers" unique_id=1273068367 instance=ExtResource("25_hdsqy")]
+unique_name_in_owner = true
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=956979488]
 unique_name_in_owner = true
 zoom = Vector2(0.2, 0.2)
@@ -137,7 +139,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Navigation" parent="." unique_id=332973589 instance=ExtResource("23_rittb")]
-navigation_polygon = SubResource("NavigationPolygon_7ptth")
+navigation_polygon = SubResource("NavigationPolygon_hdsqy")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=737164047]
 unique_name_in_owner = true
