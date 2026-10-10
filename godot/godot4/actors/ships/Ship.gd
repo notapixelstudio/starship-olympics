@@ -270,6 +270,15 @@ func _on_hurt_area_body_entered(body) -> void:
 func _on_hurt_area_entered(sth) -> void:
 	_ctx.collision.emit(self, sth, 'hurt')
 	
+func _on_detection_area_area_entered(area: Area2D) -> void:
+	_on_detection_area_entered(area)
+	
+func _on_detection_area_body_entered(body: Node2D) -> void:
+	_on_detection_area_entered(body)
+	
+func _on_detection_area_entered(sth) -> void:
+	_ctx.collision.emit(self, sth, 'detect')
+	
 func _on_touch_area_area_exited(area: Area2D) -> void:
 	# FIXME this is temporary
 	if area is BlockRotationArea:

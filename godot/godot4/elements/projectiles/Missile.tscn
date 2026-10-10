@@ -17,10 +17,72 @@ radius = 22.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_vtgxc"]
 radius = 22.0
 
-[sub_resource type="Gradient" id="Gradient_eiubv"]
+[sub_resource type="Gradient" id="Gradient_7ulf3"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
+
+[sub_resource type="Animation" id="Animation_7ulf3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AutoTrail:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AutoTrail:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.23529412)]
+}
+
+[sub_resource type="Animation" id="Animation_engcv"]
+resource_name = "pursuing"
+length = 0.19999999999999998
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AutoTrail:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.93333334, 1, 0, 1), Color(1.353256, 0, 0.7303307, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AutoTrail:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sc14b"]
+_data = {
+&"RESET": SubResource("Animation_7ulf3"),
+&"pursuing": SubResource("Animation_engcv")
+}
 
 [node name="Missile" type="RigidBody2D" unique_id=130950509]
 collision_layer = 4
@@ -58,7 +120,7 @@ texture = ExtResource("1_r412f")
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.23529412)
 width = 30.0
-gradient = SubResource("Gradient_eiubv")
+gradient = SubResource("Gradient_7ulf3")
 active = true
 count_criterion = false
 age_criterion = true
@@ -71,6 +133,10 @@ unique_name_in_owner = true
 wait_time = 0.6
 one_shot = true
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=927280268]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_sc14b")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]
