@@ -15,6 +15,9 @@ func clone() -> Ship:
 @export var disabled_ship_scene : PackedScene
 @export var bump_effect_scene : PackedScene
 
+## False for a ship that is gone for good once down (e.g. a cherry twin).
+var respawns := true
+
 func get_player() -> Player:
 	return player
 	
@@ -340,6 +343,8 @@ func kill(killer):
 		# WARNING this is intrinsic scoring for deathmatch-like games
 		# maybe it has to be moved out if we have both intrinsic and non-intrinsic scoring
 		Events.score.emit(1, killer.get_player(), global_position)
+	if not is_queued_for_deletion():
+		_ctx.ship_down.emit(self)
 	die()
 	
 func die():
@@ -349,7 +354,8 @@ func die():
 		
 	_show_death_feedback()
 	queue_free()
-	_ctx.ship_died.emit(player)
+	if respawns:
+		_ctx.ship_died.emit(player)
 	
 func _show_death_feedback() -> void:
 	var death_feedback = death_feedback_scene.instantiate()
@@ -362,6 +368,10 @@ func disable(impulse_to_give=Vector2.ZERO):
 	if is_queued_for_deletion():
 		return
 		
+	_ctx.ship_down.emit(self)
+	if not respawns:
+		die()
+		return
 	var disabled_ship := disabled_ship_scene.instantiate()
 	disabled_ship.set_ship(self)
 	disabled_ship.global_position = global_position
@@ -379,6 +389,18 @@ func disable(impulse_to_give=Vector2.ZERO):
 
 func get_speed_normalized() -> float:
 	return min(1.0, linear_velocity.length() / 100.0)
+
+## Icons over the ship, one per item in play (see ItemManager).
+func set_badges(textures: Array) -> void:
+	for child in %ItemBadges.get_children():
+		child.free()
+	for texture in textures:
+		var icon := TextureRect.new()
+		icon.texture = texture
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon.custom_minimum_size = Vector2(32, 32) # about the PlayerID label height
+		%ItemBadges.add_child(icon)
 
 func set_message(msg: String, color: Color = get_color()) -> void:
 	%Message.text = msg

@@ -1,12 +1,14 @@
 [gd_resource type="Resource" script_class="ItemType" format=3]
 
 [ext_resource type="Script" path="res://godot4/data/items/ItemType.gd" id="1_type"]
-[ext_resource type="Texture2D" uid="uid://c15twfdbmm5oh" path="res://assets/arrow.png" id="2_tex"]
+[ext_resource type="Texture2D" path="res://assets/sprites/fruits/cherry.png" id="2_tex"]
 
 [resource]
 script = ExtResource("1_type")
-id = &"starting_points"
-name = "Head Start"
-description = "Adds 5 points at the beginning of the match."
+id = &"cherry"
+name = "Cherry"
+description = "Merged from Bounty + Head Start: your ship gets a twin."
+slot = "player"
 texture = ExtResource("2_tex")
 outline_texture = ExtResource("2_tex")
+badge = ExtResource("2_tex")
