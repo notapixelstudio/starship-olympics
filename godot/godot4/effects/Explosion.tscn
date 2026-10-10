@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://cq3h3ir2veqao"]
 
 [ext_resource type="Script" uid="uid://b2agl7t5spgep" path="res://godot4/effects/Explosion.gd" id="1_5avkm"]
+[ext_resource type="AudioStream" uid="uid://dl1x646cjvko5" path="res://assets/audio/FX/zapsplat_explosion_detonate_blast_designed_001_89753.mp3" id="7_1iqxk"]
+[ext_resource type="AudioStream" uid="uid://dhtshubrcru4n" path="res://assets/audio/FX/sfx_exp_medium1.wav" id="8_3hvqt"]
 [ext_resource type="Texture2D" uid="uid://c4dqed4qk351s" path="res://assets/sprites/environments/explosion_halo.png" id="8_bap5n"]
 [ext_resource type="Texture2D" uid="uid://c7jdg3umgc6mk" path="res://assets/sprites/weapons/explosion.png" id="9_t8iec"]
+[ext_resource type="AudioStream" uid="uid://c2h7ulcwcubx3" path="res://assets/audio/FX/sfx_exp_medium6.wav" id="9_vfev0"]
+[ext_resource type="AudioStream" uid="uid://cijm0mf5igak7" path="res://assets/audio/FX/sfx_exp_medium7.wav" id="10_6su5n"]
 [ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="10_u3d3l"]
+[ext_resource type="AudioStream" uid="uid://daxg6b74vgt47" path="res://assets/audio/FX/sfx_exp_medium8.wav" id="11_4gbw5"]
 [ext_resource type="Texture2D" uid="uid://c44lusmm6vmy7" path="res://assets/sprites/weapons/explosion_spikes.png" id="11_a0lw1"]
 [ext_resource type="PackedScene" uid="uid://cd12x0fubc17m" path="res://godot4/actors/ships/GravitonField.tscn" id="12_lhu6q"]
 
@@ -94,6 +99,15 @@ radius = 20.0
 [sub_resource type="CircleShape2D" id="4"]
 radius = 240.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vtgxc"]
+random_pitch = 1.122462
+streams_count = 5
+stream_0/stream = ExtResource("7_1iqxk")
+stream_1/stream = ExtResource("8_3hvqt")
+stream_2/stream = ExtResource("9_vfev0")
+stream_3/stream = ExtResource("10_6su5n")
+stream_4/stream = ExtResource("11_4gbw5")
+
 [node name="Explosion" type="Area2D" unique_id=1400613066]
 collision_layer = 8
 collision_mask = 11847
@@ -146,6 +160,11 @@ collision_mask = 10757
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RepealField" unique_id=1717515942]
 shape = SubResource("4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=827451556]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_vtgxc")
+volume_db = -4.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

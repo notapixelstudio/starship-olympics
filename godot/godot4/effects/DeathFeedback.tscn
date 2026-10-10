@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctqk6tu6rj77v"]
+[gd_scene format=3 uid="uid://ctqk6tu6rj77v"]
 
 [ext_resource type="Script" uid="uid://b27vo4h2l4rm0" path="res://godot4/effects/DeathFeedback.gd" id="1_stgea"]
 [ext_resource type="Texture2D" uid="uid://bonj3coqe6d0i" path="res://assets/sprites/debris.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://cd12x0fubc17m" path="res://godot4/actors/ships/GravitonField.tscn" id="2_iea10"]
 [ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="4_kp355"]
+[ext_resource type="AudioStream" uid="uid://dqbaltmvowb8o" path="res://assets/audio/FX/sfx_exp_odd3.wav" id="5_0w3q5"]
 
 [sub_resource type="CanvasItemMaterial" id="1"]
 
@@ -148,17 +149,22 @@ _data = {
 &"RESET": SubResource("6")
 }
 
-[node name="DeathFeedback" type="Node2D"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vtgxc"]
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("5_0w3q5")
+
+[node name="DeathFeedback" type="Node2D" unique_id=775828016]
 script = ExtResource("1_stgea")
 
-[node name="GravitonField" parent="." instance=ExtResource("2_iea10")]
+[node name="GravitonField" parent="." unique_id=1026374432 instance=ExtResource("2_iea10")]
 unique_name_in_owner = true
 enabled = true
 gravity = -500.0
 center = Vector3(0, 0, 32)
 influence_radius = 700.0
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1928912848]
 material = SubResource("1")
 scale = Vector2(2, 2)
 emitting = false
@@ -170,13 +176,16 @@ speed_scale = 2.0
 explosiveness = 1.0
 process_material = SubResource("4")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_bsdn4")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2130669461]
+libraries/ = SubResource("AnimationLibrary_bsdn4")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=2126336390]
 energy = 50.0
 range_item_cull_mask = 2
 texture = ExtResource("4_kp355")
 texture_scale = 2.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1385934596]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_vtgxc")
+volume_db = 2.0

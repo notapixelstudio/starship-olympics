@@ -9,6 +9,7 @@ func _ready():
 	$Halo.rotation = randf()*2*PI
 	
 	$Spikes.rotation = randf()*2*PI
+	SoundEffects.play(%AudioStreamPlayer2D)
 	
 func set_player(v:Player) -> void:
 	_player = v

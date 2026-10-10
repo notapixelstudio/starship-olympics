@@ -5,7 +5,7 @@ extends Node2D
 func _ready():
 	modulate = color
 	$GPUParticles2D.emitting = true
-	#SoundEffects.play($RandomAudioStreamPlayer2D)
+	SoundEffects.play(%AudioStreamPlayer2D)
 	$AnimationPlayer.play("Blink")
 
 func _disable_graviton_field() -> void:
