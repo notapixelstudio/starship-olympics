@@ -8,4 +8,5 @@ func _on_timer_timeout() -> void:
 
 
 func _on_press_any_key_any_key_pressed() -> void:
+	Events.log.emit('-- PRESS ANY KEY: pressed --')
 	Events.loading_screen_done.emit()

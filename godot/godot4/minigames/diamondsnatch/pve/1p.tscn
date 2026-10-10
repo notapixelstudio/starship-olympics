@@ -15,16 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/collectables/Diamond.tscn" id="14_xeixg"]
 [ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="16_1ohm1"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="17_ax7k0"]
-[ext_resource type="PackedScene" uid="uid://dsmqaj240piab" path="res://godot4/elements/collectables/Collectable.tscn" id="18_iew0i"]
-[ext_resource type="Script" uid="uid://d0bqe8srkhk6e" path="res://godot4/data/items/Item.gd" id="18_item"]
-[ext_resource type="Resource" uid="uid://335ssfwjpj13" path="res://godot4/data/items/TimeCircuits.tres" id="18_tc"]
 [ext_resource type="PackedScene" uid="uid://g2t7ocoioic1" path="res://godot4/elements/collectables/BigDiamond.tscn" id="18_w2bk3"]
 [ext_resource type="PackedScene" uid="uid://bkt23g8b1tl77" path="res://godot4/actors/enemies/BubbleTurret.tscn" id="21_ueg15"]
-
-[sub_resource type="Resource" id="Item_tc"]
-script = ExtResource("18_item")
-type = ExtResource("18_tc")
-duration = 0
 
 [sub_resource type="Animation" id="Animation_68mb6"]
 length = 0.001
@@ -88,7 +80,7 @@ _data = {
 &"default": SubResource("Animation_kdc2i")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_iew0i"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6hvk3"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -640,9 +632,5 @@ libraries/ = SubResource("AnimationLibrary_g6aeh")
 [node name="BubbleTurret" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=1442108864 instance=ExtResource("21_ueg15")]
 wait_time = 8.0
 
-[node name="TimeGear" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=1679659046 instance=ExtResource("18_iew0i")]
-item = SubResource("Item_tc")
-position = Vector2(450, -450)
-
 [node name="Navigation" parent="." index="7" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_iew0i")
+navigation_polygon = SubResource("NavigationPolygon_6hvk3")
