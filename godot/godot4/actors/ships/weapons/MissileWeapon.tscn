@@ -3,24 +3,23 @@
 [ext_resource type="PackedScene" uid="uid://q1o0cubu6i1c" path="res://godot4/actors/ships/weapons/Weapon.tscn" id="1_l5twp"]
 [ext_resource type="Script" uid="uid://0bvkru8im14c" path="res://godot4/actors/ships/weapons/MissileWeapon.gd" id="2_1x01f"]
 [ext_resource type="PackedScene" uid="uid://cg2pd6iioab68" path="res://godot4/elements/projectiles/Missile.tscn" id="3_l5twp"]
-[ext_resource type="PackedScene" uid="uid://ccf8lnnnpc7br" path="res://godot4/actors/ships/weapons/managers/AmmoManager.tscn" id="4_vxs6l"]
+[ext_resource type="AudioStream" uid="uid://bpk8o5wkci6vo" path="res://assets/audio/FX/sfx_wpn_cannon4.wav" id="4_l5twp"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2x4nn"]
+random_pitch = 1.2599211
+random_volume_offset_db = 0.4
+streams_count = 1
+stream_0/stream = ExtResource("4_l5twp")
 
 [node name="MissileWeapon" unique_id=1964070538 instance=ExtResource("1_l5twp")]
 script = ExtResource("2_1x01f")
 missile_scene = ExtResource("3_l5twp")
-offset = 120.0
+offset = 50.0
+boost = 100
+charge_multiplier = 4500
+min_charge_for_homing_missile = 0.3
 
-[node name="AimCompensationZone" type="Area2D" parent="." index="0" unique_id=2045685679]
+[node name="FireSFX" type="AudioStreamPlayer2D" parent="." index="0" unique_id=1865192453]
 unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 4097
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AimCompensationZone" index="0" unique_id=769312188]
-polygon = PackedVector2Array(1000, -300, 1000, 300, 0, 150, 0, -150)
-
-[node name="AmmoManager" parent="." index="1" unique_id=1351754706 instance=ExtResource("4_vxs6l")]
-unique_name_in_owner = true
-max_ammo = 3
-infinite_ammo = false
-current_ammo = 3
-reload_time = 0.4
+stream = SubResource("AudioStreamRandomizer_2x4nn")
+volume_db = -14.0

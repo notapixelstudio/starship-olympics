@@ -11,15 +11,20 @@ var _homing := false
 var _current_target = null
 var _thrust := 0.0
 
-func _ready():
-	_update_rotation()
-	#SoundEffects.play($RandomAudioStreamPlayer)
+func _init() -> void:
+	# apparently, setting this from code is necessary in order for box2d to correctly perform "bullet"-style collisions
+	# see https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_dynamics.html
+	# and https://github.com/search?q=repo%3Aappsinacup%2Fgodot-box2d+body_set_ccd_enabled&type=code
+	PhysicsServer2D.body_set_continuous_collision_detection_mode(get_rid(), PhysicsServer2D.CCD_MODE_CAST_SHAPE)
+
+func set_graphics_rotation(v:float) -> void:
+	%Graphics.rotation = v
 
 func _process(delta):
 	_update_rotation()
 	
 func _update_rotation() -> void:
-	%Graphics.rotation = linear_velocity.angle()
+	set_graphics_rotation(linear_velocity.angle())
 
 func _on_body_entered(body):
 	_ctx.collision.emit(self, body)
@@ -27,7 +32,6 @@ func _on_body_entered(body):
 func set_player(v:Player) -> void:
 	_player = v
 	%Sprite2D.modulate = _player.get_color()
-	#%AutoTrail.modulate = _player.get_color()
 	
 func get_player() -> Player:
 	return _player
@@ -79,6 +83,7 @@ func attempt_pursue(target: Node2D) -> void:
 	_current_target = target
 	%LifeTimer.set_paused(true)
 	%AnimationPlayer.play("pursuing")
+	SoundEffects.play(%TargetLockedSFX)
 	
 func _can_pursue() -> bool:
 	return _homing and _current_target and is_instance_valid(_current_target) and not _current_target.is_queued_for_deletion()
