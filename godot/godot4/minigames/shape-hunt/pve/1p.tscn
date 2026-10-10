@@ -125,6 +125,7 @@ element_scene = ExtResource("14_tpiis")
 
 [node name="SingleBloidWave2" type="Node2D" parent="Battlefield/Waves" index="1" unique_id=568185997 groups=["spawn_waves"]]
 script = ExtResource("14_8smqk")
+max_repeats = 20
 extra_delay = 4.0
 
 [node name="ElementSpawnerGroup" parent="Battlefield/Waves/SingleBloidWave2" index="0" unique_id=1400742070 instance=ExtResource("15_t4qwi")]
@@ -139,6 +140,83 @@ element_scene = ExtResource("14_tpiis")
 [node name="ElementSpawnerGroup3" parent="Battlefield/Waves/SingleBloidWave2" index="2" unique_id=1741519751 instance=ExtResource("15_t4qwi")]
 position = Vector2(1200, 900)
 pattern = "single"
+element_scene = ExtResource("14_tpiis")
+
+[node name="SingleBloidWave3" type="Node2D" parent="Battlefield/Waves" index="2" unique_id=1531769610 groups=["spawn_waves"]]
+script = ExtResource("14_8smqk")
+max_repeats = 15
+extra_delay = 4.0
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/SingleBloidWave3" index="0" unique_id=1415392903 instance=ExtResource("15_t4qwi")]
+pattern = "plus"
+element_scene = ExtResource("14_tpiis")
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/SingleBloidWave3" index="1" unique_id=1167766345 instance=ExtResource("15_t4qwi")]
+position = Vector2(-1200, 750)
+pattern = "single"
+element_scene = ExtResource("14_tpiis")
+
+[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/SingleBloidWave3" index="2" unique_id=269993842 instance=ExtResource("15_t4qwi")]
+position = Vector2(150, 750)
+pattern = "single"
+element_scene = ExtResource("14_tpiis")
+
+[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/SingleBloidWave3" index="3" unique_id=1818995389 instance=ExtResource("15_t4qwi")]
+position = Vector2(-150, -750)
+pattern = "single"
+element_scene = ExtResource("14_tpiis")
+
+[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/SingleBloidWave3" index="4" unique_id=1085940970 instance=ExtResource("15_t4qwi")]
+position = Vector2(1200, -900)
+pattern = "single"
+element_scene = ExtResource("14_tpiis")
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/SingleBloidWave3" index="5" unique_id=1247680341 instance=ExtResource("15_t4qwi")]
+position = Vector2(-1200, -900)
+pattern = "single"
+element_scene = ExtResource("14_tpiis")
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/SingleBloidWave3" index="6" unique_id=1137776741 instance=ExtResource("15_t4qwi")]
+position = Vector2(1200, 900)
+pattern = "single"
+element_scene = ExtResource("14_tpiis")
+
+[node name="SingleBloidWave4" type="Node2D" parent="Battlefield/Waves" index="3" unique_id=269278063 groups=["spawn_waves"]]
+script = ExtResource("14_8smqk")
+extra_delay = 4.0
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/SingleBloidWave4" index="0" unique_id=19452894 instance=ExtResource("15_t4qwi")]
+pattern = "plus"
+element_scene = ExtResource("14_tpiis")
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/SingleBloidWave4" index="1" unique_id=1971033908 instance=ExtResource("15_t4qwi")]
+position = Vector2(-1200, 750)
+pattern = "plus"
+element_scene = ExtResource("14_tpiis")
+
+[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/SingleBloidWave4" index="2" unique_id=1627282928 instance=ExtResource("15_t4qwi")]
+position = Vector2(150, 750)
+pattern = "single"
+element_scene = ExtResource("14_tpiis")
+
+[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/SingleBloidWave4" index="3" unique_id=215469483 instance=ExtResource("15_t4qwi")]
+position = Vector2(-150, -750)
+pattern = "single"
+element_scene = ExtResource("14_tpiis")
+
+[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/SingleBloidWave4" index="4" unique_id=2373082 instance=ExtResource("15_t4qwi")]
+position = Vector2(1200, -900)
+pattern = "plus"
+element_scene = ExtResource("14_tpiis")
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/SingleBloidWave4" index="5" unique_id=749718042 instance=ExtResource("15_t4qwi")]
+position = Vector2(-1200, -900)
+pattern = "plus"
+element_scene = ExtResource("14_tpiis")
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/SingleBloidWave4" index="6" unique_id=1363001727 instance=ExtResource("15_t4qwi")]
+position = Vector2(1200, 900)
+pattern = "plus"
 element_scene = ExtResource("14_tpiis")
 
 [node name="Navigation" parent="." index="7" unique_id=332973589]

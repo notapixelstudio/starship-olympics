@@ -21,12 +21,8 @@ func hit(hitter=null):
 		die()
 		return
 		
-	if hitter is Ship:
-		die(hitter)
-		return
-		
-	if hitter.has_method('get_owner_ship'):
-		die(hitter.get_owner_ship())
+	if hitter.has_method('get_player'):
+		die(hitter.get_player())
 		return
 		
 	die()

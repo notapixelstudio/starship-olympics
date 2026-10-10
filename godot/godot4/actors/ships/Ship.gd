@@ -335,14 +335,14 @@ func damage(damager) -> void:
 	#die()
 	disable(impulse_to_give)
 	
-func kill(killer):
-	var player = killer.get_player()
-	var team = player.get_team()
-	var team2 = get_team()
-	if killer.get_player().get_team() != get_team():
-		# WARNING this is intrinsic scoring for deathmatch-like games
-		# maybe it has to be moved out if we have both intrinsic and non-intrinsic scoring
-		Events.score.emit(1, killer.get_player(), global_position)
+func kill(killer=null):
+	if killer != null:
+		var team = killer.get_team()
+		var team2 = get_team()
+		if killer.get_team() != get_team():
+			# WARNING this is intrinsic scoring for deathmatch-like games
+			# maybe it has to be moved out if we have both intrinsic and non-intrinsic scoring
+			Events.score.emit(1, killer, global_position)
 	if not is_queued_for_deletion():
 		_ctx.ship_down.emit(self)
 	die()
