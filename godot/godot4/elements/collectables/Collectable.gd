@@ -28,6 +28,10 @@ func get_texture() -> Texture:
 	
 func _ready():
 	update_solid()
+	if item and item.type:
+		set_texture(item.type.texture)
+		outline_texture = item.type.outline_texture
+		$Graphics/Glow.self_modulate = item.type.glow
 	
 func update_solid():
 	# ship bodies should push diamonds iff not collectable

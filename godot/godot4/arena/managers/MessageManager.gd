@@ -3,15 +3,20 @@ extends Node
 @export var battlefield: Node2D
 @export var floating_message_scene: PackedScene
 @export var magnify := 1.0
+## Divide by the camera zoom, so messages keep the same size on screen like the ship's P1 label.
+@export var follow_zoom := false
+
+var _zoom := 1.0
 
 func _ready():
 	Events.message.connect(_on_message)
+	Events.camera_updated.connect(func(state): _zoom = state['zoom'])
 	
 func _on_message(message:Variant, color:Color, global_position:Vector2, special:=false) -> void:
 	var floating_message = floating_message_scene.instantiate()
 	floating_message.set_message(message)
 	floating_message.set_color(color)
-	floating_message.scale *= magnify
+	floating_message.scale *= magnify / (_zoom if follow_zoom else 1.0)
 	floating_message.special = special
 	floating_message.global_position = global_position
 	battlefield.add_child(floating_message)

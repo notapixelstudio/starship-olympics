@@ -1,19 +1,29 @@
 class_name Item extends Resource
-## Items are data: what they do is written in the arena ItemManager, keyed by [member id],
-## so effects can look at the whole inventory and combine.
-##
+## A variant of an [ItemType]: how long it lasts and whether it is glass.
+## Create it inline wherever it is given (a Collectable, a zone, a character...), no file needed.
 
-@export var id: StringName
-@export var name: String
-@export_multiline var description: String = ""
+## How many games it lasts; RUN lasts the whole run.
+enum Duration { RUN = 0, GAME = 1, TWO_GAMES = 2 }
 
-@export_enum(&'general', &'player', &'ship', &'hat', &'ball', &'weapon', &'weapon-back') var slot: String 
-@export_enum(&'match', &'run') var duration: String = "run" 
+@export var type: ItemType
+@export var duration := Duration.GAME
+## Glass items shatter when their holder's ship is disabled.
+@export var glass := false
+
+## Games left for a granted copy, see [method Session.grant_item].
+@export_storage var games_left := 0
+
+var id: StringName:
+	get: return type.id
 
 
 func is_general() -> bool:
-	return slot == "general"
+	return type.slot == "general"
 
 
-func lasts_one_match() -> bool:
-	return duration == "match"
+## Counts down one played game; false once expired.
+func survives_game() -> bool:
+	if duration == Duration.RUN:
+		return true
+	games_left -= 1
+	return games_left > 0

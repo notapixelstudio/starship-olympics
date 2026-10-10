@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://godot4/elements/collectables/Collectable.tscn" id="1_coll"]
+[ext_resource type="Resource" path="res://godot4/data/items/Bounty/Bounty_game_glass.tres" id="2_item"]
+
+[node name="BountyGameGlass" instance=ExtResource("1_coll")]
+item = ExtResource("2_item")
