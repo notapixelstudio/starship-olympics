@@ -1,7 +1,5 @@
 extends Node
-## Effect registry: everything carried items do during a match is written here, one entry per item id.
-## Items stay plain data, so an effect can read the whole inventory and combine with other items, e.g.
-## [code]CLOCK_EXTENDER: func(_holder): _add_time(5 * (2 if _session().count_items(TIME_CIRCUITS) else 1))[/code]
+## Item effect registry: every items and its effects are written here, one entry per item id.
 ##
 ## An effect runs for one copy held by [param holder] (a player id, or [code]""[/code] for the whole session):
 ## immediately when it is picked up during a match, and at the start of every match it is carried into.
@@ -18,6 +16,8 @@ const BOUNTY := &"bounty"
 const CHERRY := &"cherry"
 
 const BASKET_BALL_SCENE := preload("res://godot4/elements/cargos/BasketBall.tscn")
+
+# --- Effects: what each item does ---
 
 ## What each item does, by id. One line per item: its id and its whole effect.
 var effects := {
@@ -36,8 +36,65 @@ var mergers := {
 	CHERRY: [BOUNTY, HEAD_START],
 }
 
+# --- Building blocks effects use ---
+
+func _add_time(seconds: int) -> void:
+	%ArenaScope.time_gained.emit(seconds)
+
+## Session copies score for every team, player copies for their player's team.
+func _add_points(points: int, holder: String) -> void:
+	var teams: Dictionary = %ArenaScope.get_teams()
+	for team in teams:
+		if holder == "" or holder in teams[team]:
+			Events.points_scored.emit(float(points), team)
+
+## Runs [param tick] every [param seconds] until the match ends (the timer is freed with the arena) or it is stopped.
+func _every(seconds: float, tick: Callable) -> Timer:
+	var timer := Timer.new()
+	timer.wait_time = seconds
+	timer.timeout.connect(tick)
+	add_child(timer)
+	timer.start()
+	return timer
+
+## Runs [param reaction] each time [param holder]'s ship goes down (disabled or killed), until the match ends.
+func _when_down(holder: String, reaction: Callable) -> void:
+	%ArenaScope.ship_down.connect(func(ship: Ship): if ship.get_player().get_id() == holder: reaction.call())
+
+## True while [param id] is in play for [param holder]: carried, not shattered, not swallowed by a merger.
+## ponytail: per id, not per copy: with 2 Bounties and 1 merged mid-match, both Bounty timers keep paying. Track copies if that matters.
+func _holds(id: StringName, holder: String) -> bool:
+	return id in _in_play(holder)
+
 ## Player id -> actions waiting for their ship to enter the battlefield (at match start ships are not there yet).
 var _waiting_for_ship := {}
+
+## Calls [param action] with [param holder]'s ship: now if it is on the battlefield, else as soon as it enters.
+func _with_ship(holder: String, action: Callable) -> void:
+	var ships := _ships(holder)
+	if ships:
+		action.call(ships[0])	
+	else:
+		_waiting_for_ship.get_or_add(holder, []).append(action)
+
+# --- Item-specific actions ---
+
+func _load_ball(ship: Ship) -> void:
+	var ball := BASKET_BALL_SCENE.instantiate() as Cargo
+	ball._self_scene = BASKET_BALL_SCENE # a Cargo packs itself in _ready, but this one never enters the tree
+	ship.load_cargo(ball) # the ship keeps a clone
+	ball.free()
+
+## Like Super Mario cherry: a second ship for the same player, same controls.
+## One hit and the twin is gone; the original ship respawns as usual.
+func _duplicate(ship: Ship) -> void:
+	var copy := ship.clone()
+	copy.respawns = false
+	copy.global_position = ship.global_position + Vector2(150, 0).rotated(ship.global_rotation + PI / 2)
+	copy.global_rotation = ship.global_rotation
+	%ArenaScope.spawn_request.emit(copy)
+
+# --- How items run (no need to touch when adding an item) ---
 
 func _ready() -> void:
 	%AutoSignals \
@@ -96,45 +153,6 @@ static func merge(ids: Array, merger_parts: Dictionary) -> Array:
 			ids.append(merged)
 	return ids
 
-## True while [param id] is in play for [param holder]: carried, not shattered, not swallowed by a merger.
-## ponytail: per id, not per copy: with 2 Bounties and 1 merged mid-match, both Bounty timers keep paying. Track copies if that matters.
-func _holds(id: StringName, holder: String) -> bool:
-	return id in _in_play(holder)
-
-## Runs [param tick] every [param seconds] until the match ends (the timer is freed with the arena) or it is stopped.
-func _every(seconds: float, tick: Callable) -> Timer:
-	var timer := Timer.new()
-	timer.wait_time = seconds
-	timer.timeout.connect(tick)
-	add_child(timer)
-	timer.start()
-	return timer
-
-## Runs [param reaction] each time [param holder]'s ship goes down (disabled or killed), until the match ends.
-func _when_down(holder: String, reaction: Callable) -> void:
-	%ArenaScope.ship_down.connect(func(ship: Ship): if ship.get_player().get_id() == holder: reaction.call())
-
-func _add_time(seconds: int) -> void:
-	%ArenaScope.time_gained.emit(seconds)
-
-## Session copies score for every team, player copies for their player's team.
-func _add_points(points: int, holder: String) -> void:
-	var teams: Dictionary = %ArenaScope.get_teams()
-	for team in teams:
-		if holder == "" or holder in teams[team]:
-			Events.points_scored.emit(float(points), team)
-
-## Calls [param action] with [param holder]'s ship: now if it is on the battlefield, else as soon as it enters.
-func _with_ship(holder: String, action: Callable) -> void:
-	var ships := _ships(holder)
-	if ships:
-		action.call(ships[0])
-	else:
-		_waiting_for_ship.get_or_add(holder, []).append(action)
-
-func _ships(holder: String) -> Array:
-	return %Battlefield.get_children().filter(func(node): return node is Ship and node.get_player().get_id() == holder)
-
 ## Shows the badge of every item in play for the ship's player (called when items start and when a ship enters).
 func _show_badges(ship: Ship) -> void:
 	var holder := ship.get_player().get_id()
@@ -154,28 +172,16 @@ func _on_battlefield_child_entered(node: Node) -> void:
 		_waiting_for_ship.erase(node.get_player().get_id())
 		_show_badges(node)
 
-func _load_ball(ship: Ship) -> void:
-	var ball := BASKET_BALL_SCENE.instantiate() as Cargo
-	ball._self_scene = BASKET_BALL_SCENE # a Cargo packs itself in _ready, but this one never enters the tree
-	ship.load_cargo(ball) # the ship keeps a clone
-	ball.free()
-
-## Like the Super Mario cherry: a second ship for the same player, same controls.
-## One hit and the twin is gone for good; the original ship respawns as usual.
-func _duplicate(ship: Ship) -> void:
-	var copy := ship.clone()
-	copy.respawns = false
-	copy.global_position = ship.global_position + Vector2(150, 0).rotated(ship.global_rotation + PI / 2)
-	copy.global_rotation = ship.global_rotation
-	%ArenaScope.spawn_request.emit(copy)
-
 func _print_carried() -> void:
 	var session := _session()
 	if session == null:
 		return
-	print("items in play")
+	print("items in play:")
 	for holder in session.items:
 		print("  %s: %s" % [holder if holder else "session", ", ".join(_in_play(holder))])
+
+func _ships(holder: String) -> Array:
+	return %Battlefield.get_children().filter(func(node): return node is Ship and node.get_player().get_id() == holder)
 
 func _in_match() -> bool:
 	return get_parent().get_parent() is Arena
