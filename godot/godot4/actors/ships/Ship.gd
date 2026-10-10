@@ -174,7 +174,6 @@ func _ready():
 	# see https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_dynamics.html
 	# and https://github.com/search?q=repo%3Aappsinacup%2Fgodot-box2d+body_set_ccd_enabled&type=code
 	PhysicsServer2D.body_set_continuous_collision_detection_mode(get_rid(), PhysicsServer2D.CCD_MODE_CAST_SHAPE)
-	print(get_scene_file_path())
 	
 # WARNING this does not work with Area2Ds with animated shapes
 #func _physics_process(delta: float) -> void:

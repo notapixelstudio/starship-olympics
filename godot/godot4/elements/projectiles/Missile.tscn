@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://by6bftkr7vi7p" path="res://godot4/effects/Pfft.tscn" id="2_eiubv"]
 [ext_resource type="PackedScene" uid="uid://d3qdjjh7pbm6k" path="res://godot4/effects/trails/AutoTrail.tscn" id="3_5wjcj"]
 [ext_resource type="PackedScene" uid="uid://cq3h3ir2veqao" path="res://godot4/effects/Explosion.tscn" id="3_7ulf3"]
+[ext_resource type="AudioStream" uid="uid://croqwq4o46hm8" path="res://assets/audio/gameplay/GUI_Notification 10.wav" id="6_engcv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g2653"]
 friction = 0.0
@@ -17,7 +18,7 @@ radius = 22.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_vtgxc"]
 radius = 22.0
 
-[sub_resource type="Gradient" id="Gradient_7ulf3"]
+[sub_resource type="Gradient" id="Gradient_sc14b"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235294)
@@ -51,7 +52,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_engcv"]
 resource_name = "pursuing"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -84,14 +85,18 @@ _data = {
 &"pursuing": SubResource("Animation_engcv")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vtgxc"]
+random_pitch = 1.0233738
+random_volume_offset_db = 0.5
+streams_count = 1
+stream_0/stream = ExtResource("6_engcv")
+
 [node name="Missile" type="RigidBody2D" unique_id=130950509]
 collision_layer = 4
 collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_g2653")
 gravity_scale = 2.0
 lock_rotation = true
-continuous_cd = 1
-max_contacts_reported = 1
 linear_damp = 2.0
 script = ExtResource("1_b4nlt")
 PfftScene = ExtResource("2_eiubv")
@@ -120,7 +125,7 @@ texture = ExtResource("1_r412f")
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.23529412)
 width = 30.0
-gradient = SubResource("Gradient_7ulf3")
+gradient = SubResource("Gradient_sc14b")
 active = true
 count_criterion = false
 age_criterion = true
@@ -137,6 +142,11 @@ autostart = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=927280268]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_sc14b")
+
+[node name="TargetLockedSFX" type="AudioStreamPlayer2D" parent="." unique_id=354588867]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_vtgxc")
+volume_db = -10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]
