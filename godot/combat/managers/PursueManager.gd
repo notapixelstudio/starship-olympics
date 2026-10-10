@@ -19,7 +19,7 @@ func _on_ship_detected(sth : CollisionObject2D, ship : Ship):
 			royal_species[queen.get_host().species] = true
 			
 		if not entity.get('Owned').get_owned_by().species in royal_species and not ECM.E(ship).has('Royal'):
-			return # FIXME? owner could be an invalid instance
+			return # FIXME? owner could be an invalidcombat instance
 		
 	if entity.has('Pursuer') and entity.get('Pursuer').has_detection_insensitive_timed_out():
 		var old_target = entity.get('Pursuer').get_last_valid_target()

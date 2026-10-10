@@ -84,6 +84,16 @@ func _handle_ship_vs_other(ship:Ship, collider, tag:String='') -> void:
 	if collider is Explosion and tag == 'hurt':
 		ship.kill(collider)
 		return # collision handled
+		
+	# Missiles follow a ship when they detect one
+	if collider is Missile and tag == 'detect':
+		# no friendly fire
+		# assert traits.has_trait(collider, 'OwnedByPlayer')
+		if ship.get_team() == collider.get_player().get_team():
+			return # collision handled
+			
+		collider.attempt_pursue(ship)
+		return # collision handled
 
 func _handle_pew_vs_other(pew:Pew, collider, tag:String='') -> void:
 	var is_mirror = collider is Mirror #or collider is MirrorWall
