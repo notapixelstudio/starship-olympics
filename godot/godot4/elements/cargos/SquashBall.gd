@@ -12,7 +12,7 @@ func decrease() -> void:
 	_count -= 1
 	if _count <= 0:
 		_count = starting_count
-		Events.score.emit(starting_count, get_owner_ship(), global_position)
+		Events.score.emit(starting_count, get_owner_ship().get_player(), global_position)
 		
 	_update_counter()
 	
