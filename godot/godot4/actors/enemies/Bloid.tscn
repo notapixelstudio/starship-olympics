@@ -4,11 +4,15 @@
 [ext_resource type="Script" uid="uid://brwfmw0p21a1" path="res://godot4/actors/enemies/Bloid.gd" id="2_63srp"]
 [ext_resource type="Texture2D" uid="uid://ds1faooeg1sx" path="res://assets/sprites/enemies/bloid.png" id="3_gdux4"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_afj3y"]
+bounce = 1.2
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_gdux4"]
 resource_local_to_scene = true
 radius = 70.0
 
 [node name="Bloid" unique_id=1630210331 instance=ExtResource("1_8o46o")]
+physics_material_override = SubResource("PhysicsMaterial_afj3y")
 script = ExtResource("2_63srp")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=825157555]
