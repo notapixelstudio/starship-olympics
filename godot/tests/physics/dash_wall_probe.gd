@@ -96,7 +96,7 @@ func _next_trial() -> void:
 	trial_i += 1
 	if trial_i >= trials.size():
 		print("SUMMARY trials=%d tunneled=%d max_speed=%.0f" % [trials.size(), tot_tunneled, max_speed])
-		quit()
+		quit(0 if tot_tunneled == 0 else 1)
 		return
 	var t: Dictionary = trials[trial_i]
 	PhysicsServer2D.body_set_state(ship.get_rid(), PhysicsServer2D.BODY_STATE_TRANSFORM, Transform2D(t.rot, t.pos))

@@ -156,7 +156,7 @@ func _next_trial() -> void:
 	trial_i += 1
 	if trial_i >= trials.size():
 		print("SUMMARY trials=%d missiles=%d escaped=%d ship_out=%d bounces=%d" % [tot_trials, tot_missiles, tot_escaped, tot_ship_out, tot_bounces])
-		quit()
+		quit(0 if tot_escaped == 0 and tot_ship_out == 0 else 1)
 		return
 	phase = &"wait_ship"; phase_frame = 0
 

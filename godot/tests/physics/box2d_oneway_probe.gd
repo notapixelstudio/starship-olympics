@@ -49,4 +49,5 @@ func _on_physics_frame() -> void:
 		print("up y=%.1f passed=%s" % [up.position.y, up.position.y < 300])
 		print("right x=%.1f blocked=%s" % [right.position.x, right.position.x < 700])
 		print("left x=%.1f passed=%s" % [left.position.x, left.position.x < 700])
-		quit()
+		var ok := down.position.y < 300 and up.position.y < 300 and right.position.x < 700 and left.position.x < 700
+		quit(0 if ok else 1)
