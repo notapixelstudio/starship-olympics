@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cq3h3ir2veqao"]
 
 [ext_resource type="Script" uid="uid://b2agl7t5spgep" path="res://godot4/effects/Explosion.gd" id="1_5avkm"]
+[ext_resource type="PackedScene" uid="uid://bcakcta8vuaqy" path="res://godot4/effects/RepealField.tscn" id="6_3hvqt"]
 [ext_resource type="AudioStream" uid="uid://dl1x646cjvko5" path="res://assets/audio/FX/zapsplat_explosion_detonate_blast_designed_001_89753.mp3" id="7_1iqxk"]
 [ext_resource type="AudioStream" uid="uid://dhtshubrcru4n" path="res://assets/audio/FX/sfx_exp_medium1.wav" id="8_3hvqt"]
 [ext_resource type="Texture2D" uid="uid://c4dqed4qk351s" path="res://assets/sprites/environments/explosion_halo.png" id="8_bap5n"]
@@ -96,9 +97,6 @@ _data = {
 [sub_resource type="CircleShape2D" id="3"]
 radius = 20.0
 
-[sub_resource type="CircleShape2D" id="4"]
-radius = 240.0
-
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vtgxc"]
 random_pitch = 1.122462
 streams_count = 5
@@ -149,17 +147,12 @@ autoplay = &"Wow"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=677856518]
 shape = SubResource("3")
 
+[node name="RepealField" parent="." unique_id=266057175 instance=ExtResource("6_3hvqt")]
+
 [node name="GravitonField" parent="." unique_id=1227795617 instance=ExtResource("12_lhu6q")]
 visible = false
 enabled = true
 gravity = -1024.0
-
-[node name="RepealField" type="Area2D" parent="." unique_id=1419671507]
-collision_layer = 65536
-collision_mask = 10757
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RepealField" unique_id=1717515942]
-shape = SubResource("4")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=827451556]
 unique_name_in_owner = true
@@ -169,4 +162,3 @@ volume_db = -4.0
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="body_entered" from="RepealField" to="." method="_on_RepealField_body_entered"]

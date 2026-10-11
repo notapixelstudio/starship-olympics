@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://c44lusmm6vmy7" path="res://assets/sprites/weapons/explosion_spikes.png" id="10"]
 [ext_resource type="PackedScene" uid="uid://cd12x0fubc17m" path="res://godot4/actors/ships/GravitonField.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://bcakcta8vuaqy" path="res://godot4/effects/RepealField.tscn" id="11_0kc56"]
 [ext_resource type="PackedScene" uid="uid://c8mefsu123qpj" path="res://combat/traits/Strategic.tscn" id="12"]
 [ext_resource type="Script" uid="uid://bpexb6wjfpakj" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" id="15"]
 [ext_resource type="AudioStream" uid="uid://dl1x646cjvko5" path="res://assets/audio/FX/zapsplat_explosion_detonate_blast_designed_001_89753.mp3" id="16"]
@@ -101,9 +102,6 @@ _data = {
 [sub_resource type="CircleShape2D" id="3"]
 radius = 20.0
 
-[sub_resource type="CircleShape2D" id="4"]
-radius = 240.0
-
 [node name="Explosion" type="Area2D" unique_id=1398061882 groups=["slomo"]]
 collision_layer = 8
 collision_mask = 11847
@@ -164,15 +162,7 @@ visible = false
 enabled = true
 gravity = -1024.0
 
-[node name="RepealField" type="Area2D" parent="." unique_id=1514263465]
-collision_layer = 65536
-collision_mask = 10757
-
-[node name="Entity" type="Node" parent="RepealField" unique_id=1371353809]
-script = ExtResource("2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RepealField" unique_id=68670388]
-shape = SubResource("4")
+[node name="RepealField" parent="." unique_id=266057175 instance=ExtResource("11_0kc56")]
 
 [node name="RandomAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=243599406]
 volume_db = -4.0

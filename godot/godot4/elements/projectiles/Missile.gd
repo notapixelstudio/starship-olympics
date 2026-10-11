@@ -88,7 +88,7 @@ func attempt_pursue(target: Node2D) -> void:
 func _can_pursue() -> bool:
 	return _homing and _current_target and is_instance_valid(_current_target) and not _current_target.is_queued_for_deletion()
 	
-func _clear_target() -> void:
+func clear_target() -> void:
 	_current_target = null
 	%LifeTimer.set_paused(false)
 	%AnimationPlayer.stop()
@@ -96,7 +96,7 @@ func _clear_target() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if not _can_pursue():
-		_clear_target()
+		clear_target()
 		return
 		
 	_thrust = min(50.0, _thrust+0.8) # increase speed when pursuing

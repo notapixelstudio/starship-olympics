@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bcakcta8vuaqy"]
+
+[ext_resource type="Script" uid="uid://b78cq2cjkgagj" path="res://godot4/effects/RepealField.gd" id="1_ar3mx"]
+
+[sub_resource type="CircleShape2D" id="4"]
+radius = 300.0
+
+[node name="RepealField" type="Area2D" unique_id=266057175]
+collision_layer = 65536
+collision_mask = 10757
+script = ExtResource("1_ar3mx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=983215297]
+unique_name_in_owner = true
+shape = SubResource("4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

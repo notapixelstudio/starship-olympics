@@ -82,7 +82,7 @@ func _handle_ship_vs_other(ship:Ship, collider, tag:String='') -> void:
 		
 	# Explosions kill instantly
 	if collider is Explosion and tag == 'hurt':
-		ship.kill(collider)
+		ship.kill(collider.get_player())
 		return # collision handled
 		
 	# Missiles follow a ship when they detect one
@@ -123,6 +123,11 @@ func _handle_missile_vs_other(missile:Missile, collider, tag:String='') -> void:
 	if collider is Missile and missile.get_player().get_team() != collider.get_player().get_team():
 		collider.detonate()
 		missile.detonate()
+		return # collision handled
+		
+	# Missiles lose their target if they encounter a repeal field
+	if collider is RepealField:
+		missile.clear_target()
 		return # collision handled
 		
 func _handle_ball_vs_other(ball:Ball, collider, tag:String='') -> void:
