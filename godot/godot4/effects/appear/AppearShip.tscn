@@ -1,0 +1,200 @@
+[gd_scene format=3 uid="uid://dojbm3kgboyaw"]
+
+[ext_resource type="PackedScene" uid="uid://40eew2usts1v" path="res://godot4/effects/appear/Appear.tscn" id="1_hh4pf"]
+[ext_resource type="Script" uid="uid://bo8udet5123s8" path="res://godot4/effects/appear/AppearShip.gd" id="2_vdjnc"]
+[ext_resource type="Texture2D" uid="uid://5bdkckp4a6ig" path="res://assets/sprites/environments/diamond_outline.png" id="2_yuxqw"]
+[ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="3_vdjnc"]
+[ext_resource type="PackedScene" uid="uid://cd12x0fubc17m" path="res://godot4/actors/ships/GravitonField.tscn" id="4_ac40a"]
+[ext_resource type="PackedScene" uid="uid://bcakcta8vuaqy" path="res://godot4/effects/RepealField.tscn" id="5_yuxqw"]
+
+[sub_resource type="Animation" id="Animation_d3dju"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GravitonField:gravity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Area2D:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_irtfk"]
+resource_name = "default"
+length = 2.0
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_make_collectable"
+}, {
+"args": [],
+"method": &"_done"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.55),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, -96), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GravitonField:gravity")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 0),
+"update": 0,
+"values": [1.0, 52.0, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Area2D:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_byjas"]
+_data = {
+&"RESET": SubResource("Animation_d3dju"),
+&"default": SubResource("Animation_irtfk")
+}
+
+[node name="AppearShip" unique_id=2141965913 instance=ExtResource("1_hh4pf")]
+script = ExtResource("2_vdjnc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1379245671]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -64)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_yuxqw")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D" index="0" unique_id=321360238]
+energy = 20.0
+range_item_cull_mask = 2
+texture = ExtResource("3_vdjnc")
+texture_scale = 2.0
+
+[node name="SoftPointLight2D" type="PointLight2D" parent="Sprite2D" index="1" unique_id=35395461]
+range_item_cull_mask = 4
+texture = ExtResource("3_vdjnc")
+texture_scale = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1700791179]
+libraries/ = SubResource("AnimationLibrary_byjas")
+autoplay = &"default"
+
+[node name="GravitonField" parent="." index="2" unique_id=550967421 instance=ExtResource("4_ac40a")]
+enabled = true
+gravity = 1.0
+center = Vector3(0, 0, -500)
+influence_radius = 250.0
+
+[node name="Area2D" parent="." index="3" unique_id=1286888587]
+monitoring = false
+
+[node name="RepealField" parent="." index="4" unique_id=266057175 instance=ExtResource("5_yuxqw")]
+unique_name_in_owner = true
+radius = 400.0

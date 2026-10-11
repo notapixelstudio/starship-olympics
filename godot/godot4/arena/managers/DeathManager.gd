@@ -1,5 +1,6 @@
 extends Node
 
+@export var appear_ship_scene : PackedScene
 @export var respawn_from_home_timeout := 1.0
 
 var _player_homes : Dictionary[Player,Home] = {}
@@ -20,4 +21,13 @@ func respawn_ship_from_home(player:Player) -> void:
 	var ship = %ShipFactory.create(player, true) # create enabled ships
 	ship.global_rotation = home.global_rotation
 	ship.global_position = home.global_position
+	
+	var appear = appear_ship_scene.instantiate()
+	appear.set_player(player)
+	appear.set_texture(player.get_ship_image())
+	appear.global_rotation = home.global_rotation
+	appear.global_position = home.global_position
+	%Battlefield.add_child(appear)
+	await appear.done
+	
 	%Battlefield.add_child(ship)

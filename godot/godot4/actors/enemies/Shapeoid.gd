@@ -37,7 +37,7 @@ func _on_hurt_area_2d_body_entered(body: Node2D) -> void:
 func hit(hitter=null) -> void:
 	pass
 
-func die(killer=null):
+func kill(killer=null):
 	if killer != null:
 		Events.score.emit(1, killer, global_position) # FIXME choose if this is actually the default scoring, or if killing does not generally score points
 	queue_free()

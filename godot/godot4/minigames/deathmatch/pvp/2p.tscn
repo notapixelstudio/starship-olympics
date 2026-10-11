@@ -14,8 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://c4dit8b535l8" path="res://combat/levels/background/green/pylon.png" id="8_mbbak"]
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="9_q6fwx"]
 [ext_resource type="Texture2D" uid="uid://btr2iabavi15p" path="res://assets/sprites/environments/bones_deco.png" id="10_peao6"]
+[ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/collectables/Diamond.tscn" id="15_2wotk"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ukru6"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_2wotk"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -218,5 +219,20 @@ position = Vector2(0, 32)
 scale = Vector2(5, 5)
 texture = ExtResource("10_peao6")
 
+[node name="Diamond" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="16" unique_id=224581267 instance=ExtResource("15_2wotk")]
+position = Vector2(1150, -650)
+
+[node name="Diamond2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="17" unique_id=1887857831 instance=ExtResource("15_2wotk")]
+position = Vector2(1300, -650)
+
+[node name="Diamond3" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="18" unique_id=842579383 instance=ExtResource("15_2wotk")]
+position = Vector2(1450, -650)
+
+[node name="Diamond4" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="19" unique_id=1884959596 instance=ExtResource("15_2wotk")]
+position = Vector2(1000, -650)
+
+[node name="Diamond5" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="20" unique_id=1854556290 instance=ExtResource("15_2wotk")]
+position = Vector2(850, -650)
+
 [node name="Navigation" parent="." index="7" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_ukru6")
+navigation_polygon = SubResource("NavigationPolygon_2wotk")

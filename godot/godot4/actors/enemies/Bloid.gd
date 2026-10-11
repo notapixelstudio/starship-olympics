@@ -18,12 +18,12 @@ func _physics_process(delta: float) -> void:
 
 func hit(hitter=null):
 	if hitter == null:
-		die()
+		kill()
 		return
 		
 	if hitter.has_method('get_player'):
-		die(hitter.get_player())
+		kill(hitter.get_player())
 		return
 		
-	die()
+	kill()
 	
