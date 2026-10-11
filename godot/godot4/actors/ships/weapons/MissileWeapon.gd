@@ -23,8 +23,9 @@ func fire(source, charge:float):
 	var impulse := charge * charge_multiplier + boost
 	missile.global_position = global_position + Vector2(offset, 0).rotated(global_rotation + PI)
 	missile.set_graphics_rotation(global_rotation + PI)
-	missile.apply_central_impulse(Vector2(impulse, 0).rotated(global_rotation + PI))
 	missile.set_player(source.get_player())
 	missile.set_homing(charge >= min_charge_for_homing_missile)
-	_ctx.spawn_request.emit(missile)
+	_ctx.spawn_request.emit(missile, func(o):
+		o.apply_central_impulse(Vector2(impulse, 0).rotated(global_rotation + PI))
+	)
 	SoundEffects.play(%FireSFX)
