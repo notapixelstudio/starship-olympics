@@ -32,7 +32,8 @@ func _handle_ship_vs_ship(ship1:Ship, ship2:Ship, tag:String='') -> void:
 	if ship1.get_instance_id() < ship2.get_instance_id():
 		return # collision handled
 		
-	ship1.swap_cargo(ship2)
+	if tag != 'detect':
+		ship1.swap_cargo(ship2)
 	
 func _handle_ship_vs_other(ship:Ship, collider, tag:String='') -> void:
 	# any touchable object by duck typing is touched
