@@ -5,11 +5,49 @@
 [ext_resource type="Texture2D" uid="uid://ds1faooeg1sx" path="res://assets/sprites/enemies/bloid.png" id="3_gdux4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_afj3y"]
-bounce = 1.2
+bounce = 1.1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gdux4"]
 resource_local_to_scene = true
 radius = 70.0
+
+[sub_resource type="Animation" id="Animation_gdux4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 0.9)]
+}
+
+[sub_resource type="Animation" id="Animation_wse2r"]
+resource_name = "default"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(0.9, 0.9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hp2ws"]
+_data = {
+&"RESET": SubResource("Animation_gdux4"),
+&"default": SubResource("Animation_wse2r")
+}
 
 [node name="Bloid" unique_id=1630210331 instance=ExtResource("1_8o46o")]
 physics_material_override = SubResource("PhysicsMaterial_afj3y")
@@ -19,4 +57,9 @@ script = ExtResource("2_63srp")
 shape = SubResource("CircleShape2D_gdux4")
 
 [node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1974345998) index="0" unique_id=587249607]
+scale = Vector2(1.1, 0.9)
 texture = ExtResource("3_gdux4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=402751719]
+libraries/ = SubResource("AnimationLibrary_hp2ws")
+autoplay = &"default"
