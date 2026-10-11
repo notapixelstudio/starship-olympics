@@ -40,9 +40,17 @@ func update_collision_polygon() -> void:
 			var clipped = Geometry2D.clip_polygons(offset_results[0], _polygon)
 			if len(clipped) > 0:
 				var internal = clipped[0] + PackedVector2Array([clipped[1][-1]]) + clipped[1] + PackedVector2Array([clipped[0][-1]])
-				%CollisionPolygon2D.set_polygon(internal)
+				_set_collision_polygon(internal)
 	else:
-		%CollisionPolygon2D.set_polygon(_polygon)
+		_set_collision_polygon(_polygon)
+
+# workaround for rapier support: disable and re-enable the collision polygon to force the engine
+# this is needed for animated walls for example
+func _set_collision_polygon(v: PackedVector2Array) -> void:
+	var was_disabled = %CollisionPolygon2D.disabled
+	%CollisionPolygon2D.disabled = true
+	%CollisionPolygon2D.set_polygon(v)
+	%CollisionPolygon2D.disabled = was_disabled
 
 func update_navigation() -> void:
 	if not hollow:
