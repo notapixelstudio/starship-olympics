@@ -1,6 +1,6 @@
 class_name RepealField extends Area2D
 
-@export var radius := 240.0 : set = set_radius
+@export var radius := 350.0 : set = set_radius
 @onready var _ctx = ArenaScope.get_scope(self)
 
 func set_radius(v:float) -> void:
