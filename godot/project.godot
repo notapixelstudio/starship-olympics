@@ -105,7 +105,7 @@ naming/script_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AutoSignals/plugin.cfg", "res://addons/InstanceDock/plugin.cfg", "res://addons/Scope/plugin.cfg", "res://addons/debugToolbox/plugin.cfg", "res://addons/godot-box2d/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/traits/plugin.cfg", "res://addons/vshapes/plugin.cfg", "res://addons/yard/plugin.cfg")
+enabled=PackedStringArray("res://addons/AutoSignals/plugin.cfg", "res://addons/InstanceDock/plugin.cfg", "res://addons/Scope/plugin.cfg", "res://addons/debugToolbox/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/randomAudioStreamPlayer/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/traits/plugin.cfg", "res://addons/vshapes/plugin.cfg", "res://addons/yard/plugin.cfg")
 
 [global]
 
@@ -684,7 +684,7 @@ file_logging/enable_file_logging=true
 
 2d/run_on_separate_thread=true
 common/physics_jitter_fix=0.0
-2d/physics_engine="Box2D"
+2d/physics_engine="Rapier2D"
 2d/default_gravity=0
 common/physics_interpolation=true
 2d/run_on_thread=2

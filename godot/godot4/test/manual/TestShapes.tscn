@@ -13,6 +13,24 @@
 [ext_resource type="Script" uid="uid://dwa5kst63hc3b" path="res://addons/vshapes/VRect.gd" id="12_gjdva"]
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="13_xy4ub"]
 
+[sub_resource type="Curve2D" id="Curve2D_rwwx4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2800, -1450, 0, 0, 0, 0, -2300, -1200, 0, 0, 0, 0, -2850, -800, 0, 0, 0, 0, -3350, -1050)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_hgx8i"]
+_data = {
+"points": PackedVector2Array(-1424.48, -68.9535, 1424.48, 68.9535, -3300, -750, 0, 0, 0, 0, -2700, -350, 0, 0, 0, 0, -2700, 450, 396.903, -216.951, -396.903, 216.951, -3300, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_7jq5a"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -3450, 300, 0, 0, 0, 0, -2700, 800, 0, 0, 0, 0, -2750, 1350, 0, 0, 0, 0, -3300, 1200, 0, 0, 0, 0, -3150, 800, 0, 0, 0, 0, -3800, 550)
+}
+point_count = 6
+
 [sub_resource type="GDScript" id="GDScript_0rj7w"]
 script/source = "extends SOLog
 
@@ -25,53 +43,32 @@ func _on_sth_collected(collector, collectee):
 	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
 "
 
-[sub_resource type="Curve2D" id="Curve2D_b7fw0"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2800, -1450, 0, 0, 0, 0, -2300, -1200, 0, 0, 0, 0, -2850, -800, 0, 0, 0, 0, -3350, -1050)
-}
-point_count = 4
+[node name="TestChamber" unique_id=1613339662 instance=ExtResource("1_2o1p3")]
 
-[sub_resource type="Curve2D" id="Curve2D_ggcs2"]
-_data = {
-"points": PackedVector2Array(-1424.48, -68.9535, 1424.48, 68.9535, -3300, -750, 0, 0, 0, 0, -2700, -350, 0, 0, 0, 0, -2700, 450, 396.903, -216.951, -396.903, 216.951, -3300, 0)
-}
-point_count = 4
-
-[sub_resource type="Curve2D" id="Curve2D_0mvdl"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -3450, 300, 0, 0, 0, 0, -2700, 800, 0, 0, 0, 0, -2750, 1350, 0, 0, 0, 0, -3300, 1200, 0, 0, 0, 0, -3150, 800, 0, 0, 0, 0, -3800, 550)
-}
-point_count = 6
-
-[node name="TestChamber" instance=ExtResource("1_2o1p3")]
-
-[node name="TestChamberLog" parent="." index="4"]
-script = SubResource("GDScript_0rj7w")
-
-[node name="Ship" parent="." index="7" instance=ExtResource("2_0xx8t")]
+[node name="Ship" parent="." index="7" unique_id=130845522 instance=ExtResource("2_0xx8t")]
 unique_name_in_owner = true
 position = Vector2(-794, 3)
 
-[node name="Wall" parent="." index="8" instance=ExtResource("4_l5458")]
+[node name="Wall" parent="." index="8" unique_id=1499681126 instance=ExtResource("4_l5458")]
 position = Vector2(750, -800)
 
-[node name="VBeveledRect" type="Node" parent="Wall" index="4"]
+[node name="VBeveledRect" type="Node" parent="Wall" index="4" unique_id=1704058813]
 script = ExtResource("5_kg646")
 width = 400.0
 
-[node name="Wall10" parent="." index="9" instance=ExtResource("4_l5458")]
+[node name="Wall10" parent="." index="9" unique_id=1660001749 instance=ExtResource("4_l5458")]
 position = Vector2(-800, -1250)
 
-[node name="VRoundedRect" type="Node" parent="Wall10" index="4"]
+[node name="VRoundedRect" type="Node" parent="Wall10" index="4" unique_id=1276698736]
 script = ExtResource("6_8jdyk")
 width = 600.0
 height = 300.0
 radius = 100.0
 
-[node name="Wall2" parent="." index="10" instance=ExtResource("4_l5458")]
+[node name="Wall2" parent="." index="10" unique_id=283506025 instance=ExtResource("4_l5458")]
 position = Vector2(750, 300)
 
-[node name="VMultiBeveledRect" type="Node" parent="Wall2" index="4"]
+[node name="VMultiBeveledRect" type="Node" parent="Wall2" index="4" unique_id=1270126792]
 script = ExtResource("7_iwp2v")
 width = 400.0
 height = 400.0
@@ -79,43 +76,43 @@ bevel_nw = 0.0
 bevel_ne = 100.0
 bevel_sw = 150.0
 
-[node name="Wall3" parent="." index="11" instance=ExtResource("4_l5458")]
+[node name="Wall3" parent="." index="11" unique_id=1525153075 instance=ExtResource("4_l5458")]
 position = Vector2(750, 200)
 
-[node name="VCustomShape" type="Path2D" parent="Wall3" index="4"]
-curve = SubResource("Curve2D_b7fw0")
+[node name="VCustomShape" type="Path2D" parent="Wall3" index="4" unique_id=477839072]
+curve = SubResource("Curve2D_rwwx4")
 script = ExtResource("8_k5t4d")
 
-[node name="Wall4" parent="." index="12" instance=ExtResource("4_l5458")]
+[node name="Wall4" parent="." index="12" unique_id=382973558 instance=ExtResource("4_l5458")]
 position = Vector2(750, 300)
 
-[node name="VCustomShape" type="Path2D" parent="Wall4" index="4"]
-curve = SubResource("Curve2D_ggcs2")
+[node name="VCustomShape" type="Path2D" parent="Wall4" index="4" unique_id=939748326]
+curve = SubResource("Curve2D_hgx8i")
 script = ExtResource("8_k5t4d")
 
-[node name="Wall11" parent="." index="13" instance=ExtResource("4_l5458")]
+[node name="Wall11" parent="." index="13" unique_id=723896969 instance=ExtResource("4_l5458")]
 position = Vector2(750, 300)
 
-[node name="VCustomShape" type="Path2D" parent="Wall11" index="4"]
-curve = SubResource("Curve2D_0mvdl")
+[node name="VCustomShape" type="Path2D" parent="Wall11" index="4" unique_id=1319319433]
+curve = SubResource("Curve2D_7jq5a")
 script = ExtResource("8_k5t4d")
 
-[node name="Wall5" parent="." index="14" instance=ExtResource("4_l5458")]
+[node name="Wall5" parent="." index="14" unique_id=1552373543 instance=ExtResource("4_l5458")]
 position = Vector2(1900, -800)
 
-[node name="VCircle" type="Node" parent="Wall5" index="4"]
+[node name="VCircle" type="Node" parent="Wall5" index="4" unique_id=1392336110]
 script = ExtResource("9_t6qou")
 
-[node name="Wall6" parent="." index="15" instance=ExtResource("4_l5458")]
+[node name="Wall6" parent="." index="15" unique_id=782755514 instance=ExtResource("4_l5458")]
 position = Vector2(1900, 0)
 
-[node name="VEllipse" type="Node" parent="Wall6" index="4"]
+[node name="VEllipse" type="Node" parent="Wall6" index="4" unique_id=1430942596]
 script = ExtResource("10_yba5m")
 
-[node name="Wall7" parent="." index="16" instance=ExtResource("4_l5458")]
+[node name="Wall7" parent="." index="16" unique_id=1374777179 instance=ExtResource("4_l5458")]
 position = Vector2(1900, 850)
 
-[node name="VMultiRoundedRect" type="Node" parent="Wall7" index="4"]
+[node name="VMultiRoundedRect" type="Node" parent="Wall7" index="4" unique_id=1324307659]
 script = ExtResource("11_ii6u5")
 width = 400.0
 height = 300.0
@@ -123,17 +120,20 @@ radius_nw = 200.0
 radius_sw = 0.0
 radius_se = 100.0
 
-[node name="Wall8" parent="." index="17" instance=ExtResource("4_l5458")]
+[node name="Wall8" parent="." index="17" unique_id=252989566 instance=ExtResource("4_l5458")]
 position = Vector2(250, 950)
 
-[node name="VRect" type="Node" parent="Wall8" index="4"]
+[node name="VRect" type="Node" parent="Wall8" index="4" unique_id=1332648050]
 script = ExtResource("12_gjdva")
 width = 400.0
 
-[node name="Wall9" parent="." index="18" instance=ExtResource("4_l5458")]
+[node name="Wall9" parent="." index="18" unique_id=1561422924 instance=ExtResource("4_l5458")]
 position = Vector2(-1550, 1100)
 
-[node name="VRegularPolygon" type="Node" parent="Wall9" index="4"]
+[node name="VRegularPolygon" type="Node" parent="Wall9" index="4" unique_id=595251038]
 script = ExtResource("13_xy4ub")
 radius = 200.0
 sides = 7
+
+[node name="TestChamberLog" parent="." index="20" unique_id=750176929]
+script = SubResource("GDScript_0rj7w")
