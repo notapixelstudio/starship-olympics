@@ -3,7 +3,7 @@ class_name MissileWeapon extends Weapon
 @export var missile_scene : PackedScene
 @export var offset := 50.0
 @export var boost := 100
-@export var charge_multiplier := 4500
+@export var charge_multiplier := 9000
 @export var min_charge_for_homing_missile := 0.3
 
 @onready var _ctx := ArenaScope.get_scope(self)

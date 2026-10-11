@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="9_q6fwx"]
 [ext_resource type="Texture2D" uid="uid://btr2iabavi15p" path="res://assets/sprites/environments/bones_deco.png" id="10_peao6"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_2wotk"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ikqye"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -219,4 +219,4 @@ scale = Vector2(5, 5)
 texture = ExtResource("10_peao6")
 
 [node name="Navigation" parent="." index="7" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_2wotk")
+navigation_polygon = SubResource("NavigationPolygon_ikqye")
