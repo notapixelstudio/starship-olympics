@@ -28,10 +28,11 @@ kick_impulse_strength_multiplier = 5500.0
 [node name="MotionAutoTrail" parent="." index="3" unique_id=1467177572]
 width = 160.0
 gradient = SubResource("Gradient_6r1cw")
+active = true
 
 [node name="TapArea" type="Area2D" parent="." index="4" unique_id=2111933727]
 unique_name_in_owner = true
-collision_layer = 0
+collision_layer = 33554432
 collision_mask = 2
 input_pickable = false
 script = SubResource("GDScript_cdkl3")
