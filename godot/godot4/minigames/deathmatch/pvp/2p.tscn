@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c4dit8b535l8" path="res://combat/levels/background/green/pylon.png" id="8_mbbak"]
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="9_q6fwx"]
 [ext_resource type="Texture2D" uid="uid://btr2iabavi15p" path="res://assets/sprites/environments/bones_deco.png" id="10_peao6"]
+[ext_resource type="Script" uid="uid://dwa5kst63hc3b" path="res://addons/vshapes/VRect.gd" id="14_2wotk"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ikqye"]
 resource_local_to_scene = true
@@ -35,10 +36,10 @@ active_modifiers = Array[String]([])
 zoom = Vector2(0.25, 0.25)
 
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=775116436 instance=ExtResource("2_w3bco")]
-position = Vector2(-1200, 800)
+position = Vector2(-1200, 750)
 
 [node name="P2" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="1" unique_id=2052543353 instance=ExtResource("2_w3bco")]
-position = Vector2(1200, -800)
+position = Vector2(1200, -750)
 rotation = 3.14159
 
 [node name="OutsideWallShape" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=60210003 node_paths=PackedStringArray("hosts")]
@@ -199,20 +200,24 @@ script = ExtResource("9_q6fwx")
 sides = 4
 
 [node name="Wall16" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="13" unique_id=1784964015 instance=ExtResource("3_kwgf4")]
-position = Vector2(-750, 450)
+position = Vector2(-750, 300)
 
-[node name="VBeveledRect" type="Node" parent="Battlefield/Wall16" index="5" unique_id=416905669]
-script = ExtResource("4_7vi0o")
-height = 700.0
+[node name="VRect" type="Node" parent="Battlefield/Wall16" index="7" unique_id=338069265]
+script = ExtResource("14_2wotk")
+width = 150.0
+height = 600.0
 rotation_degrees = -45.0
+metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
 [node name="Wall15" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="14" unique_id=17889406 instance=ExtResource("3_kwgf4")]
-position = Vector2(750, -450)
+position = Vector2(750, -300)
 
-[node name="VBeveledRect" type="Node" parent="Battlefield/Wall15" index="5" unique_id=724816048]
-script = ExtResource("4_7vi0o")
-height = 700.0
+[node name="VRect" type="Node" parent="Battlefield/Wall15" index="7" unique_id=1250210784]
+script = ExtResource("14_2wotk")
+width = 150.0
+height = 600.0
 rotation_degrees = -45.0
+metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
 [node name="Bones" type="Sprite2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="15" unique_id=1890714155]
 modulate = Color(0.054600004, 0.91, 0.43953004, 0.007843138)

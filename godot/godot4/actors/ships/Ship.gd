@@ -46,7 +46,7 @@ const MIN_FOR_DASH = 0.2 # it was MIN_CHARGE
 const MAX_TAP_CHARGE = 0.3
 const CHARGE_BASE = 250
 const CHARGE_MULTIPLIER = 7000
-const DASH_HANDICAP = 400
+const DASH_HANDICAP = 2000
 var dash_multiplier : float # handled by TerrainManager
 
 

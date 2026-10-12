@@ -52,7 +52,7 @@ func init_grid():
 		grid[y] = []
 		grid[y].resize(h_cells)
 		for x in h_cells:
-			grid[y][x] = Point.new(cell_size * Vector2(x+(0 if type == 'square' else 0.5*((y+1)%2)), y) + offset, Vector2(x, y))
+			grid[y][x] = Point.new(cell_size * Vector2(x+(0 if type == 'square' else 0.5*((y+0)%2)), y) + offset, Vector2(x, y))
 	lines.resize(lines_amount)
 	# Init grid lines
 	# Vertical Rows
@@ -76,7 +76,7 @@ func init_grid():
 			line.width = grid_thickness
 			line.default_color = color
 			for y in v_cells:
-				line.add_point(grid[y][x-(y+1)%2].position)
+				line.add_point(grid[y][x-(y+0)%2].position)
 			lines[h_cells + x] = line
 		
 	if type != 'diagonal':
@@ -133,12 +133,12 @@ func _process(delta):
 		if type == 'square':
 			lines[h_cells + point.index.y].set_point_position(point.index.x, point.position)
 		elif type == 'triangular':
-			var squiggly_y = point.index.x+((int(point.index.y)+1)%2)
+			var squiggly_y = point.index.x+((int(point.index.y)+0)%2)
 			if squiggly_y < h_cells:
 				lines[h_cells + squiggly_y].set_point_position(point.index.y, point.position)
 			lines[h_cells + h_cells + point.index.y].set_point_position(point.index.x, point.position)
 		elif type == 'diagonal':
-			var squiggly_y = point.index.x+((int(point.index.y)+1)%2)
+			var squiggly_y = point.index.x+((int(point.index.y)+0)%2)
 			if squiggly_y < h_cells:
 				lines[h_cells + squiggly_y].set_point_position(point.index.y, point.position)
 		
