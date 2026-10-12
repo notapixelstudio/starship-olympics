@@ -15,18 +15,26 @@ unique_name_in_owner = true
 visible = false
 polygon = PackedVector2Array(-1500, -1000, 1500, -1000, 1500, 1000, -1500, 1000)
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=54512126]
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1162281729]
 unique_name_in_owner = true
-visible = false
-modulate = Color(1, 1, 1, 0.43137255)
-light_mask = 3
+modulate = Color(0, 0.5519998, 0.69, 0.23529412)
+light_mask = 5
+z_index = -7
+z_as_relative = false
+texture_repeat = 2
+position = Vector2(0, 12)
+texture = ExtResource("2")
+texture_scale = Vector2(0.2, 0.2)
+polygon = PackedVector2Array(-1500, -1000, 1500, -1000, 1500, 1000, -1500, 1000)
+
+[node name="UnderPolygon2D" type="Polygon2D" parent="." unique_id=54512126]
+unique_name_in_owner = true
+modulate = Color(0, 0.5519998, 0.69, 0.078431375)
+light_mask = 5
 z_index = -7
 z_as_relative = false
 texture_repeat = 2
 position = Vector2(0, 32)
-color = Color(0, 0.5519998, 0.69, 1)
-texture = ExtResource("2")
-texture_scale = Vector2(0.2, 0.2)
 polygon = PackedVector2Array(-1500, -1000, 1500, -1000, 1500, 1000, -1500, 1000)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=178035344]
