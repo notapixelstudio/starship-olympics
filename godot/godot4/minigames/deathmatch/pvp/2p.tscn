@@ -55,6 +55,8 @@ hollow = true
 
 [node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=871463570 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("5_mqwfg")]
 unique_name_in_owner = true
+cell_size = Vector2(300, 150)
+type = "diagonal"
 init_parametric_shape = NodePath("../OutsideWallShape")
 
 [node name="Decoration" type="Node2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1652476236]
