@@ -4,6 +4,8 @@ extends Node2D
 @export var dy := 32.0 : set = set_dy
 #@export var frames_wait := 3
 #@export var enabled : bool = true
+@export_enum('square', 'diagonal', 'triangular') var type = "square"
+
 @export var init_parametric_shape : VParametricShape
 @export var init_custom_shape : VCustomShape
 
@@ -34,6 +36,7 @@ func _ready():
 	elif init_custom_shape:
 		await init_custom_shape.updated
 		grid.size = init_custom_shape.get_extents()
+	grid.type = type
 	grid.init_grid()
 	
 	#mask.set_process(enabled)

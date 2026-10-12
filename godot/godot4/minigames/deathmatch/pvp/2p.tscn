@@ -44,9 +44,9 @@ rotation = 3.14159
 [node name="OutsideWallShape" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=60210003 node_paths=PackedStringArray("hosts")]
 unique_name_in_owner = true
 script = ExtResource("4_7vi0o")
-width = 3200.0
-height = 2400.0
-bevel = 360.0
+width = 3136.0
+height = 2240.0
+bevel = 448.0
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid"), NodePath("../../Navigation")]
 
 [node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=1626168514 instance=ExtResource("3_kwgf4")]
@@ -55,6 +55,8 @@ hollow = true
 
 [node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=871463570 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("5_mqwfg")]
 unique_name_in_owner = true
+cell_size = Vector2(224, 112)
+type = "diagonal"
 init_parametric_shape = NodePath("../OutsideWallShape")
 
 [node name="Decoration" type="Node2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1652476236]
@@ -110,6 +112,7 @@ scale = Vector2(1, -1)
 texture = ExtResource("5_tgj1y")
 
 [node name="DecorationOverlay" type="Node2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1138373381]
+visible = false
 z_index = 18
 z_as_relative = false
 script = ExtResource("7_ikqye")
@@ -141,14 +144,14 @@ position = Vector2(400, 1174)
 texture = ExtResource("7_oyreg")
 
 [node name="Wall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=352792922 instance=ExtResource("3_kwgf4")]
-position = Vector2(-1000, -600)
+position = Vector2(-1008, -560)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall" index="5" unique_id=671211067]
 script = ExtResource("9_q6fwx")
 sides = 4
 
 [node name="Wall3" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=2121035695 instance=ExtResource("3_kwgf4")]
-position = Vector2(1000, 600)
+position = Vector2(1008, 560)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall3" index="5" unique_id=1010411366]
 script = ExtResource("9_q6fwx")
@@ -162,21 +165,21 @@ script = ExtResource("9_q6fwx")
 sides = 4
 
 [node name="Wall6" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=2024289682 instance=ExtResource("3_kwgf4")]
-position = Vector2(-400, -1200)
+position = Vector2(-448, -1120)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall6" index="5" unique_id=289000047]
 script = ExtResource("9_q6fwx")
 sides = 4
 
 [node name="Wall7" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=1803667357 instance=ExtResource("3_kwgf4")]
-position = Vector2(-1600, 0)
+position = Vector2(-1568, 0)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall7" index="5" unique_id=520649265]
 script = ExtResource("9_q6fwx")
 sides = 4
 
 [node name="Wall10" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="10" unique_id=1289789502 instance=ExtResource("3_kwgf4")]
-position = Vector2(400, 1200)
+position = Vector2(448, 1120)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall10" index="5" unique_id=44735005]
 script = ExtResource("9_q6fwx")
@@ -190,14 +193,14 @@ script = ExtResource("9_q6fwx")
 sides = 4
 
 [node name="Wall14" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="12" unique_id=1454554797 instance=ExtResource("3_kwgf4")]
-position = Vector2(1600, 0)
+position = Vector2(1568, 0)
 
 [node name="VRegularPolygon" type="Node" parent="Battlefield/Wall14" index="5" unique_id=579174210]
 script = ExtResource("9_q6fwx")
 sides = 4
 
 [node name="Wall16" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="13" unique_id=1784964015 instance=ExtResource("3_kwgf4")]
-position = Vector2(-800, 400)
+position = Vector2(-784, 336)
 
 [node name="VBeveledRect" type="Node" parent="Battlefield/Wall16" index="5" unique_id=416905669]
 script = ExtResource("4_7vi0o")
@@ -205,7 +208,7 @@ height = 700.0
 rotation_degrees = -45.0
 
 [node name="Wall15" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="14" unique_id=17889406 instance=ExtResource("3_kwgf4")]
-position = Vector2(800, -400)
+position = Vector2(784, -336)
 
 [node name="VBeveledRect" type="Node" parent="Battlefield/Wall15" index="5" unique_id=724816048]
 script = ExtResource("4_7vi0o")
