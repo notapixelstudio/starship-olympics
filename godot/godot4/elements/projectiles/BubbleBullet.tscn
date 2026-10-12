@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bb4kd7ebpdm2x"]
+[gd_scene format=3 uid="uid://bb4kd7ebpdm2x"]
 
 [ext_resource type="Script" uid="uid://dkmls3fristu7" path="res://godot4/elements/projectiles/BubbleBullet.gd" id="1_0xyqf"]
 [ext_resource type="PackedScene" uid="uid://cfgy3ee8k825d" path="res://godot4/elements/bubbles/Bubble.tscn" id="2_opikx"]
@@ -19,7 +19,7 @@ radius = 60.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.997753, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Gradient" id="Gradient_f8qs8"]
+[sub_resource type="Gradient" id="Gradient_o8wqu"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
@@ -62,9 +62,9 @@ _data = {
 &"default": SubResource("Animation_yk5pw")
 }
 
-[node name="BubbleBullet" type="RigidBody2D"]
-collision_layer = 4
-collision_mask = 8854
+[node name="BubbleBullet" type="RigidBody2D" unique_id=751534955]
+collision_layer = 134217728
+collision_mask = 134226582
 physics_material_override = SubResource("1")
 lock_rotation = true
 contact_monitor = true
@@ -76,42 +76,41 @@ bubble_scene = ExtResource("2_opikx")
 ship_bubble_scene = ExtResource("2_q74f7")
 bubble_popped_scene = ExtResource("3_wgw47")
 
-[node name="TouchArea2D" type="Area2D" parent="."]
+[node name="TouchArea2D" type="Area2D" parent="." unique_id=1147123058]
 collision_layer = 0
 collision_mask = 2048
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea2D" unique_id=56690795]
 shape = SubResource("2")
 
-[node name="Wrapper" type="Node2D" parent="."]
+[node name="Wrapper" type="Node2D" parent="." unique_id=1854481952]
 
-[node name="LifetimeSprite2D" type="Sprite2D" parent="Wrapper"]
+[node name="LifetimeSprite2D" type="Sprite2D" parent="Wrapper" unique_id=1425523308]
 unique_name_in_owner = true
 modulate = Color(1, 0.709927, 0.993002, 0.839216)
 texture = ExtResource("3_3v5p3")
 
-[node name="Sprite2D" type="Sprite2D" parent="Wrapper"]
+[node name="Sprite2D" type="Sprite2D" parent="Wrapper" unique_id=842741054]
 unique_name_in_owner = true
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_pw1j4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1649716241]
 shape = SubResource("2")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=47110222]
 
-[node name="MotionAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("3_p7n4d")]
+[node name="MotionAutoTrail" parent="." unique_id=2029781365 node_paths=PackedStringArray("host") instance=ExtResource("3_p7n4d")]
 width = 90.0
 width_curve = SubResource("Curve_8sa4a")
-gradient = SubResource("Gradient_f8qs8")
+gradient = SubResource("Gradient_o8wqu")
+active = true
 host = NodePath("..")
 max_age = 0.5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_f08km")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=288014771]
+libraries/ = SubResource("AnimationLibrary_f08km")
+autoplay = &"default"
 
 [connection signal="body_entered" from="." to="." method="_on_ForwardBullet_body_entered"]
 [connection signal="body_entered" from="TouchArea2D" to="." method="_on_touch_area_2d_body_entered"]
