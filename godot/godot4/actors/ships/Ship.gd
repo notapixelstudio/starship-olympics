@@ -173,18 +173,14 @@ func do_tap(charge: float) -> void:
 	Events.tap.emit(self, normalized_charge)
 	
 func _ready():
-	# apparently, setting this from code is necessary in order for box2d to correctly perform "bullet"-style collisions
-	# see https://box2d.org/documentation/md__d_1__git_hub_box2d_docs_dynamics.html
-	# and https://github.com/search?q=repo%3Aappsinacup%2Fgodot-box2d+body_set_ccd_enabled&type=code
-	#PhysicsServer2D.body_set_continuous_collision_detection_mode(get_rid(), PhysicsServer2D.CCD_MODE_CAST_SHAPE)
 	# this is apparently needed for rapier to avoid dashing through another ship (try TestCollisions.tscn)
 	# soft CCD (predictive contacts, px) must cover one tick of max dash (10000 px/s / 60)
 	if PhysicsServer2D.is_class(&"RapierPhysicsServer2D"):
 		ClassDB.class_call_static(&"RapierPhysicsServer2D", &"body_set_extra_param", get_rid(), 2, 200.0) # 2 = BODY_PARAM_SOFT_CCD
 
 # WARNING this does not work with Area2Ds with animated shapes
-#func _physics_process(delta: float) -> void:
-	#_continuous_collision_check()
+func _physics_process(delta: float) -> void:
+	_continuous_collision_check()
 	
 func _process(delta: float) -> void:
 	# Ice trail while charging or drifting
@@ -243,16 +239,16 @@ func _drop_dash_ring_effect() -> void:
 # WARNING collisions picked by this must be distinct from those picked by signals
 # otherwise there will be duplicates
 # WARNING this does not work with Area2Ds with animated shapes
-#func _continuous_collision_check():
-	#var overlappers = %TouchArea.get_overlapping_bodies() + %TouchArea.get_overlapping_areas()
-	#%TerrainManager.process_overlappers(overlappers)
+func _continuous_collision_check():
+	var overlappers = %TouchArea.get_overlapping_bodies() + %TouchArea.get_overlapping_areas()
+	%TerrainManager.process_overlappers(overlappers)
 
 func _on_body_entered(body) -> void:
 	_ctx.collision.emit(self, body)
 
 func _on_touch_area_area_entered(area) -> void:
 	_on_touch_area_entered(area)
-	%TerrainManager.enter_area(area)
+	#%TerrainManager.enter_area(area)
 	
 	# FIXME this is temporary
 	if area is BlockRotationArea:

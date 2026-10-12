@@ -57,3 +57,14 @@ func _switch_terrain(type) -> void:
 func get_current_terrain() -> String:
 	return _current_terrain
 	
+func process_overlappers(overlappers:Array) -> void:
+	var found := false
+	for overlapper in overlappers:
+		if overlapper is Ice:
+			found = true
+			break
+			
+	if found:
+		_switch_terrain(&"ice")
+	else:
+		_switch_terrain(&"default")
