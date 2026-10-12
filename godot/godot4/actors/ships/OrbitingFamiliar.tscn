@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://godot4/actors/ships/Familiar.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://godot4/actors/behaviors/OrbitMovement.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://godot4/actors/ships/behaviors/ProjectileInterception.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://godot4/actors/ships/behaviors/ContactDamage.tscn" id="4"]
+
+[node name="OrbitingFamiliar" instance=ExtResource("1")]
+scale = Vector2(1.2, 1.2)
+
+[node name="OrbitMovement" parent="." index="1" instance=ExtResource("2")]
+
+[node name="ProjectileInterception" parent="." index="2" instance=ExtResource("3")]
+
+[node name="ContactDamage" parent="." index="3" instance=ExtResource("4")]

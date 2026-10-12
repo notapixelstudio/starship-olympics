@@ -1,7 +1,7 @@
 @tool
 class_name ItemType extends Resource
-## What an item is and does: one file per effect. What it does is written in the arena ItemManager, keyed by [member id].
-## Variants (how long it lasts, glass) are [Item]s pointing here.
+## Shared item definition: ItemManager handles code effects; actor_scene declares a composed scene effect.
+## Timed and glass variants point here.
 
 const ITEMS_DIR := "res://godot4/data/items/"
 const PICKUPS_DIR := "res://godot4/elements/collectables/items/"
@@ -26,6 +26,8 @@ item = ExtResource("2_item")
 @export var glow := Color.WHITE
 ## Shown over the holder's ship while the item is in play; leave empty for no badge.
 @export var badge: Texture2D
+## Optional actor scene attached to the holder's ship, one instance per item copy.
+@export var actor_scene: PackedScene
 
 ## Creates an [Item] and a pickup scene for every duration × glass, skipping files that already exist.
 @export_tool_button("Generate variants") var _generate := generate_variants

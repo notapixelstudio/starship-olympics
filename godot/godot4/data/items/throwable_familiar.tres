@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemType" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://godot4/data/items/ItemType.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/species/drones/ship.png" id="2"]
+[ext_resource type="PackedScene" path="res://godot4/actors/ships/ThrowableFamiliar.tscn" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = &"throwable_familiar"
+name = "Throwable Familiar"
+description = "Follows your ship and throws ahead when you tap. It damages enemy ships and returns when a wall or enemy stops it."
+slot = "player"
+texture = ExtResource("2")
+outline_texture = ExtResource("2")
+glow = Color(0.3, 0.8, 1, 0.3)
+actor_scene = ExtResource("3")

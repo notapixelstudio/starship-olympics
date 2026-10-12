@@ -8,7 +8,7 @@ class_name Shapeoid extends RigidBody2D
 var _direction := 0.0
 
 func _move() -> void:
-	set_constant_force(speed*Vector2.RIGHT.rotated(_direction))
+	$ConstantForceMovement.move(_direction, speed)
 
 # appear effect "interface", like treasures
 func create_appear_effect() -> Node2D:

@@ -14,7 +14,6 @@ const HEAD_START := &"starting_points"
 const BASKET_BALL := &"basket_ball"
 const BOUNTY := &"bounty"
 const CHERRY := &"cherry"
-
 const BASKET_BALL_SCENE := preload("res://godot4/elements/cargos/BasketBall.tscn")
 
 # --- Effects: what each item does ---
@@ -79,6 +78,52 @@ func _with_ship(holder: String, action: Callable) -> void:
 
 # --- Item-specific actions ---
 
+## Reconcile item actors on pickup and respawn, including glass copies lost by a twin.
+func _sync_item_actors(ship: Ship) -> void:
+	if not is_instance_valid(ship) or ship.is_queued_for_deletion():
+		return
+	var holder := ship.get_player().get_id()
+	var desired := {}
+	var desired_paths := {}
+	for id in _in_play(holder):
+		var scene: PackedScene = _type(id, holder).actor_scene
+		if scene == null:
+			continue
+		desired[scene] = desired.get(scene, 0) + 1
+		desired_paths[scene.resource_path] = true
+	for child in ship.get_children():
+		if child.has_meta(&"item_actor") and not desired_paths.has(child.scene_file_path):
+			ship.remove_child(child)
+			child.queue_free()
+	for scene in desired:
+		var count: int = desired[scene]
+		var actors := ship.get_children().filter(func(child): return child.scene_file_path == scene.resource_path)
+		while actors.size() > count:
+			var actor: Node = actors.pop_back()
+			ship.remove_child(actor)
+			actor.queue_free()
+		while actors.size() < count:
+			var actor := scene.instantiate() as Node2D
+			actor.set_meta(&"item_actor", true)
+			actors.append(actor)
+		for i in actors.size():
+			_configure_item_actor(actors[i], ship, scene, i, count, null if i == 0 else actors[i - 1])
+			if actors[i].get_parent() == null:
+				ship.add_child(actors[i])
+
+func _configure_item_actor(actor: Node2D, ship: Ship, scene: PackedScene, index: int, count: int, previous: Node2D) -> void:
+	actor.modulate = ship.get_color()
+	if actor is Familiar:
+		actor.configure(ship, scene, index, count, previous as Familiar)
+		return
+	for child in actor.get_children():
+		if child is ActorBehavior:
+			child.configure(actor, ship)
+
+func _refresh_item_actors(holder: String) -> void:
+	for ship in _ships(holder):
+		_sync_item_actors(ship)
+
 func _load_ball(ship: Ship) -> void:
 	var ball := BASKET_BALL_SCENE.instantiate() as Cargo
 	ball._self_scene = BASKET_BALL_SCENE # a Cargo packs itself in _ready, but this one never enters the tree
@@ -118,6 +163,7 @@ func _on_ship_down(ship: Ship) -> void:
 	if session == null:
 		return
 	session.break_glass.call_deferred(ship.get_player().get_id()) # after the items' own reactions to this hit
+	_refresh_item_actors.call_deferred(ship.get_player().get_id())
 
 ## Applies every carried copy. [Arena] calls this once its teams are set up.
 ## TODO: This currently works ONLY with players and not with TEAMs 
@@ -138,6 +184,7 @@ func _start(now: Array, before: Array, holder: String) -> void:
 			effects[id].call(holder)
 	for ship in _ships(holder):
 		_show_badges(ship)
+		_sync_item_actors.call_deferred(ship)
 
 ## One id per copy [param holder] carries, complete sets merged.
 func _in_play(holder: String) -> Array:
@@ -171,6 +218,7 @@ func _on_battlefield_child_entered(node: Node) -> void:
 			action.call(node)
 		_waiting_for_ship.erase(node.get_player().get_id())
 		_show_badges(node)
+		_sync_item_actors.call_deferred(node)
 
 func _print_carried() -> void:
 	var session := _session()

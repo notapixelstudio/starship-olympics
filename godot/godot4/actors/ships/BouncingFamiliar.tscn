@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://godot4/actors/ships/Familiar.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://godot4/actors/ships/behaviors/BounceMovement.tscn" id="2"]
+
+[node name="BouncingFamiliar" instance=ExtResource("1")]
+
+[node name="BounceMovement" parent="." instance=ExtResource("2")]

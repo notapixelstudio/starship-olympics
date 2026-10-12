@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="2_58wa3"]
 [ext_resource type="PackedScene" uid="uid://bhygc2xfw2jei" path="res://godot4/traits/Target.tscn" id="2_atihj"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="6_n6qrj"]
+[ext_resource type="PackedScene" path="res://godot4/actors/behaviors/TurretFiring.tscn" id="7_firing"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_atihj"]
 radius = 100.0
@@ -58,10 +59,8 @@ shape = SubResource("CircleShape2D_atihj")
 
 [node name="Waiter" parent="." unique_id=640072869 instance=ExtResource("2_58wa3")]
 
-[node name="Timer" type="Timer" parent="." unique_id=1231913852]
+[node name="TurretFiring" parent="." index="3" instance=ExtResource("7_firing")]
 unique_name_in_owner = true
-process_callback = 0
-one_shot = true
 
 [node name="Weapons" type="Node2D" parent="." unique_id=1434707921]
 unique_name_in_owner = true
@@ -97,5 +96,3 @@ theme_override_font_sizes/font_size = 96
 text = "!"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

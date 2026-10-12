@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://mmwysrspo8he" path="res://assets/sprites/alchemy/circle.png" id="2_7g54s"]
 [ext_resource type="PackedScene" uid="uid://bkt3uw0ui0kxk" path="res://godot4/effects/appear/AppearDefault.tscn" id="2_co256"]
 [ext_resource type="PackedScene" uid="uid://bhygc2xfw2jei" path="res://godot4/traits/Target.tscn" id="3_co256"]
+[ext_resource type="PackedScene" path="res://godot4/actors/behaviors/ConstantForceMovement.tscn" id="4_force"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_03e7b"]
 resource_local_to_scene = true
@@ -26,6 +27,8 @@ script = ExtResource("1_175e5")
 appear_scene = ExtResource("2_co256")
 
 [node name="Target" parent="." unique_id=1351776284 instance=ExtResource("3_co256")]
+
+[node name="ConstantForceMovement" parent="." instance=ExtResource("4_force")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=825157555]
 shape = SubResource("CircleShape2D_03e7b")

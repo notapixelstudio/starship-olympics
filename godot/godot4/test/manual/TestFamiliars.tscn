@@ -1,0 +1,275 @@
+[gd_scene format=3 uid="uid://mjhbyjmqf4ck"]
+
+[ext_resource type="PackedScene" uid="uid://bybjdb2lji0hp" path="res://godot4/minigames/deathmatch/pvp/2p.tscn" id="1_arena"]
+[ext_resource type="PackedScene" uid="uid://bkvs83hnc26an" path="res://godot4/actors/brains/CPUBrain.tscn" id="2_8brgy"]
+[ext_resource type="PackedScene" path="res://godot4/elements/collectables/items/orbiting_familiar/orbiting_familiar_run.tscn" id="2_guardian"]
+[ext_resource type="PackedScene" path="res://godot4/elements/collectables/items/orbiting_familiar/orbiting_familiar_run_glass.tscn" id="2_guardian_glass"]
+[ext_resource type="PackedScene" path="res://godot4/elements/collectables/items/follower_familiar/follower_familiar_run.tscn" id="3_follower"]
+[ext_resource type="PackedScene" path="res://godot4/elements/collectables/items/follower_familiar/follower_familiar_run_glass.tscn" id="3_follower_glass"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="3_nxmeh"]
+[ext_resource type="PackedScene" path="res://godot4/elements/collectables/items/diamond_familiar/diamond_familiar_run.tscn" id="4_diamond"]
+[ext_resource type="PackedScene" path="res://godot4/elements/collectables/items/diamond_familiar/diamond_familiar_run_glass.tscn" id="4_diamond_glass"]
+[ext_resource type="Script" uid="uid://44xc8f2sfpr0" path="res://godot4/test/manual/TestFamiliars.gd" id="4_start"]
+[ext_resource type="Script" uid="uid://tavpq5uhlyhr" path="res://godot4/data/minigames/Minigame.gd" id="5_game"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="5_o30uv"]
+[ext_resource type="PackedScene" path="res://godot4/elements/collectables/items/throwable_familiar/throwable_familiar_run.tscn" id="5_throwable"]
+[ext_resource type="PackedScene" path="res://godot4/elements/collectables/items/throwable_familiar/throwable_familiar_run_glass.tscn" id="5_throwable_glass"]
+[ext_resource type="PackedScene" path="res://godot4/elements/collectables/items/bouncing_familiar/bouncing_familiar_run.tscn" id="6_bouncer"]
+[ext_resource type="PackedScene" path="res://godot4/elements/collectables/items/bouncing_familiar/bouncing_familiar_run_glass.tscn" id="6_bouncer_glass"]
+[ext_resource type="PackedScene" uid="uid://b4anewnchp4ou" path="res://godot4/actors/ships/weapons/PewWeapon.tscn" id="6_weapon"]
+[ext_resource type="Script" uid="uid://b7xtw8uq3uf5f" path="res://godot4/data/match_params/MatchParams.gd" id="7_params"]
+[ext_resource type="PackedScene" path="res://godot4/elements/collectables/items/pursuer_familiar/pursuer_familiar_run.tscn" id="7_pursuer"]
+[ext_resource type="Script" uid="uid://cgxxmfhyt37j8" path="res://godot4/data/session/Session.gd" id="8_session"]
+[ext_resource type="PackedScene" uid="uid://dm1jotcraodpl" path="res://godot4/actors/enemies/PewTurret.tscn" id="9_turret"]
+[ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="10_6srs8"]
+[ext_resource type="Script" uid="uid://bt2ctw6sibmni" path="res://godot4/actors/enemies/RotoTurret.gd" id="10_rotate"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/walls/Wall.tscn" id="10_wall"]
+[ext_resource type="PackedScene" path="res://godot4/actors/enemies/ShapeoidLauncher.tscn" id="11_shapeoid_launcher"]
+
+[sub_resource type="Resource" id="Game"]
+script = ExtResource("5_game")
+title = "Familiar playground"
+description = "Collect the bulbs to try different familiar behaviors"
+starting_weapon_scene = ExtResource("6_weapon")
+
+[sub_resource type="Resource" id="Params"]
+script = ExtResource("7_params")
+time = 600
+score = 999
+
+[sub_resource type="Resource" id="Resource_5fyci"]
+resource_local_to_scene = true
+script = ExtResource("8_session")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_vyiu5"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[node name="TestFamiliars" unique_id=1996768140 instance=ExtResource("1_arena")]
+default_minigame = SubResource("Game")
+default_params = SubResource("Params")
+session = SubResource("Resource_5fyci")
+
+[node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=775116436]
+position = Vector2(-1000, 400)
+
+[node name="P2" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="1" unique_id=2052543353]
+position = Vector2(900, 400)
+
+[node name="Wall15" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="14" unique_id=17889406]
+position = Vector2(184, -352)
+
+[node name="GuardianPickup" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="16" unique_id=1894261177 instance=ExtResource("2_guardian")]
+position = Vector2(-650, 400)
+freeze = true
+outline_texture = ExtResource("10_6srs8")
+
+[node name="GuardianLabel" type="Label" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="17" unique_id=244786763]
+offset_left = -850.0
+offset_top = 540.0
+offset_right = -450.0
+offset_bottom = 680.0
+theme_override_font_sizes/font_size = 44
+text = "GUARDIAN
+Orbit + shield + contact"
+horizontal_alignment = 1
+
+[node name="FollowerPickup" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="18" unique_id=434021615 instance=ExtResource("3_follower")]
+position = Vector2(-200, 400)
+freeze = true
+outline_texture = ExtResource("10_6srs8")
+
+[node name="FollowerLabel" type="Label" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="19" unique_id=1047909492]
+offset_left = -400.0
+offset_top = 540.0
+offset_bottom = 680.0
+theme_override_font_sizes/font_size = 44
+text = "FOLLOWER
+Trail + shoot on tap"
+horizontal_alignment = 1
+
+[node name="LeftTurret" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="20" unique_id=3598360 instance=ExtResource("11_shapeoid_launcher")]
+position = Vector2(-850, -800)
+launch_speed = 700.0
+max_active_shapeoids = 4
+
+[node name="RightTurret" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="21" unique_id=682045425 instance=ExtResource("9_turret")]
+position = Vector2(850, -800)
+script = ExtResource("10_rotate")
+rotation_speed = 0.39269908169872414
+starting_angles_degrees = [120]
+time_offset = -0.5
+clockwise = false
+pingpong = true
+min_rotation = 0.523599
+max_rotation = 2.61799
+wait_time = 6.0
+burst_shots = 1
+
+[node name="GuardianCopyPickup" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="22" unique_id=1502354666 instance=ExtResource("2_guardian")]
+position = Vector2(-650, 850)
+freeze = true
+outline_texture = ExtResource("10_6srs8")
+
+[node name="GuardianCopyLabel" type="Label" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="23" unique_id=179774822]
+offset_left = -850.0
+offset_top = 980.0
+offset_right = -450.0
+offset_bottom = 1120.0
+theme_override_font_sizes/font_size = 36
+text = "GUARDIAN COPY"
+horizontal_alignment = 1
+
+[node name="FollowerCopyPickup" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="24" unique_id=303605979 instance=ExtResource("3_follower")]
+position = Vector2(-200, 850)
+freeze = true
+outline_texture = ExtResource("10_6srs8")
+
+[node name="FollowerCopyLabel" type="Label" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="25" unique_id=497035058]
+offset_left = -400.0
+offset_top = 980.0
+offset_bottom = 1120.0
+theme_override_font_sizes/font_size = 36
+text = "FOLLOWER COPY"
+horizontal_alignment = 1
+
+[node name="GuardianGlassPickup" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="26" unique_id=1211789811 instance=ExtResource("2_guardian_glass")]
+position = Vector2(250, 850)
+freeze = true
+outline_texture = ExtResource("10_6srs8")
+
+[node name="GuardianGlassLabel" type="Label" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="27" unique_id=806845370]
+offset_left = 50.0
+offset_top = 980.0
+offset_right = 450.0
+offset_bottom = 1120.0
+theme_override_font_sizes/font_size = 36
+text = "GUARDIAN GLASS"
+horizontal_alignment = 1
+
+[node name="FollowerGlassPickup" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="28" unique_id=2102976897 instance=ExtResource("3_follower_glass")]
+position = Vector2(700, 850)
+freeze = true
+outline_texture = ExtResource("10_6srs8")
+
+[node name="FollowerGlassLabel" type="Label" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="29" unique_id=1268310223]
+offset_left = 500.0
+offset_top = 980.0
+offset_right = 900.0
+offset_bottom = 1120.0
+theme_override_font_sizes/font_size = 36
+text = "FOLLOWER GLASS"
+horizontal_alignment = 1
+
+[node name="DiamondPickup" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="30" unique_id=1233056748 instance=ExtResource("4_diamond")]
+position = Vector2(250, 400)
+freeze = true
+outline_texture = ExtResource("10_6srs8")
+
+[node name="DiamondLabel" type="Label" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="31" unique_id=1714012209]
+offset_left = 50.0
+offset_top = 540.0
+offset_right = 450.0
+offset_bottom = 680.0
+theme_override_font_sizes/font_size = 44
+text = "DIAMOND MAKER
+One Diamond every 10 seconds"
+horizontal_alignment = 1
+
+[node name="ThrowablePickup" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="32" unique_id=597937995 instance=ExtResource("5_throwable")]
+position = Vector2(700, 400)
+freeze = true
+outline_texture = ExtResource("10_6srs8")
+
+[node name="ThrowableLabel" type="Label" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="33" unique_id=802483991]
+offset_left = 500.0
+offset_top = 540.0
+offset_right = 900.0
+offset_bottom = 680.0
+theme_override_font_sizes/font_size = 44
+text = "THROWER
+Follows; tap throws until blocked"
+horizontal_alignment = 1
+
+[node name="BouncerPickup" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="34" unique_id=1809067227 instance=ExtResource("6_bouncer")]
+position = Vector2(1150, 400)
+freeze = true
+outline_texture = ExtResource("10_6srs8")
+
+[node name="BouncerLabel" type="Label" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="35" unique_id=1612297203]
+offset_left = 950.0
+offset_top = 540.0
+offset_right = 1350.0
+offset_bottom = 680.0
+theme_override_font_sizes/font_size = 44
+text = "BOUNCER
+Ricochets + contact damage"
+horizontal_alignment = 1
+
+[node name="DiamondGlassPickup" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="36" unique_id=1827447416 instance=ExtResource("4_diamond_glass")]
+position = Vector2(250, -1000)
+freeze = true
+outline_texture = ExtResource("10_6srs8")
+
+[node name="ThrowableGlassPickup" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="37" unique_id=514059056 instance=ExtResource("5_throwable_glass")]
+position = Vector2(700, -1000)
+freeze = true
+outline_texture = ExtResource("10_6srs8")
+
+[node name="BouncerGlassPickup" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="38" unique_id=1156781464 instance=ExtResource("6_bouncer_glass")]
+position = Vector2(1150, -1000)
+freeze = true
+outline_texture = ExtResource("10_6srs8")
+
+[node name="PursuerPickup" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="39" unique_id=1721588368 instance=ExtResource("7_pursuer")]
+position = Vector2(1600, 400)
+freeze = true
+outline_texture = ExtResource("10_6srs8")
+
+[node name="PursuerLabel" type="Label" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="40" unique_id=1412367093]
+offset_left = 1400.0
+offset_top = 540.0
+offset_right = 1800.0
+offset_bottom = 680.0
+theme_override_font_sizes/font_size = 40
+text = "PURSUER
+Chases Shapeoids, then enemy ships"
+horizontal_alignment = 1
+
+[node name="ShapeoidLauncherLabel" type="Label" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="41" unique_id=1313997262]
+offset_left = -1050.0
+offset_top = -1050.0
+offset_right = -550.0
+offset_bottom = -900.0
+theme_override_font_sizes/font_size = 36
+text = "SHAPEOID TURRET
+Launches Bloids every 6s"
+horizontal_alignment = 1
+
+[node name="CentralWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="42" unique_id=598648228 instance=ExtResource("10_wall")]
+
+[node name="Navigation" parent="." index="7" unique_id=332973589]
+navigation_polygon = SubResource("NavigationPolygon_vyiu5")
+
+[node name="PlaygroundStart" type="Node" parent="." index="10" unique_id=1670191408]
+script = ExtResource("4_start")
+
+[node name="Instructions" type="CanvasLayer" parent="." index="11" unique_id=1668080562]
+layer = 20
+
+[node name="Label" type="Label" parent="Instructions" index="0" unique_id=1772833044]
+offset_left = 20.0
+offset_top = 110.0
+theme_override_font_sizes/font_size = 18
+text = "FAMILIAR PLAYGROUND
+P1: arrows + Space    P2: WASD + Tab
+Touch labelled bulbs to collect familiar types and glass copies.
+New familiar glass copies are in the upper lane.
+Stack familiars, then get disabled to check glass loss on respawn.
+The left turret launches Bloids every 6 seconds.
+The central wall lets you test obstacle-aware movement.
+Tap to shoot; hold and release to dash. F9 restarts; F8 stops."
