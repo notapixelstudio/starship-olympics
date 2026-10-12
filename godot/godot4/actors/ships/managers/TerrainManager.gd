@@ -21,6 +21,8 @@ extends Node
 	&'ice': 4000
 }
 
+signal terrain_changed(from:StringName, to:StringName)
+
 var _current_terrain := &"none"
 
 func get_host():
@@ -30,21 +32,13 @@ func _ready() -> void:
 	await get_host().ready
 	_switch_terrain(&"default")
 	
-func enter_area(area: Area2D) -> void:
-	if is_instance_valid(area):
-		if area is Ice:
-			_switch_terrain(&"ice")
-			
-# WARNING exits are unreliable with animated shapes
-# use enter in a complementary area if needed
-#func exit_area(area: Area2D) -> void:
-	#pass
-	
 func _switch_terrain(type) -> void:
 	if _current_terrain == type:
 		return
 	
+	var old_terrain = _current_terrain
 	_current_terrain = type
+	terrain_changed.emit(old_terrain, _current_terrain)
 	Events.log.emit('Terrain switched to: %s' % _current_terrain)
 	
 	# apply new terrain's parameters
@@ -58,13 +52,9 @@ func get_current_terrain() -> String:
 	return _current_terrain
 	
 func process_overlappers(overlappers:Array) -> void:
-	var found := false
 	for overlapper in overlappers:
 		if overlapper is Ice:
-			found = true
-			break
+			_switch_terrain(&"ice")
+			return
 			
-	if found:
-		_switch_terrain(&"ice")
-	else:
-		_switch_terrain(&"default")
+	_switch_terrain(&"default")

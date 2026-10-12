@@ -238,7 +238,6 @@ func _drop_dash_ring_effect() -> void:
 # some collisions must be checked every frame
 # WARNING collisions picked by this must be distinct from those picked by signals
 # otherwise there will be duplicates
-# WARNING this does not work with Area2Ds with animated shapes
 func _continuous_collision_check():
 	var overlappers = %TouchArea.get_overlapping_bodies() + %TouchArea.get_overlapping_areas()
 	%TerrainManager.process_overlappers(overlappers)
@@ -248,7 +247,6 @@ func _on_body_entered(body) -> void:
 
 func _on_touch_area_area_entered(area) -> void:
 	_on_touch_area_entered(area)
-	#%TerrainManager.enter_area(area)
 	
 	# FIXME this is temporary
 	if area is BlockRotationArea:
