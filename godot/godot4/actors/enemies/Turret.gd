@@ -2,6 +2,7 @@ extends Area2D
 class_name Turret
 
 @export var enabled := true
+@export var shooting := true
 @export var wait_time := 2.0 : set = set_time
 @export var time_jitter := 0.0
 
@@ -30,9 +31,12 @@ func start() -> void:
 	
 func stop() -> void:
 	%Timer.stop()
+	
+func set_shooting(v:bool) -> void:
+	shooting = v
 
 func _on_timer_timeout() -> void:
-	if enabled:
+	if enabled and shooting:
 		tap.emit(0)
 		_burst_count += 1
 		
@@ -50,6 +54,12 @@ func get_team() -> String:
 	return 'rogue'
 
 func alert():
+	enabled = true
+	%AnimationPlayer.stop()
 	%AnimationPlayer.play("Alert")
-	await %AnimationPlayer.animation_finished
-	alert_ended.emit()
+	
+func stand_down():
+	enabled = false
+	%AnimationPlayer.stop()
+	%AnimationPlayer.play("RESET")
+	shooting = false

@@ -16,6 +16,7 @@ func get_ship_factory() -> ShipFactory:
 signal battlefield_ready
 
 signal spawn_request(object_to_spawn:Node, callback:Callable)
+signal spawned(object:Node)
 signal collision(ship:Ship, collider:CollisionObject2D, tag:String)
 
 signal ship_died(player:Player)
