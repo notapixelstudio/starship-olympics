@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Minigame" format=3 uid="uid://grr1qvn7xtx6"]
+
+[ext_resource type="PackedScene" uid="uid://b56w3xwfwjlei" path="res://godot4/actors/brains/TakeTheCrownBrain.tscn" id="1_kre1n"]
+[ext_resource type="Texture2D" uid="uid://dvs4ry75sj8nh" path="res://assets/icon/minigames/crown.png" id="2_285v7"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="3_s58ju"]
+[ext_resource type="Script" uid="uid://tavpq5uhlyhr" path="res://godot4/data/minigames/Minigame.gd" id="4_1igij"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="5_imw6g"]
+[ext_resource type="AudioStream" uid="uid://drs7rqmbxdsov" path="res://assets/audio/soundtracks/Punch_Deck-Signal-in-the-Noise.ogg" id="6_n2bdb"]
+
+[resource]
+script = ExtResource("4_1igij")
+title = "keep the crown"
+icon = ExtResource("2_285v7")
+description = "take and keep the crown"
+soundtrack = ExtResource("6_n2bdb")
+cpu_brain_scene = ExtResource("1_kre1n")

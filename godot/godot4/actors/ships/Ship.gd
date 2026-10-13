@@ -288,6 +288,9 @@ func get_team() -> String:
 func get_cargo_manager():
 	return %CargoManager
 	
+func get_cargo():
+	return %CargoManager.get_cargo()
+	
 func has_cargo() -> bool:
 	return %CargoManager.has_cargo()
 	
