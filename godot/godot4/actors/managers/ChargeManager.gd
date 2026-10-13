@@ -5,7 +5,7 @@ class_name ChargeManager
 const MAX_CHARGE = 0.6
 
 @export var max_tap_charge := 0.3
-@export var min_dash_charge := 0.3
+@export var min_dash_charge := 0.2
 
 signal charged_enough_to_dash
 signal charged_too_much_for_tap
