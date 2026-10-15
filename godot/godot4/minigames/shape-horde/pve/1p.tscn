@@ -1,0 +1,259 @@
+[gd_scene format=3 uid="uid://c8e86i8h5buu1"]
+
+[ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_gctff"]
+[ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_564j8"]
+[ext_resource type="Resource" uid="uid://c3djyj66hypnr" path="res://godot4/data/styles/cartesian.tres" id="3_eheev"]
+[ext_resource type="PackedScene" uid="uid://viihbln4han2" path="res://godot4/arena/managers/SpawnerWaveManager.tscn" id="4_ckdlo"]
+[ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="5_hf78j"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="6_ne8hk"]
+[ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/walls/Wall.tscn" id="8_r1eqo"]
+[ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="9_b2yhw"]
+[ext_resource type="Script" uid="uid://2af6nqsv6xhn" path="res://addons/vshapes/VMultiBeveledRect.gd" id="10_eheev"]
+[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="10_uky1w"]
+[ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="11_k8tr6"]
+[ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="12_1r0m8"]
+[ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="13_g4kbo"]
+[ext_resource type="PackedScene" uid="uid://buaj7gsl2nn8y" path="res://godot4/actors/enemies/Bloid.tscn" id="14_drhvp"]
+[ext_resource type="PackedScene" uid="uid://cgixi5fsjlqs8" path="res://godot4/elements/Hole.tscn" id="16_eheev"]
+
+[sub_resource type="GDScript" id="GDScript_qu4h1"]
+script/source = "extends Area2D
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Ship and not body.is_dashing():
+		body.kill()
+		
+	if body is Shapeoid:
+		body.kill()
+"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_564j8"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[node name="PveArena" unique_id=1218906820 instance=ExtResource("1_gctff")]
+default_params = ExtResource("2_564j8")
+
+[node name="Styleable" parent="." index="1" unique_id=999924478]
+style = ExtResource("3_eheev")
+
+[node name="ModifierManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="2" unique_id=1330404860]
+active_modifiers = Array[String]([])
+
+[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="9" unique_id=698513598 node_paths=PackedStringArray("waves_container") instance=ExtResource("4_ckdlo")]
+spawn_on_all_collected = true
+spawn_on_timeout = false
+waves_container = NodePath("../../Battlefield/Waves")
+
+[node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" unique_id=1936746454 instance=ExtResource("5_hf78j")]
+
+[node name="Camera2D" parent="." index="3" unique_id=956979488]
+zoom = Vector2(0.25, 0.25)
+
+[node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=1170858522 instance=ExtResource("6_ne8hk")]
+position = Vector2(-1650, 0)
+
+[node name="VBeveledRect" type="Node" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=1272963058 node_paths=PackedStringArray("hosts")]
+script = ExtResource("11_k8tr6")
+width = 3900.0
+height = 2700.0
+bevel = 1300.0
+hosts = [NodePath("../OutsideWall"), NodePath("../../Navigation")]
+metadata/_custom_type_script = "uid://dcjvxjj0myiia"
+
+[node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=369449879 instance=ExtResource("8_r1eqo")]
+unique_name_in_owner = true
+hollow = true
+
+[node name="Hole" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=751116984 instance=ExtResource("16_eheev")]
+polygon = PackedVector2Array(-150, -1800, 150, -1800, 150, 1800, -150, 1800)
+
+[node name="Area2D" type="Area2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=663421269]
+collision_layer = 0
+collision_mask = 4097
+script = SubResource("GDScript_qu4h1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Battlefield/Area2D" index="0" unique_id=1413231883]
+polygon = PackedVector2Array(-50, -1400, 50, -1400, 50, 1500, -50, 1500)
+
+[node name="Grid" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=130985248 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("9_b2yhw")]
+unique_name_in_owner = true
+position = Vector2(-1050, 0)
+init_parametric_shape = NodePath("VMultiBeveledRect")
+
+[node name="VMultiBeveledRect" type="Node" parent="Battlefield/Grid" index="2" unique_id=1980815918]
+script = ExtResource("10_eheev")
+width = 1800.0
+height = 2700.0
+bevel_nw = 1300.0
+bevel_sw = 1300.0
+metadata/_custom_type_script = "uid://2af6nqsv6xhn"
+
+[node name="Line2D" type="Line2D" parent="Battlefield/Grid" index="3" unique_id=1056531369]
+light_mask = 3
+position = Vector2(1350, 0)
+points = PackedVector2Array(-450, -1300, -450, 1350)
+width = 20.0
+
+[node name="Grid2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=127410278 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("9_b2yhw")]
+unique_name_in_owner = true
+position = Vector2(1050, 0)
+init_parametric_shape = NodePath("VMultiBeveledRect")
+
+[node name="VMultiBeveledRect" type="Node" parent="Battlefield/Grid2" index="2" unique_id=196546128]
+script = ExtResource("10_eheev")
+width = 1800.0
+height = 2700.0
+bevel_ne = 1300.0
+bevel_se = 1300.0
+metadata/_custom_type_script = "uid://2af6nqsv6xhn"
+
+[node name="Line2D" type="Line2D" parent="Battlefield/Grid2" index="3" unique_id=224479390]
+light_mask = 3
+position = Vector2(-450, 0)
+points = PackedVector2Array(-450, -1300, -450, 1350)
+width = 20.0
+
+[node name="Wall4" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=338942049 instance=ExtResource("8_r1eqo")]
+position = Vector2(-750, -750)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall4" index="5" unique_id=626581694]
+script = ExtResource("10_uky1w")
+sides = 4
+
+[node name="Wall2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=145047858 instance=ExtResource("8_r1eqo")]
+position = Vector2(-450, 750)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="5" unique_id=1759920415]
+script = ExtResource("10_uky1w")
+sides = 4
+
+[node name="Wall5" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=2100351001 instance=ExtResource("8_r1eqo")]
+position = Vector2(450, -750)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall5" index="5" unique_id=180546969]
+script = ExtResource("10_uky1w")
+sides = 4
+
+[node name="Wall6" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=684950412 instance=ExtResource("8_r1eqo")]
+position = Vector2(750, 750)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall6" index="5" unique_id=1111758550]
+script = ExtResource("10_uky1w")
+sides = 4
+
+[node name="Wall16" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="10" unique_id=249885871 instance=ExtResource("8_r1eqo")]
+position = Vector2(-1200, 0)
+
+[node name="VBeveledRect" type="Node" parent="Battlefield/Wall16" index="5" unique_id=1359795219]
+script = ExtResource("11_k8tr6")
+width = 150.0
+height = 570.0
+bevel = 0.0
+rotation_degrees = -45.0
+
+[node name="Wall15" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="11" unique_id=1347274745 instance=ExtResource("8_r1eqo")]
+position = Vector2(1200, 0)
+
+[node name="VBeveledRect" type="Node" parent="Battlefield/Wall15" index="5" unique_id=1964132417]
+script = ExtResource("11_k8tr6")
+width = 150.0
+height = 570.0
+bevel = 0.0
+rotation_degrees = -45.0
+
+[node name="Waves" type="Node2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="12" unique_id=1407698040]
+
+[node name="SingleBloidWave" type="Node2D" parent="Battlefield/Waves" index="0" unique_id=1622032603 groups=["spawn_waves"]]
+script = ExtResource("12_1r0m8")
+max_repeats = 1
+extra_delay = 4.0
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/SingleBloidWave" index="0" unique_id=32827641 instance=ExtResource("13_g4kbo")]
+position = Vector2(750, -450)
+pattern = "single"
+element_scene = ExtResource("14_drhvp")
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/SingleBloidWave" index="1" unique_id=1496283201 instance=ExtResource("13_g4kbo")]
+position = Vector2(-750, 450)
+pattern = "single"
+element_scene = ExtResource("14_drhvp")
+
+[node name="SingleBloidWave2" type="Node2D" parent="Battlefield/Waves" index="1" unique_id=568185997 groups=["spawn_waves"]]
+script = ExtResource("12_1r0m8")
+max_repeats = 20
+extra_delay = 4.0
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/SingleBloidWave2" index="0" unique_id=1400742070 instance=ExtResource("13_g4kbo")]
+position = Vector2(-1050, -450)
+pattern = "single"
+element_scene = ExtResource("14_drhvp")
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/SingleBloidWave2" index="1" unique_id=207721437 instance=ExtResource("13_g4kbo")]
+position = Vector2(1050, 450)
+pattern = "single"
+element_scene = ExtResource("14_drhvp")
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/SingleBloidWave2" index="2" unique_id=1741519751 instance=ExtResource("13_g4kbo")]
+position = Vector2(750, -450)
+pattern = "single"
+element_scene = ExtResource("14_drhvp")
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/SingleBloidWave2" index="3" unique_id=602243301 instance=ExtResource("13_g4kbo")]
+position = Vector2(-750, 450)
+pattern = "single"
+element_scene = ExtResource("14_drhvp")
+
+[node name="SingleBloidWave3" type="Node2D" parent="Battlefield/Waves" index="2" unique_id=1531769610 groups=["spawn_waves"]]
+script = ExtResource("12_1r0m8")
+extra_delay = 4.0
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/SingleBloidWave3" index="0" unique_id=1415392903 instance=ExtResource("13_g4kbo")]
+position = Vector2(750, -450)
+pattern = "plus"
+element_scene = ExtResource("14_drhvp")
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/SingleBloidWave3" index="1" unique_id=1167766345 instance=ExtResource("13_g4kbo")]
+position = Vector2(750, -450)
+pattern = "single"
+element_scene = ExtResource("14_drhvp")
+
+[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/SingleBloidWave3" index="2" unique_id=269993842 instance=ExtResource("13_g4kbo")]
+position = Vector2(1050, 450)
+pattern = "single"
+element_scene = ExtResource("14_drhvp")
+
+[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/SingleBloidWave3" index="3" unique_id=1818995389 instance=ExtResource("13_g4kbo")]
+position = Vector2(-1050, -450)
+pattern = "single"
+element_scene = ExtResource("14_drhvp")
+
+[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/SingleBloidWave3" index="4" unique_id=1085940970 instance=ExtResource("13_g4kbo")]
+position = Vector2(-750, 450)
+pattern = "single"
+element_scene = ExtResource("14_drhvp")
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/SingleBloidWave3" index="5" unique_id=1247680341 instance=ExtResource("13_g4kbo")]
+position = Vector2(-1050, -450)
+pattern = "plus"
+element_scene = ExtResource("14_drhvp")
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/SingleBloidWave3" index="6" unique_id=1137776741 instance=ExtResource("13_g4kbo")]
+position = Vector2(1050, 450)
+pattern = "plus"
+element_scene = ExtResource("14_drhvp")
+
+[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/SingleBloidWave3" index="7" unique_id=4801563 instance=ExtResource("13_g4kbo")]
+position = Vector2(-750, 450)
+pattern = "plus"
+element_scene = ExtResource("14_drhvp")
+
+[node name="Navigation" parent="." index="8" unique_id=332973589]
+navigation_polygon = SubResource("NavigationPolygon_564j8")
+
+[connection signal="body_entered" from="Battlefield/Area2D" to="Battlefield/Area2D" method="_on_body_entered"]

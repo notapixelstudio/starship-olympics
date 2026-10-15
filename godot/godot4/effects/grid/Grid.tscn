@@ -15,6 +15,7 @@ var points = PackedVector2Array() : set = set_points
 
 func set_points(v: PackedVector2Array) -> void:
 	points = v
+	
 
 func _process(delta):
 	#frame_count += 1
@@ -24,21 +25,32 @@ func _process(delta):
 	queue_redraw()
 
 func _draw():
-	draw_colored_polygon(points, Color(1,1,1))
+	#var current_polygons: Array[PackedVector2Array] = [points]
+	#
+	#for hole in get_tree().get_nodes_in_group('Hole'):
+		#var next_polygons: Array[PackedVector2Array] = []
+		#for polygon in current_polygons:
+			#var clipped = Geometry2D.clip_polygons(polygon, hole.get_polygon()*hole.transform)
+			#for fragment in clipped:
+				#next_polygons.append(fragment)
+		#current_polygons = next_polygons
+	#
+	#for polygon in current_polygons:
+		#draw_colored_polygon(polygon, Color(1,1,1))
 	
+	draw_colored_polygon(points, Color(1,1,1))
 "
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_ta8v7"]
 
 [node name="Grid" type="Node2D" unique_id=127410278]
 z_index = -7
-z_as_relative = false
 script = ExtResource("1_tx3yk")
 
 [node name="Styleable" parent="." unique_id=626471080 instance=ExtResource("3_j3xxa")]
 unique_name_in_owner = true
 
-[node name="Mask" type="Node2D" parent="." unique_id=1717446674]
+[node name="Mask" type="Node2D" parent="." unique_id=162525613]
 unique_name_in_owner = true
 clip_children = 1
 position = Vector2(0, 32)

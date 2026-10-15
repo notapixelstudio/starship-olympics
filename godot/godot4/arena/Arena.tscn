@@ -116,6 +116,11 @@ unique_name_in_owner = true
 zoom = Vector2(0.2, 0.2)
 script = ExtResource("16_ad0xh")
 
+[node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=336682607]
+z_index = -100
+z_as_relative = false
+copy_mode = 2
+
 [node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=1511095961]
 layer = -5
 
