@@ -6,13 +6,14 @@ extends Node
 
 class_name Trait
 
-var host # this is the node the Trait is applied to, i.e., its parent
+@export var host : Node # this is the node the Trait is applied to, i.e., its parent
 
 func get_host():
 	return host
 	
 func _ready():
-	host = get_parent()
+	if not host:
+		host = get_parent()
 	add_to_group('Trait_'+name)
 	validate()
 	
