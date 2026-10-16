@@ -69,8 +69,7 @@ var _waiting_for_ship := {}
 func _with_ship(holder: String, action: Callable, params:= []) -> void:
 	var ships := _ships(holder)
 	if ships:
-		await ships[0].ready
-		action.call_deferred(ships[0])
+		action.call(ships[0])
 	else:
 		_waiting_for_ship.get_or_add(holder, []).append(action)
 
@@ -183,7 +182,8 @@ func _type(id: StringName, holder: String) -> ItemType:
 func _on_battlefield_child_entered(node: Node) -> void:
 	if node is Ship:
 		for action in _waiting_for_ship.get(node.get_player().get_id(), []):
-			action.call(node)
+			# WARNING: this is done in order to wait the Ship to be ready
+			action.call_deferred(node)
 		_waiting_for_ship.erase(node.get_player().get_id())
 		_show_badges(node)
 
