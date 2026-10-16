@@ -1,20 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://cms0aqjusqct1"]
+[gd_scene format=3 uid="uid://cms0aqjusqct1"]
 
 [ext_resource type="PackedScene" uid="uid://ddtlawrotn0nb" path="res://godot4/elements/cargos/Hat.tscn" id="1_xre4g"]
-[ext_resource type="Script" uid="uid://c32pi5ydyeoxg" path="res://godot4/elements/cargos/Crown.gd" id="2_3vkv2"]
+[ext_resource type="Script" uid="uid://6t4yieca43mp" path="res://godot4/elements/cargos/Crown.gd" id="2_3vkv2"]
 [ext_resource type="Texture2D" uid="uid://d34r6ew04rdjl" path="res://assets/sprites/balls/crown.png" id="2_hgd27"]
+[ext_resource type="Texture2D" uid="uid://seaxvmcqc0uf" path="res://assets/sprites/balls/crown_glow.png" id="3_4vy0a"]
 
-[sub_resource type="Gradient" id="Gradient_5cley"]
+[sub_resource type="Gradient" id="Gradient_4vy0a"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
 
-[node name="Crown" instance=ExtResource("1_xre4g")]
+[node name="Crown" unique_id=1255268695 instance=ExtResource("1_xre4g")]
 script = ExtResource("2_3vkv2")
+points_per_second = 1.0
 
-[node name="Sprite2D" parent="Graphics" index="0"]
+[node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1232204582) index="0" unique_id=686837574]
 texture = ExtResource("2_hgd27")
 
-[node name="MotionAutoTrail" parent="." index="2"]
+[node name="Glow" parent="Graphics/Sprite2D" index="0" unique_id=599249175]
+self_modulate = Color(1, 1, 1, 0.5882353)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_4vy0a")
+
+[node name="MotionAutoTrail" parent="." index="3" unique_id=1467177572]
 modulate = Color(1, 0.772549, 0, 0.290196)
-gradient = SubResource("Gradient_5cley")
+gradient = SubResource("Gradient_4vy0a")

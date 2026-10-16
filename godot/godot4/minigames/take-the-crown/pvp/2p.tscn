@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="7_1nk4p"]
 [ext_resource type="PackedScene" uid="uid://bia7yrbdvp8vw" path="res://godot4/elements/walls/ShieldWall.tscn" id="8_nyho4"]
 [ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="9_f33xf"]
+[ext_resource type="PackedScene" uid="uid://gngmmoykqjtu" path="res://godot4/elements/cargos/GlassCrown.tscn" id="12_dufl6"]
 
 [sub_resource type="Animation" id="Animation_vtipm"]
 length = 0.001
@@ -114,7 +115,7 @@ _data = {
 &"default": SubResource("Animation_xjb4e")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_q477r"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_my4sj"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -208,5 +209,8 @@ rotation_degrees = 45.0
 
 [node name="Crown" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=338107464 instance=ExtResource("6_h5akp")]
 
-[node name="Navigation" parent="." index="7" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_q477r")
+[node name="GlassCrown" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="10" unique_id=1255268695 instance=ExtResource("12_dufl6")]
+position = Vector2(150, -500)
+
+[node name="Navigation" parent="." index="8" unique_id=332973589]
+navigation_polygon = SubResource("NavigationPolygon_my4sj")
