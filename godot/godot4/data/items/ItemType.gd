@@ -24,6 +24,9 @@ item = ExtResource("2_item")
 @export var texture: Texture2D
 @export var outline_texture: Texture2D
 @export var glow := Color.WHITE
+
+@export var element_scene: PackedScene
+
 ## Shown over the holder's ship while the item is in play; leave empty for no badge.
 @export var badge: Texture2D
 

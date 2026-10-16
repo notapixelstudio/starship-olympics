@@ -27,6 +27,8 @@ func get_texture() -> Texture:
 func _ready():
 	_self_scene = PackedScene.new()
 	_self_scene.pack(self)
+	if has_item():
+		item.set_element_scene(_self_scene)
 	
 func place_and_push(global_pos: Vector2, vel: Vector2, rot: float, spin: float = 0.0) -> void:
 	global_position = global_pos + Vector2(drop_distance,0).rotated(rot)

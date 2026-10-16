@@ -19,6 +19,12 @@ func _init() -> void:
 func get_type_id() -> StringName:
 	return type.id
 
+func get_type_slot() -> String:
+	return type.slot
+	
+func get_type_element_scene() -> PackedScene:
+	return type.element_scene
+	
 func _to_string() -> String:
 	return "%s%s (%s)" % [type.id, ' (Glass)' if glass else '', duration]
 
@@ -34,3 +40,6 @@ func survives_game() -> bool:
 		return true
 	games_left -= 1
 	return games_left > 0
+
+func set_element_scene(scene:PackedScene) -> void:
+	type.element_scene = scene

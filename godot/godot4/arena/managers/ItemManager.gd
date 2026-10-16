@@ -66,10 +66,11 @@ func _holds(id: StringName, holder: String) -> bool:
 var _waiting_for_ship := {}
 
 ## Calls [param action] with [param holder]'s ship: now if it is on the battlefield, else as soon as it enters.
-func _with_ship(holder: String, action: Callable) -> void:
+func _with_ship(holder: String, action: Callable, params:= []) -> void:
 	var ships := _ships(holder)
 	if ships:
-		action.call(ships[0])
+		await ships[0].ready
+		action.call_deferred(ships[0])
 	else:
 		_waiting_for_ship.get_or_add(holder, []).append(action)
 
@@ -126,6 +127,10 @@ func on_match_start() -> void:
 		return
 	for holder in session.items:
 		_start(_in_play(holder), [], holder)
+		for item in session.items[holder]:
+			if item.get_type_slot() == 'hat':
+				_with_ship(holder, func (holder): _load_cargo(holder, item.get_type_element_scene()))
+	
 
 ## Runs the effects of the ids in [param now] that were not already in [param before].
 ## Parts swallowed by a merger stop on their own: their timers and reactions check [method _holds].
@@ -137,6 +142,17 @@ func _start(now: Array, before: Array, holder: String) -> void:
 			effects[id].call(holder)
 	for ship in _ships(holder):
 		_show_badges(ship)
+	var session = %ArenaScope.get_current_session()
+	if session == null:
+		return
+	
+		
+func _load_cargo(ship: Ship, cargo_scene: PackedScene) -> void:
+	var cargo := cargo_scene.instantiate() as Cargo
+	cargo._self_scene = cargo_scene
+	ship.load_cargo(cargo) # the ship keeps a clone
+	cargo.free()
+
 
 ## One id per copy [param holder] carries, complete sets merged.
 func _in_play(holder: String) -> Array:
