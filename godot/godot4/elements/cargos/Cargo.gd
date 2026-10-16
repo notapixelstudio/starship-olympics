@@ -6,6 +6,8 @@ class_name Cargo
 
 signal loaded_by(actor: Ship)
 
+@export var item : Item
+
 @onready var tracked = %Tracked
 
 @onready var _ctx := ArenaScope.get_scope(self)
@@ -13,6 +15,9 @@ signal loaded_by(actor: Ship)
 var _self_scene : PackedScene
 var _untouchable_by = null
 
+func has_item() -> bool:
+	return Item != null
+	
 func get_texture() -> Texture:
 	return %Sprite2D.texture
 
@@ -30,6 +35,7 @@ func place_and_push(global_pos: Vector2, vel: Vector2, rot: float, spin: float =
 func clone_as_new() -> Cargo:
 	var clone = _self_scene.instantiate()
 	clone._self_scene = _self_scene
+	clone.item = item
 	return clone
 
 func _on_body_entered(body: Node) -> void:
@@ -50,10 +56,14 @@ func touched_by(actor) -> void:
 		return
 		
 	if actor.has_method('load_cargo'): # WARNING duck typing
-		actor.load_cargo(self)
-		loaded_by.emit(actor)
-		queue_free()
+		load_into(actor)
+		
+func load_into(actor) -> void:
+	actor.load_cargo(self)
+	loaded_by.emit(actor)
+	queue_free()
 	
+
 func _is_untouchable_by(sth) -> bool:
 	return sth == _untouchable_by
 

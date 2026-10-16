@@ -13,9 +13,14 @@ enum Duration { RUN = 0, GAME = 1, TWO_GAMES = 2 }
 ## Games left for a granted copy, see [method Session.grant_item].
 @export_storage var games_left := 0
 
-var id: StringName:
-	get: return type.id
+func _init() -> void:
+	resource_local_to_scene = true
 
+func get_type_id() -> StringName:
+	return type.id
+
+func _to_string() -> String:
+	return "%s%s (%s)" % [type.id, ' (Glass)' if glass else '', duration]
 
 func is_general() -> bool:
 	return type.slot == "general"

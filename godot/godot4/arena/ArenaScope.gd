@@ -10,6 +10,9 @@ func get_active_players() -> Array[Player]:
 func get_teams() -> Dictionary[String,Array]:
 	return get_parent().get_teams()
 	
+func get_current_session() -> Session:
+	return get_parent().get_current_session()
+	
 func get_ship_factory() -> ShipFactory:
 	return %ShipFactory
 
@@ -24,5 +27,6 @@ signal ship_died(player:Player)
 signal time_gained(seconds:int)
 
 signal item_obtained(item:Item, by_player:Player)
+signal item_lost(item:Item, by_player:Player)
 ## A ship was taken out, disabled or killed
 signal ship_down(ship:Ship)

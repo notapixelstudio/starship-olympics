@@ -13,14 +13,17 @@
 [ext_resource type="PackedScene" uid="uid://chcm4ndymet0r" path="res://godot4/elements/collectables/items/Bounty/Bounty_run.tscn" id="11_sxr4j"]
 [ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minigames/diamondsnatch.png" id="13_ore4y"]
 [ext_resource type="Texture2D" uid="uid://c15twfdbmm5oh" path="res://assets/arrow.png" id="14_ulhii"]
-[ext_resource type="Texture2D" uid="uid://d2ij5aoi4mvw6" path="res://assets/sprites/balls/basket.png" id="17_c6ehg"]
 [ext_resource type="Texture2D" uid="uid://bxpm2unqd3am4" path="res://assets/sprites/environments/clock_circuits_outline.png" id="19_gps85"]
 [ext_resource type="Texture2D" uid="uid://ddoec0h4uj82b" path="res://assets/icon/minigames/squash-five.png" id="20_sxr4j"]
 [ext_resource type="PackedScene" uid="uid://bdnijlionsghd" path="res://godot4/ui/overlays/PauseOverlay.tscn" id="21_yl2ae"]
 [ext_resource type="PackedScene" uid="uid://cphkdfew8xuc5" path="res://godot4/arena/ArenaScope.tscn" id="22_scope"]
 [ext_resource type="PackedScene" uid="uid://cyolmy8p6kegy" path="res://godot4/arena/managers/ItemManager.tscn" id="23_items"]
 [ext_resource type="PackedScene" uid="uid://dsmqaj240piab" path="res://godot4/elements/collectables/Collectable.tscn" id="24_coll"]
+[ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="24_gps85"]
 [ext_resource type="Script" uid="uid://d0bqe8srkhk6e" path="res://godot4/data/items/Item.gd" id="25_item"]
+[ext_resource type="PackedScene" uid="uid://djakv8k7yhih5" path="res://godot4/elements/cargos/BasketBall.tscn" id="25_qkhdh"]
+[ext_resource type="PackedScene" uid="uid://gngmmoykqjtu" path="res://godot4/elements/cargos/GlassCrown.tscn" id="25_tbi7m"]
+[ext_resource type="Resource" uid="uid://i8oaavdvf6hv" path="res://godot4/data/items/Crown.tres" id="25_w4bat"]
 [ext_resource type="Resource" uid="uid://335ssfwjpj13" path="res://godot4/data/items/TimeCircuits.tres" id="26_tc"]
 [ext_resource type="Resource" path="res://godot4/data/items/starting_points.tres" id="27_hs"]
 [ext_resource type="Resource" path="res://godot4/data/items/basket_ball.tres" id="28_bb"]
@@ -31,10 +34,6 @@
 script = ExtResource("25_item")
 type = ExtResource("27_hs")
 
-[sub_resource type="Resource" id="Item_bb"]
-script = ExtResource("25_item")
-type = ExtResource("28_bb")
-
 [sub_resource type="Resource" id="Item_tc"]
 script = ExtResource("25_item")
 type = ExtResource("26_tc")
@@ -43,7 +42,29 @@ duration = 0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qu4h1"]
 radius = 118.27
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ulhii"]
+[sub_resource type="Resource" id="Resource_2p1gh"]
+resource_local_to_scene = true
+script = ExtResource("25_item")
+type = ExtResource("25_w4bat")
+
+[sub_resource type="Resource" id="Resource_iji2j"]
+resource_local_to_scene = true
+script = ExtResource("25_item")
+type = ExtResource("25_w4bat")
+
+[sub_resource type="Resource" id="Resource_fpm5w"]
+resource_local_to_scene = true
+script = ExtResource("25_item")
+type = ExtResource("25_w4bat")
+duration = 0
+glass = true
+
+[sub_resource type="Resource" id="Resource_wwcie"]
+resource_local_to_scene = true
+script = ExtResource("25_item")
+type = ExtResource("28_bb")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ie6ii"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -100,13 +121,13 @@ position = Vector2(196, 331)
 outline_texture = ExtResource("14_ulhii")
 item = SubResource("Item_hs")
 
-[node name="BasketBallItem" parent="Battlefield" unique_id=1316265900 instance=ExtResource("24_coll")]
-position = Vector2(153, 809)
-outline_texture = ExtResource("17_c6ehg")
-item = SubResource("Item_bb")
-
 [node name="TimeCircuits" parent="Battlefield" unique_id=599719810 instance=ExtResource("24_coll")]
 position = Vector2(280, 40)
+outline_texture = ExtResource("19_gps85")
+item = SubResource("Item_tc")
+
+[node name="TimeCircuits2" parent="Battlefield" unique_id=1679659046 instance=ExtResource("24_coll")]
+position = Vector2(730, 40)
 outline_texture = ExtResource("19_gps85")
 item = SubResource("Item_tc")
 
@@ -166,8 +187,24 @@ offset_right = 294.0
 offset_bottom = 124.0
 texture = ExtResource("30_dm")
 
+[node name="Crown" parent="Battlefield" unique_id=1255268695 instance=ExtResource("24_gps85")]
+position = Vector2(0, -600)
+item = SubResource("Resource_2p1gh")
+
+[node name="Crown2" parent="Battlefield" unique_id=289219346 instance=ExtResource("24_gps85")]
+position = Vector2(0, -800)
+item = SubResource("Resource_iji2j")
+
+[node name="GlassCrown" parent="Battlefield" unique_id=1160048206 instance=ExtResource("25_tbi7m")]
+position = Vector2(400, -600)
+item = SubResource("Resource_fpm5w")
+
+[node name="BasketBall" parent="Battlefield" unique_id=1878555385 instance=ExtResource("25_qkhdh")]
+position = Vector2(200, 800)
+item = SubResource("Resource_wwcie")
+
 [node name="Navigation" parent="." unique_id=332973589 instance=ExtResource("9_c6ehg")]
-navigation_polygon = SubResource("NavigationPolygon_ulhii")
+navigation_polygon = SubResource("NavigationPolygon_ie6ii")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=737164047]
 unique_name_in_owner = true

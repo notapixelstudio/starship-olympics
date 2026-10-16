@@ -33,11 +33,17 @@ func _new_cargo(v: Cargo) -> void:
 	elif _current_cargo is Ball:
 		%HatSprite.texture = null
 		%BallSprite.texture = _current_cargo.get_texture()
+	if v.has_item():
+		assert(get_host() is Ship)
+		_ctx.item_obtained.emit(v.item, get_host().get_player())
 		
 func _empty_cargo() -> void:
+	var old_cargo = _current_cargo
 	_current_cargo = null
 	%HatSprite.texture = null
 	%BallSprite.texture = null
+	if old_cargo.has_item():
+		_ctx.item_lost.emit(old_cargo.item, get_host().get_player())
 
 func has_cargo() -> bool:
 	return _current_cargo != null

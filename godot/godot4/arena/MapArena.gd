@@ -1,10 +1,9 @@
-extends Node2D
+extends Arena
 
 signal done
 
 const DEFAULT_MINIGAME := preload("res://godot4/data/minigames/default.tres")
 
-var session: Session
 var _ships_spawned := false
 var _level_started := false
 

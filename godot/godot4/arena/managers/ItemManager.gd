@@ -11,11 +11,8 @@ extends Node
 const TIME_CIRCUITS := &"time-circuits"
 const CLOCK_EXTENDER := &"clock_extender"
 const HEAD_START := &"starting_points"
-const BASKET_BALL := &"basket_ball"
 const BOUNTY := &"bounty"
 const CHERRY := &"cherry"
-
-const BASKET_BALL_SCENE := preload("res://godot4/elements/cargos/BasketBall.tscn")
 
 # --- Effects: what each item does ---
 
@@ -24,7 +21,6 @@ var effects := {
 	TIME_CIRCUITS: func(_holder): _add_time(15),
 	CLOCK_EXTENDER: func(_holder): _add_time(5),
 	HEAD_START: func(holder): _add_points(5, holder),
-	BASKET_BALL: func(holder): _with_ship(holder, _load_ball),
 	BOUNTY: func(holder): # ceasefire: paid while at peace, the first hit ends it for this match
 		var pay := _every(10.0, func(): if _holds(BOUNTY, holder): _add_points(1, holder))
 		_when_down(holder, pay.stop),
@@ -73,17 +69,11 @@ var _waiting_for_ship := {}
 func _with_ship(holder: String, action: Callable) -> void:
 	var ships := _ships(holder)
 	if ships:
-		action.call(ships[0])	
+		action.call(ships[0])
 	else:
 		_waiting_for_ship.get_or_add(holder, []).append(action)
 
 # --- Item-specific actions ---
-
-func _load_ball(ship: Ship) -> void:
-	var ball := BASKET_BALL_SCENE.instantiate() as Cargo
-	ball._self_scene = BASKET_BALL_SCENE # a Cargo packs itself in _ready, but this one never enters the tree
-	ship.load_cargo(ball) # the ship keeps a clone
-	ball.free()
 
 ## Like Super Mario cherry: a second ship for the same player, same controls.
 ## One hit and the twin is gone; the original ship respawns as usual.
@@ -99,22 +89,31 @@ func _duplicate(ship: Ship) -> void:
 func _ready() -> void:
 	%AutoSignals \
 		.bind(%ArenaScope.item_obtained, _on_item_obtained) \
+		.bind(%ArenaScope.item_lost, _on_item_lost) \
 		.bind(%ArenaScope.ship_down, _on_ship_down) \
 		.bind(%ArenaScope.battlefield_ready, _print_carried) \
 		.bind(%Battlefield.child_entered_tree, _on_battlefield_child_entered)
 
 func _on_item_obtained(item:Item, by_player:Player) -> void:
-	var session := _session()
+	var session = %ArenaScope.get_current_session()
 	if session == null:
 		return
 	var holder := "" if item.is_general() or by_player == null else by_player.get_id()
 	var before := _in_play(holder)
+	Events.log.emit('%s obtained item %s with id %d' % [holder, item, item.get_instance_id()])
 	session.grant_item(item, holder)
 	if _in_match():
 		_start(_in_play(holder), before, holder)
 
+func _on_item_lost(item:Item, by_player:Player) -> void:
+	var session = %ArenaScope.get_current_session()
+	if session == null:
+		return
+	Events.log.emit('%s lost item %s with id %d' % [by_player.get_id(), item, item.get_instance_id()])
+	session.revoke_item(item, by_player.get_id())
+	
 func _on_ship_down(ship: Ship) -> void:
-	var session := _session()
+	var session = %ArenaScope.get_current_session()
 	if session == null:
 		return
 	session.break_glass.call_deferred(ship.get_player().get_id()) # after the items' own reactions to this hit
@@ -122,7 +121,7 @@ func _on_ship_down(ship: Ship) -> void:
 ## Applies every carried copy. [Arena] calls this once its teams are set up.
 ## TODO: This currently works ONLY with players and not with TEAMs 
 func on_match_start() -> void:
-	var session := _session()
+	var session = %ArenaScope.get_current_session()
 	if session == null:
 		return
 	for holder in session.items:
@@ -141,7 +140,7 @@ func _start(now: Array, before: Array, holder: String) -> void:
 
 ## One id per copy [param holder] carries, complete sets merged.
 func _in_play(holder: String) -> Array:
-	return merge(_session().items.get(holder, []).map(func(item: Item) -> StringName: return item.id), mergers)
+	return merge(%ArenaScope.get_current_session().items.get(holder, []).map(func(item: Item) -> StringName: return item.get_type_id()), mergers)
 
 ## Replaces every complete set of parts in [param ids] with its merged id.
 static func merge(ids: Array, merger_parts: Dictionary) -> Array:
@@ -160,8 +159,8 @@ func _show_badges(ship: Ship) -> void:
 
 ## The ItemType behind [param id]: a held item's, or the merged item's own file.
 func _type(id: StringName, holder: String) -> ItemType:
-	for item in _session().items.get(holder, []):
-		if item.id == id:
+	for item in %ArenaScope.get_current_session().items.get(holder, []):
+		if item.get_type_id() == id:
 			return item.type
 	return load(ItemType.ITEMS_DIR + id + ".tres")
 
@@ -173,7 +172,7 @@ func _on_battlefield_child_entered(node: Node) -> void:
 		_show_badges(node)
 
 func _print_carried() -> void:
-	var session := _session()
+	var session = %ArenaScope.get_current_session()
 	if session == null:
 		return
 	print("items in play:")
@@ -185,9 +184,3 @@ func _ships(holder: String) -> Array:
 
 func _in_match() -> bool:
 	return get_parent().get_parent() is Arena
-
-func _session() -> Session:
-	var arena := get_parent().get_parent()
-	if arena == null or not "session" in arena:
-		return null
-	return arena.session

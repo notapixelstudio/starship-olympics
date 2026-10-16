@@ -21,13 +21,21 @@ func add_match_results(match_results:Dictionary) -> void:
 	for player_id in items:
 		items[player_id] = items[player_id].filter(func(item : Item) -> bool: return item.survives_game())
 
-## Grants a copy of [param item] to [param player_id], or to the whole session when empty.
+## Grants [param item] to [param player_id], or to the whole session when empty.
 func grant_item(item : Item, player_id := "") -> void:
 	assert(item != null)
-	var copy := item.duplicate() as Item # each copy counts down its own games
-	copy.games_left = item.duration
-	items.get_or_add(player_id, []).append(copy)
+	item.games_left = item.duration
+	items.get_or_add(player_id, []).append(item)
+	Events.log.emit('Items available to players %s' % [items])
 
+## Revokes [param item] from [param player_id], or to the whole session when empty.
+func revoke_item(item : Item, player_id := "") -> void:
+	assert(item != null)
+	var player_items : Array = items.get(player_id)
+	assert(player_items != null)
+	player_items.erase(item)
+	Events.log.emit('Player %s has now these items: %s' % [player_id, player_items])
+	
 ## A hit shatters every glass item held by [param player_id].
 func break_glass(player_id : String) -> void:
 	if items.has(player_id):
