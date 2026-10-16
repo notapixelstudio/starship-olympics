@@ -111,3 +111,13 @@ func swap_cargo(other) -> void:
 	_new_cargo(other.get_cargo())
 	other._new_cargo(swap)
 	
+func on_ship_damaged(damager) -> void:
+	if not has_cargo():
+		return
+		
+	if _current_cargo.has_item() and _current_cargo.get_item().is_glass():
+		# TBD shoot the cargo, but tell it to break
+		_empty_cargo()
+		return
+		
+	shoot_cargo(damager)

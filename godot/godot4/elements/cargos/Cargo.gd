@@ -16,7 +16,10 @@ var _self_scene : PackedScene
 var _untouchable_by = null
 
 func has_item() -> bool:
-	return Item != null
+	return item != null
+	
+func get_item() -> Item:
+	return item
 	
 func get_texture() -> Texture:
 	return %Sprite2D.texture

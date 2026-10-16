@@ -25,7 +25,9 @@ func _to_string() -> String:
 func is_general() -> bool:
 	return type.slot == "general"
 
-
+func is_glass() -> bool:
+	return glass
+	
 ## Counts down one played game; false once expired.
 func survives_game() -> bool:
 	if duration == Duration.RUN:

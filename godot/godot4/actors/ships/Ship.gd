@@ -327,7 +327,7 @@ func damage(damager) -> void:
 	# lose cargo if any instead of losing health
 	var impulse_to_give = rebound(vector, strength_rebound)
 	if %CargoManager.has_cargo():
-		%CargoManager.shoot_cargo(damager)
+		%CargoManager.on_ship_damaged(damager)
 		return
 		
 	# TBD health system
