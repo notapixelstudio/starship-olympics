@@ -127,7 +127,7 @@ func on_match_start() -> void:
 	for holder in session.items:
 		_start(_in_play(holder), [], holder)
 		for item in session.items[holder]:
-			if item.get_type_slot() == 'hat':
+			if item.get_type_slot() in ['hat', 'ball']:
 				_with_ship(holder, func (holder): _load_cargo(holder, item.get_type_element_scene()))
 	
 
