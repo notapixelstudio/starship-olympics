@@ -5,6 +5,7 @@ class_name Turret
 	set(value):
 		enabled = value
 		_forward_firing_setting(&"enabled", value)
+@export var shooting := true
 @export var wait_time := 2.0:
 	set(value):
 		wait_time = value
@@ -63,8 +64,12 @@ func start() -> void:
 func stop() -> void:
 	%TurretFiring.stop()
 
+func set_shooting(v:bool) -> void:
+	shooting = v
+
 func fire() -> void:
-	tap.emit(0)
+	if shooting:
+		tap.emit(0)
 	
 # TODO design how to handle color for rogue team
 func get_color() -> Color:
@@ -74,6 +79,12 @@ func get_team() -> String:
 	return 'rogue'
 
 func alert():
+	enabled = true
+	%AnimationPlayer.stop()
 	%AnimationPlayer.play("Alert")
-	await %AnimationPlayer.animation_finished
-	alert_ended.emit()
+	
+func stand_down():
+	enabled = false
+	%AnimationPlayer.stop()
+	%AnimationPlayer.play("RESET")
+	shooting = false

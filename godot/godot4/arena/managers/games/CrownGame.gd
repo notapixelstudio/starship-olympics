@@ -9,8 +9,9 @@ func _physics_process(delta: float) -> void:
 			if not ship in _royalnesses:
 				_royalnesses[ship] = 0.0
 				
-			Events.points_scored.emit(delta, ship.get_team())
-			_royalnesses[ship] += delta
+			var points : float = delta * (ship.get_cargo() as Crown).points_per_second
+			Events.points_scored.emit(points, ship.get_team())
+			_royalnesses[ship] += points
 			var msg = str("+%0.2f" % _royalnesses[ship])
 			ship.set_message(msg)
 			

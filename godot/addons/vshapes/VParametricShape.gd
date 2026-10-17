@@ -5,6 +5,8 @@ class_name VParametricShape
 @export var hosts : Array[Node] : set = set_hosts
 @export var rotation_degrees : float = 0.0 : set = set_rotation_degrees
 
+signal updated
+
 func set_hosts(v: Array[Node]) -> void:
 	hosts = v
 	taint()
@@ -33,6 +35,7 @@ func _physics_process(delta):
 		_dirty = false
 		
 func update():
+	updated.emit()
 	update_hosts()
 
 func update_hosts() -> void:

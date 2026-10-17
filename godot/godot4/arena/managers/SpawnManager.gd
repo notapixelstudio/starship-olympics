@@ -11,6 +11,7 @@ func _on_spawn_request(object:Node, callback:Callable=func(o):return) -> void:
 	var spawn = func():
 		battlefield.add_child(object)
 		callback.call(object)
-	
+		%ArenaScope.spawned.emit(object)
+		
 	spawn.call_deferred()
 	
