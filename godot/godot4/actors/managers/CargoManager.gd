@@ -5,7 +5,8 @@ extends Node
 var _current_cargo : Cargo
 
 func _ready():
-	get_host().tap.connect(_on_tap)
+	%AutoSignals \
+		.bind(get_host().tap, _on_tap)
 	
 func get_host():
 	return get_parent()
@@ -111,13 +112,11 @@ func swap_cargo(other) -> void:
 	_new_cargo(other.get_cargo())
 	other._new_cargo(swap)
 	
-func on_ship_damaged(damager) -> void:
+func hit_cargo(hitter, hit_impulse) -> void:
 	if not has_cargo():
 		return
 		
-	if _current_cargo.has_item() and _current_cargo.get_item().is_glass():
-		# TBD shoot the cargo, but tell it to break
-		_empty_cargo()
-		return
-		
-	shoot_cargo(damager)
+	# shoot the cargo and hit it after the fact
+	var _the_cargo = _current_cargo
+	shoot_cargo(hitter)
+	_the_cargo.hit.call_deferred(hitter)

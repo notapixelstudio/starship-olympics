@@ -7,6 +7,7 @@ class_name Cargo
 signal loaded_by(actor: Ship)
 
 @export var item : Item
+@export var breaking_effect_scene : PackedScene
 
 @onready var tracked = %Tracked
 
@@ -85,3 +86,15 @@ func _reset_untouchable() -> void:
 func hit(hitter=null):
 	%SpriteAnimation.stop()
 	%SpriteAnimation.play('Hit')
+	
+	if item and item.is_glass():
+		shatter()
+
+func shatter() -> void:
+	var breaking_effect = breaking_effect_scene.instantiate()
+	breaking_effect.set_texture(get_texture())
+	breaking_effect.global_position = global_position
+	breaking_effect.global_rotation = global_rotation
+	breaking_effect.linear_velocity = linear_velocity
+	_ctx.spawn_request.emit(breaking_effect)
+	queue_free()

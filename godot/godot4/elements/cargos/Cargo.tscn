@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://djawiwgh6pg6c" path="res://godot4/elements/cargos/Cargo.gd" id="1_mtln1"]
 [ext_resource type="PackedScene" uid="uid://clbsrjsidxhav" path="res://godot4/traits/Tracked.tscn" id="2_s6d8j"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="2_siay3"]
+[ext_resource type="PackedScene" uid="uid://b5shvnsa4ku83" path="res://godot4/effects/Breaking.tscn" id="2_tyo40"]
 [ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="3_c3rep"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="3_x7m7y"]
 
@@ -106,6 +107,7 @@ can_sleep = false
 max_contacts_reported = 10
 linear_damp = 1.0
 script = ExtResource("1_mtln1")
+breaking_effect_scene = ExtResource("2_tyo40")
 
 [node name="Tracked" parent="." unique_id=576189435 instance=ExtResource("2_s6d8j")]
 unique_name_in_owner = true

@@ -41,14 +41,14 @@ func _handle_ship_vs_other(ship:Ship, collider, tag:String='') -> void:
 		collider.touched_by(ship)
 		return # collision handled
 		
-	# Pews damage Ships
+	# Pews hit Ships
 	if collider is Pew and tag == 'hurt':
 		# no friendly fire
 		# assert traits.has_trait(collider, 'OwnedByPlayer')
 		if ship.get_team() == collider.get_team():
 			return # collision handled
 			
-		ship.damage(collider)
+		ship.hit(collider)
 		collider.destroy()
 		return # collision handled
 		
@@ -102,6 +102,7 @@ func _handle_pew_vs_other(pew:Pew, collider, tag:String='') -> void:
 		pew.destroy() # Mirrors reflect Pews without destroying them
 		
 	if collider.has_method('hit'):
+		# WARNING Ship vs Pew handled elsewhere, even if Ship has a hit() method
 		collider.hit(pew) # Pews hit all sorts of stuff
 		return # collision handled
 		

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dc6nig7hifisb"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://cgtydalk5hxq3" path="res://godot4/data/physics/standard_physics_material.tres" id="1_0u8na"]
+[ext_resource type="Script" uid="uid://bm17v2m2i658w" path="res://godot4/effects/Shard.gd" id="2_1wupu"]
+
+[node name="Shard" type="RigidBody2D" unique_id=500473009]
+collision_layer = 67108864
+collision_mask = 67174416
+physics_material_override = ExtResource("1_0u8na")
+linear_damp = 1.0
+script = ExtResource("2_1wupu")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1362961154]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2067285559]

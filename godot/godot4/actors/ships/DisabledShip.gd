@@ -17,7 +17,7 @@ func set_ship(ship: Ship) -> void:
 	%MotionAutoTrail.gradient = ship.get_player().get_gradient()
 	_cloned_ship = ship.clone()
 	
-func damage(hazard, damager) -> void:
+func hit(hazard, damager) -> void:
 	$HitAnimationPlayer.play("hit")
 	
 func _ready() -> void:

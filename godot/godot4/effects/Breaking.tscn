@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b5shvnsa4ku83"]
+
+[ext_resource type="Script" uid="uid://dm7xls5rhg7u6" path="res://godot4/effects/Breaking.gd" id="1_mo50f"]
+[ext_resource type="PackedScene" uid="uid://dc6nig7hifisb" path="res://godot4/effects/Shard.tscn" id="2_hv4x0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qu4h1"]
+radius = 100.0
+
+[node name="Breaking" type="RigidBody2D" unique_id=2016647071]
+modulate = Color(1.4, 1.4, 1.4, 1)
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_mo50f")
+shard_scene = ExtResource("2_hv4x0")
+display_triangles = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=573874831]
+shape = SubResource("CircleShape2D_qu4h1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=896667146]
+unique_name_in_owner = true
+modulate = Color(1.2, 1.2, 1.2, 1)
