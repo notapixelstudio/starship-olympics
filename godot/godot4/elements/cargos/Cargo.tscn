@@ -94,7 +94,7 @@ _data = {
 &"Shine": SubResource("Animation_ijh7r")
 }
 
-[sub_resource type="Gradient" id="Gradient_c3rep"]
+[sub_resource type="Gradient" id="Gradient_tyo40"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
@@ -104,7 +104,6 @@ collision_layer = 512
 collision_mask = 3606
 physics_material_override = SubResource("PhysicsMaterial_ribre")
 can_sleep = false
-max_contacts_reported = 10
 linear_damp = 1.0
 script = ExtResource("1_mtln1")
 breaking_effect_scene = ExtResource("2_tyo40")
@@ -134,7 +133,7 @@ libraries/ = SubResource("AnimationLibrary_lqqh5")
 sprite = NodePath("../Sprite2D")
 
 [node name="MotionAutoTrail" parent="." unique_id=1467177572 node_paths=PackedStringArray("host") instance=ExtResource("3_x7m7y")]
-gradient = SubResource("Gradient_c3rep")
+gradient = SubResource("Gradient_tyo40")
 active = true
 disappear_speed = 1000.0
 host = NodePath("..")

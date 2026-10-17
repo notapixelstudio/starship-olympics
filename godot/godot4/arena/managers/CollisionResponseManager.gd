@@ -78,12 +78,12 @@ func _handle_ship_vs_other(ship:Ship, collider, tag:String='') -> void:
 		if ship.get_team() == collider.get_player().get_team():
 			return # collision handled
 		collider.detonate()
-		ship.kill(collider.get_player())
+		ship.kill(collider)
 		return # collision handled
 		
 	# Explosions kill instantly
 	if collider is Explosion and tag == 'hurt':
-		ship.kill(collider.get_player())
+		ship.kill(collider)
 		return # collision handled
 		
 	# Missiles follow a ship when they detect one
@@ -138,15 +138,11 @@ func _handle_ball_vs_other(ball:Ball, collider, tag:String='') -> void:
 		return # collision handled
 		
 func _hanlde_bubble_bullet_vs_other(bubble_bullet:BubbleBullet, collider, tag:String='') -> void:
-	if collider is Collectable:
-		bubble_bullet.capture_collectable(collider)
+	if collider is Collectable or collider is Shapeoid or collider is Cargo:
+		bubble_bullet.capture_nonship_element(collider)
 		bubble_bullet.destroy()
 		return # collision handled
 		
-	if collider is Shapeoid:
-		bubble_bullet.capture_shapeoid(collider)
-		bubble_bullet.destroy()
-		return # collision handled
 
 func _handle_shield_wall_vs_other(shield_wall:ShieldWall, collider, tag:String='') -> void:
 	if collider is Pew:

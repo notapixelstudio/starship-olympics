@@ -46,9 +46,7 @@ func clone_as_new() -> Cargo:
 
 func _on_body_entered(body: Node) -> void:
 	#_reset_untouchable() # always reset untouchability on bouncing off sth
-	
-	if body is StaticBody2D:
-		_ctx.collision.emit(self, body)
+	_ctx.collision.emit(self, body)
 	
 func touched_by(actor) -> void:
 	if not loadable:

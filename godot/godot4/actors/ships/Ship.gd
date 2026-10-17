@@ -332,7 +332,7 @@ func hit(hitter) -> void:
 	# do not damage the ship if it has cargo
 	# hit the cargo instead
 	if %CargoManager.has_cargo():
-		%CargoManager.hit_cargo(hitter, hit_impulse)
+		%CargoManager.hit_cargo(hitter)
 		return
 		
 	damage(hitter, hit_impulse)
@@ -343,18 +343,24 @@ func damage(damager, hit_impulse) -> void:
 	damaged.emit(damager)
 	disable(damager, hit_impulse)
 	
-signal killed(by_player)
+signal killed(by_what)
 func kill(killer=null):
-	if killer != null:
-		var team = killer.get_team()
-		var team2 = get_team()
-		if killer.get_team() != get_team():
+	# if the ship has a cargo, hit it
+	if %CargoManager.has_cargo():
+		assert(killer != null)
+		%CargoManager.hit_cargo(killer)
+	
+	if killer != null and killer.has_method('get_player'):
+		var team = get_team()
+		var team2 = killer.get_player().get_team()
+		if team != team2:
 			# WARNING this is intrinsic scoring for deathmatch-like games
 			# maybe it has to be moved out if we have both intrinsic and non-intrinsic scoring
-			Events.score.emit(1, killer, global_position)
+			Events.score.emit(1, killer.get_player(), global_position)
 	if not is_queued_for_deletion():
 		killed.emit(killer)
 		_ctx.ship_down.emit(self)
+	
 	die()
 	
 signal died
@@ -409,6 +415,15 @@ func disable(disabler, hit_impulse):
 	
 	queue_free()
 
+signal captured(by_what)
+func capture(captor) -> void:
+	# if the ship has a cargo, drop it
+	if %CargoManager.has_cargo():
+		assert(captor != null)
+		%CargoManager.shoot_cargo(captor)
+		
+	captured.emit(captor)
+	
 func get_speed_normalized() -> float:
 	return min(1.0, linear_velocity.length() / 100.0)
 

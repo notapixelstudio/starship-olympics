@@ -188,7 +188,7 @@ resource_local_to_scene = true
 script = ExtResource("11_crsa2")
 type = ExtResource("12_a3isy")
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_3s1is"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_358l5"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -315,6 +315,6 @@ burst_time = 0.1
 burst_time_jitter = 0.2
 
 [node name="Navigation" parent="." index="8" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_3s1is")
+navigation_polygon = SubResource("NavigationPolygon_358l5")
 
 [connection signal="loaded_by" from="Battlefield/Crown" to="Managers/Orchestrator" method="_on_crown_loaded_by"]

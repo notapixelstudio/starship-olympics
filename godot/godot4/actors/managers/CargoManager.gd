@@ -67,7 +67,7 @@ func _launch_cargo(global_pos: Vector2, vel: Vector2, rot: float, spin: float = 
 	
 func kick_cargo(charge:float) -> void:
 	if _current_cargo is Ball:
-		_current_cargo.take_ownership(get_host())
+		_current_cargo.set_player(get_host().get_player())
 		_current_cargo.unrest()
 		
 	# use intended direction in addition to actual direction
@@ -112,7 +112,7 @@ func swap_cargo(other) -> void:
 	_new_cargo(other.get_cargo())
 	other._new_cargo(swap)
 	
-func hit_cargo(hitter, hit_impulse) -> void:
+func hit_cargo(hitter) -> void:
 	if not has_cargo():
 		return
 		
