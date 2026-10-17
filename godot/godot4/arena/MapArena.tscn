@@ -48,24 +48,24 @@ duration = 0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qu4h1"]
 radius = 118.27
 
-[sub_resource type="Resource" id="Resource_qkhdh"]
+[sub_resource type="Resource" id="Resource_wwcie"]
 resource_local_to_scene = true
 script = ExtResource("25_item")
 type = ExtResource("25_w4bat")
 
-[sub_resource type="Resource" id="Resource_2p1gh"]
+[sub_resource type="Resource" id="Resource_ie6ii"]
 resource_local_to_scene = true
 script = ExtResource("25_item")
 type = ExtResource("25_w4bat")
 
-[sub_resource type="Resource" id="Resource_iji2j"]
+[sub_resource type="Resource" id="Resource_vm5uw"]
 resource_local_to_scene = true
 script = ExtResource("25_item")
 type = ExtResource("25_w4bat")
 duration = 0
 glass = true
 
-[sub_resource type="Resource" id="Resource_fpm5w"]
+[sub_resource type="Resource" id="Resource_ey38b"]
 resource_local_to_scene = true
 script = ExtResource("25_item")
 type = ExtResource("28_bb")
@@ -132,7 +132,7 @@ func _process(delta: float) -> void:
 	global_position = get_parent().global_position
 "
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_wwcie"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_yl2ae"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -257,19 +257,19 @@ texture = ExtResource("30_dm")
 
 [node name="Crown" parent="Battlefield" unique_id=1255268695 instance=ExtResource("24_gps85")]
 position = Vector2(0, -600)
-item = SubResource("Resource_qkhdh")
+item = SubResource("Resource_wwcie")
 
 [node name="Crown2" parent="Battlefield" unique_id=289219346 instance=ExtResource("24_gps85")]
 position = Vector2(0, -800)
-item = SubResource("Resource_2p1gh")
+item = SubResource("Resource_ie6ii")
 
 [node name="GlassCrown" parent="Battlefield" unique_id=1160048206 instance=ExtResource("25_tbi7m")]
 position = Vector2(400, -600)
-item = SubResource("Resource_iji2j")
+item = SubResource("Resource_vm5uw")
 
 [node name="BasketBall" parent="Battlefield" unique_id=1878555385 instance=ExtResource("25_qkhdh")]
 position = Vector2(200, 800)
-item = SubResource("Resource_fpm5w")
+item = SubResource("Resource_ey38b")
 
 [node name="PewTurret" type="Area2D" parent="Battlefield" unique_id=718930390 groups=["Turret"]]
 position = Vector2(-1400, -1100)
@@ -337,7 +337,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Navigation" parent="." unique_id=332973589 instance=ExtResource("9_c6ehg")]
-navigation_polygon = SubResource("NavigationPolygon_wwcie")
+navigation_polygon = SubResource("NavigationPolygon_yl2ae")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=737164047]
 unique_name_in_owner = true

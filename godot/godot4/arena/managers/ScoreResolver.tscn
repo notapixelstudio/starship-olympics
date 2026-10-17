@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://dilai3ixse7ph"]
 
 [ext_resource type="Script" uid="uid://bsd04g83jbdaq" path="res://godot4/arena/managers/ScoreResolver.gd" id="1_4rm3w"]
+[ext_resource type="Script" uid="uid://dfwlu4ppe4snj" path="res://addons/AutoSignals/AutoSignals.gd" id="2_yfe2p"]
 
 [node name="ScoreResolver" type="Node" unique_id=513211864]
 script = ExtResource("1_4rm3w")
+
+[node name="AutoSignals" type="Node" parent="." unique_id=300257961]
+unique_name_in_owner = true
+script = ExtResource("2_yfe2p")
+metadata/_custom_type_script = "uid://dfwlu4ppe4snj"

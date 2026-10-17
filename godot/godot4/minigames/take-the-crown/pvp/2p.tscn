@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://x751geeku5fx"]
 
 [ext_resource type="PackedScene" uid="uid://cuafr3l7073mo" path="res://godot4/arena/PvpArena.tscn" id="1_bvhdi"]
-[ext_resource type="PackedScene" uid="uid://chnvt4cxrqrcv" path="res://godot4/arena/managers/games/CrownGame.tscn" id="2_3q1vj"]
 [ext_resource type="Resource" uid="uid://cxorooq22c83" path="res://godot4/data/styles/palace.tres" id="2_6lcix"]
 [ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="4_ij1ca"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="4_vjgex"]
@@ -116,12 +115,12 @@ _data = {
 &"default": SubResource("Animation_xjb4e")
 }
 
-[sub_resource type="Resource" id="Resource_v0b3l"]
+[sub_resource type="Resource" id="Resource_dufl6"]
 resource_local_to_scene = true
 script = ExtResource("12_ku108")
 type = ExtResource("13_cdmu1")
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_x08ri"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_my4sj"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -133,8 +132,6 @@ agent_radius = 100.0
 
 [node name="Styleable" parent="." index="1" unique_id=999924478]
 style = ExtResource("2_6lcix")
-
-[node name="CrownGame" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="5" unique_id=981119904 instance=ExtResource("2_3q1vj")]
 
 [node name="Camera2D" parent="." index="3" unique_id=956979488]
 zoom = Vector2(0.3, 0.3)
@@ -214,8 +211,8 @@ precision = 20
 rotation_degrees = 45.0
 
 [node name="Crown" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=338107464 instance=ExtResource("6_h5akp")]
-item = SubResource("Resource_v0b3l")
+item = SubResource("Resource_dufl6")
 breaking_effect_scene = null
 
 [node name="Navigation" parent="." index="8" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_x08ri")
+navigation_polygon = SubResource("NavigationPolygon_my4sj")
