@@ -13,17 +13,21 @@ enum Duration { RUN = 0, GAME = 1, TWO_GAMES = 2 }
 ## Games left for a granted copy, see [method Session.grant_item].
 @export_storage var games_left := 0
 
+## This is currently relevant for [Cargo], set by the cargo itself (in order to avoid 
+## recursive thingy. Crown and GlassCrown share the same type
+var _element_scene: PackedScene
+
 func _init() -> void:
 	resource_local_to_scene = true
 
 func get_type_id() -> StringName:
 	return type.id
 
-func get_type_slot() -> String:
-	return type.slot
-	
-func get_type_element_scene() -> PackedScene:
-	return type.element_scene
+func is_cargo() -> bool:
+	return type.is_cargo()
+
+func get_element_scene() -> PackedScene:
+	return _element_scene
 	
 func _to_string() -> String:
 	return "%s%s (%s)" % [type.id, ' (Glass)' if glass else '', duration]
@@ -42,4 +46,4 @@ func survives_game() -> bool:
 	return games_left > 0
 
 func set_element_scene(scene:PackedScene) -> void:
-	type.element_scene = scene
+	_element_scene = scene

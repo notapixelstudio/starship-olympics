@@ -66,7 +66,7 @@ func _holds(id: StringName, holder: String) -> bool:
 var _waiting_for_ship := {}
 
 ## Calls [param action] with [param holder]'s ship: now if it is on the battlefield, else as soon as it enters.
-func _with_ship(holder: String, action: Callable, params:= []) -> void:
+func _with_ship(holder: String, action: Callable) -> void:
 	var ships := _ships(holder)
 	if ships:
 		action.call(ships[0])
@@ -99,6 +99,8 @@ func _on_item_obtained(item:Item, by_player:Player) -> void:
 	if session == null:
 		return
 	var holder := "" if item.is_general() or by_player == null else by_player.get_id()
+	if item in session.items.get(holder, []): # already held, e.g. a cargo carried into the match
+		return
 	var before := _in_play(holder)
 	Events.log.emit('%s obtained item %s with id %d' % [holder, item, item.get_instance_id()])
 	session.grant_item(item, holder)
@@ -127,9 +129,8 @@ func on_match_start() -> void:
 	for holder in session.items:
 		_start(_in_play(holder), [], holder)
 		for item in session.items[holder]:
-			if item.get_type_slot() in ['hat', 'ball']:
-				_with_ship(holder, func (holder): _load_cargo(holder, item.get_type_element_scene()))
-	
+			if item.is_cargo():
+				_with_ship(holder, _load_cargo.bind(item))
 
 ## Runs the effects of the ids in [param now] that were not already in [param before].
 ## Parts swallowed by a merger stop on their own: their timers and reactions check [method _holds].
@@ -141,14 +142,13 @@ func _start(now: Array, before: Array, holder: String) -> void:
 			effects[id].call(holder)
 	for ship in _ships(holder):
 		_show_badges(ship)
-	var session = %ArenaScope.get_current_session()
-	if session == null:
-		return
-	
-		
-func _load_cargo(ship: Ship, cargo_scene: PackedScene) -> void:
-	var cargo := cargo_scene.instantiate() as Cargo
-	cargo._self_scene = cargo_scene
+
+## Cargo items (see [method ItemType.is_cargo]) have no effect: carried into a match, they are back on the ship.
+## The cargo wraps the very [Item] the player holds, so loading it obtains nothing new.
+func _load_cargo(ship: Ship, item: Item) -> void:
+	var cargo := item.get_element_scene().instantiate() as Cargo
+	cargo._self_scene = item.get_element_scene()
+	cargo.item = item
 	ship.load_cargo(cargo) # the ship keeps a clone
 	cargo.free()
 
