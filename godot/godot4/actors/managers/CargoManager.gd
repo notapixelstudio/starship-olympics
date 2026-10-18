@@ -6,7 +6,8 @@ var _current_cargo : Cargo
 
 func _ready():
 	%AutoSignals \
-		.bind(get_host().tap, _on_tap)
+		.bind(get_host().tap, _on_tap) \
+		.bind(_ctx.player_failed, _on_player_failed)
 	
 func get_host():
 	return get_parent()
@@ -116,7 +117,7 @@ func swap_cargo(other) -> void:
 	_new_cargo(other.get_cargo())
 	other._new_cargo(swap)
 	
-func hit_cargo(hitter) -> void:
+func hit_cargo(hitter=null) -> void:
 	if not has_cargo():
 		return
 		
@@ -124,3 +125,15 @@ func hit_cargo(hitter) -> void:
 	var _the_cargo = _current_cargo
 	shoot_cargo(hitter)
 	_the_cargo.hit.call_deferred(hitter)
+
+
+func _on_player_failed(player:Player) -> void:
+	if not has_cargo():
+		return
+		
+	if get_host().get_player() != player:
+		return
+		
+	if get_cargo().has_item() and get_cargo().get_item().is_glass():
+		# glass cargos are hit on a fail
+		hit_cargo()

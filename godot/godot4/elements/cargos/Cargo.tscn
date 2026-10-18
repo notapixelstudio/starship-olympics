@@ -94,7 +94,7 @@ _data = {
 &"Shine": SubResource("Animation_ijh7r")
 }
 
-[sub_resource type="Gradient" id="Gradient_tyo40"]
+[sub_resource type="Gradient" id="Gradient_3rb1i"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
@@ -133,7 +133,7 @@ libraries/ = SubResource("AnimationLibrary_lqqh5")
 sprite = NodePath("../Sprite2D")
 
 [node name="MotionAutoTrail" parent="." unique_id=1467177572 node_paths=PackedStringArray("host") instance=ExtResource("3_x7m7y")]
-gradient = SubResource("Gradient_tyo40")
+gradient = SubResource("Gradient_3rb1i")
 active = true
 disappear_speed = 1000.0
 host = NodePath("..")

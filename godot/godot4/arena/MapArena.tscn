@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bxpm2unqd3am4" path="res://assets/sprites/environments/clock_circuits_outline.png" id="19_gps85"]
 [ext_resource type="Texture2D" uid="uid://dvs4ry75sj8nh" path="res://assets/icon/minigames/crown.png" id="20_ie6ii"]
 [ext_resource type="Texture2D" uid="uid://ddoec0h4uj82b" path="res://assets/icon/minigames/squash-five.png" id="20_sxr4j"]
+[ext_resource type="Texture2D" uid="uid://drj24nhdnma8w" path="res://assets/icon/minigames/ring_racing.png" id="21_ey38b"]
 [ext_resource type="PackedScene" uid="uid://bdnijlionsghd" path="res://godot4/ui/overlays/PauseOverlay.tscn" id="21_yl2ae"]
 [ext_resource type="PackedScene" uid="uid://cphkdfew8xuc5" path="res://godot4/arena/ArenaScope.tscn" id="22_scope"]
 [ext_resource type="PackedScene" uid="uid://cyolmy8p6kegy" path="res://godot4/arena/managers/ItemManager.tscn" id="23_items"]
@@ -50,7 +51,7 @@ duration = 0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qu4h1"]
 radius = 118.27
 
-[sub_resource type="Resource" id="Resource_ey38b"]
+[sub_resource type="Resource" id="Resource_yl2ae"]
 resource_local_to_scene = true
 script = ExtResource("25_item")
 type = ExtResource("25_w4bat")
@@ -224,19 +225,33 @@ offset_right = 343.0
 offset_bottom = 118.0
 texture = ExtResource("13_ore4y")
 
-[node name="DiamondsnatchStart2" type="Area2D" parent="Battlefield" unique_id=484802409]
+[node name="CrownStart" type="Area2D" parent="Battlefield" unique_id=484802409]
 position = Vector2(1314, 408)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/DiamondsnatchStart2" unique_id=1448260898]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/CrownStart" unique_id=1448260898]
 position = Vector2(184, 31)
 shape = SubResource("CircleShape2D_qu4h1")
 
-[node name="TextureRect" type="TextureRect" parent="Battlefield/DiamondsnatchStart2" unique_id=239284983]
+[node name="TextureRect" type="TextureRect" parent="Battlefield/CrownStart" unique_id=239284983]
 offset_left = 19.0
 offset_top = -50.0
 offset_right = 343.0
 offset_bottom = 118.0
 texture = ExtResource("20_ie6ii")
+
+[node name="RacingStart" type="Area2D" parent="Battlefield" unique_id=363238435]
+position = Vector2(1314, -342)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/RacingStart" unique_id=1713460946]
+position = Vector2(184, 31)
+shape = SubResource("CircleShape2D_qu4h1")
+
+[node name="TextureRect" type="TextureRect" parent="Battlefield/RacingStart" unique_id=1887126332]
+offset_left = 19.0
+offset_top = -50.0
+offset_right = 343.0
+offset_bottom = 118.0
+texture = ExtResource("21_ey38b")
 
 [node name="ShapeHuntStart" type="Area2D" parent="Battlefield" unique_id=1604412871]
 position = Vector2(304, 408)
@@ -268,7 +283,7 @@ texture = ExtResource("30_dm")
 
 [node name="Crown" parent="Battlefield" unique_id=1255268695 instance=ExtResource("24_gps85")]
 position = Vector2(0, -600)
-item = SubResource("Resource_ey38b")
+item = SubResource("Resource_yl2ae")
 
 [node name="GlassCrown" parent="Battlefield" unique_id=1160048206 instance=ExtResource("25_tbi7m")]
 position = Vector2(400, -600)
@@ -367,7 +382,8 @@ visible = false
 
 [connection signal="body_entered" from="Battlefield/SquashfiveStart" to="." method="_on_area_2d_body_entered" binds= ["squash-five"]]
 [connection signal="body_entered" from="Battlefield/DiamondsnatchStart" to="." method="_on_area_2d_body_entered" binds= ["diamondsnatch"]]
-[connection signal="body_entered" from="Battlefield/DiamondsnatchStart2" to="." method="_on_area_2d_body_entered" binds= ["keep-the-crown"]]
+[connection signal="body_entered" from="Battlefield/CrownStart" to="." method="_on_area_2d_body_entered" binds= ["keep-the-crown"]]
+[connection signal="body_entered" from="Battlefield/RacingStart" to="." method="_on_area_2d_body_entered" binds= ["ring-racing"]]
 [connection signal="body_entered" from="Battlefield/ShapeHuntStart" to="." method="_on_area_2d_body_entered" binds= ["shape-hunt"]]
 [connection signal="body_entered" from="Battlefield/DeathmatchStart" to="." method="_on_area_2d_body_entered" binds= ["deathmatch", "pvp"]]
 [connection signal="timeout" from="Battlefield/PewTurret/Timer" to="Battlefield/PewTurret" method="_on_timer_timeout"]

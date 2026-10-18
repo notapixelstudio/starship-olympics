@@ -18,6 +18,9 @@ func set_player(v: Player) -> void:
 func get_player() -> Player:
 	return _player
 	
+func has_player() -> bool:
+	return _player != null
+	
 func push(impulse: float) -> void:
 	apply_central_impulse(impulse*linear_velocity.normalized())
 	

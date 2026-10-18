@@ -23,6 +23,8 @@ func set_texture(v: Texture) -> void:
 	%Sprite2D.texture = v
 
 func _ready() -> void:
+	SoundEffects.play($AudioStreamPlayer2D)
+	
 	var rect = %Sprite2D.get_rect()
 	var points = []
 	

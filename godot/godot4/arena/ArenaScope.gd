@@ -26,6 +26,8 @@ signal ship_died(player:Player)
 
 signal time_gained(seconds:int)
 
+signal player_failed(player:Player)
+
 signal cargo_loaded(cargo:Cargo, by_ship:Ship)
 signal cargo_unloaded(cargo:Cargo, by_ship:Ship)
 
