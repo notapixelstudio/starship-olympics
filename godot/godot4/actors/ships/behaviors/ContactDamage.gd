@@ -24,4 +24,4 @@ func _on_body_entered(body: Node) -> void:
 
 func _damage_contact(body: Ship) -> void:
 	if is_instance_valid(body) and not body.is_queued_for_deletion():
-		body.damage(familiar)
+		body.hit(familiar)

@@ -64,4 +64,4 @@ func _end_return() -> void:
 
 func _damage_contact(body: Ship) -> void:
 	if is_instance_valid(body) and not body.is_queued_for_deletion():
-		body.damage(familiar)
+		body.hit(familiar)

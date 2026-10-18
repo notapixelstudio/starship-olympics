@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://gngmmoykqjtu"]
+
+[ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="1_6mwet"]
+[ext_resource type="Script" uid="uid://d0bqe8srkhk6e" path="res://godot4/data/items/Item.gd" id="2_d2ndw"]
+[ext_resource type="Texture2D" uid="uid://c580urt5d2i1u" path="res://assets/sprites/balls/glass_crown.png" id="2_ltq87"]
+[ext_resource type="Resource" uid="uid://i8oaavdvf6hv" path="res://godot4/data/items/Crown.tres" id="3_527qi"]
+[ext_resource type="Texture2D" uid="uid://c2t48cbylibsk" path="res://assets/sprites/balls/glass_crown_glow.png" id="3_lb7rg"]
+
+[sub_resource type="Resource" id="Resource_d2ndw"]
+resource_local_to_scene = true
+script = ExtResource("2_d2ndw")
+type = ExtResource("3_527qi")
+duration = 0
+glass = true
+
+[sub_resource type="Gradient" id="Gradient_527qi"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.997561)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
+
+[node name="GlassCrown" unique_id=1255268695 instance=ExtResource("1_6mwet")]
+points_per_second = 0.5
+item = SubResource("Resource_d2ndw")
+
+[node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1232204582) index="0" unique_id=686837574]
+texture = ExtResource("2_ltq87")
+
+[node name="Glow" parent="Graphics/Sprite2D" index="0" unique_id=599249175]
+scale = Vector2(1, 1)
+texture = ExtResource("3_lb7rg")
+
+[node name="MotionAutoTrail" parent="." index="3" unique_id=1467177572]
+modulate = Color(0, 0.7833333, 1, 0.2901961)
+gradient = SubResource("Gradient_527qi")

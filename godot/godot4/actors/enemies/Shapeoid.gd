@@ -39,5 +39,5 @@ func hit(hitter=null) -> void:
 
 func kill(killer=null):
 	if killer != null:
-		Events.score.emit(1, killer, global_position) # FIXME choose if this is actually the default scoring, or if killing does not generally score points
+		Events.score.emit(1, killer.get_player(), global_position) # FIXME choose if this is actually the default scoring, or if killing does not generally score points
 	queue_free()

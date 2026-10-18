@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://djawiwgh6pg6c" path="res://godot4/elements/cargos/Cargo.gd" id="1_mtln1"]
 [ext_resource type="PackedScene" uid="uid://clbsrjsidxhav" path="res://godot4/traits/Tracked.tscn" id="2_s6d8j"]
 [ext_resource type="PackedScene" uid="uid://mjjon1epk4qn" path="res://godot4/effects/Shadow.tscn" id="2_siay3"]
+[ext_resource type="PackedScene" uid="uid://b5shvnsa4ku83" path="res://godot4/effects/Breaking.tscn" id="2_tyo40"]
+[ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="3_c3rep"]
 [ext_resource type="PackedScene" uid="uid://5u7o8g8qd8ey" path="res://godot4/effects/trails/MotionAutoTrail.tscn" id="3_x7m7y"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ribre"]
@@ -10,6 +12,9 @@ bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ycic"]
 radius = 70.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tyo40"]
+blend_mode = 1
 
 [sub_resource type="Animation" id="Animation_kthkp"]
 resource_name = "Hit"
@@ -24,7 +29,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [Color(3, 3, 3, 1), Color(1, 1, 1, 1)]
+"values": [Color(4.415934, 4.415934, 4.415934, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_e7hm2"]
@@ -89,7 +94,7 @@ _data = {
 &"Shine": SubResource("Animation_ijh7r")
 }
 
-[sub_resource type="Gradient" id="Gradient_s6d8j"]
+[sub_resource type="Gradient" id="Gradient_3rb1i"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.997561)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
@@ -99,9 +104,9 @@ collision_layer = 512
 collision_mask = 3606
 physics_material_override = SubResource("PhysicsMaterial_ribre")
 can_sleep = false
-max_contacts_reported = 10
 linear_damp = 1.0
 script = ExtResource("1_mtln1")
+breaking_effect_scene = ExtResource("2_tyo40")
 
 [node name="Tracked" parent="." unique_id=576189435 instance=ExtResource("2_s6d8j")]
 unique_name_in_owner = true
@@ -115,6 +120,11 @@ shape = SubResource("CircleShape2D_0ycic")
 [node name="Sprite2D" type="Sprite2D" parent="Graphics" unique_id=686837574]
 unique_name_in_owner = true
 
+[node name="Glow" type="Sprite2D" parent="Graphics/Sprite2D" unique_id=599249175]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_tyo40")
+texture = ExtResource("3_c3rep")
+
 [node name="SpriteAnimation" type="AnimationPlayer" parent="Graphics" unique_id=1309096494]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_lqqh5")
@@ -123,7 +133,8 @@ libraries/ = SubResource("AnimationLibrary_lqqh5")
 sprite = NodePath("../Sprite2D")
 
 [node name="MotionAutoTrail" parent="." unique_id=1467177572 node_paths=PackedStringArray("host") instance=ExtResource("3_x7m7y")]
-gradient = SubResource("Gradient_s6d8j")
+gradient = SubResource("Gradient_3rb1i")
+active = true
 disappear_speed = 1000.0
 host = NodePath("..")
 max_age = 0.6

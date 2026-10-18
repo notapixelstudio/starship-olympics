@@ -86,6 +86,8 @@ func reset():
 	add_child(_screen_controller)
 	_screen_controller.get_current_screen().back.emit()
 
+func get_current_session() -> Session:
+	return _current_session
 
 func _on_press_any_key_any_key_pressed() -> void:
 	%AnimationPlayer.seek(16.5, true)

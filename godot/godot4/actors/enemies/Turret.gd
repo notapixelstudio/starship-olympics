@@ -14,6 +14,9 @@ class_name Turret
 	set(value):
 		time_jitter = value
 		_forward_firing_setting(&"time_jitter", value)
+
+@export var rogue_player : Player
+
 @export_group("Burst")
 @export var burst_shots := 1:
 	set(value):
@@ -70,12 +73,8 @@ func fire() -> void:
 	if shooting:
 		tap.emit(0)
 	
-# TODO design how to handle color for rogue team
-func get_color() -> Color:
-	return Color.WHITE
-	
-func get_team() -> String:
-	return 'rogue'
+func get_player() -> Player:
+	return rogue_player
 
 func alert():
 	enabled = true
