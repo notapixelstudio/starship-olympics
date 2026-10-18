@@ -31,7 +31,7 @@ func _physics_process(delta):
 func _integrate_forces(state):
 	tracked.tick()
 
-func _on_tap_area_tap(author: Ship, strength: float) -> void:
+func _on_tap_area_tapped(author: Ship, strength: float) -> void:
 	volley(author, strength)
 	
 func volley(author: Ship, strength: float) -> void:

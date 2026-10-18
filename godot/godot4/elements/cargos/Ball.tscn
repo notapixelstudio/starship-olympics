@@ -11,7 +11,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
 [sub_resource type="GDScript" id="GDScript_cdkl3"]
 script/source = "extends Area2D
 
-signal tap(author, strength:float)
+signal tapped(author: Ship, strength: float)
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_khrlj"]
@@ -42,4 +42,4 @@ debug_color = Color(0.639216, 0.337255, 1, 0.0509804)
 
 [connection signal="area_entered" from="TapArea" to="." method="_on_tap_area_area_entered"]
 [connection signal="area_exited" from="TapArea" to="." method="_on_tap_area_area_exited"]
-[connection signal="tap" from="TapArea" to="." method="_on_tap_area_tap"]
+[connection signal="tapped" from="TapArea" to="." method="_on_tap_area_tapped"]
