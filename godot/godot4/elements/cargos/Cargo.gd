@@ -6,6 +6,9 @@ class_name Cargo
 
 signal loaded_by(actor: Ship)
 
+@export var item : Item
+@export var breaking_effect_scene : PackedScene
+
 @onready var tracked = %Tracked
 
 @onready var _ctx := ArenaScope.get_scope(self)
@@ -13,30 +16,41 @@ signal loaded_by(actor: Ship)
 var _self_scene : PackedScene
 var _untouchable_by = null
 
+func has_item() -> bool:
+	return item != null
+	
+func get_item() -> Item:
+	return item
+	
 func get_texture() -> Texture:
 	return %Sprite2D.texture
 
 func _ready():
 	_self_scene = PackedScene.new()
 	_self_scene.pack(self)
+	if has_item():
+		item.set_element_scene(_self_scene)
 	
 func place_and_push(global_pos: Vector2, vel: Vector2, rot: float, spin: float = 0.0) -> void:
 	global_position = global_pos + Vector2(drop_distance,0).rotated(rot)
 	linear_velocity = vel
-	apply_torque_impulse(400000*spin)
+	apply_torque_impulse(400_000*spin)
 	reset_physics_interpolation() # TBD check if this suffices when https://github.com/godotengine/godot/pull/92218 is merged
 	# if it suffices, re-enable physics interpolation in Shadow.tscn
 	
 func clone_as_new() -> Cargo:
 	var clone = _self_scene.instantiate()
 	clone._self_scene = _self_scene
+	clone.item = item
 	return clone
 
 func _on_body_entered(body: Node) -> void:
 	#_reset_untouchable() # always reset untouchability on bouncing off sth
+	_ctx.collision.emit(self, body)
 	
-	if body is StaticBody2D:
-		_ctx.collision.emit(self, body)
+	# keeps cargos (and balls) a bit unpredictable when bouncing off walls
+	if body is Wall:
+		apply_central_impulse(125.0*Vector2.from_angle(2*PI*randf()))
 	
 func touched_by(actor) -> void:
 	if not loadable:
@@ -50,10 +64,15 @@ func touched_by(actor) -> void:
 		return
 		
 	if actor.has_method('load_cargo'): # WARNING duck typing
-		actor.load_cargo(self)
-		loaded_by.emit(actor)
-		queue_free()
+		load_into(actor)
+		
+func load_into(actor) -> void:
+	actor.load_cargo(self)
+	loaded_by.emit(actor)
+	_ctx.cargo_loaded.emit(self, actor)
+	queue_free()
 	
+
 func _is_untouchable_by(sth) -> bool:
 	return sth == _untouchable_by
 
@@ -70,3 +89,15 @@ func _reset_untouchable() -> void:
 func hit(hitter=null):
 	%SpriteAnimation.stop()
 	%SpriteAnimation.play('Hit')
+	
+	if item and item.is_glass():
+		shatter()
+
+func shatter() -> void:
+	var breaking_effect = breaking_effect_scene.instantiate()
+	breaking_effect.set_texture(get_texture())
+	breaking_effect.global_position = global_position
+	breaking_effect.global_rotation = global_rotation
+	breaking_effect.linear_velocity = linear_velocity
+	_ctx.spawn_request.emit(breaking_effect)
+	queue_free()

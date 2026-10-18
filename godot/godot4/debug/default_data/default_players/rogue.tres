@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Player" format=3 uid="uid://dsjtx3ep7bq1m"]
+
+[ext_resource type="Texture2D" uid="uid://b5gwcatylq8lk" path="res://assets/sprites/species/drones/ship.png" id="1_fnhg7"]
+[ext_resource type="Script" uid="uid://ctf1rg3hqs2hh" path="res://godot4/data/Player.gd" id="2_5spjx"]
+[ext_resource type="Resource" uid="uid://c8utu2y3di3p8" path="res://godot4/data/species/drones.tres" id="3_fnhg7"]
+
+[resource]
+script = ExtResource("2_5spjx")
+id = "RR"
+controls = "kb1+joy1"
+species = ExtResource("3_fnhg7")
+team = "rogue"
+cpu = true

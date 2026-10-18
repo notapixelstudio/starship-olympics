@@ -5,11 +5,40 @@
 [ext_resource type="Texture2D" uid="uid://baclyt1ayjb0e" path="res://assets/sprites/signs/arrow.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bcoonsxenm7eg" path="res://assets/sprites/environments/ring_part.png" id="4"]
 [ext_resource type="AudioStream" uid="uid://du1o16vb5f1mw" path="res://assets/audio/UI_effects/lesser_vibes_HTIS_Beeps_Simple_03_003.mp3" id="5_g3nn3"]
+[ext_resource type="AudioStream" uid="uid://c4bn187yq38p" path="res://assets/audio/gameplay/hits/zapsplat_multimedia_game_sound_percussive_negative_lose_fail_002_63678.mp3" id="6_r4t8c"]
 [ext_resource type="PackedScene" uid="uid://wlk2x2n5vsn0" path="res://godot4/elements/gates/TargetGate.tscn" id="7_r4t8c"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 resource_local_to_scene = true
 size = Vector2(250, 500)
+
+[sub_resource type="Animation" id="Animation_g3nn3"]
+resource_name = "BadBlink"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RingPart:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(2.454227, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BottomRingPart:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.75, 0, 0, 1), Color(0.101960786, 0.101960786, 0.101960786, 1)]
+}
 
 [sub_resource type="Animation" id="2"]
 resource_name = "Blink"
@@ -68,6 +97,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bcjds"]
 _data = {
+&"BadBlink": SubResource("Animation_g3nn3"),
 &"Blink": SubResource("2"),
 &"RESET": SubResource("3")
 }
@@ -76,6 +106,11 @@ _data = {
 random_pitch = 1.0293022
 streams_count = 1
 stream_0/stream = ExtResource("5_g3nn3")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u0yfv"]
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("6_r4t8c")
 
 [node name="Gate" type="Area2D" unique_id=363910291 groups=["gates"]]
 collision_layer = 0
@@ -118,6 +153,11 @@ libraries/ = SubResource("AnimationLibrary_bcjds")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=729749775]
 stream = SubResource("AudioStreamRandomizer_g2653")
+volume_db = 4.0
+max_polyphony = 4
+
+[node name="AudioStreamPlayer2DFail" type="AudioStreamPlayer2D" parent="." unique_id=1950818149]
+stream = SubResource("AudioStreamRandomizer_u0yfv")
 volume_db = 4.0
 max_polyphony = 4
 
