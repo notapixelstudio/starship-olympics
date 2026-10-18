@@ -41,12 +41,10 @@ func _switch_terrain(type) -> void:
 	terrain_changed.emit(old_terrain, _current_terrain)
 	Events.log.emit('Terrain switched to: %s' % _current_terrain)
 	
-	# apply new terrain's parameters
-	get_host().thrust = thrust[_current_terrain]
-	get_host().linear_damp = linear_damp[_current_terrain]
-	get_host().charge_brake = charge_brake[_current_terrain]
-	get_host().dash_multiplier = dash_multiplier[_current_terrain]
-	get_host().max_dash = max_dash[_current_terrain]
+	# apply new terrain's parameters, skipping those the host lacks (e.g. familiars only have thrust and damp)
+	for property in [&"thrust", &"linear_damp", &"charge_brake", &"dash_multiplier", &"max_dash"]:
+		if property in get_host():
+			get_host().set(property, get(property)[_current_terrain])
 
 func get_current_terrain() -> String:
 	return _current_terrain

@@ -1,11 +1,51 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://godot4/actors/ships/Familiar.gd" id="1"]
 [ext_resource type="Texture2D" path="res://assets/sprites/species/drones/ship.png" id="2"]
+[ext_resource type="PackedScene" path="res://godot4/actors/ships/managers/TerrainManager.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://b40ln0us7b0jy" path="res://godot4/effects/trails/IceAutoTrail.tscn" id="4"]
 
-[node name="Familiar" type="Node2D"]
+[sub_resource type="CircleShape2D" id="BodyShape"]
+radius = 30.0
+
+[node name="Familiar" type="RigidBody2D"]
+collision_layer = 16777216
+collision_mask = 3221229585
+gravity_scale = 0.0
+linear_damp = 7.0
+lock_rotation = true
+can_sleep = false
 script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("BodyShape")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2")
+
+[node name="TouchArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 65664
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea"]
+shape = SubResource("BodyShape")
+
+[node name="TerrainManager" parent="." instance=ExtResource("3")]
+thrust = {
+&"default": 10000,
+&"ice": 3300
+}
+linear_damp = {
+&"default": 7.0,
+&"ice": 1.3
+}
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+target_desired_distance = 50.0
+
+[node name="IceAutoTrail" parent="." node_paths=PackedStringArray("host") instance=ExtResource("4")]
+host = NodePath("..")
+width = 4.0

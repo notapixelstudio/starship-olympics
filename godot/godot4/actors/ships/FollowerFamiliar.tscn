@@ -5,8 +5,11 @@
 [ext_resource type="PackedScene" path="res://godot4/actors/ships/weapons/PewWeapon.tscn" id="3"]
 
 [node name="FollowerFamiliar" instance=ExtResource("1")]
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(0.8625, 0.8625)
+
+[node name="FollowMovement" parent="." instance=ExtResource("2")]
+
+[node name="PewWeapon" parent="." instance=ExtResource("3")]
 scale = Vector2(1.15, 1.15)
-
-[node name="FollowMovement" parent="." index="1" instance=ExtResource("2")]
-
-[node name="PewWeapon" parent="." index="2" instance=ExtResource("3")]

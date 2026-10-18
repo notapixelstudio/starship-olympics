@@ -61,7 +61,7 @@ func _when_down(holder: String, reaction: Callable) -> void:
 	%ArenaScope.ship_down.connect(func(ship: Ship): if ship.get_player().get_id() == holder: reaction.call())
 
 ## True while [param id] is in play for [param holder]: carried, not shattered, not swallowed by a merger.
-## ponytail: per id, not per copy: with 2 Bounties and 1 merged mid-match, both Bounty timers keep paying. Track copies if that matters.
+## per id, not per copy: with 2 Bounties and 1 merged mid-match, both Bounty timers keep paying. Track copies if that matters.
 func _holds(id: StringName, holder: String) -> bool:
 	return id in _in_play(holder)
 
@@ -78,51 +78,52 @@ func _with_ship(holder: String, action: Callable) -> void:
 
 # --- Item-specific actions ---
 
-## Reconcile item actors on pickup and respawn, including glass copies lost by a twin.
-func _sync_item_actors(ship: Ship) -> void:
-	if not is_instance_valid(ship) or ship.is_queued_for_deletion():
-		return
-	var holder := ship.get_player().get_id()
-	var desired := {}
-	var desired_paths := {}
+## One chain per player, led by its first ship. Cherry twin don't get that. Split chains per ship if twins need familiars.
+func _sync_item_actors(holder: String) -> void:
+	var wanted := {}
 	for id in _in_play(holder):
 		var scene: PackedScene = _type(id, holder).actor_scene
-		if scene == null:
-			continue
-		desired[scene] = desired.get(scene, 0) + 1
-		desired_paths[scene.resource_path] = true
-	for child in ship.get_children():
-		if child.has_meta(&"item_actor") and not desired_paths.has(child.scene_file_path):
-			ship.remove_child(child)
-			child.queue_free()
-	for scene in desired:
-		var count: int = desired[scene]
-		var actors := ship.get_children().filter(func(child): return child.scene_file_path == scene.resource_path)
-		while actors.size() > count:
-			var actor: Node = actors.pop_back()
-			ship.remove_child(actor)
-			actor.queue_free()
-		while actors.size() < count:
-			var actor := scene.instantiate() as Node2D
-			actor.set_meta(&"item_actor", true)
-			actors.append(actor)
-		for i in actors.size():
-			_configure_item_actor(actors[i], ship, scene, i, count, null if i == 0 else actors[i - 1])
-			if actors[i].get_parent() == null:
-				ship.add_child(actors[i])
+		if scene != null:
+			wanted[scene.resource_path] = wanted.get(scene.resource_path, 0) + 1
+	var chain := []
+	for familiar in _familiars(holder):
+		var path: String = familiar.scene_file_path
+		if wanted.get(path, 0) > 0:
+			wanted[path] -= 1
+			chain.append(familiar)
+		else:
+			familiar.queue_free()
+	var ships := _ships(holder).filter(func(ship): return not ship.is_queued_for_deletion())
+	var ship: Ship = ships[0] if ships else null
+	var spawned := []
+	if ship != null: # missing copies wait for a ship to spawn at
+		for path in wanted:
+			for i in wanted[path]:
+				var familiar := load(path).instantiate() as Familiar
+				familiar.player = ship.get_player()
+				familiar.global_position = ship.global_position
+				spawned.append(familiar)
+	chain.append_array(spawned)
+	var leader: Node2D = ship
+	for familiar in chain:
+		familiar.leader = leader
+		if familiar.chains:
+			leader = familiar
+		if ship != null:
+			familiar.add_collision_exception_with(ship)
+	for familiar in spawned:
+		%Battlefield.add_child(familiar) # not spawn_request: that defers, and a second sync this frame would miss these
+	var names := func(list: Array) -> String: return ", ".join(list.map(func(f): return f.describe()))
+	var status := "%s familiars %s: chain [%s], free [%s]" % [holder, "follow the ship" if ship else "[b]coasting[/b] (no ship)", names.call(chain.filter(func(f): return f.chains)), names.call(chain.filter(func(f): return not f.chains))]
+	if not chain.is_empty() and status != _logged_chains.get(holder):
+		Events.log.emit(status)
+	_logged_chains[holder] = status
 
-func _configure_item_actor(actor: Node2D, ship: Ship, scene: PackedScene, index: int, count: int, previous: Node2D) -> void:
-	actor.modulate = ship.get_color()
-	if actor is Familiar:
-		actor.configure(ship, scene, index, count, previous as Familiar)
-		return
-	for child in actor.get_children():
-		if child is ActorBehavior:
-			child.configure(actor, ship)
+## Holder -> last chain status logged, so repeated syncs stay quiet.
+var _logged_chains := {}
 
-func _refresh_item_actors(holder: String) -> void:
-	for ship in _ships(holder):
-		_sync_item_actors(ship)
+func _familiars(holder: String) -> Array:
+	return %Battlefield.get_children().filter(func(node): return node is Familiar and node.get_player().get_id() == holder and not node.is_queued_for_deletion())
 
 func _load_ball(ship: Ship) -> void:
 	var ball := BASKET_BALL_SCENE.instantiate() as Cargo
@@ -163,7 +164,7 @@ func _on_ship_down(ship: Ship) -> void:
 	if session == null:
 		return
 	session.break_glass.call_deferred(ship.get_player().get_id()) # after the items' own reactions to this hit
-	_refresh_item_actors.call_deferred(ship.get_player().get_id())
+	_sync_item_actors.call_deferred(ship.get_player().get_id())
 
 ## Applies every carried copy. [Arena] calls this once its teams are set up.
 ## TODO: This currently works ONLY with players and not with TEAMs 
@@ -184,7 +185,7 @@ func _start(now: Array, before: Array, holder: String) -> void:
 			effects[id].call(holder)
 	for ship in _ships(holder):
 		_show_badges(ship)
-		_sync_item_actors.call_deferred(ship)
+	_sync_item_actors.call_deferred(holder)
 
 ## One id per copy [param holder] carries, complete sets merged.
 func _in_play(holder: String) -> Array:
@@ -218,7 +219,7 @@ func _on_battlefield_child_entered(node: Node) -> void:
 			action.call(node)
 		_waiting_for_ship.erase(node.get_player().get_id())
 		_show_badges(node)
-		_sync_item_actors.call_deferred(node)
+		_sync_item_actors.call_deferred(node.get_player().get_id())
 
 func _print_carried() -> void:
 	var session := _session()

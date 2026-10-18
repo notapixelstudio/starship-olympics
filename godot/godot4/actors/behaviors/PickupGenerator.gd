@@ -1,4 +1,4 @@
-class_name PickupGenerator extends ActorBehavior
+class_name PickupGenerator extends Trait2D
 
 @export var pickup_scene: PackedScene
 
@@ -7,16 +7,20 @@ class_name PickupGenerator extends ActorBehavior
 var _pickup_active := false
 var _active_pickup: Collectable
 
+func validate():
+	super.validate()
+	assert(pickup_scene != null)
+
 func _ready() -> void:
 	super._ready()
 	_timer.timeout.connect(_on_timer_timeout)
 	_timer.start()
 
 func _spawn_pickup() -> void:
-	if _pickup_active or not is_instance_valid(actor):
+	if _pickup_active or not is_instance_valid(get_host()):
 		return
 	var pickup := pickup_scene.instantiate() as Collectable
-	pickup.global_position = actor.global_position
+	pickup.global_position = get_host().global_position
 	pickup.collected.connect(_on_pickup_collected)
 	_active_pickup = pickup
 	_pickup_active = true

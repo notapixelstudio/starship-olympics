@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="PackedScene" path="res://godot4/actors/ships/Familiar.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://godot4/actors/ships/behaviors/BounceMovement.tscn" id="2"]
 
+[sub_resource type="PhysicsMaterial" id="Bouncy"]
+friction = 0.0
+bounce = 1.0
+
 [node name="BouncingFamiliar" instance=ExtResource("1")]
+chains = false
+physics_material_override = SubResource("Bouncy")
 
 [node name="BounceMovement" parent="." instance=ExtResource("2")]

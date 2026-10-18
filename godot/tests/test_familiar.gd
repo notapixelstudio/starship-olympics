@@ -241,7 +241,7 @@ func test_behavior_composition() -> bool:
 		for child in familiar.get_children():
 			if child is ActorBehavior:
 				assert(child.actor == familiar and child.source == ship)
-			if child is FamiliarBehavior:
+			if child is FamiliarTrait:
 				assert(child.familiar == familiar and child.owner_ship == ship)
 	if not ship.get_node("OrbitingFamiliar/OrbitMovement") is OrbitMovement: return false
 	if not ship.get_node("OrbitingFamiliar/ProjectileInterception") is ProjectileInterception: return false

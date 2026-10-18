@@ -5,8 +5,10 @@
 [ext_resource type="PackedScene" path="res://godot4/actors/behaviors/PickupGenerator.tscn" id="3"]
 
 [node name="DiamondGeneratorFamiliar" instance=ExtResource("1")]
-scale = Vector2(1.15, 1.15)
 
-[node name="FollowMovement" parent="." index="1" instance=ExtResource("2")]
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(0.8625, 0.8625)
 
-[node name="PickupGenerator" parent="." index="2" instance=ExtResource("3")]
+[node name="FollowMovement" parent="." instance=ExtResource("2")]
+
+[node name="PickupGenerator" parent="." instance=ExtResource("3")]

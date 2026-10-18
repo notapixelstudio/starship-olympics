@@ -41,7 +41,6 @@ signal alert_ended
 var _pending_firing_settings := {}
 
 func _enter_tree() -> void:
-	ActorBehavior.bind_children(self)
 	var firing := get_node_or_null("TurretFiring")
 	if firing != null:
 		for setting in _pending_firing_settings:

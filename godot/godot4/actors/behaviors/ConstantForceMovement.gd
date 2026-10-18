@@ -1,9 +1,9 @@
-class_name ConstantForceMovement extends ActorBehavior
-## Applies directional force to a RigidBody2D actor.
+class_name ConstantForceMovement extends Trait2D
+## Applies directional force to a RigidBody2D host.
+
+func validate():
+	super.validate()
+	assert(host is RigidBody2D)
 
 func move(direction: float, force: float) -> void:
-	var body := actor as RigidBody2D
-	if body == null:
-		body = get_parent() as RigidBody2D
-	if body != null:
-		body.set_constant_force(force * Vector2.RIGHT.rotated(direction))
+	(get_host() as RigidBody2D).set_constant_force(force * Vector2.RIGHT.rotated(direction))

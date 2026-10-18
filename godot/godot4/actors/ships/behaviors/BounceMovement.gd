@@ -1,19 +1,18 @@
-class_name BounceMovement extends FamiliarBehavior
+class_name BounceMovement extends FamiliarTrait
+## Bounces off whatever it hits to its own speed, physics handles the direction
 
 @export var speed := 700.0
 @export var contact_cooldown := 0.5
 
-var velocity := Vector2.ZERO
 var _contact_time := {}
 
-func configure(root: Node2D, owner: Node2D = null) -> void:
-	super.configure(root, owner)
-	if root is Familiar:
-		root.set_as_top_level(true)
+func validate():
+	super.validate()
+	assert(not host.freeze) # bounces via physics
 
 func _ready() -> void:
-	familiar.global_position = owner_ship.global_position
-	velocity = _random_diagonal_velocity()
+	super._ready()
+	familiar.linear_velocity = _random_diagonal_velocity()
 	$Area2D.body_entered.connect(_on_body_entered)
 
 func _random_diagonal_velocity() -> Vector2:
@@ -29,22 +28,17 @@ func _physics_process(delta: float) -> void:
 	for body in $Area2D.get_overlapping_bodies():
 		_on_body_entered(body)
 
-	var destination := familiar.global_position + velocity * delta
-	var query := PhysicsRayQueryParameters2D.create(familiar.global_position, destination, 16)
-	query.exclude = [owner_ship.get_rid()]
-	var hit := get_world_2d().direct_space_state.intersect_ray(query)
-	if hit:
-		familiar.global_position = hit.position + hit.normal * 2.0
-		velocity = velocity.bounce(hit.normal).normalized() * speed
-	else:
-		familiar.global_position = destination
+	if owner_ship == null:
+		return
+	var velocity := familiar.linear_velocity
+	familiar.linear_velocity = _random_diagonal_velocity() if velocity.is_zero_approx() else velocity.normalized() * speed
 
 func _on_body_entered(body: Node) -> void:
-	if body is Ship and body != owner_ship and body.get_team() != owner_ship.get_team():
+	if body is Ship and body.get_team() != familiar.get_team():
 		if _contact_time.get(body, 0.0) == 0.0 and not body.is_queued_for_deletion():
 			_contact_time[body] = contact_cooldown
 			_damage_contact.call_deferred(body)
 
 func _damage_contact(body: Ship) -> void:
 	if is_instance_valid(body) and not body.is_queued_for_deletion():
-		body.damage(owner_ship)
+		body.damage(familiar)

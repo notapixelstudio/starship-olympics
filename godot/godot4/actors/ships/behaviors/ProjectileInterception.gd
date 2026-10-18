@@ -1,9 +1,10 @@
-class_name ProjectileInterception extends FamiliarBehavior
+class_name ProjectileInterception extends FamiliarTrait
 
 @export var recharge_seconds := 3.0
 var recharge_left := 0.0
 
 func _ready() -> void:
+	super._ready()
 	$Area2D.body_entered.connect(_intercept)
 
 func _physics_process(delta: float) -> void:
@@ -15,7 +16,7 @@ func _physics_process(delta: float) -> void:
 func _intercept(body: Node) -> void:
 	if recharge_left > 0.0 or not body is Pew or body.is_queued_for_deletion():
 		return
-	if body.get_team() == owner_ship.get_team():
+	if body.get_team() == familiar.get_team():
 		return
 	recharge_left = recharge_seconds
 	body.destroy()

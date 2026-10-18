@@ -54,6 +54,9 @@ default_minigame = SubResource("Game")
 default_params = SubResource("Params")
 session = SubResource("Resource_5fyci")
 
+[node name="ModifierManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="2" unique_id=1330404860]
+active_modifiers = Array[String](["winter"])
+
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=775116436]
 position = Vector2(-1000, 400)
 
@@ -257,19 +260,3 @@ navigation_polygon = SubResource("NavigationPolygon_vyiu5")
 
 [node name="PlaygroundStart" type="Node" parent="." index="10" unique_id=1670191408]
 script = ExtResource("4_start")
-
-[node name="Instructions" type="CanvasLayer" parent="." index="11" unique_id=1668080562]
-layer = 20
-
-[node name="Label" type="Label" parent="Instructions" index="0" unique_id=1772833044]
-offset_left = 20.0
-offset_top = 110.0
-theme_override_font_sizes/font_size = 18
-text = "FAMILIAR PLAYGROUND
-P1: arrows + Space    P2: WASD + Tab
-Touch labelled bulbs to collect familiar types and glass copies.
-New familiar glass copies are in the upper lane.
-Stack familiars, then get disabled to check glass loss on respawn.
-The left turret launches Bloids every 6 seconds.
-The central wall lets you test obstacle-aware movement.
-Tap to shoot; hold and release to dash. F9 restarts; F8 stops."

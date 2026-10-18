@@ -1,5 +1,5 @@
-class_name TurretFiring extends ActorBehavior
-## Schedules fire calls; the actor decides what each shot does.
+class_name TurretFiring extends Trait2D
+## Schedules fire calls; the host decides what each shot does.
 
 @export var enabled := true
 @export var wait_time := 2.0
@@ -10,6 +10,10 @@ class_name TurretFiring extends ActorBehavior
 @export var burst_time_jitter := 0.0
 
 var _burst_count := 0
+
+func validate():
+	super.validate()
+	assert(host.has_method('fire'))
 
 func _ready() -> void:
 	super._ready()
@@ -23,7 +27,7 @@ func stop() -> void:
 
 func _on_timeout() -> void:
 	if enabled:
-		actor.call("fire")
+		get_host().call("fire")
 		_burst_count += 1
 	if not enabled or _burst_count >= burst_shots:
 		_burst_count = 0

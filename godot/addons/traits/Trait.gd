@@ -9,7 +9,8 @@ class_name Trait
 @export var host : Node # this is the node the Trait is applied to, i.e., its parent
 
 func get_host():
-	return host
+	# falls back to the parent so children can ask before this trait's own _ready ran
+	return host if host else get_parent()
 	
 func _ready():
 	if not host:

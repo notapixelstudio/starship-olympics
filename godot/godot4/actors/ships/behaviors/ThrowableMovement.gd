@@ -1,4 +1,5 @@
-class_name ThrowableMovement extends FamiliarBehavior
+class_name ThrowableMovement extends FamiliarTrait
+## On the ship's tap, flies forward until it hits something, then boomerangs back through walls.
 
 enum State { FOLLOWING, THROWN, RETURNING }
 
@@ -7,48 +8,60 @@ enum State { FOLLOWING, THROWN, RETURNING }
 
 var state := State.FOLLOWING
 var _direction := Vector2.RIGHT
-var _throw_left := 0.0
+var _mask := 0
+var _follow: FollowMovement
+
+func validate():
+	super.validate()
+	assert(host.has_node(^"FollowMovement")) # follows between throws
 
 func _ready() -> void:
-	owner_ship.tap.connect(_on_tap)
+	super._ready()
+	_follow = familiar.get_node(^"FollowMovement")
+	_mask = familiar.collision_mask
+	familiar.tap.connect(_on_tap)
+	familiar.body_entered.connect(func(_body): if state == State.THROWN: _begin_return())
 	$Area2D.body_entered.connect(_on_body_entered)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if state == State.THROWN:
-		var destination := familiar.global_position + _direction * throw_speed * delta
-		var query := PhysicsRayQueryParameters2D.create(familiar.global_position, destination, 16)
-		query.exclude = [owner_ship.get_rid()]
-		var hit := get_world_2d().direct_space_state.intersect_ray(query)
-		if hit:
-			familiar.global_position = hit.position + hit.normal * 2.0
-			_begin_return()
-		else:
-			familiar.global_position = destination
+		familiar.linear_velocity = _direction * throw_speed
 	elif state == State.RETURNING:
-		familiar.global_position = familiar.global_position.move_toward(owner_ship.global_position, return_speed * delta)
-		if familiar.global_position.distance_squared_to(owner_ship.global_position) < 144.0:
-			state = State.FOLLOWING
-			$"../FollowMovement".active = true
+		var ship := owner_ship
+		if ship == null:
+			_end_return() # the ship is gone: coast with the rest of the chain
+			return
+		var to := ship.global_position - familiar.global_position
+		familiar.linear_velocity = to.normalized() * return_speed
+		if to.length_squared() < 3600.0:
+			_end_return()
 
 func _on_tap(_charge: float) -> void:
 	if state != State.FOLLOWING:
 		return
-	$"../FollowMovement".active = false
-	_direction = Vector2.RIGHT.rotated(owner_ship.global_rotation)
-	familiar.global_position = owner_ship.global_position + _direction * 60.0
+	var ship := owner_ship
+	_follow.set_physics_process(false)
+	_direction = Vector2.RIGHT.rotated(ship.global_rotation)
+	familiar.global_position = ship.global_position + _direction * 60.0
 	state = State.THROWN
 
 func _on_body_entered(body: Node) -> void:
-	if state != State.THROWN or not body is Ship or body == owner_ship or body.is_queued_for_deletion():
+	if state != State.THROWN or not body is Ship or body.is_queued_for_deletion():
 		return
-	if body.get_team() == owner_ship.get_team():
+	if body.get_team() == familiar.get_team():
 		return
 	_begin_return()
 	_damage_contact.call_deferred(body)
 
 func _begin_return() -> void:
 	state = State.RETURNING
+	familiar.collision_mask = 0
+
+func _end_return() -> void:
+	state = State.FOLLOWING
+	familiar.collision_mask = _mask
+	_follow.set_physics_process(true)
 
 func _damage_contact(body: Ship) -> void:
 	if is_instance_valid(body) and not body.is_queued_for_deletion():
-		body.damage(owner_ship)
+		body.damage(familiar)

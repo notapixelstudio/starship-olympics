@@ -6,10 +6,19 @@
 [ext_resource type="PackedScene" path="res://godot4/actors/ships/behaviors/ContactDamage.tscn" id="4"]
 
 [node name="OrbitingFamiliar" instance=ExtResource("1")]
+collision_layer = 0
+collision_mask = 0
+freeze = true
+freeze_mode = 1
+chains = false
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(0.9, 0.9)
+
+[node name="OrbitMovement" parent="." instance=ExtResource("2")]
+
+[node name="ProjectileInterception" parent="." instance=ExtResource("3")]
 scale = Vector2(1.2, 1.2)
 
-[node name="OrbitMovement" parent="." index="1" instance=ExtResource("2")]
-
-[node name="ProjectileInterception" parent="." index="2" instance=ExtResource("3")]
-
-[node name="ContactDamage" parent="." index="3" instance=ExtResource("4")]
+[node name="ContactDamage" parent="." instance=ExtResource("4")]
+scale = Vector2(1.2, 1.2)
