@@ -88,7 +88,10 @@ func discard_cargo() -> void:
 	_launch_cargo(get_host().global_position, Vector2(200.0, 0).rotated(get_host().global_rotation), get_host().global_rotation)
 
 func shoot_cargo(cause: RigidBody2D) -> void:
-	_launch_cargo(get_host().global_position, cause.linear_velocity, get_host().global_rotation)
+	var velocity : Vector2 = 1000.0*get_host().linear_velocity.normalized()
+	if cause:
+		velocity += cause.linear_velocity
+	_launch_cargo(get_host().global_position, velocity, get_host().global_rotation)
 
 func rebound_cargo(collision_point: Vector2, collision_normal: Vector2) -> void:
 	var source = get_host()

@@ -45,7 +45,7 @@ func _handle_ship_vs_other(ship:Ship, collider, tag:String='') -> void:
 	if collider is Pew and tag == 'hurt':
 		# no friendly fire
 		# assert traits.has_trait(collider, 'OwnedByPlayer')
-		if ship.get_team() == collider.get_team():
+		if ship.get_team() == collider.get_player().get_team():
 			return # collision handled
 			
 		ship.hit(collider)
@@ -62,6 +62,12 @@ func _handle_ship_vs_other(ship:Ship, collider, tag:String='') -> void:
 	# Shapeoids kill Ships on touch
 	if collider is Shapeoid and tag == 'hurt':
 		ship.kill(collider)
+		return # collision handled
+		
+	# SpikeDiamonds kill Ships on touch
+	if collider is SpikeDiamond and tag == 'hurt':
+		ship.kill(collider)
+		collider.kill_feedback()
 		return # collision handled
 		
 	# Blocks are pushed if hit by ships

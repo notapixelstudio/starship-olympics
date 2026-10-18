@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bb4kd7ebpdm2x" path="res://godot4/elements/projectiles/BubbleBullet.tscn" id="10_gkshk"]
 [ext_resource type="PackedScene" uid="uid://djakv8k7yhih5" path="res://godot4/elements/cargos/BasketBall.tscn" id="11_tpv41"]
 [ext_resource type="Resource" uid="uid://ck0awf4c5mj5w" path="res://godot4/data/items/basket_ball.tres" id="12_70gt8"]
+[ext_resource type="PackedScene" uid="uid://dtdo2o8sagd7u" path="res://godot4/elements/collectables/SpikeDiamond.tscn" id="13_70gt8"]
 
 [sub_resource type="GDScript" id="GDScript_dqhjw"]
 script/source = "extends Timer
@@ -41,19 +42,19 @@ func _on_sth_collected(collector, collectee):
 	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
 "
 
-[sub_resource type="Resource" id="Resource_tpv41"]
+[sub_resource type="Resource" id="Resource_ck3pi"]
 resource_local_to_scene = true
 script = ExtResource("6_gkshk")
 type = ExtResource("7_yh1yn")
 
-[sub_resource type="Resource" id="Resource_70gt8"]
+[sub_resource type="Resource" id="Resource_x2b2f"]
 resource_local_to_scene = true
 script = ExtResource("6_gkshk")
 type = ExtResource("7_yh1yn")
 duration = 0
 glass = true
 
-[sub_resource type="Resource" id="Resource_ck3pi"]
+[sub_resource type="Resource" id="Resource_5otk8"]
 resource_local_to_scene = true
 script = ExtResource("6_gkshk")
 type = ExtResource("12_70gt8")
@@ -78,11 +79,11 @@ script = SubResource("GDScript_0rj7w")
 
 [node name="Crown" parent="." index="15" unique_id=1255268695 instance=ExtResource("5_q7k65")]
 position = Vector2(0, -750)
-item = SubResource("Resource_tpv41")
+item = SubResource("Resource_ck3pi")
 
 [node name="GlassCrown" parent="." index="16" unique_id=368651451 instance=ExtResource("8_tpv41")]
 position = Vector2(450, -750)
-item = SubResource("Resource_70gt8")
+item = SubResource("Resource_x2b2f")
 
 [node name="Bloid" parent="." index="17" unique_id=1630210331 instance=ExtResource("9_70gt8")]
 position = Vector2(-750, 900)
@@ -92,6 +93,9 @@ position = Vector2(-450, -750)
 
 [node name="BasketBall" parent="." index="19" unique_id=1878555385 instance=ExtResource("11_tpv41")]
 position = Vector2(450, 0)
-item = SubResource("Resource_ck3pi")
+item = SubResource("Resource_5otk8")
+
+[node name="SpikeDiamond" parent="." index="20" unique_id=1659706428 instance=ExtResource("13_70gt8")]
+position = Vector2(750, 825)
 
 [connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]

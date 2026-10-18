@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://bhygc2xfw2jei" path="res://godot4/traits/Target.tscn" id="28_ie6ii"]
 [ext_resource type="Texture2D" uid="uid://blxpmy8hagjsh" path="res://assets/icon/minigames/shape-hunt.png" id="29_sh"]
 [ext_resource type="PackedScene" uid="uid://b4anewnchp4ou" path="res://godot4/actors/ships/weapons/PewWeapon.tscn" id="29_vm5uw"]
+[ext_resource type="Resource" uid="uid://dsjtx3ep7bq1m" path="res://godot4/debug/default_data/default_players/rogue.tres" id="29_yl2ae"]
 [ext_resource type="Texture2D" uid="uid://dgkukutasl81m" path="res://assets/icon/minigames/death.png" id="30_dm"]
 [ext_resource type="Texture2D" uid="uid://bj4s2pqxiqh6h" path="res://assets/sprites/enemies/bubble_turret_under.png" id="30_ey38b"]
 [ext_resource type="Texture2D" uid="uid://dd6gr3ghofbwj" path="res://assets/sprites/enemies/bubble_turret_top.png" id="31_yl2ae"]
@@ -49,24 +50,19 @@ duration = 0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qu4h1"]
 radius = 118.27
 
-[sub_resource type="Resource" id="Resource_wwcie"]
+[sub_resource type="Resource" id="Resource_ey38b"]
 resource_local_to_scene = true
 script = ExtResource("25_item")
 type = ExtResource("25_w4bat")
 
-[sub_resource type="Resource" id="Resource_ie6ii"]
-resource_local_to_scene = true
-script = ExtResource("25_item")
-type = ExtResource("25_w4bat")
-
-[sub_resource type="Resource" id="Resource_vm5uw"]
+[sub_resource type="Resource" id="Resource_8hnbh"]
 resource_local_to_scene = true
 script = ExtResource("25_item")
 type = ExtResource("25_w4bat")
 duration = 0
 glass = true
 
-[sub_resource type="Resource" id="Resource_ey38b"]
+[sub_resource type="Resource" id="Resource_77ow3"]
 resource_local_to_scene = true
 script = ExtResource("25_item")
 type = ExtResource("28_bb")
@@ -133,7 +129,7 @@ func _process(delta: float) -> void:
 	global_position = get_parent().global_position
 "
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_yl2ae"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6pb1i"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -272,25 +268,22 @@ texture = ExtResource("30_dm")
 
 [node name="Crown" parent="Battlefield" unique_id=1255268695 instance=ExtResource("24_gps85")]
 position = Vector2(0, -600)
-item = SubResource("Resource_wwcie")
-
-[node name="Crown2" parent="Battlefield" unique_id=289219346 instance=ExtResource("24_gps85")]
-position = Vector2(0, -800)
-item = SubResource("Resource_ie6ii")
+item = SubResource("Resource_ey38b")
 
 [node name="GlassCrown" parent="Battlefield" unique_id=1160048206 instance=ExtResource("25_tbi7m")]
 position = Vector2(400, -600)
-item = SubResource("Resource_vm5uw")
+item = SubResource("Resource_8hnbh")
 
 [node name="BasketBall" parent="Battlefield" unique_id=1878555385 instance=ExtResource("25_qkhdh")]
 position = Vector2(200, 800)
-item = SubResource("Resource_ey38b")
+item = SubResource("Resource_77ow3")
 
 [node name="PewTurret" type="Area2D" parent="Battlefield" unique_id=718930390 groups=["Turret"]]
 position = Vector2(-1400, -1100)
 collision_layer = 4096
 collision_mask = 0
 script = ExtResource("27_wwcie")
+rogue_player = ExtResource("29_yl2ae")
 burst_shots = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Battlefield/PewTurret" unique_id=1850805375]
@@ -352,7 +345,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Navigation" parent="." unique_id=332973589 instance=ExtResource("9_c6ehg")]
-navigation_polygon = SubResource("NavigationPolygon_yl2ae")
+navigation_polygon = SubResource("NavigationPolygon_6pb1i")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=737164047]
 unique_name_in_owner = true
