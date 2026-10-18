@@ -40,6 +40,23 @@ tracks/1/keys = {
 "values": [Vector2(0, 1800)]
 }
 
+[sub_resource type="Animation" id="Animation_g8ula"]
+resource_name = "phase_1"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%SquashBall")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"unrest"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_yyumb"]
 resource_name = "phase_2"
 length = 3.0000000000000004
@@ -75,11 +92,12 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bko3l"]
 _data = {
 &"RESET": SubResource("Animation_3m4om"),
+&"phase_1": SubResource("Animation_g8ula"),
 &"phase_2": SubResource("Animation_yyumb"),
 &"phase_3": SubResource("Animation_0e6di")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_f84vk"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_lfbai"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -162,4 +180,4 @@ height = 1200.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
 [node name="Navigation" parent="." index="8" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_f84vk")
+navigation_polygon = SubResource("NavigationPolygon_lfbai")

@@ -49,6 +49,7 @@ render_target_update_mode = 4
 layout_mode = 0
 
 [node name="Back" parent="FancyMenu" index="0"]
+visible = false
 material = SubResource("ShaderMaterial_5mvqx")
 
 [connection signal="done" from="MapView/SubViewport/MapArena" to="." method="_on_map_arena_done"]
