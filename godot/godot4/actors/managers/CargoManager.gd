@@ -43,6 +43,7 @@ func _empty_cargo() -> void:
 	_current_cargo = null
 	%HatSprite.texture = null
 	%BallSprite.texture = null
+	_ctx.cargo_unloaded.emit(old_cargo, get_host())
 	if old_cargo.has_item():
 		_ctx.item_lost.emit(old_cargo.item, get_host().get_player())
 

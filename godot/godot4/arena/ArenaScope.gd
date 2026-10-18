@@ -26,6 +26,9 @@ signal ship_died(player:Player)
 
 signal time_gained(seconds:int)
 
+signal cargo_loaded(cargo:Cargo, by_ship:Ship)
+signal cargo_unloaded(cargo:Cargo, by_ship:Ship)
+
 signal item_obtained(item:Item, by_player:Player)
 signal item_lost(item:Item, by_player:Player)
 ## A ship was taken out, disabled or killed

@@ -65,6 +65,7 @@ func touched_by(actor) -> void:
 func load_into(actor) -> void:
 	actor.load_cargo(self)
 	loaded_by.emit(actor)
+	_ctx.cargo_loaded.emit(self, actor)
 	queue_free()
 	
 
