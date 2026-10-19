@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cjtl150i6hy4c" path="res://godot4/elements/walls/GlassWall.tscn" id="17_3swga"]
 [ext_resource type="PackedScene" uid="uid://cy6yu1qqrw20d" path="res://godot4/elements/collectables/moving/StraightRocketBigDiamond.tscn" id="17_p3cb8"]
 [ext_resource type="PackedScene" uid="uid://disrmitx5fg3e" path="res://godot4/elements/collectables/moving/StraightRocketDiamond.tscn" id="18_p3cb8"]
+[ext_resource type="PackedScene" uid="uid://c1okl5nxxnou3" path="res://godot4/elements/collectables/moving/RocketBadDiamond.tscn" id="19_e4rji"]
 
 [sub_resource type="Animation" id="Animation_e4rji"]
 length = 0.001
@@ -117,7 +118,7 @@ _data = {
 &"phase_4": SubResource("Animation_p3cb8")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_4w3gs"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_e4rji"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -373,6 +374,11 @@ position = Vector2(-1650, -2400)
 element_scene = ExtResource("18_p3cb8")
 guest_star_scene = ExtResource("17_p3cb8")
 
+[node name="ElementSpawnerGroup9" parent="Battlefield/Waves/MultiDiamondWave" index="8" unique_id=260115851 instance=ExtResource("15_e1fcf")]
+position = Vector2(3450, 300)
+pattern = "single"
+element_scene = ExtResource("19_e4rji")
+
 [node name="StraightRocketDiamond" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=2115075360 instance=ExtResource("18_p3cb8")]
 position = Vector2(-450, -1800)
 
@@ -380,4 +386,4 @@ position = Vector2(-450, -1800)
 position = Vector2(450, -1800)
 
 [node name="Navigation" parent="." index="8" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_4w3gs")
+navigation_polygon = SubResource("NavigationPolygon_e4rji")
