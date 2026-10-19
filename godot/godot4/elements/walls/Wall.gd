@@ -31,6 +31,8 @@ func set_style(style:Style) -> void:
 	%UnderLine2D.width = style.underline_width
 	%GlowLine2D.default_color = style.glow_line_color
 	%GlowLine2D.width = style.glow_line_width
+	%UnderPolygonOutline2D.default_color = style.grid_color
+	%UnderPolygonOutline2D.visible = style.grid_visible
 	
 func set_polygon(v: PackedVector2Array) -> void:
 	_polygon = v
@@ -55,6 +57,7 @@ func set_polygon(v: PackedVector2Array) -> void:
 					
 	%Polygon2D.set_polygon(processed_polygon)
 	%UnderPolygon2D.set_polygon(_polygon)
+	%UnderPolygonOutline2D.set_points(_polygon)
 	
 	if hole:
 		%Line2D.set_points(processed_polygon)
@@ -66,7 +69,7 @@ func set_polygon(v: PackedVector2Array) -> void:
 		%GlowLine2D.set_points(_polygon)
 	
 	_set_collision_polygon(processed_polygon)
-	
+	refresh_shape()
 
 # workaround for rapier support: disable and re-enable the collision polygon to force the engine
 # this is needed for animated walls for example
@@ -84,3 +87,4 @@ func update_navigation() -> void:
 		
 func _ready():
 	%Styleable.apply_current_style()
+	refresh_shape()

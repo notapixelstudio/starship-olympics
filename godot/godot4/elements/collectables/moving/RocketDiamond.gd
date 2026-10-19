@@ -7,6 +7,10 @@ extends Treasure
 var _heading := 1
 
 func _ready():
+	set_physics_process(false)
+	
+func start():
+	set_physics_process(true)
 	if oscillation != 0.0:
 		var timer = Timer.new()
 		timer.wait_time = oscillation
@@ -23,3 +27,6 @@ func _physics_process(delta):
 
 func _on_timer_timeout():
 	_heading *= -1
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()

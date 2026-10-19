@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cy6yu1qqrw20d"]
+
+[ext_resource type="PackedScene" uid="uid://cg66437tipora" path="res://godot4/elements/collectables/moving/RocketDiamond.tscn" id="1_7hw4h"]
+[ext_resource type="Texture2D" uid="uid://cg0bpplguwras" path="res://assets/sprites/environments/diamond_big_outline.png" id="2_crqlt"]
+[ext_resource type="Texture2D" uid="uid://cx3dia7kukei2" path="res://assets/sprites/environments/diamond_big_rocket.png" id="2_walcq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3g7el"]
+radius = 100.0
+
+[sub_resource type="Gradient" id="Gradient_f5tkl"]
+colors = PackedColorArray(1, 0.7176471, 0, 0, 1, 0.7166667, 0, 0.078431375)
+
+[node name="StraightRocketBigDiamond" unique_id=2115075360 instance=ExtResource("1_7hw4h")]
+rotation = 1.5707964
+speed = 600.0
+steering = 0.0
+points = 3
+outline_texture = ExtResource("2_crqlt")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=954651107]
+visible = true
+position = Vector2(30, -1.9073486e-06)
+shape = SubResource("CircleShape2D_3g7el")
+
+[node name="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(737340649) index="1" unique_id=417684581]
+position = Vector2(41.999985, 0)
+texture = ExtResource("2_walcq")
+
+[node name="FlameTrail" parent="." index="3" unique_id=1243105219]
+width = 100.0
+default_color = Color(1, 0.5058824, 1, 1)
+offset = Vector2(-80, 0)
+max_length = 150
+
+[node name="MotionAutoTrail" parent="." index="4" unique_id=600026001]
+width = 160.0
+gradient = SubResource("Gradient_f5tkl")

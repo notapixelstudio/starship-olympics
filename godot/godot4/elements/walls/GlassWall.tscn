@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/walls/Wall.tscn" id="1_ailjw"]
 [ext_resource type="Resource" uid="uid://b06y5gpgvclp1" path="res://godot4/data/styles/vetro.tres" id="2_ifsjq"]
+[ext_resource type="Script" uid="uid://fhqybrrsxljr" path="res://godot4/elements/walls/GlassWall.gd" id="2_um15b"]
 
 [node name="GlassWall" unique_id=450569283 instance=ExtResource("1_ailjw")]
 collision_layer = 0
 collision_mask = 1
-
-[node name="Styleable" parent="." index="0"]
-style = ExtResource("2_ifsjq")
+script = ExtResource("2_um15b")
+style_override = ExtResource("2_ifsjq")

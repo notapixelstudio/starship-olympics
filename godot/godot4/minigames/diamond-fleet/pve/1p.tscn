@@ -13,10 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="11_kbb1t"]
 [ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="12_o1q1w"]
 [ext_resource type="Script" uid="uid://dpg58l7xid3tu" path="res://addons/vshapes/VMultiRoundedRect.gd" id="12_p3cb8"]
-[ext_resource type="PackedScene" uid="uid://u685qfrbxw4g" path="res://godot4/elements/collectables/Diamond.tscn" id="13_eo3v0"]
 [ext_resource type="Script" uid="uid://cmjxajtd8pwrq" path="res://actors/environments/WaveGroupSpawner.gd" id="14_i7ijc"]
 [ext_resource type="PackedScene" uid="uid://bb7uagltp0r43" path="res://actors/environments/ElementSpawnerGroup.tscn" id="15_e1fcf"]
 [ext_resource type="PackedScene" uid="uid://cjtl150i6hy4c" path="res://godot4/elements/walls/GlassWall.tscn" id="17_3swga"]
+[ext_resource type="PackedScene" uid="uid://cy6yu1qqrw20d" path="res://godot4/elements/collectables/moving/StraightRocketBigDiamond.tscn" id="17_p3cb8"]
+[ext_resource type="PackedScene" uid="uid://disrmitx5fg3e" path="res://godot4/elements/collectables/moving/StraightRocketDiamond.tscn" id="18_p3cb8"]
 
 [sub_resource type="Animation" id="Animation_e4rji"]
 length = 0.001
@@ -44,6 +45,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(900, 600)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Battlefield/GlassWall3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-900, -600)]
+}
 
 [sub_resource type="Animation" id="Animation_4w3gs"]
 resource_name = "phase_1"
@@ -58,7 +71,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 6),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(-900, 600), Vector2(-1050, 600)]
+"values": [Vector2(-900, 600), Vector2(-1200, 600)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -70,7 +83,19 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 6),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(900, 600), Vector2(1050, 600)]
+"values": [Vector2(900, 600), Vector2(1200, 750)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Battlefield/GlassWall3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(-900, -600), Vector2(-1200, -750)]
 }
 
 [sub_resource type="Animation" id="Animation_jbch6"]
@@ -87,7 +112,7 @@ _data = {
 &"phase_3": SubResource("Animation_4c183")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_3swga"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_p3cb8"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -112,7 +137,6 @@ active_modifiers = Array[String]([])
 
 [node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="6" unique_id=92266089 node_paths=PackedStringArray("waves_container") instance=ExtResource("4_4w3gs")]
 spawn_on_all_collected = true
-spawn_on_timeout = false
 waves_container = NodePath("../../Battlefield/Waves")
 
 [node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" unique_id=175651912 instance=ExtResource("5_jbch6")]
@@ -122,52 +146,77 @@ waves_container = NodePath("../../Battlefield/Waves")
 [node name="TreasureSFXManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="8" unique_id=584668461 instance=ExtResource("7_q18qq")]
 
 [node name="Camera2D" parent="." index="3" unique_id=956979488]
-zoom = Vector2(0.25, 0.25)
+position = Vector2(0, -300)
 
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=1170858522 instance=ExtResource("8_5lpte")]
-position = Vector2(375, 0)
+position = Vector2(-900, 900)
+rotation = -1.5707964
 
-[node name="Wall2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=1179600758 instance=ExtResource("10_2ddii")]
-position = Vector2(-750, -750)
+[node name="GlassWall3" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="0" unique_id=2032472226 node_paths=PackedStringArray("hole") instance=ExtResource("17_3swga")]
+position = Vector2(-900, -600)
+hollow = true
+hole = NodePath("Hole")
 
-[node name="VRegularPolygon" type="Node" parent="Battlefield/Wall2" index="4" unique_id=980434128]
+[node name="VMultiRoundedRect" type="Node" parent="Battlefield/GlassWall3" index="7" unique_id=812933941 node_paths=PackedStringArray("hosts") groups=["platform_shape"]]
+script = ExtResource("12_p3cb8")
+width = 1800.0
+height = 1200.0
+radius_nw = 1150.0
+radius_ne = 0.0
+radius_sw = 0.0
+radius_se = 0.0
+precision = 100
+hosts = [NodePath(".."), NodePath("../Grid")]
+metadata/_custom_type_script = "uid://2af6nqsv6xhn"
+
+[node name="Grid" parent="Battlefield/GlassWall3" index="8" unique_id=88437216 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("11_kbb1t")]
+init_parametric_shape = NodePath("../VMultiRoundedRect")
+
+[node name="Hole" type="CollisionPolygon2D" parent="Battlefield/GlassWall3" index="9" unique_id=748974688]
+modulate = Color(0, 0, 0, 1)
+light_mask = 0
+polygon = PackedVector2Array(825, -750, 825, 525, -1050, 525, -1050, 750, 1050, 750, 1050, -750)
+disabled = true
+
+[node name="Wall2" parent="Battlefield/GlassWall3" index="11" unique_id=440371247 instance=ExtResource("10_2ddii")]
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/GlassWall3/Wall2" index="4" unique_id=442760844]
 script = ExtResource("12_o1q1w")
 sides = 4
 
-[node name="Diamond" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=1319655844 instance=ExtResource("13_eo3v0")]
-position = Vector2(900, 0)
-collision_mask = 3093
-physics_material_override = null
-appear_scene = null
+[node name="GlassWall4" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=2137610023 node_paths=PackedStringArray("hole") instance=ExtResource("17_3swga")]
+position = Vector2(900, -600)
+hollow = true
+hole = NodePath("Hole")
 
-[node name="Waves" type="Node2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=463913823]
+[node name="VMultiRoundedRect" type="Node" parent="Battlefield/GlassWall4" index="7" unique_id=1479418100 node_paths=PackedStringArray("hosts") groups=["platform_shape"]]
+script = ExtResource("12_p3cb8")
+width = 1800.0
+height = 1200.0
+radius_nw = 0.0
+radius_ne = 1150.0
+radius_sw = 0.0
+radius_se = 0.0
+precision = 100
+hosts = [NodePath(".."), NodePath("../Grid")]
+metadata/_custom_type_script = "uid://2af6nqsv6xhn"
 
-[node name="SingleDiamondWave" type="Node2D" parent="Battlefield/Waves" index="0" unique_id=238719983 groups=["spawn_waves"]]
-script = ExtResource("14_i7ijc")
-max_repeats = 3
-extra_delay = 1.0
+[node name="Grid" parent="Battlefield/GlassWall4" index="8" unique_id=1496168019 node_paths=PackedStringArray("init_parametric_shape") instance=ExtResource("11_kbb1t")]
+init_parametric_shape = NodePath("../VMultiRoundedRect")
 
-[node name="ElementSpawnerGroup" parent="Battlefield/Waves/SingleDiamondWave" index="0" unique_id=496832425 instance=ExtResource("15_e1fcf")]
-position = Vector2(450, 450)
-pattern = "single"
-element_scene = ExtResource("13_eo3v0")
+[node name="Hole" type="CollisionPolygon2D" parent="Battlefield/GlassWall4" index="9" unique_id=1228863290]
+modulate = Color(0, 0, 0, 1)
+light_mask = 0
+polygon = PackedVector2Array(-1050, -750, -825, -750, -825, 525, 1050, 525, 1050, 750, -1050, 750)
+disabled = true
 
-[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/SingleDiamondWave" index="1" unique_id=4452767 instance=ExtResource("15_e1fcf")]
-position = Vector2(450, -450)
-pattern = "single"
-element_scene = ExtResource("13_eo3v0")
+[node name="Wall2" parent="Battlefield/GlassWall4" index="11" unique_id=654974022 instance=ExtResource("10_2ddii")]
 
-[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/SingleDiamondWave" index="2" unique_id=385562520 instance=ExtResource("15_e1fcf")]
-position = Vector2(-450, -450)
-pattern = "single"
-element_scene = ExtResource("13_eo3v0")
+[node name="VRegularPolygon" type="Node" parent="Battlefield/GlassWall4/Wall2" index="4" unique_id=157129719]
+script = ExtResource("12_o1q1w")
+sides = 4
 
-[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/SingleDiamondWave" index="3" unique_id=1629068920 instance=ExtResource("15_e1fcf")]
-position = Vector2(-450, 450)
-pattern = "single"
-element_scene = ExtResource("13_eo3v0")
-
-[node name="GlassWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=450569283 node_paths=PackedStringArray("hole") instance=ExtResource("17_3swga")]
+[node name="GlassWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="2" unique_id=450569283 node_paths=PackedStringArray("hole") instance=ExtResource("17_3swga")]
 position = Vector2(-900, 600)
 hollow = true
 hole = NodePath("Hole")
@@ -190,10 +239,16 @@ init_parametric_shape = NodePath("../VMultiRoundedRect")
 [node name="Hole" type="CollisionPolygon2D" parent="Battlefield/GlassWall" index="9" unique_id=470972706]
 modulate = Color(0, 0, 0, 1)
 light_mask = 0
-polygon = PackedVector2Array(-1050, -675, 975, -675, 975, 825, 825, 825, 825, -525, -1050, -525)
+polygon = PackedVector2Array(-1050, -750, 1050, -750, 1050, 825, 825, 825, 825, -525, -1050, -525)
 disabled = true
 
-[node name="GlassWall2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=1510735379 node_paths=PackedStringArray("hole") instance=ExtResource("17_3swga")]
+[node name="Wall2" parent="Battlefield/GlassWall" index="11" unique_id=369449879 instance=ExtResource("10_2ddii")]
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/GlassWall/Wall2" index="4" unique_id=1878043088]
+script = ExtResource("12_o1q1w")
+sides = 4
+
+[node name="GlassWall2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="3" unique_id=1510735379 node_paths=PackedStringArray("hole") instance=ExtResource("17_3swga")]
 position = Vector2(900, 600)
 hollow = true
 hole = NodePath("Hole")
@@ -216,8 +271,108 @@ init_parametric_shape = NodePath("../VMultiRoundedRect")
 [node name="Hole" type="CollisionPolygon2D" parent="Battlefield/GlassWall2" index="9" unique_id=884556946]
 modulate = Color(0, 0, 0, 1)
 light_mask = 0
-polygon = PackedVector2Array(-975, -675, 1050, -675, 1050, -525, -825, -525, -825, 825, -975, 825)
+polygon = PackedVector2Array(-1050, -750, 1050, -750, 1050, -525, -825, -525, -825, 825, -1050, 825)
 disabled = true
 
+[node name="Wall2" parent="Battlefield/GlassWall2" index="11" unique_id=104159004 instance=ExtResource("10_2ddii")]
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/GlassWall2/Wall2" index="4" unique_id=30180315]
+script = ExtResource("12_o1q1w")
+sides = 4
+
+[node name="Waves" type="Node2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=463913823]
+
+[node name="SingleDiamondWave" type="Node2D" parent="Battlefield/Waves" index="0" unique_id=238719983 groups=["spawn_waves"]]
+script = ExtResource("14_i7ijc")
+max_repeats = 2
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/SingleDiamondWave" index="0" unique_id=496832425 instance=ExtResource("15_e1fcf")]
+position = Vector2(450, -2400)
+pattern = "single"
+element_scene = ExtResource("18_p3cb8")
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/SingleDiamondWave" index="1" unique_id=4452767 instance=ExtResource("15_e1fcf")]
+position = Vector2(975, -2400)
+pattern = "single"
+element_scene = ExtResource("18_p3cb8")
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/SingleDiamondWave" index="2" unique_id=385562520 instance=ExtResource("15_e1fcf")]
+position = Vector2(-450, -2400)
+pattern = "single"
+element_scene = ExtResource("18_p3cb8")
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/SingleDiamondWave" index="3" unique_id=1629068920 instance=ExtResource("15_e1fcf")]
+position = Vector2(-975, -2400)
+pattern = "single"
+element_scene = ExtResource("18_p3cb8")
+
+[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/SingleDiamondWave" index="4" unique_id=869390650 instance=ExtResource("15_e1fcf")]
+position = Vector2(0, -2400)
+pattern = "single"
+element_scene = ExtResource("18_p3cb8")
+
+[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/SingleDiamondWave" index="5" unique_id=1878869077 instance=ExtResource("15_e1fcf")]
+position = Vector2(1650, -2400)
+pattern = "single"
+element_scene = ExtResource("18_p3cb8")
+
+[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/SingleDiamondWave" index="6" unique_id=112328883 instance=ExtResource("15_e1fcf")]
+position = Vector2(-1650, -2400)
+pattern = "single"
+element_scene = ExtResource("18_p3cb8")
+
+[node name="MultiDiamondWave" type="Node2D" parent="Battlefield/Waves" index="1" unique_id=1854546811 groups=["spawn_waves"]]
+script = ExtResource("14_i7ijc")
+
+[node name="ElementSpawnerGroup" parent="Battlefield/Waves/MultiDiamondWave" index="0" unique_id=1633226783 instance=ExtResource("15_e1fcf")]
+position = Vector2(450, -2400)
+element_scene = ExtResource("18_p3cb8")
+guest_star_scene = ExtResource("17_p3cb8")
+
+[node name="ElementSpawnerGroup2" parent="Battlefield/Waves/MultiDiamondWave" index="1" unique_id=174748738 instance=ExtResource("15_e1fcf")]
+position = Vector2(975, -2400)
+pattern = "single"
+element_scene = ExtResource("18_p3cb8")
+guest_star_scene = ExtResource("17_p3cb8")
+
+[node name="ElementSpawnerGroup3" parent="Battlefield/Waves/MultiDiamondWave" index="2" unique_id=979628252 instance=ExtResource("15_e1fcf")]
+position = Vector2(-450, -2400)
+element_scene = ExtResource("18_p3cb8")
+guest_star_scene = ExtResource("17_p3cb8")
+
+[node name="ElementSpawnerGroup4" parent="Battlefield/Waves/MultiDiamondWave" index="3" unique_id=451494198 instance=ExtResource("15_e1fcf")]
+position = Vector2(-975, -2400)
+pattern = "single"
+element_scene = ExtResource("18_p3cb8")
+guest_star_scene = ExtResource("17_p3cb8")
+
+[node name="ElementSpawnerGroup5" parent="Battlefield/Waves/MultiDiamondWave" index="4" unique_id=1951861089 instance=ExtResource("15_e1fcf")]
+position = Vector2(0, -2400)
+pattern = "farapart"
+element_scene = ExtResource("18_p3cb8")
+guest_star_scene = ExtResource("17_p3cb8")
+
+[node name="ElementSpawnerGroup8" parent="Battlefield/Waves/MultiDiamondWave" index="5" unique_id=1491942830 instance=ExtResource("15_e1fcf")]
+position = Vector2(0, -2400)
+pattern = "rhombus"
+element_scene = ExtResource("18_p3cb8")
+guest_star_scene = ExtResource("17_p3cb8")
+
+[node name="ElementSpawnerGroup6" parent="Battlefield/Waves/MultiDiamondWave" index="6" unique_id=1455370915 instance=ExtResource("15_e1fcf")]
+position = Vector2(1650, -2400)
+element_scene = ExtResource("18_p3cb8")
+guest_star_scene = ExtResource("17_p3cb8")
+
+[node name="ElementSpawnerGroup7" parent="Battlefield/Waves/MultiDiamondWave" index="7" unique_id=2062794985 instance=ExtResource("15_e1fcf")]
+position = Vector2(-1650, -2400)
+element_scene = ExtResource("18_p3cb8")
+guest_star_scene = ExtResource("17_p3cb8")
+
+[node name="StraightRocketDiamond" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=2115075360 instance=ExtResource("18_p3cb8")]
+position = Vector2(-450, -1800)
+
+[node name="StraightRocketDiamond2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=448238318 instance=ExtResource("18_p3cb8")]
+position = Vector2(450, -1800)
+
 [node name="Navigation" parent="." index="8" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_3swga")
+navigation_polygon = SubResource("NavigationPolygon_p3cb8")
