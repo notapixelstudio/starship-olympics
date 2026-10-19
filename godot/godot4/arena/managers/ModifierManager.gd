@@ -9,17 +9,20 @@ func apply_all() -> void:
 		if modifier == &'winter':
 			apply_winter()
 
-func apply_winter(shapes=null) -> void:
+func apply_winter() -> void:
 	%Styleable.style = winter_style
 	Styleable.reapply_all_styles()
 	
-	if shapes == null:
-		# default
+	var shapes
+	if %OutsideWallShape:
 		shapes = [%OutsideWallShape]
+	else:
+		shapes = get_tree().get_nodes_in_group('platform_shape')
 	
 	for shape in shapes:
 		var ice = ice_scene.instantiate()
-		%Battlefield.add_child(ice)
+		shape.get_parent().add_child(ice)
 		shape.add_host(ice)
 		
-	%Grid.queue_free()
+	for grid in get_tree().get_nodes_in_group('Grid'):
+		grid.queue_free()
