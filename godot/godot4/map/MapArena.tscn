@@ -24,6 +24,7 @@
 [ext_resource type="Resource" uid="uid://ck0awf4c5mj5w" path="res://godot4/data/items/basket_ball.tres" id="22_3ych7"]
 [ext_resource type="PackedScene" uid="uid://bgild5rs1lhfj" path="res://godot4/map/LevelStart.tscn" id="23_w45ry"]
 [ext_resource type="Resource" uid="uid://dm65hdj8nci86" path="res://godot4/minigames/diamondsnatch/minigame.tres" id="24_obyst"]
+[ext_resource type="Resource" uid="uid://csanebvbkeyby" path="res://godot4/minigames/diamond-fleet/minigame.tres" id="25_h1yi6"]
 [ext_resource type="Resource" uid="uid://8scjgeixod4k" path="res://godot4/minigames/ring-racing/minigame.tres" id="25_xa83o"]
 [ext_resource type="Resource" uid="uid://grr1qvn7xtx6" path="res://godot4/minigames/keep-the-crown/minigame.tres" id="26_k2cqa"]
 [ext_resource type="Resource" uid="uid://dtsqb0j6pvbnm" path="res://godot4/minigames/squash-five/minigame.tres" id="27_qcr0g"]
@@ -42,24 +43,24 @@ script = ExtResource("14_2suis")
 type = ExtResource("17_dkupi")
 duration = 0
 
-[sub_resource type="Resource" id="Resource_5jjxx"]
+[sub_resource type="Resource" id="Resource_rbeks"]
 resource_local_to_scene = true
 script = ExtResource("14_2suis")
 type = ExtResource("19_oqnyn")
 
-[sub_resource type="Resource" id="Resource_h1yi6"]
+[sub_resource type="Resource" id="Resource_6x2uh"]
 resource_local_to_scene = true
 script = ExtResource("14_2suis")
 type = ExtResource("19_oqnyn")
 duration = 0
 glass = true
 
-[sub_resource type="Resource" id="Resource_rbeks"]
+[sub_resource type="Resource" id="Resource_3wit1"]
 resource_local_to_scene = true
 script = ExtResource("14_2suis")
 type = ExtResource("22_3ych7")
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_6x2uh"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_a0oa7"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -124,15 +125,15 @@ item = SubResource("Item_tc")
 
 [node name="Crown" parent="Battlefield" unique_id=1255268695 instance=ExtResource("18_0shsf")]
 position = Vector2(-1050, -1350)
-item = SubResource("Resource_5jjxx")
+item = SubResource("Resource_rbeks")
 
 [node name="GlassCrown" parent="Battlefield" unique_id=1160048206 instance=ExtResource("20_kmy60")]
 position = Vector2(-300, -1350)
-item = SubResource("Resource_h1yi6")
+item = SubResource("Resource_6x2uh")
 
 [node name="BasketBall" parent="Battlefield" unique_id=1878555385 instance=ExtResource("21_k2i4u")]
 position = Vector2(450, -1350)
-item = SubResource("Resource_rbeks")
+item = SubResource("Resource_3wit1")
 
 [node name="Levels" type="Node2D" parent="Battlefield" unique_id=888629877]
 unique_name_in_owner = true
@@ -140,6 +141,10 @@ unique_name_in_owner = true
 [node name="LevelStart" parent="Battlefield/Levels" unique_id=2001746739 instance=ExtResource("23_w45ry")]
 position = Vector2(-2100, 0)
 minigame = ExtResource("24_obyst")
+
+[node name="LevelStart7" parent="Battlefield/Levels" unique_id=1705184527 instance=ExtResource("23_w45ry")]
+position = Vector2(-1350, 0)
+minigame = ExtResource("25_h1yi6")
 
 [node name="LevelStart4" parent="Battlefield/Levels" unique_id=1058364786 instance=ExtResource("23_w45ry")]
 position = Vector2(-2100, 600)
@@ -162,7 +167,7 @@ position = Vector2(-1350, -600)
 minigame = ExtResource("29_6cfpe")
 
 [node name="Navigation" parent="." unique_id=332973589 instance=ExtResource("30_4wkts")]
-navigation_polygon = SubResource("NavigationPolygon_6x2uh")
+navigation_polygon = SubResource("NavigationPolygon_a0oa7")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=737164047]
 unique_name_in_owner = true
