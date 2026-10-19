@@ -45,10 +45,12 @@ func _on_level_start_tapped(ship: Node2D, strength: float, level_start) -> void:
 		
 	var mode = 'pve'
 	var minigame = level_start.get_minigame()
+	var modifiers = level_start.get_modifiers()
+	
 	var level := Utils.level_path(minigame.get_id(), mode, session.players.size()) # the scene made for this many players
 	if not ResourceLoader.exists(level):
 		push_warning("no %s %s level for %d players" % [minigame, mode, session.players.size()])
 		Events.message.emit("NO %dP LEVEL" % session.players.size(), ship.get_color(), ship.global_position)
 		return
-	Events.level_selected.emit(load(level), [] as Array[String])
+	Events.level_selected.emit(load(level), modifiers)
 	done.emit()

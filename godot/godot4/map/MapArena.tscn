@@ -43,24 +43,24 @@ script = ExtResource("14_2suis")
 type = ExtResource("17_dkupi")
 duration = 0
 
-[sub_resource type="Resource" id="Resource_rbeks"]
+[sub_resource type="Resource" id="Resource_h1yi6"]
 resource_local_to_scene = true
 script = ExtResource("14_2suis")
 type = ExtResource("19_oqnyn")
 
-[sub_resource type="Resource" id="Resource_6x2uh"]
+[sub_resource type="Resource" id="Resource_rbeks"]
 resource_local_to_scene = true
 script = ExtResource("14_2suis")
 type = ExtResource("19_oqnyn")
 duration = 0
 glass = true
 
-[sub_resource type="Resource" id="Resource_3wit1"]
+[sub_resource type="Resource" id="Resource_6x2uh"]
 resource_local_to_scene = true
 script = ExtResource("14_2suis")
 type = ExtResource("22_3ych7")
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_a0oa7"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3wit1"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -125,15 +125,15 @@ item = SubResource("Item_tc")
 
 [node name="Crown" parent="Battlefield" unique_id=1255268695 instance=ExtResource("18_0shsf")]
 position = Vector2(-1050, -1350)
-item = SubResource("Resource_rbeks")
+item = SubResource("Resource_h1yi6")
 
 [node name="GlassCrown" parent="Battlefield" unique_id=1160048206 instance=ExtResource("20_kmy60")]
 position = Vector2(-300, -1350)
-item = SubResource("Resource_6x2uh")
+item = SubResource("Resource_rbeks")
 
 [node name="BasketBall" parent="Battlefield" unique_id=1878555385 instance=ExtResource("21_k2i4u")]
 position = Vector2(450, -1350)
-item = SubResource("Resource_3wit1")
+item = SubResource("Resource_6x2uh")
 
 [node name="Levels" type="Node2D" parent="Battlefield" unique_id=888629877]
 unique_name_in_owner = true
@@ -141,33 +141,75 @@ unique_name_in_owner = true
 [node name="LevelStart" parent="Battlefield/Levels" unique_id=2001746739 instance=ExtResource("23_w45ry")]
 position = Vector2(-2100, 0)
 minigame = ExtResource("24_obyst")
+modifiers = Array[String]([])
 
 [node name="LevelStart7" parent="Battlefield/Levels" unique_id=1705184527 instance=ExtResource("23_w45ry")]
 position = Vector2(-1350, 0)
 minigame = ExtResource("25_h1yi6")
+modifiers = Array[String]([])
+
+[node name="LevelStart8" parent="Battlefield/Levels" unique_id=607616069 instance=ExtResource("23_w45ry")]
+position = Vector2(-600, 0)
+minigame = ExtResource("24_obyst")
+modifiers = Array[String](["winter"])
+
+[node name="LevelStart9" parent="Battlefield/Levels" unique_id=944938805 instance=ExtResource("23_w45ry")]
+position = Vector2(150, 0)
+minigame = ExtResource("25_h1yi6")
+modifiers = Array[String](["winter"])
 
 [node name="LevelStart4" parent="Battlefield/Levels" unique_id=1058364786 instance=ExtResource("23_w45ry")]
 position = Vector2(-2100, 600)
 minigame = ExtResource("25_xa83o")
+modifiers = Array[String]([])
 
 [node name="LevelStart6" parent="Battlefield/Levels" unique_id=1120787908 instance=ExtResource("23_w45ry")]
 position = Vector2(-2100, 1200)
 minigame = ExtResource("26_k2cqa")
+modifiers = Array[String]([])
 
 [node name="LevelStart5" parent="Battlefield/Levels" unique_id=889811547 instance=ExtResource("23_w45ry")]
 position = Vector2(-1350, 600)
 minigame = ExtResource("27_qcr0g")
+modifiers = Array[String]([])
+
+[node name="LevelStart12" parent="Battlefield/Levels" unique_id=1059789792 instance=ExtResource("23_w45ry")]
+position = Vector2(-600, 600)
+minigame = ExtResource("25_xa83o")
+modifiers = Array[String](["winter"])
+
+[node name="LevelStart13" parent="Battlefield/Levels" unique_id=1879413857 instance=ExtResource("23_w45ry")]
+position = Vector2(-600, 1200)
+minigame = ExtResource("26_k2cqa")
+modifiers = Array[String](["winter"])
+
+[node name="LevelStart14" parent="Battlefield/Levels" unique_id=1263761577 instance=ExtResource("23_w45ry")]
+position = Vector2(150, 600)
+minigame = ExtResource("27_qcr0g")
+modifiers = Array[String](["winter"])
 
 [node name="LevelStart2" parent="Battlefield/Levels" unique_id=2012167206 instance=ExtResource("23_w45ry")]
 position = Vector2(-2100, -600)
 minigame = ExtResource("28_xdfwy")
+modifiers = Array[String]([])
 
 [node name="LevelStart3" parent="Battlefield/Levels" unique_id=95751891 instance=ExtResource("23_w45ry")]
 position = Vector2(-1350, -600)
 minigame = ExtResource("29_6cfpe")
+modifiers = Array[String]([])
+
+[node name="LevelStart10" parent="Battlefield/Levels" unique_id=56558551 instance=ExtResource("23_w45ry")]
+position = Vector2(-600, -600)
+minigame = ExtResource("28_xdfwy")
+modifiers = Array[String](["winter"])
+
+[node name="LevelStart11" parent="Battlefield/Levels" unique_id=1041457597 instance=ExtResource("23_w45ry")]
+position = Vector2(150, -600)
+minigame = ExtResource("29_6cfpe")
+modifiers = Array[String](["winter"])
 
 [node name="Navigation" parent="." unique_id=332973589 instance=ExtResource("30_4wkts")]
-navigation_polygon = SubResource("NavigationPolygon_a0oa7")
+navigation_polygon = SubResource("NavigationPolygon_3wit1")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=737164047]
 unique_name_in_owner = true

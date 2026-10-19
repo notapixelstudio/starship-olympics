@@ -9,12 +9,17 @@ radius = 118.27
 [node name="LevelStart" type="Area2D" unique_id=2001746739]
 collision_layer = 33554432
 script = ExtResource("1_1jfrr")
+modifiers = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=77312208]
 shape = SubResource("CircleShape2D_qu4h1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=954360094]
 texture = ExtResource("1_tfdsj")
+
+[node name="ModifierSprite2D" type="Sprite2D" parent="." unique_id=627640820]
+unique_name_in_owner = true
+position = Vector2(75, -75)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
