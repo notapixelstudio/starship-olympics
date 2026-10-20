@@ -48,6 +48,10 @@ func _on_body_entered(body: Node) -> void:
 	#_reset_untouchable() # always reset untouchability on bouncing off sth
 	_ctx.collision.emit(self, body)
 	
+	# keeps cargos (and balls) a bit unpredictable when bouncing off walls
+	if body is Wall:
+		apply_central_impulse(125.0*Vector2.from_angle(2*PI*randf()))
+	
 func touched_by(actor) -> void:
 	if not loadable:
 		return

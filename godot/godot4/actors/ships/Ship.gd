@@ -156,8 +156,8 @@ func do_tap(charge: float) -> void:
 	
 	# check whether there's an object receiving the tap action nearby
 	for area in %TouchArea.get_overlapping_areas():
-		if area.has_signal('tap'):
-			area.tap.emit(self, normalized_charge)
+		if area.has_signal('tapped'):
+			area.tapped.emit(self, normalized_charge)
 			
 			# show feedback
 			var bump = bump_effect_scene.instantiate()
