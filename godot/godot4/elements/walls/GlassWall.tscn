@@ -3,6 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/walls/Wall.tscn" id="1_ailjw"]
 [ext_resource type="Resource" uid="uid://b06y5gpgvclp1" path="res://godot4/data/styles/vetro.tres" id="2_ifsjq"]
 [ext_resource type="Script" uid="uid://fhqybrrsxljr" path="res://godot4/elements/walls/GlassWall.gd" id="2_um15b"]
+[ext_resource type="Shader" uid="uid://c67ruvppb4fgq" path="res://godot4/shaders/line_texture_offset.gdshader" id="4_8it2c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kqrpc"]
+resource_local_to_scene = true
+shader = ExtResource("4_8it2c")
+shader_parameter/texture_offset = 0.0
 
 [node name="GlassWall" unique_id=450569283 instance=ExtResource("1_ailjw")]
 collision_layer = 0
@@ -10,5 +16,13 @@ collision_mask = 1
 script = ExtResource("2_um15b")
 style_override = ExtResource("2_ifsjq")
 
-[node name="Polygon2D" parent="." index="5" unique_id=586321546]
-self_modulate = Color(1, 1, 1, 0.15686275)
+[node name="UnderPolygon2D" parent="." index="2" unique_id=872436936]
+visible = true
+
+[node name="Polygon2D" parent="." index="6" unique_id=586321546]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 25)
+
+[node name="Line2D" parent="." index="7" unique_id=1592622203]
+material = SubResource("ShaderMaterial_kqrpc")
+position = Vector2(0, 25)

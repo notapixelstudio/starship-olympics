@@ -7,11 +7,11 @@
 [ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="6_358l5"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/walls/Wall.tscn" id="7_xrqb4"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="8_1km8w"]
-[ext_resource type="PackedScene" uid="uid://bia7yrbdvp8vw" path="res://godot4/elements/walls/ShieldWall.tscn" id="9_0wqle"]
-[ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="10_ab3c0"]
 [ext_resource type="Script" uid="uid://d0bqe8srkhk6e" path="res://godot4/data/items/Item.gd" id="11_crsa2"]
 [ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="11_reqye"]
 [ext_resource type="Resource" uid="uid://i8oaavdvf6hv" path="res://godot4/data/items/Crown.tres" id="12_a3isy"]
+[ext_resource type="PackedScene" uid="uid://cjtl150i6hy4c" path="res://godot4/elements/walls/GlassWall.tscn" id="12_crsa2"]
+[ext_resource type="Script" uid="uid://dsmmew7kmas6i" path="res://addons/vshapes/VRegularPolygon.gd" id="12_p5bjs"]
 [ext_resource type="PackedScene" uid="uid://dm1jotcraodpl" path="res://godot4/actors/enemies/PewTurret.tscn" id="12_x5sbl"]
 
 [sub_resource type="GDScript" id="GDScript_gbqai"]
@@ -129,69 +129,6 @@ _data = {
 &"default": SubResource("Animation_d4q4d")
 }
 
-[sub_resource type="Animation" id="Animation_3nm4h"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShieldWall/VRoundedRect:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [45.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ShieldWall2/VRoundedRect:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [45.0]
-}
-
-[sub_resource type="Animation" id="Animation_xjb4e"]
-resource_name = "default"
-length = 50.0
-loop_mode = 1
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShieldWall/VRoundedRect:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 50),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [45.0, 405.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ShieldWall2/VRoundedRect:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 50),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [45.0, 405.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kj0uy"]
-_data = {
-&"RESET": SubResource("Animation_3nm4h"),
-&"default": SubResource("Animation_xjb4e")
-}
-
 [sub_resource type="Resource" id="Resource_crsa2"]
 resource_local_to_scene = true
 script = ExtResource("11_crsa2")
@@ -232,7 +169,7 @@ height = 1900.0
 bevel = 935.0
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=1888015466 groups=["animation_starts_with_battle"]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=1888015466 groups=["animation_starts_with_battle"]]
 root_node = NodePath("../OutsideWall")
 libraries/ = SubResource("AnimationLibrary_totb7")
 
@@ -244,65 +181,29 @@ hollow = true
 unique_name_in_owner = true
 init_parametric_shape = NodePath("../OutsideWallShape")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=691123203 groups=["animation_starts_with_battle"]]
-callback_mode_process = 0
-libraries/ = SubResource("AnimationLibrary_kj0uy")
-
-[node name="ShieldWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=345547671 instance=ExtResource("9_0wqle")]
-position = Vector2(-800, 0)
-type = "shield"
-symbol_scale = 1.5
-show_edges = false
-
-[node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall" index="5" unique_id=1167775027]
-script = ExtResource("10_ab3c0")
-width = 400.0
-height = 400.0
-precision = 20
-rotation_degrees = 45.0
-
-[node name="ShieldWall2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=2062167704 instance=ExtResource("9_0wqle")]
-position = Vector2(800, 0)
-type = "shield"
-symbol_scale = 1.5
-show_edges = false
-
-[node name="VRoundedRect" type="Node" parent="Battlefield/ShieldWall2" index="5" unique_id=1814222701]
-script = ExtResource("10_ab3c0")
-width = 400.0
-height = 400.0
-precision = 20
-rotation_degrees = 45.0
-
-[node name="Crown" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=798619167 instance=ExtResource("11_reqye")]
+[node name="Crown" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="4" unique_id=798619167 instance=ExtResource("11_reqye")]
 item = SubResource("Resource_crsa2")
 
-[node name="PewTurretTop" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=474966121 instance=ExtResource("12_x5sbl")]
+[node name="PewTurretTop" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=474966121 instance=ExtResource("12_x5sbl")]
 unique_name_in_owner = true
 position = Vector2(0, -900)
-aim_speed = 8.0
-predictive_aim = 0.7
 enabled = false
 shooting = false
 wait_time = 1.0
 time_jitter = 1.5
 
-[node name="PewTurretBottom" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=2071592657 instance=ExtResource("12_x5sbl")]
+[node name="PewTurretBottom" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=2071592657 instance=ExtResource("12_x5sbl")]
 unique_name_in_owner = true
 position = Vector2(0, 900)
-aim_speed = 8.0
-predictive_aim = 0.7
 enabled = false
 shooting = false
 wait_time = 1.0
 time_jitter = 1.5
 burst_time_jitter = 0.1
 
-[node name="PewTurretLeft" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="10" unique_id=718930390 instance=ExtResource("12_x5sbl")]
+[node name="PewTurretLeft" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=718930390 instance=ExtResource("12_x5sbl")]
 unique_name_in_owner = true
 position = Vector2(-1700, 0)
-aim_speed = 8.0
-predictive_aim = 0.7
 enabled = false
 shooting = false
 wait_time = 0.5
@@ -311,17 +212,31 @@ burst_shots = 4
 burst_time = 0.1
 burst_time_jitter = 0.2
 
-[node name="PewTurretRight" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="11" unique_id=89141337 instance=ExtResource("12_x5sbl")]
+[node name="PewTurretRight" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=89141337 instance=ExtResource("12_x5sbl")]
 unique_name_in_owner = true
 position = Vector2(1700, 0)
-aim_speed = 8.0
-predictive_aim = 0.7
 enabled = false
 wait_time = 0.5
 time_jitter = 1.0
 burst_shots = 4
 burst_time = 0.1
 burst_time_jitter = 0.2
+
+[node name="GlassWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=450569283 instance=ExtResource("12_crsa2")]
+position = Vector2(-600, 0)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/GlassWall" index="8" unique_id=1524035364]
+script = ExtResource("12_p5bjs")
+sides = 4
+metadata/_custom_type_script = "uid://dsmmew7kmas6i"
+
+[node name="GlassWall2" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="10" unique_id=295077843 instance=ExtResource("12_crsa2")]
+position = Vector2(600, 0)
+
+[node name="VRegularPolygon" type="Node" parent="Battlefield/GlassWall2" index="8" unique_id=1331971836]
+script = ExtResource("12_p5bjs")
+sides = 4
+metadata/_custom_type_script = "uid://dsmmew7kmas6i"
 
 [node name="Navigation" parent="." index="8" unique_id=332973589]
 navigation_polygon = SubResource("NavigationPolygon_a3isy")
