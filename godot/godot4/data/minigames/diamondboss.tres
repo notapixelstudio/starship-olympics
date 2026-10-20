@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Minigame" format=3 uid="uid://dcqulch4whq7k"]
 
 [ext_resource type="PackedScene" uid="uid://cc33kbqafn06s" path="res://godot4/actors/brains/DiamondsnatchBrain.tscn" id="1_vib7j"]
-[ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minigames/diamondsnatch.png" id="2_rum8q"]
+[ext_resource type="Texture2D" uid="uid://hqe8ngr3tjgj" path="res://assets/sprites/enemies/bosses/diamond_boss_phase_1.png" id="2_vib7j"]
 [ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="3_a7cdv"]
 [ext_resource type="Script" uid="uid://tavpq5uhlyhr" path="res://godot4/data/minigames/Minigame.gd" id="4_fxgyv"]
 [ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="5_a6baw"]
@@ -10,9 +10,7 @@
 [resource]
 script = ExtResource("4_fxgyv")
 title = "diamondboss"
-icon = ExtResource("2_rum8q")
+icon = ExtResource("2_vib7j")
 description = "take the diamonds"
 soundtrack = ExtResource("6_k060n")
-ship_scene = ExtResource("5_a6baw")
-player_brain_scene = ExtResource("3_a7cdv")
 cpu_brain_scene = ExtResource("1_vib7j")
