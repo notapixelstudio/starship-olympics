@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/walls/Wall.tscn" id="1_fgbhx"]
 [ext_resource type="Script" uid="uid://dcdt0pws5l0o2" path="res://godot4/elements/walls/GoalWall.gd" id="2_0msid"]
+[ext_resource type="Shader" uid="uid://c67ruvppb4fgq" path="res://godot4/shaders/line_texture_offset.gdshader" id="3_8y7uu"]
 
 [sub_resource type="Animation" id="Animation_0msid"]
 length = 0.001
@@ -47,7 +48,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.19999999),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1.8247963, 0, 0, 1), Color(0.3, 0.3, 0.3, 1)]
+"values": [Color(2.454227, 0, 0, 1), Color(0.3, 0.3, 0.3, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_m8jsl"]
@@ -63,7 +64,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Color(0.3, 0.3, 0.3, 1), Color(1.353256, 1.353256, 1.353256, 1)]
+"values": [Color(0.3, 0.3, 0.3, 1), Color(1.8247963, 1.8247963, 1.8247963, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m8jsl"]
@@ -73,6 +74,11 @@ _data = {
 &"hit_bad": SubResource("Animation_ptbjn"),
 &"up": SubResource("Animation_m8jsl")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_67vyh"]
+resource_local_to_scene = true
+shader = ExtResource("3_8y7uu")
+shader_parameter/texture_offset = 0.0
 
 [node name="GoalWall" unique_id=1309650842 instance=ExtResource("1_fgbhx")]
 modulate = Color(0.3, 0.3, 0.3, 1)
@@ -86,5 +92,8 @@ libraries/ = SubResource("AnimationLibrary_m8jsl")
 [node name="Timer" type="Timer" parent="." index="7" unique_id=1606532974]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="Line2D" parent="." index="9" unique_id=1592622203]
+material = SubResource("ShaderMaterial_67vyh")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
