@@ -50,4 +50,5 @@ func get_aim_compensation_target():
 	return null
 
 func is_valid_target(sth, actor) -> bool:
-	return traits.has_trait(sth, 'Target') and sth.get_player().get_team() != actor.get_player().get_team()
+	# targets without a player (Shapeoids) are everyone's enemy
+	return traits.has_trait(sth, 'Target') and (not sth.has_method('get_player') or sth.get_player().get_team() != actor.get_player().get_team())

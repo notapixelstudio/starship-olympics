@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body is Shapeoid and not body.is_queued_for_deletion():
-		body.kill(familiar.get_player()) # not deferred: queued at once, so the overlap loop cannot score it twice
+		body.kill(familiar) # not deferred: queued at once, so the overlap loop cannot score it twice
 		Events.log.emit("[b]%s[/b] destroyed [b]%s[/b]" % [familiar.describe(), body.name])
 	elif _contact_left == 0.0 and body is Ship:
 		if body.get_team() != familiar.get_team() and not body.is_queued_for_deletion():

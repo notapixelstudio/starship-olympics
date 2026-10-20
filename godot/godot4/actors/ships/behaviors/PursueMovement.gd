@@ -82,7 +82,7 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	if body is Shapeoid:
 		_contact_cooldowns[body] = 0.6
-		body.kill(familiar.get_player())
+		body.kill(familiar)
 		Events.log.emit("[b]%s[/b] destroyed [b]%s[/b]" % [familiar.describe(), body.name])
 	elif body is Ship and body.get_team() != familiar.get_team():
 		_contact_cooldowns[body] = 0.6
