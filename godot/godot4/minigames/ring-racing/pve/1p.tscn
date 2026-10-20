@@ -310,6 +310,7 @@ script = ExtResource("5_khsdr")
 width = 5600.0
 height = 3500.0
 radius = 900.0
+precision = 70
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
 [node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=369449879 instance=ExtResource("8_1yq27")]
@@ -465,17 +466,17 @@ auto_feedback = false
 [node name="Line2D" type="Line2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=1446173328]
 points = PackedVector2Array(0, 900, -1700, 900, -2200, 400, -2200, -400, -1700, -900, -1500, -900)
 width = 130.0
-default_color = Color(0.13, 0.768, 1, 0.1764706)
+default_color = Color(0.0793, 0.46848002, 0.61, 0.1764706)
 
 [node name="Line2D2" type="Line2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=1010341386]
 z_index = -2
 z_as_relative = false
 points = PackedVector2Array(-1000, -900, -900, -900, 900, 900, 1700, 900, 2200, 400, 2200, -400, 1700, -900, 450, -900)
 width = 130.0
-default_color = Color(0.13, 0.768, 1, 0.1764706)
+default_color = Color(0.0793, 0.46848002, 0.61, 0.1764706)
 
 [node name="Arrow" type="Sprite2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=102343238]
-modulate = Color(0.13, 0.768, 1, 0.1764706)
+modulate = Color(0.09803922, 0.5764706, 0.7490196, 0.1764706)
 z_index = -2
 z_as_relative = false
 position = Vector2(199.99988, -900)

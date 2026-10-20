@@ -317,6 +317,7 @@ script = ExtResource("5_ces5q")
 width = 5600.0
 height = 3500.0
 radius = 900.0
+precision = 70
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
 [node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=1558179421 instance=ExtResource("6_t3xgv")]
@@ -470,17 +471,17 @@ show_arrow = false
 [node name="Line2D" type="Line2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="5" unique_id=1049050851]
 points = PackedVector2Array(0, 900, -1700, 900, -2200, 400, -2200, -400, -1700, -900, -1500, -900)
 width = 130.0
-default_color = Color(0.13, 0.768, 1, 0.1764706)
+default_color = Color(0.078431375, 0.46666667, 0.6117647, 0.1764706)
 
 [node name="Line2D2" type="Line2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="6" unique_id=629356337]
 z_index = -2
 z_as_relative = false
 points = PackedVector2Array(-1000, -900, -900, -900, 900, 900, 1700, 900, 2200, 400, 2200, -400, 1700, -900, 450, -900)
 width = 130.0
-default_color = Color(0.13, 0.768, 1, 0.1764706)
+default_color = Color(0.078431375, 0.46666667, 0.6117647, 0.1764706)
 
 [node name="Arrow" type="Sprite2D" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=293099462]
-modulate = Color(0.13, 0.768, 1, 0.1764706)
+modulate = Color(0.078431375, 0.46666667, 0.6117647, 0.1764706)
 z_index = -2
 z_as_relative = false
 position = Vector2(199.99988, -900)
@@ -488,5 +489,5 @@ scale = Vector2(1.3, 1.3)
 texture = ExtResource("11_j0wr8")
 flip_h = true
 
-[node name="Navigation" parent="." index="7" unique_id=332973589]
+[node name="Navigation" parent="." index="8" unique_id=332973589]
 navigation_polygon = SubResource("NavigationPolygon_2rv21")
