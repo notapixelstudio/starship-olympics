@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bgild5rs1lhfj"]
+
+[ext_resource type="Script" uid="uid://bssa8gbicyxe" path="res://godot4/map/LevelStart.gd" id="1_1jfrr"]
+[ext_resource type="Texture2D" uid="uid://733uiq5oy6du" path="res://assets/icon/minigames/diamondsnatch.png" id="1_tfdsj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qu4h1"]
+radius = 118.27
+
+[node name="LevelStart" type="Area2D" unique_id=2001746739]
+collision_layer = 33554432
+script = ExtResource("1_1jfrr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=77312208]
+shape = SubResource("CircleShape2D_qu4h1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=954360094]
+texture = ExtResource("1_tfdsj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,11 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://criepafyhd33y"]
+[gd_scene format=3 uid="uid://criepafyhd33y"]
 
 [ext_resource type="Script" uid="uid://b7tqdyagdrwog" path="res://godot4/actors/managers/CargoManager.gd" id="1_3jl3k"]
+[ext_resource type="Script" uid="uid://dfwlu4ppe4snj" path="res://addons/AutoSignals/AutoSignals.gd" id="2_yr32n"]
 
-[node name="CargoManager" type="Node"]
+[node name="CargoManager" type="Node" unique_id=62462598]
 script = ExtResource("1_3jl3k")
 
-[node name="JustSwappedTimer" type="Timer" parent="."]
+[node name="AutoSignals" type="Node" parent="." unique_id=775528133]
+unique_name_in_owner = true
+script = ExtResource("2_yr32n")
+metadata/_custom_type_script = "uid://dfwlu4ppe4snj"
+
+[node name="JustSwappedTimer" type="Timer" parent="." unique_id=1711422145]
 unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true

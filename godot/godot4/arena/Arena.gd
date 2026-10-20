@@ -199,3 +199,6 @@ func get_active_human_players() -> Array[Player]:
 ## Returns a Dictionary having the team ids as keys and an array of player ids as items
 func get_teams() -> Dictionary[String,Array]:
 	return _teams
+
+func get_current_session() -> Session:
+	return session

@@ -26,29 +26,23 @@ func capture_ship(ship:Ship) -> void:
 	var bubble = ship_bubble_scene.instantiate()
 	bubble.set_ship(ship)
 	bubble.global_position = ship.global_position
+	ship.capture(self)
 	ship.queue_free()
 	_ctx.spawn_request.emit(bubble)
 	bubble.set_content_rotation(ship.global_rotation)
 	Events.ship_captured.emit.call_deferred(ship, bubble)
 	
-func capture_collectable(collectable:Collectable) -> void:
+func capture_nonship_element(element:Node2D) -> void:
 	var bubble = bubble_scene.instantiate()
-	bubble.set_content(collectable)
-	if collectable is Treasure:
+	bubble.set_content(element)
+	if element is Treasure:
 		bubble.add_to_group('Treasure')
-	bubble.global_position = collectable.global_position
-	get_parent().remove_child.call_deferred(collectable)
+	elif element is Shapeoid:
+		bubble.add_to_group('Shapeoid')
+	bubble.global_position = element.global_position
+	bubble.set_content_rotation(element.global_rotation)
+	get_parent().remove_child.call_deferred(element) # FIXME ask the context
 	_ctx.spawn_request.emit(bubble)
-	bubble.set_content_rotation(collectable.global_rotation)
-	
-func capture_shapeoid(shapeoid:Shapeoid) -> void:
-	var bubble = bubble_scene.instantiate()
-	bubble.set_content(shapeoid)
-	bubble.add_to_group('Shapeoid')
-	bubble.global_position = shapeoid.global_position
-	get_parent().remove_child.call_deferred(shapeoid)
-	_ctx.spawn_request.emit(bubble)
-	bubble.set_content_rotation(shapeoid.global_rotation)
 	
 func destroy() -> void:
 	var effect = bubble_popped_scene.instantiate()

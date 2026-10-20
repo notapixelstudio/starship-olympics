@@ -15,3 +15,6 @@ class_name Minigame
 @export var player_brain_scene : PackedScene = preload("res://godot4/actors/brains/PlayerBrain.tscn")
 @export var cpu_brain_scene : PackedScene = preload("res://godot4/actors/brains/CPUBrain.tscn")
 @export var starting_weapon_scene : PackedScene
+
+func get_id():
+	return resource_path.get_base_dir().rsplit('/',false,1)[1]
