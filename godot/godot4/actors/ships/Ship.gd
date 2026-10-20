@@ -406,10 +406,10 @@ func disable(disabler, hit_impulse):
 	disabled_ship.linear_velocity = linear_velocity
 	disabled_ship.angular_velocity = angular_velocity
 	
-	_ctx.spawn_request.emit(disabled_ship, func(disabled_ship):
-		disabled_ship.apply_central_impulse(hit_impulse)
-		disabled_ship.apply_torque_impulse((1000+linear_velocity.length())*2)
-	)
+	# bound to disabled_ship, not a lambda: this ship may be freed before the deferred spawn runs (e.g. disabled from a timer)
+	disabled_ship.ready.connect(disabled_ship.apply_central_impulse.bind(hit_impulse))
+	disabled_ship.ready.connect(disabled_ship.apply_torque_impulse.bind((1000+linear_velocity.length())*2))
+	_ctx.spawn_request.emit(disabled_ship)
 	
 	_show_death_feedback()
 	
