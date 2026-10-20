@@ -21,9 +21,5 @@ func hit(hitter=null):
 		kill()
 		return
 		
-	if hitter.has_method('get_player'):
-		kill(hitter.get_player())
-		return
-		
-	kill()
+	kill(hitter)
 	

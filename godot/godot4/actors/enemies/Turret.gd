@@ -6,6 +6,8 @@ class_name Turret
 @export var wait_time := 2.0 : set = set_time
 @export var time_jitter := 0.0
 
+@export var rogue_player : Player
+
 @export_group("Burst")
 @export var burst_shots := 1
 @export var burst_time := 0.2
@@ -46,12 +48,8 @@ func _on_timer_timeout() -> void:
 	else:
 		%Timer.start(burst_time+randf()*burst_time_jitter)
 	
-# TODO design how to handle color for rogue team
-func get_color() -> Color:
-	return Color.WHITE
-	
-func get_team() -> String:
-	return 'rogue'
+func get_player() -> Player:
+	return rogue_player
 
 func alert():
 	enabled = true

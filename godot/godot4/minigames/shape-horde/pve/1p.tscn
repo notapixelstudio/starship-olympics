@@ -26,7 +26,8 @@ func _on_body_entered(body: Node2D) -> void:
 		body.kill()
 		
 	if body is Shapeoid:
-		body.kill(_ctx.get_active_players()[0])
+		body.kill()# FIXME we are not able to tell the ship author for this _ctx.get_active_players()[0])
+		# maybe the one that the Shapeoid was following?
 "
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_564j8"]

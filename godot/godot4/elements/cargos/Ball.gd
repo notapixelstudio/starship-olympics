@@ -7,19 +7,19 @@ var rest : bool = true
 @export var kick_impulse_base := 500.0
 @export var kick_impulse_strength_multiplier := 5500.0
 
-var _owner_ship : Ship = null
+var _player : Player
 
 func unrest() -> void:
 	rest = false
 	
-func take_ownership(ship: Ship) -> void:
-	_owner_ship = ship
+func set_player(v: Player) -> void:
+	_player = v
 	
-func get_owner_ship() -> Ship:
-	if not _owner_ship or not is_instance_valid(_owner_ship) or _owner_ship.is_queued_for_deletion():
-		return null
-		
-	return _owner_ship
+func get_player() -> Player:
+	return _player
+	
+func has_player() -> bool:
+	return _player != null
 	
 func push(impulse: float) -> void:
 	apply_central_impulse(impulse*linear_velocity.normalized())
@@ -31,11 +31,11 @@ func _physics_process(delta):
 func _integrate_forces(state):
 	tracked.tick()
 
-func _on_tap_area_tap(author: Ship, strength: float) -> void:
+func _on_tap_area_tapped(author: Ship, strength: float) -> void:
 	volley(author, strength)
 	
 func volley(author: Ship, strength: float) -> void:
-	take_ownership(author)
+	set_player(author.get_player())
 	unrest()
 	
 	## use intended direction in addition to actual direction

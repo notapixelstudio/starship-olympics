@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bl27ag67y755j" path="res://godot4/actors/enemies/Turret.gd" id="1_nwro1"]
 [ext_resource type="PackedScene" uid="uid://yw0vjfqmdjje" path="res://godot4/traits/Waiter.tscn" id="2_58wa3"]
 [ext_resource type="PackedScene" uid="uid://bhygc2xfw2jei" path="res://godot4/traits/Target.tscn" id="2_atihj"]
+[ext_resource type="Resource" uid="uid://dsjtx3ep7bq1m" path="res://godot4/debug/default_data/default_players/rogue.tres" id="2_n6qrj"]
 [ext_resource type="Theme" uid="uid://dui8cebqku8x5" path="res://interface/themes/olympic_theme.tres" id="6_n6qrj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_atihj"]
@@ -64,6 +65,7 @@ _data = {
 collision_layer = 4096
 collision_mask = 0
 script = ExtResource("1_nwro1")
+rogue_player = ExtResource("2_n6qrj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1850805375]
 shape = SubResource("CircleShape2D_atihj")

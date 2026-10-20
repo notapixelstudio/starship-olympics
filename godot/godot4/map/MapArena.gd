@@ -1,18 +1,19 @@
-extends Node2D
+extends Arena
 
 signal done
 
 const DEFAULT_MINIGAME := preload("res://godot4/data/minigames/default.tres")
 
-var session: Session
 var _ships_spawned := false
-var _level_started := false
 
 func _ready() -> void:
 	%ShipFactory.set_minigame(DEFAULT_MINIGAME)
 	var current := get_tree().current_scene
 	if session == null and current != null and (current == self or current.name == "MapScreen"):
 		set_session(_fallback_session())
+		
+	for level_start in %Levels.get_children():
+		level_start.tapped.connect(_on_level_start_tapped.bind(level_start))
 
 func set_session(value: Session) -> void:
 	session = value
@@ -38,16 +39,16 @@ func _spawn_ships() -> void:
 		%Battlefield.add_child(ship)
 		ship.global_position = home.global_position
 
-## [param minigame] is its folder under minigames/ and [param mode] 
-## its pve/pvp subfolder, bound on each start area's connection.
-func _on_area_2d_body_entered(body: Node2D, minigame: String, mode := 'pve') -> void:
-	if _level_started or not body is Ship:
+func _on_level_start_tapped(ship: Node2D, strength: float, level_start) -> void:
+	if not ship is Ship:
 		return
-	var level := Utils.level_path(minigame, mode, session.players.size()) # the scene made for this many players
+		
+	var mode = 'pve'
+	var minigame = level_start.get_minigame()
+	var level := Utils.level_path(minigame.get_id(), mode, session.players.size()) # the scene made for this many players
 	if not ResourceLoader.exists(level):
 		push_warning("no %s %s level for %d players" % [minigame, mode, session.players.size()])
-		Events.message.emit("NO %dP LEVEL" % session.players.size(), body.get_color(), body.global_position)
+		Events.message.emit("NO %dP LEVEL" % session.players.size(), ship.get_color(), ship.global_position)
 		return
-	_level_started = true
 	Events.level_selected.emit(load(level), [] as Array[String])
 	done.emit()
