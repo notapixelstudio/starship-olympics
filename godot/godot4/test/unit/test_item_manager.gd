@@ -77,10 +77,10 @@ func test_each_session_has_its_own_items() -> void:
 func test_clock_extender_type_loads() -> void:
 	var clock := Item.new()
 	clock.type = load("res://godot4/data/items/clock_extender.tres") as ItemType
-	assert_eq(clock.id, &"clock_extender")
+	assert_eq(clock.get_type_id(), &"clock_extender")
 	session.grant_item(clock, "P1")
 	_end_match()
-	assert_eq(session.count_items(clock.id), 0)
+	assert_eq(session.count_items(clock.get_type_id()), 0)
 
 
 func test_merge_replaces_complete_sets_only() -> void:

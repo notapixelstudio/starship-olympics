@@ -46,7 +46,7 @@ func count_items(item_id : StringName, player_id = null) -> int:
 	var total := 0
 	for pid in items:
 		if player_id == null or pid == player_id:
-			total += items[pid].filter(func(item : Item) -> bool: return item.id == item_id).size()
+			total += items[pid].filter(func(item : Item) -> bool: return item.get_type_id() == item_id).size()
 	return total
 
 # virtual
