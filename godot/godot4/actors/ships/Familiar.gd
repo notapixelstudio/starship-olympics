@@ -42,10 +42,11 @@ func _physics_process(_delta: float) -> void:
 		_ship = ship
 	var areas: Array = $TouchArea.get_overlapping_areas()
 	$TerrainManager.process_overlappers(areas)
-	# familiars drifting in ice leave a trail
-	var sliding: bool = $TerrainManager.get_current_terrain() == &'ice' and linear_velocity.length() > Ship.MIN_DRIFT
-	if sliding != $IceAutoTrail.active:
-		$IceAutoTrail.start() if sliding else $IceAutoTrail.stop()
+	# like the ship: drifting (sliding sideways to where it faces) on ice leaves a trail
+	var drift := linear_velocity.project(Vector2.DOWN.rotated(facing))
+	var drifting: bool = $TerrainManager.get_current_terrain() == &'ice' and drift.length() > Ship.MIN_DRIFT
+	if drifting != $IceAutoTrail.active:
+		$IceAutoTrail.start() if drifting else $IceAutoTrail.stop()
 	var blown := not freeze and areas.any(func(area): return area is RepealField)
 	if blown and not _blown:
 		Events.log.emit("[b]%s[/b] blown by an explosion" % describe())
