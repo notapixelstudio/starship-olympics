@@ -35,6 +35,9 @@ default_params = ExtResource("2_0cmkh")
 [node name="Styleable" parent="." index="1" unique_id=999924478]
 style = ExtResource("2_jx2vd")
 
+[node name="ModifierManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="2" unique_id=1330404860]
+active_modifiers = Array[String]([])
+
 [node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="9" unique_id=698513598 node_paths=PackedStringArray("waves_container") instance=ExtResource("4_ku04e")]
 spawn_on_all_collected = true
 spawn_on_timeout = false
@@ -221,5 +224,5 @@ position = Vector2(1200, 900)
 pattern = "plus"
 element_scene = ExtResource("14_tpiis")
 
-[node name="Navigation" parent="." index="7" unique_id=332973589]
+[node name="Navigation" parent="." index="8" unique_id=332973589]
 navigation_polygon = SubResource("NavigationPolygon_4homc")
