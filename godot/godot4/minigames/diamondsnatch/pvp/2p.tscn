@@ -17,8 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="8_pkpfw"]
 [ext_resource type="PackedScene" uid="uid://dvjdmo8ceeh5b" path="res://godot4/elements/bubbles/DiamondBubble.tscn" id="12_g0rc5"]
 [ext_resource type="PackedScene" uid="uid://cie2xt6b1e8oy" path="res://godot4/elements/bubbles/BigDiamondBubble.tscn" id="13_mcimn"]
-[ext_resource type="Shader" uid="uid://qj4beet66b8h" path="res://godot4/shaders/custom_multiply_screen_blend.gdshader" id="18_digss"]
-[ext_resource type="Texture2D" uid="uid://033a3tccla31" path="res://assets/HUD/fake_crt_under.png" id="19_dndmi"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_snont"]
 resource_local_to_scene = true
@@ -27,10 +25,6 @@ parsed_collision_mask = 16
 source_geometry_mode = 1
 source_geometry_group_name = &"obstacle"
 agent_radius = 100.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oirt5"]
-shader = ExtResource("18_digss")
-shader_parameter/brightness = 2.0
 
 [node name="PvpArena" unique_id=2138963054 instance=ExtResource("1_hdhns")]
 
@@ -618,18 +612,3 @@ guest_star_positioning = "random"
 
 [node name="Navigation" parent="." index="8" unique_id=332973589]
 navigation_polygon = SubResource("NavigationPolygon_snont")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="11" unique_id=1788647654]
-layer = 6
-
-[node name="Vignette" type="TextureRect" parent="CanvasLayer" index="0" unique_id=1514872949]
-material = SubResource("ShaderMaterial_oirt5")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("19_dndmi")
-expand_mode = 5
-stretch_mode = 5
-flip_h = true

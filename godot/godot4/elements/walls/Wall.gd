@@ -24,7 +24,10 @@ func set_style(style:Style) -> void:
 	%UnderPolygon2D.modulate = style.background_color
 	%UnderPolygon2D.texture = style.background_texture
 	%Line2D.default_color = style.line_color
-	%Line2D.texture = style.line_texture
+	if hollow:
+		%Line2D.texture = style.line_texture_hollow
+	else:
+		%Line2D.texture = style.line_texture
 	%Line2D.width = style.line_width
 	%UnderLine2D.default_color = style.underline_color
 	%UnderLine2D.texture = style.underline_texture
@@ -33,6 +36,14 @@ func set_style(style:Style) -> void:
 	%GlowLine2D.width = style.glow_line_width
 	%UnderPolygonOutline2D.default_color = style.grid_color
 	%UnderPolygonOutline2D.visible = style.grid_visible
+	
+	# avoid to always repeat the same pattern
+	if style.random_line_texture_offset:
+		var random_offset = randf()
+		if style.line_texture:
+			%Line2D.material.set_shader_parameter('texture_offset', random_offset)
+		if style.underline_texture:
+			%UnderLine2D.material.set_shader_parameter('texture_offset', random_offset)
 	
 func set_polygon(v: PackedVector2Array) -> void:
 	_polygon = v

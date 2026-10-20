@@ -2,14 +2,17 @@
 
 [ext_resource type="Script" uid="uid://bjgty1ww5ajsk" path="res://godot4/data/styles/Style.gd" id="1_cjlmk"]
 [ext_resource type="Texture2D" uid="uid://cul1qame2qpja" path="res://assets/patterns/wall/bones.png" id="1_ogi6y"]
+[ext_resource type="Texture2D" uid="uid://ba7b0d6r3v5el" path="res://assets/patterns/wall/bones_right.png" id="1_tn3q7"]
 
 [resource]
 script = ExtResource("1_cjlmk")
-color = Color(0.35, 0.34533334, 0.315, 1)
+color = Color(0.47, 0.45731, 0.3854, 1)
 background_color = Color(0, 0.09, 0.018000005, 1)
-line_color = Color(0.87, 0.87, 0.87, 1)
-line_texture = ExtResource("1_ogi6y")
-underline_color = Color(0.52, 0.52, 0.52, 1)
-glow_line_color = Color(0, 1, 0.75, 0.05882353)
+line_color = Color(0.47058824, 0.45882353, 0.38431373, 1)
+line_texture = ExtResource("1_tn3q7")
+line_texture_hollow = ExtResource("1_ogi6y")
+underline_color = Color(0.1932, 0.28, 0.20621999, 1)
+glow_line_color = Color(0, 1, 0.7833333, 0.039215688)
 grid_color = Color(0, 0.13, 0.08883334, 1)
 mesh_visible = false
+random_line_texture_offset = true

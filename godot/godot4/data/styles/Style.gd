@@ -6,6 +6,7 @@ class_name Style
 @export var background_texture : Texture
 @export var line_color := Color('#8d8d8d')
 @export var line_texture : Texture
+@export var line_texture_hollow : Texture
 @export var line_width := 48.0
 @export var underline_color := Color('#5e5e5e')
 @export var underline_texture : Texture
@@ -19,3 +20,4 @@ class_name Style
 @export var mesh_texture : Texture
 @export var mesh_color := Color('#00000014')
 @export var mesh_checkered := false
+@export var random_line_texture_offset := false
