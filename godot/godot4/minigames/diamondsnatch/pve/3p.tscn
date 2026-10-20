@@ -127,7 +127,7 @@ _data = {
 &"default": SubResource("Animation_kdc2i")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_r4313"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_gshsq"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -137,15 +137,14 @@ agent_radius = 100.0
 
 [node name="PveArena" unique_id=1186514036 instance=ExtResource("1_ms8x7")]
 
-[node name="Styleable" parent="." index="0" unique_id=999924478]
+[node name="Styleable" parent="." index="1" unique_id=999924478]
 style = ExtResource("3_gqecq")
 
-[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="6" unique_id=1143017509 node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("4_igkrr")]
+[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="6" unique_id=1143017509 node_paths=PackedStringArray("waves_container") instance=ExtResource("4_igkrr")]
 spawn_on_all_collected = true
 spawn_count_on_all_collected = 4
 spawn_on_timeout = false
 waves_container = NodePath("../../Battlefield/Waves")
-battlefield = NodePath("../../Battlefield")
 
 [node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" unique_id=1770007320 instance=ExtResource("4_al8sb")]
 
@@ -153,7 +152,7 @@ battlefield = NodePath("../../Battlefield")
 
 [node name="TreasureSFXManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="8" unique_id=1890129945 instance=ExtResource("6_5s8cn")]
 
-[node name="Camera2D" parent="." index="2" unique_id=956979488]
+[node name="Camera2D" parent="." index="3" unique_id=956979488]
 zoom = Vector2(0.32, 0.32)
 
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=583436595 instance=ExtResource("7_33rx5")]
@@ -174,6 +173,7 @@ script = ExtResource("8_rjqol")
 width = 3600.0
 height = 2000.0
 radius = 1000.0
+precision = 75
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
 [node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=1233650829 instance=ExtResource("9_b38kr")]
@@ -927,5 +927,5 @@ position = Vector2(600, 0)
 rotation_speed = -0.392699
 wait_time = 8.0
 
-[node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_r4313")
+[node name="Navigation" parent="." index="8" unique_id=332973589]
+navigation_polygon = SubResource("NavigationPolygon_gshsq")

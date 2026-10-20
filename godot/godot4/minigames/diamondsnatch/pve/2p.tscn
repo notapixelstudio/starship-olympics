@@ -108,18 +108,17 @@ agent_radius = 100.0
 [node name="PveArena" unique_id=1732566990 instance=ExtResource("1_jsab4")]
 default_params = ExtResource("11_4ft3g")
 
-[node name="Styleable" parent="." index="0" unique_id=999924478]
+[node name="Styleable" parent="." index="1" unique_id=999924478]
 style = ExtResource("2_xkjhl")
 
 [node name="Orchestrator" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="0" unique_id=1592803965]
 script = SubResource("GDScript_2yg2a")
 
-[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="6" unique_id=911111857 node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("3_knfq2")]
+[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="6" unique_id=911111857 node_paths=PackedStringArray("waves_container") instance=ExtResource("3_knfq2")]
 spawn_on_all_collected = true
 spawn_count_on_all_collected = 3
 spawn_on_timeout = false
 waves_container = NodePath("../../Battlefield/Waves")
-battlefield = NodePath("../../Battlefield")
 
 [node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" unique_id=669659882 instance=ExtResource("5_pvgs7")]
 
@@ -127,7 +126,7 @@ battlefield = NodePath("../../Battlefield")
 
 [node name="TreasureSFXManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="8" unique_id=184174537 instance=ExtResource("5_hnp1y")]
 
-[node name="Camera2D" parent="." index="2" unique_id=956979488]
+[node name="Camera2D" parent="." index="3" unique_id=956979488]
 zoom = Vector2(0.32, 0.32)
 
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=1919150410 instance=ExtResource("6_ip82o")]
@@ -144,6 +143,7 @@ script = ExtResource("7_md3ay")
 width = 3300.0
 height = 2000.0
 radius = 1000.0
+precision = 75
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid")]
 
 [node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=1674062399 instance=ExtResource("8_gvfad")]
@@ -717,5 +717,5 @@ pattern = "vline"
 element_scene = ExtResource("11_3gire")
 guest_star_scene = ExtResource("15_s487o")
 
-[node name="Navigation" parent="." index="6" unique_id=332973589]
+[node name="Navigation" parent="." index="8" unique_id=332973589]
 navigation_polygon = SubResource("NavigationPolygon_qhd6p")

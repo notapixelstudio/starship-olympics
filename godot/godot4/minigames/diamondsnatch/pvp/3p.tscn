@@ -28,12 +28,11 @@ agent_radius = 100.0
 
 [node name="PvpArena" unique_id=1018653254 instance=ExtResource("1_2t2ka")]
 
-[node name="Styleable" parent="." index="0" unique_id=999924478]
+[node name="Styleable" parent="." index="1" unique_id=999924478]
 style = ExtResource("8_uaq3n")
 
-[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="3" unique_id=1825870935 node_paths=PackedStringArray("waves_container", "battlefield") instance=ExtResource("2_ak7cm")]
+[node name="SpawnerWaveManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="3" unique_id=1825870935 node_paths=PackedStringArray("waves_container") instance=ExtResource("2_ak7cm")]
 waves_container = NodePath("../../Battlefield/Waves")
-battlefield = NodePath("../../Battlefield")
 
 [node name="Waiter" parent="Managers/SpawnerWaveManager" index="2" unique_id=159394463 instance=ExtResource("4_dp213")]
 
@@ -41,7 +40,7 @@ battlefield = NodePath("../../Battlefield")
 
 [node name="TreasureSFXManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="8" unique_id=1782182774 instance=ExtResource("4_n77t6")]
 
-[node name="Camera2D" parent="." index="2" unique_id=956979488]
+[node name="Camera2D" parent="." index="3" unique_id=956979488]
 zoom = Vector2(0.3, 0.3)
 
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=1025082389 instance=ExtResource("4_bva5u")]
@@ -62,6 +61,7 @@ script = ExtResource("6_vibcf")
 width = 3500.0
 height = 2000.0
 radius = 1000.0
+precision = 75
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid"), NodePath("../../Navigation")]
 
 [node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=1923825581 instance=ExtResource("5_1pfq3")]
@@ -576,5 +576,5 @@ element_scene = ExtResource("8_ri0vu")
 position = Vector2(-900, 450)
 element_scene = ExtResource("8_ri0vu")
 
-[node name="Navigation" parent="." index="6" unique_id=332973589]
+[node name="Navigation" parent="." index="8" unique_id=332973589]
 navigation_polygon = SubResource("NavigationPolygon_icw57")

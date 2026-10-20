@@ -65,6 +65,7 @@ script = ExtResource("6_tvda7")
 width = 3500.0
 height = 2300.0
 radius = 1150.0
+precision = 75
 hosts = [NodePath("../OutsideWall"), NodePath("../Grid"), NodePath("../../Navigation")]
 
 [node name="OutsideWall" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="1" unique_id=1913150715 instance=ExtResource("5_xe0w6")]
@@ -605,5 +606,5 @@ element_scene = ExtResource("8_ev06m")
 guest_star_scene = ExtResource("12_pcah0")
 guest_star_positioning = "random"
 
-[node name="Navigation" parent="." index="7" unique_id=332973589]
+[node name="Navigation" parent="." index="8" unique_id=332973589]
 navigation_polygon = SubResource("NavigationPolygon_mxfia")
