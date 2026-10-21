@@ -1,5 +1,4 @@
-extends Area2D
-class_name Turret
+class_name Turret extends Area2D
 
 @export var enabled := true:
 	set(value):

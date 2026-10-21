@@ -5,8 +5,6 @@ extends Turret
 @export var launch_speed := 700.0
 @export var max_active_shapeoids := 4
 
-@onready var _ctx := ArenaScope.get_scope(self)
-
 func _physics_process(_delta: float) -> void:
 	var target := _nearest_ship()
 	if target != null:
