@@ -18,14 +18,15 @@ func fire(source):
 	if not enabled:
 		return
 		
-	var bullet_forming = bullet_forming_scene.instantiate()
-	# TODO configure bullet size
-	bullet_forming.position = offset*Vector2.RIGHT
-	add_child(bullet_forming)
-	
-	await bullet_forming.done
-	
-	bullet_forming.queue_free()
+	if bullet_forming_scene:
+		var bullet_forming = bullet_forming_scene.instantiate()
+		# TODO configure bullet size
+		bullet_forming.position = offset*Vector2.RIGHT
+		add_child(bullet_forming)
+		
+		await bullet_forming.done
+		
+		bullet_forming.queue_free()
 	
 	var bullet = bullet_scene.instantiate()
 	# TODO set bullet size

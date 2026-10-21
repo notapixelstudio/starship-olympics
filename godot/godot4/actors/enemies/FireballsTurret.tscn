@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://k7kjsv6uic3e"]
+
+[ext_resource type="PackedScene" uid="uid://tqe0qciw2df3" path="res://godot4/actors/enemies/AimTurret.tscn" id="1_xh5ut"]
+[ext_resource type="PackedScene" uid="uid://ucf66h5c3spn" path="res://godot4/actors/ships/weapons/FireballBulletWeapon.tscn" id="2_xh5ut"]
+[ext_resource type="Texture2D" uid="uid://bj4s2pqxiqh6h" path="res://assets/sprites/enemies/bubble_turret_under.png" id="3_g4d7n"]
+[ext_resource type="Texture2D" uid="uid://dd6gr3ghofbwj" path="res://assets/sprites/enemies/bubble_turret_top.png" id="4_vbeyd"]
+
+[sub_resource type="GDScript" id="GDScript_n6qrj"]
+script/source = "extends Node2D
+
+func _process(delta: float) -> void:
+	global_position = get_parent().global_position
+"
+
+[node name="FireballsTurret" unique_id=718930390 instance=ExtResource("1_xh5ut")]
+aim_speed = 8.0
+predictive_aim = 0.7
+burst_shots = 3
+
+[node name="FireballBulletWeapon" parent="Weapons" parent_id_path=PackedInt32Array(1434707921) index="0" unique_id=2007729134 node_paths=PackedStringArray("host") instance=ExtResource("2_xh5ut")]
+host = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapons/FireballBulletWeapon" index="0" unique_id=467975014]
+position = Vector2(74, 0.000187603)
+rotation = -3.14159
+texture = ExtResource("3_g4d7n")
+
+[node name="FireballBulletWeapon2" parent="Weapons" parent_id_path=PackedInt32Array(1434707921) index="1" unique_id=1722169674 node_paths=PackedStringArray("host") instance=ExtResource("2_xh5ut")]
+rotation = -0.5235988
+host = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapons/FireballBulletWeapon2" index="0" unique_id=791717266]
+position = Vector2(74, 0.000187603)
+rotation = -3.14159
+texture = ExtResource("3_g4d7n")
+
+[node name="FireballBulletWeapon3" parent="Weapons" parent_id_path=PackedInt32Array(1434707921) index="2" unique_id=53216191 node_paths=PackedStringArray("host") instance=ExtResource("2_xh5ut")]
+rotation = 0.5235988
+host = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapons/FireballBulletWeapon3" index="0" unique_id=403406749]
+position = Vector2(74, 0.000187603)
+rotation = -3.14159
+texture = ExtResource("3_g4d7n")
+
+[node name="TopSprite2D" type="Sprite2D" parent="." index="6" unique_id=1525776993]
+texture = ExtResource("4_vbeyd")
+
+[node name="AlertBalloon" parent="." index="7" unique_id=1534237853]
+script = SubResource("GDScript_n6qrj")

@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="10_ab3c0"]
 [ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="11_reqye"]
 [ext_resource type="PackedScene" uid="uid://dm1jotcraodpl" path="res://godot4/actors/enemies/PewTurret.tscn" id="12_x5sbl"]
+[ext_resource type="PackedScene" uid="uid://k7kjsv6uic3e" path="res://godot4/actors/enemies/FireballsTurret.tscn" id="13_crsa2"]
 
 [sub_resource type="GDScript" id="GDScript_gbqai"]
 script/source = "extends Orchestrator
@@ -56,27 +57,27 @@ func disable_current_turrets() -> void:
 # level 3: all turrets are active
 func _begin_phases():
 	print('phase 1')
-	_current_turrets = [[%PewTurretTop, %PewTurretBottom].pick_random()]
+	_current_turrets = [[%TurretTop, %TurretBottom].pick_random()]
 	alert_current_turrets()
 	
 	await Events.score_threshold_passed
 	
 	print('phase 2')
 	disable_current_turrets()
-	_current_turrets = [%PewTurretLeft, %PewTurretRight]
+	_current_turrets = [%TurretLeft, %TurretRight]
 	alert_current_turrets()
 	
 	await Events.score_threshold_passed
 	
 	print('phase 3')
 	disable_current_turrets()
-	_current_turrets = [%PewTurretTop, %PewTurretBottom]
+	_current_turrets = [%TurretTop, %TurretBottom]
 	alert_current_turrets()
 	
 	await Events.score_threshold_passed
 	print('phase 3b')
 	disable_current_turrets()
-	_current_turrets = [%PewTurretLeft, %PewTurretRight, %PewTurretTop, %PewTurretBottom]
+	_current_turrets = [%TurretLeft, %TurretRight, %TurretTop, %TurretBottom]
 	alert_current_turrets()
 "
 
@@ -264,7 +265,7 @@ rotation_degrees = 45.0
 [node name="Crown" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=798619167 instance=ExtResource("11_reqye")]
 points_per_second = 1.0
 
-[node name="PewTurretTop" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=474966121 instance=ExtResource("12_x5sbl")]
+[node name="TurretTop" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=474966121 instance=ExtResource("12_x5sbl")]
 unique_name_in_owner = true
 position = Vector2(0, -900)
 aim_speed = 8.0
@@ -274,7 +275,7 @@ shooting = false
 wait_time = 1.0
 time_jitter = 1.5
 
-[node name="PewTurretBottom" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=2071592657 instance=ExtResource("12_x5sbl")]
+[node name="TurretBottom" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="9" unique_id=2071592657 instance=ExtResource("12_x5sbl")]
 unique_name_in_owner = true
 position = Vector2(0, 900)
 aim_speed = 8.0
@@ -285,8 +286,9 @@ wait_time = 1.0
 time_jitter = 1.5
 burst_time_jitter = 0.1
 
-[node name="PewTurretLeft" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="10" unique_id=718930390 instance=ExtResource("12_x5sbl")]
+[node name="TurretLeftz" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="10" unique_id=718930390 instance=ExtResource("12_x5sbl")]
 unique_name_in_owner = true
+visible = false
 position = Vector2(-1700, 0)
 aim_speed = 8.0
 predictive_aim = 0.7
@@ -298,8 +300,9 @@ burst_shots = 4
 burst_time = 0.1
 burst_time_jitter = 0.2
 
-[node name="PewTurretRight" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="11" unique_id=89141337 instance=ExtResource("12_x5sbl")]
+[node name="TurretRightz" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="11" unique_id=89141337 instance=ExtResource("12_x5sbl")]
 unique_name_in_owner = true
+visible = false
 position = Vector2(1700, 0)
 aim_speed = 8.0
 predictive_aim = 0.7
@@ -309,6 +312,17 @@ time_jitter = 1.0
 burst_shots = 4
 burst_time = 0.1
 burst_time_jitter = 0.2
+
+[node name="TurretLeft" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="12" unique_id=780302392 instance=ExtResource("13_crsa2")]
+unique_name_in_owner = true
+position = Vector2(-1680, 0)
+burst_shots = 1
+
+[node name="TurretRight" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="13" unique_id=347022618 instance=ExtResource("13_crsa2")]
+unique_name_in_owner = true
+position = Vector2(1680, 0)
+rotation = 3.1415927
+burst_shots = 1
 
 [node name="Navigation" parent="." index="7" unique_id=332973589]
 navigation_polygon = SubResource("NavigationPolygon_p5bjs")

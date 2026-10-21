@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ucf66h5c3spn"]
+
+[ext_resource type="PackedScene" uid="uid://bcpxly7gf4hxf" path="res://godot4/actors/ships/weapons/BulletWeapon.tscn" id="1_klyff"]
+[ext_resource type="PackedScene" uid="uid://bb4kd7ebpdm2x" path="res://godot4/elements/projectiles/BubbleBullet.tscn" id="3_halpe"]
+
+[node name="FireballBulletWeapon" unique_id=2007729134 instance=ExtResource("1_klyff")]
+bullet_scene = ExtResource("3_halpe")
