@@ -42,7 +42,6 @@ func _on_tap(_charge: float) -> void:
 	var ship := owner_ship
 	_follow.set_physics_process(false)
 	_direction = Vector2.RIGHT.rotated(ship.global_rotation)
-	familiar.global_position = ship.global_position + _direction * 60.0
 	state = State.THROWN
 
 func _on_body_entered(body: Node) -> void:
