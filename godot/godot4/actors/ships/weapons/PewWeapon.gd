@@ -37,8 +37,7 @@ func fire(source):
 		var pew : Pew = pew_scene.instantiate()
 		pew.global_position = global_position + Vector2(offset, 0).rotated(angle)
 		pew.linear_velocity = Vector2(2500, 0).rotated(angle)
-		pew.set_color(source.get_color())
-		pew.set_team(source.get_team())
+		pew.set_player(source.get_player())
 		_ctx.spawn_request.emit(pew)
 		
 func get_aim_compensation_target():
@@ -51,4 +50,4 @@ func get_aim_compensation_target():
 	return null
 
 func is_valid_target(sth, actor) -> bool:
-	return traits.has_trait(sth, 'Target') and sth.get_team() != actor.get_team()
+	return traits.has_trait(sth, 'Target') and sth.get_player().get_team() != actor.get_player().get_team()

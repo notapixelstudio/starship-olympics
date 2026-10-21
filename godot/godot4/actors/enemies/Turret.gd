@@ -2,8 +2,11 @@ extends Area2D
 class_name Turret
 
 @export var enabled := true
+@export var shooting := true
 @export var wait_time := 2.0 : set = set_time
 @export var time_jitter := 0.0
+
+@export var rogue_player : Player
 
 @export_group("Burst")
 @export var burst_shots := 1
@@ -30,9 +33,12 @@ func start() -> void:
 	
 func stop() -> void:
 	%Timer.stop()
+	
+func set_shooting(v:bool) -> void:
+	shooting = v
 
 func _on_timer_timeout() -> void:
-	if enabled:
+	if enabled and shooting:
 		tap.emit(0)
 		_burst_count += 1
 		
@@ -42,14 +48,16 @@ func _on_timer_timeout() -> void:
 	else:
 		%Timer.start(burst_time+randf()*burst_time_jitter)
 	
-# TODO design how to handle color for rogue team
-func get_color() -> Color:
-	return Color.WHITE
-	
-func get_team() -> String:
-	return 'rogue'
+func get_player() -> Player:
+	return rogue_player
 
 func alert():
+	enabled = true
+	%AnimationPlayer.stop()
 	%AnimationPlayer.play("Alert")
-	await %AnimationPlayer.animation_finished
-	alert_ended.emit()
+	
+func stand_down():
+	enabled = false
+	%AnimationPlayer.stop()
+	%AnimationPlayer.play("RESET")
+	shooting = false

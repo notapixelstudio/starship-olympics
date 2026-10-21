@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://jhsh150wnrbw"]
+[gd_scene format=3 uid="uid://jhsh150wnrbw"]
 
 [ext_resource type="Script" uid="uid://1faatbfym4s1" path="res://godot4/arena/managers/Orchestrator.gd" id="1_ut58i"]
+[ext_resource type="Script" uid="uid://dfwlu4ppe4snj" path="res://addons/AutoSignals/AutoSignals.gd" id="2_8clfa"]
 
-[node name="Orchestrator" type="Node"]
+[node name="Orchestrator" type="Node" unique_id=146973120]
 script = ExtResource("1_ut58i")
+
+[node name="AutoSignals" type="Node" parent="." unique_id=1158800382]
+unique_name_in_owner = true
+script = ExtResource("2_8clfa")
+metadata/_custom_type_script = "uid://dfwlu4ppe4snj"

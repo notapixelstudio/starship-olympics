@@ -140,3 +140,7 @@ func _on_gate_crossed(by_what, gate:Gate, trigger:bool) -> void:
 			if teammate.get_team() == team:
 				gate.remove_target(teammate)
 				_ordered_gates[_progress[team]].add_target(teammate)
+	else:
+		# bad gate passed
+		_ctx.player_failed.emit(player)
+		gate.show_feedback_bad()

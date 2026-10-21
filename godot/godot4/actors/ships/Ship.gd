@@ -9,7 +9,6 @@ func clone() -> Ship:
 	return new_ship
 	
 @export var player : Player : get = get_player, set = set_player
-@export var cpu_ship_image : Texture
 @export var dash_ring_scene : PackedScene
 @export var death_feedback_scene : PackedScene
 @export var disabled_ship_scene : PackedScene
@@ -34,7 +33,6 @@ func set_player(v: Player) -> void:
 	
 	if player.is_cpu():
 		%Sprite2D.self_modulate = player.get_species().get_color()
-		%Sprite2D.texture = cpu_ship_image
 
 @onready var tracked = %Tracked
 @onready var dash_graviton_field = %DashGravitonField
@@ -158,8 +156,8 @@ func do_tap(charge: float) -> void:
 	
 	# check whether there's an object receiving the tap action nearby
 	for area in %TouchArea.get_overlapping_areas():
-		if area.has_signal('tap'):
-			area.tap.emit(self, normalized_charge)
+		if area.has_signal('tapped'):
+			area.tapped.emit(self, normalized_charge)
 			
 			# show feedback
 			var bump = bump_effect_scene.instantiate()
@@ -290,6 +288,9 @@ func get_team() -> String:
 func get_cargo_manager():
 	return %CargoManager
 	
+func get_cargo():
+	return %CargoManager.get_cargo()
+	
 func has_cargo() -> bool:
 	return %CargoManager.has_cargo()
 	
@@ -312,39 +313,57 @@ func show_hit() -> void:
 	%SpriteAnimation.stop()
 	%SpriteAnimation.play('Hit')
 
-func damage(damager) -> void:
+signal hitted(by_what) # yea, I know, that's not the correct spelling - it avoids clashing with the method name though
+func hit(hitter) -> void:
 	show_hit()
 	
 	# always rebound on hit
 	var vector = Vector2.ZERO
 	var strength_rebound = 2500.0
-	if(damager.get('linear_velocity') == null):
-		vector = (global_position-damager.global_position).normalized()
+	if(hitter.get('linear_velocity') == null):
+		vector = (global_position-hitter.global_position).normalized()
 	else:
-		vector = (Vector2(1,0).rotated(damager.linear_velocity.angle()))
+		vector = (Vector2(1,0).rotated(hitter.linear_velocity.angle()))
+	var hit_impulse = compute_rebound(vector, strength_rebound)
+	apply_central_impulse(hit_impulse)
 	
-	# lose cargo if any instead of losing health
-	var impulse_to_give = rebound(vector, strength_rebound)
+	hitted.emit(hitter)
+	
+	# do not damage the ship if it has cargo
+	# hit the cargo instead
 	if %CargoManager.has_cargo():
-		%CargoManager.shoot_cargo(damager)
+		%CargoManager.hit_cargo(hitter)
 		return
 		
-	# TBD health system
-	#die()
-	disable(impulse_to_give)
+	damage(hitter, hit_impulse)
 	
+signal damaged(by_what)
+func damage(damager, hit_impulse) -> void:
+	# TBD health system
+	damaged.emit(damager)
+	disable(damager, hit_impulse)
+	
+signal killed(by_what)
 func kill(killer=null):
-	if killer != null:
-		var team = killer.get_team()
-		var team2 = get_team()
-		if killer.get_team() != get_team():
+	# if the ship has a cargo, hit it
+	if %CargoManager.has_cargo():
+		assert(killer != null)
+		%CargoManager.hit_cargo(killer)
+	
+	if killer != null and killer.has_method('get_player'):
+		var team = get_team()
+		var team2 = killer.get_player().get_team()
+		if team != team2:
 			# WARNING this is intrinsic scoring for deathmatch-like games
 			# maybe it has to be moved out if we have both intrinsic and non-intrinsic scoring
-			Events.score.emit(1, killer, global_position)
+			Events.score.emit(1, killer.get_player(), global_position)
 	if not is_queued_for_deletion():
+		killed.emit(killer)
 		_ctx.ship_down.emit(self)
+	
 	die()
 	
+signal died
 func die():
 	# avoid creating a death feedback twice, if we already have been killed
 	if is_queued_for_deletion():
@@ -352,8 +371,12 @@ func die():
 		
 	_show_death_feedback()
 	queue_free()
+	
+	died.emit()
+	# TBD this section is fishy
 	if respawns:
 		_ctx.ship_died.emit(player)
+	# END fishy
 	
 func _show_death_feedback() -> void:
 	var death_feedback = death_feedback_scene.instantiate()
@@ -361,23 +384,30 @@ func _show_death_feedback() -> void:
 	death_feedback.global_position = global_position
 	_ctx.spawn_request.emit(death_feedback)
 	
-func disable(impulse_to_give=Vector2.ZERO):
+signal disabled(by_what)
+func disable(disabler, hit_impulse):
 	# avoid creating a disabled ship twice, if we already have been disabled
 	if is_queued_for_deletion():
 		return
 		
+	disabled.emit(disabler)
+	
+	# TBD this section is fishy
 	_ctx.ship_down.emit(self)
 	if not respawns:
 		die()
 		return
+	# END fishy
+	
 	var disabled_ship := disabled_ship_scene.instantiate()
 	disabled_ship.set_ship(self)
 	disabled_ship.global_position = global_position
 	disabled_ship.global_rotation = global_rotation
 	disabled_ship.linear_velocity = linear_velocity
 	disabled_ship.angular_velocity = angular_velocity
+	
 	_ctx.spawn_request.emit(disabled_ship, func(disabled_ship):
-		disabled_ship.apply_central_impulse(impulse_to_give)
+		disabled_ship.apply_central_impulse(hit_impulse)
 		disabled_ship.apply_torque_impulse((1000+linear_velocity.length())*2)
 	)
 	
@@ -385,6 +415,15 @@ func disable(impulse_to_give=Vector2.ZERO):
 	
 	queue_free()
 
+signal captured(by_what)
+func capture(captor) -> void:
+	# if the ship has a cargo, drop it
+	if %CargoManager.has_cargo():
+		assert(captor != null)
+		%CargoManager.shoot_cargo(captor)
+		
+	captured.emit(captor)
+	
 func get_speed_normalized() -> float:
 	return min(1.0, linear_velocity.length() / 100.0)
 
@@ -408,10 +447,9 @@ func set_message(msg: String, color: Color = get_color()) -> void:
 func get_target_destination() -> Vector2:
 	return global_position # FIXME we need to actually compute target dest
 
-func rebound(direction = null, strength := 2000.0) -> Vector2:
+func compute_rebound(direction = null, strength := 2000.0) -> Vector2:
 	if direction == null:
 		direction = Vector2(-1,0).rotated(rotation)
-	apply_central_impulse(strength*direction)
 	return (strength*direction)
 
 # TODO: This is temporary, should not be here

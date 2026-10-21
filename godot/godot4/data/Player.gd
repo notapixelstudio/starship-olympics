@@ -8,6 +8,7 @@ class_name Player
 @export var species : Species = preload("res://godot4/data/species/mantiacs_1.tres")
 @export var team : String = ""
 @export var cpu : bool = false
+@export var cpu_ship_image : Texture = preload("res://assets/sprites/species/drones/ship.png")
 
 func _init(data:Dictionary = {}):
 	species = Species.get_from_id(data.get("species_id", "mantiacs_1"))
@@ -51,6 +52,9 @@ func get_team_color() -> Color:
 	return Color('#ff4a2e') if self.team == 'A' else Color('#1a59ff')
 
 func get_ship_image() -> Texture:
+	if cpu:
+		return cpu_ship_image
+		
 	return species.get_ship()
 	
 func get_gradient() -> Gradient:

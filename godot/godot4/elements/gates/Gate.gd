@@ -102,6 +102,12 @@ func pulse_unlocked() -> void:
 	modulate = Color(2.2, 1.8, 0.3)
 	create_tween().tween_property(self, "modulate", Color.WHITE, 1.2)
 	
+func show_feedback_bad():
+	$AnimationPlayer.stop()
+	$AnimationPlayer.play("BadBlink")
+	if enabled:
+		SoundEffects.play($AudioStreamPlayer2DFail)
+	
 func act_as_if_crossed_by(sth):
 	_crossed_by(sth, false) # don't trigger
 

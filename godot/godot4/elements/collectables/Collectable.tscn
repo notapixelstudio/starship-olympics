@@ -1,13 +1,11 @@
 [gd_scene format=3 uid="uid://dsmqaj240piab"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://cgtydalk5hxq3" path="res://godot4/data/physics/standard_physics_material.tres" id="1_j7j1j"]
 [ext_resource type="Script" uid="uid://cpxvapwxmi5c7" path="res://godot4/elements/collectables/Collectable.gd" id="1_q6gx3"]
 [ext_resource type="PackedScene" uid="uid://c4yru00x07tyi" path="res://godot4/effects/TreasurePicked.tscn" id="2_lfwwo"]
 [ext_resource type="PackedScene" uid="uid://bkt3uw0ui0kxk" path="res://godot4/effects/appear/AppearDefault.tscn" id="3_ufj5w"]
 [ext_resource type="Texture2D" uid="uid://bcygna7ih04dt" path="res://assets/sprites/circle.png" id="4_qifm1"]
 [ext_resource type="Texture2D" uid="uid://br53fw5oilvb2" path="res://assets/sprites/interface/circle_glow.png" id="4_sn586"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ojvyv"]
-bounce = 0.35
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ycic"]
 radius = 70.0
@@ -206,7 +204,7 @@ _data = {
 [node name="Collectable" type="RigidBody2D" unique_id=1679659046]
 collision_layer = 2048
 collision_mask = 3092
-physics_material_override = SubResource("PhysicsMaterial_ojvyv")
+physics_material_override = ExtResource("1_j7j1j")
 can_sleep = false
 linear_damp = 1.0
 script = ExtResource("1_q6gx3")

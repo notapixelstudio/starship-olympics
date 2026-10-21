@@ -1,0 +1,183 @@
+[gd_scene format=3 uid="uid://2ewe4ebdwmm8"]
+
+[ext_resource type="Script" uid="uid://bb2bxessuvbos" path="res://godot4/map/MapArena.gd" id="1_5jjxx"]
+[ext_resource type="PackedScene" uid="uid://cphkdfew8xuc5" path="res://godot4/arena/ArenaScope.tscn" id="2_h1yi6"]
+[ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_rbeks"]
+[ext_resource type="PackedScene" uid="uid://cyolmy8p6kegy" path="res://godot4/arena/managers/ItemManager.tscn" id="4_6x2uh"]
+[ext_resource type="Script" uid="uid://rnvhumm1cowb" path="res://godot4/debug/DebugActionsManager.gd" id="5_3wit1"]
+[ext_resource type="PackedScene" uid="uid://c161j5oxkpgmm" path="res://godot4/arena/managers/CollisionResponseManager.tscn" id="6_a0oa7"]
+[ext_resource type="PackedScene" uid="uid://bsglorws8xub7" path="res://godot4/arena/managers/ShipFactory.tscn" id="7_ed63e"]
+[ext_resource type="PackedScene" uid="uid://b83y52mt43gah" path="res://godot4/arena/managers/SpawnManager.tscn" id="8_g1pmr"]
+[ext_resource type="Script" uid="uid://tvmm4mdwnb4y" path="res://godot4/arena/ArenaCamera2D.gd" id="9_b7pp2"]
+[ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="10_i7vfj"]
+[ext_resource type="PackedScene" uid="uid://chcm4ndymet0r" path="res://godot4/elements/collectables/items/Bounty/Bounty_run.tscn" id="11_kqn5j"]
+[ext_resource type="PackedScene" uid="uid://dsmqaj240piab" path="res://godot4/elements/collectables/Collectable.tscn" id="12_ki4lc"]
+[ext_resource type="Texture2D" uid="uid://c15twfdbmm5oh" path="res://assets/arrow.png" id="13_unufr"]
+[ext_resource type="Script" uid="uid://d0bqe8srkhk6e" path="res://godot4/data/items/Item.gd" id="14_2suis"]
+[ext_resource type="Resource" path="res://godot4/data/items/starting_points.tres" id="15_4dy4s"]
+[ext_resource type="Texture2D" uid="uid://bxpm2unqd3am4" path="res://assets/sprites/environments/clock_circuits_outline.png" id="16_d8lj4"]
+[ext_resource type="Resource" uid="uid://335ssfwjpj13" path="res://godot4/data/items/TimeCircuits.tres" id="17_dkupi"]
+[ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="18_0shsf"]
+[ext_resource type="Resource" uid="uid://i8oaavdvf6hv" path="res://godot4/data/items/Crown.tres" id="19_oqnyn"]
+[ext_resource type="PackedScene" uid="uid://gngmmoykqjtu" path="res://godot4/elements/cargos/GlassCrown.tscn" id="20_kmy60"]
+[ext_resource type="PackedScene" uid="uid://djakv8k7yhih5" path="res://godot4/elements/cargos/BasketBall.tscn" id="21_k2i4u"]
+[ext_resource type="Resource" uid="uid://ck0awf4c5mj5w" path="res://godot4/data/items/basket_ball.tres" id="22_3ych7"]
+[ext_resource type="PackedScene" uid="uid://bgild5rs1lhfj" path="res://godot4/map/LevelStart.tscn" id="23_w45ry"]
+[ext_resource type="Resource" uid="uid://dm65hdj8nci86" path="res://godot4/minigames/diamondsnatch/minigame.tres" id="24_obyst"]
+[ext_resource type="Resource" uid="uid://8scjgeixod4k" path="res://godot4/minigames/ring-racing/minigame.tres" id="25_xa83o"]
+[ext_resource type="Resource" uid="uid://grr1qvn7xtx6" path="res://godot4/minigames/keep-the-crown/minigame.tres" id="26_k2cqa"]
+[ext_resource type="Resource" uid="uid://dtsqb0j6pvbnm" path="res://godot4/minigames/squash-five/minigame.tres" id="27_qcr0g"]
+[ext_resource type="Resource" uid="uid://buqylx0pp0vef" path="res://godot4/minigames/shape-horde/minigame.tres" id="28_xdfwy"]
+[ext_resource type="Resource" uid="uid://cqdft3xwftxpu" path="res://godot4/minigames/shape-hunt/minigame.tres" id="29_6cfpe"]
+[ext_resource type="PackedScene" uid="uid://cnc1iumrpf838" path="res://godot4/arena/Navigation.tscn" id="30_4wkts"]
+[ext_resource type="PackedScene" uid="uid://dnny8ekvjg4ck" path="res://godot4/debug/SOLog.tscn" id="31_hq4tb"]
+[ext_resource type="PackedScene" uid="uid://bdnijlionsghd" path="res://godot4/ui/overlays/PauseOverlay.tscn" id="32_2lgmb"]
+
+[sub_resource type="Resource" id="Item_hs"]
+script = ExtResource("14_2suis")
+type = ExtResource("15_4dy4s")
+
+[sub_resource type="Resource" id="Item_tc"]
+script = ExtResource("14_2suis")
+type = ExtResource("17_dkupi")
+duration = 0
+
+[sub_resource type="Resource" id="Resource_5jjxx"]
+resource_local_to_scene = true
+script = ExtResource("14_2suis")
+type = ExtResource("19_oqnyn")
+
+[sub_resource type="Resource" id="Resource_h1yi6"]
+resource_local_to_scene = true
+script = ExtResource("14_2suis")
+type = ExtResource("19_oqnyn")
+duration = 0
+glass = true
+
+[sub_resource type="Resource" id="Resource_rbeks"]
+resource_local_to_scene = true
+script = ExtResource("14_2suis")
+type = ExtResource("22_3ych7")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6x2uh"]
+resource_local_to_scene = true
+parsed_geometry_type = 1
+parsed_collision_mask = 16
+source_geometry_mode = 1
+source_geometry_group_name = &"obstacle"
+agent_radius = 100.0
+
+[node name="MapArena" type="Node2D" unique_id=2082662255]
+script = ExtResource("1_5jjxx")
+
+[node name="ArenaScope" parent="." unique_id=389744876 instance=ExtResource("2_h1yi6")]
+unique_name_in_owner = true
+
+[node name="Managers" type="Node" parent="." unique_id=1385946608]
+
+[node name="MessageManager" parent="Managers" unique_id=435259635 node_paths=PackedStringArray("battlefield") instance=ExtResource("3_rbeks")]
+battlefield = NodePath("../../Battlefield")
+magnify = 0.3
+follow_zoom = true
+
+[node name="ItemManager" parent="Managers" unique_id=1029304198 instance=ExtResource("4_6x2uh")]
+
+[node name="DebugActionsManager" type="Node" parent="Managers" unique_id=1227698747 node_paths=PackedStringArray("arena")]
+process_mode = 3
+script = ExtResource("5_3wit1")
+arena = NodePath("../..")
+
+[node name="CollisionResponseManager" parent="Managers" unique_id=1337316555 instance=ExtResource("6_a0oa7")]
+
+[node name="ShipFactory" parent="Managers" unique_id=221211639 instance=ExtResource("7_ed63e")]
+unique_name_in_owner = true
+
+[node name="SpawnManager" parent="Managers" unique_id=1642956781 node_paths=PackedStringArray("battlefield") instance=ExtResource("8_g1pmr")]
+battlefield = NodePath("../../Battlefield")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=956979488]
+unique_name_in_owner = true
+zoom = Vector2(0.2, 0.2)
+script = ExtResource("9_b7pp2")
+
+[node name="Homes" type="Node2D" parent="." unique_id=471731571]
+unique_name_in_owner = true
+
+[node name="P1" parent="Homes" unique_id=1036365354 instance=ExtResource("10_i7vfj")]
+position = Vector2(-2700, 0)
+
+[node name="Battlefield" type="Node2D" parent="." unique_id=584753717]
+unique_name_in_owner = true
+
+[node name="BountyRun" parent="Battlefield" unique_id=453274601 instance=ExtResource("11_kqn5j")]
+position = Vector2(1200, -1350)
+
+[node name="HeadStart" parent="Battlefield" unique_id=1520846278 instance=ExtResource("12_ki4lc")]
+position = Vector2(1950, -1350)
+outline_texture = ExtResource("13_unufr")
+item = SubResource("Item_hs")
+
+[node name="TimeCircuits" parent="Battlefield" unique_id=599719810 instance=ExtResource("12_ki4lc")]
+position = Vector2(-1800, -1350)
+outline_texture = ExtResource("16_d8lj4")
+item = SubResource("Item_tc")
+
+[node name="Crown" parent="Battlefield" unique_id=1255268695 instance=ExtResource("18_0shsf")]
+position = Vector2(-1050, -1350)
+item = SubResource("Resource_5jjxx")
+
+[node name="GlassCrown" parent="Battlefield" unique_id=1160048206 instance=ExtResource("20_kmy60")]
+position = Vector2(-300, -1350)
+item = SubResource("Resource_h1yi6")
+
+[node name="BasketBall" parent="Battlefield" unique_id=1878555385 instance=ExtResource("21_k2i4u")]
+position = Vector2(450, -1350)
+item = SubResource("Resource_rbeks")
+
+[node name="Levels" type="Node2D" parent="Battlefield" unique_id=888629877]
+unique_name_in_owner = true
+
+[node name="LevelStart" parent="Battlefield/Levels" unique_id=2001746739 instance=ExtResource("23_w45ry")]
+position = Vector2(-2100, 0)
+minigame = ExtResource("24_obyst")
+
+[node name="LevelStart4" parent="Battlefield/Levels" unique_id=1058364786 instance=ExtResource("23_w45ry")]
+position = Vector2(-2100, 600)
+minigame = ExtResource("25_xa83o")
+
+[node name="LevelStart6" parent="Battlefield/Levels" unique_id=1120787908 instance=ExtResource("23_w45ry")]
+position = Vector2(-2100, 1200)
+minigame = ExtResource("26_k2cqa")
+
+[node name="LevelStart5" parent="Battlefield/Levels" unique_id=889811547 instance=ExtResource("23_w45ry")]
+position = Vector2(-1350, 600)
+minigame = ExtResource("27_qcr0g")
+
+[node name="LevelStart2" parent="Battlefield/Levels" unique_id=2012167206 instance=ExtResource("23_w45ry")]
+position = Vector2(-2100, -600)
+minigame = ExtResource("28_xdfwy")
+
+[node name="LevelStart3" parent="Battlefield/Levels" unique_id=95751891 instance=ExtResource("23_w45ry")]
+position = Vector2(-1350, -600)
+minigame = ExtResource("29_6cfpe")
+
+[node name="Navigation" parent="." unique_id=332973589 instance=ExtResource("30_4wkts")]
+navigation_polygon = SubResource("NavigationPolygon_6x2uh")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=737164047]
+unique_name_in_owner = true
+process_mode = 3
+layer = 10
+visible = false
+
+[node name="SOLog" parent="HUD" unique_id=1688534412 instance=ExtResource("31_hq4tb")]
+visible = false
+offset_left = 950.0
+offset_top = 150.0
+offset_right = 1275.0
+offset_bottom = 550.0
+metadata/_edit_lock_ = true
+
+[node name="PauseOverlay" parent="HUD" unique_id=2108453743 instance=ExtResource("32_2lgmb")]
+unique_name_in_owner = true
+visible = false

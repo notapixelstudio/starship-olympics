@@ -1,7 +1,5 @@
 extends Bar
 
-@export var cpu_ship_image : Texture
-
 var _players_list : Array[Player]
 
 func set_max_value(v: float) -> void:
@@ -34,7 +32,6 @@ func set_players_list(players_list: Array[Player]) -> void:
 		%MiniShip.texture = player.get_ship_image()
 		if player.is_cpu():
 			%MiniShip.self_modulate = player.get_color()
-			%MiniShip.texture = cpu_ship_image
 	else:
 		%Background.self_modulate = Color(0.2,0.2,0.2)
 		var colors : Array[Color] = []
@@ -49,14 +46,12 @@ func set_players_list(players_list: Array[Player]) -> void:
 		%MiniShip.texture = _players_list[_miniship_index].get_ship_image()
 		if _players_list[_miniship_index].is_cpu():
 			%MiniShip.self_modulate = _players_list[_miniship_index].get_color()
-			%MiniShip.texture = cpu_ship_image
 		
 var _miniship_index := 1
 func _on_miniship_timer_timeout() -> void:
 	%MiniShip.texture = _players_list[_miniship_index].get_ship_image()
 	if _players_list[_miniship_index].is_cpu():
 		%MiniShip.self_modulate = _players_list[_miniship_index].get_color()
-		%MiniShip.texture = cpu_ship_image
 	# backwards
 	_miniship_index -= 1
 	if _miniship_index < 0:

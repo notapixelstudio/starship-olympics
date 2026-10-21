@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://rkwptlvxlmtg"]
+
+[ext_resource type="PackedScene" uid="uid://dmlwbymobhm0b" path="res://godot4/debug/TestChamber.tscn" id="1_xrjnh"]
+[ext_resource type="PackedScene" uid="uid://cek3r1l5uiek1" path="res://godot4/arena/managers/ScoreManager.tscn" id="2_ub1dt"]
+[ext_resource type="PackedScene" uid="uid://ck7ir4e3p2vwi" path="res://godot4/arena/managers/MessageManager.tscn" id="3_4opmu"]
+[ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="5_q7k65"]
+[ext_resource type="Script" uid="uid://d0bqe8srkhk6e" path="res://godot4/data/items/Item.gd" id="6_gkshk"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="6_yh1yn"]
+[ext_resource type="Resource" uid="uid://i8oaavdvf6hv" path="res://godot4/data/items/Crown.tres" id="7_yh1yn"]
+[ext_resource type="PackedScene" uid="uid://gngmmoykqjtu" path="res://godot4/elements/cargos/GlassCrown.tscn" id="8_tpv41"]
+[ext_resource type="PackedScene" uid="uid://buaj7gsl2nn8y" path="res://godot4/actors/enemies/Bloid.tscn" id="9_70gt8"]
+[ext_resource type="PackedScene" uid="uid://bb4kd7ebpdm2x" path="res://godot4/elements/projectiles/BubbleBullet.tscn" id="10_gkshk"]
+[ext_resource type="PackedScene" uid="uid://djakv8k7yhih5" path="res://godot4/elements/cargos/BasketBall.tscn" id="11_tpv41"]
+[ext_resource type="Resource" uid="uid://ck0awf4c5mj5w" path="res://godot4/data/items/basket_ball.tres" id="12_70gt8"]
+[ext_resource type="PackedScene" uid="uid://dtdo2o8sagd7u" path="res://godot4/elements/collectables/SpikeDiamond.tscn" id="13_70gt8"]
+
+[sub_resource type="GDScript" id="GDScript_dqhjw"]
+script/source = "extends Timer
+
+@export var period := 4
+
+func _ready():
+	tick.call_deferred()
+
+func _on_timeout():
+	tick()
+
+func tick():
+	Events.beat.emit(period, wait_time)
+	wait_time *= 0.99
+"
+
+[sub_resource type="GDScript" id="GDScript_0rj7w"]
+script/source = "extends SOLog
+
+
+func _ready():
+	super._ready()
+	Events.sth_collected.connect(_on_sth_collected)
+	
+func _on_sth_collected(collector, collectee):
+	log_line(\"[b]%s[/b] collected [b]%s[/b]\" % [collector.name, collectee.name])
+"
+
+[sub_resource type="Resource" id="Resource_ck3pi"]
+resource_local_to_scene = true
+script = ExtResource("6_gkshk")
+type = ExtResource("7_yh1yn")
+
+[sub_resource type="Resource" id="Resource_x2b2f"]
+resource_local_to_scene = true
+script = ExtResource("6_gkshk")
+type = ExtResource("7_yh1yn")
+duration = 0
+glass = true
+
+[sub_resource type="Resource" id="Resource_5otk8"]
+resource_local_to_scene = true
+script = ExtResource("6_gkshk")
+type = ExtResource("12_70gt8")
+
+[node name="TestChamber" unique_id=1410827206 instance=ExtResource("1_xrjnh")]
+
+[node name="TestBeat" type="Timer" parent="." index="6" unique_id=2007071446]
+autostart = true
+script = SubResource("GDScript_dqhjw")
+
+[node name="ScoreManager" parent="." index="7" unique_id=1854392240 instance=ExtResource("2_ub1dt")]
+teams = Array[String](["P1"])
+
+[node name="MessageManager" parent="." index="8" unique_id=1920322541 node_paths=PackedStringArray("battlefield") instance=ExtResource("3_4opmu")]
+battlefield = NodePath("..")
+
+[node name="Ship" parent="." index="9" unique_id=83249433 instance=ExtResource("6_yh1yn")]
+unique_name_in_owner = true
+
+[node name="TestChamberLog" parent="." index="12" unique_id=750176929]
+script = SubResource("GDScript_0rj7w")
+
+[node name="Crown" parent="." index="15" unique_id=1255268695 instance=ExtResource("5_q7k65")]
+position = Vector2(0, -750)
+item = SubResource("Resource_ck3pi")
+
+[node name="GlassCrown" parent="." index="16" unique_id=368651451 instance=ExtResource("8_tpv41")]
+position = Vector2(450, -750)
+item = SubResource("Resource_x2b2f")
+
+[node name="Bloid" parent="." index="17" unique_id=1630210331 instance=ExtResource("9_70gt8")]
+position = Vector2(-750, 900)
+
+[node name="BubbleBullet" parent="." index="18" unique_id=751534955 instance=ExtResource("10_gkshk")]
+position = Vector2(-450, -750)
+
+[node name="BasketBall" parent="." index="19" unique_id=1878555385 instance=ExtResource("11_tpv41")]
+position = Vector2(450, 0)
+item = SubResource("Resource_5otk8")
+
+[node name="SpikeDiamond" parent="." index="20" unique_id=1659706428 instance=ExtResource("13_70gt8")]
+position = Vector2(750, 825)
+
+[connection signal="timeout" from="TestBeat" to="TestBeat" method="_on_timeout"]

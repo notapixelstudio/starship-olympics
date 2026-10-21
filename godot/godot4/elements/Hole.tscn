@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cgixi5fsjlqs8"]
+
+[ext_resource type="Shader" uid="uid://bovj0cwqptpkr" path="res://godot4/shaders/invisible_paint.gdshader" id="1_yv8de"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jiini"]
+shader = ExtResource("1_yv8de")
+
+[node name="Hole" type="Polygon2D" unique_id=751116984 groups=["Hole"]]
+material = SubResource("ShaderMaterial_jiini")
+polygon = PackedVector2Array(-450, -1800, 450, -1800, 450, 1800, -450, 1800)
