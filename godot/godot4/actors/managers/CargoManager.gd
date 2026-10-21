@@ -3,10 +3,13 @@ extends Node
 @onready var _ctx := ArenaScope.get_scope(self)
 
 var _current_cargo : Cargo
+var _baton_pulse_tween : Tween
 
 func _ready():
 	get_host().tap.connect(_on_tap)
-	
+	# the outline material is shared across every ship by default - duplicate so tinting it is per-ship
+	%HatSprite.material = %HatSprite.material.duplicate()
+
 func get_host():
 	return get_parent()
 
@@ -25,18 +28,40 @@ func _new_cargo(v: Cargo) -> void:
 	if v == null:
 		_empty_cargo()
 		return
-		
+
 	_current_cargo = v.clone_as_new()
+	_stop_baton_pulse()
 	if _current_cargo is Hat:
 		%HatSprite.texture = _current_cargo.get_texture()
+		%HatSprite.material.set_shader_parameter("color", Color.WHITE)
 		%BallSprite.texture = null
 	elif _current_cargo is Ball:
 		%HatSprite.texture = null
 		%BallSprite.texture = _current_cargo.get_texture()
-		
+
+const BATON_READY_GLOW := Color(2.2, 1.8, 0.3)
+const BATON_PULSE_SCALE := 1.4
+const BATON_PULSE_DURATION := 0.35
+
+## Lights up and pulses the carried relay baton's icon (its outline, since its shader ignores modulate) once it's ready to be handed off.
+func mark_baton_passable() -> void:
+	if _current_cargo is Baton:
+		%HatSprite.material.set_shader_parameter("color", BATON_READY_GLOW)
+		_baton_pulse_tween = create_tween().set_loops()
+		_baton_pulse_tween.tween_property(%HatSprite, "scale", Vector2.ONE * BATON_PULSE_SCALE, BATON_PULSE_DURATION).set_trans(Tween.TRANS_SINE)
+		_baton_pulse_tween.tween_property(%HatSprite, "scale", Vector2.ONE, BATON_PULSE_DURATION).set_trans(Tween.TRANS_SINE)
+
+func _stop_baton_pulse() -> void:
+	if _baton_pulse_tween:
+		_baton_pulse_tween.kill()
+		_baton_pulse_tween = null
+	%HatSprite.scale = Vector2.ONE
+
 func _empty_cargo() -> void:
 	_current_cargo = null
+	_stop_baton_pulse()
 	%HatSprite.texture = null
+	%HatSprite.material.set_shader_parameter("color", Color.WHITE)
 	%BallSprite.texture = null
 
 func has_cargo() -> bool:
@@ -95,7 +120,10 @@ func swap_cargo(other) -> void:
 	if not has_cargo() and not other.has_cargo():
 		# no actual swap has to occur, bail
 		return
-		
+
+	if (has_cargo() and not get_cargo().passable) or (other.has_cargo() and not other.get_cargo().passable):
+		return # e.g. a relay baton can't be handed off before its carrier completes a lap
+
 	# ignore swapping if just swapped sth
 	if not %JustSwappedTimer.is_stopped():
 		return

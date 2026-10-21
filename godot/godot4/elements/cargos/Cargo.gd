@@ -3,6 +3,7 @@ class_name Cargo
 
 @export var drop_distance := 64.0
 @export var loadable := true
+@export var passable := true # can this be handed off via a ship-to-ship bump right now?
 
 signal loaded_by(actor: Ship)
 

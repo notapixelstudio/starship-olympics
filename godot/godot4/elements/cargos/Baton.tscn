@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" uid="uid://ddtlawrotn0nb" path="res://godot4/elements/cargos/Hat.tscn" id="1_xre4g"]
+[ext_resource type="Script" path="res://godot4/elements/cargos/Baton.gd" id="2_batn1"]
+[ext_resource type="Texture2D" uid="uid://dgtgxo3jo7r45" path="res://assets/sprites/balls/flag.png" id="2_flag1"]
+
+[sub_resource type="Gradient" id="Gradient_5cley"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.997561)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
+
+[node name="Baton" instance=ExtResource("1_xre4g")]
+script = ExtResource("2_batn1")
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+texture = ExtResource("2_flag1")
+
+[node name="MotionAutoTrail" parent="." index="2"]
+modulate = Color(1, 0.843137, 0.0784314, 0.290196)
+gradient = SubResource("Gradient_5cley")
