@@ -64,7 +64,7 @@ _data = {
 
 [node name="Turret" type="Area2D" unique_id=2040906107 groups=["Turret"]]
 collision_layer = 4096
-collision_mask = 0
+collision_mask = 4
 script = ExtResource("1_nwro1")
 rogue_player = ExtResource("2_n6qrj")
 
@@ -112,3 +112,5 @@ theme_override_font_sizes/font_size = 96
 text = "!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

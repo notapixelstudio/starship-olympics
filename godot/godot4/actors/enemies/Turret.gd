@@ -16,6 +16,11 @@ class_name Turret
 		_forward_firing_setting(&"time_jitter", value)
 
 @export var rogue_player : Player
+## Seconds a hit (e.g. a Pew) keeps the turret from firing.
+@export var jam_time := 5.0
+
+@onready var _ctx := ArenaScope.get_scope(self)
+var _jam_tween: Tween
 
 @export_group("Burst")
 @export var burst_shots := 1:
@@ -75,6 +80,21 @@ func fire() -> void:
 	
 func get_player() -> Player:
 	return rogue_player
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Pew and body.get_player() != get_player(): # its own pews leave from inside it
+		_ctx.collision.emit(body, self)
+
+## Jams the turret for [member jam_time]: firing pauses and it turns grey. A new hit restarts the count.
+func hit(_hitter = null) -> void:
+	if _jam_tween:
+		_jam_tween.kill()
+	%TurretFiring.process_mode = Node.PROCESS_MODE_DISABLED # pauses its timer too
+	_jam_tween = create_tween()
+	_jam_tween.tween_property(self, ^"modulate", Color(0.35, 0.35, 0.35), 0.1)
+	_jam_tween.tween_interval(jam_time)
+	_jam_tween.tween_callback(func(): %TurretFiring.process_mode = Node.PROCESS_MODE_INHERIT)
+	_jam_tween.tween_property(self, ^"modulate", Color.WHITE, 0.2)
 
 func alert():
 	enabled = true
