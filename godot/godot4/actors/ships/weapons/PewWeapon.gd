@@ -2,6 +2,8 @@ extends Weapon
 
 @export var pew_scene : PackedScene
 @export var offset := 120.0
+## Bends shots toward a target in the AimCompensationZone; off means straight ahead.
+@export var aim_assist := true
 
 @onready var _ctx := ArenaScope.get_scope(self)
 
@@ -41,6 +43,8 @@ func fire(source):
 		_ctx.spawn_request.emit(pew)
 		
 func get_aim_compensation_target():
+	if not aim_assist:
+		return null
 	for body in $"%AimCompensationZone".get_overlapping_bodies():
 		if is_valid_target(body, get_host()):
 			return body
