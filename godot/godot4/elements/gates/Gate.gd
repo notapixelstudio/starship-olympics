@@ -95,6 +95,12 @@ func show_feedback(trigger=true):
 	$AnimationPlayer.play("Blink")
 	if trigger and enabled:
 		SoundEffects.play($AudioStreamPlayer2D)
+
+## A longer golden flash: used to call out a relay hand-off becoming available here.
+## Tints self (not RingPart/BottomRingPart) since those are already driven by the "Blink" animation.
+func pulse_unlocked() -> void:
+	modulate = Color(2.2, 1.8, 0.3)
+	create_tween().tween_property(self, "modulate", Color.WHITE, 1.2)
 	
 func show_feedback_bad():
 	$AnimationPlayer.stop()
