@@ -8,7 +8,7 @@ friction = 0.0
 bounce = 1.0
 
 [node name="BouncingFamiliar" instance=ExtResource("1")]
-chains = false
+slot_group = &""
 physics_material_override = SubResource("Bouncy")
 
 [node name="BounceMovement" parent="." instance=ExtResource("2")]

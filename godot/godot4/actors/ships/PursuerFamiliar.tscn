@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" path="res://godot4/actors/ships/behaviors/PursueMovement.tscn" id="3"]
 
 [node name="PursuerFamiliar" instance=ExtResource("1")]
-chains = false
+slot_group = &""
 linear_damp = 2.0
 
 [node name="Sprite2D" parent="." index="1"]

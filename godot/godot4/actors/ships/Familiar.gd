@@ -1,18 +1,21 @@
 class_name Familiar extends RigidBody2D
-## An item companion living on the battlefield, chained behind its [member leader]: the ship or the previous familiar.
-## With no ship to lead the chain it coasts until ItemManager hands it the next one.
+## An item companion living on the battlefield, led by its player's ship ([member leader]).
+## With no ship it coasts until ItemManager hands it the next one.
 ## Ship-like for its weapons and behaviours: it relays the ship's [signal tap], and team and color come from the player.
 
 signal tap(charge: float)
 
-## False for familiars that roam on their own: they still answer to the chain's ship, but nobody links behind them.
-@export var chains := true
+## Which slots it takes around the ship: &"formation" (FollowMovement), &"orbit" (OrbitMovement),
+## or empty for familiars that roam on their own (they still answer to the ship).
+@export var slot_group := &"formation"
+## Place within its [member slot_group], counted per player; ItemManager sets it.
+var slot_index := 0
 ## Pushing force for movement behaviours; the TerrainManager sets it (lower on ice).
 var thrust := 10000.0
 ## Global rotation kept every physics step, since the body's own rotation is locked.
 var facing := 0.0
 var player: Player
-var leader: Node2D
+var leader: Ship
 var _ship: Ship
 var _blown := false
 
@@ -23,12 +26,9 @@ func _ready() -> void:
 func describe() -> String:
 	return scene_file_path.get_file().get_basename()
 
-## The ship at the head of the chain, or null while it is down.
+## The leading ship, or null while it is down.
 func get_owner_ship() -> Ship:
-	var node = leader
-	while is_instance_valid(node) and node is Familiar:
-		node = node.leader
-	return node if is_instance_valid(node) and node is Ship and not node.is_queued_for_deletion() else null
+	return leader if is_instance_valid(leader) and not leader.is_queued_for_deletion() else null
 
 func _physics_process(_delta: float) -> void:
 	var ship := get_owner_ship()

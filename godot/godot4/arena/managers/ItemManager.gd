@@ -75,7 +75,7 @@ func _with_ship(holder: String, action: Callable) -> void:
 
 # --- Item-specific actions ---
 
-## One chain per player, led by its first ship. Cherry twin don't get that. Split chains per ship if twins need familiars.
+## One formation per player, led by its first ship. Cherry twin don't get that. Split them per ship if twins need familiars.
 func _sync_item_actors(holder: String) -> void:
 	var wanted := {}
 	for id in _in_play(holder):
@@ -101,17 +101,22 @@ func _sync_item_actors(holder: String) -> void:
 				familiar.global_position = ship.global_position
 				spawned.append(familiar)
 	chain.append_array(spawned)
-	var leader: Node2D = ship
+	if ship != null and not chain.is_empty() and not ship.has_node(^"FamiliarManager"):
+		var manager := FamiliarManager.new()
+		manager.name = &"FamiliarManager"
+		ship.add_child(manager)
+	var taken := {} # slot group -> slots handed out
 	for familiar in chain:
-		familiar.leader = leader
-		if familiar.chains:
-			leader = familiar
+		familiar.leader = ship
+		if familiar.slot_group:
+			familiar.slot_index = taken.get(familiar.slot_group, 0)
+			taken[familiar.slot_group] = familiar.slot_index + 1
 		if ship != null:
 			familiar.add_collision_exception_with(ship)
 	for familiar in spawned:
 		%Battlefield.add_child(familiar) # not spawn_request: that defers, and a second sync this frame would miss these
 	var names := func(list: Array) -> String: return ", ".join(list.map(func(f): return f.describe()))
-	var status := "%s familiars %s: chain [%s], free [%s]" % [holder, "follow the ship" if ship else "[b]coasting[/b] (no ship)", names.call(chain.filter(func(f): return f.chains)), names.call(chain.filter(func(f): return not f.chains))]
+	var status := "%s familiars %s: formation [%s], orbit [%s], free [%s]" % [holder, "follow the ship" if ship else "[b]coasting[/b] (no ship)", names.call(chain.filter(func(f): return f.slot_group == &"formation")), names.call(chain.filter(func(f): return f.slot_group == &"orbit")), names.call(chain.filter(func(f): return not f.slot_group))]
 	if not chain.is_empty() and status != _logged_chains.get(holder):
 		Events.log.emit(status)
 	_logged_chains[holder] = status
