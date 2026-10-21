@@ -3,41 +3,51 @@
 [ext_resource type="PackedScene" uid="uid://ca36e5ga36lv0" path="res://godot4/arena/PveArena.tscn" id="1_p5bjs"]
 [ext_resource type="Resource" uid="uid://bdemi8y308ry6" path="res://godot4/data/match_params/default.tres" id="2_crsa2"]
 [ext_resource type="Resource" uid="uid://cxorooq22c83" path="res://godot4/data/styles/palace.tres" id="3_a3isy"]
-[ext_resource type="PackedScene" uid="uid://chnvt4cxrqrcv" path="res://godot4/arena/managers/games/CrownGame.tscn" id="4_stlj0"]
 [ext_resource type="PackedScene" uid="uid://b1wxr36wrlulq" path="res://godot4/arena/Home.tscn" id="5_3s1is"]
 [ext_resource type="Script" uid="uid://dcjvxjj0myiia" path="res://addons/vshapes/VBeveledRect.gd" id="6_358l5"]
 [ext_resource type="PackedScene" uid="uid://5c144k74jpe7" path="res://godot4/elements/walls/Wall.tscn" id="7_xrqb4"]
 [ext_resource type="PackedScene" uid="uid://hqu0sjhj021n" path="res://godot4/effects/grid/Grid.tscn" id="8_1km8w"]
 [ext_resource type="PackedScene" uid="uid://bia7yrbdvp8vw" path="res://godot4/elements/walls/ShieldWall.tscn" id="9_0wqle"]
 [ext_resource type="Script" uid="uid://dd5es67ha55ia" path="res://addons/vshapes/VRoundedRect.gd" id="10_ab3c0"]
+[ext_resource type="Script" uid="uid://d0bqe8srkhk6e" path="res://godot4/data/items/Item.gd" id="11_crsa2"]
 [ext_resource type="PackedScene" uid="uid://cms0aqjusqct1" path="res://godot4/elements/cargos/Crown.tscn" id="11_reqye"]
+[ext_resource type="Resource" uid="uid://i8oaavdvf6hv" path="res://godot4/data/items/Crown.tres" id="12_a3isy"]
 [ext_resource type="PackedScene" uid="uid://dm1jotcraodpl" path="res://godot4/actors/enemies/PewTurret.tscn" id="12_x5sbl"]
 [ext_resource type="PackedScene" uid="uid://k7kjsv6uic3e" path="res://godot4/actors/enemies/FireballsTurret.tscn" id="13_crsa2"]
 
 [sub_resource type="GDScript" id="GDScript_gbqai"]
 script/source = "extends Orchestrator
 
+var _started := false
 var _current_turrets : Array[Turret] = []
 
 func _ready():
 	await super()
 	
 	%AutoSignals \\
-		.bind(%ArenaScope.spawned, _on_sth_spawned)
+		.bind(%ArenaScope.cargo_loaded, _on_cargo_loaded) \\
+		.bind(%ArenaScope.cargo_unloaded, _on_cargo_unloaded)
 	
-	# do nothing at start
 	print('phase 0')
 	
-# start as soon as the crown is loaded by someone
-func _on_crown_loaded_by(actor: Ship) -> void:
-	_begin_phases()
+	# if there are no already loaded crowns, do nothing at start
+	await get_tree().process_frame
+	for ship in get_tree().get_nodes_in_group('Ship'):
+		if ship.has_cargo_class(Crown):
+			_begin_phases()
+			break
+	
 
-func _on_sth_spawned(sth: Node) -> void:
-	if sth is Crown:
+func _on_cargo_unloaded(cargo: Cargo, by_ship: Ship) -> void:
+	if cargo is Crown:
 		disable_current_turrets()
-		sth.loaded_by.connect(_on_crown_loaded_again_by)
 
-func _on_crown_loaded_again_by(actor: Ship) -> void:
+func _on_cargo_loaded(cargo: Cargo, by_ship: Ship) -> void:
+	if not(cargo is Crown):
+		return
+		
+	if not _started:
+		_begin_phases()
 	alert_current_turrets()
 	
 func alert_current_turrets() -> void:
@@ -183,7 +193,12 @@ _data = {
 &"default": SubResource("Animation_xjb4e")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_p5bjs"]
+[sub_resource type="Resource" id="Resource_crsa2"]
+resource_local_to_scene = true
+script = ExtResource("11_crsa2")
+type = ExtResource("12_a3isy")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_a3isy"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -202,8 +217,6 @@ script = SubResource("GDScript_gbqai")
 
 [node name="ModifierManager" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="2" unique_id=1330404860]
 active_modifiers = Array[String]([])
-
-[node name="CrownGame" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="6" unique_id=1247272435 instance=ExtResource("4_stlj0")]
 
 [node name="Camera2D" parent="." index="3" unique_id=956979488]
 zoom = Vector2(0.32, 0.32)
@@ -263,7 +276,7 @@ precision = 20
 rotation_degrees = 45.0
 
 [node name="Crown" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="7" unique_id=798619167 instance=ExtResource("11_reqye")]
-points_per_second = 1.0
+item = SubResource("Resource_crsa2")
 
 [node name="TurretTop" parent="Battlefield" parent_id_path=PackedInt32Array(584753717) index="8" unique_id=474966121 instance=ExtResource("12_x5sbl")]
 unique_name_in_owner = true

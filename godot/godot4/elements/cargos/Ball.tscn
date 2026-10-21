@@ -11,7 +11,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.1)
 [sub_resource type="GDScript" id="GDScript_cdkl3"]
 script/source = "extends Area2D
 
-signal tap(author, strength:float)
+signal tapped(author: Ship, strength: float)
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_khrlj"]
@@ -28,7 +28,6 @@ kick_impulse_strength_multiplier = 5500.0
 [node name="MotionAutoTrail" parent="." index="3" unique_id=1467177572]
 width = 160.0
 gradient = SubResource("Gradient_6r1cw")
-active = true
 
 [node name="TapArea" type="Area2D" parent="." index="4" unique_id=2111933727]
 unique_name_in_owner = true
@@ -43,4 +42,4 @@ debug_color = Color(0.639216, 0.337255, 1, 0.0509804)
 
 [connection signal="area_entered" from="TapArea" to="." method="_on_tap_area_area_entered"]
 [connection signal="area_exited" from="TapArea" to="." method="_on_tap_area_area_exited"]
-[connection signal="tap" from="TapArea" to="." method="_on_tap_area_tap"]
+[connection signal="tapped" from="TapArea" to="." method="_on_tap_area_tapped"]

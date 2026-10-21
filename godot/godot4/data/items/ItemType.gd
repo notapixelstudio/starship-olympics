@@ -24,8 +24,15 @@ item = ExtResource("2_item")
 @export var texture: Texture2D
 @export var outline_texture: Texture2D
 @export var glow := Color.WHITE
+
+## Slots whose items are a [Cargo] carried by the ship: no effect of their own, the ship just carries them into the match.
+const CARGO_SLOTS := ['hat', 'ball']
+
 ## Shown over the holder's ship while the item is in play; leave empty for no badge.
 @export var badge: Texture2D
+
+func is_cargo() -> bool:
+	return slot in CARGO_SLOTS
 
 ## Creates an [Item] and a pickup scene for every duration × glass, skipping files that already exist.
 @export_tool_button("Generate variants") var _generate := generate_variants

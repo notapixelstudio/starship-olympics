@@ -33,3 +33,7 @@ func _on_gate_crossed(by_what, gate:Gate, trigger:bool) -> void:
 		# update next gate feedback
 		gate.remove_target(player)
 		_ordered_gates[_progress[player]].add_target(player)
+	else:
+		# bad gate passed
+		_ctx.player_failed.emit(player)
+		gate.show_feedback_bad()

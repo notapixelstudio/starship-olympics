@@ -2,6 +2,9 @@
 extends "res://godot4/elements/walls/Wall.gd"
 
 @export var reset_time := 5.0
+
+@onready var _ctx = ArenaScope.get_scope(self)
+
 var _on := false
 
 func _ready():
@@ -13,18 +16,21 @@ func _turn_on() -> void:
 	%AnimationPlayer.stop(true)
 	%AnimationPlayer.play("up")
 
-func hit(sth:Ball) -> void:
+func hit(ball:Ball) -> void:
+	assert(ball is SquashBall)
 	if _on:
 		_on = false
-		sth.decrease()
+		ball.decrease()
 		%AnimationPlayer.stop(true)
 		%AnimationPlayer.play("hit")
 	else:
-		sth.reset()
+		ball.reset()
 		%AnimationPlayer.stop(true)
 		%AnimationPlayer.play("hit_bad")
+		if ball.has_player():
+			_ctx.player_failed.emit(ball.get_player())
 	
-	sth.push(1000)
+	ball.push(1000)
 	%Timer.start(reset_time)
 	
 func _on_timer_timeout() -> void:

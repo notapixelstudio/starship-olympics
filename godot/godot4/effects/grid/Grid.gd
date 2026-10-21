@@ -25,13 +25,18 @@ func set_style(style:Style) -> void:
 	%MeshInstance2D.modulate = style.mesh_color
 	%GridLines.checkered = style.mesh_checkered
 	%GridLines.enabled = %GridLines.visible or %MeshInstance2D.visible
-
+	
+	for child in get_children():
+		if child is Node2D:
+			child.self_modulate = style.grid_color
+			
 func _ready():
 	%Styleable.apply_current_style()
 	
 	#mask.frames_wait = frames_wait
 	grid.cell_size = cell_size
 	if init_parametric_shape:
+		await init_parametric_shape.updated
 		grid.size = init_parametric_shape.get_extents()
 	elif init_custom_shape:
 		await init_custom_shape.updated
@@ -46,4 +51,5 @@ func _ready():
 	%GridLines.mesh = %MeshInstance2D.mesh # FIXME please
 	
 func set_points(points: PackedVector2Array) -> void:
+	# WARNING shapes that grow bigger than their starting extent are not supported 
 	mask.set_points(points)

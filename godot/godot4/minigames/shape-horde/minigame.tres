@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Minigame" format=3 uid="uid://buqylx0pp0vef"]
+
+[ext_resource type="PackedScene" uid="uid://cc33kbqafn06s" path="res://godot4/actors/brains/DiamondsnatchBrain.tscn" id="1_2foag"]
+[ext_resource type="Texture2D" uid="uid://blxpmy8hagjsh" path="res://assets/icon/minigames/shape-hunt.png" id="2_nlvgp"]
+[ext_resource type="PackedScene" uid="uid://d3d15u074tcak" path="res://godot4/actors/brains/PlayerBrain.tscn" id="3_3t73c"]
+[ext_resource type="Script" uid="uid://tavpq5uhlyhr" path="res://godot4/data/minigames/Minigame.gd" id="4_ki8hf"]
+[ext_resource type="PackedScene" uid="uid://cgjeqx4n1ot0e" path="res://godot4/actors/ships/Ship.tscn" id="5_jk3ke"]
+[ext_resource type="AudioStream" uid="uid://bs0cwegilmecx" path="res://assets/audio/soundtracks/paradoxal_activity-mattek.ogg" id="6_xkpg5"]
+
+[resource]
+script = ExtResource("4_ki8hf")
+title = "shape horde!"
+icon = ExtResource("2_nlvgp")
+description = "destroy the shapes"
+soundtrack = ExtResource("6_xkpg5")
+cpu_brain_scene = ExtResource("1_2foag")

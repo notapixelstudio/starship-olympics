@@ -128,7 +128,7 @@ _data = {
 &"phase_3": SubResource("Animation_s4j2o")
 }
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_o5gw8"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_octvx"]
 resource_local_to_scene = true
 parsed_geometry_type = 1
 parsed_collision_mask = 16
@@ -139,7 +139,7 @@ agent_radius = 100.0
 [node name="PveArena" unique_id=1481253217 instance=ExtResource("1_pnwr7")]
 default_params = ExtResource("2_s4j2o")
 
-[node name="Styleable" parent="." index="0" unique_id=999924478]
+[node name="Styleable" parent="." index="1" unique_id=999924478]
 style = ExtResource("3_pr0om")
 
 [node name="Orchestrator" parent="Managers" parent_id_path=PackedInt32Array(1385946608) index="0" unique_id=1592803965]
@@ -148,7 +148,7 @@ script = ExtResource("4_pnwr7")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Managers/Orchestrator" index="0" unique_id=1427741846]
 libraries/ = SubResource("AnimationLibrary_pr0om")
 
-[node name="Camera2D" parent="." index="2" unique_id=956979488]
+[node name="Camera2D" parent="." index="3" unique_id=956979488]
 zoom = Vector2(0.23, 0.23)
 
 [node name="P1" parent="Homes" parent_id_path=PackedInt32Array(471731571) index="0" unique_id=743158187 instance=ExtResource("4_ktbkk")]
@@ -238,5 +238,5 @@ width = 100.0
 height = 1600.0
 metadata/_custom_type_script = "uid://dwa5kst63hc3b"
 
-[node name="Navigation" parent="." index="6" unique_id=332973589]
-navigation_polygon = SubResource("NavigationPolygon_o5gw8")
+[node name="Navigation" parent="." index="8" unique_id=332973589]
+navigation_polygon = SubResource("NavigationPolygon_octvx")
